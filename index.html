@@ -1,0 +1,191 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Boss Systems — AI Phone Receptionist for Local Businesses</title>
+  <meta name="description" content="Boss Systems installs an AI that answers every call for your business, 24/7. Based in Tyler, TX. Starting at $150 setup.">
+  <style>
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    body { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif; background: #0a0f1e; color: #fff; }
+
+    /* NAV */
+    nav { display: flex; justify-content: space-between; align-items: center; padding: 20px 40px; border-bottom: 1px solid #1e293b; }
+    .logo { font-size: 22px; font-weight: 800; letter-spacing: 1px; color: #fff; }
+    .logo span { color: #3b82f6; }
+    .nav-cta { background: #3b82f6; color: #fff; border: none; padding: 10px 24px; border-radius: 8px; font-size: 15px; font-weight: 600; cursor: pointer; text-decoration: none; }
+    .nav-cta:hover { background: #2563eb; }
+
+    /* HERO */
+    .hero { text-align: center; padding: 100px 20px 80px; max-width: 800px; margin: 0 auto; }
+    .badge { display: inline-block; background: #1e293b; color: #94a3b8; font-size: 13px; padding: 6px 16px; border-radius: 20px; margin-bottom: 28px; border: 1px solid #334155; }
+    h1 { font-size: clamp(36px, 6vw, 64px); font-weight: 800; line-height: 1.1; margin-bottom: 24px; }
+    h1 span { color: #3b82f6; }
+    .subtitle { font-size: 20px; color: #94a3b8; line-height: 1.6; margin-bottom: 40px; max-width: 600px; margin-left: auto; margin-right: auto; }
+    .hero-cta { display: inline-flex; gap: 16px; flex-wrap: wrap; justify-content: center; }
+    .btn-primary { background: #3b82f6; color: #fff; padding: 16px 36px; border-radius: 10px; font-size: 17px; font-weight: 700; text-decoration: none; display: inline-block; }
+    .btn-primary:hover { background: #2563eb; }
+    .btn-secondary { background: transparent; color: #fff; padding: 16px 36px; border-radius: 10px; font-size: 17px; font-weight: 600; text-decoration: none; display: inline-block; border: 1px solid #334155; }
+    .btn-secondary:hover { border-color: #3b82f6; }
+
+    /* SOCIAL PROOF */
+    .proof { text-align: center; padding: 20px; color: #64748b; font-size: 14px; margin-top: 20px; }
+
+    /* HOW IT WORKS */
+    .section { padding: 80px 20px; max-width: 1000px; margin: 0 auto; }
+    .section-label { text-align: center; color: #3b82f6; font-size: 13px; font-weight: 700; letter-spacing: 2px; text-transform: uppercase; margin-bottom: 16px; }
+    .section-title { text-align: center; font-size: clamp(28px, 4vw, 42px); font-weight: 800; margin-bottom: 16px; }
+    .section-sub { text-align: center; color: #94a3b8; font-size: 18px; margin-bottom: 60px; }
+
+    .steps { display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 24px; }
+    .step { background: #0f172a; border: 1px solid #1e293b; border-radius: 16px; padding: 32px; }
+    .step-num { font-size: 13px; font-weight: 700; color: #3b82f6; letter-spacing: 1px; margin-bottom: 16px; }
+    .step h3 { font-size: 20px; font-weight: 700; margin-bottom: 12px; }
+    .step p { color: #94a3b8; line-height: 1.6; }
+
+    /* PROBLEM / SOLUTION */
+    .split { display: grid; grid-template-columns: 1fr 1fr; gap: 40px; align-items: center; padding: 80px 20px; max-width: 1000px; margin: 0 auto; }
+    @media (max-width: 700px) { .split { grid-template-columns: 1fr; } }
+    .split-content h2 { font-size: clamp(26px, 4vw, 38px); font-weight: 800; margin-bottom: 20px; line-height: 1.2; }
+    .split-content p { color: #94a3b8; font-size: 17px; line-height: 1.7; margin-bottom: 16px; }
+    .stat-box { background: #0f172a; border: 1px solid #1e293b; border-radius: 16px; padding: 32px; text-align: center; }
+    .stat-num { font-size: 64px; font-weight: 800; color: #3b82f6; line-height: 1; }
+    .stat-label { color: #94a3b8; font-size: 16px; margin-top: 8px; }
+
+    /* PRICING */
+    .pricing { padding: 80px 20px; max-width: 800px; margin: 0 auto; text-align: center; }
+    .plans { display: grid; grid-template-columns: 1fr 1fr; gap: 24px; margin-top: 48px; }
+    @media (max-width: 600px) { .plans { grid-template-columns: 1fr; } }
+    .plan { background: #0f172a; border: 1px solid #1e293b; border-radius: 16px; padding: 36px; text-align: left; position: relative; }
+    .plan.featured { border-color: #3b82f6; }
+    .plan-badge { position: absolute; top: -12px; left: 50%; transform: translateX(-50%); background: #3b82f6; color: #fff; font-size: 12px; font-weight: 700; padding: 4px 16px; border-radius: 20px; white-space: nowrap; }
+    .plan-name { font-size: 16px; color: #94a3b8; margin-bottom: 8px; }
+    .plan-price { font-size: 42px; font-weight: 800; margin-bottom: 4px; }
+    .plan-price span { font-size: 18px; font-weight: 400; color: #64748b; }
+    .plan-setup { color: #64748b; font-size: 14px; margin-bottom: 24px; }
+    .plan ul { list-style: none; }
+    .plan ul li { color: #cbd5e1; font-size: 15px; padding: 8px 0; border-bottom: 1px solid #1e293b; display: flex; align-items: center; gap: 10px; }
+    .plan ul li:last-child { border: none; }
+    .check { color: #22c55e; font-size: 16px; }
+    .cancel { color: #64748b; font-size: 13px; text-align: center; margin-top: 20px; }
+
+    /* CTA SECTION */
+    .cta-section { background: #0f172a; border-top: 1px solid #1e293b; border-bottom: 1px solid #1e293b; padding: 80px 20px; text-align: center; }
+    .cta-section h2 { font-size: clamp(28px, 4vw, 48px); font-weight: 800; margin-bottom: 16px; }
+    .cta-section p { color: #94a3b8; font-size: 18px; margin-bottom: 40px; }
+    .phone-link { font-size: 32px; font-weight: 800; color: #3b82f6; text-decoration: none; display: block; margin-bottom: 16px; }
+    .phone-link:hover { color: #60a5fa; }
+
+    /* FOOTER */
+    footer { padding: 40px 20px; text-align: center; color: #475569; font-size: 14px; border-top: 1px solid #1e293b; }
+    footer a { color: #64748b; text-decoration: none; }
+  </style>
+</head>
+<body>
+
+  <!-- NAV -->
+  <nav>
+    <div class="logo">BOSS <span>Systems</span></div>
+    <a href="tel:9034830168" class="nav-cta">Call Demo Line</a>
+  </nav>
+
+  <!-- HERO -->
+  <section class="hero">
+    <div class="badge">📍 Based in Tyler, TX — Serving local businesses nationwide</div>
+    <h1>Your business answers <span>every call.</span><br>Even at 2am.</h1>
+    <p class="subtitle">Boss Systems installs an AI phone receptionist for your business in 24 hours. It answers instantly, sounds like a real person, and never misses a customer.</p>
+    <div class="hero-cta">
+      <a href="tel:9034830168" class="btn-primary">🎧 Call to hear it live — 903-483-0168</a>
+      <a href="mailto:bosrossall@gmail.com" class="btn-secondary">Get set up this week</a>
+    </div>
+    <p class="proof">Try it free for one week. No payment required.</p>
+  </section>
+
+  <!-- PROBLEM -->
+  <div class="split">
+    <div class="split-content">
+      <h2>Every missed call is a customer who called someone else.</h2>
+      <p>When your phone goes to voicemail, most people don't leave a message. They call the next business on Google.</p>
+      <p>If you miss 5 calls a week and each one is worth $200, that's $4,000 a month walking out the door. Every month.</p>
+    </div>
+    <div class="stat-box">
+      <div class="stat-num">62%</div>
+      <div class="stat-label">of business calls go unanswered</div>
+      <br>
+      <div class="stat-num" style="font-size:48px; color:#ef4444;">$0</div>
+      <div class="stat-label">earned from a missed call</div>
+    </div>
+  </div>
+
+  <!-- HOW IT WORKS -->
+  <div class="section">
+    <div class="section-label">How it works</div>
+    <div class="section-title">Set up in 24 hours. Runs forever.</div>
+    <div class="section-sub">No hardware. No app for your customers. Just a phone number that always gets answered.</div>
+    <div class="steps">
+      <div class="step">
+        <div class="step-num">STEP 01</div>
+        <h3>We build your AI</h3>
+        <p>Boston sets up your AI receptionist — trained on your business, your services, your hours. Done within 24 hours.</p>
+      </div>
+      <div class="step">
+        <div class="step-num">STEP 02</div>
+        <h3>It answers every call</h3>
+        <p>The AI picks up on the first ring, 24/7. It sounds natural, answers questions, takes messages, and handles after-hours calls.</p>
+      </div>
+      <div class="step">
+        <div class="step-num">STEP 03</div>
+        <h3>You get the important ones</h3>
+        <p>Urgent calls get forwarded to you. Everything else is handled. You stop losing customers to voicemail.</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- PRICING -->
+  <div class="pricing">
+    <div class="section-label">Pricing</div>
+    <div class="section-title">Simple. No contracts.</div>
+    <div class="plans">
+      <div class="plan">
+        <div class="plan-name">Starter</div>
+        <div class="plan-price">$60<span>/mo</span></div>
+        <div class="plan-setup">$150 one-time setup</div>
+        <ul>
+          <li><span class="check">✓</span> 24/7 AI receptionist</li>
+          <li><span class="check">✓</span> After-hours answering</li>
+          <li><span class="check">✓</span> Message taking</li>
+          <li><span class="check">✓</span> Cancel anytime</li>
+        </ul>
+      </div>
+      <div class="plan featured">
+        <div class="plan-badge">Most Popular</div>
+        <div class="plan-name">Growth</div>
+        <div class="plan-price">$50<span>/mo</span></div>
+        <div class="plan-setup">$250 one-time setup</div>
+        <ul>
+          <li><span class="check">✓</span> Everything in Starter</li>
+          <li><span class="check">✓</span> Priority setup</li>
+          <li><span class="check">✓</span> Monthly performance report</li>
+          <li><span class="check">✓</span> Cancel anytime</li>
+        </ul>
+      </div>
+    </div>
+    <p class="cancel">Try it free for one week before any payment.</p>
+  </div>
+
+  <!-- CTA -->
+  <div class="cta-section">
+    <h2>Hear it answer right now.</h2>
+    <p>Call this number and you will hear exactly what your customers would experience. Live demo, no sales call.</p>
+    <a href="tel:9034830168" class="phone-link">📞 (903) 483-0168</a>
+    <a href="mailto:bosrossall@gmail.com" class="btn-primary">Or email Boston directly</a>
+  </div>
+
+  <!-- FOOTER -->
+  <footer>
+    <p>Boss Systems &bull; Tyler, TX &bull; <a href="mailto:bosrossall@gmail.com">bosrossall@gmail.com</a> &bull; (903) 483-0168</p>
+    <p style="margin-top: 8px;">Built by Boston Rossall &bull; bosssystems.co</p>
+  </footer>
+
+</body>
+</html>
