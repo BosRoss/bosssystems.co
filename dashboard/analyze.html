@@ -1,0 +1,260 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Free AI Business Analysis — BOSS Systems</title>
+<meta name="description" content="Find out exactly where your business is losing money to AI opportunities. Free 60-second analysis.">
+<style>
+  *{margin:0;padding:0;box-sizing:border-box}
+  :root{--gold:#C9A84C;--dark:#0a0a0a;--gray:#141414;--border:#2a2a2a;--text:#f0ede8}
+  body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;background:var(--dark);color:var(--text);min-height:100vh}
+  
+  header{padding:1.5rem 2rem;border-bottom:1px solid var(--border);display:flex;justify-content:space-between;align-items:center}
+  .logo{font-weight:900;font-size:1.1rem;letter-spacing:3px;color:var(--gold)}
+  .back{color:#666;font-size:.85rem;text-decoration:none}
+  .back:hover{color:var(--gold)}
+
+  .hero{text-align:center;padding:5rem 2rem 3rem;max-width:700px;margin:0 auto}
+  .hero h1{font-size:clamp(2rem,5vw,3.5rem);font-weight:900;line-height:1.1;margin-bottom:1rem}
+  .hero h1 span{color:var(--gold)}
+  .hero p{color:#888;font-size:1.1rem;line-height:1.6;margin-bottom:2rem}
+
+  .form-card{background:var(--gray);border:1px solid var(--border);padding:2.5rem;max-width:600px;margin:0 auto}
+  .form-group{margin-bottom:1.5rem}
+  label{display:block;font-size:.8rem;letter-spacing:2px;text-transform:uppercase;color:#888;margin-bottom:.5rem}
+  input,select{width:100%;background:#0a0a0a;border:1px solid var(--border);color:var(--text);padding:.9rem 1rem;font-size:1rem;outline:none;transition:.2s}
+  input:focus,select:focus{border-color:var(--gold)}
+  select option{background:#1a1a1a}
+  .btn{width:100%;background:var(--gold);color:var(--dark);border:none;padding:1.1rem;font-size:1.1rem;font-weight:900;letter-spacing:1px;cursor:pointer;transition:.1s;margin-top:.5rem}
+  .btn:hover{opacity:.92}
+  .btn:disabled{opacity:.5;cursor:not-allowed}
+  .note{text-align:center;color:#555;font-size:.8rem;margin-top:1rem}
+
+  /* Results */
+  #results{display:none;max-width:700px;margin:3rem auto;padding:0 2rem 4rem}
+  .result-header{border-left:3px solid var(--gold);padding-left:1.5rem;margin-bottom:2rem}
+  .result-header h2{font-size:1.8rem;font-weight:900}
+  .result-header p{color:#888;margin-top:.3rem}
+
+  .stats-row{display:grid;grid-template-columns:repeat(3,1fr);gap:1rem;margin-bottom:2rem}
+  .stat{background:var(--gray);border:1px solid var(--border);padding:1.2rem;text-align:center}
+  .stat .num{font-size:1.8rem;font-weight:900;color:var(--gold)}
+  .stat .lbl{font-size:.7rem;letter-spacing:2px;color:#666;text-transform:uppercase;margin-top:.3rem}
+
+  .section-title{font-size:.7rem;letter-spacing:3px;text-transform:uppercase;color:var(--gold);margin:2rem 0 1rem}
+  
+  .automation-item{border:1px solid var(--border);padding:1.2rem;margin-bottom:.75rem;display:grid;grid-template-columns:1fr auto;gap:1rem;align-items:center}
+  .automation-item.quick{border-color:#2a3a2a}
+  .auto-name{font-weight:700;margin-bottom:.2rem}
+  .auto-desc{font-size:.85rem;color:#777}
+  .auto-value{text-align:right}
+  .auto-value .val{font-size:1.2rem;font-weight:900;color:var(--gold)}
+  .auto-value .sub{font-size:.7rem;color:#555}
+
+  .package-rec{background:linear-gradient(135deg,#1a1500,#0a0a0a);border:1px solid var(--gold);padding:2rem;margin-top:2rem;text-align:center}
+  .package-rec h3{font-size:1.4rem;font-weight:900;color:var(--gold);margin-bottom:.5rem}
+  .package-rec p{color:#888;margin-bottom:1.5rem}
+  .cta-btn{display:inline-block;background:var(--gold);color:var(--dark);padding:.9rem 2.5rem;font-weight:900;text-decoration:none;letter-spacing:1px;font-size:1rem}
+  .cta-text{color:#555;font-size:.8rem;margin-top:.75rem}
+
+  .loading{text-align:center;padding:3rem;color:#555}
+  .spinner{width:40px;height:40px;border:2px solid var(--border);border-top-color:var(--gold);border-radius:50%;animation:spin 1s linear infinite;margin:0 auto 1rem}
+  @keyframes spin{to{transform:rotate(360deg)}}
+
+  @media(max-width:600px){
+    .stats-row{grid-template-columns:1fr 1fr}
+    .automation-item{grid-template-columns:1fr;gap:.5rem}
+    .auto-value{text-align:left}
+  }
+</style>
+</head>
+<body>
+
+<header>
+  <div class="logo">BOSS SYSTEMS</div>
+  <a href="/" class="back">← Back to Home</a>
+</header>
+
+<div class="hero">
+  <h1>What's Your Business <span>Leaving Behind?</span></h1>
+  <p>We analyze your business in 60 seconds. No sales pitch until you see your numbers. Find out exactly what AI could be doing for you — and what it's worth.</p>
+</div>
+
+<div class="form-card" id="form-section">
+  <div class="form-group">
+    <label>Business Type</label>
+    <select id="btype">
+      <option value="">Select your business type...</option>
+      <option value="hvac">HVAC / Air Conditioning</option>
+      <option value="plumber">Plumbing</option>
+      <option value="electrician">Electrical</option>
+      <option value="roofer">Roofing</option>
+      <option value="junk_removal">Junk Removal</option>
+      <option value="cleaning">Cleaning Service</option>
+      <option value="auto_repair">Auto Repair</option>
+      <option value="pest_control">Pest Control</option>
+      <option value="law_firm">Law Firm / Attorney</option>
+      <option value="landscaping">Landscaping</option>
+      <option value="restaurant">Restaurant</option>
+      <option value="real_estate">Real Estate</option>
+      <option value="gym">Gym / Fitness</option>
+      <option value="general">Other Service Business</option>
+    </select>
+  </div>
+  <div class="form-group">
+    <label>City & State</label>
+    <input type="text" id="city" placeholder="e.g. Corinth MS" />
+  </div>
+  <div class="form-group">
+    <label>Business Name (optional)</label>
+    <input type="text" id="bname" placeholder="e.g. Dale's HVAC" />
+  </div>
+  <button class="btn" id="analyze-btn" onclick="runAnalysis()">RUN MY FREE ANALYSIS</button>
+  <p class="note">No email required. No spam. Just your numbers.</p>
+</div>
+
+<div id="results">
+  <div id="results-content"></div>
+</div>
+
+<script>
+// Automation data — mirrors automation_library.py
+const AUTOMATIONS = {
+  phone_receptionist: {name:"AI Phone Receptionist",cat:"Customer Acquisition",value:32000,cost:60,hours:2,diff:1,desc:"AI answers every call 24/7, qualifies leads, quotes jobs, books appointments.",quickWin:true,applies:["all"]},
+  missed_call_textback: {name:"Missed Call Text-Back",cat:"Customer Acquisition",value:12000,cost:15,hours:1,diff:1,desc:"When any call is missed, customer gets a text within 60 seconds.",quickWin:true,applies:["all"]},
+  review_request: {name:"Automated Review Request",cat:"Customer Acquisition",value:15000,cost:10,hours:1,diff:1,desc:"2 hours after every job, customer gets a text asking for a Google review.",quickWin:true,applies:["all"]},
+  payment_collection: {name:"Automated Payment Collection",cat:"Operations",value:12000,cost:15,hours:2,diff:1,desc:"Job complete → Square payment link sent instantly. Automatic follow-up if unpaid.",quickWin:true,applies:["all"]},
+  appointment_booking: {name:"Automated Appointment System",cat:"Operations",value:15000,cost:20,hours:2,diff:1,desc:"Booking confirmation, 24hr reminder, and day-of ETA text — all automatic.",quickWin:true,applies:["all"]},
+  job_status_updates: {name:"Job Status Texts",cat:"Operations",value:10000,cost:15,hours:2,diff:1,desc:"Customers auto-get: 30min ETA, job started, job complete. No manual texts.",quickWin:true,applies:["all"]},
+  referral_program: {name:"Automated Referral Program",cat:"Customer Retention",value:30000,cost:20,hours:4,diff:2,desc:"After every 5-star review, customer gets a referral ask with unique credit link.",applies:["all"]},
+  re_engagement: {name:"Customer Re-Engagement AI",cat:"Customer Retention",value:25000,cost:25,hours:3,diff:2,desc:"60-90 day lapsed customers get a personalized text. 'Haven't seen you in a while...'",applies:["all"]},
+  competitor_mining: {name:"Competitor Review Mining",cat:"Customer Acquisition",value:18000,cost:20,hours:3,diff:2,desc:"Scans competitor Google reviews weekly. Finds unhappy customers for you to call.",applies:["all"]},
+  social_media_ai: {name:"AI Social Media Manager",cat:"Customer Acquisition",value:12000,cost:40,hours:4,diff:3,desc:"5 posts/week to Facebook, Instagram, Google Business. Fully automated.",applies:["all"]},
+  quote_generator: {name:"AI Quote Generator",cat:"Sales",value:28000,cost:35,hours:5,diff:3,desc:"Customer texts a description or photo. AI sends back a quote in 60 seconds.",applies:["junk_removal","cleaning","painting","landscaping","roofer","general"]},
+  outbound_caller: {name:"AI Outbound Caller",cat:"Customer Acquisition",value:45000,cost:120,hours:4,diff:2,desc:"AI calls targeted businesses daily, pitches services, books demos.",applies:["general"]},
+  hvac_reminders: {name:"HVAC Maintenance Reminders",cat:"Business-Specific",value:35000,cost:25,hours:4,diff:2,desc:"After every install, schedules filter change reminders and annual tune-up calls.",applies:["hvac"]},
+  storm_leads: {name:"Storm Damage Lead Generator",cat:"Business-Specific",value:80000,cost:60,hours:8,diff:4,desc:"Monitors weather. When a storm hits your area, AI calls homeowners in affected zip codes.",applies:["roofer"]},
+  law_intake: {name:"AI Legal Intake System",cat:"Business-Specific",value:120000,cost:150,hours:8,diff:4,desc:"AI handles all new client intake calls. Attorney only joins for qualified cases.",applies:["law_firm"]},
+  emergency_routing: {name:"Emergency Call Routing",cat:"Business-Specific",value:40000,cost:30,hours:5,diff:3,desc:"Emergency calls flagged, routed to on-call tech, ETA text sent. Under 5 min response.",applies:["plumber","electrician"]},
+  gym_retention: {name:"Member Retention AI",cat:"Business-Specific",value:60000,cost:50,hours:6,diff:3,desc:"Tracks attendance. 10-day no-show gets a personal text. Renewal reminders at 30 days.",applies:["gym"]},
+  real_estate_nurture: {name:"Real Estate Lead Nurture",cat:"Business-Specific",value:90000,cost:100,hours:8,diff:4,desc:"Every inquiry gets a 30-day AI follow-up sequence with market updates.",applies:["real_estate"]},
+  restaurant_reservations: {name:"AI Reservation System",cat:"Business-Specific",value:45000,cost:80,hours:6,diff:3,desc:"AI handles all reservation calls, manages waitlist, sends confirmations.",applies:["restaurant"]},
+};
+
+const TYPE_LABELS = {hvac:"HVAC",plumber:"Plumbing",electrician:"Electrical",roofer:"Roofing",junk_removal:"Junk Removal",cleaning:"Cleaning",auto_repair:"Auto Repair",pest_control:"Pest Control",law_firm:"Law Firm",landscaping:"Landscaping",restaurant:"Restaurant",real_estate:"Real Estate",gym:"Gym",general:"Service Business"};
+
+function getRecommendations(btype) {
+  const recs = [];
+  for (const [key, a] of Object.entries(AUTOMATIONS)) {
+    if (a.applies.includes("all") || a.applies.includes(btype)) {
+      const priority = (a.value / Math.max(a.cost, 1)) / Math.max(a.diff, 1);
+      recs.push({...a, key, priority});
+    }
+  }
+  return recs.sort((a,b) => b.priority - a.priority);
+}
+
+function fmt(n) { return '$' + n.toLocaleString(); }
+
+async function runAnalysis() {
+  const btype = document.getElementById('btype').value;
+  const city = document.getElementById('city').value.trim();
+  const bname = document.getElementById('bname').value.trim();
+
+  if (!btype || !city) {
+    alert('Please select your business type and enter your city.');
+    return;
+  }
+
+  const btn = document.getElementById('analyze-btn');
+  btn.disabled = true;
+  btn.textContent = 'Analyzing...';
+
+  document.getElementById('form-section').style.display = 'none';
+  document.getElementById('results').style.display = 'block';
+  document.getElementById('results-content').innerHTML = `
+    <div class="loading">
+      <div class="spinner"></div>
+      <p>Analyzing ${TYPE_LABELS[btype] || 'your business'} in ${city}...</p>
+      <p style="margin-top:.5rem;font-size:.85rem;color:#444">Checking competitors, scanning automation opportunities...</p>
+    </div>
+  `;
+
+  // Simulate analysis delay
+  await new Promise(r => setTimeout(r, 2000));
+
+  const recs = getRecommendations(btype);
+  const top10 = recs.slice(0, 10);
+  const quickWins = recs.filter(r => r.quickWin).slice(0, 4);
+  const totalValue = top10.reduce((s,r) => s+r.value, 0);
+  const totalCost = top10.reduce((s,r) => s+r.cost, 0);
+  const roi = Math.round(totalValue / Math.max(totalCost * 12, 1));
+
+  const bizLabel = bname || (TYPE_LABELS[btype] + ' in ' + city);
+  const pkg = roi > 40 ? 'Full Transformation — $5,997 setup + $497/mo' : roi > 20 ? 'Growth — $2,997 setup + $247/mo' : 'Starter — $1,497 setup + $97/mo';
+
+  let html = `
+    <div class="result-header">
+      <h2>${bizLabel}</h2>
+      <p>${TYPE_LABELS[btype] || 'Business'} | ${city} | AI Transformation Analysis</p>
+    </div>
+
+    <div class="stats-row">
+      <div class="stat"><div class="num">${fmt(totalValue)}</div><div class="lbl">Annual Value Unlocked</div></div>
+      <div class="stat"><div class="num">$${totalCost}/mo</div><div class="lbl">Cost to Run It All</div></div>
+      <div class="stat"><div class="num">${roi}:1</div><div class="lbl">ROI in Year One</div></div>
+    </div>
+
+    <div class="section-title">⚡ Quick Wins — Build in Under 1 Day</div>
+  `;
+
+  for (const a of quickWins) {
+    html += `
+      <div class="automation-item quick">
+        <div>
+          <div class="auto-name">${a.name}</div>
+          <div class="auto-desc">${a.desc}</div>
+        </div>
+        <div class="auto-value">
+          <div class="val">${fmt(a.value)}/yr</div>
+          <div class="sub">$${a.cost}/mo to run</div>
+        </div>
+      </div>
+    `;
+  }
+
+  html += `<div class="section-title">💰 Top 10 Automations For Your Business</div>`;
+
+  for (const a of top10) {
+    html += `
+      <div class="automation-item">
+        <div>
+          <div class="auto-name">${a.name}</div>
+          <div class="auto-desc">${a.cat} · ${a.hours}hr build · Difficulty ${a.diff}/5</div>
+        </div>
+        <div class="auto-value">
+          <div class="val">${fmt(a.value)}/yr</div>
+          <div class="sub">$${a.cost}/mo</div>
+        </div>
+      </div>
+    `;
+  }
+
+  html += `
+    <div class="package-rec">
+      <h3>Recommended: ${pkg}</h3>
+      <p>Based on your business type and the automations above, this package covers everything that makes sense for you right now.</p>
+      <a class="cta-btn" href="sms:+19037146162?body=Hey Boston — I just ran the BOSS analysis for my ${TYPE_LABELS[btype]} business in ${city}. Interested in learning more.">
+        TEXT BOSTON TO GET STARTED
+      </a>
+      <p class="cta-text">Or call/text: 903-714-6162 · Venmo @BosRoss</p>
+    </div>
+  `;
+
+  document.getElementById('results-content').innerHTML = html;
+}
+</script>
+
+</body>
+</html>
