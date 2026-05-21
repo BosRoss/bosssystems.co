@@ -1,1290 +1,377 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>BOSS Systems — AI Business Innovation</title>
-  <style>
-    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
-
-    :root {
-      --bg: #0a0a0a;
-      --gold: #C9A84C;
-      --gold-light: #e0bc6a;
-      --gold-dark: #a8893a;
-      --text: #f5f5f0;
-      --text-muted: #9a9a94;
-      --surface: #111111;
-      --surface-2: #161616;
-      --border: #222222;
-      --font: -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, Arial, sans-serif;
-    }
-
-    html { scroll-behavior: smooth; }
-
-    body {
-      background: var(--bg);
-      color: var(--text);
-      font-family: var(--font);
-      font-size: 16px;
-      line-height: 1.6;
-      -webkit-font-smoothing: antialiased;
-    }
-
-    /* ─── TOPBAR ─────────────────────────────────────────────── */
-    .topbar {
-      position: sticky;
-      top: 0;
-      z-index: 100;
-      background: rgba(10, 10, 10, 0.96);
-      backdrop-filter: blur(12px);
-      border-bottom: 1px solid var(--border);
-      padding: 0 24px;
-      height: 60px;
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-    }
-
-    .logo {
-      font-size: 18px;
-      font-weight: 800;
-      letter-spacing: 0.08em;
-      color: var(--gold);
-      text-transform: uppercase;
-      text-decoration: none;
-    }
-
-    .logo span {
-      color: var(--text);
-      font-weight: 400;
-      letter-spacing: 0.04em;
-    }
-
-    .topbar-cta {
-      background: var(--gold);
-      color: #0a0a0a;
-      text-decoration: none;
-      padding: 9px 20px;
-      font-size: 13px;
-      font-weight: 700;
-      border-radius: 4px;
-      letter-spacing: 0.02em;
-      transition: background 0.15s;
-      white-space: nowrap;
-    }
-
-    .topbar-cta:hover { background: var(--gold-light); }
-
-    /* ─── HERO ───────────────────────────────────────────────── */
-    .hero {
-      min-height: 100vh;
-      display: flex;
-      flex-direction: column;
-      justify-content: center;
-      align-items: center;
-      text-align: center;
-      padding: 80px 24px 60px;
-      position: relative;
-      overflow: hidden;
-    }
-
-    .hero::before {
-      content: "";
-      position: absolute;
-      inset: 0;
-      background:
-        radial-gradient(ellipse 60% 40% at 50% 30%, rgba(201, 168, 76, 0.07) 0%, transparent 70%),
-        radial-gradient(ellipse 40% 50% at 80% 70%, rgba(201, 168, 76, 0.04) 0%, transparent 70%);
-      pointer-events: none;
-    }
-
-    .hero-eyebrow {
-      font-size: 11px;
-      font-weight: 700;
-      letter-spacing: 0.2em;
-      color: var(--gold);
-      text-transform: uppercase;
-      margin-bottom: 24px;
-    }
-
-    .hero h1 {
-      font-size: clamp(36px, 6vw, 72px);
-      font-weight: 900;
-      line-height: 1.08;
-      letter-spacing: -0.02em;
-      max-width: 800px;
-      margin-bottom: 28px;
-    }
-
-    .hero h1 em {
-      font-style: normal;
-      color: var(--gold);
-    }
-
-    .hero-sub {
-      font-size: clamp(16px, 2.2vw, 20px);
-      color: var(--text-muted);
-      max-width: 560px;
-      line-height: 1.6;
-      margin-bottom: 44px;
-    }
-
-    .hero-ctas {
-      display: flex;
-      gap: 16px;
-      flex-wrap: wrap;
-      justify-content: center;
-      margin-bottom: 64px;
-    }
-
-    .btn-primary {
-      background: var(--gold);
-      color: #0a0a0a;
-      text-decoration: none;
-      padding: 16px 32px;
-      font-size: 15px;
-      font-weight: 800;
-      border-radius: 4px;
-      letter-spacing: 0.02em;
-      transition: background 0.15s, transform 0.1s;
-    }
-
-    .btn-primary:hover { background: var(--gold-light); transform: translateY(-1px); }
-
-    .btn-outline {
-      border: 1.5px solid rgba(201, 168, 76, 0.5);
-      color: var(--text);
-      text-decoration: none;
-      padding: 16px 32px;
-      font-size: 15px;
-      font-weight: 600;
-      border-radius: 4px;
-      transition: border-color 0.15s, color 0.15s;
-    }
-
-    .btn-outline:hover { border-color: var(--gold); color: var(--gold); }
-
-    .hero-stats {
-      display: flex;
-      gap: 0;
-      border: 1px solid var(--border);
-      border-radius: 8px;
-      overflow: hidden;
-      max-width: 600px;
-      width: 100%;
-    }
-
-    .stat {
-      flex: 1;
-      padding: 20px 16px;
-      text-align: center;
-      border-right: 1px solid var(--border);
-    }
-
-    .stat:last-child { border-right: none; }
-
-    .stat-number {
-      font-size: clamp(22px, 3vw, 30px);
-      font-weight: 900;
-      color: var(--gold);
-      letter-spacing: -0.02em;
-      line-height: 1;
-      margin-bottom: 6px;
-    }
-
-    .stat-label {
-      font-size: 11px;
-      color: var(--text-muted);
-      text-transform: uppercase;
-      letter-spacing: 0.08em;
-    }
-
-    /* ─── PROBLEM ────────────────────────────────────────────── */
-    .section-problem {
-      background: var(--surface);
-      padding: 80px 24px;
-    }
-
-    .container {
-      max-width: 1100px;
-      margin: 0 auto;
-    }
-
-    .section-label {
-      font-size: 11px;
-      font-weight: 700;
-      letter-spacing: 0.2em;
-      color: var(--gold);
-      text-transform: uppercase;
-      margin-bottom: 16px;
-    }
-
-    .section-problem h2 {
-      font-size: clamp(28px, 4vw, 48px);
-      font-weight: 900;
-      letter-spacing: -0.02em;
-      line-height: 1.1;
-      max-width: 700px;
-      margin-bottom: 56px;
-    }
-
-    .problem-grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-      gap: 1px;
-      border: 1px solid var(--border);
-      border-radius: 8px;
-      overflow: hidden;
-    }
-
-    .problem-card {
-      background: var(--bg);
-      padding: 36px 28px;
-      position: relative;
-    }
-
-    .problem-card::before {
-      content: "";
-      display: block;
-      width: 32px;
-      height: 3px;
-      background: var(--gold);
-      margin-bottom: 20px;
-    }
-
-    .problem-card p {
-      font-size: 15px;
-      line-height: 1.7;
-      color: var(--text-muted);
-    }
-
-    .problem-card p strong {
-      color: var(--text);
-      font-weight: 700;
-    }
-
-    /* ─── OFFERINGS ──────────────────────────────────────────── */
-    .section-offerings {
-      padding: 100px 24px;
-      background: var(--bg);
-    }
-
-    .section-header {
-      text-align: center;
-      margin-bottom: 64px;
-    }
-
-    .section-header h2 {
-      font-size: clamp(28px, 4vw, 48px);
-      font-weight: 900;
-      letter-spacing: -0.02em;
-      line-height: 1.1;
-      margin-bottom: 16px;
-    }
-
-    .section-header p {
-      font-size: 17px;
-      color: var(--text-muted);
-      max-width: 520px;
-      margin: 0 auto;
-    }
-
-    .offerings-grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-      gap: 24px;
-    }
-
-    .offering-card {
-      background: var(--surface);
-      border: 1px solid var(--border);
-      border-radius: 10px;
-      padding: 40px 32px;
-      display: flex;
-      flex-direction: column;
-      transition: border-color 0.2s;
-    }
-
-    .offering-card:hover { border-color: rgba(201, 168, 76, 0.4); }
-
-    .offering-card.featured {
-      border-color: rgba(201, 168, 76, 0.35);
-      background: linear-gradient(145deg, #111 0%, #131109 100%);
-    }
-
-    .offering-icon {
-      font-size: 28px;
-      margin-bottom: 20px;
-    }
-
-    .offering-badge {
-      display: inline-block;
-      background: rgba(201, 168, 76, 0.12);
-      color: var(--gold);
-      font-size: 11px;
-      font-weight: 700;
-      letter-spacing: 0.1em;
-      text-transform: uppercase;
-      padding: 4px 10px;
-      border-radius: 3px;
-      margin-bottom: 14px;
-    }
-
-    .offering-title {
-      font-size: 22px;
-      font-weight: 800;
-      letter-spacing: -0.01em;
-      margin-bottom: 6px;
-    }
-
-    .offering-price {
-      font-size: 13px;
-      color: var(--gold);
-      font-weight: 700;
-      margin-bottom: 16px;
-    }
-
-    .offering-desc {
-      font-size: 14px;
-      color: var(--text-muted);
-      line-height: 1.7;
-      margin-bottom: 24px;
-    }
-
-    .offering-features {
-      list-style: none;
-      margin-bottom: 32px;
-      flex: 1;
-    }
-
-    .offering-features li {
-      font-size: 13px;
-      color: var(--text-muted);
-      padding: 5px 0;
-      display: flex;
-      align-items: center;
-      gap: 8px;
-    }
-
-    .offering-features li::before {
-      content: "\2713";
-      color: var(--gold);
-      font-weight: 700;
-      flex-shrink: 0;
-    }
-
-    .offering-cta {
-      display: block;
-      text-align: center;
-      text-decoration: none;
-      padding: 13px;
-      border-radius: 4px;
-      font-size: 14px;
-      font-weight: 700;
-      letter-spacing: 0.02em;
-      transition: all 0.15s;
-    }
-
-    .offering-cta-primary {
-      background: var(--gold);
-      color: #0a0a0a;
-    }
-
-    .offering-cta-primary:hover { background: var(--gold-light); }
-
-    .offering-cta-outline {
-      border: 1.5px solid var(--border);
-      color: var(--text);
-    }
-
-    .offering-cta-outline:hover { border-color: var(--gold); color: var(--gold); }
-
-    .free-badge {
-      display: block;
-      text-align: center;
-      font-size: 11px;
-      color: var(--text-muted);
-      margin-top: 10px;
-    }
-
-    /* ─── HOW IT WORKS ───────────────────────────────────────── */
-    .section-analysis {
-      background: var(--surface);
-      padding: 100px 24px;
-    }
-
-    .steps-grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
-      gap: 32px;
-      margin-bottom: 64px;
-    }
-
-    .step {
-      position: relative;
-    }
-
-    .step-number {
-      font-size: 11px;
-      font-weight: 700;
-      letter-spacing: 0.15em;
-      color: var(--gold);
-      text-transform: uppercase;
-      margin-bottom: 12px;
-    }
-
-    .step h3 {
-      font-size: 18px;
-      font-weight: 800;
-      margin-bottom: 10px;
-    }
-
-    .step p {
-      font-size: 14px;
-      color: var(--text-muted);
-      line-height: 1.6;
-    }
-
-    /* Mock Result Card */
-    .mock-card {
-      background: var(--bg);
-      border: 1px solid rgba(201, 168, 76, 0.3);
-      border-radius: 10px;
-      padding: 36px 32px;
-      max-width: 700px;
-      margin: 0 auto 32px;
-    }
-
-    .mock-card-header {
-      display: flex;
-      justify-content: space-between;
-      align-items: flex-start;
-      flex-wrap: wrap;
-      gap: 12px;
-      margin-bottom: 28px;
-      padding-bottom: 20px;
-      border-bottom: 1px solid var(--border);
-    }
-
-    .mock-business-name {
-      font-size: 18px;
-      font-weight: 800;
-    }
-
-    .mock-location {
-      font-size: 13px;
-      color: var(--text-muted);
-      margin-top: 2px;
-    }
-
-    .mock-tag {
-      background: rgba(201, 168, 76, 0.1);
-      color: var(--gold);
-      font-size: 11px;
-      font-weight: 700;
-      letter-spacing: 0.08em;
-      padding: 5px 12px;
-      border-radius: 3px;
-      text-transform: uppercase;
-      white-space: nowrap;
-    }
-
-    .mock-opportunity {
-      background: var(--surface);
-      border-radius: 6px;
-      padding: 18px;
-      margin-bottom: 20px;
-    }
-
-    .mock-opp-label {
-      font-size: 11px;
-      color: var(--text-muted);
-      text-transform: uppercase;
-      letter-spacing: 0.1em;
-      margin-bottom: 6px;
-    }
-
-    .mock-opp-name {
-      font-size: 16px;
-      font-weight: 700;
-      margin-bottom: 12px;
-    }
-
-    .mock-opp-stats {
-      display: flex;
-      gap: 24px;
-      flex-wrap: wrap;
-    }
-
-    .mock-opp-stat span:first-child {
-      display: block;
-      font-size: 11px;
-      color: var(--text-muted);
-      text-transform: uppercase;
-      letter-spacing: 0.08em;
-    }
-
-    .mock-opp-stat span:last-child {
-      font-size: 16px;
-      font-weight: 800;
-      color: var(--gold);
-    }
-
-    .mock-totals {
-      display: grid;
-      grid-template-columns: repeat(3, 1fr);
-      gap: 1px;
-      background: var(--border);
-      border-radius: 6px;
-      overflow: hidden;
-      margin-bottom: 28px;
-    }
-
-    .mock-total {
-      background: var(--bg);
-      padding: 16px;
-      text-align: center;
-    }
-
-    .mock-total-label {
-      font-size: 11px;
-      color: var(--text-muted);
-      text-transform: uppercase;
-      letter-spacing: 0.08em;
-      margin-bottom: 4px;
-    }
-
-    .mock-total-value {
-      font-size: 20px;
-      font-weight: 900;
-      color: var(--gold);
-    }
-
-    .mock-cta {
-      display: block;
-      width: 100%;
-      text-align: center;
-      background: var(--gold);
-      color: #0a0a0a;
-      text-decoration: none;
-      padding: 14px;
-      border-radius: 4px;
-      font-size: 15px;
-      font-weight: 800;
-      letter-spacing: 0.02em;
-      transition: background 0.15s;
-    }
-
-    .mock-cta:hover { background: var(--gold-light); }
-
-    /* ─── WHAT WE BUILD ──────────────────────────────────────── */
-    .section-built {
-      padding: 100px 24px;
-      background: var(--bg);
-    }
-
-    .builds-grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
-      gap: 1px;
-      background: var(--border);
-      border: 1px solid var(--border);
-      border-radius: 8px;
-      overflow: hidden;
-      margin-bottom: 28px;
-    }
-
-    .build-card {
-      background: var(--bg);
-      padding: 28px 24px;
-      transition: background 0.15s;
-    }
-
-    .build-card:hover { background: var(--surface); }
-
-    .build-icon {
-      font-size: 24px;
-      margin-bottom: 12px;
-    }
-
-    .build-title {
-      font-size: 15px;
-      font-weight: 700;
-      margin-bottom: 6px;
-    }
-
-    .build-desc {
-      font-size: 13px;
-      color: var(--text-muted);
-      line-height: 1.5;
-    }
-
-    .builds-more {
-      text-align: center;
-      font-size: 14px;
-      color: var(--text-muted);
-      font-style: italic;
-    }
-
-    /* ─── PRICING ────────────────────────────────────────────── */
-    .section-pricing {
-      background: var(--surface);
-      padding: 100px 24px;
-    }
-
-    .pricing-grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-      gap: 24px;
-      margin-bottom: 32px;
-    }
-
-    .pricing-card {
-      background: var(--bg);
-      border: 1px solid var(--border);
-      border-radius: 10px;
-      padding: 36px 28px;
-      position: relative;
-    }
-
-    .pricing-card.popular {
-      border-color: rgba(201, 168, 76, 0.5);
-    }
-
-    .popular-badge {
-      position: absolute;
-      top: -12px;
-      left: 50%;
-      transform: translateX(-50%);
-      background: var(--gold);
-      color: #0a0a0a;
-      font-size: 11px;
-      font-weight: 800;
-      letter-spacing: 0.1em;
-      text-transform: uppercase;
-      padding: 4px 14px;
-      border-radius: 20px;
-      white-space: nowrap;
-    }
-
-    .pricing-tier {
-      font-size: 11px;
-      font-weight: 700;
-      letter-spacing: 0.15em;
-      color: var(--gold);
-      text-transform: uppercase;
-      margin-bottom: 16px;
-    }
-
-    .pricing-setup {
-      font-size: 30px;
-      font-weight: 900;
-      letter-spacing: -0.02em;
-      line-height: 1;
-      margin-bottom: 4px;
-    }
-
-    .pricing-monthly {
-      font-size: 14px;
-      color: var(--text-muted);
-      margin-bottom: 6px;
-    }
-
-    .pricing-tagline {
-      font-size: 14px;
-      color: var(--text-muted);
-      line-height: 1.5;
-      margin-bottom: 24px;
-      padding-top: 16px;
-      border-top: 1px solid var(--border);
-    }
-
-    .pricing-includes {
-      font-size: 12px;
-      font-weight: 700;
-      letter-spacing: 0.1em;
-      color: var(--text-muted);
-      text-transform: uppercase;
-      margin-bottom: 12px;
-    }
-
-    .pricing-features {
-      list-style: none;
-      margin-bottom: 32px;
-    }
-
-    .pricing-features li {
-      font-size: 13px;
-      color: var(--text-muted);
-      padding: 4px 0;
-      display: flex;
-      align-items: flex-start;
-      gap: 8px;
-      line-height: 1.4;
-    }
-
-    .pricing-features li::before {
-      content: "\2713";
-      color: var(--gold);
-      font-weight: 700;
-      flex-shrink: 0;
-      margin-top: 1px;
-    }
-
-    .pricing-cta {
-      display: block;
-      text-align: center;
-      text-decoration: none;
-      padding: 13px;
-      border-radius: 4px;
-      font-size: 14px;
-      font-weight: 700;
-      letter-spacing: 0.02em;
-      background: var(--gold);
-      color: #0a0a0a;
-      transition: background 0.15s;
-    }
-
-    .pricing-cta:hover { background: var(--gold-light); }
-
-    .pricing-note {
-      text-align: center;
-      font-size: 13px;
-      color: var(--text-muted);
-      padding: 16px;
-      border: 1px solid var(--border);
-      border-radius: 6px;
-      line-height: 1.6;
-    }
-
-    /* ─── ABOUT ──────────────────────────────────────────────── */
-    .section-about {
-      padding: 100px 24px;
-      background: var(--bg);
-    }
-
-    .about-inner {
-      max-width: 680px;
-    }
-
-    .about-inner h2 {
-      font-size: clamp(24px, 3.5vw, 36px);
-      font-weight: 900;
-      letter-spacing: -0.02em;
-      line-height: 1.2;
-      margin-bottom: 24px;
-    }
-
-    .about-inner h2 span { color: var(--gold); }
-
-    .about-inner p {
-      font-size: 16px;
-      color: var(--text-muted);
-      line-height: 1.8;
-      margin-bottom: 16px;
-    }
-
-    .about-inner p:last-child { margin-bottom: 0; }
-
-    /* ─── FINAL CTA ──────────────────────────────────────────── */
-    .section-final {
-      background: #0e0c06;
-      border-top: 1px solid rgba(201, 168, 76, 0.2);
-      border-bottom: 1px solid rgba(201, 168, 76, 0.2);
-      padding: 100px 24px;
-      text-align: center;
-    }
-
-    .section-final h2 {
-      font-size: clamp(28px, 4.5vw, 54px);
-      font-weight: 900;
-      letter-spacing: -0.02em;
-      line-height: 1.1;
-      max-width: 720px;
-      margin: 0 auto 20px;
-    }
-
-    .section-final p {
-      font-size: 17px;
-      color: var(--text-muted);
-      max-width: 500px;
-      margin: 0 auto 44px;
-      line-height: 1.6;
-    }
-
-    .final-cta-btn {
-      display: inline-block;
-      background: var(--gold);
-      color: #0a0a0a;
-      text-decoration: none;
-      padding: 20px 48px;
-      font-size: 16px;
-      font-weight: 800;
-      border-radius: 4px;
-      letter-spacing: 0.02em;
-      transition: background 0.15s, transform 0.1s;
-    }
-
-    .final-cta-btn:hover { background: var(--gold-light); transform: translateY(-2px); }
-
-    .final-sub {
-      display: block;
-      font-size: 14px;
-      color: var(--text-muted);
-      margin-top: 20px;
-    }
-
-    .final-sub a {
-      color: var(--gold);
-      text-decoration: none;
-    }
-
-    /* ─── FOOTER ─────────────────────────────────────────────── */
-    footer {
-      background: var(--surface);
-      border-top: 1px solid var(--border);
-      padding: 40px 24px;
-      text-align: center;
-    }
-
-    .footer-logo {
-      font-size: 15px;
-      font-weight: 800;
-      color: var(--gold);
-      letter-spacing: 0.1em;
-      text-transform: uppercase;
-      margin-bottom: 12px;
-    }
-
-    .footer-links {
-      display: flex;
-      gap: 24px;
-      justify-content: center;
-      flex-wrap: wrap;
-      margin-bottom: 16px;
-    }
-
-    .footer-links a {
-      font-size: 13px;
-      color: var(--text-muted);
-      text-decoration: none;
-      transition: color 0.15s;
-    }
-
-    .footer-links a:hover { color: var(--gold); }
-
-    .footer-tagline {
-      font-size: 13px;
-      color: #555;
-      font-style: italic;
-    }
-
-    /* ─── RESPONSIVE ─────────────────────────────────────────── */
-    @media (max-width: 600px) {
-      .topbar { padding: 0 16px; }
-
-      .topbar-cta {
-        font-size: 12px;
-        padding: 8px 14px;
-      }
-
-      .hero { padding: 60px 16px 48px; }
-
-      .hero-stats {
-        flex-direction: column;
-        border-radius: 8px;
-      }
-
-      .stat {
-        border-right: none;
-        border-bottom: 1px solid var(--border);
-      }
-
-      .stat:last-child { border-bottom: none; }
-
-      .hero-ctas { flex-direction: column; align-items: stretch; }
-
-      .btn-primary, .btn-outline { text-align: center; }
-
-      .mock-totals { grid-template-columns: 1fr; }
-
-      .mock-card { padding: 24px 18px; }
-
-      .section-offerings { padding: 60px 16px; }
-      .section-analysis { padding: 60px 16px; }
-      .section-built { padding: 60px 16px; }
-      .section-pricing { padding: 60px 16px; }
-      .section-about { padding: 60px 16px; }
-      .section-final { padding: 60px 16px; }
-      .section-problem { padding: 60px 16px; }
-    }
-  </style>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>BOSS Systems — Command Center</title>
+<style>
+*{margin:0;padding:0;box-sizing:border-box}
+:root{--gold:#C9A84C;--dark:#080808;--gray:#111;--border:#1e1e1e;--text:#f0ede8;--muted:#666}
+body{background:var(--dark);color:var(--text);font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;min-height:100vh}
+
+/* TOP BAR */
+.topbar{background:#0a0a0a;border-bottom:2px solid var(--gold);padding:0 24px;height:56px;display:flex;align-items:center;justify-content:space-between;position:sticky;top:0;z-index:100}
+.logo{font-weight:900;font-size:1rem;letter-spacing:4px;color:var(--gold)}
+.topbar-right{display:flex;align-items:center;gap:16px}
+.status-pill{font-size:.7rem;letter-spacing:2px;padding:4px 10px;border:1px solid;text-transform:uppercase}
+.status-live{border-color:#2a5a2a;color:#4caf50;background:#0a1a0a}
+.status-paused{border-color:#5a4a0a;color:var(--gold);background:#1a1200}
+.clock{font-size:.8rem;color:var(--muted);font-variant-numeric:tabular-nums}
+
+/* LAYOUT */
+.container{max-width:1200px;margin:0 auto;padding:0 24px}
+.page{padding:32px 24px 64px;max-width:1200px;margin:0 auto}
+
+/* SECTION HEADERS */
+.section-label{font-size:.65rem;letter-spacing:4px;text-transform:uppercase;color:var(--gold);margin-bottom:8px}
+.section-title{font-size:1.5rem;font-weight:900;margin-bottom:24px;text-transform:uppercase;letter-spacing:1px}
+
+/* METRIC CARDS */
+.metrics{display:grid;grid-template-columns:repeat(auto-fit,minmax(160px,1fr));gap:12px;margin-bottom:40px}
+.metric{background:var(--gray);border:1px solid var(--border);padding:20px;text-align:center}
+.metric .num{font-size:2rem;font-weight:900;color:var(--gold);line-height:1}
+.metric .lbl{font-size:.65rem;letter-spacing:2px;color:var(--muted);text-transform:uppercase;margin-top:6px}
+.metric .sub{font-size:.75rem;color:#444;margin-top:4px}
+
+/* BUSINESS CARDS */
+.biz-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(320px,1fr));gap:16px;margin-bottom:40px}
+.biz-card{background:var(--gray);border:1px solid var(--border);padding:24px}
+.biz-card-header{display:flex;justify-content:space-between;align-items:flex-start;margin-bottom:16px}
+.biz-name{font-weight:900;font-size:1rem;letter-spacing:.5px}
+.biz-market{font-size:.75rem;color:var(--muted);margin-top:2px}
+.badge{font-size:.6rem;letter-spacing:2px;padding:3px 8px;text-transform:uppercase;font-weight:700}
+.badge-live{background:#0a1a0a;color:#4caf50;border:1px solid #2a5a2a}
+.badge-building{background:#1a1200;color:var(--gold);border:1px solid #3a3000}
+.badge-paused{background:#1a1a1a;color:#666;border:1px solid #333}
+.biz-stats{display:grid;grid-template-columns:1fr 1fr;gap:8px;margin-bottom:16px}
+.biz-stat{font-size:.8rem}
+.biz-stat .val{font-weight:700;color:var(--text)}
+.biz-stat .key{color:var(--muted);font-size:.7rem}
+.biz-divider{border:none;border-top:1px solid var(--border);margin:12px 0}
+.biz-agents{font-size:.75rem;color:#555}
+.biz-agents span{color:#888}
+.biz-action{display:inline-block;font-size:.7rem;letter-spacing:1px;color:var(--gold);text-transform:uppercase;margin-top:12px;text-decoration:none;cursor:pointer}
+
+/* SYSTEM TABLE */
+.sys-table{width:100%;border-collapse:collapse;margin-bottom:40px}
+.sys-table th{text-align:left;font-size:.65rem;letter-spacing:3px;color:var(--muted);text-transform:uppercase;padding:8px 12px;border-bottom:1px solid var(--border)}
+.sys-table td{padding:12px;border-bottom:1px solid #0d0d0d;font-size:.85rem}
+.sys-table tr:hover td{background:#0e0e0e}
+.dot{width:8px;height:8px;border-radius:50%;display:inline-block;margin-right:8px;flex-shrink:0}
+.dot-green{background:#4caf50;box-shadow:0 0 6px #4caf5066}
+.dot-gold{background:var(--gold);box-shadow:0 0 6px var(--gold)44}
+.dot-gray{background:#333}
+.wf-name{font-weight:600}
+.wf-id{font-size:.7rem;color:#444;font-family:monospace}
+.wf-trigger{font-size:.75rem;color:#666}
+.wf-status-live{color:#4caf50}
+.wf-status-paused{color:var(--gold)}
+
+/* PIPELINE */
+.pipeline-row{display:grid;grid-template-columns:2fr 1fr 1fr 1fr 2fr;gap:12px;align-items:center;padding:12px;border-bottom:1px solid #0d0d0d;font-size:.82rem}
+.pipeline-row:hover{background:#0e0e0e}
+.pipeline-header{display:grid;grid-template-columns:2fr 1fr 1fr 1fr 2fr;gap:12px;padding:8px 12px;margin-bottom:4px}
+.pipeline-header span{font-size:.65rem;letter-spacing:2px;color:var(--muted);text-transform:uppercase}
+
+/* PRODUCTS */
+.products{display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:16px;margin-bottom:40px}
+.product-card{background:var(--gray);border:1px solid var(--border);padding:24px}
+.product-card.featured{border-color:var(--gold)}
+.product-name{font-weight:900;font-size:.9rem;letter-spacing:2px;text-transform:uppercase;color:var(--gold);margin-bottom:4px}
+.product-price{font-size:1.6rem;font-weight:900;margin-bottom:4px}
+.product-mo{font-size:.8rem;color:var(--muted);margin-bottom:12px}
+.product-desc{font-size:.82rem;color:#888;line-height:1.5;margin-bottom:16px}
+.product-features{list-style:none}
+.product-features li{font-size:.8rem;color:#777;padding:4px 0;border-bottom:1px solid #111}
+.product-features li::before{content:"✓ ";color:var(--gold)}
+
+/* INTEL */
+.intel-box{background:var(--gray);border:1px solid var(--border);border-left:3px solid var(--gold);padding:20px;margin-bottom:16px;font-size:.85rem;line-height:1.7;color:#aaa}
+.intel-box strong{color:var(--text)}
+.intel-date{font-size:.7rem;color:#444;margin-top:8px}
+
+/* TOOLS */
+.tools-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:12px;margin-bottom:40px}
+.tool-card{background:var(--gray);border:1px solid var(--border);padding:16px}
+.tool-name{font-weight:700;font-size:.85rem;margin-bottom:4px}
+.tool-cmd{font-family:monospace;font-size:.75rem;color:var(--gold);background:#050505;padding:6px 10px;margin-top:8px;display:block;word-break:break-all}
+.tool-desc{font-size:.75rem;color:#666;margin-top:4px}
+
+/* DIVIDER */
+.divider{border:none;border-top:1px solid var(--border);margin:40px 0}
+
+/* LAST UPDATED */
+.updated{font-size:.7rem;color:#333;text-align:right;margin-top:32px;letter-spacing:1px}
+
+@media(max-width:640px){
+  .metrics{grid-template-columns:1fr 1fr}
+  .biz-grid{grid-template-columns:1fr}
+  .products{grid-template-columns:1fr}
+  .pipeline-row,.pipeline-header{grid-template-columns:1fr 1fr;font-size:.75rem}
+  .pipeline-row span:nth-child(3),.pipeline-row span:nth-child(4),.pipeline-header span:nth-child(3),.pipeline-header span:nth-child(4){display:none}
+}
+</style>
 </head>
 <body>
 
-  <!-- TOP BAR -->
-  <header class="topbar">
-    <a href="#" class="logo">BOSS <span>SYSTEMS</span></a>
-    <a href="#analysis" class="topbar-cta">Get Your Free AI Analysis</a>
-  </header>
+<!-- TOP BAR -->
+<div class="topbar">
+  <div class="logo">BOSS SYSTEMS</div>
+  <div class="topbar-right">
+    <span class="status-paused">n8n — Quota (June 1)</span>
+    <span class="status-live">Retell — Active</span>
+    <span class="clock" id="clock"></span>
+  </div>
+</div>
 
-  <!-- HERO -->
-  <section class="hero">
-    <p class="hero-eyebrow">AI Business Innovation &mdash; Tyler, TX</p>
-    <h1>Your Business,<br><em>Rebuilt With AI.</em></h1>
-    <p class="hero-sub">We analyze your specific business, identify exactly where AI can make you more money, and build it. Fast.</p>
-    <div class="hero-ctas">
-      <a href="#analysis" class="btn-primary">Get Your Free Business Analysis</a>
-      <a href="#built" class="btn-outline">See What We've Built</a>
+<div class="page">
+
+  <!-- EMPIRE METRICS -->
+  <div class="section-label">Empire Overview</div>
+  <div class="metrics">
+    <div class="metric"><div class="num">0</div><div class="lbl">Active Clients</div><div class="sub">First = everything changes</div></div>
+    <div class="metric"><div class="num">$0</div><div class="lbl">MRR</div><div class="sub">Target: $97+ first client</div></div>
+    <div class="metric"><div class="num">523</div><div class="lbl">Calls Made</div><div class="sub">This month</div></div>
+    <div class="metric"><div class="num">$84</div><div class="lbl">Monthly Burn</div><div class="sub">n8n $24 · Claude $20 · Retell ~$40</div></div>
+    <div class="metric"><div class="num">25+</div><div class="lbl">Automations Built</div><div class="sub">Deployable in 72hrs</div></div>
+    <div class="metric"><div class="num">June 1</div><div class="lbl">Full Restart</div><div class="sub">n8n quota resets</div></div>
+  </div>
+
+  <!-- BUSINESSES -->
+  <div class="section-label">Active Businesses</div>
+  <div class="section-title">The Portfolio</div>
+  <div class="biz-grid">
+
+    <div class="biz-card">
+      <div class="biz-card-header">
+        <div><div class="biz-name">BOSS Systems</div><div class="biz-market">AI Business Innovation · Tyler TX</div></div>
+        <span class="badge badge-live">Live</span>
+      </div>
+      <div class="biz-stats">
+        <div class="biz-stat"><div class="val">$1,497–$5,997</div><div class="key">Setup fee</div></div>
+        <div class="biz-stat"><div class="val">$97–$497/mo</div><div class="key">Recurring</div></div>
+        <div class="biz-stat"><div class="val">0</div><div class="key">Clients</div></div>
+        <div class="biz-stat"><div class="val">bosssystems.co</div><div class="key">Website</div></div>
+      </div>
+      <hr class="biz-divider">
+      <div class="biz-agents">AI agents: <span>Outbound Sales · Devil's Advocate · Business Consultant</span></div>
     </div>
-    <div class="hero-stats">
-      <div class="stat">
-        <div class="stat-number">$204,000</div>
-        <div class="stat-label">Avg annual value unlocked per client</div>
+
+    <div class="biz-card">
+      <div class="biz-card-header">
+        <div><div class="biz-name">Built by BOSS</div><div class="biz-market">Prebuilt Business Sales · Remote</div></div>
+        <span class="badge badge-live">Live</span>
       </div>
-      <div class="stat">
-        <div class="stat-number">72 hrs</div>
-        <div class="stat-label">Analysis to deployed system</div>
+      <div class="biz-stats">
+        <div class="biz-stat"><div class="val">$997–$3,497</div><div class="key">Setup fee</div></div>
+        <div class="biz-stat"><div class="val">$97–$297/mo</div><div class="key">Recurring</div></div>
+        <div class="biz-stat"><div class="val">0</div><div class="key">Clients</div></div>
+        <div class="biz-stat"><div class="val">72hrs</div><div class="key">Delivery time</div></div>
       </div>
-      <div class="stat">
-        <div class="stat-number">76:1</div>
-        <div class="stat-label">Average ROI in year one</div>
-      </div>
+      <hr class="biz-divider">
+      <div class="biz-agents">Product: <span>Full AI stack for junk removal, HVAC, cleaning, lawn care</span></div>
     </div>
-  </section>
 
-  <!-- THE PROBLEM -->
-  <section class="section-problem">
-    <div class="container">
-      <p class="section-label">The Problem</p>
-      <h2>Your Business Is Leaking Money.<br>You Just Don't Know Where.</h2>
-      <div class="problem-grid">
-        <div class="problem-card">
-          <p><strong>62% of your calls go unanswered.</strong> 85% of those people never call back. That's your competitor's next job.</p>
-        </div>
-        <div class="problem-card">
-          <p>Every manual invoice, quote, and follow-up you send costs you <strong>15&ndash;30 minutes</strong>. Multiply that by 300 jobs a year.</p>
-        </div>
-        <div class="problem-card">
-          <p>Your customers stop coming back after 90 days &mdash; not because they're unhappy, but because <strong>no one followed up</strong>. That's recurring revenue walking out the door.</p>
-        </div>
+    <div class="biz-card">
+      <div class="biz-card-header">
+        <div><div class="biz-name">BOSS Junk Removal</div><div class="biz-market">Laurel, MS · Physical Service</div></div>
+        <span class="badge badge-building">Building</span>
       </div>
+      <div class="biz-stats">
+        <div class="biz-stat"><div class="val">$150–$475</div><div class="key">Job value</div></div>
+        <div class="biz-stat"><div class="val">15%</div><div class="key">Partner cut</div></div>
+        <div class="biz-stat"><div class="val">Score: 5/10</div><div class="key">Market</div></div>
+        <div class="biz-stat"><div class="val">Awaits #</div><div class="key">Phone needed</div></div>
+      </div>
+      <hr class="biz-divider">
+      <div class="biz-agents">Agent: <span>agent_59905e10f9d2ab2b6a77f66a4a · Needs Retell phone number</span></div>
     </div>
-  </section>
 
-  <!-- THE THREE OFFERINGS -->
-  <section class="section-offerings">
-    <div class="container">
-      <div class="section-header">
-        <p class="section-label">What We Do</p>
-        <h2>Three Ways We Work With You</h2>
-        <p>From a free analysis to a full build to a complete revenue partnership &mdash; pick what fits.</p>
+    <div class="biz-card">
+      <div class="biz-card-header">
+        <div><div class="biz-name">Summer Partner Program</div><div class="biz-market">Remote · Revenue Share</div></div>
+        <span class="badge badge-paused">Recruiting</span>
       </div>
-      <div class="offerings-grid">
-
-        <!-- BOSS ANALYZE -->
-        <div class="offering-card">
-          <div class="offering-icon">&#128269;</div>
-          <span class="offering-badge">Free</span>
-          <div class="offering-title">BOSS Analyze</div>
-          <div class="offering-price">Free Business AI Analysis</div>
-          <p class="offering-desc">We research your business in 60 seconds. Pull your Google data, read your reviews, scan your competitors. Output: a complete map of every AI opportunity in your business with the annual value of each.</p>
-          <ul class="offering-features">
-            <li>Google reviews + rating pulled automatically</li>
-            <li>Competitor analysis included</li>
-            <li>25+ automation categories evaluated</li>
-            <li>Annual ROI estimate for each opportunity</li>
-          </ul>
-          <a href="#analysis" class="offering-cta offering-cta-primary">Run My Free Analysis &rarr;</a>
-          <span class="free-badge">FREE &mdash; No obligation</span>
-        </div>
-
-        <!-- BOSS BUILD -->
-        <div class="offering-card featured">
-          <div class="offering-icon">&#9883;&#65039;</div>
-          <span class="offering-badge">Most Requested</span>
-          <div class="offering-title">BOSS Build</div>
-          <div class="offering-price">$1,497 &ndash; $5,997</div>
-          <p class="offering-desc">We take the analysis and build every automation that makes sense for your business. Phone answering, quote generation, payment collection, review automation, outbound lead generation, re-engagement campaigns. All of it.</p>
-          <ul class="offering-features">
-            <li>Deployed in 72 hours</li>
-            <li>Custom to your business type</li>
-            <li>Phone AI that sounds like a real person</li>
-            <li>ROI guaranteed or we rebuild it</li>
-          </ul>
-          <a href="#pricing" class="offering-cta offering-cta-primary">See the Packages &rarr;</a>
-        </div>
-
-        <!-- BOSS OWN -->
-        <div class="offering-card">
-          <div class="offering-icon">&#128200;</div>
-          <span class="offering-badge">Revenue Share</span>
-          <div class="offering-title">BOSS Own</div>
-          <div class="offering-price">We build it. You run it.</div>
-          <p class="offering-desc">For physical service businesses. We build the entire AI operation &mdash; you do the actual work. We take 15% of your revenue. You keep 85%. No setup cost.</p>
-          <ul class="offering-features">
-            <li>Zero upfront cost</li>
-            <li>Full AI stack included</li>
-            <li>Perfect for junk removal, pressure washing, lawn care</li>
-            <li>Boston monitors performance</li>
-          </ul>
-          <a href="tel:+19037146162" class="offering-cta offering-cta-outline">Talk to Boston &rarr;</a>
-        </div>
-
+      <div class="biz-stats">
+        <div class="biz-stat"><div class="val">15%</div><div class="key">Boston's cut</div></div>
+        <div class="biz-stat"><div class="val">$0</div><div class="key">Setup cost</div></div>
+        <div class="biz-stat"><div class="val">0</div><div class="key">Partners</div></div>
+        <div class="biz-stat"><div class="val">$0</div><div class="key">Revenue</div></div>
       </div>
+      <hr class="biz-divider">
+      <div class="biz-agents">Target: <span>5 partners × $2k/week = $1,500/week for Boston</span></div>
     </div>
-  </section>
 
-  <!-- HOW THE ANALYSIS WORKS -->
-  <section class="section-analysis" id="analysis">
-    <div class="container">
-      <div class="section-header">
-        <p class="section-label">How It Works</p>
-        <h2>From Zero to ROI in Four Steps</h2>
-        <p>The analysis is free. The clarity is immediate. The decision is yours.</p>
-      </div>
+  </div>
 
-      <div class="steps-grid">
-        <div class="step">
-          <div class="step-number">Step 01</div>
-          <h3>We Research Your Business</h3>
-          <p>Google reviews, competitors, rating, website status &mdash; all pulled automatically in under 60 seconds.</p>
-        </div>
-        <div class="step">
-          <div class="step-number">Step 02</div>
-          <h3>We Map Every Opportunity</h3>
-          <p>25+ automation categories analyzed against your specific business type, location, and current gaps.</p>
-        </div>
-        <div class="step">
-          <div class="step-number">Step 03</div>
-          <h3>You See the ROI</h3>
-          <p>Annual value, monthly cost, and return ratio for every automation &mdash; laid out plainly, no jargon.</p>
-        </div>
-        <div class="step">
-          <div class="step-number">Step 04</div>
-          <h3>We Build What Makes Sense</h3>
-          <p>Starter, Growth, or Full Transformation &mdash; or we talk BOSS Own if the numbers make it better.</p>
-        </div>
-      </div>
-
-      <!-- Mock Analysis Card -->
-      <div class="mock-card">
-        <div class="mock-card-header">
-          <div>
-            <div class="mock-business-name">Example HVAC Company</div>
-            <div class="mock-location">Corinth, MS &mdash; Sample Analysis Output</div>
-          </div>
-          <span class="mock-tag">Analysis Complete</span>
-        </div>
-
-        <div class="mock-opportunity">
-          <div class="mock-opp-label">Top Opportunity</div>
-          <div class="mock-opp-name">Automated Review Request System</div>
-          <div class="mock-opp-stats">
-            <div class="mock-opp-stat">
-              <span>Annual Value</span>
-              <span>$15,000</span>
-            </div>
-            <div class="mock-opp-stat">
-              <span>Monthly Cost</span>
-              <span>$10/mo</span>
-            </div>
-            <div class="mock-opp-stat">
-              <span>Build Time</span>
-              <span>1 hour</span>
-            </div>
-          </div>
-        </div>
-
-        <div class="mock-totals">
-          <div class="mock-total">
-            <div class="mock-total-label">Total Annual Value</div>
-            <div class="mock-total-value">$204,000</div>
-          </div>
-          <div class="mock-total">
-            <div class="mock-total-label">Monthly Cost to Run</div>
-            <div class="mock-total-value">$225</div>
-          </div>
-          <div class="mock-total">
-            <div class="mock-total-label">ROI Ratio</div>
-            <div class="mock-total-value">76:1</div>
-          </div>
-        </div>
-
-        <a href="tel:+19037146162" class="mock-cta">Get Your Analysis &mdash; Call Boston</a>
-      </div>
-
-      <div style="text-align:center;">
-        <a href="tel:+19037146162" class="btn-primary">Get My Free Analysis</a>
-      </div>
+  <!-- PRODUCTS -->
+  <div class="section-label">What We Sell</div>
+  <div class="section-title">The Products</div>
+  <div class="products">
+    <div class="product-card">
+      <div class="product-name">BOSS Analyze</div>
+      <div class="product-price">Free</div>
+      <div class="product-mo">No obligation · bosssystems.co/dashboard/analyze.html</div>
+      <div class="product-desc">60-second AI analysis of any business. Maps every automation opportunity with ROI. The foot in the door.</div>
     </div>
-  </section>
-
-  <!-- WHAT WE BUILD -->
-  <section class="section-built" id="built">
-    <div class="container">
-      <div class="section-header">
-        <p class="section-label">The Stack</p>
-        <h2>What We Build</h2>
-        <p>Every automation category we deploy &mdash; selected based on your specific business type.</p>
-      </div>
-
-      <div class="builds-grid">
-        <div class="build-card">
-          <div class="build-icon">&#128222;</div>
-          <div class="build-title">AI Phone Answering</div>
-          <div class="build-desc">Never miss a call. AI answers 24/7, quotes, books.</div>
-        </div>
-        <div class="build-card">
-          <div class="build-icon">&#128241;</div>
-          <div class="build-title">Missed Call Text-Back</div>
-          <div class="build-desc">When a call is missed, a text goes out in 60 seconds.</div>
-        </div>
-        <div class="build-card">
-          <div class="build-icon">&#11088;</div>
-          <div class="build-title">Review Automation</div>
-          <div class="build-desc">After every job, a review request goes out automatically.</div>
-        </div>
-        <div class="build-card">
-          <div class="build-icon">&#128176;</div>
-          <div class="build-title">Payment Collection</div>
-          <div class="build-desc">Job complete &rarr; payment link sent instantly.</div>
-        </div>
-        <div class="build-card">
-          <div class="build-icon">&#127919;</div>
-          <div class="build-title">Outbound Lead Gen</div>
-          <div class="build-desc">AI calls targeted prospects daily while you sleep.</div>
-        </div>
-        <div class="build-card">
-          <div class="build-icon">&#128260;</div>
-          <div class="build-title">Customer Re-engagement</div>
-          <div class="build-desc">90-day lapsed customers get a personal text.</div>
-        </div>
-        <div class="build-card">
-          <div class="build-icon">&#128203;</div>
-          <div class="build-title">AI Quote Generator</div>
-          <div class="build-desc">Customer texts a photo. Quote back in 60 seconds.</div>
-        </div>
-        <div class="build-card">
-          <div class="build-icon">&#128201;</div>
-          <div class="build-title">Revenue Intelligence</div>
-          <div class="build-desc">Real-time dashboard showing what's actually working.</div>
-        </div>
-      </div>
-
-      <p class="builds-more">And 17 more depending on your business type.</p>
+    <div class="product-card featured">
+      <div class="product-name">BOSS Build</div>
+      <div class="product-price">$1,497–$5,997</div>
+      <div class="product-mo">setup + $97–$497/month recurring</div>
+      <div class="product-desc">Full AI transformation. Receptionist, outbound, payment, reviews, campaigns, and more. Deployed in 72 hours.</div>
+      <ul class="product-features">
+        <li>Starter: 5 core automations ($1,497)</li>
+        <li>Growth: 10 automations + outbound ($2,997)</li>
+        <li>Full: every automation for your type ($5,997)</li>
+      </ul>
     </div>
-  </section>
-
-  <!-- PRICING -->
-  <section class="section-pricing" id="pricing">
-    <div class="container">
-      <div class="section-header">
-        <p class="section-label">Pricing</p>
-        <h2>Pick Your Level</h2>
-        <p>Every package is built custom to your business. No generic software.</p>
-      </div>
-
-      <div class="pricing-grid">
-
-        <!-- STARTER -->
-        <div class="pricing-card">
-          <div class="pricing-tier">Starter</div>
-          <div class="pricing-setup">$1,497</div>
-          <div class="pricing-monthly">setup &nbsp;+&nbsp; $97/mo</div>
-          <p class="pricing-tagline">5 core automations. Up and running in 24 hours. The essential AI foundation.</p>
-          <div class="pricing-includes">Includes</div>
-          <ul class="pricing-features">
-            <li>AI receptionist (24/7 phone answering)</li>
-            <li>Missed call text-back</li>
-            <li>Payment collection automation</li>
-            <li>Review automation</li>
-            <li>Appointment confirmations</li>
-          </ul>
-          <a href="#analysis" class="pricing-cta">Get Started</a>
-        </div>
-
-        <!-- GROWTH -->
-        <div class="pricing-card popular">
-          <span class="popular-badge">Most Popular</span>
-          <div class="pricing-tier">Growth</div>
-          <div class="pricing-setup">$2,997</div>
-          <div class="pricing-monthly">setup &nbsp;+&nbsp; $247/mo</div>
-          <p class="pricing-tagline">10 automations. Active lead generation included.</p>
-          <div class="pricing-includes">Everything in Starter, plus</div>
-          <ul class="pricing-features">
-            <li>Outbound AI caller</li>
-            <li>Re-engagement campaigns</li>
-            <li>Competitor monitoring</li>
-            <li>Lead follow-up sequences</li>
-            <li>Social media AI</li>
-          </ul>
-          <a href="#analysis" class="pricing-cta">Get Started</a>
-        </div>
-
-        <!-- FULL TRANSFORMATION -->
-        <div class="pricing-card">
-          <div class="pricing-tier">Full Transformation</div>
-          <div class="pricing-setup">$5,997</div>
-          <div class="pricing-monthly">setup &nbsp;+&nbsp; $497/mo</div>
-          <p class="pricing-tagline">Everything. Every automation that applies to your business type.</p>
-          <div class="pricing-includes">All Growth features, plus</div>
-          <ul class="pricing-features">
-            <li>AI quote generator</li>
-            <li>Dispatch automation</li>
-            <li>Invoice generation</li>
-            <li>Seasonal campaigns</li>
-            <li>Revenue dashboard</li>
-            <li>Ongoing optimization</li>
-          </ul>
-          <a href="#analysis" class="pricing-cta">Get Started</a>
-        </div>
-
-      </div>
-
-      <div class="pricing-note">
-        Payment via Venmo <a href="https://venmo.com/BosRoss" target="_blank" rel="noopener" style="color:var(--gold);text-decoration:none;">@BosRoss</a>. Boston is 17 &mdash; no Stripe. No BS.
-      </div>
+    <div class="product-card">
+      <div class="product-name">BOSS Own</div>
+      <div class="product-price">$0 setup</div>
+      <div class="product-mo">15% of gross revenue · Summer 2026</div>
+      <div class="product-desc">Boston builds and operates the AI side. Partner does the physical work. First-mover markets: Laurel MS, Corinth MS, Durant OK.</div>
     </div>
-  </section>
-
-  <!-- ABOUT -->
-  <section class="section-about">
-    <div class="container">
-      <div class="about-inner">
-        <p class="section-label">About</p>
-        <h2><span>Boston Rossall.</span><br>17 years old. Tyler, TX.</h2>
-        <p>Built this because I wanted to prove that the AI running $100M companies costs a fraction of what anyone thinks &mdash; if you know what you're doing.</p>
-        <p>BOSS Systems isn't a software company. We build the AI systems that run your business better than you can run it manually. Then we hand you the keys.</p>
-        <p>First client: First everything changes.</p>
-      </div>
+    <div class="product-card">
+      <div class="product-name">BOSS Infinite</div>
+      <div class="product-price">$997–$2,997</div>
+      <div class="product-mo">per month · ongoing AI innovation</div>
+      <div class="product-desc">Monthly retainer. Boston continuously finds new automation opportunities and implements them. Business keeps improving.</div>
     </div>
-  </section>
+  </div>
 
-  <!-- FINAL CTA -->
-  <section class="section-final" id="contact">
-    <div class="container">
-      <h2>What Is Your Business Leaving on the Table?</h2>
-      <p>Find out in 60 seconds. Free. No pitch until you see the numbers.</p>
-      <a href="tel:+19037146162" class="final-cta-btn">Get My Free AI Analysis</a>
-      <span class="final-sub">
-        Or text Boston directly: <a href="tel:+19037146162">903-714-6162</a>
-      </span>
-    </div>
-  </section>
+  <hr class="divider">
 
-  <!-- FOOTER -->
-  <footer>
-    <div class="footer-logo">BOSS Systems</div>
-    <div class="footer-links">
-      <a href="tel:+19037146162">903-714-6162</a>
-      <a href="mailto:bosrossall@gmail.com">bosrossall@gmail.com</a>
-      <a href="https://venmo.com/BosRoss" target="_blank" rel="noopener">@BosRoss on Venmo</a>
-      <span style="color:#444;">Tyler, TX</span>
+  <!-- AUTONOMOUS PIPELINE -->
+  <div class="section-label">System Health</div>
+  <div class="section-title">Autonomous Pipeline</div>
+  <table class="sys-table">
+    <thead>
+      <tr>
+        <th>Workflow</th>
+        <th>ID</th>
+        <th>Trigger</th>
+        <th>Status</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr><td class="wf-name"><span class="dot dot-gold"></span>Morning Brief</td><td class="wf-id">TtbV6mhhRnLhQCv3</td><td class="wf-trigger">7:05am CT daily</td><td class="wf-status-paused">Paused (June 1)</td></tr>
+      <tr><td class="wf-name"><span class="dot dot-gold"></span>Hot Lead Handler</td><td class="wf-id">kGJ7aDQmp3MgiPWI</td><td class="wf-trigger">webhook: hot-lead-detected</td><td class="wf-status-paused">Paused (June 1)</td></tr>
+      <tr><td class="wf-name"><span class="dot dot-gold"></span>Auto-Builder</td><td class="wf-id">VIJXn2fKDANAsiDX</td><td class="wf-trigger">webhook: new-client-paid</td><td class="wf-status-paused">Paused (June 1)</td></tr>
+      <tr><td class="wf-name"><span class="dot dot-gold"></span>Warm Follow-Up</td><td class="wf-id">VZWvyPVLdB5akBom</td><td class="wf-trigger">11am CT daily</td><td class="wf-status-paused">Paused (June 1)</td></tr>
+      <tr><td class="wf-name"><span class="dot dot-gold"></span>Weekly Client Monitor</td><td class="wf-id">CxlfRGAhg9ndgSvG</td><td class="wf-trigger">Monday 6am CT</td><td class="wf-status-paused">Paused (June 1)</td></tr>
+      <tr><td class="wf-name"><span class="dot dot-gold"></span>Onboarding Drip</td><td class="wf-id">dOgHMx9jqpl6irc0</td><td class="wf-trigger">webhook: client-onboarding-start</td><td class="wf-status-paused">Paused (June 1)</td></tr>
+      <tr><td class="wf-name"><span class="dot dot-green"></span>Post-Call Handler</td><td class="wf-id">EGyXul1WqnnshU96</td><td class="wf-trigger">Every inbound call</td><td class="wf-status-live">Active</td></tr>
+      <tr><td class="wf-name"><span class="dot dot-green"></span>Morning Text</td><td class="wf-id">wX6OyZ9UY0Xrbui1</td><td class="wf-trigger">7am CT daily</td><td class="wf-status-live">Active</td></tr>
+      <tr><td class="wf-name"><span class="dot dot-green"></span>ORACLE</td><td class="wf-id">7wFm6CQB3VtoiRb6</td><td class="wf-trigger">9am CT daily</td><td class="wf-status-live">Active</td></tr>
+      <tr><td class="wf-name"><span class="dot dot-green"></span>Auto Caller</td><td class="wf-id">UQGW8QuaSLb9Euyh</td><td class="wf-trigger">10am + 2pm CT</td><td class="wf-status-live">Active (no scored leads yet)</td></tr>
+      <tr><td class="wf-name"><span class="dot dot-gray"></span>Superniche Targeter</td><td class="wf-id">8jvr7e9CDZgggXzM</td><td class="wf-trigger">7am CT daily</td><td style="color:#555">Paused (June 1)</td></tr>
+      <tr><td class="wf-name"><span class="dot dot-gray"></span>Lead Hunter</td><td class="wf-id">T7LdafEdxA19gvjK</td><td class="wf-trigger">6am CT daily</td><td style="color:#555">Paused (June 1)</td></tr>
+    </tbody>
+  </table>
+
+  <!-- RETELL AGENTS -->
+  <div class="section-label">Voice AI</div>
+  <div class="section-title">Retell Agents</div>
+  <table class="sys-table">
+    <thead><tr><th>Agent</th><th>ID</th><th>Number</th><th>Purpose</th></tr></thead>
+    <tbody>
+      <tr><td class="wf-name"><span class="dot dot-green"></span>Outbound Sales Caller</td><td class="wf-id">agent_6c19e0315cf3dfd1ffa3db63a2</td><td>(903) 483-0168</td><td>Cold calls businesses with AI transformation pitch</td></tr>
+      <tr><td class="wf-name"><span class="dot dot-green"></span>Devil's Advocate</td><td class="wf-id">agent_23b664e7db4a0a89ece384ddcd</td><td>(903) 568-8943</td><td>Practice target — skeptical business owner</td></tr>
+      <tr><td class="wf-name"><span class="dot dot-green"></span>THE BOSS Voice</td><td class="wf-id">agent_c2003a57424906726c5ef52131</td><td>—</td><td>Boston's personal AI advisor</td></tr>
+      <tr><td class="wf-name"><span class="dot dot-green"></span>Junk Removal — Laurel MS</td><td class="wf-id">agent_59905e10f9d2ab2b6a77f66a4a</td><td>Needs number</td><td>Books junk jobs 24/7</td></tr>
+      <tr><td class="wf-name"><span class="dot dot-green"></span>Built by BOSS Sales</td><td class="wf-id">agent_10c6519858eebc75047ee7ab8f</td><td>—</td><td>Follows up on prebuilt business leads</td></tr>
+    </tbody>
+  </table>
+
+  <!-- TOOLS -->
+  <hr class="divider">
+  <div class="section-label">Arsenal</div>
+  <div class="section-title">Tools Available Now</div>
+  <div class="tools-grid">
+    <div class="tool-card">
+      <div class="tool-name">Business AI Analyzer</div>
+      <code class="tool-cmd">python3 business_analyzer.py --type hvac --city "Corinth MS"</code>
+      <div class="tool-desc">60-second analysis of any business. Maps automations, shows ROI. Run before every sales call.</div>
     </div>
-    <p class="footer-tagline">Building AI-first businesses for the people the big companies ignore.</p>
-  </footer>
+    <div class="tool-card">
+      <div class="tool-name">Superniche Prospect Scorer</div>
+      <code class="tool-cmd">python3 prospect_scorer.py "HVAC" "Durant OK"</code>
+      <div class="tool-desc">Scores businesses on 15+ signals. Finds pain reviews, weak ratings, no websites. Generates personalized openers.</div>
+    </div>
+    <div class="tool-card">
+      <div class="tool-name">Business Builder</div>
+      <code class="tool-cmd">python3 business_builder.py "junk removal" "Corinth MS"</code>
+      <div class="tool-desc">Builds full AI stack — Retell agent + n8n workflows + launch plan. Any service business, any city.</div>
+    </div>
+    <div class="tool-card">
+      <div class="tool-name">Market Checker</div>
+      <code class="tool-cmd">python3 market_check.py "junk removal" "Laurel MS"</code>
+      <div class="tool-desc">GO/NO-GO on any market in 60 seconds. Competition density, ratings, attack strategy.</div>
+    </div>
+    <div class="tool-card">
+      <div class="tool-name">BOSS Command (Boston's interface)</div>
+      <code class="tool-cmd">python3 boss_command.py paid "Name" hvac "City ST" starter</code>
+      <div class="tool-desc">paid · hot · status · analyze · targets · clients — the only commands Boston needs.</div>
+    </div>
+    <div class="tool-card">
+      <div class="tool-name">Partner Revenue Report</div>
+      <code class="tool-cmd">python3 partner_report.py</code>
+      <div class="tool-desc">Partner revenue, Boston's 15% cut, summer projection. Add partners to the script to track.</div>
+    </div>
+  </div>
+
+  <!-- INTELLIGENCE -->
+  <hr class="divider">
+  <div class="section-label">Latest Intelligence</div>
+  <div class="section-title">What The Research Found</div>
+
+  <div class="intel-box">
+    <strong>Avoca AI raised $125M at $1B valuation</strong> doing exactly what BOSS Systems does — but for operators making $3M+ per year on ServiceTitan at $1,000-$3,000/month. Their pricing leaves every solo operator unserved. Boston's $60-497/month serves the gap they left open. The gap is verified and documented.
+    <div class="intel-date">Source: PR Newswire, April 2026</div>
+  </div>
+
+  <div class="intel-box">
+    <strong>62% of contractor calls go unanswered. 85% of those callers never call back.</strong> An HVAC company missing 3 calls/week at $850 average loses $88,400/year. BOSS at $150/month = $1,800/year. ROI: 49:1. Ruby Receptionist charges $250-$720/month for the same outcome with human staff.
+    <div class="intel-date">Source: PCN Study, CallRail, Industry Data 2026</div>
+  </div>
+
+  <div class="intel-box">
+    <strong>Best current markets for BOSS Systems:</strong> Corinth MS (HVAC, weak competition), Durant OK (HVAC, no-website operators), Laurel MS (review pain signals identified), Meridian MS (4+ weak competitors). East Texas = Boston in-person only. Louisiana = permanently banned.
+    <div class="intel-date">Source: Live Google Places scan, May 2026</div>
+  </div>
+
+  <div class="intel-box">
+    <strong>Retell AI</strong> — 600ms latency (fastest in market, only one under 800ms threshold where callers perceive AI as robotic). $60M ARR, 650% YoY growth. Correct choice. Vapi's $0.05/min headline rate is $0.25-0.33/min all-in. Bland.ai good for volume outbound but developer-only.
+    <div class="intel-date">Source: Sacra, Platform comparison research, May 2026</div>
+  </div>
+
+  <!-- JUNE 1 PLAN -->
+  <hr class="divider">
+  <div class="section-label">Now → June 1</div>
+  <div class="section-title">The Plan</div>
+  <div class="intel-box" style="border-left-color:#4caf50">
+    <strong>Before June 1 (no n8n):</strong> Get the first client in person — East Texas. Walk in, run business_analyzer.py on their business in front of them, show them the numbers. Venmo @BosRoss. Boss_command.py builds their system in 2 minutes.<br><br>
+    <strong>June 1 midnight:</strong> All 6 pipeline workflows activate. Lead Hunter and Superniche Targeter resume. Auto-caller fires at 10am with a full scored pipeline. Devil's Advocate stays active for pitch practice. Everything runs automatically.<br><br>
+    <strong>Boston's only job:</strong> Connect with people. The machine does the rest.
+  </div>
+
+  <div class="updated" id="updated">Updated: May 21, 2026 — Version manually maintained</div>
+
+</div>
+
+<script>
+function tick() {
+  const now = new Date();
+  const ct = new Intl.DateTimeFormat('en-US', {
+    timeZone: 'America/Chicago',
+    hour: '2-digit', minute: '2-digit', second: '2-digit',
+    hour12: true
+  }).format(now);
+  document.getElementById('clock').textContent = ct + ' CT';
+}
+tick();
+setInterval(tick, 1000);
+</script>
 
 </body>
 </html>
