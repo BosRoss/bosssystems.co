@@ -1,0 +1,757 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>THE BOSS — Command Center</title>
+<link href="https://fonts.googleapis.com/css2?family=Share+Tech+Mono&family=Rajdhani:wght@400;600;700&display=swap" rel="stylesheet">
+<style>
+:root {
+  --bg: #050608;
+  --bg2: #0c0d12;
+  --bg3: #12141a;
+  --gold: #C9A84C;
+  --gold-dim: #7a6530;
+  --text: #e8e8f0;
+  --dim: #4a4a6a;
+  --green: #00e87a;
+  --red: #ff3b3b;
+  --border: #1a1c28;
+}
+* { margin:0; padding:0; box-sizing:border-box; }
+body { background:var(--bg); color:var(--text); font-family:'Rajdhani',sans-serif; min-height:100vh; overflow-x:hidden; }
+body::before { content:''; position:fixed; inset:0; background:repeating-linear-gradient(0deg,transparent,transparent 2px,rgba(0,0,0,0.04) 2px,rgba(0,0,0,0.04) 4px); pointer-events:none; z-index:999; }
+
+/* ── LAUNCH SCREEN ── */
+#launch {
+  position:fixed; inset:0; background:#000; z-index:9999;
+  display:flex; flex-direction:column; align-items:center; justify-content:center;
+  cursor:pointer; transition:opacity 0.7s ease;
+}
+#launch.out { opacity:0; pointer-events:none; }
+@keyframes rpulse { 0%,100%{transform:scale(1);opacity:1} 50%{transform:scale(1.04);opacity:0.65} }
+.l-cta  { font-family:'Share Tech Mono',monospace; font-size:11px; letter-spacing:4px; color:rgba(201,168,76,0.4); animation:blink 1.6s ease-in-out infinite; }
+@keyframes blink { 0%,100%{opacity:1} 50%{opacity:0.15} }
+
+/* ── HEADER ── */
+header { background:linear-gradient(180deg,#09090f 0%,var(--bg) 100%); border-bottom:1px solid var(--gold-dim); padding:0 20px; position:sticky; top:0; z-index:100; }
+.h-inner { max-width:1400px; margin:0 auto; display:flex; align-items:center; justify-content:space-between; height:58px; gap:12px; }
+.logo { display:flex; align-items:center; gap:12px; }
+.logo-badge { width:36px; height:36px; border:1.5px solid var(--gold); border-radius:50%; display:flex; align-items:center; justify-content:center; font-size:15px; color:var(--gold); font-family:'Share Tech Mono',monospace; box-shadow:0 0 14px rgba(201,168,76,0.25); flex-shrink:0; }
+.logo-title { font-size:18px; font-weight:700; color:var(--gold); letter-spacing:3px; line-height:1; }
+.logo-sub   { font-size:9px; color:var(--dim); letter-spacing:2px; font-family:'Share Tech Mono',monospace; }
+.h-right { display:flex; align-items:center; gap:14px; flex-shrink:0; }
+.live-badge { display:flex; align-items:center; gap:6px; font-size:10px; color:var(--green); font-family:'Share Tech Mono',monospace; letter-spacing:1px; }
+.live-dot { width:7px; height:7px; background:var(--green); border-radius:50%; animation:pulse 2s infinite; }
+@keyframes pulse { 0%,100%{opacity:1;box-shadow:0 0 0 0 rgba(0,232,122,0.4)} 50%{opacity:0.6;box-shadow:0 0 0 4px rgba(0,232,122,0)} }
+#clock { font-family:'Share Tech Mono',monospace; font-size:12px; color:var(--dim); }
+
+/* Stop button — subtle speaker in header */
+#stop-btn {
+  background:none; border:none; cursor:pointer; padding:6px;
+  opacity:0.2; transition:opacity 0.2s, color 0.2s; font-size:16px; color:var(--text);
+  line-height:1;
+}
+#stop-btn:hover { opacity:0.8; color:var(--red); }
+
+.refresh-btn { background:none; border:1px solid var(--border); color:var(--dim); padding:4px 10px; border-radius:3px; cursor:pointer; font-family:'Share Tech Mono',monospace; font-size:10px; letter-spacing:1px; transition:all 0.2s; }
+.refresh-btn:hover { border-color:var(--gold); color:var(--gold); }
+
+/* ── STATS BAR ── */
+.stats-bar { background:var(--bg2); border-bottom:1px solid var(--border); padding:0 20px; }
+.stats-inner { max-width:1400px; margin:0 auto; display:grid; grid-template-columns:repeat(5,1fr); }
+.stat { padding:13px 16px; border-right:1px solid var(--border); text-align:center; }
+.stat:last-child { border-right:none; }
+.stat-value { font-size:26px; font-weight:700; font-family:'Share Tech Mono',monospace; line-height:1; margin-bottom:2px; }
+.stat-label { font-size:9px; color:var(--dim); letter-spacing:2px; text-transform:uppercase; }
+.stat.hot   .stat-value { color:#FF6B35; }
+.stat.warm  .stat-value { color:var(--gold); }
+.stat.cli   .stat-value { color:var(--green); }
+.stat.act   .stat-value { color:#4A9EE8; }
+.stat.tot   .stat-value { color:var(--text); }
+
+/* ── MAIN ── */
+main { max-width:1400px; margin:0 auto; padding:18px 20px; display:flex; flex-direction:column; gap:18px; }
+
+/* ── ERROR STRIP ── */
+#error-strip { background:rgba(255,59,59,0.07); border:1px solid rgba(255,59,59,0.25); border-radius:6px; padding:12px 16px; display:none; }
+.err-title { font-size:10px; letter-spacing:2px; color:var(--red); margin-bottom:8px; font-family:'Share Tech Mono',monospace; }
+.err-list { display:flex; flex-wrap:wrap; gap:8px; }
+.err-item { font-size:11px; color:rgba(255,80,80,0.85); font-family:'Share Tech Mono',monospace; background:rgba(255,59,59,0.05); border:1px solid rgba(255,59,59,0.15); border-radius:3px; padding:3px 9px; cursor:pointer; transition:border-color 0.2s; }
+.err-item:hover { border-color:rgba(255,59,59,0.5); }
+
+/* ── DIVISION GRID ── */
+.division-grid { display:grid; grid-template-columns:repeat(3,1fr); gap:14px; }
+.div-card { background:var(--bg2); border:1px solid var(--border); border-radius:8px; overflow:hidden; transition:border-color 0.25s; }
+.div-card:hover { border-color:var(--dc); }
+.div-header { padding:13px 15px 11px; border-bottom:1px solid var(--border); background:linear-gradient(135deg,var(--bg3) 0%,var(--bg2) 100%); display:flex; align-items:center; gap:10px; }
+.div-accent { width:3px; height:34px; border-radius:2px; background:var(--dc); box-shadow:0 0 8px var(--dc); flex-shrink:0; }
+.div-info { flex:1; min-width:0; }
+.div-name    { font-size:13px; font-weight:700; letter-spacing:2px; color:var(--dc); line-height:1; margin-bottom:2px; }
+.div-tagline { font-size:9px; color:var(--dim); letter-spacing:1px; }
+.div-count   { font-family:'Share Tech Mono',monospace; font-size:10px; color:var(--dim); flex-shrink:0; }
+
+/* ── AGENT ROWS ── */
+.agent-list { padding:6px 0; }
+.agent-row {
+  display:flex; align-items:center; gap:10px; padding:7px 15px;
+  cursor:pointer; transition:background 0.12s; border-left:2px solid transparent;
+  transition:background 0.12s, border-color 0.12s;
+}
+.agent-row:hover { background:rgba(255,255,255,0.035); border-left-color:var(--dc); }
+.agent-dot { width:7px; height:7px; border-radius:50%; flex-shrink:0; transition:box-shadow 0.2s; }
+.agent-dot.on  { background:var(--green); box-shadow:0 0 6px rgba(0,232,122,0.5); }
+.agent-dot.off { background:var(--dim); }
+.agent-name { font-size:13px; font-weight:600; flex:1; overflow:hidden; text-overflow:ellipsis; white-space:nowrap; }
+.agent-badge { font-size:8px; font-family:'Share Tech Mono',monospace; letter-spacing:1px; padding:2px 6px; border-radius:2px; flex-shrink:0; }
+.agent-badge.on  { background:rgba(0,232,122,0.08); color:var(--green); border:1px solid rgba(0,232,122,0.18); }
+.agent-badge.off { background:rgba(74,74,106,0.12); color:var(--dim); border:1px solid rgba(74,74,106,0.2); }
+.agent-err { font-size:8px; font-family:'Share Tech Mono',monospace; color:var(--red); opacity:0.7; }
+
+/* ── AGENT DRAWER ── */
+#drawer-overlay { position:fixed; inset:0; background:rgba(0,0,0,0.55); z-index:400; opacity:0; pointer-events:none; transition:opacity 0.25s; }
+#drawer-overlay.open { opacity:1; pointer-events:all; }
+
+#drawer {
+  position:fixed; top:0; right:0; bottom:0; width:380px; max-width:100vw;
+  background:var(--bg2); border-left:1px solid var(--border);
+  z-index:500; transform:translateX(100%); transition:transform 0.28s cubic-bezier(0.4,0,0.2,1);
+  display:flex; flex-direction:column; overflow:hidden;
+}
+#drawer.open { transform:translateX(0); }
+
+.drawer-header { padding:18px 18px 14px; border-bottom:1px solid var(--border); flex-shrink:0; }
+.drawer-top { display:flex; align-items:flex-start; justify-content:space-between; margin-bottom:4px; }
+.drawer-name { font-size:20px; font-weight:700; letter-spacing:1px; line-height:1.1; }
+.drawer-close { background:none; border:none; color:var(--dim); cursor:pointer; font-size:20px; padding:0 0 0 12px; line-height:1; transition:color 0.2s; }
+.drawer-close:hover { color:var(--text); }
+.drawer-meta { display:flex; align-items:center; gap:10px; margin-top:6px; }
+.drawer-div  { font-size:10px; font-family:'Share Tech Mono',monospace; letter-spacing:1px; color:var(--dim); }
+.drawer-status { font-size:9px; font-family:'Share Tech Mono',monospace; letter-spacing:1px; padding:2px 8px; border-radius:2px; }
+.drawer-status.on  { background:rgba(0,232,122,0.1); color:var(--green); border:1px solid rgba(0,232,122,0.2); }
+.drawer-status.off { background:rgba(74,74,106,0.12); color:var(--dim); border:1px solid rgba(74,74,106,0.2); }
+
+.drawer-body { padding:18px; flex:1; overflow-y:auto; display:flex; flex-direction:column; gap:18px; }
+
+.drawer-section { }
+.drawer-section-title { font-size:9px; font-family:'Share Tech Mono',monospace; letter-spacing:2px; color:var(--dim); margin-bottom:8px; text-transform:uppercase; }
+.drawer-desc { font-size:14px; font-weight:400; line-height:1.55; color:rgba(232,232,240,0.85); }
+
+.drawer-caps { display:flex; flex-direction:column; gap:5px; }
+.drawer-cap { display:flex; align-items:flex-start; gap:8px; font-size:13px; color:rgba(232,232,240,0.75); }
+.drawer-cap::before { content:'›'; color:var(--drawer-color); flex-shrink:0; }
+
+.err-history { display:flex; flex-direction:column; gap:6px; }
+.err-row { display:flex; align-items:center; gap:8px; padding:7px 10px; background:rgba(255,59,59,0.05); border:1px solid rgba(255,59,59,0.12); border-radius:4px; }
+.err-icon { font-size:10px; }
+.err-time { font-size:11px; font-family:'Share Tech Mono',monospace; color:rgba(255,80,80,0.8); }
+.no-errors { font-size:12px; font-family:'Share Tech Mono',monospace; color:var(--green); opacity:0.7; }
+
+.drawer-footer { padding:14px 18px; border-top:1px solid var(--border); flex-shrink:0; }
+.fire-btn {
+  width:100%; padding:11px; background:rgba(201,168,76,0.08); border:1px solid var(--gold-dim);
+  color:var(--gold); font-family:'Rajdhani',sans-serif; font-size:14px; font-weight:700;
+  letter-spacing:3px; border-radius:4px; cursor:pointer; transition:all 0.2s;
+}
+.fire-btn:hover { background:rgba(201,168,76,0.16); border-color:var(--gold); box-shadow:0 0 12px rgba(201,168,76,0.15); }
+.fire-btn:disabled { opacity:0.3; cursor:not-allowed; }
+.fire-confirm { font-size:11px; font-family:'Share Tech Mono',monospace; color:var(--green); margin-top:8px; text-align:center; display:none; }
+
+/* ── FOOTER ── */
+footer { text-align:center; padding:18px; font-family:'Share Tech Mono',monospace; font-size:10px; color:var(--dim); letter-spacing:2px; border-top:1px solid var(--border); margin-top:4px; }
+#last-updated { color:var(--gold-dim); }
+
+/* ── RESPONSIVE ── */
+@media (max-width:900px) { .division-grid{grid-template-columns:repeat(2,1fr)} .stats-inner{grid-template-columns:repeat(3,1fr)} .stat:nth-child(3){border-right:none} .stat:nth-child(n+4){border-top:1px solid var(--border)} }
+@media (max-width:580px) { .division-grid{grid-template-columns:1fr} .stats-inner{grid-template-columns:repeat(3,1fr)} main{padding:12px} #drawer{width:100vw} .logo-sub{display:none} #clock{display:none} }
+</style>
+</head>
+<body>
+
+<audio id="march" src="imperial-march.mp3" preload="auto"></audio>
+
+<!-- LAUNCH SCREEN -->
+<div id="launch" onclick="launch()">
+  <svg viewBox="0 0 200 54" fill="none" style="height:80px;width:auto;margin-bottom:32px">
+    <text x="2" y="44" font-family="'Rajdhani','Arial Black',sans-serif" font-weight="700" font-size="47" fill="#C9A84C">B</text>
+    <g stroke="#C9A84C" fill="none" stroke-linecap="round">
+      <path d="M 35,12 Q 47,27 35,42" stroke-width="3.5" opacity="1"/>
+      <path d="M 42,7  Q 57,27 42,47" stroke-width="3"   opacity="0.62"/>
+      <path d="M 49,2  Q 68,27 49,52" stroke-width="2.5" opacity="0.3"/>
+    </g>
+    <line x1="69" y1="8" x2="69" y2="46" stroke="#C9A84C" stroke-width="0.75" opacity="0.35"/>
+    <text x="128" y="27" text-anchor="middle" font-family="'Rajdhani','Arial Black',sans-serif" font-weight="700" font-size="27" letter-spacing="3" fill="#C9A84C">BOSS</text>
+    <text x="128" y="43" text-anchor="middle" font-family="'Rajdhani',Arial,sans-serif" font-weight="600" font-size="10" letter-spacing="4.5" fill="#C9A84C">SYSTEMS</text>
+  </svg>
+  <div class="l-cta">[ CLICK TO LAUNCH ]</div>
+</div>
+
+<!-- HEADER -->
+<header>
+  <div class="h-inner">
+    <div class="logo">
+      <svg viewBox="0 0 200 54" fill="none" style="height:34px;width:auto">
+        <text x="2" y="44" font-family="'Rajdhani','Arial Black',sans-serif" font-weight="700" font-size="47" fill="#C9A84C">B</text>
+        <g stroke="#C9A84C" fill="none" stroke-linecap="round">
+          <path d="M 42,7  Q 57,27 42,47" stroke-width="3"   opacity="0.78"/>
+          <path d="M 49,2  Q 68,27 49,52" stroke-width="2.5" opacity="0.48"/>
+
+        </g>
+        <line x1="69" y1="8" x2="69" y2="46" stroke="#C9A84C" stroke-width="0.75" opacity="0.35"/>
+        <text x="128" y="27" text-anchor="middle" font-family="'Rajdhani','Arial Black',sans-serif" font-weight="700" font-size="27" letter-spacing="3" fill="#C9A84C">BOSS</text>
+        <text x="128" y="43" text-anchor="middle" font-family="'Rajdhani',Arial,sans-serif" font-weight="600" font-size="10" letter-spacing="4.5" fill="#C9A84C">SYSTEMS</text>
+      </svg>
+      <div class="logo-sub" style="margin-left:10px;align-self:center;opacity:0.45">COMMAND CENTER</div>
+    </div>
+    <div class="h-right">
+      <div class="live-badge"><div class="live-dot"></div>LIVE</div>
+      <div id="clock"></div>
+      <button id="stop-btn" title="Stop music" onclick="stopMusic()">■</button>
+      <button class="refresh-btn" onclick="loadData()">↺ REFRESH</button>
+    </div>
+  </div>
+</header>
+
+<!-- STATS BAR -->
+<div class="stats-bar">
+  <div class="stats-inner">
+    <div class="stat hot"><div class="stat-value" id="s-hot">—</div><div class="stat-label">Hot Leads</div></div>
+    <div class="stat warm"><div class="stat-value" id="s-warm">—</div><div class="stat-label">Warm Leads</div></div>
+    <div class="stat cli"><div class="stat-value" id="s-cli">—</div><div class="stat-label">Clients</div></div>
+    <div class="stat act"><div class="stat-value" id="s-act">—</div><div class="stat-label">Active Agents</div></div>
+    <div class="stat tot"><div class="stat-value" id="s-tot">—</div><div class="stat-label">In Pipeline</div></div>
+  </div>
+</div>
+
+<main>
+  <div id="error-strip">
+    <div class="err-title">⚠ RECENT FAILURES — CLICK TO INSPECT</div>
+    <div class="err-list" id="err-list"></div>
+  </div>
+  <div class="division-grid" id="grid"></div>
+</main>
+
+<footer>BOSS SYSTEMS · TYLER TX &nbsp;|&nbsp; UPDATED <span id="last-updated">—</span></footer>
+
+<!-- AGENT DRAWER -->
+<div id="drawer-overlay" onclick="closeDrawer()"></div>
+<div id="drawer">
+  <div class="drawer-header">
+    <div class="drawer-top">
+      <div class="drawer-name" id="d-name">—</div>
+      <button class="drawer-close" onclick="closeDrawer()">×</button>
+    </div>
+    <div class="drawer-meta">
+      <div class="drawer-div" id="d-div">—</div>
+      <div class="drawer-status" id="d-status">—</div>
+    </div>
+  </div>
+  <div class="drawer-body">
+    <div class="drawer-section">
+      <div class="drawer-section-title">What It Does</div>
+      <div class="drawer-desc" id="d-desc">—</div>
+    </div>
+    <div class="drawer-section">
+      <div class="drawer-section-title">Capabilities</div>
+      <div class="drawer-caps" id="d-caps"></div>
+    </div>
+    <div class="drawer-section">
+      <div class="drawer-section-title">Recent Errors</div>
+      <div class="err-history" id="d-errors"></div>
+    </div>
+  </div>
+  <div class="drawer-footer">
+    <button class="fire-btn" id="d-fire-btn" onclick="fireAgent()">▶ FIRE NOW</button>
+    <div class="fire-confirm" id="d-fire-confirm">✓ FIRED — CHECK NTFY</div>
+  </div>
+</div>
+
+<script>
+const API = 'https://jamross.app.n8n.cloud/webhook/boss-dashboard-data';
+let dashData = null;
+let currentAgent = null;
+
+// ── AGENT KNOWLEDGE BASE ──
+const AGENTS = {
+  "UQGW8QuaSLb9Euyh": {
+    desc: "Dials 50–100 businesses per day via Retell AI. Finds cold leads in the pipeline, calls them automatically during business hours, and logs every result.",
+    caps: ["Calls up to 100 businesses/day on weekdays","Filters by business hours (8am–7pm CT)","Auto-skips DNC, hot leads, and already-called numbers","Posts results to Post-Call Handler for lead scoring"],
+    trigger: "run-auto-caller"
+  },
+  "DjP6dUbaiM8NEJAH": {
+    desc: "Follows up with hot leads that haven't closed within 48 hours. Sends personalized AI-written emails every Tuesday and Thursday at 10am CT.",
+    caps: ["Reads all hot leads from pipeline","Writes custom follow-up email per business","Fires Tue/Thu at 10am CT automatically","Skips leads already closed or marked client"],
+    trigger: null
+  },
+  "0bhzqF2GkJOefV5L": {
+    desc: "Sends a follow-up email immediately when a hot lead is detected but Boston hasn't responded within 1 hour.",
+    caps: ["Triggers off Post-Call Handler hot lead detection","Sends personalized email within the hour","Keeps the lead warm while Boston is busy"],
+    trigger: null
+  },
+  "3EAOpiB49bt4mo2J": {
+    desc: "Sends a follow-up sequence to leads who said yes to the free trial but haven't confirmed setup. Keeps them moving through the close.",
+    caps: ["Targets leads with 'free trial' intent signal","Sends sequence of 2–3 follow-up messages","Escalates to Boston if no response after 3 days"],
+    trigger: null
+  },
+  "Jcjqj1KndtXsj9yi": {
+    desc: "Calls businesses pretending to be a customer. Records the experience and sends a mystery caller report — used as a free lead magnet for BOSS Systems.",
+    caps: ["Calls local businesses as a test customer","Records and analyzes the call experience","Emails a free report to the business owner","Auto-adds businesses to the pipeline as warm leads"],
+    trigger: null
+  },
+  "aPTilBW7lgYeQz6w": {
+    desc: "Sends cold emails to businesses offering a free mystery caller report. Runs every Wednesday at 3pm CT.",
+    caps: ["Finds businesses with email addresses in pipeline","Writes personalized outreach per business type","Offers free mystery caller report as hook","Tracks opens and adds hot responders to pipeline"],
+    trigger: null
+  },
+  "WY9QQU8gSSaKO9kD": {
+    desc: "Sends AI-personalized cold emails to remote leads Monday through Friday at 11am CT. Focuses on businesses that have email addresses.",
+    caps: ["Reads pipeline for cold leads with emails","Claude writes a unique email per business","Sends via Gmail automatically","Logs all sends to Command Center"],
+    trigger: null
+  },
+  "4BdCIYUMZP3XW2Ah": {
+    desc: "Sends a weekly AI tips newsletter every Tuesday at 2pm CT to all warm and hot leads in the pipeline. Keeps BOSS Systems top of mind.",
+    caps: ["Hits all warm and hot leads in pipeline","Claude writes fresh content each week","Builds authority and trust over time","Includes a soft CTA to book a demo"],
+    trigger: null
+  },
+  "7wFm6CQB3VtoiRb6": {
+    desc: "The strategic brain. Runs every morning at 9am CT and analyzes the full business — pipeline, calls, leads, revenue — using 7 expert frameworks.",
+    caps: ["Kahneman: pain-first framing and loss aversion lens","Voss: tactical empathy grading on call transcripts","Moore: beachhead market recommendation","Ross: weekly funnel metrics and forecast","Writes tasks to the Task Queue automatically","Sends strategic briefing to Boston via ntfy"],
+    trigger: null
+  },
+  "wX6OyZ9UY0Xrbui1": {
+    desc: "Sends Boston a clean morning text at 7am CT every day with pipeline stats and pending tasks. The only system that has never failed.",
+    caps: ["Fires daily at 7am CT","Reads live pipeline: hot, warm, total counts","Reads Task Queue for pending items","Sends to ntfy — always reliable"],
+    trigger: "morning-text-now"
+  },
+  "5mItIMTXR4Ivh8Dw": {
+    desc: "Builds Boston's daily to-do list at 7:05am CT using Claude. Reads the pipeline, task queue, and recent activity to prioritize the day.",
+    caps: ["Claude reads full context: tasks, leads, activity","Formats a clean daily to-do list","Sends via ntfy at 7:05am CT","Monday includes new pipeline leads summary"],
+    trigger: "trigger-todo-now"
+  },
+  "jcjx0bGhzmaJrI7q": {
+    desc: "Checks the health of all 8 critical workflows every 2 hours. Sends an urgent ntfy alert if anything is broken, and a daily summary at 1pm CT.",
+    caps: ["Monitors Auto Caller, Post-Call Handler, Lead Hunter and more","Runs every 2 hours automatically","Urgent alert if any critical system is down","Daily summary report at 1pm CT"],
+    trigger: "health-check"
+  },
+  "paLAWtGNpH3Qp3P0": {
+    desc: "Runs every Sunday night at 10pm CT. Reviews the full week, finds broken connections, writes a strategic review, and queues next-week priorities.",
+    caps: ["Scans all workflows for dead connections","Claude writes a weekly business review","Queues improvement tasks for Monday","Sends weekly summary to ntfy"],
+    trigger: null
+  },
+  "0VtRB8uabVIMdZx0": {
+    desc: "The autonomous operating system. Runs on a schedule and coordinates between all other agents — it is the system keeping everything else running.",
+    caps: ["Coordinates inter-workflow actions","Handles autonomous task execution","Manages agent priorities and scheduling","Reports autonomous actions to Daily Log"],
+    trigger: null
+  },
+  "nbwJgIjyjLqIqanU": {
+    desc: "Generates a full weekly business summary every Sunday at 6pm CT. Covers calls made, hot leads generated, closes attempted, and what to focus on next week.",
+    caps: ["Reads full week of execution history","Claude writes narrative summary","Compares week-over-week performance","Sent via ntfy to Boston"],
+    trigger: null
+  },
+  "EGyXul1WqnnshU96": {
+    desc: "Fires after every call ends. Reads the transcript, scores it for hot/close signals, extracts email addresses, and alerts Boston immediately if a lead is hot.",
+    caps: ["Detects close signals: free trial accepted, email given","Sends urgent ntfy to Boston for hot leads","Logs every call result to pipeline","Updates lead status automatically"],
+    trigger: "retell-post-call"
+  },
+  "dLMgggMv986b7SJs": {
+    desc: "Handles do-not-call requests instantly. When someone says stop calling, they are removed from the pipeline permanently and logged.",
+    caps: ["Triggers from Post-Call Handler DNC detection","Marks lead as DNC in pipeline","Logs to DNC registry","Prevents any future calls to that number"],
+    trigger: null
+  },
+  "nqlDzUaXTPJUvI9o": {
+    desc: "Cleans the pipeline every Friday night at 9pm CT. Removes duplicates, fixes formatting, and archives stale leads that haven't moved in 60 days.",
+    caps: ["Deduplicates by phone number","Fixes phone formatting to digits-only","Archives leads cold for 60+ days","Reports cleanup stats to Command Center"],
+    trigger: null
+  },
+  "VgX5r9Id8fBAp9VQ": {
+    desc: "Scans all workflows for broken node connections before any deployment. Catches silent failures before they go live.",
+    caps: ["Checks all 65 workflows for dead connections","Reports any broken references","Runs before major deployments","Saves errors to Task Queue for fixing"],
+    trigger: null
+  },
+  "VeofXawy3ISKcQY7": {
+    desc: "Sends Boston ntfy alerts. The dedicated SMS-style notification layer — used by every other agent that needs to reach Boston fast.",
+    caps: ["High-priority push to ntfy","Used for hot lead alerts, errors, and briefings","Supports custom title, priority, and tags"],
+    trigger: null
+  },
+  "wp64Pm9hNzP7CZxv": {
+    desc: "Texts back missed callers automatically. When a business misses a call, this sends a text within minutes — a standalone service Boston can sell.",
+    caps: ["Responds to missed calls via Twilio SMS","Customized per-client message","Tracks all sent texts","Can be sold as a standalone product"],
+    trigger: null
+  },
+  "IGmVbXi5nRBVZ8VE": {
+    desc: "Handles inbound replies from businesses. When a lead replies to an email or text, this routes it to the right workflow and alerts Boston.",
+    caps: ["Monitors inbound replies","Routes to correct follow-up workflow","Alerts Boston for replies needing response","Logs to pipeline"],
+    trigger: null
+  },
+  "GZg71iwZUs2S3GZC": {
+    desc: "Monitors all active clients every Monday at 8am CT. Flags any clients who might be at risk of canceling and triggers a check-in email.",
+    caps: ["Checks all active client accounts","Scores churn risk per client","Sends automated check-in email","Alerts Boston to high-risk clients"],
+    trigger: null
+  },
+  "tfRapd3oGw5Lgmya": {
+    desc: "Runs automatically when a new client closes. Sends welcome materials, configures their Retell agent, and adds them to billing tracking.",
+    caps: ["Sends welcome email with next steps","Logs client to Command Center","Triggers Retell phone setup workflow","Sets up monthly invoice schedule"],
+    trigger: null
+  },
+  "BIgHQbANPF7wVz7M": {
+    desc: "Sends a review request to clients 24 hours after their AI receptionist goes live. Builds social proof for BOSS Systems.",
+    caps: ["Triggers 24hrs after onboarding","Sends personalized review request email","Links to Google review page","Logs request sent to client record"],
+    trigger: null
+  },
+  "QuqLyPTvd1GNPW9t": {
+    desc: "Generates and sends monthly invoices to all active clients on the 1st of every month. Reminds them to send Venmo payment.",
+    caps: ["Runs on 1st of every month at 9am CT","Sends itemized invoice per client","Payment instructions: Venmo @BosRoss","Logs all invoices sent"],
+    trigger: null
+  },
+  "qu61fKteIKpr7dkp": {
+    desc: "Sends monthly performance reports to each client showing their AI receptionist stats — calls handled, messages taken, value delivered.",
+    caps: ["Pulls client call data from Retell","Claude writes a custom report per client","Delivered by email on the 1st","Shows ROI: missed calls saved, revenue protected"],
+    trigger: null
+  },
+  "ZXcwekRKcmjwbAVO": {
+    desc: "Manages the client referral program. When a client refers another business, tracks it and applies an automatic discount to their next invoice.",
+    caps: ["Tracks referrals via unique referral link","Applies discount automatically on next invoice","Sends thank-you email to referrer","Logs all referrals to Command Center"],
+    trigger: null
+  },
+  "mp6r9aj8vFImfL01": {
+    desc: "The ongoing client success layer. Monitors engagement, usage, and satisfaction for all active clients on a recurring basis.",
+    caps: ["Checks client usage stats monthly","Identifies low-engagement clients","Sends usage tips and optimization emails","Reports to Boston on client health"],
+    trigger: null
+  },
+  "S5r49V64OLsQrFAw": {
+    desc: "Manages the reseller network. Calculates weekly commissions, sends payout statements, and onboards new resellers via webhook.",
+    caps: ["Calculates commissions: $75/setup + $15/mo/client","Sends weekly payout statements via email","New reseller signup: POST /webhook/reseller-signup","Tracks all resellers in Command Center Google Sheet"],
+    trigger: null
+  },
+  "wMWL3U0JsdP6FO7F": {
+    desc: "Scrapes Google Maps for fresh leads every Monday at 6am CT using Outscraper. Targets the best business types in the best-performing cities.",
+    caps: ["Targets: HVAC, plumbers, auto repair, roofers","Best cities: 20k–80k population towns","Scrapes name, phone, address, category","Auto-adds to pipeline as cold leads"],
+    trigger: null
+  },
+  "uR7it8ythev0eqqu": {
+    desc: "Supplements the Google Maps leads with Yelp every Wednesday at noon CT. Catches businesses that Google Maps misses.",
+    caps: ["Runs every Wednesday at 12pm CT","Scrapes Yelp business listings","Deduplicates against existing pipeline","Focuses on businesses Google doesn't list well"],
+    trigger: null
+  },
+  "HWQP9Xg2D9T0yWQ1": {
+    desc: "Scrapes Indeed every Monday and Thursday for businesses posting receptionist job listings. These are hot prospects — they need phone coverage right now.",
+    caps: ["Searches Indeed for 'receptionist' job posts","Extracts company name and contact info","Auto-adds to pipeline as warm leads","Runs Mon/Thu at 1pm CT"],
+    trigger: null
+  },
+  "6sRDBc3S98jP7Kj6": {
+    desc: "Webhook-triggered lead seeder for remote markets. Boston or resellers can POST a city and business type to instantly seed fresh leads into the pipeline.",
+    caps: ["Triggered via POST /webhook/remote-lead-seed","Accepts city + business type parameters","Kicks off Outscraper scrape immediately","Useful for expanding to new markets fast"],
+    trigger: null
+  },
+  "DPkdf2U1e2e7KQ1p": {
+    desc: "The free lead magnet. Businesses enter their info and get a personalized revenue loss estimate — showing exactly how much missed calls cost them per year.",
+    caps: ["POST /webhook/missed-call-calculator","Returns revenue loss estimate instantly","Sends personalized PDF-style report via email","Auto-adds business as warm lead to pipeline"],
+    trigger: null
+  },
+  "5NK1PCBEfxkZpvv8": {
+    desc: "Generates and posts AI social media content for BOSS Systems. Builds brand presence automatically on social platforms.",
+    caps: ["Claude writes posts tailored to local business owners","Posts to configured social accounts","Runs on schedule automatically","Focused on pain points: missed calls, lost revenue"],
+    trigger: null
+  },
+  "TdpdYjgIL04aYw3e": {
+    desc: "Sends personalized cold outreach to marketing agencies and AI service firms who might want to resell BOSS Systems or partner.",
+    caps: ["Targets agencies and consultants","Pitches reseller or white-label partnership","Runs weekday mornings","Logs all outreach to Command Center"],
+    trigger: null
+  },
+  "AWOxxo89nzXz1njH": {
+    desc: "In-person demo tool. Switches the active demo agent to the right demo number before Boston walks into a business meeting.",
+    caps: ["Switches between 4 demo numbers instantly","Preps the demo agent with business context","Used before in-person East Texas demos","POST /webhook/demo-switch"],
+    trigger: null
+  },
+  "OLnZ83aAv03bK5oq": {
+    desc: "Plans Boston's East Texas sales route. Given a list of businesses to visit, it generates an optimized driving route and schedules.",
+    caps: ["Optimizes multi-stop route by distance","Integrates with Google Maps","Outputs ordered stop list with estimated times","Sends route to Boston via ntfy"],
+    trigger: null
+  },
+  "SCRzN9H2YCcd78OW": {
+    desc: "Generates a Route Tab in the Command Center Google Sheet for each sales day. Each tab has the businesses to visit in order with contact info.",
+    caps: ["Creates a new tab per sales day","Pulls businesses from FIELD OPS queue","Includes name, address, phone, notes","Used alongside Sales Route Planner"],
+    trigger: null
+  },
+  "DBXpLD6F37WEQfbK": {
+    desc: "Switches which demo number is active for in-person demos. Boston uses this before walking into a meeting.",
+    caps: ["4 demo numbers: (903) 483/206/568/326","Switches active demo agent instantly","Confirmed via ntfy when switched"],
+    trigger: null
+  },
+  "mGy5pwsAkilmtwVQ": {
+    desc: "Fires an alert when a demo converts to a hot lead. Triggered when the in-person demo results in expressed interest.",
+    caps: ["Detects demo conversion event","Sends high-priority ntfy to Boston","Logs conversion to pipeline","Triggers Close Follow-Up sequence"],
+    trigger: null
+  },
+  "lSc61uycIMIn6HEG": {
+    desc: "Handles post-call processing for in-person demos. Reads the demo transcript and logs results the same way the main Post-Call Handler does.",
+    caps: ["Triggered after each demo call ends","Scores demo for interest level","Logs to pipeline","Alerts Boston if strong buying signal"],
+    trigger: null
+  },
+  "y7kKMRk574mgrWGe": {
+    desc: "Builds a live Retell demo agent for a specific business on the spot. Boston enters the business name and type, it creates a custom demo in seconds.",
+    caps: ["Creates a custom Retell agent per business","Sets business-specific greeting and context","Returns demo number ready to call","Built for East Texas walk-in demos"],
+    trigger: null
+  },
+  "BxODjSqDgzWNIFg6": {
+    desc: "Processes calls to THE BOSS advisor line (903-568-8943). Logs the conversation, extracts action items, and adds them to the Task Queue.",
+    caps: ["Triggered after every call to THE BOSS line","Claude extracts tasks from conversation","Adds tasks to Command Center Task Queue","Logs call summary to Daily Log"],
+    trigger: null
+  },
+  "eYxada5mD52haXJt": { desc:"General-purpose test runner. Claude can trigger it to test any workflow or system component on demand.", caps:["Accepts test parameters via webhook","Runs specified workflow tests","Returns pass/fail results","Used for pre-deployment verification"], trigger: null },
+  "lodNTepnpwz3WGTn": { desc:"Runs preset cold caller scenario tests. Simulates different call outcomes to verify the Post-Call Handler is scoring correctly.", caps:["Tests hot lead detection","Tests DNC handling","Tests email extraction","Verifies close signal scoring"], trigger: null },
+  "qu61fKteIKpr7dkp": { desc:"Monthly client performance reports.", caps:["Pulls Retell call data per client","Claude writes custom report","Emailed on 1st of month"], trigger: null },
+  "tYAeMKWwwKRZBkXl": { desc:"Legacy version of Sales Route Planner. Kept for reference.", caps:["Older route planning logic","Not actively used"], trigger: null },
+  "Mk5dZQSblKsgsnyi": { desc:"Freeze on automatic phone number purchases. Prevents the system from buying new Retell numbers without Boston's approval.", caps:["Blocks autonomous phone purchases","Requires manual override to add numbers","Safety guard for budget control"], trigger: null },
+  "pHvDxRKn2Evqewvc": { desc:"Checks the health of all 4 demo agents daily at 6am CT. Ensures demo numbers are live and ready before Boston's sales day.", caps:["Tests all 4 demo Retell agents","Verifies webhook connectivity","Alerts if any demo is down","Runs at 6am CT daily"], trigger: null },
+};
+
+const WEBHOOKS = {
+  "run-auto-caller": "run-auto-caller",
+  "morning-text-now": "morning-text-now",
+  "trigger-todo-now": "trigger-todo-now",
+  "health-check": "health-check",
+};
+
+// ── CLOCK ──
+function tick() {
+  const ct = new Intl.DateTimeFormat('en-US',{timeZone:'America/Chicago',hour:'2-digit',minute:'2-digit',second:'2-digit',hour12:false}).format(new Date());
+  document.getElementById('clock').textContent = ct + ' CT';
+}
+setInterval(tick, 1000); tick();
+
+// ── MUSIC ──
+let marchTimer = null;
+function stopMusic() {
+  const m = document.getElementById('march');
+  m.pause(); m.currentTime = 0;
+  if (marchTimer) { clearTimeout(marchTimer); marchTimer = null; }
+}
+function playMarch() {
+  const m = document.getElementById('march');
+  m.volume = 0.85;
+  m.play().catch(()=>{});
+  marchTimer = setTimeout(stopMusic, 30000);
+}
+
+// ── LAUNCH ──
+function launch() {
+  playMarch();
+  const el = document.getElementById('launch');
+  el.classList.add('out');
+  setTimeout(() => el.remove(), 750);
+  loadData();
+  setInterval(loadData, 120000);
+}
+
+// ESC closes drawer, also stops music
+document.addEventListener('keydown', e => {
+  if (e.key === 'Escape') { closeDrawer(); }
+  if (e.key === 's' || e.key === 'S') { stopMusic(); }
+});
+
+// ── DATA ──
+async function loadData() {
+  try {
+    const res = await fetch(API);
+    if (!res.ok) throw new Error(res.status);
+    dashData = await res.json();
+    render();
+  } catch(e) { console.error('Load failed:', e); }
+}
+
+function timeAgo(isoStr) {
+  if (!isoStr) return '';
+  const diff = Math.floor((Date.now() - new Date(isoStr.replace(' ','T')+'Z')) / 1000);
+  if (diff < 60) return diff + 's ago';
+  if (diff < 3600) return Math.floor(diff/60) + 'm ago';
+  if (diff < 86400) return Math.floor(diff/3600) + 'h ago';
+  return Math.floor(diff/86400) + 'd ago';
+}
+
+function render() {
+  if (!dashData) return;
+  const {pipeline, divisions, errors, activeCount, totalCount, updatedAt} = dashData;
+
+  document.getElementById('s-hot').textContent  = pipeline.hot;
+  document.getElementById('s-warm').textContent = pipeline.warm;
+  document.getElementById('s-cli').textContent  = pipeline.client;
+  document.getElementById('s-act').textContent  = activeCount;
+  document.getElementById('s-tot').textContent  = pipeline.total;
+
+  // Errors
+  const strip = document.getElementById('error-strip');
+  const errList = document.getElementById('err-list');
+  if (errors && errors.length) {
+    strip.style.display = 'block';
+    errList.innerHTML = errors.map(e =>
+      `<div class="err-item" onclick='openAgentById("${e.wfId}")'>${e.workflow.replace(/^(THE POSSE|THE WIRE|THE IRON|THE BRAND|THE FRONTIER|FIELD OPS)\s*[—\-]+\s*/i,'')} — ${e.at}</div>`
+    ).join('');
+  } else { strip.style.display = 'none'; }
+
+  // Grid
+  document.getElementById('grid').innerHTML = Object.entries(divisions).map(([name, div]) => {
+    const on = div.agents.filter(a => a.active).length;
+    const rows = div.agents.map(a => {
+      const hasErr = a.errors && a.errors.length;
+      return `<div class="agent-row" style="--dc:${div.color}" onclick='openAgent(${JSON.stringify(a)}, ${JSON.stringify(div.color)}, ${JSON.stringify(name)})'>
+        <div class="agent-dot ${a.active?'on':'off'}"></div>
+        <div class="agent-name">${a.name}</div>
+        ${hasErr ? `<div class="agent-err">⚠ ERR</div>` : ''}
+        <div class="agent-badge ${a.active?'on':'off'}">${a.active?'ACTIVE':'OFF'}</div>
+      </div>`;
+    }).join('');
+    return `<div class="div-card" style="--dc:${div.color}">
+      <div class="div-header">
+        <div class="div-accent"></div>
+        <div class="div-info">
+          <div class="div-name">${div.icon} ${name}</div>
+          <div class="div-tagline">${div.tagline}</div>
+        </div>
+        <div class="div-count">${on}/${div.agents.length}</div>
+      </div>
+      <div class="agent-list">${rows}</div>
+    </div>`;
+  }).join('');
+
+  const updated = new Date(updatedAt).toLocaleTimeString('en-US',{timeZone:'America/Chicago',hour:'2-digit',minute:'2-digit',hour12:true});
+  document.getElementById('last-updated').textContent = updated + ' CT';
+}
+
+// ── AGENT DESCRIPTIONS (by name — works for any new workflow automatically) ──
+const AGENT_DESCS = {
+  'Auto Caller':'Dials fresh cold leads via Retell. Blocks East Texas (903) and Louisiana. 3 layers of duplicate protection.',
+  'Hot Lead Nurture':'Emails hot leads that haven\'t closed in 48hrs. Tue/Thu 10am CT.',
+  'Close Follow-Up':'Follow-up for leads who agreed to free trial but haven\'t confirmed setup.',
+  'Mystery Caller':'Calls businesses as a test customer. Free lead magnet for BOSS Systems.',
+  'Mystery Email Campaign':'Cold emails offering free mystery caller report. Wed 3pm CT.',
+  'Cold Email Outreach':'AI-personalized cold emails to pipeline leads. Mon-Fri 11am CT.',
+  'Weekly Newsletter':'AI tips newsletter to warm/hot leads. Tue 2pm CT.',
+  'Hot Lead Followup Email':'Emails Boston within 1hr when hot lead is detected.',
+  'ORACLE':'Daily strategic AI brain using 7 expert frameworks. 9am CT. Queues tasks.',
+  'Morning Text':'7am CT daily ntfy: pipeline stats + pending tasks. Always reliable.',
+  'Daily Task List':'Claude-built daily to-do list. 7:05am CT to ntfy.',
+  'Health Monitor':'Checks 8 critical workflows every 2hrs. Auto-retries recoverable failures.',
+  'Sunday Optimizer':'10pm CT Sunday — scans for broken connections, writes weekly review.',
+  'Autonomous OS':'Coordinates inter-workflow actions and autonomous task execution.',
+  'Weekly Summary':'Full business week recap. Sunday 6pm CT.',
+  'Dashboard API':'Serves live data to BOSS Systems dashboard. Fully dynamic by workflow name.',
+  'Dashboard Update Agent':'Hourly sync. Detects new agents and alerts Boston automatically.',
+  'Subscription & Usage Tracker':'Weekly Retell + n8n + Outscraper cost report to ntfy.',
+  'Post-Call Handler':'Fires after every call. Scores transcript, detects closes, writes LastContact for ALL outcomes.',
+  'DNC Handler':'Permanently removes do-not-call requests. Number blocked forever.',
+  'Pipeline Cleaner':'Removes duplicates, archives stale leads. Friday nights.',
+  'Pre-Deploy Test Suite':'Scans all workflows for dead connections before any deployment.',
+  'System Optimizer':'Weekly audit. Finds stale/broken/redundant workflows.',
+  'Missed Call Text Back':'Auto-texts missed callers. Standalone service Boston can sell.',
+  'SMS Sender':'ntfy alert sender used by all other agents.',
+  'Reply Handler':'Routes inbound replies to correct follow-up workflow.',
+  'Client Retention':'Monitors at-risk clients every Monday. Sends check-in emails.',
+  'Client Onboarding':'Runs when new client closes. Welcome email + Retell setup.',
+  'Review Request':'Sends review request 24hrs after onboarding.',
+  'Monthly Invoice':'Sends invoices to all clients on 1st of month.',
+  'Monthly Report':'Monthly performance report per client.',
+  'Client Referral':'Tracks referrals, applies auto-discounts.',
+  'Reseller Network':'Weekly commission calculation and payout statements.',
+  'Lead Hunter':'Weekly Google Maps scrape for fresh leads. Mon 6am CT.',
+  'Yelp Supplement':'Wednesday Yelp scrape for leads Google Maps misses.',
+  'Job Monitor':'Scrapes Indeed for dispatcher/CSR/receptionist posts = HOT intent signal.',
+  'Missed Call Calculator':'Free lead magnet — shows revenue lost from missed calls.',
+  'Review Mining':'Scrapes Google reviews for "no answer" complaints. Monday 6am CT.',
+  'Lead Intelligence Engine':'23-indicator scored lead engine. Wed 6am CT. HOT/WARM/COLD tiers.',
+  'TDLR East Texas Contractor Leads':'Scored East Texas HVAC/plumber/legal leads for Boston\'s demos.',
+  'Demo Switch':'Switches active demo agent before in-person meetings.',
+  'Sales Route Planner':'Optimizes East Texas driving route for demo days.',
+  'Live Demo Builder':'Builds a custom Retell demo agent for a specific business on the spot.',
+  'Advisor Post-Call':'Logs calls to THE BOSS line, extracts tasks to Command Center queue.',
+  'Dashboard Phone Server':'Serves the BOSS dashboard at a public URL for phone access.',
+};
+
+// ── DRAWER ──
+function openAgent(agent, color, divName) {
+  currentAgent = agent;
+  // Look up by name first (works for any new workflow), fall back to ID-based AGENTS lookup
+  const nameDesc = AGENT_DESCS[agent.name];
+  const idInfo = AGENTS[agent.id] || {};
+  const info = {
+    desc: nameDesc || idInfo.desc || `${agent.name} — part of the BOSS Systems automation stack.`,
+    caps: idInfo.caps || [],
+    trigger: idInfo.trigger || null
+  };
+
+  document.getElementById('d-name').textContent = agent.name;
+  document.getElementById('d-div').textContent = divName;
+  document.getElementById('d-status').textContent = agent.active ? 'ACTIVE' : 'OFFLINE';
+  document.getElementById('d-status').className = 'drawer-status ' + (agent.active ? 'on' : 'off');
+  document.getElementById('d-desc').textContent = info.desc;
+  document.getElementById('drawer').style.setProperty('--drawer-color', color);
+
+  // Capabilities
+  document.getElementById('d-caps').innerHTML = (info.caps || []).map(c =>
+    `<div class="drawer-cap">${c}</div>`
+  ).join('');
+
+  // Errors
+  const errEl = document.getElementById('d-errors');
+  if (agent.errors && agent.errors.length) {
+    errEl.innerHTML = agent.errors.map(e =>
+      `<div class="err-row"><div class="err-icon">⚠</div><div class="err-time">${e.status.toUpperCase()} — ${e.at}</div></div>`
+    ).join('');
+  } else {
+    errEl.innerHTML = '<div class="no-errors">✓ No recent errors</div>';
+  }
+
+  // Fire button
+  const btn = document.getElementById('d-fire-btn');
+  const confirm = document.getElementById('d-fire-confirm');
+  confirm.style.display = 'none';
+  if (info.trigger) {
+    btn.disabled = false;
+    btn.textContent = '▶ FIRE NOW';
+  } else {
+    btn.disabled = true;
+    btn.textContent = 'RUNS ON SCHEDULE';
+  }
+
+  document.getElementById('drawer-overlay').classList.add('open');
+  document.getElementById('drawer').classList.add('open');
+}
+
+function openAgentById(wfId) {
+  if (!dashData) return;
+  for (const [divName, div] of Object.entries(dashData.divisions)) {
+    const agent = div.agents.find(a => a.id === wfId);
+    if (agent) { openAgent(agent, div.color, divName); return; }
+  }
+}
+
+function closeDrawer() {
+  document.getElementById('drawer-overlay').classList.remove('open');
+  document.getElementById('drawer').classList.remove('open');
+  currentAgent = null;
+}
+
+async function fireAgent() {
+  if (!currentAgent) return;
+  const info = AGENTS[currentAgent.id];
+  if (!info || !info.trigger) return;
+
+  const btn = document.getElementById('d-fire-btn');
+  btn.textContent = 'FIRING...';
+  btn.disabled = true;
+
+  try {
+    await fetch(`https://jamross.app.n8n.cloud/webhook/${info.trigger}`, {
+      method: 'POST', headers: {'Content-Type':'application/json'}, body: '{}'
+    });
+    document.getElementById('d-fire-confirm').style.display = 'block';
+    btn.textContent = '▶ FIRE NOW';
+    btn.disabled = false;
+  } catch(e) {
+    btn.textContent = 'ERROR — TRY AGAIN';
+    btn.disabled = false;
+  }
+}
+</script>
+</body>
+</html>
