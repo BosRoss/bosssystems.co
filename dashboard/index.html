@@ -11,30 +11,21 @@
 body{margin:0;padding:0;background:#080808;color:#f0ede8;font-family:-apple-system,BlinkMacSystemFont,sans-serif;font-size:15px;-webkit-font-smoothing:antialiased}
 *{box-sizing:border-box}
 a{color:#C9A84C;text-decoration:none}
-
 .bar{background:#0f0f0f;border-bottom:2px solid #C9A84C;padding:14px 16px;display:flex;align-items:center;justify-content:space-between}
 .logo{font-weight:900;font-size:14px;letter-spacing:4px;color:#C9A84C}
 .clock{font-size:12px;color:#555;font-variant-numeric:tabular-nums}
-
 .page{padding:20px 16px 60px}
-
 .label{font-size:10px;letter-spacing:3px;text-transform:uppercase;color:#C9A84C;margin-bottom:6px}
 .heading{font-size:18px;font-weight:900;text-transform:uppercase;letter-spacing:1px;margin-bottom:18px}
-
-/* METRICS */
 .metrics{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-bottom:32px}
 .metric{background:#111;border:1px solid #1e1e1e;padding:16px;text-align:center;border-radius:2px}
 .metric .n{font-size:24px;font-weight:900;color:#C9A84C;line-height:1}
 .metric .l{font-size:10px;letter-spacing:1px;color:#555;text-transform:uppercase;margin-top:5px}
 .metric .s{font-size:11px;color:#333;margin-top:3px}
-
-/* STATUS PILLS */
 .pill{display:inline-block;font-size:10px;letter-spacing:1px;padding:3px 8px;border-radius:2px;font-weight:700;text-transform:uppercase}
 .pill-live{background:#0a1a0a;color:#4caf50;border:1px solid #2a5a2a}
 .pill-paused{background:#1a1200;color:#C9A84C;border:1px solid #3a3000}
 .pill-gray{background:#1a1a1a;color:#555;border:1px solid #2a2a2a}
-
-/* CARDS */
 .cards{display:grid;grid-template-columns:1fr;gap:12px;margin-bottom:32px}
 .card{background:#111;border:1px solid #1e1e1e;padding:18px;border-radius:2px}
 .card-head{display:flex;justify-content:space-between;align-items:flex-start;margin-bottom:12px}
@@ -44,8 +35,6 @@ a{color:#C9A84C;text-decoration:none}
 .card-stat .v{font-weight:700;font-size:14px}
 .card-stat .k{font-size:10px;color:#555;text-transform:uppercase;letter-spacing:1px}
 .card-note{font-size:11px;color:#444;padding-top:10px;border-top:1px solid #1a1a1a}
-
-/* SYSTEM TABLE */
 .sys{margin-bottom:32px}
 .sys-row{display:flex;align-items:center;padding:10px 0;border-bottom:1px solid #111;gap:10px}
 .dot{width:7px;height:7px;border-radius:50%;flex-shrink:0}
@@ -55,8 +44,6 @@ a{color:#C9A84C;text-decoration:none}
 .sys-name{flex:1;font-size:13px;font-weight:600}
 .sys-id{font-size:10px;color:#333;font-family:monospace}
 .sys-when{font-size:11px;color:#444;flex-shrink:0}
-
-/* PRODUCTS */
 .prods{display:grid;grid-template-columns:1fr;gap:10px;margin-bottom:32px}
 .prod{background:#111;border:1px solid #1e1e1e;padding:16px;border-radius:2px}
 .prod.hot{border-color:#C9A84C}
@@ -64,131 +51,121 @@ a{color:#C9A84C;text-decoration:none}
 .prod-price{font-size:22px;font-weight:900}
 .prod-mo{font-size:11px;color:#555;margin-bottom:10px}
 .prod-desc{font-size:12px;color:#777;line-height:1.5}
-
-/* INTEL */
 .intel{background:#111;border:1px solid #1e1e1e;border-left:3px solid #C9A84C;padding:14px;margin-bottom:10px;border-radius:2px}
 .intel p{font-size:12px;line-height:1.6;color:#888}
 .intel strong{color:#f0ede8}
 .intel-date{font-size:10px;color:#333;margin-top:6px}
-
-/* TOOLS */
 .tools{display:grid;grid-template-columns:1fr;gap:10px;margin-bottom:32px}
 .tool{background:#111;border:1px solid #1e1e1e;padding:14px;border-radius:2px}
 .tool-name{font-size:12px;font-weight:700;margin-bottom:4px}
 .tool-cmd{font-family:monospace;font-size:11px;color:#C9A84C;background:#050505;padding:6px 8px;display:block;margin-top:6px;word-break:break-all;border-radius:2px}
 .tool-desc{font-size:11px;color:#555;margin-top:4px}
-
 hr{border:none;border-top:1px solid #1a1a1a;margin:28px 0}
 .updated{font-size:10px;color:#2a2a2a;text-align:right;letter-spacing:1px;margin-top:24px}
-
+.fix-box{background:#0a0e0a;border:1px solid #1a3a1a;padding:14px;border-radius:2px;margin-bottom:16px}
+.fix-box p{font-size:11px;line-height:1.7;color:#667}
+.fix-box strong{color:#4caf50}
 .plan-box{background:#0a1000;border:1px solid #2a4a1a;padding:16px;border-radius:2px;margin-bottom:16px}
 .plan-box p{font-size:12px;line-height:1.7;color:#888}
 .plan-box strong{color:#4caf50}
 </style>
 </head>
 <body>
-
 <div class="bar">
   <div class="logo">BOSS</div>
   <div class="clock" id="clk"></div>
 </div>
-
 <div class="page">
 
-<!-- METRICS -->
 <div class="label">Empire Overview</div>
 <div class="metrics">
-  <div class="metric"><div class="n">0</div><div class="l">Clients</div><div class="s">First = everything changes</div></div>
+  <div class="metric"><div class="n">1</div><div class="l">Clients</div><div class="s">First = everything changes</div></div>
   <div class="metric"><div class="n">$0</div><div class="l">MRR</div><div class="s">Target: $97+/mo</div></div>
-  <div class="metric"><div class="n">523</div><div class="l">Calls Out</div><div class="s">This month</div></div>
+  <div class="metric"><div class="n">523</div><div class="l">Calls Out</div><div class="s">233 connected &gt;20s</div></div>
   <div class="metric"><div class="n">$84</div><div class="l">Monthly Burn</div><div class="s">n8n+Claude+Retell</div></div>
   <div class="metric"><div class="n">25+</div><div class="l">Automations</div><div class="s">Ready to deploy</div></div>
   <div class="metric"><div class="n">June 1</div><div class="l">Full Restart</div><div class="s">n8n quota resets</div></div>
 </div>
 
-<!-- BUSINESSES -->
+<div class="fix-box">
+  <p><strong>Latest fixes (May 21):</strong> Louisiana area codes 985/318/504/337/225 now hardblocked. Franchise chains (Roto-Rooter, Servpro, etc.) screened before dialing. False &ldquo;test call&rdquo; opener dropped &mdash; was getting challenged live. IVR detection fixed &mdash; AI now hangs up immediately on menus. &ldquo;I never miss calls&rdquo; pivot added. Close changed to free AI analysis instead of hard sell.</p>
+</div>
+
 <div class="label">Portfolio</div>
 <div class="heading">Active Businesses</div>
 <div class="cards">
-
   <div class="card">
     <div class="card-head">
-      <div><div class="card-name">BOSS Systems</div><div class="card-sub">AI Business Innovation · Tyler TX</div></div>
+      <div><div class="card-name">BOSS Systems</div><div class="card-sub">AI Business Innovation &middot; Tyler TX</div></div>
       <span class="pill pill-live">Live</span>
     </div>
     <div class="card-grid">
-      <div class="card-stat"><div class="v">$1,497–$5,997</div><div class="k">Setup fee</div></div>
-      <div class="card-stat"><div class="v">$97–$497/mo</div><div class="k">Recurring</div></div>
-      <div class="card-stat"><div class="v">0</div><div class="k">Clients</div></div>
+      <div class="card-stat"><div class="v">$1,497&ndash;$5,997</div><div class="k">Setup fee</div></div>
+      <div class="card-stat"><div class="v">$97&ndash;$497/mo</div><div class="k">Recurring</div></div>
+      <div class="card-stat"><div class="v">1</div><div class="k">Clients</div></div>
       <div class="card-stat"><div class="v">bosssystems.co</div><div class="k">Website</div></div>
     </div>
-    <div class="card-note">Analyze · Build · Own · Infinite — 4 products live</div>
+    <div class="card-note">Analyze &middot; Build &middot; Own &middot; Infinite &mdash; 4 products live</div>
   </div>
-
   <div class="card">
     <div class="card-head">
-      <div><div class="card-name">Built by BOSS</div><div class="card-sub">Prebuilt Business Sales · Remote</div></div>
+      <div><div class="card-name">Built by BOSS</div><div class="card-sub">Prebuilt Business Sales &middot; Remote</div></div>
       <span class="pill pill-live">Live</span>
     </div>
     <div class="card-grid">
-      <div class="card-stat"><div class="v">$997–$3,497</div><div class="k">Setup fee</div></div>
-      <div class="card-stat"><div class="v">$97–$297/mo</div><div class="k">Recurring</div></div>
+      <div class="card-stat"><div class="v">$997&ndash;$3,497</div><div class="k">Setup fee</div></div>
+      <div class="card-stat"><div class="v">$97&ndash;$297/mo</div><div class="k">Recurring</div></div>
       <div class="card-stat"><div class="v">0</div><div class="k">Clients</div></div>
       <div class="card-stat"><div class="v">72 hrs</div><div class="k">Delivery</div></div>
     </div>
     <div class="card-note">Builds AI stacks for junk removal, HVAC, cleaning, lawn care</div>
   </div>
-
   <div class="card">
     <div class="card-head">
-      <div><div class="card-name">BOSS Junk Removal</div><div class="card-sub">Laurel, MS · Needs phone number</div></div>
+      <div><div class="card-name">BOSS Junk Removal</div><div class="card-sub">Laurel, MS &middot; Needs phone number</div></div>
       <span class="pill pill-paused">Building</span>
     </div>
     <div class="card-grid">
-      <div class="card-stat"><div class="v">$150–$475</div><div class="k">Job value</div></div>
+      <div class="card-stat"><div class="v">$150&ndash;$475</div><div class="k">Job value</div></div>
       <div class="card-stat"><div class="v">5/10</div><div class="k">Market score</div></div>
-      <div class="card-stat"><div class="v">B Clean LLC</div><div class="k">Attack target (3.2★)</div></div>
-      <div class="card-stat"><div class="v">601 area</div><div class="k">Need this number</div></div>
+      <div class="card-stat"><div class="v">B Clean LLC</div><div class="k">Attack (3.2&#9733;)</div></div>
+      <div class="card-stat"><div class="v">601 area</div><div class="k">Need this #</div></div>
     </div>
-    <div class="card-note">Agent live: agent_59905e10f9d2ab2b6a77f66a4a — assign a 601 Retell number</div>
+    <div class="card-note">Agent live: agent_59905e10f9d2ab2b6a77f66a4a &mdash; assign a 601 Retell number</div>
   </div>
-
   <div class="card">
     <div class="card-head">
-      <div><div class="card-name">Summer Partners</div><div class="card-sub">Revenue Share · Recruiting</div></div>
+      <div><div class="card-name">Summer Partners</div><div class="card-sub">Revenue Share &middot; Recruiting</div></div>
       <span class="pill pill-gray">0 Partners</span>
     </div>
     <div class="card-grid">
-      <div class="card-stat"><div class="v">15%</div><div class="k">Boston's cut</div></div>
+      <div class="card-stat"><div class="v">20%</div><div class="k">Boston&rsquo;s cut</div></div>
       <div class="card-stat"><div class="v">$0</div><div class="k">Setup cost</div></div>
       <div class="card-stat"><div class="v">$0</div><div class="k">Revenue</div></div>
-      <div class="card-stat"><div class="v">Target: 5</div><div class="k">Partners by July</div></div>
+      <div class="card-stat"><div class="v">Target: 5</div><div class="k">By July</div></div>
     </div>
-    <div class="card-note">5 partners × $2k/week = $1,500/week for Boston doing nothing</div>
+    <div class="card-note">5 partners &times; $2k/week = $2,000/week for Boston at 20% cut</div>
   </div>
-
 </div>
 
-<!-- PRODUCTS -->
 <div class="label">Products</div>
 <div class="heading">What We Sell</div>
 <div class="prods">
-  <div class="prod"><div class="prod-name">BOSS Analyze</div><div class="prod-price">Free</div><div class="prod-mo">bosssystems.co/dashboard/analyze.html</div><div class="prod-desc">60-second AI analysis. Shows exactly where a business is losing money and what it's worth to fix it.</div></div>
-  <div class="prod hot"><div class="prod-name">BOSS Build</div><div class="prod-price">$1,497–$5,997</div><div class="prod-mo">setup + $97–$497/month recurring</div><div class="prod-desc">Full AI stack deployed in 72 hours. Phone AI, outbound caller, payment collection, reviews, campaigns, intelligence.</div></div>
-  <div class="prod"><div class="prod-name">BOSS Own</div><div class="prod-price">$0 setup</div><div class="prod-mo">15% of gross revenue</div><div class="prod-desc">Boston builds and operates the AI. Partner does the physical work. Physical service businesses.</div></div>
-  <div class="prod"><div class="prod-name">BOSS Infinite</div><div class="prod-price">$997–$2,997/mo</div><div class="prod-mo">Ongoing AI innovation retainer</div><div class="prod-desc">Continuously find and build new automations. Business keeps improving every month.</div></div>
+  <div class="prod"><div class="prod-name">BOSS Analyze</div><div class="prod-price">Free</div><div class="prod-mo">bosssystems.co/dashboard/analyze.html</div><div class="prod-desc">60-second AI analysis. Shows exactly where a business is losing money and what it&rsquo;s worth to fix it. This is the close &mdash; not the pitch.</div></div>
+  <div class="prod hot"><div class="prod-name">BOSS Build</div><div class="prod-price">$1,497&ndash;$5,997</div><div class="prod-mo">setup + $97&ndash;$497/month recurring</div><div class="prod-desc">Full AI stack deployed in 72 hours. Phone AI, outbound caller, payment collection, reviews, campaigns, intelligence.</div></div>
+  <div class="prod"><div class="prod-name">BOSS Own</div><div class="prod-price">$0 setup</div><div class="prod-mo">20% of gross revenue (friends/partners)</div><div class="prod-desc">Boston builds and operates the AI. Partner does the physical work. Physical service businesses only.</div></div>
+  <div class="prod"><div class="prod-name">BOSS Infinite</div><div class="prod-price">$997&ndash;$2,997/mo</div><div class="prod-mo">Ongoing AI innovation retainer</div><div class="prod-desc">Continuously find and build new automations. Business keeps improving every month automatically.</div></div>
 </div>
 
 <hr>
 
-<!-- SYSTEM STATUS -->
 <div class="label">System Health</div>
 <div class="heading">Pipeline Workflows</div>
 <div class="sys">
-  <div class="sys-row"><span class="dot dot-g"></span><div><div class="sys-name">Post-Call Handler</div><div class="sys-id">EGyXul1WqnnshU96</div></div><span class="sys-when">Every call · Active</span></div>
-  <div class="sys-row"><span class="dot dot-g"></span><div><div class="sys-name">Morning Text</div><div class="sys-id">wX6OyZ9UY0Xrbui1</div></div><span class="sys-when">7am CT · Active</span></div>
-  <div class="sys-row"><span class="dot dot-g"></span><div><div class="sys-name">ORACLE</div><div class="sys-id">7wFm6CQB3VtoiRb6</div></div><span class="sys-when">9am CT · Active</span></div>
-  <div class="sys-row"><span class="dot dot-g"></span><div><div class="sys-name">Auto Caller</div><div class="sys-id">UQGW8QuaSLb9Euyh</div></div><span class="sys-when">10am + 2pm CT · Active</span></div>
+  <div class="sys-row"><span class="dot dot-g"></span><div><div class="sys-name">Post-Call Handler</div><div class="sys-id">EGyXul1WqnnshU96</div></div><span class="sys-when">Every call &middot; Active</span></div>
+  <div class="sys-row"><span class="dot dot-g"></span><div><div class="sys-name">Morning Text</div><div class="sys-id">wX6OyZ9UY0Xrbui1</div></div><span class="sys-when">7am CT &middot; Active</span></div>
+  <div class="sys-row"><span class="dot dot-g"></span><div><div class="sys-name">ORACLE</div><div class="sys-id">7wFm6CQB3VtoiRb6</div></div><span class="sys-when">9am CT &middot; Active</span></div>
+  <div class="sys-row"><span class="dot dot-g"></span><div><div class="sys-name">Auto Caller (fixed)</div><div class="sys-id">UQGW8QuaSLb9Euyh</div></div><span class="sys-when">10am + 2pm CT &middot; New pitch live</span></div>
   <div class="sys-row"><span class="dot dot-y"></span><div><div class="sys-name">Morning Brief</div><div class="sys-id">TtbV6mhhRnLhQCv3</div></div><span class="sys-when">June 1</span></div>
   <div class="sys-row"><span class="dot dot-y"></span><div><div class="sys-name">Hot Lead Handler</div><div class="sys-id">kGJ7aDQmp3MgiPWI</div></div><span class="sys-when">June 1</span></div>
   <div class="sys-row"><span class="dot dot-y"></span><div><div class="sys-name">Auto-Builder</div><div class="sys-id">VIJXn2fKDANAsiDX</div></div><span class="sys-when">June 1</span></div>
@@ -202,70 +179,49 @@ hr{border:none;border-top:1px solid #1a1a1a;margin:28px 0}
 <div class="heading">Retell Agents</div>
 <div class="sys">
   <div class="sys-row"><span class="dot dot-g"></span><div><div class="sys-name">Outbound Sales Caller</div><div class="sys-id">agent_6c19e0315cf3dfd1ffa3db63a2</div></div><span class="sys-when">(903) 483-0168</span></div>
-  <div class="sys-row"><span class="dot dot-g"></span><div><div class="sys-name">Devil's Advocate (practice)</div><div class="sys-id">agent_23b664e7db4a0a89ece384ddcd</div></div><span class="sys-when">(903) 568-8943</span></div>
-  <div class="sys-row"><span class="dot dot-g"></span><div><div class="sys-name">Junk Removal — Laurel MS</div><div class="sys-id">agent_59905e10f9d2ab2b6a77f66a4a</div></div><span class="sys-when">Needs number</span></div>
-  <div class="sys-row"><span class="dot dot-g"></span><div><div class="sys-name">Built by BOSS Sales</div><div class="sys-id">agent_10c6519858eebc75047ee7ab8f</div></div><span class="sys-when">No number</span></div>
-  <div class="sys-row"><span class="dot dot-g"></span><div><div class="sys-name">THE BOSS Voice</div><div class="sys-id">agent_c2003a57424906726c5ef52131</div></div><span class="sys-when">(903) 568-8943 (prev)</span></div>
+  <div class="sys-row"><span class="dot dot-g"></span><div><div class="sys-name">Devil&rsquo;s Advocate (practice)</div><div class="sys-id">agent_23b664e7db4a0a89ece384ddcd</div></div><span class="sys-when">(903) 568-8943</span></div>
+  <div class="sys-row"><span class="dot dot-g"></span><div><div class="sys-name">Junk Removal &mdash; Laurel MS</div><div class="sys-id">agent_59905e10f9d2ab2b6a77f66a4a</div></div><span class="sys-when">Needs 601 number</span></div>
+  <div class="sys-row"><span class="dot dot-g"></span><div><div class="sys-name">Built by BOSS Sales</div><div class="sys-id">agent_10c6519858eebc75047ee7ab8f</div></div><span class="sys-when">No number yet</span></div>
+  <div class="sys-row"><span class="dot dot-g"></span><div><div class="sys-name">THE BOSS Voice</div><div class="sys-id">agent_c2003a57424906726c5ef52131</div></div><span class="sys-when">Boston&rsquo;s advisor</span></div>
 </div>
 
 <hr>
 
-<!-- JUNE 1 PLAN -->
-<div class="label">Now — June 1</div>
+<div class="label">Now &mdash; June 1</div>
 <div class="heading">The Plan</div>
 <div class="plan-box">
-  <p><strong>Before June 1 — no n8n:</strong> Get the first client in person, East Texas. Walk in, pull up bosssystems.co/dashboard/analyze.html on your phone, let them type in their own business, watch their face when it says $204,000/year. Venmo @BosRoss. Run boss_command.py paid. Done in 2 minutes.</p>
+  <p><strong>Before June 1:</strong> Get first client in person. East Texas. Pull up bosssystems.co/dashboard/analyze.html on your phone, let them type in their own business, show them the numbers. Venmo @BosRoss. boss_command.py paid builds their system in 2 minutes.</p>
   <br>
-  <p><strong>June 1 midnight:</strong> All 7 paused workflows activate. Lead Hunter, Superniche Targeter, Morning Brief, Hot Lead Handler, Auto-Builder, Warm Follow-Up, Weekly Client Monitor. Auto-caller fires at 10am with a scored pipeline. Machine runs itself.</p>
+  <p><strong>June 1 midnight:</strong> All 7 paused workflows activate. Lead Hunter, Superniche Targeter, Morning Brief, Hot Lead Handler, Auto-Builder, Warm Follow-Up, Weekly Monitor all fire. Machine runs itself.</p>
   <br>
   <p><strong>Your only job:</strong> Connect with people.</p>
 </div>
 
-<!-- INTEL -->
 <hr>
 <div class="label">Intelligence</div>
 <div class="heading">What The Research Found</div>
+<div class="intel"><p><strong>Avoca AI = $1B valuation doing exactly this</strong> &mdash; but only for operators making $3M+/year at $1,000&ndash;$3,000/month. Their pricing leaves every solo operator unserved. Boston&rsquo;s $60&ndash;497/month fills the gap they intentionally left. Documented and verified.</p><div class="intel-date">PR Newswire &middot; April 2026</div></div>
+<div class="intel"><p><strong>62% of contractor calls go unanswered. 85% of those callers never call back.</strong> An HVAC company missing 3 calls/week at $850 average = $88,400/year lost. BOSS at $150/month = $1,800/year. ROI: 49:1.</p><div class="intel-date">PCN Study &middot; CallRail &middot; 2026</div></div>
+<div class="intel"><p><strong>What the transcripts showed:</strong> Louisiana calls were slipping through (318 area code, now hardblocked). Roto-Rooter (franchise) was called &mdash; screened out. The &ldquo;test call&rdquo; opener was getting challenged live. IVR menus consumed 49 seconds. All fixed May 21.</p><div class="intel-date">Live transcript analysis &middot; May 21, 2026</div></div>
+<div class="intel"><p><strong>Best markets right now:</strong> Corinth MS (HVAC 3.6&ndash;3.9&#9733;), Durant OK (HVAC, no websites), Laurel MS (pain reviews confirmed). East Texas = Boston in-person only. Louisiana = permanently banned.</p><div class="intel-date">Live Google Places scan &middot; May 2026</div></div>
 
-<div class="intel">
-  <p><strong>Avoca AI = $1B valuation doing exactly this</strong> — but only for operators making $3M+/year at $1,000-$3,000/month. Their pricing leaves every solo operator unserved. Boston's $60-497/month fills the gap they intentionally left. Documented and verified.</p>
-  <div class="intel-date">PR Newswire · April 2026</div>
-</div>
-
-<div class="intel">
-  <p><strong>62% of contractor calls go unanswered. 85% of those callers never call back.</strong> An HVAC company missing 3 calls/week at $850 average = $88,400/year lost. BOSS at $150/month = $1,800/year. ROI: 49:1. Ruby Receptionist charges $250-$720/month for the same result with humans.</p>
-  <div class="intel-date">PCN Study · CallRail · 2026</div>
-</div>
-
-<div class="intel">
-  <p><strong>Best markets right now:</strong> Corinth MS (HVAC, 3.6-3.9★ competitors), Durant OK (HVAC, no websites), Laurel MS (pain reviews confirmed). East Texas = Boston in-person only. Louisiana = permanently banned.</p>
-  <div class="intel-date">Live Google Places scan · May 2026</div>
-</div>
-
-<!-- TOOLS -->
 <hr>
 <div class="label">Arsenal</div>
 <div class="heading">Commands</div>
 <div class="tools">
   <div class="tool"><div class="tool-name">Analyze Any Business</div><code class="tool-cmd">python3 business_analyzer.py --type hvac --city "Corinth MS"</code><div class="tool-desc">60-sec AI analysis. Maps automations + ROI. Run before every sales call.</div></div>
-  <div class="tool"><div class="tool-name">Find Targets</div><code class="tool-cmd">python3 prospect_scorer.py</code><div class="tool-desc">Full market sweep. Scores businesses on 15+ signals. Finds pain reviews, generates openers.</div></div>
-  <div class="tool"><div class="tool-name">Build a Business</div><code class="tool-cmd">python3 business_builder.py "junk removal" "Corinth MS"</code><div class="tool-desc">Builds full AI stack — Retell agent + n8n workflows + launch plan.</div></div>
+  <div class="tool"><div class="tool-name">Find Targets</div><code class="tool-cmd">python3 prospect_scorer.py</code><div class="tool-desc">Full market sweep. Scores businesses on 15+ signals. Finds pain reviews.</div></div>
+  <div class="tool"><div class="tool-name">Build a Business</div><code class="tool-cmd">python3 business_builder.py "junk removal" "Corinth MS"</code><div class="tool-desc">Builds full AI stack in minutes. Any service business, any city.</div></div>
   <div class="tool"><div class="tool-name">Someone Paid</div><code class="tool-cmd">python3 boss_command.py paid "Name" hvac "City ST" starter</code><div class="tool-desc">Builds their system in 2 minutes. Delivers to ntfy.</div></div>
-  <div class="tool"><div class="tool-name">Flag Hot Lead</div><code class="tool-cmd">python3 boss_command.py hot "Name" 6015551234 "notes"</code><div class="tool-desc">Logs the lead, starts follow-up sequence, tells you what to text them.</div></div>
-  <div class="tool"><div class="tool-name">Check Everything</div><code class="tool-cmd">python3 boss_command.py status</code><div class="tool-desc">Full system health — Retell, n8n, workflows, all agents.</div></div>
+  <div class="tool"><div class="tool-name">Flag Hot Lead</div><code class="tool-cmd">python3 boss_command.py hot "Name" 6015551234 "notes"</code><div class="tool-desc">Logs, starts follow-up sequence, tells you what to text them.</div></div>
+  <div class="tool"><div class="tool-name">Full Status Check</div><code class="tool-cmd">python3 boss_command.py status</code><div class="tool-desc">Retell, n8n, workflows, all agents in one view.</div></div>
 </div>
 
-<div class="updated" id="upd">Updated: May 21, 2026 14:40 CT</div>
-
+<div class="updated" id="upd">Updated: May 21, 2026 10:09 PM CT (auto)</div>
 </div>
-
 <script>
-function tick(){
-  var d=new Date();
-  var s=d.toLocaleTimeString('en-US',{timeZone:'America/Chicago',hour:'2-digit',minute:'2-digit',second:'2-digit',hour12:true});
-  document.getElementById('clk').textContent=s+' CT';
-}
-tick();
-setInterval(tick,1000);
+function tick(){var d=new Date();var s=d.toLocaleTimeString('en-US',{timeZone:'America/Chicago',hour:'2-digit',minute:'2-digit',second:'2-digit',hour12:true});document.getElementById('clk').textContent=s+' CT';}
+tick();setInterval(tick,1000);
 </script>
 </body>
 </html>
