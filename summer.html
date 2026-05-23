@@ -1,0 +1,383 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>BOSS Systems — Summer Partner Program</title>
+<meta name="description" content="Boston builds the AI. You do the work. You keep 85%. Pick any business, run it this summer, keep it after. No setup fee. No monthly fee.">
+<style>
+*{margin:0;padding:0;box-sizing:border-box}
+:root{--gold:#C9A84C;--dark:#080808;--gray:#0f0f0f;--gray2:#111;--border:#1e1e1e;--text:#f0ede8;--muted:#888}
+html{scroll-behavior:smooth}
+body{background:var(--dark);color:var(--text);font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;font-size:16px;line-height:1.6;-webkit-font-smoothing:antialiased}
+a{color:inherit;text-decoration:none}
+
+/* NAV */
+nav{position:sticky;top:0;z-index:100;background:rgba(8,8,8,.97);border-bottom:1px solid var(--border);padding:0 24px;height:60px;display:flex;align-items:center;justify-content:space-between}
+.nav-logo{font-weight:900;font-size:13px;letter-spacing:4px;color:var(--gold)}
+.nav-links{display:flex;align-items:center;gap:24px}
+.nav-link{font-size:12px;color:var(--muted);letter-spacing:1px}
+.nav-link:hover{color:var(--text)}
+.nav-cta{background:var(--gold);color:var(--dark);padding:8px 18px;font-weight:700;font-size:12px;letter-spacing:1px;text-transform:uppercase}
+
+/* SECTIONS */
+section{padding:80px 24px}
+.container{max-width:1080px;margin:0 auto}
+.section-label{font-size:10px;letter-spacing:4px;text-transform:uppercase;color:var(--gold);margin-bottom:12px}
+.section-title{font-size:clamp(1.6rem,4vw,2.6rem);font-weight:900;margin-bottom:16px;line-height:1.15}
+.section-sub{color:var(--muted);font-size:1rem;max-width:560px;line-height:1.7}
+
+/* HERO */
+.hero{min-height:80vh;display:flex;flex-direction:column;justify-content:center;align-items:center;text-align:center;padding:80px 24px 60px;border-bottom:1px solid var(--border)}
+.hero-label{font-size:11px;letter-spacing:4px;text-transform:uppercase;color:var(--gold);margin-bottom:24px}
+.hero h1{font-size:clamp(2.2rem,6vw,4.5rem);font-weight:900;line-height:1.05;letter-spacing:-1px;max-width:860px;margin-bottom:24px}
+.hero p{font-size:clamp(1rem,2.5vw,1.2rem);color:var(--muted);max-width:520px;margin-bottom:40px;line-height:1.7}
+.hero-ctas{display:flex;gap:14px;flex-wrap:wrap;justify-content:center;margin-bottom:40px}
+.btn-primary{background:var(--gold);color:var(--dark);padding:14px 32px;font-weight:900;font-size:14px;letter-spacing:1px;text-transform:uppercase;display:inline-block}
+.btn-outline{border:1px solid #333;color:var(--muted);padding:13px 28px;font-size:14px;display:inline-block}
+.btn-outline:hover{border-color:var(--gold);color:var(--text)}
+.hero-stats{display:flex;gap:32px;flex-wrap:wrap;justify-content:center}
+.hero-stat{font-size:12px;color:#444;letter-spacing:1px}
+.hero-stat span{color:#666}
+
+/* DEAL */
+.deal{background:var(--gray);border-top:1px solid var(--border);border-bottom:1px solid var(--border)}
+.deal-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:1px;background:var(--border);margin-top:48px}
+.deal-card{background:var(--gray);padding:36px}
+.deal-icon{font-size:2rem;margin-bottom:16px;color:var(--gold)}
+.deal-title{font-size:13px;font-weight:700;text-transform:uppercase;letter-spacing:2px;margin-bottom:12px}
+.deal-text{font-size:14px;color:var(--muted);line-height:1.7}
+.deal-text strong{color:var(--text)}
+
+/* BUSINESSES */
+.biz-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(300px,1fr));gap:1px;background:var(--border);margin-top:48px}
+.biz-card{background:var(--gray2);padding:28px}
+.biz-name{font-size:15px;font-weight:700;margin-bottom:6px}
+.biz-rate{font-size:1.4rem;font-weight:900;color:var(--gold);margin-bottom:8px;line-height:1.1}
+.biz-weekly{font-size:11px;text-transform:uppercase;letter-spacing:2px;color:#555;margin-bottom:12px}
+.biz-desc{font-size:13px;color:var(--muted);line-height:1.6;margin-bottom:10px}
+.biz-tag{display:inline-block;font-size:9px;letter-spacing:2px;text-transform:uppercase;color:var(--gold);border:1px solid #2a2400;padding:2px 8px;font-weight:700}
+
+/* STATS */
+.stats{background:var(--gray);border-top:1px solid var(--border);border-bottom:1px solid var(--border);text-align:center}
+.stats-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(160px,1fr));gap:40px;margin-top:48px}
+.stat-num{font-size:clamp(2rem,5vw,3.5rem);font-weight:900;color:var(--gold);line-height:1;margin-bottom:8px}
+.stat-label{font-size:11px;color:#555;letter-spacing:2px;text-transform:uppercase;line-height:1.5}
+
+/* STEPS */
+.process{background:var(--gray);border-top:1px solid var(--border);border-bottom:1px solid var(--border)}
+.steps{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:40px;margin-top:48px}
+.step-num{font-size:3rem;font-weight:900;color:#1e1e1e;line-height:1;margin-bottom:16px}
+.step-title{font-size:14px;font-weight:700;letter-spacing:1px;margin-bottom:10px;text-transform:uppercase}
+.step-text{font-size:13px;color:var(--muted);line-height:1.7}
+
+/* TERMS */
+.terms-box{border:1px solid var(--border);padding:40px;margin-top:48px;background:var(--gray2)}
+.terms-list{list-style:none;display:grid;gap:16px;margin-top:0}
+.terms-list li{font-size:14px;color:var(--muted);padding-left:20px;position:relative;line-height:1.6}
+.terms-list li::before{content:"—";position:absolute;left:0;color:var(--gold)}
+.terms-list li strong{color:var(--text)}
+
+/* EARNINGS */
+.earnings{background:var(--gray2);border:1px solid var(--border);padding:32px;margin-top:48px}
+.earnings-title{font-size:12px;letter-spacing:3px;text-transform:uppercase;color:var(--gold);margin-bottom:24px}
+.earnings-row{display:flex;justify-content:space-between;align-items:center;padding:14px 0;border-bottom:1px solid var(--border);font-size:14px}
+.earnings-row:last-child{border:none;padding-top:20px}
+.earnings-label{color:var(--muted)}
+.earnings-val{font-weight:700;color:var(--text)}
+.earnings-val.gold{color:var(--gold);font-size:1.2rem}
+.earnings-note{font-size:12px;color:#444;margin-top:20px}
+
+/* CTA */
+.cta-final{text-align:center;padding:100px 24px;border-top:1px solid var(--border)}
+.cta-final h2{font-size:clamp(1.8rem,5vw,3.2rem);font-weight:900;line-height:1.1;max-width:700px;margin:0 auto 20px}
+.cta-final p{color:var(--muted);margin-bottom:36px;font-size:1rem}
+.cta-final .phone{color:#555;font-size:13px;margin-top:16px;letter-spacing:1px}
+.cta-final .phone a{color:var(--gold)}
+
+/* FOOTER */
+footer{border-top:1px solid var(--border);padding:32px 24px;display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:16px}
+.footer-logo{font-weight:900;font-size:11px;letter-spacing:4px;color:var(--gold)}
+.footer-links{display:flex;gap:20px;flex-wrap:wrap}
+.footer-links a{font-size:12px;color:#444}
+.footer-links a:hover{color:var(--gold)}
+.footer-tag{font-size:11px;color:#333;margin-top:8px;width:100%}
+
+@media(max-width:600px){
+  nav{padding:0 16px}
+  .nav-links{display:none}
+  section{padding:60px 16px}
+  .hero{padding:80px 16px 50px}
+  footer{flex-direction:column;align-items:flex-start}
+}
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav>
+  <a href="/" class="nav-logo">BOSS SYSTEMS</a>
+  <div class="nav-links">
+    <a href="/" class="nav-link">Home</a>
+    <a href="/dashboard/analyze.html" class="nav-link">Free Analysis</a>
+    <a href="/dashboard/learn.html" class="nav-link">Learn</a>
+  </div>
+  <a href="sms:+19037146162?body=Hey Boston — I want in on the summer program" class="nav-cta">Text Boston</a>
+</nav>
+
+<!-- HERO -->
+<section class="hero">
+  <div class="hero-label">Summer 2026 · Limited Spots</div>
+  <h1>Build a Real Business This Summer.</h1>
+  <p>Boston builds the AI. You do the work. You keep 85% of everything you make. No setup fee. No monthly fee. Ends September 1.</p>
+  <div class="hero-ctas">
+    <a href="sms:+19037146162?body=Hey Boston — I want in on the summer program" class="btn-primary">Text Boston to Join</a>
+    <a href="#businesses" class="btn-outline">See the Businesses</a>
+  </div>
+  <div class="hero-stats">
+    <span class="hero-stat">$0 to start</span>
+    <span class="hero-stat"><span>·</span></span>
+    <span class="hero-stat">85% yours, 15% Boston's</span>
+    <span class="hero-stat"><span>·</span></span>
+    <span class="hero-stat">System built in under an hour</span>
+    <span class="hero-stat"><span>·</span></span>
+    <span class="hero-stat">Summer only — September 1 end date</span>
+  </div>
+</section>
+
+<!-- THE DEAL -->
+<section class="deal">
+  <div class="container">
+    <div class="section-label">The Deal</div>
+    <h2 class="section-title">Here Is Exactly How This Works</h2>
+    <div class="deal-grid">
+      <div class="deal-card">
+        <div class="deal-title">Boston Builds the Tech</div>
+        <div class="deal-text">Boston sets up an AI phone system that answers every call, quotes jobs, books appointments, sends payment links, and requests Google reviews. Fully custom to your business and city. Built in under an hour. <strong>Free.</strong></div>
+      </div>
+      <div class="deal-card">
+        <div class="deal-title">You Do the Work</div>
+        <div class="deal-text">You show up for jobs. You do the service. You collect the money. The AI handles everything that isn't the physical work — <strong>24 hours a day, including when you're asleep.</strong></div>
+      </div>
+      <div class="deal-card">
+        <div class="deal-title">You Keep 85%</div>
+        <div class="deal-text">Every Sunday, you text Boston your weekly revenue. He takes 15%. <strong>You keep 85%.</strong> Boston only gets paid when you do. If you make $3,000 in a week, you keep $2,550.</div>
+      </div>
+      <div class="deal-card">
+        <div class="deal-title">You Keep the Business</div>
+        <div class="deal-text">When summer ends, <strong>the business is yours.</strong> The name, the reviews, the clients, the reputation — all yours. You can keep the AI running at standard pricing, or cancel. No hard feelings either way.</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- BUSINESSES -->
+<section id="businesses">
+  <div class="container">
+    <div class="section-label">Pick Your Business</div>
+    <h2 class="section-title">11 Businesses. One Texted Request to Boston.</h2>
+    <p class="section-sub">Every business comes with AI that answers calls, books jobs, collects payment, and builds your reviews. You pick what fits you. Boston builds the stack.</p>
+
+    <div class="biz-grid">
+
+      <div class="biz-card">
+        <div class="biz-name">Junk Removal</div>
+        <div class="biz-rate">$150–400 / load</div>
+        <div class="biz-weekly">$1,500–3,500 / week potential</div>
+        <div class="biz-desc">Haul furniture, appliances, yard debris. Need a truck. AI answers every call, quotes by load size, books the job. Moving deadlines and garage cleanouts generate steady demand all summer.</div>
+        <div class="biz-tag">Truck required</div>
+      </div>
+
+      <div class="biz-card">
+        <div class="biz-name">Pressure Washing</div>
+        <div class="biz-rate">$150–350 / job</div>
+        <div class="biz-weekly">$1,000–2,500 / week potential</div>
+        <div class="biz-desc">Driveways, houses, decks, patios. Pressure washer rental is around $150. Most first jobs pay back the equipment cost. AI quotes by square footage and schedules your week.</div>
+        <div class="biz-tag">Equipment ~$150 rental</div>
+      </div>
+
+      <div class="biz-card">
+        <div class="biz-name">Lawn Care</div>
+        <div class="biz-rate">$35–80 / yard</div>
+        <div class="biz-weekly">$500–1,500 / week potential</div>
+        <div class="biz-desc">Mow, edge, blow — weekly or biweekly. Ten recurring accounts means a guaranteed paycheck every week without finding new customers. AI handles all scheduling and reminders automatically.</div>
+        <div class="biz-tag">Recurring weekly income</div>
+      </div>
+
+      <div class="biz-card">
+        <div class="biz-name">Pool Cleaning</div>
+        <div class="biz-rate">$75–150 / clean</div>
+        <div class="biz-weekly">$1,000–2,500 / week potential</div>
+        <div class="biz-desc">Weekly pool maintenance — test chemicals, skim, vacuum, brush. Texas summer means every house with a pool needs this. Ten pools weekly at $100 each is $4,000+ a month. AI routes and invoices everything.</div>
+        <div class="biz-tag">Recurring weekly income</div>
+      </div>
+
+      <div class="biz-card">
+        <div class="biz-name">Interior Car Detailing</div>
+        <div class="biz-rate">$75–150 / car</div>
+        <div class="biz-weekly">$600–1,200 / week potential</div>
+        <div class="biz-desc">Interior only — vacuum, wipe down, shampoo seats, clean glass. No exterior equipment needed. About $100 to start. Texas heat makes car interiors brutal in summer. AI books by neighborhood to minimize drive time.</div>
+        <div class="biz-tag">$100 startup total</div>
+      </div>
+
+      <div class="biz-card">
+        <div class="biz-name">House Cleaning</div>
+        <div class="biz-rate">$100–250 / clean</div>
+        <div class="biz-weekly">$600–1,500 / week potential</div>
+        <div class="biz-desc">Residential deep cleans and recurring weekly cleans. Airbnbs pay more and book constantly. Lock in 4–5 recurring clients and it becomes predictable weekly income. AI handles everything from booking to review requests.</div>
+        <div class="biz-tag">Recurring weekly income</div>
+      </div>
+
+      <div class="biz-card">
+        <div class="biz-name">Event Decoration Setup</div>
+        <div class="biz-rate">$150–400 / event</div>
+        <div class="biz-weekly">$600–1,600 / week potential</div>
+        <div class="biz-desc">Balloon garlands, tablescapes, backdrops for birthday parties, baby showers, gender reveals, bridal showers. 2–3 hours of setup per event. First supply order from Amazon runs around $100–150. Southern towns go all out for celebrations — demand is constant.</div>
+        <div class="biz-tag">Weekend-heavy</div>
+      </div>
+
+      <div class="biz-card">
+        <div class="biz-name">Pet Sitting & Dog Walking</div>
+        <div class="biz-rate">$20–35 / walk · $50–75 / night</div>
+        <div class="biz-weekly">$400–900 / week potential</div>
+        <div class="biz-desc">Walk dogs before and after school or during the day. Pet sitting while owners travel. Once you have regular clients, they rebook constantly. Pet owners recommend their sitter to every friend. AI manages scheduling and owner updates.</div>
+        <div class="biz-tag">Recurring · Zero startup</div>
+      </div>
+
+      <div class="biz-card">
+        <div class="biz-name">Home Organizing</div>
+        <div class="biz-rate">$65–85 / hour</div>
+        <div class="biz-weekly">$600–1,200 / week potential</div>
+        <div class="biz-desc">Closets, pantries, kids' rooms, garages. Take a before-and-after photo of your first job. That photo becomes your next five clients on neighborhood Facebook groups. Zero startup cost. AI does intake, booking, and review follow-up.</div>
+        <div class="biz-tag">Zero startup cost</div>
+      </div>
+
+      <div class="biz-card">
+        <div class="biz-name">Photography Sessions</div>
+        <div class="biz-rate">$150–300 / session</div>
+        <div class="biz-weekly">$600–1,200 / week potential</div>
+        <div class="biz-desc">Senior portraits, graduation photos, family sessions, Airbnb listing photos. Summer is peak season. Deliver digitals — no printing required. AI handles all booking, prep emails, and delivery follow-up. A decent phone camera is all you need to start.</div>
+        <div class="biz-tag">Peak summer season</div>
+      </div>
+
+      <div class="biz-card">
+        <div class="biz-name">Social Media Management</div>
+        <div class="biz-rate">$200–400 / month per client</div>
+        <div class="biz-weekly">$400–800 / week potential</div>
+        <div class="biz-desc">Post 3–5 times a week on Instagram and Facebook for local businesses that know they should be doing it but aren't. Canva free account, your phone, and basic content sense is all you need. Fully digital — no showing up anywhere.</div>
+        <div class="biz-tag">Recurring · Fully digital</div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- STATS -->
+<section class="stats">
+  <div class="container">
+    <div class="section-label">What a Good Summer Looks Like</div>
+    <div class="stats-grid">
+      <div><div class="stat-num">$0</div><div class="stat-label">Setup fee to join</div></div>
+      <div><div class="stat-num">85%</div><div class="stat-label">Revenue you keep</div></div>
+      <div><div class="stat-num">1hr</div><div class="stat-label">To build your AI system</div></div>
+      <div><div class="stat-num">$2–5K</div><div class="stat-label">Realistic summer earnings</div></div>
+      <div><div class="stat-num">Sept 1</div><div class="stat-label">Program end date</div></div>
+    </div>
+
+    <!-- EARNINGS BREAKDOWN -->
+    <div class="earnings" style="margin-top:48px;max-width:600px;margin-left:auto;margin-right:auto">
+      <div class="earnings-title">Example — Junk Removal, 12-Week Summer</div>
+      <div class="earnings-row">
+        <span class="earnings-label">Average weekly revenue</span>
+        <span class="earnings-val">$2,000</span>
+      </div>
+      <div class="earnings-row">
+        <span class="earnings-label">Boston's 15% cut</span>
+        <span class="earnings-val">$300/week</span>
+      </div>
+      <div class="earnings-row">
+        <span class="earnings-label">Your 85% over 12 weeks</span>
+        <span class="earnings-val gold">$20,400</span>
+      </div>
+      <div class="earnings-note">Numbers vary by market, effort, and business type. These are realistic mid-range estimates, not guarantees. Work more, earn more.</div>
+    </div>
+  </div>
+</section>
+
+<!-- HOW IT WORKS -->
+<section class="process">
+  <div class="container">
+    <div class="section-label">How It Works</div>
+    <h2 class="section-title">From Text to Live Business in Under a Day</h2>
+    <div class="steps">
+      <div>
+        <div class="step-num">01</div>
+        <div class="step-title">You Text Boston</div>
+        <div class="step-text">Tell him which business you want and what city you're in. That's the whole application. He'll confirm your market is available and set a time to build.</div>
+      </div>
+      <div>
+        <div class="step-num">02</div>
+        <div class="step-title">Boston Builds Your System</div>
+        <div class="step-text">In about an hour, you have a dedicated phone number, an AI agent that answers every call, a booking system, and automatic payment and review flows. You call the number to test it.</div>
+      </div>
+      <div>
+        <div class="step-num">03</div>
+        <div class="step-title">You Start Taking Jobs</div>
+        <div class="step-text">Post your number on Facebook Marketplace and Craigslist. Hand it to neighbors. The AI handles every inquiry. You show up, do the work, collect payment. AI follows up for the review.</div>
+      </div>
+      <div>
+        <div class="step-num">04</div>
+        <div class="step-title">You Text Revenue Sunday Nights</div>
+        <div class="step-text">Every Sunday by 8pm, text Boston your weekly total. He Venmos you his 15% receipt. You Venmo it back by Monday noon. No invoice. No spreadsheet. Just a text.</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- TERMS -->
+<section>
+  <div class="container">
+    <div class="section-label">The Agreement</div>
+    <h2 class="section-title">What You're Actually Agreeing To</h2>
+    <p class="section-sub">No lawyers. Boston is 17. This runs on trust and a text agreement. Here's the whole thing:</p>
+    <div class="terms-box">
+      <ul class="terms-list">
+        <li><strong>End date is September 1, 2026.</strong> After that, you can keep the AI running at standard pricing, or it stops. Your choice.</li>
+        <li><strong>You report revenue honestly every Sunday.</strong> The system runs on your word. If you're the type to fudge numbers, this isn't for you.</li>
+        <li><strong>Either party can end the agreement with 3 days notice.</strong> No hard feelings. No penalty. Business stops, AI deactivates.</li>
+        <li><strong>Boston only makes money when you do.</strong> Zero revenue means zero payment to him. The 15% only applies to actual jobs completed.</li>
+        <li><strong>Don't flake on booked jobs.</strong> Bad reviews hurt the market Boston has to operate in. If you're not going to do the work, say that now.</li>
+        <li><strong>The business name and reputation are yours.</strong> Boston's name is nowhere on it. He's just the tech guy.</li>
+        <li><strong>Payment via Venmo @BosRoss.</strong> Boston is 17 and can't use Stripe. The program runs on Venmo only.</li>
+      </ul>
+    </div>
+  </div>
+</section>
+
+<!-- FINAL CTA -->
+<section class="cta-final">
+  <div class="container">
+    <h2>Pick Your Business.<br>Text Boston. Start This Week.</h2>
+    <p>Tell him which business and what city. He'll build the system and you'll be live in under a day.</p>
+    <a href="sms:+19037146162?body=Hey Boston — I want in on the summer program" class="btn-primary" style="font-size:16px;padding:18px 40px">Text Boston — 903-714-6162</a>
+    <div class="phone">Or email: <a href="mailto:bosrossall@gmail.com">bosrossall@gmail.com</a> &nbsp;·&nbsp; Venmo: <a href="https://venmo.com/BosRoss" target="_blank">@BosRoss</a></div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div class="footer-logo">BOSS SYSTEMS</div>
+  <div class="footer-links">
+    <a href="/">Home</a>
+    <a href="/dashboard/analyze.html">Free Analysis</a>
+    <a href="/dashboard/learn.html">Learn</a>
+    <a href="/summer.html" style="color:var(--gold)">Summer Program</a>
+    <a href="tel:+19037146162">903-714-6162</a>
+    <a href="mailto:bosrossall@gmail.com">bosrossall@gmail.com</a>
+    <a href="https://venmo.com/BosRoss" target="_blank">@BosRoss</a>
+  </div>
+  <div class="footer-tag">Building AI-first businesses for the people the big companies ignore. &nbsp;·&nbsp; Tyler, TX &nbsp;·&nbsp; &copy; 2026 BOSS Systems</div>
+</footer>
+
+</body>
+</html>
