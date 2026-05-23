@@ -158,6 +158,40 @@ hr{border:none;border-top:1px solid #1a1a1a;margin:28px 0}
 #gate input:focus{outline:none;border-color:#C9A84C}
 #gate button{background:#C9A84C;color:#080808;border:none;padding:14px 32px;font-weight:900;font-size:14px;letter-spacing:1px;border-radius:4px;width:100%;max-width:280px;cursor:pointer}
 #gate .g-err{color:#e57373;font-size:13px;min-height:18px;letter-spacing:1px}
+
+/* PARTNER APPLICATIONS */
+.apps-load{display:block;background:#111;border:1px solid var(--border);color:var(--gold);padding:12px 20px;font-size:12px;font-weight:700;letter-spacing:1px;text-align:center;cursor:pointer;border-radius:2px;width:100%;margin-bottom:16px;text-transform:uppercase}
+.apps-load:active{background:#1a1a00}
+.app-card{background:#111;border:1px solid var(--border);border-radius:2px;margin-bottom:10px;overflow:hidden}
+.app-card-head{padding:14px 16px;display:flex;justify-content:space-between;align-items:flex-start;cursor:pointer}
+.app-card-head:active{background:#151515}
+.app-name{font-size:14px;font-weight:700;margin-bottom:3px}
+.app-sub{font-size:11px;color:var(--muted)}
+.app-rec{font-size:10px;font-weight:700;letter-spacing:1px;padding:3px 8px;border-radius:2px;text-transform:uppercase;flex-shrink:0;margin-left:10px;align-self:flex-start;margin-top:2px}
+.app-detail{padding:14px 16px;border-top:1px solid #1a1a1a;display:none}
+.app-detail.open{display:block}
+.app-detail-row{display:flex;justify-content:space-between;align-items:baseline;padding:7px 0;border-bottom:1px solid #111;font-size:12px}
+.app-detail-row:last-of-type{border-bottom:none}
+.app-detail-row .k{color:var(--muted);flex-shrink:0;margin-right:10px}
+.app-detail-row .v{font-weight:600;text-align:right;word-break:break-word;max-width:65%}
+.app-long{font-size:12px;color:#888;line-height:1.6;padding:10px 0;border-bottom:1px solid #111}
+.app-long-label{font-size:9px;letter-spacing:2px;text-transform:uppercase;color:var(--gold);margin-bottom:4px}
+.app-ai{background:#0a0e0a;border:1px solid #1a2a1a;padding:12px;margin:12px 0;border-radius:2px}
+.app-ai-label{font-size:9px;letter-spacing:2px;text-transform:uppercase;color:#4caf50;margin-bottom:6px}
+.app-ai-text{font-size:12px;color:#778;line-height:1.5}
+.app-actions{padding-top:14px;border-top:1px solid #1a1a1a;margin-top:4px}
+.app-status-btns{display:flex;gap:8px;margin-bottom:12px}
+.app-status-btn{flex:1;padding:10px 4px;font-size:11px;font-weight:700;letter-spacing:1px;text-transform:uppercase;border:1px solid;border-radius:2px;cursor:pointer;background:transparent;color:var(--muted);border-color:#222;transition:all .15s}
+.app-status-btn.sel-accept{background:#0a1a0a;color:#4caf50;border-color:#2a5a2a}
+.app-status-btn.sel-review{background:#1a1200;color:var(--gold);border-color:#3a3000}
+.app-status-btn.sel-decline{background:#1a0a0a;color:#e57373;border-color:#5a2a2a}
+.app-msg{width:100%;background:#0d0d0d;border:1px solid #2a2a2a;color:var(--text);padding:10px 12px;font-size:13px;line-height:1.5;border-radius:2px;resize:vertical;min-height:72px;font-family:inherit;margin-bottom:10px}
+.app-msg:focus{outline:none;border-color:var(--gold)}
+.app-submit{width:100%;background:var(--gold);color:#080808;border:none;padding:12px;font-weight:900;font-size:13px;letter-spacing:1px;text-transform:uppercase;border-radius:2px;cursor:pointer}
+.app-submit:active{opacity:.8}
+.app-sms{display:block;text-align:center;font-size:11px;color:var(--muted);margin-top:8px;padding:8px;border:1px solid #1a1a1a;border-radius:2px}
+.app-sms:hover{color:var(--gold)}
+.app-status-done{font-size:11px;padding:8px 12px;border-radius:2px;text-align:center;font-weight:700;letter-spacing:1px;text-transform:uppercase;margin-top:8px}
 </style>
 </head>
 <body>
@@ -384,6 +418,14 @@ hr{border:none;border-top:1px solid #1a1a1a;margin:28px 0}
 <div class="intel"><p><strong>Avoca AI = $1B valuation doing exactly this</strong> — but only for $3M+/year operators at $1,000–$3,000/month. Their pricing leaves every solo operator unserved. Boston's $60–497/month fills the gap they left.</p><div class="intel-date">PR Newswire · April 2026</div></div>
 <div class="intel"><p><strong>62% of contractor calls go unanswered. 85% of those callers never call back.</strong> An HVAC company missing 3 calls/week at $850 average = $88,400/year lost. BOSS at $150/month = $1,800/year. ROI: 49:1.</p><div class="intel-date">PCN Study · CallRail · 2026</div></div>
 <div class="intel"><p><strong>Best markets right now:</strong> Corinth MS (HVAC 3.6–3.9★), Durant OK (HVAC, no websites), Laurel MS (pain reviews confirmed). East Texas = Boston in-person only. Louisiana = banned.</p><div class="intel-date">Live Google Places scan · May 2026</div></div>
+
+<hr>
+
+<!-- PARTNER APPLICATIONS -->
+<div class="label">Summer Program</div>
+<div class="heading">Partner Applications</div>
+<button class="apps-load" onclick="loadApps(this)">Load Applications</button>
+<div id="apps-list"></div>
 
 <hr>
 
@@ -1138,6 +1180,148 @@ function closeModal() {
 
 // Close on escape key
 document.addEventListener('keydown', e => { if (e.key === 'Escape') closeModal(); });
+
+// ===== PARTNER APPLICATIONS =====
+
+async function loadApps(btn) {
+  const list = document.getElementById('apps-list');
+  if (btn) btn.textContent = 'Loading...';
+  list.innerHTML = '';
+  try {
+    const r = await fetch('https://jamross.app.n8n.cloud/webhook/get-partner-applications', {cache: 'no-store'});
+    const d = await r.json();
+    const apps = (d.applications || []).filter(a => a.firstName);
+    if (!apps.length) {
+      list.innerHTML = '<p style="font-size:12px;color:#444;padding:8px 0">No applications yet.</p>';
+      if (btn) btn.textContent = 'Refresh Applications';
+      return;
+    }
+    // Sort: PENDING first, then by AI score desc
+    const order = {PENDING:0,REVIEW:1,ACCEPTED:2,DECLINED:3};
+    apps.sort((a,b) => {
+      const od = (order[a.status]||0) - (order[b.status]||0);
+      if (od !== 0) return od;
+      return (b.aiScore||0) - (a.aiScore||0);
+    });
+    list.innerHTML = apps.map(renderApp).join('');
+    if (btn) btn.textContent = `Refresh (${apps.length} total)`;
+  } catch(e) {
+    list.innerHTML = `<p style="font-size:12px;color:#e57373;padding:8px 0">Error loading — check n8n + Applications sheet exists</p>`;
+    if (btn) btn.textContent = 'Load Applications';
+  }
+}
+
+function renderApp(app) {
+  const rec = app.aiRecommendation || 'REVIEW';
+  const recStyle = rec === 'ACCEPT'
+    ? 'background:#0a1a0a;color:#4caf50;border:1px solid #2a5a2a'
+    : rec === 'DECLINE'
+    ? 'background:#1a0a0a;color:#e57373;border:1px solid #5a2a2a'
+    : 'background:#1a1200;color:#C9A84C;border:1px solid #3a3000';
+
+  const st = app.status || 'PENDING';
+  const stColor = st === 'ACCEPTED' ? '#4caf50' : st === 'DECLINED' ? '#e57373' : st === 'REVIEW' ? '#C9A84C' : '#444';
+  const phone = (app.phone || '').replace(/\D/g,'');
+  const uid = 'app_' + (app.phone || Math.random()).replace(/\D/g,'');
+
+  // Build a suggested message based on recommendation
+  const defaultMsg = rec === 'ACCEPT'
+    ? `Hey ${app.firstName}, this is Boston at BOSS Systems. Your application looks great — I'd love to set you up. Can we hop on a quick call this week to go over the details?`
+    : rec === 'DECLINE'
+    ? `Hey ${app.firstName}, this is Boston. Thanks for applying to the summer program. I don't think we have the right fit right now, but keep an eye on bosssystems.co — we may have more openings later.`
+    : `Hey ${app.firstName}, this is Boston at BOSS Systems. I got your application — I'd love to ask you a couple quick questions before we move forward. When's a good time to talk?`;
+
+  return `<div class="app-card" id="${uid}">
+  <div class="app-card-head" onclick="toggleApp('${uid}')">
+    <div>
+      <div class="app-name">${app.firstName} ${app.lastName}, ${app.age || '?'}yo</div>
+      <div class="app-sub">${app.cityState || '—'} · ${app.business || '—'} · <span style="color:${stColor}">${st}</span></div>
+    </div>
+    <div class="app-rec" style="${recStyle}">${rec} ${app.aiScore||0}/10</div>
+  </div>
+  <div class="app-detail" id="${uid}_detail">
+    <div class="app-detail-row"><span class="k">Phone</span><span class="v">${app.phone || '—'}</span></div>
+    <div class="app-detail-row"><span class="k">Truck access</span><span class="v">${app.truckAccess || '—'}</span></div>
+    <div class="app-detail-row"><span class="k">Hours/week</span><span class="v">${app.hoursPerWeek || '—'}</span></div>
+    <div class="app-detail-row"><span class="k">Heard about us</span><span class="v">${app.hearAbout || '—'}</span></div>
+    <div class="app-detail-row"><span class="k">Goal</span><span class="v">${app.mainGoal || '—'}</span></div>
+    ${app.whyBusiness ? `<div class="app-long"><div class="app-long-label">Why this business</div>${app.whyBusiness}</div>` : ''}
+    ${app.priorWork ? `<div class="app-long"><div class="app-long-label">Prior experience</div>${app.priorWork}</div>` : ''}
+    ${app.aiReasoning ? `<div class="app-ai"><div class="app-ai-label">AI Reasoning</div><div class="app-ai-text">${app.aiReasoning}</div></div>` : ''}
+    ${app.bostonMessage ? `<div class="app-ai" style="background:#0a0a1a;border-color:#1a1a3a"><div class="app-ai-label" style="color:#64b5f6">Your Previous Message</div><div class="app-ai-text">${app.bostonMessage}</div></div>` : ''}
+    <div class="app-actions">
+      <div class="app-status-btns">
+        <button class="app-status-btn ${st==='ACCEPTED'?'sel-accept':''}" id="${uid}_accept" onclick="selectStatus('${uid}','ACCEPTED')">Accept</button>
+        <button class="app-status-btn ${st==='REVIEW'?'sel-review':''}" id="${uid}_review" onclick="selectStatus('${uid}','REVIEW')">Review</button>
+        <button class="app-status-btn ${st==='DECLINED'?'sel-decline':''}" id="${uid}_decline" onclick="selectStatus('${uid}','DECLINED')">Decline</button>
+      </div>
+      <textarea class="app-msg" id="${uid}_msg" placeholder="Message to send (optional)">${app.bostonMessage || defaultMsg}</textarea>
+      <button class="app-submit" onclick="submitDecision('${uid}','${app.phone}','${app.firstName}','${app.lastName}')">Save Decision</button>
+      ${phone ? `<a class="app-sms" href="sms:+1${phone}?body=${encodeURIComponent(defaultMsg)}">Text ${app.firstName} directly →</a>` : ''}
+      <div id="${uid}_result"></div>
+    </div>
+  </div>
+</div>`;
+}
+
+function toggleApp(uid) {
+  const detail = document.getElementById(uid + '_detail');
+  detail.classList.toggle('open');
+}
+
+function selectStatus(uid, status) {
+  ['ACCEPTED','REVIEW','DECLINED'].forEach(s => {
+    const btn = document.getElementById(uid + '_' + s.toLowerCase());
+    if (!btn) return;
+    btn.className = 'app-status-btn';
+    if (s === status) {
+      if (s === 'ACCEPTED') btn.className += ' sel-accept';
+      else if (s === 'REVIEW') btn.className += ' sel-review';
+      else btn.className += ' sel-decline';
+    }
+  });
+  document.getElementById(uid + '_selected_status') && (document.getElementById(uid + '_selected_status').value = status);
+  // Store selection on card
+  document.getElementById(uid)._selectedStatus = status;
+}
+
+async function submitDecision(uid, phone, firstName, lastName) {
+  const card = document.getElementById(uid);
+  const status = card._selectedStatus;
+  const message = document.getElementById(uid + '_msg').value.trim();
+  const result = document.getElementById(uid + '_result');
+
+  if (!status) {
+    result.innerHTML = '<div style="color:#e57373;font-size:11px;margin-top:8px">Select Accept / Review / Decline first</div>';
+    return;
+  }
+  if (!phone) {
+    result.innerHTML = '<div style="color:#e57373;font-size:11px;margin-top:8px">No phone number on this application</div>';
+    return;
+  }
+
+  result.innerHTML = '<div style="color:#555;font-size:11px;margin-top:8px">Saving...</div>';
+
+  try {
+    const r = await fetch('https://jamross.app.n8n.cloud/webhook/partner-decision', {
+      method: 'POST',
+      headers: {'Content-Type': 'application/json'},
+      body: JSON.stringify({phone, status, message, firstName, lastName})
+    });
+    const d = await r.json();
+    if (d.ok || d.status) {
+      const color = status === 'ACCEPTED' ? '#4caf50' : status === 'DECLINED' ? '#e57373' : '#C9A84C';
+      result.innerHTML = `<div class="app-status-done" style="background:${color}15;color:${color};border:1px solid ${color}30">${status} saved</div>`;
+      // Update status display on the card
+      const sub = document.querySelector('#' + uid + ' .app-sub');
+      if (sub) sub.innerHTML = sub.innerHTML.replace(/style="color:[^"]*">[^<]*<\/span>/, `style="color:${color}">${status}</span>`);
+    } else {
+      result.innerHTML = '<div style="color:#e57373;font-size:11px;margin-top:8px">Save failed — check n8n</div>';
+    }
+  } catch(e) {
+    result.innerHTML = `<div style="color:#e57373;font-size:11px;margin-top:8px">Error: ${e.message}</div>`;
+  }
+}
 
 // Clock
 function tick() {
