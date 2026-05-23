@@ -151,6 +151,13 @@ hr{border:none;border-top:1px solid #1a1a1a;margin:28px 0}
 .m-script p{font-size:13px;line-height:1.7;color:#888;font-style:italic}
 .m-script strong{color:var(--text);font-style:normal}
 
+/* PARTNER LEARNING TILES */
+.biz-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:8px;margin-bottom:4px}
+.biz-tile{background:#111;border:1px solid var(--border);padding:14px 8px;text-align:center;cursor:pointer;border-radius:2px;transition:border-color .15s}
+.biz-tile:active{border-color:var(--gold)}
+.biz-tile .t-icon{font-size:22px;display:block;margin-bottom:5px}
+.biz-tile .t-name{font-size:10px;font-weight:700;letter-spacing:.5px;color:var(--muted);text-transform:uppercase;line-height:1.3}
+
 /* GATE */
 #gate{position:fixed;inset:0;z-index:999;background:#080808;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:20px;padding:40px}
 #gate .g-logo{font-size:13px;font-weight:900;letter-spacing:4px;color:#C9A84C;margin-bottom:12px}
@@ -440,6 +447,23 @@ hr{border:none;border-top:1px solid #1a1a1a;margin:28px 0}
 <div class="heading">Partner Applications</div>
 <button class="apps-load" onclick="loadApps(this)">Load Applications</button>
 <div id="apps-list"></div>
+
+<div style="margin-top:24px">
+<div class="label">Partner Learning Tools</div>
+<div class="biz-grid">
+  <div class="biz-tile" onclick="openModal('pt-pets')"><span class="t-icon">🐕</span><span class="t-name">Pet Sitting</span></div>
+  <div class="biz-tile" onclick="openModal('pt-photo')"><span class="t-icon">📸</span><span class="t-name">Photography</span></div>
+  <div class="biz-tile" onclick="openModal('pt-events')"><span class="t-icon">🎉</span><span class="t-name">Event Decor</span></div>
+  <div class="biz-tile" onclick="openModal('pt-social')"><span class="t-icon">📱</span><span class="t-name">Social Media</span></div>
+  <div class="biz-tile" onclick="openModal('pt-organizing')"><span class="t-icon">📦</span><span class="t-name">Home Organizing</span></div>
+  <div class="biz-tile" onclick="openModal('pt-lawn')"><span class="t-icon">🌿</span><span class="t-name">Lawn Care</span></div>
+  <div class="biz-tile" onclick="openModal('pt-cleaning')"><span class="t-icon">🧹</span><span class="t-name">Cleaning</span></div>
+  <div class="biz-tile" onclick="openModal('pt-detailing')"><span class="t-icon">🚗</span><span class="t-name">Car Detailing</span></div>
+  <div class="biz-tile" onclick="openModal('pt-pool')"><span class="t-icon">🏊</span><span class="t-name">Pool Cleaning</span></div>
+  <div class="biz-tile" onclick="openModal('pt-junk')"><span class="t-icon">🚛</span><span class="t-name">Junk Removal</span></div>
+  <div class="biz-tile" onclick="openModal('pt-pressure')"><span class="t-icon">💦</span><span class="t-name">Pressure Washing</span></div>
+</div>
+</div>
 
 <hr>
 
@@ -1156,6 +1180,538 @@ const MODALS = {
         <li>When you need someone to argue against your idea before you commit</li>
       </ul>
     </div>
+  `
+},
+
+// ===== PARTNER LEARNING TOOLS =====
+
+'pt-pets': {
+  title: 'Pet Sitting & Dog Walking',
+  badge: '$0 STARTUP', badgeStyle: 'background:#1a1200;color:var(--gold);border:1px solid #3a3000',
+  html: `
+    <div class="m-stat-grid">
+      <div class="m-stat"><div class="n">$20–35</div><div class="l">Per walk</div></div>
+      <div class="m-stat"><div class="n">$50–75</div><div class="l">Overnight</div></div>
+      <div class="m-stat"><div class="n">$0</div><div class="l">Startup cost</div></div>
+      <div class="m-stat"><div class="n">80%</div><div class="l">Partner keeps</div></div>
+    </div>
+    <div class="m-section">
+      <div class="m-label">First 5 Clients</div>
+      <div class="m-step"><div class="m-step-num">1</div><div class="m-step-text">Door to door on streets where you see dogs walked. "I do dog walking in the neighborhood — here's my number."</div></div>
+      <div class="m-step"><div class="m-step-num">2</div><div class="m-step-text">Post on Nextdoor. Pet owners trust Nextdoor more than Facebook for this — it's literally their neighbors.</div></div>
+      <div class="m-step"><div class="m-step-num">3</div><div class="m-step-text">Tell everyone you know. Every dog owner knows when they'll be out of town next. Be the name they think of.</div></div>
+      <div class="m-step"><div class="m-step-num">4</div><div class="m-step-text">Post in local pet Facebook groups (2–3 in any city).</div></div>
+      <div class="m-step"><div class="m-step-num">5</div><div class="m-step-text">Once you have 2 clients, ask directly: "Know any neighbors with dogs who need walking?"</div></div>
+    </div>
+    <div class="m-section">
+      <div class="m-label">Pricing</div>
+      <div class="m-row"><span class="k">30-min walk</span><span class="v">$20–25</span></div>
+      <div class="m-row"><span class="k">60-min walk</span><span class="v">$28–35</span></div>
+      <div class="m-row"><span class="k">Two dogs (same house)</span><span class="v">$30–45</span></div>
+      <div class="m-row"><span class="k">Daily pack (5x/wk)</span><span class="v">$90–120/wk</span></div>
+      <div class="m-row"><span class="k">Drop-in visit</span><span class="v">$18–25</span></div>
+      <div class="m-row"><span class="k">Overnight at their home</span><span class="v">$50–75/night</span></div>
+      <div class="m-row"><span class="k">Weekend sit (2 nights)</span><span class="v">$90–140</span></div>
+    </div>
+    <div class="m-section">
+      <div class="m-label">Key Scripts</div>
+      <div class="m-script" style="margin-bottom:8px"><p><strong>Walking call:</strong> "I do 30-min walks at $22 and 60-min at $30. Daily packages are $100/week. I send a photo after every single walk."</p></div>
+      <div class="m-script" style="margin-bottom:8px"><p><strong>Pet sitting inquiry:</strong> "I can stay at your place overnight for $60/night. All feeding, walks, and play. Photo update every evening. I'd want a quick meet-and-greet first."</p></div>
+      <div class="m-script"><p><strong>After every walk:</strong> Send one photo. No message needed. Keeps you top of mind for referrals.</p></div>
+    </div>
+    <div class="m-section">
+      <div class="m-label">What the AI Handles</div>
+      <ul class="m-list">
+        <li>Answers all calls 24/7, walking + sitting pricing</li>
+        <li>Books clients, collects pet name, breed, notes</li>
+        <li>Sends daily walk reminders + confirmations</li>
+        <li>Sends payment requests weekly or per service</li>
+        <li>Review requests after first week</li>
+        <li>Re-engages before summer travel seasons</li>
+      </ul>
+    </div>
+    <a class="m-cta" href="https://bosssystems.co/partner-tools.html" target="_blank">Full Guide →</a>
+  `
+},
+
+'pt-photo': {
+  title: 'Photography',
+  badge: '$0 STARTUP', badgeStyle: 'background:#1a1200;color:var(--gold);border:1px solid #3a3000',
+  html: `
+    <div class="m-stat-grid">
+      <div class="m-stat"><div class="n">$150–300</div><div class="l">Per session</div></div>
+      <div class="m-stat"><div class="n">$600–1,200</div><div class="l">Weekly potential</div></div>
+      <div class="m-stat"><div class="n">$0</div><div class="l">Phone OK</div></div>
+      <div class="m-stat"><div class="n">80%</div><div class="l">Partner keeps</div></div>
+    </div>
+    <div class="m-section">
+      <div class="m-label">First 5 Clients</div>
+      <div class="m-step"><div class="m-step-num">1</div><div class="m-step-text">Do 2–3 free shoots for friends who will actually post the photos. Their posts = your best ad.</div></div>
+      <div class="m-step"><div class="m-step-num">2</div><div class="m-step-text">Post portfolio on Instagram. Tag the city. Summer is peak senior portrait and graduation season.</div></div>
+      <div class="m-step"><div class="m-step-num">3</div><div class="m-step-text">Post in high school community/student Facebook pages. Senior portraits = fastest photography cash.</div></div>
+      <div class="m-step"><div class="m-step-num">4</div><div class="m-step-text">Post in family Facebook groups. Family sessions book fast in summer with good natural light.</div></div>
+      <div class="m-step"><div class="m-step-num">5</div><div class="m-step-text">Contact 3–4 local businesses about Google Business Profile photos. Many will pay $150 for an hour.</div></div>
+    </div>
+    <div class="m-section">
+      <div class="m-label">Pricing</div>
+      <div class="m-row"><span class="k">Mini session (20 min, 10 photos)</span><span class="v">$100–150</span></div>
+      <div class="m-row"><span class="k">Standard (1 hr, 30+ photos)</span><span class="v">$175–225</span></div>
+      <div class="m-row"><span class="k">Senior portraits (1–2 hrs)</span><span class="v">$200–275</span></div>
+      <div class="m-row"><span class="k">Family session (1 hr)</span><span class="v">$175–225</span></div>
+      <div class="m-row"><span class="k">Business / headshots (45 min)</span><span class="v">$150–200</span></div>
+      <div class="m-row"><span class="k">Business listing photos</span><span class="v">$125–175</span></div>
+    </div>
+    <div class="m-section">
+      <div class="m-label">Key Scripts</div>
+      <div class="m-script" style="margin-bottom:8px"><p><strong>Senior portrait call:</strong> "Senior sessions are $225 for about an hour. 30+ fully edited digital photos within 48 hours. I know a few great outdoor spots around [city]. When are you looking to do it?"</p></div>
+      <div class="m-script" style="margin-bottom:8px"><p><strong>"Can I see your work?":</strong> "I'll send my Instagram right now — it's [handle]. All my recent sessions are there. What kind of session were you thinking?"</p></div>
+      <div class="m-script"><p><strong>After delivery:</strong> "If you love the photos, sharing and tagging me is the biggest thing you can do. I'm building my client list this summer."</p></div>
+    </div>
+    <div class="m-section">
+      <div class="m-label">What the AI Handles</div>
+      <ul class="m-list">
+        <li>Answers calls with session types, pricing, availability</li>
+        <li>Books sessions, collects date + session type + location</li>
+        <li>Sends prep guide before session (what to wear, bring)</li>
+        <li>Sends payment request after delivery</li>
+        <li>Requests Google review + Instagram tag after delivery</li>
+        <li>Follows up for seasonal shoots (back to school, holidays)</li>
+      </ul>
+    </div>
+    <a class="m-cta" href="https://bosssystems.co/partner-tools.html" target="_blank">Full Guide →</a>
+  `
+},
+
+'pt-events': {
+  title: 'Event Decoration',
+  badge: '$150 STARTUP', badgeStyle: 'background:#1a1200;color:var(--gold);border:1px solid #3a3000',
+  html: `
+    <div class="m-stat-grid">
+      <div class="m-stat"><div class="n">$150–400</div><div class="l">Per event</div></div>
+      <div class="m-stat"><div class="n">$600–1,600</div><div class="l">Weekly potential</div></div>
+      <div class="m-stat"><div class="n">~$150</div><div class="l">Startup (Amazon)</div></div>
+      <div class="m-stat"><div class="n">80%</div><div class="l">Partner keeps</div></div>
+    </div>
+    <div class="m-section">
+      <div class="m-label">First 5 Clients</div>
+      <div class="m-step"><div class="m-step-num">1</div><div class="m-step-text">Reach out to anyone you know with a birthday, baby shower, or graduation coming up. Offer to decorate for free. This builds your portfolio.</div></div>
+      <div class="m-step"><div class="m-step-num">2</div><div class="m-step-text">Post in neighborhood mom Facebook groups. Moms in these groups plan events constantly and ask for recommendations.</div></div>
+      <div class="m-step"><div class="m-step-num">3</div><div class="m-step-text">Post your first setup photos on Instagram. Tag the local city/area. Event photos spread fast when they look good.</div></div>
+      <div class="m-step"><div class="m-step-num">4</div><div class="m-step-text">Message local party supply stores or venues about leaving a card.</div></div>
+      <div class="m-step"><div class="m-step-num">5</div><div class="m-step-text">Post in city Facebook community group around summer graduation season.</div></div>
+    </div>
+    <div class="m-section">
+      <div class="m-label">Pricing</div>
+      <div class="m-row"><span class="k">Balloon garland (6–8 ft)</span><span class="v">$125–175</span></div>
+      <div class="m-row"><span class="k">Large garland (10–14 ft)</span><span class="v">$175–250</span></div>
+      <div class="m-row"><span class="k">Backdrop setup</span><span class="v">$100–150</span></div>
+      <div class="m-row"><span class="k">Table decor (per table)</span><span class="v">$35–60</span></div>
+      <div class="m-row"><span class="k">Full party setup</span><span class="v">$300–400</span></div>
+      <div class="m-row"><span class="k">Baby shower setup</span><span class="v">$175–300</span></div>
+      <div class="m-row"><span class="k">Takedown add-on</span><span class="v">$40–75</span></div>
+    </div>
+    <div class="m-section">
+      <div class="m-label">Key Scripts</div>
+      <div class="m-script" style="margin-bottom:8px"><p><strong>Birthday party call:</strong> "I do full setups — garlands, backdrops, table decor. Birthday party is usually $200–300 depending on what you want. What's the theme? I can give you a specific quote."</p></div>
+      <div class="m-script" style="margin-bottom:8px"><p><strong>"What's included?":</strong> "I bring everything — all supplies included in the price. I arrive an hour before, set everything up, and leave before guests arrive. Takedown is $50 extra."</p></div>
+      <div class="m-script"><p><strong>Getting referrals:</strong> "If you post photos from the party, tag me. And if anyone asks who did the decorations, I'd love the referral."</p></div>
+    </div>
+    <div class="m-section">
+      <div class="m-label">What the AI Handles</div>
+      <ul class="m-list">
+        <li>Answers calls, collects event date, type, and vision</li>
+        <li>Books the event, confirms time and address</li>
+        <li>Sends reminder 48 hours before event</li>
+        <li>Sends payment request after setup</li>
+        <li>Requests review + photo tag after event</li>
+        <li>Follows up with past clients before common event holidays</li>
+      </ul>
+    </div>
+    <a class="m-cta" href="https://bosssystems.co/partner-tools.html" target="_blank">Full Guide →</a>
+  `
+},
+
+'pt-social': {
+  title: 'Social Media Management',
+  badge: '$0 STARTUP', badgeStyle: 'background:#1a1200;color:var(--gold);border:1px solid #3a3000',
+  html: `
+    <div class="m-stat-grid">
+      <div class="m-stat"><div class="n">$200–400</div><div class="l">Per client/mo</div></div>
+      <div class="m-stat"><div class="n">$400–800</div><div class="l">Weekly potential</div></div>
+      <div class="m-stat"><div class="n">$0</div><div class="l">Startup cost</div></div>
+      <div class="m-stat"><div class="n">80%</div><div class="l">Partner keeps</div></div>
+    </div>
+    <div class="m-section">
+      <div class="m-label">First 5 Clients</div>
+      <div class="m-step"><div class="m-step-num">1</div><div class="m-step-text">Make a free post for a local business you like. Send it to them. "I made this for your Instagram. If you want posts like this weekly, I charge $250/month."</div></div>
+      <div class="m-step"><div class="m-step-num">2</div><div class="m-step-text">Walk into local businesses and ask who runs their Instagram. If it's inactive or bad, make your pitch on the spot.</div></div>
+      <div class="m-step"><div class="m-step-num">3</div><div class="m-step-text">Look at local Google Business profiles. If the posts section is empty or stale, they're a target.</div></div>
+      <div class="m-step"><div class="m-step-num">4</div><div class="m-step-text">Post your own Instagram showing example work. Tag local businesses. Demonstrate what you're selling.</div></div>
+      <div class="m-step"><div class="m-step-num">5</div><div class="m-step-text">Offer first month at a discount to your first 2–3 clients. Get results, get testimonials, then raise rates.</div></div>
+    </div>
+    <div class="m-section">
+      <div class="m-label">Pricing</div>
+      <div class="m-row"><span class="k">Starter (8 posts/mo, IG only)</span><span class="v">$200–250/mo</span></div>
+      <div class="m-row"><span class="k">Standard (12–15 posts, IG + FB)</span><span class="v">$275–325/mo</span></div>
+      <div class="m-row"><span class="k">Full (20 posts, IG + FB + Google)</span><span class="v">$350–400/mo</span></div>
+      <div class="m-row"><span class="k">Story content (per week)</span><span class="v">$50–75 add-on</span></div>
+      <div class="m-row"><span class="k">Reel production (per reel)</span><span class="v">$50–100 add-on</span></div>
+      <div class="m-row"><span class="k">Account setup / refresh</span><span class="v">$100–150 flat</span></div>
+    </div>
+    <div class="m-section">
+      <div class="m-label">Key Scripts</div>
+      <div class="m-script" style="margin-bottom:8px"><p><strong>Walking into a business:</strong> "I run social media for local businesses. I made a sample post for yours — want to see it? If you like it, I do this every week for $250/month. Full month, cancel anytime."</p></div>
+      <div class="m-script" style="margin-bottom:8px"><p><strong>"We tried it and it didn't work":</strong> "Usually that's a consistency issue. One post a month doesn't build an audience. Three to five per week does. That's exactly why I exist."</p></div>
+      <div class="m-script"><p><strong>After first month:</strong> "Here's what went out this month and the engagement numbers. Want to keep going? I'll lock in this rate for the summer."</p></div>
+    </div>
+    <div class="m-section">
+      <div class="m-label">What the AI Handles</div>
+      <ul class="m-list">
+        <li>Answers calls with service description and pricing</li>
+        <li>Books intro consultations with prospective clients</li>
+        <li>Sends monthly payment reminders and invoices</li>
+        <li>Handles calls about packages or upgrades</li>
+        <li>Requests testimonials after first month</li>
+        <li>Re-engages churned clients after 30 days of silence</li>
+      </ul>
+    </div>
+    <a class="m-cta" href="https://bosssystems.co/partner-tools.html" target="_blank">Full Guide →</a>
+  `
+},
+
+'pt-organizing': {
+  title: 'Home Organizing',
+  badge: '$0 STARTUP', badgeStyle: 'background:#1a1200;color:var(--gold);border:1px solid #3a3000',
+  html: `
+    <div class="m-stat-grid">
+      <div class="m-stat"><div class="n">$65–85</div><div class="l">Per hour</div></div>
+      <div class="m-stat"><div class="n">$600–1,200</div><div class="l">Weekly potential</div></div>
+      <div class="m-stat"><div class="n">$0</div><div class="l">Startup cost</div></div>
+      <div class="m-stat"><div class="n">80%</div><div class="l">Partner keeps</div></div>
+    </div>
+    <div class="m-section">
+      <div class="m-label">First 5 Clients</div>
+      <div class="m-step"><div class="m-step-num">1</div><div class="m-step-text">Organize one neighbor's pantry for free in exchange for a before/after photo. That photo is worth more than any ad.</div></div>
+      <div class="m-step"><div class="m-step-num">2</div><div class="m-step-text">Post the before/after in local Facebook community group. Organizing before/afters get shared more than almost any other service photo.</div></div>
+      <div class="m-step"><div class="m-step-num">3</div><div class="m-step-text">Post on Nextdoor. "Pantries, closets, garages. By the hour. [City]. [AI number]."</div></div>
+      <div class="m-step"><div class="m-step-num">4</div><div class="m-step-text">Post in mom Facebook groups. Parents drowning in kids' stuff are a prime target.</div></div>
+      <div class="m-step"><div class="m-step-num">5</div><div class="m-step-text">Offer a starter special: 2-hour minimum at slight discount. Gets you in the door and usually leads to more rooms.</div></div>
+    </div>
+    <div class="m-section">
+      <div class="m-label">Pricing</div>
+      <div class="m-row"><span class="k">Pantry (2–3 hrs)</span><span class="v">$130–200</span></div>
+      <div class="m-row"><span class="k">Single closet (1.5–2 hrs)</span><span class="v">$100–150</span></div>
+      <div class="m-row"><span class="k">Master closet (3–4 hrs)</span><span class="v">$195–280</span></div>
+      <div class="m-row"><span class="k">Kids' room (2–3 hrs)</span><span class="v">$130–200</span></div>
+      <div class="m-row"><span class="k">Garage (4–6 hrs)</span><span class="v">$260–425</span></div>
+      <div class="m-row"><span class="k">Monthly maintenance (1 hr)</span><span class="v">$65–85</span></div>
+    </div>
+    <div class="m-section">
+      <div class="m-label">Key Scripts</div>
+      <div class="m-script" style="margin-bottom:8px"><p><strong>Pricing call:</strong> "I charge $75/hour with a two-hour minimum. A pantry usually takes 2–3 hours. A closet is 1.5–2 hours. I bring basic supplies — bins or inserts we can add to the invoice."</p></div>
+      <div class="m-script" style="margin-bottom:8px"><p><strong>"My house is a disaster":</strong> "Start with one space — usually the pantry or a closet. Once that's done you'll feel so much better. We can tackle it one room at a time."</p></div>
+      <div class="m-script"><p><strong>Upsell on site:</strong> "That pantry turned out great. While I'm here, I could knock out that front closet in about an hour if you want. Same rate."</p></div>
+    </div>
+    <div class="m-section">
+      <div class="m-label">What the AI Handles</div>
+      <ul class="m-list">
+        <li>Answers calls with pricing and service description</li>
+        <li>Books appointments, collects address and which space</li>
+        <li>Sends morning confirmation day of job</li>
+        <li>Sends payment request with itemized time</li>
+        <li>Review request after payment</li>
+        <li>Follows up with past clients monthly for maintenance sessions</li>
+      </ul>
+    </div>
+    <a class="m-cta" href="https://bosssystems.co/partner-tools.html" target="_blank">Full Guide →</a>
+  `
+},
+
+'pt-lawn': {
+  title: 'Lawn Care',
+  badge: 'RECURRING', badgeStyle: 'background:#0a1a0a;color:#4caf50;border:1px solid #2a5a2a',
+  html: `
+    <div class="m-stat-grid">
+      <div class="m-stat"><div class="n">$35–80</div><div class="l">Per yard</div></div>
+      <div class="m-stat"><div class="n">$500–1,500</div><div class="l">Weekly potential</div></div>
+      <div class="m-stat"><div class="n">$0</div><div class="l">Need mower</div></div>
+      <div class="m-stat"><div class="n">80%</div><div class="l">Partner keeps</div></div>
+    </div>
+    <div class="m-section">
+      <div class="m-label">First 5 Clients</div>
+      <div class="m-step"><div class="m-step-num">1</div><div class="m-step-text">Walk the neighborhood and note overgrown yards. Those homeowners can't or won't do it themselves — knock and offer a one-time cut. Most convert to recurring.</div></div>
+      <div class="m-step"><div class="m-step-num">2</div><div class="m-step-text">Post on Nextdoor and local Facebook group: "Taking on lawn care clients this week. [City]. Call or text [AI number]."</div></div>
+      <div class="m-step"><div class="m-step-num">3</div><div class="m-step-text">Offer the first cut at a discount if they commit to weekly or biweekly. Recurring is where the money is.</div></div>
+      <div class="m-step"><div class="m-step-num">4</div><div class="m-step-text">Talk to elderly neighbors. They often need regular care and pay without negotiating.</div></div>
+      <div class="m-step"><div class="m-step-num">5</div><div class="m-step-text">Post on Facebook Marketplace under Services. Many people find lawn care this way specifically.</div></div>
+    </div>
+    <div class="m-section">
+      <div class="m-label">Pricing</div>
+      <div class="m-row"><span class="k">Small yard (mow only)</span><span class="v">$35–45</span></div>
+      <div class="m-row"><span class="k">Average (mow + edge)</span><span class="v">$45–60</span></div>
+      <div class="m-row"><span class="k">Large (mow + edge + blow)</span><span class="v">$60–80</span></div>
+      <div class="m-row"><span class="k">First cut (overgrown)</span><span class="v">Add $15–25</span></div>
+      <div class="m-row"><span class="k">Weekly recurring (per cut)</span><span class="v">$40–65</span></div>
+      <div class="m-row"><span class="k">Biweekly recurring (per cut)</span><span class="v">$50–75</span></div>
+    </div>
+    <div class="m-section">
+      <div class="m-label">Key Scripts</div>
+      <div class="m-script" style="margin-bottom:8px"><p><strong>Pricing call:</strong> "For average yard — mow, edge, and blow — I'm at $55. First cut is $65 if it hasn't been done in a while. Weekly I can lock that rate in and you won't think about it again."</p></div>
+      <div class="m-script" style="margin-bottom:8px"><p><strong>Recurring close:</strong> "Weekly is $50 every cut. I do [your street] on Thursdays so I'd add you to that route. You'll get a text the night before. No contract, just let me know if you need to skip."</p></div>
+      <div class="m-script"><p><strong>At the door:</strong> "I noticed your lawn. I'm doing lawn care in the neighborhood this week. I could get that done today for $55. Equipment's in the truck right now."</p></div>
+    </div>
+    <div class="m-section">
+      <div class="m-label">What the AI Handles</div>
+      <ul class="m-list">
+        <li>Answers calls with pricing and availability</li>
+        <li>Books new clients into weekly schedule</li>
+        <li>Sends recurring weekly reminders to clients</li>
+        <li>Handles skip requests and reschedules</li>
+        <li>Sends payment request after each visit</li>
+        <li>Re-engages clients who stop responding</li>
+      </ul>
+    </div>
+    <a class="m-cta" href="https://bosssystems.co/partner-tools.html" target="_blank">Full Guide →</a>
+  `
+},
+
+'pt-cleaning': {
+  title: 'House Cleaning',
+  badge: 'RECURRING', badgeStyle: 'background:#0a1a0a;color:#4caf50;border:1px solid #2a5a2a',
+  html: `
+    <div class="m-stat-grid">
+      <div class="m-stat"><div class="n">$100–250</div><div class="l">Per clean</div></div>
+      <div class="m-stat"><div class="n">$600–1,500</div><div class="l">Weekly potential</div></div>
+      <div class="m-stat"><div class="n">~$60</div><div class="l">Supplies (Walmart)</div></div>
+      <div class="m-stat"><div class="n">80%</div><div class="l">Partner keeps</div></div>
+    </div>
+    <div class="m-section">
+      <div class="m-label">First 5 Clients</div>
+      <div class="m-step"><div class="m-step-num">1</div><div class="m-step-text">Post on Nextdoor. House cleaning is one of the most searched services there. "Taking cleaning clients in [city] — [AI number]."</div></div>
+      <div class="m-step"><div class="m-step-num">2</div><div class="m-step-text">Find Airbnb listings nearby and contact hosts directly. Airbnb hosts pay more, clean more often, and rebook without hesitation.</div></div>
+      <div class="m-step"><div class="m-step-num">3</div><div class="m-step-text">Tell every adult you know. Word of mouth is how most cleaners get their first 5. "I'm doing house cleaning this summer if you know anyone."</div></div>
+      <div class="m-step"><div class="m-step-num">4</div><div class="m-step-text">Post in local mom Facebook groups. Working parents are the highest-converting target.</div></div>
+      <div class="m-step"><div class="m-step-num">5</div><div class="m-step-text">Offer first clean at a small discount in exchange for a recurring weekly or biweekly commitment.</div></div>
+    </div>
+    <div class="m-section">
+      <div class="m-label">Pricing</div>
+      <div class="m-row"><span class="k">Standard (2 bed / 1 bath)</span><span class="v">$100–130</span></div>
+      <div class="m-row"><span class="k">Standard (3 bed / 2 bath)</span><span class="v">$130–165</span></div>
+      <div class="m-row"><span class="k">Standard (4 bed / 3 bath)</span><span class="v">$165–200</span></div>
+      <div class="m-row"><span class="k">Deep clean (first-time)</span><span class="v">Add $30–50</span></div>
+      <div class="m-row"><span class="k">Move-in / move-out</span><span class="v">$175–250</span></div>
+      <div class="m-row"><span class="k">Airbnb turnover clean</span><span class="v">$100–150/turn</span></div>
+    </div>
+    <div class="m-section">
+      <div class="m-label">Key Scripts</div>
+      <div class="m-script" style="margin-bottom:8px"><p><strong>Quote call:</strong> "For 3 bed / 2 bath I'm at $145. Full top-to-bottom — bathrooms, kitchen, all surfaces, floors. First clean is $165 since it takes a bit longer. After that stays at $145."</p></div>
+      <div class="m-script" style="margin-bottom:8px"><p><strong>Airbnb host:</strong> "Turnover cleans are $[X] depending on size. I bring my own supplies, reset per your checklist, can send a photo confirmation when done. Usually available same-day for checkout cleans."</p></div>
+      <div class="m-script"><p><strong>Frequency question:</strong> "Most people do biweekly. Keeps the house manageable without the cost of weekly. Try it one month — switch anytime."</p></div>
+    </div>
+    <div class="m-section">
+      <div class="m-label">What the AI Handles</div>
+      <ul class="m-list">
+        <li>Answers calls with pricing and availability</li>
+        <li>Books first-time and recurring clients</li>
+        <li>Sends weekly / biweekly appointment reminders</li>
+        <li>Sends payment requests after each clean</li>
+        <li>Follows up on overdue payments</li>
+        <li>Re-engages clients who go quiet after 2 missed cycles</li>
+      </ul>
+    </div>
+    <a class="m-cta" href="https://bosssystems.co/partner-tools.html" target="_blank">Full Guide →</a>
+  `
+},
+
+'pt-detailing': {
+  title: 'Car Detailing',
+  badge: 'MOBILE', badgeStyle: 'background:#1a1200;color:var(--gold);border:1px solid #3a3000',
+  html: `
+    <div class="m-stat-grid">
+      <div class="m-stat"><div class="n">$75–150</div><div class="l">Per car</div></div>
+      <div class="m-stat"><div class="n">$600–1,200</div><div class="l">Weekly potential</div></div>
+      <div class="m-stat"><div class="n">~$100</div><div class="l">Starter kit</div></div>
+      <div class="m-stat"><div class="n">80%</div><div class="l">Partner keeps</div></div>
+    </div>
+    <div class="m-section">
+      <div class="m-label">First 5 Clients</div>
+      <div class="m-step"><div class="m-step-num">1</div><div class="m-step-text">Post in neighborhood Facebook group with a before/after photo. Lead with the photo — results sell it.</div></div>
+      <div class="m-step"><div class="m-step-num">2</div><div class="m-step-text">Walk office parking lots midmorning. Leave a simple note on cars: "Interior detail — $85 — [AI number]." Office workers pay for convenience.</div></div>
+      <div class="m-step"><div class="m-step-num">3</div><div class="m-step-text">Post on Facebook Marketplace. Interior detailing is a top searched service there.</div></div>
+      <div class="m-step"><div class="m-step-num">4</div><div class="m-step-text">Text family and friends who have kids or dogs — their cars are destroyed and they know it.</div></div>
+      <div class="m-step"><div class="m-step-num">5</div><div class="m-step-text">Post on Nextdoor. Offer to come to their house — mobile service is a major advantage over a shop.</div></div>
+    </div>
+    <div class="m-section">
+      <div class="m-label">Pricing</div>
+      <div class="m-row"><span class="k">Interior detail (car)</span><span class="v">$80–100</span></div>
+      <div class="m-row"><span class="k">Interior detail (SUV/truck)</span><span class="v">$100–125</span></div>
+      <div class="m-row"><span class="k">Deep clean (pet hair, stains)</span><span class="v">$120–150</span></div>
+      <div class="m-row"><span class="k">Quick vacuum + wipe only</span><span class="v">$50–65</span></div>
+      <div class="m-row"><span class="k">Carpet shampoo</span><span class="v">$40–60</span></div>
+      <div class="m-row"><span class="k">Odor treatment add-on</span><span class="v">$30–50</span></div>
+    </div>
+    <div class="m-section">
+      <div class="m-label">Key Scripts</div>
+      <div class="m-script" style="margin-bottom:8px"><p><strong>What do you do?:</strong> "Interior only — full vacuum, wipe every surface, clean the glass, condition the dash and doors. Car is $85, SUV is $100. I come to your house or office. About an hour and a half."</p></div>
+      <div class="m-script" style="margin-bottom:8px"><p><strong>"It's really bad" (kids/dogs):</strong> "I can handle that. Heavily used cars are $120–150 because the process takes longer. I'll text you if it's worse than expected — you'll know before I go above that."</p></div>
+      <div class="m-script"><p><strong>On price hesitation:</strong> "A shop charges $150–200 and you drop the car for half a day. I come to you, you don't move your schedule, and the price is lower."</p></div>
+    </div>
+    <div class="m-section">
+      <div class="m-label">What the AI Handles</div>
+      <ul class="m-list">
+        <li>Answers calls with service descriptions and pricing 24/7</li>
+        <li>Books appointments, confirms time and location</li>
+        <li>Sends morning reminders to you and the customer</li>
+        <li>Sends payment link after the job</li>
+        <li>Sends review request after payment</li>
+        <li>Re-books repeat customers on a schedule</li>
+      </ul>
+    </div>
+    <a class="m-cta" href="https://bosssystems.co/partner-tools.html" target="_blank">Full Guide →</a>
+  `
+},
+
+'pt-pool': {
+  title: 'Pool Cleaning',
+  badge: 'RECURRING', badgeStyle: 'background:#0a1a0a;color:#4caf50;border:1px solid #2a5a2a',
+  html: `
+    <div class="m-stat-grid">
+      <div class="m-stat"><div class="n">$85–115</div><div class="l">Per clean</div></div>
+      <div class="m-stat"><div class="n">$1,000–2,500</div><div class="l">Weekly potential</div></div>
+      <div class="m-stat"><div class="n">~$80</div><div class="l">Supplies (Walmart)</div></div>
+      <div class="m-stat"><div class="n">80%</div><div class="l">Partner keeps</div></div>
+    </div>
+    <div class="m-section">
+      <div class="m-label">First 5 Clients</div>
+      <div class="m-step"><div class="m-step-num">1</div><div class="m-step-text">Drive neighborhoods and look for pools visible from the street. In Texas almost every subdivision has dozens. Note the addresses.</div></div>
+      <div class="m-step"><div class="m-step-num">2</div><div class="m-step-text">Go door-to-door. "I do weekly pool maintenance in this area — $95/week, test chemicals, skim, and vacuum. Want me to add you?"</div></div>
+      <div class="m-step"><div class="m-step-num">3</div><div class="m-step-text">Post on Nextdoor. Mention a specific neighborhood you're already servicing if you have one.</div></div>
+      <div class="m-step"><div class="m-step-num">4</div><div class="m-step-text">Post in local Facebook groups. Parents with pools in Texas in June are desperate for someone reliable.</div></div>
+      <div class="m-step"><div class="m-step-num">5</div><div class="m-step-text">Ask your first client if they know neighbors who need pool service. One referral per client is your growth engine.</div></div>
+    </div>
+    <div class="m-section">
+      <div class="m-label">Pricing</div>
+      <div class="m-row"><span class="k">Weekly maintenance</span><span class="v">$85–115/week</span></div>
+      <div class="m-row"><span class="k">Biweekly maintenance</span><span class="v">$100–130/visit</span></div>
+      <div class="m-row"><span class="k">One-time clean (green pool)</span><span class="v">$150–250</span></div>
+      <div class="m-row"><span class="k">Chemical balance only</span><span class="v">$50–75</span></div>
+      <div class="m-row"><span class="k">Opening service</span><span class="v">$125–175</span></div>
+      <div class="m-row"><span class="k">Filter cleaning</span><span class="v">$50–80</span></div>
+    </div>
+    <div class="m-section">
+      <div class="m-label">Key Scripts</div>
+      <div class="m-script" style="margin-bottom:8px"><p><strong>At the door:</strong> "I do weekly pool maintenance in this neighborhood. $95/week — I test and balance chemicals, skim, vacuum, brush. Comes out of your schedule completely. Want me to start this week?"</p></div>
+      <div class="m-script" style="margin-bottom:8px"><p><strong>Green pool call:</strong> "That's a shock treatment job. $150–200 depending on how bad it is. Gets it clear within a few days. Then if you want weekly service, I'll add you to my route."</p></div>
+      <div class="m-script"><p><strong>Referral ask:</strong> "If you know any neighbors with a pool, I'm building my route in this area. A text introduction is all I need."</p></div>
+    </div>
+    <div class="m-section">
+      <div class="m-label">What the AI Handles</div>
+      <ul class="m-list">
+        <li>Answers all calls with service description and pricing</li>
+        <li>Books new weekly maintenance clients</li>
+        <li>Sends weekly service reminders to clients</li>
+        <li>Sends payment requests after each service</li>
+        <li>Follows up on unpaid balances automatically</li>
+        <li>Handles clients who need to pause or reschedule</li>
+      </ul>
+    </div>
+    <a class="m-cta" href="https://bosssystems.co/partner-tools.html" target="_blank">Full Guide →</a>
+  `
+},
+
+'pt-junk': {
+  title: 'Junk Removal',
+  badge: '$1,500–3,500/WK', badgeStyle: 'background:#1a1200;color:var(--gold);border:1px solid #3a3000',
+  html: `
+    <div class="m-stat-grid">
+      <div class="m-stat"><div class="n">$150–400</div><div class="l">Per load</div></div>
+      <div class="m-stat"><div class="n">$1,500–3,500</div><div class="l">Weekly potential</div></div>
+      <div class="m-stat"><div class="n">$0</div><div class="l">Need truck</div></div>
+      <div class="m-stat"><div class="n">80%</div><div class="l">Partner keeps</div></div>
+    </div>
+    <div class="m-section">
+      <div class="m-label">First 5 Clients</div>
+      <div class="m-step"><div class="m-step-num">1</div><div class="m-step-text">Post on Facebook Marketplace: "Junk Removal — Same Day — [City]." Include AI number and price range. Repost every 3 days.</div></div>
+      <div class="m-step"><div class="m-step-num">2</div><div class="m-step-text">Post on Craigslist under Services. Same copy. Craigslist still gets real traffic for this specific service.</div></div>
+      <div class="m-step"><div class="m-step-num">3</div><div class="m-step-text">Text 10 neighbors or family friends. People always know someone cleaning out a garage or moving.</div></div>
+      <div class="m-step"><div class="m-step-num">4</div><div class="m-step-text">Post in local city Facebook group. "Starting a junk removal service — anyone need a load hauled?" Simple. Direct. It works.</div></div>
+      <div class="m-step"><div class="m-step-num">5</div><div class="m-step-text">If you see furniture on a curb with a "free" sign, that person often has more inside. Knock.</div></div>
+    </div>
+    <div class="m-section">
+      <div class="m-label">Pricing</div>
+      <div class="m-row"><span class="k">Small load (truck bed)</span><span class="v">$150–175</span></div>
+      <div class="m-row"><span class="k">Half load</span><span class="v">$200–250</span></div>
+      <div class="m-row"><span class="k">Full truck load</span><span class="v">$275–350</span></div>
+      <div class="m-row"><span class="k">Full load + trailer</span><span class="v">$325–400</span></div>
+      <div class="m-row"><span class="k">Appliance only (per item)</span><span class="v">$75–100</span></div>
+      <div class="m-row"><span class="k">Garage cleanout</span><span class="v">$250–400</span></div>
+    </div>
+    <div class="m-section">
+      <div class="m-label">Key Scripts</div>
+      <div class="m-script" style="margin-bottom:8px"><p><strong>On-site quote:</strong> "I'd put this at a [half/full] load, so probably $[X]. That includes haul-away and disposal. Want me to take it today?"</p></div>
+      <div class="m-script" style="margin-bottom:8px"><p><strong>"That's too expensive":</strong> "The fee includes dumping costs, which aren't cheap. I can do $[X lower] if you help load. Otherwise this is what it costs to do it right and leave your property clean."</p></div>
+      <div class="m-script"><p><strong>Text asking if available today:</strong> "Yes, I can be there by [time]. Address? Payment is [cash/Venmo] after the job is done and you're happy with it."</p></div>
+    </div>
+    <div class="m-section">
+      <div class="m-label">What the AI Handles</div>
+      <ul class="m-list">
+        <li>Answers every call 24/7, quotes by load size</li>
+        <li>Books the appointment, texts customer a confirmation</li>
+        <li>Sends a reminder the morning of the job</li>
+        <li>Sends payment link after job is marked complete</li>
+        <li>Sends Google review request 30 min after payment</li>
+        <li>Logs every call and job automatically</li>
+      </ul>
+    </div>
+    <a class="m-cta" href="https://bosssystems.co/partner-tools.html" target="_blank">Full Guide →</a>
+  `
+},
+
+'pt-pressure': {
+  title: 'Pressure Washing',
+  badge: 'HIGH MARGIN', badgeStyle: 'background:#1a1200;color:var(--gold);border:1px solid #3a3000',
+  html: `
+    <div class="m-stat-grid">
+      <div class="m-stat"><div class="n">$150–350</div><div class="l">Per job</div></div>
+      <div class="m-stat"><div class="n">$1,000–2,500</div><div class="l">Weekly potential</div></div>
+      <div class="m-stat"><div class="n">$150</div><div class="l">Rental/day</div></div>
+      <div class="m-stat"><div class="n">80%</div><div class="l">Partner keeps</div></div>
+    </div>
+    <div class="m-section">
+      <div class="m-label">First 5 Clients</div>
+      <div class="m-step"><div class="m-step-num">1</div><div class="m-step-text">Walk a neighborhood and look for driveways with visible green algae, black stains, or dirt. Those homeowners will say yes immediately once they see a before/after.</div></div>
+      <div class="m-step"><div class="m-step-num">2</div><div class="m-step-text">Offer the first driveway on your block at a discount for a before/after photo and review. That photo becomes your ad.</div></div>
+      <div class="m-step"><div class="m-step-num">3</div><div class="m-step-text">Post before/after on local Facebook community group. "First three driveways this week are $100 — building my portfolio."</div></div>
+      <div class="m-step"><div class="m-step-num">4</div><div class="m-step-text">Post on Nextdoor with the before/after. Pressure washing before/afters spread fast in suburban neighborhoods.</div></div>
+      <div class="m-step"><div class="m-step-num">5</div><div class="m-step-text">Book at least 3 jobs BEFORE renting the machine. That way the rental pays for itself on day one.</div></div>
+    </div>
+    <div class="m-section">
+      <div class="m-label">Pricing</div>
+      <div class="m-row"><span class="k">Driveway (standard 2-car)</span><span class="v">$100–150</span></div>
+      <div class="m-row"><span class="k">Large driveway / circle drive</span><span class="v">$150–200</span></div>
+      <div class="m-row"><span class="k">Front walkway + porch</span><span class="v">$75–100</span></div>
+      <div class="m-row"><span class="k">Deck or patio (400 sq ft)</span><span class="v">$150–200</span></div>
+      <div class="m-row"><span class="k">House wash (1 story)</span><span class="v">$200–280</span></div>
+      <div class="m-row"><span class="k">House wash (2 story)</span><span class="v">$280–350</span></div>
+    </div>
+    <div class="m-section">
+      <div class="m-label">Key Scripts</div>
+      <div class="m-script" style="margin-bottom:8px"><p><strong>Pricing call:</strong> "Standard two-car driveway I'm at $125. Walkway or porch adds $75 each. Easiest is I swing by, take a look, and give you a firm number before I start anything."</p></div>
+      <div class="m-script" style="margin-bottom:8px"><p><strong>Neighbor sees you working:</strong> "I'm doing a few in this neighborhood this week. If you want yours done, I can fit you in. My number is [AI number] — just text or call."</p></div>
+      <div class="m-script"><p><strong>After the job:</strong> "Take a look. Want me to hit anything else while I'm here? And if you know anyone in the neighborhood, word of mouth is everything for me."</p></div>
+    </div>
+    <div class="m-section">
+      <div class="m-label">What the AI Handles</div>
+      <ul class="m-list">
+        <li>Answers every call with pricing and availability</li>
+        <li>Takes address, what they want done, preferred time</li>
+        <li>Sends booking confirmation text to customer</li>
+        <li>Reminds you and customer morning of job</li>
+        <li>Sends payment link after job completion</li>
+        <li>Requests Google review 30 min after payment</li>
+      </ul>
+    </div>
+    <a class="m-cta" href="https://bosssystems.co/partner-tools.html" target="_blank">Full Guide →</a>
   `
 },
 
