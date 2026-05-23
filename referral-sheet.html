@@ -1,0 +1,505 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>BOSS Systems — Summer Partner Program Referral Sheet</title>
+<style>
+  @page {
+    size: letter portrait;
+    margin: 0.55in 0.6in;
+  }
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  body {
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica, Arial, sans-serif;
+    font-size: 11pt;
+    color: #111;
+    background: #fff;
+    line-height: 1.5;
+    -webkit-font-smoothing: antialiased;
+  }
+
+  /* ── PRINT BUTTON (screen only) ── */
+  .print-bar {
+    background: #080808;
+    color: #fff;
+    padding: 12px 24px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    font-size: 13px;
+    letter-spacing: 0.5px;
+  }
+  .print-bar span { color: #C9A84C; font-weight: 700; }
+  .print-btn {
+    background: #C9A84C;
+    color: #080808;
+    border: none;
+    padding: 9px 20px;
+    font-weight: 800;
+    font-size: 12px;
+    letter-spacing: 1.5px;
+    text-transform: uppercase;
+    cursor: pointer;
+  }
+  .print-btn:hover { background: #dfc070; }
+
+  @media print {
+    .print-bar { display: none; }
+  }
+
+  /* ── PAGE WRAPPER ── */
+  .page {
+    max-width: 7.3in;
+    margin: 0 auto;
+    padding: 0.4in 0;
+  }
+
+  @media screen {
+    .page {
+      padding: 40px 48px;
+      min-height: 10in;
+      box-shadow: 0 2px 24px rgba(0,0,0,0.08);
+      margin: 24px auto;
+      max-width: 8.5in;
+    }
+  }
+
+  /* ── HEADER ── */
+  .header {
+    display: flex;
+    align-items: flex-start;
+    justify-content: space-between;
+    padding-bottom: 16pt;
+    border-bottom: 2pt solid #111;
+    margin-bottom: 20pt;
+  }
+  .logo-block {}
+  .logo {
+    font-size: 14pt;
+    font-weight: 900;
+    letter-spacing: 4pt;
+    text-transform: uppercase;
+    color: #111;
+    line-height: 1;
+    margin-bottom: 4pt;
+  }
+  .logo span { color: #C9A84C; }
+  .logo-sub {
+    font-size: 7.5pt;
+    letter-spacing: 2.5pt;
+    text-transform: uppercase;
+    color: #888;
+    font-weight: 600;
+  }
+  .header-tag {
+    text-align: right;
+    font-size: 7.5pt;
+    letter-spacing: 2pt;
+    text-transform: uppercase;
+    color: #888;
+    font-weight: 600;
+    line-height: 1.7;
+    margin-top: 2pt;
+  }
+
+  /* ── HEADLINE ── */
+  .headline-block {
+    margin-bottom: 18pt;
+  }
+  .headline-label {
+    font-size: 7pt;
+    font-weight: 800;
+    letter-spacing: 3pt;
+    text-transform: uppercase;
+    color: #C9A84C;
+    margin-bottom: 7pt;
+    display: block;
+  }
+  .headline {
+    font-size: 24pt;
+    font-weight: 900;
+    line-height: 1.08;
+    letter-spacing: -0.5pt;
+    color: #111;
+    margin-bottom: 8pt;
+  }
+  .subhead {
+    font-size: 11pt;
+    color: #444;
+    line-height: 1.6;
+    max-width: 5.2in;
+  }
+
+  /* ── TWO COLUMNS ── */
+  .two-col {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 20pt;
+    margin-bottom: 18pt;
+  }
+
+  /* ── SECTION BLOCK ── */
+  .block {
+    background: #f8f8f8;
+    border: 1pt solid #e0e0e0;
+    border-top: 3pt solid #111;
+    padding: 14pt 16pt;
+  }
+  .block.gold-top { border-top-color: #C9A84C; }
+  .block-label {
+    font-size: 7pt;
+    font-weight: 800;
+    letter-spacing: 2.5pt;
+    text-transform: uppercase;
+    color: #C9A84C;
+    margin-bottom: 10pt;
+    display: block;
+  }
+
+  /* ── DEAL POINTS ── */
+  .deal-list {
+    list-style: none;
+    display: flex;
+    flex-direction: column;
+    gap: 9pt;
+  }
+  .deal-list li {
+    display: flex;
+    align-items: flex-start;
+    gap: 9pt;
+  }
+  .deal-check {
+    width: 16pt;
+    height: 16pt;
+    background: #111;
+    color: #fff;
+    font-size: 8pt;
+    font-weight: 900;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+    margin-top: 1pt;
+  }
+  .deal-check.gold { background: #C9A84C; color: #080808; }
+  .deal-text {
+    font-size: 10.5pt;
+    line-height: 1.5;
+    color: #111;
+  }
+  .deal-text strong { font-weight: 800; }
+
+  /* ── BUSINESSES ── */
+  .biz-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 5pt;
+  }
+  .biz-item {
+    font-size: 9.5pt;
+    color: #333;
+    padding: 5pt 8pt;
+    background: #fff;
+    border: 1pt solid #e0e0e0;
+    display: flex;
+    align-items: center;
+    gap: 7pt;
+    line-height: 1.3;
+  }
+  .biz-dot {
+    width: 5pt;
+    height: 5pt;
+    background: #C9A84C;
+    border-radius: 50%;
+    flex-shrink: 0;
+  }
+
+  /* ── HOW IT WORKS ── */
+  .steps {
+    display: flex;
+    flex-direction: column;
+    gap: 8pt;
+  }
+  .step {
+    display: flex;
+    align-items: flex-start;
+    gap: 10pt;
+  }
+  .step-num {
+    width: 20pt;
+    height: 20pt;
+    border: 1.5pt solid #C9A84C;
+    color: #C9A84C;
+    font-size: 8.5pt;
+    font-weight: 900;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+    margin-top: 1pt;
+  }
+  .step-text {
+    font-size: 10pt;
+    color: #333;
+    line-height: 1.55;
+  }
+  .step-text strong { color: #111; font-weight: 800; }
+
+  /* ── BOTTOM ROW ── */
+  .bottom-row {
+    display: grid;
+    grid-template-columns: 1fr auto;
+    gap: 20pt;
+    align-items: start;
+    padding-top: 16pt;
+    border-top: 1pt solid #ddd;
+    margin-top: 4pt;
+  }
+
+  /* ── REFERRAL BONUS ── */
+  .bonus-block {
+    background: #080808;
+    color: #fff;
+    padding: 14pt 18pt;
+    margin-bottom: 14pt;
+  }
+  .bonus-label {
+    font-size: 7pt;
+    font-weight: 800;
+    letter-spacing: 2.5pt;
+    text-transform: uppercase;
+    color: #C9A84C;
+    margin-bottom: 6pt;
+    display: block;
+  }
+  .bonus-amount {
+    font-size: 28pt;
+    font-weight: 900;
+    color: #C9A84C;
+    line-height: 1;
+    margin-bottom: 4pt;
+  }
+  .bonus-text {
+    font-size: 9.5pt;
+    color: rgba(255,255,255,0.75);
+    line-height: 1.55;
+  }
+
+  /* ── CONTACT ── */
+  .contact-block { }
+  .contact-label {
+    font-size: 7pt;
+    font-weight: 800;
+    letter-spacing: 2.5pt;
+    text-transform: uppercase;
+    color: #888;
+    margin-bottom: 10pt;
+    display: block;
+  }
+  .contact-line {
+    font-size: 10pt;
+    color: #222;
+    margin-bottom: 6pt;
+    line-height: 1.4;
+  }
+  .contact-line strong { font-weight: 800; }
+  .contact-line .label { color: #888; font-size: 8.5pt; }
+  .website-line {
+    margin-top: 10pt;
+    font-size: 10pt;
+    font-weight: 800;
+    color: #111;
+    letter-spacing: 0.5pt;
+  }
+
+  /* ── QR CODE ── */
+  .qr-block {
+    text-align: center;
+    flex-shrink: 0;
+  }
+  .qr-block img {
+    width: 110pt;
+    height: 110pt;
+    display: block;
+    border: 1pt solid #e0e0e0;
+    margin-bottom: 5pt;
+  }
+  .qr-label {
+    font-size: 7.5pt;
+    color: #888;
+    letter-spacing: 1pt;
+    text-transform: uppercase;
+    font-weight: 600;
+  }
+  .qr-url {
+    font-size: 8.5pt;
+    font-weight: 800;
+    color: #111;
+    margin-top: 2pt;
+  }
+</style>
+</head>
+<body>
+
+<!-- Screen-only print bar -->
+<div class="print-bar">
+  <span>BOSS Systems</span> — Referral One-Pager &nbsp;·&nbsp; Print or save as PDF
+  <button class="print-btn" onclick="window.print()">Print / Save PDF</button>
+</div>
+
+<div class="page">
+
+  <!-- HEADER -->
+  <div class="header">
+    <div class="logo-block">
+      <div class="logo">BOSS <span>Systems</span></div>
+      <div class="logo-sub">AI-Powered Business Program</div>
+    </div>
+    <div class="header-tag">
+      Summer 2026<br>
+      Tyler, TX<br>
+      bosssystems.co
+    </div>
+  </div>
+
+  <!-- HEADLINE -->
+  <div class="headline-block">
+    <span class="headline-label">For Referrers</span>
+    <div class="headline">Help a Friend<br>Start a Business<br>This Summer.</div>
+    <div class="subhead">We set up the whole thing for free — AI phone system, booking, customer follow-up. Your friend just picks a business and does the physical work. They keep 80% of everything they make.</div>
+  </div>
+
+  <!-- TWO COLUMNS -->
+  <div class="two-col">
+
+    <!-- LEFT: THE DEAL -->
+    <div class="block gold-top">
+      <span class="block-label">The Deal</span>
+      <ul class="deal-list">
+        <li>
+          <div class="deal-check">✓</div>
+          <div class="deal-text"><strong>Zero cost to get started.</strong> No setup fee, no monthly cost, nothing to buy.</div>
+        </li>
+        <li>
+          <div class="deal-check">✓</div>
+          <div class="deal-text"><strong>They keep 80% of every dollar.</strong> 20% goes to BOSS Systems. That's it.</div>
+        </li>
+        <li>
+          <div class="deal-check">✓</div>
+          <div class="deal-text"><strong>AI answers their phone 24/7.</strong> Never miss a customer call — even while they're on a job.</div>
+        </li>
+        <li>
+          <div class="deal-check">✓</div>
+          <div class="deal-text"><strong>Handles bookings and follow-ups automatically.</strong> No chasing customers, no spreadsheets.</div>
+        </li>
+        <li>
+          <div class="deal-check">✓</div>
+          <div class="deal-text"><strong>They own the business after summer.</strong> Keep the clients, keep the system. It's theirs.</div>
+        </li>
+      </ul>
+    </div>
+
+    <!-- RIGHT: BUSINESSES + HOW -->
+    <div style="display:flex;flex-direction:column;gap:14pt;">
+
+      <div class="block">
+        <span class="block-label">Available Businesses</span>
+        <div class="biz-grid">
+          <div class="biz-item"><div class="biz-dot"></div>Pet Sitting</div>
+          <div class="biz-item"><div class="biz-dot"></div>Photography</div>
+          <div class="biz-item"><div class="biz-dot"></div>Event Decor</div>
+          <div class="biz-item"><div class="biz-dot"></div>Social Media Mgmt</div>
+          <div class="biz-item"><div class="biz-dot"></div>Home Organizing</div>
+          <div class="biz-item"><div class="biz-dot"></div>Lawn Care</div>
+          <div class="biz-item"><div class="biz-dot"></div>House Cleaning</div>
+          <div class="biz-item"><div class="biz-dot"></div>Car Detailing</div>
+          <div class="biz-item"><div class="biz-dot"></div>Junk Removal</div>
+          <div class="biz-item"><div class="biz-dot"></div>Pressure Washing</div>
+          <div class="biz-item"><div class="biz-dot"></div>Pool Cleaning</div>
+        </div>
+      </div>
+
+      <div class="block">
+        <span class="block-label">Who It's For</span>
+        <div class="steps">
+          <div class="step">
+            <div class="step-num">→</div>
+            <div class="step-text">Ages 14–25, anywhere in the US</div>
+          </div>
+          <div class="step">
+            <div class="step-num">→</div>
+            <div class="step-text">No experience needed — just willing to show up and work</div>
+          </div>
+          <div class="step">
+            <div class="step-num">→</div>
+            <div class="step-text">Spots are limited — first come, first served by market</div>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- BOTTOM ROW -->
+  <div class="bottom-row">
+    <div>
+
+      <!-- REFERRAL BONUS -->
+      <div class="bonus-block">
+        <span class="bonus-label">Your Referral Bonus</span>
+        <div class="bonus-amount">$20 Cash</div>
+        <div class="bonus-text">When the person you refer gets accepted and makes their first profit, you get $20 — paid via Venmo, no strings attached. Just make sure they put your name in the "who referred you" box on the application.</div>
+      </div>
+
+      <!-- HOW TO REFER -->
+      <span class="contact-label">How to Refer Someone</span>
+      <div class="steps">
+        <div class="step">
+          <div class="step-num">1</div>
+          <div class="step-text">Send them to <strong>bosssystems.co/summer</strong> or scan the QR code →</div>
+        </div>
+        <div class="step">
+          <div class="step-num">2</div>
+          <div class="step-text">They fill out the short info sheet (takes 2 minutes)</div>
+        </div>
+        <div class="step">
+          <div class="step-num">3</div>
+          <div class="step-text">They enter <strong>your first and last name</strong> in the "who referred you" box</div>
+        </div>
+        <div class="step">
+          <div class="step-num">4</div>
+          <div class="step-text">Boston texts them back within 24 hours. You get $20 when they make their first profit.</div>
+        </div>
+      </div>
+
+      <div style="margin-top:14pt;padding-top:14pt;border-top:1pt solid #e0e0e0;display:flex;gap:24pt;flex-wrap:wrap;">
+        <div>
+          <span class="contact-label" style="margin-bottom:5pt">Questions?</span>
+          <div class="contact-line"><span class="label">Text/Call &nbsp;</span><strong>903-714-6162</strong></div>
+          <div class="contact-line"><span class="label">Email &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><strong>bosrossall@gmail.com</strong></div>
+          <div class="contact-line"><span class="label">Venmo &nbsp;&nbsp;&nbsp;</span><strong>@BosRoss</strong></div>
+        </div>
+        <div>
+          <span class="contact-label" style="margin-bottom:5pt">Boston Rossall</span>
+          <div class="contact-line" style="font-size:9.5pt;color:#555;line-height:1.6;">Founder, BOSS Systems<br>Tyler, TX · Age 17<br>Building AI businesses since 2025</div>
+        </div>
+      </div>
+
+    </div>
+
+    <!-- QR CODE -->
+    <div class="qr-block">
+      <img src="https://api.qrserver.com/v1/create-qr-code/?size=220x220&data=https://bosssystems.co/summer.html&bgcolor=ffffff&color=111111&margin=8" alt="QR Code for bosssystems.co/summer.html">
+      <div class="qr-label">Scan to apply</div>
+      <div class="qr-url">bosssystems.co/summer</div>
+    </div>
+
+  </div>
+
+</div><!-- end .page -->
+
+</body>
+</html>
