@@ -1,0 +1,1313 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Built by BOSS — Your Business. Built in 72 Hours.</title>
+  <style>
+    :root {
+      --gold: #C9A84C;
+      --gold-light: #e0c070;
+      --gold-dim: #8a6f2e;
+      --dark: #0a0a0a;
+      --dark-2: #111111;
+      --dark-3: #1a1a1a;
+      --dark-4: #222222;
+      --text: #f0f0f0;
+      --text-dim: #999999;
+      --border: rgba(201, 168, 76, 0.2);
+    }
+
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    html {
+      scroll-behavior: smooth;
+    }
+
+    body {
+      background: var(--dark);
+      color: var(--text);
+      font-family: 'Inter', 'Helvetica Neue', Arial, sans-serif;
+      line-height: 1.6;
+      overflow-x: hidden;
+    }
+
+    /* ─── TYPOGRAPHY ─── */
+    h1, h2, h3, h4 {
+      font-weight: 800;
+      letter-spacing: -0.02em;
+      line-height: 1.1;
+    }
+
+    .gold { color: var(--gold); }
+    .gold-border { border-color: var(--gold); }
+
+    /* ─── NAVBAR ─── */
+    nav {
+      position: fixed;
+      top: 0;
+      width: 100%;
+      z-index: 100;
+      background: rgba(10, 10, 10, 0.92);
+      backdrop-filter: blur(12px);
+      border-bottom: 1px solid var(--border);
+      padding: 0 2rem;
+      height: 64px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+
+    .nav-logo {
+      font-size: 1.1rem;
+      font-weight: 800;
+      letter-spacing: 0.05em;
+      color: var(--gold);
+      text-decoration: none;
+    }
+
+    .nav-logo span {
+      color: var(--text);
+    }
+
+    .nav-summer {
+      font-size: 0.82rem;
+      font-weight: 700;
+      letter-spacing: 0.05em;
+      color: var(--text-dim);
+      text-decoration: none;
+      transition: color 0.2s;
+    }
+
+    .nav-summer:hover { color: var(--gold); }
+
+    .nav-cta {
+      background: var(--gold);
+      color: var(--dark);
+      padding: 0.5rem 1.25rem;
+      border-radius: 6px;
+      font-weight: 700;
+      font-size: 0.9rem;
+      text-decoration: none;
+      letter-spacing: 0.02em;
+      transition: background 0.2s;
+    }
+
+    .nav-cta:hover {
+      background: var(--gold-light);
+    }
+
+    /* ─── SECTIONS ─── */
+    section {
+      padding: 100px 2rem;
+      max-width: 1100px;
+      margin: 0 auto;
+    }
+
+    .section-label {
+      font-size: 0.75rem;
+      font-weight: 700;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      color: var(--gold);
+      margin-bottom: 1rem;
+    }
+
+    /* ─── HERO ─── */
+    #hero {
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      padding-top: 140px;
+      padding-bottom: 80px;
+      max-width: 1100px;
+    }
+
+    #hero h1 {
+      font-size: clamp(2.8rem, 6vw, 5.5rem);
+      color: var(--text);
+      margin-bottom: 1.5rem;
+    }
+
+    #hero h1 em {
+      font-style: normal;
+      color: var(--gold);
+    }
+
+    #hero p {
+      font-size: clamp(1.1rem, 2vw, 1.4rem);
+      color: var(--text-dim);
+      max-width: 680px;
+      margin-bottom: 2.5rem;
+      line-height: 1.7;
+    }
+
+    .hero-ctas {
+      display: flex;
+      gap: 1rem;
+      flex-wrap: wrap;
+      align-items: center;
+    }
+
+    .btn-primary {
+      background: var(--gold);
+      color: var(--dark);
+      padding: 1rem 2rem;
+      border-radius: 8px;
+      font-weight: 800;
+      font-size: 1rem;
+      text-decoration: none;
+      letter-spacing: 0.02em;
+      transition: background 0.2s, transform 0.15s;
+      display: inline-block;
+    }
+
+    .btn-primary:hover {
+      background: var(--gold-light);
+      transform: translateY(-2px);
+    }
+
+    .btn-secondary {
+      color: var(--text-dim);
+      padding: 1rem 0;
+      font-size: 0.95rem;
+      text-decoration: none;
+      border-bottom: 1px solid var(--text-dim);
+      transition: color 0.2s, border-color 0.2s;
+    }
+
+    .btn-secondary:hover {
+      color: var(--gold);
+      border-color: var(--gold);
+    }
+
+    .hero-note {
+      margin-top: 2rem;
+      font-size: 0.85rem;
+      color: var(--text-dim);
+    }
+
+    .hero-stats {
+      display: flex;
+      gap: 3rem;
+      margin-top: 4rem;
+      padding-top: 3rem;
+      border-top: 1px solid var(--border);
+      flex-wrap: wrap;
+    }
+
+    .stat-item {
+      display: flex;
+      flex-direction: column;
+      gap: 0.25rem;
+    }
+
+    .stat-number {
+      font-size: 2rem;
+      font-weight: 800;
+      color: var(--gold);
+    }
+
+    .stat-label {
+      font-size: 0.85rem;
+      color: var(--text-dim);
+    }
+
+    /* ─── PROBLEM ─── */
+    #problem {
+      border-top: 1px solid var(--border);
+    }
+
+    #problem h2 {
+      font-size: clamp(2rem, 4vw, 3.5rem);
+      margin-bottom: 2rem;
+    }
+
+    .problem-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 1.5rem;
+      margin-top: 3rem;
+    }
+
+    .problem-card {
+      background: var(--dark-3);
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      padding: 1.75rem;
+    }
+
+    .problem-card .icon {
+      font-size: 1.5rem;
+      margin-bottom: 1rem;
+    }
+
+    .problem-card h4 {
+      font-size: 1.05rem;
+      margin-bottom: 0.5rem;
+      font-weight: 700;
+    }
+
+    .problem-card p {
+      font-size: 0.9rem;
+      color: var(--text-dim);
+      line-height: 1.6;
+    }
+
+    .problem-resolution {
+      margin-top: 3rem;
+      padding: 2.5rem;
+      background: var(--dark-3);
+      border: 1px solid var(--gold);
+      border-radius: 12px;
+      font-size: 1.2rem;
+      font-weight: 600;
+      line-height: 1.7;
+    }
+
+    .problem-resolution strong {
+      color: var(--gold);
+    }
+
+    /* ─── HOW IT WORKS ─── */
+    #how-it-works {
+      border-top: 1px solid var(--border);
+    }
+
+    #how-it-works h2 {
+      font-size: clamp(2rem, 4vw, 3rem);
+      margin-bottom: 3rem;
+    }
+
+    .steps {
+      display: flex;
+      flex-direction: column;
+      gap: 0;
+    }
+
+    .step {
+      display: flex;
+      gap: 2rem;
+      align-items: flex-start;
+      position: relative;
+      padding-bottom: 3rem;
+    }
+
+    .step:last-child {
+      padding-bottom: 0;
+    }
+
+    .step-connector {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      flex-shrink: 0;
+    }
+
+    .step-number {
+      width: 52px;
+      height: 52px;
+      background: var(--gold);
+      color: var(--dark);
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-weight: 800;
+      font-size: 1.1rem;
+      flex-shrink: 0;
+    }
+
+    .step-line {
+      width: 2px;
+      flex: 1;
+      background: var(--border);
+      margin-top: 8px;
+      min-height: 40px;
+    }
+
+    .step:last-child .step-line {
+      display: none;
+    }
+
+    .step-content {
+      flex: 1;
+      padding-top: 12px;
+    }
+
+    .step-content h4 {
+      font-size: 1.2rem;
+      margin-bottom: 0.5rem;
+    }
+
+    .step-content p {
+      color: var(--text-dim);
+      font-size: 0.95rem;
+      line-height: 1.7;
+    }
+
+    .step-badge {
+      display: inline-block;
+      font-size: 0.72rem;
+      font-weight: 700;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      background: rgba(201, 168, 76, 0.15);
+      color: var(--gold);
+      padding: 0.2rem 0.6rem;
+      border-radius: 4px;
+      margin-bottom: 0.5rem;
+    }
+
+    /* ─── PRICING ─── */
+    #pricing {
+      border-top: 1px solid var(--border);
+    }
+
+    #pricing h2 {
+      font-size: clamp(2rem, 4vw, 3rem);
+      margin-bottom: 0.75rem;
+    }
+
+    #pricing > section > p, .pricing-subtitle {
+      color: var(--text-dim);
+      font-size: 1.05rem;
+      margin-bottom: 3rem;
+    }
+
+    .pricing-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+      gap: 1.5rem;
+      align-items: start;
+    }
+
+    .pricing-card {
+      background: var(--dark-3);
+      border: 1px solid var(--border);
+      border-radius: 16px;
+      padding: 2rem;
+      position: relative;
+    }
+
+    .pricing-card.featured {
+      border-color: var(--gold);
+      background: linear-gradient(135deg, #1a1a1a 0%, #1f1a0f 100%);
+    }
+
+    .featured-badge {
+      position: absolute;
+      top: -12px;
+      left: 50%;
+      transform: translateX(-50%);
+      background: var(--gold);
+      color: var(--dark);
+      font-size: 0.72rem;
+      font-weight: 800;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      padding: 0.3rem 1rem;
+      border-radius: 20px;
+      white-space: nowrap;
+    }
+
+    .tier-label {
+      font-size: 0.75rem;
+      font-weight: 700;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--gold);
+      margin-bottom: 0.5rem;
+    }
+
+    .tier-name {
+      font-size: 1.6rem;
+      font-weight: 800;
+      margin-bottom: 0.25rem;
+    }
+
+    .tier-price {
+      margin: 1.25rem 0;
+    }
+
+    .tier-price .amount {
+      font-size: 2.5rem;
+      font-weight: 800;
+      color: var(--gold);
+    }
+
+    .tier-price .period {
+      font-size: 1rem;
+      color: var(--text-dim);
+      margin-left: 0.25rem;
+    }
+
+    .tier-price .monthly {
+      display: block;
+      font-size: 0.9rem;
+      color: var(--text-dim);
+      margin-top: 0.25rem;
+    }
+
+    .tier-best-for {
+      font-size: 0.85rem;
+      color: var(--text-dim);
+      margin-bottom: 1.5rem;
+      padding-bottom: 1.5rem;
+      border-bottom: 1px solid var(--border);
+      font-style: italic;
+    }
+
+    .tier-features {
+      list-style: none;
+      display: flex;
+      flex-direction: column;
+      gap: 0.75rem;
+      margin-bottom: 2rem;
+    }
+
+    .tier-features li {
+      display: flex;
+      gap: 0.75rem;
+      font-size: 0.9rem;
+      line-height: 1.5;
+    }
+
+    .tier-features li::before {
+      content: '';
+      width: 18px;
+      height: 18px;
+      background: rgba(201, 168, 76, 0.15);
+      border-radius: 50%;
+      flex-shrink: 0;
+      margin-top: 1px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      background-image: url("data:image/svg+xml,%3Csvg width='10' height='8' viewBox='0 0 10 8' fill='none' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M1 4L3.5 6.5L9 1' stroke='%23C9A84C' stroke-width='1.5' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E");
+      background-repeat: no-repeat;
+      background-position: center;
+    }
+
+    .tier-cta {
+      display: block;
+      text-align: center;
+      background: var(--gold);
+      color: var(--dark);
+      padding: 0.9rem 1.5rem;
+      border-radius: 8px;
+      font-weight: 800;
+      font-size: 0.95rem;
+      text-decoration: none;
+      letter-spacing: 0.02em;
+      transition: background 0.2s, transform 0.15s;
+    }
+
+    .tier-cta:hover {
+      background: var(--gold-light);
+      transform: translateY(-2px);
+    }
+
+    .pricing-card:not(.featured) .tier-cta {
+      background: transparent;
+      border: 1px solid var(--gold);
+      color: var(--gold);
+    }
+
+    .pricing-card:not(.featured) .tier-cta:hover {
+      background: rgba(201, 168, 76, 0.1);
+    }
+
+    .pricing-note {
+      text-align: center;
+      color: var(--text-dim);
+      font-size: 0.85rem;
+      margin-top: 2rem;
+    }
+
+    /* ─── WHO IT'S FOR ─── */
+    #who {
+      border-top: 1px solid var(--border);
+    }
+
+    #who h2 {
+      font-size: clamp(2rem, 4vw, 3rem);
+      margin-bottom: 1rem;
+    }
+
+    #who > p {
+      color: var(--text-dim);
+      font-size: 1.05rem;
+      margin-bottom: 3rem;
+    }
+
+    .who-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 1.5rem;
+    }
+
+    @media (max-width: 640px) {
+      .who-grid { grid-template-columns: 1fr; }
+    }
+
+    .who-card {
+      background: var(--dark-3);
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      padding: 1.75rem;
+    }
+
+    .who-card h4 {
+      font-size: 1rem;
+      margin-bottom: 0.75rem;
+    }
+
+    .who-card ul {
+      list-style: none;
+      display: flex;
+      flex-direction: column;
+      gap: 0.5rem;
+    }
+
+    .who-card ul li {
+      font-size: 0.9rem;
+      color: var(--text-dim);
+      padding-left: 1.25rem;
+      position: relative;
+    }
+
+    .who-card ul li::before {
+      content: '—';
+      position: absolute;
+      left: 0;
+      color: var(--gold);
+    }
+
+    .who-card.yes {
+      border-color: rgba(201, 168, 76, 0.4);
+    }
+
+    .who-card.no {
+      opacity: 0.7;
+    }
+
+    .who-card .card-title {
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+      margin-bottom: 0.75rem;
+    }
+
+    .tag-yes {
+      font-size: 0.7rem;
+      font-weight: 700;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      background: rgba(201, 168, 76, 0.2);
+      color: var(--gold);
+      padding: 0.2rem 0.5rem;
+      border-radius: 4px;
+    }
+
+    .tag-no {
+      font-size: 0.7rem;
+      font-weight: 700;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      background: rgba(255, 60, 60, 0.15);
+      color: #ff6060;
+      padding: 0.2rem 0.5rem;
+      border-radius: 4px;
+    }
+
+    /* ─── WHAT'S INCLUDED ─── */
+    #included {
+      border-top: 1px solid var(--border);
+    }
+
+    #included h2 {
+      font-size: clamp(2rem, 4vw, 3rem);
+      margin-bottom: 1rem;
+    }
+
+    #included > p {
+      color: var(--text-dim);
+      margin-bottom: 3rem;
+      font-size: 1.05rem;
+    }
+
+    .included-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+      gap: 1.5rem;
+    }
+
+    .included-item {
+      background: var(--dark-3);
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      padding: 1.75rem;
+    }
+
+    .included-item .icon-wrap {
+      width: 44px;
+      height: 44px;
+      background: rgba(201, 168, 76, 0.12);
+      border-radius: 10px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1.2rem;
+      margin-bottom: 1rem;
+    }
+
+    .included-item h4 {
+      font-size: 1rem;
+      margin-bottom: 0.5rem;
+    }
+
+    .included-item p {
+      font-size: 0.875rem;
+      color: var(--text-dim);
+      line-height: 1.6;
+    }
+
+    .included-item .tier-tag {
+      display: inline-block;
+      font-size: 0.68rem;
+      font-weight: 700;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      padding: 0.15rem 0.5rem;
+      border-radius: 4px;
+      margin-bottom: 0.75rem;
+    }
+
+    .tier-tag.all { background: rgba(201, 168, 76, 0.15); color: var(--gold); }
+    .tier-tag.builder { background: rgba(100, 150, 255, 0.15); color: #7ba7ff; }
+    .tier-tag.empire { background: rgba(200, 100, 255, 0.15); color: #d07aff; }
+
+    /* ─── FAQ ─── */
+    #faq {
+      border-top: 1px solid var(--border);
+    }
+
+    #faq h2 {
+      font-size: clamp(2rem, 4vw, 3rem);
+      margin-bottom: 3rem;
+    }
+
+    .faq-list {
+      display: flex;
+      flex-direction: column;
+      gap: 0;
+    }
+
+    .faq-item {
+      border-bottom: 1px solid var(--border);
+    }
+
+    .faq-item:first-child {
+      border-top: 1px solid var(--border);
+    }
+
+    .faq-question {
+      width: 100%;
+      background: none;
+      border: none;
+      color: var(--text);
+      font-size: 1.05rem;
+      font-weight: 600;
+      text-align: left;
+      padding: 1.5rem 0;
+      cursor: pointer;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 1rem;
+      font-family: inherit;
+      transition: color 0.2s;
+    }
+
+    .faq-question:hover {
+      color: var(--gold);
+    }
+
+    .faq-question .faq-icon {
+      color: var(--gold);
+      font-size: 1.3rem;
+      font-weight: 300;
+      flex-shrink: 0;
+      transition: transform 0.2s;
+    }
+
+    .faq-item.open .faq-icon {
+      transform: rotate(45deg);
+    }
+
+    .faq-answer {
+      display: none;
+      padding: 0 0 1.5rem;
+      color: var(--text-dim);
+      font-size: 0.95rem;
+      line-height: 1.75;
+    }
+
+    .faq-item.open .faq-answer {
+      display: block;
+    }
+
+    /* ─── FINAL CTA ─── */
+    #cta {
+      border-top: 1px solid var(--border);
+      text-align: center;
+    }
+
+    #cta h2 {
+      font-size: clamp(2.2rem, 5vw, 4rem);
+      margin-bottom: 1rem;
+    }
+
+    #cta p {
+      color: var(--text-dim);
+      font-size: 1.1rem;
+      margin-bottom: 2.5rem;
+      max-width: 560px;
+      margin-left: auto;
+      margin-right: auto;
+    }
+
+    .cta-btn-group {
+      display: flex;
+      justify-content: center;
+      gap: 1rem;
+      flex-wrap: wrap;
+    }
+
+    .cta-note {
+      margin-top: 1.5rem;
+      font-size: 0.85rem;
+      color: var(--text-dim);
+    }
+
+    /* ─── FOOTER ─── */
+    footer {
+      border-top: 1px solid var(--border);
+      padding: 2.5rem 2rem;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      flex-wrap: wrap;
+      gap: 1rem;
+      max-width: 1100px;
+      margin: 0 auto;
+    }
+
+    .footer-logo {
+      font-size: 1rem;
+      font-weight: 800;
+      color: var(--gold);
+      letter-spacing: 0.05em;
+    }
+
+    .footer-logo span {
+      color: var(--text-dim);
+    }
+
+    .footer-right {
+      font-size: 0.82rem;
+      color: var(--text-dim);
+    }
+
+    footer a {
+      color: var(--gold);
+      text-decoration: none;
+    }
+
+    /* ─── RESPONSIVE ─── */
+    @media (max-width: 768px) {
+      section { padding: 70px 1.25rem; }
+      nav { padding: 0 1.25rem; }
+      footer { padding: 2rem 1.25rem; }
+      .pricing-grid { grid-template-columns: 1fr; }
+    }
+
+    /* ─── DIVIDER ─── */
+    .divider {
+      width: 60px;
+      height: 3px;
+      background: var(--gold);
+      margin-bottom: 2rem;
+    }
+
+    /* ─── ANNOUNCEMENT BAR ─── */
+    .announcement {
+      background: var(--gold);
+      color: var(--dark);
+      text-align: center;
+      padding: 0.6rem 1rem;
+      font-size: 0.85rem;
+      font-weight: 700;
+      letter-spacing: 0.03em;
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Announcement Bar -->
+  <div class="announcement">
+    3 build slots open this month — once they're gone, next availability is 30+ days out
+  </div>
+
+  <!-- Nav -->
+  <nav>
+    <a href="#" class="nav-logo">BUILT BY <span>BOSS</span></a>
+    <a href="/summer.html" class="nav-summer">Summer Partner Program →</a>
+    <a href="sms:9037146162" class="nav-cta">Text to Get Started</a>
+  </nav>
+
+  <!-- ─────────────────────────────── HERO ─────────────────────────────── -->
+  <section id="hero">
+    <div class="section-label">Built by BOSS — Tyler, TX</div>
+    <h1>Your Business.<br /><em>Built in 72 Hours.</em><br />Running Before You Know It.</h1>
+    <p>
+      I build complete, AI-powered local service businesses — junk removal, pressure washing, lawn care, cleaning — and hand them to you ready to take calls and book jobs. You show up and do the work. The system handles everything else.
+    </p>
+    <div class="hero-ctas">
+      <a href="sms:9037146162?body=Hey%20Boston%2C%20I%27m%20interested%20in%20Built%20by%20BOSS" class="btn-primary">Text Boston Now — 903-714-6162</a>
+      <a href="#pricing" class="btn-secondary">See Pricing</a>
+    </div>
+    <p class="hero-note">Payment via Venmo @BosRoss &nbsp;·&nbsp; 72-hour delivery guaranteed &nbsp;·&nbsp; Tyler, TX (serves all markets)</p>
+    <div class="hero-stats">
+      <div class="stat-item">
+        <span class="stat-number">72 hrs</span>
+        <span class="stat-label">From payment to live system</span>
+      </div>
+      <div class="stat-item">
+        <span class="stat-number">24/7</span>
+        <span class="stat-label">AI answers your phone</span>
+      </div>
+      <div class="stat-item">
+        <span class="stat-number">$0</span>
+        <span class="stat-label">Tech knowledge required</span>
+      </div>
+      <div class="stat-item">
+        <span class="stat-number">100%</span>
+        <span class="stat-label">Done-for-you setup</span>
+      </div>
+    </div>
+  </section>
+
+  <!-- ─────────────────────────────── PROBLEM ─────────────────────────────── -->
+  <section id="problem">
+    <div class="section-label">The Real Problem</div>
+    <div class="divider"></div>
+    <h2>You want to own a business.<br />You just don't want to build the tech.</h2>
+    <p style="color: var(--text-dim); font-size: 1.05rem; margin-top: 1rem; max-width: 700px; line-height: 1.75;">
+      Starting a service business sounds simple until you realize you need a phone line that actually answers, a way to book jobs automatically, a system that sends confirmations, collects payments, and asks for reviews — all while you're out hauling junk or spraying driveways. Most people give up before they start. The ones who do start spend months building tech they didn't want to think about.
+    </p>
+
+    <div class="problem-grid">
+      <div class="problem-card">
+        <div class="icon">📞</div>
+        <h4>Missed calls = missed money</h4>
+        <p>The average local service customer calls 3 businesses. If you miss the call, they booked someone else. An AI phone system running 24/7 means you never miss a job again.</p>
+      </div>
+      <div class="problem-card">
+        <div class="icon">⚙️</div>
+        <h4>Tech nobody wants to figure out</h4>
+        <p>Webhooks, CRM integrations, voice AI, booking flows — this stuff takes months to get right. You'd rather be working. That's what Built by BOSS is for.</p>
+      </div>
+      <div class="problem-card">
+        <div class="icon">🗺️</div>
+        <h4>No map for the first 90 days</h4>
+        <p>Getting your first 10 customers in a new market is a learned skill. Most people wing it. Built by BOSS gives you the exact playbook, tested on real markets.</p>
+      </div>
+    </div>
+
+    <div class="problem-resolution">
+      <strong>Here's what changes:</strong> You send me $997–$3,497 today. In 72 hours you have a live phone number, an AI that answers calls and books jobs, a website, and a launch checklist. You start making money. I keep the system running. That's it.
+    </div>
+  </section>
+
+  <!-- ─────────────────────────────── HOW IT WORKS ─────────────────────────────── -->
+  <section id="how-it-works">
+    <div class="section-label">The Process</div>
+    <div class="divider"></div>
+    <h2>Five steps. 72 hours. You're open for business.</h2>
+
+    <div class="steps" style="margin-top: 3rem;">
+      <div class="step">
+        <div class="step-connector">
+          <div class="step-number">1</div>
+          <div class="step-line"></div>
+        </div>
+        <div class="step-content">
+          <div class="step-badge">You do this — 2 minutes</div>
+          <h4>Text Boston and pick your package</h4>
+          <p>Text 903-714-6162. Tell me your city, which service you want to run (junk removal, pressure washing, lawn care, cleaning), and which tier you want. I'll confirm your slot is available.</p>
+        </div>
+      </div>
+
+      <div class="step">
+        <div class="step-connector">
+          <div class="step-number">2</div>
+          <div class="step-line"></div>
+        </div>
+        <div class="step-content">
+          <div class="step-badge">You do this — 2 minutes</div>
+          <h4>Send payment via Venmo @BosRoss</h4>
+          <p>One-time setup fee to lock in your build slot. Monthly fee starts on Day 30 after your system goes live. No contracts. Cancel monthly anytime.</p>
+        </div>
+      </div>
+
+      <div class="step">
+        <div class="step-connector">
+          <div class="step-number">3</div>
+          <div class="step-line"></div>
+        </div>
+        <div class="step-content">
+          <div class="step-badge">Boston does this — 72 hours</div>
+          <h4>I build your complete system</h4>
+          <p>AI phone agent trained on your service and market. Booking automation. Business phone number. One-page website. All tested and live before I hand it over. You get a text when it's done.</p>
+        </div>
+      </div>
+
+      <div class="step">
+        <div class="step-connector">
+          <div class="step-number">4</div>
+          <div class="step-line"></div>
+        </div>
+        <div class="step-content">
+          <div class="step-badge">You do this — Day 2–7</div>
+          <h4>Test, post, and get your first jobs</h4>
+          <p>Call your own number. Make sure it sounds right. Then follow the launch checklist I send you — Facebook Marketplace post, Nextdoor intro, first outreach to realtors. Your first jobs are closer than you think.</p>
+        </div>
+      </div>
+
+      <div class="step">
+        <div class="step-connector">
+          <div class="step-number">5</div>
+          <div class="step-line"></div>
+        </div>
+        <div class="step-content">
+          <div class="step-badge">Ongoing</div>
+          <h4>Run jobs. Build reviews. Scale.</h4>
+          <p>The system handles calls, bookings, payment links, and review requests automatically. You show up, do the work, collect the money. Builder and Empire clients get Boston checking in on their numbers regularly.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ─────────────────────────────── PRICING ─────────────────────────────── -->
+  <section id="pricing">
+    <div class="section-label">Pricing</div>
+    <div class="divider"></div>
+    <h2>Three tiers. One decision.</h2>
+    <p class="pricing-subtitle">All prices are one-time setup + monthly. No hidden fees. Payment via Venmo @BosRoss.</p>
+
+    <div class="pricing-grid">
+
+      <!-- STARTER -->
+      <div class="pricing-card">
+        <div class="tier-label">Tier 1</div>
+        <div class="tier-name">Starter</div>
+        <div class="tier-price">
+          <span class="amount">$997</span><span class="period">one-time</span>
+          <span class="monthly">then $97/month</span>
+        </div>
+        <p class="tier-best-for">Best for: Testing the idea with low risk before going all-in.</p>
+        <ul class="tier-features">
+          <li>AI phone receptionist (24/7, quotes jobs, books appointments)</li>
+          <li>Booking automation (confirms via text, notifies you instantly)</li>
+          <li>Your dedicated business phone number</li>
+          <li>One-page website with your business info</li>
+          <li>Launch checklist to get your first 10 customers</li>
+          <li>30-day email and text support from Boston</li>
+        </ul>
+        <a href="sms:9037146162?body=Hey%20Boston%2C%20I%27m%20interested%20in%20the%20Starter%20package" class="tier-cta">Text to Get Started</a>
+      </div>
+
+      <!-- BUILDER -->
+      <div class="pricing-card featured">
+        <div class="featured-badge">Most Popular</div>
+        <div class="tier-label">Tier 2</div>
+        <div class="tier-name">Builder</div>
+        <div class="tier-price">
+          <span class="amount">$1,997</span><span class="period">one-time</span>
+          <span class="monthly">then $197/month</span>
+        </div>
+        <p class="tier-best-for">Best for: Serious operators ready to commit and actually run this thing.</p>
+        <ul class="tier-features">
+          <li>Everything in Starter</li>
+          <li>Full automation stack (payment alerts, review requests, job tracking)</li>
+          <li>Google Business Profile setup guide + post templates</li>
+          <li>Referral partner outreach system (realtors, property managers)</li>
+          <li>60-day coaching — weekly text check-ins, Boston reviews your numbers</li>
+          <li>Market exclusivity — no one else gets your exact city/niche from BOSS</li>
+        </ul>
+        <a href="sms:9037146162?body=Hey%20Boston%2C%20I%27m%20interested%20in%20the%20Builder%20package" class="tier-cta">Text to Get Started</a>
+      </div>
+
+      <!-- EMPIRE -->
+      <div class="pricing-card">
+        <div class="tier-label">Tier 3</div>
+        <div class="tier-name">Empire</div>
+        <div class="tier-price">
+          <span class="amount">$3,497</span><span class="period">one-time</span>
+          <span class="monthly">then $297/month</span>
+        </div>
+        <p class="tier-best-for">Best for: All-in operators who want to scale to $10k+/month and actually get there.</p>
+        <ul class="tier-features">
+          <li>Everything in Builder</li>
+          <li>Boston personally sets up your Google LSA ads (leads from day 1)</li>
+          <li>First 90 days hands-on optimization (Boston reviews calls, tweaks AI)</li>
+          <li>Expansion blueprint — when/how to add a second truck or market</li>
+          <li>Lifetime market exclusivity</li>
+          <li>Direct line to Boston — he actually picks up</li>
+        </ul>
+        <a href="sms:9037146162?body=Hey%20Boston%2C%20I%27m%20interested%20in%20the%20Empire%20package" class="tier-cta">Text to Get Started</a>
+      </div>
+
+    </div>
+
+    <p class="pricing-note">Payment via Venmo @BosRoss only &nbsp;·&nbsp; Monthly fee starts Day 30 after go-live &nbsp;·&nbsp; Cancel monthly anytime &nbsp;·&nbsp; Setup fee is non-refundable once build begins</p>
+  </section>
+
+  <!-- ─────────────────────────────── WHO IT'S FOR ─────────────────────────────── -->
+  <section id="who">
+    <div class="section-label">Who This Is For</div>
+    <div class="divider"></div>
+    <h2>This is built for a specific person.</h2>
+    <p>Not everyone. If you see yourself here, this is for you.</p>
+
+    <div class="who-grid">
+      <div class="who-card yes">
+        <div class="card-title">
+          <h4>This IS you</h4>
+          <span class="tag-yes">Good Fit</span>
+        </div>
+        <ul>
+          <li>You have $997–$3,497 and you're ready to move</li>
+          <li>You have a truck, van, or access to one (or you're willing to get one)</li>
+          <li>You want to be your own boss and you're willing to do the work</li>
+          <li>You live in or near a mid-size city or growing suburb</li>
+          <li>You're tired of working for someone else's dream</li>
+          <li>You want a system, not just advice</li>
+        </ul>
+      </div>
+      <div class="who-card no">
+        <div class="card-title">
+          <h4>This is NOT you</h4>
+          <span class="tag-no">Not a Fit</span>
+        </div>
+        <ul>
+          <li>You want to make money without doing any physical work</li>
+          <li>You're looking for a guaranteed income (there are no guarantees)</li>
+          <li>You expect to set it and forget it from Day 1</li>
+          <li>You're not willing to go knock on doors or post on Facebook to get your first jobs</li>
+          <li>You have less than $1,000 to invest</li>
+          <li>You want someone else to run the business for you</li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <!-- ─────────────────────────────── INCLUDED ─────────────────────────────── -->
+  <section id="included">
+    <div class="section-label">What You Get</div>
+    <div class="divider"></div>
+    <h2>A complete business. Not a template.</h2>
+    <p>Everything below is built specifically for your city and your service. Nothing generic.</p>
+
+    <div class="included-grid">
+      <div class="included-item">
+        <div class="tier-tag all">All Tiers</div>
+        <div class="icon-wrap">📞</div>
+        <h4>AI Phone Receptionist</h4>
+        <p>Trained on your service and market. Answers 24/7, asks the right questions, gives quotes, and books jobs. You get a text notification the moment a job is booked.</p>
+      </div>
+      <div class="included-item">
+        <div class="tier-tag all">All Tiers</div>
+        <div class="icon-wrap">⚡</div>
+        <h4>Booking Automation</h4>
+        <p>When a job books, the customer gets a confirmation text, you get a notification, and it's logged automatically. No spreadsheets, no missed bookings.</p>
+      </div>
+      <div class="included-item">
+        <div class="tier-tag all">All Tiers</div>
+        <div class="icon-wrap">📱</div>
+        <h4>Dedicated Business Number</h4>
+        <p>A real phone number for your business — not your personal cell. Calls route through the AI first, and anything urgent gets flagged to you.</p>
+      </div>
+      <div class="included-item">
+        <div class="tier-tag all">All Tiers</div>
+        <div class="icon-wrap">🌐</div>
+        <h4>One-Page Website</h4>
+        <p>Clean, professional, built for your specific service and city. Shows up when people search. Has your number prominently so the AI can take the call.</p>
+      </div>
+      <div class="included-item">
+        <div class="tier-tag builder">Builder + Empire</div>
+        <div class="icon-wrap">💳</div>
+        <h4>Payment Alert Automation</h4>
+        <p>After a job, the system sends a payment link automatically via text. You collect money faster without chasing invoices.</p>
+      </div>
+      <div class="included-item">
+        <div class="tier-tag builder">Builder + Empire</div>
+        <div class="icon-wrap">⭐</div>
+        <h4>Review Request Automation</h4>
+        <p>After payment, the system automatically texts customers asking for a Google review. The first 20 reviews are what win your market — this makes them happen without you thinking about it.</p>
+      </div>
+      <div class="included-item">
+        <div class="tier-tag builder">Builder + Empire</div>
+        <div class="icon-wrap">🏘️</div>
+        <h4>Referral Partner System</h4>
+        <p>A scripted outreach system to contact local realtors, property managers, and moving companies who consistently send service business referrals. This is the fastest path to consistent job volume.</p>
+      </div>
+      <div class="included-item">
+        <div class="tier-tag empire">Empire Only</div>
+        <div class="icon-wrap">📈</div>
+        <h4>Google LSA Setup</h4>
+        <p>Local Services Ads are the ads that show up at the very top of Google when someone searches "junk removal near me." Boston sets these up for you personally — this is where day-1 leads come from.</p>
+      </div>
+      <div class="included-item">
+        <div class="tier-tag empire">Empire Only</div>
+        <div class="icon-wrap">🔧</div>
+        <h4>90-Day Hands-On Optimization</h4>
+        <p>Boston personally listens to calls, reviews your weekly numbers, and tweaks the AI based on what's actually happening in your market. This is the difference between a good system and a great one.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- ─────────────────────────────── FAQ ─────────────────────────────── -->
+  <section id="faq">
+    <div class="section-label">FAQ</div>
+    <div class="divider"></div>
+    <h2>Real questions. Real answers.</h2>
+
+    <div class="faq-list">
+
+      <div class="faq-item">
+        <button class="faq-question" onclick="toggleFAQ(this)">
+          I don't have any tech experience. Will this actually work for me?
+          <span class="faq-icon">+</span>
+        </button>
+        <div class="faq-answer">
+          Yes — that's specifically who this is built for. You don't touch the tech. I build it, test it, and hand you a working system with a checklist of what to do next. Your job is to do the physical work and follow the launch playbook. If you can text and use Facebook, you can run this business.
+        </div>
+      </div>
+
+      <div class="faq-item">
+        <button class="faq-question" onclick="toggleFAQ(this)">
+          What if I don't have a truck yet?
+          <span class="faq-icon">+</span>
+        </button>
+        <div class="faq-answer">
+          You have two options. First, you can use a rented truck or trailer for your first few jobs — cheaper than you think and totally fine while you're proving the concept. Second, you can start with a service like lawn care that doesn't require a truck at all. Once you've got a few jobs and some cash flow, you buy or finance your vehicle. Don't let the truck stop you from starting.
+        </div>
+      </div>
+
+      <div class="faq-item">
+        <button class="faq-question" onclick="toggleFAQ(this)">
+          What does the monthly fee actually cover?
+          <span class="faq-icon">+</span>
+        </button>
+        <div class="faq-answer">
+          The monthly fee covers the cost of running your AI phone system, automation infrastructure, and your business phone number — plus ongoing support from me. These systems aren't free to run. The $97–$297/month is what keeps your AI answering calls 24/7 without you paying a receptionist $15/hour. It's the cheapest employee you'll ever have.
+        </div>
+      </div>
+
+      <div class="faq-item">
+        <button class="faq-question" onclick="toggleFAQ(this)">
+          How fast can I realistically make my money back?
+          <span class="faq-icon">+</span>
+        </button>
+        <div class="faq-answer">
+          A single junk removal job averages $200–$400. Pressure washing jobs run $150–$500. If you follow the launch checklist and get even 5 jobs in your first month, you've covered your Starter setup fee. Most people who follow the system and put in the effort break even within 30–60 days. The ones who don't follow the launch playbook take longer. I can build the system, but you still have to show up.
+        </div>
+      </div>
+
+      <div class="faq-item">
+        <button class="faq-question" onclick="toggleFAQ(this)">
+          Why should I trust a 17-year-old with this?
+          <span class="faq-icon">+</span>
+        </button>
+        <div class="faq-answer">
+          Fair question. I've been building AI phone systems for local service businesses since I was 16. I run BOSS Systems out of Tyler, TX — AI receptionists for real businesses in real markets. I built the systems I'm selling you. I'm not reselling someone else's software or running a course. Text me and ask me anything — I'll answer. If you want to talk to someone I've built for, I'll connect you. I'd rather earn the trust than ask for it.
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- ─────────────────────────────── SUMMER PARTNER ─────────────────────────────── -->
+  <section id="summer" style="border-top: 1px solid var(--border);">
+    <div class="section-label">Summer Partner Program — 2026</div>
+    <div class="divider"></div>
+    <h2 style="font-size: clamp(2rem, 4vw, 3rem); margin-bottom: 1rem;">
+      Can't afford $997?<br />There's another way in.
+    </h2>
+    <p style="color: var(--text-dim); font-size: 1.05rem; max-width: 680px; line-height: 1.75; margin-bottom: 2.5rem;">
+      The Summer Partner Program is for high schoolers and college students who want to run a real business this summer with zero startup cost. Boston builds the full AI stack — for free. You do the physical work. You keep 80%, Boston takes 20%. Ends September 1, 2026.
+    </p>
+    <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(180px, 1fr)); gap: 1rem; margin-bottom: 2.5rem; max-width: 760px;">
+      <div style="background: var(--dark-3); border: 1px solid var(--border); border-radius: 10px; padding: 1.25rem;">
+        <div style="font-size: 1.6rem; font-weight: 800; color: var(--gold);">$0</div>
+        <div style="font-size: 0.82rem; color: var(--text-dim); margin-top: 4px;">Setup cost to you</div>
+      </div>
+      <div style="background: var(--dark-3); border: 1px solid var(--border); border-radius: 10px; padding: 1.25rem;">
+        <div style="font-size: 1.6rem; font-weight: 800; color: var(--gold);">80%</div>
+        <div style="font-size: 0.82rem; color: var(--text-dim); margin-top: 4px;">You keep of every job</div>
+      </div>
+      <div style="background: var(--dark-3); border: 1px solid var(--border); border-radius: 10px; padding: 1.25rem;">
+        <div style="font-size: 1.6rem; font-weight: 800; color: var(--gold);">11</div>
+        <div style="font-size: 0.82rem; color: var(--text-dim); margin-top: 4px;">Business types available</div>
+      </div>
+      <div style="background: var(--dark-3); border: 1px solid var(--border); border-radius: 10px; padding: 1.25rem;">
+        <div style="font-size: 1.6rem; font-weight: 800; color: var(--gold);">Sept 1</div>
+        <div style="font-size: 0.82rem; color: var(--text-dim); margin-top: 4px;">Hard end date</div>
+      </div>
+    </div>
+    <a href="/summer.html" style="display: inline-block; background: var(--dark-3); border: 1px solid var(--gold); color: var(--gold); padding: 0.9rem 2rem; border-radius: 8px; font-weight: 800; font-size: 0.95rem; text-decoration: none; letter-spacing: 0.02em; transition: background 0.2s;">
+      See All 11 Businesses + Full Training →
+    </a>
+  </section>
+
+  <!-- ─────────────────────────────── FINAL CTA ─────────────────────────────── -->
+  <section id="cta">
+    <div class="section-label">Ready to Start</div>
+    <div class="divider" style="margin: 0 auto 2rem;"></div>
+    <h2>Three build slots<br />open this month.</h2>
+    <p>Text me your city and service. I'll confirm availability and we'll get moving. Payment locks your slot. 72 hours later, you're in business.</p>
+    <div class="cta-btn-group">
+      <a href="sms:9037146162?body=Hey%20Boston%2C%20I%27m%20ready%20to%20get%20started%20with%20Built%20by%20BOSS" class="btn-primary" style="font-size: 1.1rem; padding: 1.1rem 2.25rem;">Text Boston — 903-714-6162</a>
+    </div>
+    <p class="cta-note">Or email bosrossall@gmail.com &nbsp;·&nbsp; Payment via Venmo @BosRoss &nbsp;·&nbsp; Tyler, TX</p>
+  </section>
+
+  <!-- Footer -->
+  <footer>
+    <div class="footer-logo">BUILT BY <span>BOSS</span></div>
+    <div class="footer-right">
+      A BOSS Systems company &nbsp;·&nbsp; Tyler, TX &nbsp;·&nbsp;
+      <a href="sms:9037146162">903-714-6162</a> &nbsp;·&nbsp;
+      <a href="mailto:bosrossall@gmail.com">bosrossall@gmail.com</a>
+    </div>
+  </footer>
+
+  <script>
+    function toggleFAQ(btn) {
+      const item = btn.closest('.faq-item');
+      const isOpen = item.classList.contains('open');
+      document.querySelectorAll('.faq-item').forEach(el => el.classList.remove('open'));
+      if (!isOpen) item.classList.add('open');
+    }
+  </script>
+
+</body>
+</html>
