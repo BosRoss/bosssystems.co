@@ -32,21 +32,49 @@
       --radius-lg: 8px;
     }
 
-    /* Pink/white/gold theme — light mode with pink tones, gold stays gold */
+    /* Pink/white/gold theme */
     html.theme-pink {
-      --bg: #fdf5f8;
-      --bg-2: #f7eaef;
-      --bg-3: #f0dde4;
-      --bg-4: #e8d0d8;
+      --bg: #FFFFFF;
+      --bg-2: #FCE0EC;
+      --bg-3: #FAD5E7;
+      --bg-4: #F7CAE0;
       --gold: #C9A84C;
       --gold-light: #dfc070;
       --gold-dark: #a8883a;
       --text: #1a0810;
-      --text-muted: #6a3a4a;
-      --text-dim: #9a6070;
-      --border: #e0bec8;
+      --text-muted: #4a1830;
+      --text-dim: #6a2848;
+      --border: #F0C0D5;
       --border-gold: rgba(201,168,76,0.4);
     }
+    html.theme-pink h1,
+    html.theme-pink h2,
+    html.theme-pink h3 { color: #D43880; }
+    html.theme-pink nav {
+      background: rgba(212,56,128,0.97);
+      border-bottom-color: rgba(212,56,128,0.3);
+    }
+    html.theme-pink .nav-logo,
+    html.theme-pink .nav-links a { color: #ffffff; }
+    html.theme-pink .nav-links a:hover { color: #C9A84C; }
+    html.theme-pink .nav-hamburger span { background: #ffffff; }
+    html.theme-pink .mobile-menu { background: #D43880; }
+    html.theme-pink .mobile-menu a { color: rgba(255,255,255,0.9); }
+    html.theme-pink .mobile-menu a:hover { color: #C9A84C; }
+    html.theme-pink footer {
+      background: #D43880;
+      border-top-color: rgba(255,255,255,0.15);
+    }
+    html.theme-pink .footer-brand p,
+    html.theme-pink .footer-links-group h4,
+    html.theme-pink .footer-links-group a,
+    html.theme-pink .footer-bottom p,
+    html.theme-pink .footer-tagline { color: rgba(255,255,255,0.75); }
+    html.theme-pink .footer-links-group a:hover { color: #C9A84C; }
+    html.theme-pink .footer-bottom { border-top-color: rgba(255,255,255,0.2); }
+    html.theme-pink .footer-brand .nav-logo { color: #ffffff; }
+    html.theme-pink #problem h3,
+    html.theme-pink #who h3 { color: #D43880; }
 
     html { scroll-behavior: smooth; }
 
@@ -1785,7 +1813,7 @@
         var lbl = document.getElementById('theme-label');
         var dot = document.getElementById('theme-dot');
         if(lbl) lbl.textContent = 'DARK';
-        if(dot) dot.style.background = '#f7eaef';
+        if(dot) dot.style.background = '#D43880';
       }
     })();
     function toggleTheme(){
@@ -1794,7 +1822,7 @@
       var dot = document.getElementById('theme-dot');
       localStorage.setItem('boss_theme', isPink ? 'pink' : 'dark');
       if(lbl) lbl.textContent = isPink ? 'DARK' : 'PINK';
-      if(dot) dot.style.background = isPink ? '#f7eaef' : '#C9A84C';
+      if(dot) dot.style.background = isPink ? '#D43880' : '#C9A84C';
     }
   </script>
 </body>
