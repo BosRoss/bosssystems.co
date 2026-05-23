@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>BOSS Learn — Pick Your Business</title>
+<title>BOSS Scout — Pick Your Business</title>
 <style>
 *{margin:0;padding:0;box-sizing:border-box}
 body{background:#080808;color:#f0ede8;font-family:-apple-system,BlinkMacSystemFont,sans-serif;min-height:100vh}
@@ -100,7 +100,7 @@ a{color:#C9A84C;text-decoration:none}
 <body>
 
 <div class="bar">
-  <div class="logo">BOSS LEARN</div>
+  <div class="logo">BOSS SCOUT</div>
   <a href="/dashboard/" class="back">← Back</a>
 </div>
 
@@ -149,6 +149,56 @@ a{color:#C9A84C;text-decoration:none}
     <div class="icon">🏠</div>
     <div class="name">Real Estate</div>
     <div class="tag">Big commissions</div>
+  </div>
+  <div class="biz-btn" onclick="show('pool')">
+    <div class="icon">🏊</div>
+    <div class="name">Pool Cleaning</div>
+    <div class="tag">Monthly recurring</div>
+  </div>
+  <div class="biz-btn" onclick="show('detailing')">
+    <div class="icon">🚗</div>
+    <div class="name">Car Detailing</div>
+    <div class="tag">Mobile service</div>
+  </div>
+  <div class="biz-btn" onclick="show('events')">
+    <div class="icon">🎉</div>
+    <div class="name">Event Decor</div>
+    <div class="tag">Weekend paydays</div>
+  </div>
+  <div class="biz-btn" onclick="show('pets')">
+    <div class="icon">🐕</div>
+    <div class="name">Pet Sitting</div>
+    <div class="tag">Zero startup</div>
+  </div>
+  <div class="biz-btn" onclick="show('organizing')">
+    <div class="icon">📦</div>
+    <div class="name">Home Organizing</div>
+    <div class="tag">High hourly rate</div>
+  </div>
+  <div class="biz-btn" onclick="show('photography')">
+    <div class="icon">📸</div>
+    <div class="name">Photography</div>
+    <div class="tag">High margin</div>
+  </div>
+  <div class="biz-btn" onclick="show('social')">
+    <div class="icon">📱</div>
+    <div class="name">Social Media</div>
+    <div class="tag">Work from anywhere</div>
+  </div>
+  <div class="biz-btn" onclick="show('plumbing')">
+    <div class="icon">🔩</div>
+    <div class="name">Plumbing</div>
+    <div class="tag">Emergency rates</div>
+  </div>
+  <div class="biz-btn" onclick="show('roofing')">
+    <div class="icon">🏗️</div>
+    <div class="name">Roofing</div>
+    <div class="tag">Storm season</div>
+  </div>
+  <div class="biz-btn" onclick="show('lawfirm')">
+    <div class="icon">⚖️</div>
+    <div class="name">Law Firm</div>
+    <div class="tag">Highest case value</div>
   </div>
 </div>
 
@@ -567,6 +617,510 @@ const BUSINESSES = {
       {time:"Monthly", ai:true, text:"AI sends all 200+ contacts in your database a market update — you stay top of mind without lifting a finger."},
     ],
     calc: {jobsLabel:"Closings/month", avgJobLabel:"Avg commission ($)", defaultJobs:2, defaultJob:8000, costs:0.15}
+  },
+  pool: {
+    name: "Pool Cleaning",
+    icon: "🏊",
+    tagline: "Service residential pools weekly. Customers pay monthly no matter what. AI handles scheduling, reminders, and billing.",
+    startup: "$500 - $2,000",
+    avgJob: "$100",
+    margin: "70%",
+    monthlyPotential: "$3,000 - $10,000",
+    equipment: "Test kit, chemicals, brush, net, leaf vacuum",
+    license: "CPO certification recommended in some states",
+    aiDoes: [
+      "Answers new client calls 24/7, quotes service and signs them up",
+      "Sends weekly arrival window texts ('Coming Thursday 10-12')",
+      "Fires monthly payment link automatically — no invoicing needed",
+      "Re-engages customers who cancel or lapse",
+      "Books new clients and adds them to the route automatically",
+      "Sends chemical imbalance alerts and follow-up recommendations",
+      "Requests Google reviews after first month of service",
+    ],
+    youDo: [
+      "Test and balance water chemistry each visit",
+      "Brush walls, vacuum debris, skim surface",
+      "Clean filters and check equipment",
+      "Show up reliably on schedule — clients depend on it",
+      "Handle chemical purchases and storage",
+    ],
+    pros: [
+      "Monthly recurring income — clients stay for years",
+      "Very low overhead after equipment is paid",
+      "Summer = peak season, every pool owner needs service",
+      "Route efficiency improves over time (neighborhood clusters)",
+      "Extremely low churn once trust is established",
+    ],
+    cons: [
+      "Must show up even in heat — outdoor work all summer",
+      "Chemical handling requires care",
+      "Slow season in colder climates (not Texas)",
+      "One bad chemical balance = angry client",
+      "CPO cert takes a weekend course to get",
+    ],
+    day: [
+      {time:"7:05am", ai:true, text:"Morning brief: 14 pool stops on today's route. AI already texted all 14 customers their arrival window."},
+      {time:"8:00am", ai:false, text:"First stop — test water, balance chemicals, vacuum, brush. 30 minutes."},
+      {time:"All day", ai:false, text:"Work through route. 14 stops × 30 min = 7 hours."},
+      {time:"During", ai:true, text:"AI fields 2 new client inquiry calls, quotes both, books one for next week."},
+      {time:"Each stop", ai:true, text:"Monthly billing processes automatically. No invoicing, no chasing payments."},
+      {time:"5:00pm", ai:false, text:"Done. 14 stops × $100 = $1,400 gross. After chemicals and fuel: ~$980."},
+    ],
+    calc: {jobsLabel:"Pool stops/week", avgJobLabel:"Monthly service price ($)", defaultJobs:20, defaultJob:100, costs:0.30}
+  },
+  detailing: {
+    name: "Interior Car Detailing",
+    icon: "🚗",
+    tagline: "Deep clean cars at the customer's location. Mobile service, no shop needed. AI books every job and collects payment.",
+    startup: "$300 - $1,500",
+    avgJob: "$150",
+    margin: "65%",
+    monthlyPotential: "$3,000 - $8,000",
+    equipment: "Wet/dry vac, steamer or extractor, polisher, microfiber towels, cleaning products",
+    license: "None required",
+    aiDoes: [
+      "Books jobs and confirms appointments automatically",
+      "Quotes interior, exterior, or full detail packages by vehicle size",
+      "Sends day-before reminder and day-of 'on my way' text",
+      "Fires payment link the moment you finish",
+      "Requests Google review 2 hours after payment",
+      "Runs seasonal campaigns (spring cleaning special, back to school)",
+      "Re-engages past customers every 60-90 days for repeat service",
+    ],
+    youDo: [
+      "Vacuum, shampoo, wipe, and polish interior",
+      "Handle exterior wash and clay bar if full detail",
+      "Drive to customer location with all supplies",
+      "Upsell packages in person when appropriate",
+      "Keep equipment cleaned and maintained",
+    ],
+    pros: [
+      "No shop, no overhead — just drive to the customer",
+      "Strong before/after photos drive social media referrals",
+      "Repeat business every 1-3 months from satisfied clients",
+      "Easy to upsell from basic to premium detail",
+      "High demand year-round, especially spring and summer",
+    ],
+    cons: [
+      "Physical and time-intensive — 2-4 hours per vehicle",
+      "Hot work in Texas summers",
+      "Supplies are an ongoing cost",
+      "Water access needed at customer location",
+      "Competitive in bigger cities",
+    ],
+    day: [
+      {time:"7:05am", ai:true, text:"Morning brief: 3 details booked. Full detail ($250), interior only ($150), basic wash ($80). Total: $480."},
+      {time:"8:00am", ai:false, text:"First job — full detail on a Toyota Camry. 3 hours at client's house."},
+      {time:"During", ai:true, text:"AI takes 2 new inquiry calls. Books one for Thursday."},
+      {time:"11:15am", ai:false, text:"Done. Fire payment webhook."},
+      {time:"11:16am", ai:true, text:"AI sends $250 payment link. Client pays on her phone."},
+      {time:"1:30pm", ai:true, text:"Review request fires. She leaves 5 stars with a before/after photo."},
+      {time:"5:00pm", ai:false, text:"3 jobs done. $480 gross. After supplies and fuel: ~$312."},
+    ],
+    calc: {jobsLabel:"Details/week", avgJobLabel:"Avg detail price ($)", defaultJobs:12, defaultJob:150, costs:0.35}
+  },
+  events: {
+    name: "Event Decoration",
+    icon: "🎉",
+    tagline: "Set up and tear down event decorations for graduations, parties, and weddings. Big weekends = big paydays.",
+    startup: "$500 - $2,000",
+    avgJob: "$500",
+    margin: "60%",
+    monthlyPotential: "$2,000 - $8,000",
+    equipment: "Decorations, balloon pump, tables, linens, transport vehicle",
+    license: "Usually none required",
+    aiDoes: [
+      "Handles all event inquiry calls and books consultations",
+      "Quotes based on event size, type, and decoration packages",
+      "Sends contract and deposit link after consultation",
+      "Reminds client 48 hours before setup with final checklist",
+      "Fires final payment link on event day",
+      "Follows up with review request and photo request the day after",
+      "Handles off-season inquiries and books holiday parties months out",
+    ],
+    youDo: [
+      "Meet with client to understand their vision",
+      "Source or create decorations for each event theme",
+      "Show up early and set up everything on time",
+      "Tear down after the event, usually same night",
+      "Build relationships with venues for recurring referrals",
+    ],
+    pros: [
+      "May-June = graduation rush in every city, high demand",
+      "High per-event pay for a few hours of work",
+      "Very low competition in small towns",
+      "Weddings and quinceañeras = $1,000-$3,000+ per event",
+      "Instagram-worthy setups drive organic referrals fast",
+    ],
+    cons: [
+      "Weekend-heavy — most events are Friday-Sunday",
+      "Setup and teardown can run late into the night",
+      "Inventory investment grows as you take more event types",
+      "Seasonal spikes with slower months in between",
+      "One mistake at a wedding = very unhappy client",
+    ],
+    day: [
+      {time:"9:00am", ai:true, text:"AI booked a graduation party inquiry from last night. Consultation scheduled for Tuesday."},
+      {time:"2:00pm", ai:false, text:"Venue walkthrough for Saturday's event. Client confirms balloon arch + table centerpieces."},
+      {time:"4:00pm", ai:true, text:"AI sends deposit link ($150). Client pays within the hour."},
+      {time:"Saturday 7am", ai:false, text:"Show up at venue 3 hours before event. Set up arch, centerpieces, backdrop."},
+      {time:"Saturday 10am", ai:true, text:"AI fires final payment link. $350 remaining balance. Paid before first guest arrives."},
+      {time:"Saturday 11pm", ai:false, text:"Teardown after party. 2 hours to break down and load."},
+      {time:"Sunday", ai:true, text:"AI sends review request and asks for a photo. Client posts on Facebook — 3 new inquiries by Monday."},
+    ],
+    calc: {jobsLabel:"Events/month", avgJobLabel:"Avg event price ($)", defaultJobs:6, defaultJob:500, costs:0.40}
+  },
+  pets: {
+    name: "Pet Sitting / Dog Walking",
+    icon: "🐕",
+    tagline: "Walk dogs and watch pets while owners are at work or traveling. Lowest startup cost of any service business.",
+    startup: "$0 - $200",
+    avgJob: "$25",
+    margin: "80%",
+    monthlyPotential: "$1,500 - $5,000",
+    equipment: "Leashes, treats — clients usually provide everything else",
+    license: "Pet sitting certification optional (adds credibility)",
+    aiDoes: [
+      "Books walks and sitting visits automatically",
+      "Sends photo/update texts to owners during visits",
+      "Fires payment link after each service",
+      "Sets up recurring weekly schedules for regular clients",
+      "Re-engages clients before they travel ('Spring Break coming up?')",
+      "Handles new client inquiries and books meet-and-greets",
+      "Requests reviews from new clients after first week",
+    ],
+    youDo: [
+      "Walk, feed, and spend time with animals",
+      "Send photo updates to keep owners at ease",
+      "Show up 100% reliably — animals depend on you",
+      "Handle multiple dogs at once as you scale",
+      "Build trust with pet owners (they're handing you their family member)",
+    ],
+    pros: [
+      "Zero startup cost — literally nothing needed",
+      "Recurring clients who pay weekly forever",
+      "People travel all summer — overnight sitting = $60-$100/night",
+      "Strong word-of-mouth in neighborhoods",
+      "Easy to add clients gradually as you grow",
+    ],
+    cons: [
+      "Lower per-job pay ($20-35 per walk)",
+      "Animals can be unpredictable — real responsibility",
+      "Weather is a factor for walks",
+      "Need to be available on a reliable schedule",
+      "Dog bites are a liability",
+    ],
+    day: [
+      {time:"7:05am", ai:true, text:"Morning brief: 4 morning walks booked. 3 midday visits. Overnight sitting at the Johnson's this weekend."},
+      {time:"7:30am", ai:false, text:"Morning walk route. 4 dogs, 3 neighborhoods, 2 hours."},
+      {time:"During", ai:true, text:"AI responds to 2 new client inquiries. Books a meet-and-greet for Thursday."},
+      {time:"12:00pm", ai:false, text:"Midday visits. Feed 3 cats while their owner is at work."},
+      {time:"Each visit", ai:true, text:"AI fires payment links after each service. Most pay same day."},
+      {time:"5:00pm", ai:false, text:"Afternoon walks. 7 total walks today × $25 = $175 plus 3 cat visits ($20 each) = $235 gross."},
+    ],
+    calc: {jobsLabel:"Visits/week", avgJobLabel:"Avg visit price ($)", defaultJobs:25, defaultJob:25, costs:0.20}
+  },
+  organizing: {
+    name: "Home Organizing",
+    icon: "📦",
+    tagline: "Organize pantries, garages, closets, and entire homes. High value, high satisfaction, strong word-of-mouth.",
+    startup: "$200 - $800",
+    avgJob: "$300",
+    margin: "70%",
+    monthlyPotential: "$2,000 - $7,000",
+    equipment: "Bins, labels, drawer dividers, cleaning supplies — client pays for any large storage",
+    license: "None required",
+    aiDoes: [
+      "Handles inquiry calls and quotes by room or project type",
+      "Books consultations and sends pre-visit questionnaire",
+      "Sends reminder 24 hours before each project",
+      "Fires payment link on job completion",
+      "Follows up with before/after photo request for testimonials",
+      "Sends seasonal re-engagement ('Spring cleaning?', 'New year, new garage?')",
+      "Requests Google reviews after every project",
+    ],
+    youDo: [
+      "Consult with client on their system and preferences",
+      "Sort, declutter, and organize by category",
+      "Set up bins, labels, and new systems",
+      "Haul donation items if client wants",
+      "Build relationship for future rooms and referrals",
+    ],
+    pros: [
+      "High hourly rate ($50-75/hr) for straightforward work",
+      "Strong referrals — people tell their friends when their house gets transformed",
+      "Spring/summer = prime season (people want fresh starts)",
+      "Low overhead — just supplies and transportation",
+      "Emotionally satisfying work clients rave about",
+    ],
+    cons: [
+      "Hard to find first clients without a portfolio",
+      "Clients can be emotionally attached to clutter — patience required",
+      "No recurring revenue unless you build maintenance plans",
+      "Every project is different — variable work load",
+      "Some clients change their mind mid-project",
+    ],
+    day: [
+      {time:"7:05am", ai:true, text:"Morning brief: garage organization project today (8 hours, $600). Plus a pantry job booked for Thursday."},
+      {time:"9:00am", ai:false, text:"Arrive at client's house. Walk the garage, understand priorities."},
+      {time:"9:30am", ai:false, text:"Sort everything into keep, donate, toss. 2 hours."},
+      {time:"During", ai:true, text:"AI takes a new inquiry call. Books a kitchen pantry project for next week."},
+      {time:"2:00pm", ai:false, text:"Everything categorized and organized. Label bins and set up the new system."},
+      {time:"5:00pm", ai:false, text:"Final walkthrough with client. Take before/after photos. Fire payment webhook."},
+      {time:"5:01pm", ai:true, text:"AI fires $600 payment link. Client pays immediately, asks if you do closets too."},
+    ],
+    calc: {jobsLabel:"Projects/week", avgJobLabel:"Avg project price ($)", defaultJobs:4, defaultJob:300, costs:0.30}
+  },
+  photography: {
+    name: "Photography",
+    icon: "📸",
+    tagline: "Shoot portraits, events, real estate, and content for local businesses. AI handles every inquiry. You show up and shoot.",
+    startup: "$500 - $3,000",
+    avgJob: "$350",
+    margin: "80%",
+    monthlyPotential: "$2,000 - $8,000",
+    equipment: "Camera body and lens (entry DSLR or mirrorless), editing software (Lightroom), hard drive",
+    license: "None required",
+    aiDoes: [
+      "Answers inquiry calls and books sessions automatically",
+      "Sends pre-session questionnaire to understand style and preferences",
+      "Sends reminder 24 hours before with location and what to wear",
+      "Fires payment link after gallery delivery",
+      "Re-engages past clients for seasonal sessions (holiday cards, senior photos)",
+      "Books real estate agents for listing photo packages",
+      "Requests testimonials and gallery shares after delivery",
+    ],
+    youDo: [
+      "Shoot sessions — portraits, events, real estate",
+      "Edit and deliver gallery within agreed timeline",
+      "Communicate with clients about style and expectations",
+      "Build your portfolio (first few shoots can be discounted)",
+      "Market your work on Instagram to grow inbound leads",
+    ],
+    pros: [
+      "Very high margin (80%) — mostly your time",
+      "Real estate photography pays $150-300/listing, steady and recurring",
+      "Portfolio builds itself — clients share photos everywhere",
+      "Creative work you can be proud of",
+      "Equipment pays for itself in 5-10 sessions",
+    ],
+    cons: [
+      "Editing takes significant time outside of shoot hours",
+      "Building a portfolio takes a few discounted shoots first",
+      "Competitive in larger cities",
+      "Gear requires careful handling — expensive to replace",
+      "Client taste varies — managing expectations is an art",
+    ],
+    day: [
+      {time:"7:05am", ai:true, text:"Morning brief: family portrait session at 10am ($350). New real estate inquiry — booked for Wednesday ($200/listing)."},
+      {time:"9:30am", ai:false, text:"Scout the location, set up gear."},
+      {time:"10:00am", ai:false, text:"Family session — 1.5 hours. Get the hero shot and everything in between."},
+      {time:"During", ai:true, text:"AI books 2 more real estate listings for the week."},
+      {time:"11:30am", ai:false, text:"Session wrapped. Fire payment webhook."},
+      {time:"11:31am", ai:true, text:"AI sends $350 invoice link. Paid within 10 minutes."},
+      {time:"Evening", ai:false, text:"Edit 50 selects in Lightroom — 2 hours. Deliver gallery link the next day."},
+    ],
+    calc: {jobsLabel:"Sessions/week", avgJobLabel:"Avg session price ($)", defaultJobs:6, defaultJob:350, costs:0.20}
+  },
+  social: {
+    name: "Social Media Management",
+    icon: "📱",
+    tagline: "Manage Instagram and Facebook for local businesses. Monthly retainer. AI writes content. You build the relationship.",
+    startup: "$0 - $200",
+    avgJob: "$400",
+    margin: "90%",
+    monthlyPotential: "$2,000 - $8,000",
+    equipment: "Laptop and phone — nothing else needed",
+    license: "None required",
+    aiDoes: [
+      "Generates caption drafts and hashtag sets for each post",
+      "Tracks engagement analytics and generates monthly report for client",
+      "Handles DM inquiries on client accounts with scripted responses",
+      "Sends content calendar reminder each week for your approval",
+      "Researches trending audio and content formats in client's niche",
+      "Schedules and queues approved posts via scheduling tool",
+      "Sends monthly recap to client showing follower growth and engagement",
+    ],
+    youDo: [
+      "Onboard client and understand their brand voice and goals",
+      "Take photos or source content for posts",
+      "Review and approve AI-drafted captions before posting",
+      "Respond to comments and build community engagement",
+      "Maintain client relationship with monthly check-in calls",
+    ],
+    pros: [
+      "Near-zero overhead — laptop and a phone is the entire business",
+      "Monthly retainer = predictable recurring income",
+      "Can run multiple clients simultaneously",
+      "Work from anywhere, any time",
+      "Local businesses desperately need this and have no one to do it",
+    ],
+    cons: [
+      "Clients churn if they don't see follower or engagement growth",
+      "Requires genuine creativity and social media fluency",
+      "Client communication can be time-consuming",
+      "Harder to prove direct ROI compared to phone AI",
+      "Some clients want control and second-guess every post",
+    ],
+    day: [
+      {time:"Any time", ai:true, text:"AI generates this week's captions for all 5 clients, pulls trending audio, and queues drafts for your review."},
+      {time:"Morning", ai:false, text:"Review AI drafts. Edit tone to match each client's voice. Approve or rewrite."},
+      {time:"During", ai:true, text:"Scheduled posts go live automatically. AI tracks engagement metrics in real time."},
+      {time:"Weekly", ai:false, text:"Take or source new photos/videos for upcoming content. 2-3 hours per client per month."},
+      {time:"Monthly", ai:true, text:"AI generates full analytics report for each client. You send it with 3 bullets of insight."},
+      {time:"Monthly", ai:false, text:"5 clients × $400 = $2,000 recurring. After tools and your time: ~$1,800 net."},
+    ],
+    calc: {jobsLabel:"Clients", avgJobLabel:"Monthly retainer ($)", defaultJobs:5, defaultJob:400, costs:0.10}
+  },
+  plumbing: {
+    name: "Plumbing",
+    icon: "🔩",
+    tagline: "Fix leaks, clogs, and emergencies. When someone's pipe bursts at midnight, they pay whatever you ask. AI captures every call.",
+    startup: "$3,000 - $15,000",
+    avgJob: "$300",
+    margin: "50%",
+    monthlyPotential: "$6,000 - $20,000",
+    equipment: "Hand tools, pipe wrenches, auger, leak detection tools, service van",
+    license: "Required — plumber's license (most states), apprentice or journeyman levels",
+    aiDoes: [
+      "Answers emergency calls 24/7 — 3am pipe burst = you're the first one they reach",
+      "Books service calls and dispatches you with job details",
+      "Sends 'on my way' texts when you're heading out",
+      "Fires payment link on job completion",
+      "Sends follow-up inspection reminders (annual water heater check)",
+      "Handles after-hours inquiries for next-morning booking",
+      "Requests Google reviews after every service call",
+    ],
+    youDo: [
+      "Diagnose and fix leaks, clogs, water heater issues, and pipe breaks",
+      "Get and maintain your plumber's license",
+      "Manage parts inventory and reorder supplies",
+      "Handle permits for larger jobs",
+      "Build relationships with property managers and contractors",
+    ],
+    pros: [
+      "Emergency calls command 1.5-2x normal rates",
+      "Licensing creates a barrier — fewer competitors willing to get it",
+      "Steady demand — pipes break in every home eventually",
+      "Property managers give you multiple properties at once",
+      "Customers are intensely loyal to a plumber they trust",
+    ],
+    cons: [
+      "Licensing required — takes real time and study",
+      "Messy and physically demanding work",
+      "Emergency calls can come at any hour",
+      "Parts inventory is an ongoing investment",
+      "Mistakes can cause significant water damage",
+    ],
+    day: [
+      {time:"7:05am", ai:true, text:"Morning brief: 4 service calls. Two drain clogs, one water heater, one emergency leak from last night that AI booked at 1am."},
+      {time:"7:30am", ai:true, text:"The 1am emergency was a burst pipe. AI already texted the homeowner 'First call of the day — arriving 8am.'"},
+      {time:"8:00am", ai:false, text:"Emergency burst pipe. Diagnose, cut water, replace section. 2.5 hours."},
+      {time:"Each job", ai:true, text:"Payment link fires on completion. Review request follows 2 hours later."},
+      {time:"All day", ai:false, text:"3 more calls. Drain clog (45 min), water heater flush (1 hr), shower drain (30 min)."},
+      {time:"5:00pm", ai:false, text:"4 jobs done. $1,350 gross. After parts and van costs: ~$675."},
+    ],
+    calc: {jobsLabel:"Jobs/week", avgJobLabel:"Avg job value ($)", defaultJobs:15, defaultJob:300, costs:0.50}
+  },
+  roofing: {
+    name: "Roofing",
+    icon: "🏗️",
+    tagline: "One hail storm and you can make a year's income in two weeks. AI captures every quote request and follows up until they sign.",
+    startup: "$2,000 - $10,000",
+    avgJob: "$4,500",
+    margin: "35%",
+    monthlyPotential: "$10,000 - $40,000",
+    equipment: "Safety harness, nail gun, tools, truck, ladders",
+    license: "Contractor license varies by state — many areas require it",
+    aiDoes: [
+      "Answers storm-season inquiry calls 24/7",
+      "Books free inspection appointments automatically",
+      "Sends estimate follow-up texts every 48 hours until signed",
+      "Handles insurance adjuster coordination scheduling",
+      "Fires payment link on project completion",
+      "Sends storm-alert campaigns after hail events ('Your area just got hit — want a free inspection?')",
+      "Requests reviews after every job — social proof is critical in roofing",
+    ],
+    youDo: [
+      "Inspect roofs and identify damage",
+      "Write estimates and work with insurance adjusters",
+      "Manage crew and subcontractors on installs",
+      "Source materials and manage project timelines",
+      "Handle permits and final inspections",
+    ],
+    pros: [
+      "Single job can be $3,000-$15,000+",
+      "One hail storm = 30-50 jobs in a few weeks",
+      "Insurance-funded jobs = customers rarely price-shop",
+      "Strong referrals if you do clean work",
+      "Texas storms are frequent and severe",
+    ],
+    cons: [
+      "Physically dangerous — falls are the #1 cause of construction deaths",
+      "High startup for materials and crew",
+      "Boom-bust cycle — feast during storm season, slow otherwise",
+      "Licensing and insurance requirements add complexity",
+      "Managing a crew adds management overhead",
+    ],
+    day: [
+      {time:"7:05am", ai:true, text:"Morning brief after last night's hail storm: 14 new inspection requests came in overnight. AI has already texted all 14 a booking link."},
+      {time:"8:00am", ai:false, text:"Inspection #1 — document damage, take photos for insurance claim. 45 minutes."},
+      {time:"All day", ai:false, text:"Run 6 inspections. Write estimates on-site."},
+      {time:"During", ai:true, text:"AI follows up on the 8 estimates from last week that haven't signed yet. 2 convert while you're on rooftops."},
+      {time:"Each signed job", ai:true, text:"AI sends contract and deposit link automatically. You start scheduling crew."},
+      {time:"Week view", ai:false, text:"7 jobs in production. At $4,500 avg, $31,500 gross. After crew and materials: ~$11,000 net."},
+    ],
+    calc: {jobsLabel:"Jobs/month", avgJobLabel:"Avg job value ($)", defaultJobs:7, defaultJob:4500, costs:0.65}
+  },
+  lawfirm: {
+    name: "Law Firm",
+    icon: "⚖️",
+    tagline: "One missed call at a law firm can mean a $10,000 case walking to a competitor. AI captures every single intake call.",
+    startup: "$2,000 - $10,000",
+    avgJob: "$3,000",
+    margin: "70%",
+    monthlyPotential: "$10,000 - $100,000+",
+    equipment: "Office space, computer, legal research tools",
+    license: "Bar exam required — 3 years law school after college",
+    aiDoes: [
+      "Answers every intake call 24/7, even when attorneys are in court",
+      "Qualifies cases with scripted intake questions (injury, fault, damages)",
+      "Books consultation appointments and sends confirmation",
+      "Sends intake form link and collects information before first meeting",
+      "Follows up on no-shows and reschedules automatically",
+      "Tracks referral sources to identify which relationships drive the most cases",
+      "Requests Google reviews after case resolution",
+    ],
+    youDo: [
+      "Pass the bar and maintain your law license",
+      "Evaluate cases and advise clients on strategy",
+      "Negotiate with insurance companies and opposing counsel",
+      "File motions and appear in court",
+      "Build referral relationships with doctors, real estate agents, and past clients",
+    ],
+    pros: [
+      "Single PI case can be worth $10,000-$100,000+ in fees",
+      "AI follow-up gives massive advantage over firms who miss calls",
+      "Strong referral network compounds over time",
+      "Recurring clients for estate planning, business work, real estate",
+      "Missed-call problem is most severe in legal — highest ROI of any niche",
+    ],
+    cons: [
+      "Requires a law degree and bar exam — years of education and investment",
+      "High competition in most practice areas",
+      "Income is irregular in litigation (contingency fees)",
+      "Regulated industry with strict advertising rules",
+      "Client management is emotionally intensive",
+    ],
+    day: [
+      {time:"7:05am", ai:true, text:"Morning brief: 3 new intake calls came in overnight. AI qualified all three and sent intake forms. One is a major car accident case."},
+      {time:"9:00am", ai:false, text:"Return the top prospect's call. Review their intake form. Schedule in-person consult."},
+      {time:"During", ai:true, text:"AI handles 5 new calls while you're in consultations. Books 2 more consults."},
+      {time:"Court", ai:true, text:"You're in a hearing. AI captures every call — no case misses you while you're unavailable."},
+      {time:"Monthly", ai:true, text:"AI sends review requests to all closed clients. You pick up 4-6 new Google reviews per month."},
+      {time:"Year view", ai:false, text:"Law firm with AI answering vs. without: research shows 18-32% revenue lift from captured intake alone."},
+    ],
+    calc: {jobsLabel:"Cases/month", avgJobLabel:"Avg case fee ($)", defaultJobs:3, defaultJob:3000, costs:0.30}
   }
 };
 
@@ -654,7 +1208,7 @@ function show(key) {
     <div class="cta-box">
       <h3>Want This Business Built for You?</h3>
       <p>BOSS Systems builds the entire AI side — your phone AI, booking system, payment collection, review automation, and marketing system. You just show up and do the work. We handle everything else.</p>
-      <a class="cta-btn" href="sms:+19037146162?body=Hey Boston — I looked at the ${b.name} business on the BOSS Learn tool. Want to know more.">Text Boston to Get Started</a>
+      <a class="cta-btn" href="sms:+19037146162?body=Hey Boston — I looked at the ${b.name} business on BOSS Scout. Want to know more.">Text Boston to Get Started</a>
     </div>
   `;
 
