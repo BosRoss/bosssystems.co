@@ -158,6 +158,11 @@ hr{border:none;border-top:1px solid #1a1a1a;margin:28px 0}
 .biz-tile .t-icon{font-size:22px;display:block;margin-bottom:5px}
 .biz-tile .t-name{font-size:10px;font-weight:700;letter-spacing:.5px;color:var(--muted);text-transform:uppercase;line-height:1.3}
 
+/* PERSONA BUTTONS */
+.persona-btn{padding:9px 6px;font-size:10px;font-weight:700;letter-spacing:.5px;text-transform:uppercase;border:1px solid #222;border-radius:2px;background:#111;color:#555;cursor:pointer;transition:all .15s;overflow:hidden;white-space:nowrap;text-overflow:ellipsis;font-family:inherit}
+.persona-btn:hover{border-color:#444;color:#888}
+.persona-btn.sel{background:#1a1200;border-color:#3a3000;color:var(--gold)}
+
 /* GATE */
 #gate{position:fixed;inset:0;z-index:999;background:#080808;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:20px;padding:40px}
 #gate .g-logo{font-size:13px;font-weight:900;letter-spacing:4px;color:#C9A84C;margin-bottom:12px}
@@ -1188,6 +1193,15 @@ const MODALS = {
 'pt-pets': {
   title: 'Pet Sitting & Dog Walking',
   badge: '$0 STARTUP', badgeStyle: 'background:#1a1200;color:var(--gold);border:1px solid #3a3000',
+  trainerConfig: {
+    businessType: 'pet sitting and dog walking',
+    personas: [
+      {key:'nervous', label:'Nervous Owner', name:'Nervous First-Timer', desc:'You have never left your dog with a stranger before. You love your dog more than anything. You will ask detailed questions about experience, how they handle emergencies, and whether the dog will be alone. You will slowly warm up if they sound genuinely caring and prepared.'},
+      {key:'vacation', label:'Vacation Traveler', name:'Going-Away Karen', desc:'You are leaving for a week-long vacation in 10 days and need someone reliable. You are less worried about price and more worried about whether this person will actually show up every day and send updates. You ask about their backup plan if something comes up.'},
+      {key:'walker', label:'Daily Walks', name:'Busy Professional', desc:'You work 10-hour days and feel guilty your dog barely goes outside. You want a regular afternoon walker Monday through Friday. You are interested but ask about pricing for multiple days and whether they can be consistent — not a different person every week.'},
+      {key:'multidogs', label:'Two Dogs', name:'Two-Dog Household', desc:'You have two dogs, different sizes. You ask immediately whether they handle two dogs at once and what the rate is. You are comparing to Rover app prices. You will book if the price is fair and they sound confident with multiple dogs.'}
+    ]
+  },
   html: `
     <div class="m-stat-grid">
       <div class="m-stat"><div class="n">$20–35</div><div class="l">Per walk</div></div>
@@ -1237,6 +1251,15 @@ const MODALS = {
 'pt-photo': {
   title: 'Photography',
   badge: '$0 STARTUP', badgeStyle: 'background:#1a1200;color:var(--gold);border:1px solid #3a3000',
+  trainerConfig: {
+    businessType: 'photography',
+    personas: [
+      {key:'senior', label:'Senior Portrait Mom', name:'Deadline Mom', desc:'Your kid has a yearbook photo deadline in 3 weeks. You are on a budget but you want good photos. You ask how long until you get the edited photos back, how many looks they can do, and whether the location is included. You are ready to book if they sound professional.'},
+      {key:'iphone', label:'"iPhone Is Fine"', name:'Skeptical Dad', desc:'You are skeptical about paying for photos when everyone has a good phone now. You are not rude, just genuinely confused about what makes a professional photographer worth the price. You will be convinced if they talk about editing, lighting, and show examples — not if they just say "trust me."'},
+      {key:'family', label:'Family Session', name:'Family Session Mom', desc:'You want a casual outdoor family session — nothing too stiff or formal. You have a 4-year-old who does not cooperate. You ask how they handle kids, whether they suggest poses, and how many photos you end up with. Price is a factor but not the main one.'},
+      {key:'headshot', label:'Business Headshot', name:'Professional Client', desc:'You need a headshot for your LinkedIn and company website. You want it done fast — ideally this week. You ask exactly how many photos you get, turnaround time, and whether you can review before they finalize. You are willing to pay if the process sounds efficient.'}
+    ]
+  },
   html: `
     <div class="m-stat-grid">
       <div class="m-stat"><div class="n">$150–300</div><div class="l">Per session</div></div>
@@ -1285,6 +1308,15 @@ const MODALS = {
 'pt-events': {
   title: 'Event Decoration',
   badge: '$150 STARTUP', badgeStyle: 'background:#1a1200;color:var(--gold);border:1px solid #3a3000',
+  trainerConfig: {
+    businessType: 'event decoration',
+    personas: [
+      {key:'bday', label:'Birthday Mom', name:'Perfectionist Birthday Mom', desc:'You are planning your daughter\'s 7th birthday and you want it to look exactly like the Pinterest board you have been building for a month. You ask detailed questions about what colors are available, whether they bring everything, and how long setup takes. You have a budget in mind but have not said it yet — you will share it if they ask.'},
+      {key:'lastmin', label:'Last-Minute', name:'Last-Minute Planner', desc:'The party is THIS Saturday. You completely forgot to book decorations. You are slightly panicked. You ask immediately if they are available this weekend. You will pay a rush premium if they can make it happen. Price negotiation goes out the window because you need someone who can actually show up.'},
+      {key:'shower', label:'Baby Shower', name:'Baby Shower Planner', desc:'You are planning a baby shower for your sister and want to see photos of similar setups before you commit. You ask about specific themes (sage green, boho, etc.) and whether they can match a color palette. You are comparing to one other person you found on Instagram.'},
+      {key:'skeptic', label:'"Just Balloons"', name:'Budget Skeptic', desc:'You think paying someone for balloons and decorations is unnecessary — your mom always did it herself. You ask bluntly what exactly justifies the price. You are not completely closed — if they explain the setup time, the professional look, and the convenience factor clearly, you will reconsider.'}
+    ]
+  },
   html: `
     <div class="m-stat-grid">
       <div class="m-stat"><div class="n">$150–400</div><div class="l">Per event</div></div>
@@ -1334,6 +1366,15 @@ const MODALS = {
 'pt-social': {
   title: 'Social Media Management',
   badge: '$0 STARTUP', badgeStyle: 'background:#1a1200;color:var(--gold);border:1px solid #3a3000',
+  trainerConfig: {
+    businessType: 'social media management',
+    personas: [
+      {key:'tried', label:'"We Tried It"', name:'Been-Burned Business Owner', desc:'You hired someone off Fiverr last year who posted twice and disappeared. You are skeptical of anyone offering social media management now. You are not hostile, just guarded. You will give this person a real shot if they acknowledge the problem and explain concretely what makes them different.'},
+      {key:'niece', label:'"My Niece Does It"', name:'Family-Member Objector', desc:'Your niece posts for you occasionally for free. You ask why you would pay $250 a month when family does it for nothing. The real truth: your niece posts maybe once a month and has no strategy. You will be persuaded if they explain consistency, content planning, and the difference between personal posts and business content.'},
+      {key:'cheap', label:'Price Haggler', name:'Budget-First Owner', desc:'You run a small restaurant and think $250 a month is steep. You ask if they can do it for $100 or $150. You genuinely want help but are watching every dollar. You will book at a fair price if they can show you concrete deliverables for what you are paying.'},
+      {key:'ready', label:'Ready to Buy', name:'Interested Business Owner', desc:'You looked at your Instagram this morning and realized you have not posted in 6 weeks. You are busy running your business and know you need help. You ask what the process looks like — do you approve posts first, how many per week, what platforms. You are close to yes already.'}
+    ]
+  },
   html: `
     <div class="m-stat-grid">
       <div class="m-stat"><div class="n">$200–400</div><div class="l">Per client/mo</div></div>
@@ -1382,6 +1423,15 @@ const MODALS = {
 'pt-organizing': {
   title: 'Home Organizing',
   badge: '$0 STARTUP', badgeStyle: 'background:#1a1200;color:var(--gold);border:1px solid #3a3000',
+  trainerConfig: {
+    businessType: 'home organizing',
+    personas: [
+      {key:'embarrassed', label:'Embarrassed Client', name:'Overwhelmed Homeowner', desc:'Your house has gotten out of control over the past year and you are embarrassed to even say it out loud. You finally decided to ask for help. You are sheepish, almost apologetic. You respond well to someone who normalizes the situation and does not make you feel judged. You are sold on hiring someone — you just need to feel comfortable.'},
+      {key:'mover', label:'Moving Out', name:'Moving-Out Renter', desc:'You are moving out of your apartment in two weeks and it has accumulated years of clutter. You want someone to come help you sort, pack strategically, and decide what to donate versus trash. You are price-sensitive because moving is already expensive. You ask for an hourly estimate and whether they help decide what to keep.'},
+      {key:'closet', label:'One Closet', name:'Specific-Room Requester', desc:'You just want your master closet done. That is it. You are not ready to tackle the whole house. You ask how long a single closet takes and what the minimum charge is. You might turn into a recurring client if the closet goes well — but right now you are cautious and just want to try a small job first.'},
+      {key:'monthly', label:'Monthly Maintenance', name:'Ongoing Maintenance Client', desc:'You had your house organized by someone a year ago and it has slowly degraded. You want someone to come once a month to maintain it. You ask what a monthly session looks like, how long it takes, and whether you can lock in a consistent time slot each month. You are comparing to DIY and ask what makes a professional worth it.'}
+    ]
+  },
   html: `
     <div class="m-stat-grid">
       <div class="m-stat"><div class="n">$65–85</div><div class="l">Per hour</div></div>
@@ -1430,6 +1480,15 @@ const MODALS = {
 'pt-lawn': {
   title: 'Lawn Care',
   badge: 'RECURRING', badgeStyle: 'background:#0a1a0a;color:#4caf50;border:1px solid #2a5a2a',
+  trainerConfig: {
+    businessType: 'lawn care',
+    personas: [
+      {key:'door', label:'Door Knock', name:'Overgrown Yard Homeowner', desc:'A young person just knocked on your door about your lawn. You know it is overgrown — you have been meaning to deal with it for three weeks. You are a little caught off guard but not annoyed. You ask the price, whether they have equipment, and how soon they can do it. You will say yes if the price sounds fair.'},
+      {key:'recurring', label:'Wants Weekly', name:'Recurring Service Shopper', desc:'You are looking for someone reliable to mow every week all summer. You have had two people flake on you already this season. Reliability matters more than price at this point. You ask directly: will they actually show up every week? You will commit to a weekly schedule if they sound dependable.'},
+      {key:'elderly', label:'Elderly Neighbor', name:'Elderly Homeowner', desc:'You are in your 70s and can no longer mow yourself. Your son keeps saying he will do it but never does. You are polite and appreciative. You ask the price, whether they edge, and whether they will come the same day each week. You are loyal and will refer neighbors if you are happy.'},
+      {key:'onetime', label:'One-Time Only', name:'Just This Once Customer', desc:'You just want this one cut done before a family event this weekend. You are not looking for a recurring arrangement right now. You might convert later but you are not committing to anything beyond this single job. You ask the price and whether they can come Saturday morning.'}
+    ]
+  },
   html: `
     <div class="m-stat-grid">
       <div class="m-stat"><div class="n">$35–80</div><div class="l">Per yard</div></div>
@@ -1478,6 +1537,15 @@ const MODALS = {
 'pt-cleaning': {
   title: 'House Cleaning',
   badge: 'RECURRING', badgeStyle: 'background:#0a1a0a;color:#4caf50;border:1px solid #2a5a2a',
+  trainerConfig: {
+    businessType: 'house cleaning',
+    personas: [
+      {key:'mom', label:'Busy Mom', name:'Overwhelmed Working Mom', desc:'You work full time and have two kids under 8. The house is never clean. You want someone biweekly but you are nervous about a stranger in your home. You ask how they vet people, whether they bring their own supplies, and what happens if something gets broken. You are close to hiring — you just need to feel safe about it.'},
+      {key:'airbnb', label:'Airbnb Host', name:'Airbnb Host', desc:'You manage two Airbnb listings and need reliable turnover cleans after every checkout. You care about reliability above everything else — you cannot have a guest arrive to a dirty unit. You ask about same-day availability, what the checklist looks like, and whether they can send a photo confirmation when done.'},
+      {key:'firsttimer', label:'First-Timer', name:'First-Time Hiring Skeptic', desc:'You have never paid someone to clean your house before. You feel like you should just do it yourself. You ask bluntly: what exactly do you clean, do you go through personal stuff, and how long does it take. You are not hostile — you just need transparency. You will hire if they walk you through exactly what happens.'},
+      {key:'moveout', label:'Move-Out Clean', name:'Move-Out Tenant', desc:'You are moving out of your rental in 4 days and you need a deep clean to get your deposit back. You are stressed and price-sensitive. You ask for a specific number, what is included, and whether they can guarantee the landlord will be satisfied. This is a one-time job but you will refer friends if you are happy.'}
+    ]
+  },
   html: `
     <div class="m-stat-grid">
       <div class="m-stat"><div class="n">$100–250</div><div class="l">Per clean</div></div>
@@ -1526,6 +1594,15 @@ const MODALS = {
 'pt-detailing': {
   title: 'Car Detailing',
   badge: 'MOBILE', badgeStyle: 'background:#1a1200;color:var(--gold);border:1px solid #3a3000',
+  trainerConfig: {
+    businessType: 'mobile car detailing',
+    personas: [
+      {key:'dogcar', label:'Dog/Kids Car', name:'Messy Car Parent', desc:'Your car has cheerios, dog hair, and a smell you have stopped noticing. You know it is bad. You are not in denial — you are just checking whether the price is worth it. You ask what the deep clean includes, how long it takes, and whether they can handle pet hair. You will book same day if the price is right.'},
+      {key:'office', label:'Office Worker', name:'Convenience Seeker', desc:'You work at an office and you want someone to come detail your car in the parking lot during your work day. You compare the price to the auto shop near your house. You ask whether they come to you, whether you need to be present, and how you pay. The mobile aspect is the main selling point for you.'},
+      {key:'curious', label:'Just Curious', name:'Not-Sure-What-I-Need Customer', desc:'You responded to a Marketplace post but you are not sure exactly what interior detail means versus a car wash. You ask what the difference is. You feel like your car is only medium dirty — you ask if there is a lighter option. You will book the standard service once you understand what you are getting.'},
+      {key:'gift', label:'Buying as Gift', name:'Gift Buyer', desc:'You want to get a detail done as a gift for your spouse who would never spend money on themselves. You ask whether they offer gift options, how you would handle payment and scheduling on their behalf, and whether it can be a surprise. This is a warm easy sell — you just need a smooth path to complete the purchase.'}
+    ]
+  },
   html: `
     <div class="m-stat-grid">
       <div class="m-stat"><div class="n">$75–150</div><div class="l">Per car</div></div>
@@ -1574,6 +1651,15 @@ const MODALS = {
 'pt-pool': {
   title: 'Pool Cleaning',
   badge: 'RECURRING', badgeStyle: 'background:#0a1a0a;color:#4caf50;border:1px solid #2a5a2a',
+  trainerConfig: {
+    businessType: 'pool cleaning',
+    personas: [
+      {key:'newowner', label:'New Pool Owner', name:'First-Time Pool Owner', desc:'You just bought a house with a pool and have no idea what weekly maintenance involves. You thought a pool was just a pool. You ask basic questions: how often does it need to be serviced, what chemicals are involved, and what happens if you skip a week. You are not price-resistant — you just need to understand what you are buying.'},
+      {key:'green', label:'Green Pool Emergency', name:'Green Pool Caller', desc:'Your pool turned green two days ago and the kids want to swim this weekend. You need someone out ASAP. You ask whether they can come today or tomorrow, what it will cost to fix it, and how long until it is swim-ready. You are not focused on recurring service yet — you just need the immediate problem solved.'},
+      {key:'shopper', label:'Price Shopper', name:'Comparing-Quotes Customer', desc:'You already have two quotes for weekly service — one at $80 and one at $105. You tell the person upfront that you are comparing and ask their price. If they match or are close, you ask what makes them different from the others. You are going to pick the one who sounds most reliable, not necessarily the cheapest.'},
+      {key:'switching', label:'Switching Services', name:'Unhappy Current Client', desc:'Your current pool guy has been flaking — missed two weeks in a row and never texted. You are done with him but you are cautious about making the same mistake again. You ask directly: will they actually show up every week? You want to hear something concrete, not just a promise.'}
+    ]
+  },
   html: `
     <div class="m-stat-grid">
       <div class="m-stat"><div class="n">$85–115</div><div class="l">Per clean</div></div>
@@ -1622,6 +1708,15 @@ const MODALS = {
 'pt-junk': {
   title: 'Junk Removal',
   badge: '$1,500–3,500/WK', badgeStyle: 'background:#1a1200;color:var(--gold);border:1px solid #3a3000',
+  trainerConfig: {
+    businessType: 'junk removal',
+    personas: [
+      {key:'skeptical', label:'Skeptical Homeowner', name:'Skeptical Homeowner', desc:'You have a garage full of stuff you want hauled. You are interested but you have been burned by contractors before who gave low quotes and then raised the price when they arrived. You want a clear price upfront before you commit. You push back once on price and see how they handle it.'},
+      {key:'urgent', label:'Moving Day', name:'Stressed-Out Mover', desc:'You are moving out in 3 days and you have way more stuff than you thought. You need it gone TODAY or tomorrow at the latest. You are slightly frantic. Price is less of a concern — availability is everything. You will pay a premium if they can actually come out quickly.'},
+      {key:'garage', label:'Garage Cleanout', name:'Full Garage Customer', desc:'You have 20 years of stuff in your garage and you want it all gone. You ask upfront for one flat price rather than being charged by the load. You are also worried about the dump fees — you ask whether that is included. You will sign on the spot if they can give you a confident all-in number.'},
+      {key:'cheap', label:'Price-First Pete', name:'Price-First Pete', desc:'You open with: "What is the cheapest you can do it?" Every answer you give leads to another price question. You compare to a guy on Facebook who said he would do it for $75. You are not unreasonable — you will hire at a fair price — but you make them justify every dollar before you agree.'}
+    ]
+  },
   html: `
     <div class="m-stat-grid">
       <div class="m-stat"><div class="n">$150–400</div><div class="l">Per load</div></div>
@@ -1670,6 +1765,15 @@ const MODALS = {
 'pt-pressure': {
   title: 'Pressure Washing',
   badge: 'HIGH MARGIN', badgeStyle: 'background:#1a1200;color:var(--gold);border:1px solid #3a3000',
+  trainerConfig: {
+    businessType: 'pressure washing',
+    personas: [
+      {key:'driveway', label:'Dirty Driveway', name:'Quote-Shopping Homeowner', desc:'Your driveway is visibly stained and you have been thinking about getting it done for a while. You already got one quote from someone else. You ask the price and compare it directly to the other quote. You are not locked into the cheapest — you want to know what you get for the money.'},
+      {key:'hoa', label:'HOA Deadline', name:'HOA Letter Recipient', desc:'You just got a letter from your HOA saying your driveway needs to be cleaned within 30 days or you face a fine. You are motivated but slightly annoyed about the whole situation. You ask whether they can come this week and whether they guarantee the result will satisfy the HOA standard.'},
+      {key:'watching', label:'Saw You Working', name:'Curious Neighbor', desc:'You walked over from next door while they were working on your neighbor\'s driveway. You saw the before and after and were impressed. You ask on the spot what it would cost to do yours. This is a warm lead — you are already sold on the result. You just want a number and a time.'},
+      {key:'tooexp', label:'"Too Expensive"', name:'Price-Resistant Homeowner', desc:'You asked for a quote and your first response is that it sounds too expensive for just washing a driveway. You say your neighbor\'s kid did it for $40 with a garden hose. You are not completely opposed — you are just testing whether they will lower the price or defend it. You respect someone who explains the value clearly instead of immediately discounting.'}
+    ]
+  },
   html: `
     <div class="m-stat-grid">
       <div class="m-stat"><div class="n">$150–350</div><div class="l">Per job</div></div>
@@ -1733,7 +1837,11 @@ function openModal(id) {
     badge.style.display = 'none';
   }
 
-  document.getElementById('modal-body').innerHTML = data.html;
+  const body = document.getElementById('modal-body');
+  body.innerHTML = data.html;
+  if(data.trainerConfig) {
+    body.innerHTML += buildTrainer(id, data.trainerConfig.businessType, data.trainerConfig.personas);
+  }
   document.getElementById('overlay').classList.add('open');
   document.getElementById('modal').classList.add('open');
   document.body.style.overflow = 'hidden';
@@ -2016,6 +2124,98 @@ async function submitDecision(uid, phone, firstName, lastName) {
   } catch(e) {
     result.innerHTML = `<div style="color:#e57373;font-size:11px;margin-top:8px">Error: ${e.message}</div>`;
   }
+}
+
+// ===== SALES TRAINER =====
+const TRAINER_AGENT = 'agent_fc53b0ede05f872cad6872bb86';
+const TRAINER_KEY = 'key_7c54fe6b3ae9be0b27f087f00b02';
+let trainerClient = null;
+let trainerActive = false;
+
+function selectPersona(modalId, key) {
+  document.querySelectorAll('[id^="persona-' + modalId + '-"]').forEach(b => b.classList.remove('sel'));
+  const btn = document.getElementById('persona-' + modalId + '-' + key);
+  if(btn) btn.classList.add('sel');
+  const container = document.getElementById('trainer-box-' + modalId);
+  if(container) container.dataset.selected = key;
+  const startBtn = document.getElementById('trainer-start-' + modalId);
+  if(startBtn){ startBtn.disabled = false; startBtn.style.opacity='1'; startBtn.style.cursor='pointer'; }
+}
+
+async function startSalesTrainer(modalId) {
+  if(trainerActive) { endSalesTrainer(modalId); return; }
+  const box = document.getElementById('trainer-box-' + modalId);
+  const selectedKey = box?.dataset.selected;
+  if(!selectedKey) return;
+  const btn = document.getElementById('persona-' + modalId + '-' + selectedKey);
+  const personaName = btn?.dataset.pname || selectedKey;
+  const personaDesc = btn?.dataset.pdesc || '';
+  const businessType = box?.dataset.biz || '';
+  const startBtn = document.getElementById('trainer-start-' + modalId);
+  const statusEl = document.getElementById('trainer-status-' + modalId);
+
+  startBtn.disabled = true; startBtn.textContent = 'Connecting...';
+  statusEl.style.display = 'block'; statusEl.style.color = 'var(--gold)'; statusEl.textContent = 'Starting call...';
+
+  try {
+    const resp = await fetch('https://api.retellai.com/v2/create-web-call', {
+      method:'POST',
+      headers:{'Authorization':'Bearer ' + TRAINER_KEY,'Content-Type':'application/json'},
+      body: JSON.stringify({
+        agent_id: TRAINER_AGENT,
+        retell_llm_dynamic_variables: {
+          persona_name: personaName,
+          persona_description: personaDesc,
+          business_type: businessType
+        }
+      })
+    });
+    const data = await resp.json();
+    if(!data.access_token) throw new Error(data.message || 'No token');
+    loadRetellSDK(function(){
+      trainerClient = new RetellWebClient();
+      trainerActive = true;
+      trainerClient.on('call_started', () => {
+        statusEl.style.color = '#4caf50'; statusEl.textContent = 'LIVE — ' + personaName;
+        startBtn.textContent = 'End Call'; startBtn.disabled = false; startBtn.style.opacity='1';
+      });
+      trainerClient.on('call_ended', () => {
+        statusEl.style.color = '#555'; statusEl.textContent = 'Call ended';
+        startBtn.textContent = 'Start Practice Call'; startBtn.disabled = false; startBtn.style.opacity='1';
+        trainerActive = false; trainerClient = null;
+      });
+      trainerClient.on('error', err => {
+        statusEl.style.color = '#e57373'; statusEl.textContent = 'Error: ' + (err.message||'failed');
+        startBtn.textContent = 'Start Practice Call'; startBtn.disabled = false; startBtn.style.opacity='1';
+        trainerActive = false; trainerClient = null;
+      });
+      trainerClient.startCall({accessToken: data.access_token});
+    });
+  } catch(e) {
+    statusEl.style.color = '#e57373'; statusEl.textContent = 'Error: ' + e.message;
+    startBtn.textContent = 'Start Practice Call'; startBtn.disabled = false; startBtn.style.opacity='1';
+  }
+}
+
+function endSalesTrainer(modalId) {
+  if(trainerClient){ try{ trainerClient.stopCall(); }catch(e){} }
+  trainerActive = false; trainerClient = null;
+}
+
+function buildTrainer(modalId, businessType, personas) {
+  const btns = personas.map(p =>
+    '<button id="persona-' + modalId + '-' + p.key + '" class="persona-btn"' +
+    ' data-pname="' + p.name.replace(/"/g,'&quot;') + '"' +
+    ' data-pdesc="' + p.desc.replace(/"/g,'&quot;') + '"' +
+    ' onclick="selectPersona(\'' + modalId + '\',\'' + p.key + '\')">' + p.label + '</button>'
+  ).join('');
+  return '<div class="m-section" style="margin-top:4px;border-top:1px solid #1a1a1a;padding-top:20px">' +
+    '<div class="m-label">Sales Trainer</div>' +
+    '<div class="m-note" style="margin-bottom:12px">Pick a customer type. The AI plays that person in real time — you practice your pitch cold.</div>' +
+    '<div id="trainer-box-' + modalId + '" data-biz="' + businessType + '" data-selected="" style="display:grid;grid-template-columns:1fr 1fr;gap:6px;margin-bottom:10px">' + btns + '</div>' +
+    '<button id="trainer-start-' + modalId + '" disabled onclick="startSalesTrainer(\'' + modalId + '\')" style="width:100%;background:#1a1200;border:1px solid #3a3000;color:var(--gold);padding:12px;font-weight:900;font-size:13px;letter-spacing:1px;text-transform:uppercase;border-radius:2px;opacity:.5;cursor:not-allowed">Start Practice Call</button>' +
+    '<div id="trainer-status-' + modalId + '" style="display:none;font-size:11px;text-align:center;padding:8px;margin-top:6px;border-radius:2px;letter-spacing:1px;font-weight:700;text-transform:uppercase"></div>' +
+    '</div>';
 }
 
 // Clock
