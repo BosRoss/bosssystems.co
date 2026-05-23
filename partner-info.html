@@ -350,10 +350,22 @@ footer{border-top:1px solid var(--border);padding:32px 24px;display:flex;justify
       </div>
     </div>
 
+    <!-- AGREEMENT -->
+    <div class="form-section" style="background:var(--gray2);border:1px solid var(--border);padding:28px 32px;margin-top:8px">
+      <div class="section-title" style="font-size:13px;font-weight:700;text-transform:uppercase;letter-spacing:2px;margin-bottom:16px">Partner Agreement</div>
+      <div class="field" style="margin-bottom:0">
+        <label class="checkbox-option" style="display:flex;align-items:flex-start;gap:12px;cursor:pointer">
+          <input type="checkbox" id="agreeTerms" name="agreeTerms" required style="margin-top:3px;accent-color:var(--gold);width:16px;height:16px;flex-shrink:0">
+          <span style="font-size:13px;color:var(--muted);line-height:1.6">I have read and agree to the <a href="/terms.html" target="_blank" style="color:var(--gold);text-decoration:underline">Summer Partner Agreement</a>. I understand this is a binding arrangement and that submitting this form counts as my electronic signature confirming those terms.</span>
+        </label>
+        <div class="field-error" id="err-agreeTerms" style="margin-top:8px">You must agree to the Partner Agreement to continue.</div>
+      </div>
+    </div>
+
     <!-- SUBMIT -->
     <div class="submit-area">
       <button type="submit" class="btn-submit" id="submitBtn">Send My Info</button>
-      <p class="submit-note">Boston will text you back within 24 hours. No spam. No sales calls. Just a text.</p>
+      <p class="submit-note">Boston will text you back within 24 hours. Your form submission is timestamped and recorded as acceptance of the Partner Agreement.</p>
     </div>
 
   </form>
@@ -473,6 +485,10 @@ footer{border-top:1px solid var(--border);padding:32px 24px;display:flex;justify
     var mainGoal = getRadioValue('mainGoal');
     if(!mainGoal){ showError('mainGoal', 'Select an option.'); valid = false; } else { clearError('mainGoal'); }
 
+    // Agreement checkbox
+    var agreed = document.getElementById('agreeTerms').checked;
+    if(!agreed){ showError('agreeTerms', 'You must agree to the Partner Agreement to continue.'); valid = false; } else { clearError('agreeTerms'); }
+
     return valid;
   }
 
@@ -511,7 +527,9 @@ footer{border-top:1px solid var(--border);padding:32px 24px;display:flex;justify
       hearAbout:    document.getElementById('hearAbout').value,
       socialHandle: document.getElementById('socialHandle').value.trim() || null,
       mainGoal:     getRadioValue('mainGoal'),
-      submittedAt:  new Date().toISOString()
+      submittedAt:          new Date().toISOString(),
+      agreementConsented:   true,
+      agreementVersion:     'summer-2026-v1'
     };
 
     if(truckAccess !== null){ payload.truckAccess = truckAccess; }
