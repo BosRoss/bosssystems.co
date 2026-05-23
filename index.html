@@ -890,6 +890,28 @@
     }
     .pricing-note a { color: var(--gold); text-decoration: underline; }
 
+    .pricing-intro { color: var(--text-muted); font-size: 16px; max-width: 620px; margin: 0 auto; line-height: 1.7; }
+
+    .pricing-formula { display: flex; align-items: stretch; max-width: 640px; margin: 48px auto; border: 1px solid var(--border); }
+    .formula-block { flex: 1; padding: 32px; background: var(--bg-3); text-align: center; }
+    .formula-block.right { border-left: 1px solid var(--border); }
+    .formula-label { font-size: 10px; font-weight: 700; letter-spacing: 3px; text-transform: uppercase; color: var(--gold); margin-bottom: 12px; display: block; }
+    .formula-calc { font-size: 20px; font-weight: 800; color: var(--text); margin-bottom: 8px; }
+    .formula-range { font-size: 12px; color: var(--text-dim); }
+    .formula-plus { font-size: 22px; color: var(--text-dim); padding: 0 20px; display: flex; align-items: center; flex-shrink: 0; background: var(--bg-2); border-top: 1px solid var(--border); border-bottom: 1px solid var(--border); }
+
+    .pricing-examples { max-width: 640px; margin: 0 auto 48px; }
+    .pricing-examples-label { font-size: 10px; font-weight: 700; letter-spacing: 3px; text-transform: uppercase; color: var(--text-dim); margin-bottom: 16px; text-align: center; display: block; }
+    .pricing-table { width: 100%; border-collapse: collapse; font-size: 14px; border: 1px solid var(--border); }
+    .pricing-table th { text-align: left; font-size: 10px; letter-spacing: 2px; text-transform: uppercase; color: var(--text-dim); padding: 12px 16px; border-bottom: 1px solid var(--border); background: var(--bg-3); }
+    .pricing-table td { padding: 14px 16px; border-bottom: 1px solid var(--border); color: var(--text-muted); }
+    .pricing-table tr:last-child td { border-bottom: none; }
+    .pricing-table td:first-child { color: var(--text); font-weight: 600; }
+    .pricing-table td:last-child { color: var(--gold); font-weight: 700; }
+    .pricing-table tr.hl { background: var(--bg-3); }
+    .pricing-table-note { font-size: 12px; color: var(--text-dim); text-align: center; margin-top: 14px; line-height: 1.6; }
+    .pricing-cta-wrap { text-align: center; margin-top: 48px; }
+
     /* ========== FINAL CTA ========== */
     #cta {
       background: var(--bg);
@@ -1176,41 +1198,10 @@
         <!-- BOSS BUILD -->
         <div class="product-card">
           <div class="product-name">BOSS Build</div>
-          <div class="product-price">$1,497&ndash;$5,997</div>
-          <p class="product-desc">We build your complete AI system. Phone answering, outbound calling, payment collection, review automation, customer re-engagement, social media, competitor monitoring. Everything that applies to your specific business type, deployed in 72 hours.</p>
-          <div class="product-tiers">
-            <div class="tier-row">
-              <div>
-                <div class="tier-name">Starter</div>
-                <div class="tier-desc">5 core automations</div>
-              </div>
-              <div>
-                <div class="tier-price">$1,497</div>
-                <div class="tier-price-sub">+ $97/mo</div>
-              </div>
-            </div>
-            <div class="tier-row">
-              <div>
-                <div class="tier-name">Growth</div>
-                <div class="tier-desc">10 automations + active lead gen</div>
-              </div>
-              <div>
-                <div class="tier-price">$2,997</div>
-                <div class="tier-price-sub">+ $247/mo</div>
-              </div>
-            </div>
-            <div class="tier-row">
-              <div>
-                <div class="tier-name">Full Transformation</div>
-                <div class="tier-desc">Everything</div>
-              </div>
-              <div>
-                <div class="tier-price">$5,997</div>
-                <div class="tier-price-sub">+ $497/mo</div>
-              </div>
-            </div>
-          </div>
-          <a href="#pricing" class="btn btn-outline product-cta">See Packages &rarr;</a>
+          <div class="product-price">Priced on your value</div>
+          <p class="product-desc">We build your complete AI system. Phone answering, outbound calling, payment collection, review automation, customer re-engagement, social media, competitor monitoring. Everything that applies to your specific business, deployed in 72 hours.</p>
+          <p class="product-desc" style="margin-top:8px;">Price = 9% of your projected annual value. Shown in full before you commit. If we find $60,000 in annual value, you pay $5,400 once plus $180/month.</p>
+          <a href="#pricing" class="btn btn-outline product-cta">See How Pricing Works &rarr;</a>
         </div>
 
       </div>
@@ -1606,65 +1597,58 @@
     <div class="container">
       <div class="pricing-header">
         <span class="section-label">Pricing</span>
-        <h2>Simple Pricing. No Surprises.</h2>
+        <h2>Priced on What We Save You.</h2>
         <div class="gold-divider"></div>
+        <p class="pricing-intro">We charge a percentage of the annual value we find in your business. Run the free analysis first — your exact price is calculated from your numbers and shown before you commit to anything.</p>
       </div>
-      <div class="pricing-grid">
 
-        <!-- STARTER -->
-        <div class="pricing-card">
-          <div class="pricing-tier">Starter</div>
-          <div class="pricing-price">$1,497</div>
-          <div class="pricing-monthly">+ $97/month</div>
-          <div class="pricing-tagline">"The essential foundation."</div>
-          <ul class="pricing-features">
-            <li>AI phone receptionist (24/7)</li>
-            <li>Missed call text-back (60 seconds)</li>
-            <li>Payment collection automation</li>
-            <li>Review request automation</li>
-            <li>Appointment confirmations</li>
-          </ul>
-          <a href="/analyze.html" class="btn btn-outline" style="width:100%;justify-content:center;">Get Free Analysis First</a>
+      <div class="pricing-formula">
+        <div class="formula-block">
+          <span class="formula-label">Build Fee (one-time)</span>
+          <div class="formula-calc">9% of annual value</div>
+          <div class="formula-range">$997 min &nbsp;&middot;&nbsp; $14,997 max</div>
         </div>
-
-        <!-- GROWTH -->
-        <div class="pricing-card featured">
-          <div class="pricing-popular">Most Popular</div>
-          <div class="pricing-tier">Growth</div>
-          <div class="pricing-price">$2,997</div>
-          <div class="pricing-monthly">+ $247/month</div>
-          <div class="pricing-tagline">"Active lead generation included."</div>
-          <ul class="pricing-features">
-            <li>Everything in Starter</li>
-            <li>AI outbound caller (finds and calls prospects)</li>
-            <li>Customer re-engagement campaigns</li>
-            <li>Competitor review monitoring</li>
-            <li>Lead follow-up sequences</li>
-            <li>Social media automation</li>
-          </ul>
-          <a href="/analyze.html" class="btn btn-gold" style="width:100%;justify-content:center;">Get Free Analysis First</a>
+        <div class="formula-plus">+</div>
+        <div class="formula-block right">
+          <span class="formula-label">Monthly Fee</span>
+          <div class="formula-calc">0.3% / month</div>
+          <div class="formula-range">$97/mo min &nbsp;&middot;&nbsp; $497/mo max</div>
         </div>
-
-        <!-- FULL TRANSFORMATION -->
-        <div class="pricing-card">
-          <div class="pricing-tier">Full Transformation</div>
-          <div class="pricing-price">$5,997</div>
-          <div class="pricing-monthly">+ $497/month</div>
-          <div class="pricing-tagline">"Every automation that applies to your business."</div>
-          <ul class="pricing-features">
-            <li>Everything in Growth</li>
-            <li>AI quote generator (photo to quote in 60 seconds)</li>
-            <li>Dispatch and route optimization</li>
-            <li>Invoice generation</li>
-            <li>Seasonal campaign calendar</li>
-            <li>Revenue dashboard</li>
-            <li>Ongoing monthly optimization</li>
-          </ul>
-          <a href="/analyze.html" class="btn btn-outline" style="width:100%;justify-content:center;">Get Free Analysis First</a>
-        </div>
-
       </div>
-      <p class="pricing-note">Payment via <a href="https://venmo.com/BosRoss" target="_blank" rel="noopener">Venmo @BosRoss</a>. Boston is 17. Questions? Text <a href="tel:+19037146162">903-714-6162</a>.</p>
+
+      <div class="pricing-examples">
+        <span class="pricing-examples-label">What this looks like at different value levels</span>
+        <table class="pricing-table">
+          <thead>
+            <tr>
+              <th>Annual Value Found</th>
+              <th>Build Fee</th>
+              <th>Monthly</th>
+              <th>Year 1 ROI</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>$25,000</td><td>$2,250</td><td>$97/mo</td><td>~8&times;</td>
+            </tr>
+            <tr class="hl">
+              <td>$60,000</td><td>$5,400</td><td>$180/mo</td><td>~8&times;</td>
+            </tr>
+            <tr>
+              <td>$120,000</td><td>$10,800</td><td>$360/mo</td><td>~8&times;</td>
+            </tr>
+            <tr>
+              <td>$200,000+</td><td>$14,997</td><td>$497/mo</td><td>~12&times;</td>
+            </tr>
+          </tbody>
+        </table>
+        <p class="pricing-table-note">These are examples. Your exact price comes from your free analysis.<br>If your real numbers beat the projection, the price stays the same.</p>
+      </div>
+
+      <div class="pricing-cta-wrap">
+        <a href="/analyze.html" class="btn btn-gold btn-lg">See My Exact Price &rarr;</a>
+        <p class="pricing-note" style="margin-top:20px;">Payment via <a href="https://venmo.com/BosRoss" target="_blank" rel="noopener">Venmo @BosRoss</a>. Boston is 17. Questions? Text <a href="tel:+19037146162">903-714-6162</a>.</p>
+      </div>
     </div>
   </section>
 
