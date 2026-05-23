@@ -318,6 +318,15 @@ footer{border-top:1px solid var(--border);padding:32px 24px;display:flex;justify
         <div class="field-error" id="err-hearAbout">Select an option.</div>
       </div>
 
+      <div class="field" id="field-referredBy">
+        <label for="referredBy">
+          Who referred you?
+          <span class="optional">Optional</span>
+          <span class="sublabel">If a friend sent you here, put their name. They get $20 when you make your first profit.</span>
+        </label>
+        <input type="text" id="referredBy" name="referredBy" placeholder="First and last name, or leave blank">
+      </div>
+
       <div class="field" id="field-socialHandle">
         <label for="socialHandle">
           Instagram or TikTok Handle
@@ -525,6 +534,7 @@ footer{border-top:1px solid var(--border);padding:32px 24px;display:flex;justify
       hoursPerWeek: getRadioValue('hoursPerWeek'),
       priorWork:    document.getElementById('priorWork').value.trim(),
       hearAbout:    document.getElementById('hearAbout').value,
+      referredBy:   document.getElementById('referredBy').value.trim() || null,
       socialHandle: document.getElementById('socialHandle').value.trim() || null,
       mainGoal:     getRadioValue('mainGoal'),
       submittedAt:          new Date().toISOString(),
@@ -564,7 +574,7 @@ footer{border-top:1px solid var(--border);padding:32px 24px;display:flex;justify
   });
 
   // ── LIVE CLEAR ERRORS ON CHANGE ─────────────────────────────────────────────
-  ['firstName','lastName','age','cityState','phone','business','whyBusiness','priorWork','hearAbout','socialHandle'].forEach(function(id){
+  ['firstName','lastName','age','cityState','phone','business','whyBusiness','priorWork','hearAbout','referredBy','socialHandle'].forEach(function(id){
     var el = document.getElementById(id);
     if(!el){ return; }
     el.addEventListener('input', function(){ clearError(id); });
