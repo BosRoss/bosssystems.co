@@ -1,0 +1,572 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>BOSS Systems Summer Program</title>
+<style>
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  body {
+    background: #0a0a0a;
+    color: #f0f0f0;
+    font-family: 'Arial Black', 'Impact', sans-serif;
+    min-height: 100vh;
+    padding: 0;
+  }
+
+  .page {
+    max-width: 850px;
+    margin: 0 auto;
+    padding: 60px 40px;
+  }
+
+  /* TOP BANNER */
+  .top-bar {
+    background: #d4001f;
+    padding: 10px 40px;
+    text-align: center;
+    font-size: 13px;
+    letter-spacing: 4px;
+    font-weight: 900;
+    color: #fff;
+    text-transform: uppercase;
+  }
+
+  /* HERO */
+  .hero {
+    padding: 70px 0 50px;
+    border-bottom: 4px solid #d4001f;
+  }
+
+  .eyebrow {
+    font-size: 12px;
+    letter-spacing: 6px;
+    color: #d4001f;
+    text-transform: uppercase;
+    margin-bottom: 24px;
+    font-weight: 900;
+  }
+
+  .main-headline {
+    font-size: clamp(52px, 8vw, 96px);
+    font-weight: 900;
+    line-height: 0.9;
+    text-transform: uppercase;
+    letter-spacing: -2px;
+    margin-bottom: 30px;
+  }
+
+  .main-headline span {
+    color: #d4001f;
+  }
+
+  .sub-line {
+    font-size: 18px;
+    font-weight: 400;
+    font-family: Arial, sans-serif;
+    color: #999;
+    max-width: 480px;
+    line-height: 1.5;
+  }
+
+  .sub-line strong {
+    color: #f0f0f0;
+  }
+
+  /* THE DEAL */
+  .deal-section {
+    padding: 60px 0;
+    border-bottom: 1px solid #222;
+  }
+
+  .section-label {
+    font-size: 11px;
+    letter-spacing: 5px;
+    color: #555;
+    text-transform: uppercase;
+    margin-bottom: 20px;
+  }
+
+  .deal-statement {
+    font-size: clamp(28px, 4vw, 42px);
+    font-weight: 900;
+    line-height: 1.1;
+    text-transform: uppercase;
+    margin-bottom: 12px;
+  }
+
+  .deal-sub {
+    font-size: 16px;
+    font-family: Arial, sans-serif;
+    color: #777;
+    margin-top: 8px;
+  }
+
+  /* BUSINESSES GRID */
+  .businesses-section {
+    padding: 60px 0;
+    border-bottom: 1px solid #222;
+  }
+
+  .biz-header {
+    margin-bottom: 40px;
+  }
+
+  .biz-header h2 {
+    font-size: 32px;
+    font-weight: 900;
+    text-transform: uppercase;
+  }
+
+  .biz-header p {
+    font-family: Arial, sans-serif;
+    color: #666;
+    font-size: 14px;
+    margin-top: 6px;
+  }
+
+  .biz-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 2px;
+  }
+
+  .biz-card {
+    background: #111;
+    padding: 24px;
+    border-left: 3px solid transparent;
+    transition: border-color 0.2s;
+  }
+
+  .biz-card:hover {
+    border-left-color: #d4001f;
+  }
+
+  .biz-card.girls {
+    border-left: 3px solid #d4001f;
+  }
+
+  .biz-name {
+    font-size: 16px;
+    font-weight: 900;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    margin-bottom: 4px;
+  }
+
+  .biz-rate {
+    font-size: 22px;
+    font-weight: 900;
+    color: #d4001f;
+    margin-bottom: 6px;
+  }
+
+  .biz-desc {
+    font-family: Arial, sans-serif;
+    font-size: 13px;
+    color: #666;
+    line-height: 1.4;
+  }
+
+  .girls-tag {
+    display: inline-block;
+    background: #d4001f;
+    color: #fff;
+    font-size: 9px;
+    letter-spacing: 2px;
+    padding: 2px 8px;
+    font-weight: 900;
+    text-transform: uppercase;
+    margin-bottom: 8px;
+  }
+
+  /* THE NUMBERS */
+  .numbers-section {
+    padding: 60px 0;
+    border-bottom: 1px solid #222;
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    gap: 40px;
+  }
+
+  .stat {
+    text-align: center;
+  }
+
+  .stat-number {
+    font-size: clamp(40px, 5vw, 64px);
+    font-weight: 900;
+    color: #d4001f;
+    line-height: 1;
+  }
+
+  .stat-label {
+    font-family: Arial, sans-serif;
+    font-size: 13px;
+    color: #666;
+    margin-top: 8px;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+  }
+
+  /* HOW IT WORKS */
+  .how-section {
+    padding: 60px 0;
+    border-bottom: 1px solid #222;
+  }
+
+  .steps {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    gap: 30px;
+    margin-top: 30px;
+  }
+
+  .step-num {
+    font-size: 64px;
+    font-weight: 900;
+    color: #1a1a1a;
+    line-height: 1;
+    margin-bottom: 12px;
+  }
+
+  .step-title {
+    font-size: 16px;
+    font-weight: 900;
+    text-transform: uppercase;
+    margin-bottom: 8px;
+  }
+
+  .step-desc {
+    font-family: Arial, sans-serif;
+    font-size: 13px;
+    color: #666;
+    line-height: 1.5;
+  }
+
+  /* FINE PRINT (not fine at all) */
+  .fine-print {
+    padding: 60px 0;
+    border-bottom: 1px solid #222;
+  }
+
+  .fine-print h2 {
+    font-size: 28px;
+    font-weight: 900;
+    text-transform: uppercase;
+    margin-bottom: 24px;
+  }
+
+  .fine-list {
+    list-style: none;
+    display: grid;
+    gap: 16px;
+  }
+
+  .fine-list li {
+    font-family: Arial, sans-serif;
+    font-size: 15px;
+    color: #aaa;
+    padding-left: 24px;
+    position: relative;
+    line-height: 1.4;
+  }
+
+  .fine-list li::before {
+    content: '—';
+    position: absolute;
+    left: 0;
+    color: #d4001f;
+  }
+
+  .fine-list li strong {
+    color: #f0f0f0;
+  }
+
+  /* CTA */
+  .cta-section {
+    padding: 70px 0;
+    text-align: center;
+  }
+
+  .cta-headline {
+    font-size: clamp(36px, 5vw, 64px);
+    font-weight: 900;
+    text-transform: uppercase;
+    line-height: 1;
+    margin-bottom: 20px;
+  }
+
+  .cta-sub {
+    font-family: Arial, sans-serif;
+    font-size: 16px;
+    color: #666;
+    margin-bottom: 40px;
+  }
+
+  .cta-button {
+    display: inline-block;
+    background: #d4001f;
+    color: #fff;
+    font-family: 'Arial Black', sans-serif;
+    font-size: 18px;
+    font-weight: 900;
+    text-transform: uppercase;
+    letter-spacing: 3px;
+    padding: 20px 48px;
+    text-decoration: none;
+    margin-bottom: 20px;
+  }
+
+  .cta-number {
+    font-size: 32px;
+    font-weight: 900;
+    letter-spacing: 2px;
+    color: #d4001f;
+  }
+
+  .cta-disclaimer {
+    font-family: Arial, sans-serif;
+    font-size: 12px;
+    color: #444;
+    margin-top: 30px;
+    letter-spacing: 1px;
+  }
+
+  /* FOOTER */
+  .footer {
+    background: #111;
+    padding: 24px 40px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+
+  .footer-brand {
+    font-size: 14px;
+    font-weight: 900;
+    text-transform: uppercase;
+    letter-spacing: 3px;
+  }
+
+  .footer-brand span {
+    color: #d4001f;
+  }
+
+  .footer-right {
+    font-family: Arial, sans-serif;
+    font-size: 12px;
+    color: #555;
+  }
+
+  /* PULL QUOTES */
+  .pull-quote {
+    font-size: clamp(20px, 3vw, 28px);
+    font-weight: 900;
+    text-transform: uppercase;
+    color: #222;
+    text-align: center;
+    padding: 40px 0;
+    line-height: 1.2;
+    letter-spacing: -0.5px;
+  }
+
+  .pull-quote span {
+    color: #d4001f;
+  }
+
+  /* Responsive */
+  @media (max-width: 600px) {
+    .page { padding: 40px 24px; }
+    .biz-grid { grid-template-columns: 1fr; }
+    .numbers-section { grid-template-columns: 1fr; }
+    .steps { grid-template-columns: 1fr; }
+    .footer { flex-direction: column; gap: 12px; text-align: center; }
+  }
+</style>
+</head>
+<body>
+
+<div class="top-bar">BOSS Systems — Summer Partner Program — Limited Spots</div>
+
+<div class="page">
+
+  <!-- HERO -->
+  <section class="hero">
+    <div class="eyebrow">Summer 2026</div>
+    <div class="main-headline">
+      WE HAVE<br>
+      THE<br>
+      <span>BUSINESSES.</span>
+    </div>
+    <p class="sub-line">
+      You were gonna be on your phone all summer anyway.<br>
+      <strong>This one actually pays.</strong>
+    </p>
+  </section>
+
+  <!-- PULL QUOTE -->
+  <div class="pull-quote">The AI answers the phone.<br>You do the job.<br><span>We split it.</span></div>
+
+  <!-- THE DEAL -->
+  <section class="deal-section">
+    <div class="section-label">The Deal</div>
+    <div class="deal-statement">Boston builds the tech.<br>You do the work.<br>You keep 85%.</div>
+    <p class="deal-sub">No setup fee. No monthly fee. No contract. Cancel anytime. This summer only.</p>
+  </section>
+
+  <!-- BUSINESSES -->
+  <section class="businesses-section">
+    <div class="biz-header">
+      <h2>Pick Your Business</h2>
+      <p>All come with AI that answers calls 24/7, quotes jobs, books appointments, collects reviews. You just show up.</p>
+    </div>
+
+    <div class="biz-grid">
+
+      <!-- FOR ANYONE -->
+      <div class="biz-card">
+        <div class="biz-name">Junk Removal</div>
+        <div class="biz-rate">$150–400/load</div>
+        <div class="biz-desc">Need a truck. Haul stuff. AI handles all the calls and bookings.</div>
+      </div>
+
+      <div class="biz-card">
+        <div class="biz-name">Pressure Washing</div>
+        <div class="biz-rate">$150–350/job</div>
+        <div class="biz-desc">Driveways, houses, patios. Equipment rental is $150. Jobs pay back in day one.</div>
+      </div>
+
+      <div class="biz-card">
+        <div class="biz-name">Lawn Care</div>
+        <div class="biz-rate">$35–80/yard, weekly</div>
+        <div class="biz-desc">10 recurring accounts = guaranteed money every week. The AI schedules everything.</div>
+      </div>
+
+      <div class="biz-card">
+        <div class="biz-name">Pool Cleaning</div>
+        <div class="biz-rate">$300–600/month per pool</div>
+        <div class="biz-desc">Texas summer. Everyone has a pool. Nobody wants to clean it. You do 10 pools a week.</div>
+      </div>
+
+      <div class="biz-card">
+        <div class="biz-name">Interior Detailing</div>
+        <div class="biz-rate">$75–150/car</div>
+        <div class="biz-desc">Just the inside. Vacuum, wipe, shampoo. No equipment needed. $100 startup total.</div>
+      </div>
+
+      <div class="biz-card">
+        <div class="biz-name">House Cleaning</div>
+        <div class="biz-rate">$100–250/clean</div>
+        <div class="biz-desc">Recurring clients every week. Airbnb cleaners charge more and get booked constantly.</div>
+      </div>
+
+      <!-- FOR GIRLS -->
+      <div class="biz-card girls">
+        <div class="girls-tag">especially for girls</div>
+        <div class="biz-name">Event Decoration</div>
+        <div class="biz-rate">$150–400/event</div>
+        <div class="biz-desc">Balloon garlands, tablescapes, backdrops for parties + baby showers. 2-3 hours. Southern moms pay anything for this.</div>
+      </div>
+
+      <div class="biz-card girls">
+        <div class="girls-tag">especially for girls</div>
+        <div class="biz-name">Pet Sitting & Dog Walking</div>
+        <div class="biz-rate">$20–75/visit or night</div>
+        <div class="biz-desc">Walk dogs before school. Sit pets when owners travel. Recurring clients every week. AI handles all scheduling.</div>
+      </div>
+
+      <div class="biz-card girls">
+        <div class="girls-tag">especially for girls</div>
+        <div class="biz-name">Home Organizing</div>
+        <div class="biz-rate">$65–85/hr or $200-400/room</div>
+        <div class="biz-desc">Closets, pantries, kids rooms. Take a before/after photo. That photo becomes your next 5 clients.</div>
+      </div>
+
+      <div class="biz-card girls">
+        <div class="girls-tag">especially for girls</div>
+        <div class="biz-name">Photography Sessions</div>
+        <div class="biz-rate">$150–300/session</div>
+        <div class="biz-desc">Graduation photos, family portraits, senior pics. Peak season is right now. Deliver digitals, no printing needed.</div>
+      </div>
+
+      <div class="biz-card girls">
+        <div class="girls-tag">especially for girls</div>
+        <div class="biz-name">Social Media Management</div>
+        <div class="biz-rate">$200–400/month per client</div>
+        <div class="biz-desc">Post on Instagram for local businesses that are bad at it. You're already on your phone. Get paid for it.</div>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- THE NUMBERS -->
+  <section class="numbers-section">
+    <div class="stat">
+      <div class="stat-number">$0</div>
+      <div class="stat-label">To start</div>
+    </div>
+    <div class="stat">
+      <div class="stat-number">85%</div>
+      <div class="stat-label">You keep</div>
+    </div>
+    <div class="stat">
+      <div class="stat-number">$2–5K</div>
+      <div class="stat-label">Summer goal</div>
+    </div>
+  </section>
+
+  <!-- HOW IT WORKS -->
+  <section class="how-section">
+    <div class="section-label">How It Works</div>
+    <div class="steps">
+      <div>
+        <div class="step-num">01</div>
+        <div class="step-title">You text Boston</div>
+        <div class="step-desc">Pick a business type. Pick your city. Tell him you're in. That's the whole application process.</div>
+      </div>
+      <div>
+        <div class="step-num">02</div>
+        <div class="step-title">He builds the tech</div>
+        <div class="step-desc">In about an hour, you have a phone number, an AI that answers it, and a booking system. You test it. You go live.</div>
+      </div>
+      <div>
+        <div class="step-num">03</div>
+        <div class="step-title">You work. AI sells.</div>
+        <div class="step-desc">AI books the jobs. You do them. You text Boston revenue every Sunday. He takes 15%, you keep 85%.</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- THE ACTUAL FINE PRINT (not fine) -->
+  <section class="fine-print">
+    <h2>Stuff You Should Know</h2>
+    <ul class="fine-list">
+      <li><strong>Boston is 17.</strong> This runs on trust and Venmo. No contracts you'll need a lawyer to read.</li>
+      <li><strong>You keep the business.</strong> After summer, it's yours. If you want to keep the AI running, Boston offers standard pricing. If not, it stops. No hard feelings.</li>
+      <li><strong>If it's not working, either of you can walk.</strong> 3-day notice by text. Done.</li>
+      <li><strong>Boston only makes money when you do.</strong> No revenue, no payment to him. Aligned incentives.</li>
+      <li><strong>Don't flake on jobs.</strong> Bad reviews hurt the market for both of you. If you're not gonna actually work, don't sign up.</li>
+      <li><strong>Report your revenue honestly.</strong> This runs on your word. Don't be that person.</li>
+    </ul>
+  </section>
+
+  <!-- CTA -->
+  <section class="cta-section">
+    <div class="cta-headline">Text<br><span style="color:#d4001f;">Boston.</span></div>
+    <p class="cta-sub">Tell him which business and what city. He'll build it.</p>
+    <div class="cta-number">903-714-6162</div>
+    <p class="cta-disclaimer">Venmo @BosRoss · bosrossall@gmail.com · BOSS Systems does not do inspirational quotes.</p>
+  </section>
+
+</div>
+
+<!-- FOOTER -->
+<div class="footer">
+  <div class="footer-brand"><span>BOSS</span> SYSTEMS</div>
+  <div class="footer-right">bosssystems.co · Tyler, TX · Summer 2026</div>
+</div>
+
+</body>
+</html>
