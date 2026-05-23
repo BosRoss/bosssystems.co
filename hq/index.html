@@ -421,6 +421,20 @@ hr{border:none;border-top:1px solid #1a1a1a;margin:28px 0}
 
 <hr>
 
+<!-- LEGAL ADVISOR -->
+<div class="label">Legal</div>
+<div class="heading">Legal Advisor</div>
+<div style="background:#0a0a0e;border:1px solid #1e1e2a;padding:14px;border-radius:2px;margin-bottom:14px">
+  <p style="font-size:12px;color:#667;line-height:1.6">Texas business law, contracts, partner agreements, minor/guardian rules, liability questions. Knows your exact situation.</p>
+</div>
+<div id="legal-ui">
+  <button class="m-cta" id="legal-btn" onclick="startLegalCall()" style="background:var(--gold);color:#080808;border:none;margin-bottom:0">Talk to Legal Advisor</button>
+  <div id="legal-status" style="display:none;font-size:12px;text-align:center;padding:10px;margin-top:8px;border-radius:2px;letter-spacing:1px;font-weight:700;text-transform:uppercase"></div>
+  <div id="legal-transcript" style="display:none;background:#050505;border:1px solid #1a1a1a;border-radius:2px;padding:12px;margin-top:10px;max-height:200px;overflow-y:auto"></div>
+</div>
+
+<hr>
+
 <!-- PARTNER APPLICATIONS -->
 <div class="label">Summer Program</div>
 <div class="heading">Partner Applications</div>
@@ -1180,6 +1194,131 @@ function closeModal() {
 
 // Close on escape key
 document.addEventListener('keydown', e => { if (e.key === 'Escape') closeModal(); });
+
+// ===== LEGAL ADVISOR =====
+const LEGAL_AGENT_ID = 'agent_1009cb72ba155ed30a2de19eed';
+const RETELL_KEY = 'key_7c54fe6b3ae9be0b27f087f00b02';
+let retellClient = null;
+let legalActive = false;
+let transcriptLines = [];
+
+async function loadRetellSDK() {
+  if (window._retellLoaded) return;
+  return new Promise((resolve, reject) => {
+    const s = document.createElement('script');
+    s.src = 'https://cdn.jsdelivr.net/npm/retell-client-js-sdk/dist/index.umd.js';
+    s.onload = () => { window._retellLoaded = true; resolve(); };
+    s.onerror = () => {
+      // Fallback: skypack ESM
+      const m = document.createElement('script');
+      m.type = 'module';
+      m.textContent = `import{RetellWebClient}from'https://cdn.skypack.dev/retell-client-js-sdk';window.RetellWebClient=RetellWebClient;window._retellLoaded=true;`;
+      document.head.appendChild(m);
+      setTimeout(resolve, 1500);
+    };
+    document.head.appendChild(s);
+  });
+}
+
+async function startLegalCall() {
+  const btn = document.getElementById('legal-btn');
+  const statusEl = document.getElementById('legal-status');
+  const transcriptEl = document.getElementById('legal-transcript');
+
+  if (legalActive) {
+    if (retellClient) retellClient.stopCall();
+    return;
+  }
+
+  btn.textContent = 'Connecting...';
+  btn.style.opacity = '0.7';
+  btn.disabled = true;
+
+  try {
+    await loadRetellSDK();
+
+    const resp = await fetch('https://api.retellai.com/v2/create-web-call', {
+      method: 'POST',
+      headers: {'Authorization': `Bearer ${RETELL_KEY}`, 'Content-Type': 'application/json'},
+      body: JSON.stringify({agent_id: LEGAL_AGENT_ID})
+    });
+    const data = await resp.json();
+    if (!data.access_token) throw new Error(data.error_message || 'No access token');
+
+    const SDK = window.RetellWebClient;
+    if (!SDK) throw new Error('SDK not loaded — try again');
+
+    retellClient = new SDK();
+
+    retellClient.on('call_started', () => {
+      legalActive = true;
+      btn.textContent = 'End Call';
+      btn.style.background = '#c0392b';
+      btn.style.opacity = '1';
+      btn.disabled = false;
+      statusEl.style.display = 'block';
+      statusEl.style.color = '#4caf50';
+      statusEl.textContent = 'Connected';
+      transcriptLines = [];
+      transcriptEl.innerHTML = '';
+      transcriptEl.style.display = 'block';
+    });
+
+    retellClient.on('call_ended', () => {
+      legalActive = false;
+      retellClient = null;
+      btn.textContent = 'Talk to Legal Advisor';
+      btn.style.background = 'var(--gold)';
+      btn.style.color = '#080808';
+      btn.style.opacity = '1';
+      btn.disabled = false;
+      statusEl.style.color = '#555';
+      statusEl.textContent = 'Call ended';
+      setTimeout(() => { statusEl.style.display = 'none'; }, 3000);
+    });
+
+    retellClient.on('agent_start_talking', () => {
+      statusEl.style.color = '#C9A84C';
+      statusEl.textContent = 'Advisor speaking...';
+    });
+
+    retellClient.on('agent_stop_talking', () => {
+      statusEl.style.color = '#4caf50';
+      statusEl.textContent = 'Your turn';
+    });
+
+    retellClient.on('update', (update) => {
+      if (update.transcript && update.transcript.length) {
+        const lines = update.transcript.map(t =>
+          `<div style="margin-bottom:8px"><span style="font-size:9px;letter-spacing:1px;text-transform:uppercase;color:${t.role==='agent'?'#C9A84C':'#4caf50'};font-weight:700">${t.role==='agent'?'ADVISOR':'YOU'}</span><div style="font-size:12px;color:#888;line-height:1.5;margin-top:2px">${t.content}</div></div>`
+        ).join('');
+        transcriptEl.innerHTML = lines;
+        transcriptEl.scrollTop = transcriptEl.scrollHeight;
+      }
+    });
+
+    retellClient.on('error', (err) => {
+      statusEl.style.color = '#e57373';
+      statusEl.textContent = 'Error: ' + (err.message || 'Connection failed');
+      btn.textContent = 'Talk to Legal Advisor';
+      btn.style.background = 'var(--gold)';
+      btn.style.opacity = '1';
+      btn.disabled = false;
+      legalActive = false;
+    });
+
+    await retellClient.startCall({accessToken: data.access_token});
+
+  } catch(e) {
+    btn.textContent = 'Talk to Legal Advisor';
+    btn.style.background = 'var(--gold)';
+    btn.style.opacity = '1';
+    btn.disabled = false;
+    statusEl.style.display = 'block';
+    statusEl.style.color = '#e57373';
+    statusEl.textContent = 'Error: ' + e.message;
+  }
+}
 
 // ===== PARTNER APPLICATIONS =====
 
