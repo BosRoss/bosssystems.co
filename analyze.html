@@ -68,11 +68,20 @@
   .auto-value .val{font-size:1.2rem;font-weight:900;color:var(--gold);white-space:nowrap}
   .auto-value .sub{font-size:.7rem;color:#555}
 
-  .package-rec{background:linear-gradient(135deg,#1a1500,#0a0a0a);border:1px solid var(--gold);padding:2rem;margin-top:2rem;text-align:center}
-  .package-rec h3{font-size:1.4rem;font-weight:900;color:var(--gold);margin-bottom:.5rem}
-  .package-rec p{color:#888;margin-bottom:1.5rem}
-  .cta-btn{display:inline-block;background:var(--gold);color:var(--dark);padding:.9rem 2.5rem;font-weight:900;text-decoration:none;letter-spacing:1px;font-size:1rem}
-  .cta-text{color:#555;font-size:.8rem;margin-top:.75rem}
+  .package-rec{background:linear-gradient(135deg,#1a1500,#0a0a0a);border:1px solid var(--gold);padding:2rem;margin-top:2rem}
+  .package-rec h3{font-size:1.4rem;font-weight:900;color:var(--gold);margin-bottom:.3rem}
+  .package-rec .rec-sub{color:#666;font-size:.85rem;margin-bottom:1.5rem}
+  .price-rows{border:1px solid #222;margin:1.25rem 0}
+  .price-row{display:flex;justify-content:space-between;align-items:center;padding:.9rem 1.1rem;border-bottom:1px solid #1a1a1a;font-size:.9rem;color:#aaa}
+  .price-row:last-child{border-bottom:none}
+  .price-row.total{background:#111}
+  .price-row.roi{background:#0a1100}
+  .price-row .lhs{font-size:.8rem}
+  .price-row .rhs{font-weight:900;color:var(--text);font-size:1rem}
+  .price-row.roi .rhs{color:var(--gold);font-size:1.2rem}
+  .price-math{font-size:.72rem;color:#3a3a3a;line-height:1.6;margin:.5rem 0 1.5rem;padding:0 .1rem}
+  .cta-btn{display:block;background:var(--gold);color:var(--dark);padding:1rem 2rem;font-weight:900;text-decoration:none;letter-spacing:1px;font-size:1rem;text-align:center}
+  .cta-text{color:#444;font-size:.78rem;margin-top:.75rem;text-align:center;line-height:1.6}
 
   .loading{text-align:center;padding:3rem;color:#555}
   .spinner{width:40px;height:40px;border:2px solid var(--border);border-top-color:var(--gold);border-radius:50%;animation:spin 1s linear infinite;margin:0 auto 1rem}
@@ -371,6 +380,18 @@ function buildAutomations(btype, jobValue) {
 function fmt(n) { return '$' + Math.round(n).toLocaleString(); }
 function fmt_num(n) { return Math.round(n).toLocaleString(); }
 
+function calcPricing(annualValue) {
+  let buildFee = Math.round(annualValue * 0.09 / 100) * 100;
+  buildFee = Math.max(997, Math.min(14997, buildFee));
+  let monthly = Math.round(annualValue * 0.003 / 10) * 10;
+  monthly = Math.max(97, Math.min(497, monthly));
+  const yearOneCost = buildFee + monthly * 12;
+  const roi = (annualValue / yearOneCost).toFixed(1);
+  const paybackDays = Math.round((buildFee / (annualValue / 365)));
+  const keepPct = Math.round((1 - yearOneCost / annualValue) * 100);
+  return { buildFee, monthly, yearOneCost, roi, paybackDays, keepPct };
+}
+
 function getRecommendations(btype, jobValue) {
   const automations = buildAutomations(btype, jobValue);
   return automations
@@ -419,9 +440,7 @@ async function runAnalysis() {
 
   const bizLabel = bname || (d.label + ' in ' + city);
   const jobLabel = jobValue ? `$${fmt_num(jobValue)} (your number)` : `$${fmt_num(job)} (${d.label} average)`;
-  const pkg = roi > 40 ? 'Full Transformation — $5,997 setup + $497/mo' :
-              roi > 20 ? 'Growth — $2,997 setup + $247/mo' :
-                         'Starter — $1,497 setup + $97/mo';
+  const pricing = calcPricing(totalValue);
 
   // Build breakdown bars from top10
   const maxVal = Math.max(...top10.map(a => a.value));
@@ -503,12 +522,46 @@ async function runAnalysis() {
     ${topHTML}
 
     <div class="package-rec">
-      <h3>Recommended: ${pkg}</h3>
-      <p>Based on your business type and ${jobValue ? 'your job value' : 'industry averages for ' + d.label}, this package covers everything that moves the needle right now.</p>
-      <a class="cta-btn" href="sms:+19037146162?body=Hey Boston — I just ran the BOSS analysis for my ${d.label} in ${city}. Interested in learning more.">
-        TEXT BOSTON TO GET STARTED
+      <h3>What This Would Cost You</h3>
+      <div class="rec-sub">Based on your ${fmt(totalValue)}/yr projection. These are your numbers — calculated before you commit to anything.</div>
+
+      <div class="price-rows">
+        <div class="price-row">
+          <span class="lhs">Build fee (one-time)</span>
+          <span class="rhs">${fmt(pricing.buildFee)}</span>
+        </div>
+        <div class="price-row">
+          <span class="lhs">Monthly fee</span>
+          <span class="rhs">${fmt(pricing.monthly)}/mo</span>
+        </div>
+        <div class="price-row total">
+          <span class="lhs">Year 1 total</span>
+          <span class="rhs">${fmt(pricing.yearOneCost)}</span>
+        </div>
+        <div class="price-row roi">
+          <span class="lhs">For every $1 you pay us</span>
+          <span class="rhs">${pricing.roi}× back in year one</span>
+        </div>
+        <div class="price-row">
+          <span class="lhs">Build fee paid back in</span>
+          <span class="rhs">~${pricing.paybackDays} days</span>
+        </div>
+        <div class="price-row">
+          <span class="lhs">You keep</span>
+          <span class="rhs">${pricing.keepPct}% of everything we generate</span>
+        </div>
+      </div>
+
+      <div class="price-math">
+        How we got there: 9% of ${fmt(totalValue)} annual projection = ${fmt(pricing.buildFee)} build fee.
+        0.3%/month of annual projection = ${fmt(pricing.monthly)}/mo.
+        If your real numbers come in higher than the projection, price stays the same.
+      </div>
+
+      <a class="cta-btn" href="mailto:bosrossall@gmail.com?subject=BOSS Build Quote — ${encodeURIComponent(bizLabel)}&body=Hey Boston, I ran the free analysis for my ${encodeURIComponent(d.label)} in ${encodeURIComponent(city)}. It projected ${encodeURIComponent(fmt(totalValue))} in annual value. Interested in the build at ${encodeURIComponent(fmt(pricing.buildFee))} + ${encodeURIComponent(fmt(pricing.monthly))}/mo.">
+        GET THIS BUILT &rarr;
       </a>
-      <p class="cta-text">Or call/text: 903-714-6162 · Venmo @BosRoss</p>
+      <p class="cta-text">Questions about your numbers? Text or call Boston directly: <a href="tel:+19037146162" style="color:var(--gold)">903-714-6162</a><br>He will walk through the analysis with you. No pressure.</p>
     </div>
   `;
 
