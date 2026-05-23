@@ -1,0 +1,2235 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="black">
+<meta name="apple-mobile-web-app-title" content="BOSS">
+<title>BOSS Systems</title>
+<style>
+:root{--gold:#C9A84C;--dark:#080808;--gray:#111;--border:#1e1e1e;--text:#f0ede8;--muted:#555}
+*{box-sizing:border-box;margin:0;padding:0;-webkit-tap-highlight-color:transparent}
+body{background:var(--dark);color:var(--text);font-family:-apple-system,BlinkMacSystemFont,sans-serif;font-size:15px;-webkit-font-smoothing:antialiased;overscroll-behavior:none}
+a{color:var(--gold);text-decoration:none}
+
+/* TOP BAR */
+.bar{background:#0f0f0f;border-bottom:2px solid var(--gold);padding:14px 16px;display:flex;align-items:center;justify-content:space-between;position:sticky;top:0;z-index:50}
+.logo{font-weight:900;font-size:14px;letter-spacing:4px;color:var(--gold)}
+.clock{font-size:12px;color:var(--muted);font-variant-numeric:tabular-nums}
+
+/* PAGE */
+.page{padding:20px 16px 80px}
+.label{font-size:10px;letter-spacing:3px;text-transform:uppercase;color:var(--gold);margin-bottom:6px}
+.heading{font-size:18px;font-weight:900;text-transform:uppercase;letter-spacing:1px;margin-bottom:18px}
+hr{border:none;border-top:1px solid #1a1a1a;margin:28px 0}
+
+/* METRICS */
+.metrics{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-bottom:24px}
+.metric{background:var(--gray);border:1px solid var(--border);padding:16px;text-align:center;border-radius:2px}
+.metric .n{font-size:24px;font-weight:900;color:var(--gold);line-height:1}
+.metric .l{font-size:10px;letter-spacing:1px;color:var(--muted);text-transform:uppercase;margin-top:5px}
+.metric .s{font-size:11px;color:#333;margin-top:3px}
+
+/* PILLS */
+.pill{display:inline-block;font-size:10px;letter-spacing:1px;padding:3px 8px;border-radius:2px;font-weight:700;text-transform:uppercase}
+.pill-live{background:#0a1a0a;color:#4caf50;border:1px solid #2a5a2a}
+.pill-build{background:#1a1200;color:var(--gold);border:1px solid #3a3000}
+.pill-gray{background:#1a1a1a;color:var(--muted);border:1px solid #2a2a2a}
+
+/* CLICKABLE CARDS */
+.cards{display:grid;grid-template-columns:1fr;gap:12px;margin-bottom:32px}
+.card{background:var(--gray);border:1px solid var(--border);padding:18px;border-radius:2px;cursor:pointer;transition:border-color .15s}
+.card:active{border-color:var(--gold)}
+.card-head{display:flex;justify-content:space-between;align-items:flex-start;margin-bottom:12px}
+.card-name{font-weight:900;font-size:15px}
+.card-sub{font-size:11px;color:var(--muted);margin-top:2px}
+.card-head-right{display:flex;align-items:center;gap:8px}
+.card-arrow{color:#333;font-size:16px;font-weight:300}
+.card-grid{display:grid;grid-template-columns:1fr 1fr;gap:8px;margin-bottom:12px}
+.card-stat .v{font-weight:700;font-size:14px}
+.card-stat .k{font-size:10px;color:var(--muted);text-transform:uppercase;letter-spacing:1px}
+.card-note{font-size:11px;color:#444;padding-top:10px;border-top:1px solid #1a1a1a}
+
+/* PRODUCT CARDS */
+.prods{display:grid;grid-template-columns:1fr;gap:10px;margin-bottom:32px}
+.prod{background:var(--gray);border:1px solid var(--border);padding:16px;border-radius:2px;cursor:pointer;transition:border-color .15s;display:flex;justify-content:space-between;align-items:flex-start}
+.prod:active{border-color:var(--gold)}
+.prod.hot{border-color:var(--gold)}
+.prod-left{}
+.prod-name{font-size:10px;letter-spacing:2px;text-transform:uppercase;color:var(--gold);font-weight:700;margin-bottom:3px}
+.prod-price{font-size:22px;font-weight:900}
+.prod-mo{font-size:11px;color:var(--muted);margin-bottom:6px}
+.prod-desc{font-size:12px;color:#777;line-height:1.5;max-width:260px}
+.prod-arrow{color:#333;font-size:20px;font-weight:300;padding-left:12px;flex-shrink:0;align-self:center}
+
+/* SYS ROWS */
+.sys{margin-bottom:32px}
+.sys-row{display:flex;align-items:center;padding:11px 0;border-bottom:1px solid #111;gap:10px;cursor:pointer;transition:background .1s;border-radius:2px}
+.sys-row:active{background:#0f0f0f}
+.dot{width:7px;height:7px;border-radius:50%;flex-shrink:0}
+.dot-g{background:#4caf50}
+.dot-y{background:var(--gold)}
+.dot-x{background:#2a2a2a}
+.sys-name{flex:1;font-size:13px;font-weight:600}
+.sys-id{font-size:10px;color:#333;font-family:monospace}
+.sys-when{font-size:11px;color:#444;flex-shrink:0}
+.sys-chev{color:#2a2a2a;font-size:14px;flex-shrink:0}
+
+/* FIX / PLAN BOXES */
+.fix-box{background:#0a0e0a;border:1px solid #1a3a1a;padding:14px;border-radius:2px;margin-bottom:16px}
+.fix-box p{font-size:11px;line-height:1.7;color:#667}
+.fix-box strong{color:#4caf50}
+.plan-box{background:#0a1000;border:1px solid #2a4a1a;padding:16px;border-radius:2px;margin-bottom:16px}
+.plan-box p{font-size:12px;line-height:1.7;color:#888}
+.plan-box strong{color:#4caf50}
+
+/* INTEL */
+.intel{background:var(--gray);border:1px solid var(--border);border-left:3px solid var(--gold);padding:14px;margin-bottom:10px;border-radius:2px}
+.intel p{font-size:12px;line-height:1.6;color:#888}
+.intel strong{color:var(--text)}
+.intel-date{font-size:10px;color:#333;margin-top:6px}
+
+/* TOOLS */
+.tools{display:grid;grid-template-columns:1fr;gap:10px;margin-bottom:32px}
+.tool{background:var(--gray);border:1px solid var(--border);padding:14px;border-radius:2px}
+.tool-name{font-size:12px;font-weight:700;margin-bottom:4px}
+.tool-cmd{font-family:monospace;font-size:11px;color:var(--gold);background:#050505;padding:6px 8px;display:block;margin-top:6px;word-break:break-all;border-radius:2px}
+.tool-desc{font-size:11px;color:var(--muted);margin-top:4px}
+
+.updated{font-size:10px;color:#2a2a2a;text-align:right;letter-spacing:1px;margin-top:24px}
+
+/* ===================== MODAL SYSTEM ===================== */
+.modal-overlay{position:fixed;inset:0;z-index:200;pointer-events:none;transition:background .25s}
+.modal-overlay.open{pointer-events:all;background:rgba(0,0,0,.7)}
+.modal{position:fixed;left:0;right:0;bottom:0;z-index:201;background:var(--dark);border-top:2px solid var(--gold);border-radius:12px 12px 0 0;max-height:92vh;overflow-y:auto;-webkit-overflow-scrolling:touch;transform:translateY(100%);transition:transform .3s cubic-bezier(.32,1,.45,1)}
+.modal.open{transform:translateY(0)}
+.modal-handle{width:36px;height:4px;background:#2a2a2a;border-radius:2px;margin:12px auto 0}
+.modal-bar{position:sticky;top:0;background:var(--dark);border-bottom:1px solid var(--border);padding:14px 16px 12px;display:flex;align-items:center;justify-content:space-between;z-index:10}
+.modal-title{font-weight:900;font-size:16px;letter-spacing:.5px}
+.modal-badge{font-size:10px;letter-spacing:1px;padding:3px 8px;border-radius:2px;font-weight:700;text-transform:uppercase}
+.modal-close{background:none;border:none;color:#555;font-size:22px;cursor:pointer;padding:0 0 0 16px;line-height:1;font-weight:300}
+.modal-close:active{color:var(--gold)}
+.modal-body{padding:20px 16px 48px}
+
+/* Modal content helpers */
+.m-section{margin-bottom:24px}
+.m-label{font-size:9px;letter-spacing:3px;text-transform:uppercase;color:var(--gold);margin-bottom:8px}
+.m-row{display:flex;justify-content:space-between;align-items:baseline;padding:8px 0;border-bottom:1px solid #111;font-size:13px}
+.m-row:last-child{border-bottom:none}
+.m-row .k{color:var(--muted)}
+.m-row .v{font-weight:700;color:var(--text)}
+.m-stat-grid{display:grid;grid-template-columns:1fr 1fr;gap:8px;margin-bottom:12px}
+.m-stat{background:#111;border:1px solid var(--border);padding:12px;text-align:center;border-radius:2px}
+.m-stat .n{font-size:20px;font-weight:900;color:var(--gold);line-height:1}
+.m-stat .l{font-size:10px;letter-spacing:1px;color:var(--muted);text-transform:uppercase;margin-top:4px}
+.m-list{list-style:none;padding:0}
+.m-list li{padding:8px 0;border-bottom:1px solid #111;font-size:13px;color:#999;line-height:1.5;display:flex;gap:8px}
+.m-list li:last-child{border-bottom:none}
+.m-list li::before{content:"→";color:var(--gold);flex-shrink:0;font-size:12px;margin-top:1px}
+.m-tier{background:#111;border:1px solid var(--border);border-radius:2px;padding:14px;margin-bottom:10px}
+.m-tier.featured{border-color:var(--gold)}
+.m-tier-name{font-size:10px;letter-spacing:2px;text-transform:uppercase;color:var(--gold);font-weight:700;margin-bottom:2px}
+.m-tier-price{font-size:22px;font-weight:900}
+.m-tier-mo{font-size:11px;color:var(--muted);margin-bottom:10px}
+.m-tier-items{font-size:12px;color:#777;line-height:1.8}
+.m-code{font-family:monospace;font-size:11px;color:var(--gold);background:#050505;padding:8px 10px;display:block;border-radius:2px;word-break:break-all;margin-top:8px}
+.m-note{font-size:12px;color:#666;line-height:1.6;padding:12px;background:#0d0d0d;border-radius:2px;border-left:2px solid #2a2a2a}
+.m-cta{display:block;background:var(--gold);color:var(--dark);text-align:center;padding:14px;font-weight:900;font-size:14px;letter-spacing:1px;border-radius:2px;margin-top:16px;text-decoration:none;cursor:pointer;border:none;width:100%}
+.m-step{display:flex;gap:10px;align-items:flex-start;padding:10px 0;border-bottom:1px solid #111;font-size:13px}
+.m-step:last-child{border-bottom:none}
+.m-step-num{background:var(--gold);color:var(--dark);width:20px;height:20px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:10px;font-weight:900;flex-shrink:0;margin-top:1px}
+.m-step-text{color:#999;line-height:1.5;flex:1}
+.m-step-text strong{color:var(--text)}
+.m-big{font-size:28px;font-weight:900;color:var(--gold);margin-bottom:4px}
+.m-big-sub{font-size:12px;color:var(--muted)}
+.m-highlight{background:#0d1a0d;border:1px solid #1a3a1a;border-radius:2px;padding:14px;margin:12px 0}
+.m-highlight p{font-size:13px;line-height:1.6;color:#9a9}
+.m-highlight strong{color:#4caf50}
+.m-divider{border:none;border-top:1px solid #1a1a1a;margin:18px 0}
+.m-script{background:#050505;border:1px solid #1a1a1a;border-radius:2px;padding:14px;margin-top:8px}
+.m-script p{font-size:13px;line-height:1.7;color:#888;font-style:italic}
+.m-script strong{color:var(--text);font-style:normal}
+
+/* PARTNER LEARNING TILES */
+.biz-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:8px;margin-bottom:4px}
+.biz-tile{background:#111;border:1px solid var(--border);padding:14px 8px;text-align:center;cursor:pointer;border-radius:2px;transition:border-color .15s}
+.biz-tile:active{border-color:var(--gold)}
+.biz-tile .t-icon{font-size:22px;display:block;margin-bottom:5px}
+.biz-tile .t-name{font-size:10px;font-weight:700;letter-spacing:.5px;color:var(--muted);text-transform:uppercase;line-height:1.3}
+
+/* PERSONA BUTTONS */
+.persona-btn{padding:9px 6px;font-size:10px;font-weight:700;letter-spacing:.5px;text-transform:uppercase;border:1px solid #222;border-radius:2px;background:#111;color:#555;cursor:pointer;transition:all .15s;overflow:hidden;white-space:nowrap;text-overflow:ellipsis;font-family:inherit}
+.persona-btn:hover{border-color:#444;color:#888}
+.persona-btn.sel{background:#1a1200;border-color:#3a3000;color:var(--gold)}
+
+/* GATE */
+#gate{position:fixed;inset:0;z-index:999;background:#080808;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:20px;padding:40px}
+#gate .g-logo{font-size:13px;font-weight:900;letter-spacing:4px;color:#C9A84C;margin-bottom:12px}
+#gate input{background:#111;border:1px solid #2a2a2a;color:#f0ede8;padding:14px 18px;font-size:16px;border-radius:4px;width:100%;max-width:280px;text-align:center;letter-spacing:2px}
+#gate input:focus{outline:none;border-color:#C9A84C}
+#gate button{background:#C9A84C;color:#080808;border:none;padding:14px 32px;font-weight:900;font-size:14px;letter-spacing:1px;border-radius:4px;width:100%;max-width:280px;cursor:pointer}
+#gate .g-err{color:#e57373;font-size:13px;min-height:18px;letter-spacing:1px}
+
+/* PARTNER APPLICATIONS */
+.apps-load{display:block;background:#111;border:1px solid var(--border);color:var(--gold);padding:12px 20px;font-size:12px;font-weight:700;letter-spacing:1px;text-align:center;cursor:pointer;border-radius:2px;width:100%;margin-bottom:16px;text-transform:uppercase}
+.apps-load:active{background:#1a1a00}
+.app-card{background:#111;border:1px solid var(--border);border-radius:2px;margin-bottom:10px;overflow:hidden}
+.app-card-head{padding:14px 16px;display:flex;justify-content:space-between;align-items:flex-start;cursor:pointer}
+.app-card-head:active{background:#151515}
+.app-name{font-size:14px;font-weight:700;margin-bottom:3px}
+.app-sub{font-size:11px;color:var(--muted)}
+.app-rec{font-size:10px;font-weight:700;letter-spacing:1px;padding:3px 8px;border-radius:2px;text-transform:uppercase;flex-shrink:0;margin-left:10px;align-self:flex-start;margin-top:2px}
+.app-detail{padding:14px 16px;border-top:1px solid #1a1a1a;display:none}
+.app-detail.open{display:block}
+.app-detail-row{display:flex;justify-content:space-between;align-items:baseline;padding:7px 0;border-bottom:1px solid #111;font-size:12px}
+.app-detail-row:last-of-type{border-bottom:none}
+.app-detail-row .k{color:var(--muted);flex-shrink:0;margin-right:10px}
+.app-detail-row .v{font-weight:600;text-align:right;word-break:break-word;max-width:65%}
+.app-long{font-size:12px;color:#888;line-height:1.6;padding:10px 0;border-bottom:1px solid #111}
+.app-long-label{font-size:9px;letter-spacing:2px;text-transform:uppercase;color:var(--gold);margin-bottom:4px}
+.app-ai{background:#0a0e0a;border:1px solid #1a2a1a;padding:12px;margin:12px 0;border-radius:2px}
+.app-ai-label{font-size:9px;letter-spacing:2px;text-transform:uppercase;color:#4caf50;margin-bottom:6px}
+.app-ai-text{font-size:12px;color:#778;line-height:1.5}
+.app-actions{padding-top:14px;border-top:1px solid #1a1a1a;margin-top:4px}
+.app-status-btns{display:flex;gap:8px;margin-bottom:12px}
+.app-status-btn{flex:1;padding:10px 4px;font-size:11px;font-weight:700;letter-spacing:1px;text-transform:uppercase;border:1px solid;border-radius:2px;cursor:pointer;background:transparent;color:var(--muted);border-color:#222;transition:all .15s}
+.app-status-btn.sel-accept{background:#0a1a0a;color:#4caf50;border-color:#2a5a2a}
+.app-status-btn.sel-review{background:#1a1200;color:var(--gold);border-color:#3a3000}
+.app-status-btn.sel-decline{background:#1a0a0a;color:#e57373;border-color:#5a2a2a}
+.app-msg{width:100%;background:#0d0d0d;border:1px solid #2a2a2a;color:var(--text);padding:10px 12px;font-size:13px;line-height:1.5;border-radius:2px;resize:vertical;min-height:72px;font-family:inherit;margin-bottom:10px}
+.app-msg:focus{outline:none;border-color:var(--gold)}
+.app-submit{width:100%;background:var(--gold);color:#080808;border:none;padding:12px;font-weight:900;font-size:13px;letter-spacing:1px;text-transform:uppercase;border-radius:2px;cursor:pointer}
+.app-submit:active{opacity:.8}
+.app-sms{display:block;text-align:center;font-size:11px;color:var(--muted);margin-top:8px;padding:8px;border:1px solid #1a1a1a;border-radius:2px}
+.app-sms:hover{color:var(--gold)}
+.app-status-done{font-size:11px;padding:8px 12px;border-radius:2px;text-align:center;font-weight:700;letter-spacing:1px;text-transform:uppercase;margin-top:8px}
+</style>
+</head>
+<body>
+
+<div id="gate">
+  <div class="g-logo">BOSS SYSTEMS</div>
+  <input id="gpass" type="password" placeholder="Enter password" autocomplete="current-password" onkeydown="if(event.key==='Enter')checkPass()">
+  <button onclick="checkPass()">Unlock</button>
+  <div class="g-err" id="gerr"></div>
+</div>
+
+<script>
+(function(){
+  const KEY = 'boss_auth';
+  const PASS = 'boss2026';
+  if(localStorage.getItem(KEY) === '1'){
+    document.getElementById('gate').style.display='none';
+  }
+  window.checkPass = function(){
+    const v = document.getElementById('gpass').value;
+    if(v === PASS){
+      localStorage.setItem(KEY,'1');
+      document.getElementById('gate').style.display='none';
+    } else {
+      document.getElementById('gerr').textContent='Wrong password';
+      document.getElementById('gpass').value='';
+      document.getElementById('gpass').focus();
+    }
+  };
+})();
+</script>
+
+<!-- TOP BAR -->
+<div class="bar">
+  <div class="logo">BOSS</div>
+  <div class="clock" id="clk"></div>
+</div>
+
+<!-- MODAL OVERLAY -->
+<div class="modal-overlay" id="overlay" onclick="closeModal()"></div>
+
+<!-- MODAL PANEL -->
+<div class="modal" id="modal">
+  <div class="modal-handle"></div>
+  <div class="modal-bar">
+    <div class="modal-title" id="modal-title"></div>
+    <div style="display:flex;align-items:center;gap:8px">
+      <span class="modal-badge" id="modal-badge" style="display:none"></span>
+      <button class="modal-close" onclick="closeModal()">✕</button>
+    </div>
+  </div>
+  <div class="modal-body" id="modal-body"></div>
+</div>
+
+<!-- ===================== DASHBOARD ===================== -->
+<div class="page">
+
+<!-- METRICS -->
+<div class="label">Empire Overview</div>
+<div class="metrics">
+  <div class="metric"><div class="n">0</div><div class="l">Clients</div><div class="s">First = everything changes</div></div>
+  <div class="metric"><div class="n">$0</div><div class="l">MRR</div><div class="s">Target: $97+/mo</div></div>
+  <div class="metric"><div class="n">523</div><div class="l">Calls Out</div><div class="s">233 connected &gt;20s</div></div>
+  <div class="metric"><div class="n">$84</div><div class="l">Monthly Burn</div><div class="s">n8n + Claude + Retell</div></div>
+  <div class="metric"><div class="n">25+</div><div class="l">Automations</div><div class="s">Ready to deploy</div></div>
+  <div class="metric"><div class="n">June 1</div><div class="l">Full Restart</div><div class="s">n8n quota resets</div></div>
+</div>
+
+<div class="fix-box">
+  <p><strong>Latest fixes (May 21):</strong> Louisiana area codes hardblocked. Franchise chains screened. False &ldquo;test call&rdquo; opener dropped. IVR detection added. Missed call pivot + free analysis close live.</p>
+</div>
+
+<!-- PORTFOLIO -->
+<div class="label">Portfolio</div>
+<div class="heading">Active Businesses</div>
+<div class="cards">
+
+  <div class="card" onclick="openModal('boss-systems')">
+    <div class="card-head">
+      <div><div class="card-name">BOSS Systems</div><div class="card-sub">AI Business Innovation &middot; Tyler TX</div></div>
+      <div class="card-head-right"><span class="pill pill-live">Live</span><span class="card-arrow">›</span></div>
+    </div>
+    <div class="card-grid">
+      <div class="card-stat"><div class="v">$1,497–$5,997</div><div class="k">Setup fee</div></div>
+      <div class="card-stat"><div class="v">$97–$497/mo</div><div class="k">Recurring</div></div>
+      <div class="card-stat"><div class="v">0</div><div class="k">Clients</div></div>
+      <div class="card-stat"><div class="v">bosssystems.co</div><div class="k">Website</div></div>
+    </div>
+    <div class="card-note">Analyze · Build · Own · Infinite — 4 products live</div>
+  </div>
+
+  <div class="card" onclick="openModal('built-by-boss')">
+    <div class="card-head">
+      <div><div class="card-name">Built by BOSS</div><div class="card-sub">Prebuilt Business Sales &middot; Remote</div></div>
+      <div class="card-head-right"><span class="pill pill-live">Live</span><span class="card-arrow">›</span></div>
+    </div>
+    <div class="card-grid">
+      <div class="card-stat"><div class="v">$997–$3,497</div><div class="k">Setup fee</div></div>
+      <div class="card-stat"><div class="v">$97–$297/mo</div><div class="k">Recurring</div></div>
+      <div class="card-stat"><div class="v">0</div><div class="k">Clients</div></div>
+      <div class="card-stat"><div class="v">72 hrs</div><div class="k">Delivery</div></div>
+    </div>
+    <div class="card-note">Builds AI stacks for junk removal, HVAC, cleaning, lawn care</div>
+  </div>
+
+  <div class="card" onclick="openModal('junk-removal')">
+    <div class="card-head">
+      <div><div class="card-name">BOSS Junk Removal</div><div class="card-sub">Laurel, MS &middot; Needs phone number</div></div>
+      <div class="card-head-right"><span class="pill pill-build">Building</span><span class="card-arrow">›</span></div>
+    </div>
+    <div class="card-grid">
+      <div class="card-stat"><div class="v">$150–$475</div><div class="k">Job value</div></div>
+      <div class="card-stat"><div class="v">5/10</div><div class="k">Market score</div></div>
+      <div class="card-stat"><div class="v">B Clean LLC</div><div class="k">Attack (3.2★)</div></div>
+      <div class="card-stat"><div class="v">601 area</div><div class="k">Need this #</div></div>
+    </div>
+    <div class="card-note">Agent live: agent_59905e10f9d2ab2b6a77f66a4a — assign a 601 number</div>
+  </div>
+
+  <div class="card" onclick="openModal('summer-partners')">
+    <div class="card-head">
+      <div><div class="card-name">Summer Partners</div><div class="card-sub">Revenue Share &middot; Recruiting</div></div>
+      <div class="card-head-right"><span class="pill pill-gray">0 Partners</span><span class="card-arrow">›</span></div>
+    </div>
+    <div class="card-grid">
+      <div class="card-stat"><div class="v">20%</div><div class="k">Boston's cut</div></div>
+      <div class="card-stat"><div class="v">$0</div><div class="k">Setup cost</div></div>
+      <div class="card-stat"><div class="v">$0</div><div class="k">Revenue</div></div>
+      <div class="card-stat"><div class="v">Target: 5</div><div class="k">By July</div></div>
+    </div>
+    <div class="card-note">5 partners × $2K/week = $2,000/week for Boston at 20%</div>
+  </div>
+
+</div>
+
+<!-- PRODUCTS -->
+<div class="label">Products</div>
+<div class="heading">What We Sell</div>
+<div class="prods">
+  <div class="prod" onclick="openModal('product-analyze')">
+    <div class="prod-left">
+      <div class="prod-name">BOSS Analyze</div>
+      <div class="prod-price">Free</div>
+      <div class="prod-mo">bosssystems.co/dashboard/analyze.html</div>
+      <div class="prod-desc">60-second AI analysis. The close, not the pitch.</div>
+    </div>
+    <div class="prod-arrow">›</div>
+  </div>
+  <div class="prod hot" onclick="openModal('product-build')">
+    <div class="prod-left">
+      <div class="prod-name">BOSS Build</div>
+      <div class="prod-price">$1,497–$5,997</div>
+      <div class="prod-mo">setup + $97–$497/month recurring</div>
+      <div class="prod-desc">Full AI stack in 72 hours. 3 tiers.</div>
+    </div>
+    <div class="prod-arrow">›</div>
+  </div>
+  <div class="prod" onclick="openModal('product-own')">
+    <div class="prod-left">
+      <div class="prod-name">BOSS Own</div>
+      <div class="prod-price">$0 setup</div>
+      <div class="prod-mo">20% of gross revenue</div>
+      <div class="prod-desc">AI does the business. They do the work.</div>
+    </div>
+    <div class="prod-arrow">›</div>
+  </div>
+  <div class="prod" onclick="openModal('product-infinite')">
+    <div class="prod-left">
+      <div class="prod-name">BOSS Infinite</div>
+      <div class="prod-price">$997–$2,997/mo</div>
+      <div class="prod-mo">Ongoing AI innovation retainer</div>
+      <div class="prod-desc">New automations every month. Business keeps improving.</div>
+    </div>
+    <div class="prod-arrow">›</div>
+  </div>
+</div>
+
+<hr>
+
+<!-- SYSTEM HEALTH -->
+<div class="label">System Health</div>
+<div class="heading">Pipeline Workflows</div>
+<div class="sys">
+  <div class="sys-row" onclick="openModal('wf-post-call')"><span class="dot dot-g"></span><div style="flex:1"><div class="sys-name">Post-Call Handler</div><div class="sys-id">EGyXul1WqnnshU96</div></div><span class="sys-when">Every call</span><span class="sys-chev">›</span></div>
+  <div class="sys-row" onclick="openModal('wf-morning-text')"><span class="dot dot-g"></span><div style="flex:1"><div class="sys-name">Morning Text</div><div class="sys-id">wX6OyZ9UY0Xrbui1</div></div><span class="sys-when">7am CT</span><span class="sys-chev">›</span></div>
+  <div class="sys-row" onclick="openModal('wf-oracle')"><span class="dot dot-g"></span><div style="flex:1"><div class="sys-name">ORACLE</div><div class="sys-id">7wFm6CQB3VtoiRb6</div></div><span class="sys-when">9am CT</span><span class="sys-chev">›</span></div>
+  <div class="sys-row" onclick="openModal('wf-auto-caller')"><span class="dot dot-g"></span><div style="flex:1"><div class="sys-name">Auto Caller</div><div class="sys-id">UQGW8QuaSLb9Euyh</div></div><span class="sys-when">10am + 2pm</span><span class="sys-chev">›</span></div>
+  <div class="sys-row" onclick="openModal('wf-morning-brief')"><span class="dot dot-y"></span><div style="flex:1"><div class="sys-name">Morning Brief</div><div class="sys-id">TtbV6mhhRnLhQCv3</div></div><span class="sys-when">June 1</span><span class="sys-chev">›</span></div>
+  <div class="sys-row" onclick="openModal('wf-hot-lead')"><span class="dot dot-y"></span><div style="flex:1"><div class="sys-name">Hot Lead Handler</div><div class="sys-id">kGJ7aDQmp3MgiPWI</div></div><span class="sys-when">June 1</span><span class="sys-chev">›</span></div>
+  <div class="sys-row" onclick="openModal('wf-auto-builder')"><span class="dot dot-y"></span><div style="flex:1"><div class="sys-name">Auto-Builder</div><div class="sys-id">VIJXn2fKDANAsiDX</div></div><span class="sys-when">June 1</span><span class="sys-chev">›</span></div>
+  <div class="sys-row" onclick="openModal('wf-warm-followup')"><span class="dot dot-y"></span><div style="flex:1"><div class="sys-name">Warm Follow-Up</div><div class="sys-id">VZWvyPVLdB5akBom</div></div><span class="sys-when">June 1</span><span class="sys-chev">›</span></div>
+  <div class="sys-row" onclick="openModal('wf-superniche')"><span class="dot dot-y"></span><div style="flex:1"><div class="sys-name">Superniche Targeter</div><div class="sys-id">8jvr7e9CDZgggXzM</div></div><span class="sys-when">June 1</span><span class="sys-chev">›</span></div>
+  <div class="sys-row" onclick="openModal('wf-lead-hunter')"><span class="dot dot-y"></span><div style="flex:1"><div class="sys-name">Lead Hunter</div><div class="sys-id">T7LdafEdxA19gvjK</div></div><span class="sys-when">June 1</span><span class="sys-chev">›</span></div>
+  <div class="sys-row" onclick="openModal('wf-client-monitor')"><span class="dot dot-y"></span><div style="flex:1"><div class="sys-name">Weekly Client Monitor</div><div class="sys-id">CxlfRGAhg9ndgSvG</div></div><span class="sys-when">June 1</span><span class="sys-chev">›</span></div>
+</div>
+
+<!-- RETELL AGENTS -->
+<div class="label">Voice AI</div>
+<div class="heading">Retell Agents</div>
+<div class="sys">
+  <div class="sys-row" onclick="openModal('agent-outbound')"><span class="dot dot-g"></span><div style="flex:1"><div class="sys-name">Outbound Sales Caller</div><div class="sys-id">agent_6c19e0315cf3dfd1ffa3db63a2</div></div><span class="sys-when">(903) 483-0168</span><span class="sys-chev">›</span></div>
+  <div class="sys-row" onclick="openModal('agent-devils-advocate')"><span class="dot dot-g"></span><div style="flex:1"><div class="sys-name">Devil's Advocate (practice)</div><div class="sys-id">agent_23b664e7db4a0a89ece384ddcd</div></div><span class="sys-when">(903) 568-8943</span><span class="sys-chev">›</span></div>
+  <div class="sys-row" onclick="openModal('agent-junk')"><span class="dot dot-y"></span><div style="flex:1"><div class="sys-name">Junk Removal — Laurel MS</div><div class="sys-id">agent_59905e10f9d2ab2b6a77f66a4a</div></div><span class="sys-when">Needs 601 #</span><span class="sys-chev">›</span></div>
+  <div class="sys-row" onclick="openModal('agent-bbb')"><span class="dot dot-g"></span><div style="flex:1"><div class="sys-name">Built by BOSS Sales</div><div class="sys-id">agent_10c6519858eebc75047ee7ab8f</div></div><span class="sys-when">No number yet</span><span class="sys-chev">›</span></div>
+  <div class="sys-row" onclick="openModal('agent-the-boss')"><span class="dot dot-g"></span><div style="flex:1"><div class="sys-name">THE BOSS Voice</div><div class="sys-id">agent_c2003a57424906726c5ef52131</div></div><span class="sys-when">Advisor</span><span class="sys-chev">›</span></div>
+</div>
+
+<hr>
+
+<div class="label">Now — June 1</div>
+<div class="heading">The Plan</div>
+<div class="plan-box">
+  <p><strong>Before June 1:</strong> Get first client in person. East Texas. Pull up bosssystems.co/dashboard/analyze.html, let them type their business, show them the numbers. Venmo @BosRoss. boss_command.py paid builds their system in 2 minutes.</p>
+  <br>
+  <p><strong>June 1 midnight:</strong> All paused workflows activate. Machine runs itself.</p>
+  <br>
+  <p><strong>Your only job:</strong> Connect with people.</p>
+</div>
+
+<hr>
+
+<div class="label">Intelligence</div>
+<div class="heading">What The Research Found</div>
+<div class="intel"><p><strong>Avoca AI = $1B valuation doing exactly this</strong> — but only for $3M+/year operators at $1,000–$3,000/month. Their pricing leaves every solo operator unserved. Boston's $60–497/month fills the gap they left.</p><div class="intel-date">PR Newswire · April 2026</div></div>
+<div class="intel"><p><strong>62% of contractor calls go unanswered. 85% of those callers never call back.</strong> An HVAC company missing 3 calls/week at $850 average = $88,400/year lost. BOSS at $150/month = $1,800/year. ROI: 49:1.</p><div class="intel-date">PCN Study · CallRail · 2026</div></div>
+<div class="intel"><p><strong>Best markets right now:</strong> Corinth MS (HVAC 3.6–3.9★), Durant OK (HVAC, no websites), Laurel MS (pain reviews confirmed). East Texas = Boston in-person only. Louisiana = banned.</p><div class="intel-date">Live Google Places scan · May 2026</div></div>
+
+<hr>
+
+<!-- LEGAL ADVISOR -->
+<div class="label">Legal</div>
+<div class="heading">Legal Advisor</div>
+<div style="background:#0a0a0e;border:1px solid #1e1e2a;padding:14px;border-radius:2px;margin-bottom:14px">
+  <p style="font-size:12px;color:#667;line-height:1.6">Texas business law, contracts, partner agreements, minor/guardian rules, liability questions. Knows your exact situation.</p>
+</div>
+<div id="legal-ui">
+  <button class="m-cta" id="legal-btn" onclick="startLegalCall()" style="background:var(--gold);color:#080808;border:none;margin-bottom:0">Talk to Legal Advisor</button>
+  <div id="legal-status" style="display:none;font-size:12px;text-align:center;padding:10px;margin-top:8px;border-radius:2px;letter-spacing:1px;font-weight:700;text-transform:uppercase"></div>
+  <div id="legal-transcript" style="display:none;background:#050505;border:1px solid #1a1a1a;border-radius:2px;padding:12px;margin-top:10px;max-height:200px;overflow-y:auto"></div>
+</div>
+
+<hr>
+
+<!-- PARTNER APPLICATIONS -->
+<div class="label">Summer Program</div>
+<div class="heading">Partner Applications</div>
+<button class="apps-load" onclick="loadApps(this)">Load Applications</button>
+<div id="apps-list"></div>
+
+<div style="margin-top:24px">
+<div class="label">Partner Learning Tools</div>
+<div class="biz-grid">
+  <div class="biz-tile" onclick="openModal('pt-pets')"><span class="t-icon">🐕</span><span class="t-name">Pet Sitting</span></div>
+  <div class="biz-tile" onclick="openModal('pt-photo')"><span class="t-icon">📸</span><span class="t-name">Photography</span></div>
+  <div class="biz-tile" onclick="openModal('pt-events')"><span class="t-icon">🎉</span><span class="t-name">Event Decor</span></div>
+  <div class="biz-tile" onclick="openModal('pt-social')"><span class="t-icon">📱</span><span class="t-name">Social Media</span></div>
+  <div class="biz-tile" onclick="openModal('pt-organizing')"><span class="t-icon">📦</span><span class="t-name">Home Organizing</span></div>
+  <div class="biz-tile" onclick="openModal('pt-lawn')"><span class="t-icon">🌿</span><span class="t-name">Lawn Care</span></div>
+  <div class="biz-tile" onclick="openModal('pt-cleaning')"><span class="t-icon">🧹</span><span class="t-name">Cleaning</span></div>
+  <div class="biz-tile" onclick="openModal('pt-detailing')"><span class="t-icon">🚗</span><span class="t-name">Car Detailing</span></div>
+  <div class="biz-tile" onclick="openModal('pt-pool')"><span class="t-icon">🏊</span><span class="t-name">Pool Cleaning</span></div>
+  <div class="biz-tile" onclick="openModal('pt-junk')"><span class="t-icon">🚛</span><span class="t-name">Junk Removal</span></div>
+  <div class="biz-tile" onclick="openModal('pt-pressure')"><span class="t-icon">💦</span><span class="t-name">Pressure Washing</span></div>
+</div>
+<a href="https://bosssystems.co/referral-sheet.html" target="_blank" style="display:flex;align-items:center;justify-content:space-between;margin-top:10px;padding:12px 14px;background:#111;border:1px solid var(--border);border-radius:2px;color:var(--text);text-decoration:none;font-size:12px;font-weight:700;letter-spacing:.5px;transition:border-color .15s" onmouseover="this.style.borderColor='#333'" onmouseout="this.style.borderColor='var(--border)'">
+  <span>📄 &nbsp;Referral One-Pager — Print &amp; Share</span>
+  <span style="color:#444;font-size:14px">›</span>
+</a>
+</div>
+
+<hr>
+
+<div class="label">Arsenal</div>
+<div class="heading">Commands</div>
+<div class="tools">
+  <div class="tool"><div class="tool-name">Analyze Any Business</div><code class="tool-cmd">python3 business_analyzer.py --type hvac --city "Corinth MS"</code><div class="tool-desc">60-sec AI analysis. Maps automations + ROI. Run before every sales call.</div></div>
+  <div class="tool"><div class="tool-name">Find Targets</div><code class="tool-cmd">python3 prospect_scorer.py</code><div class="tool-desc">Full market sweep. Scores businesses on 15+ signals. Finds pain reviews.</div></div>
+  <div class="tool"><div class="tool-name">Someone Paid</div><code class="tool-cmd">python3 boss_command.py paid "Name" hvac "City ST" starter</code><div class="tool-desc">Builds their system in 2 minutes. Delivers to ntfy.</div></div>
+  <div class="tool"><div class="tool-name">Flag Hot Lead</div><code class="tool-cmd">python3 boss_command.py hot "Name" 6015551234 "notes"</code><div class="tool-desc">Logs, starts follow-up sequence, tells you what to text them.</div></div>
+</div>
+
+<div class="updated">Updated: May 22, 2026 · BOSS HQ</div>
+</div><!-- end .page -->
+
+<!-- ===================== MODAL CONTENT ===================== -->
+<script>
+const MODALS = {
+
+'boss-systems': {
+  title: 'BOSS Systems',
+  badge: 'LIVE', badgeStyle: 'background:#0a1a0a;color:#4caf50;border:1px solid #2a5a2a',
+  html: `
+    <div class="m-section">
+      <div class="m-label">What We Are</div>
+      <div class="m-note">AI Business Innovation company for the businesses everyone else ignores. We figure out exactly where they're losing money and build the AI to fix it — deployed in 72 hours for a fraction of what any agency charges.</div>
+    </div>
+    <div class="m-section">
+      <div class="m-label">The 4 Products</div>
+      <div class="m-row"><span class="k">BOSS Analyze</span><span class="v">Free</span></div>
+      <div class="m-row"><span class="k">BOSS Build</span><span class="v">$1,497 – $5,997 + monthly</span></div>
+      <div class="m-row"><span class="k">BOSS Own</span><span class="v">$0 setup · 20% rev share</span></div>
+      <div class="m-row"><span class="k">BOSS Infinite</span><span class="v">$997 – $2,997/mo</span></div>
+    </div>
+    <div class="m-section">
+      <div class="m-label">The Numbers That Close</div>
+      <div class="m-stat-grid">
+        <div class="m-stat"><div class="n">62%</div><div class="l">calls unanswered</div></div>
+        <div class="m-stat"><div class="n">85%</div><div class="l">never call back</div></div>
+        <div class="m-stat"><div class="n">49:1</div><div class="l">avg ROI</div></div>
+        <div class="m-stat"><div class="n">$60/mo</div><div class="l">vs $1,000+ competitors</div></div>
+      </div>
+    </div>
+    <div class="m-section">
+      <div class="m-label">The In-Person Demo Flow</div>
+      <div class="m-step"><div class="m-step-num">1</div><div class="m-step-text">Walk in at 10am or 2pm. Ask for the owner.</div></div>
+      <div class="m-step"><div class="m-step-num">2</div><div class="m-step-text">Pull up <strong>bosssystems.co/dashboard/analyze.html</strong> on your phone. Hand it to them.</div></div>
+      <div class="m-step"><div class="m-step-num">3</div><div class="m-step-text">Let them type their own business in. Watch their face when their number appears.</div></div>
+      <div class="m-step"><div class="m-step-num">4</div><div class="m-step-text"><strong>"That's real. I can build all of it for you. $1,497 to get started."</strong> Venmo @BosRoss.</div></div>
+    </div>
+    <div class="m-section">
+      <div class="m-label">The Pitch That Closes</div>
+      <div class="m-script">
+        <p><strong>"When your phone goes to voicemail, 85% of those people never call back. They call the next number."</strong><br><br>
+        <strong>"At 3 missed calls a week at $650 average, that's over $100,000 a year walking out the door."</strong><br><br>
+        <strong>"BOSS answers every call for $60 a month. Try it 30 days. If it doesn't pay for itself, cancel."</strong></p>
+      </div>
+    </div>
+    <div class="m-section">
+      <div class="m-label">Best Markets Right Now</div>
+      <ul class="m-list">
+        <li>East Texas — Longview, Tyler, Nacogdoches, Lufkin (in-person only, 903/430)</li>
+        <li>Corinth MS — HVAC averaging 3.6–3.9★, lots of pain reviews</li>
+        <li>Durant OK — HVAC with no websites, easy reach</li>
+        <li>Laurel MS — Junk removal, confirmed pain reviews, low competition</li>
+      </ul>
+    </div>
+    <a class="m-cta" href="https://bosssystems.co" target="_blank">Open bosssystems.co</a>
+  `
+},
+
+'built-by-boss': {
+  title: 'Built by BOSS',
+  badge: 'LIVE', badgeStyle: 'background:#0a1a0a;color:#4caf50;border:1px solid #2a5a2a',
+  html: `
+    <div class="m-section">
+      <div class="m-label">What It Is</div>
+      <div class="m-note">Sell pre-built AI business systems to entrepreneurs who want to own a business without building anything from scratch. They buy the system, Boston delivers it in 72 hours, they start running it.</div>
+    </div>
+    <div class="m-section">
+      <div class="m-label">Pricing</div>
+      <div class="m-tier">
+        <div class="m-tier-name">Basic</div>
+        <div class="m-tier-price">$997</div>
+        <div class="m-tier-mo">+ $97/month</div>
+        <div class="m-tier-items">AI receptionist · Booking system · Payment collection · Basic training</div>
+      </div>
+      <div class="m-tier featured">
+        <div class="m-tier-name">Standard</div>
+        <div class="m-tier-price">$1,997</div>
+        <div class="m-tier-mo">+ $197/month</div>
+        <div class="m-tier-items">Everything in Basic + Outbound caller · Referral system · Review automation · Full training course</div>
+      </div>
+      <div class="m-tier">
+        <div class="m-tier-name">Full Suite</div>
+        <div class="m-tier-price">$3,497</div>
+        <div class="m-tier-mo">+ $297/month</div>
+        <div class="m-tier-items">Everything + Custom build for their specific business · Monthly strategy call · Priority support</div>
+      </div>
+    </div>
+    <div class="m-section">
+      <div class="m-label">What They Get</div>
+      <ul class="m-list">
+        <li>Retell AI voice agent configured for their business type</li>
+        <li>n8n workflows for booking, payments, reviews, follow-up</li>
+        <li>Landing page on bosssystems.co</li>
+        <li>Step-by-step training on how to operate the business</li>
+        <li>Ongoing support from Boston</li>
+      </ul>
+    </div>
+    <div class="m-section">
+      <div class="m-label">Who To Target</div>
+      <ul class="m-list">
+        <li>Young entrepreneurs who want to start a business but don't know how to build AI</li>
+        <li>People with a truck, tools, or labor who want automated lead gen</li>
+        <li>Side hustlers who want passive income infrastructure</li>
+        <li>Friends Boston can vouch for who are motivated</li>
+      </ul>
+    </div>
+    <div class="m-section">
+      <div class="m-label">The Pitch</div>
+      <div class="m-script">
+        <p><strong>"You don't need to know how to build any of this. I build the whole system — AI answers the calls, books the jobs, collects payment. You just show up and do the work. $1,997 upfront, $197 a month."</strong></p>
+      </div>
+    </div>
+  `
+},
+
+'junk-removal': {
+  title: 'BOSS Junk Removal',
+  badge: 'BUILDING', badgeStyle: 'background:#1a1200;color:#C9A84C;border:1px solid #3a3000',
+  html: `
+    <div class="m-section">
+      <div class="m-label">Status</div>
+      <div class="m-note">AI agent is live and ready. The only thing missing: a phone number assigned to it and a human with a truck to haul the junk. Once those two things are in place, this business runs itself.</div>
+    </div>
+    <div class="m-section">
+      <div class="m-label">Agent Details</div>
+      <div class="m-row"><span class="k">Agent ID</span><span class="v" style="font-family:monospace;font-size:11px">agent_59905e10f9d2ab2b6a77f66a4a</span></div>
+      <div class="m-row"><span class="k">Market</span><span class="v">Laurel, MS (Jones County)</span></div>
+      <div class="m-row"><span class="k">Population</span><span class="v">~18,000</span></div>
+      <div class="m-row"><span class="k">Target jobs</span><span class="v">$150 – $475/job</span></div>
+      <div class="m-row"><span class="k">Main competitor</span><span class="v">B Clean LLC (3.2★ — attackable)</span></div>
+    </div>
+    <div class="m-section">
+      <div class="m-label">Next Steps (In Order)</div>
+      <div class="m-step"><div class="m-step-num">1</div><div class="m-step-text">Go to <strong>retellai.com → Phone Numbers</strong>. Buy a number with 601 area code. Assign it to agent_59905e10f9d2ab2b6a77f66a4a.</div></div>
+      <div class="m-step"><div class="m-step-num">2</div><div class="m-step-text">Find a <strong>hauling partner in or near Laurel MS</strong>. Needs a pickup truck or trailer. Offer 80% of every job — they keep $120–$380 per haul.</div></div>
+      <div class="m-step"><div class="m-step-num">3</div><div class="m-step-text">Post on <strong>Facebook Marketplace in Laurel MS</strong>: "Junk Removal — Same Day Available — Text or Call."</div></div>
+      <div class="m-step"><div class="m-step-num">4</div><div class="m-step-text">Post on <strong>Craigslist Hattiesburg/Laurel</strong> same listing.</div></div>
+      <div class="m-step"><div class="m-step-num">5</div><div class="m-step-text">Visit <strong>5 real estate offices</strong> in Laurel with a flyer. They refer junk removal constantly — cleanouts before listings.</div></div>
+    </div>
+    <div class="m-section">
+      <div class="m-label">How The Money Flows</div>
+      <div class="m-step"><div class="m-step-num">1</div><div class="m-step-text">Customer calls the 601 number → AI answers, qualifies the job, gives an estimate</div></div>
+      <div class="m-step"><div class="m-step-num">2</div><div class="m-step-text">AI books the job → texts the partner with address, time, job details</div></div>
+      <div class="m-step"><div class="m-step-num">3</div><div class="m-step-text">Partner shows up, hauls the junk → customer pays via Square/Venmo</div></div>
+      <div class="m-step"><div class="m-step-num">4</div><div class="m-step-text">Partner keeps 80% → Venmo @BosRoss 20%</div></div>
+    </div>
+    <div class="m-highlight">
+      <p>East Texas dump fees are $44/ton — cheapest in the US. If Boston finds a partner near Tyler TX instead of Laurel MS, this runs even cheaper per job.</p>
+    </div>
+  `
+},
+
+'summer-partners': {
+  title: 'Summer Partners',
+  badge: 'RECRUITING', badgeStyle: 'background:#1a1a1a;color:#555;border:1px solid #2a2a2a',
+  html: `
+    <div class="m-section">
+      <div class="m-label">The Deal</div>
+      <div class="m-note">Boston builds and operates the entire AI system — answering calls, booking jobs, collecting payment. The partner just shows up and does the physical work. They keep 80%. Boston keeps 20% of every job without touching a shovel.</div>
+    </div>
+    <div class="m-section">
+      <div class="m-label">The Math</div>
+      <div class="m-stat-grid">
+        <div class="m-stat"><div class="n">$275</div><div class="l">avg job value</div></div>
+        <div class="m-stat"><div class="n">20</div><div class="l">jobs/week target</div></div>
+        <div class="m-stat"><div class="n">$1,100</div><div class="l">Boston/week per partner</div></div>
+        <div class="m-stat"><div class="n">$4,400</div><div class="l">partner keeps/week</div></div>
+      </div>
+    </div>
+    <div class="m-section">
+      <div class="m-label">At 5 Partners</div>
+      <div class="m-row"><span class="k">Boston per week</span><span class="v">$5,500</span></div>
+      <div class="m-row"><span class="k">Boston per month</span><span class="v">$22,000</span></div>
+      <div class="m-row"><span class="k">Boston's involvement</span><span class="v">Zero physical labor</span></div>
+    </div>
+    <div class="m-section">
+      <div class="m-label">Who To Recruit</div>
+      <ul class="m-list">
+        <li>Friends with pickup trucks who want to make real money this summer</li>
+        <li>Anyone doing odd jobs, moving, hauling, cleaning already</li>
+        <li>People between jobs or in school who have free time</li>
+        <li>Someone with landscaping, HVAC, or plumbing skills who wants more jobs</li>
+      </ul>
+    </div>
+    <div class="m-section">
+      <div class="m-label">Partner Pitch (word for word)</div>
+      <div class="m-script">
+        <p><strong>"I'll set up the whole thing — a website, an AI that takes calls and books jobs automatically, payment collection, everything. You don't spend a dollar on setup. You just show up with your truck and do the job. Every job you complete, you keep 80%. I take 20% for running the machine. You can make $2,000–$5,000 a week this summer."</strong></p>
+      </div>
+    </div>
+    <div class="m-section">
+      <div class="m-label">What Partners Do</div>
+      <ul class="m-list">
+        <li>Show up to booked jobs at the confirmed address and time</li>
+        <li>Do the physical work (haul junk, clean, mow, whatever the business is)</li>
+        <li>Take a before/after photo for Google reviews</li>
+        <li>That's it</li>
+      </ul>
+    </div>
+  `
+},
+
+'product-analyze': {
+  title: 'BOSS Analyze',
+  badge: 'FREE', badgeStyle: 'background:#0a1a0a;color:#4caf50;border:1px solid #2a5a2a',
+  html: `
+    <div class="m-section">
+      <div class="m-label">What It Does</div>
+      <div class="m-note">60-second AI analysis of any business. Shows exactly what automations apply, calculates the annual value of each one using their actual job value, and shows the math line by line. This is the demo tool — not the pitch.</div>
+    </div>
+    <div class="m-section">
+      <div class="m-label">How To Use In Person</div>
+      <div class="m-step"><div class="m-step-num">1</div><div class="m-step-text">Walk in. Ask for the owner.</div></div>
+      <div class="m-step"><div class="m-step-num">2</div><div class="m-step-text">Pull up the link below on your phone. Hand it to them.</div></div>
+      <div class="m-step"><div class="m-step-num">3</div><div class="m-step-text">Let them select their business type, enter their city, and type their average job value.</div></div>
+      <div class="m-step"><div class="m-step-num">4</div><div class="m-step-text">They hit "Run My Free Analysis." Wait 2 seconds. Watch their face.</div></div>
+      <div class="m-step"><div class="m-step-num">5</div><div class="m-step-text">The breakdown shows how much they're losing <em>and why</em>, line by line. Let it do the talking.</div></div>
+    </div>
+    <div class="m-section">
+      <div class="m-label">What They See</div>
+      <ul class="m-list">
+        <li>Total annual value unlocked ($80K–$200K+ depending on business)</li>
+        <li>Bar chart showing where every dollar comes from</li>
+        <li>The exact math behind each number (e.g. "You miss 6 calls/week. 85% don't call back. Recovering 2 jobs/week at $480 avg = $49,920/yr.")</li>
+        <li>Top 10 automations ranked by ROI</li>
+        <li>A package recommendation with a text button straight to Boston's number</li>
+      </ul>
+    </div>
+    <div class="m-section">
+      <div class="m-label">Why It Works</div>
+      <div class="m-note">It's not a pitch — it's their own data. When they type in their job value and see their number, they did the analysis themselves. You're just there to build it.</div>
+    </div>
+    <a class="m-cta" href="/dashboard/analyze.html">Open Analysis Tool</a>
+  `
+},
+
+'product-build': {
+  title: 'BOSS Build',
+  badge: 'FLAGSHIP', badgeStyle: 'background:#1a1200;color:#C9A84C;border:1px solid #3a3000',
+  html: `
+    <div class="m-section">
+      <div class="m-label">What It Is</div>
+      <div class="m-note">Full AI stack built and deployed in 72 hours. Boston handles everything — Retell voice agent, n8n workflows, Google integration, training. Client just starts receiving calls.</div>
+    </div>
+    <div class="m-section">
+      <div class="m-label">The 3 Tiers</div>
+      <div class="m-tier">
+        <div class="m-tier-name">Starter</div>
+        <div class="m-tier-price">$1,497</div>
+        <div class="m-tier-mo">+ $97/month</div>
+        <div class="m-tier-items">
+          ✓ AI phone receptionist (24/7)<br>
+          ✓ Missed call text-back (60 sec)<br>
+          ✓ Automated payment collection<br>
+          ✓ Appointment booking + reminders<br>
+          ✓ Review request automation
+        </div>
+      </div>
+      <div class="m-tier featured">
+        <div class="m-tier-name">Growth — Most Popular</div>
+        <div class="m-tier-price">$2,997</div>
+        <div class="m-tier-mo">+ $247/month</div>
+        <div class="m-tier-items">
+          ✓ Everything in Starter<br>
+          ✓ AI outbound caller (new leads daily)<br>
+          ✓ Automated referral program<br>
+          ✓ Customer re-engagement (60-day lapsed)<br>
+          ✓ AI social media (5 posts/week)<br>
+          ✓ Competitor review mining
+        </div>
+      </div>
+      <div class="m-tier">
+        <div class="m-tier-name">Full Transformation</div>
+        <div class="m-tier-price">$5,997</div>
+        <div class="m-tier-mo">+ $497/month</div>
+        <div class="m-tier-items">
+          ✓ Everything in Growth<br>
+          ✓ 5 custom automations (built for their specific business)<br>
+          ✓ Storm lead generator (roofers) or HVAC maintenance reminders<br>
+          ✓ Quarterly strategy call with Boston<br>
+          ✓ Priority support + monthly report
+        </div>
+      </div>
+    </div>
+    <div class="m-section">
+      <div class="m-label">How To Close</div>
+      <div class="m-script">
+        <p><strong>"The receptionist alone is worth $32,000 a year to you based on your numbers. The Starter package is $1,497. If it doesn't pay for itself in the first 30 days, you cancel. But it will."</strong></p>
+      </div>
+    </div>
+    <div class="m-section">
+      <div class="m-label">Timeline + Payment</div>
+      <div class="m-row"><span class="k">Build time</span><span class="v">72 hours from payment</span></div>
+      <div class="m-row"><span class="k">Payment</span><span class="v">Venmo @BosRoss</span></div>
+      <div class="m-row"><span class="k">Cancellation</span><span class="v">Anytime, no penalty</span></div>
+    </div>
+  `
+},
+
+'product-own': {
+  title: 'BOSS Own',
+  badge: '$0 SETUP', badgeStyle: 'background:#1a1a1a;color:#555;border:1px solid #2a2a2a',
+  html: `
+    <div class="m-section">
+      <div class="m-label">The Model</div>
+      <div class="m-note">Zero setup cost. Boston builds and operates the AI system. The client does the physical work. Boston takes 20% of gross revenue every month. No invoice, no billing — just a revenue share.</div>
+    </div>
+    <div class="m-section">
+      <div class="m-label">Example: HVAC Partner</div>
+      <div class="m-stat-grid">
+        <div class="m-stat"><div class="n">15</div><div class="l">AI-booked calls/wk</div></div>
+        <div class="m-stat"><div class="n">8</div><div class="l">jobs completed</div></div>
+        <div class="m-stat"><div class="n">$3,600</div><div class="l">weekly revenue</div></div>
+        <div class="m-stat"><div class="n">$720</div><div class="l">Boston's cut/week</div></div>
+      </div>
+    </div>
+    <div class="m-section">
+      <div class="m-label">Who Qualifies</div>
+      <ul class="m-list">
+        <li>Has physical capacity — truck, tools, license, crew</li>
+        <li>Motivated to grow but doesn't want to manage marketing or tech</li>
+        <li>Ideally a friend Boston can trust (easier to collect 20%)</li>
+        <li>Any service business: HVAC, junk removal, plumbing, electrical, cleaning, lawn care</li>
+      </ul>
+    </div>
+    <div class="m-section">
+      <div class="m-label">What Boston Does</div>
+      <ul class="m-list">
+        <li>Builds and maintains the AI phone agent</li>
+        <li>Runs outbound calling for new leads</li>
+        <li>Manages booking, payment collection, review requests</li>
+        <li>Monthly performance report</li>
+      </ul>
+    </div>
+    <div class="m-section">
+      <div class="m-label">The Pitch</div>
+      <div class="m-script">
+        <p><strong>"You pay nothing upfront. I build the AI that finds and books customers for you. All you do is show up. I take 20% of what comes in. If there's no revenue, I make nothing — so I'm motivated to fill your calendar."</strong></p>
+      </div>
+    </div>
+  `
+},
+
+'product-infinite': {
+  title: 'BOSS Infinite',
+  badge: 'RETAINER', badgeStyle: 'background:#1a1a1a;color:#555;border:1px solid #2a2a2a',
+  html: `
+    <div class="m-section">
+      <div class="m-label">What It Is</div>
+      <div class="m-note">Monthly retainer for existing BOSS Build clients. Boston continuously finds and builds new automations for their business. Every month, the business gets smarter — more revenue captured, more costs eliminated.</div>
+    </div>
+    <div class="m-section">
+      <div class="m-label">Tiers</div>
+      <div class="m-tier">
+        <div class="m-tier-name">Core — $997/mo</div>
+        <div class="m-tier-items">1 new automation per month · Performance monitoring · Priority fixes</div>
+      </div>
+      <div class="m-tier featured">
+        <div class="m-tier-name">Growth — $1,997/mo</div>
+        <div class="m-tier-items">2–3 new automations/month · Monthly strategy call · Performance dashboard · Full monitoring</div>
+      </div>
+      <div class="m-tier">
+        <div class="m-tier-name">Full Service — $2,997/mo</div>
+        <div class="m-tier-items">Boston actively manages all AI for the business · Weekly report · Constant improvement · Fully hands-off for client</div>
+      </div>
+    </div>
+    <div class="m-section">
+      <div class="m-label">The ROI Argument</div>
+      <div class="m-note">Each new automation adds $5,000–$30,000/year in value. At $997/month ($11,964/year), even one successful automation more than pays for the retainer. Frame it: "You're not paying $1,000/month — you're buying $15,000/year in improvements for $1,000."</div>
+    </div>
+    <div class="m-section">
+      <div class="m-label">Who To Pitch This To</div>
+      <ul class="m-list">
+        <li>Existing BOSS Build clients who are happy with results</li>
+        <li>Any client who says "what else can we add?"</li>
+        <li>Business owners who want to grow but don't want to manage tech</li>
+      </ul>
+    </div>
+  `
+},
+
+// ===== WORKFLOW MODALS =====
+'wf-post-call': {
+  title: 'Post-Call Handler',
+  badge: 'ACTIVE', badgeStyle: 'background:#0a1a0a;color:#4caf50;border:1px solid #2a5a2a',
+  html: `
+    <div class="m-section">
+      <div class="m-label">What It Does</div>
+      <div class="m-note">Fires after every single Retell call — regardless of outcome. Logs the result to the Pipeline spreadsheet, writes LastContact, updates Status. This is the system of record for every business BOSS has ever called.</div>
+    </div>
+    <div class="m-section">
+      <div class="m-label">Outcomes It Handles</div>
+      <ul class="m-list">
+        <li><strong>HOT</strong> — Interested, wants to know more. Triggers Hot Lead Handler.</li>
+        <li><strong>CALLBACK</strong> — Wants a callback at a specific time. Schedules follow-up.</li>
+        <li><strong>NOT INTERESTED</strong> — Logs, marks Status = "dead", never calls again.</li>
+        <li><strong>VOICEMAIL</strong> — Hangs up immediately. Logs. Does NOT leave a message.</li>
+        <li><strong>NO ANSWER</strong> — Logs. May retry once within 48hrs based on tier.</li>
+        <li><strong>DNC</strong> — Added to permanent do-not-call list. Blocked forever.</li>
+      </ul>
+    </div>
+    <div class="m-section">
+      <div class="m-label">Key Rule</div>
+      <div class="m-note">responseMode is set to "onReceived" — this workflow responds to Retell instantly and processes in the background. If it ever goes back to default, Retell will retry and flood the queue.</div>
+    </div>
+    <div class="m-row"><span class="k">Workflow ID</span><span class="v" style="font-family:monospace;font-size:11px">EGyXul1WqnnshU96</span></div>
+    <div class="m-row"><span class="k">Trigger</span><span class="v">Retell post-call webhook</span></div>
+    <div class="m-row"><span class="k">Sheets target</span><span class="v">Pipeline spreadsheet · All tabs</span></div>
+  `
+},
+
+'wf-morning-text': {
+  title: 'Morning Text',
+  badge: 'ACTIVE', badgeStyle: 'background:#0a1a0a;color:#4caf50;border:1px solid #2a5a2a',
+  html: `
+    <div class="m-section">
+      <div class="m-label">What It Does</div>
+      <div class="m-note">Fires at 7am CT every day. Sends Boston a morning ntfy notification with a pipeline snapshot — how many HOT leads, how many callbacks due today, and the top priority action for the day.</div>
+    </div>
+    <div class="m-row"><span class="k">Workflow ID</span><span class="v" style="font-family:monospace;font-size:11px">wX6OyZ9UY0Xrbui1</span></div>
+    <div class="m-row"><span class="k">Fires at</span><span class="v">7:00am CT, Mon–Fri</span></div>
+    <div class="m-row"><span class="k">Delivers to</span><span class="v">ntfy · bossai-bostonrossall-alerts</span></div>
+    <div class="m-row"><span class="k">Status</span><span class="v">Active ✅</span></div>
+  `
+},
+
+'wf-oracle': {
+  title: 'ORACLE — Market Intelligence',
+  badge: 'ACTIVE', badgeStyle: 'background:#0a1a0a;color:#4caf50;border:1px solid #2a5a2a',
+  html: `
+    <div class="m-section">
+      <div class="m-label">What It Does</div>
+      <div class="m-note">Daily market intelligence digest. Fires at 9am CT. Monitors competitor moves, scans for AI news in the service business space, tracks Avoca AI, identifies new market opportunities, and sends a brief to Boston via ntfy.</div>
+    </div>
+    <div class="m-row"><span class="k">Workflow ID</span><span class="v" style="font-family:monospace;font-size:11px">7wFm6CQB3VtoiRb6</span></div>
+    <div class="m-row"><span class="k">Fires at</span><span class="v">9:00am CT, Mon–Fri</span></div>
+    <div class="m-row"><span class="k">Delivers to</span><span class="v">ntfy · bossai-bostonrossall-alerts</span></div>
+  `
+},
+
+'wf-auto-caller': {
+  title: 'Auto Caller',
+  badge: 'ACTIVE', badgeStyle: 'background:#0a1a0a;color:#4caf50;border:1px solid #2a5a2a',
+  html: `
+    <div class="m-section">
+      <div class="m-label">What It Does</div>
+      <div class="m-note">Pulls the next batch of leads from the Pipeline, runs 3-layer dedup, and dials 50 calls per day. Fires at 10am and 2pm CT. Current pitch leads with the AI business innovation angle — not receptionist.</div>
+    </div>
+    <div class="m-section">
+      <div class="m-label">Protection Layers</div>
+      <ul class="m-list">
+        <li>Hardcoded blocklist: 87+ numbers that were ever called</li>
+        <li>Area code block: 903, 430 (East Texas — Boston's territory) and 985, 318, 504, 337, 225 (Louisiana — banned)</li>
+        <li>LastContact check: any lead with a date = never call again</li>
+        <li>Status check: only Status = "cold" or "callback"</li>
+        <li>Franchise screen: Roto-Rooter, Servpro, 1-800-GOT-JUNK, Terminix, Orkin — all blocked</li>
+        <li>Hours: 9am–6pm CT only, weekdays</li>
+      </ul>
+    </div>
+    <div class="m-row"><span class="k">Workflow ID</span><span class="v" style="font-family:monospace;font-size:11px">UQGW8QuaSLb9Euyh</span></div>
+    <div class="m-row"><span class="k">Daily cap</span><span class="v">50 calls (100 only when Boston says so)</span></div>
+    <div class="m-row"><span class="k">Fires at</span><span class="v">10:00am and 2:00pm CT</span></div>
+    <div class="m-row"><span class="k">Voice agent</span><span class="v">agent_6c19e0315cf3dfd1ffa3db63a2</span></div>
+  `
+},
+
+'wf-morning-brief': {
+  title: 'Morning Brief',
+  badge: 'JUNE 1', badgeStyle: 'background:#1a1200;color:#C9A84C;border:1px solid #3a3000',
+  html: `
+    <div class="m-section">
+      <div class="m-label">What It Does</div>
+      <div class="m-note">Full morning briefing delivered via ntfy at 7:05am CT. Includes: hot leads status, callbacks due today, active client health, revenue summary, top 3 actions for the day. Replaces the need to manually check anything.</div>
+    </div>
+    <div class="m-row"><span class="k">Workflow ID</span><span class="v" style="font-family:monospace;font-size:11px">TtbV6mhhRnLhQCv3</span></div>
+    <div class="m-row"><span class="k">Status</span><span class="v">Paused — activates June 1</span></div>
+    <div class="m-row"><span class="k">Also triggered by</span><span class="v">webhook: send-morning-brief</span></div>
+  `
+},
+
+'wf-hot-lead': {
+  title: 'Hot Lead Handler',
+  badge: 'JUNE 1', badgeStyle: 'background:#1a1200;color:#C9A84C;border:1px solid #3a3000',
+  html: `
+    <div class="m-section">
+      <div class="m-label">What It Does</div>
+      <div class="m-note">Fires the instant a call is classified HOT. Sends Boston an ntfy alert with the business name, owner, phone, and what they said. Then queues a follow-up text to send within 2 hours. Pulls ORACLE data to give Boston a talking point before the follow-up.</div>
+    </div>
+    <div class="m-row"><span class="k">Workflow ID</span><span class="v" style="font-family:monospace;font-size:11px">kGJ7aDQmp3MgiPWI</span></div>
+    <div class="m-row"><span class="k">Status</span><span class="v">Paused — activates June 1</span></div>
+    <div class="m-row"><span class="k">Trigger</span><span class="v">webhook: hot-lead-detected</span></div>
+    <div class="m-row"><span class="k">Manual trigger</span><span class="v">python3 boss_command.py hot "Name" phone "notes"</span></div>
+  `
+},
+
+'wf-auto-builder': {
+  title: 'Auto-Builder (New Client)',
+  badge: 'JUNE 1', badgeStyle: 'background:#1a1200;color:#C9A84C;border:1px solid #3a3000',
+  html: `
+    <div class="m-section">
+      <div class="m-label">What It Does</div>
+      <div class="m-note">Someone pays → this fires → their entire AI system is built in 2 minutes. Creates their Retell agent, configures their n8n workflows, sets up their Google Sheets, and notifies Boston via ntfy with everything live.</div>
+    </div>
+    <div class="m-row"><span class="k">Workflow ID</span><span class="v" style="font-family:monospace;font-size:11px">VIJXn2fKDANAsiDX</span></div>
+    <div class="m-row"><span class="k">Status</span><span class="v">Paused — activates June 1</span></div>
+    <div class="m-row"><span class="k">Trigger</span><span class="v">webhook: new-client-paid</span></div>
+    <div class="m-row"><span class="k">Manual trigger</span><span class="v">python3 boss_command.py paid "Name" hvac "City ST" starter</span></div>
+  `
+},
+
+'wf-warm-followup': {
+  title: 'Warm Lead Follow-Up',
+  badge: 'JUNE 1', badgeStyle: 'background:#1a1200;color:#C9A84C;border:1px solid #3a3000',
+  html: `
+    <div class="m-section">
+      <div class="m-label">What It Does</div>
+      <div class="m-note">Fires at 11am CT Mon–Fri. Pulls all leads marked HOT or CALLBACK, checks if 24–48hrs have passed since last contact, and sends Boston a draft follow-up message tailored to what the prospect said on the call.</div>
+    </div>
+    <div class="m-row"><span class="k">Workflow ID</span><span class="v" style="font-family:monospace;font-size:11px">VZWvyPVLdB5akBom</span></div>
+    <div class="m-row"><span class="k">Status</span><span class="v">Paused — activates June 1</span></div>
+    <div class="m-row"><span class="k">Fires at</span><span class="v">11:00am CT, Mon–Fri</span></div>
+  `
+},
+
+'wf-superniche': {
+  title: 'Superniche Targeter',
+  badge: 'JUNE 1', badgeStyle: 'background:#1a1200;color:#C9A84C;border:1px solid #3a3000',
+  html: `
+    <div class="m-section">
+      <div class="m-label">What It Does</div>
+      <div class="m-note">Runs at 7am CT daily. Scans 10 markets across MS/AR/AL/TN/OK/NM. Scores each business on 15+ signals: pain reviews, weak rating, no website, peak season, response rate. Sends Boston only the highest-scoring targets to call that day.</div>
+    </div>
+    <div class="m-section">
+      <div class="m-label">Score Tiers</div>
+      <div class="m-row"><span class="k">SUPERNICHE (55+)</span><span class="v">Call today</span></div>
+      <div class="m-row"><span class="k">HOT (40–54)</span><span class="v">Call within 48hrs</span></div>
+      <div class="m-row"><span class="k">WARM (28–39)</span><span class="v">Weekly list</span></div>
+    </div>
+    <div class="m-row"><span class="k">Workflow ID</span><span class="v" style="font-family:monospace;font-size:11px">8jvr7e9CDZgggXzM</span></div>
+    <div class="m-row"><span class="k">Status</span><span class="v">Paused — activates June 1</span></div>
+    <div class="m-row"><span class="k">Manual run</span><span class="v">python3 prospect_scorer.py</span></div>
+  `
+},
+
+'wf-lead-hunter': {
+  title: 'Lead Hunter',
+  badge: 'JUNE 1', badgeStyle: 'background:#1a1200;color:#C9A84C;border:1px solid #3a3000',
+  html: `
+    <div class="m-section">
+      <div class="m-label">What It Does</div>
+      <div class="m-note">Runs daily at 6am. Uses Google Places API to find HVAC, plumbers, electricians, roofers, and law firms in the remote target markets. Filters out Louisiana and East Texas. Appends new leads to the Pipeline spreadsheet.</div>
+    </div>
+    <div class="m-row"><span class="k">Workflow ID</span><span class="v" style="font-family:monospace;font-size:11px">T7LdafEdxA19gvjK</span></div>
+    <div class="m-row"><span class="k">Status</span><span class="v">Paused — activates June 1</span></div>
+    <div class="m-row"><span class="k">Fires at</span><span class="v">6:00am CT, Mon–Fri</span></div>
+    <div class="m-row"><span class="k">Markets</span><span class="v">MS, AR, AL, TN, OK, NM — 15K–80K pop</span></div>
+  `
+},
+
+'wf-client-monitor': {
+  title: 'Weekly Client Monitor',
+  badge: 'JUNE 1', badgeStyle: 'background:#1a1200;color:#C9A84C;border:1px solid #3a3000',
+  html: `
+    <div class="m-section">
+      <div class="m-label">What It Does</div>
+      <div class="m-note">Fires every Monday at 6am. Checks every active client's system health — are their agents running, are workflows firing, any errors? Sends Boston a weekly client health report via ntfy. Flags anyone at risk of churning.</div>
+    </div>
+    <div class="m-row"><span class="k">Workflow ID</span><span class="v" style="font-family:monospace;font-size:11px">CxlfRGAhg9ndgSvG</span></div>
+    <div class="m-row"><span class="k">Status</span><span class="v">Paused — activates June 1</span></div>
+    <div class="m-row"><span class="k">Fires at</span><span class="v">6:00am CT every Monday</span></div>
+  `
+},
+
+// ===== AGENT MODALS =====
+'agent-outbound': {
+  title: 'Outbound Sales Caller',
+  badge: 'ACTIVE', badgeStyle: 'background:#0a1a0a;color:#4caf50;border:1px solid #2a5a2a',
+  html: `
+    <div class="m-section">
+      <div class="m-label">Details</div>
+      <div class="m-row"><span class="k">Phone</span><span class="v">(903) 483-0168</span></div>
+      <div class="m-row"><span class="k">Agent ID</span><span class="v" style="font-family:monospace;font-size:11px">agent_6c19e0315cf3dfd1ffa3db63a2</span></div>
+      <div class="m-row"><span class="k">LLM</span><span class="v" style="font-family:monospace;font-size:11px">llm_76493ead4a0523232683f9605f8e</span></div>
+      <div class="m-row"><span class="k">Interruption sensitivity</span><span class="v">0.6</span></div>
+      <div class="m-row"><span class="k">Calls per day</span><span class="v">50 (cap)</span></div>
+    </div>
+    <div class="m-section">
+      <div class="m-label">Current Pitch Flow</div>
+      <div class="m-step"><div class="m-step-num">1</div><div class="m-step-text"><strong>Open direct:</strong> "Hey, this is Jamie calling for BOSS Systems — do you have 30 seconds? We help [business type] owners find where they're losing money to missed calls."</div></div>
+      <div class="m-step"><div class="m-step-num">2</div><div class="m-step-text"><strong>"I never miss calls" objection pivot:</strong> "When a customer hits voicemail and hangs up without leaving a message — do you actually know they called? 85% of those people are gone."</div></div>
+      <div class="m-step"><div class="m-step-num">3</div><div class="m-step-text"><strong>IVR trigger:</strong> Hangs up immediately on "press 1," "enter your ZIP," "for English press," "our menu has changed."</div></div>
+      <div class="m-step"><div class="m-step-num">4</div><div class="m-step-text"><strong>Close:</strong> Free AI analysis at bosssystems.co/dashboard/analyze.html — not a hard sell.</div></div>
+    </div>
+    <div class="m-section">
+      <div class="m-label">What It Never Does</div>
+      <ul class="m-list">
+        <li>Calls 903, 430 (East Texas) or 985, 318, 504, 337, 225 (Louisiana)</li>
+        <li>Calls franchises: Roto-Rooter, Servpro, 1-800-GOT-JUNK, Terminix, etc.</li>
+        <li>Leaves voicemails — hangs up immediately</li>
+        <li>Calls before 9am or after 6pm CT</li>
+        <li>Says "AI," "automate," "streamline," or "workflow"</li>
+        <li>Claims to have run a test call on the business</li>
+      </ul>
+    </div>
+  `
+},
+
+'agent-devils-advocate': {
+  title: "Devil's Advocate — Practice Agent",
+  badge: 'ACTIVE', badgeStyle: 'background:#0a1a0a;color:#4caf50;border:1px solid #2a5a2a',
+  html: `
+    <div class="m-section">
+      <div class="m-label">How To Use It</div>
+      <div class="m-note">Call (903) 568-8943 any time to practice your pitch. The AI plays a skeptical Southern business owner. After the call, Claude analyzes the transcript and texts Boston exactly what worked, what failed, what line to fix, and a score out of 10.</div>
+    </div>
+    <div class="m-row"><span class="k">Phone</span><span class="v">(903) 568-8943</span></div>
+    <div class="m-row"><span class="k">Agent ID</span><span class="v" style="font-family:monospace;font-size:11px">agent_23b664e7db4a0a89ece384ddcd</span></div>
+    <div class="m-section">
+      <div class="m-label">The 5 Personas</div>
+      <ul class="m-list">
+        <li><strong>Busy Bobby</strong> — "I'm slammed right now, make it fast." Always in a rush. Hangs up if you waste 10 seconds.</li>
+        <li><strong>Skeptical Sharon</strong> — "I've heard this before." Doubts every claim. Wants proof for everything.</li>
+        <li><strong>Defensive Dale</strong> — "My business is doing just fine." Sees the pitch as an attack on his competence.</li>
+        <li><strong>Price-First Pete</strong> — First question is always "How much?" before he's heard a single benefit.</li>
+        <li><strong>Almost-Interested Annie</strong> — Genuinely curious but won't commit. "That sounds interesting but I need to think about it."</li>
+      </ul>
+    </div>
+    <div class="m-section">
+      <div class="m-label">Why To Use It</div>
+      <div class="m-note">523 calls showed that the difference between a hot lead and a hang-up is often one specific line. Practicing with a simulator that fights back every day makes that line automatic before you walk in to a real prospect.</div>
+    </div>
+    <a class="m-cta" href="tel:+19035688943">Call Now — Practice</a>
+  `
+},
+
+'agent-junk': {
+  title: 'Junk Removal Agent — Laurel MS',
+  badge: 'NEEDS NUMBER', badgeStyle: 'background:#1a1200;color:#C9A84C;border:1px solid #3a3000',
+  html: `
+    <div class="m-section">
+      <div class="m-label">Status</div>
+      <div class="m-note">Agent is fully configured and live. It just has no phone number assigned to it yet. Once a 601 number is assigned, it starts answering junk removal calls in Laurel MS immediately.</div>
+    </div>
+    <div class="m-row"><span class="k">Agent ID</span><span class="v" style="font-family:monospace;font-size:11px">agent_59905e10f9d2ab2b6a77f66a4a</span></div>
+    <div class="m-row"><span class="k">Market</span><span class="v">Laurel, MS (Jones County)</span></div>
+    <div class="m-row"><span class="k">Needed area code</span><span class="v">601</span></div>
+    <div class="m-section">
+      <div class="m-label">What The Agent Does</div>
+      <ul class="m-list">
+        <li>Answers all calls 24/7 as "BOSS Junk Removal"</li>
+        <li>Asks what needs to be hauled, estimates volume</li>
+        <li>Gives an on-the-spot price quote ($150–$475 depending on load)</li>
+        <li>Books the job with an exact date and time</li>
+        <li>Sends a booking confirmation text to the customer</li>
+        <li>Notifies the hauling partner via ntfy with job details</li>
+      </ul>
+    </div>
+    <div class="m-section">
+      <div class="m-label">To Activate It</div>
+      <div class="m-step"><div class="m-step-num">1</div><div class="m-step-text">Go to <strong>retellai.com</strong> → Phone Numbers → Buy Number</div></div>
+      <div class="m-step"><div class="m-step-num">2</div><div class="m-step-text">Search for a <strong>601 area code</strong> number (Mississippi)</div></div>
+      <div class="m-step"><div class="m-step-num">3</div><div class="m-step-text">Assign it to agent ID <strong>agent_59905e10f9d2ab2b6a77f66a4a</strong></div></div>
+      <div class="m-step"><div class="m-step-num">4</div><div class="m-step-text">Post the number on Facebook Marketplace Laurel MS — the agent is open for business</div></div>
+    </div>
+  `
+},
+
+'agent-bbb': {
+  title: 'Built by BOSS Sales Agent',
+  badge: 'NO NUMBER', badgeStyle: 'background:#1a1a1a;color:#555;border:1px solid #2a2a2a',
+  html: `
+    <div class="m-section">
+      <div class="m-label">What It Does</div>
+      <div class="m-note">Pitches prebuilt business packages to entrepreneurs who want to own an AI-powered service business. Qualifies interest, explains the model, and books a call with Boston to close.</div>
+    </div>
+    <div class="m-row"><span class="k">Agent ID</span><span class="v" style="font-family:monospace;font-size:11px">agent_10c6519858eebc75047ee7ab8f</span></div>
+    <div class="m-row"><span class="k">Status</span><span class="v">Configured, no phone number assigned</span></div>
+    <div class="m-section">
+      <div class="m-label">Next Step</div>
+      <div class="m-note">Assign a phone number in Retell when Built by BOSS gets its first marketing push. The agent is ready — it just needs a number and traffic.</div>
+    </div>
+  `
+},
+
+'agent-the-boss': {
+  title: 'THE BOSS Voice Advisor',
+  badge: 'ACTIVE', badgeStyle: 'background:#0a1a0a;color:#4caf50;border:1px solid #2a5a2a',
+  html: `
+    <div class="m-section">
+      <div class="m-label">What It Does</div>
+      <div class="m-note">Strategic business advisor in voice form. When Boston needs to think through a big decision — a new market, a pitch strategy, a pricing question — THE BOSS is the sounding board. Asks sharp questions, pushes back on weak thinking, and gives a clear recommendation.</div>
+    </div>
+    <div class="m-row"><span class="k">Agent ID</span><span class="v" style="font-family:monospace;font-size:11px">agent_c2003a57424906726c5ef52131</span></div>
+    <div class="m-row"><span class="k">Use case</span><span class="v">Strategic decisions, pitch prep, market analysis</span></div>
+    <div class="m-section">
+      <div class="m-label">When To Use It</div>
+      <ul class="m-list">
+        <li>Before a big in-person sales outing — run through the pitch out loud</li>
+        <li>When you're unsure about a pricing decision or market to enter</li>
+        <li>After a bad stretch of calls — to recalibrate the approach</li>
+        <li>When you need someone to argue against your idea before you commit</li>
+      </ul>
+    </div>
+  `
+},
+
+// ===== PARTNER LEARNING TOOLS =====
+
+'pt-pets': {
+  title: 'Pet Sitting & Dog Walking',
+  badge: '$0 STARTUP', badgeStyle: 'background:#1a1200;color:var(--gold);border:1px solid #3a3000',
+  trainerConfig: {
+    businessType: 'pet sitting and dog walking',
+    personas: [
+      {key:'nervous', label:'Nervous Owner', name:'Nervous First-Timer', desc:'You have never left your dog with a stranger before. You love your dog more than anything. You will ask detailed questions about experience, how they handle emergencies, and whether the dog will be alone. You will slowly warm up if they sound genuinely caring and prepared.'},
+      {key:'vacation', label:'Vacation Traveler', name:'Going-Away Karen', desc:'You are leaving for a week-long vacation in 10 days and need someone reliable. You are less worried about price and more worried about whether this person will actually show up every day and send updates. You ask about their backup plan if something comes up.'},
+      {key:'walker', label:'Daily Walks', name:'Busy Professional', desc:'You work 10-hour days and feel guilty your dog barely goes outside. You want a regular afternoon walker Monday through Friday. You are interested but ask about pricing for multiple days and whether they can be consistent — not a different person every week.'},
+      {key:'multidogs', label:'Two Dogs', name:'Two-Dog Household', desc:'You have two dogs, different sizes. You ask immediately whether they handle two dogs at once and what the rate is. You are comparing to Rover app prices. You will book if the price is fair and they sound confident with multiple dogs.'}
+    ]
+  },
+  html: `
+    <div class="m-stat-grid">
+      <div class="m-stat"><div class="n">$20–35</div><div class="l">Per walk</div></div>
+      <div class="m-stat"><div class="n">$50–75</div><div class="l">Overnight</div></div>
+      <div class="m-stat"><div class="n">$0</div><div class="l">Startup cost</div></div>
+      <div class="m-stat"><div class="n">80%</div><div class="l">Partner keeps</div></div>
+    </div>
+    <div class="m-section">
+      <div class="m-label">First 5 Clients</div>
+      <div class="m-step"><div class="m-step-num">1</div><div class="m-step-text">Door to door on streets where you see dogs walked. "I do dog walking in the neighborhood — here's my number."</div></div>
+      <div class="m-step"><div class="m-step-num">2</div><div class="m-step-text">Post on Nextdoor. Pet owners trust Nextdoor more than Facebook for this — it's literally their neighbors.</div></div>
+      <div class="m-step"><div class="m-step-num">3</div><div class="m-step-text">Tell everyone you know. Every dog owner knows when they'll be out of town next. Be the name they think of.</div></div>
+      <div class="m-step"><div class="m-step-num">4</div><div class="m-step-text">Post in local pet Facebook groups (2–3 in any city).</div></div>
+      <div class="m-step"><div class="m-step-num">5</div><div class="m-step-text">Once you have 2 clients, ask directly: "Know any neighbors with dogs who need walking?"</div></div>
+    </div>
+    <div class="m-section">
+      <div class="m-label">Pricing</div>
+      <div class="m-row"><span class="k">30-min walk</span><span class="v">$20–25</span></div>
+      <div class="m-row"><span class="k">60-min walk</span><span class="v">$28–35</span></div>
+      <div class="m-row"><span class="k">Two dogs (same house)</span><span class="v">$30–45</span></div>
+      <div class="m-row"><span class="k">Daily pack (5x/wk)</span><span class="v">$90–120/wk</span></div>
+      <div class="m-row"><span class="k">Drop-in visit</span><span class="v">$18–25</span></div>
+      <div class="m-row"><span class="k">Overnight at their home</span><span class="v">$50–75/night</span></div>
+      <div class="m-row"><span class="k">Weekend sit (2 nights)</span><span class="v">$90–140</span></div>
+    </div>
+    <div class="m-section">
+      <div class="m-label">Key Scripts</div>
+      <div class="m-script" style="margin-bottom:8px"><p><strong>Walking call:</strong> "I do 30-min walks at $22 and 60-min at $30. Daily packages are $100/week. I send a photo after every single walk."</p></div>
+      <div class="m-script" style="margin-bottom:8px"><p><strong>Pet sitting inquiry:</strong> "I can stay at your place overnight for $60/night. All feeding, walks, and play. Photo update every evening. I'd want a quick meet-and-greet first."</p></div>
+      <div class="m-script"><p><strong>After every walk:</strong> Send one photo. No message needed. Keeps you top of mind for referrals.</p></div>
+    </div>
+    <div class="m-section">
+      <div class="m-label">What the AI Handles</div>
+      <ul class="m-list">
+        <li>Answers all calls 24/7, walking + sitting pricing</li>
+        <li>Books clients, collects pet name, breed, notes</li>
+        <li>Sends daily walk reminders + confirmations</li>
+        <li>Sends payment requests weekly or per service</li>
+        <li>Review requests after first week</li>
+        <li>Re-engages before summer travel seasons</li>
+      </ul>
+    </div>
+    <a class="m-cta" href="https://bosssystems.co/partner-tools.html" target="_blank">Full Guide →</a>
+  `
+},
+
+'pt-photo': {
+  title: 'Photography',
+  badge: '$0 STARTUP', badgeStyle: 'background:#1a1200;color:var(--gold);border:1px solid #3a3000',
+  trainerConfig: {
+    businessType: 'photography',
+    personas: [
+      {key:'senior', label:'Senior Portrait Mom', name:'Deadline Mom', desc:'Your kid has a yearbook photo deadline in 3 weeks. You are on a budget but you want good photos. You ask how long until you get the edited photos back, how many looks they can do, and whether the location is included. You are ready to book if they sound professional.'},
+      {key:'iphone', label:'"iPhone Is Fine"', name:'Skeptical Dad', desc:'You are skeptical about paying for photos when everyone has a good phone now. You are not rude, just genuinely confused about what makes a professional photographer worth the price. You will be convinced if they talk about editing, lighting, and show examples — not if they just say "trust me."'},
+      {key:'family', label:'Family Session', name:'Family Session Mom', desc:'You want a casual outdoor family session — nothing too stiff or formal. You have a 4-year-old who does not cooperate. You ask how they handle kids, whether they suggest poses, and how many photos you end up with. Price is a factor but not the main one.'},
+      {key:'headshot', label:'Business Headshot', name:'Professional Client', desc:'You need a headshot for your LinkedIn and company website. You want it done fast — ideally this week. You ask exactly how many photos you get, turnaround time, and whether you can review before they finalize. You are willing to pay if the process sounds efficient.'}
+    ]
+  },
+  html: `
+    <div class="m-stat-grid">
+      <div class="m-stat"><div class="n">$150–300</div><div class="l">Per session</div></div>
+      <div class="m-stat"><div class="n">$600–1,200</div><div class="l">Weekly potential</div></div>
+      <div class="m-stat"><div class="n">$0</div><div class="l">Phone OK</div></div>
+      <div class="m-stat"><div class="n">80%</div><div class="l">Partner keeps</div></div>
+    </div>
+    <div class="m-section">
+      <div class="m-label">First 5 Clients</div>
+      <div class="m-step"><div class="m-step-num">1</div><div class="m-step-text">Do 2–3 free shoots for friends who will actually post the photos. Their posts = your best ad.</div></div>
+      <div class="m-step"><div class="m-step-num">2</div><div class="m-step-text">Post portfolio on Instagram. Tag the city. Summer is peak senior portrait and graduation season.</div></div>
+      <div class="m-step"><div class="m-step-num">3</div><div class="m-step-text">Post in high school community/student Facebook pages. Senior portraits = fastest photography cash.</div></div>
+      <div class="m-step"><div class="m-step-num">4</div><div class="m-step-text">Post in family Facebook groups. Family sessions book fast in summer with good natural light.</div></div>
+      <div class="m-step"><div class="m-step-num">5</div><div class="m-step-text">Contact 3–4 local businesses about Google Business Profile photos. Many will pay $150 for an hour.</div></div>
+    </div>
+    <div class="m-section">
+      <div class="m-label">Pricing</div>
+      <div class="m-row"><span class="k">Mini session (20 min, 10 photos)</span><span class="v">$100–150</span></div>
+      <div class="m-row"><span class="k">Standard (1 hr, 30+ photos)</span><span class="v">$175–225</span></div>
+      <div class="m-row"><span class="k">Senior portraits (1–2 hrs)</span><span class="v">$200–275</span></div>
+      <div class="m-row"><span class="k">Family session (1 hr)</span><span class="v">$175–225</span></div>
+      <div class="m-row"><span class="k">Business / headshots (45 min)</span><span class="v">$150–200</span></div>
+      <div class="m-row"><span class="k">Business listing photos</span><span class="v">$125–175</span></div>
+    </div>
+    <div class="m-section">
+      <div class="m-label">Key Scripts</div>
+      <div class="m-script" style="margin-bottom:8px"><p><strong>Senior portrait call:</strong> "Senior sessions are $225 for about an hour. 30+ fully edited digital photos within 48 hours. I know a few great outdoor spots around [city]. When are you looking to do it?"</p></div>
+      <div class="m-script" style="margin-bottom:8px"><p><strong>"Can I see your work?":</strong> "I'll send my Instagram right now — it's [handle]. All my recent sessions are there. What kind of session were you thinking?"</p></div>
+      <div class="m-script"><p><strong>After delivery:</strong> "If you love the photos, sharing and tagging me is the biggest thing you can do. I'm building my client list this summer."</p></div>
+    </div>
+    <div class="m-section">
+      <div class="m-label">What the AI Handles</div>
+      <ul class="m-list">
+        <li>Answers calls with session types, pricing, availability</li>
+        <li>Books sessions, collects date + session type + location</li>
+        <li>Sends prep guide before session (what to wear, bring)</li>
+        <li>Sends payment request after delivery</li>
+        <li>Requests Google review + Instagram tag after delivery</li>
+        <li>Follows up for seasonal shoots (back to school, holidays)</li>
+      </ul>
+    </div>
+    <a class="m-cta" href="https://bosssystems.co/partner-tools.html" target="_blank">Full Guide →</a>
+  `
+},
+
+'pt-events': {
+  title: 'Event Decoration',
+  badge: '$150 STARTUP', badgeStyle: 'background:#1a1200;color:var(--gold);border:1px solid #3a3000',
+  trainerConfig: {
+    businessType: 'event decoration',
+    personas: [
+      {key:'bday', label:'Birthday Mom', name:'Perfectionist Birthday Mom', desc:'You are planning your daughter\'s 7th birthday and you want it to look exactly like the Pinterest board you have been building for a month. You ask detailed questions about what colors are available, whether they bring everything, and how long setup takes. You have a budget in mind but have not said it yet — you will share it if they ask.'},
+      {key:'lastmin', label:'Last-Minute', name:'Last-Minute Planner', desc:'The party is THIS Saturday. You completely forgot to book decorations. You are slightly panicked. You ask immediately if they are available this weekend. You will pay a rush premium if they can make it happen. Price negotiation goes out the window because you need someone who can actually show up.'},
+      {key:'shower', label:'Baby Shower', name:'Baby Shower Planner', desc:'You are planning a baby shower for your sister and want to see photos of similar setups before you commit. You ask about specific themes (sage green, boho, etc.) and whether they can match a color palette. You are comparing to one other person you found on Instagram.'},
+      {key:'skeptic', label:'"Just Balloons"', name:'Budget Skeptic', desc:'You think paying someone for balloons and decorations is unnecessary — your mom always did it herself. You ask bluntly what exactly justifies the price. You are not completely closed — if they explain the setup time, the professional look, and the convenience factor clearly, you will reconsider.'}
+    ]
+  },
+  html: `
+    <div class="m-stat-grid">
+      <div class="m-stat"><div class="n">$150–400</div><div class="l">Per event</div></div>
+      <div class="m-stat"><div class="n">$600–1,600</div><div class="l">Weekly potential</div></div>
+      <div class="m-stat"><div class="n">~$150</div><div class="l">Startup (Amazon)</div></div>
+      <div class="m-stat"><div class="n">80%</div><div class="l">Partner keeps</div></div>
+    </div>
+    <div class="m-section">
+      <div class="m-label">First 5 Clients</div>
+      <div class="m-step"><div class="m-step-num">1</div><div class="m-step-text">Reach out to anyone you know with a birthday, baby shower, or graduation coming up. Offer to decorate for free. This builds your portfolio.</div></div>
+      <div class="m-step"><div class="m-step-num">2</div><div class="m-step-text">Post in neighborhood mom Facebook groups. Moms in these groups plan events constantly and ask for recommendations.</div></div>
+      <div class="m-step"><div class="m-step-num">3</div><div class="m-step-text">Post your first setup photos on Instagram. Tag the local city/area. Event photos spread fast when they look good.</div></div>
+      <div class="m-step"><div class="m-step-num">4</div><div class="m-step-text">Message local party supply stores or venues about leaving a card.</div></div>
+      <div class="m-step"><div class="m-step-num">5</div><div class="m-step-text">Post in city Facebook community group around summer graduation season.</div></div>
+    </div>
+    <div class="m-section">
+      <div class="m-label">Pricing</div>
+      <div class="m-row"><span class="k">Balloon garland (6–8 ft)</span><span class="v">$125–175</span></div>
+      <div class="m-row"><span class="k">Large garland (10–14 ft)</span><span class="v">$175–250</span></div>
+      <div class="m-row"><span class="k">Backdrop setup</span><span class="v">$100–150</span></div>
+      <div class="m-row"><span class="k">Table decor (per table)</span><span class="v">$35–60</span></div>
+      <div class="m-row"><span class="k">Full party setup</span><span class="v">$300–400</span></div>
+      <div class="m-row"><span class="k">Baby shower setup</span><span class="v">$175–300</span></div>
+      <div class="m-row"><span class="k">Takedown add-on</span><span class="v">$40–75</span></div>
+    </div>
+    <div class="m-section">
+      <div class="m-label">Key Scripts</div>
+      <div class="m-script" style="margin-bottom:8px"><p><strong>Birthday party call:</strong> "I do full setups — garlands, backdrops, table decor. Birthday party is usually $200–300 depending on what you want. What's the theme? I can give you a specific quote."</p></div>
+      <div class="m-script" style="margin-bottom:8px"><p><strong>"What's included?":</strong> "I bring everything — all supplies included in the price. I arrive an hour before, set everything up, and leave before guests arrive. Takedown is $50 extra."</p></div>
+      <div class="m-script"><p><strong>Getting referrals:</strong> "If you post photos from the party, tag me. And if anyone asks who did the decorations, I'd love the referral."</p></div>
+    </div>
+    <div class="m-section">
+      <div class="m-label">What the AI Handles</div>
+      <ul class="m-list">
+        <li>Answers calls, collects event date, type, and vision</li>
+        <li>Books the event, confirms time and address</li>
+        <li>Sends reminder 48 hours before event</li>
+        <li>Sends payment request after setup</li>
+        <li>Requests review + photo tag after event</li>
+        <li>Follows up with past clients before common event holidays</li>
+      </ul>
+    </div>
+    <a class="m-cta" href="https://bosssystems.co/partner-tools.html" target="_blank">Full Guide →</a>
+  `
+},
+
+'pt-social': {
+  title: 'Social Media Management',
+  badge: '$0 STARTUP', badgeStyle: 'background:#1a1200;color:var(--gold);border:1px solid #3a3000',
+  trainerConfig: {
+    businessType: 'social media management',
+    personas: [
+      {key:'tried', label:'"We Tried It"', name:'Been-Burned Business Owner', desc:'You hired someone off Fiverr last year who posted twice and disappeared. You are skeptical of anyone offering social media management now. You are not hostile, just guarded. You will give this person a real shot if they acknowledge the problem and explain concretely what makes them different.'},
+      {key:'niece', label:'"My Niece Does It"', name:'Family-Member Objector', desc:'Your niece posts for you occasionally for free. You ask why you would pay $250 a month when family does it for nothing. The real truth: your niece posts maybe once a month and has no strategy. You will be persuaded if they explain consistency, content planning, and the difference between personal posts and business content.'},
+      {key:'cheap', label:'Price Haggler', name:'Budget-First Owner', desc:'You run a small restaurant and think $250 a month is steep. You ask if they can do it for $100 or $150. You genuinely want help but are watching every dollar. You will book at a fair price if they can show you concrete deliverables for what you are paying.'},
+      {key:'ready', label:'Ready to Buy', name:'Interested Business Owner', desc:'You looked at your Instagram this morning and realized you have not posted in 6 weeks. You are busy running your business and know you need help. You ask what the process looks like — do you approve posts first, how many per week, what platforms. You are close to yes already.'}
+    ]
+  },
+  html: `
+    <div class="m-stat-grid">
+      <div class="m-stat"><div class="n">$200–400</div><div class="l">Per client/mo</div></div>
+      <div class="m-stat"><div class="n">$400–800</div><div class="l">Weekly potential</div></div>
+      <div class="m-stat"><div class="n">$0</div><div class="l">Startup cost</div></div>
+      <div class="m-stat"><div class="n">80%</div><div class="l">Partner keeps</div></div>
+    </div>
+    <div class="m-section">
+      <div class="m-label">First 5 Clients</div>
+      <div class="m-step"><div class="m-step-num">1</div><div class="m-step-text">Make a free post for a local business you like. Send it to them. "I made this for your Instagram. If you want posts like this weekly, I charge $250/month."</div></div>
+      <div class="m-step"><div class="m-step-num">2</div><div class="m-step-text">Walk into local businesses and ask who runs their Instagram. If it's inactive or bad, make your pitch on the spot.</div></div>
+      <div class="m-step"><div class="m-step-num">3</div><div class="m-step-text">Look at local Google Business profiles. If the posts section is empty or stale, they're a target.</div></div>
+      <div class="m-step"><div class="m-step-num">4</div><div class="m-step-text">Post your own Instagram showing example work. Tag local businesses. Demonstrate what you're selling.</div></div>
+      <div class="m-step"><div class="m-step-num">5</div><div class="m-step-text">Offer first month at a discount to your first 2–3 clients. Get results, get testimonials, then raise rates.</div></div>
+    </div>
+    <div class="m-section">
+      <div class="m-label">Pricing</div>
+      <div class="m-row"><span class="k">Starter (8 posts/mo, IG only)</span><span class="v">$200–250/mo</span></div>
+      <div class="m-row"><span class="k">Standard (12–15 posts, IG + FB)</span><span class="v">$275–325/mo</span></div>
+      <div class="m-row"><span class="k">Full (20 posts, IG + FB + Google)</span><span class="v">$350–400/mo</span></div>
+      <div class="m-row"><span class="k">Story content (per week)</span><span class="v">$50–75 add-on</span></div>
+      <div class="m-row"><span class="k">Reel production (per reel)</span><span class="v">$50–100 add-on</span></div>
+      <div class="m-row"><span class="k">Account setup / refresh</span><span class="v">$100–150 flat</span></div>
+    </div>
+    <div class="m-section">
+      <div class="m-label">Key Scripts</div>
+      <div class="m-script" style="margin-bottom:8px"><p><strong>Walking into a business:</strong> "I run social media for local businesses. I made a sample post for yours — want to see it? If you like it, I do this every week for $250/month. Full month, cancel anytime."</p></div>
+      <div class="m-script" style="margin-bottom:8px"><p><strong>"We tried it and it didn't work":</strong> "Usually that's a consistency issue. One post a month doesn't build an audience. Three to five per week does. That's exactly why I exist."</p></div>
+      <div class="m-script"><p><strong>After first month:</strong> "Here's what went out this month and the engagement numbers. Want to keep going? I'll lock in this rate for the summer."</p></div>
+    </div>
+    <div class="m-section">
+      <div class="m-label">What the AI Handles</div>
+      <ul class="m-list">
+        <li>Answers calls with service description and pricing</li>
+        <li>Books intro consultations with prospective clients</li>
+        <li>Sends monthly payment reminders and invoices</li>
+        <li>Handles calls about packages or upgrades</li>
+        <li>Requests testimonials after first month</li>
+        <li>Re-engages churned clients after 30 days of silence</li>
+      </ul>
+    </div>
+    <a class="m-cta" href="https://bosssystems.co/partner-tools.html" target="_blank">Full Guide →</a>
+  `
+},
+
+'pt-organizing': {
+  title: 'Home Organizing',
+  badge: '$0 STARTUP', badgeStyle: 'background:#1a1200;color:var(--gold);border:1px solid #3a3000',
+  trainerConfig: {
+    businessType: 'home organizing',
+    personas: [
+      {key:'embarrassed', label:'Embarrassed Client', name:'Overwhelmed Homeowner', desc:'Your house has gotten out of control over the past year and you are embarrassed to even say it out loud. You finally decided to ask for help. You are sheepish, almost apologetic. You respond well to someone who normalizes the situation and does not make you feel judged. You are sold on hiring someone — you just need to feel comfortable.'},
+      {key:'mover', label:'Moving Out', name:'Moving-Out Renter', desc:'You are moving out of your apartment in two weeks and it has accumulated years of clutter. You want someone to come help you sort, pack strategically, and decide what to donate versus trash. You are price-sensitive because moving is already expensive. You ask for an hourly estimate and whether they help decide what to keep.'},
+      {key:'closet', label:'One Closet', name:'Specific-Room Requester', desc:'You just want your master closet done. That is it. You are not ready to tackle the whole house. You ask how long a single closet takes and what the minimum charge is. You might turn into a recurring client if the closet goes well — but right now you are cautious and just want to try a small job first.'},
+      {key:'monthly', label:'Monthly Maintenance', name:'Ongoing Maintenance Client', desc:'You had your house organized by someone a year ago and it has slowly degraded. You want someone to come once a month to maintain it. You ask what a monthly session looks like, how long it takes, and whether you can lock in a consistent time slot each month. You are comparing to DIY and ask what makes a professional worth it.'}
+    ]
+  },
+  html: `
+    <div class="m-stat-grid">
+      <div class="m-stat"><div class="n">$65–85</div><div class="l">Per hour</div></div>
+      <div class="m-stat"><div class="n">$600–1,200</div><div class="l">Weekly potential</div></div>
+      <div class="m-stat"><div class="n">$0</div><div class="l">Startup cost</div></div>
+      <div class="m-stat"><div class="n">80%</div><div class="l">Partner keeps</div></div>
+    </div>
+    <div class="m-section">
+      <div class="m-label">First 5 Clients</div>
+      <div class="m-step"><div class="m-step-num">1</div><div class="m-step-text">Organize one neighbor's pantry for free in exchange for a before/after photo. That photo is worth more than any ad.</div></div>
+      <div class="m-step"><div class="m-step-num">2</div><div class="m-step-text">Post the before/after in local Facebook community group. Organizing before/afters get shared more than almost any other service photo.</div></div>
+      <div class="m-step"><div class="m-step-num">3</div><div class="m-step-text">Post on Nextdoor. "Pantries, closets, garages. By the hour. [City]. [AI number]."</div></div>
+      <div class="m-step"><div class="m-step-num">4</div><div class="m-step-text">Post in mom Facebook groups. Parents drowning in kids' stuff are a prime target.</div></div>
+      <div class="m-step"><div class="m-step-num">5</div><div class="m-step-text">Offer a starter special: 2-hour minimum at slight discount. Gets you in the door and usually leads to more rooms.</div></div>
+    </div>
+    <div class="m-section">
+      <div class="m-label">Pricing</div>
+      <div class="m-row"><span class="k">Pantry (2–3 hrs)</span><span class="v">$130–200</span></div>
+      <div class="m-row"><span class="k">Single closet (1.5–2 hrs)</span><span class="v">$100–150</span></div>
+      <div class="m-row"><span class="k">Master closet (3–4 hrs)</span><span class="v">$195–280</span></div>
+      <div class="m-row"><span class="k">Kids' room (2–3 hrs)</span><span class="v">$130–200</span></div>
+      <div class="m-row"><span class="k">Garage (4–6 hrs)</span><span class="v">$260–425</span></div>
+      <div class="m-row"><span class="k">Monthly maintenance (1 hr)</span><span class="v">$65–85</span></div>
+    </div>
+    <div class="m-section">
+      <div class="m-label">Key Scripts</div>
+      <div class="m-script" style="margin-bottom:8px"><p><strong>Pricing call:</strong> "I charge $75/hour with a two-hour minimum. A pantry usually takes 2–3 hours. A closet is 1.5–2 hours. I bring basic supplies — bins or inserts we can add to the invoice."</p></div>
+      <div class="m-script" style="margin-bottom:8px"><p><strong>"My house is a disaster":</strong> "Start with one space — usually the pantry or a closet. Once that's done you'll feel so much better. We can tackle it one room at a time."</p></div>
+      <div class="m-script"><p><strong>Upsell on site:</strong> "That pantry turned out great. While I'm here, I could knock out that front closet in about an hour if you want. Same rate."</p></div>
+    </div>
+    <div class="m-section">
+      <div class="m-label">What the AI Handles</div>
+      <ul class="m-list">
+        <li>Answers calls with pricing and service description</li>
+        <li>Books appointments, collects address and which space</li>
+        <li>Sends morning confirmation day of job</li>
+        <li>Sends payment request with itemized time</li>
+        <li>Review request after payment</li>
+        <li>Follows up with past clients monthly for maintenance sessions</li>
+      </ul>
+    </div>
+    <a class="m-cta" href="https://bosssystems.co/partner-tools.html" target="_blank">Full Guide →</a>
+  `
+},
+
+'pt-lawn': {
+  title: 'Lawn Care',
+  badge: 'RECURRING', badgeStyle: 'background:#0a1a0a;color:#4caf50;border:1px solid #2a5a2a',
+  trainerConfig: {
+    businessType: 'lawn care',
+    personas: [
+      {key:'door', label:'Door Knock', name:'Overgrown Yard Homeowner', desc:'A young person just knocked on your door about your lawn. You know it is overgrown — you have been meaning to deal with it for three weeks. You are a little caught off guard but not annoyed. You ask the price, whether they have equipment, and how soon they can do it. You will say yes if the price sounds fair.'},
+      {key:'recurring', label:'Wants Weekly', name:'Recurring Service Shopper', desc:'You are looking for someone reliable to mow every week all summer. You have had two people flake on you already this season. Reliability matters more than price at this point. You ask directly: will they actually show up every week? You will commit to a weekly schedule if they sound dependable.'},
+      {key:'elderly', label:'Elderly Neighbor', name:'Elderly Homeowner', desc:'You are in your 70s and can no longer mow yourself. Your son keeps saying he will do it but never does. You are polite and appreciative. You ask the price, whether they edge, and whether they will come the same day each week. You are loyal and will refer neighbors if you are happy.'},
+      {key:'onetime', label:'One-Time Only', name:'Just This Once Customer', desc:'You just want this one cut done before a family event this weekend. You are not looking for a recurring arrangement right now. You might convert later but you are not committing to anything beyond this single job. You ask the price and whether they can come Saturday morning.'}
+    ]
+  },
+  html: `
+    <div class="m-stat-grid">
+      <div class="m-stat"><div class="n">$35–80</div><div class="l">Per yard</div></div>
+      <div class="m-stat"><div class="n">$500–1,500</div><div class="l">Weekly potential</div></div>
+      <div class="m-stat"><div class="n">$0</div><div class="l">Need mower</div></div>
+      <div class="m-stat"><div class="n">80%</div><div class="l">Partner keeps</div></div>
+    </div>
+    <div class="m-section">
+      <div class="m-label">First 5 Clients</div>
+      <div class="m-step"><div class="m-step-num">1</div><div class="m-step-text">Walk the neighborhood and note overgrown yards. Those homeowners can't or won't do it themselves — knock and offer a one-time cut. Most convert to recurring.</div></div>
+      <div class="m-step"><div class="m-step-num">2</div><div class="m-step-text">Post on Nextdoor and local Facebook group: "Taking on lawn care clients this week. [City]. Call or text [AI number]."</div></div>
+      <div class="m-step"><div class="m-step-num">3</div><div class="m-step-text">Offer the first cut at a discount if they commit to weekly or biweekly. Recurring is where the money is.</div></div>
+      <div class="m-step"><div class="m-step-num">4</div><div class="m-step-text">Talk to elderly neighbors. They often need regular care and pay without negotiating.</div></div>
+      <div class="m-step"><div class="m-step-num">5</div><div class="m-step-text">Post on Facebook Marketplace under Services. Many people find lawn care this way specifically.</div></div>
+    </div>
+    <div class="m-section">
+      <div class="m-label">Pricing</div>
+      <div class="m-row"><span class="k">Small yard (mow only)</span><span class="v">$35–45</span></div>
+      <div class="m-row"><span class="k">Average (mow + edge)</span><span class="v">$45–60</span></div>
+      <div class="m-row"><span class="k">Large (mow + edge + blow)</span><span class="v">$60–80</span></div>
+      <div class="m-row"><span class="k">First cut (overgrown)</span><span class="v">Add $15–25</span></div>
+      <div class="m-row"><span class="k">Weekly recurring (per cut)</span><span class="v">$40–65</span></div>
+      <div class="m-row"><span class="k">Biweekly recurring (per cut)</span><span class="v">$50–75</span></div>
+    </div>
+    <div class="m-section">
+      <div class="m-label">Key Scripts</div>
+      <div class="m-script" style="margin-bottom:8px"><p><strong>Pricing call:</strong> "For average yard — mow, edge, and blow — I'm at $55. First cut is $65 if it hasn't been done in a while. Weekly I can lock that rate in and you won't think about it again."</p></div>
+      <div class="m-script" style="margin-bottom:8px"><p><strong>Recurring close:</strong> "Weekly is $50 every cut. I do [your street] on Thursdays so I'd add you to that route. You'll get a text the night before. No contract, just let me know if you need to skip."</p></div>
+      <div class="m-script"><p><strong>At the door:</strong> "I noticed your lawn. I'm doing lawn care in the neighborhood this week. I could get that done today for $55. Equipment's in the truck right now."</p></div>
+    </div>
+    <div class="m-section">
+      <div class="m-label">What the AI Handles</div>
+      <ul class="m-list">
+        <li>Answers calls with pricing and availability</li>
+        <li>Books new clients into weekly schedule</li>
+        <li>Sends recurring weekly reminders to clients</li>
+        <li>Handles skip requests and reschedules</li>
+        <li>Sends payment request after each visit</li>
+        <li>Re-engages clients who stop responding</li>
+      </ul>
+    </div>
+    <a class="m-cta" href="https://bosssystems.co/partner-tools.html" target="_blank">Full Guide →</a>
+  `
+},
+
+'pt-cleaning': {
+  title: 'House Cleaning',
+  badge: 'RECURRING', badgeStyle: 'background:#0a1a0a;color:#4caf50;border:1px solid #2a5a2a',
+  trainerConfig: {
+    businessType: 'house cleaning',
+    personas: [
+      {key:'mom', label:'Busy Mom', name:'Overwhelmed Working Mom', desc:'You work full time and have two kids under 8. The house is never clean. You want someone biweekly but you are nervous about a stranger in your home. You ask how they vet people, whether they bring their own supplies, and what happens if something gets broken. You are close to hiring — you just need to feel safe about it.'},
+      {key:'airbnb', label:'Airbnb Host', name:'Airbnb Host', desc:'You manage two Airbnb listings and need reliable turnover cleans after every checkout. You care about reliability above everything else — you cannot have a guest arrive to a dirty unit. You ask about same-day availability, what the checklist looks like, and whether they can send a photo confirmation when done.'},
+      {key:'firsttimer', label:'First-Timer', name:'First-Time Hiring Skeptic', desc:'You have never paid someone to clean your house before. You feel like you should just do it yourself. You ask bluntly: what exactly do you clean, do you go through personal stuff, and how long does it take. You are not hostile — you just need transparency. You will hire if they walk you through exactly what happens.'},
+      {key:'moveout', label:'Move-Out Clean', name:'Move-Out Tenant', desc:'You are moving out of your rental in 4 days and you need a deep clean to get your deposit back. You are stressed and price-sensitive. You ask for a specific number, what is included, and whether they can guarantee the landlord will be satisfied. This is a one-time job but you will refer friends if you are happy.'}
+    ]
+  },
+  html: `
+    <div class="m-stat-grid">
+      <div class="m-stat"><div class="n">$100–250</div><div class="l">Per clean</div></div>
+      <div class="m-stat"><div class="n">$600–1,500</div><div class="l">Weekly potential</div></div>
+      <div class="m-stat"><div class="n">~$60</div><div class="l">Supplies (Walmart)</div></div>
+      <div class="m-stat"><div class="n">80%</div><div class="l">Partner keeps</div></div>
+    </div>
+    <div class="m-section">
+      <div class="m-label">First 5 Clients</div>
+      <div class="m-step"><div class="m-step-num">1</div><div class="m-step-text">Post on Nextdoor. House cleaning is one of the most searched services there. "Taking cleaning clients in [city] — [AI number]."</div></div>
+      <div class="m-step"><div class="m-step-num">2</div><div class="m-step-text">Find Airbnb listings nearby and contact hosts directly. Airbnb hosts pay more, clean more often, and rebook without hesitation.</div></div>
+      <div class="m-step"><div class="m-step-num">3</div><div class="m-step-text">Tell every adult you know. Word of mouth is how most cleaners get their first 5. "I'm doing house cleaning this summer if you know anyone."</div></div>
+      <div class="m-step"><div class="m-step-num">4</div><div class="m-step-text">Post in local mom Facebook groups. Working parents are the highest-converting target.</div></div>
+      <div class="m-step"><div class="m-step-num">5</div><div class="m-step-text">Offer first clean at a small discount in exchange for a recurring weekly or biweekly commitment.</div></div>
+    </div>
+    <div class="m-section">
+      <div class="m-label">Pricing</div>
+      <div class="m-row"><span class="k">Standard (2 bed / 1 bath)</span><span class="v">$100–130</span></div>
+      <div class="m-row"><span class="k">Standard (3 bed / 2 bath)</span><span class="v">$130–165</span></div>
+      <div class="m-row"><span class="k">Standard (4 bed / 3 bath)</span><span class="v">$165–200</span></div>
+      <div class="m-row"><span class="k">Deep clean (first-time)</span><span class="v">Add $30–50</span></div>
+      <div class="m-row"><span class="k">Move-in / move-out</span><span class="v">$175–250</span></div>
+      <div class="m-row"><span class="k">Airbnb turnover clean</span><span class="v">$100–150/turn</span></div>
+    </div>
+    <div class="m-section">
+      <div class="m-label">Key Scripts</div>
+      <div class="m-script" style="margin-bottom:8px"><p><strong>Quote call:</strong> "For 3 bed / 2 bath I'm at $145. Full top-to-bottom — bathrooms, kitchen, all surfaces, floors. First clean is $165 since it takes a bit longer. After that stays at $145."</p></div>
+      <div class="m-script" style="margin-bottom:8px"><p><strong>Airbnb host:</strong> "Turnover cleans are $[X] depending on size. I bring my own supplies, reset per your checklist, can send a photo confirmation when done. Usually available same-day for checkout cleans."</p></div>
+      <div class="m-script"><p><strong>Frequency question:</strong> "Most people do biweekly. Keeps the house manageable without the cost of weekly. Try it one month — switch anytime."</p></div>
+    </div>
+    <div class="m-section">
+      <div class="m-label">What the AI Handles</div>
+      <ul class="m-list">
+        <li>Answers calls with pricing and availability</li>
+        <li>Books first-time and recurring clients</li>
+        <li>Sends weekly / biweekly appointment reminders</li>
+        <li>Sends payment requests after each clean</li>
+        <li>Follows up on overdue payments</li>
+        <li>Re-engages clients who go quiet after 2 missed cycles</li>
+      </ul>
+    </div>
+    <a class="m-cta" href="https://bosssystems.co/partner-tools.html" target="_blank">Full Guide →</a>
+  `
+},
+
+'pt-detailing': {
+  title: 'Car Detailing',
+  badge: 'MOBILE', badgeStyle: 'background:#1a1200;color:var(--gold);border:1px solid #3a3000',
+  trainerConfig: {
+    businessType: 'mobile car detailing',
+    personas: [
+      {key:'dogcar', label:'Dog/Kids Car', name:'Messy Car Parent', desc:'Your car has cheerios, dog hair, and a smell you have stopped noticing. You know it is bad. You are not in denial — you are just checking whether the price is worth it. You ask what the deep clean includes, how long it takes, and whether they can handle pet hair. You will book same day if the price is right.'},
+      {key:'office', label:'Office Worker', name:'Convenience Seeker', desc:'You work at an office and you want someone to come detail your car in the parking lot during your work day. You compare the price to the auto shop near your house. You ask whether they come to you, whether you need to be present, and how you pay. The mobile aspect is the main selling point for you.'},
+      {key:'curious', label:'Just Curious', name:'Not-Sure-What-I-Need Customer', desc:'You responded to a Marketplace post but you are not sure exactly what interior detail means versus a car wash. You ask what the difference is. You feel like your car is only medium dirty — you ask if there is a lighter option. You will book the standard service once you understand what you are getting.'},
+      {key:'gift', label:'Buying as Gift', name:'Gift Buyer', desc:'You want to get a detail done as a gift for your spouse who would never spend money on themselves. You ask whether they offer gift options, how you would handle payment and scheduling on their behalf, and whether it can be a surprise. This is a warm easy sell — you just need a smooth path to complete the purchase.'}
+    ]
+  },
+  html: `
+    <div class="m-stat-grid">
+      <div class="m-stat"><div class="n">$75–150</div><div class="l">Per car</div></div>
+      <div class="m-stat"><div class="n">$600–1,200</div><div class="l">Weekly potential</div></div>
+      <div class="m-stat"><div class="n">~$100</div><div class="l">Starter kit</div></div>
+      <div class="m-stat"><div class="n">80%</div><div class="l">Partner keeps</div></div>
+    </div>
+    <div class="m-section">
+      <div class="m-label">First 5 Clients</div>
+      <div class="m-step"><div class="m-step-num">1</div><div class="m-step-text">Post in neighborhood Facebook group with a before/after photo. Lead with the photo — results sell it.</div></div>
+      <div class="m-step"><div class="m-step-num">2</div><div class="m-step-text">Walk office parking lots midmorning. Leave a simple note on cars: "Interior detail — $85 — [AI number]." Office workers pay for convenience.</div></div>
+      <div class="m-step"><div class="m-step-num">3</div><div class="m-step-text">Post on Facebook Marketplace. Interior detailing is a top searched service there.</div></div>
+      <div class="m-step"><div class="m-step-num">4</div><div class="m-step-text">Text family and friends who have kids or dogs — their cars are destroyed and they know it.</div></div>
+      <div class="m-step"><div class="m-step-num">5</div><div class="m-step-text">Post on Nextdoor. Offer to come to their house — mobile service is a major advantage over a shop.</div></div>
+    </div>
+    <div class="m-section">
+      <div class="m-label">Pricing</div>
+      <div class="m-row"><span class="k">Interior detail (car)</span><span class="v">$80–100</span></div>
+      <div class="m-row"><span class="k">Interior detail (SUV/truck)</span><span class="v">$100–125</span></div>
+      <div class="m-row"><span class="k">Deep clean (pet hair, stains)</span><span class="v">$120–150</span></div>
+      <div class="m-row"><span class="k">Quick vacuum + wipe only</span><span class="v">$50–65</span></div>
+      <div class="m-row"><span class="k">Carpet shampoo</span><span class="v">$40–60</span></div>
+      <div class="m-row"><span class="k">Odor treatment add-on</span><span class="v">$30–50</span></div>
+    </div>
+    <div class="m-section">
+      <div class="m-label">Key Scripts</div>
+      <div class="m-script" style="margin-bottom:8px"><p><strong>What do you do?:</strong> "Interior only — full vacuum, wipe every surface, clean the glass, condition the dash and doors. Car is $85, SUV is $100. I come to your house or office. About an hour and a half."</p></div>
+      <div class="m-script" style="margin-bottom:8px"><p><strong>"It's really bad" (kids/dogs):</strong> "I can handle that. Heavily used cars are $120–150 because the process takes longer. I'll text you if it's worse than expected — you'll know before I go above that."</p></div>
+      <div class="m-script"><p><strong>On price hesitation:</strong> "A shop charges $150–200 and you drop the car for half a day. I come to you, you don't move your schedule, and the price is lower."</p></div>
+    </div>
+    <div class="m-section">
+      <div class="m-label">What the AI Handles</div>
+      <ul class="m-list">
+        <li>Answers calls with service descriptions and pricing 24/7</li>
+        <li>Books appointments, confirms time and location</li>
+        <li>Sends morning reminders to you and the customer</li>
+        <li>Sends payment link after the job</li>
+        <li>Sends review request after payment</li>
+        <li>Re-books repeat customers on a schedule</li>
+      </ul>
+    </div>
+    <a class="m-cta" href="https://bosssystems.co/partner-tools.html" target="_blank">Full Guide →</a>
+  `
+},
+
+'pt-pool': {
+  title: 'Pool Cleaning',
+  badge: 'RECURRING', badgeStyle: 'background:#0a1a0a;color:#4caf50;border:1px solid #2a5a2a',
+  trainerConfig: {
+    businessType: 'pool cleaning',
+    personas: [
+      {key:'newowner', label:'New Pool Owner', name:'First-Time Pool Owner', desc:'You just bought a house with a pool and have no idea what weekly maintenance involves. You thought a pool was just a pool. You ask basic questions: how often does it need to be serviced, what chemicals are involved, and what happens if you skip a week. You are not price-resistant — you just need to understand what you are buying.'},
+      {key:'green', label:'Green Pool Emergency', name:'Green Pool Caller', desc:'Your pool turned green two days ago and the kids want to swim this weekend. You need someone out ASAP. You ask whether they can come today or tomorrow, what it will cost to fix it, and how long until it is swim-ready. You are not focused on recurring service yet — you just need the immediate problem solved.'},
+      {key:'shopper', label:'Price Shopper', name:'Comparing-Quotes Customer', desc:'You already have two quotes for weekly service — one at $80 and one at $105. You tell the person upfront that you are comparing and ask their price. If they match or are close, you ask what makes them different from the others. You are going to pick the one who sounds most reliable, not necessarily the cheapest.'},
+      {key:'switching', label:'Switching Services', name:'Unhappy Current Client', desc:'Your current pool guy has been flaking — missed two weeks in a row and never texted. You are done with him but you are cautious about making the same mistake again. You ask directly: will they actually show up every week? You want to hear something concrete, not just a promise.'}
+    ]
+  },
+  html: `
+    <div class="m-stat-grid">
+      <div class="m-stat"><div class="n">$85–115</div><div class="l">Per clean</div></div>
+      <div class="m-stat"><div class="n">$1,000–2,500</div><div class="l">Weekly potential</div></div>
+      <div class="m-stat"><div class="n">~$80</div><div class="l">Supplies (Walmart)</div></div>
+      <div class="m-stat"><div class="n">80%</div><div class="l">Partner keeps</div></div>
+    </div>
+    <div class="m-section">
+      <div class="m-label">First 5 Clients</div>
+      <div class="m-step"><div class="m-step-num">1</div><div class="m-step-text">Drive neighborhoods and look for pools visible from the street. In Texas almost every subdivision has dozens. Note the addresses.</div></div>
+      <div class="m-step"><div class="m-step-num">2</div><div class="m-step-text">Go door-to-door. "I do weekly pool maintenance in this area — $95/week, test chemicals, skim, and vacuum. Want me to add you?"</div></div>
+      <div class="m-step"><div class="m-step-num">3</div><div class="m-step-text">Post on Nextdoor. Mention a specific neighborhood you're already servicing if you have one.</div></div>
+      <div class="m-step"><div class="m-step-num">4</div><div class="m-step-text">Post in local Facebook groups. Parents with pools in Texas in June are desperate for someone reliable.</div></div>
+      <div class="m-step"><div class="m-step-num">5</div><div class="m-step-text">Ask your first client if they know neighbors who need pool service. One referral per client is your growth engine.</div></div>
+    </div>
+    <div class="m-section">
+      <div class="m-label">Pricing</div>
+      <div class="m-row"><span class="k">Weekly maintenance</span><span class="v">$85–115/week</span></div>
+      <div class="m-row"><span class="k">Biweekly maintenance</span><span class="v">$100–130/visit</span></div>
+      <div class="m-row"><span class="k">One-time clean (green pool)</span><span class="v">$150–250</span></div>
+      <div class="m-row"><span class="k">Chemical balance only</span><span class="v">$50–75</span></div>
+      <div class="m-row"><span class="k">Opening service</span><span class="v">$125–175</span></div>
+      <div class="m-row"><span class="k">Filter cleaning</span><span class="v">$50–80</span></div>
+    </div>
+    <div class="m-section">
+      <div class="m-label">Key Scripts</div>
+      <div class="m-script" style="margin-bottom:8px"><p><strong>At the door:</strong> "I do weekly pool maintenance in this neighborhood. $95/week — I test and balance chemicals, skim, vacuum, brush. Comes out of your schedule completely. Want me to start this week?"</p></div>
+      <div class="m-script" style="margin-bottom:8px"><p><strong>Green pool call:</strong> "That's a shock treatment job. $150–200 depending on how bad it is. Gets it clear within a few days. Then if you want weekly service, I'll add you to my route."</p></div>
+      <div class="m-script"><p><strong>Referral ask:</strong> "If you know any neighbors with a pool, I'm building my route in this area. A text introduction is all I need."</p></div>
+    </div>
+    <div class="m-section">
+      <div class="m-label">What the AI Handles</div>
+      <ul class="m-list">
+        <li>Answers all calls with service description and pricing</li>
+        <li>Books new weekly maintenance clients</li>
+        <li>Sends weekly service reminders to clients</li>
+        <li>Sends payment requests after each service</li>
+        <li>Follows up on unpaid balances automatically</li>
+        <li>Handles clients who need to pause or reschedule</li>
+      </ul>
+    </div>
+    <a class="m-cta" href="https://bosssystems.co/partner-tools.html" target="_blank">Full Guide →</a>
+  `
+},
+
+'pt-junk': {
+  title: 'Junk Removal',
+  badge: '$1,500–3,500/WK', badgeStyle: 'background:#1a1200;color:var(--gold);border:1px solid #3a3000',
+  trainerConfig: {
+    businessType: 'junk removal',
+    personas: [
+      {key:'skeptical', label:'Skeptical Homeowner', name:'Skeptical Homeowner', desc:'You have a garage full of stuff you want hauled. You are interested but you have been burned by contractors before who gave low quotes and then raised the price when they arrived. You want a clear price upfront before you commit. You push back once on price and see how they handle it.'},
+      {key:'urgent', label:'Moving Day', name:'Stressed-Out Mover', desc:'You are moving out in 3 days and you have way more stuff than you thought. You need it gone TODAY or tomorrow at the latest. You are slightly frantic. Price is less of a concern — availability is everything. You will pay a premium if they can actually come out quickly.'},
+      {key:'garage', label:'Garage Cleanout', name:'Full Garage Customer', desc:'You have 20 years of stuff in your garage and you want it all gone. You ask upfront for one flat price rather than being charged by the load. You are also worried about the dump fees — you ask whether that is included. You will sign on the spot if they can give you a confident all-in number.'},
+      {key:'cheap', label:'Price-First Pete', name:'Price-First Pete', desc:'You open with: "What is the cheapest you can do it?" Every answer you give leads to another price question. You compare to a guy on Facebook who said he would do it for $75. You are not unreasonable — you will hire at a fair price — but you make them justify every dollar before you agree.'}
+    ]
+  },
+  html: `
+    <div class="m-stat-grid">
+      <div class="m-stat"><div class="n">$150–400</div><div class="l">Per load</div></div>
+      <div class="m-stat"><div class="n">$1,500–3,500</div><div class="l">Weekly potential</div></div>
+      <div class="m-stat"><div class="n">$0</div><div class="l">Need truck</div></div>
+      <div class="m-stat"><div class="n">80%</div><div class="l">Partner keeps</div></div>
+    </div>
+    <div class="m-section">
+      <div class="m-label">First 5 Clients</div>
+      <div class="m-step"><div class="m-step-num">1</div><div class="m-step-text">Post on Facebook Marketplace: "Junk Removal — Same Day — [City]." Include AI number and price range. Repost every 3 days.</div></div>
+      <div class="m-step"><div class="m-step-num">2</div><div class="m-step-text">Post on Craigslist under Services. Same copy. Craigslist still gets real traffic for this specific service.</div></div>
+      <div class="m-step"><div class="m-step-num">3</div><div class="m-step-text">Text 10 neighbors or family friends. People always know someone cleaning out a garage or moving.</div></div>
+      <div class="m-step"><div class="m-step-num">4</div><div class="m-step-text">Post in local city Facebook group. "Starting a junk removal service — anyone need a load hauled?" Simple. Direct. It works.</div></div>
+      <div class="m-step"><div class="m-step-num">5</div><div class="m-step-text">If you see furniture on a curb with a "free" sign, that person often has more inside. Knock.</div></div>
+    </div>
+    <div class="m-section">
+      <div class="m-label">Pricing</div>
+      <div class="m-row"><span class="k">Small load (truck bed)</span><span class="v">$150–175</span></div>
+      <div class="m-row"><span class="k">Half load</span><span class="v">$200–250</span></div>
+      <div class="m-row"><span class="k">Full truck load</span><span class="v">$275–350</span></div>
+      <div class="m-row"><span class="k">Full load + trailer</span><span class="v">$325–400</span></div>
+      <div class="m-row"><span class="k">Appliance only (per item)</span><span class="v">$75–100</span></div>
+      <div class="m-row"><span class="k">Garage cleanout</span><span class="v">$250–400</span></div>
+    </div>
+    <div class="m-section">
+      <div class="m-label">Key Scripts</div>
+      <div class="m-script" style="margin-bottom:8px"><p><strong>On-site quote:</strong> "I'd put this at a [half/full] load, so probably $[X]. That includes haul-away and disposal. Want me to take it today?"</p></div>
+      <div class="m-script" style="margin-bottom:8px"><p><strong>"That's too expensive":</strong> "The fee includes dumping costs, which aren't cheap. I can do $[X lower] if you help load. Otherwise this is what it costs to do it right and leave your property clean."</p></div>
+      <div class="m-script"><p><strong>Text asking if available today:</strong> "Yes, I can be there by [time]. Address? Payment is [cash/Venmo] after the job is done and you're happy with it."</p></div>
+    </div>
+    <div class="m-section">
+      <div class="m-label">What the AI Handles</div>
+      <ul class="m-list">
+        <li>Answers every call 24/7, quotes by load size</li>
+        <li>Books the appointment, texts customer a confirmation</li>
+        <li>Sends a reminder the morning of the job</li>
+        <li>Sends payment link after job is marked complete</li>
+        <li>Sends Google review request 30 min after payment</li>
+        <li>Logs every call and job automatically</li>
+      </ul>
+    </div>
+    <a class="m-cta" href="https://bosssystems.co/partner-tools.html" target="_blank">Full Guide →</a>
+  `
+},
+
+'pt-pressure': {
+  title: 'Pressure Washing',
+  badge: 'HIGH MARGIN', badgeStyle: 'background:#1a1200;color:var(--gold);border:1px solid #3a3000',
+  trainerConfig: {
+    businessType: 'pressure washing',
+    personas: [
+      {key:'driveway', label:'Dirty Driveway', name:'Quote-Shopping Homeowner', desc:'Your driveway is visibly stained and you have been thinking about getting it done for a while. You already got one quote from someone else. You ask the price and compare it directly to the other quote. You are not locked into the cheapest — you want to know what you get for the money.'},
+      {key:'hoa', label:'HOA Deadline', name:'HOA Letter Recipient', desc:'You just got a letter from your HOA saying your driveway needs to be cleaned within 30 days or you face a fine. You are motivated but slightly annoyed about the whole situation. You ask whether they can come this week and whether they guarantee the result will satisfy the HOA standard.'},
+      {key:'watching', label:'Saw You Working', name:'Curious Neighbor', desc:'You walked over from next door while they were working on your neighbor\'s driveway. You saw the before and after and were impressed. You ask on the spot what it would cost to do yours. This is a warm lead — you are already sold on the result. You just want a number and a time.'},
+      {key:'tooexp', label:'"Too Expensive"', name:'Price-Resistant Homeowner', desc:'You asked for a quote and your first response is that it sounds too expensive for just washing a driveway. You say your neighbor\'s kid did it for $40 with a garden hose. You are not completely opposed — you are just testing whether they will lower the price or defend it. You respect someone who explains the value clearly instead of immediately discounting.'}
+    ]
+  },
+  html: `
+    <div class="m-stat-grid">
+      <div class="m-stat"><div class="n">$150–350</div><div class="l">Per job</div></div>
+      <div class="m-stat"><div class="n">$1,000–2,500</div><div class="l">Weekly potential</div></div>
+      <div class="m-stat"><div class="n">$150</div><div class="l">Rental/day</div></div>
+      <div class="m-stat"><div class="n">80%</div><div class="l">Partner keeps</div></div>
+    </div>
+    <div class="m-section">
+      <div class="m-label">First 5 Clients</div>
+      <div class="m-step"><div class="m-step-num">1</div><div class="m-step-text">Walk a neighborhood and look for driveways with visible green algae, black stains, or dirt. Those homeowners will say yes immediately once they see a before/after.</div></div>
+      <div class="m-step"><div class="m-step-num">2</div><div class="m-step-text">Offer the first driveway on your block at a discount for a before/after photo and review. That photo becomes your ad.</div></div>
+      <div class="m-step"><div class="m-step-num">3</div><div class="m-step-text">Post before/after on local Facebook community group. "First three driveways this week are $100 — building my portfolio."</div></div>
+      <div class="m-step"><div class="m-step-num">4</div><div class="m-step-text">Post on Nextdoor with the before/after. Pressure washing before/afters spread fast in suburban neighborhoods.</div></div>
+      <div class="m-step"><div class="m-step-num">5</div><div class="m-step-text">Book at least 3 jobs BEFORE renting the machine. That way the rental pays for itself on day one.</div></div>
+    </div>
+    <div class="m-section">
+      <div class="m-label">Pricing</div>
+      <div class="m-row"><span class="k">Driveway (standard 2-car)</span><span class="v">$100–150</span></div>
+      <div class="m-row"><span class="k">Large driveway / circle drive</span><span class="v">$150–200</span></div>
+      <div class="m-row"><span class="k">Front walkway + porch</span><span class="v">$75–100</span></div>
+      <div class="m-row"><span class="k">Deck or patio (400 sq ft)</span><span class="v">$150–200</span></div>
+      <div class="m-row"><span class="k">House wash (1 story)</span><span class="v">$200–280</span></div>
+      <div class="m-row"><span class="k">House wash (2 story)</span><span class="v">$280–350</span></div>
+    </div>
+    <div class="m-section">
+      <div class="m-label">Key Scripts</div>
+      <div class="m-script" style="margin-bottom:8px"><p><strong>Pricing call:</strong> "Standard two-car driveway I'm at $125. Walkway or porch adds $75 each. Easiest is I swing by, take a look, and give you a firm number before I start anything."</p></div>
+      <div class="m-script" style="margin-bottom:8px"><p><strong>Neighbor sees you working:</strong> "I'm doing a few in this neighborhood this week. If you want yours done, I can fit you in. My number is [AI number] — just text or call."</p></div>
+      <div class="m-script"><p><strong>After the job:</strong> "Take a look. Want me to hit anything else while I'm here? And if you know anyone in the neighborhood, word of mouth is everything for me."</p></div>
+    </div>
+    <div class="m-section">
+      <div class="m-label">What the AI Handles</div>
+      <ul class="m-list">
+        <li>Answers every call with pricing and availability</li>
+        <li>Takes address, what they want done, preferred time</li>
+        <li>Sends booking confirmation text to customer</li>
+        <li>Reminds you and customer morning of job</li>
+        <li>Sends payment link after job completion</li>
+        <li>Requests Google review 30 min after payment</li>
+      </ul>
+    </div>
+    <a class="m-cta" href="https://bosssystems.co/partner-tools.html" target="_blank">Full Guide →</a>
+  `
+},
+
+};
+
+// ===== MODAL ENGINE =====
+function openModal(id) {
+  const data = MODALS[id];
+  if (!data) return;
+
+  document.getElementById('modal-title').textContent = data.title;
+
+  const badge = document.getElementById('modal-badge');
+  if (data.badge) {
+    badge.textContent = data.badge;
+    badge.style.cssText = data.badgeStyle || '';
+    badge.style.display = 'inline-block';
+  } else {
+    badge.style.display = 'none';
+  }
+
+  const body = document.getElementById('modal-body');
+  body.innerHTML = data.html;
+  if(data.trainerConfig) {
+    body.innerHTML += buildTrainer(id, data.trainerConfig.businessType, data.trainerConfig.personas);
+  }
+  document.getElementById('overlay').classList.add('open');
+  document.getElementById('modal').classList.add('open');
+  document.body.style.overflow = 'hidden';
+
+  // Reset scroll
+  document.getElementById('modal').scrollTop = 0;
+}
+
+function closeModal() {
+  document.getElementById('overlay').classList.remove('open');
+  document.getElementById('modal').classList.remove('open');
+  document.body.style.overflow = '';
+}
+
+// Close on escape key
+document.addEventListener('keydown', e => { if (e.key === 'Escape') closeModal(); });
+
+// ===== LEGAL ADVISOR =====
+const LEGAL_AGENT_ID = 'agent_1009cb72ba155ed30a2de19eed';
+const RETELL_KEY = 'key_7c54fe6b3ae9be0b27f087f00b02';
+let retellClient = null;
+let legalActive = false;
+let transcriptLines = [];
+
+async function loadRetellSDK() {
+  if (window._retellLoaded) return;
+  return new Promise((resolve, reject) => {
+    const s = document.createElement('script');
+    s.src = 'https://cdn.jsdelivr.net/npm/retell-client-js-sdk/dist/index.umd.js';
+    s.onload = () => { window._retellLoaded = true; resolve(); };
+    s.onerror = () => {
+      // Fallback: skypack ESM
+      const m = document.createElement('script');
+      m.type = 'module';
+      m.textContent = `import{RetellWebClient}from'https://cdn.skypack.dev/retell-client-js-sdk';window.RetellWebClient=RetellWebClient;window._retellLoaded=true;`;
+      document.head.appendChild(m);
+      setTimeout(resolve, 1500);
+    };
+    document.head.appendChild(s);
+  });
+}
+
+async function startLegalCall() {
+  const btn = document.getElementById('legal-btn');
+  const statusEl = document.getElementById('legal-status');
+  const transcriptEl = document.getElementById('legal-transcript');
+
+  if (legalActive) {
+    if (retellClient) retellClient.stopCall();
+    return;
+  }
+
+  btn.textContent = 'Connecting...';
+  btn.style.opacity = '0.7';
+  btn.disabled = true;
+
+  try {
+    await loadRetellSDK();
+
+    const resp = await fetch('https://api.retellai.com/v2/create-web-call', {
+      method: 'POST',
+      headers: {'Authorization': `Bearer ${RETELL_KEY}`, 'Content-Type': 'application/json'},
+      body: JSON.stringify({agent_id: LEGAL_AGENT_ID})
+    });
+    const data = await resp.json();
+    if (!data.access_token) throw new Error(data.error_message || 'No access token');
+
+    const SDK = window.RetellWebClient;
+    if (!SDK) throw new Error('SDK not loaded — try again');
+
+    retellClient = new SDK();
+
+    retellClient.on('call_started', () => {
+      legalActive = true;
+      btn.textContent = 'End Call';
+      btn.style.background = '#c0392b';
+      btn.style.opacity = '1';
+      btn.disabled = false;
+      statusEl.style.display = 'block';
+      statusEl.style.color = '#4caf50';
+      statusEl.textContent = 'Connected';
+      transcriptLines = [];
+      transcriptEl.innerHTML = '';
+      transcriptEl.style.display = 'block';
+    });
+
+    retellClient.on('call_ended', () => {
+      legalActive = false;
+      retellClient = null;
+      btn.textContent = 'Talk to Legal Advisor';
+      btn.style.background = 'var(--gold)';
+      btn.style.color = '#080808';
+      btn.style.opacity = '1';
+      btn.disabled = false;
+      statusEl.style.color = '#555';
+      statusEl.textContent = 'Call ended';
+      setTimeout(() => { statusEl.style.display = 'none'; }, 3000);
+    });
+
+    retellClient.on('agent_start_talking', () => {
+      statusEl.style.color = '#C9A84C';
+      statusEl.textContent = 'Advisor speaking...';
+    });
+
+    retellClient.on('agent_stop_talking', () => {
+      statusEl.style.color = '#4caf50';
+      statusEl.textContent = 'Your turn';
+    });
+
+    retellClient.on('update', (update) => {
+      if (update.transcript && update.transcript.length) {
+        const lines = update.transcript.map(t =>
+          `<div style="margin-bottom:8px"><span style="font-size:9px;letter-spacing:1px;text-transform:uppercase;color:${t.role==='agent'?'#C9A84C':'#4caf50'};font-weight:700">${t.role==='agent'?'ADVISOR':'YOU'}</span><div style="font-size:12px;color:#888;line-height:1.5;margin-top:2px">${t.content}</div></div>`
+        ).join('');
+        transcriptEl.innerHTML = lines;
+        transcriptEl.scrollTop = transcriptEl.scrollHeight;
+      }
+    });
+
+    retellClient.on('error', (err) => {
+      statusEl.style.color = '#e57373';
+      statusEl.textContent = 'Error: ' + (err.message || 'Connection failed');
+      btn.textContent = 'Talk to Legal Advisor';
+      btn.style.background = 'var(--gold)';
+      btn.style.opacity = '1';
+      btn.disabled = false;
+      legalActive = false;
+    });
+
+    await retellClient.startCall({accessToken: data.access_token});
+
+  } catch(e) {
+    btn.textContent = 'Talk to Legal Advisor';
+    btn.style.background = 'var(--gold)';
+    btn.style.opacity = '1';
+    btn.disabled = false;
+    statusEl.style.display = 'block';
+    statusEl.style.color = '#e57373';
+    statusEl.textContent = 'Error: ' + e.message;
+  }
+}
+
+// ===== PARTNER APPLICATIONS =====
+
+async function loadApps(btn) {
+  const list = document.getElementById('apps-list');
+  if (btn) btn.textContent = 'Loading...';
+  list.innerHTML = '';
+  try {
+    const r = await fetch('https://jamross.app.n8n.cloud/webhook/get-partner-applications', {cache: 'no-store'});
+    const d = await r.json();
+    const apps = (d.applications || []).filter(a => a.firstName);
+    if (!apps.length) {
+      list.innerHTML = '<p style="font-size:12px;color:#444;padding:8px 0">No applications yet.</p>';
+      if (btn) btn.textContent = 'Refresh Applications';
+      return;
+    }
+    // Sort: PENDING first, then by AI score desc
+    const order = {PENDING:0,REVIEW:1,ACCEPTED:2,DECLINED:3};
+    apps.sort((a,b) => {
+      const od = (order[a.status]||0) - (order[b.status]||0);
+      if (od !== 0) return od;
+      return (b.aiScore||0) - (a.aiScore||0);
+    });
+    list.innerHTML = apps.map(renderApp).join('');
+    if (btn) btn.textContent = `Refresh (${apps.length} total)`;
+  } catch(e) {
+    list.innerHTML = `<p style="font-size:12px;color:#e57373;padding:8px 0">Error loading — check n8n + Applications sheet exists</p>`;
+    if (btn) btn.textContent = 'Load Applications';
+  }
+}
+
+function renderApp(app) {
+  const rec = app.aiRecommendation || 'REVIEW';
+  const recStyle = rec === 'ACCEPT'
+    ? 'background:#0a1a0a;color:#4caf50;border:1px solid #2a5a2a'
+    : rec === 'DECLINE'
+    ? 'background:#1a0a0a;color:#e57373;border:1px solid #5a2a2a'
+    : 'background:#1a1200;color:#C9A84C;border:1px solid #3a3000';
+
+  const st = app.status || 'PENDING';
+  const stColor = st === 'ACCEPTED' ? '#4caf50' : st === 'DECLINED' ? '#e57373' : st === 'REVIEW' ? '#C9A84C' : '#444';
+  const phone = (app.phone || '').replace(/\D/g,'');
+  const uid = 'app_' + (app.phone || Math.random()).replace(/\D/g,'');
+
+  // Build a suggested message based on recommendation
+  const defaultMsg = rec === 'ACCEPT'
+    ? `Hey ${app.firstName}, this is Boston at BOSS Systems. Your application looks great — I'd love to set you up. Can we hop on a quick call this week to go over the details?`
+    : rec === 'DECLINE'
+    ? `Hey ${app.firstName}, this is Boston. Thanks for applying to the summer program. I don't think we have the right fit right now, but keep an eye on bosssystems.co — we may have more openings later.`
+    : `Hey ${app.firstName}, this is Boston at BOSS Systems. I got your application — I'd love to ask you a couple quick questions before we move forward. When's a good time to talk?`;
+
+  return `<div class="app-card" id="${uid}">
+  <div class="app-card-head" onclick="toggleApp('${uid}')">
+    <div>
+      <div class="app-name">${app.firstName} ${app.lastName}, ${app.age || '?'}yo</div>
+      <div class="app-sub">${app.cityState || '—'} · ${app.business || '—'} · <span style="color:${stColor}">${st}</span></div>
+    </div>
+    <div class="app-rec" style="${recStyle}">${rec} ${app.aiScore||0}/10</div>
+  </div>
+  <div class="app-detail" id="${uid}_detail">
+    <div class="app-detail-row"><span class="k">Phone</span><span class="v">${app.phone || '—'}</span></div>
+    <div class="app-detail-row"><span class="k">Truck access</span><span class="v">${app.truckAccess || '—'}</span></div>
+    <div class="app-detail-row"><span class="k">Hours/week</span><span class="v">${app.hoursPerWeek || '—'}</span></div>
+    <div class="app-detail-row"><span class="k">Heard about us</span><span class="v">${app.hearAbout || '—'}</span></div>
+    <div class="app-detail-row"><span class="k">Goal</span><span class="v">${app.mainGoal || '—'}</span></div>
+    ${app.whyBusiness ? `<div class="app-long"><div class="app-long-label">Why this business</div>${app.whyBusiness}</div>` : ''}
+    ${app.priorWork ? `<div class="app-long"><div class="app-long-label">Prior experience</div>${app.priorWork}</div>` : ''}
+    ${app.aiReasoning ? `<div class="app-ai"><div class="app-ai-label">AI Reasoning</div><div class="app-ai-text">${app.aiReasoning}</div></div>` : ''}
+    ${app.bostonMessage ? `<div class="app-ai" style="background:#0a0a1a;border-color:#1a1a3a"><div class="app-ai-label" style="color:#64b5f6">Your Previous Message</div><div class="app-ai-text">${app.bostonMessage}</div></div>` : ''}
+    <div class="app-actions">
+      <div class="app-status-btns">
+        <button class="app-status-btn ${st==='ACCEPTED'?'sel-accept':''}" id="${uid}_accept" onclick="selectStatus('${uid}','ACCEPTED')">Accept</button>
+        <button class="app-status-btn ${st==='REVIEW'?'sel-review':''}" id="${uid}_review" onclick="selectStatus('${uid}','REVIEW')">Review</button>
+        <button class="app-status-btn ${st==='DECLINED'?'sel-decline':''}" id="${uid}_decline" onclick="selectStatus('${uid}','DECLINED')">Decline</button>
+      </div>
+      <textarea class="app-msg" id="${uid}_msg" placeholder="Message to send (optional)">${app.bostonMessage || defaultMsg}</textarea>
+      <button class="app-submit" onclick="submitDecision('${uid}','${app.phone}','${app.firstName}','${app.lastName}')">Save Decision</button>
+      ${phone ? `<a class="app-sms" href="sms:+1${phone}?body=${encodeURIComponent(defaultMsg)}">Text ${app.firstName} directly →</a>` : ''}
+      <div id="${uid}_result"></div>
+    </div>
+  </div>
+</div>`;
+}
+
+function toggleApp(uid) {
+  const detail = document.getElementById(uid + '_detail');
+  detail.classList.toggle('open');
+}
+
+function selectStatus(uid, status) {
+  ['ACCEPTED','REVIEW','DECLINED'].forEach(s => {
+    const btn = document.getElementById(uid + '_' + s.toLowerCase());
+    if (!btn) return;
+    btn.className = 'app-status-btn';
+    if (s === status) {
+      if (s === 'ACCEPTED') btn.className += ' sel-accept';
+      else if (s === 'REVIEW') btn.className += ' sel-review';
+      else btn.className += ' sel-decline';
+    }
+  });
+  document.getElementById(uid + '_selected_status') && (document.getElementById(uid + '_selected_status').value = status);
+  // Store selection on card
+  document.getElementById(uid)._selectedStatus = status;
+}
+
+async function submitDecision(uid, phone, firstName, lastName) {
+  const card = document.getElementById(uid);
+  const status = card._selectedStatus;
+  const message = document.getElementById(uid + '_msg').value.trim();
+  const result = document.getElementById(uid + '_result');
+
+  if (!status) {
+    result.innerHTML = '<div style="color:#e57373;font-size:11px;margin-top:8px">Select Accept / Review / Decline first</div>';
+    return;
+  }
+  if (!phone) {
+    result.innerHTML = '<div style="color:#e57373;font-size:11px;margin-top:8px">No phone number on this application</div>';
+    return;
+  }
+
+  result.innerHTML = '<div style="color:#555;font-size:11px;margin-top:8px">Saving...</div>';
+
+  try {
+    const r = await fetch('https://jamross.app.n8n.cloud/webhook/partner-decision', {
+      method: 'POST',
+      headers: {'Content-Type': 'application/json'},
+      body: JSON.stringify({phone, status, message, firstName, lastName})
+    });
+    const d = await r.json();
+    if (d.ok || d.status) {
+      const color = status === 'ACCEPTED' ? '#4caf50' : status === 'DECLINED' ? '#e57373' : '#C9A84C';
+      result.innerHTML = `<div class="app-status-done" style="background:${color}15;color:${color};border:1px solid ${color}30">${status} saved</div>`;
+      // Update status display on the card
+      const sub = document.querySelector('#' + uid + ' .app-sub');
+      if (sub) sub.innerHTML = sub.innerHTML.replace(/style="color:[^"]*">[^<]*<\/span>/, `style="color:${color}">${status}</span>`);
+    } else {
+      result.innerHTML = '<div style="color:#e57373;font-size:11px;margin-top:8px">Save failed — check n8n</div>';
+    }
+  } catch(e) {
+    result.innerHTML = `<div style="color:#e57373;font-size:11px;margin-top:8px">Error: ${e.message}</div>`;
+  }
+}
+
+// ===== SALES TRAINER =====
+const TRAINER_AGENT = 'agent_fc53b0ede05f872cad6872bb86';
+const TRAINER_KEY = 'key_7c54fe6b3ae9be0b27f087f00b02';
+let trainerClient = null;
+let trainerActive = false;
+
+function selectPersona(modalId, key) {
+  document.querySelectorAll('[id^="persona-' + modalId + '-"]').forEach(b => b.classList.remove('sel'));
+  const btn = document.getElementById('persona-' + modalId + '-' + key);
+  if(btn) btn.classList.add('sel');
+  const container = document.getElementById('trainer-box-' + modalId);
+  if(container) container.dataset.selected = key;
+  const startBtn = document.getElementById('trainer-start-' + modalId);
+  if(startBtn){ startBtn.disabled = false; startBtn.style.opacity='1'; startBtn.style.cursor='pointer'; }
+}
+
+async function startSalesTrainer(modalId) {
+  if(trainerActive) { endSalesTrainer(modalId); return; }
+  const box = document.getElementById('trainer-box-' + modalId);
+  const selectedKey = box?.dataset.selected;
+  if(!selectedKey) return;
+  const btn = document.getElementById('persona-' + modalId + '-' + selectedKey);
+  const personaName = btn?.dataset.pname || selectedKey;
+  const personaDesc = btn?.dataset.pdesc || '';
+  const businessType = box?.dataset.biz || '';
+  const startBtn = document.getElementById('trainer-start-' + modalId);
+  const statusEl = document.getElementById('trainer-status-' + modalId);
+
+  startBtn.disabled = true; startBtn.textContent = 'Connecting...';
+  statusEl.style.display = 'block'; statusEl.style.color = 'var(--gold)'; statusEl.textContent = 'Starting call...';
+
+  try {
+    const resp = await fetch('https://api.retellai.com/v2/create-web-call', {
+      method:'POST',
+      headers:{'Authorization':'Bearer ' + TRAINER_KEY,'Content-Type':'application/json'},
+      body: JSON.stringify({
+        agent_id: TRAINER_AGENT,
+        retell_llm_dynamic_variables: {
+          persona_name: personaName,
+          persona_description: personaDesc,
+          business_type: businessType
+        }
+      })
+    });
+    const data = await resp.json();
+    if(!data.access_token) throw new Error(data.message || 'No token');
+    loadRetellSDK(function(){
+      trainerClient = new RetellWebClient();
+      trainerActive = true;
+      trainerClient.on('call_started', () => {
+        statusEl.style.color = '#4caf50'; statusEl.textContent = 'LIVE — ' + personaName;
+        startBtn.textContent = 'End Call'; startBtn.disabled = false; startBtn.style.opacity='1';
+      });
+      trainerClient.on('call_ended', () => {
+        statusEl.style.color = '#555'; statusEl.textContent = 'Call ended';
+        startBtn.textContent = 'Start Practice Call'; startBtn.disabled = false; startBtn.style.opacity='1';
+        trainerActive = false; trainerClient = null;
+      });
+      trainerClient.on('error', err => {
+        statusEl.style.color = '#e57373'; statusEl.textContent = 'Error: ' + (err.message||'failed');
+        startBtn.textContent = 'Start Practice Call'; startBtn.disabled = false; startBtn.style.opacity='1';
+        trainerActive = false; trainerClient = null;
+      });
+      trainerClient.startCall({accessToken: data.access_token});
+    });
+  } catch(e) {
+    statusEl.style.color = '#e57373'; statusEl.textContent = 'Error: ' + e.message;
+    startBtn.textContent = 'Start Practice Call'; startBtn.disabled = false; startBtn.style.opacity='1';
+  }
+}
+
+function endSalesTrainer(modalId) {
+  if(trainerClient){ try{ trainerClient.stopCall(); }catch(e){} }
+  trainerActive = false; trainerClient = null;
+}
+
+function buildTrainer(modalId, businessType, personas) {
+  const btns = personas.map(p =>
+    '<button id="persona-' + modalId + '-' + p.key + '" class="persona-btn"' +
+    ' data-pname="' + p.name.replace(/"/g,'&quot;') + '"' +
+    ' data-pdesc="' + p.desc.replace(/"/g,'&quot;') + '"' +
+    ' onclick="selectPersona(\'' + modalId + '\',\'' + p.key + '\')">' + p.label + '</button>'
+  ).join('');
+  return '<div class="m-section" style="margin-top:4px;border-top:1px solid #1a1a1a;padding-top:20px">' +
+    '<div class="m-label">Sales Trainer</div>' +
+    '<div class="m-note" style="margin-bottom:12px">Pick a customer type. The AI plays that person in real time — you practice your pitch cold.</div>' +
+    '<div id="trainer-box-' + modalId + '" data-biz="' + businessType + '" data-selected="" style="display:grid;grid-template-columns:1fr 1fr;gap:6px;margin-bottom:10px">' + btns + '</div>' +
+    '<button id="trainer-start-' + modalId + '" disabled onclick="startSalesTrainer(\'' + modalId + '\')" style="width:100%;background:#1a1200;border:1px solid #3a3000;color:var(--gold);padding:12px;font-weight:900;font-size:13px;letter-spacing:1px;text-transform:uppercase;border-radius:2px;opacity:.5;cursor:not-allowed">Start Practice Call</button>' +
+    '<div id="trainer-status-' + modalId + '" style="display:none;font-size:11px;text-align:center;padding:8px;margin-top:6px;border-radius:2px;letter-spacing:1px;font-weight:700;text-transform:uppercase"></div>' +
+    '</div>';
+}
+
+// Clock
+function tick() {
+  var d = new Date();
+  var s = d.toLocaleTimeString('en-US', {timeZone:'America/Chicago', hour:'2-digit', minute:'2-digit', second:'2-digit', hour12:true});
+  document.getElementById('clk').textContent = s + ' CT';
+}
+tick();
+setInterval(tick, 1000);
+</script>
+</body>
+</html>
