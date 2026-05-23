@@ -32,6 +32,19 @@
       --radius-lg: 8px;
     }
 
+    /* Pink theme override */
+    html.theme-pink {
+      --bg: #0d0508;
+      --bg-2: #150a0e;
+      --bg-3: #1c0f14;
+      --bg-4: #231319;
+      --gold: #D4849A;
+      --gold-light: #e8a0b4;
+      --gold-dark: #b06078;
+      --border: #2e1520;
+      --border-gold: rgba(212,132,154,0.25);
+    }
+
     html { scroll-behavior: smooth; }
 
     body {
@@ -1093,6 +1106,10 @@
           <a href="#about">About</a>
           <a href="/summer.html">Summer Program</a>
         </div>
+        <button id="theme-toggle" onclick="toggleTheme()" aria-label="Toggle color theme" style="background:none;border:1px solid var(--border);border-radius:20px;padding:4px 10px;cursor:pointer;display:flex;align-items:center;gap:5px;font-size:11px;color:var(--text-dim);letter-spacing:.5px;transition:border-color .2s;flex-shrink:0" onmouseenter="this.style.borderColor='var(--gold)'" onmouseleave="this.style.borderColor='var(--border)'">
+          <span id="theme-dot" style="width:10px;height:10px;border-radius:50%;background:var(--gold);display:inline-block;flex-shrink:0"></span>
+          <span id="theme-label">PINK</span>
+        </button>
         <a href="/analyze.html" class="btn btn-gold btn-sm">Analyze My Business</a>
         <div class="nav-hamburger" id="hamburger" role="button" aria-label="Menu" tabindex="0">
           <span></span><span></span><span></span>
@@ -1756,6 +1773,26 @@
         }
       });
     });
+  </script>
+  <script>
+    (function(){
+      var saved = localStorage.getItem('boss_theme');
+      if(saved === 'pink') {
+        document.documentElement.classList.add('theme-pink');
+        var lbl = document.getElementById('theme-label');
+        var dot = document.getElementById('theme-dot');
+        if(lbl) lbl.textContent = 'DARK';
+        if(dot) dot.style.background = '#D4849A';
+      }
+    })();
+    function toggleTheme(){
+      var isPink = document.documentElement.classList.toggle('theme-pink');
+      var lbl = document.getElementById('theme-label');
+      var dot = document.getElementById('theme-dot');
+      localStorage.setItem('boss_theme', isPink ? 'pink' : 'dark');
+      if(lbl) lbl.textContent = isPink ? 'DARK' : 'PINK';
+      if(dot) dot.style.background = isPink ? '#D4849A' : '#C9A84C';
+    }
   </script>
 </body>
 </html>
