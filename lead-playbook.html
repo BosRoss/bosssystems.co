@@ -1,0 +1,923 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Lead Playbook — Get Clients Fast | BOSS Systems</title>
+<meta name="description" content="The complete client acquisition system for BOSS Systems summer partners. Platforms, post templates, week-by-week launch plan, and the referral flywheel.">
+<style>
+*{margin:0;padding:0;box-sizing:border-box}
+:root{--gold:#C9A84C;--dark:#080808;--gray:#0f0f0f;--gray2:#111;--gray3:#141414;--border:#1e1e1e;--border-gold:rgba(201,168,76,0.2);--text:#f0ede8;--muted:#888;--dim:#555;--font:-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;--green:#4ade80;--amber:#F59E0B;--red:#ef4444}
+html{scroll-behavior:smooth}
+body{background:var(--dark);color:var(--text);font-family:var(--font);font-size:16px;line-height:1.6;-webkit-font-smoothing:antialiased;overflow-x:hidden}
+a{color:inherit;text-decoration:none}
+
+nav{position:sticky;top:0;z-index:100;background:rgba(8,8,8,.97);border-bottom:1px solid var(--border);padding:0 24px;height:60px;display:flex;align-items:center;justify-content:space-between}
+.nav-logo{font-weight:900;font-size:13px;letter-spacing:4px;color:var(--gold);text-transform:uppercase}
+.nav-links{display:flex;align-items:center;gap:24px}
+.nav-link{font-size:12px;color:var(--muted);letter-spacing:1px;transition:color .2s}
+.nav-link:hover{color:var(--text)}
+.nav-cta{background:var(--gold);color:var(--dark);padding:8px 18px;font-weight:700;font-size:12px;letter-spacing:1px;text-transform:uppercase}
+.nav-cta:hover{background:#dfc070}
+
+/* HERO */
+.hero{padding:72px 24px 60px;border-bottom:1px solid var(--border);max-width:1080px;margin:0 auto}
+.hero-label{font-size:11px;letter-spacing:4px;text-transform:uppercase;color:var(--gold);margin-bottom:16px;display:block}
+.hero h1{font-size:clamp(2rem,5vw,3.4rem);font-weight:900;line-height:1.1;letter-spacing:-1px;margin-bottom:14px}
+.hero p{font-size:1rem;color:var(--muted);max-width:600px;line-height:1.7}
+.hero-stat-row{display:flex;gap:0;flex-wrap:wrap;margin-top:40px;background:var(--border)}
+.hero-stat{background:var(--gray2);padding:24px 28px;flex:1;min-width:140px}
+.hs-val{font-size:1.6rem;font-weight:900;color:var(--gold);line-height:1}
+.hs-label{font-size:11px;letter-spacing:2px;text-transform:uppercase;color:var(--dim);margin-top:6px}
+
+/* SECTION */
+.section{max-width:1080px;margin:0 auto;padding:60px 24px}
+.section+.section{padding-top:0}
+.sec-label{font-size:11px;letter-spacing:4px;text-transform:uppercase;color:var(--gold);margin-bottom:14px;display:block}
+.sec-title{font-size:clamp(1.4rem,3vw,2rem);font-weight:900;letter-spacing:-0.5px;margin-bottom:8px}
+.sec-sub{font-size:15px;color:var(--muted);margin-bottom:40px;max-width:580px;line-height:1.7}
+
+/* GRID */
+.grid-2{display:grid;grid-template-columns:1fr 1fr;gap:1px;background:var(--border)}
+.grid-3{display:grid;grid-template-columns:repeat(3,1fr);gap:1px;background:var(--border)}
+.grid-4{display:grid;grid-template-columns:repeat(4,1fr);gap:1px;background:var(--border)}
+.card{background:var(--gray2);padding:28px 28px}
+.card.highlight{background:#0c0a00;border-left:3px solid var(--gold)}
+.card-label{font-size:10px;letter-spacing:3px;text-transform:uppercase;color:var(--gold);margin-bottom:12px;display:block}
+.card-title{font-size:15px;font-weight:700;margin-bottom:12px}
+
+/* QUICK WIN */
+.qw-list{display:grid;gap:1px;background:var(--border);margin-bottom:40px}
+.qw-item{background:var(--gray2);display:flex;align-items:flex-start;gap:16px;padding:18px 22px}
+.qw-num{width:28px;height:28px;background:var(--gold);color:var(--dark);font-weight:900;font-size:13px;display:flex;align-items:center;justify-content:center;flex-shrink:0;margin-top:2px}
+.qw-title{font-size:14px;font-weight:700;margin-bottom:4px}
+.qw-body{font-size:13px;color:var(--muted);line-height:1.6}
+
+/* PLATFORM TABS */
+.pt-tabs{display:flex;gap:0;overflow-x:auto;border-bottom:1px solid var(--border);margin-bottom:0;-webkit-overflow-scrolling:touch;scrollbar-width:none}
+.pt-tabs::-webkit-scrollbar{display:none}
+.pt-tab{flex-shrink:0;background:none;border:none;border-bottom:2px solid transparent;color:var(--muted);font-size:12px;font-weight:700;letter-spacing:1.5px;text-transform:uppercase;padding:14px 20px;cursor:pointer;font-family:var(--font);transition:all .2s;white-space:nowrap;margin-bottom:-1px}
+.pt-tab:hover{color:var(--text)}
+.pt-tab.active{color:var(--gold);border-bottom-color:var(--gold)}
+.pt-panel{display:none;padding:32px 0 0}
+.pt-panel.active{display:block}
+
+/* POST TEMPLATE */
+.post-template{background:var(--gray);border:1px solid var(--border);padding:20px 22px;margin-bottom:12px;position:relative}
+.post-template:last-child{margin-bottom:0}
+.pt-platform{font-size:9px;letter-spacing:2px;text-transform:uppercase;color:var(--gold);font-weight:700;margin-bottom:10px;display:block}
+.pt-text{font-size:14px;color:var(--text);line-height:1.8;white-space:pre-wrap}
+.pt-note{font-size:12px;color:var(--dim);margin-top:10px;padding-top:10px;border-top:1px solid var(--border)}
+.copy-btn{position:absolute;top:14px;right:14px;background:var(--border);border:none;color:var(--dim);font-size:11px;letter-spacing:1px;text-transform:uppercase;padding:6px 12px;cursor:pointer;font-family:var(--font);transition:all .15s}
+.copy-btn:hover{background:var(--gold);color:var(--dark)}
+.copy-btn.copied{background:var(--green);color:#000}
+
+/* 7-DAY PLAN */
+.day-grid{display:grid;gap:1px;background:var(--border)}
+.day-item{background:var(--gray2);display:grid;grid-template-columns:90px 1fr;gap:0}
+.day-num{background:var(--gray3);padding:20px;display:flex;flex-direction:column;align-items:center;justify-content:center;border-right:1px solid var(--border)}
+.day-num span:first-child{font-size:10px;letter-spacing:2px;text-transform:uppercase;color:var(--dim)}
+.day-num span:last-child{font-size:1.8rem;font-weight:900;color:var(--gold);line-height:1}
+.day-content{padding:20px 24px}
+.day-title{font-size:14px;font-weight:700;margin-bottom:8px}
+.day-tasks{list-style:none;display:grid;gap:5px}
+.day-tasks li{font-size:13px;color:var(--muted);padding-left:16px;position:relative;line-height:1.5}
+.day-tasks li::before{content:"›";position:absolute;left:0;color:var(--gold)}
+.day-tasks li strong{color:var(--text)}
+
+/* BIZ TABS */
+.biz-tabs{display:flex;gap:0;overflow-x:auto;border-bottom:1px solid var(--border);-webkit-overflow-scrolling:touch;scrollbar-width:none}
+.biz-tabs::-webkit-scrollbar{display:none}
+.biz-tab{flex-shrink:0;background:none;border:none;border-bottom:2px solid transparent;color:var(--muted);font-size:11px;font-weight:700;letter-spacing:1px;text-transform:uppercase;padding:12px 16px;cursor:pointer;font-family:var(--font);transition:all .2s;white-space:nowrap;margin-bottom:-1px}
+.biz-tab:hover{color:var(--text)}
+.biz-tab.active{color:var(--gold);border-bottom-color:var(--gold)}
+.biz-panel{display:none;padding:32px 0 0}
+.biz-panel.active{display:block}
+
+/* PROSPECT TABLE */
+.prospect-table{width:100%;border-collapse:collapse;margin-bottom:24px}
+.prospect-table th{font-size:10px;letter-spacing:2px;text-transform:uppercase;color:var(--dim);text-align:left;padding:0 0 10px;border-bottom:1px solid var(--border);font-weight:600}
+.prospect-table td{font-size:13px;color:var(--muted);padding:11px 0;border-bottom:1px solid var(--border);vertical-align:top;line-height:1.5}
+.prospect-table td:first-child{color:var(--text);font-weight:600;padding-right:20px;white-space:nowrap}
+.prospect-table td .tag{display:inline-block;font-size:9px;letter-spacing:1px;text-transform:uppercase;padding:2px 7px;font-weight:700;margin-right:4px}
+.tag-hot{background:rgba(239,68,68,.15);color:var(--red)}
+.tag-fast{background:rgba(74,222,128,.12);color:var(--green)}
+.tag-warm{background:rgba(201,168,76,.12);color:var(--gold)}
+
+/* CONVERSION SYSTEM */
+.conv-row{display:flex;gap:0;background:var(--border);margin-bottom:1px;flex-wrap:wrap}
+.conv-step{background:var(--gray2);padding:24px 28px;flex:1;min-width:200px}
+.cs-n{font-size:2rem;font-weight:900;color:var(--gold);line-height:1;margin-bottom:4px}
+.cs-title{font-size:13px;font-weight:700;margin-bottom:8px}
+.cs-body{font-size:13px;color:var(--muted);line-height:1.6}
+
+/* FLYWHEEL */
+.flywheel{display:grid;grid-template-columns:repeat(5,1fr);gap:1px;background:var(--border);margin-bottom:40px}
+.fw-step{background:var(--gray2);padding:24px 20px;text-align:center}
+.fw-n{width:32px;height:32px;border:2px solid var(--gold);color:var(--gold);font-weight:900;font-size:13px;display:flex;align-items:center;justify-content:center;margin:0 auto 12px}
+.fw-title{font-size:13px;font-weight:700;margin-bottom:6px}
+.fw-body{font-size:12px;color:var(--muted);line-height:1.5}
+
+/* SCRIPT BOX */
+.script-box{background:var(--gray3);border:1px solid var(--border);padding:20px 22px;margin-bottom:12px}
+.script-tag{font-size:9px;letter-spacing:2px;text-transform:uppercase;color:var(--gold);font-weight:700;display:block;margin-bottom:8px}
+.script-text{font-size:14px;color:var(--text);line-height:1.8;font-style:italic}
+
+/* DIVIDER */
+.divider{border:none;border-top:1px solid var(--border);margin:0}
+
+/* FORMULA BOX */
+.formula{background:#0c0a00;border:1px solid rgba(201,168,76,0.3);padding:28px;margin-bottom:32px}
+.formula-title{font-size:11px;letter-spacing:3px;text-transform:uppercase;color:var(--gold);margin-bottom:18px}
+.formula-parts{display:grid;gap:10px}
+.fp{display:flex;align-items:flex-start;gap:14px}
+.fp-bracket{background:var(--gold);color:var(--dark);font-size:11px;font-weight:900;padding:3px 8px;flex-shrink:0;margin-top:2px}
+.fp-body{font-size:14px;color:var(--text)}
+.fp-example{font-size:12px;color:var(--muted);margin-top:3px}
+
+/* ALERT BOX */
+.alert{padding:18px 22px;margin-bottom:24px;border-left:3px solid var(--gold);background:#0c0a00}
+.alert.green{border-left-color:var(--green);background:#001a04}
+.alert.amber{border-left-color:var(--amber);background:#150d00}
+.alert-title{font-size:13px;font-weight:700;margin-bottom:4px;color:var(--gold)}
+.alert.green .alert-title{color:var(--green)}
+.alert.amber .alert-title{color:var(--amber)}
+.alert-body{font-size:13px;color:var(--muted);line-height:1.6}
+
+/* FOOTER */
+footer{border-top:1px solid var(--border);padding:40px 24px;text-align:center}
+footer p{font-size:13px;color:var(--dim);margin-bottom:8px}
+footer a{color:var(--muted);margin:0 12px}
+footer a:hover{color:var(--text)}
+
+@media(max-width:768px){
+  .grid-2,.grid-3,.grid-4{grid-template-columns:1fr}
+  .flywheel{grid-template-columns:1fr 1fr}
+  .day-item{grid-template-columns:70px 1fr}
+  .hero-stat-row{flex-direction:column}
+  .conv-row{flex-direction:column}
+  .nav-links{display:none}
+}
+</style>
+</head>
+<body>
+
+<nav>
+  <a href="/" class="nav-logo">BOSS Systems</a>
+  <div class="nav-links">
+    <a href="/partner-tools.html" class="nav-link">Partner Tools</a>
+    <a href="/compliance.html" class="nav-link">Legal Guide</a>
+    <a href="/summer.html" class="nav-link">Summer Program</a>
+  </div>
+  <a href="sms:+19037146162" class="nav-cta">Text Boston</a>
+</nav>
+
+<!-- HERO -->
+<div class="hero">
+  <span class="hero-label">Partner Lead Playbook — Summer 2026</span>
+  <h1>Get Your First Client<br>This Week.</h1>
+  <p>Every tactic on this page is tested and free. No ad budget needed. Your AI phone system does the closing — your job is getting the phone to ring.</p>
+  <div class="hero-stat-row">
+    <div class="hero-stat">
+      <div class="hs-val">78%</div>
+      <div class="hs-label">Buy from whoever responds first</div>
+    </div>
+    <div class="hero-stat">
+      <div class="hs-val">5 min</div>
+      <div class="hs-label">Response time = 21× conversion rate</div>
+    </div>
+    <div class="hero-stat">
+      <div class="hs-val">Day 1</div>
+      <div class="hs-label">Tell 20 people. Costs nothing.</div>
+    </div>
+    <div class="hero-stat">
+      <div class="hs-val">3×</div>
+      <div class="hs-label">More jobs from referrals than ads</div>
+    </div>
+  </div>
+</div>
+
+<hr class="divider">
+
+<!-- QUICK WINS -->
+<div class="section">
+  <span class="sec-label">Start Here</span>
+  <h2 class="sec-title">5 Actions That Get Clients Fast</h2>
+  <p class="sec-sub">Do these before anything else. Each one takes under 20 minutes.</p>
+  <div class="qw-list">
+    <div class="qw-item">
+      <div class="qw-num">1</div>
+      <div>
+        <div class="qw-title">Text your warm list — right now</div>
+        <div class="qw-body">Write out 20+ people: parents' friends, neighbors, church members, anyone 25–60 who might need your service or know someone who does. Send a personal text today. Not a group chat. Personal. One sentence: "Hey [name], I started a [service] business this summer. Do you or anyone you know need [service]? I'll do the first job at cost to build up reviews." This alone gets most partners their first client.</div>
+      </div>
+    </div>
+    <div class="qw-item">
+      <div class="qw-num">2</div>
+      <div>
+        <div class="qw-title">Post in 3 local Facebook groups today</div>
+        <div class="qw-body">Find "[Your City] Community", "[Your City] Buy Sell Trade", and "[Your City] Moms Group" on Facebook. Join all three. Post your intro today — use the template below. These groups are full of people who ask for service recommendations every single day. This is where most first-week clients come from.</div>
+      </div>
+    </div>
+    <div class="qw-item">
+      <div class="qw-num">3</div>
+      <div>
+        <div class="qw-title">Put a Nextdoor listing up</div>
+        <div class="qw-body">Create a free Nextdoor business page at nextdoor.com/business. It shows up when neighbors search for your service. Takes 10 minutes. Then post once in the neighborhood feed. People on Nextdoor specifically trust local teens more than companies — lean into that.</div>
+      </div>
+    </div>
+    <div class="qw-item">
+      <div class="qw-num">4</div>
+      <div>
+        <div class="qw-title">Put up 5 physical flyers</div>
+        <div class="qw-body">Print 10 simple black-and-white flyers (free at library). Put them on bulletin boards at: grocery store, hardware store, laundromat, community board, gym. Include your phone number big. Old school works. People photograph these and text the number weeks later.</div>
+      </div>
+    </div>
+    <div class="qw-item">
+      <div class="qw-num">5</div>
+      <div>
+        <div class="qw-title">Ask the first client for one photo and one name</div>
+        <div class="qw-body">After your first job: take a before/after photo (ask permission). Then ask: "Do you know one other person who might need this?" A referral from a happy client converts 4× better than any cold post. The first job starts the flywheel — every job after that gets easier.</div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<hr class="divider">
+
+<!-- THE POST FORMULA -->
+<div class="section">
+  <span class="sec-label">Post Formula</span>
+  <h2 class="sec-title">How to Write a Post That Gets Responses</h2>
+  <p class="sec-sub">Use this exact structure. Every platform. Every time.</p>
+  <div class="formula">
+    <div class="formula-title">The 5-Part Post Formula</div>
+    <div class="formula-parts">
+      <div class="fp">
+        <span class="fp-bracket">1</span>
+        <div>
+          <div class="fp-body">Local hook — prove you're actually from here</div>
+          <div class="fp-example">Example: "Hey [City] — I'm a local 17-year-old and I just started a junk removal service this summer."</div>
+        </div>
+      </div>
+      <div class="fp">
+        <span class="fp-bracket">2</span>
+        <div>
+          <div class="fp-body">Specific pain — make them feel the problem</div>
+          <div class="fp-example">Example: "Everyone's got stuff in the garage they've been meaning to get rid of for 3 years."</div>
+        </div>
+      </div>
+      <div class="fp">
+        <span class="fp-bracket">3</span>
+        <div>
+          <div class="fp-body">Why you — teen angle, low overhead, motivation</div>
+          <div class="fp-example">Example: "I haul it away same week, no hidden fees, and I show up when I say I will."</div>
+        </div>
+      </div>
+      <div class="fp">
+        <span class="fp-bracket">4</span>
+        <div>
+          <div class="fp-body">Social proof OR starter deal</div>
+          <div class="fp-example">Example: "Building my first 5 reviews — doing the first job at cost to build my reputation."</div>
+        </div>
+      </div>
+      <div class="fp">
+        <span class="fp-bracket">5</span>
+        <div>
+          <div class="fp-body">Easy CTA — one action, no friction</div>
+          <div class="fp-example">Example: "Text or call [number] for a free quote. I respond fast."</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<hr class="divider">
+
+<!-- 7-DAY LAUNCH -->
+<div class="section">
+  <span class="sec-label">Launch Plan</span>
+  <h2 class="sec-title">Your First 7 Days</h2>
+  <p class="sec-sub">Follow this exactly. Most people overthink it and never start. Do the steps.</p>
+  <div class="day-grid">
+    <div class="day-item">
+      <div class="day-num"><span>Day</span><span>1</span></div>
+      <div class="day-content">
+        <div class="day-title">Tell your warm list</div>
+        <ul class="day-tasks">
+          <li>Write a list of 20+ people who are 25–60 years old (parents' network, neighbors, church)</li>
+          <li><strong>Send a personal text to each one</strong> — not a group text. 2 sentences max.</li>
+          <li>Post in 3 Facebook community groups using the formula above</li>
+          <li>Goal: 3+ responses. Even "not right now" is a win — they know you exist.</li>
+        </ul>
+      </div>
+    </div>
+    <div class="day-item">
+      <div class="day-num"><span>Day</span><span>2</span></div>
+      <div class="day-content">
+        <div class="day-title">Go digital — Nextdoor + Craigslist</div>
+        <ul class="day-tasks">
+          <li>Create your free Nextdoor business page (nextdoor.com/business)</li>
+          <li>Post once in the neighborhood feed with your intro</li>
+          <li>Post on Craigslist "Services" in your city — takes 5 minutes, free</li>
+          <li>Post one Instagram Reel or story (before/after, your setup, your first flyer)</li>
+        </ul>
+      </div>
+    </div>
+    <div class="day-item">
+      <div class="day-num"><span>Day</span><span>3</span></div>
+      <div class="day-content">
+        <div class="day-title">Physical presence</div>
+        <ul class="day-tasks">
+          <li>Print 10 flyers (free at library). Keep it simple: service, phone number, "local teen business"</li>
+          <li>Post at: grocery store, hardware store (Home Depot/Lowe's), laundromat, gym, community bulletin</li>
+          <li>Follow up on any responses from Day 1 — if someone said "maybe later" check back in</li>
+        </ul>
+      </div>
+    </div>
+    <div class="day-item">
+      <div class="day-num"><span>Day</span><span>4</span></div>
+      <div class="day-content">
+        <div class="day-title">Follow up + keep posting</div>
+        <ul class="day-tasks">
+          <li>Follow up with anyone who opened your text but didn't respond</li>
+          <li>Post in 2 more Facebook groups (different neighborhoods or demographic)</li>
+          <li>Update your Nextdoor listing with any new details or a photo</li>
+          <li>Re-post on Craigslist (listings get buried fast)</li>
+        </ul>
+      </div>
+    </div>
+    <div class="day-item">
+      <div class="day-num"><span>Day</span><span>5</span></div>
+      <div class="day-content">
+        <div class="day-title">Do your first job (even if discounted)</div>
+        <ul class="day-tasks">
+          <li>If you have a client: do the job perfectly. This is your most important marketing.</li>
+          <li>If not: drop your intro price slightly and post again. First job unlocks the flywheel.</li>
+          <li>Take before/after photos during the job (with permission)</li>
+        </ul>
+      </div>
+    </div>
+    <div class="day-item">
+      <div class="day-num"><span>Day</span><span>6</span></div>
+      <div class="day-content">
+        <div class="day-title">Turn the first client into 3 more</div>
+        <ul class="day-tasks">
+          <li>Ask for a Google review while you're still at their location (highest conversion)</li>
+          <li>Ask: "Do you know anyone else who needs this?" — offer $10 referral cash</li>
+          <li>Post your before/after photo to Facebook and Instagram TODAY — momentum is real</li>
+        </ul>
+      </div>
+    </div>
+    <div class="day-item">
+      <div class="day-num"><span>Day</span><span>7</span></div>
+      <div class="day-content">
+        <div class="day-title">Review and schedule Week 2</div>
+        <ul class="day-tasks">
+          <li>What worked? Do more of that. What got no response? Change the copy.</li>
+          <li>Schedule 3 posts for next week — pick days and times now, put them in your calendar</li>
+          <li>Check your AI phone analytics: how many calls came in? Any missed? How did it respond?</li>
+          <li>Text Boston with your Week 1 numbers — he'll help you optimize</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</div>
+
+<hr class="divider">
+
+<!-- PLATFORM GUIDE -->
+<div class="section">
+  <span class="sec-label">Platform Guide</span>
+  <h2 class="sec-title">Where to Post and How</h2>
+  <p class="sec-sub">Each platform has different rules. Here's exactly what to post where.</p>
+  <div class="pt-tabs" role="tablist">
+    <button class="pt-tab active" role="tab" data-ptab="fb">Facebook</button>
+    <button class="pt-tab" role="tab" data-ptab="nextdoor">Nextdoor</button>
+    <button class="pt-tab" role="tab" data-ptab="ig">Instagram</button>
+    <button class="pt-tab" role="tab" data-ptab="craigslist">Craigslist</button>
+    <button class="pt-tab" role="tab" data-ptab="text">Text & Referral</button>
+  </div>
+
+  <div class="pt-panel active" id="ptpanel-fb">
+    <div class="grid-2" style="margin-bottom:28px">
+      <div class="card">
+        <span class="card-label">Best for</span>
+        <div style="font-size:14px;color:var(--muted);line-height:1.7">Junk removal, lawn care, pressure washing, car detailing, house cleaning, pet sitting. High-intent buyers in local groups. 25–55 year olds with money to spend.</div>
+      </div>
+      <div class="card">
+        <span class="card-label">Strategy</span>
+        <div style="font-size:14px;color:var(--muted);line-height:1.7">Join 5+ local groups. Post once per week per group. Never spam. Reply to every comment within 30 minutes — group algorithms reward engagement. Use full sentences, not fragments.</div>
+      </div>
+    </div>
+    <div class="alert amber">
+      <div class="alert-title">Groups to Join Right Now</div>
+      <div class="alert-body">Search Facebook for: "[Your City] Community", "[Your City] Moms Group", "[Your City] Buy Sell Trade", "[Your City] Neighborhood Watch", "[Your County] Locals". Join them all today.</div>
+    </div>
+    <div class="post-template">
+      <span class="pt-platform">Facebook — Introduction Post</span>
+      <button class="copy-btn" onclick="copyPost(this)">Copy</button>
+      <div class="pt-text">Hey [CITY] neighbors 👋
+
+I'm [FIRST NAME], 17 years old from [CITY], and I just started a local [SERVICE] business this summer.
+
+[SPECIFIC SENTENCE ABOUT THE PAIN — e.g. "If your yard has gotten away from you this summer, I'm your person."]
+
+I'm building my first set of reviews, so I'm doing the first job at a discounted rate to prove my work. I show up on time, I do it right, and I don't disappear after you pay.
+
+If you or anyone you know needs [SERVICE], text or call me at [PHONE NUMBER]. Free quote, no pressure.
+
+Thanks for supporting local! 🙏</div>
+      <div class="pt-note">Replace all [BRACKETS] with your info. Keep the "17 years old" line — it builds instant trust and curiosity. Never delete it.</div>
+    </div>
+    <div class="post-template">
+      <span class="pt-platform">Facebook — Before/After Post (after first job)</span>
+      <button class="copy-btn" onclick="copyPost(this)">Copy</button>
+      <div class="pt-text">Just finished a job in [NEIGHBORHOOD/AREA] today 💪
+
+Before: [describe the before state briefly]
+After: [describe the after state]
+
+[Client's first name] was awesome to work with. This is exactly why I started this business.
+
+If your [describe the problem] has been on your to-do list, I'm taking bookings this week. Text [PHONE] for a quick quote. I respond fast.</div>
+      <div class="pt-note">Include the actual before/after photos. Posts with photos get 3–5× more reach than text-only posts.</div>
+    </div>
+  </div>
+
+  <div class="pt-panel" id="ptpanel-nextdoor">
+    <div class="grid-2" style="margin-bottom:28px">
+      <div class="card">
+        <span class="card-label">Best for</span>
+        <div style="font-size:14px;color:var(--muted);line-height:1.7">Lawn care, pet sitting, house cleaning, junk removal, home organizing, pressure washing. Nextdoor is hyperlocal — these are literally your neighbors. Highest trust of any platform.</div>
+      </div>
+      <div class="card">
+        <span class="card-label">Strategy</span>
+        <div style="font-size:14px;color:var(--muted);line-height:1.7">Create a free business page. Post in the neighborhood feed once per week. Watch the "Recommendations" section — when someone asks "who does X?" reply immediately with your info. That's the fastest win on the platform.</div>
+      </div>
+    </div>
+    <div class="alert green">
+      <div class="alert-title">The Nextdoor Goldmine: Recommendation Requests</div>
+      <div class="alert-body">Check Nextdoor daily for posts like "Does anyone know a good lawn care person?" or "Looking for someone to clean my gutters." Reply within 5 minutes with your name, number, and one sentence. You will win these if you're first. Set a phone notification for "[your service] + recommendation" in Nextdoor.</div>
+    </div>
+    <div class="post-template">
+      <span class="pt-platform">Nextdoor — Neighborhood Introduction</span>
+      <button class="copy-btn" onclick="copyPost(this)">Copy</button>
+      <div class="pt-text">Hi neighbors — I'm [NAME], a [YOUR CITY] teen starting a local [SERVICE] business this summer.
+
+I live right here in [NEIGHBORHOOD/AREA], so I can be at your place fast. I'm building my first set of reviews, so I'm working at a competitive rate and doing every job like my reputation depends on it — because it does.
+
+[PHONE NUMBER] — text or call for a free quote. I respond quickly and I actually show up.</div>
+    </div>
+    <div class="post-template">
+      <span class="pt-platform">Nextdoor — Recommendation Response</span>
+      <button class="copy-btn" onclick="copyPost(this)">Copy</button>
+      <div class="pt-text">Hi [name]! I do exactly that. I'm [YOUR NAME], local to [CITY], 17 years old and building my [SERVICE] business this summer. I'm quick, reliable, and my pricing is honest. Text me at [PHONE] — I can usually get out to you within the week.</div>
+    </div>
+  </div>
+
+  <div class="pt-panel" id="ptpanel-ig">
+    <div class="grid-2" style="margin-bottom:28px">
+      <div class="card">
+        <span class="card-label">Best for</span>
+        <div style="font-size:14px;color:var(--muted);line-height:1.7">Photography, event decoration, car detailing, social media management, home organizing. Instagram is visual — if your work looks good, this platform rewards you disproportionately.</div>
+      </div>
+      <div class="card">
+        <span class="card-label">Strategy</span>
+        <div style="font-size:14px;color:var(--muted);line-height=1.7">Post Reels for maximum reach. Before/after content is king. 3 hashtags max — 2 local, 1 service. Bio should have your phone number and city. Respond to every DM within 5 minutes during business hours.</div>
+      </div>
+    </div>
+    <div class="alert">
+      <div class="alert-title">Best 3 Hashtags for Any Service in a Small Town</div>
+      <div class="alert-body">#[YourCity][Service] (e.g. #TylerTXLawnCare) + #[YourCity]TX (or your state) + one seasonal tag (#Summer2026 or #SummerCleanup). Never use generic popular tags — you'll be invisible. Local + specific = discoverability.</div>
+    </div>
+    <div class="post-template">
+      <span class="pt-platform">Instagram — Bio Template</span>
+      <button class="copy-btn" onclick="copyPost(this)">Copy</button>
+      <div class="pt-text">📍 [City, State] — [Service Business Name]
+[One sentence about what you do and who you do it for]
+Text for quotes: [phone number]
+Booking this week ✓</div>
+    </div>
+    <div class="post-template">
+      <span class="pt-platform">Instagram — Before/After Reel Caption</span>
+      <button class="copy-btn" onclick="copyPost(this)">Copy</button>
+      <div class="pt-text">This yard was out of control — now it's not 🔥
+
+One afternoon, done right. If yours looks like the before, text me.
+
+[PHONE NUMBER] — I'm in [CITY] and I'm booking this week.
+
+#[CityService] #[CityState] #SummerWork</div>
+    </div>
+  </div>
+
+  <div class="pt-panel" id="ptpanel-craigslist">
+    <div class="grid-2" style="margin-bottom:28px">
+      <div class="card">
+        <span class="card-label">Best for</span>
+        <div style="font-size:14px;color:var(--muted);line-height:1.7">Junk removal, moving help, lawn care, house cleaning, pressure washing, car detailing. Craigslist buyers are ready to hire now — they're actively searching, not scrolling passively. High intent.</div>
+      </div>
+      <div class="card">
+        <span class="card-label">Strategy</span>
+        <div style="font-size:14px;color:var(--muted);line-height:1.7">Post under "Services > Skilled Trades & Labor" or "Services > Household." Repost every 48–72 hours or your listing disappears. Keep the text simple and include your phone number in the body, not just the contact field.</div>
+      </div>
+    </div>
+    <div class="post-template">
+      <span class="pt-platform">Craigslist — Services Listing</span>
+      <button class="copy-btn" onclick="copyPost(this)">Copy</button>
+      <div class="pt-text">[SERVICE] — Local, Reliable, Fast | [CITY, STATE]
+
+I'm a local 17-year-old running a [service] business this summer. I show up when I say I will and I charge fair prices.
+
+[2–3 bullet points about what's included / what you haul / what services you offer]
+
+Free estimates. Same-week availability.
+Call or text: [PHONE NUMBER]
+
+[CITY] and surrounding areas. No job too small.</div>
+    </div>
+  </div>
+
+  <div class="pt-panel" id="ptpanel-text">
+    <div class="grid-2" style="margin-bottom:28px">
+      <div class="card">
+        <span class="card-label">Why this works best</span>
+        <div style="font-size:14px;color:var(--muted);line-height:1.7">A personal text from someone they know converts at 30–50% vs. 1–3% for cold posts. Your first 5 clients should ALL come from warm texts. This is not optional — it is the highest ROI thing you can do.</div>
+      </div>
+      <div class="card">
+        <span class="card-label">Who to text</span>
+        <div style="font-size:14px;color:var(--muted);line-height:1.7">Parents' friends, neighbors, church members, family friends, coaches, teachers (off-school), family members with houses. Anyone 25–60 who might have the problem you solve. 20 texts → 3–6 responses → 1–2 bookings.</div>
+      </div>
+    </div>
+    <div class="post-template">
+      <span class="pt-platform">Personal Text — Warm Intro</span>
+      <button class="copy-btn" onclick="copyPost(this)">Copy</button>
+      <div class="pt-text">Hey [Name]! This is [Your Name] — I started a [service] business this summer. Do you or anyone you know need [service]? I'm doing first jobs at a discount to build up reviews. Just wanted to let the people I know hear about it first.</div>
+    </div>
+    <div class="post-template">
+      <span class="pt-platform">Referral Ask — After First Job</span>
+      <button class="copy-btn" onclick="copyPost(this)">Copy</button>
+      <div class="pt-text">Thanks again for letting me help with that! Quick ask — do you know one other person who might need [service] this summer? I'm still building my client list and referrals from happy customers are the best way to grow. I'll give them the same deal I gave you.</div>
+    </div>
+    <div class="post-template">
+      <span class="pt-platform">Text to Send After Calling About a Google Review</span>
+      <button class="copy-btn" onclick="copyPost(this)">Copy</button>
+      <div class="pt-text">Hey [Name]! Glad you liked the [service]. If you have 2 minutes, a Google review would help my business a ton — especially since I'm just starting out. Here's the link: [Google Business Profile review link]. Even just a sentence is awesome. Thanks!</div>
+    </div>
+  </div>
+</div>
+
+<hr class="divider">
+
+<!-- BUSINESS-SPECIFIC PLAYBOOKS -->
+<div class="section">
+  <span class="sec-label">By Business Type</span>
+  <h2 class="sec-title">Where Your Clients Are Hiding</h2>
+  <p class="sec-sub">Every business has specific hunting grounds. Here's exactly where to look for each one.</p>
+  <div class="biz-tabs" role="tablist">
+    <button class="biz-tab active" role="tab" data-biztab="junk">Junk Removal</button>
+    <button class="biz-tab" role="tab" data-biztab="lawn">Lawn Care</button>
+    <button class="biz-tab" role="tab" data-biztab="pressure">Pressure Washing</button>
+    <button class="biz-tab" role="tab" data-biztab="detailing">Car Detailing</button>
+    <button class="biz-tab" role="tab" data-biztab="cleaning">House Cleaning</button>
+    <button class="biz-tab" role="tab" data-biztab="pool">Pool Cleaning</button>
+    <button class="biz-tab" role="tab" data-biztab="events">Event Decor</button>
+    <button class="biz-tab" role="tab" data-biztab="pets">Pet Sitting</button>
+    <button class="biz-tab" role="tab" data-biztab="organizing">Home Organizing</button>
+    <button class="biz-tab" role="tab" data-biztab="photo">Photography</button>
+    <button class="biz-tab" role="tab" data-biztab="social">Social Media</button>
+  </div>
+
+  <!-- JUNK -->
+  <div class="biz-panel active" id="bizpanel-junk">
+    <table class="prospect-table">
+      <tr><th>Where to find clients</th><th>Why it works</th><th>Priority</th></tr>
+      <tr><td>Facebook Marketplace "Services"</td><td>People searching for someone to haul right now. High intent buyers.</td><td><span class="tag tag-hot">HOT</span></td></tr>
+      <tr><td>Facebook groups: Estate Sales, Moving, Downsizing</td><td>People actively clearing out a house. They NEED junk removal.</td><td><span class="tag tag-hot">HOT</span></td></tr>
+      <tr><td>Facebook groups: Buy Nothing / Free Stuff</td><td>People giving away furniture = they have more junk to haul</td><td><span class="tag tag-fast">FAST</span></td></tr>
+      <tr><td>Nextdoor — search "moving" or "cleaning out"</td><td>Recent movers always have junk. Post when someone mentions it.</td><td><span class="tag tag-hot">HOT</span></td></tr>
+      <tr><td>Craigslist "Household" and "Free Stuff" sections</td><td>People posting free stuff = they have more junk, just haven't listed it</td><td><span class="tag tag-warm">WARM</span></td></tr>
+      <tr><td>Real estate Facebook groups</td><td>Agents need houses cleaned out before listing. They're repeat clients.</td><td><span class="tag tag-fast">FAST</span></td></tr>
+    </table>
+    <div class="alert green">
+      <div class="alert-title">Junk Removal Secret Weapon</div>
+      <div class="alert-body">Post in "Buy Nothing" groups: "Moving soon or clearing out? I haul away anything you can't sell. Furniture, appliances, boxes of stuff — free quote, same-week pickup." These people are already in purge mode. Easiest yes in the business.</div>
+    </div>
+  </div>
+
+  <!-- LAWN -->
+  <div class="biz-panel" id="bizpanel-lawn">
+    <table class="prospect-table">
+      <tr><th>Where to find clients</th><th>Why it works</th><th>Priority</th></tr>
+      <tr><td>Drive your neighborhood — look for overgrown yards</td><td>Visual proof of need. Knock or leave a flyer. Most effective in summer heat.</td><td><span class="tag tag-hot">HOT</span></td></tr>
+      <tr><td>Nextdoor recommendations section</td><td>"Who mows lawns around here?" posts appear weekly. Be first to reply.</td><td><span class="tag tag-hot">HOT</span></td></tr>
+      <tr><td>Facebook: Local Parents & Moms groups</td><td>Busy parents hate lawn maintenance. They hire fast if price is fair.</td><td><span class="tag tag-fast">FAST</span></td></tr>
+      <tr><td>Elderly neighbors / 55+ community pages</td><td>Fixed income, can't do it themselves, very loyal once you have them.</td><td><span class="tag tag-fast">FAST</span></td></tr>
+      <tr><td>Rental property owners in local Facebook groups</td><td>Landlords need lawns cut between tenants. Recurring clients.</td><td><span class="tag tag-warm">WARM</span></td></tr>
+    </table>
+    <div class="alert green">
+      <div class="alert-title">Lawn Care Secret Weapon</div>
+      <div class="alert-body">Do one free or discounted lawn on your street and take before/after photos. Post them the same day. Every neighbor will see it and know who did it. One free job on your block often generates 3–5 paying clients in the same neighborhood within 2 weeks.</div>
+    </div>
+  </div>
+
+  <!-- PRESSURE -->
+  <div class="biz-panel" id="bizpanel-pressure">
+    <table class="prospect-table">
+      <tr><th>Where to find clients</th><th>Why it works</th><th>Priority</th></tr>
+      <tr><td>Facebook groups: Homeowners associations, neighborhood pages</td><td>HOA violations = urgent need for driveway/fence cleaning. Great hook.</td><td><span class="tag tag-hot">HOT</span></td></tr>
+      <tr><td>Facebook Marketplace "Services"</td><td>High search volume before summer and after winter. Post now.</td><td><span class="tag tag-fast">FAST</span></td></tr>
+      <tr><td>Nextdoor — before summer season</td><td>Homeowners prepping for summer. Deck cleaning, driveway, siding.</td><td><span class="tag tag-fast">FAST</span></td></tr>
+      <tr><td>Local realtors (direct message on Facebook)</td><td>They need houses prepped before listing. One realtor = multiple jobs.</td><td><span class="tag tag-warm">WARM</span></td></tr>
+    </table>
+    <div class="alert">
+      <div class="alert-title">Pressure Washing Hook That Works</div>
+      <div class="alert-body">"HOA notice about your driveway? I clean driveways, walkways, and siding — usually done in 2 hours. [City] area. Free quote at [phone]." This one line outperforms everything else for pressure washing. HOA anxiety is real and immediate.</div>
+    </div>
+  </div>
+
+  <!-- DETAILING -->
+  <div class="biz-panel" id="bizpanel-detailing">
+    <table class="prospect-table">
+      <tr><th>Where to find clients</th><th>Why it works</th><th>Priority</th></tr>
+      <tr><td>Facebook: Local car groups, truck groups</td><td>Car enthusiasts spend money on their vehicles without hesitation.</td><td><span class="tag tag-hot">HOT</span></td></tr>
+      <tr><td>Facebook Marketplace — post under Services</td><td>Most searched service on Marketplace. "Car detailing near me" is huge.</td><td><span class="tag tag-hot">HOT</span></td></tr>
+      <tr><td>Parking lots — leave cards on cars (check local rules)</td><td>Old school but works. Target trucks, SUVs, nice cars that look dirty.</td><td><span class="tag tag-fast">FAST</span></td></tr>
+      <tr><td>Instagram before/after Reels</td><td>Detailing content goes viral. One good Reel gets you more clients than 50 posts.</td><td><span class="tag tag-fast">FAST</span></td></tr>
+      <tr><td>Local Facebook moms/parents groups</td><td>"Who details cars in [city]?" questions appear constantly. Be ready.</td><td><span class="tag tag-warm">WARM</span></td></tr>
+    </table>
+    <div class="alert green">
+      <div class="alert-title">Detailing Secret Weapon</div>
+      <div class="alert-body">Post "I come to you" prominently. Mobile detailing (you go to their house or workplace) converts 3× better than asking them to bring the car to you. People pay for convenience. "I detail at your driveway — you don't move a muscle" is the hook.</div>
+    </div>
+  </div>
+
+  <!-- CLEANING -->
+  <div class="biz-panel" id="bizpanel-cleaning">
+    <table class="prospect-table">
+      <tr><th>Where to find clients</th><th>Why it works</th><th>Priority</th></tr>
+      <tr><td>Facebook: Moms groups, working parents groups</td><td>Dual-income households with no time. Exact target market for cleaning.</td><td><span class="tag tag-hot">HOT</span></td></tr>
+      <tr><td>Nextdoor recommendations</td><td>"Anyone have a house cleaner they recommend?" is the #1 asked question on Nextdoor.</td><td><span class="tag tag-hot">HOT</span></td></tr>
+      <tr><td>Warm texts to parents' network</td><td>This service has the highest word-of-mouth conversion of any on this list.</td><td><span class="tag tag-fast">FAST</span></td></tr>
+      <tr><td>Craigslist "Household Services"</td><td>Consistent demand. People who hire cleaners search here regularly.</td><td><span class="tag tag-warm">WARM</span></td></tr>
+    </table>
+    <div class="alert">
+      <div class="alert-title">Cleaning Hook That Gets Bookings</div>
+      <div class="alert-body">"Summer deep clean — I'll do one room for free so you can see my work before committing." This offer eliminates their #1 fear (letting a stranger in their home). One free room leads to full house booking at least 60% of the time. Track this.</div>
+    </div>
+  </div>
+
+  <!-- POOL -->
+  <div class="biz-panel" id="bizpanel-pool">
+    <table class="prospect-table">
+      <tr><th>Where to find clients</th><th>Why it works</th><th>Priority</th></tr>
+      <tr><td>Facebook: Neighborhood groups in areas with pools</td><td>Search for "pool" + your city. People ask for pool help constantly in summer.</td><td><span class="tag tag-hot">HOT</span></td></tr>
+      <tr><td>Drive neighborhoods — look for pools visible from street</td><td>Visual confirmation of need. Door knock or leave a door hanger.</td><td><span class="tag tag-hot">HOT</span></td></tr>
+      <tr><td>Nextdoor — post weekly May through August</td><td>Pool owners are hyperactive on Nextdoor in summer. Perfect timing.</td><td><span class="tag tag-fast">FAST</span></td></tr>
+      <tr><td>Facebook: Local parents and family groups</td><td>Families with kids want their pool clean all summer. Weekly recurring revenue.</td><td><span class="tag tag-fast">FAST</span></td></tr>
+    </table>
+    <div class="alert green">
+      <div class="alert-title">Pool Cleaning Secret Weapon</div>
+      <div class="alert-body">Sell weekly maintenance contracts, not one-time cleanings. "I'll come every week for $75 — you never have to think about your pool again." One client on a weekly plan = $300/month = $1,200+ for summer. This is better than any other business on this list for recurring income.</div>
+    </div>
+  </div>
+
+  <!-- EVENTS -->
+  <div class="biz-panel" id="bizpanel-events">
+    <table class="prospect-table">
+      <tr><th>Where to find clients</th><th>Why it works</th><th>Priority</th></tr>
+      <tr><td>Facebook: Local moms groups, graduation season posts</td><td>Summer = graduation parties, quinceañeras, birthdays. Huge demand.</td><td><span class="tag tag-hot">HOT</span></td></tr>
+      <tr><td>Instagram — before/after decoration content</td><td>Event decor is the most shareable content. One tagged photo spreads to 200 people.</td><td><span class="tag tag-hot">HOT</span></td></tr>
+      <tr><td>Nextdoor: "Party planning" + neighborhood pages</td><td>People planning backyard parties ask neighbors for vendor recommendations.</td><td><span class="tag tag-fast">FAST</span></td></tr>
+      <tr><td>Contact venue coordinators directly (church halls, community centers)</td><td>They get requests constantly and refer vendors. One contact = multiple clients.</td><td><span class="tag tag-warm">WARM</span></td></tr>
+    </table>
+    <div class="alert">
+      <div class="alert-title">Event Decor Hook</div>
+      <div class="alert-body">"Graduation party setup + teardown — you enjoy the party, I handle everything." June is peak season. Start posting NOW. Lead time is 2–4 weeks for most parties. You should be booked 3 weeks out by the end of May.</div>
+    </div>
+  </div>
+
+  <!-- PETS -->
+  <div class="biz-panel" id="bizpanel-pets">
+    <table class="prospect-table">
+      <tr><th>Where to find clients</th><th>Why it works</th><th>Priority</th></tr>
+      <tr><td>Nextdoor — by far the #1 platform for this service</td><td>Pet owners are the most active Nextdoor users. They ask for sitter recommendations constantly.</td><td><span class="tag tag-hot">HOT</span></td></tr>
+      <tr><td>Facebook: Local pet groups, dog owner groups</td><td>People in dog groups spend money on their pets without hesitation.</td><td><span class="tag tag-hot">HOT</span></td></tr>
+      <tr><td>Warm texts — this is the #1 source for this business</td><td>Pet sitting is pure trust. People hire someone they've heard of, not a stranger.</td><td><span class="tag tag-fast">FAST</span></td></tr>
+      <tr><td>Summer travel posts in local groups</td><td>June–August = vacation season. People leaving town need sitters. Jump on every "anyone traveling?" post.</td><td><span class="tag tag-fast">FAST</span></td></tr>
+    </table>
+    <div class="alert green">
+      <div class="alert-title">Pet Sitting Secret Weapon</div>
+      <div class="alert-body">Offer a free 30-minute "meet and greet" with the pet before the first booking. This eliminates every objection a pet owner has. Show up on time, be great with the animal, and you'll be their permanent pet sitter. Pet clients have the highest repeat booking rate of any business on this list.</div>
+    </div>
+  </div>
+
+  <!-- ORGANIZING -->
+  <div class="biz-panel" id="bizpanel-organizing">
+    <table class="prospect-table">
+      <tr><th>Where to find clients</th><th>Why it works</th><th>Priority</th></tr>
+      <tr><td>Facebook: Moms groups, decluttering groups</td><td>"Can anyone help me get my house organized?" posts appear weekly. These convert instantly.</td><td><span class="tag tag-hot">HOT</span></td></tr>
+      <tr><td>Warm texts — parents' network</td><td>Organizing is an intimate service. Warm referrals convert 5× better than cold posts here.</td><td><span class="tag tag-hot">HOT</span></td></tr>
+      <tr><td>Instagram: Before/after organization content</td><td>Pantry and closet transformations are some of the most viral content on Instagram.</td><td><span class="tag tag-fast">FAST</span></td></tr>
+      <tr><td>Facebook: Home improvement groups</td><td>People doing home projects often want organization help too. Adjacent need.</td><td><span class="tag tag-warm">WARM</span></td></tr>
+    </table>
+    <div class="alert">
+      <div class="alert-title">Organizing Hook That Works</div>
+      <div class="alert-body">"I'll organize one room for [price] and you'll never go back to clutter." Start with one room — pantry or closet is best for photos. The before/after is so dramatic that every client tells someone else. This business runs almost entirely on referrals after the first 3 clients.</div>
+    </div>
+  </div>
+
+  <!-- PHOTO -->
+  <div class="biz-panel" id="bizpanel-photo">
+    <table class="prospect-table">
+      <tr><th>Where to find clients</th><th>Why it works</th><th>Priority</th></tr>
+      <tr><td>Facebook: Graduation season posts (May–July)</td><td>Graduation photos are the #1 booked photography service for teens. Post NOW.</td><td><span class="tag tag-hot">HOT</span></td></tr>
+      <tr><td>Instagram — post your portfolio, tag the city</td><td>Photography is bought on visual proof. 10 strong Instagram photos = more bookings than 100 posts.</td><td><span class="tag tag-hot">HOT</span></td></tr>
+      <tr><td>Facebook: Moms groups — family photos, event photos</td><td>Moms want photos of milestones. Affordable local photographer = instant bookings.</td><td><span class="tag tag-fast">FAST</span></td></tr>
+      <tr><td>School clubs, sports teams (direct contact)</td><td>Teams need group photos. One school contact = 10 different sessions.</td><td><span class="tag tag-warm">WARM</span></td></tr>
+    </table>
+    <div class="alert green">
+      <div class="alert-title">Photography Secret Weapon</div>
+      <div class="alert-body">Offer a "mini session" — 30 minutes, 10 edited photos, $75. Full sessions scare people off with the time commitment and price. Mini sessions get you booked immediately, build your portfolio fast, and most clients upgrade to full sessions on their second booking.</div>
+    </div>
+  </div>
+
+  <!-- SOCIAL MEDIA -->
+  <div class="biz-panel" id="bizpanel-social">
+    <table class="prospect-table">
+      <tr><th>Where to find clients</th><th>Why it works</th><th>Priority</th></tr>
+      <tr><td>Local Facebook: Small business owner groups</td><td>Business owners are overwhelmed with social media. They will pay to outsource it.</td><td><span class="tag tag-hot">HOT</span></td></tr>
+      <tr><td>Direct messages to local businesses with weak social presence</td><td>Go to Instagram, search your city, find businesses with under 200 followers and bad posts. DM them.</td><td><span class="tag tag-hot">HOT</span></td></tr>
+      <tr><td>Facebook: Restaurants, boutiques, fitness studios</td><td>These businesses know they need social media but don't know how to do it.</td><td><span class="tag tag-fast">FAST</span></td></tr>
+      <tr><td>Your own Instagram growth as portfolio</td><td>Show what you did for YOUR business. That is proof you can do it for theirs.</td><td><span class="tag tag-fast">FAST</span></td></tr>
+    </table>
+    <div class="alert">
+      <div class="alert-title">Social Media Management Hook</div>
+      <div class="alert-body">DM local businesses: "I noticed your Instagram hasn't been posted to in [X weeks]. I run social media for local businesses — would you want to see what I could do with your page? I'll manage it for one month for $[price] and you can cancel if it doesn't help." Framing it as a trial eliminates the risk objection.</div>
+    </div>
+  </div>
+</div>
+
+<hr class="divider">
+
+<!-- CONVERSION SYSTEM -->
+<div class="section">
+  <span class="sec-label">Conversion System</span>
+  <h2 class="sec-title">Turn Inquiries Into Paying Clients</h2>
+  <p class="sec-sub">Getting a response is the easy part. Here's how to convert it into money.</p>
+  <div class="conv-row">
+    <div class="conv-step">
+      <div class="cs-n">01</div>
+      <div class="cs-title">Respond in under 5 minutes</div>
+      <div class="cs-body">78% of customers hire the first business that responds. Your AI phone answers instantly. For texts and DMs, set your phone to ping immediately. 5 minutes vs. 30 minutes is the difference between a closed deal and a lost one.</div>
+    </div>
+    <div class="conv-step">
+      <div class="cs-n">02</div>
+      <div class="cs-title">Give a number immediately</div>
+      <div class="cs-body">Don't say "let me come by and estimate." Give a range on the spot: "Lawn care for a typical yard is $40–$80 depending on size — I can confirm when I see it." Concrete numbers build trust. Vagueness loses clients to competitors who just say a price.</div>
+    </div>
+    <div class="conv-step">
+      <div class="cs-n">03</div>
+      <div class="cs-title">Ask for the booking now</div>
+      <div class="cs-body">After your price: "I have Wednesday afternoon and Thursday morning open — which works for you?" Give two options. Don't ask "is that okay?" or "let me know what you think." Offer a choice. People say yes to choices, not open-ended questions.</div>
+    </div>
+    <div class="conv-step">
+      <div class="cs-n">04</div>
+      <div class="cs-title">Confirm the night before</div>
+      <div class="cs-body">Text the client the night before: "Just confirming I'll be there tomorrow at [time]. See you then!" This reduces no-shows from 20% to under 5%. It also signals that you're professional — which compounds your reputation over time.</div>
+    </div>
+  </div>
+  <div class="alert green">
+    <div class="alert-title">Your AI Advantage</div>
+    <div class="alert-body">Your BOSS AI phone system answers calls 24/7 and books appointments even when you're asleep, in school, or doing another job. Most of your competitors don't answer the phone. When a client calls at 8pm on a Sunday, your AI picks up and books them. They don't.</div>
+  </div>
+</div>
+
+<hr class="divider">
+
+<!-- REFERRAL FLYWHEEL -->
+<div class="section">
+  <span class="sec-label">The Referral Flywheel</span>
+  <h2 class="sec-title">One Job Becomes Ten</h2>
+  <p class="sec-sub">This is how your business compounds. Every job plants seeds for the next three.</p>
+  <div class="flywheel">
+    <div class="fw-step">
+      <div class="fw-n">1</div>
+      <div class="fw-title">Do the job perfectly</div>
+      <div class="fw-body">Even if it's discounted. Your reputation is being built right now. Be on time. Do more than expected.</div>
+    </div>
+    <div class="fw-step">
+      <div class="fw-n">2</div>
+      <div class="fw-title">Take before/after photos</div>
+      <div class="fw-body">Ask permission first. The contrast sells for you — no copywriting needed. Take 3–5 photos during every single job.</div>
+    </div>
+    <div class="fw-step">
+      <div class="fw-n">3</div>
+      <div class="fw-title">Ask for one Google review</div>
+      <div class="fw-body">Do it in person while you're still there. "Would you mind leaving a Google review? Even one sentence helps me out a ton." Hand them your phone with the review page open.</div>
+    </div>
+    <div class="fw-step">
+      <div class="fw-n">4</div>
+      <div class="fw-title">Ask for one referral</div>
+      <div class="fw-body">"Do you know one person who might need this?" Offer $10 cash for any referral that books. They'll think of someone immediately.</div>
+    </div>
+    <div class="fw-step">
+      <div class="fw-n">5</div>
+      <div class="fw-title">Post and repeat</div>
+      <div class="fw-body">Post the before/after that same evening. Tag the neighborhood if applicable. The flywheel is now spinning — every new job accelerates it.</div>
+    </div>
+  </div>
+  <div class="script-box">
+    <span class="script-tag">Ask for the review — say this exactly</span>
+    <div class="script-text">"Hey, quick ask before I head out — I'm really trying to build my business this summer and Google reviews are huge for me. Would you mind pulling up Google real quick? If you search [your business name or service + city] it should come up. Even just 'great job' is super helpful. I'd really appreciate it."</div>
+  </div>
+  <div class="script-box">
+    <span class="script-tag">Ask for the referral — say this exactly</span>
+    <div class="script-text">"One more thing — do you know anyone else around here who might need [service]? I'm still growing and trying to get more clients in this area. If you refer someone who books, I'll give you $10 cash as a thank-you. No pressure at all — just wanted to ask."</div>
+  </div>
+</div>
+
+<hr class="divider">
+
+<!-- WEEK BY WEEK TARGETS -->
+<div class="section">
+  <span class="sec-label">Revenue Targets</span>
+  <h2 class="sec-title">What Success Looks Like Each Week</h2>
+  <p class="sec-sub">Use these as your benchmarks. If you're behind, post more and text more. If you're ahead, raise your prices.</p>
+  <div class="grid-4" style="margin-bottom:32px">
+    <div class="card">
+      <span class="card-label">Week 1</span>
+      <div style="font-size:1.8rem;font-weight:900;color:var(--gold);margin-bottom:8px">1–2 jobs</div>
+      <div style="font-size:13px;color:var(--muted);line-height:1.6">Warm list + Facebook groups. First jobs might be discounted. Goal: get the flywheel started. Report: $50–$200.</div>
+    </div>
+    <div class="card">
+      <span class="card-label">Week 2</span>
+      <div style="font-size:1.8rem;font-weight:900;color:var(--gold);margin-bottom:8px">3–4 jobs</div>
+      <div style="font-size:13px;color:var(--muted);line-height:1.6">Referrals from Week 1 + Nextdoor picking up. First Google reviews live. Report: $200–$600.</div>
+    </div>
+    <div class="card">
+      <span class="card-label">Week 3</span>
+      <div style="font-size:1.8rem;font-weight:900;color:var(--gold);margin-bottom:8px">5–7 jobs</div>
+      <div style="font-size:13px;color:var(--muted);line-height:1.6">AI phone converting inbound. Before/after posts building organic reach. Standard pricing. Report: $500–$1,200.</div>
+    </div>
+    <div class="card">
+      <span class="card-label">Week 4+</span>
+      <div style="font-size:1.8rem;font-weight:900;color:var(--gold);margin-bottom:8px">8–12 jobs</div>
+      <div style="font-size:13px;color:var(--muted);line-height:1.6">Repeat clients, recurring contracts, referral engine running. Consider a small price increase. Report: $1,000–$2,500+.</div>
+    </div>
+  </div>
+  <div class="alert amber">
+    <div class="alert-title">If You're Stuck After Week 2</div>
+    <div class="alert-body">Text Boston directly at 903-714-6162. Describe exactly what you've tried. The most common problems: posts that don't have a specific price range (add one), posts that don't mention you're local and young (add it), not following up on "maybe laters" (follow up). Most stalls are fixed with one change.</div>
+  </div>
+</div>
+
+<footer>
+  <p>BOSS Systems Summer Partner Playbook — 2026</p>
+  <div style="margin-top:12px">
+    <a href="/partner-tools.html">Partner Tools</a>
+    <a href="/compliance.html">Legal Guide</a>
+    <a href="/summer.html">Program Info</a>
+    <a href="sms:+19037146162">Text Boston</a>
+  </div>
+</footer>
+
+<script>
+// Platform tabs
+document.querySelectorAll('.pt-tab').forEach(btn => {
+  btn.addEventListener('click', () => {
+    const tab = btn.dataset.ptab;
+    document.querySelectorAll('.pt-tab').forEach(b => b.classList.remove('active'));
+    document.querySelectorAll('.pt-panel').forEach(p => p.classList.remove('active'));
+    btn.classList.add('active');
+    const panel = document.getElementById('ptpanel-' + tab);
+    if (panel) panel.classList.add('active');
+  });
+});
+
+// Business tabs
+document.querySelectorAll('.biz-tab').forEach(btn => {
+  btn.addEventListener('click', () => {
+    const tab = btn.dataset.biztab;
+    document.querySelectorAll('.biz-tab').forEach(b => b.classList.remove('active'));
+    document.querySelectorAll('.biz-panel').forEach(p => p.classList.remove('active'));
+    btn.classList.add('active');
+    const panel = document.getElementById('bizpanel-' + tab);
+    if (panel) panel.classList.add('active');
+  });
+});
+
+// Copy buttons
+function copyPost(btn) {
+  const tmpl = btn.closest('.post-template');
+  const text = tmpl.querySelector('.pt-text').innerText;
+  navigator.clipboard.writeText(text).then(() => {
+    btn.textContent = 'Copied!';
+    btn.classList.add('copied');
+    setTimeout(() => { btn.textContent = 'Copy'; btn.classList.remove('copied'); }, 2000);
+  });
+}
+</script>
+</body>
+</html>
