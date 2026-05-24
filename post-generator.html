@@ -420,6 +420,84 @@ footer{border-top:1px solid var(--border);padding:28px 24px;display:flex;justify
     return str.replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;');
   }
 
+  function generatePosts(type, city, notes) {
+    var c = city;
+    var t = {
+      'lawn-care': [
+        ['Facebook', c + ' homeowners — if your grass is embarrassing you, we\'ve got you. We\'re a local crew, show up fast, and do it right. DM us or leave a comment to get on the schedule this week.'],
+        ['Facebook', 'Lawn looking rough? Summer heat hits hard and we know it. We serve ' + c + ' and surrounding areas all summer long. Message us for a same-week quote — no contracts, no hassle.'],
+        ['Nextdoor', 'Hey ' + c + ' neighbors! Running a local lawn care service this summer — mow, edge, blow, done clean. Affordable rates and I\'m usually available same week. Drop a comment or message me if you\'re interested!'],
+        ['Nextdoor', 'Anyone in ' + c + ' need a reliable lawn crew this summer? We keep your yard looking sharp so you don\'t have to think about it. Message me here for a quick quote.'],
+        ['Instagram', 'Keeping ' + c + ' yards clean all summer 🌿✂️ DM to book. #LawnCare #' + c.split(' ')[0] + ' #LocalBusiness #SummerWork']
+      ],
+      'junk-removal': [
+        ['Facebook', c + ' — got stuff piling up in the garage, backyard, or spare room? We haul it away fast and cheap. Message us this week for a free quote. No job too small.'],
+        ['Facebook', 'Junk removal in ' + c + '. We show up, load it up, and haul it off — same day or next day most weeks. DM us for pricing. Your clutter is our problem now.'],
+        ['Nextdoor', 'Hey ' + c + ' neighbors! Offering junk removal and haul-away this summer. Old furniture, appliances, yard debris, garage cleanouts — we handle it all. Message me for a fast quote!'],
+        ['Nextdoor', 'Need stuff hauled out of your house or yard in ' + c + '? I do fast, affordable junk removal. No need to rent a truck or make 10 trips to the dump — just message me.'],
+        ['Instagram', 'We haul it. You relax. 🚛💨 Serving ' + c + ' all summer. DM to book your cleanout. #JunkRemoval #' + c.split(' ')[0] + ' #CleanOut #LocalService']
+      ],
+      'house-cleaning': [
+        ['Facebook', c + ' — life\'s busy enough without cleaning your whole house. We do it for you. Message us for weekly, bi-weekly, or one-time cleaning quotes. Local, reliable, and thorough.'],
+        ['Facebook', 'Looking for a house cleaner in ' + c + ' you can actually count on? We show up on time, do it right, and won\'t ghost you. DM for availability and pricing.'],
+        ['Nextdoor', 'Hi ' + c + ' neighbors! Offering home cleaning services this summer — kitchens, bathrooms, floors, the whole thing. Looking for clients who want consistent, reliable help. Message me to talk schedule and pricing!'],
+        ['Nextdoor', 'Anyone in ' + c + ' looking for a dependable house cleaner? I\'m local, I\'m careful with your home, and I do a thorough job. Message me here for a quote.'],
+        ['Instagram', 'Clean home. Clear mind. ✨🧹 Serving ' + c + ' this summer. DM to book. #HouseCleaning #' + c.split(' ')[0] + ' #CleanHome #LocalCleaner']
+      ],
+      'pet-sitting': [
+        ['Facebook', c + ' pet owners — going out of town this summer? Your dog or cat deserves someone who actually cares. We do in-home pet sitting and dog walking. DM us for dates and rates.'],
+        ['Facebook', 'Summer travel season is here. Don\'t stress about your pet — we\'ve got them covered. In-home sitting, daily visits, or dog walks in ' + c + '. Message us to check availability.'],
+        ['Nextdoor', 'Hey ' + c + ' neighbors! Offering pet sitting and dog walking this summer for people going on vacation or just needing daily help. I love animals and will treat yours like my own. Message me!'],
+        ['Nextdoor', 'Any ' + c + ' pet owners need a reliable sitter this summer? I do in-home visits so your pet stays comfortable at home. Message me to talk dates and what your pet needs.'],
+        ['Instagram', 'Your pet is in good hands 🐾❤️ Pet sitting & dog walking in ' + c + '. DM for availability. #PetSitting #DogWalking #' + c.split(' ')[0] + ' #PetCare']
+      ],
+      'power-washing': [
+        ['Facebook', c + ' — driveways, decks, fences, and siding looking grimy? Power washing makes everything look new again in 20 minutes. Message us this week for a same-week quote.'],
+        ['Facebook', 'Summer is the best time to power wash and we\'re already booked out a week in ' + c + '. Grab a spot now before the schedule fills up. DM us for pricing.'],
+        ['Nextdoor', 'Hey ' + c + ' neighbors! Offering power washing services this summer — driveways, sidewalks, decks, fences, and exterior walls. Results are honestly amazing. Message me for a quick quote!'],
+        ['Nextdoor', 'Anyone in ' + c + ' need their driveway or deck power washed? I\'m local, equipment\'s professional grade, and the price is fair. Leave a comment or message me directly.'],
+        ['Instagram', 'Before ➡️ After 💦✨ Power washing in ' + c + '. DM to book. #PowerWashing #' + c.split(' ')[0] + ' #CurbAppeal #LocalService']
+      ],
+      'photography': [
+        ['Facebook', c + ' — need photos that actually look professional? Senior portraits, family sessions, events, or content for your business. Message us to check summer availability.'],
+        ['Facebook', 'Summer is peak season for photos and we\'re booking fast in ' + c + '. Golden hour sessions, family portraits, senior photos — DM us to lock in a date before it\'s gone.'],
+        ['Nextdoor', 'Hi ' + c + ' neighbors! Offering photography sessions this summer — families, seniors, couples, and small business content. I edit everything and deliver fast. Message me for availability and rates!'],
+        ['Nextdoor', 'Anyone in ' + c + ' looking for a photographer this summer? I do outdoor sessions and the results speak for themselves. Message me here to set something up.'],
+        ['Instagram', 'Capturing ' + c + ' this summer 📸✨ Family, senior, & lifestyle sessions. DM to book. #Photography #' + c.split(' ')[0] + ' #GoldenHour #LocalPhotographer']
+      ],
+      'social-media': [
+        ['Facebook', c + ' small business owners — not posting consistently on social media? We\'ll manage your accounts, create content, and grow your following so you can focus on your business. Message us for packages.'],
+        ['Facebook', 'Your competitors in ' + c + ' are posting every day. Are you? We create and schedule content for local businesses so you stay visible without lifting a finger. DM us.'],
+        ['Nextdoor', 'Hey ' + c + ' neighbors! Helping local businesses with social media this summer — posts, graphics, scheduling, the whole thing. Affordable packages for small businesses. Message me if you\'re interested!'],
+        ['Nextdoor', 'Any ' + c + ' business owners struggling to keep up with social media? I handle content creation and posting so you can get back to doing what you\'re good at. Message me for pricing.'],
+        ['Instagram', 'Helping ' + c + ' businesses show up online 📱💡 Social media management. DM for a free consultation. #SocialMedia #SmallBusiness #' + c.split(' ')[0] + ' #ContentCreator']
+      ],
+      'organizing': [
+        ['Facebook', c + ' — closets, garages, pantries, home offices — overwhelmed by clutter? We come in, sort it out, and set up a system that actually works. Message us for a free consult.'],
+        ['Facebook', 'Summer is the perfect time to finally get organized. We serve ' + c + ' and we\'ve transformed some seriously chaotic spaces. DM us to talk about your project and get pricing.'],
+        ['Nextdoor', 'Hi ' + c + ' neighbors! Offering home organization services this summer — any space, any size. I love doing this and people are always shocked at how different a space looks. Message me!'],
+        ['Nextdoor', 'Anyone in ' + c + ' need help getting a room or garage organized? I\'ll come assess it, make a plan, and execute. Message me here for details.'],
+        ['Instagram', 'Turning chaos into calm ✨🗂️ Home organizing in ' + c + '. DM for a free consult. #HomeOrganizing #' + c.split(' ')[0] + ' #Declutter #OrganizedLife']
+      ],
+      'event-decor': [
+        ['Facebook', c + ' — planning a graduation party, birthday, wedding, or baby shower? We handle the decor so you can actually enjoy the event. Message us to check our summer dates.'],
+        ['Facebook', 'Summer events are filling up fast and so is our calendar in ' + c + '. Balloon arches, table settings, backdrops, and full event setups. DM us before your date is gone.'],
+        ['Nextdoor', 'Hey ' + c + ' neighbors! Doing event decoration this summer — graduation parties, birthdays, bridal showers, and more. We make events look incredible without the stress. Message me for a quote!'],
+        ['Nextdoor', 'Anyone in ' + c + ' need event decoration help this summer? I do balloon arches, table setups, backdrops, and full party styling. Affordable and really pretty results. Message me!'],
+        ['Instagram', 'Making ' + c + ' events unforgettable 🎉✨ Balloon arches, setups & more. DM to book. #EventDecor #' + c.split(' ')[0] + ' #PartyDecor #BalloonArch']
+      ]
+    };
+    var fallback = [
+      ['Facebook', c + ' — looking for a reliable local service business you can actually count on? That\'s us. Message us to find out what we do and get a quote this week.'],
+      ['Facebook', 'Serving ' + c + ' all summer long. Local, reliable, and priced fair. Message us to find out more about what we offer.'],
+      ['Nextdoor', 'Hey ' + c + ' neighbors! Running a local service business this summer and looking for my first clients in the area. Message me to find out more — happy to give you a deal for being one of the first!'],
+      ['Nextdoor', 'Looking for quality local service in ' + c + '? Message me here to learn more about what I offer and get a fast quote.'],
+      ['Instagram', 'Serving ' + c + ' this summer 💪 Local, reliable, affordable. DM to learn more. #' + c.split(' ')[0] + ' #LocalBusiness #SmallBusiness']
+    ];
+    var rows = t[type] || fallback;
+    return rows.map(function(r) { return { platform: r[0], text: r[1] }; });
+  }
+
   form.addEventListener('submit', function(e) {
     e.preventDefault();
     hideError();
@@ -437,53 +515,25 @@ footer{border-top:1px solid var(--border);padding:28px 24px;display:flex;justify
     results.classList.remove('visible');
     postsList.innerHTML = '';
 
-    var body = {
-      businessType: businessType,
-      city: city,
-      notes: notes
-    };
-
+    // Fire-and-forget to n8n for logging
     fetch('https://jamross.app.n8n.cloud/webhook/generate-partner-posts', {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify(body)
-    })
-    .then(function(res) {
-      return res.json().then(function(data) {
-        return { ok: res.ok, status: res.status, data: data };
-      });
-    })
-    .then(function(result) {
-      submitBtn.disabled = false;
-      submitBtn.classList.remove('loading');
-      loadingText.classList.remove('visible');
+      body: JSON.stringify({ businessType: businessType, city: city, notes: notes })
+    }).catch(function() {});
 
-      if (!result.ok) {
-        var msg = (result.data && result.data.message) ? result.data.message : 'Something went wrong. Try again.';
-        showError(msg);
-        return;
-      }
+    // Generate posts client-side instantly
+    var posts = generatePosts(businessType, city, notes);
 
-      var posts = result.data.posts;
-      if (!posts || !Array.isArray(posts) || posts.length === 0) {
-        showError('No posts came back. Try again.');
-        return;
-      }
+    submitBtn.disabled = false;
+    submitBtn.classList.remove('loading');
+    loadingText.classList.remove('visible');
 
-      renderPosts(posts);
-      results.classList.add('visible');
-
-      // Scroll to results smoothly
-      setTimeout(function() {
-        results.scrollIntoView({ behavior: 'smooth', block: 'start' });
-      }, 100);
-    })
-    .catch(function(err) {
-      submitBtn.disabled = false;
-      submitBtn.classList.remove('loading');
-      loadingText.classList.remove('visible');
-      showError('Network error. Check your connection and try again.');
-    });
+    renderPosts(posts);
+    results.classList.add('visible');
+    setTimeout(function() {
+      results.scrollIntoView({ behavior: 'smooth', block: 'start' });
+    }, 100);
   });
 
 })();
