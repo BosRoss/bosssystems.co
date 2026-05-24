@@ -1,0 +1,486 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Log a Job — BOSS Systems Partners</title>
+<meta name="description" content="Log completed jobs and get your weekly earnings summary. Partner tool for BOSS Systems Summer 2026.">
+<style>
+*{margin:0;padding:0;box-sizing:border-box}
+:root{--gold:#C9A84C;--dark:#080808;--gray:#0f0f0f;--gray2:#111;--gray3:#141414;--border:#1e1e1e;--border-gold:rgba(201,168,76,0.2);--text:#f0ede8;--muted:#888;--dim:#555;--red:#c0392b;--red-bg:rgba(192,57,43,0.1);--green:#27ae60;--green-bg:rgba(39,174,96,0.08);--font:-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif}
+html{scroll-behavior:smooth}
+body{background:var(--dark);color:var(--text);font-family:var(--font);font-size:16px;line-height:1.6;-webkit-font-smoothing:antialiased;overflow-x:hidden;min-height:100vh}
+a{color:inherit;text-decoration:none}
+
+/* NAV */
+nav{position:sticky;top:0;z-index:100;background:rgba(8,8,8,.97);border-bottom:1px solid var(--border);padding:0 24px;height:60px;display:flex;align-items:center;justify-content:space-between;gap:16px}
+.nav-logo{font-weight:900;font-size:13px;letter-spacing:4px;color:var(--gold);text-transform:uppercase;flex-shrink:0}
+.nav-links{display:flex;align-items:center;gap:20px}
+.nav-link{font-size:12px;color:var(--muted);letter-spacing:0.5px;transition:color .2s;white-space:nowrap}
+.nav-link:hover{color:var(--text)}
+.nav-cta{background:var(--gold);color:var(--dark);padding:8px 18px;font-weight:700;font-size:12px;letter-spacing:1px;text-transform:uppercase;transition:background .2s;white-space:nowrap;flex-shrink:0}
+.nav-cta:hover{background:#dfc070}
+
+/* PAGE LAYOUT */
+.page{max-width:560px;margin:0 auto;padding:56px 24px 80px}
+
+/* HEADER */
+.page-label{font-size:11px;letter-spacing:4px;text-transform:uppercase;color:var(--gold);margin-bottom:14px;display:block}
+.page-title{font-size:clamp(1.6rem,5vw,2.2rem);font-weight:900;line-height:1.1;letter-spacing:-0.5px;margin-bottom:10px}
+.page-sub{font-size:14px;color:var(--muted);line-height:1.7;margin-bottom:40px}
+
+/* FORM */
+.form-card{background:var(--gray2);border:1px solid var(--border);padding:32px}
+.field{margin-bottom:24px}
+.field:last-child{margin-bottom:0}
+label{display:block;font-size:11px;font-weight:700;letter-spacing:2px;text-transform:uppercase;color:var(--muted);margin-bottom:10px}
+label .req{color:var(--gold);margin-left:2px}
+label .hint{font-size:11px;font-weight:400;letter-spacing:0;text-transform:none;color:var(--dim);margin-left:6px}
+input[type="tel"],
+input[type="text"],
+input[type="number"],
+textarea{
+  width:100%;
+  background:#0d0d0d;
+  border:1px solid var(--border);
+  color:var(--text);
+  font-family:var(--font);
+  font-size:16px;
+  padding:14px 16px;
+  outline:none;
+  -webkit-appearance:none;
+  appearance:none;
+  border-radius:0;
+  transition:border-color .2s;
+  line-height:1.5;
+}
+input:focus,textarea:focus{border-color:var(--gold)}
+input::placeholder,textarea::placeholder{color:var(--dim)}
+textarea{resize:vertical;min-height:90px}
+
+/* SUBMIT BUTTON */
+.btn-submit{
+  width:100%;
+  background:var(--gold);
+  color:var(--dark);
+  border:none;
+  font-family:var(--font);
+  font-size:15px;
+  font-weight:900;
+  letter-spacing:1px;
+  text-transform:uppercase;
+  padding:18px 24px;
+  cursor:pointer;
+  transition:background .2s,opacity .2s;
+  margin-top:28px;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  gap:10px;
+}
+.btn-submit:hover{background:#dfc070}
+.btn-submit:disabled{opacity:.5;cursor:not-allowed}
+.btn-submit .spinner{
+  width:16px;height:16px;border:2px solid rgba(8,8,8,0.3);
+  border-top-color:#080808;border-radius:50%;
+  animation:spin .7s linear infinite;display:none;
+}
+.btn-submit.loading .spinner{display:block}
+.btn-submit.loading .btn-text{display:none}
+@keyframes spin{to{transform:rotate(360deg)}}
+
+/* ERROR */
+.error-box{background:var(--red-bg);border:1px solid rgba(192,57,43,0.3);padding:16px 20px;margin-top:20px;font-size:14px;color:#e06b5f;line-height:1.6;display:none}
+.error-box.visible{display:block}
+
+/* SUCCESS STATE */
+.success-state{display:none}
+.success-state.visible{display:block}
+
+.success-head{margin-bottom:32px}
+.success-amount{
+  font-size:clamp(1.8rem,7vw,2.6rem);
+  font-weight:900;
+  color:var(--gold);
+  letter-spacing:-1px;
+  line-height:1.1;
+  display:block;
+  margin-bottom:6px;
+}
+.success-note{font-size:15px;color:var(--muted);line-height:1.6}
+
+/* REVIEW REQUEST BOX */
+.review-section{margin-bottom:28px}
+.review-label{
+  font-size:11px;font-weight:700;letter-spacing:2.5px;text-transform:uppercase;
+  color:var(--muted);margin-bottom:14px;display:block;
+}
+.review-box{
+  background:#0d0d0d;
+  border:1px solid var(--border);
+  padding:20px;
+  font-size:14px;
+  color:var(--text);
+  line-height:1.8;
+  white-space:pre-wrap;
+  word-break:break-word;
+  margin-bottom:14px;
+  min-height:80px;
+}
+.btn-copy{
+  width:100%;
+  background:var(--gold);
+  color:var(--dark);
+  border:none;
+  font-family:var(--font);
+  font-size:15px;
+  font-weight:900;
+  letter-spacing:1px;
+  text-transform:uppercase;
+  padding:18px 24px;
+  cursor:pointer;
+  transition:background .2s;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  gap:8px;
+}
+.btn-copy:hover{background:#dfc070}
+.btn-copy.copied{background:#2d6a3f;color:#fff}
+.btn-copy.copied:hover{background:#2d6a3f}
+.copy-icon{font-size:16px;line-height:1}
+
+/* WEEK SUMMARY */
+.week-summary{
+  background:var(--gray2);
+  border:1px solid var(--border);
+  border-left:3px solid var(--gold);
+  padding:24px;
+  margin-top:28px;
+}
+.week-label{font-size:10px;letter-spacing:3px;text-transform:uppercase;color:var(--dim);margin-bottom:16px;display:block}
+.week-row{display:flex;justify-content:space-between;align-items:center;padding:10px 0;border-bottom:1px solid var(--border);font-size:14px}
+.week-row:last-child{border-bottom:none;padding-bottom:0}
+.week-row-label{color:var(--muted)}
+.week-row-val{font-weight:700;color:var(--text)}
+.week-row-val.gold{color:var(--gold);font-size:1.05rem}
+
+/* LOG ANOTHER */
+.log-another{
+  display:inline-flex;
+  align-items:center;
+  gap:8px;
+  margin-top:28px;
+  font-size:13px;
+  font-weight:700;
+  letter-spacing:1px;
+  text-transform:uppercase;
+  color:var(--muted);
+  border:1px solid var(--border);
+  padding:12px 20px;
+  transition:border-color .2s,color .2s;
+  cursor:pointer;
+  background:none;
+  font-family:var(--font);
+  width:100%;
+  justify-content:center;
+}
+.log-another:hover{border-color:var(--gold);color:var(--gold)}
+
+/* FOOTER */
+footer{border-top:1px solid var(--border);padding:28px 24px;display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:12px;background:var(--gray)}
+.footer-logo{font-weight:900;font-size:11px;letter-spacing:4px;color:var(--gold);text-transform:uppercase}
+.footer-links{display:flex;gap:18px;flex-wrap:wrap}
+.footer-links a{font-size:12px;color:#444;transition:color .2s}
+.footer-links a:hover{color:var(--gold)}
+.footer-tag{font-size:11px;color:#333;margin-top:4px;width:100%}
+
+@media(max-width:600px){
+  nav{padding:0 16px}
+  .nav-links{gap:14px}
+  .page{padding:40px 16px 64px}
+  .form-card{padding:24px 20px}
+  footer{flex-direction:column;align-items:flex-start}
+}
+@media(max-width:420px){
+  .nav-links{display:none}
+}
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav>
+  <a href="/" class="nav-logo">BOSS Systems</a>
+  <div class="nav-links">
+    <a href="/partner-tools.html" class="nav-link">Partner Tools</a>
+    <a href="/lead-playbook.html" class="nav-link">Lead Playbook</a>
+    <a href="/compliance.html" class="nav-link">Legal Guide</a>
+  </div>
+  <a href="sms:+19037146162" class="nav-cta">Text Boston</a>
+</nav>
+
+<!-- PAGE -->
+<div class="page">
+  <span class="page-label">Partner Tools</span>
+  <h1 class="page-title">Log a Job</h1>
+  <p class="page-sub">Record a completed job and get your week-to-date summary. The review request text is ready to send right after.</p>
+
+  <!-- FORM STATE -->
+  <div id="formState">
+    <div class="form-card">
+      <form id="jobForm" novalidate>
+
+        <div class="field">
+          <label for="partnerPhone">Your phone number<span class="req">*</span></label>
+          <input type="tel" id="partnerPhone" name="partnerPhone" placeholder="903-555-0100" required autocomplete="tel">
+        </div>
+
+        <div class="field">
+          <label for="clientName">Client's first name<span class="req">*</span></label>
+          <input type="text" id="clientName" name="clientName" placeholder="Sarah" required autocomplete="off">
+        </div>
+
+        <div class="field">
+          <label for="clientPhone">Client's phone number<span class="hint">for review request</span></label>
+          <input type="tel" id="clientPhone" name="clientPhone" placeholder="903-555-0200" autocomplete="off">
+        </div>
+
+        <div class="field">
+          <label for="amount">Amount you charged ($)<span class="req">*</span></label>
+          <input type="number" id="amount" name="amount" placeholder="150" min="1" step="1" required inputmode="numeric">
+        </div>
+
+        <div class="field">
+          <label for="notes">Notes<span class="hint">anything worth tracking</span></label>
+          <textarea id="notes" name="notes" placeholder="e.g. full truck load, garage cleanout, recurring client"></textarea>
+        </div>
+
+        <button type="submit" class="btn-submit" id="submitBtn">
+          <div class="spinner"></div>
+          <span class="btn-text">Log This Job</span>
+        </button>
+
+        <div class="error-box" id="errorBox" role="alert"></div>
+      </form>
+    </div>
+  </div>
+
+  <!-- SUCCESS STATE -->
+  <div class="success-state" id="successState">
+
+    <div class="success-head">
+      <span class="success-amount" id="successAmount"></span>
+      <p class="success-note" id="successNote"></p>
+    </div>
+
+    <div class="review-section" id="reviewSection" style="display:none">
+      <span class="review-label">Send this to your client</span>
+      <div class="review-box" id="reviewText"></div>
+      <button class="btn-copy" id="copyBtn" onclick="copyReview()">
+        <span class="copy-icon">&#9646;&#9646;</span>
+        <span id="copyBtnText">Copy Text</span>
+      </button>
+    </div>
+
+    <div class="week-summary" id="weekSummary" style="display:none">
+      <span class="week-label">This week so far</span>
+      <div class="week-row">
+        <span class="week-row-label">Total revenue</span>
+        <span class="week-row-val gold" id="weekRevenue"></span>
+      </div>
+      <div class="week-row">
+        <span class="week-row-label">Your 80%</span>
+        <span class="week-row-val" id="partnerKeeps"></span>
+      </div>
+      <div class="week-row">
+        <span class="week-row-label">BOSS fee (20%)</span>
+        <span class="week-row-val" id="bossFee"></span>
+      </div>
+    </div>
+
+    <button class="log-another" id="logAnotherBtn" onclick="resetForm()">
+      + Log Another Job
+    </button>
+
+  </div>
+</div>
+
+<!-- FOOTER -->
+<footer>
+  <div class="footer-logo">BOSS Systems</div>
+  <div class="footer-links">
+    <a href="/">Home</a>
+    <a href="/partner-tools.html">Partner Tools</a>
+    <a href="/lead-playbook.html">Lead Playbook</a>
+    <a href="/compliance.html">Legal Guide</a>
+    <a href="tel:+19037146162">903-714-6162</a>
+  </div>
+  <div class="footer-tag">BOSS Systems &copy; 2026 &nbsp;&middot;&nbsp; Summer Partner Program</div>
+</footer>
+
+<script>
+(function() {
+
+  var form = document.getElementById('jobForm');
+  var submitBtn = document.getElementById('submitBtn');
+  var errorBox = document.getElementById('errorBox');
+
+  var formState = document.getElementById('formState');
+  var successState = document.getElementById('successState');
+
+  var reviewTextEl = document.getElementById('reviewText');
+  var reviewSection = document.getElementById('reviewSection');
+  var weekSummaryEl = document.getElementById('weekSummary');
+
+  var storedReviewText = '';
+
+  function formatDollar(n) {
+    var num = parseFloat(n);
+    if (isNaN(num)) return '$0';
+    return '$' + num.toLocaleString('en-US', {minimumFractionDigits: 0, maximumFractionDigits: 2});
+  }
+
+  function showError(msg) {
+    errorBox.textContent = msg;
+    errorBox.classList.add('visible');
+    submitBtn.disabled = false;
+    submitBtn.classList.remove('loading');
+  }
+
+  function hideError() {
+    errorBox.textContent = '';
+    errorBox.classList.remove('visible');
+  }
+
+  form.addEventListener('submit', function(e) {
+    e.preventDefault();
+    hideError();
+
+    var partnerPhone = document.getElementById('partnerPhone').value.trim();
+    var clientName = document.getElementById('clientName').value.trim();
+    var clientPhone = document.getElementById('clientPhone').value.trim();
+    var amount = document.getElementById('amount').value.trim();
+    var notes = document.getElementById('notes').value.trim();
+
+    if (!partnerPhone) { showError('Your phone number is required.'); return; }
+    if (!clientName) { showError('Client name is required.'); return; }
+    if (!amount || parseFloat(amount) < 1) { showError('Enter the amount you charged (minimum $1).'); return; }
+
+    submitBtn.disabled = true;
+    submitBtn.classList.add('loading');
+
+    var body = {
+      partnerPhone: partnerPhone,
+      clientName: clientName,
+      clientPhone: clientPhone,
+      amount: parseFloat(amount),
+      notes: notes
+    };
+
+    fetch('https://jamross.app.n8n.cloud/webhook/log-partner-job', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify(body)
+    })
+    .then(function(res) {
+      return res.json().then(function(data) {
+        return { ok: res.ok, status: res.status, data: data };
+      });
+    })
+    .then(function(result) {
+      if (!result.ok) {
+        var msg = (result.data && result.data.message) ? result.data.message : 'Something went wrong. Try again.';
+        showError(msg);
+        return;
+      }
+
+      var data = result.data;
+
+      // Success amount line
+      document.getElementById('successAmount').textContent = 'Job logged. ' + formatDollar(amount) + ' recorded for this week.';
+      document.getElementById('successNote').textContent = 'Good work. Check below for the review request.';
+
+      // Review text
+      if (data.reviewText) {
+        storedReviewText = data.reviewText;
+        reviewTextEl.textContent = data.reviewText;
+        reviewSection.style.display = 'block';
+      }
+
+      // Week summary
+      if (data.weekRevenue !== undefined) {
+        var rev = parseFloat(data.weekRevenue) || 0;
+        var keep = data.partnerKeeps !== undefined ? parseFloat(data.partnerKeeps) : rev * 0.8;
+        var fee = data.fee20 !== undefined ? parseFloat(data.fee20) : rev * 0.2;
+
+        document.getElementById('weekRevenue').textContent = formatDollar(rev);
+        document.getElementById('partnerKeeps').textContent = formatDollar(keep);
+        document.getElementById('bossFee').textContent = formatDollar(fee);
+        weekSummaryEl.style.display = 'block';
+      }
+
+      // Show success
+      formState.style.display = 'none';
+      successState.classList.add('visible');
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+    })
+    .catch(function(err) {
+      showError('Network error. Check your connection and try again.');
+    });
+  });
+
+  window.copyReview = function() {
+    if (!storedReviewText) return;
+    var btn = document.getElementById('copyBtn');
+    var label = document.getElementById('copyBtnText');
+
+    if (navigator.clipboard && navigator.clipboard.writeText) {
+      navigator.clipboard.writeText(storedReviewText).then(function() {
+        markCopied(btn, label);
+      }).catch(function() {
+        fallbackCopy(storedReviewText, btn, label);
+      });
+    } else {
+      fallbackCopy(storedReviewText, btn, label);
+    }
+  };
+
+  function fallbackCopy(text, btn, label) {
+    var ta = document.createElement('textarea');
+    ta.value = text;
+    ta.style.position = 'fixed';
+    ta.style.opacity = '0';
+    document.body.appendChild(ta);
+    ta.focus();
+    ta.select();
+    try { document.execCommand('copy'); markCopied(btn, label); } catch(e) {}
+    document.body.removeChild(ta);
+  }
+
+  function markCopied(btn, label) {
+    btn.classList.add('copied');
+    label.textContent = 'Copied!';
+    setTimeout(function() {
+      btn.classList.remove('copied');
+      label.textContent = 'Copy Text';
+    }, 2000);
+  }
+
+  window.resetForm = function() {
+    form.reset();
+    hideError();
+    storedReviewText = '';
+    reviewSection.style.display = 'none';
+    weekSummaryEl.style.display = 'none';
+    submitBtn.disabled = false;
+    submitBtn.classList.remove('loading');
+    successState.classList.remove('visible');
+    formState.style.display = 'block';
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+  };
+
+})();
+</script>
+</body>
+</html>
