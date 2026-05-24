@@ -378,56 +378,38 @@ footer{border-top:1px solid var(--border);padding:28px 24px;display:flex;justify
       notes: notes
     };
 
+    // Fire-and-forget to n8n for logging — don't wait for response
     fetch('https://jamross.app.n8n.cloud/webhook/log-partner-job', {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify(body)
-    })
-    .then(function(res) {
-      return res.json().then(function(data) {
-        return { ok: res.ok, status: res.status, data: data };
-      });
-    })
-    .then(function(result) {
-      if (!result.ok) {
-        var msg = (result.data && result.data.message) ? result.data.message : 'Something went wrong. Try again.';
-        showError(msg);
-        return;
-      }
+    }).catch(function() {});
 
-      var data = result.data;
+    // Generate everything client-side instantly
+    var reviewText = 'Hi ' + clientName + '! Thanks so much for choosing us today — we really appreciate your business. If we did a great job, would you mind leaving us a quick Google review? It only takes about 30 seconds and means the world to a small local business like ours. Thank you! 🙏';
 
-      // Success amount line
-      document.getElementById('successAmount').textContent = 'Job logged. ' + formatDollar(amount) + ' recorded for this week.';
-      document.getElementById('successNote').textContent = 'Good work. Check below for the review request.';
+    var amt = parseFloat(amount) || 0;
+    var keep = (amt * 0.8).toFixed(2);
+    var fee  = (amt * 0.2).toFixed(2);
 
-      // Review text
-      if (data.reviewText) {
-        storedReviewText = data.reviewText;
-        reviewTextEl.textContent = data.reviewText;
-        reviewSection.style.display = 'block';
-      }
+    document.getElementById('successAmount').textContent = 'Job logged. ' + formatDollar(amount) + ' recorded for this week.';
+    document.getElementById('successNote').textContent = 'Good work. Check below for the review request text.';
 
-      // Week summary
-      if (data.weekRevenue !== undefined) {
-        var rev = parseFloat(data.weekRevenue) || 0;
-        var keep = data.partnerKeeps !== undefined ? parseFloat(data.partnerKeeps) : rev * 0.8;
-        var fee = data.fee20 !== undefined ? parseFloat(data.fee20) : rev * 0.2;
+    storedReviewText = reviewText;
+    reviewTextEl.textContent = reviewText;
+    reviewSection.style.display = 'block';
 
-        document.getElementById('weekRevenue').textContent = formatDollar(rev);
-        document.getElementById('partnerKeeps').textContent = formatDollar(keep);
-        document.getElementById('bossFee').textContent = formatDollar(fee);
-        weekSummaryEl.style.display = 'block';
-      }
+    document.getElementById('weekRevenue').textContent = formatDollar(amount);
+    document.getElementById('partnerKeeps').textContent = formatDollar(keep);
+    document.getElementById('bossFee').textContent = formatDollar(fee);
+    weekSummaryEl.style.display = 'block';
 
-      // Show success
-      formState.style.display = 'none';
-      successState.classList.add('visible');
-      window.scrollTo({ top: 0, behavior: 'smooth' });
-    })
-    .catch(function(err) {
-      showError('Network error. Check your connection and try again.');
-    });
+    submitBtn.disabled = false;
+    submitBtn.classList.remove('loading');
+
+    formState.style.display = 'none';
+    successState.classList.add('visible');
+    window.scrollTo({ top: 0, behavior: 'smooth' });
   });
 
   window.copyReview = function() {
