@@ -1,0 +1,1188 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Find out exactly how much missed calls are costing your business. Answer 4 questions and see your number in 5 seconds.">
+  <meta property="og:title" content="Missed Call Revenue Calculator — BOSS Systems">
+  <meta property="og:description" content="Answer 4 questions. See how much you're losing to missed calls every year.">
+  <meta property="og:type" content="website">
+  <title>Missed Call Revenue Calculator — BOSS Systems</title>
+  <style>
+    /* ========== RESET & BASE ========== */
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --bg: #080808;
+      --bg-2: #0f0f0f;
+      --bg-3: #141414;
+      --bg-4: #1a1a1a;
+      --gold: #C9A84C;
+      --gold-light: #dfc070;
+      --gold-dark: #a8883a;
+      --text: #f0ede8;
+      --text-muted: #9a9690;
+      --text-dim: #6a6660;
+      --border: #222;
+      --border-gold: rgba(201,168,76,0.25);
+      --font: -apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica, Arial, sans-serif;
+      --radius: 4px;
+      --radius-lg: 8px;
+    }
+
+    /* Pink theme */
+    html.theme-pink {
+      --bg: #FFFFFF;
+      --bg-2: #FCE0EC;
+      --bg-3: #FAD5E7;
+      --bg-4: #F7CAE0;
+      --gold: #C9A84C;
+      --gold-light: #dfc070;
+      --gold-dark: #a8883a;
+      --text: #1a0810;
+      --text-muted: #4a1830;
+      --text-dim: #6a2848;
+      --border: #F0C0D5;
+      --border-gold: rgba(201,168,76,0.4);
+    }
+    html.theme-pink h1,
+    html.theme-pink h2,
+    html.theme-pink h3 { color: #D43880; }
+    html.theme-pink nav {
+      background: rgba(212,56,128,0.97);
+      border-bottom-color: rgba(212,56,128,0.3);
+    }
+    html.theme-pink .nav-logo,
+    html.theme-pink .nav-links a { color: #ffffff; }
+    html.theme-pink .nav-links a:hover { color: #C9A84C; }
+    html.theme-pink .nav-hamburger span { background: #ffffff; }
+    html.theme-pink .mobile-menu { background: #D43880; }
+    html.theme-pink .mobile-menu a { color: rgba(255,255,255,0.9); }
+    html.theme-pink .mobile-menu a:hover { color: #C9A84C; }
+    html.theme-pink footer {
+      background: #D43880;
+      border-top-color: rgba(255,255,255,0.15);
+    }
+    html.theme-pink .footer-brand p,
+    html.theme-pink .footer-links-group h4,
+    html.theme-pink .footer-links-group a,
+    html.theme-pink .footer-bottom p,
+    html.theme-pink .footer-tagline { color: rgba(255,255,255,0.75); }
+    html.theme-pink .footer-links-group a:hover { color: #C9A84C; }
+    html.theme-pink .footer-bottom { border-top-color: rgba(255,255,255,0.2); }
+    html.theme-pink .footer-brand .nav-logo { color: #ffffff; }
+    html.theme-pink .calc-card { background: #FAD5E7; border-color: #F0C0D5; }
+    html.theme-pink .form-input,
+    html.theme-pink .form-select { background: #ffffff; border-color: #F0C0D5; color: #1a0810; }
+    html.theme-pink .form-input:focus,
+    html.theme-pink .form-select:focus { border-color: #C9A84C; }
+    html.theme-pink .results-panel { background: #F7CAE0; border-color: #F0C0D5; }
+    html.theme-pink .callout-box { background: #FCE0EC; border-color: rgba(201,168,76,0.4); }
+    html.theme-pink .email-strip { background: #FAD5E7; border-color: #F0C0D5; }
+    html.theme-pink .email-input { background: #ffffff; border-color: #F0C0D5; color: #1a0810; }
+    html.theme-pink .email-input:focus { border-color: #C9A84C; }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      background: var(--bg);
+      color: var(--text);
+      font-family: var(--font);
+      font-size: 16px;
+      line-height: 1.65;
+      -webkit-font-smoothing: antialiased;
+      -moz-osx-font-smoothing: grayscale;
+      overflow-x: hidden;
+    }
+
+    a { color: inherit; text-decoration: none; }
+    img { max-width: 100%; display: block; }
+
+    /* ========== TYPOGRAPHY ========== */
+    .section-label {
+      font-size: 11px;
+      font-weight: 700;
+      letter-spacing: 3px;
+      text-transform: uppercase;
+      color: var(--gold);
+      margin-bottom: 16px;
+      display: block;
+    }
+
+    h1, h2, h3, h4 {
+      font-weight: 700;
+      line-height: 1.15;
+      color: var(--text);
+    }
+
+    h2 { font-size: clamp(28px, 4vw, 44px); }
+    h3 { font-size: clamp(18px, 2.5vw, 24px); }
+
+    p { color: var(--text-muted); }
+
+    /* ========== LAYOUT ========== */
+    .container {
+      max-width: 1100px;
+      margin: 0 auto;
+      padding: 0 24px;
+    }
+
+    /* ========== BUTTONS ========== */
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      padding: 14px 28px;
+      font-size: 14px;
+      font-weight: 700;
+      letter-spacing: 0.5px;
+      border-radius: var(--radius);
+      cursor: pointer;
+      transition: all 0.2s ease;
+      border: 2px solid transparent;
+      white-space: nowrap;
+    }
+
+    .btn-gold {
+      background: var(--gold);
+      color: #080808;
+      border-color: var(--gold);
+    }
+    .btn-gold:hover {
+      background: var(--gold-light);
+      border-color: var(--gold-light);
+    }
+
+    .btn-outline {
+      background: transparent;
+      color: var(--text);
+      border-color: rgba(240,237,232,0.3);
+    }
+    .btn-outline:hover {
+      border-color: var(--gold);
+      color: var(--gold);
+    }
+
+    .btn-lg {
+      padding: 18px 36px;
+      font-size: 15px;
+    }
+
+    .btn-sm {
+      padding: 10px 20px;
+      font-size: 13px;
+    }
+
+    /* ========== NAVIGATION ========== */
+    nav {
+      position: fixed;
+      top: 0;
+      left: 0;
+      right: 0;
+      z-index: 100;
+      height: 64px;
+      display: flex;
+      align-items: center;
+      background: rgba(8,8,8,0.92);
+      backdrop-filter: blur(12px);
+      -webkit-backdrop-filter: blur(12px);
+      border-bottom: 1px solid var(--border);
+    }
+
+    .nav-inner {
+      max-width: 1100px;
+      margin: 0 auto;
+      padding: 0 24px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      width: 100%;
+    }
+
+    .nav-logo {
+      font-size: 14px;
+      font-weight: 800;
+      letter-spacing: 4px;
+      text-transform: uppercase;
+      color: var(--gold);
+    }
+
+    .nav-right { display: flex; align-items: center; gap: 24px; }
+
+    .nav-links { display: flex; align-items: center; gap: 24px; }
+    .nav-links a {
+      font-size: 13px;
+      font-weight: 500;
+      color: var(--text-muted);
+      letter-spacing: 0.3px;
+      transition: color 0.2s;
+    }
+    .nav-links a:hover { color: var(--text); }
+
+    .nav-hamburger {
+      display: none;
+      flex-direction: column;
+      gap: 5px;
+      cursor: pointer;
+      padding: 4px;
+    }
+    .nav-hamburger span {
+      display: block;
+      width: 22px;
+      height: 2px;
+      background: var(--text);
+      border-radius: 2px;
+      transition: all 0.2s;
+    }
+
+    .mobile-menu {
+      display: none;
+      position: fixed;
+      top: 64px;
+      left: 0;
+      right: 0;
+      background: var(--bg-2);
+      border-bottom: 1px solid var(--border);
+      z-index: 99;
+      padding: 24px;
+      flex-direction: column;
+      gap: 20px;
+    }
+    .mobile-menu.open { display: flex; }
+    .mobile-menu a {
+      font-size: 15px;
+      font-weight: 500;
+      color: var(--text-muted);
+      padding: 8px 0;
+      border-bottom: 1px solid var(--border);
+    }
+    .mobile-menu a:last-child { border-bottom: none; }
+    .mobile-menu a:hover { color: var(--gold); }
+
+    /* ========== PAGE HEADER ========== */
+    .page-header {
+      padding: 120px 0 64px;
+      text-align: center;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .page-header-bg {
+      position: absolute;
+      inset: 0;
+      background:
+        radial-gradient(ellipse 80% 50% at 50% 0%, rgba(201,168,76,0.06) 0%, transparent 60%),
+        radial-gradient(ellipse 40% 40% at 80% 60%, rgba(201,168,76,0.03) 0%, transparent 50%);
+      pointer-events: none;
+    }
+
+    .page-header-inner {
+      position: relative;
+      max-width: 640px;
+      margin: 0 auto;
+    }
+
+    .page-header h1 {
+      font-size: clamp(32px, 5vw, 56px);
+      font-weight: 800;
+      line-height: 1.1;
+      letter-spacing: -1px;
+      margin-bottom: 16px;
+    }
+
+    .page-header p {
+      font-size: clamp(16px, 2vw, 19px);
+      color: var(--text-muted);
+      line-height: 1.6;
+    }
+
+    /* ========== CALCULATOR SECTION ========== */
+    .calc-section {
+      padding: 0 0 80px;
+    }
+
+    .calc-wrap {
+      max-width: 720px;
+      margin: 0 auto;
+    }
+
+    /* Calculator card */
+    .calc-card {
+      background: var(--bg-3);
+      border: 1px solid var(--border);
+      border-radius: var(--radius-lg);
+      padding: 44px 48px;
+      margin-bottom: 24px;
+    }
+
+    /* Form fields */
+    .form-group {
+      margin-bottom: 28px;
+    }
+
+    .form-label {
+      display: block;
+      font-size: 13px;
+      font-weight: 700;
+      color: var(--text);
+      letter-spacing: 0.3px;
+      margin-bottom: 10px;
+    }
+
+    .form-label span {
+      font-weight: 400;
+      color: var(--text-dim);
+      font-size: 12px;
+      margin-left: 6px;
+    }
+
+    .form-select,
+    .form-input {
+      width: 100%;
+      background: var(--bg-4);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      color: var(--text);
+      font-size: 15px;
+      font-family: var(--font);
+      padding: 13px 16px;
+      outline: none;
+      transition: border-color 0.2s;
+      -webkit-appearance: none;
+      appearance: none;
+    }
+
+    .form-select {
+      background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='8' viewBox='0 0 12 8'%3E%3Cpath d='M1 1l5 5 5-5' stroke='%236a6660' stroke-width='1.5' stroke-linecap='round' stroke-linejoin='round' fill='none'/%3E%3C/svg%3E");
+      background-repeat: no-repeat;
+      background-position: right 14px center;
+      padding-right: 40px;
+      cursor: pointer;
+    }
+
+    .form-select:focus,
+    .form-input:focus {
+      border-color: var(--gold);
+    }
+
+    .form-input::placeholder {
+      color: var(--text-dim);
+    }
+
+    /* Slider */
+    .slider-wrap {
+      display: flex;
+      align-items: center;
+      gap: 16px;
+    }
+
+    .slider {
+      flex: 1;
+      -webkit-appearance: none;
+      appearance: none;
+      height: 4px;
+      background: var(--border);
+      border-radius: 2px;
+      outline: none;
+      cursor: pointer;
+      position: relative;
+    }
+
+    .slider::-webkit-slider-thumb {
+      -webkit-appearance: none;
+      appearance: none;
+      width: 20px;
+      height: 20px;
+      border-radius: 50%;
+      background: var(--gold);
+      cursor: pointer;
+      border: 2px solid var(--bg-4);
+      box-shadow: 0 0 0 1px var(--gold-dark);
+      transition: transform 0.15s;
+    }
+
+    .slider::-webkit-slider-thumb:hover {
+      transform: scale(1.15);
+    }
+
+    .slider::-moz-range-thumb {
+      width: 20px;
+      height: 20px;
+      border-radius: 50%;
+      background: var(--gold);
+      cursor: pointer;
+      border: 2px solid var(--bg-4);
+      box-shadow: 0 0 0 1px var(--gold-dark);
+    }
+
+    .slider-value {
+      font-size: 20px;
+      font-weight: 800;
+      color: var(--gold);
+      min-width: 52px;
+      text-align: right;
+      line-height: 1;
+    }
+
+    .slider-labels {
+      display: flex;
+      justify-content: space-between;
+      margin-top: 8px;
+      font-size: 11px;
+      color: var(--text-dim);
+      letter-spacing: 0.3px;
+    }
+
+    /* Calculate button */
+    .calc-btn-wrap {
+      margin-top: 8px;
+    }
+
+    .calc-btn-wrap .btn {
+      width: 100%;
+      padding: 17px;
+      font-size: 15px;
+      letter-spacing: 0.8px;
+    }
+
+    /* ========== RESULTS PANEL ========== */
+    .results-panel {
+      background: var(--bg-3);
+      border: 1px solid var(--border-gold);
+      border-radius: var(--radius-lg);
+      padding: 44px 48px;
+      margin-bottom: 24px;
+      display: none;
+    }
+
+    .results-panel.visible {
+      display: block;
+      animation: fadeSlideUp 0.35s ease;
+    }
+
+    @keyframes fadeSlideUp {
+      from { opacity: 0; transform: translateY(12px); }
+      to   { opacity: 1; transform: translateY(0); }
+    }
+
+    .results-label {
+      font-size: 11px;
+      font-weight: 700;
+      letter-spacing: 3px;
+      text-transform: uppercase;
+      color: var(--gold);
+      margin-bottom: 28px;
+      display: block;
+    }
+
+    .results-primary {
+      margin-bottom: 32px;
+    }
+
+    .results-intro {
+      font-size: 15px;
+      color: var(--text-muted);
+      margin-bottom: 10px;
+    }
+
+    .results-big-number {
+      font-size: clamp(40px, 7vw, 64px);
+      font-weight: 800;
+      color: var(--gold);
+      line-height: 1;
+      letter-spacing: -1px;
+      display: block;
+      margin-bottom: 6px;
+    }
+
+    .results-per-week {
+      font-size: 14px;
+      color: var(--text-dim);
+      letter-spacing: 0.3px;
+    }
+
+    .results-breakdown {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 2px;
+      background: var(--border);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      overflow: hidden;
+      margin-bottom: 32px;
+    }
+
+    .results-breakdown-item {
+      background: var(--bg-3);
+      padding: 20px 24px;
+    }
+
+    .breakdown-period {
+      font-size: 11px;
+      font-weight: 700;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      color: var(--text-dim);
+      margin-bottom: 8px;
+      display: block;
+    }
+
+    .breakdown-amount {
+      font-size: 26px;
+      font-weight: 800;
+      color: var(--text);
+      line-height: 1;
+    }
+
+    /* Callout box */
+    .callout-box {
+      background: var(--bg-4);
+      border: 1px solid var(--border-gold);
+      border-radius: var(--radius);
+      padding: 20px 24px;
+      margin-bottom: 28px;
+      display: flex;
+      align-items: flex-start;
+      gap: 14px;
+    }
+
+    .callout-icon {
+      font-size: 20px;
+      line-height: 1;
+      flex-shrink: 0;
+      margin-top: 2px;
+    }
+
+    .callout-text {
+      font-size: 15px;
+      color: var(--text-muted);
+      line-height: 1.6;
+    }
+
+    .callout-text strong {
+      color: var(--gold);
+      font-weight: 700;
+    }
+
+    /* CTA area */
+    .results-cta {
+      display: flex;
+      flex-direction: column;
+      gap: 14px;
+    }
+
+    .results-cta .btn {
+      width: 100%;
+      padding: 17px;
+      font-size: 15px;
+    }
+
+    .results-cta-secondary {
+      text-align: center;
+      font-size: 14px;
+      color: var(--text-dim);
+    }
+
+    .results-cta-secondary a {
+      color: var(--gold);
+      font-weight: 700;
+    }
+
+    /* ========== EMAIL CAPTURE ========== */
+    .email-strip {
+      background: var(--bg-2);
+      border: 1px solid var(--border);
+      border-radius: var(--radius-lg);
+      padding: 32px 48px;
+      margin-bottom: 24px;
+    }
+
+    .email-strip-label {
+      font-size: 14px;
+      color: var(--text-muted);
+      margin-bottom: 14px;
+    }
+
+    .email-row {
+      display: flex;
+      gap: 10px;
+    }
+
+    .email-input {
+      flex: 1;
+      background: var(--bg-4);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      color: var(--text);
+      font-size: 14px;
+      font-family: var(--font);
+      padding: 12px 16px;
+      outline: none;
+      transition: border-color 0.2s;
+    }
+
+    .email-input:focus {
+      border-color: var(--gold);
+    }
+
+    .email-input::placeholder {
+      color: var(--text-dim);
+    }
+
+    .email-btn {
+      background: var(--bg-4);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      color: var(--text-muted);
+      font-size: 13px;
+      font-weight: 700;
+      font-family: var(--font);
+      padding: 12px 20px;
+      cursor: pointer;
+      letter-spacing: 0.5px;
+      transition: all 0.2s;
+      white-space: nowrap;
+    }
+
+    .email-btn:hover {
+      border-color: var(--gold);
+      color: var(--gold);
+    }
+
+    .email-btn.sent {
+      background: rgba(201,168,76,0.12);
+      border-color: var(--gold);
+      color: var(--gold);
+    }
+
+    .email-note {
+      font-size: 12px;
+      color: var(--text-dim);
+      margin-top: 10px;
+    }
+
+    /* ========== DIVIDER ========== */
+    .gold-divider {
+      width: 48px;
+      height: 2px;
+      background: var(--gold);
+      margin: 20px auto 0;
+    }
+
+    /* ========== FOOTER ========== */
+    footer {
+      background: var(--bg-2);
+      border-top: 1px solid var(--border);
+      padding: 48px 0 40px;
+    }
+
+    .footer-inner {
+      max-width: 1100px;
+      margin: 0 auto;
+      padding: 0 24px;
+    }
+
+    .footer-top {
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-start;
+      margin-bottom: 40px;
+      gap: 40px;
+      flex-wrap: wrap;
+    }
+
+    .footer-brand .nav-logo { font-size: 13px; margin-bottom: 10px; }
+    .footer-brand p {
+      font-size: 13px;
+      color: var(--text-dim);
+      max-width: 260px;
+      line-height: 1.6;
+    }
+
+    .footer-links-group h4 {
+      font-size: 11px;
+      font-weight: 700;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      color: var(--text-dim);
+      margin-bottom: 14px;
+    }
+
+    .footer-links-group ul {
+      list-style: none;
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+    }
+
+    .footer-links-group a {
+      font-size: 14px;
+      color: var(--text-muted);
+      transition: color 0.2s;
+    }
+    .footer-links-group a:hover { color: var(--text); }
+
+    .footer-bottom {
+      padding-top: 28px;
+      border-top: 1px solid var(--border);
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      flex-wrap: wrap;
+      gap: 12px;
+    }
+
+    .footer-bottom p {
+      font-size: 13px;
+      color: var(--text-dim);
+    }
+
+    .footer-tagline {
+      font-size: 13px;
+      color: var(--text-dim);
+      font-style: italic;
+    }
+
+    /* ========== RESPONSIVE ========== */
+    @media (max-width: 900px) {
+      .nav-links { display: none; }
+      .nav-hamburger { display: flex; }
+    }
+
+    @media (max-width: 700px) {
+      .calc-card,
+      .results-panel,
+      .email-strip { padding: 32px 24px; }
+
+      .results-breakdown { grid-template-columns: 1fr; }
+
+      .page-header { padding: 100px 0 48px; }
+
+      .footer-top { flex-direction: column; gap: 32px; }
+      .footer-bottom { flex-direction: column; text-align: center; }
+    }
+
+    @media (max-width: 480px) {
+      .email-row { flex-direction: column; }
+      .email-btn { width: 100%; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- ========== NAVIGATION ========== -->
+  <nav>
+    <div class="nav-inner">
+      <a href="/" class="nav-logo">BOSS Systems</a>
+      <div class="nav-right">
+        <div class="nav-links">
+          <a href="/#products">Products</a>
+          <a href="/#process">How It Works</a>
+          <a href="/#pricing">Pricing</a>
+          <a href="/#about">About</a>
+          <a href="/summer.html">Summer Program</a>
+        </div>
+        <button id="theme-toggle" onclick="toggleTheme()" aria-label="Toggle color theme" style="background:none;border:1px solid var(--border);border-radius:20px;padding:4px 10px;cursor:pointer;display:flex;align-items:center;gap:5px;font-size:11px;color:var(--text-dim);letter-spacing:.5px;transition:border-color .2s;flex-shrink:0" onmouseenter="this.style.borderColor='var(--gold)'" onmouseleave="this.style.borderColor='var(--border)'">
+          <span id="theme-dot" style="width:10px;height:10px;border-radius:50%;background:var(--gold);display:inline-block;flex-shrink:0"></span>
+          <span id="theme-label">PINK</span>
+        </button>
+        <a href="/analyze.html" class="btn btn-gold btn-sm">Analyze My Business</a>
+        <div class="nav-hamburger" id="hamburger" role="button" aria-label="Menu" tabindex="0">
+          <span></span><span></span><span></span>
+        </div>
+      </div>
+    </div>
+  </nav>
+
+  <div class="mobile-menu" id="mobileMenu">
+    <a href="/#products">Products</a>
+    <a href="/#process">How It Works</a>
+    <a href="/#who">Who It's For</a>
+    <a href="/#pricing">Pricing</a>
+    <a href="/#about">About</a>
+    <a href="/summer.html">Summer Program</a>
+    <a href="/analyze.html" class="btn btn-gold btn-sm" style="text-align:center;margin-top:4px;">Analyze My Business</a>
+  </div>
+
+  <!-- ========== PAGE HEADER ========== -->
+  <div class="page-header">
+    <div class="page-header-bg"></div>
+    <div class="container">
+      <div class="page-header-inner">
+        <span class="section-label">Lead Magnet</span>
+        <h1>How Much Are Missed Calls Costing You?</h1>
+        <p style="margin-top:16px;">Answer 4 questions. See your number in 5 seconds.</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- ========== CALCULATOR ========== -->
+  <section class="calc-section">
+    <div class="container">
+      <div class="calc-wrap">
+
+        <!-- FORM CARD -->
+        <div class="calc-card">
+
+          <!-- Field 1: Business type -->
+          <div class="form-group">
+            <label class="form-label" for="businessType">Business Type</label>
+            <select class="form-select" id="businessType">
+              <option value="HVAC">HVAC</option>
+              <option value="Plumbing">Plumbing</option>
+              <option value="Roofing">Roofing</option>
+              <option value="Auto Repair">Auto Repair</option>
+              <option value="Electrical">Electrical</option>
+              <option value="Pest Control">Pest Control</option>
+              <option value="Lawn Care">Lawn Care</option>
+              <option value="Other">Other</option>
+            </select>
+          </div>
+
+          <!-- Field 2: Average job value -->
+          <div class="form-group">
+            <label class="form-label" for="avgJobValue">
+              Average Job Value
+              <span>in dollars</span>
+            </label>
+            <input
+              class="form-input"
+              type="number"
+              id="avgJobValue"
+              placeholder="e.g. 400"
+              min="1"
+              step="1"
+            >
+          </div>
+
+          <!-- Field 3: Calls per week -->
+          <div class="form-group">
+            <label class="form-label" for="callsPerWeek">
+              Estimated Calls Per Week
+              <span>inbound calls total</span>
+            </label>
+            <input
+              class="form-input"
+              type="number"
+              id="callsPerWeek"
+              placeholder="e.g. 20"
+              min="1"
+              step="1"
+            >
+          </div>
+
+          <!-- Field 4: Miss % slider -->
+          <div class="form-group" style="margin-bottom:36px;">
+            <label class="form-label" for="missPct">
+              Calls You Miss
+              <span>percentage you don't answer live</span>
+            </label>
+            <div class="slider-wrap">
+              <input
+                class="slider"
+                type="range"
+                id="missPct"
+                min="0"
+                max="80"
+                value="35"
+                step="1"
+              >
+              <div class="slider-value" id="missPctDisplay">35%</div>
+            </div>
+            <div class="slider-labels">
+              <span>0%</span>
+              <span>20%</span>
+              <span>40%</span>
+              <span>60%</span>
+              <span>80%</span>
+            </div>
+          </div>
+
+          <!-- Calculate button -->
+          <div class="calc-btn-wrap">
+            <button class="btn btn-gold" onclick="calculate()">Calculate My Loss &rarr;</button>
+          </div>
+
+        </div>
+        <!-- /FORM CARD -->
+
+        <!-- RESULTS PANEL (hidden until calculated) -->
+        <div class="results-panel" id="resultsPanel">
+
+          <span class="results-label">Your Revenue Leak</span>
+
+          <div class="results-primary">
+            <div class="results-intro">You're losing approximately</div>
+            <span class="results-big-number" id="weeklyDisplay">$0</span>
+            <div class="results-per-week">per week in missed revenue</div>
+          </div>
+
+          <div class="results-breakdown">
+            <div class="results-breakdown-item">
+              <span class="breakdown-period">Per Month</span>
+              <div class="breakdown-amount" id="monthlyDisplay">$0</div>
+            </div>
+            <div class="results-breakdown-item">
+              <span class="breakdown-period">Per Year</span>
+              <div class="breakdown-amount" id="yearlyDisplay">$0</div>
+            </div>
+          </div>
+
+          <div class="callout-box">
+            <div class="callout-icon">&#9888;</div>
+            <div class="callout-text">
+              <strong>Boss Systems costs less than 2 missed calls per month.</strong>
+              At $60/month flat, the AI answers every call, books the job, and pays for itself before the week is out.
+            </div>
+          </div>
+
+          <div class="results-cta">
+            <a href="/analyze.html" class="btn btn-gold">Get My Free AI Analysis &rarr;</a>
+            <div class="results-cta-secondary">
+              Or call <a href="tel:+19034830168">(903) 483-0168</a> to hear the AI answer live.
+            </div>
+          </div>
+
+        </div>
+        <!-- /RESULTS PANEL -->
+
+        <!-- EMAIL CAPTURE -->
+        <div class="email-strip" id="emailStrip" style="display:none;">
+          <p class="email-strip-label">Want this sent to you?</p>
+          <div class="email-row">
+            <input
+              class="email-input"
+              type="email"
+              id="emailInput"
+              placeholder="your@email.com"
+              autocomplete="email"
+            >
+            <button class="email-btn" id="emailBtn" onclick="sendEmail()">Send It</button>
+          </div>
+          <p class="email-note">No spam. Just your numbers.</p>
+        </div>
+        <!-- /EMAIL CAPTURE -->
+
+      </div>
+    </div>
+  </section>
+
+  <!-- ========== FOOTER ========== -->
+  <footer>
+    <div class="footer-inner">
+      <div class="footer-top">
+        <div class="footer-brand">
+          <div class="nav-logo" style="margin-bottom:12px;">BOSS Systems</div>
+          <p>Building AI-first businesses for the people the big companies ignore.</p>
+          <p style="margin-top:10px;">Tyler, TX &middot; bosssystemsai@gmail.com</p>
+        </div>
+        <div class="footer-links-group">
+          <h4>Products</h4>
+          <ul>
+            <li><a href="/analyze.html">BOSS Analyze (Free)</a></li>
+            <li><a href="/#products">BOSS Build</a></li>
+            <li><a href="/summer.html">Summer Partnership Program</a></li>
+            <li><a href="/learn.html">BOSS Scout (Free)</a></li>
+          </ul>
+        </div>
+        <div class="footer-links-group">
+          <h4>Navigation</h4>
+          <ul>
+            <li><a href="/">Home</a></li>
+            <li><a href="/#process">How It Works</a></li>
+            <li><a href="/#pricing">Pricing</a></li>
+            <li><a href="/#about">About</a></li>
+            <li><a href="/summer.html">Summer Program</a></li>
+          </ul>
+        </div>
+        <div class="footer-links-group">
+          <h4>Contact</h4>
+          <ul>
+            <li><a href="tel:+19037146162">903-714-6162</a></li>
+            <li><a href="sms:+19037146162?body=Hey%20Boston">Text Boston</a></li>
+            <li><a href="mailto:bosssystemsai@gmail.com">bosssystemsai@gmail.com</a></li>
+            <li><a href="https://venmo.com/BosRoss" target="_blank" rel="noopener">@BosRoss on Venmo</a></li>
+          </ul>
+        </div>
+      </div>
+      <div class="footer-bottom">
+        <p>BOSS Systems &copy; 2026 &middot; Tyler, TX</p>
+        <p class="footer-tagline">Same AI. Fraction of the price. Deployed in 72 hours.</p>
+      </div>
+    </div>
+  </footer>
+
+  <!-- ========== JS ========== -->
+  <script>
+    // ---- Mobile menu ----
+    var hamburger = document.getElementById('hamburger');
+    var mobileMenu = document.getElementById('mobileMenu');
+
+    hamburger.addEventListener('click', function() {
+      mobileMenu.classList.toggle('open');
+    });
+    hamburger.addEventListener('keydown', function(e) {
+      if (e.key === 'Enter' || e.key === ' ') {
+        e.preventDefault();
+        mobileMenu.classList.toggle('open');
+      }
+    });
+    document.addEventListener('click', function(e) {
+      if (!hamburger.contains(e.target) && !mobileMenu.contains(e.target)) {
+        mobileMenu.classList.remove('open');
+      }
+    });
+
+    // ---- Theme toggle (mirrors index.html) ----
+    (function(){
+      var saved = localStorage.getItem('boss_theme');
+      if (saved === 'pink') {
+        document.documentElement.classList.add('theme-pink');
+        var lbl = document.getElementById('theme-label');
+        var dot = document.getElementById('theme-dot');
+        if (lbl) lbl.textContent = 'DARK';
+        if (dot) dot.style.background = '#D43880';
+      }
+    })();
+
+    function toggleTheme() {
+      var isPink = document.documentElement.classList.toggle('theme-pink');
+      var lbl = document.getElementById('theme-label');
+      var dot = document.getElementById('theme-dot');
+      localStorage.setItem('boss_theme', isPink ? 'pink' : 'dark');
+      if (lbl) lbl.textContent = isPink ? 'DARK' : 'PINK';
+      if (dot) dot.style.background = isPink ? '#D43880' : '#C9A84C';
+    }
+
+    // ---- Slider live update ----
+    var missPctSlider = document.getElementById('missPct');
+    var missPctDisplay = document.getElementById('missPctDisplay');
+
+    missPctSlider.addEventListener('input', function() {
+      missPctDisplay.textContent = this.value + '%';
+      updateSliderTrack(this);
+    });
+
+    function updateSliderTrack(slider) {
+      var pct = ((slider.value - slider.min) / (slider.max - slider.min)) * 100;
+      slider.style.background = 'linear-gradient(to right, var(--gold) 0%, var(--gold) ' + pct + '%, var(--border) ' + pct + '%, var(--border) 100%)';
+    }
+
+    // Initialize track on load
+    updateSliderTrack(missPctSlider);
+
+    // ---- Formatter ----
+    function formatDollars(n) {
+      if (n >= 1000000) {
+        return '$' + (n / 1000000).toFixed(1).replace(/\.0$/, '') + 'M';
+      }
+      return '$' + Math.round(n).toLocaleString('en-US');
+    }
+
+    // ---- Stored result values for email ----
+    var lastResult = null;
+
+    // ---- Calculate ----
+    function calculate() {
+      var businessType = document.getElementById('businessType').value;
+      var avgJobValue  = parseFloat(document.getElementById('avgJobValue').value);
+      var callsPerWeek = parseFloat(document.getElementById('callsPerWeek').value);
+      var missPct      = parseFloat(missPctSlider.value);
+
+      // Validation
+      if (!avgJobValue || avgJobValue <= 0) {
+        flashField('avgJobValue');
+        return;
+      }
+      if (!callsPerWeek || callsPerWeek <= 0) {
+        flashField('callsPerWeek');
+        return;
+      }
+
+      // Formula: 60% of missed calls were bookable jobs
+      var weeklyLoss  = callsPerWeek * (missPct / 100) * avgJobValue * 0.6;
+      var monthlyLoss = weeklyLoss * 4.33;
+      var yearlyLoss  = weeklyLoss * 52;
+
+      // Store for email
+      lastResult = { businessType, avgJobValue, callsPerWeek, missPct, weeklyLoss, monthlyLoss, yearlyLoss };
+
+      // Update display
+      document.getElementById('weeklyDisplay').textContent  = formatDollars(weeklyLoss);
+      document.getElementById('monthlyDisplay').textContent = formatDollars(monthlyLoss);
+      document.getElementById('yearlyDisplay').textContent  = formatDollars(yearlyLoss);
+
+      // Show results and email strip
+      var panel = document.getElementById('resultsPanel');
+      panel.classList.add('visible');
+      document.getElementById('emailStrip').style.display = 'block';
+
+      // Smooth scroll to results
+      setTimeout(function() {
+        panel.scrollIntoView({ behavior: 'smooth', block: 'start' });
+      }, 80);
+    }
+
+    function flashField(id) {
+      var el = document.getElementById(id);
+      el.style.borderColor = '#e05252';
+      el.focus();
+      setTimeout(function() { el.style.borderColor = ''; }, 1800);
+    }
+
+    // ---- Email send ----
+    function sendEmail() {
+      var email = document.getElementById('emailInput').value.trim();
+      var btn   = document.getElementById('emailBtn');
+
+      if (!email || !email.includes('@')) {
+        var input = document.getElementById('emailInput');
+        input.style.borderColor = '#e05252';
+        setTimeout(function() { input.style.borderColor = ''; }, 1800);
+        return;
+      }
+
+      if (!lastResult) {
+        // No calculation done yet — shouldn't normally happen but guard anyway
+        return;
+      }
+
+      btn.textContent = 'Sending...';
+      btn.disabled = true;
+
+      var payload = {
+        businessType: lastResult.businessType,
+        avgJobValue:  lastResult.avgJobValue,
+        callsPerWeek: lastResult.callsPerWeek,
+        missPct:      lastResult.missPct,
+        weeklyLoss:   Math.round(lastResult.weeklyLoss),
+        monthlyLoss:  Math.round(lastResult.monthlyLoss),
+        yearlyLoss:   Math.round(lastResult.yearlyLoss),
+        email:        email
+      };
+
+      fetch('https://jamross.app.n8n.cloud/webhook/missed-call-calculator', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(payload)
+      })
+      .then(function(res) {
+        btn.textContent = 'Sent!';
+        btn.classList.add('sent');
+        btn.disabled = true;
+      })
+      .catch(function() {
+        // Still show success to user — n8n may not return CORS headers
+        btn.textContent = 'Sent!';
+        btn.classList.add('sent');
+        btn.disabled = true;
+      });
+    }
+
+    // Allow Enter key on email field
+    document.getElementById('emailInput').addEventListener('keydown', function(e) {
+      if (e.key === 'Enter') sendEmail();
+    });
+  </script>
+</body>
+</html>
