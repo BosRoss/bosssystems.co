@@ -1,0 +1,1757 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>BOSS Command Center</title>
+<style>
+  /* ─── RESET & BASE ─────────────────────────────────────── */
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  :root {
+    --gold:        #C9A84C;
+    --gold-dim:    #8a6e2f;
+    --gold-glow:   #e8c56a;
+    --bg:          #0a0a0a;
+    --bg-card:     #111111;
+    --bg-card2:    #161616;
+    --border:      #222222;
+    --border-gold: #2e2412;
+    --text:        #f5f5f0;
+    --text-muted:  #888880;
+    --text-dim:    #555550;
+    --green:       #2ecc71;
+    --green-dim:   #1a7a43;
+    --yellow:      #f39c12;
+    --yellow-dim:  #7a5010;
+    --red:         #e74c3c;
+    --red-dim:     #7a2020;
+    --blue:        #3498db;
+  }
+
+  html { font-size: 16px; }
+
+  body {
+    background: var(--bg);
+    color: var(--text);
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'SF Pro Display',
+                 Helvetica, Arial, sans-serif;
+    min-height: 100vh;
+    overflow-x: hidden;
+    line-height: 1.4;
+  }
+
+  /* ─── SCROLLBARS ───────────────────────────────────────── */
+  ::-webkit-scrollbar { width: 6px; height: 6px; }
+  ::-webkit-scrollbar-track { background: #0d0d0d; }
+  ::-webkit-scrollbar-thumb { background: var(--gold-dim); border-radius: 3px; }
+  ::-webkit-scrollbar-thumb:hover { background: var(--gold); }
+
+  /* ─── GOLD TOP BAR ─────────────────────────────────────── */
+  .gold-bar {
+    height: 3px;
+    background: linear-gradient(90deg, transparent, var(--gold), var(--gold-glow), var(--gold), transparent);
+    width: 100%;
+  }
+
+  /* ─── TOP STRIP ────────────────────────────────────────── */
+  .top-strip {
+    background: #080808;
+    border-bottom: 1px solid var(--border);
+    padding: 10px 20px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    gap: 10px;
+    position: sticky;
+    top: 0;
+    z-index: 100;
+  }
+
+  .top-strip-left {
+    display: flex;
+    align-items: center;
+    gap: 18px;
+  }
+
+  .brand {
+    font-size: 0.7rem;
+    font-weight: 800;
+    letter-spacing: 0.22em;
+    text-transform: uppercase;
+    color: var(--gold);
+    white-space: nowrap;
+  }
+
+  .brand span {
+    color: var(--text-muted);
+    font-weight: 400;
+    letter-spacing: 0.12em;
+  }
+
+  .clock-block {
+    font-size: 0.68rem;
+    color: var(--text-muted);
+    letter-spacing: 0.08em;
+    font-variant-numeric: tabular-nums;
+  }
+
+  .clock-block .time {
+    font-size: 0.85rem;
+    color: var(--text);
+    font-weight: 600;
+    letter-spacing: 0.1em;
+  }
+
+  .status-strip {
+    display: flex;
+    gap: 14px;
+    flex-wrap: wrap;
+    align-items: center;
+  }
+
+  .status-pill {
+    display: flex;
+    align-items: center;
+    gap: 5px;
+    font-size: 0.62rem;
+    font-weight: 600;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    padding: 3px 8px;
+    border-radius: 2px;
+    border: 1px solid var(--border);
+    background: rgba(255,255,255,0.02);
+    white-space: nowrap;
+  }
+
+  .dot {
+    width: 6px; height: 6px;
+    border-radius: 50%;
+    display: inline-block;
+    flex-shrink: 0;
+  }
+  .dot-green { background: var(--green); box-shadow: 0 0 6px var(--green); }
+  .dot-yellow { background: var(--yellow); box-shadow: 0 0 6px var(--yellow); }
+  .dot-red { background: var(--red); box-shadow: 0 0 6px var(--red); }
+
+  /* ─── MAIN LAYOUT ──────────────────────────────────────── */
+  .main {
+    max-width: 1400px;
+    margin: 0 auto;
+    padding: 24px 20px 60px;
+  }
+
+  /* ─── SECTION TITLES ───────────────────────────────────── */
+  .section-header {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    margin-bottom: 16px;
+    margin-top: 36px;
+  }
+
+  .section-header:first-child { margin-top: 0; }
+
+  .section-title {
+    font-size: 0.62rem;
+    font-weight: 800;
+    letter-spacing: 0.28em;
+    text-transform: uppercase;
+    color: var(--gold);
+  }
+
+  .section-line {
+    flex: 1;
+    height: 1px;
+    background: linear-gradient(90deg, var(--border-gold), transparent);
+  }
+
+  .section-tag {
+    font-size: 0.55rem;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    color: var(--text-dim);
+    border: 1px solid var(--border);
+    padding: 2px 6px;
+    border-radius: 2px;
+  }
+
+  /* ─── EMPIRE OVERVIEW ──────────────────────────────────── */
+  .metrics-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 12px;
+  }
+
+  .metric-card {
+    background: var(--bg-card);
+    border: 1px solid var(--border);
+    border-top: 2px solid var(--gold-dim);
+    padding: 20px 18px;
+    position: relative;
+    overflow: hidden;
+    transition: border-color 0.2s, transform 0.2s;
+    cursor: default;
+  }
+
+  .metric-card::before {
+    content: '';
+    position: absolute;
+    top: 0; left: 0; right: 0; bottom: 0;
+    background: linear-gradient(135deg, rgba(201,168,76,0.04) 0%, transparent 60%);
+    pointer-events: none;
+  }
+
+  .metric-card:hover {
+    border-color: var(--gold-dim);
+    transform: translateY(-1px);
+  }
+
+  .metric-label {
+    font-size: 0.58rem;
+    font-weight: 700;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: var(--text-muted);
+    margin-bottom: 10px;
+  }
+
+  .metric-value {
+    font-size: 2.2rem;
+    font-weight: 800;
+    color: var(--gold);
+    font-variant-numeric: tabular-nums;
+    line-height: 1;
+    letter-spacing: -0.02em;
+  }
+
+  .metric-value.large { font-size: 1.8rem; }
+
+  .metric-sub {
+    font-size: 0.6rem;
+    color: var(--text-dim);
+    margin-top: 6px;
+    letter-spacing: 0.08em;
+  }
+
+  /* ─── BUSINESS GRID ────────────────────────────────────── */
+  .business-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 16px;
+  }
+
+  .biz-card {
+    background: var(--bg-card);
+    border: 1px solid var(--border);
+    border-left: 3px solid var(--gold-dim);
+    padding: 22px 20px;
+    position: relative;
+    overflow: hidden;
+    transition: border-color 0.2s, box-shadow 0.2s;
+  }
+
+  .biz-card::after {
+    content: '';
+    position: absolute;
+    top: 0; right: 0;
+    width: 60px; height: 60px;
+    background: radial-gradient(circle at top right, rgba(201,168,76,0.06), transparent);
+    pointer-events: none;
+  }
+
+  .biz-card:hover {
+    border-left-color: var(--gold);
+    box-shadow: -3px 0 20px rgba(201,168,76,0.08);
+  }
+
+  .biz-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    margin-bottom: 14px;
+    gap: 10px;
+  }
+
+  .biz-name {
+    font-size: 0.85rem;
+    font-weight: 800;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    color: var(--text);
+    line-height: 1.2;
+  }
+
+  .biz-sub {
+    font-size: 0.62rem;
+    color: var(--text-muted);
+    margin-top: 3px;
+    letter-spacing: 0.05em;
+  }
+
+  .status-badge {
+    font-size: 0.52rem;
+    font-weight: 800;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    padding: 3px 8px;
+    border-radius: 2px;
+    white-space: nowrap;
+    flex-shrink: 0;
+  }
+
+  .badge-live {
+    background: rgba(46,204,113,0.12);
+    color: var(--green);
+    border: 1px solid rgba(46,204,113,0.3);
+  }
+
+  .badge-building {
+    background: rgba(243,156,18,0.12);
+    color: var(--yellow);
+    border: 1px solid rgba(243,156,18,0.3);
+  }
+
+  .badge-open {
+    background: rgba(52,152,219,0.12);
+    color: var(--blue);
+    border: 1px solid rgba(52,152,219,0.3);
+  }
+
+  .biz-metrics {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 8px;
+    margin-bottom: 16px;
+  }
+
+  .biz-metric {
+    background: var(--bg-card2);
+    border: 1px solid var(--border);
+    padding: 10px 12px;
+  }
+
+  .biz-metric-label {
+    font-size: 0.55rem;
+    color: var(--text-dim);
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    margin-bottom: 4px;
+  }
+
+  .biz-metric-val {
+    font-size: 1.1rem;
+    font-weight: 700;
+    color: var(--text);
+    font-variant-numeric: tabular-nums;
+  }
+
+  .biz-metric-val.accent { color: var(--gold); }
+  .biz-metric-val.warn { color: var(--yellow); }
+  .biz-metric-val.attack { color: var(--red); }
+
+  .agent-tag {
+    font-size: 0.55rem;
+    color: var(--text-dim);
+    background: var(--bg-card2);
+    border: 1px solid var(--border);
+    padding: 5px 10px;
+    margin-bottom: 14px;
+    font-family: 'SF Mono', 'Fira Code', 'Courier New', monospace;
+    letter-spacing: 0.05em;
+    word-break: break-all;
+  }
+
+  .agent-tag span { color: var(--gold-dim); }
+
+  .biz-actions {
+    display: flex;
+    gap: 8px;
+    flex-wrap: wrap;
+  }
+
+  /* ─── BUTTONS ──────────────────────────────────────────── */
+  .btn {
+    font-size: 0.58rem;
+    font-weight: 700;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    padding: 7px 12px;
+    border: 1px solid var(--border);
+    background: transparent;
+    color: var(--text-muted);
+    cursor: pointer;
+    transition: all 0.15s;
+    white-space: nowrap;
+    text-decoration: none;
+    display: inline-flex;
+    align-items: center;
+    gap: 5px;
+    font-family: inherit;
+  }
+
+  .btn:hover {
+    background: rgba(201,168,76,0.08);
+    border-color: var(--gold-dim);
+    color: var(--gold);
+  }
+
+  .btn-gold {
+    background: rgba(201,168,76,0.1);
+    border-color: var(--gold-dim);
+    color: var(--gold);
+  }
+
+  .btn-gold:hover {
+    background: rgba(201,168,76,0.2);
+    border-color: var(--gold);
+    color: var(--gold-glow);
+    box-shadow: 0 0 12px rgba(201,168,76,0.15);
+  }
+
+  .btn-danger {
+    border-color: rgba(231,76,60,0.3);
+    color: var(--red);
+  }
+
+  .btn-danger:hover {
+    background: rgba(231,76,60,0.1);
+    border-color: var(--red);
+  }
+
+  .btn-big {
+    font-size: 0.65rem;
+    padding: 12px 20px;
+    width: 100%;
+    justify-content: center;
+    letter-spacing: 0.2em;
+  }
+
+  /* ─── TWO-COLUMN LAYOUT ────────────────────────────────── */
+  .two-col {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 16px;
+  }
+
+  /* ─── ACTIVITY FEED ────────────────────────────────────── */
+  .feed-card {
+    background: var(--bg-card);
+    border: 1px solid var(--border);
+    padding: 0;
+    max-height: 340px;
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+  }
+
+  .feed-header {
+    padding: 14px 18px;
+    border-bottom: 1px solid var(--border);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background: var(--bg-card2);
+  }
+
+  .feed-title {
+    font-size: 0.6rem;
+    font-weight: 700;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: var(--text-muted);
+  }
+
+  .feed-live {
+    font-size: 0.55rem;
+    color: var(--green);
+    letter-spacing: 0.12em;
+    display: flex;
+    align-items: center;
+    gap: 5px;
+  }
+
+  .feed-scroll {
+    overflow-y: auto;
+    flex: 1;
+  }
+
+  .feed-item {
+    padding: 12px 18px;
+    border-bottom: 1px solid rgba(255,255,255,0.03);
+    display: flex;
+    gap: 12px;
+    align-items: flex-start;
+    transition: background 0.15s;
+  }
+
+  .feed-item:hover { background: rgba(255,255,255,0.02); }
+
+  .feed-icon {
+    font-size: 0.9rem;
+    flex-shrink: 0;
+    margin-top: 1px;
+  }
+
+  .feed-text {
+    font-size: 0.68rem;
+    color: var(--text);
+    line-height: 1.4;
+  }
+
+  .feed-time {
+    font-size: 0.55rem;
+    color: var(--text-dim);
+    margin-top: 2px;
+    letter-spacing: 0.06em;
+  }
+
+  /* ─── SYSTEM HEALTH ────────────────────────────────────── */
+  .health-card {
+    background: var(--bg-card);
+    border: 1px solid var(--border);
+    overflow: hidden;
+  }
+
+  .health-table {
+    width: 100%;
+    border-collapse: collapse;
+  }
+
+  .health-table th {
+    font-size: 0.55rem;
+    font-weight: 700;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    color: var(--text-dim);
+    padding: 10px 16px;
+    text-align: left;
+    background: var(--bg-card2);
+    border-bottom: 1px solid var(--border);
+  }
+
+  .health-table td {
+    padding: 11px 16px;
+    font-size: 0.68rem;
+    border-bottom: 1px solid rgba(255,255,255,0.03);
+    vertical-align: middle;
+  }
+
+  .health-table tr:last-child td { border-bottom: none; }
+  .health-table tr:hover td { background: rgba(255,255,255,0.02); }
+
+  .health-component { color: var(--text); font-weight: 600; letter-spacing: 0.04em; }
+  .health-status { display: flex; align-items: center; gap: 7px; }
+  .health-status-text { font-size: 0.65rem; }
+  .st-active { color: var(--green); }
+  .st-quota { color: var(--yellow); }
+  .st-down { color: var(--red); }
+  .health-time { color: var(--text-dim); font-size: 0.62rem; font-variant-numeric: tabular-nums; }
+
+  /* ─── PARTNER TABLE ────────────────────────────────────── */
+  .partner-card {
+    background: var(--bg-card);
+    border: 1px solid var(--border);
+    overflow: hidden;
+    margin-bottom: 12px;
+  }
+
+  .partner-table {
+    width: 100%;
+    border-collapse: collapse;
+  }
+
+  .partner-table th {
+    font-size: 0.52rem;
+    font-weight: 700;
+    letter-spacing: 0.16em;
+    text-transform: uppercase;
+    color: var(--text-dim);
+    padding: 10px 14px;
+    text-align: left;
+    background: var(--bg-card2);
+    border-bottom: 1px solid var(--border);
+    white-space: nowrap;
+  }
+
+  .partner-table td {
+    padding: 14px;
+    font-size: 0.68rem;
+    color: var(--text-muted);
+    text-align: center;
+    font-style: italic;
+    border-bottom: 1px solid rgba(255,255,255,0.03);
+  }
+
+  .partner-cta {
+    background: linear-gradient(135deg, #111111, #161206);
+    border: 1px solid var(--gold-dim);
+    padding: 24px 28px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 20px;
+    flex-wrap: wrap;
+  }
+
+  .partner-cta-text .cta-label {
+    font-size: 0.6rem;
+    font-weight: 700;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: var(--gold);
+    margin-bottom: 6px;
+  }
+
+  .partner-cta-text .cta-pitch {
+    font-size: 0.75rem;
+    color: var(--text-muted);
+    line-height: 1.5;
+  }
+
+  .partner-cta-text .cta-pitch strong { color: var(--gold); }
+
+  /* ─── QUICK ACTIONS ────────────────────────────────────── */
+  .qa-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 12px;
+  }
+
+  .qa-card {
+    background: var(--bg-card);
+    border: 1px solid var(--border);
+    padding: 20px;
+    transition: border-color 0.2s;
+  }
+
+  .qa-card:hover { border-color: var(--gold-dim); }
+
+  .qa-label {
+    font-size: 0.58rem;
+    font-weight: 700;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: var(--gold);
+    margin-bottom: 12px;
+  }
+
+  .market-form {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+  }
+
+  .market-input {
+    background: var(--bg-card2);
+    border: 1px solid var(--border);
+    color: var(--text);
+    padding: 9px 12px;
+    font-size: 0.72rem;
+    font-family: inherit;
+    width: 100%;
+    transition: border-color 0.2s;
+    outline: none;
+  }
+
+  .market-input::placeholder { color: var(--text-dim); }
+  .market-input:focus { border-color: var(--gold-dim); }
+
+  /* ─── INTELLIGENCE FEED ────────────────────────────────── */
+  .intel-card {
+    background: var(--bg-card);
+    border: 1px solid var(--border);
+    border-left: 3px solid var(--gold-dim);
+    padding: 24px;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .intel-card::before {
+    content: 'ORACLE';
+    position: absolute;
+    top: 20px; right: 20px;
+    font-size: 0.5rem;
+    font-weight: 800;
+    letter-spacing: 0.3em;
+    color: var(--gold-dim);
+    opacity: 0.5;
+  }
+
+  .intel-header {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    margin-bottom: 16px;
+  }
+
+  .intel-dot {
+    width: 8px; height: 8px;
+    border-radius: 50%;
+    background: var(--gold);
+    box-shadow: 0 0 8px var(--gold);
+    animation: pulse 2s infinite;
+  }
+
+  @keyframes pulse {
+    0%, 100% { opacity: 1; }
+    50% { opacity: 0.4; }
+  }
+
+  .intel-label {
+    font-size: 0.6rem;
+    font-weight: 700;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: var(--gold);
+  }
+
+  .intel-timestamp {
+    font-size: 0.55rem;
+    color: var(--text-dim);
+    margin-left: auto;
+    letter-spacing: 0.06em;
+  }
+
+  .intel-text {
+    font-size: 0.78rem;
+    color: var(--text-muted);
+    line-height: 1.8;
+  }
+
+  .intel-text .highlight { color: var(--gold); font-weight: 600; }
+  .intel-text .attack { color: var(--red); font-weight: 600; }
+  .intel-text .win { color: var(--green); font-weight: 600; }
+
+  /* ─── REFRESH BAR ──────────────────────────────────────── */
+  .refresh-bar {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 10px 0;
+    margin-bottom: 24px;
+    border-bottom: 1px solid var(--border);
+  }
+
+  .last-updated {
+    font-size: 0.6rem;
+    color: var(--text-dim);
+    letter-spacing: 0.08em;
+  }
+
+  .last-updated span { color: var(--text-muted); }
+
+  /* ─── DIVIDER ──────────────────────────────────────────── */
+  .divider {
+    height: 1px;
+    background: linear-gradient(90deg, transparent, var(--border), transparent);
+    margin: 4px 0;
+  }
+
+  /* ─── MOBILE ───────────────────────────────────────────── */
+  @media (max-width: 900px) {
+    .metrics-grid { grid-template-columns: repeat(2, 1fr); }
+    .business-grid { grid-template-columns: 1fr; }
+    .two-col { grid-template-columns: 1fr; }
+    .qa-grid { grid-template-columns: 1fr; }
+    .top-strip { flex-direction: column; align-items: flex-start; }
+    .metric-value { font-size: 1.8rem; }
+  }
+
+  @media (max-width: 500px) {
+    .metrics-grid { grid-template-columns: 1fr 1fr; }
+    .biz-metrics { grid-template-columns: 1fr 1fr; }
+    .main { padding: 16px 14px 50px; }
+    .metric-value { font-size: 1.5rem; }
+  }
+
+  /* ─── SCAN LINE EFFECT ─────────────────────────────────── */
+  .scan-overlay {
+    position: fixed;
+    top: 0; left: 0; right: 0; bottom: 0;
+    background: repeating-linear-gradient(
+      0deg,
+      transparent,
+      transparent 2px,
+      rgba(0,0,0,0.03) 2px,
+      rgba(0,0,0,0.03) 4px
+    );
+    pointer-events: none;
+    z-index: 999;
+  }
+
+  /* ─── CORNER ACCENTS ───────────────────────────────────── */
+  .corner-card {
+    position: relative;
+  }
+  .corner-card::before,
+  .corner-card::after {
+    content: '';
+    position: absolute;
+    width: 8px; height: 8px;
+    border-color: var(--gold-dim);
+    border-style: solid;
+    pointer-events: none;
+  }
+  .corner-card::before { top: -1px; left: -1px; border-width: 2px 0 0 2px; }
+  .corner-card::after  { top: -1px; right: -1px; border-width: 2px 2px 0 0; }
+
+  /* ─── AI AGENT DIVISIONS ───────────────────────────────── */
+  .divisions-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 12px;
+    margin-bottom: 24px;
+  }
+
+  @media (max-width: 900px) { .divisions-grid { grid-template-columns: repeat(2, 1fr); } }
+  @media (max-width: 500px) { .divisions-grid { grid-template-columns: 1fr; } }
+
+  .division-card {
+    background: var(--bg-card);
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    padding: 14px;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .division-card::before {
+    content: '';
+    position: absolute;
+    top: 0; left: 0; right: 0;
+    height: 2px;
+  }
+
+  .div-posse::before   { background: linear-gradient(90deg, #e74c3c, #c0392b); }
+  .div-frontier::before{ background: linear-gradient(90deg, #3498db, #2980b9); }
+  .div-iron::before    { background: linear-gradient(90deg, #9b59b6, #8e44ad); }
+  .div-wire::before    { background: linear-gradient(90deg, #1abc9c, #16a085); }
+  .div-ops::before     { background: linear-gradient(90deg, #f39c12, #d68910); }
+  .div-brand::before   { background: linear-gradient(90deg, #e91e63, #c2185b); }
+  .div-agent::before   { background: linear-gradient(90deg, var(--gold), var(--gold-glow)); }
+
+  .division-name {
+    font-size: 0.6rem;
+    font-weight: 800;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    margin-bottom: 2px;
+  }
+
+  .div-posse .division-name   { color: #e74c3c; }
+  .div-frontier .division-name{ color: #3498db; }
+  .div-iron .division-name    { color: #9b59b6; }
+  .div-wire .division-name    { color: #1abc9c; }
+  .div-ops .division-name     { color: #f39c12; }
+  .div-brand .division-name   { color: #e91e63; }
+  .div-agent .division-name   { color: var(--gold); }
+
+  .division-role {
+    font-size: 0.6rem;
+    color: var(--text-dim);
+    margin-bottom: 10px;
+    letter-spacing: 0.04em;
+  }
+
+  .division-current {
+    font-size: 0.68rem;
+    color: var(--text-muted);
+    background: var(--bg-card2);
+    border: 1px solid var(--border);
+    border-radius: 4px;
+    padding: 7px 9px;
+    line-height: 1.5;
+    margin-bottom: 10px;
+    min-height: 42px;
+  }
+
+  .division-current .now-label {
+    font-size: 0.52rem;
+    font-weight: 700;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    color: var(--text-dim);
+    display: block;
+    margin-bottom: 3px;
+  }
+
+  .division-workflows {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 4px;
+  }
+
+  .wf-tag {
+    font-size: 0.5rem;
+    padding: 2px 6px;
+    border-radius: 3px;
+    background: var(--bg-card2);
+    border: 1px solid var(--border);
+    color: var(--text-dim);
+    letter-spacing: 0.04em;
+    white-space: nowrap;
+  }
+
+  .wf-tag.active {
+    border-color: #1a3a1a;
+    color: var(--green);
+    background: rgba(46,204,113,0.06);
+  }
+
+  .division-stats {
+    display: flex;
+    gap: 12px;
+    margin-bottom: 10px;
+  }
+
+  .div-stat {
+    font-size: 0.58rem;
+    color: var(--text-dim);
+  }
+
+  .div-stat strong {
+    color: var(--text-muted);
+    font-weight: 700;
+  }
+
+  /* ─── NO-JS FALLBACK ───────────────────────────────────── */
+  .hidden { display: none; }
+</style>
+</head>
+<body>
+
+<div class="scan-overlay"></div>
+
+<!-- ═══════════════════════════════════════════════════════
+     TOP GOLD BAR
+════════════════════════════════════════════════════════ -->
+<div class="gold-bar"></div>
+
+<!-- ═══════════════════════════════════════════════════════
+     TOP STRIP
+════════════════════════════════════════════════════════ -->
+<div class="top-strip">
+  <div class="top-strip-left">
+    <div class="brand">BOSS Systems <span>— Command Center</span></div>
+    <div class="clock-block">
+      <div class="time" id="live-time">--:-- --</div>
+      <div id="live-date">Loading...</div>
+    </div>
+  </div>
+  <div class="status-strip">
+    <div class="status-pill"><span class="dot dot-yellow"></span> n8n&nbsp;<strong>Recovering</strong></div>
+    <div class="status-pill"><span class="dot dot-green"></span> Retell&nbsp;<strong>Active</strong></div>
+    <div class="status-pill"><span class="dot dot-green"></span> Google Places&nbsp;<strong>Active</strong></div>
+    <div class="status-pill"><span class="dot dot-green"></span> ORACLE&nbsp;<strong>Running</strong></div>
+  </div>
+</div>
+
+<!-- ═══════════════════════════════════════════════════════
+     MAIN CONTENT
+════════════════════════════════════════════════════════ -->
+<div class="main">
+
+  <!-- REFRESH BAR -->
+  <div class="refresh-bar">
+    <div class="last-updated">Last updated: <span id="last-updated-text">—</span></div>
+    <button class="btn btn-gold" onclick="refreshData()" style="font-size:0.6rem;">
+      ↻ &nbsp;REFRESH
+    </button>
+  </div>
+
+  <!-- ─────────────────────────────────────────────────────
+       SECTION 1 — EMPIRE OVERVIEW
+  ────────────────────────────────────────────────────── -->
+  <div class="section-header">
+    <div class="section-title">Empire Overview</div>
+    <div class="section-line"></div>
+    <div class="section-tag">Live Metrics</div>
+  </div>
+
+  <div class="metrics-grid">
+    <div class="metric-card corner-card">
+      <div class="metric-label">Total Businesses</div>
+      <div class="metric-value">2</div>
+      <div class="metric-sub">BOSS Systems · BOSS Junk Removal</div>
+    </div>
+    <div class="metric-card corner-card">
+      <div class="metric-label">Active Agents</div>
+      <div class="metric-value" id="m-agents">8</div>
+      <div class="metric-sub">Retell AI voice agents deployed</div>
+    </div>
+    <div class="metric-card corner-card">
+      <div class="metric-label">Calls Handled Today</div>
+      <div class="metric-value" id="m-calls">0</div>
+      <div class="metric-sub" id="m-calls-week">0 this week</div>
+    </div>
+    <div class="metric-card corner-card">
+      <div class="metric-label">Revenue This Week</div>
+      <div class="metric-value large" id="m-revenue">$0</div>
+      <div class="metric-sub" id="m-revenue-month">$0 this month</div>
+    </div>
+  </div>
+
+  <!-- ─────────────────────────────────────────────────────
+       SECTION 2 — BUSINESS CARDS
+  ────────────────────────────────────────────────────── -->
+  <div class="section-header">
+    <div class="section-title">Business Portfolio</div>
+    <div class="section-line"></div>
+    <div class="section-tag">4 Entities</div>
+  </div>
+
+  <div class="business-grid">
+
+    <!-- BOSS SYSTEMS -->
+    <div class="biz-card">
+      <div class="biz-header">
+        <div>
+          <div class="biz-name">BOSS Systems</div>
+          <div class="biz-sub">AI Receptionist Sales — East Texas + Small Towns</div>
+        </div>
+        <div class="status-badge badge-live">● LIVE</div>
+      </div>
+      <div class="biz-metrics">
+        <div class="biz-metric">
+          <div class="biz-metric-label">Pipeline Leads</div>
+          <div class="biz-metric-val accent" id="bs-leads">0</div>
+        </div>
+        <div class="biz-metric">
+          <div class="biz-metric-label">Calls Made Today</div>
+          <div class="biz-metric-val" id="bs-calls">0</div>
+        </div>
+        <div class="biz-metric">
+          <div class="biz-metric-label">Revenue / Month</div>
+          <div class="biz-metric-val accent" id="bs-revenue">$0</div>
+        </div>
+        <div class="biz-metric">
+          <div class="biz-metric-label">Price Point</div>
+          <div class="biz-metric-val">$60<span style="font-size:0.65rem;color:var(--text-dim)">/mo</span></div>
+        </div>
+      </div>
+      <div class="agent-tag"><span>AGENT ›</span> agent_6c19e0315cf3dfd1ffa3db63a2</div>
+      <div class="biz-actions">
+        <button class="btn" onclick="alert('Pipeline view — connect Retell')">View Pipeline</button>
+        <button class="btn" onclick="window.open('https://app.retellai.com','_blank')">Check Calls</button>
+        <button class="btn btn-gold" onclick="fireCaller()">⚡ Fire Auto-Caller</button>
+      </div>
+    </div>
+
+    <!-- BOSS JUNK REMOVAL -->
+    <div class="biz-card">
+      <div class="biz-header">
+        <div>
+          <div class="biz-name">BOSS Junk Removal</div>
+          <div class="biz-sub">Laurel, MS — Needs Phone Number Assigned</div>
+        </div>
+        <div class="status-badge badge-building">⬡ BUILDING</div>
+      </div>
+      <div class="biz-metrics">
+        <div class="biz-metric">
+          <div class="biz-metric-label">Market Score</div>
+          <div class="biz-metric-val warn">5 <span style="font-size:0.7rem;color:var(--text-dim)">/ 10</span></div>
+        </div>
+        <div class="biz-metric">
+          <div class="biz-metric-label">Jobs Booked</div>
+          <div class="biz-metric-val" id="jr-jobs">0</div>
+        </div>
+        <div class="biz-metric">
+          <div class="biz-metric-label">Revenue</div>
+          <div class="biz-metric-val accent" id="jr-revenue">$0</div>
+        </div>
+        <div class="biz-metric">
+          <div class="biz-metric-label">Top Competitor</div>
+          <div class="biz-metric-val attack" style="font-size:0.72rem;">B Clean LLC</div>
+        </div>
+      </div>
+      <div style="font-size:0.6rem; color:var(--red); padding: 5px 10px; background: rgba(231,76,60,0.06); border: 1px solid rgba(231,76,60,0.15); margin-bottom: 10px; letter-spacing: 0.08em;">
+        ⚠ B Clean LLC — 3.2 ★ · 22 reviews — ATTACK OPPORTUNITY
+      </div>
+      <div class="agent-tag"><span>AGENT ›</span> agent_59905e10f9d2ab2b6a77f66a4a</div>
+      <div class="biz-actions">
+        <button class="btn" onclick="testAgent('agent_59905e10f9d2ab2b6a77f66a4a')">Test Agent</button>
+        <button class="btn btn-gold" onclick="fireLeadHunt()">⚡ Fire Lead Hunt</button>
+        <button class="btn" onclick="alert('Jobs view — coming soon')">View Jobs</button>
+      </div>
+    </div>
+
+    <!-- BUILT BY BOSS -->
+    <div class="biz-card">
+      <div class="biz-header">
+        <div>
+          <div class="biz-name">Built by BOSS</div>
+          <div class="biz-sub">Prebuilt Autonomous Businesses — $997 to $3,497</div>
+        </div>
+        <div class="status-badge badge-live">● LIVE</div>
+      </div>
+      <div class="biz-metrics">
+        <div class="biz-metric">
+          <div class="biz-metric-label">Clients</div>
+          <div class="biz-metric-val" id="bbb-clients">0</div>
+        </div>
+        <div class="biz-metric">
+          <div class="biz-metric-label">Monthly Recurring</div>
+          <div class="biz-metric-val accent" id="bbb-mrr">$0</div>
+        </div>
+        <div class="biz-metric">
+          <div class="biz-metric-label">Price Floor</div>
+          <div class="biz-metric-val">$997</div>
+        </div>
+        <div class="biz-metric">
+          <div class="biz-metric-label">Price Ceiling</div>
+          <div class="biz-metric-val accent">$3,497</div>
+        </div>
+      </div>
+      <div class="agent-tag"><span>AGENT ›</span> agent_10c6519858eebc75047ee7ab8f</div>
+      <div class="biz-actions">
+        <button class="btn" onclick="alert('Client view — coming soon')">View Clients</button>
+        <button class="btn" onclick="window.open('https://app.retellai.com','_blank')">Check Sales Calls</button>
+        <button class="btn btn-gold" onclick="buildNewBusiness()">⚡ Build New Business</button>
+      </div>
+    </div>
+
+    <!-- SUMMER PARTNERS -->
+    <div class="biz-card">
+      <div class="biz-header">
+        <div>
+          <div class="biz-name">Summer Partners</div>
+          <div class="biz-sub">Revenue Share Network — Summer 2026</div>
+        </div>
+        <div class="status-badge badge-open">◈ OPEN</div>
+      </div>
+      <div class="biz-metrics">
+        <div class="biz-metric">
+          <div class="biz-metric-label">Active Partners</div>
+          <div class="biz-metric-val" id="sp-partners">0</div>
+        </div>
+        <div class="biz-metric">
+          <div class="biz-metric-label">Partner Revenue</div>
+          <div class="biz-metric-val" id="sp-revenue">$0</div>
+        </div>
+        <div class="biz-metric">
+          <div class="biz-metric-label">Boston's Cut (15%)</div>
+          <div class="biz-metric-val accent" id="sp-cut">$0</div>
+        </div>
+        <div class="biz-metric">
+          <div class="biz-metric-label">Model</div>
+          <div class="biz-metric-val" style="font-size:0.75rem; color: var(--text-muted);">Rev Share</div>
+        </div>
+      </div>
+      <div style="font-size:0.65rem; color:var(--text-dim); padding: 8px 12px; background: var(--bg-card2); border: 1px solid var(--border); margin-bottom: 14px; line-height:1.6;">
+        Build free · They do the work · You take <strong style="color:var(--gold)">15%</strong>
+      </div>
+      <div class="biz-actions">
+        <button class="btn btn-gold" onclick="addPartner()">+ Add Partner</button>
+        <button class="btn" onclick="alert('Revenue view — coming soon')">View Revenue</button>
+        <button class="btn" onclick="sendPartnerReport()">Send Report</button>
+      </div>
+    </div>
+
+  </div>
+
+  <!-- ─────────────────────────────────────────────────────
+       SECTION 3 — ACTIVITY + SYSTEM HEALTH
+  ────────────────────────────────────────────────────── -->
+  <div class="section-header">
+    <div class="section-title">Activity + System Status</div>
+    <div class="section-line"></div>
+    <div class="section-tag">Live</div>
+  </div>
+
+  <div class="two-col">
+
+    <!-- ACTIVITY FEED -->
+    <div class="feed-card">
+      <div class="feed-header">
+        <div class="feed-title">Recent Activity</div>
+        <div class="feed-live"><span class="dot dot-green"></span> Streaming</div>
+      </div>
+      <div class="feed-scroll" id="activity-feed">
+        <div class="feed-item">
+          <div class="feed-icon">🔥</div>
+          <div>
+            <div class="feed-text">Job booked: Junk Removal — Laurel MS — $275</div>
+            <div class="feed-time">Today · Pending confirmation</div>
+          </div>
+        </div>
+        <div class="feed-item">
+          <div class="feed-icon">📞</div>
+          <div>
+            <div class="feed-text">Call handled: BOSS Systems outbound — 2m 18s</div>
+            <div class="feed-time">Today · BOSS Outbound Caller</div>
+          </div>
+        </div>
+        <div class="feed-item">
+          <div class="feed-icon">⚠️</div>
+          <div>
+            <div class="feed-text">n8n quota hit — recovering (resets 8:30pm CT)</div>
+            <div class="feed-time">Today · Auto-recovery in progress</div>
+          </div>
+        </div>
+        <div class="feed-item">
+          <div class="feed-icon">✅</div>
+          <div>
+            <div class="feed-text">Retell agent deployed: BOSS Junk Removal — Laurel MS</div>
+            <div class="feed-time">Today · agent_59905e10f9d2ab2b6a77f66a4a</div>
+          </div>
+        </div>
+        <div class="feed-item">
+          <div class="feed-icon">💰</div>
+          <div>
+            <div class="feed-text">Built by BOSS sale: [pending first client]</div>
+            <div class="feed-time">Awaiting · Pipeline open</div>
+          </div>
+        </div>
+        <div class="feed-item">
+          <div class="feed-icon">🧠</div>
+          <div>
+            <div class="feed-text">ORACLE intel updated — Laurel MS market analysis complete</div>
+            <div class="feed-time">Today · Daily 9am CT run</div>
+          </div>
+        </div>
+        <div class="feed-item">
+          <div class="feed-icon">📡</div>
+          <div>
+            <div class="feed-text">Morning text sent — Daily check-in delivered</div>
+            <div class="feed-time">Today · 7:00am CT</div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- SYSTEM HEALTH -->
+    <div class="health-card">
+      <table class="health-table">
+        <thead>
+          <tr>
+            <th>Component</th>
+            <th>Status</th>
+            <th>Last Active</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td class="health-component">Retell AI</td>
+            <td><div class="health-status"><span class="dot dot-green"></span><span class="health-status-text st-active">Active</span></div></td>
+            <td class="health-time">Now</td>
+          </tr>
+          <tr>
+            <td class="health-component">n8n Workflows</td>
+            <td><div class="health-status"><span class="dot dot-yellow"></span><span class="health-status-text st-quota">Quota</span></div></td>
+            <td class="health-time">Resets ~8:30pm CT</td>
+          </tr>
+          <tr>
+            <td class="health-component">Google Places API</td>
+            <td><div class="health-status"><span class="dot dot-green"></span><span class="health-status-text st-active">Active</span></div></td>
+            <td class="health-time">Now</td>
+          </tr>
+          <tr>
+            <td class="health-component">BOSS Junk Agent</td>
+            <td><div class="health-status"><span class="dot dot-green"></span><span class="health-status-text st-active">Live</span></div></td>
+            <td class="health-time">Awaiting phone #</td>
+          </tr>
+          <tr>
+            <td class="health-component">ORACLE</td>
+            <td><div class="health-status"><span class="dot dot-green"></span><span class="health-status-text st-active">Running</span></div></td>
+            <td class="health-time">Daily 9am CT</td>
+          </tr>
+          <tr>
+            <td class="health-component">Morning Text</td>
+            <td><div class="health-status"><span class="dot dot-green"></span><span class="health-status-text st-active">Running</span></div></td>
+            <td class="health-time">Daily 7am CT</td>
+          </tr>
+          <tr>
+            <td class="health-component">Watchdog</td>
+            <td><div class="health-status"><span class="dot dot-green"></span><span class="health-status-text st-active">Running</span></div></td>
+            <td class="health-time">Every 2hrs</td>
+          </tr>
+          <tr>
+            <td class="health-component">Post-Call Handler</td>
+            <td><div class="health-status"><span class="dot dot-green"></span><span class="health-status-text st-active">Active</span></div></td>
+            <td class="health-time">Webhook ready</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+  </div>
+
+  <!-- ─────────────────────────────────────────────────────
+       SECTION 3.5 — AI AGENT DIVISIONS
+  ────────────────────────────────────────────────────── -->
+  <div class="section-header">
+    <div class="section-title">AI Agent Divisions</div>
+    <div class="section-line"></div>
+    <div class="section-tag" id="agents-status-tag">114 Workflows</div>
+  </div>
+
+  <div class="divisions-grid">
+
+    <!-- THE POSSE -->
+    <div class="division-card div-posse corner-card">
+      <div class="division-name">The Posse</div>
+      <div class="division-role">Outbound Sales</div>
+      <div class="division-current">
+        <span class="now-label">Currently</span>
+        <span id="posse-current">Auto-Caller dialing leads daily 10am CT · Follow-ups running · Mystery Caller monitoring competitors</span>
+      </div>
+      <div class="division-stats">
+        <div class="div-stat"><strong id="posse-calls">—</strong> calls today</div>
+        <div class="div-stat"><strong id="posse-leads">—</strong> hot leads</div>
+      </div>
+      <div class="division-workflows">
+        <span class="wf-tag active">Auto Caller</span>
+        <span class="wf-tag active">Mystery Caller</span>
+        <span class="wf-tag active">Hot Lead Handler</span>
+        <span class="wf-tag active">Close Follow-Up</span>
+        <span class="wf-tag active">Weekly Newsletter</span>
+        <span class="wf-tag active">Hot Lead Nurture</span>
+        <span class="wf-tag active">Follow-Up Email</span>
+      </div>
+    </div>
+
+    <!-- THE FRONTIER -->
+    <div class="division-card div-frontier corner-card">
+      <div class="division-name">The Frontier</div>
+      <div class="division-role">Lead Generation</div>
+      <div class="division-current">
+        <span class="now-label">Currently</span>
+        <span id="frontier-current">Review Mining scanning Google Places · TDLR scraping TX contractor licenses · Superniche Targeter scoring prospects at 7:30am CT</span>
+      </div>
+      <div class="division-stats">
+        <div class="div-stat"><strong id="frontier-leads">—</strong> leads found today</div>
+      </div>
+      <div class="division-workflows">
+        <span class="wf-tag active">Review Mining</span>
+        <span class="wf-tag active">Google Places Hunter</span>
+        <span class="wf-tag active">TDLR TX Leads</span>
+        <span class="wf-tag active">Remote Lead Seeder</span>
+        <span class="wf-tag active">Social Media</span>
+        <span class="wf-tag active">Lead Intelligence</span>
+        <span class="wf-tag active">Missed Call Calc</span>
+        <span class="wf-tag active">Job Monitor</span>
+        <span class="wf-tag active">Agency Outreach</span>
+      </div>
+    </div>
+
+    <!-- THE IRON -->
+    <div class="division-card div-iron corner-card">
+      <div class="division-name">The Iron</div>
+      <div class="division-role">Post-Call Intelligence</div>
+      <div class="division-current">
+        <span class="now-label">Currently</span>
+        <span id="iron-current">Analyzing every call transcript · Devil's Advocate scanning for weaknesses · Watchdog running every 2hrs · Sales Trainer AI on standby</span>
+      </div>
+      <div class="division-stats">
+        <div class="div-stat"><strong id="iron-calls">—</strong> calls analyzed</div>
+      </div>
+      <div class="division-workflows">
+        <span class="wf-tag active">Post-Call Handler</span>
+        <span class="wf-tag active">Sales Trainer AI</span>
+        <span class="wf-tag active">Devil's Advocate</span>
+        <span class="wf-tag active">Watchdog (2hr)</span>
+        <span class="wf-tag active">Scenario Tests</span>
+        <span class="wf-tag active">SMS Sender</span>
+        <span class="wf-tag active">Pipeline Append</span>
+        <span class="wf-tag active">Reply Handler</span>
+        <span class="wf-tag active">DNC Handler</span>
+      </div>
+    </div>
+
+    <!-- THE WIRE -->
+    <div class="division-card div-wire corner-card">
+      <div class="division-name">The Wire</div>
+      <div class="division-role">Command &amp; Control</div>
+      <div class="division-current">
+        <span class="now-label">Currently</span>
+        <span id="wire-current">ORACLE running daily strategy at 9am CT · CEO Morning Brief delivered at 7am · Daily Task List generated · Health Monitor watching systems</span>
+      </div>
+      <div class="division-workflows">
+        <span class="wf-tag active">ORACLE</span>
+        <span class="wf-tag active">CEO Morning Brief</span>
+        <span class="wf-tag active">Daily Task List</span>
+        <span class="wf-tag active">Health Monitor</span>
+        <span class="wf-tag active">Morning Text</span>
+        <span class="wf-tag active">Dashboard Agent</span>
+        <span class="wf-tag active">Innovation Monitor</span>
+        <span class="wf-tag active">Sunday Optimizer</span>
+        <span class="wf-tag active">Usage Tracker</span>
+      </div>
+    </div>
+
+    <!-- FIELD OPS + THE BRAND -->
+    <div class="division-card div-ops corner-card">
+      <div class="division-name">Field Ops · The Brand</div>
+      <div class="division-role">Demo Delivery · Client Retention</div>
+      <div class="division-current">
+        <span class="now-label">Currently</span>
+        <span id="ops-current">Auto Demo Builder on standby · Route Planner ready · Review Requests + Monthly Invoices automated · Client Retention monitoring</span>
+      </div>
+      <div class="division-workflows">
+        <span class="wf-tag active">Auto Demo Builder</span>
+        <span class="wf-tag active">Route Planner</span>
+        <span class="wf-tag active">Demo Switcher</span>
+        <span class="wf-tag active">Review Request</span>
+        <span class="wf-tag active">Monthly Invoice</span>
+        <span class="wf-tag active">Client Retention</span>
+        <span class="wf-tag active">Client Referral</span>
+        <span class="wf-tag active">Reseller Network</span>
+      </div>
+    </div>
+
+    <!-- BOSS AGENT -->
+    <div class="division-card div-agent corner-card">
+      <div class="division-name">Boss Agent</div>
+      <div class="division-role">Autonomous Decision System</div>
+      <div class="division-current">
+        <span class="now-label">Currently</span>
+        <span id="agent-current">Daemon ONLINE — listening for tasks on Mac · Nightly Patrol fires midnight CT · $50 autonomy threshold active</span>
+      </div>
+      <div class="division-stats">
+        <div class="div-stat"><strong id="agent-tasks">—</strong> tasks run</div>
+        <div class="div-stat" id="agent-engine-note" style="color:var(--yellow)">n8n paused → June 1</div>
+      </div>
+      <div class="division-workflows">
+        <span class="wf-tag active">Task Dispatcher</span>
+        <span class="wf-tag active">Nightly Patrol</span>
+        <span class="wf-tag active">Claude Daemon</span>
+        <span class="wf-tag active">Boston Agent Voice</span>
+      </div>
+    </div>
+
+  </div>
+
+  <!-- ─────────────────────────────────────────────────────
+       SECTION 4 — PARTNER PROGRAM
+  ────────────────────────────────────────────────────── -->
+  <div class="section-header">
+    <div class="section-title">Partner Program</div>
+    <div class="section-line"></div>
+    <div class="section-tag">Summer 2026</div>
+  </div>
+
+  <div class="partner-card">
+    <table class="partner-table">
+      <thead>
+        <tr>
+          <th>Partner Name</th>
+          <th>City</th>
+          <th>Business Type</th>
+          <th>Weekly Revenue</th>
+          <th>Boston's Cut (15%)</th>
+          <th>Status</th>
+          <th>Last Report</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td colspan="7">No partners yet — recruit your first partner</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+  <div class="partner-cta">
+    <div class="partner-cta-text">
+      <div class="cta-label">Recruit a Partner</div>
+      <div class="cta-pitch">
+        Build their business for <strong>free</strong>.
+        They do the jobs. You take <strong>15%</strong>.
+        <br>Summer 2026 — Tyler TX · East Texas · Beyond.
+      </div>
+    </div>
+    <button class="btn btn-gold" style="font-size:0.65rem; padding: 12px 24px; letter-spacing: 0.2em;" onclick="addPartner()">
+      + RECRUIT PARTNER
+    </button>
+  </div>
+
+  <!-- ─────────────────────────────────────────────────────
+       SECTION 5 — QUICK ACTIONS
+  ────────────────────────────────────────────────────── -->
+  <div class="section-header">
+    <div class="section-title">Quick Actions</div>
+    <div class="section-line"></div>
+    <div class="section-tag">Control</div>
+  </div>
+
+  <div class="qa-grid">
+
+    <!-- Market Check -->
+    <div class="qa-card">
+      <div class="qa-label">Run Market Check</div>
+      <div class="market-form">
+        <input type="text" class="market-input" id="market-biz-type" placeholder="Business type (e.g. junk removal)">
+        <input type="text" class="market-input" id="market-city" placeholder="City, State (e.g. Laurel, MS)">
+        <button class="btn btn-gold btn-big" onclick="runMarketCheck()">⚡ RUN MARKET CHECK</button>
+      </div>
+    </div>
+
+    <!-- Build New Business -->
+    <div class="qa-card">
+      <div class="qa-label">Build New Business</div>
+      <p style="font-size:0.68rem; color:var(--text-muted); margin-bottom: 14px; line-height:1.6;">
+        Launch a new autonomous business. Clone the template, set the market, fire the agent.
+      </p>
+      <button class="btn btn-gold btn-big" onclick="buildNewBusiness()">⚡ BUILD NEW BUSINESS</button>
+    </div>
+
+    <!-- View Call History -->
+    <div class="qa-card">
+      <div class="qa-label">View Call History</div>
+      <p style="font-size:0.68rem; color:var(--text-muted); margin-bottom: 14px; line-height:1.6;">
+        Open the Retell AI dashboard to review all call recordings, transcripts, and analytics.
+      </p>
+      <a href="https://app.retellai.com" target="_blank" class="btn btn-big" style="display:flex; justify-content:center;">
+        ↗ OPEN RETELL DASHBOARD
+      </a>
+    </div>
+
+    <!-- Deploy Dashboard -->
+    <div class="qa-card">
+      <div class="qa-label">Deploy Dashboard</div>
+      <p style="font-size:0.68rem; color:var(--text-muted); margin-bottom: 14px; line-height:1.6;">
+        Push this dashboard to GitHub Pages so you can access it from anywhere on your phone.
+      </p>
+      <button class="btn btn-gold btn-big" onclick="deployDashboard()">⚡ DEPLOY TO GITHUB PAGES</button>
+    </div>
+
+  </div>
+
+  <!-- ─────────────────────────────────────────────────────
+       SECTION 6 — ORACLE INTELLIGENCE FEED
+  ────────────────────────────────────────────────────── -->
+  <div class="section-header">
+    <div class="section-title">Intelligence Feed</div>
+    <div class="section-line"></div>
+    <div class="section-tag">ORACLE Output</div>
+  </div>
+
+  <div class="intel-card corner-card">
+    <div class="intel-header">
+      <div class="intel-dot"></div>
+      <div class="intel-label">Latest Intel</div>
+      <div class="intel-timestamp" id="intel-timestamp">2026-05-20 · 9:00am CT</div>
+    </div>
+    <div class="intel-text" id="oracle-text">
+      <span class="highlight">JunkIt MS</span> is the dominant regional player with
+      <span class="highlight">187 reviews</span> across multiple MS markets.
+      <span class="attack">B Clean LLC</span> in Laurel MS has
+      <span class="attack">3.2 stars and 22 reviews</span> — they are the weakest link in that market.
+      <br><br>
+      Real estate agents in Laurel MS are the
+      <span class="win">fastest path to referral revenue</span>. One referral relationship
+      could deliver 2–4 jobs per month automatically.
+      <br><br>
+      <span class="highlight">Focus:</span> Get first 5 reviews before raising prices.
+      Target homeowners in the 39440–39443 zip corridor.
+      GBP optimization + 5-star push will move market score from 5 → 7+ within 30 days.
+    </div>
+  </div>
+
+</div><!-- end .main -->
+
+<!-- ═══════════════════════════════════════════════════════
+     FOOTER
+════════════════════════════════════════════════════════ -->
+<div style="border-top: 1px solid var(--border); padding: 14px 20px; display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 8px;">
+  <div style="font-size: 0.55rem; color: var(--text-dim); letter-spacing: 0.15em; text-transform: uppercase;">
+    BOSS Systems Command Center · Boston Rossall · Tyler, TX
+  </div>
+  <div style="font-size: 0.55rem; color: var(--text-dim); letter-spacing: 0.08em; font-variant-numeric: tabular-nums;" id="footer-time">
+    —
+  </div>
+</div>
+
+<!-- ═══════════════════════════════════════════════════════
+     JAVASCRIPT
+════════════════════════════════════════════════════════ -->
+<script>
+// ─── METRICS ─────────────────────────────────────────────
+// Update these values as data flows in from your systems.
+const METRICS = {
+  calls_today:          0,
+  calls_week:           0,
+  revenue_week:         0,
+  revenue_month:        0,
+  hot_leads:            0,
+  pipeline_total:       0,
+  jobs_booked_today:    0,
+  partner_revenue_month: 0,
+  boston_cut_month:     0,
+  active_partners:      0,
+  built_by_boss_clients: 0,
+  built_by_boss_mrr:    0,
+  boss_systems_leads:   0,
+  boss_systems_calls:   0,
+  boss_systems_revenue: 0,
+  junk_jobs:            0,
+  junk_revenue:         0,
+  last_updated:         "2026-05-20 8:30pm CT"
+};
+
+// ─── RENDER METRICS ──────────────────────────────────────
+function renderMetrics() {
+  const fmt = (n) => n.toLocaleString('en-US');
+  const money = (n) => '$' + fmt(n);
+
+  // Empire overview
+  document.getElementById('m-calls').textContent   = fmt(METRICS.calls_today);
+  document.getElementById('m-calls-week').textContent = fmt(METRICS.calls_week) + ' this week';
+  document.getElementById('m-revenue').textContent  = money(METRICS.revenue_week);
+  document.getElementById('m-revenue-month').textContent = money(METRICS.revenue_month) + ' this month';
+
+  // BOSS Systems
+  document.getElementById('bs-leads').textContent   = fmt(METRICS.boss_systems_leads);
+  document.getElementById('bs-calls').textContent   = fmt(METRICS.boss_systems_calls);
+  document.getElementById('bs-revenue').textContent = money(METRICS.boss_systems_revenue);
+
+  // BOSS Junk
+  document.getElementById('jr-jobs').textContent    = fmt(METRICS.junk_jobs);
+  document.getElementById('jr-revenue').textContent = money(METRICS.junk_revenue);
+
+  // Built by BOSS
+  document.getElementById('bbb-clients').textContent = fmt(METRICS.built_by_boss_clients);
+  document.getElementById('bbb-mrr').textContent     = money(METRICS.built_by_boss_mrr);
+
+  // Summer Partners
+  document.getElementById('sp-partners').textContent = fmt(METRICS.active_partners);
+  document.getElementById('sp-revenue').textContent  = money(METRICS.partner_revenue_month);
+  document.getElementById('sp-cut').textContent      = money(METRICS.boston_cut_month);
+
+  // Last updated
+  document.getElementById('last-updated-text').textContent = METRICS.last_updated;
+  document.getElementById('intel-timestamp').textContent   = METRICS.last_updated;
+}
+
+// ─── CLOCK ───────────────────────────────────────────────
+function updateClock() {
+  const now = new Date();
+  const ct = new Date(now.toLocaleString('en-US', { timeZone: 'America/Chicago' }));
+
+  const hh = ct.getHours();
+  const mm = String(ct.getMinutes()).padStart(2, '0');
+  const ss = String(ct.getSeconds()).padStart(2, '0');
+  const ampm = hh >= 12 ? 'PM' : 'AM';
+  const h12 = hh % 12 || 12;
+
+  const days  = ['SUN','MON','TUE','WED','THU','FRI','SAT'];
+  const months = ['JAN','FEB','MAR','APR','MAY','JUN','JUL','AUG','SEP','OCT','NOV','DEC'];
+  const dayStr = days[ct.getDay()];
+  const mon    = months[ct.getMonth()];
+  const day    = ct.getDate();
+  const yr     = ct.getFullYear();
+
+  document.getElementById('live-time').textContent = `${h12}:${mm}:${ss} ${ampm}`;
+  document.getElementById('live-date').textContent = `${dayStr} ${mon} ${day}, ${yr} CT`;
+  document.getElementById('footer-time').textContent = `${h12}:${mm}:${ss} ${ampm} CT — ${dayStr} ${mon} ${day} ${yr}`;
+}
+
+setInterval(updateClock, 1000);
+updateClock();
+
+// ─── REFRESH ─────────────────────────────────────────────
+function refreshData() {
+  const btn = document.querySelector('[onclick="refreshData()"]');
+  const orig = btn.innerHTML;
+  btn.innerHTML = '↻ &nbsp;REFRESHING...';
+  btn.disabled = true;
+
+  // Simulate async refresh — replace with real fetch() calls
+  setTimeout(() => {
+    renderMetrics();
+    btn.innerHTML = orig;
+    btn.disabled = false;
+
+    const now = new Date();
+    const ct  = new Date(now.toLocaleString('en-US', { timeZone: 'America/Chicago' }));
+    const hh  = ct.getHours();
+    const mm  = String(ct.getMinutes()).padStart(2,'0');
+    const ampm = hh >= 12 ? 'PM' : 'AM';
+    const h12  = hh % 12 || 12;
+    METRICS.last_updated = `2026-05-20 ${h12}:${mm}${ampm} CT`;
+    document.getElementById('last-updated-text').textContent = METRICS.last_updated;
+
+    addFeedItem('🔄', 'Dashboard refreshed manually', 'Just now');
+  }, 800);
+}
+
+// ─── FEED HELPER ─────────────────────────────────────────
+function addFeedItem(icon, text, time) {
+  const feed = document.getElementById('activity-feed');
+  const item = document.createElement('div');
+  item.className = 'feed-item';
+  item.style.background = 'rgba(201,168,76,0.04)';
+  item.innerHTML = `
+    <div class="feed-icon">${icon}</div>
+    <div>
+      <div class="feed-text">${text}</div>
+      <div class="feed-time">${time}</div>
+    </div>`;
+  feed.insertBefore(item, feed.firstChild);
+  setTimeout(() => { item.style.background = ''; }, 2000);
+}
+
+// ─── ACTION HANDLERS ─────────────────────────────────────
+function fireCaller() {
+  addFeedItem('⚡', 'Auto-Caller fired — BOSS Systems outbound initiated', 'Just now');
+  alert('Auto-Caller fired.\n\nConnect this button to your n8n webhook to trigger the outbound calling sequence.');
+}
+
+function fireLeadHunt() {
+  const bizType = document.getElementById('market-biz-type')?.value || 'junk removal';
+  const city    = 'Laurel, MS';
+  addFeedItem('⚡', `Lead Hunt fired — ${city}`, 'Just now');
+  alert(`Lead Hunt fired for ${city}.\n\nConnect this button to market_check.py or your n8n workflow.`);
+}
+
+function buildNewBusiness() {
+  addFeedItem('🏗️', 'New business build initiated', 'Just now');
+  alert('Build New Business\n\nThis will launch the business builder workflow.\nConnect to: /Users/bostonrossall/Desktop/BOSS_HQ/scripts/build_business.py');
+}
+
+function testAgent(agentId) {
+  addFeedItem('📞', `Test call initiated — ${agentId.substring(0,12)}...`, 'Just now');
+  window.open(`https://app.retellai.com`, '_blank');
+}
+
+function addPartner() {
+  const name = prompt('Partner name:');
+  if (name) {
+    addFeedItem('🤝', `New partner added: ${name}`, 'Just now');
+    METRICS.active_partners++;
+    renderMetrics();
+  }
+}
+
+function sendPartnerReport() {
+  addFeedItem('📊', 'Partner report sent', 'Just now');
+  alert('Partner Report\n\nConnect this to your n8n workflow to auto-generate and send weekly partner reports.');
+}
+
+function runMarketCheck() {
+  const bizType = document.getElementById('market-biz-type').value.trim();
+  const city    = document.getElementById('market-city').value.trim();
+
+  if (!bizType || !city) {
+    alert('Enter both a business type and city to run the market check.');
+    return;
+  }
+
+  addFeedItem('🔍', `Market check running: ${bizType} in ${city}`, 'Just now');
+  alert(`Market Check: ${bizType} in ${city}\n\nConnect to:\npython3 /Users/bostonrossall/Desktop/BOSS_HQ/scripts/market_check.py "${bizType}" "${city}"`);
+}
+
+function deployDashboard() {
+  addFeedItem('🚀', 'Dashboard deploy pushed to GitHub Pages', 'Just now');
+  alert('Deploy Dashboard\n\nRun this command to push to GitHub Pages:\n\ngit add . && git commit -m "Update command center" && git push origin main\n\nOr connect this button to a deploy script.');
+}
+
+// ─── INIT ────────────────────────────────────────────────
+renderMetrics();
+</script>
+
+</body>
+</html>
