@@ -1,0 +1,492 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Post Generator — BOSS Systems Partners</title>
+<meta name="description" content="Generate 5 ready-to-paste social media posts for your business in seconds. Partner tool for BOSS Systems Summer 2026.">
+<style>
+*{margin:0;padding:0;box-sizing:border-box}
+:root{--gold:#C9A84C;--dark:#080808;--gray:#0f0f0f;--gray2:#111;--gray3:#141414;--border:#1e1e1e;--border-gold:rgba(201,168,76,0.2);--text:#f0ede8;--muted:#888;--dim:#555;--red:#c0392b;--red-bg:rgba(192,57,43,0.1);--font:-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif}
+html{scroll-behavior:smooth}
+body{background:var(--dark);color:var(--text);font-family:var(--font);font-size:16px;line-height:1.6;-webkit-font-smoothing:antialiased;overflow-x:hidden;min-height:100vh}
+a{color:inherit;text-decoration:none}
+
+/* NAV */
+nav{position:sticky;top:0;z-index:100;background:rgba(8,8,8,.97);border-bottom:1px solid var(--border);padding:0 24px;height:60px;display:flex;align-items:center;justify-content:space-between;gap:16px}
+.nav-logo{font-weight:900;font-size:13px;letter-spacing:4px;color:var(--gold);text-transform:uppercase;flex-shrink:0}
+.nav-links{display:flex;align-items:center;gap:20px}
+.nav-link{font-size:12px;color:var(--muted);letter-spacing:0.5px;transition:color .2s;white-space:nowrap}
+.nav-link:hover{color:var(--text)}
+.nav-cta{background:var(--gold);color:var(--dark);padding:8px 18px;font-weight:700;font-size:12px;letter-spacing:1px;text-transform:uppercase;transition:background .2s;white-space:nowrap;flex-shrink:0}
+.nav-cta:hover{background:#dfc070}
+
+/* PAGE LAYOUT */
+.page{max-width:600px;margin:0 auto;padding:56px 24px 80px}
+
+/* HEADER */
+.page-label{font-size:11px;letter-spacing:4px;text-transform:uppercase;color:var(--gold);margin-bottom:14px;display:block}
+.page-title{font-size:clamp(1.6rem,5vw,2.2rem);font-weight:900;line-height:1.1;letter-spacing:-0.5px;margin-bottom:10px}
+.page-sub{font-size:14px;color:var(--muted);line-height:1.7;margin-bottom:40px}
+
+/* FORM */
+.form-card{background:var(--gray2);border:1px solid var(--border);padding:32px}
+.field{margin-bottom:24px}
+.field:last-of-type{margin-bottom:0}
+label{display:block;font-size:11px;font-weight:700;letter-spacing:2px;text-transform:uppercase;color:var(--muted);margin-bottom:10px}
+label .hint{font-size:11px;font-weight:400;letter-spacing:0;text-transform:none;color:var(--dim);margin-left:6px}
+select,
+input[type="text"]{
+  width:100%;
+  background:#0d0d0d;
+  border:1px solid var(--border);
+  color:var(--text);
+  font-family:var(--font);
+  font-size:16px;
+  padding:14px 16px;
+  outline:none;
+  -webkit-appearance:none;
+  appearance:none;
+  border-radius:0;
+  transition:border-color .2s;
+  line-height:1.5;
+}
+select{
+  background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='8' viewBox='0 0 12 8'%3E%3Cpath fill='%23888' d='M1 1l5 5 5-5'/%3E%3C/svg%3E");
+  background-repeat:no-repeat;
+  background-position:right 16px center;
+  padding-right:44px;
+  cursor:pointer;
+}
+select option{background:#0d0d0d;color:var(--text)}
+select:focus,input:focus{border-color:var(--gold)}
+input::placeholder{color:var(--dim)}
+
+/* SUBMIT */
+.btn-submit{
+  width:100%;
+  background:var(--gold);
+  color:var(--dark);
+  border:none;
+  font-family:var(--font);
+  font-size:15px;
+  font-weight:900;
+  letter-spacing:1px;
+  text-transform:uppercase;
+  padding:18px 24px;
+  cursor:pointer;
+  transition:background .2s,opacity .2s;
+  margin-top:28px;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  gap:10px;
+}
+.btn-submit:hover{background:#dfc070}
+.btn-submit:disabled{opacity:.5;cursor:not-allowed}
+.btn-submit .spinner{
+  width:16px;height:16px;border:2px solid rgba(8,8,8,0.3);
+  border-top-color:#080808;border-radius:50%;
+  animation:spin .7s linear infinite;display:none;
+}
+.btn-submit.loading .spinner{display:block}
+.btn-submit.loading .btn-text{display:none}
+@keyframes spin{to{transform:rotate(360deg)}}
+
+/* LOADING TEXT */
+.loading-text{
+  display:none;
+  text-align:center;
+  font-size:14px;
+  color:var(--muted);
+  padding:20px 0 0;
+  letter-spacing:0.3px;
+}
+.loading-text.visible{display:block}
+
+/* ERROR */
+.error-box{background:var(--red-bg);border:1px solid rgba(192,57,43,0.3);padding:16px 20px;margin-top:20px;font-size:14px;color:#e06b5f;line-height:1.6;display:none}
+.error-box.visible{display:block}
+
+/* RESULTS SECTION */
+.results{margin-top:48px;display:none}
+.results.visible{display:block}
+
+.results-header{margin-bottom:24px}
+.results-title{
+  font-size:11px;font-weight:700;letter-spacing:3px;text-transform:uppercase;
+  color:var(--gold);margin-bottom:0;display:block;
+}
+.results-sub{font-size:14px;color:var(--muted);margin-top:8px;line-height:1.6}
+
+/* POST CARDS */
+.posts-list{display:flex;flex-direction:column;gap:16px}
+
+.post-card{
+  background:var(--gray2);
+  border:1px solid var(--border);
+  overflow:hidden;
+  transition:border-color .2s;
+}
+.post-card:hover{border-color:rgba(201,168,76,0.2)}
+
+.post-card-header{
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  padding:12px 16px;
+  border-bottom:1px solid var(--border);
+  gap:12px;
+}
+.post-platform{
+  font-size:10px;
+  font-weight:800;
+  letter-spacing:2.5px;
+  text-transform:uppercase;
+  color:var(--gold);
+}
+.post-num{
+  font-size:10px;
+  letter-spacing:1px;
+  text-transform:uppercase;
+  color:var(--dim);
+}
+
+.post-text-wrap{
+  padding:16px;
+  padding-bottom:0;
+}
+.post-text{
+  font-size:14px;
+  color:var(--text);
+  line-height:1.8;
+  white-space:pre-wrap;
+  word-break:break-word;
+  font-family:ui-monospace,SFMono-Regular,'SF Mono',Menlo,Consolas,monospace;
+  background:#0a0a0a;
+  border:1px solid var(--border);
+  padding:16px;
+  min-height:60px;
+}
+
+.post-card-footer{
+  padding:16px;
+}
+.btn-copy-post{
+  width:100%;
+  background:var(--gold);
+  color:var(--dark);
+  border:none;
+  font-family:var(--font);
+  font-size:14px;
+  font-weight:900;
+  letter-spacing:1px;
+  text-transform:uppercase;
+  padding:16px 20px;
+  cursor:pointer;
+  transition:background .2s;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  gap:8px;
+}
+.btn-copy-post:hover{background:#dfc070}
+.btn-copy-post.copied{background:#2d6a3f;color:#fff}
+.btn-copy-post.copied:hover{background:#2d6a3f}
+
+/* GENERATE AGAIN NOTE */
+.generate-note{
+  margin-top:32px;
+  text-align:center;
+  font-size:13px;
+  color:var(--dim);
+  line-height:1.7;
+}
+
+/* FOOTER */
+footer{border-top:1px solid var(--border);padding:28px 24px;display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:12px;background:var(--gray)}
+.footer-logo{font-weight:900;font-size:11px;letter-spacing:4px;color:var(--gold);text-transform:uppercase}
+.footer-links{display:flex;gap:18px;flex-wrap:wrap}
+.footer-links a{font-size:12px;color:#444;transition:color .2s}
+.footer-links a:hover{color:var(--gold)}
+.footer-tag{font-size:11px;color:#333;margin-top:4px;width:100%}
+
+@media(max-width:600px){
+  nav{padding:0 16px}
+  .nav-links{gap:14px}
+  .page{padding:40px 16px 64px}
+  .form-card{padding:24px 20px}
+  footer{flex-direction:column;align-items:flex-start}
+}
+@media(max-width:420px){
+  .nav-links{display:none}
+}
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav>
+  <a href="/" class="nav-logo">BOSS Systems</a>
+  <div class="nav-links">
+    <a href="/partner-tools.html" class="nav-link">Partner Tools</a>
+    <a href="/lead-playbook.html" class="nav-link">Lead Playbook</a>
+    <a href="/compliance.html" class="nav-link">Legal Guide</a>
+  </div>
+  <a href="sms:+19037146162" class="nav-cta">Text Boston</a>
+</nav>
+
+<!-- PAGE -->
+<div class="page">
+  <span class="page-label">Partner Tools</span>
+  <h1 class="page-title">Post Generator</h1>
+  <p class="page-sub">Fill out three fields. Get five ready-to-paste social media posts back in seconds.</p>
+
+  <!-- FORM -->
+  <div class="form-card">
+    <form id="postForm" novalidate>
+
+      <div class="field">
+        <label for="businessType">Business type<span style="color:var(--gold);margin-left:2px">*</span></label>
+        <select id="businessType" name="businessType" required>
+          <option value="" disabled selected>Select your business</option>
+          <option value="Junk Removal">Junk Removal</option>
+          <option value="Pressure Washing">Pressure Washing</option>
+          <option value="Lawn Care">Lawn Care</option>
+          <option value="Pool Cleaning">Pool Cleaning</option>
+          <option value="Interior Car Detailing">Interior Car Detailing</option>
+          <option value="House Cleaning">House Cleaning</option>
+          <option value="Event Decoration Setup">Event Decoration Setup</option>
+          <option value="Pet Sitting / Dog Walking">Pet Sitting / Dog Walking</option>
+          <option value="Home Organizing">Home Organizing</option>
+          <option value="Photography Sessions">Photography Sessions</option>
+          <option value="Social Media Management">Social Media Management</option>
+        </select>
+      </div>
+
+      <div class="field">
+        <label for="city">Your city<span style="color:var(--gold);margin-left:2px">*</span></label>
+        <input type="text" id="city" name="city" placeholder="Tyler, TX" required autocomplete="off">
+      </div>
+
+      <div class="field">
+        <label for="notes">Anything special to mention?<span class="hint">optional</span></label>
+        <input type="text" id="notes" name="notes" placeholder="e.g. first-time discount, available this weekend, before/after photos" autocomplete="off">
+      </div>
+
+      <button type="submit" class="btn-submit" id="submitBtn">
+        <div class="spinner"></div>
+        <span class="btn-text">Generate My 5 Posts</span>
+      </button>
+
+      <div class="loading-text" id="loadingText">Generating posts...</div>
+      <div class="error-box" id="errorBox" role="alert"></div>
+    </form>
+  </div>
+
+  <!-- RESULTS -->
+  <div class="results" id="results">
+    <div class="results-header">
+      <span class="results-title">Your 5 posts — copy and paste each one</span>
+      <p class="results-sub">Each post is written for a specific platform. Copy and paste directly.</p>
+    </div>
+    <div class="posts-list" id="postsList"></div>
+    <p class="generate-note">Want different posts? Edit the form above and generate again.</p>
+  </div>
+
+</div>
+
+<!-- FOOTER -->
+<footer>
+  <div class="footer-logo">BOSS Systems</div>
+  <div class="footer-links">
+    <a href="/">Home</a>
+    <a href="/partner-tools.html">Partner Tools</a>
+    <a href="/lead-playbook.html">Lead Playbook</a>
+    <a href="/compliance.html">Legal Guide</a>
+    <a href="tel:+19037146162">903-714-6162</a>
+  </div>
+  <div class="footer-tag">BOSS Systems &copy; 2026 &nbsp;&middot;&nbsp; Summer Partner Program</div>
+</footer>
+
+<script>
+(function() {
+
+  var form = document.getElementById('postForm');
+  var submitBtn = document.getElementById('submitBtn');
+  var errorBox = document.getElementById('errorBox');
+  var loadingText = document.getElementById('loadingText');
+  var results = document.getElementById('results');
+  var postsList = document.getElementById('postsList');
+
+  var PLATFORMS = ['Facebook', 'Nextdoor', 'Instagram', 'Facebook Group', 'Google Post'];
+
+  function showError(msg) {
+    errorBox.textContent = msg;
+    errorBox.classList.add('visible');
+    submitBtn.disabled = false;
+    submitBtn.classList.remove('loading');
+    loadingText.classList.remove('visible');
+  }
+
+  function hideError() {
+    errorBox.textContent = '';
+    errorBox.classList.remove('visible');
+  }
+
+  function platformLabel(index) {
+    return PLATFORMS[index] || ('Post ' + (index + 1));
+  }
+
+  function renderPosts(posts) {
+    postsList.innerHTML = '';
+    posts.forEach(function(post, i) {
+      var platform = (typeof post === 'object' && post.platform) ? post.platform : platformLabel(i);
+      var text = (typeof post === 'object' && post.text) ? post.text : String(post);
+
+      var card = document.createElement('div');
+      card.className = 'post-card';
+
+      var header = document.createElement('div');
+      header.className = 'post-card-header';
+      header.innerHTML = '<span class="post-platform">' + escapeHtml(platform) + '</span>' +
+                         '<span class="post-num">Post ' + (i + 1) + ' of ' + posts.length + '</span>';
+
+      var textWrap = document.createElement('div');
+      textWrap.className = 'post-text-wrap';
+
+      var textEl = document.createElement('div');
+      textEl.className = 'post-text';
+      textEl.textContent = text;
+
+      textWrap.appendChild(textEl);
+
+      var footer = document.createElement('div');
+      footer.className = 'post-card-footer';
+
+      var copyBtn = document.createElement('button');
+      copyBtn.className = 'btn-copy-post';
+      copyBtn.type = 'button';
+      copyBtn.innerHTML = '<span class="copy-icon">&#9646;&#9646;</span><span class="copy-label">Copy</span>';
+      copyBtn.addEventListener('click', (function(t, btn) {
+        return function() { doCopy(t, btn); };
+      })(text, copyBtn));
+
+      footer.appendChild(copyBtn);
+
+      card.appendChild(header);
+      card.appendChild(textWrap);
+      card.appendChild(footer);
+
+      postsList.appendChild(card);
+    });
+  }
+
+  function doCopy(text, btn) {
+    var label = btn.querySelector('.copy-label');
+    if (navigator.clipboard && navigator.clipboard.writeText) {
+      navigator.clipboard.writeText(text).then(function() {
+        markCopied(btn, label);
+      }).catch(function() {
+        fallbackCopy(text, btn, label);
+      });
+    } else {
+      fallbackCopy(text, btn, label);
+    }
+  }
+
+  function fallbackCopy(text, btn, label) {
+    var ta = document.createElement('textarea');
+    ta.value = text;
+    ta.style.position = 'fixed';
+    ta.style.opacity = '0';
+    document.body.appendChild(ta);
+    ta.focus();
+    ta.select();
+    try { document.execCommand('copy'); markCopied(btn, label); } catch(e) {}
+    document.body.removeChild(ta);
+  }
+
+  function markCopied(btn, label) {
+    btn.classList.add('copied');
+    label.textContent = 'Copied!';
+    setTimeout(function() {
+      btn.classList.remove('copied');
+      label.textContent = 'Copy';
+    }, 2000);
+  }
+
+  function escapeHtml(str) {
+    return str.replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;');
+  }
+
+  form.addEventListener('submit', function(e) {
+    e.preventDefault();
+    hideError();
+
+    var businessType = document.getElementById('businessType').value;
+    var city = document.getElementById('city').value.trim();
+    var notes = document.getElementById('notes').value.trim();
+
+    if (!businessType) { showError('Please select a business type.'); return; }
+    if (!city) { showError('Enter your city.'); return; }
+
+    submitBtn.disabled = true;
+    submitBtn.classList.add('loading');
+    loadingText.classList.add('visible');
+    results.classList.remove('visible');
+    postsList.innerHTML = '';
+
+    var body = {
+      businessType: businessType,
+      city: city,
+      notes: notes
+    };
+
+    fetch('https://jamross.app.n8n.cloud/webhook/generate-partner-posts', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify(body)
+    })
+    .then(function(res) {
+      return res.json().then(function(data) {
+        return { ok: res.ok, status: res.status, data: data };
+      });
+    })
+    .then(function(result) {
+      submitBtn.disabled = false;
+      submitBtn.classList.remove('loading');
+      loadingText.classList.remove('visible');
+
+      if (!result.ok) {
+        var msg = (result.data && result.data.message) ? result.data.message : 'Something went wrong. Try again.';
+        showError(msg);
+        return;
+      }
+
+      var posts = result.data.posts;
+      if (!posts || !Array.isArray(posts) || posts.length === 0) {
+        showError('No posts came back. Try again.');
+        return;
+      }
+
+      renderPosts(posts);
+      results.classList.add('visible');
+
+      // Scroll to results smoothly
+      setTimeout(function() {
+        results.scrollIntoView({ behavior: 'smooth', block: 'start' });
+      }, 100);
+    })
+    .catch(function(err) {
+      submitBtn.disabled = false;
+      submitBtn.classList.remove('loading');
+      loadingText.classList.remove('visible');
+      showError('Network error. Check your connection and try again.');
+    });
+  });
+
+})();
+</script>
+</body>
+</html>
