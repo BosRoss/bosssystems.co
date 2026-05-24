@@ -1,0 +1,433 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Legal & Permits Guide — BOSS Systems Summer Partners</title>
+<meta name="description" content="Everything summer partners need to know about permits, licenses, and regulations before starting their business. Plain English, no lawyers.">
+<style>
+*{margin:0;padding:0;box-sizing:border-box}
+:root{--bg:#080808;--gray:#0f0f0f;--gray2:#111;--gray3:#141414;--border:#1e1e1e;--gold:#C9A84C;--text:#f0ede8;--muted:#888;--dim:#555;--warn:#F59E0B;--font:-apple-system,BlinkMacSystemFont,'Segoe UI',Helvetica,Arial,sans-serif}
+html{scroll-behavior:smooth}
+body{background:var(--bg);color:var(--text);font-family:var(--font);font-size:16px;line-height:1.6;-webkit-font-smoothing:antialiased;overflow-x:hidden}
+a{color:inherit;text-decoration:none}
+h2{font-size:clamp(1.6rem,3.5vw,2.4rem);font-weight:900;line-height:1.1;letter-spacing:-0.5px}
+h3{font-size:1.1rem;font-weight:800;letter-spacing:.5px}
+
+nav{position:sticky;top:0;z-index:100;background:rgba(8,8,8,.97);border-bottom:1px solid var(--border);padding:0 24px;height:60px;display:flex;align-items:center;justify-content:space-between}
+.nav-logo{font-weight:900;font-size:13px;letter-spacing:4px;color:var(--gold);text-transform:uppercase}
+.nav-links{display:flex;align-items:center;gap:20px}
+.nav-link{font-size:12px;color:var(--muted);letter-spacing:1px;transition:color .2s}
+.nav-link:hover{color:var(--text)}
+.nav-cta{background:var(--gold);color:#080808;padding:7px 16px;font-weight:700;font-size:12px;letter-spacing:1px;text-transform:uppercase;transition:background .2s}
+.nav-cta:hover{background:#dfc070}
+
+.disclaimer{background:#1a1200;border-bottom:2px solid #3a3000;padding:12px 24px;text-align:center;font-size:13px;color:#C9A84C}
+.disclaimer a{color:#dfc070;text-decoration:underline}
+
+.hero{padding:64px 24px 48px;border-bottom:1px solid var(--border);text-align:center}
+.hero-label{font-size:10px;letter-spacing:4px;text-transform:uppercase;color:var(--gold);margin-bottom:16px;display:block}
+.hero h1{font-size:clamp(2rem,5vw,3.2rem);font-weight:900;line-height:1.05;letter-spacing:-1px;margin-bottom:16px}
+.hero p{font-size:1rem;color:var(--muted);max-width:540px;margin:0 auto}
+
+.container{max-width:900px;margin:0 auto;padding:0 24px}
+
+section{padding:56px 24px}
+.section-label{font-size:10px;font-weight:700;letter-spacing:3px;text-transform:uppercase;color:var(--gold);display:block;margin-bottom:12px}
+
+/* EVERYONE SECTION */
+.everyone-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(300px,1fr));gap:2px;background:var(--border);border:1px solid var(--border);border-radius:4px;overflow:hidden;margin-top:32px}
+.everyone-item{background:var(--gray);padding:24px 28px}
+.everyone-item-title{font-size:12px;font-weight:800;letter-spacing:2px;text-transform:uppercase;color:var(--gold);margin-bottom:8px}
+.everyone-item p{font-size:14px;color:var(--muted);line-height:1.65}
+.everyone-item strong{color:var(--text)}
+
+/* BUSINESS NAV */
+.biz-nav-wrap{position:sticky;top:60px;z-index:99;background:var(--bg);border-bottom:1px solid var(--border);overflow-x:auto;-webkit-overflow-scrolling:touch;white-space:nowrap;padding:0 24px}
+.biz-nav{display:inline-flex;gap:4px;padding:10px 0}
+.biz-pill{display:inline-block;font-size:11px;font-weight:700;letter-spacing:.5px;text-transform:uppercase;padding:6px 12px;border:1px solid var(--border);color:var(--muted);cursor:pointer;transition:all .15s;border-radius:2px;white-space:nowrap}
+.biz-pill:hover,.biz-pill.active{border-color:var(--gold);color:var(--gold);background:#1a1200}
+
+/* BUSINESS CARDS */
+.biz-section{padding:48px 24px;border-bottom:1px solid var(--border)}
+.biz-section:last-of-type{border-bottom:none}
+.biz-header{display:flex;align-items:center;gap:16px;margin-bottom:28px}
+.biz-icon{width:40px;height:40px;border:1px solid var(--border);display:flex;align-items:center;justify-content:center;flex-shrink:0;color:#444}
+.biz-name{font-size:10px;font-weight:800;letter-spacing:3px;text-transform:uppercase;color:var(--gold);margin-bottom:2px}
+.biz-tagline{font-size:14px;color:var(--muted)}
+
+.biz-rules{display:grid;grid-template-columns:1fr 1fr 1fr;gap:10px}
+@media(max-width:640px){.biz-rules{grid-template-columns:1fr}}
+
+.rule-card{padding:18px 20px;border-radius:2px;border:1px solid}
+.rule-card.need{background:#0a1200;border-color:#1e3000}
+.rule-card.skip{background:#0a0a0a;border-color:#1a1a1a;opacity:.8}
+.rule-card.watch{background:#120a00;border-color:#3a2000}
+.rule-tag{font-size:9px;font-weight:900;letter-spacing:2.5px;text-transform:uppercase;margin-bottom:8px;display:block}
+.rule-tag.need{color:#4ade80}
+.rule-tag.skip{color:#555;text-decoration:line-through}
+.rule-tag.watch{color:var(--warn)}
+.rule-card p{font-size:13px;line-height:1.65}
+.rule-card.need p{color:#a0c8a0}
+.rule-card.skip p{color:#555}
+.rule-card.watch p{color:#d4a060}
+
+/* WHEN THINGS GO WRONG */
+.scenarios{display:grid;gap:2px;background:var(--border);border:1px solid var(--border);border-radius:4px;overflow:hidden;margin-top:32px}
+.scenario{background:var(--gray);padding:24px 28px;display:flex;gap:20px}
+.scenario-q{flex:1}
+.scenario-icon{font-size:20px;flex-shrink:0;padding-top:2px}
+.scenario-title{font-size:14px;font-weight:700;color:var(--text);margin-bottom:8px}
+.scenario-ans{font-size:14px;color:var(--muted);line-height:1.65}
+.scenario-ans strong{color:var(--gold)}
+
+/* TABLE */
+.ref-table-wrap{overflow-x:auto;margin-top:32px;border:1px solid var(--border);border-radius:4px}
+.ref-table{width:100%;border-collapse:collapse;min-width:600px}
+.ref-table th{background:#111;font-size:10px;font-weight:800;letter-spacing:2px;text-transform:uppercase;color:var(--gold);padding:14px 18px;text-align:left;border-bottom:1px solid var(--border)}
+.ref-table td{padding:13px 18px;font-size:13px;color:var(--muted);border-bottom:1px solid #141414;vertical-align:middle}
+.ref-table tr:last-child td{border-bottom:none}
+.ref-table tr:hover td{background:#0c0c0c}
+.ref-table td:first-child{color:var(--text);font-weight:700}
+.yes{color:#4ade80;font-weight:700}
+.no{color:#555}
+.warn-cell{color:var(--warn);font-weight:600}
+
+footer{border-top:1px solid var(--border);padding:32px 24px;background:var(--gray);text-align:center}
+.footer-logo{font-weight:900;font-size:12px;letter-spacing:4px;color:var(--gold);text-transform:uppercase;margin-bottom:16px}
+.footer-links{display:flex;gap:20px;flex-wrap:wrap;justify-content:center;margin-bottom:12px}
+.footer-links a{font-size:12px;color:#444;transition:color .2s}
+.footer-links a:hover{color:var(--gold)}
+.footer-tag{font-size:11px;color:#333}
+
+@media(max-width:600px){
+  nav{padding:0 16px}
+  .nav-links{display:none}
+  .hero{padding:48px 16px 36px}
+  .biz-rules{grid-template-columns:1fr}
+  .everyone-grid{grid-template-columns:1fr}
+}
+</style>
+</head>
+<body>
+
+<nav>
+  <a href="/" class="nav-logo">BOSS Systems</a>
+  <div class="nav-links">
+    <a href="/summer.html" class="nav-link">Summer Program</a>
+    <a href="/partner-start.html" class="nav-link">Partner Guide</a>
+    <a href="/partner-tools.html" class="nav-link">Tools</a>
+  </div>
+  <a href="sms:+19037146162" class="nav-cta">Text Boston</a>
+</nav>
+
+<div class="disclaimer">
+  General guidance only — not legal advice. Rules vary by city and state. When in doubt, <a href="sms:+19037146162">text Boston at 903-714-6162</a>.
+</div>
+
+<div class="hero">
+  <div class="container">
+    <span class="hero-label">Legal &amp; Permits</span>
+    <h1>What You Need to Know<br>Before You Start.</h1>
+    <p>Most of this is simple. Know it before you have a problem — not after.</p>
+  </div>
+</div>
+
+<!-- EVERYONE -->
+<section style="background:var(--gray);border-bottom:1px solid var(--border)">
+  <div class="container">
+    <span class="section-label">Applies to All 11 Businesses</span>
+    <h2>The Basics Every Partner Needs to Know</h2>
+    <div class="everyone-grid">
+      <div class="everyone-item">
+        <div class="everyone-item-title">Business License</div>
+        <p>Most cities require one. Cost is usually <strong>$25–$100</strong>. Search <strong>"[your city] business license application"</strong> — most are online. You generally don't need one before your first job, but get it your first week.</p>
+      </div>
+      <div class="everyone-item">
+        <div class="everyone-item-title">Running as a Minor</div>
+        <p>You can operate as a <strong>sole proprietor in any state</strong> regardless of age. You don't need a parent's signature to run the business. Some clients may ask a parent to co-sign a contract — that's their call, not a legal requirement.</p>
+      </div>
+      <div class="everyone-item">
+        <div class="everyone-item-title">Taxes</div>
+        <p>Track every dollar of income. If you earn over <strong>$600 in a year</strong>, report it on a Schedule C. Keep records of business expenses (gas, supplies, equipment) — they reduce what you owe. Your AI booking system already logs every job.</p>
+      </div>
+      <div class="everyone-item">
+        <div class="everyone-item-title">Contracts</div>
+        <p>Your AI booking system <strong>logs every customer agreement</strong> when they book — the time, the job, the price. That's your contract. If a customer disputes anything, you have a timestamped record. Screenshot it immediately if there's an issue.</p>
+      </div>
+      <div class="everyone-item">
+        <div class="everyone-item-title">Insurance</div>
+        <p>Not legally required for most of these businesses, but smart. <strong>NEXT Insurance</strong> (nextinsurance.com) offers policies starting at ~$25/month for service businesses. Optional, but if you're going into clients' homes — worth it.</p>
+      </div>
+      <div class="everyone-item">
+        <div class="everyone-item-title">Liability Basics</div>
+        <p>You're operating as an independent contractor. If you break something, damage property, or injure someone while working, <strong>you are responsible</strong>. This is why insurance matters. Take before-and-after photos on every job you can.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- BIZ NAV -->
+<div class="biz-nav-wrap" id="biz-nav">
+  <nav class="biz-nav" aria-label="Jump to business">
+    <a href="#junk" class="biz-pill">Junk Removal</a>
+    <a href="#pressure" class="biz-pill">Pressure Washing</a>
+    <a href="#lawn" class="biz-pill">Lawn Care</a>
+    <a href="#pool" class="biz-pill">Pool Cleaning</a>
+    <a href="#detailing" class="biz-pill">Car Detailing</a>
+    <a href="#cleaning" class="biz-pill">House Cleaning</a>
+    <a href="#events" class="biz-pill">Event Decor</a>
+    <a href="#pets" class="biz-pill">Pet Sitting</a>
+    <a href="#organizing" class="biz-pill">Home Organizing</a>
+    <a href="#photo" class="biz-pill">Photography</a>
+    <a href="#social" class="biz-pill">Social Media</a>
+  </nav>
+</div>
+
+<!-- BIZ SECTIONS -->
+<div class="container">
+
+<div class="biz-section" id="junk">
+  <div class="biz-header">
+    <div class="biz-icon"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><rect x="1" y="3" width="15" height="13"/><polygon points="16 8 20 8 23 11 23 16 16 16 16 8"/><circle cx="5.5" cy="18.5" r="2.5"/><circle cx="18.5" cy="18.5" r="2.5"/></svg></div>
+    <div><div class="biz-name">Junk Removal</div><div class="biz-tagline">Trucks, dumps, and what you can't haul</div></div>
+  </div>
+  <div class="biz-rules">
+    <div class="rule-card need"><span class="rule-tag need">Need</span><p>Check local dump/transfer station fees before quoting any job. Most charge <strong>$30–$60 per load</strong>. Call ahead — some require advance payment. Factor this into every quote.</p></div>
+    <div class="rule-card skip"><span class="rule-tag skip">Skip</span><p>No commercial vehicle license required at this scale. One truck hauling for hire doesn't require DOT registration in most states for small operations.</p></div>
+    <div class="rule-card watch"><span class="rule-tag watch">Watch</span><p><strong>Never haul paint, chemicals, batteries, or electronics.</strong> They're classified as hazardous waste. Transfer stations refuse them and you could face fines. Quote hazmat removal as a separate service you don't offer — or add a hazmat surcharge and find a licensed recycler.</p></div>
+  </div>
+</div>
+
+<div class="biz-section" id="pressure">
+  <div class="biz-header">
+    <div class="biz-icon"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"/></svg></div>
+    <div><div class="biz-name">Pressure Washing</div><div class="biz-tagline">Water runoff and chemical rules</div></div>
+  </div>
+  <div class="biz-rules">
+    <div class="rule-card need"><span class="rule-tag need">Need</span><p>Keep wastewater away from storm drains. Wash on <strong>grass, gravel, or dirt</strong> where possible. If you must work near a drain, block it with a foam plug (they're $5 at hardware stores).</p></div>
+    <div class="rule-card skip"><span class="rule-tag skip">Skip</span><p>No license or permit needed to start a pressure washing business anywhere in Texas or most other states. This is one of the cleanest-entry businesses on the list.</p></div>
+    <div class="rule-card watch"><span class="rule-tag watch">Watch</span><p>Use <strong>eco-friendly, biodegradable detergents</strong> only. Some Texas cities (Austin, Houston) actively enforce soap runoff violations. One complaint from a neighbor + a city inspector = fine. Buy Simple Green or equivalent, not commercial degreasers.</p></div>
+  </div>
+</div>
+
+<div class="biz-section" id="lawn">
+  <div class="biz-header">
+    <div class="biz-icon"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><circle cx="6" cy="6" r="3"/><circle cx="6" cy="18" r="3"/><line x1="20" y1="4" x2="8.12" y2="15.88"/><line x1="14.47" y1="14.48" x2="20" y2="20"/><line x1="8.12" y1="8.12" x2="12" y2="12"/></svg></div>
+    <div><div class="biz-name">Lawn Care</div><div class="biz-tagline">Mowing is easy — chemicals are not</div></div>
+  </div>
+  <div class="biz-rules">
+    <div class="rule-card need"><span class="rule-tag need">Need</span><p>Nothing to start for basic mowing, edging, and cleanup. This is the lowest-barrier business on the list. You need a mower, a phone, and a willingness to show up.</p></div>
+    <div class="rule-card skip"><span class="rule-tag skip">Skip</span><p>No license needed for mowing, blowing, or edging. Basic lawn maintenance has no permit requirements in any US state at this scale.</p></div>
+    <div class="rule-card watch"><span class="rule-tag watch">Watch</span><p><strong>Pesticides and weed killer require a separate license</strong> in Texas (Texas Dept of Agriculture Pesticide Applicator License). Never spray chemicals until you have it. Charge extra for weed control and get the license if there's enough demand — but don't spray illegally.</p></div>
+  </div>
+</div>
+
+<div class="biz-section" id="pool">
+  <div class="biz-header">
+    <div class="biz-icon"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M2 12c1.5-2 3-2 4.5 0s3 2 4.5 0 3-2 4.5 0 3 2 4.5 0"/><path d="M2 17c1.5-2 3-2 4.5 0s3 2 4.5 0 3-2 4.5 0 3 2 4.5 0"/></svg></div>
+    <div><div class="biz-name">Pool Cleaning</div><div class="biz-tagline">Skimming is fine. Chemicals are different.</div></div>
+  </div>
+  <div class="biz-rules">
+    <div class="rule-card need"><span class="rule-tag need">Need</span><p>In Texas, no license is required for basic pool cleaning. Most other states are the same for residential pools. Start with skimming, brushing, and vacuuming — zero barrier.</p></div>
+    <div class="rule-card skip"><span class="rule-tag skip">Skip</span><p>No permit required for cleaning without chemicals. No Certified Pool Operator (CPO) certification required for residential pools in Texas.</p></div>
+    <div class="rule-card watch"><span class="rule-tag watch">Watch</span><p><strong>Adding chlorine, algaecide, or balancing chemicals without training = real liability.</strong> Over-chlorinated water can injure swimmers. Learn chemical balancing properly before offering it. For now, price it as "cleaning only" and refer chemical treatment to a licensed service.</p></div>
+  </div>
+</div>
+
+<div class="biz-section" id="detailing">
+  <div class="biz-header">
+    <div class="biz-icon"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M3 12l2-6h14l2 6"/><rect x="1" y="12" width="22" height="5" rx="1"/><circle cx="6" cy="19" r="2"/><circle cx="18" cy="19" r="2"/></svg></div>
+    <div><div class="biz-name">Car Detailing</div><div class="biz-tagline">Simplest on the list legally</div></div>
+  </div>
+  <div class="biz-rules">
+    <div class="rule-card need"><span class="rule-tag need">Need</span><p>Nothing. No license, no permit, no registration required anywhere in the US to start a car detailing business. General business license if your city requires it (most are $25–50).</p></div>
+    <div class="rule-card skip"><span class="rule-tag skip">Skip</span><p>No automotive license needed. No special insurance required by law. This is among the simplest businesses to start legally in any state.</p></div>
+    <div class="rule-card watch"><span class="rule-tag watch">Watch</span><p>Same water rule as pressure washing — <strong>don't let soapy water run into storm drains</strong>. Work on driveways. Avoid apartment complex parking lots if they have drain grates nearby. Some HOA communities also restrict commercial activity on their property.</p></div>
+  </div>
+</div>
+
+<div class="biz-section" id="cleaning">
+  <div class="biz-header">
+    <div class="biz-icon"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg></div>
+    <div><div class="biz-name">House Cleaning</div><div class="biz-tagline">No license. But you're in someone's home.</div></div>
+  </div>
+  <div class="biz-rules">
+    <div class="rule-card need"><span class="rule-tag need">Need</span><p>No cleaning license exists in the US. Just a general business license from your city if they require it. You can start legally tomorrow.</p></div>
+    <div class="rule-card skip"><span class="rule-tag skip">Skip</span><p>No state license required. No bonding required by law (though some clients will ask for it). No special insurance required legally.</p></div>
+    <div class="rule-card watch"><span class="rule-tag watch">Watch</span><p><strong>You're inside someone's home.</strong> If a $300 vase breaks or something goes missing, you are liable. Take before-and-after photos of every room before you clean. Consider a $30/month liability policy from NEXT Insurance before your first job — this business has the highest personal liability exposure of any on this list.</p></div>
+  </div>
+</div>
+
+<div class="biz-section" id="events">
+  <div class="biz-header">
+    <div class="biz-icon"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg></div>
+    <div><div class="biz-name">Event Decoration</div><div class="biz-tagline">Venue rules and physical safety</div></div>
+  </div>
+  <div class="biz-rules">
+    <div class="rule-card need"><span class="rule-tag need">Need</span><p><strong>Confirm the venue allows outside vendors before booking every job.</strong> Many venues require all vendors to be on an approved list. Ask the client to get explicit written confirmation from their venue before you commit to a date.</p></div>
+    <div class="rule-card skip"><span class="rule-tag skip">Skip</span><p>No permits required for setting up decor at private events. No business license needed beyond the general city license. No special insurance required by law.</p></div>
+    <div class="rule-card watch"><span class="rule-tag watch">Watch</span><p><strong>Structural pieces must be properly anchored.</strong> Balloon arches, photo walls, flower walls, and backdrop stands can collapse. One falling arch on a guest = lawsuit. Anchor everything to a wall, floor weight, or structural support. When in doubt, add a sandbag.</p></div>
+  </div>
+</div>
+
+<div class="biz-section" id="pets">
+  <div class="biz-header">
+    <div class="biz-icon"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><ellipse cx="12" cy="15" rx="3.5" ry="2.5"/><ellipse cx="7.5" cy="10.5" rx="1.6" ry="2"/><ellipse cx="16.5" cy="10.5" rx="1.6" ry="2"/><ellipse cx="10.5" cy="8" rx="1.6" ry="2"/><ellipse cx="13.5" cy="8" rx="1.6" ry="2"/></svg></div>
+    <div><div class="biz-name">Pet Sitting / Dog Walking</div><div class="biz-tagline">No license needed — but you're responsible for the animal</div></div>
+  </div>
+  <div class="biz-rules">
+    <div class="rule-card need"><span class="rule-tag need">Need</span><p>Nothing in Texas or most US states for basic pet sitting and dog walking. Your AI booking system logs the pet's details and the service agreed to — that's your service record.</p></div>
+    <div class="rule-card skip"><span class="rule-tag skip">Skip</span><p>No pet sitter license required in Texas. No animal handler permit needed for a solo operation at this scale. Some states (CA, WA) have requirements for larger operations — not relevant here.</p></div>
+    <div class="rule-card watch"><span class="rule-tag watch">Watch</span><p><strong>You are legally responsible for the animal while it's in your care.</strong> If a dog gets loose, injured, or causes injury to another person, you're liable. Get written confirmation of the pet's name, breed, vet, and any medical needs before every job. Use a leash at all times — no exceptions.</p></div>
+  </div>
+</div>
+
+<div class="biz-section" id="organizing">
+  <div class="biz-header">
+    <div class="biz-icon"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><line x1="16.5" y1="9.4" x2="7.55" y2="4.24"/><path d="M21 16V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16z"/><polyline points="3.27 6.96 12 12.01 20.73 6.96"/><line x1="12" y1="22.08" x2="12" y2="12"/></svg></div>
+    <div><div class="biz-name">Home Organizing</div><div class="biz-tagline">Least regulated business on this list</div></div>
+  </div>
+  <div class="biz-rules">
+    <div class="rule-card need"><span class="rule-tag need">Need</span><p>Nothing. Home organizing is one of the most legally unregulated businesses in the US. General city business license ($25–50) is the only thing worth getting.</p></div>
+    <div class="rule-card skip"><span class="rule-tag skip">Skip</span><p>No permit. No license. No insurance required by law. No state registration needed. If there's a business with fewer legal hoops, we haven't found it.</p></div>
+    <div class="rule-card watch"><span class="rule-tag watch">Watch</span><p><strong>Never throw anything away without explicit written permission.</strong> This is the #1 cause of disputes and lawsuits in this industry. "I thought you wanted me to get rid of it" is never an acceptable defense. Get clear confirmation in writing (the AI booking notes) for every item disposed of.</p></div>
+  </div>
+</div>
+
+<div class="biz-section" id="photo">
+  <div class="biz-header">
+    <div class="biz-icon"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M23 19a2 2 0 0 1-2 2H3a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h4l2-3h6l2 3h4a2 2 0 0 1 2 2z"/><circle cx="12" cy="13" r="4"/></svg></div>
+    <div><div class="biz-name">Photography</div><div class="biz-tagline">Releases are the most important thing here</div></div>
+  </div>
+  <div class="biz-rules">
+    <div class="rule-card need"><span class="rule-tag need">Need</span><p><strong>Model releases</strong> when using a person's photo commercially (to advertise your services, post on your business page, etc.). A simple text message saying "Is it OK if I post these?" counts — save it. For minors, get a parent's approval.</p></div>
+    <div class="rule-card skip"><span class="rule-tag skip">Skip</span><p>No photography license exists anywhere in the US. No permit needed for outdoor portrait sessions in public spaces. No special insurance required by law.</p></div>
+    <div class="rule-card watch"><span class="rule-tag watch">Watch</span><p><strong>Property releases for commercial use.</strong> Photographing inside a restaurant, event venue, or on private property for business promotion requires the property owner's consent. Ask before shooting. Also: you own the copyright to every photo you take by default — don't give that up without a written agreement.</p></div>
+  </div>
+</div>
+
+<div class="biz-section" id="social">
+  <div class="biz-header">
+    <div class="biz-icon"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><circle cx="18" cy="5" r="3"/><circle cx="6" cy="12" r="3"/><circle cx="18" cy="19" r="3"/><line x1="8.59" y1="13.51" x2="15.42" y2="17.49"/><line x1="15.41" y1="6.51" x2="8.59" y2="10.49"/></svg></div>
+    <div><div class="biz-name">Social Media Management</div><div class="biz-tagline">Contracts and FTC rules</div></div>
+  </div>
+  <div class="biz-rules">
+    <div class="rule-card need"><span class="rule-tag need">Need</span><p>A service agreement with every client. Your AI booking system records the terms (what you'll manage, how often, for how much). That's your contract. Keep a record of account credentials in a secure place — never share them over text.</p></div>
+    <div class="rule-card skip"><span class="rule-tag skip">Skip</span><p>No marketing license. No social media certification. No business registration beyond the city license. This is a service business, not a regulated profession.</p></div>
+    <div class="rule-card watch"><span class="rule-tag watch">Watch</span><p><strong>FTC disclosure rules:</strong> If you post testimonials or make specific performance claims ("guaranteed to double your followers"), those claims must be honest and backed by evidence. For managing someone's existing account, this usually isn't an issue. Just don't promise results you can't guarantee.</p></div>
+  </div>
+</div>
+
+</div><!-- end container (biz sections) -->
+
+<!-- WHEN THINGS GO WRONG -->
+<section style="background:var(--gray);border-top:1px solid var(--border)">
+  <div class="container">
+    <span class="section-label">Problem Solving</span>
+    <h2>When Something Goes Wrong</h2>
+    <div class="scenarios">
+      <div class="scenario">
+        <div class="scenario-icon">💬</div>
+        <div class="scenario-q">
+          <div class="scenario-title">Someone disputes a charge</div>
+          <div class="scenario-ans">Your AI booking system logged the agreement — job type, price, and time. Screenshot it immediately. Reference the recorded booking terms when responding. <strong>Don't refund without reviewing the record first.</strong></div>
+        </div>
+      </div>
+      <div class="scenario">
+        <div class="scenario-icon">⚖️</div>
+        <div class="scenario-q">
+          <div class="scenario-title">A customer threatens to sue</div>
+          <div class="scenario-ans"><strong>Text Boston at 903-714-6162 immediately.</strong> Do not respond to the customer, do not apologize in writing, do not offer money. Wait until you've talked. Most "I'll sue you" threats go nowhere — but how you respond in the first 24 hours matters a lot.</div>
+        </div>
+      </div>
+      <div class="scenario">
+        <div class="scenario-icon">🔧</div>
+        <div class="scenario-q">
+          <div class="scenario-title">You accidentally damage something</div>
+          <div class="scenario-ans">Tell the client immediately — don't wait for them to notice. Offer to fix or replace it. <strong>Most disputes are resolved by taking responsibility fast.</strong> If it's serious and you have insurance, call them. If not, negotiate a fair resolution directly.</div>
+        </div>
+      </div>
+      <div class="scenario">
+        <div class="scenario-icon">❓</div>
+        <div class="scenario-q">
+          <div class="scenario-title">You're not sure if something is legal</div>
+          <div class="scenario-ans">Don't guess. <strong>Text Boston at 903-714-6162.</strong> He'll find the answer. If it's a question about your specific city's rules, he'll look it up. Don't proceed with anything you're uncertain about — it's always cheaper to ask first.</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- QUICK REFERENCE TABLE -->
+<section>
+  <div class="container">
+    <span class="section-label">Quick Reference</span>
+    <h2>What Every Business Needs at a Glance</h2>
+    <div class="ref-table-wrap">
+      <table class="ref-table">
+        <thead>
+          <tr>
+            <th>Business</th>
+            <th>License Required</th>
+            <th>Insurance Recommended</th>
+            <th>Biggest Watch</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr><td>Junk Removal</td><td class="no">General only</td><td class="no">Optional</td><td class="warn-cell">⚠ Hazmat disposal</td></tr>
+          <tr><td>Pressure Washing</td><td class="no">General only</td><td class="no">Optional</td><td class="warn-cell">⚠ Wastewater runoff</td></tr>
+          <tr><td>Lawn Care</td><td class="no">General only</td><td class="no">Optional</td><td class="warn-cell">⚠ Pesticide license</td></tr>
+          <tr><td>Pool Cleaning</td><td class="no">General only</td><td class="no">Optional</td><td class="warn-cell">⚠ Chemical handling</td></tr>
+          <tr><td>Car Detailing</td><td class="no">General only</td><td class="no">Optional</td><td class="warn-cell">⚠ Wastewater runoff</td></tr>
+          <tr><td>House Cleaning</td><td class="no">General only</td><td class="yes">✓ Strongly recommended</td><td class="warn-cell">⚠ In-home liability</td></tr>
+          <tr><td>Event Decoration</td><td class="no">General only</td><td class="no">Optional</td><td class="warn-cell">⚠ Structural safety</td></tr>
+          <tr><td>Pet Sitting</td><td class="no">General only</td><td class="no">Optional</td><td class="warn-cell">⚠ Animal responsibility</td></tr>
+          <tr><td>Home Organizing</td><td class="no">General only</td><td class="no">Optional</td><td class="warn-cell">⚠ Never discard without permission</td></tr>
+          <tr><td>Photography</td><td class="no">General only</td><td class="no">Optional</td><td class="warn-cell">⚠ Model &amp; property releases</td></tr>
+          <tr><td>Social Media Mgmt</td><td class="no">General only</td><td class="no">Optional</td><td class="warn-cell">⚠ Service agreement + FTC</td></tr>
+        </tbody>
+      </table>
+    </div>
+    <p style="font-size:12px;color:var(--dim);margin-top:12px">"General only" = standard city/county business license (~$25–100). Search "[your city] business license" to apply.</p>
+  </div>
+</section>
+
+<footer>
+  <div class="footer-logo">BOSS Systems</div>
+  <div class="footer-links">
+    <a href="/">Home</a>
+    <a href="/summer.html">Summer Program</a>
+    <a href="/partner-start.html">Partner Guide</a>
+    <a href="/partner-tools.html">Tools &amp; Resources</a>
+    <a href="/partner-info.html">Apply</a>
+    <a href="tel:+19037146162">903-714-6162</a>
+    <a href="mailto:bosrossall@gmail.com">bosrossall@gmail.com</a>
+  </div>
+  <div class="footer-tag">BOSS Systems &copy; 2026 · Tyler, TX · Summer Partner Program</div>
+</footer>
+
+<script>
+// Highlight active business pill on scroll
+(function(){
+  var pills = document.querySelectorAll('.biz-pill');
+  var sections = Array.from(pills).map(function(p){
+    var id = p.getAttribute('href').slice(1);
+    return document.getElementById(id);
+  });
+  function onScroll(){
+    var scrollY = window.scrollY + 140;
+    var active = null;
+    sections.forEach(function(s,i){
+      if(s && s.offsetTop <= scrollY) active = i;
+    });
+    pills.forEach(function(p,i){
+      p.classList.toggle('active', i === active);
+    });
+  }
+  window.addEventListener('scroll', onScroll, {passive:true});
+})();
+</script>
+
+</body>
+</html>
