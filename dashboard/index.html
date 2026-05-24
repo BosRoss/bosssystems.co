@@ -1873,9 +1873,19 @@ function closeModal() {
 // Close on escape key
 document.addEventListener('keydown', e => { if (e.key === 'Escape') closeModal(); });
 
+// ===== RETELL KEY — loaded from localStorage, never hardcoded =====
+function getRetellKey() {
+  let k = localStorage.getItem('boss_retell_key');
+  if (!k) {
+    k = prompt('Enter your Retell API key (stored locally, never sent anywhere):');
+    if (k) localStorage.setItem('boss_retell_key', k.trim());
+  }
+  return k ? k.trim() : '';
+}
+
 // ===== LEGAL ADVISOR =====
 const LEGAL_AGENT_ID = 'agent_1009cb72ba155ed30a2de19eed';
-const RETELL_KEY = 'key_7c54fe6b3ae9be0b27f087f00b02';
+const RETELL_KEY = getRetellKey();
 let retellClient = null;
 let legalActive = false;
 let transcriptLines = [];
@@ -2142,7 +2152,7 @@ async function submitDecision(uid, phone, firstName, lastName) {
 
 // ===== SALES TRAINER =====
 const TRAINER_AGENT = 'agent_fc53b0ede05f872cad6872bb86';
-const TRAINER_KEY = 'key_7c54fe6b3ae9be0b27f087f00b02';
+const TRAINER_KEY = getRetellKey();
 let trainerClient = null;
 let trainerActive = false;
 
