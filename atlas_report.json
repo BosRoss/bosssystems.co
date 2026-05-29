@@ -1,9 +1,9 @@
 {
-  "generated": "2026-05-29T19:37:24.315621+00:00",
+  "generated": "2026-05-29T19:41:49.773334+00:00",
   "power_level": "IDLE",
-  "scan_duration_seconds": 203.9,
+  "scan_duration_seconds": 231.8,
   "sources_scanned": 14,
-  "data_points": 625,
+  "data_points": 748,
   "regions_monitored": [
     "US-TX",
     "US-MS",
@@ -172,6 +172,17 @@
       "expires": "2026-05-30T10:15:00-05:00"
     },
     {
+      "type": "Flood Advisory",
+      "state": "AL",
+      "headline": "Flood Advisory issued May 29 at 2:39PM CDT until May 29 at 5:45PM CDT by NWS Birmingham AL",
+      "severity": "Minor",
+      "hvac_opportunity": false,
+      "roofing_opportunity": false,
+      "plumbing_opportunity": true,
+      "flood_damage": true,
+      "expires": "2026-05-29T17:45:00-05:00"
+    },
+    {
       "type": "Flood Watch",
       "state": "TN",
       "headline": "Flood Watch issued May 29 at 1:59PM EDT until May 30 at 2:00PM EDT by NWS Morristown TN",
@@ -218,26 +229,996 @@
   ],
   "satellites": {
     "iss": {
-      "latitude": 47.8143,
-      "longitude": -90.2071,
-      "timestamp": "2026-05-29T19:38:52+00:00"
+      "latitude": 51.5933,
+      "longitude": -64.4243,
+      "timestamp": "2026-05-29T19:43:26+00:00"
     },
-    "nasa_events": [],
-    "tracked": []
+    "nasa_events": [
+      {
+        "title": "Tropical Storm Jangmi",
+        "category": "severeStorms",
+        "date": "2026-05-29",
+        "coordinates": [
+          131.7,
+          16.5
+        ]
+      },
+      {
+        "title": "Black Ridge Wildfire, Lincoln, Idaho",
+        "category": "wildfires",
+        "date": "2026-05-25",
+        "coordinates": [
+          -113.935667,
+          43.050333
+        ]
+      },
+      {
+        "title": "Dewoff Wildfire, Blaine, Idaho",
+        "category": "wildfires",
+        "date": "2026-05-25",
+        "coordinates": [
+          -113.248133,
+          42.67045
+        ]
+      },
+      {
+        "title": "0231 ZEN Wildfire, Wasco, Oregon",
+        "category": "wildfires",
+        "date": "2026-05-25",
+        "coordinates": [
+          -120.43789,
+          44.85563
+        ]
+      },
+      {
+        "title": "Egberts Wildfire, Elko, Nevada",
+        "category": "wildfires",
+        "date": "2026-05-25",
+        "coordinates": [
+          -115.0565,
+          40.9655
+        ]
+      },
+      {
+        "title": "Summit Creek Wildfire, Cassia, Idaho",
+        "category": "wildfires",
+        "date": "2026-05-25",
+        "coordinates": [
+          -113.73075,
+          42.17555
+        ]
+      },
+      {
+        "title": "Kinyon Springs Wildfire, Owyhee, Idaho",
+        "category": "wildfires",
+        "date": "2026-05-25",
+        "coordinates": [
+          -115.244683,
+          42.734717
+        ]
+      },
+      {
+        "title": "MILE MARKER 44 FIRE - BROWARD Wildfire, Broward, Florida",
+        "category": "wildfires",
+        "date": "2026-05-23",
+        "coordinates": [
+          -80.7791667,
+          26.0994444
+        ]
+      },
+      {
+        "title": "COUNTRY MEADOW Wildfire, Benton, Washington",
+        "category": "wildfires",
+        "date": "2026-05-23",
+        "coordinates": [
+          -119.33745,
+          46.16526
+        ]
+      },
+      {
+        "title": "340 Wildfire, Wakulla, Florida",
+        "category": "wildfires",
+        "date": "2026-05-23",
+        "coordinates": [
+          -84.565664,
+          30.053136
+        ]
+      },
+      {
+        "title": "Mile Marker 44 Wildfire, Broward, Florida",
+        "category": "wildfires",
+        "date": "2026-05-23",
+        "coordinates": [
+          -80.766667,
+          26.15
+        ]
+      },
+      {
+        "title": "Quartz Wildfire, Pershing, Nevada",
+        "category": "wildfires",
+        "date": "2026-05-23",
+        "coordinates": [
+          -118.014333,
+          40.709867
+        ]
+      },
+      {
+        "title": "Thousand Wildfire, Northwest Arctic, Alaska",
+        "category": "wildfires",
+        "date": "2026-05-23",
+        "coordinates": [
+          -159.286667,
+          66.435
+        ]
+      },
+      {
+        "title": "WaWa 2 Wildfire, Highlands, Florida",
+        "category": "wildfires",
+        "date": "2026-05-23",
+        "coordinates": [
+          -81.2598,
+          27.644633
+        ]
+      },
+      {
+        "title": "Shell Wildfire, Lake, Florida",
+        "category": "wildfires",
+        "date": "2026-05-22",
+        "coordinates": [
+          -81.507167,
+          29.073833
+        ]
+      },
+      {
+        "title": "Trigg Wildfire, San Miguel, New Mexico",
+        "category": "wildfires",
+        "date": "2026-05-21",
+        "coordinates": [
+          -103.948693,
+          35.53034
+        ]
+      },
+      {
+        "title": "DeSoto BB 8374 S RX Prescribed Fire, Harrison, Mississippi",
+        "category": "wildfires",
+        "date": "2026-05-20",
+        "coordinates": [
+          -89.035278,
+          30.673333
+        ]
+      },
+      {
+        "title": "Chickasawhay CPT 451 452 RX Prescribed Fire, Greene, Mississippi",
+        "category": "wildfires",
+        "date": "2026-05-20",
+        "coordinates": [
+          -88.6597,
+          31.4154
+        ]
+      },
+      {
+        "title": "CADDUGGEN Wildfire, Carteret, North Carolina",
+        "category": "wildfires",
+        "date": "2026-05-20",
+        "coordinates": [
+          -76.385286,
+          34.926008
+        ]
+      },
+      {
+        "title": "Rifle Range Rd Wildfire, Collier, Florida",
+        "category": "wildfires",
+        "date": "2026-05-19",
+        "coordinates": [
+          -81.6369444,
+          26.1155556
+        ]
+      }
+    ],
+    "tracked": [
+      {
+        "name": "ISS (ZARYA)",
+        "norad_id": "25544",
+        "group": "Space Stations",
+        "lat": 49.8444,
+        "lon": -82.3224,
+        "alt_km": 414.5
+      },
+      {
+        "name": "POISK",
+        "norad_id": "36086",
+        "group": "Space Stations",
+        "lat": 49.8444,
+        "lon": -82.3224,
+        "alt_km": 414.5
+      },
+      {
+        "name": "CSS (TIANHE)",
+        "norad_id": "48274",
+        "group": "Space Stations",
+        "lat": 34.4527,
+        "lon": 19.5134,
+        "alt_km": 396.5
+      },
+      {
+        "name": "ISS (NAUKA)",
+        "norad_id": "49044",
+        "group": "Space Stations",
+        "lat": 49.8444,
+        "lon": -82.3224,
+        "alt_km": 414.5
+      },
+      {
+        "name": "FREGAT DEB",
+        "norad_id": "49271",
+        "group": "Space Stations",
+        "lat": 13.0433,
+        "lon": 43.2886,
+        "alt_km": 1308.6
+      },
+      {
+        "name": "CSS (WENTIAN)",
+        "norad_id": "53239",
+        "group": "Space Stations",
+        "lat": 34.4527,
+        "lon": 19.5134,
+        "alt_km": 396.5
+      },
+      {
+        "name": "CSS (MENGTIAN)",
+        "norad_id": "54216",
+        "group": "Space Stations",
+        "lat": 34.4527,
+        "lon": 19.5134,
+        "alt_km": 396.5
+      },
+      {
+        "name": "HRC MONOBLOCK CAMERA",
+        "norad_id": "66052",
+        "group": "Space Stations",
+        "lat": -51.4463,
+        "lon": 106.2299,
+        "alt_km": 368.9
+      },
+      {
+        "name": "SZ-21 MODULE",
+        "norad_id": "66515",
+        "group": "Space Stations",
+        "lat": -38.7168,
+        "lon": 173.1833,
+        "alt_km": 352.5
+      },
+      {
+        "name": "SHENZHOU-22",
+        "norad_id": "66645",
+        "group": "Space Stations",
+        "lat": 34.4527,
+        "lon": 19.5135,
+        "alt_km": 396.5
+      },
+      {
+        "name": "SOYUZ-MS 28",
+        "norad_id": "66664",
+        "group": "Space Stations",
+        "lat": 49.8444,
+        "lon": -82.3224,
+        "alt_km": 414.5
+      },
+      {
+        "name": "DUPLEX",
+        "norad_id": "66906",
+        "group": "Space Stations",
+        "lat": 19.2937,
+        "lon": -144.9861,
+        "alt_km": 389.6
+      },
+      {
+        "name": "ISS OBJECT XY",
+        "norad_id": "66912",
+        "group": "Space Stations",
+        "lat": -27.9405,
+        "lon": 162.8249,
+        "alt_km": 327.9
+      },
+      {
+        "name": "KNACKSAT-2",
+        "norad_id": "67683",
+        "group": "Space Stations",
+        "lat": -21.6415,
+        "lon": -174.799,
+        "alt_km": 410.6
+      },
+      {
+        "name": "CORAL",
+        "norad_id": "67684",
+        "group": "Space Stations",
+        "lat": -49.0412,
+        "lon": 85.0677,
+        "alt_km": 373.3
+      },
+      {
+        "name": "GXIBA-1",
+        "norad_id": "67685",
+        "group": "Space Stations",
+        "lat": -33.2109,
+        "lon": 54.2403,
+        "alt_km": 400.3
+      },
+      {
+        "name": "UITMSAT-2",
+        "norad_id": "67686",
+        "group": "Space Stations",
+        "lat": -26.0832,
+        "lon": 179.2121,
+        "alt_km": 398.2
+      },
+      {
+        "name": "LEOPARD",
+        "norad_id": "67687",
+        "group": "Space Stations",
+        "lat": 45.4217,
+        "lon": -30.28,
+        "alt_km": 385.4
+      },
+      {
+        "name": "HMU-SAT2",
+        "norad_id": "67688",
+        "group": "Space Stations",
+        "lat": 45.2873,
+        "lon": -30.6781,
+        "alt_km": 380.1
+      },
+      {
+        "name": "CREW DRAGON 12",
+        "norad_id": "67796",
+        "group": "Space Stations",
+        "lat": 49.8444,
+        "lon": -82.3223,
+        "alt_km": 414.5
+      },
+      {
+        "name": "ATLAS CENTAUR 2",
+        "norad_id": "00694",
+        "group": "Bright Satellites",
+        "lat": -28.3429,
+        "lon": -148.3099,
+        "alt_km": 1177.9
+      },
+      {
+        "name": "THOR AGENA D R/B",
+        "norad_id": "00733",
+        "group": "Bright Satellites",
+        "lat": 73.8066,
+        "lon": -49.2203,
+        "alt_km": 763.7
+      },
+      {
+        "name": "SL-3 R/B",
+        "norad_id": "00877",
+        "group": "Bright Satellites",
+        "lat": -11.5195,
+        "lon": 95.5823,
+        "alt_km": 683.0
+      },
+      {
+        "name": "SL-8 R/B",
+        "norad_id": "02802",
+        "group": "Bright Satellites",
+        "lat": 23.7461,
+        "lon": 20.5899,
+        "alt_km": 789.2
+      },
+      {
+        "name": "SL-8 R/B",
+        "norad_id": "03230",
+        "group": "Bright Satellites",
+        "lat": 3.3387,
+        "lon": -34.4117,
+        "alt_km": 555.8
+      },
+      {
+        "name": "OAO 2",
+        "norad_id": "03597",
+        "group": "Bright Satellites",
+        "lat": -33.3027,
+        "lon": -121.0884,
+        "alt_km": 745.5
+      },
+      {
+        "name": "ISIS 1",
+        "norad_id": "03669",
+        "group": "Bright Satellites",
+        "lat": 47.7465,
+        "lon": 141.4848,
+        "alt_km": 3229.2
+      },
+      {
+        "name": "SERT 2",
+        "norad_id": "04327",
+        "group": "Bright Satellites",
+        "lat": -54.761,
+        "lon": -81.3081,
+        "alt_km": 1051.4
+      },
+      {
+        "name": "SL-3 R/B",
+        "norad_id": "05118",
+        "group": "Bright Satellites",
+        "lat": 45.1259,
+        "lon": 136.9974,
+        "alt_km": 363.0
+      },
+      {
+        "name": "ASTEX 1",
+        "norad_id": "05560",
+        "group": "Bright Satellites",
+        "lat": 40.6502,
+        "lon": 177.0467,
+        "alt_km": 716.4
+      },
+      {
+        "name": "SL-8 R/B",
+        "norad_id": "05730",
+        "group": "Bright Satellites",
+        "lat": 64.2208,
+        "lon": -122.5715,
+        "alt_km": 781.3
+      },
+      {
+        "name": "OAO 3 (COPERNICUS)",
+        "norad_id": "06153",
+        "group": "Bright Satellites",
+        "lat": -21.8434,
+        "lon": -23.1088,
+        "alt_km": 705.0
+      },
+      {
+        "name": "ATLAS CENTAUR R/B",
+        "norad_id": "06155",
+        "group": "Bright Satellites",
+        "lat": -32.4815,
+        "lon": -58.4843,
+        "alt_km": 627.5
+      },
+      {
+        "name": "SL-8 R/B",
+        "norad_id": "08459",
+        "group": "Bright Satellites",
+        "lat": 25.5329,
+        "lon": 54.2885,
+        "alt_km": 769.9
+      },
+      {
+        "name": "SL-3 R/B",
+        "norad_id": "10114",
+        "group": "Bright Satellites",
+        "lat": 4.8003,
+        "lon": -37.0947,
+        "alt_km": 438.2
+      },
+      {
+        "name": "SEASAT 1",
+        "norad_id": "10967",
+        "group": "Bright Satellites",
+        "lat": -70.2961,
+        "lon": -132.7972,
+        "alt_km": 750.4
+      },
+      {
+        "name": "SL-14 R/B",
+        "norad_id": "11267",
+        "group": "Bright Satellites",
+        "lat": 59.243,
+        "lon": 3.6209,
+        "alt_km": 582.3
+      },
+      {
+        "name": "SL-8 R/B",
+        "norad_id": "11574",
+        "group": "Bright Satellites",
+        "lat": -17.4288,
+        "lon": 112.4941,
+        "alt_km": 766.0
+      },
+      {
+        "name": "SL-14 R/B",
+        "norad_id": "11672",
+        "group": "Bright Satellites",
+        "lat": 55.9507,
+        "lon": -144.1756,
+        "alt_km": 602.7
+      },
+      {
+        "name": "SL-8 R/B",
+        "norad_id": "12139",
+        "group": "Bright Satellites",
+        "lat": -57.7405,
+        "lon": -137.0644,
+        "alt_km": 373.3
+      },
+      {
+        "name": "DMSP 5D-3 F16 (USA 172)",
+        "norad_id": "28054",
+        "group": "Weather Satellites",
+        "lat": -49.7911,
+        "lon": 1.0997,
+        "alt_km": 860.5
+      },
+      {
+        "name": "METEOSAT-9 (MSG-2)",
+        "norad_id": "28912",
+        "group": "Weather Satellites",
+        "lat": 0.8513,
+        "lon": 45.795,
+        "alt_km": 35797.8
+      },
+      {
+        "name": "DMSP 5D-3 F17 (USA 191)",
+        "norad_id": "29522",
+        "group": "Weather Satellites",
+        "lat": -9.475,
+        "lon": 152.0755,
+        "alt_km": 852.6
+      },
+      {
+        "name": "FENGYUN 3A",
+        "norad_id": "32958",
+        "group": "Weather Satellites",
+        "lat": 27.1555,
+        "lon": 92.2762,
+        "alt_km": 827.0
+      },
+      {
+        "name": "GOES 14",
+        "norad_id": "35491",
+        "group": "Weather Satellites",
+        "lat": -1.5567,
+        "lon": 152.2165,
+        "alt_km": 35838.4
+      },
+      {
+        "name": "DMSP 5D-3 F18 (USA 210)",
+        "norad_id": "35951",
+        "group": "Weather Satellites",
+        "lat": -18.6356,
+        "lon": -49.5595,
+        "alt_km": 848.7
+      },
+      {
+        "name": "EWS-G2 (GOES 15)",
+        "norad_id": "36411",
+        "group": "Weather Satellites",
+        "lat": 0.3231,
+        "lon": 63.5197,
+        "alt_km": 35806.9
+      },
+      {
+        "name": "COMS 1",
+        "norad_id": "36744",
+        "group": "Weather Satellites",
+        "lat": -3.9419,
+        "lon": 128.0372,
+        "alt_km": 35794.9
+      },
+      {
+        "name": "FENGYUN 3B",
+        "norad_id": "37214",
+        "group": "Weather Satellites",
+        "lat": -61.1623,
+        "lon": 29.193,
+        "alt_km": 849.5
+      },
+      {
+        "name": "SUOMI NPP",
+        "norad_id": "37849",
+        "group": "Weather Satellites",
+        "lat": 78.0006,
+        "lon": 134.3545,
+        "alt_km": 825.8
+      },
+      {
+        "name": "METEOSAT-10 (MSG-3)",
+        "norad_id": "38552",
+        "group": "Weather Satellites",
+        "lat": 3.8988,
+        "lon": 0.1959,
+        "alt_km": 35799.2
+      },
+      {
+        "name": "METOP-B",
+        "norad_id": "38771",
+        "group": "Weather Satellites",
+        "lat": 22.3416,
+        "lon": 14.8774,
+        "alt_km": 825.5
+      },
+      {
+        "name": "INSAT-3D",
+        "norad_id": "39216",
+        "group": "Weather Satellites",
+        "lat": -1.4412,
+        "lon": 129.5006,
+        "alt_km": 35794.3
+      },
+      {
+        "name": "FENGYUN 3C",
+        "norad_id": "39260",
+        "group": "Weather Satellites",
+        "lat": 59.486,
+        "lon": -73.3734,
+        "alt_km": 830.1
+      },
+      {
+        "name": "METEOR-M 2",
+        "norad_id": "40069",
+        "group": "Weather Satellites",
+        "lat": -64.9194,
+        "lon": 104.333,
+        "alt_km": 839.4
+      },
+      {
+        "name": "HIMAWARI-8",
+        "norad_id": "40267",
+        "group": "Weather Satellites",
+        "lat": 0.0036,
+        "lon": 140.6222,
+        "alt_km": 35793.5
+      },
+      {
+        "name": "FENGYUN 2G",
+        "norad_id": "40367",
+        "group": "Weather Satellites",
+        "lat": -2.7756,
+        "lon": 99.2688,
+        "alt_km": 35782.5
+      },
+      {
+        "name": "METEOSAT-11 (MSG-4)",
+        "norad_id": "40732",
+        "group": "Weather Satellites",
+        "lat": 2.6751,
+        "lon": 9.3448,
+        "alt_km": 35795.6
+      },
+      {
+        "name": "ELEKTRO-L 2",
+        "norad_id": "41105",
+        "group": "Weather Satellites",
+        "lat": 6.576,
+        "lon": -14.433,
+        "alt_km": 35797.2
+      },
+      {
+        "name": "SENTINEL-3A",
+        "norad_id": "41335",
+        "group": "Weather Satellites",
+        "lat": -71.9842,
+        "lon": -173.5743,
+        "alt_km": 817.8
+      },
+      {
+        "name": "GPS BIIR-5  (PRN 22)",
+        "norad_id": "26407",
+        "group": "GPS Constellation",
+        "lat": -12.7694,
+        "lon": 23.494,
+        "alt_km": 19950.6
+      },
+      {
+        "name": "GPS BIIR-8  (PRN 16)",
+        "norad_id": "27663",
+        "group": "GPS Constellation",
+        "lat": 44.6659,
+        "lon": 168.4703,
+        "alt_km": 20030.3
+      },
+      {
+        "name": "GPS BIIR-11 (PRN 19)",
+        "norad_id": "28190",
+        "group": "GPS Constellation",
+        "lat": -54.6496,
+        "lon": 10.3452,
+        "alt_km": 20256.1
+      },
+      {
+        "name": "GPS BIIR-13 (PRN 02)",
+        "norad_id": "28474",
+        "group": "GPS Constellation",
+        "lat": -17.4805,
+        "lon": 129.7242,
+        "alt_km": 19775.4
+      },
+      {
+        "name": "GPS BIIRM-1 (PRN 17)",
+        "norad_id": "28874",
+        "group": "GPS Constellation",
+        "lat": -44.6263,
+        "lon": 46.7684,
+        "alt_km": 19855.6
+      },
+      {
+        "name": "GPS BIIRM-2 (PRN 31)",
+        "norad_id": "29486",
+        "group": "GPS Constellation",
+        "lat": -15.8871,
+        "lon": 160.4708,
+        "alt_km": 20422.7
+      },
+      {
+        "name": "GPS BIIRM-3 (PRN 12)",
+        "norad_id": "29601",
+        "group": "GPS Constellation",
+        "lat": -51.8991,
+        "lon": -85.0149,
+        "alt_km": 20412.7
+      },
+      {
+        "name": "GPS BIIRM-4 (PRN 15)",
+        "norad_id": "32260",
+        "group": "GPS Constellation",
+        "lat": 26.1997,
+        "lon": -81.5454,
+        "alt_km": 19923.2
+      },
+      {
+        "name": "GPS BIIRM-5 (PRN 29)",
+        "norad_id": "32384",
+        "group": "GPS Constellation",
+        "lat": 16.461,
+        "lon": -100.27,
+        "alt_km": 20094.1
+      },
+      {
+        "name": "GPS BIIRM-6 (PRN 07)",
+        "norad_id": "32711",
+        "group": "GPS Constellation",
+        "lat": 54.3989,
+        "lon": 61.3123,
+        "alt_km": 20689.4
+      },
+      {
+        "name": "GPS BIIRM-8 (PRN 05)",
+        "norad_id": "35752",
+        "group": "GPS Constellation",
+        "lat": 52.6784,
+        "lon": -36.4181,
+        "alt_km": 20054.4
+      },
+      {
+        "name": "GPS BIIF-1  (PRN 25)",
+        "norad_id": "36585",
+        "group": "GPS Constellation",
+        "lat": -35.1355,
+        "lon": -123.5116,
+        "alt_km": 20506.8
+      },
+      {
+        "name": "GPS BIIF-3  (PRN 24)",
+        "norad_id": "38833",
+        "group": "GPS Constellation",
+        "lat": -27.0142,
+        "lon": -61.0075,
+        "alt_km": 20266.1
+      },
+      {
+        "name": "GPS BIIF-4  (PRN 27)",
+        "norad_id": "39166",
+        "group": "GPS Constellation",
+        "lat": 46.9813,
+        "lon": 136.2311,
+        "alt_km": 19817.2
+      },
+      {
+        "name": "GPS BIIF-5  (PRN 30)",
+        "norad_id": "39533",
+        "group": "GPS Constellation",
+        "lat": 44.3621,
+        "lon": 12.9331,
+        "alt_km": 20405.0
+      },
+      {
+        "name": "GPS BIIF-6  (PRN 06)",
+        "norad_id": "39741",
+        "group": "GPS Constellation",
+        "lat": -33.6919,
+        "lon": -4.7973,
+        "alt_km": 20219.7
+      },
+      {
+        "name": "GPS BIIF-7  (PRN 09)",
+        "norad_id": "40105",
+        "group": "GPS Constellation",
+        "lat": 18.8466,
+        "lon": 72.3118,
+        "alt_km": 20119.7
+      },
+      {
+        "name": "GPS BIIF-8  (PRN 03)",
+        "norad_id": "40294",
+        "group": "GPS Constellation",
+        "lat": -51.9311,
+        "lon": 84.5099,
+        "alt_km": 20370.9
+      },
+      {
+        "name": "GPS BIIF-9  (PRN 26)",
+        "norad_id": "40534",
+        "group": "GPS Constellation",
+        "lat": 22.0579,
+        "lon": -175.9449,
+        "alt_km": 20293.3
+      },
+      {
+        "name": "GPS BIIF-10 (PRN 08)",
+        "norad_id": "40730",
+        "group": "GPS Constellation",
+        "lat": 28.4762,
+        "lon": 107.7891,
+        "alt_km": 19882.8
+      },
+      {
+        "name": "SAR-LUPE 2",
+        "norad_id": "31797",
+        "group": "Military Satellites",
+        "lat": 70.6167,
+        "lon": -87.3167,
+        "alt_km": 421.4
+      },
+      {
+        "name": "SAPPHIRE",
+        "norad_id": "39088",
+        "group": "Military Satellites",
+        "lat": -25.0745,
+        "lon": 150.4594,
+        "alt_km": 780.5
+      },
+      {
+        "name": "PRAETORIAN SDA_602",
+        "norad_id": "65565",
+        "group": "Military Satellites",
+        "lat": 55.7927,
+        "lon": -142.4403,
+        "alt_km": 953.9
+      },
+      {
+        "name": "PRAETORIAN SDA_603",
+        "norad_id": "65566",
+        "group": "Military Satellites",
+        "lat": -46.4566,
+        "lon": -164.8126,
+        "alt_km": 962.0
+      },
+      {
+        "name": "PRAETORIAN SDA_604",
+        "norad_id": "65567",
+        "group": "Military Satellites",
+        "lat": -81.1905,
+        "lon": 124.015,
+        "alt_km": 964.5
+      },
+      {
+        "name": "PRAETORIAN SDA_605",
+        "norad_id": "65568",
+        "group": "Military Satellites",
+        "lat": 57.2796,
+        "lon": -141.7,
+        "alt_km": 958.7
+      },
+      {
+        "name": "PRAETORIAN SDA_606",
+        "norad_id": "65569",
+        "group": "Military Satellites",
+        "lat": 32.4812,
+        "lon": 19.143,
+        "alt_km": 957.0
+      },
+      {
+        "name": "PRAETORIAN SDA_607",
+        "norad_id": "65570",
+        "group": "Military Satellites",
+        "lat": 48.3014,
+        "lon": -145.6866,
+        "alt_km": 957.1
+      },
+      {
+        "name": "PRAETORIAN SDA_608",
+        "norad_id": "65571",
+        "group": "Military Satellites",
+        "lat": -12.4403,
+        "lon": 26.5134,
+        "alt_km": 959.8
+      },
+      {
+        "name": "PRAETORIAN SDA_609",
+        "norad_id": "65572",
+        "group": "Military Satellites",
+        "lat": 40.8062,
+        "lon": 16.9756,
+        "alt_km": 953.4
+      },
+      {
+        "name": "PRAETORIAN SDA_610",
+        "norad_id": "65573",
+        "group": "Military Satellites",
+        "lat": -67.3444,
+        "lon": -176.9776,
+        "alt_km": 961.7
+      },
+      {
+        "name": "PRAETORIAN SDA_611",
+        "norad_id": "65574",
+        "group": "Military Satellites",
+        "lat": -36.5984,
+        "lon": -161.8387,
+        "alt_km": 964.4
+      },
+      {
+        "name": "PRAETORIAN SDA_612",
+        "norad_id": "65575",
+        "group": "Military Satellites",
+        "lat": -77.1908,
+        "lon": 66.6283,
+        "alt_km": 954.8
+      },
+      {
+        "name": "PRAETORIAN SDA_613",
+        "norad_id": "65576",
+        "group": "Military Satellites",
+        "lat": -34.2718,
+        "lon": -161.318,
+        "alt_km": 967.1
+      },
+      {
+        "name": "PRAETORIAN SDA_614",
+        "norad_id": "65577",
+        "group": "Military Satellites",
+        "lat": -28.0398,
+        "lon": -160.284,
+        "alt_km": 960.1
+      },
+      {
+        "name": "PRAETORIAN SDA_615",
+        "norad_id": "65578",
+        "group": "Military Satellites",
+        "lat": 68.8792,
+        "lon": 1.0037,
+        "alt_km": 952.4
+      },
+      {
+        "name": "PRAETORIAN SDA_616",
+        "norad_id": "65579",
+        "group": "Military Satellites",
+        "lat": -30.053,
+        "lon": -160.2576,
+        "alt_km": 964.7
+      },
+      {
+        "name": "PRAETORIAN SDA_617",
+        "norad_id": "65580",
+        "group": "Military Satellites",
+        "lat": -49.1319,
+        "lon": 34.8398,
+        "alt_km": 962.0
+      },
+      {
+        "name": "PRAETORIAN SDA_618",
+        "norad_id": "65581",
+        "group": "Military Satellites",
+        "lat": -78.7306,
+        "lon": 74.4635,
+        "alt_km": 955.5
+      },
+      {
+        "name": "PRAETORIAN SDA_619",
+        "norad_id": "65582",
+        "group": "Military Satellites",
+        "lat": 38.8663,
+        "lon": 17.4658,
+        "alt_km": 954.8
+      }
+    ]
   },
   "earthquakes": [
-    {
-      "magnitude": 2.55,
-      "place": "13 km S of Honaunau-Napoopoo, Hawaii",
-      "time": "2026-05-29T19:17:03.500000+00:00",
-      "coordinates": [
-        -155.843338012695,
-        19.3333339691162
-      ],
-      "alert": null,
-      "tsunami": 0,
-      "url": "https://earthquake.usgs.gov/earthquakes/eventpage/hv74971552"
-    },
     {
       "magnitude": 4.6,
       "place": "south of the Fiji Islands",
@@ -525,6 +1506,18 @@
       "alert": null,
       "tsunami": 0,
       "url": "https://earthquake.usgs.gov/earthquakes/eventpage/us7000sp6y"
+    },
+    {
+      "magnitude": 2.5,
+      "place": "Blue Origin New Glenn rocket explosion",
+      "time": "2026-05-29T01:00:03+00:00",
+      "coordinates": [
+        -80.538,
+        28.471
+      ],
+      "alert": null,
+      "tsunami": 0,
+      "url": "https://earthquake.usgs.gov/earthquakes/eventpage/us7000spdd"
     }
   ],
   "news": [
@@ -547,6 +1540,13 @@
       "title": "CAPTCHAs can still detect AI agents",
       "url": "https://research.roundtable.ai/captchas-detect-ai/",
       "published": "2026-05-29T15:57:37+00:00",
+      "relevance": "industry"
+    },
+    {
+      "source": "hackernews",
+      "title": "Is AI causing a repeat of frontend\u2019s lost decade?",
+      "url": "https://mastrojs.github.io/blog/2026-05-23-is-AI-causing-a-repeat-of-frontends-lost-decade/",
+      "published": "2026-05-29T11:09:32+00:00",
       "relevance": "industry"
     },
     {
@@ -579,6 +1579,13 @@
     },
     {
       "source": "hackernews",
+      "title": "Is this sustainable?",
+      "url": "https://jamiehurst.co.uk/2026-05-24_ai-sustainable",
+      "published": "2026-05-29T10:14:43+00:00",
+      "relevance": "industry"
+    },
+    {
+      "source": "hackernews",
       "title": "AI will be used to estimate age of asylum seekers from next year",
       "url": "https://www.bbc.co.uk/news/articles/ce3pe36qe7ro",
       "published": "2026-05-29T18:23:03+00:00",
@@ -599,9 +1606,9 @@
       {
         "source": "polymarket",
         "question": "US x Iran permanent peace deal by May 31, 2026?",
-        "probability": 8.5,
-        "volume": "75910165.3872853",
-        "liquidity": "599010.3552",
+        "probability": 7.5,
+        "volume": "75945362.53591932",
+        "liquidity": "695338.1641",
         "url": "https://polymarket.com/event/us-x-iran-permanent-peace-deal-by-may-31-2026-333-871-241-192-799-449-125",
         "end_date": "2026-05-31T00:00:00Z",
         "category": "general"
@@ -640,8 +1647,8 @@
         "source": "polymarket",
         "question": "Indian Premier League: Gujarat Titans vs Rajasthan Royals",
         "probability": 100.0,
-        "volume": "3365554.2449059966",
-        "liquidity": "418721.00918",
+        "volume": "3365903.354905997",
+        "liquidity": "418173.00979",
         "url": "https://polymarket.com/event/cricipl-guj-raj-2026-05-29",
         "end_date": "2026-06-05T10:00:00Z",
         "category": "general"
@@ -649,9 +1656,9 @@
       {
         "source": "polymarket",
         "question": "Will Donald Trump announce that the United States blockade of the Strait of Hormuz has been lifted by May 31, 2026?",
-        "probability": 29.0,
-        "volume": "8113311.958193134",
-        "liquidity": "68953.4416",
+        "probability": 31.0,
+        "volume": "8130593.595130134",
+        "liquidity": "60237.9147",
         "url": "https://polymarket.com/event/will-donald-trump-announce-that-the-united-states-blockade-of-the-strait-of-hormuz-has-been-lifted-by-may-31-2026-313-388-459-589-533",
         "end_date": "2026-05-31T00:00:00Z",
         "category": "general"
@@ -680,8 +1687,8 @@
         "source": "polymarket",
         "question": "Will Scotland win the 2026 FIFA World Cup?",
         "probability": 0.2,
-        "volume": "29873351.35225388",
-        "liquidity": "8689611.49586",
+        "volume": "29873353.04225388",
+        "liquidity": "8689747.07001",
         "url": "https://polymarket.com/event/will-scotland-win-the-2026-fifa-world-cup",
         "end_date": "2026-07-20T00:00:00Z",
         "category": "general"
@@ -850,26 +1857,6 @@
       },
       {
         "source": "manifold",
-        "question": "Which of the following is true of Elon Musk?",
-        "probability": 0,
-        "traders": 243,
-        "volume": 129218.05467931897,
-        "url": "https://manifold.markets/ClubmasterTransparent/which-of-the-following-is-true-of-e",
-        "created": 1716658842597,
-        "category": "forecast"
-      },
-      {
-        "source": "manifold",
-        "question": "Which positive news category will make 2026 world-wide headlines?",
-        "probability": 0,
-        "traders": 4,
-        "volume": 102,
-        "url": "https://manifold.markets/uair01/which-positive-news-category-will-m",
-        "created": 1766594727626,
-        "category": "forecast"
-      },
-      {
-        "source": "manifold",
         "question": "Nothing Ever Happens: Febuary",
         "probability": 0,
         "traders": 8,
@@ -886,6 +1873,26 @@
         "volume": 1664.3537646812838,
         "url": "https://manifold.markets/ScottHuston/what-was-the-motivation-for-the-att",
         "created": 1720911307221,
+        "category": "forecast"
+      },
+      {
+        "source": "manifold",
+        "question": "What major event will precipitate the next run on toilet paper in the United States?",
+        "probability": 0,
+        "traders": 8,
+        "volume": 722.1245120784571,
+        "url": "https://manifold.markets/SnakeBite/what-major-event-will-precipitate-t",
+        "created": 1752711287301,
+        "category": "forecast"
+      },
+      {
+        "source": "manifold",
+        "question": "Why should the average person care about prediction markets? Hit us with your best one-line argument!",
+        "probability": 0,
+        "traders": 3,
+        "volume": 70,
+        "url": "https://manifold.markets/oh/whats-the-best-oneline-argument-for",
+        "created": 1700800516531,
         "category": "forecast"
       },
       {
@@ -910,7 +1917,7 @@
     },
     {
       "priority": 2,
-      "action": "Target water damage restoration + plumbers in TX, AR, MS, TN \u2014 active flooding",
+      "action": "Target water damage restoration + plumbers in TN, TX, AL, AR, MS \u2014 active flooding",
       "reason": "Active flood warnings = burst pipes, water damage, restoration demand spike",
       "auto_executable": false,
       "category": "opportunity"
@@ -935,6 +1942,146 @@
       "reason": "Major earthquake = supply chain disruption + construction demand spike",
       "auto_executable": false,
       "category": "geopolitical"
+    },
+    {
+      "priority": 6,
+      "action": "Watch severeStorms event: Tropical Storm Jangmi",
+      "reason": "Natural disaster = spike in contractor demand = missed call opportunity",
+      "auto_executable": false,
+      "category": "opportunity"
+    },
+    {
+      "priority": 7,
+      "action": "Watch wildfires event: Black Ridge Wildfire, Lincoln, Idaho",
+      "reason": "Natural disaster = spike in contractor demand = missed call opportunity",
+      "auto_executable": false,
+      "category": "opportunity"
+    },
+    {
+      "priority": 8,
+      "action": "Watch wildfires event: Dewoff Wildfire, Blaine, Idaho",
+      "reason": "Natural disaster = spike in contractor demand = missed call opportunity",
+      "auto_executable": false,
+      "category": "opportunity"
+    },
+    {
+      "priority": 9,
+      "action": "Watch wildfires event: 0231 ZEN Wildfire, Wasco, Oregon",
+      "reason": "Natural disaster = spike in contractor demand = missed call opportunity",
+      "auto_executable": false,
+      "category": "opportunity"
+    },
+    {
+      "priority": 10,
+      "action": "Watch wildfires event: Egberts Wildfire, Elko, Nevada",
+      "reason": "Natural disaster = spike in contractor demand = missed call opportunity",
+      "auto_executable": false,
+      "category": "opportunity"
+    },
+    {
+      "priority": 11,
+      "action": "Watch wildfires event: Summit Creek Wildfire, Cassia, Idaho",
+      "reason": "Natural disaster = spike in contractor demand = missed call opportunity",
+      "auto_executable": false,
+      "category": "opportunity"
+    },
+    {
+      "priority": 12,
+      "action": "Watch wildfires event: Kinyon Springs Wildfire, Owyhee, Idaho",
+      "reason": "Natural disaster = spike in contractor demand = missed call opportunity",
+      "auto_executable": false,
+      "category": "opportunity"
+    },
+    {
+      "priority": 13,
+      "action": "Watch wildfires event: MILE MARKER 44 FIRE - BROWARD Wildfire, Broward, Florida",
+      "reason": "Natural disaster = spike in contractor demand = missed call opportunity",
+      "auto_executable": false,
+      "category": "opportunity"
+    },
+    {
+      "priority": 14,
+      "action": "Watch wildfires event: COUNTRY MEADOW Wildfire, Benton, Washington",
+      "reason": "Natural disaster = spike in contractor demand = missed call opportunity",
+      "auto_executable": false,
+      "category": "opportunity"
+    },
+    {
+      "priority": 15,
+      "action": "Watch wildfires event: 340 Wildfire, Wakulla, Florida",
+      "reason": "Natural disaster = spike in contractor demand = missed call opportunity",
+      "auto_executable": false,
+      "category": "opportunity"
+    },
+    {
+      "priority": 16,
+      "action": "Watch wildfires event: Mile Marker 44 Wildfire, Broward, Florida",
+      "reason": "Natural disaster = spike in contractor demand = missed call opportunity",
+      "auto_executable": false,
+      "category": "opportunity"
+    },
+    {
+      "priority": 17,
+      "action": "Watch wildfires event: Quartz Wildfire, Pershing, Nevada",
+      "reason": "Natural disaster = spike in contractor demand = missed call opportunity",
+      "auto_executable": false,
+      "category": "opportunity"
+    },
+    {
+      "priority": 18,
+      "action": "Watch wildfires event: Thousand Wildfire, Northwest Arctic, Alaska",
+      "reason": "Natural disaster = spike in contractor demand = missed call opportunity",
+      "auto_executable": false,
+      "category": "opportunity"
+    },
+    {
+      "priority": 19,
+      "action": "Watch wildfires event: WaWa 2 Wildfire, Highlands, Florida",
+      "reason": "Natural disaster = spike in contractor demand = missed call opportunity",
+      "auto_executable": false,
+      "category": "opportunity"
+    },
+    {
+      "priority": 20,
+      "action": "Watch wildfires event: Shell Wildfire, Lake, Florida",
+      "reason": "Natural disaster = spike in contractor demand = missed call opportunity",
+      "auto_executable": false,
+      "category": "opportunity"
+    },
+    {
+      "priority": 21,
+      "action": "Watch wildfires event: Trigg Wildfire, San Miguel, New Mexico",
+      "reason": "Natural disaster = spike in contractor demand = missed call opportunity",
+      "auto_executable": false,
+      "category": "opportunity"
+    },
+    {
+      "priority": 22,
+      "action": "Watch wildfires event: DeSoto BB 8374 S RX Prescribed Fire, Harrison, Mississippi",
+      "reason": "Natural disaster = spike in contractor demand = missed call opportunity",
+      "auto_executable": false,
+      "category": "opportunity"
+    },
+    {
+      "priority": 23,
+      "action": "Watch wildfires event: Chickasawhay CPT 451 452 RX Prescribed Fire, Greene, Mississippi",
+      "reason": "Natural disaster = spike in contractor demand = missed call opportunity",
+      "auto_executable": false,
+      "category": "opportunity"
+    },
+    {
+      "priority": 24,
+      "action": "Watch wildfires event: CADDUGGEN Wildfire, Carteret, North Carolina",
+      "reason": "Natural disaster = spike in contractor demand = missed call opportunity",
+      "auto_executable": false,
+      "category": "opportunity"
+    },
+    {
+      "priority": 25,
+      "action": "Watch wildfires event: Rifle Range Rd Wildfire, Collier, Florida",
+      "reason": "Natural disaster = spike in contractor demand = missed call opportunity",
+      "auto_executable": false,
+      "category": "opportunity"
     }
   ],
   "global_social": {
