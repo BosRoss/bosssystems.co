@@ -1,9 +1,9 @@
 {
-  "generated": "2026-05-29T17:42:21.103417+00:00",
+  "generated": "2026-05-29T17:55:56.852486+00:00",
   "power_level": "IDLE",
-  "scan_duration_seconds": 67.2,
-  "sources_scanned": 7,
-  "data_points": 390,
+  "scan_duration_seconds": 77.9,
+  "sources_scanned": 8,
+  "data_points": 399,
   "regions_monitored": [
     "US-TX",
     "US-MS",
@@ -15,6 +15,17 @@
   ],
   "countries_touched": 1,
   "feeds": [
+    {
+      "source": "reddit",
+      "subreddit": "r/smallbusiness",
+      "title": "Is there a VOIP Provider that offers a reliable working service without requiring a tortuous \"Discovery Call\" that's really just a pushy sales call?",
+      "url": "https://www.reddit.com/r/smallbusiness/comments/1tr9tm4/is_there_a_voip_provider_that_offers_a_reliable/",
+      "timestamp": "2026-05-29T17:51:13+00:00",
+      "signal_type": "pain",
+      "signal_strength": 0.35,
+      "region": "unknown",
+      "summary": "Is there a VOIP Provider that offers a reliable working service without requiring a tortuous \"Discov"
+    },
     {
       "source": "reddit",
       "subreddit": "r/smallbusiness",
@@ -171,9 +182,9 @@
   ],
   "satellites": {
     "iss": {
-      "latitude": -13.1124,
-      "longitude": -132.4346,
-      "timestamp": "2026-05-29T17:43:22+00:00"
+      "latitude": 27.2821,
+      "longitude": -101.1328,
+      "timestamp": "2026-05-29T17:56:56+00:00"
     },
     "nasa_events": [
       {
@@ -358,7 +369,71 @@
       }
     ]
   },
-  "news": [],
+  "news": [
+    {
+      "source": "hackernews",
+      "title": "Notes from the Mistral AI Now Summit in Paris",
+      "url": "https://koenvangilst.nl/lab/mistral-ai-now-summit",
+      "published": "2026-05-29T16:22:01+00:00",
+      "relevance": "industry"
+    },
+    {
+      "source": "hackernews",
+      "title": "Robinhood now lets your AI agents trade stocks",
+      "url": "https://techcrunch.com/2026/05/27/robinhood-now-lets-your-ai-agents-trade-stocks/",
+      "published": "2026-05-29T17:46:27+00:00",
+      "relevance": "industry"
+    },
+    {
+      "source": "hackernews",
+      "title": "CAPTCHAs can still detect AI agents",
+      "url": "https://research.roundtable.ai/captchas-detect-ai/",
+      "published": "2026-05-29T15:57:37+00:00",
+      "relevance": "industry"
+    },
+    {
+      "source": "hackernews",
+      "title": "Expertise in the age of AI",
+      "url": "https://www.moderndescartes.com/essays/ai_and_expertise/",
+      "published": "2026-05-29T13:35:13+00:00",
+      "relevance": "industry"
+    },
+    {
+      "source": "hackernews",
+      "title": "Real-time LLM Inference on Standard GPUs: 3k tokens/s per request",
+      "url": "https://blog.kog.ai/real-time-llm-inference-on-standard-gpus-3-000-tokens-s-per-request/",
+      "published": "2026-05-29T09:47:23+00:00",
+      "relevance": "industry"
+    },
+    {
+      "source": "hackernews",
+      "title": "Orchestrating AI code review at scale",
+      "url": "https://blog.cloudflare.com/ai-code-review/",
+      "published": "2026-05-26T07:06:28+00:00",
+      "relevance": "industry"
+    },
+    {
+      "source": "hackernews",
+      "title": "Claude Opus 4.8",
+      "url": "https://www.anthropic.com/news/claude-opus-4-8",
+      "published": "2026-05-28T16:49:14+00:00",
+      "relevance": "industry"
+    },
+    {
+      "source": "hackernews",
+      "title": "Dynamic Workflows in Claude Code",
+      "url": "https://claude.com/blog/introducing-dynamic-workflows-in-claude-code",
+      "published": "2026-05-28T16:52:21+00:00",
+      "relevance": "industry"
+    },
+    {
+      "source": "hackernews",
+      "title": "Even (very) noisy LLM evaluators are useful for improving AI agents",
+      "url": "https://www.tensorzero.com/blog/even-very-noisy-llm-evaluators-are-useful-for-improving-ai-agents/",
+      "published": "2026-05-27T07:49:56+00:00",
+      "relevance": "industry"
+    }
+  ],
   "competitors": [],
   "recommendations": [
     {
@@ -519,6 +594,6 @@
       "pt"
     ],
     "total_posts_scanned": 355,
-    "pain_signals_found": 1
+    "pain_signals_found": 2
   }
 }
