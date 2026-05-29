@@ -1,9 +1,9 @@
 {
-  "generated": "2026-05-29T18:08:22.810438+00:00",
+  "generated": "2026-05-29T18:57:56.011760+00:00",
   "power_level": "IDLE",
-  "scan_duration_seconds": 229.1,
-  "sources_scanned": 12,
-  "data_points": 429,
+  "scan_duration_seconds": 188.3,
+  "sources_scanned": 13,
+  "data_points": 646,
   "regions_monitored": [
     "US-TX",
     "US-MS",
@@ -36,6 +36,17 @@
       "signal_strength": 0.35,
       "region": "unknown",
       "summary": "VOIP system or other option"
+    },
+    {
+      "source": "reddit",
+      "subreddit": "r/HVAC",
+      "title": "Goodman unit freezing up. Need some insight on what to check tomorrow.",
+      "url": "https://www.reddit.com/r/HVAC/comments/1tqlram/goodman_unit_freezing_up_need_some_insight_on/",
+      "timestamp": "2026-05-29T00:36:18+00:00",
+      "signal_type": "pain",
+      "signal_strength": 0.35,
+      "region": "unknown",
+      "summary": "Goodman unit freezing up. Need some insight on what to check tomorrow."
     }
   ],
   "weather": [
@@ -46,7 +57,8 @@
       "severity": "Severe",
       "hvac_opportunity": false,
       "roofing_opportunity": false,
-      "plumbing_opportunity": false,
+      "plumbing_opportunity": true,
+      "flood_damage": true,
       "expires": "2026-05-30T01:15:00-05:00"
     },
     {
@@ -56,7 +68,8 @@
       "severity": "Severe",
       "hvac_opportunity": false,
       "roofing_opportunity": false,
-      "plumbing_opportunity": false,
+      "plumbing_opportunity": true,
+      "flood_damage": true,
       "expires": "2026-05-29T22:00:00-05:00"
     },
     {
@@ -66,7 +79,8 @@
       "severity": "Severe",
       "hvac_opportunity": false,
       "roofing_opportunity": false,
-      "plumbing_opportunity": false,
+      "plumbing_opportunity": true,
+      "flood_damage": true,
       "expires": "2026-05-29T21:45:00-05:00"
     },
     {
@@ -76,7 +90,8 @@
       "severity": "Severe",
       "hvac_opportunity": false,
       "roofing_opportunity": false,
-      "plumbing_opportunity": false,
+      "plumbing_opportunity": true,
+      "flood_damage": true,
       "expires": "2026-05-29T21:45:00-05:00"
     },
     {
@@ -86,7 +101,8 @@
       "severity": "Severe",
       "hvac_opportunity": false,
       "roofing_opportunity": false,
-      "plumbing_opportunity": false,
+      "plumbing_opportunity": true,
+      "flood_damage": true,
       "expires": "2026-05-30T01:15:00-05:00"
     },
     {
@@ -96,7 +112,8 @@
       "severity": "Severe",
       "hvac_opportunity": false,
       "roofing_opportunity": false,
-      "plumbing_opportunity": false,
+      "plumbing_opportunity": true,
+      "flood_damage": true,
       "expires": "2026-05-30T01:15:00-05:00"
     },
     {
@@ -106,7 +123,8 @@
       "severity": "Severe",
       "hvac_opportunity": false,
       "roofing_opportunity": false,
-      "plumbing_opportunity": false,
+      "plumbing_opportunity": true,
+      "flood_damage": true,
       "expires": "2026-05-30T01:15:00-05:00"
     },
     {
@@ -116,7 +134,8 @@
       "severity": "Severe",
       "hvac_opportunity": false,
       "roofing_opportunity": false,
-      "plumbing_opportunity": false,
+      "plumbing_opportunity": true,
+      "flood_damage": true,
       "expires": "2026-05-30T00:15:00-05:00"
     },
     {
@@ -126,7 +145,8 @@
       "severity": "Severe",
       "hvac_opportunity": false,
       "roofing_opportunity": false,
-      "plumbing_opportunity": false,
+      "plumbing_opportunity": true,
+      "flood_damage": true,
       "expires": "2026-05-29T23:45:00-05:00"
     },
     {
@@ -136,7 +156,8 @@
       "severity": "Severe",
       "hvac_opportunity": false,
       "roofing_opportunity": false,
-      "plumbing_opportunity": false,
+      "plumbing_opportunity": true,
+      "flood_damage": true,
       "expires": "2026-05-29T23:45:00-05:00"
     },
     {
@@ -146,7 +167,8 @@
       "severity": "Severe",
       "hvac_opportunity": false,
       "roofing_opportunity": false,
-      "plumbing_opportunity": false,
+      "plumbing_opportunity": true,
+      "flood_damage": true,
       "expires": "2026-05-29T23:30:00-05:00"
     },
     {
@@ -156,7 +178,8 @@
       "severity": "Severe",
       "hvac_opportunity": false,
       "roofing_opportunity": false,
-      "plumbing_opportunity": false,
+      "plumbing_opportunity": true,
+      "flood_damage": true,
       "expires": "2026-05-30T10:15:00-05:00"
     },
     {
@@ -166,8 +189,20 @@
       "severity": "Severe",
       "hvac_opportunity": false,
       "roofing_opportunity": false,
-      "plumbing_opportunity": false,
+      "plumbing_opportunity": true,
+      "flood_damage": true,
       "expires": "2026-05-30T02:30:00-04:00"
+    },
+    {
+      "type": "Flood Advisory",
+      "state": "TN",
+      "headline": "Flood Advisory issued May 29 at 11:08AM CDT by NWS Memphis TN",
+      "severity": "Minor",
+      "hvac_opportunity": false,
+      "roofing_opportunity": false,
+      "plumbing_opportunity": true,
+      "flood_damage": true,
+      "expires": "2026-05-30T23:15:00-05:00"
     },
     {
       "type": "Wind Advisory",
@@ -177,6 +212,7 @@
       "hvac_opportunity": false,
       "roofing_opportunity": true,
       "plumbing_opportunity": false,
+      "flood_damage": false,
       "expires": "2026-05-29T19:00:00-06:00"
     },
     {
@@ -187,14 +223,15 @@
       "hvac_opportunity": false,
       "roofing_opportunity": false,
       "plumbing_opportunity": false,
+      "flood_damage": false,
       "expires": "2026-05-29T20:00:00-06:00"
     }
   ],
   "satellites": {
     "iss": {
-      "latitude": 51.239,
-      "longitude": -47.7603,
-      "timestamp": "2026-05-29T18:09:23+00:00"
+      "latitude": -50.8963,
+      "longitude": 141.7842,
+      "timestamp": "2026-05-29T18:59:24+00:00"
     },
     "nasa_events": [
       {
@@ -379,19 +416,314 @@
       }
     ]
   },
+  "earthquakes": [
+    {
+      "magnitude": 4.6,
+      "place": "south of the Fiji Islands",
+      "time": "2026-05-29T16:47:49.386000+00:00",
+      "coordinates": [
+        179.7888,
+        -24.9835
+      ],
+      "alert": null,
+      "tsunami": 0,
+      "url": "https://earthquake.usgs.gov/earthquakes/eventpage/us7000spdj"
+    },
+    {
+      "magnitude": 5.2,
+      "place": "250 km ESE of Severo-Kuril\u2019sk, Russia",
+      "time": "2026-05-29T16:05:58.630000+00:00",
+      "coordinates": [
+        159.5123,
+        50.0568
+      ],
+      "alert": null,
+      "tsunami": 0,
+      "url": "https://earthquake.usgs.gov/earthquakes/eventpage/us7000spd9"
+    },
+    {
+      "magnitude": 3.4,
+      "place": "254 km SE of Chiniak, Alaska",
+      "time": "2026-05-29T15:33:45.428000+00:00",
+      "coordinates": [
+        -149.0854,
+        56.1455
+      ],
+      "alert": null,
+      "tsunami": 0,
+      "url": "https://earthquake.usgs.gov/earthquakes/eventpage/us7000spd2"
+    },
+    {
+      "magnitude": 4.2,
+      "place": "234 km WNW of Naha, Japan",
+      "time": "2026-05-29T15:20:29.551000+00:00",
+      "coordinates": [
+        125.4642,
+        26.9217
+      ],
+      "alert": null,
+      "tsunami": 0,
+      "url": "https://earthquake.usgs.gov/earthquakes/eventpage/us7000spd5"
+    },
+    {
+      "magnitude": 4.1,
+      "place": "32 km ENE of Mesari\u00e1, Greece",
+      "time": "2026-05-29T14:36:55.425000+00:00",
+      "coordinates": [
+        25.7887,
+        36.4972
+      ],
+      "alert": null,
+      "tsunami": 0,
+      "url": "https://earthquake.usgs.gov/earthquakes/eventpage/us7000spb7"
+    },
+    {
+      "magnitude": 4.9,
+      "place": "56 km NNW of Kendari, Indonesia",
+      "time": "2026-05-29T14:34:43.967000+00:00",
+      "coordinates": [
+        122.3461,
+        -3.5004
+      ],
+      "alert": null,
+      "tsunami": 0,
+      "url": "https://earthquake.usgs.gov/earthquakes/eventpage/us7000spb8"
+    },
+    {
+      "magnitude": 4,
+      "place": "94 km SSE of Sand Point, Alaska",
+      "time": "2026-05-29T13:56:57.133000+00:00",
+      "coordinates": [
+        -160.0106,
+        54.5329
+      ],
+      "alert": null,
+      "tsunami": 0,
+      "url": "https://earthquake.usgs.gov/earthquakes/eventpage/us7000spb0"
+    },
+    {
+      "magnitude": 2.7,
+      "place": "117 km N of Yakutat, Alaska",
+      "time": "2026-05-29T13:48:51.875000+00:00",
+      "coordinates": [
+        -139.9039,
+        60.5971
+      ],
+      "alert": null,
+      "tsunami": 0,
+      "url": "https://earthquake.usgs.gov/earthquakes/eventpage/us7000spau"
+    },
+    {
+      "magnitude": 4.6,
+      "place": "101 km E of Shikotan, Russia",
+      "time": "2026-05-29T13:37:13.312000+00:00",
+      "coordinates": [
+        147.967,
+        43.923
+      ],
+      "alert": null,
+      "tsunami": 0,
+      "url": "https://earthquake.usgs.gov/earthquakes/eventpage/us7000spar"
+    },
+    {
+      "magnitude": 2.8,
+      "place": "24 km NW of Westbrook, Texas",
+      "time": "2026-05-29T12:49:50.185000+00:00",
+      "coordinates": [
+        -101.195,
+        32.508
+      ],
+      "alert": null,
+      "tsunami": 0,
+      "url": "https://earthquake.usgs.gov/earthquakes/eventpage/tx2026kmqxdn"
+    },
+    {
+      "magnitude": 4.8,
+      "place": "13 km NNE of Palpacachi, Peru",
+      "time": "2026-05-29T12:25:53.648000+00:00",
+      "coordinates": [
+        -72.4559,
+        -13.758
+      ],
+      "alert": null,
+      "tsunami": 0,
+      "url": "https://earthquake.usgs.gov/earthquakes/eventpage/us7000sp99"
+    },
+    {
+      "magnitude": 4.3,
+      "place": "60 km N of Falam, Burma (Myanmar)",
+      "time": "2026-05-29T12:22:54.128000+00:00",
+      "coordinates": [
+        93.722,
+        23.4621
+      ],
+      "alert": null,
+      "tsunami": 0,
+      "url": "https://earthquake.usgs.gov/earthquakes/eventpage/us7000sp9a"
+    },
+    {
+      "magnitude": 4,
+      "place": "113 km NE of Atka, Alaska",
+      "time": "2026-05-29T10:15:35.767000+00:00",
+      "coordinates": [
+        -173.0433,
+        52.9336
+      ],
+      "alert": null,
+      "tsunami": 0,
+      "url": "https://earthquake.usgs.gov/earthquakes/eventpage/us7000sp8x"
+    },
+    {
+      "magnitude": 4.7,
+      "place": "122 km ESE of Bitung, Indonesia",
+      "time": "2026-05-29T10:04:04.832000+00:00",
+      "coordinates": [
+        126.1429,
+        1.0041
+      ],
+      "alert": null,
+      "tsunami": 0,
+      "url": "https://earthquake.usgs.gov/earthquakes/eventpage/us7000sp8u"
+    },
+    {
+      "magnitude": 4.5,
+      "place": "70 km ENE of San Fernando, Peru",
+      "time": "2026-05-29T09:08:47.514000+00:00",
+      "coordinates": [
+        -73.9355,
+        -8.1696
+      ],
+      "alert": null,
+      "tsunami": 0,
+      "url": "https://earthquake.usgs.gov/earthquakes/eventpage/us7000sp8n"
+    },
+    {
+      "magnitude": 4.5,
+      "place": "108 km NNW of Bukittinggi, Indonesia",
+      "time": "2026-05-29T08:54:14.809000+00:00",
+      "coordinates": [
+        100.052,
+        0.6186
+      ],
+      "alert": null,
+      "tsunami": 0,
+      "url": "https://earthquake.usgs.gov/earthquakes/eventpage/us7000sp8m"
+    },
+    {
+      "magnitude": 4.6,
+      "place": "24 km NNW of Kazarman, Kyrgyzstan",
+      "time": "2026-05-29T08:15:11.417000+00:00",
+      "coordinates": [
+        73.9414,
+        41.6125
+      ],
+      "alert": null,
+      "tsunami": 0,
+      "url": "https://earthquake.usgs.gov/earthquakes/eventpage/us7000sp8f"
+    },
+    {
+      "magnitude": 5.3,
+      "place": "106 km SW of Turpan, China",
+      "time": "2026-05-29T06:55:52.924000+00:00",
+      "coordinates": [
+        88.3187,
+        42.2295
+      ],
+      "alert": null,
+      "tsunami": 0,
+      "url": "https://earthquake.usgs.gov/earthquakes/eventpage/us7000sp82"
+    },
+    {
+      "magnitude": 2.6,
+      "place": "12 km WSW of Stanton, Texas",
+      "time": "2026-05-29T06:22:02.145000+00:00",
+      "coordinates": [
+        -101.916,
+        32.105
+      ],
+      "alert": null,
+      "tsunami": 0,
+      "url": "https://earthquake.usgs.gov/earthquakes/eventpage/tx2026kmecmd"
+    },
+    {
+      "magnitude": 5.1,
+      "place": "86 km S of Pacocha, Peru",
+      "time": "2026-05-29T05:32:39.548000+00:00",
+      "coordinates": [
+        -71.4602,
+        -18.4158
+      ],
+      "alert": null,
+      "tsunami": 0,
+      "url": "https://earthquake.usgs.gov/earthquakes/eventpage/us7000sp7p"
+    },
+    {
+      "magnitude": 4.4,
+      "place": "60 km W of Abra Pampa, Argentina",
+      "time": "2026-05-29T04:55:50.675000+00:00",
+      "coordinates": [
+        -66.2832,
+        -22.6736
+      ],
+      "alert": null,
+      "tsunami": 0,
+      "url": "https://earthquake.usgs.gov/earthquakes/eventpage/us7000sp7m"
+    },
+    {
+      "magnitude": 2.64,
+      "place": "12 km E of Williamsville, Missouri",
+      "time": "2026-05-29T03:58:44.860000+00:00",
+      "coordinates": [
+        -90.4061666666667,
+        36.98
+      ],
+      "alert": null,
+      "tsunami": 0,
+      "url": "https://earthquake.usgs.gov/earthquakes/eventpage/nm60621981"
+    },
+    {
+      "magnitude": 3.36,
+      "place": "18 km WSW of Johannesburg, CA",
+      "time": "2026-05-29T02:00:57.440000+00:00",
+      "coordinates": [
+        -117.810833333333,
+        35.2996666666667
+      ],
+      "alert": null,
+      "tsunami": 0,
+      "url": "https://earthquake.usgs.gov/earthquakes/eventpage/ci41476264"
+    },
+    {
+      "magnitude": 4.7,
+      "place": "73 km SE of Sinabang, Indonesia",
+      "time": "2026-05-29T01:10:59.180000+00:00",
+      "coordinates": [
+        96.8764,
+        2.0401
+      ],
+      "alert": null,
+      "tsunami": 0,
+      "url": "https://earthquake.usgs.gov/earthquakes/eventpage/us7000sp6y"
+    },
+    {
+      "magnitude": 2.5,
+      "place": "Blue Origin New Glenn rocket explosion",
+      "time": "2026-05-29T01:00:03+00:00",
+      "coordinates": [
+        -80.538,
+        28.471
+      ],
+      "alert": null,
+      "tsunami": 0,
+      "url": "https://earthquake.usgs.gov/earthquakes/eventpage/us7000spdd"
+    }
+  ],
   "news": [
     {
       "source": "hackernews",
       "title": "Notes from the Mistral AI Now Summit in Paris",
       "url": "https://koenvangilst.nl/lab/mistral-ai-now-summit",
       "published": "2026-05-29T16:22:01+00:00",
-      "relevance": "industry"
-    },
-    {
-      "source": "hackernews",
-      "title": "Robinhood now lets your AI agents trade stocks",
-      "url": "https://techcrunch.com/2026/05/27/robinhood-now-lets-your-ai-agents-trade-stocks/",
-      "published": "2026-05-29T17:46:27+00:00",
       "relevance": "industry"
     },
     {
@@ -410,9 +742,30 @@
     },
     {
       "source": "hackernews",
+      "title": "Liquid AI reveals 8B-A1B MoE trained on 38T",
+      "url": "https://www.liquid.ai/blog/lfm2-5-8b-a1b",
+      "published": "2026-05-29T16:19:54+00:00",
+      "relevance": "industry"
+    },
+    {
+      "source": "hackernews",
       "title": "Real-time LLM Inference on Standard GPUs: 3k tokens/s per request",
       "url": "https://blog.kog.ai/real-time-llm-inference-on-standard-gpus-3-000-tokens-s-per-request/",
       "published": "2026-05-29T09:47:23+00:00",
+      "relevance": "industry"
+    },
+    {
+      "source": "hackernews",
+      "title": "To see to it that the forces of Napoleon are driven out of Spain (1809)",
+      "url": "https://wellsoc.org/society-member-pages/anecdotes-of-wellington/",
+      "published": "2026-05-29T17:39:49+00:00",
+      "relevance": "industry"
+    },
+    {
+      "source": "hackernews",
+      "title": "AI will be used to estimate age of asylum seekers from next year",
+      "url": "https://www.bbc.co.uk/news/articles/ce3pe36qe7ro",
+      "published": "2026-05-29T18:23:03+00:00",
       "relevance": "industry"
     },
     {
@@ -428,13 +781,6 @@
       "url": "https://www.anthropic.com/news/claude-opus-4-8",
       "published": "2026-05-28T16:49:14+00:00",
       "relevance": "industry"
-    },
-    {
-      "source": "hackernews",
-      "title": "Dynamic Workflows in Claude Code",
-      "url": "https://claude.com/blog/introducing-dynamic-workflows-in-claude-code",
-      "published": "2026-05-28T16:52:21+00:00",
-      "relevance": "industry"
     }
   ],
   "competitors": [],
@@ -444,9 +790,9 @@
       {
         "source": "polymarket",
         "question": "US x Iran permanent peace deal by May 31, 2026?",
-        "probability": 14.5,
-        "volume": "74669079.99400829",
-        "liquidity": "709099.5221",
+        "probability": 11.5,
+        "volume": "74919697.25205621",
+        "liquidity": "573934.2643",
         "url": "https://polymarket.com/event/us-x-iran-permanent-peace-deal-by-may-31-2026-333-871-241-192-799-449-125",
         "end_date": "2026-05-31T00:00:00Z",
         "category": "general"
@@ -455,8 +801,8 @@
         "source": "polymarket",
         "question": "Will the Iran ceasefire continue through May 24?",
         "probability": 99.9,
-        "volume": "22977442.417273887",
-        "liquidity": "5569273.99483",
+        "volume": "23059562.228273887",
+        "liquidity": "6927454.60721",
         "url": "https://polymarket.com/event/will-the-iran-ceasefire-continue-through-may-24-733",
         "end_date": "",
         "category": "general"
@@ -464,9 +810,9 @@
       {
         "source": "polymarket",
         "question": "Roland Garros ATP: Joao Fonseca vs Novak Djokovic",
-        "probability": 47.5,
-        "volume": "4157092.810252012",
-        "liquidity": "125887.3596",
+        "probability": 81.5,
+        "volume": "4877216.920342065",
+        "liquidity": "149376.0078",
         "url": "https://polymarket.com/event/atp-fonseca-djokovi-2026-05-29",
         "end_date": "2026-06-05T09:00:00Z",
         "category": "general"
@@ -475,18 +821,58 @@
         "source": "polymarket",
         "question": "Indian Premier League: Gujarat Titans vs Rajasthan Royals",
         "probability": 100.0,
-        "volume": "3327501.1449059965",
-        "liquidity": "554859.20143",
+        "volume": "3364213.874905997",
+        "liquidity": "514278.66785",
         "url": "https://polymarket.com/event/cricipl-guj-raj-2026-05-29",
         "end_date": "2026-06-05T10:00:00Z",
         "category": "general"
       },
       {
         "source": "polymarket",
+        "question": "Will Congo DR win the 2026 FIFA World Cup?",
+        "probability": 0.1,
+        "volume": "26593837.82078796",
+        "liquidity": "1564561.71719",
+        "url": "https://polymarket.com/event/will-congo-dr-win-the-2026-fifa-world-cup",
+        "end_date": "2026-07-20T00:00:00Z",
+        "category": "general"
+      },
+      {
+        "source": "polymarket",
+        "question": "Will Uzbekistan win the 2026 FIFA World Cup?",
+        "probability": 0.1,
+        "volume": "47539253.88141759",
+        "liquidity": "6352921.58769",
+        "url": "https://polymarket.com/event/will-uzbekistan-win-the-2026-fifa-world-cup-773",
+        "end_date": "2026-07-20T00:00:00Z",
+        "category": "general"
+      },
+      {
+        "source": "polymarket",
+        "question": "Will Donald Trump announce that the United States blockade of the Strait of Hormuz has been lifted by May 31, 2026?",
+        "probability": 48.5,
+        "volume": "7910615.229362132",
+        "liquidity": "36324.1666",
+        "url": "https://polymarket.com/event/will-donald-trump-announce-that-the-united-states-blockade-of-the-strait-of-hormuz-has-been-lifted-by-may-31-2026-313-388-459-589-533",
+        "end_date": "2026-05-31T00:00:00Z",
+        "category": "general"
+      },
+      {
+        "source": "polymarket",
+        "question": "Will South Africa win the 2026 FIFA World Cup?",
+        "probability": 0.1,
+        "volume": "33174623.94789426",
+        "liquidity": "7546964.09556",
+        "url": "https://polymarket.com/event/will-south-africa-win-the-2026-fifa-world-cup",
+        "end_date": "2026-07-20T00:00:00Z",
+        "category": "general"
+      },
+      {
+        "source": "polymarket",
         "question": "Will Scotland win the 2026 FIFA World Cup?",
         "probability": 0.2,
-        "volume": "29844588.827088885",
-        "liquidity": "8695509.99683",
+        "volume": "29862676.37542088",
+        "liquidity": "8690432.72177",
         "url": "https://polymarket.com/event/will-scotland-win-the-2026-fifa-world-cup",
         "end_date": "2026-07-20T00:00:00Z",
         "category": "general"
@@ -494,29 +880,19 @@
       {
         "source": "polymarket",
         "question": "Will SK Brann win on 2026-05-29?",
-        "probability": 23.5,
-        "volume": "1626362.8560800003",
-        "liquidity": "24678.4924",
+        "probability": 2.5,
+        "volume": "1645186.1476049994",
+        "liquidity": "21248.6758",
         "url": "https://polymarket.com/event/nor-bra-sar-2026-05-29-bra",
         "end_date": "2026-05-29T17:00:00Z",
         "category": "general"
       },
       {
         "source": "polymarket",
-        "question": "Will Donald Trump announce that the United States blockade of the Strait of Hormuz has been lifted by May 31, 2026?",
-        "probability": 65.0,
-        "volume": "7600824.905833141",
-        "liquidity": "29780.3706",
-        "url": "https://polymarket.com/event/will-donald-trump-announce-that-the-united-states-blockade-of-the-strait-of-hormuz-has-been-lifted-by-may-31-2026-313-388-459-589-533",
-        "end_date": "2026-05-31T00:00:00Z",
-        "category": "general"
-      },
-      {
-        "source": "polymarket",
         "question": "Roland Garros ATP: Karen Khachanov vs Jesper de Jong",
-        "probability": 51.5,
-        "volume": "1474442.1440979985",
-        "liquidity": "56727.0343",
+        "probability": 0.1,
+        "volume": "1602763.9700479966",
+        "liquidity": "826850.34003",
         "url": "https://polymarket.com/event/atp-khachan-jong-2026-05-29",
         "end_date": "2026-06-05T09:00:00Z",
         "category": "general"
@@ -525,8 +901,8 @@
         "source": "polymarket",
         "question": "Will Arsenal win the 2025\u201326 Champions League?",
         "probability": 43.5,
-        "volume": "9594409.05046618",
-        "liquidity": "1949289.6377",
+        "volume": "9597847.923291182",
+        "liquidity": "1771069.2507",
         "url": "https://polymarket.com/event/will-arsenal-win-the-202526-champions-league",
         "end_date": "2026-05-31T00:00:00Z",
         "category": "general"
@@ -534,61 +910,31 @@
       {
         "source": "polymarket",
         "question": "US announces new Iran agreement/ceasefire extension by May 31?",
-        "probability": 45.0,
-        "volume": "3726938.8161029816",
-        "liquidity": "40284.5495",
+        "probability": 35.0,
+        "volume": "3781429.1532059824",
+        "liquidity": "32302.1223",
         "url": "https://polymarket.com/event/us-announces-new-iran-agreementceasefire-extension-by-may-31-665-831-238",
         "end_date": "",
         "category": "general"
       },
       {
         "source": "polymarket",
-        "question": "Will Congo DR win the 2026 FIFA World Cup?",
-        "probability": 0.1,
-        "volume": "24393789.92078797",
-        "liquidity": "3656964.44603",
-        "url": "https://polymarket.com/event/will-congo-dr-win-the-2026-fifa-world-cup",
-        "end_date": "2026-07-20T00:00:00Z",
-        "category": "general"
-      },
-      {
-        "source": "polymarket",
-        "question": "Dota 2: Tundra Esports vs LGD Gaming (BO1) - BLAST Slam Group Stage",
-        "probability": 0.1,
-        "volume": "998601.9534130004",
-        "liquidity": "570043.20001",
-        "url": "https://polymarket.com/event/dota2-tundra-lgd-2026-05-29",
-        "end_date": "2026-05-29T22:30:00Z",
-        "category": "general"
-      },
-      {
-        "source": "polymarket",
         "question": "Roland Garros ATP: Alex de Minaur vs Jakub Mensik",
-        "probability": 6.5,
-        "volume": "1031092.9454099982",
-        "liquidity": "84084.5049",
+        "probability": 0.1,
+        "volume": "1137822.4968049978",
+        "liquidity": "988482.95272",
         "url": "https://polymarket.com/event/atp-minaur-mensik-2026-05-29",
         "end_date": "2026-06-05T09:00:00Z",
         "category": "general"
       },
       {
         "source": "polymarket",
-        "question": "Will the Fed decrease interest rates by 50+ bps after the June 2026 meeting?",
-        "probability": 0.7,
-        "volume": "11799071.0935673",
-        "liquidity": "573962.78921",
-        "url": "https://polymarket.com/event/will-the-fed-decrease-interest-rates-by-50-bps-after-the-june-2026-meeting",
-        "end_date": "2026-06-17T00:00:00Z",
-        "category": "general"
-      },
-      {
-        "source": "polymarket",
-        "question": "Will Turkiye win the 2026 FIFA World Cup?",
-        "probability": 0.8,
-        "volume": "17599829.263523906",
-        "liquidity": "3511270.86423",
-        "url": "https://polymarket.com/event/will-turkiye-win-the-2026-fifa-world-cup",
-        "end_date": "2026-07-20T00:00:00Z",
+        "question": "Dota 2: Tundra Esports vs LGD Gaming (BO1) - BLAST Slam Group Stage",
+        "probability": 0.1,
+        "volume": "1024255.0034130006",
+        "liquidity": "492599.81921",
+        "url": "https://polymarket.com/event/dota2-tundra-lgd-2026-05-29",
+        "end_date": "2026-05-29T22:30:00Z",
         "category": "general"
       }
     ],
@@ -755,139 +1101,167 @@
     },
     {
       "priority": 2,
+      "action": "Target water damage restoration + plumbers in TX, TN, MS, AR \u2014 active flooding",
+      "reason": "Active flood warnings = burst pipes, water damage, restoration demand spike",
+      "auto_executable": false,
+      "category": "opportunity"
+    },
+    {
+      "priority": 3,
+      "action": "Monitor M5.2 earthquake: 250 km ESE of Severo-Kuril\u2019sk, Russia",
+      "reason": "Major earthquake = supply chain disruption + construction demand spike",
+      "auto_executable": false,
+      "category": "geopolitical"
+    },
+    {
+      "priority": 4,
+      "action": "Monitor M5.3 earthquake: 106 km SW of Turpan, China",
+      "reason": "Major earthquake = supply chain disruption + construction demand spike",
+      "auto_executable": false,
+      "category": "geopolitical"
+    },
+    {
+      "priority": 5,
+      "action": "Monitor M5.1 earthquake: 86 km S of Pacocha, Peru",
+      "reason": "Major earthquake = supply chain disruption + construction demand spike",
+      "auto_executable": false,
+      "category": "geopolitical"
+    },
+    {
+      "priority": 6,
       "action": "Watch severeStorms event: Tropical Storm Jangmi",
       "reason": "Natural disaster = spike in contractor demand = missed call opportunity",
       "auto_executable": false,
       "category": "opportunity"
     },
     {
-      "priority": 3,
+      "priority": 7,
       "action": "Watch wildfires event: Black Ridge Wildfire, Lincoln, Idaho",
       "reason": "Natural disaster = spike in contractor demand = missed call opportunity",
       "auto_executable": false,
       "category": "opportunity"
     },
     {
-      "priority": 4,
+      "priority": 8,
       "action": "Watch wildfires event: Dewoff Wildfire, Blaine, Idaho",
       "reason": "Natural disaster = spike in contractor demand = missed call opportunity",
       "auto_executable": false,
       "category": "opportunity"
     },
     {
-      "priority": 5,
+      "priority": 9,
       "action": "Watch wildfires event: 0231 ZEN Wildfire, Wasco, Oregon",
       "reason": "Natural disaster = spike in contractor demand = missed call opportunity",
       "auto_executable": false,
       "category": "opportunity"
     },
     {
-      "priority": 6,
+      "priority": 10,
       "action": "Watch wildfires event: Egberts Wildfire, Elko, Nevada",
       "reason": "Natural disaster = spike in contractor demand = missed call opportunity",
       "auto_executable": false,
       "category": "opportunity"
     },
     {
-      "priority": 7,
+      "priority": 11,
       "action": "Watch wildfires event: Summit Creek Wildfire, Cassia, Idaho",
       "reason": "Natural disaster = spike in contractor demand = missed call opportunity",
       "auto_executable": false,
       "category": "opportunity"
     },
     {
-      "priority": 8,
+      "priority": 12,
       "action": "Watch wildfires event: Kinyon Springs Wildfire, Owyhee, Idaho",
       "reason": "Natural disaster = spike in contractor demand = missed call opportunity",
       "auto_executable": false,
       "category": "opportunity"
     },
     {
-      "priority": 9,
+      "priority": 13,
       "action": "Watch wildfires event: MILE MARKER 44 FIRE - BROWARD Wildfire, Broward, Florida",
       "reason": "Natural disaster = spike in contractor demand = missed call opportunity",
       "auto_executable": false,
       "category": "opportunity"
     },
     {
-      "priority": 10,
+      "priority": 14,
       "action": "Watch wildfires event: COUNTRY MEADOW Wildfire, Benton, Washington",
       "reason": "Natural disaster = spike in contractor demand = missed call opportunity",
       "auto_executable": false,
       "category": "opportunity"
     },
     {
-      "priority": 11,
+      "priority": 15,
       "action": "Watch wildfires event: 340 Wildfire, Wakulla, Florida",
       "reason": "Natural disaster = spike in contractor demand = missed call opportunity",
       "auto_executable": false,
       "category": "opportunity"
     },
     {
-      "priority": 12,
+      "priority": 16,
       "action": "Watch wildfires event: Mile Marker 44 Wildfire, Broward, Florida",
       "reason": "Natural disaster = spike in contractor demand = missed call opportunity",
       "auto_executable": false,
       "category": "opportunity"
     },
     {
-      "priority": 13,
+      "priority": 17,
       "action": "Watch wildfires event: Quartz Wildfire, Pershing, Nevada",
       "reason": "Natural disaster = spike in contractor demand = missed call opportunity",
       "auto_executable": false,
       "category": "opportunity"
     },
     {
-      "priority": 14,
+      "priority": 18,
       "action": "Watch wildfires event: Thousand Wildfire, Northwest Arctic, Alaska",
       "reason": "Natural disaster = spike in contractor demand = missed call opportunity",
       "auto_executable": false,
       "category": "opportunity"
     },
     {
-      "priority": 15,
+      "priority": 19,
       "action": "Watch wildfires event: WaWa 2 Wildfire, Highlands, Florida",
       "reason": "Natural disaster = spike in contractor demand = missed call opportunity",
       "auto_executable": false,
       "category": "opportunity"
     },
     {
-      "priority": 16,
+      "priority": 20,
       "action": "Watch wildfires event: Shell Wildfire, Lake, Florida",
       "reason": "Natural disaster = spike in contractor demand = missed call opportunity",
       "auto_executable": false,
       "category": "opportunity"
     },
     {
-      "priority": 17,
+      "priority": 21,
       "action": "Watch wildfires event: Trigg Wildfire, San Miguel, New Mexico",
       "reason": "Natural disaster = spike in contractor demand = missed call opportunity",
       "auto_executable": false,
       "category": "opportunity"
     },
     {
-      "priority": 18,
+      "priority": 22,
       "action": "Watch wildfires event: DeSoto BB 8374 S RX Prescribed Fire, Harrison, Mississippi",
       "reason": "Natural disaster = spike in contractor demand = missed call opportunity",
       "auto_executable": false,
       "category": "opportunity"
     },
     {
-      "priority": 19,
+      "priority": 23,
       "action": "Watch wildfires event: Chickasawhay CPT 451 452 RX Prescribed Fire, Greene, Mississippi",
       "reason": "Natural disaster = spike in contractor demand = missed call opportunity",
       "auto_executable": false,
       "category": "opportunity"
     },
     {
-      "priority": 20,
+      "priority": 24,
       "action": "Watch wildfires event: CADDUGGEN Wildfire, Carteret, North Carolina",
       "reason": "Natural disaster = spike in contractor demand = missed call opportunity",
       "auto_executable": false,
       "category": "opportunity"
     },
     {
-      "priority": 21,
+      "priority": 25,
       "action": "Watch wildfires event: Rifle Range Rd Wildfire, Collier, Florida",
       "reason": "Natural disaster = spike in contractor demand = missed call opportunity",
       "auto_executable": false,
@@ -895,7 +1269,7 @@
     }
   ],
   "global_social": {
-    "countries_scanned": 9,
+    "countries_scanned": 13,
     "languages_detected": [
       "de",
       "en",
@@ -903,7 +1277,7 @@
       "fr",
       "pt"
     ],
-    "total_posts_scanned": 355,
-    "pain_signals_found": 2
+    "total_posts_scanned": 545,
+    "pain_signals_found": 3
   }
 }
