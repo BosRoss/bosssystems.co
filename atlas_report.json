@@ -1,9 +1,9 @@
 {
-  "generated": "2026-05-29T17:55:56.852486+00:00",
+  "generated": "2026-05-29T18:08:22.810438+00:00",
   "power_level": "IDLE",
-  "scan_duration_seconds": 77.9,
-  "sources_scanned": 8,
-  "data_points": 399,
+  "scan_duration_seconds": 229.1,
+  "sources_scanned": 12,
+  "data_points": 429,
   "regions_monitored": [
     "US-TX",
     "US-MS",
@@ -160,6 +160,16 @@
       "expires": "2026-05-30T10:15:00-05:00"
     },
     {
+      "type": "Flood Watch",
+      "state": "TN",
+      "headline": "Flood Watch issued May 29 at 1:59PM EDT until May 30 at 2:00PM EDT by NWS Morristown TN",
+      "severity": "Severe",
+      "hvac_opportunity": false,
+      "roofing_opportunity": false,
+      "plumbing_opportunity": false,
+      "expires": "2026-05-30T02:30:00-04:00"
+    },
+    {
       "type": "Wind Advisory",
       "state": "NM",
       "headline": "Wind Advisory issued May 29 at 10:20AM MDT until May 29 at 7:00PM MDT by NWS Albuquerque NM",
@@ -182,9 +192,9 @@
   ],
   "satellites": {
     "iss": {
-      "latitude": 27.2821,
-      "longitude": -101.1328,
-      "timestamp": "2026-05-29T17:56:56+00:00"
+      "latitude": 51.239,
+      "longitude": -47.7603,
+      "timestamp": "2026-05-29T18:09:23+00:00"
     },
     "nasa_events": [
       {
@@ -425,16 +435,316 @@
       "url": "https://claude.com/blog/introducing-dynamic-workflows-in-claude-code",
       "published": "2026-05-28T16:52:21+00:00",
       "relevance": "industry"
-    },
-    {
-      "source": "hackernews",
-      "title": "Even (very) noisy LLM evaluators are useful for improving AI agents",
-      "url": "https://www.tensorzero.com/blog/even-very-noisy-llm-evaluators-are-useful-for-improving-ai-agents/",
-      "published": "2026-05-27T07:49:56+00:00",
-      "relevance": "industry"
     }
   ],
   "competitors": [],
+  "gdelt_geopolitical": [],
+  "predictions": {
+    "polymarket": [
+      {
+        "source": "polymarket",
+        "question": "US x Iran permanent peace deal by May 31, 2026?",
+        "probability": 14.5,
+        "volume": "74669079.99400829",
+        "liquidity": "709099.5221",
+        "url": "https://polymarket.com/event/us-x-iran-permanent-peace-deal-by-may-31-2026-333-871-241-192-799-449-125",
+        "end_date": "2026-05-31T00:00:00Z",
+        "category": "general"
+      },
+      {
+        "source": "polymarket",
+        "question": "Will the Iran ceasefire continue through May 24?",
+        "probability": 99.9,
+        "volume": "22977442.417273887",
+        "liquidity": "5569273.99483",
+        "url": "https://polymarket.com/event/will-the-iran-ceasefire-continue-through-may-24-733",
+        "end_date": "",
+        "category": "general"
+      },
+      {
+        "source": "polymarket",
+        "question": "Roland Garros ATP: Joao Fonseca vs Novak Djokovic",
+        "probability": 47.5,
+        "volume": "4157092.810252012",
+        "liquidity": "125887.3596",
+        "url": "https://polymarket.com/event/atp-fonseca-djokovi-2026-05-29",
+        "end_date": "2026-06-05T09:00:00Z",
+        "category": "general"
+      },
+      {
+        "source": "polymarket",
+        "question": "Indian Premier League: Gujarat Titans vs Rajasthan Royals",
+        "probability": 100.0,
+        "volume": "3327501.1449059965",
+        "liquidity": "554859.20143",
+        "url": "https://polymarket.com/event/cricipl-guj-raj-2026-05-29",
+        "end_date": "2026-06-05T10:00:00Z",
+        "category": "general"
+      },
+      {
+        "source": "polymarket",
+        "question": "Will Scotland win the 2026 FIFA World Cup?",
+        "probability": 0.2,
+        "volume": "29844588.827088885",
+        "liquidity": "8695509.99683",
+        "url": "https://polymarket.com/event/will-scotland-win-the-2026-fifa-world-cup",
+        "end_date": "2026-07-20T00:00:00Z",
+        "category": "general"
+      },
+      {
+        "source": "polymarket",
+        "question": "Will SK Brann win on 2026-05-29?",
+        "probability": 23.5,
+        "volume": "1626362.8560800003",
+        "liquidity": "24678.4924",
+        "url": "https://polymarket.com/event/nor-bra-sar-2026-05-29-bra",
+        "end_date": "2026-05-29T17:00:00Z",
+        "category": "general"
+      },
+      {
+        "source": "polymarket",
+        "question": "Will Donald Trump announce that the United States blockade of the Strait of Hormuz has been lifted by May 31, 2026?",
+        "probability": 65.0,
+        "volume": "7600824.905833141",
+        "liquidity": "29780.3706",
+        "url": "https://polymarket.com/event/will-donald-trump-announce-that-the-united-states-blockade-of-the-strait-of-hormuz-has-been-lifted-by-may-31-2026-313-388-459-589-533",
+        "end_date": "2026-05-31T00:00:00Z",
+        "category": "general"
+      },
+      {
+        "source": "polymarket",
+        "question": "Roland Garros ATP: Karen Khachanov vs Jesper de Jong",
+        "probability": 51.5,
+        "volume": "1474442.1440979985",
+        "liquidity": "56727.0343",
+        "url": "https://polymarket.com/event/atp-khachan-jong-2026-05-29",
+        "end_date": "2026-06-05T09:00:00Z",
+        "category": "general"
+      },
+      {
+        "source": "polymarket",
+        "question": "Will Arsenal win the 2025\u201326 Champions League?",
+        "probability": 43.5,
+        "volume": "9594409.05046618",
+        "liquidity": "1949289.6377",
+        "url": "https://polymarket.com/event/will-arsenal-win-the-202526-champions-league",
+        "end_date": "2026-05-31T00:00:00Z",
+        "category": "general"
+      },
+      {
+        "source": "polymarket",
+        "question": "US announces new Iran agreement/ceasefire extension by May 31?",
+        "probability": 45.0,
+        "volume": "3726938.8161029816",
+        "liquidity": "40284.5495",
+        "url": "https://polymarket.com/event/us-announces-new-iran-agreementceasefire-extension-by-may-31-665-831-238",
+        "end_date": "",
+        "category": "general"
+      },
+      {
+        "source": "polymarket",
+        "question": "Will Congo DR win the 2026 FIFA World Cup?",
+        "probability": 0.1,
+        "volume": "24393789.92078797",
+        "liquidity": "3656964.44603",
+        "url": "https://polymarket.com/event/will-congo-dr-win-the-2026-fifa-world-cup",
+        "end_date": "2026-07-20T00:00:00Z",
+        "category": "general"
+      },
+      {
+        "source": "polymarket",
+        "question": "Dota 2: Tundra Esports vs LGD Gaming (BO1) - BLAST Slam Group Stage",
+        "probability": 0.1,
+        "volume": "998601.9534130004",
+        "liquidity": "570043.20001",
+        "url": "https://polymarket.com/event/dota2-tundra-lgd-2026-05-29",
+        "end_date": "2026-05-29T22:30:00Z",
+        "category": "general"
+      },
+      {
+        "source": "polymarket",
+        "question": "Roland Garros ATP: Alex de Minaur vs Jakub Mensik",
+        "probability": 6.5,
+        "volume": "1031092.9454099982",
+        "liquidity": "84084.5049",
+        "url": "https://polymarket.com/event/atp-minaur-mensik-2026-05-29",
+        "end_date": "2026-06-05T09:00:00Z",
+        "category": "general"
+      },
+      {
+        "source": "polymarket",
+        "question": "Will the Fed decrease interest rates by 50+ bps after the June 2026 meeting?",
+        "probability": 0.7,
+        "volume": "11799071.0935673",
+        "liquidity": "573962.78921",
+        "url": "https://polymarket.com/event/will-the-fed-decrease-interest-rates-by-50-bps-after-the-june-2026-meeting",
+        "end_date": "2026-06-17T00:00:00Z",
+        "category": "general"
+      },
+      {
+        "source": "polymarket",
+        "question": "Will Turkiye win the 2026 FIFA World Cup?",
+        "probability": 0.8,
+        "volume": "17599829.263523906",
+        "liquidity": "3511270.86423",
+        "url": "https://polymarket.com/event/will-turkiye-win-the-2026-fifa-world-cup",
+        "end_date": "2026-07-20T00:00:00Z",
+        "category": "general"
+      }
+    ],
+    "metaculus": [
+      {
+        "source": "manifold",
+        "question": "What four markets will I subsidize with at least 1000 Mana?",
+        "probability": 0,
+        "traders": 18,
+        "volume": 1398.0878709221852,
+        "url": "https://manifold.markets/Joshua/what-four-markets-will-i-subsidize",
+        "created": 1696211267624,
+        "category": "forecast"
+      },
+      {
+        "source": "manifold",
+        "question": "What will cause the largest new increase to my p(doom) this year?",
+        "probability": 0,
+        "traders": 5,
+        "volume": 89.8395676080385,
+        "url": "https://manifold.markets/ms/what-will-cause-the-largest-new-neg",
+        "created": 1683229840548,
+        "category": "forecast"
+      },
+      {
+        "source": "manifold",
+        "question": "The Final Outcome of the Marcos Jr. Presidency",
+        "probability": 0,
+        "traders": 0,
+        "volume": 0,
+        "url": "https://manifold.markets/VicdeGuzman/the-final-outcome-of-the-marcos-jr",
+        "created": 1763236006880,
+        "category": "forecast"
+      },
+      {
+        "source": "manifold",
+        "question": "Geopolitical Risk (GPR) index \u2265 600 in 2026",
+        "probability": 42.9,
+        "traders": 7,
+        "volume": 391.99999999999994,
+        "url": "https://manifold.markets/parhizj/geopolitical-risk-gpr-index-600-in",
+        "created": 1773257510172,
+        "category": "forecast"
+      },
+      {
+        "source": "manifold",
+        "question": "Will there be geopolitical instability over fears of other countries reaching superintelligence? (ACX, AI 2027 #2)",
+        "probability": 42.0,
+        "traders": 16,
+        "volume": 4066.4418872255983,
+        "url": "https://manifold.markets/TimothyJohnson5c16/will-there-be-geopolitical-instabil",
+        "created": 1744141373557,
+        "category": "forecast"
+      },
+      {
+        "source": "manifold",
+        "question": "Will AI become a strategic geopolitical weapon by 2040?",
+        "probability": 80.0,
+        "traders": 55,
+        "volume": 3582.000401180407,
+        "url": "https://manifold.markets/fb68/will-ai-become-a-strategic-geopolit",
+        "created": 1693908819309,
+        "category": "forecast"
+      },
+      {
+        "source": "manifold",
+        "question": "The Art of the Geopolitical Steal: What international norms does Trump liquidate in his second term? [ADD RESPONSES]",
+        "probability": 0,
+        "traders": 5,
+        "volume": 347.4409404529076,
+        "url": "https://manifold.markets/Lobstertronic/the-art-of-the-geopolitical-steal-w",
+        "created": 1758257178733,
+        "category": "forecast"
+      },
+      {
+        "source": "manifold",
+        "question": "Will I think the Chinese biolab was geopolitically significant in mid 2024 (20% belief now)?",
+        "probability": 19.4,
+        "traders": 2,
+        "volume": 63.09565835518205,
+        "url": "https://manifold.markets/Ernie/will-i-think-the-chinese-biolab-was",
+        "created": 1700509074498,
+        "category": "forecast"
+      },
+      {
+        "source": "manifold",
+        "question": "Will AI become a strategic geopolitical weapon by 2040?",
+        "probability": 63.9,
+        "traders": 8,
+        "volume": 195.09836437745386,
+        "url": "https://manifold.markets/fb68/will-ai-become-a-strategic-geopolit-e4e345d0e6f6",
+        "created": 1694277039340,
+        "category": "forecast"
+      },
+      {
+        "source": "manifold",
+        "question": "If/when a nation in each geopolitical sphere first/next becomes communist, will it be invaded within a year?",
+        "probability": 0,
+        "traders": 3,
+        "volume": 52.87631502260721,
+        "url": "https://manifold.markets/TheAllMemeingEye/ifwhen-a-nation-in-each-geopolitica",
+        "created": 1719863049629,
+        "category": "forecast"
+      },
+      {
+        "source": "manifold",
+        "question": "Which of the following is true of Elon Musk?",
+        "probability": 0,
+        "traders": 243,
+        "volume": 129218.05467931897,
+        "url": "https://manifold.markets/ClubmasterTransparent/which-of-the-following-is-true-of-e",
+        "created": 1716658842597,
+        "category": "forecast"
+      },
+      {
+        "source": "manifold",
+        "question": "Which positive news category will make 2026 world-wide headlines?",
+        "probability": 0,
+        "traders": 4,
+        "volume": 102,
+        "url": "https://manifold.markets/uair01/which-positive-news-category-will-m",
+        "created": 1766594727626,
+        "category": "forecast"
+      },
+      {
+        "source": "manifold",
+        "question": "Nothing Ever Happens: Febuary",
+        "probability": 0,
+        "traders": 8,
+        "volume": 195.00000000000017,
+        "url": "https://manifold.markets/steamhappy/nothing-ever-happens-febuary",
+        "created": 1769838691778,
+        "category": "forecast"
+      },
+      {
+        "source": "manifold",
+        "question": "What was the motivation for the attempted assassination of Trump?",
+        "probability": 0,
+        "traders": 23,
+        "volume": 1664.3537646812838,
+        "url": "https://manifold.markets/ScottHuston/what-was-the-motivation-for-the-att",
+        "created": 1720911307221,
+        "category": "forecast"
+      },
+      {
+        "source": "manifold",
+        "question": "What future for Israel & Palestine? (Geopolitical fantasy) \ud83c\uddee\ud83c\uddf1\ud83c\uddf5\ud83c\uddf8",
+        "probability": 0,
+        "traders": 42,
+        "volume": 0,
+        "url": "https://manifold.markets/Quadrifold/what-future-for-israel-palestine-ge",
+        "created": 1704712723022,
+        "category": "forecast"
+      }
+    ]
+  },
   "recommendations": [
     {
       "priority": 1,
