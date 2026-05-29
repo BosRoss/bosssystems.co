@@ -549,28 +549,17 @@ footer{border-top:1px solid var(--border);padding:32px 24px;display:flex;justify
     submitBtn.textContent = 'Sending...';
     errMsg.style.display = 'none';
 
+    // Fire-and-forget — don't block confirmation on n8n availability
     fetch('https://jamross.app.n8n.cloud/webhook/summer-partner-info', {
       method:  'POST',
       headers: {'Content-Type': 'application/json'},
       body:    JSON.stringify(payload)
-    })
-    .then(function(res){
-      if(res.ok){
-        // Success — swap form for confirmation
-        formWrap.style.display = 'none';
-        confirm.style.display  = 'block';
-        confirm.scrollIntoView({behavior:'smooth', block:'start'});
-      } else {
-        throw new Error('Server error: ' + res.status);
-      }
-    })
-    .catch(function(){
-      // Error — show fallback message
-      errMsg.style.display = 'block';
-      errMsg.scrollIntoView({behavior:'smooth', block:'center'});
-      submitBtn.disabled = false;
-      submitBtn.textContent = 'Send My Info';
-    });
+    }).catch(function(){});
+
+    // Always show confirmation immediately
+    formWrap.style.display = 'none';
+    confirm.style.display  = 'block';
+    confirm.scrollIntoView({behavior:'smooth', block:'start'});
   });
 
   // ── LIVE CLEAR ERRORS ON CHANGE ─────────────────────────────────────────────
