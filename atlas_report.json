@@ -1,9 +1,9 @@
 {
-  "generated": "2026-05-29T18:57:56.011760+00:00",
+  "generated": "2026-05-29T19:37:24.315621+00:00",
   "power_level": "IDLE",
-  "scan_duration_seconds": 188.3,
-  "sources_scanned": 13,
-  "data_points": 646,
+  "scan_duration_seconds": 203.9,
+  "sources_scanned": 14,
+  "data_points": 625,
   "regions_monitored": [
     "US-TX",
     "US-MS",
@@ -162,17 +162,6 @@
     },
     {
       "type": "Flood Warning",
-      "state": "MS",
-      "headline": "Flood Warning issued May 29 at 7:30AM CDT until May 30 at 10:00AM CDT by NWS New Orleans LA",
-      "severity": "Severe",
-      "hvac_opportunity": false,
-      "roofing_opportunity": false,
-      "plumbing_opportunity": true,
-      "flood_damage": true,
-      "expires": "2026-05-29T23:30:00-05:00"
-    },
-    {
-      "type": "Flood Warning",
       "state": "AR",
       "headline": "Flood Warning issued May 29 at 10:12AM CDT by NWS Little Rock AR",
       "severity": "Severe",
@@ -229,194 +218,26 @@
   ],
   "satellites": {
     "iss": {
-      "latitude": -50.8963,
-      "longitude": 141.7842,
-      "timestamp": "2026-05-29T18:59:24+00:00"
+      "latitude": 47.8143,
+      "longitude": -90.2071,
+      "timestamp": "2026-05-29T19:38:52+00:00"
     },
-    "nasa_events": [
-      {
-        "title": "Tropical Storm Jangmi",
-        "category": "severeStorms",
-        "date": "2026-05-29",
-        "coordinates": [
-          131.7,
-          16.5
-        ]
-      },
-      {
-        "title": "Black Ridge Wildfire, Lincoln, Idaho",
-        "category": "wildfires",
-        "date": "2026-05-25",
-        "coordinates": [
-          -113.935667,
-          43.050333
-        ]
-      },
-      {
-        "title": "Dewoff Wildfire, Blaine, Idaho",
-        "category": "wildfires",
-        "date": "2026-05-25",
-        "coordinates": [
-          -113.248133,
-          42.67045
-        ]
-      },
-      {
-        "title": "0231 ZEN Wildfire, Wasco, Oregon",
-        "category": "wildfires",
-        "date": "2026-05-25",
-        "coordinates": [
-          -120.43789,
-          44.85563
-        ]
-      },
-      {
-        "title": "Egberts Wildfire, Elko, Nevada",
-        "category": "wildfires",
-        "date": "2026-05-25",
-        "coordinates": [
-          -115.0565,
-          40.9655
-        ]
-      },
-      {
-        "title": "Summit Creek Wildfire, Cassia, Idaho",
-        "category": "wildfires",
-        "date": "2026-05-25",
-        "coordinates": [
-          -113.73075,
-          42.17555
-        ]
-      },
-      {
-        "title": "Kinyon Springs Wildfire, Owyhee, Idaho",
-        "category": "wildfires",
-        "date": "2026-05-25",
-        "coordinates": [
-          -115.244683,
-          42.734717
-        ]
-      },
-      {
-        "title": "MILE MARKER 44 FIRE - BROWARD Wildfire, Broward, Florida",
-        "category": "wildfires",
-        "date": "2026-05-23",
-        "coordinates": [
-          -80.7791667,
-          26.0994444
-        ]
-      },
-      {
-        "title": "COUNTRY MEADOW Wildfire, Benton, Washington",
-        "category": "wildfires",
-        "date": "2026-05-23",
-        "coordinates": [
-          -119.33745,
-          46.16526
-        ]
-      },
-      {
-        "title": "340 Wildfire, Wakulla, Florida",
-        "category": "wildfires",
-        "date": "2026-05-23",
-        "coordinates": [
-          -84.565664,
-          30.053136
-        ]
-      },
-      {
-        "title": "Mile Marker 44 Wildfire, Broward, Florida",
-        "category": "wildfires",
-        "date": "2026-05-23",
-        "coordinates": [
-          -80.766667,
-          26.15
-        ]
-      },
-      {
-        "title": "Quartz Wildfire, Pershing, Nevada",
-        "category": "wildfires",
-        "date": "2026-05-23",
-        "coordinates": [
-          -118.014333,
-          40.709867
-        ]
-      },
-      {
-        "title": "Thousand Wildfire, Northwest Arctic, Alaska",
-        "category": "wildfires",
-        "date": "2026-05-23",
-        "coordinates": [
-          -159.286667,
-          66.435
-        ]
-      },
-      {
-        "title": "WaWa 2 Wildfire, Highlands, Florida",
-        "category": "wildfires",
-        "date": "2026-05-23",
-        "coordinates": [
-          -81.2598,
-          27.644633
-        ]
-      },
-      {
-        "title": "Shell Wildfire, Lake, Florida",
-        "category": "wildfires",
-        "date": "2026-05-22",
-        "coordinates": [
-          -81.507167,
-          29.073833
-        ]
-      },
-      {
-        "title": "Trigg Wildfire, San Miguel, New Mexico",
-        "category": "wildfires",
-        "date": "2026-05-21",
-        "coordinates": [
-          -103.948693,
-          35.53034
-        ]
-      },
-      {
-        "title": "DeSoto BB 8374 S RX Prescribed Fire, Harrison, Mississippi",
-        "category": "wildfires",
-        "date": "2026-05-20",
-        "coordinates": [
-          -89.035278,
-          30.673333
-        ]
-      },
-      {
-        "title": "Chickasawhay CPT 451 452 RX Prescribed Fire, Greene, Mississippi",
-        "category": "wildfires",
-        "date": "2026-05-20",
-        "coordinates": [
-          -88.6597,
-          31.4154
-        ]
-      },
-      {
-        "title": "CADDUGGEN Wildfire, Carteret, North Carolina",
-        "category": "wildfires",
-        "date": "2026-05-20",
-        "coordinates": [
-          -76.385286,
-          34.926008
-        ]
-      },
-      {
-        "title": "Rifle Range Rd Wildfire, Collier, Florida",
-        "category": "wildfires",
-        "date": "2026-05-19",
-        "coordinates": [
-          -81.6369444,
-          26.1155556
-        ]
-      }
-    ]
+    "nasa_events": [],
+    "tracked": []
   },
   "earthquakes": [
+    {
+      "magnitude": 2.55,
+      "place": "13 km S of Honaunau-Napoopoo, Hawaii",
+      "time": "2026-05-29T19:17:03.500000+00:00",
+      "coordinates": [
+        -155.843338012695,
+        19.3333339691162
+      ],
+      "alert": null,
+      "tsunami": 0,
+      "url": "https://earthquake.usgs.gov/earthquakes/eventpage/hv74971552"
+    },
     {
       "magnitude": 4.6,
       "place": "south of the Fiji Islands",
@@ -704,18 +525,6 @@
       "alert": null,
       "tsunami": 0,
       "url": "https://earthquake.usgs.gov/earthquakes/eventpage/us7000sp6y"
-    },
-    {
-      "magnitude": 2.5,
-      "place": "Blue Origin New Glenn rocket explosion",
-      "time": "2026-05-29T01:00:03+00:00",
-      "coordinates": [
-        -80.538,
-        28.471
-      ],
-      "alert": null,
-      "tsunami": 0,
-      "url": "https://earthquake.usgs.gov/earthquakes/eventpage/us7000spdd"
     }
   ],
   "news": [
@@ -728,9 +537,30 @@
     },
     {
       "source": "hackernews",
+      "title": "Liquid AI reveals 8B-A1B MoE trained on 38T",
+      "url": "https://www.liquid.ai/blog/lfm2-5-8b-a1b",
+      "published": "2026-05-29T16:19:54+00:00",
+      "relevance": "industry"
+    },
+    {
+      "source": "hackernews",
       "title": "CAPTCHAs can still detect AI agents",
       "url": "https://research.roundtable.ai/captchas-detect-ai/",
       "published": "2026-05-29T15:57:37+00:00",
+      "relevance": "industry"
+    },
+    {
+      "source": "hackernews",
+      "title": "Robinhood now lets your AI agents trade stocks",
+      "url": "https://techcrunch.com/2026/05/27/robinhood-now-lets-your-ai-agents-trade-stocks/",
+      "published": "2026-05-29T17:46:27+00:00",
+      "relevance": "industry"
+    },
+    {
+      "source": "hackernews",
+      "title": "CVE-Bench: testing LLM agents on real-world vulnerability patches",
+      "url": "https://giovannigatti.github.io/cve-bench/",
+      "published": "2026-05-29T19:28:55+00:00",
       "relevance": "industry"
     },
     {
@@ -742,23 +572,9 @@
     },
     {
       "source": "hackernews",
-      "title": "Liquid AI reveals 8B-A1B MoE trained on 38T",
-      "url": "https://www.liquid.ai/blog/lfm2-5-8b-a1b",
-      "published": "2026-05-29T16:19:54+00:00",
-      "relevance": "industry"
-    },
-    {
-      "source": "hackernews",
       "title": "Real-time LLM Inference on Standard GPUs: 3k tokens/s per request",
       "url": "https://blog.kog.ai/real-time-llm-inference-on-standard-gpus-3-000-tokens-s-per-request/",
       "published": "2026-05-29T09:47:23+00:00",
-      "relevance": "industry"
-    },
-    {
-      "source": "hackernews",
-      "title": "To see to it that the forces of Napoleon are driven out of Spain (1809)",
-      "url": "https://wellsoc.org/society-member-pages/anecdotes-of-wellington/",
-      "published": "2026-05-29T17:39:49+00:00",
       "relevance": "industry"
     },
     {
@@ -774,13 +590,6 @@
       "url": "https://blog.cloudflare.com/ai-code-review/",
       "published": "2026-05-26T07:06:28+00:00",
       "relevance": "industry"
-    },
-    {
-      "source": "hackernews",
-      "title": "Claude Opus 4.8",
-      "url": "https://www.anthropic.com/news/claude-opus-4-8",
-      "published": "2026-05-28T16:49:14+00:00",
-      "relevance": "industry"
     }
   ],
   "competitors": [],
@@ -790,51 +599,61 @@
       {
         "source": "polymarket",
         "question": "US x Iran permanent peace deal by May 31, 2026?",
-        "probability": 11.5,
-        "volume": "74919697.25205621",
-        "liquidity": "573934.2643",
+        "probability": 8.5,
+        "volume": "75910165.3872853",
+        "liquidity": "599010.3552",
         "url": "https://polymarket.com/event/us-x-iran-permanent-peace-deal-by-may-31-2026-333-871-241-192-799-449-125",
         "end_date": "2026-05-31T00:00:00Z",
         "category": "general"
       },
       {
         "source": "polymarket",
-        "question": "Will the Iran ceasefire continue through May 24?",
-        "probability": 99.9,
-        "volume": "23059562.228273887",
-        "liquidity": "6927454.60721",
-        "url": "https://polymarket.com/event/will-the-iran-ceasefire-continue-through-may-24-733",
-        "end_date": "",
-        "category": "general"
-      },
-      {
-        "source": "polymarket",
         "question": "Roland Garros ATP: Joao Fonseca vs Novak Djokovic",
-        "probability": 81.5,
-        "volume": "4877216.920342065",
-        "liquidity": "149376.0078",
+        "probability": 100.0,
+        "volume": "5677831.697022072",
+        "liquidity": "1061222.78005",
         "url": "https://polymarket.com/event/atp-fonseca-djokovi-2026-05-29",
         "end_date": "2026-06-05T09:00:00Z",
         "category": "general"
       },
       {
         "source": "polymarket",
-        "question": "Indian Premier League: Gujarat Titans vs Rajasthan Royals",
-        "probability": 100.0,
-        "volume": "3364213.874905997",
-        "liquidity": "514278.66785",
-        "url": "https://polymarket.com/event/cricipl-guj-raj-2026-05-29",
-        "end_date": "2026-06-05T10:00:00Z",
+        "question": "Will the Iran ceasefire continue through May 24?",
+        "probability": 99.9,
+        "volume": "23064220.423273887",
+        "liquidity": "6602758.6708",
+        "url": "https://polymarket.com/event/will-the-iran-ceasefire-continue-through-may-24-733",
+        "end_date": "",
         "category": "general"
       },
       {
         "source": "polymarket",
         "question": "Will Congo DR win the 2026 FIFA World Cup?",
         "probability": 0.1,
-        "volume": "26593837.82078796",
-        "liquidity": "1564561.71719",
+        "volume": "26672301.823787957",
+        "liquidity": "2465628.35877",
         "url": "https://polymarket.com/event/will-congo-dr-win-the-2026-fifa-world-cup",
         "end_date": "2026-07-20T00:00:00Z",
+        "category": "general"
+      },
+      {
+        "source": "polymarket",
+        "question": "Indian Premier League: Gujarat Titans vs Rajasthan Royals",
+        "probability": 100.0,
+        "volume": "3365554.2449059966",
+        "liquidity": "418721.00918",
+        "url": "https://polymarket.com/event/cricipl-guj-raj-2026-05-29",
+        "end_date": "2026-06-05T10:00:00Z",
+        "category": "general"
+      },
+      {
+        "source": "polymarket",
+        "question": "Will Donald Trump announce that the United States blockade of the Strait of Hormuz has been lifted by May 31, 2026?",
+        "probability": 29.0,
+        "volume": "8113311.958193134",
+        "liquidity": "68953.4416",
+        "url": "https://polymarket.com/event/will-donald-trump-announce-that-the-united-states-blockade-of-the-strait-of-hormuz-has-been-lifted-by-may-31-2026-313-388-459-589-533",
+        "end_date": "2026-05-31T00:00:00Z",
         "category": "general"
       },
       {
@@ -842,27 +661,17 @@
         "question": "Will Uzbekistan win the 2026 FIFA World Cup?",
         "probability": 0.1,
         "volume": "47539253.88141759",
-        "liquidity": "6352921.58769",
+        "liquidity": "7204160.44938",
         "url": "https://polymarket.com/event/will-uzbekistan-win-the-2026-fifa-world-cup-773",
         "end_date": "2026-07-20T00:00:00Z",
         "category": "general"
       },
       {
         "source": "polymarket",
-        "question": "Will Donald Trump announce that the United States blockade of the Strait of Hormuz has been lifted by May 31, 2026?",
-        "probability": 48.5,
-        "volume": "7910615.229362132",
-        "liquidity": "36324.1666",
-        "url": "https://polymarket.com/event/will-donald-trump-announce-that-the-united-states-blockade-of-the-strait-of-hormuz-has-been-lifted-by-may-31-2026-313-388-459-589-533",
-        "end_date": "2026-05-31T00:00:00Z",
-        "category": "general"
-      },
-      {
-        "source": "polymarket",
         "question": "Will South Africa win the 2026 FIFA World Cup?",
         "probability": 0.1,
-        "volume": "33174623.94789426",
-        "liquidity": "7546964.09556",
+        "volume": "33174754.07789426",
+        "liquidity": "7583571.12832",
         "url": "https://polymarket.com/event/will-south-africa-win-the-2026-fifa-world-cup",
         "end_date": "2026-07-20T00:00:00Z",
         "category": "general"
@@ -871,48 +680,58 @@
         "source": "polymarket",
         "question": "Will Scotland win the 2026 FIFA World Cup?",
         "probability": 0.2,
-        "volume": "29862676.37542088",
-        "liquidity": "8690432.72177",
+        "volume": "29873351.35225388",
+        "liquidity": "8689611.49586",
         "url": "https://polymarket.com/event/will-scotland-win-the-2026-fifa-world-cup",
         "end_date": "2026-07-20T00:00:00Z",
         "category": "general"
       },
       {
         "source": "polymarket",
-        "question": "Will SK Brann win on 2026-05-29?",
-        "probability": 2.5,
-        "volume": "1645186.1476049994",
-        "liquidity": "21248.6758",
-        "url": "https://polymarket.com/event/nor-bra-sar-2026-05-29-bra",
-        "end_date": "2026-05-29T17:00:00Z",
-        "category": "general"
-      },
-      {
-        "source": "polymarket",
         "question": "Roland Garros ATP: Karen Khachanov vs Jesper de Jong",
         "probability": 0.1,
-        "volume": "1602763.9700479966",
-        "liquidity": "826850.34003",
+        "volume": "1612771.1900479968",
+        "liquidity": "570921.50541",
         "url": "https://polymarket.com/event/atp-khachan-jong-2026-05-29",
         "end_date": "2026-06-05T09:00:00Z",
         "category": "general"
       },
       {
         "source": "polymarket",
+        "question": "Will SK Brann win on 2026-05-29?",
+        "probability": 0.1,
+        "volume": "1649129.1276049998",
+        "liquidity": "398134.95378",
+        "url": "https://polymarket.com/event/nor-bra-sar-2026-05-29-bra",
+        "end_date": "2026-05-29T17:00:00Z",
+        "category": "general"
+      },
+      {
+        "source": "polymarket",
         "question": "Will Arsenal win the 2025\u201326 Champions League?",
         "probability": 43.5,
-        "volume": "9597847.923291182",
-        "liquidity": "1771069.2507",
+        "volume": "9600355.098679185",
+        "liquidity": "1781153.7907",
         "url": "https://polymarket.com/event/will-arsenal-win-the-202526-champions-league",
         "end_date": "2026-05-31T00:00:00Z",
         "category": "general"
       },
       {
         "source": "polymarket",
+        "question": "Roland Garros ATP: Casper Ruud vs Tommy Paul",
+        "probability": 41.5,
+        "volume": "1281556.0445130009",
+        "liquidity": "86808.2715",
+        "url": "https://polymarket.com/event/atp-ruud-paul-2026-05-29",
+        "end_date": "2026-06-05T09:00:00Z",
+        "category": "general"
+      },
+      {
+        "source": "polymarket",
         "question": "US announces new Iran agreement/ceasefire extension by May 31?",
-        "probability": 35.0,
-        "volume": "3781429.1532059824",
-        "liquidity": "32302.1223",
+        "probability": 27.5,
+        "volume": "3893921.5019019754",
+        "liquidity": "53856.0034",
         "url": "https://polymarket.com/event/us-announces-new-iran-agreementceasefire-extension-by-may-31-665-831-238",
         "end_date": "",
         "category": "general"
@@ -921,20 +740,10 @@
         "source": "polymarket",
         "question": "Roland Garros ATP: Alex de Minaur vs Jakub Mensik",
         "probability": 0.1,
-        "volume": "1137822.4968049978",
-        "liquidity": "988482.95272",
+        "volume": "1214751.6768049984",
+        "liquidity": "810340.06574",
         "url": "https://polymarket.com/event/atp-minaur-mensik-2026-05-29",
         "end_date": "2026-06-05T09:00:00Z",
-        "category": "general"
-      },
-      {
-        "source": "polymarket",
-        "question": "Dota 2: Tundra Esports vs LGD Gaming (BO1) - BLAST Slam Group Stage",
-        "probability": 0.1,
-        "volume": "1024255.0034130006",
-        "liquidity": "492599.81921",
-        "url": "https://polymarket.com/event/dota2-tundra-lgd-2026-05-29",
-        "end_date": "2026-05-29T22:30:00Z",
         "category": "general"
       }
     ],
@@ -1101,7 +910,7 @@
     },
     {
       "priority": 2,
-      "action": "Target water damage restoration + plumbers in TX, TN, MS, AR \u2014 active flooding",
+      "action": "Target water damage restoration + plumbers in TX, AR, MS, TN \u2014 active flooding",
       "reason": "Active flood warnings = burst pipes, water damage, restoration demand spike",
       "auto_executable": false,
       "category": "opportunity"
@@ -1126,146 +935,6 @@
       "reason": "Major earthquake = supply chain disruption + construction demand spike",
       "auto_executable": false,
       "category": "geopolitical"
-    },
-    {
-      "priority": 6,
-      "action": "Watch severeStorms event: Tropical Storm Jangmi",
-      "reason": "Natural disaster = spike in contractor demand = missed call opportunity",
-      "auto_executable": false,
-      "category": "opportunity"
-    },
-    {
-      "priority": 7,
-      "action": "Watch wildfires event: Black Ridge Wildfire, Lincoln, Idaho",
-      "reason": "Natural disaster = spike in contractor demand = missed call opportunity",
-      "auto_executable": false,
-      "category": "opportunity"
-    },
-    {
-      "priority": 8,
-      "action": "Watch wildfires event: Dewoff Wildfire, Blaine, Idaho",
-      "reason": "Natural disaster = spike in contractor demand = missed call opportunity",
-      "auto_executable": false,
-      "category": "opportunity"
-    },
-    {
-      "priority": 9,
-      "action": "Watch wildfires event: 0231 ZEN Wildfire, Wasco, Oregon",
-      "reason": "Natural disaster = spike in contractor demand = missed call opportunity",
-      "auto_executable": false,
-      "category": "opportunity"
-    },
-    {
-      "priority": 10,
-      "action": "Watch wildfires event: Egberts Wildfire, Elko, Nevada",
-      "reason": "Natural disaster = spike in contractor demand = missed call opportunity",
-      "auto_executable": false,
-      "category": "opportunity"
-    },
-    {
-      "priority": 11,
-      "action": "Watch wildfires event: Summit Creek Wildfire, Cassia, Idaho",
-      "reason": "Natural disaster = spike in contractor demand = missed call opportunity",
-      "auto_executable": false,
-      "category": "opportunity"
-    },
-    {
-      "priority": 12,
-      "action": "Watch wildfires event: Kinyon Springs Wildfire, Owyhee, Idaho",
-      "reason": "Natural disaster = spike in contractor demand = missed call opportunity",
-      "auto_executable": false,
-      "category": "opportunity"
-    },
-    {
-      "priority": 13,
-      "action": "Watch wildfires event: MILE MARKER 44 FIRE - BROWARD Wildfire, Broward, Florida",
-      "reason": "Natural disaster = spike in contractor demand = missed call opportunity",
-      "auto_executable": false,
-      "category": "opportunity"
-    },
-    {
-      "priority": 14,
-      "action": "Watch wildfires event: COUNTRY MEADOW Wildfire, Benton, Washington",
-      "reason": "Natural disaster = spike in contractor demand = missed call opportunity",
-      "auto_executable": false,
-      "category": "opportunity"
-    },
-    {
-      "priority": 15,
-      "action": "Watch wildfires event: 340 Wildfire, Wakulla, Florida",
-      "reason": "Natural disaster = spike in contractor demand = missed call opportunity",
-      "auto_executable": false,
-      "category": "opportunity"
-    },
-    {
-      "priority": 16,
-      "action": "Watch wildfires event: Mile Marker 44 Wildfire, Broward, Florida",
-      "reason": "Natural disaster = spike in contractor demand = missed call opportunity",
-      "auto_executable": false,
-      "category": "opportunity"
-    },
-    {
-      "priority": 17,
-      "action": "Watch wildfires event: Quartz Wildfire, Pershing, Nevada",
-      "reason": "Natural disaster = spike in contractor demand = missed call opportunity",
-      "auto_executable": false,
-      "category": "opportunity"
-    },
-    {
-      "priority": 18,
-      "action": "Watch wildfires event: Thousand Wildfire, Northwest Arctic, Alaska",
-      "reason": "Natural disaster = spike in contractor demand = missed call opportunity",
-      "auto_executable": false,
-      "category": "opportunity"
-    },
-    {
-      "priority": 19,
-      "action": "Watch wildfires event: WaWa 2 Wildfire, Highlands, Florida",
-      "reason": "Natural disaster = spike in contractor demand = missed call opportunity",
-      "auto_executable": false,
-      "category": "opportunity"
-    },
-    {
-      "priority": 20,
-      "action": "Watch wildfires event: Shell Wildfire, Lake, Florida",
-      "reason": "Natural disaster = spike in contractor demand = missed call opportunity",
-      "auto_executable": false,
-      "category": "opportunity"
-    },
-    {
-      "priority": 21,
-      "action": "Watch wildfires event: Trigg Wildfire, San Miguel, New Mexico",
-      "reason": "Natural disaster = spike in contractor demand = missed call opportunity",
-      "auto_executable": false,
-      "category": "opportunity"
-    },
-    {
-      "priority": 22,
-      "action": "Watch wildfires event: DeSoto BB 8374 S RX Prescribed Fire, Harrison, Mississippi",
-      "reason": "Natural disaster = spike in contractor demand = missed call opportunity",
-      "auto_executable": false,
-      "category": "opportunity"
-    },
-    {
-      "priority": 23,
-      "action": "Watch wildfires event: Chickasawhay CPT 451 452 RX Prescribed Fire, Greene, Mississippi",
-      "reason": "Natural disaster = spike in contractor demand = missed call opportunity",
-      "auto_executable": false,
-      "category": "opportunity"
-    },
-    {
-      "priority": 24,
-      "action": "Watch wildfires event: CADDUGGEN Wildfire, Carteret, North Carolina",
-      "reason": "Natural disaster = spike in contractor demand = missed call opportunity",
-      "auto_executable": false,
-      "category": "opportunity"
-    },
-    {
-      "priority": 25,
-      "action": "Watch wildfires event: Rifle Range Rd Wildfire, Collier, Florida",
-      "reason": "Natural disaster = spike in contractor demand = missed call opportunity",
-      "auto_executable": false,
-      "category": "opportunity"
     }
   ],
   "global_social": {
