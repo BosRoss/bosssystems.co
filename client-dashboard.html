@@ -1,0 +1,741 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Client Dashboard — BOSS Systems</title>
+<meta name="robots" content="noindex,nofollow">
+<style>
+*{margin:0;padding:0;box-sizing:border-box}
+:root{
+  --gold:#C9A84C;--dark:#080808;--gray:#0f0f0f;--gray2:#111;--gray3:#141414;
+  --border:#1e1e1e;--border-gold:rgba(201,168,76,0.2);--text:#f0ede8;
+  --muted:#888;--dim:#555;
+  --font:-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;
+  --green:#5cb87a;--green-dim:rgba(92,184,122,0.1);--green-border:rgba(92,184,122,0.22);
+  --red:#e05c5c;--red-dim:rgba(224,92,92,0.1);
+  --blue:#5c9fe0;--blue-dim:rgba(92,159,224,0.1);--blue-border:rgba(92,159,224,0.22);
+  --amber:#d4a730;--amber-dim:rgba(212,167,48,0.1);--amber-border:rgba(212,167,48,0.22);
+}
+html,body{height:100%;background:var(--dark);color:var(--text);font-family:var(--font);font-size:15px;line-height:1.6;-webkit-font-smoothing:antialiased;overflow-x:hidden}
+a{color:var(--gold);text-decoration:none}
+
+/* ──── LOGIN ──── */
+#login-screen{position:fixed;inset:0;background:var(--dark);display:flex;align-items:center;justify-content:center;z-index:1000;padding:24px}
+.login-card{background:var(--gray2);border:1px solid var(--border);padding:48px 40px;width:100%;max-width:420px}
+.login-logo{font-size:11px;font-weight:900;letter-spacing:4px;text-transform:uppercase;color:var(--gold);margin-bottom:36px;display:block}
+.login-card h1{font-size:1.6rem;font-weight:900;letter-spacing:-0.5px;margin-bottom:8px}
+.login-card p{font-size:13px;color:var(--muted);margin-bottom:36px;line-height:1.6}
+.login-label{font-size:10px;letter-spacing:2px;text-transform:uppercase;color:var(--dim);margin-bottom:8px;display:block}
+.login-input{width:100%;background:var(--dark);border:1px solid var(--border);color:var(--text);font-size:15px;padding:14px 16px;font-family:var(--font);outline:none;letter-spacing:3px;transition:border-color .2s;margin-bottom:12px;text-transform:uppercase}
+.login-input:focus{border-color:var(--gold)}
+.login-input::placeholder{letter-spacing:1px;text-transform:none;color:var(--dim)}
+.login-btn{width:100%;background:var(--gold);color:var(--dark);border:none;padding:15px;font-size:12px;font-weight:900;letter-spacing:2px;text-transform:uppercase;cursor:pointer;font-family:var(--font);transition:background .2s}
+.login-btn:hover{background:#dfc070}
+.login-btn:disabled{opacity:.5;cursor:not-allowed}
+.login-error{font-size:12px;color:var(--red);margin-top:12px;display:none;line-height:1.5}
+.login-help{font-size:12px;color:var(--dim);text-align:center;margin-top:24px;border-top:1px solid var(--border);padding-top:20px;line-height:1.7}
+
+/* ──── LOADING ──── */
+#loading-screen{position:fixed;inset:0;background:var(--dark);display:none;align-items:center;justify-content:center;flex-direction:column;gap:16px;z-index:1000}
+.spinner{width:32px;height:32px;border:2px solid var(--border);border-top-color:var(--gold);border-radius:50%;animation:spin .8s linear infinite}
+@keyframes spin{to{transform:rotate(360deg)}}
+#loading-screen p{font-size:11px;letter-spacing:3px;color:var(--muted);text-transform:uppercase}
+
+/* ──── DASHBOARD ──── */
+#dashboard-screen{display:none}
+
+/* NAV */
+.dash-nav{position:sticky;top:0;z-index:100;background:rgba(8,8,8,.97);border-bottom:1px solid var(--border);padding:0 24px;height:60px;display:flex;align-items:center;justify-content:space-between;gap:16px}
+.dash-nav-logo{font-size:11px;font-weight:900;letter-spacing:4px;text-transform:uppercase;color:var(--gold);flex-shrink:0}
+.dash-nav-biz{font-size:13px;font-weight:700;color:var(--text);text-align:center;flex:1}
+.dash-nav-right{display:flex;align-items:center;gap:12px;flex-shrink:0}
+.ai-badge{font-size:9px;letter-spacing:2px;text-transform:uppercase;color:var(--green);border:1px solid var(--green-border);padding:5px 10px;background:var(--green-dim);display:flex;align-items:center;gap:6px;white-space:nowrap}
+.ai-badge::before{content:'';width:6px;height:6px;border-radius:50%;background:var(--green);display:block;animation:pulse 2s ease-in-out infinite}
+@keyframes pulse{0%,100%{opacity:1}50%{opacity:.3}}
+.logout-btn{font-size:10px;letter-spacing:1px;color:var(--muted);background:none;border:1px solid var(--border);padding:6px 14px;cursor:pointer;font-family:var(--font);text-transform:uppercase;transition:all .2s;white-space:nowrap}
+.logout-btn:hover{color:var(--text);border-color:var(--dim)}
+
+/* LAYOUT */
+.dash-main{max-width:1080px;margin:0 auto;padding:48px 24px 80px}
+
+/* WELCOME */
+.welcome{margin-bottom:40px;display:flex;justify-content:space-between;align-items:flex-end;flex-wrap:wrap;gap:12px}
+.welcome h2{font-size:clamp(1.4rem,3vw,1.9rem);font-weight:900;letter-spacing:-0.5px;margin-bottom:4px}
+.welcome-sub{font-size:13px;color:var(--muted)}
+.welcome-sub .gold{color:var(--gold);font-weight:700}
+.last-updated{font-size:11px;color:var(--dim);text-align:right;white-space:nowrap}
+
+/* STAT CARDS */
+.stats-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:1px;background:var(--border);margin-bottom:1px}
+.stat-card{background:var(--gray2);padding:28px 22px}
+.stat-label{font-size:10px;letter-spacing:2px;text-transform:uppercase;color:var(--dim);margin-bottom:10px}
+.stat-val{font-size:2.2rem;font-weight:900;color:var(--gold);line-height:1;margin-bottom:8px}
+.stat-change{font-size:11px;font-weight:700;letter-spacing:.3px;margin-bottom:4px;display:block}
+.stat-change.up{color:var(--green)}
+.stat-change.down{color:var(--red)}
+.stat-change.same{color:var(--dim)}
+.stat-sub{font-size:11px;color:var(--dim);line-height:1.4}
+
+/* INSIGHT */
+.insight{background:rgba(201,168,76,0.06);border-left:3px solid var(--gold);padding:22px 26px;margin-bottom:1px}
+.insight p{font-size:14px;color:var(--muted);line-height:1.8}
+.insight strong{color:var(--text)}
+.insight .gold{color:var(--gold);font-weight:700}
+
+/* TWO COL */
+.two-col{display:grid;grid-template-columns:1fr 1fr;gap:1px;background:var(--border);margin-bottom:40px}
+.dash-block{background:var(--gray2);padding:32px}
+.dash-block-title{font-size:10px;letter-spacing:3px;text-transform:uppercase;color:var(--gold);margin-bottom:20px;display:block}
+
+/* COMPARE TABLE */
+.compare-row{display:flex;justify-content:space-between;align-items:center;padding:12px 0;border-bottom:1px solid var(--border)}
+.compare-row:last-child{border-bottom:none}
+.compare-label{font-size:13px;color:var(--muted)}
+.compare-right{display:flex;align-items:center;gap:16px}
+.compare-last{font-size:11px;color:var(--dim);min-width:50px;text-align:right}
+.compare-arrow{font-size:12px;font-weight:900;min-width:36px;text-align:center}
+.compare-arrow.up{color:var(--green)}
+.compare-arrow.down{color:var(--red)}
+.compare-arrow.same{color:var(--dim)}
+.compare-this{font-size:16px;font-weight:900;color:var(--text);min-width:28px;text-align:right}
+
+/* STATUS */
+.status-row{display:flex;justify-content:space-between;align-items:center;padding:12px 0;border-bottom:1px solid var(--border)}
+.status-row:last-child{border-bottom:none}
+.status-key{font-size:13px;color:var(--muted)}
+.status-val{font-size:13px;font-weight:700}
+.status-val.green{color:var(--green)}
+.status-val.gold{color:var(--gold)}
+.status-val.text{color:var(--text)}
+
+/* CALL LOG */
+.call-log-wrap{background:var(--gray2);border:1px solid var(--border);margin-bottom:40px}
+.call-log-top{padding:22px 26px;border-bottom:1px solid var(--border);display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:12px}
+.call-log-title{font-size:10px;letter-spacing:3px;text-transform:uppercase;color:var(--gold)}
+.filter-row{display:flex;gap:6px;flex-wrap:wrap}
+.filter-btn{font-size:9px;letter-spacing:1.5px;text-transform:uppercase;padding:5px 12px;background:none;border:1px solid var(--border);color:var(--dim);cursor:pointer;font-family:var(--font);transition:all .15s}
+.filter-btn.active,.filter-btn:hover{border-color:var(--gold);color:var(--gold)}
+.call-table-wrap{overflow-x:auto}
+.call-table{width:100%;border-collapse:collapse}
+.call-table th{font-size:9px;letter-spacing:2px;text-transform:uppercase;color:var(--dim);padding:12px 16px;text-align:left;border-bottom:1px solid var(--border);font-weight:600;white-space:nowrap}
+.call-table tbody tr{border-bottom:1px solid var(--border);transition:background .12s}
+.call-table tbody tr:last-child{border-bottom:none}
+.call-table tbody tr:hover{background:rgba(255,255,255,.018)}
+.call-table td{padding:13px 16px;color:var(--muted);vertical-align:middle;font-size:13px}
+td.cell-dt{color:var(--text);font-weight:600;font-size:12px;white-space:nowrap}
+td.cell-dt span{display:block;color:var(--dim);font-weight:400;font-size:11px}
+td.cell-dur{font-size:12px;white-space:nowrap;color:var(--dim)}
+td.cell-notes{max-width:280px;line-height:1.45;font-size:13px}
+td.cell-caller{font-size:11px;color:var(--dim);text-align:right;white-space:nowrap}
+.badge{display:inline-flex;align-items:center;padding:3px 9px;font-size:9px;font-weight:700;letter-spacing:1px;text-transform:uppercase;gap:5px}
+.badge.booked{background:var(--green-dim);color:var(--green);border:1px solid var(--green-border)}
+.badge.callback{background:var(--amber-dim);color:var(--amber);border:1px solid var(--amber-border)}
+.badge.inquiry{background:var(--blue-dim);color:var(--blue);border:1px solid var(--blue-border)}
+.badge.hangup,.badge.voicemail,.badge.noanswer{background:rgba(255,255,255,.04);color:var(--dim);border:1px solid var(--border)}
+.badge.afterhours{background:rgba(201,168,76,0.08);color:var(--gold);border:1px solid var(--border-gold)}
+.call-log-foot{padding:14px 26px;border-top:1px solid var(--border);font-size:11px;color:var(--dim)}
+
+/* TIMING */
+.timing-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:1px;background:var(--border);margin-bottom:40px}
+.timing-cell{background:var(--gray2);padding:28px 24px}
+.timing-lbl{font-size:10px;letter-spacing:2px;text-transform:uppercase;color:var(--dim);margin-bottom:8px}
+.timing-num{font-size:2rem;font-weight:900;line-height:1;margin-bottom:12px}
+.timing-bar-wrap{height:3px;background:var(--border);margin-bottom:8px;position:relative;overflow:hidden}
+.timing-bar-fill{height:100%;position:absolute;left:0;top:0;transition:width .6s ease}
+.timing-pct{font-size:12px;font-weight:700;margin-bottom:3px}
+.timing-sub{font-size:11px;color:var(--dim)}
+
+/* PLAN */
+.plan-section{background:var(--gray2);border:1px solid var(--border);margin-bottom:1px}
+.plan-top{padding:22px 28px;border-bottom:1px solid var(--border)}
+.plan-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:0;background:var(--border)}
+.plan-cell{background:var(--gray2);padding:22px 24px}
+.plan-cell-lbl{font-size:10px;letter-spacing:2px;text-transform:uppercase;color:var(--dim);margin-bottom:6px}
+.plan-cell-val{font-size:14px;font-weight:700;color:var(--text)}
+.plan-cell-val.gold{color:var(--gold)}
+
+/* CONTACT */
+.contact-strip{background:rgba(201,168,76,0.05);border:1px solid var(--border-gold);padding:24px 28px;display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:16px;margin-bottom:40px}
+.contact-copy p{font-size:13px;color:var(--muted);line-height:1.6}
+.contact-copy p strong{color:var(--text)}
+.contact-links{display:flex;gap:10px;flex-wrap:wrap}
+.contact-link{font-size:11px;letter-spacing:1px;text-transform:uppercase;font-weight:700;padding:10px 18px;border:1px solid var(--border-gold);color:var(--gold);transition:all .2s}
+.contact-link:hover,.contact-link.primary{background:var(--gold);color:var(--dark)}
+.contact-link.primary:hover{background:#dfc070}
+
+/* FOOTER */
+.dash-footer{border-top:1px solid var(--border);padding:24px;text-align:center;font-size:11px;color:var(--dim);background:var(--gray)}
+
+/* RESPONSIVE */
+@media(max-width:800px){
+  .stats-grid{grid-template-columns:1fr 1fr}
+  .two-col{grid-template-columns:1fr}
+  .timing-grid{grid-template-columns:1fr 1fr}
+  .plan-grid{grid-template-columns:1fr 1fr}
+  td.cell-notes{display:none}
+  .dash-nav-biz{display:none}
+}
+@media(max-width:520px){
+  .stats-grid{grid-template-columns:1fr 1fr}
+  .timing-grid{grid-template-columns:1fr}
+  .plan-grid{grid-template-columns:1fr}
+  .login-card{padding:36px 24px}
+  .dash-main{padding:32px 16px 60px}
+  .ai-badge{display:none}
+}
+</style>
+</head>
+<body>
+
+<!-- ═══ LOGIN ═══ -->
+<div id="login-screen">
+  <div class="login-card">
+    <span class="login-logo">BOSS Systems</span>
+    <h1>Client Dashboard</h1>
+    <p>Enter your access code to view your AI performance data, call history, and booking records.</p>
+    <label class="login-label" for="login-input">Access Code</label>
+    <input class="login-input" id="login-input" type="text" maxlength="20" autocomplete="off" autocapitalize="characters" spellcheck="false" placeholder="e.g. HVAC-MIKE-01">
+    <button class="login-btn" id="login-btn">Access Dashboard</button>
+    <div class="login-error" id="login-error"></div>
+    <p class="login-help">Your access code was provided when your AI system went live.<br>Need it? Text Boston at <strong style="color:var(--text)">903-714-6162</strong>.</p>
+  </div>
+</div>
+
+<!-- ═══ LOADING ═══ -->
+<div id="loading-screen">
+  <div class="spinner"></div>
+  <p>Loading Your Dashboard</p>
+</div>
+
+<!-- ═══ DASHBOARD ═══ -->
+<div id="dashboard-screen">
+
+  <nav class="dash-nav">
+    <span class="dash-nav-logo">BOSS Systems</span>
+    <span class="dash-nav-biz" id="nav-biz-name"></span>
+    <div class="dash-nav-right">
+      <span class="ai-badge">AI Active</span>
+      <button class="logout-btn" id="logout-btn">Log Out</button>
+    </div>
+  </nav>
+
+  <main class="dash-main">
+
+    <!-- WELCOME -->
+    <div class="welcome">
+      <div>
+        <h2>Hey, <span id="welcome-name">there</span>.</h2>
+        <p class="welcome-sub" id="welcome-sub">Your AI has been live for <span class="gold" id="days-live">—</span> days. Here's what it's done.</p>
+      </div>
+      <div class="last-updated" id="last-updated"></div>
+    </div>
+
+    <!-- STATS -->
+    <div class="stats-grid">
+      <div class="stat-card" id="stat-calls">
+        <div class="stat-label">Calls Answered</div>
+        <div class="stat-val" id="sv-calls">—</div>
+        <span class="stat-change" id="sc-calls"></span>
+        <div class="stat-sub">This month</div>
+      </div>
+      <div class="stat-card" id="stat-bookings">
+        <div class="stat-label">Appointments Booked</div>
+        <div class="stat-val" id="sv-bookings">—</div>
+        <span class="stat-change" id="sc-bookings"></span>
+        <div class="stat-sub">Jobs the AI locked in</div>
+      </div>
+      <div class="stat-card" id="stat-afterhours">
+        <div class="stat-label">After-Hours Calls Caught</div>
+        <div class="stat-val" id="sv-afterhours">—</div>
+        <span class="stat-change" id="sc-afterhours"></span>
+        <div class="stat-sub">Would have been voicemail</div>
+      </div>
+      <div class="stat-card" id="stat-reviews">
+        <div class="stat-label">Review Requests Sent</div>
+        <div class="stat-val" id="sv-reviews">—</div>
+        <span class="stat-change" id="sc-reviews"></span>
+        <div class="stat-sub">Sent automatically after jobs</div>
+      </div>
+    </div>
+
+    <!-- INSIGHT CALLOUT -->
+    <div class="insight">
+      <p id="insight-text">Loading your summary…</p>
+    </div>
+
+    <!-- MONTHLY COMPARE + AI STATUS -->
+    <div class="two-col" style="margin-top:1px">
+      <div class="dash-block">
+        <span class="dash-block-title">This Month vs Last Month</span>
+        <div id="compare-table"></div>
+      </div>
+      <div class="dash-block">
+        <span class="dash-block-title">AI System Status</span>
+        <div id="status-table"></div>
+      </div>
+    </div>
+
+    <!-- CALL LOG -->
+    <div class="call-log-wrap">
+      <div class="call-log-top">
+        <span class="call-log-title">Call Log — Recent Activity</span>
+        <div class="filter-row" id="filter-row">
+          <button class="filter-btn active" data-filter="all">All</button>
+          <button class="filter-btn" data-filter="booked">Booked</button>
+          <button class="filter-btn" data-filter="afterhours">After Hours</button>
+          <button class="filter-btn" data-filter="inquiry">Inquiry</button>
+          <button class="filter-btn" data-filter="callback">Callback</button>
+        </div>
+      </div>
+      <div class="call-table-wrap">
+        <table class="call-table">
+          <thead>
+            <tr>
+              <th>Date &amp; Time</th>
+              <th>Duration</th>
+              <th>Outcome</th>
+              <th>Notes</th>
+              <th style="text-align:right">Caller</th>
+            </tr>
+          </thead>
+          <tbody id="call-tbody"></tbody>
+        </table>
+      </div>
+      <div class="call-log-foot" id="call-log-foot"></div>
+    </div>
+
+    <!-- CALL TIMING -->
+    <div style="margin-bottom:8px">
+      <div style="font-size:10px;letter-spacing:3px;text-transform:uppercase;color:var(--dim);margin-bottom:16px">When Your Calls Come In</div>
+    </div>
+    <div class="timing-grid" style="margin-top:0">
+      <div class="timing-cell" id="timing-biz">
+        <div class="timing-lbl">Business Hours</div>
+        <div class="timing-num" id="tn-biz">—</div>
+        <div class="timing-bar-wrap"><div class="timing-bar-fill" id="tb-biz" style="background:var(--text)"></div></div>
+        <div class="timing-pct" id="tp-biz"></div>
+        <div class="timing-sub">8am – 6pm weekdays</div>
+      </div>
+      <div class="timing-cell" id="timing-eve">
+        <div class="timing-lbl">Evenings &amp; Nights</div>
+        <div class="timing-num" style="color:var(--gold)" id="tn-eve">—</div>
+        <div class="timing-bar-wrap"><div class="timing-bar-fill" id="tb-eve" style="background:var(--gold)"></div></div>
+        <div class="timing-pct" id="tp-eve" style="color:var(--gold)"></div>
+        <div class="timing-sub">6pm – midnight · caught by AI</div>
+      </div>
+      <div class="timing-cell" id="timing-wknd">
+        <div class="timing-lbl">Weekends</div>
+        <div class="timing-num" style="color:var(--gold)" id="tn-wknd">—</div>
+        <div class="timing-bar-wrap"><div class="timing-bar-fill" id="tb-wknd" style="background:var(--gold)"></div></div>
+        <div class="timing-pct" id="tp-wknd" style="color:var(--gold)"></div>
+        <div class="timing-sub">Saturday &amp; Sunday · caught by AI</div>
+      </div>
+    </div>
+
+    <!-- PLAN & BILLING -->
+    <div class="plan-section">
+      <div class="plan-top">
+        <span style="font-size:10px;letter-spacing:3px;text-transform:uppercase;color:var(--gold)">Your Plan &amp; System Info</span>
+      </div>
+      <div class="plan-grid">
+        <div class="plan-cell">
+          <div class="plan-cell-lbl">Current Plan</div>
+          <div class="plan-cell-val gold" id="plan-name">—</div>
+        </div>
+        <div class="plan-cell">
+          <div class="plan-cell-lbl">Monthly Rate</div>
+          <div class="plan-cell-val" id="plan-rate">—</div>
+        </div>
+        <div class="plan-cell">
+          <div class="plan-cell-lbl">Your AI Phone Number</div>
+          <div class="plan-cell-val gold" id="plan-number">—</div>
+        </div>
+        <div class="plan-cell">
+          <div class="plan-cell-lbl">Live Since</div>
+          <div class="plan-cell-val" id="plan-live">—</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- CONTACT -->
+    <div class="contact-strip" style="margin-top:1px">
+      <div class="contact-copy">
+        <p><strong>Need something changed?</strong> Script update, pricing change, new service added — text or call Boston directly. Changes go live same day.</p>
+      </div>
+      <div class="contact-links">
+        <a href="sms:9037146162" class="contact-link primary">Text Boston</a>
+        <a href="tel:9037146162" class="contact-link">Call Boston</a>
+        <a href="mailto:bosssystemsai@gmail.com" class="contact-link">Email</a>
+      </div>
+    </div>
+
+  </main>
+
+  <footer class="dash-footer">
+    BOSS Systems &mdash; AI Business Innovation &mdash; bosssystems.co &mdash; <a href="mailto:bosssystemsai@gmail.com">bosssystemsai@gmail.com</a>
+  </footer>
+
+</div><!-- /dashboard-screen -->
+
+<script>
+// ──── CONFIG ────
+const WEBHOOK = 'https://jamross.app.n8n.cloud/webhook/client-dashboard';
+const DEMO_CODE = 'BOSSDEMO';
+
+// ──── ELEMENTS ────
+const loginScreen  = document.getElementById('login-screen');
+const loadScreen   = document.getElementById('loading-screen');
+const dashScreen   = document.getElementById('dashboard-screen');
+const loginInput   = document.getElementById('login-input');
+const loginBtn     = document.getElementById('login-btn');
+const loginError   = document.getElementById('login-error');
+
+// ──── INIT ────
+window.addEventListener('DOMContentLoaded', function() {
+  var stored = sessionStorage.getItem('boss_dash_session');
+  if (stored) {
+    try {
+      var data = JSON.parse(stored);
+      renderDashboard(data);
+      return;
+    } catch(e) {
+      sessionStorage.removeItem('boss_dash_session');
+    }
+  }
+  loginScreen.style.display = 'flex';
+});
+
+// ──── LOGIN ────
+loginBtn.addEventListener('click', handleLogin);
+loginInput.addEventListener('keydown', function(e){ if (e.key === 'Enter') handleLogin(); });
+
+async function handleLogin() {
+  var code = loginInput.value.trim().toUpperCase();
+  if (!code) return;
+
+  loginBtn.disabled = true;
+  loginBtn.textContent = 'Checking…';
+  loginError.style.display = 'none';
+
+  if (code === DEMO_CODE) {
+    var demo = getDemoData();
+    sessionStorage.setItem('boss_dash_session', JSON.stringify(demo));
+    renderDashboard(demo);
+    return;
+  }
+
+  try {
+    var res = await fetch(WEBHOOK, {
+      method: 'POST',
+      headers: {'Content-Type':'application/json'},
+      body: JSON.stringify({code: code})
+    });
+    if (!res.ok) throw new Error('http');
+    var data = await res.json();
+
+    if (!data.valid) {
+      showError('Access code not recognized. Double-check the code and try again.');
+      return;
+    }
+
+    sessionStorage.setItem('boss_dash_session', JSON.stringify(data));
+    renderDashboard(data);
+
+  } catch(e) {
+    showError('Could not connect. If this keeps happening, text Boston at 903-714-6162.');
+  }
+}
+
+function showError(msg) {
+  loginError.textContent = msg;
+  loginError.style.display = 'block';
+  loginBtn.disabled = false;
+  loginBtn.textContent = 'Access Dashboard';
+}
+
+// ──── LOGOUT ────
+document.getElementById('logout-btn').addEventListener('click', function() {
+  sessionStorage.removeItem('boss_dash_session');
+  loginInput.value = '';
+  loginBtn.disabled = false;
+  loginBtn.textContent = 'Access Dashboard';
+  loginError.style.display = 'none';
+  dashScreen.style.display = 'none';
+  loadScreen.style.display = 'none';
+  loginScreen.style.display = 'flex';
+  window.scrollTo(0,0);
+});
+
+// ──── RENDER ────
+function renderDashboard(d) {
+  loginScreen.style.display = 'none';
+  loadScreen.style.display  = 'flex';
+  dashScreen.style.display  = 'none';
+
+  setTimeout(function() {
+    try {
+      fillDashboard(d);
+    } catch(e) { console.error(e); }
+    loadScreen.style.display = 'none';
+    dashScreen.style.display = 'block';
+    window.scrollTo(0,0);
+  }, 700);
+}
+
+function fillDashboard(d) {
+  var c  = d.client;
+  var tm = d.thisMonth;
+  var lm = d.lastMonth;
+
+  // Nav + welcome
+  document.getElementById('nav-biz-name').textContent = c.businessName;
+  document.getElementById('welcome-name').textContent = (c.ownerName || '').split(' ')[0] || 'there';
+  document.getElementById('days-live').textContent = getDaysLive(c.liveDate);
+  document.getElementById('last-updated').textContent = 'Updated ' + getRelTime(d.fetchedAt || new Date().toISOString());
+
+  // Stats
+  setCard('sv-calls',      'sc-calls',      tm.calls,         lm.calls);
+  setCard('sv-bookings',   'sc-bookings',   tm.bookings,      lm.bookings);
+  setCard('sv-afterhours', 'sc-afterhours', tm.afterHours,    lm.afterHours);
+  setCard('sv-reviews',    'sc-reviews',    tm.reviewRequests,lm.reviewRequests);
+
+  // Insight
+  var avgJob = c.avgJobValue || 200;
+  var est    = (tm.bookings * avgJob).toLocaleString();
+  var ahPct  = tm.calls > 0 ? Math.round(tm.afterHours / tm.calls * 100) : 0;
+  document.getElementById('insight-text').innerHTML =
+    'Your AI answered <span class="gold">' + tm.afterHours + ' calls outside business hours</span> this month — ' +
+    'evenings, nights, and weekends. Without BOSS Systems, those calls go to voicemail and <strong>85% of callers never call back</strong>. ' +
+    'Your AI booked <span class="gold">' + tm.bookings + ' appointments</span> this month — ' +
+    'at your average job value that\'s an estimated <strong>$' + est + ' in revenue</strong> that came through the phone.';
+
+  // Monthly compare
+  var compareRows = [
+    {label:'Calls Answered',         a:tm.calls,          b:lm.calls},
+    {label:'Appointments Booked',    a:tm.bookings,       b:lm.bookings},
+    {label:'After-Hours Calls Caught',a:tm.afterHours,    b:lm.afterHours},
+    {label:'Review Requests Sent',   a:tm.reviewRequests, b:lm.reviewRequests},
+    {label:'Total Minutes on Phone', a:tm.minutesOnPhone, b:lm.minutesOnPhone},
+  ];
+  document.getElementById('compare-table').innerHTML = compareRows.map(function(r) {
+    var diff = r.a - r.b;
+    var pct  = r.b > 0 ? Math.round(Math.abs(diff)/r.b*100) : 0;
+    var cls  = diff > 0 ? 'up' : diff < 0 ? 'down' : 'same';
+    var arrow= diff > 0 ? '↑ '+pct+'%' : diff < 0 ? '↓ '+pct+'%' : '—';
+    return '<div class="compare-row">' +
+      '<span class="compare-label">'+ r.label +'</span>' +
+      '<div class="compare-right">' +
+        '<span class="compare-last">'+ r.b +' last</span>' +
+        '<span class="compare-arrow '+cls+'">'+ arrow +'</span>' +
+        '<span class="compare-this">'+ r.a +'</span>' +
+      '</div></div>';
+  }).join('');
+
+  // AI status
+  var s = d.status;
+  var statusRows = [
+    {key:'System Status',       val: s.active ? 'Active' : 'Offline', cls: s.active ? 'green' : 'text'},
+    {key:'Uptime This Month',   val: s.uptimePercent + '%',           cls: 'green'},
+    {key:'Avg Answer Time',     val: s.avgPickupSeconds + ' seconds', cls: 'text'},
+    {key:'Total Calls This Month', val: tm.calls,                     cls: 'gold'},
+    {key:'Your AI Phone Number',val: c.aiNumber,                      cls: 'gold'},
+  ];
+  document.getElementById('status-table').innerHTML = statusRows.map(function(r) {
+    return '<div class="status-row">' +
+      '<span class="status-key">'+ r.key +'</span>' +
+      '<span class="status-val '+r.cls+'">'+ r.val +'</span></div>';
+  }).join('');
+
+  // Call log
+  renderCallLog(d.callLog || [], tm.label || '');
+
+  // Timing
+  var t     = d.timing;
+  var total = t.totalCalls || (t.businessHours + t.evenings + t.weekends) || 1;
+  setTiming('biz',  t.businessHours, total, '');
+  setTiming('eve',  t.evenings,      total, 'var(--gold)');
+  setTiming('wknd', t.weekends,      total, 'var(--gold)');
+
+  // Plan
+  document.getElementById('plan-name').textContent   = c.plan;
+  document.getElementById('plan-rate').textContent   = '$' + c.monthlyRate + '/month';
+  document.getElementById('plan-number').textContent = c.aiNumber;
+  document.getElementById('plan-live').textContent   = fmtDate(c.liveDate);
+}
+
+function setCard(valId, changeId, current, previous) {
+  document.getElementById(valId).textContent = current;
+  var el   = document.getElementById(changeId);
+  var diff = current - previous;
+  var pct  = previous > 0 ? Math.round(Math.abs(diff)/previous*100) : 0;
+  if (diff > 0) { el.textContent = '↑ '+pct+'% vs last month'; el.className = 'stat-change up'; }
+  else if (diff < 0) { el.textContent = '↓ '+pct+'% vs last month'; el.className = 'stat-change down'; }
+  else { el.textContent = '— same as last month'; el.className = 'stat-change same'; }
+}
+
+function setTiming(key, val, total, color) {
+  var pct = Math.round(val / total * 100);
+  document.getElementById('tn-'+key).textContent = val;
+  document.getElementById('tb-'+key).style.width = pct + '%';
+  if (color) document.getElementById('tb-'+key).style.background = color;
+  document.getElementById('tp-'+key).textContent = pct + '% of all calls';
+}
+
+// ──── CALL LOG ────
+var allCalls = [];
+
+function renderCallLog(calls, monthLabel) {
+  allCalls = calls;
+  applyFilter('all');
+  document.getElementById('call-log-foot').textContent =
+    'Showing ' + calls.length + ' most recent calls' + (monthLabel ? ' · ' + monthLabel : '');
+}
+
+document.getElementById('filter-row').addEventListener('click', function(e) {
+  var btn = e.target.closest('.filter-btn');
+  if (!btn) return;
+  document.querySelectorAll('.filter-btn').forEach(function(b){ b.classList.remove('active'); });
+  btn.classList.add('active');
+  applyFilter(btn.dataset.filter);
+});
+
+function applyFilter(filter) {
+  var filtered = filter === 'all' ? allCalls : allCalls.filter(function(c) {
+    if (filter === 'booked')     return (c.outcome||'').toLowerCase() === 'booked';
+    if (filter === 'afterhours') return c.afterHours === true;
+    if (filter === 'inquiry')    return (c.outcome||'').toLowerCase() === 'inquiry';
+    if (filter === 'callback')   return (c.outcome||'').toLowerCase() === 'callback';
+    return true;
+  });
+
+  var tbody = document.getElementById('call-tbody');
+
+  if (filtered.length === 0) {
+    tbody.innerHTML = '<tr><td colspan="5" style="padding:36px 16px;text-align:center;color:var(--dim);font-size:13px">No calls match this filter.</td></tr>';
+    return;
+  }
+
+  tbody.innerHTML = filtered.map(function(c) {
+    var oc  = (c.outcome || 'unknown').toLowerCase().replace(/\s+/g,'');
+    var ahTag = c.afterHours ? '<span class="badge afterhours" style="margin-left:6px">After Hours</span>' : '';
+    return '<tr>' +
+      '<td class="cell-dt">'+ (c.date||'—') +'<span>'+ (c.time||'') +'</span></td>' +
+      '<td class="cell-dur">'+ (c.duration||'—') +'</td>' +
+      '<td><span class="badge '+oc+'">'+ (c.outcome||'—') +'</span>'+ ahTag +'</td>' +
+      '<td class="cell-notes">'+ (c.notes||'—') +'</td>' +
+      '<td class="cell-caller">'+ (c.caller||'—') +'</td>' +
+      '</tr>';
+  }).join('');
+}
+
+// ──── HELPERS ────
+function getDaysLive(dateStr) {
+  if (!dateStr) return '?';
+  var start = new Date(dateStr.indexOf('T') > -1 ? dateStr : dateStr + 'T00:00:00');
+  return Math.max(0, Math.floor((Date.now() - start) / 86400000));
+}
+function getRelTime(iso) {
+  var mins = Math.floor((Date.now() - new Date(iso)) / 60000);
+  if (mins < 1)  return 'just now';
+  if (mins < 60) return mins + ' min ago';
+  var hrs = Math.floor(mins/60);
+  if (hrs < 24)  return hrs + 'h ago';
+  return Math.floor(hrs/24) + 'd ago';
+}
+function fmtDate(ds) {
+  if (!ds) return '—';
+  var d = new Date((ds.indexOf('T') > -1 ? ds : ds + 'T00:00:00'));
+  return d.toLocaleDateString('en-US',{month:'long',day:'numeric',year:'numeric'});
+}
+
+// ──── DEMO DATA ────
+// Used when code = BOSSDEMO. Replace with n8n webhook data for real clients.
+function getDemoData() {
+  return {
+    valid: true,
+    fetchedAt: new Date().toISOString(),
+    client: {
+      businessName: 'East Texas HVAC',
+      ownerName: 'Mike',
+      aiNumber: '(903) 483-0168',
+      plan: 'BOSS Starter',
+      monthlyRate: 60,
+      liveDate: '2026-03-01',
+      avgJobValue: 650
+    },
+    thisMonth: {
+      label: 'May 2026',
+      calls: 47,
+      bookings: 12,
+      afterHours: 19,
+      reviewRequests: 9,
+      minutesOnPhone: 94
+    },
+    lastMonth: {
+      label: 'April 2026',
+      calls: 39,
+      bookings: 9,
+      afterHours: 14,
+      reviewRequests: 6,
+      minutesOnPhone: 78
+    },
+    callLog: [
+      {date:'May 28',time:'9:47 PM', duration:'2m 14s',outcome:'Booked',   notes:'AC tune-up, Thu 2pm',                  afterHours:true, caller:'···7821'},
+      {date:'May 28',time:'2:13 PM', duration:'1m 38s',outcome:'Inquiry',  notes:'Asked about AC unit replacement cost',  afterHours:false,caller:'···4429'},
+      {date:'May 27',time:'11:32 PM',duration:'3m 02s',outcome:'Booked',   notes:'Emergency — system not cooling',        afterHours:true, caller:'···9103'},
+      {date:'May 27',time:'3:45 PM', duration:'0m 42s',outcome:'Callback', notes:'Requested call back tomorrow 10am',     afterHours:false,caller:'···6654'},
+      {date:'May 26',time:'7:18 PM', duration:'2m 55s',outcome:'Booked',   notes:'Furnace inspection, Fri morning',       afterHours:true, caller:'···2210'},
+      {date:'May 26',time:'10:22 AM',duration:'1m 11s',outcome:'Inquiry',  notes:'Pricing for full system install',       afterHours:false,caller:'···8847'},
+      {date:'May 25',time:'6:58 PM', duration:'2m 33s',outcome:'Booked',   notes:'Annual maintenance plan signup',        afterHours:true, caller:'···3391'},
+      {date:'May 24',time:'8:44 AM', duration:'1m 02s',outcome:'Inquiry',  notes:'Asked about filter replacement',        afterHours:false,caller:'···7760'},
+      {date:'May 23',time:'9:15 PM', duration:'1m 48s',outcome:'Booked',   notes:'AC not working, urgent Fri appt',       afterHours:true, caller:'···5532'},
+      {date:'May 23',time:'4:30 PM', duration:'0m 28s',outcome:'Hang-up',  notes:'—',                                    afterHours:false,caller:'···1124'},
+      {date:'May 22',time:'2:02 PM', duration:'3m 14s',outcome:'Booked',   notes:'New construction HVAC consult',         afterHours:false,caller:'···9983'},
+      {date:'May 21',time:'8:12 PM', duration:'2m 01s',outcome:'Booked',   notes:'Same-day repair, house at 85°',         afterHours:true, caller:'···4417'},
+      {date:'May 20',time:'1:45 PM', duration:'1m 22s',outcome:'Callback', notes:'Call back 3–5pm Tuesday',              afterHours:false,caller:'···6629'},
+      {date:'May 19',time:'10:47 PM',duration:'2m 44s',outcome:'Booked',   notes:'Emergency — elderly parent, no AC',     afterHours:true, caller:'···8801'},
+      {date:'May 18',time:'11:05 AM',duration:'1m 30s',outcome:'Inquiry',  notes:'Asked if you cover Longview area',      afterHours:false,caller:'···3348'},
+      {date:'May 17',time:'7:03 PM', duration:'2m 20s',outcome:'Booked',   notes:'AC not running, scheduling Mon',        afterHours:true, caller:'···2291'},
+      {date:'May 16',time:'3:11 PM', duration:'0m 55s',outcome:'Inquiry',  notes:'Duct cleaning — does team do that?',    afterHours:false,caller:'···9012'},
+      {date:'May 15',time:'8:47 PM', duration:'1m 59s',outcome:'Booked',   notes:'Mini-split install consult',            afterHours:true, caller:'···6647'},
+      {date:'May 14',time:'9:30 AM', duration:'1m 08s',outcome:'Inquiry',  notes:'Asked about service area',              afterHours:false,caller:'···4438'},
+      {date:'May 13',time:'5:22 PM', duration:'2m 48s',outcome:'Booked',   notes:'Biannual tune-up, flexible schedule',   afterHours:false,caller:'···7723'},
+    ],
+    timing: {businessHours:28, evenings:13, weekends:6, totalCalls:47},
+    status: {active:true, uptimePercent:100, avgPickupSeconds:2}
+  };
+}
+
+/*
+  ──── N8N WORKFLOW SPEC (wire up June 1) ────
+  Webhook path:   client-dashboard
+  Method:         POST
+  Body in:        { code: "CLIENT-CODE" }
+  Steps:
+    1. Google Sheets lookup — find row where Code = input code
+       Sheet: "Dashboard_Clients"
+       Columns: Code | BusinessName | OwnerName | AINumber | AgentID | Plan | MonthlyRate | LiveDate | AvgJobValue | Active
+    2. If no match → return { valid: false }
+    3. If Active = false → return { valid: false }
+    4. Retell API: GET /v2/list-calls?agent_id=[AgentID]&start_timestamp=[30 days ago]&limit=50
+       Header: Authorization: Bearer [RETELL_API_KEY]
+    5. Transform Retell call records into callLog array:
+       - date: formatted from start_timestamp
+       - time: HH:MM AM/PM from start_timestamp
+       - duration: formatted from duration_ms
+       - outcome: from call_analysis.call_successful + disconnection_reason
+         "Booked" if call_analysis contains booking intent
+         "Callback" if callback intent
+         "Inquiry" if just info
+         "Hang-up" if disconnection_reason = "user_hangup" and short
+       - afterHours: true if hour < 8 or hour >= 18 or weekend
+       - notes: first 80 chars of call_analysis.call_summary
+       - caller: last 4 digits of from_number
+    6. Aggregate this month vs last month counts from the calls
+    7. Return full data object matching schema above
+    8. Include fetchedAt: new Date().toISOString()
+*/
+</script>
+</body>
+</html>
