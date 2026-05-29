@@ -250,17 +250,17 @@ footer{border-top:1px solid var(--border);padding:28px 24px;display:flex;justify
         <label for="businessType">Business type<span style="color:var(--gold);margin-left:2px">*</span></label>
         <select id="businessType" name="businessType" required>
           <option value="" disabled selected>Select your business</option>
-          <option value="Junk Removal">Junk Removal</option>
-          <option value="Pressure Washing">Pressure Washing</option>
-          <option value="Lawn Care">Lawn Care</option>
-          <option value="Pool Cleaning">Pool Cleaning</option>
-          <option value="Interior Car Detailing">Interior Car Detailing</option>
-          <option value="House Cleaning">House Cleaning</option>
-          <option value="Event Decoration Setup">Event Decoration Setup</option>
-          <option value="Pet Sitting / Dog Walking">Pet Sitting / Dog Walking</option>
-          <option value="Home Organizing">Home Organizing</option>
-          <option value="Photography Sessions">Photography Sessions</option>
-          <option value="Social Media Management">Social Media Management</option>
+          <option value="junk-removal">Junk Removal</option>
+          <option value="power-washing">Pressure Washing</option>
+          <option value="lawn-care">Lawn Care</option>
+          <option value="pool-cleaning">Pool Cleaning</option>
+          <option value="car-detailing">Interior Car Detailing</option>
+          <option value="house-cleaning">House Cleaning</option>
+          <option value="event-decor">Event Decoration Setup</option>
+          <option value="pet-sitting">Pet Sitting / Dog Walking</option>
+          <option value="organizing">Home Organizing</option>
+          <option value="photography">Photography Sessions</option>
+          <option value="social-media">Social Media Management</option>
         </select>
       </div>
 
@@ -485,6 +485,20 @@ footer{border-top:1px solid var(--border);padding:28px 24px;display:flex;justify
         ['Nextdoor', 'Hey ' + c + ' neighbors! Doing event decoration this summer — graduation parties, birthdays, bridal showers, and more. We make events look incredible without the stress. Message me for a quote!'],
         ['Nextdoor', 'Anyone in ' + c + ' need event decoration help this summer? I do balloon arches, table setups, backdrops, and full party styling. Affordable and really pretty results. Message me!'],
         ['Instagram', 'Making ' + c + ' events unforgettable 🎉✨ Balloon arches, setups & more. DM to book. #EventDecor #' + c.split(' ')[0] + ' #PartyDecor #BalloonArch']
+      ],
+      'pool-cleaning': [
+        ['Facebook', c + ' pool owners — green water and algae aren\'t something you should have to deal with yourself. We clean, balance, and maintain pools all summer so you just show up and swim. Message us for a free first-visit quote.'],
+        ['Facebook', 'Summer\'s here and your pool should be ready. We handle weekly maintenance and one-time cleanups for pools in ' + c + '. Brush, vacuum, chemicals balanced — done right. DM us to get on the schedule.'],
+        ['Nextdoor', 'Hey ' + c + ' neighbors! Offering pool cleaning and maintenance this summer — weekly service or one-time cleanups. I keep chemicals balanced, equipment checked, and the water crystal clear. Message me for pricing!'],
+        ['Nextdoor', 'Any ' + c + ' pool owners need a reliable pool guy this summer? I\'m local, I\'m consistent, and I show up when I say I will. Weekly maintenance is way cheaper than fixing a green pool. Message me!'],
+        ['Instagram', 'Crystal clear all summer 💧☀️ Pool cleaning & maintenance in ' + c + '. DM to get on the schedule. #PoolCleaning #' + c.split(' ')[0] + ' #PoolLife #LocalService']
+      ],
+      'car-detailing': [
+        ['Facebook', c + ' — your car interior is either clean or it\'s not, and we all know which one it is. We do full interior detailing — seats, carpet, dashboard, the works. Message us this week for a quote.'],
+        ['Facebook', 'Interior car detailing in ' + c + '. Dog hair, crumbs, spills, smells — we handle all of it. Most jobs done in under 2 hours. Your car will feel brand new. DM us to book.'],
+        ['Nextdoor', 'Hey ' + c + ' neighbors! Doing interior car detailing this summer — vacuum, wipe-down, seats cleaned, windows done inside, and deodorized. Way cheaper than a shop and I come to you. Message me for a quote!'],
+        ['Nextdoor', 'Any ' + c + ' neighbors need their car interior detailed? I do a thorough job — not just a vacuum. Seats, carpet, dash, door panels, all of it. Message me here and I\'ll give you a price.'],
+        ['Instagram', 'Clean interior. Fresh ride. 🚗✨ Interior car detailing in ' + c + '. DM to book. #CarDetailing #' + c.split(' ')[0] + ' #CarCare #DetailingLife']
       ]
     };
     var fallback = [
