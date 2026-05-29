@@ -1,0 +1,524 @@
+{
+  "generated": "2026-05-29T17:42:21.103417+00:00",
+  "power_level": "IDLE",
+  "scan_duration_seconds": 67.2,
+  "sources_scanned": 7,
+  "data_points": 390,
+  "regions_monitored": [
+    "US-TX",
+    "US-MS",
+    "US-AR",
+    "US-AL",
+    "US-TN",
+    "US-OK",
+    "US-NM"
+  ],
+  "countries_touched": 1,
+  "feeds": [
+    {
+      "source": "reddit",
+      "subreddit": "r/smallbusiness",
+      "title": "VOIP system or other option",
+      "url": "https://www.reddit.com/r/smallbusiness/comments/1tr9294/voip_system_or_other_option/",
+      "timestamp": "2026-05-29T17:26:18+00:00",
+      "signal_type": "pain",
+      "signal_strength": 0.35,
+      "region": "unknown",
+      "summary": "VOIP system or other option"
+    }
+  ],
+  "weather": [
+    {
+      "type": "Flood Warning",
+      "state": "TX",
+      "headline": "Flood Warning issued May 29 at 10:08AM CDT until May 31 at 4:00AM CDT by NWS Corpus Christi TX",
+      "severity": "Severe",
+      "hvac_opportunity": false,
+      "roofing_opportunity": false,
+      "plumbing_opportunity": false,
+      "expires": "2026-05-30T01:15:00-05:00"
+    },
+    {
+      "type": "Flood Warning",
+      "state": "MS",
+      "headline": "Flood Warning issued May 29 at 9:49AM CDT until June 1 at 10:00AM CDT by NWS Mobile AL",
+      "severity": "Severe",
+      "hvac_opportunity": false,
+      "roofing_opportunity": false,
+      "plumbing_opportunity": false,
+      "expires": "2026-05-29T22:00:00-05:00"
+    },
+    {
+      "type": "Flood Warning",
+      "state": "MS",
+      "headline": "Flood Warning issued May 29 at 9:45AM CDT until June 1 at 9:24AM CDT by NWS Mobile AL",
+      "severity": "Severe",
+      "hvac_opportunity": false,
+      "roofing_opportunity": false,
+      "plumbing_opportunity": false,
+      "expires": "2026-05-29T21:45:00-05:00"
+    },
+    {
+      "type": "Flood Warning",
+      "state": "MS",
+      "headline": "Flood Warning issued May 29 at 9:42AM CDT until June 3 at 2:12AM CDT by NWS Mobile AL",
+      "severity": "Severe",
+      "hvac_opportunity": false,
+      "roofing_opportunity": false,
+      "plumbing_opportunity": false,
+      "expires": "2026-05-29T21:45:00-05:00"
+    },
+    {
+      "type": "Flood Warning",
+      "state": "MS",
+      "headline": "Flood Warning issued May 29 at 9:03AM CDT until May 31 at 10:36PM CDT by NWS New Orleans LA",
+      "severity": "Severe",
+      "hvac_opportunity": false,
+      "roofing_opportunity": false,
+      "plumbing_opportunity": false,
+      "expires": "2026-05-30T01:15:00-05:00"
+    },
+    {
+      "type": "Flood Warning",
+      "state": "MS",
+      "headline": "Flood Warning issued May 29 at 9:02AM CDT until May 30 at 9:00PM CDT by NWS New Orleans LA",
+      "severity": "Severe",
+      "hvac_opportunity": false,
+      "roofing_opportunity": false,
+      "plumbing_opportunity": false,
+      "expires": "2026-05-30T01:15:00-05:00"
+    },
+    {
+      "type": "Flood Warning",
+      "state": "MS",
+      "headline": "Flood Warning issued May 29 at 9:01AM CDT until June 3 at 1:00PM CDT by NWS New Orleans LA",
+      "severity": "Severe",
+      "hvac_opportunity": false,
+      "roofing_opportunity": false,
+      "plumbing_opportunity": false,
+      "expires": "2026-05-30T01:15:00-05:00"
+    },
+    {
+      "type": "Flood Warning",
+      "state": "MS",
+      "headline": "Flood Warning issued May 29 at 8:01AM CDT by NWS New Orleans LA",
+      "severity": "Severe",
+      "hvac_opportunity": false,
+      "roofing_opportunity": false,
+      "plumbing_opportunity": false,
+      "expires": "2026-05-30T00:15:00-05:00"
+    },
+    {
+      "type": "Flood Warning",
+      "state": "MS",
+      "headline": "Flood Warning issued May 29 at 7:32AM CDT until May 31 at 5:54PM CDT by NWS New Orleans LA",
+      "severity": "Severe",
+      "hvac_opportunity": false,
+      "roofing_opportunity": false,
+      "plumbing_opportunity": false,
+      "expires": "2026-05-29T23:45:00-05:00"
+    },
+    {
+      "type": "Flood Warning",
+      "state": "MS",
+      "headline": "Flood Warning issued May 29 at 7:31AM CDT until June 1 at 9:00PM CDT by NWS New Orleans LA",
+      "severity": "Severe",
+      "hvac_opportunity": false,
+      "roofing_opportunity": false,
+      "plumbing_opportunity": false,
+      "expires": "2026-05-29T23:45:00-05:00"
+    },
+    {
+      "type": "Flood Warning",
+      "state": "MS",
+      "headline": "Flood Warning issued May 29 at 7:30AM CDT until May 30 at 10:00AM CDT by NWS New Orleans LA",
+      "severity": "Severe",
+      "hvac_opportunity": false,
+      "roofing_opportunity": false,
+      "plumbing_opportunity": false,
+      "expires": "2026-05-29T23:30:00-05:00"
+    },
+    {
+      "type": "Flood Warning",
+      "state": "AR",
+      "headline": "Flood Warning issued May 29 at 10:12AM CDT by NWS Little Rock AR",
+      "severity": "Severe",
+      "hvac_opportunity": false,
+      "roofing_opportunity": false,
+      "plumbing_opportunity": false,
+      "expires": "2026-05-30T10:15:00-05:00"
+    },
+    {
+      "type": "Wind Advisory",
+      "state": "NM",
+      "headline": "Wind Advisory issued May 29 at 10:20AM MDT until May 29 at 7:00PM MDT by NWS Albuquerque NM",
+      "severity": "Moderate",
+      "hvac_opportunity": false,
+      "roofing_opportunity": true,
+      "plumbing_opportunity": false,
+      "expires": "2026-05-29T19:00:00-06:00"
+    },
+    {
+      "type": "Red Flag Warning",
+      "state": "NM",
+      "headline": "Red Flag Warning issued May 29 at 3:41AM MDT until May 29 at 8:00PM MDT by NWS Albuquerque NM",
+      "severity": "Severe",
+      "hvac_opportunity": false,
+      "roofing_opportunity": false,
+      "plumbing_opportunity": false,
+      "expires": "2026-05-29T20:00:00-06:00"
+    }
+  ],
+  "satellites": {
+    "iss": {
+      "latitude": -13.1124,
+      "longitude": -132.4346,
+      "timestamp": "2026-05-29T17:43:22+00:00"
+    },
+    "nasa_events": [
+      {
+        "title": "Tropical Storm Jangmi",
+        "category": "severeStorms",
+        "date": "2026-05-29",
+        "coordinates": [
+          131.7,
+          16.5
+        ]
+      },
+      {
+        "title": "Black Ridge Wildfire, Lincoln, Idaho",
+        "category": "wildfires",
+        "date": "2026-05-25",
+        "coordinates": [
+          -113.935667,
+          43.050333
+        ]
+      },
+      {
+        "title": "Dewoff Wildfire, Blaine, Idaho",
+        "category": "wildfires",
+        "date": "2026-05-25",
+        "coordinates": [
+          -113.248133,
+          42.67045
+        ]
+      },
+      {
+        "title": "0231 ZEN Wildfire, Wasco, Oregon",
+        "category": "wildfires",
+        "date": "2026-05-25",
+        "coordinates": [
+          -120.43789,
+          44.85563
+        ]
+      },
+      {
+        "title": "Egberts Wildfire, Elko, Nevada",
+        "category": "wildfires",
+        "date": "2026-05-25",
+        "coordinates": [
+          -115.0565,
+          40.9655
+        ]
+      },
+      {
+        "title": "Summit Creek Wildfire, Cassia, Idaho",
+        "category": "wildfires",
+        "date": "2026-05-25",
+        "coordinates": [
+          -113.73075,
+          42.17555
+        ]
+      },
+      {
+        "title": "Kinyon Springs Wildfire, Owyhee, Idaho",
+        "category": "wildfires",
+        "date": "2026-05-25",
+        "coordinates": [
+          -115.244683,
+          42.734717
+        ]
+      },
+      {
+        "title": "MILE MARKER 44 FIRE - BROWARD Wildfire, Broward, Florida",
+        "category": "wildfires",
+        "date": "2026-05-23",
+        "coordinates": [
+          -80.7791667,
+          26.0994444
+        ]
+      },
+      {
+        "title": "COUNTRY MEADOW Wildfire, Benton, Washington",
+        "category": "wildfires",
+        "date": "2026-05-23",
+        "coordinates": [
+          -119.33745,
+          46.16526
+        ]
+      },
+      {
+        "title": "340 Wildfire, Wakulla, Florida",
+        "category": "wildfires",
+        "date": "2026-05-23",
+        "coordinates": [
+          -84.565664,
+          30.053136
+        ]
+      },
+      {
+        "title": "Mile Marker 44 Wildfire, Broward, Florida",
+        "category": "wildfires",
+        "date": "2026-05-23",
+        "coordinates": [
+          -80.766667,
+          26.15
+        ]
+      },
+      {
+        "title": "Quartz Wildfire, Pershing, Nevada",
+        "category": "wildfires",
+        "date": "2026-05-23",
+        "coordinates": [
+          -118.014333,
+          40.709867
+        ]
+      },
+      {
+        "title": "Thousand Wildfire, Northwest Arctic, Alaska",
+        "category": "wildfires",
+        "date": "2026-05-23",
+        "coordinates": [
+          -159.286667,
+          66.435
+        ]
+      },
+      {
+        "title": "WaWa 2 Wildfire, Highlands, Florida",
+        "category": "wildfires",
+        "date": "2026-05-23",
+        "coordinates": [
+          -81.2598,
+          27.644633
+        ]
+      },
+      {
+        "title": "Shell Wildfire, Lake, Florida",
+        "category": "wildfires",
+        "date": "2026-05-22",
+        "coordinates": [
+          -81.507167,
+          29.073833
+        ]
+      },
+      {
+        "title": "Trigg Wildfire, San Miguel, New Mexico",
+        "category": "wildfires",
+        "date": "2026-05-21",
+        "coordinates": [
+          -103.948693,
+          35.53034
+        ]
+      },
+      {
+        "title": "DeSoto BB 8374 S RX Prescribed Fire, Harrison, Mississippi",
+        "category": "wildfires",
+        "date": "2026-05-20",
+        "coordinates": [
+          -89.035278,
+          30.673333
+        ]
+      },
+      {
+        "title": "Chickasawhay CPT 451 452 RX Prescribed Fire, Greene, Mississippi",
+        "category": "wildfires",
+        "date": "2026-05-20",
+        "coordinates": [
+          -88.6597,
+          31.4154
+        ]
+      },
+      {
+        "title": "CADDUGGEN Wildfire, Carteret, North Carolina",
+        "category": "wildfires",
+        "date": "2026-05-20",
+        "coordinates": [
+          -76.385286,
+          34.926008
+        ]
+      },
+      {
+        "title": "Rifle Range Rd Wildfire, Collier, Florida",
+        "category": "wildfires",
+        "date": "2026-05-19",
+        "coordinates": [
+          -81.6369444,
+          26.1155556
+        ]
+      }
+    ]
+  },
+  "news": [],
+  "competitors": [],
+  "recommendations": [
+    {
+      "priority": 1,
+      "action": "Target roofers in NM \u2014 storm damage incoming",
+      "reason": "NOAA Wind Advisory = roofing contractors will be overwhelmed with calls",
+      "auto_executable": false,
+      "category": "opportunity"
+    },
+    {
+      "priority": 2,
+      "action": "Watch severeStorms event: Tropical Storm Jangmi",
+      "reason": "Natural disaster = spike in contractor demand = missed call opportunity",
+      "auto_executable": false,
+      "category": "opportunity"
+    },
+    {
+      "priority": 3,
+      "action": "Watch wildfires event: Black Ridge Wildfire, Lincoln, Idaho",
+      "reason": "Natural disaster = spike in contractor demand = missed call opportunity",
+      "auto_executable": false,
+      "category": "opportunity"
+    },
+    {
+      "priority": 4,
+      "action": "Watch wildfires event: Dewoff Wildfire, Blaine, Idaho",
+      "reason": "Natural disaster = spike in contractor demand = missed call opportunity",
+      "auto_executable": false,
+      "category": "opportunity"
+    },
+    {
+      "priority": 5,
+      "action": "Watch wildfires event: 0231 ZEN Wildfire, Wasco, Oregon",
+      "reason": "Natural disaster = spike in contractor demand = missed call opportunity",
+      "auto_executable": false,
+      "category": "opportunity"
+    },
+    {
+      "priority": 6,
+      "action": "Watch wildfires event: Egberts Wildfire, Elko, Nevada",
+      "reason": "Natural disaster = spike in contractor demand = missed call opportunity",
+      "auto_executable": false,
+      "category": "opportunity"
+    },
+    {
+      "priority": 7,
+      "action": "Watch wildfires event: Summit Creek Wildfire, Cassia, Idaho",
+      "reason": "Natural disaster = spike in contractor demand = missed call opportunity",
+      "auto_executable": false,
+      "category": "opportunity"
+    },
+    {
+      "priority": 8,
+      "action": "Watch wildfires event: Kinyon Springs Wildfire, Owyhee, Idaho",
+      "reason": "Natural disaster = spike in contractor demand = missed call opportunity",
+      "auto_executable": false,
+      "category": "opportunity"
+    },
+    {
+      "priority": 9,
+      "action": "Watch wildfires event: MILE MARKER 44 FIRE - BROWARD Wildfire, Broward, Florida",
+      "reason": "Natural disaster = spike in contractor demand = missed call opportunity",
+      "auto_executable": false,
+      "category": "opportunity"
+    },
+    {
+      "priority": 10,
+      "action": "Watch wildfires event: COUNTRY MEADOW Wildfire, Benton, Washington",
+      "reason": "Natural disaster = spike in contractor demand = missed call opportunity",
+      "auto_executable": false,
+      "category": "opportunity"
+    },
+    {
+      "priority": 11,
+      "action": "Watch wildfires event: 340 Wildfire, Wakulla, Florida",
+      "reason": "Natural disaster = spike in contractor demand = missed call opportunity",
+      "auto_executable": false,
+      "category": "opportunity"
+    },
+    {
+      "priority": 12,
+      "action": "Watch wildfires event: Mile Marker 44 Wildfire, Broward, Florida",
+      "reason": "Natural disaster = spike in contractor demand = missed call opportunity",
+      "auto_executable": false,
+      "category": "opportunity"
+    },
+    {
+      "priority": 13,
+      "action": "Watch wildfires event: Quartz Wildfire, Pershing, Nevada",
+      "reason": "Natural disaster = spike in contractor demand = missed call opportunity",
+      "auto_executable": false,
+      "category": "opportunity"
+    },
+    {
+      "priority": 14,
+      "action": "Watch wildfires event: Thousand Wildfire, Northwest Arctic, Alaska",
+      "reason": "Natural disaster = spike in contractor demand = missed call opportunity",
+      "auto_executable": false,
+      "category": "opportunity"
+    },
+    {
+      "priority": 15,
+      "action": "Watch wildfires event: WaWa 2 Wildfire, Highlands, Florida",
+      "reason": "Natural disaster = spike in contractor demand = missed call opportunity",
+      "auto_executable": false,
+      "category": "opportunity"
+    },
+    {
+      "priority": 16,
+      "action": "Watch wildfires event: Shell Wildfire, Lake, Florida",
+      "reason": "Natural disaster = spike in contractor demand = missed call opportunity",
+      "auto_executable": false,
+      "category": "opportunity"
+    },
+    {
+      "priority": 17,
+      "action": "Watch wildfires event: Trigg Wildfire, San Miguel, New Mexico",
+      "reason": "Natural disaster = spike in contractor demand = missed call opportunity",
+      "auto_executable": false,
+      "category": "opportunity"
+    },
+    {
+      "priority": 18,
+      "action": "Watch wildfires event: DeSoto BB 8374 S RX Prescribed Fire, Harrison, Mississippi",
+      "reason": "Natural disaster = spike in contractor demand = missed call opportunity",
+      "auto_executable": false,
+      "category": "opportunity"
+    },
+    {
+      "priority": 19,
+      "action": "Watch wildfires event: Chickasawhay CPT 451 452 RX Prescribed Fire, Greene, Mississippi",
+      "reason": "Natural disaster = spike in contractor demand = missed call opportunity",
+      "auto_executable": false,
+      "category": "opportunity"
+    },
+    {
+      "priority": 20,
+      "action": "Watch wildfires event: CADDUGGEN Wildfire, Carteret, North Carolina",
+      "reason": "Natural disaster = spike in contractor demand = missed call opportunity",
+      "auto_executable": false,
+      "category": "opportunity"
+    },
+    {
+      "priority": 21,
+      "action": "Watch wildfires event: Rifle Range Rd Wildfire, Collier, Florida",
+      "reason": "Natural disaster = spike in contractor demand = missed call opportunity",
+      "auto_executable": false,
+      "category": "opportunity"
+    }
+  ],
+  "global_social": {
+    "countries_scanned": 9,
+    "languages_detected": [
+      "de",
+      "en",
+      "es",
+      "fr",
+      "pt"
+    ],
+    "total_posts_scanned": 355,
+    "pain_signals_found": 1
+  }
+}
