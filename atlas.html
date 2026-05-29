@@ -229,12 +229,13 @@ html, body {
   display: flex;
   height: 100vh;
   padding-top: 50px;
+  padding-bottom: 40px;
 }
 
 #map-container {
   flex: 0 0 65%;
   position: relative;
-  height: calc(100vh - 50px);
+  height: calc(100vh - 90px);
 }
 
 #map {
@@ -338,11 +339,11 @@ html, body {
 }
 .sidebar-tab {
   flex: 1;
-  padding: 10px 8px;
+  padding: 10px 4px;
   text-align: center;
-  font-size: 11px;
+  font-size: 10px;
   font-weight: 600;
-  letter-spacing: 1.5px;
+  letter-spacing: 1px;
   color: var(--text-muted);
   cursor: pointer;
   border-bottom: 2px solid transparent;
@@ -785,6 +786,98 @@ html, body {
   color: var(--primary);
 }
 
+/* ========== PREDICTIONS TAB ========== */
+.prediction-card {
+  padding: 12px;
+  background: var(--surface-2);
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  margin-bottom: 10px;
+}
+.prediction-card:hover { border-color: var(--primary-dark); }
+.prediction-question {
+  font-size: 13px;
+  font-weight: 600;
+  color: var(--text);
+  line-height: 1.4;
+  margin-bottom: 8px;
+}
+.prediction-bar-track {
+  width: 100%;
+  height: 6px;
+  background: var(--surface-3);
+  border-radius: 3px;
+  overflow: hidden;
+  margin-bottom: 6px;
+}
+.prediction-bar-fill {
+  height: 100%;
+  border-radius: 3px;
+  transition: width 0.6s ease;
+}
+.prediction-meta {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font-size: 11px;
+  color: var(--text-muted);
+}
+.prediction-prob {
+  font-weight: 700;
+  font-size: 14px;
+}
+.prediction-source {
+  font-size: 10px;
+  color: var(--text-dim);
+  letter-spacing: 1px;
+  text-transform: uppercase;
+}
+
+/* ========== STREAMS TAB ========== */
+.stream-item {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 10px 12px;
+  background: var(--surface-2);
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  margin-bottom: 8px;
+}
+.stream-dot {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  flex-shrink: 0;
+}
+.stream-dot.active { background: var(--success); box-shadow: 0 0 6px rgba(64,192,128,0.4); }
+.stream-dot.stale { background: var(--warning); }
+.stream-dot.dead { background: var(--danger); }
+.stream-name {
+  font-size: 13px;
+  font-weight: 600;
+  color: var(--text);
+  flex: 1;
+}
+.stream-count {
+  font-size: 12px;
+  color: var(--text-muted);
+  font-weight: 700;
+}
+.stream-time {
+  font-size: 10px;
+  color: var(--text-dim);
+}
+
+/* ========== BOSS BANNER ========== */
+#boss-banner {
+  display: flex !important;
+}
+@media (max-width: 768px) {
+  #boss-banner { display: none !important; }
+  #legend { bottom: 50px; }
+}
+
 /* ========== TOOLTIP ========== */
 .country-tooltip {
   background: rgba(12, 18, 32, 0.95) !important;
@@ -910,9 +1003,11 @@ html, body {
   <!-- Sidebar -->
   <div id="sidebar">
     <div class="sidebar-tabs">
-      <button class="sidebar-tab active" data-tab="assistant" onclick="switchTab('assistant')">AI ASSISTANT</button>
-      <button class="sidebar-tab" data-tab="feed" onclick="switchTab('feed')">LIVE FEED</button>
-      <button class="sidebar-tab" data-tab="focus" onclick="switchTab('focus')">MY FOCUS</button>
+      <button class="sidebar-tab active" data-tab="assistant" onclick="switchTab('assistant')">INTEL</button>
+      <button class="sidebar-tab" data-tab="feed" onclick="switchTab('feed')">FEED</button>
+      <button class="sidebar-tab" data-tab="predictions" onclick="switchTab('predictions')">PREDICT</button>
+      <button class="sidebar-tab" data-tab="streams" onclick="switchTab('streams')">SOURCES</button>
+      <button class="sidebar-tab" data-tab="focus" onclick="switchTab('focus')">FOCUS</button>
     </div>
     <div class="sidebar-content">
       <div class="tab-panel active" id="panel-assistant">
@@ -927,11 +1022,28 @@ html, body {
       <div class="tab-panel" id="panel-feed">
         <div id="feed-content"></div>
       </div>
+      <div class="tab-panel" id="panel-predictions">
+        <div id="predictions-content">
+          <div style="text-align:center;padding:20px 0;color:var(--text-muted);">Loading predictions...</div>
+        </div>
+      </div>
+      <div class="tab-panel" id="panel-streams">
+        <div id="streams-content">
+          <div style="text-align:center;padding:20px 0;color:var(--text-muted);">Loading data streams...</div>
+        </div>
+      </div>
       <div class="tab-panel" id="panel-focus">
         <div id="focus-content"></div>
       </div>
     </div>
   </div>
+</div>
+
+<!-- BOSS Connection Banner -->
+<div id="boss-banner" style="display:none;position:fixed;bottom:0;left:0;right:0;height:40px;background:var(--surface);border-top:1px solid var(--border);z-index:1000;display:flex;align-items:center;padding:0 16px;font-size:12px;color:var(--text-muted);gap:8px;">
+  <span style="color:var(--primary);font-weight:700;letter-spacing:2px;">ATLAS → BOSS</span>
+  <span id="boss-insight" style="flex:1;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;"></span>
+  <span id="boss-time" style="color:var(--text-dim);font-size:11px;"></span>
 </div>
 
 <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
@@ -2920,6 +3032,157 @@ function flyToCountry(alpha2) {
 }
 
 // ============================================================
+// LIVE DATA — fetch from ATLAS report
+// ============================================================
+const ATLAS_REPORT_URL = 'https://raw.githubusercontent.com/BosRoss/bosssystems.co/main/atlas_report.json';
+let atlasReport = null;
+
+async function fetchAtlasReport() {
+  try {
+    const r = await fetch(ATLAS_REPORT_URL + '?t=' + Date.now());
+    if (r.ok) {
+      atlasReport = await r.json();
+      renderPredictionsTab();
+      renderStreamsTab();
+      renderBossBanner();
+    }
+  } catch (e) {
+    console.warn('ATLAS report fetch failed:', e);
+  }
+}
+
+// ============================================================
+// PREDICTIONS TAB
+// ============================================================
+function renderPredictionsTab() {
+  const container = document.getElementById('predictions-content');
+  if (!atlasReport) {
+    container.innerHTML = '<div style="text-align:center;padding:30px 0;color:var(--text-muted);">No prediction data available yet. Run an ATLAS scan first.</div>';
+    return;
+  }
+
+  const preds = atlasReport.predictions || {};
+  const poly = preds.polymarket || [];
+  const mani = preds.metaculus || [];
+  const all = [...poly, ...mani].sort((a, b) => (b.probability || 0) - (a.probability || 0));
+
+  if (all.length === 0) {
+    container.innerHTML = '<div style="text-align:center;padding:30px 0;color:var(--text-muted);">No predictions in latest scan.</div>';
+    return;
+  }
+
+  let html = '<div style="font-size:10px;letter-spacing:2px;color:var(--primary);font-weight:700;margin-bottom:12px;">EVIDENCE-BASED PREDICTIONS</div>';
+
+  all.forEach(p => {
+    const prob = p.probability || 0;
+    const color = prob > 70 ? 'var(--success)' : prob > 40 ? 'var(--warning)' : 'var(--danger)';
+    const certainty = prob > 80 ? 'HIGH' : prob > 50 ? 'MODERATE' : 'LOW';
+    const source = p.source === 'polymarket' ? 'POLYMARKET (real money)' : 'MANIFOLD (forecast)';
+    const volume = p.volume ? `$${Number(p.volume).toLocaleString()}` : '';
+
+    html += `<div class="prediction-card">
+      <div class="prediction-question">${p.question}</div>
+      <div class="prediction-bar-track">
+        <div class="prediction-bar-fill" style="width:${prob}%;background:${color};"></div>
+      </div>
+      <div class="prediction-meta">
+        <span class="prediction-prob" style="color:${color}">${prob}%</span>
+        <span style="font-size:10px;color:var(--text-dim);">${certainty} certainty</span>
+      </div>
+      <div style="display:flex;justify-content:space-between;margin-top:4px;">
+        <span class="prediction-source">${source}</span>
+        ${volume ? `<span style="font-size:10px;color:var(--text-dim);">Vol: ${volume}</span>` : ''}
+      </div>
+    </div>`;
+  });
+
+  html += `<div style="font-size:10px;color:var(--text-dim);margin-top:8px;text-align:center;">Data from prediction markets. Probabilities reflect real-money bets, not guesses.</div>`;
+  container.innerHTML = html;
+}
+
+// ============================================================
+// DATA STREAMS TAB
+// ============================================================
+function renderStreamsTab() {
+  const container = document.getElementById('streams-content');
+  if (!atlasReport) {
+    container.innerHTML = '<div style="text-align:center;padding:30px 0;color:var(--text-muted);">No stream data available.</div>';
+    return;
+  }
+
+  const generated = atlasReport.generated ? new Date(atlasReport.generated) : null;
+  const ageMin = generated ? Math.round((Date.now() - generated.getTime()) / 60000) : 999;
+  const freshness = ageMin < 30 ? 'active' : ageMin < 180 ? 'stale' : 'dead';
+
+  const streams = [
+    { name: 'Reddit Pain Signals', count: (atlasReport.feeds || []).length, icon: 'active' },
+    { name: 'NOAA Weather Alerts', count: (atlasReport.weather || []).length, icon: 'active' },
+    { name: 'NASA EONET Events', count: ((atlasReport.satellites || {}).nasa_events || []).length, icon: 'active' },
+    { name: 'USGS Earthquakes', count: (atlasReport.earthquakes || []).length, icon: 'active' },
+    { name: 'GDELT Global Events', count: (atlasReport.gdelt_geopolitical || []).length, icon: 'active' },
+    { name: 'News & Competitors', count: (atlasReport.news || []).length, icon: 'active' },
+    { name: 'Polymarket Predictions', count: ((atlasReport.predictions || {}).polymarket || []).length, icon: 'active' },
+    { name: 'Manifold Forecasts', count: ((atlasReport.predictions || {}).metaculus || []).length, icon: 'active' },
+    { name: 'ISS Tracking', count: (atlasReport.satellites || {}).iss ? 1 : 0, icon: 'active' },
+    { name: 'Hacker News', count: (atlasReport.news || []).filter(n => n.source === 'hackernews').length, icon: 'active' },
+  ];
+
+  let total = streams.reduce((s, st) => s + st.count, 0);
+
+  let html = `<div style="font-size:10px;letter-spacing:2px;color:var(--primary);font-weight:700;margin-bottom:12px;">DATA STREAMS</div>`;
+  html += `<div style="display:flex;justify-content:space-between;margin-bottom:12px;padding:8px 12px;background:var(--surface-2);border-radius:8px;border:1px solid var(--border);">
+    <div><span style="font-size:10px;color:var(--text-dim);letter-spacing:1px;">TOTAL DATA POINTS</span><br><span style="font-size:20px;font-weight:700;color:var(--text);">${atlasReport.data_points || total}</span></div>
+    <div><span style="font-size:10px;color:var(--text-dim);letter-spacing:1px;">SOURCES</span><br><span style="font-size:20px;font-weight:700;color:var(--text);">${atlasReport.sources_scanned || streams.length}</span></div>
+    <div><span style="font-size:10px;color:var(--text-dim);letter-spacing:1px;">AGE</span><br><span style="font-size:20px;font-weight:700;color:${freshness === 'active' ? 'var(--success)' : freshness === 'stale' ? 'var(--warning)' : 'var(--danger)'};">${ageMin < 60 ? ageMin + 'm' : Math.round(ageMin/60) + 'h'}</span></div>
+  </div>`;
+
+  streams.forEach(s => {
+    const status = s.count > 0 ? 'active' : 'dead';
+    html += `<div class="stream-item">
+      <div class="stream-dot ${status}"></div>
+      <div class="stream-name">${s.name}</div>
+      <div class="stream-count">${s.count}</div>
+    </div>`;
+  });
+
+  html += `<div style="font-size:10px;color:var(--text-dim);margin-top:12px;text-align:center;">Last scan: ${generated ? generated.toLocaleString() : 'never'} | Power: ${atlasReport.power_level || '?'}</div>`;
+  container.innerHTML = html;
+}
+
+// ============================================================
+// BOSS SYSTEMS CONNECTION BANNER
+// ============================================================
+function renderBossBanner() {
+  if (!atlasReport) return;
+  const banner = document.getElementById('boss-banner');
+  const insight = document.getElementById('boss-insight');
+  const timeEl = document.getElementById('boss-time');
+  if (!banner || !insight) return;
+
+  const recs = atlasReport.recommendations || [];
+  const weather = atlasReport.weather || [];
+  const feeds = atlasReport.feeds || [];
+
+  let msg = '';
+  if (recs.length > 0) {
+    msg = recs[0].action;
+  } else if (weather.some(w => w.hvac_opportunity)) {
+    msg = 'Heat alerts active — push HVAC targeting';
+  } else if (weather.some(w => w.flood_damage)) {
+    msg = 'Flood warnings active — target water damage restoration';
+  } else if (feeds.length > 0) {
+    msg = `${feeds.length} pain signals detected across ${(atlasReport.global_social || {}).countries_scanned || 1} countries`;
+  } else {
+    msg = 'All systems nominal — monitoring active';
+  }
+
+  insight.textContent = msg;
+  const gen = atlasReport.generated ? new Date(atlasReport.generated) : null;
+  timeEl.textContent = gen ? gen.toLocaleTimeString() : '';
+  banner.style.display = 'flex';
+}
+
+// ============================================================
 // LOADING
 // ============================================================
 function hideLoading() {
@@ -2936,6 +3199,7 @@ document.addEventListener('DOMContentLoaded', function () {
   initSearch();
   renderFeedTab();
   renderFocusTab();
+  fetchAtlasReport();
 
   // Color mode change
   document.getElementById('color-mode-select').addEventListener('change', function () {
