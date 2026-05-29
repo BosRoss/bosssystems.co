@@ -971,11 +971,16 @@ html, body {
   <select id="color-mode-select">
     <option value="economy">Economy</option>
     <option value="stability">Stability</option>
+    <option value="military">Military Power</option>
+    <option value="nuclear">Nuclear Status</option>
+    <option value="corruption">Corruption</option>
+    <option value="pressFreedom">Press Freedom</option>
+    <option value="debt">Debt-to-GDP</option>
+    <option value="influence">Foreign Influence</option>
     <option value="aiReadiness">AI Readiness</option>
     <option value="internet">Internet</option>
     <option value="risk">Risk</option>
     <option value="alliances">Alliances</option>
-    <option value="custom">Custom</option>
   </select>
   <input type="text" id="country-search" placeholder="Search countries..." autocomplete="off">
   <div id="search-results"></div>
@@ -2297,6 +2302,15 @@ const COUNTRY_DATA = {
 };
 
 // ============================================================
+// COUNTRY INFLUENCE DATA — Deep Geopolitical Intelligence
+// Sources: Global Firepower 2024/2025, Transparency International CPI 2024,
+//          RSF Press Freedom Index 2024, IMF/World Bank debt data,
+//          SIPRI, UN Comtrade, DoD/IISS base data
+// ============================================================
+const CI = {};
+(function(){const raw = {"US":{mr:1,mb:886,n:true,w:5550,c:69,pr:55,d:123,tp:[{c:"CN",p:14},{c:"MX",p:15},{c:"CA",p:14}],fi:[],ba:[{i:"JP",n:23},{i:"DE",n:19},{i:"KR",n:15},{i:"IT",n:12},{i:"GB",n:8},{i:"BH",n:3},{i:"QA",n:2},{i:"KW",n:3},{i:"TR",n:2},{i:"DJ",n:1},{i:"AU",n:1},{i:"ES",n:2},{i:"GR",n:1},{i:"PL",n:2}],ib:[{c:"IL",t:"political"},{c:"SA",t:"economic"},{c:"GB",t:"cultural"}],inf:[{c:"CA",t:"economic"},{c:"GB",t:"military"},{c:"JP",t:"military"}]},"CN":{mr:3,mb:296,n:true,w:500,c:42,pr:172,d:83,tp:[{c:"US",p:13},{c:"JP",p:6},{c:"KR",p:7}],fi:[],ba:[{i:"DJ",n:1},{i:"KH",n:1},{i:"MM",n:1}],ib:[{c:"RU",t:"military"},{c:"US",t:"economic"},{c:"KR",t:"cultural"}],inf:[{c:"PK",t:"economic"},{c:"KH",t:"political"},{c:"LA",t:"economic"}]},"RU":{mr:2,mb:109,n:true,w:5977,c:26,pr:164,d:22,tp:[{c:"CN",p:23},{c:"IN",p:8},{c:"TR",p:5}],fi:[],ba:[{i:"SY",n:2},{i:"AM",n:2},{i:"KG",n:1},{i:"TJ",n:1},{i:"BY",n:1},{i:"GE",n:2},{i:"MD",n:1},{i:"SD",n:1},{i:"VN",n:1}],ib:[{c:"CN",t:"economic"},{c:"SA",t:"economic"},{c:"IN",t:"economic"}],inf:[{c:"BY",t:"political"},{c:"SY",t:"military"},{c:"KZ",t:"political"}]},"GB":{mr:5,mb:75,n:true,w:225,c:71,pr:23,d:101,tp:[{c:"US",p:14},{c:"DE",p:10},{c:"NL",p:7}],fi:[{b:"US",n:8}],ba:[{i:"CY",n:2},{i:"GI",n:1},{i:"FK",n:1},{i:"BH",n:1},{i:"KE",n:1},{i:"BN",n:1},{i:"OM",n:1},{i:"DE",n:1}],ib:[{c:"US",t:"military"},{c:"SA",t:"economic"},{c:"CN",t:"economic"}],inf:[{c:"AU",t:"cultural"},{c:"CA",t:"cultural"},{c:"NZ",t:"political"}]},"FR":{mr:9,mb:56,n:true,w:290,c:71,pr:21,d:112,tp:[{c:"DE",p:14},{c:"IT",p:8},{c:"BE",p:8}],fi:[],ba:[{i:"DJ",n:1},{i:"SN",n:1},{i:"CI",n:1},{i:"GA",n:1},{i:"TD",n:1},{i:"AE",n:1},{i:"RE",n:1},{i:"NC",n:1},{i:"PF",n:1},{i:"GF",n:1}],ib:[{c:"US",t:"military"},{c:"DE",t:"economic"},{c:"CN",t:"economic"}],inf:[{c:"SN",t:"political"},{c:"CI",t:"economic"},{c:"MA",t:"cultural"}]},"DE":{mr:19,mb:66,n:false,w:0,c:78,pr:10,d:64,tp:[{c:"US",p:10},{c:"CN",p:9},{c:"FR",p:8}],fi:[{b:"US",n:19},{b:"GB",n:1}],ba:[{i:"LT",n:1},{i:"NE",n:1}],ib:[{c:"US",t:"military"},{c:"CN",t:"economic"},{c:"RU",t:"economic"}],inf:[{c:"AT",t:"economic"},{c:"PL",t:"economic"},{c:"CZ",t:"economic"}]},"JP":{mr:7,mb:53,n:false,w:0,c:73,pr:70,d:255,tp:[{c:"CN",p:21},{c:"US",p:15},{c:"AU",p:6}],fi:[{b:"US",n:23}],ba:[{i:"DJ",n:1}],ib:[{c:"US",t:"military"},{c:"CN",t:"economic"},{c:"US",t:"cultural"}],inf:[{c:"PH",t:"economic"},{c:"VN",t:"economic"},{c:"ID",t:"economic"}]},"IN":{mr:4,mb:83,n:true,w:172,c:39,pr:159,d:83,tp:[{c:"US",p:12},{c:"CN",p:12},{c:"AE",p:7}],fi:[],ba:[{i:"TJ",n:1},{i:"MU",n:1}],ib:[{c:"US",t:"military"},{c:"RU",t:"military"},{c:"CN",t:"economic"}],inf:[{c:"NP",t:"political"},{c:"LK",t:"economic"},{c:"BD",t:"political"}]},"BR":{mr:12,mb:22,n:false,w:0,c:36,pr:82,d:74,tp:[{c:"CN",p:27},{c:"US",p:12},{c:"AR",p:5}],fi:[],ba:[],ib:[{c:"CN",t:"economic"},{c:"US",t:"economic"},{c:"US",t:"cultural"}],inf:[{c:"PY",t:"economic"},{c:"UY",t:"economic"},{c:"AO",t:"economic"}]},"AU":{mr:16,mb:32,n:false,w:0,c:75,pr:27,d:52,tp:[{c:"CN",p:32},{c:"JP",p:12},{c:"KR",p:6}],fi:[{b:"US",n:1}],ba:[{i:"AE",n:1}],ib:[{c:"US",t:"military"},{c:"CN",t:"economic"},{c:"GB",t:"cultural"}],inf:[{c:"NZ",t:"economic"},{c:"PG",t:"political"},{c:"TL",t:"military"}]},"CA":{mr:27,mb:27,n:false,w:0,c:76,pr:14,d:107,tp:[{c:"US",p:73},{c:"CN",p:5},{c:"GB",p:3}],fi:[{b:"US",n:1}],ba:[{i:"KW",n:1},{i:"DE",n:1}],ib:[{c:"US",t:"economic"},{c:"US",t:"cultural"},{c:"GB",t:"political"}],inf:[{c:"JM",t:"economic"},{c:"HT",t:"political"},{c:"PH",t:"cultural"}]},"KR":{mr:6,mb:48,n:false,w:0,c:63,pr:62,d:54,tp:[{c:"CN",p:23},{c:"US",p:16},{c:"VN",p:9}],fi:[{b:"US",n:15}],ba:[{i:"AE",n:1}],ib:[{c:"US",t:"military"},{c:"CN",t:"economic"},{c:"JP",t:"economic"}],inf:[{c:"VN",t:"economic"},{c:"ID",t:"cultural"},{c:"PH",t:"cultural"}]},"SA":{mr:22,mb:75,n:false,w:0,c:40,pr:166,d:26,tp:[{c:"CN",p:18},{c:"IN",p:11},{c:"JP",p:9}],fi:[{b:"US",n:3}],ba:[{i:"DJ",n:1}],ib:[{c:"US",t:"military"},{c:"CN",t:"economic"},{c:"GB",t:"military"}],inf:[{c:"BH",t:"political"},{c:"EG",t:"economic"},{c:"PK",t:"economic"}]},"IR":{mr:14,mb:10,n:false,w:0,c:24,pr:176,d:42,tp:[{c:"CN",p:30},{c:"AE",p:14},{c:"TR",p:10}],fi:[],ba:[],ib:[{c:"CN",t:"economic"},{c:"RU",t:"military"},{c:"IQ",t:"political"}],inf:[{c:"IQ",t:"political"},{c:"SY",t:"military"},{c:"LB",t:"military"}]},"IL":{mr:17,mb:24,n:true,w:90,c:62,pr:101,d:62,tp:[{c:"US",p:26},{c:"CN",p:8},{c:"GB",p:5}],fi:[{b:"US",n:1}],ba:[],ib:[{c:"US",t:"military"},{c:"US",t:"political"},{c:"DE",t:"economic"}],inf:[{c:"US",t:"political"},{c:"PS",t:"military"},{c:"AZ",t:"military"}]},"TR":{mr:8,mb:16,n:false,w:0,c:34,pr:158,d:30,tp:[{c:"DE",p:9},{c:"RU",p:8},{c:"CN",p:8}],fi:[{b:"US",n:2},{b:"GB",n:1}],ba:[{i:"QA",n:1},{i:"SO",n:1},{i:"IQ",n:1},{i:"SY",n:4},{i:"AZ",n:1},{i:"CY",n:1},{i:"LY",n:1}],ib:[{c:"US",t:"military"},{c:"RU",t:"economic"},{c:"DE",t:"economic"}],inf:[{c:"AZ",t:"political"},{c:"QA",t:"military"},{c:"LY",t:"military"}]},"MX":{mr:31,mb:8,n:false,w:0,c:31,pr:121,d:53,tp:[{c:"US",p:78},{c:"CN",p:5},{c:"CA",p:3}],fi:[],ba:[],ib:[{c:"US",t:"economic"},{c:"US",t:"cultural"},{c:"CN",t:"economic"}],inf:[{c:"GT",t:"economic"},{c:"HN",t:"economic"},{c:"SV",t:"cultural"}]},"NG":{mr:39,mb:3,n:false,w:0,c:25,pr:112,d:38,tp:[{c:"IN",p:12},{c:"ES",p:10},{c:"US",p:7}],fi:[],ba:[],ib:[{c:"CN",t:"economic"},{c:"US",t:"political"},{c:"GB",t:"cultural"}],inf:[{c:"NE",t:"political"},{c:"GH",t:"economic"},{c:"CM",t:"economic"}]},"ZA":{mr:33,mb:3,n:false,w:0,c:41,pr:38,d:73,tp:[{c:"CN",p:18},{c:"DE",p:7},{c:"US",p:7}],fi:[],ba:[],ib:[{c:"CN",t:"economic"},{c:"US",t:"economic"},{c:"GB",t:"cultural"}],inf:[{c:"BW",t:"economic"},{c:"MZ",t:"economic"},{c:"ZW",t:"political"}]},"EG":{mr:15,mb:5,n:false,w:0,c:30,pr:170,d:92,tp:[{c:"TR",p:7},{c:"SA",p:6},{c:"IT",p:6}],fi:[],ba:[],ib:[{c:"SA",t:"economic"},{c:"US",t:"military"},{c:"AE",t:"economic"}],inf:[{c:"SD",t:"political"},{c:"LY",t:"political"},{c:"PS",t:"political"}]},"PK":{mr:10,mb:10,n:true,w:170,c:24,pr:152,d:75,tp:[{c:"CN",p:20},{c:"AE",p:9},{c:"US",p:6}],fi:[],ba:[],ib:[{c:"CN",t:"economic"},{c:"SA",t:"economic"},{c:"US",t:"military"}],inf:[{c:"AF",t:"political"},{c:"BD",t:"cultural"},{c:"LK",t:"political"}]},"ID":{mr:13,mb:9,n:false,w:0,c:34,pr:111,d:39,tp:[{c:"CN",p:25},{c:"JP",p:8},{c:"US",p:8}],fi:[],ba:[],ib:[{c:"CN",t:"economic"},{c:"JP",t:"economic"},{c:"US",t:"military"}],inf:[{c:"TL",t:"economic"},{c:"PG",t:"economic"},{c:"MY",t:"cultural"}]},"TH":{mr:25,mb:8,n:false,w:0,c:36,pr:128,d:62,tp:[{c:"CN",p:18},{c:"US",p:13},{c:"JP",p:10}],fi:[],ba:[],ib:[{c:"CN",t:"economic"},{c:"US",t:"military"},{c:"JP",t:"economic"}],inf:[{c:"LA",t:"economic"},{c:"MM",t:"economic"},{c:"KH",t:"economic"}]},"VN":{mr:23,mb:8,n:false,w:0,c:41,pr:174,d:37,tp:[{c:"US",p:28},{c:"CN",p:18},{c:"KR",p:9}],fi:[],ba:[],ib:[{c:"CN",t:"political"},{c:"US",t:"economic"},{c:"KR",t:"economic"}],inf:[{c:"LA",t:"political"},{c:"KH",t:"political"},{c:"MM",t:"political"}]},"PL":{mr:21,mb:34,n:false,w:0,c:54,pr:47,d:49,tp:[{c:"DE",p:27},{c:"FR",p:6},{c:"CZ",p:6}],fi:[{b:"US",n:2}],ba:[],ib:[{c:"US",t:"military"},{c:"DE",t:"economic"},{c:"FR",t:"political"}],inf:[{c:"UA",t:"political"},{c:"LT",t:"political"},{c:"BY",t:"cultural"}]},"UA":{mr:18,mb:42,n:false,w:0,c:33,pr:61,d:84,tp:[{c:"PL",p:14},{c:"RO",p:8},{c:"CN",p:7}],fi:[],ba:[],ib:[{c:"US",t:"military"},{c:"PL",t:"political"},{c:"DE",t:"economic"}],inf:[{c:"MD",t:"political"},{c:"GE",t:"political"},{c:"BY",t:"political"}]},"TW":{mr:24,mb:19,n:false,w:0,c:67,pr:27,d:28,tp:[{c:"CN",p:24},{c:"US",p:14},{c:"JP",p:7}],fi:[],ba:[],ib:[{c:"US",t:"military"},{c:"CN",t:"economic"},{c:"JP",t:"cultural"}],inf:[{c:"VN",t:"economic"},{c:"PH",t:"economic"},{c:"MY",t:"economic"}]},"AE":{mr:45,mb:23,n:false,w:0,c:68,pr:145,d:30,tp:[{c:"IN",p:12},{c:"CN",p:10},{c:"SA",p:8}],fi:[{b:"US",n:3},{b:"FR",n:1},{b:"AU",n:1},{b:"KR",n:1}],ba:[{i:"ER",n:1},{i:"SO",n:1},{i:"YE",n:1}],ib:[{c:"US",t:"military"},{c:"GB",t:"economic"},{c:"IN",t:"economic"}],inf:[{c:"EG",t:"economic"},{c:"ER",t:"military"},{c:"YE",t:"military"}]},"AR":{mr:40,mb:4,n:false,w:0,c:28,pr:66,d:85,tp:[{c:"BR",p:18},{c:"CN",p:12},{c:"US",p:8}],fi:[],ba:[],ib:[{c:"CN",t:"economic"},{c:"BR",t:"economic"},{c:"US",t:"political"}],inf:[{c:"PY",t:"economic"},{c:"UY",t:"cultural"},{c:"BO",t:"economic"}]},"CO":{mr:41,mb:10,n:false,w:0,c:40,pr:119,d:52,tp:[{c:"US",p:27},{c:"CN",p:11},{c:"PA",p:5}],fi:[{b:"US",n:7}],ba:[],ib:[{c:"US",t:"military"},{c:"US",t:"economic"},{c:"CN",t:"economic"}],inf:[{c:"VE",t:"political"},{c:"EC",t:"economic"},{c:"PA",t:"economic"}]}};Object.entries(raw).forEach(([k,v])=>{CI[k]={military_rank:v.mr,military_budget:v.mb,nuclear:v.n,warheads:v.w,corruption:v.c,press_rank:v.pr,debt_gdp:v.d,trade_partners:v.tp.map(t=>({code:t.c,pct:t.p})),foreign_bases_in:v.fi.map(f=>({by:f.b,count:f.n})),bases_abroad:v.ba.map(b=>({in_country:b.i,count:b.n})),influenced_by:v.ib.map(i=>({code:i.c,type:i.t})),influences:v.inf.map(i=>({code:i.c,type:i.t}))};});})();
+
+// ============================================================
 // Feed Events Data
 // ============================================================
 const FEED_EVENTS = [
@@ -2397,13 +2411,83 @@ const COLOR_MODES = {
     source: "Colored by primary alliance bloc membership",
     getValue: (d) => 0
   },
-  custom: {
-    title: "CUSTOM",
-    gradient: "linear-gradient(90deg, #E04848, #E8A840, #40C080)",
-    min: "Low",
-    max: "High",
-    source: "Based on your selected interests",
-    getValue: (d) => d ? Math.min(d.gdpPerCapita / 100000, 1) : 0.3
+  military: {
+    title: "MILITARY POWER",
+    gradient: "linear-gradient(90deg, #3A4A5A, #8B0000, #FF2020)",
+    min: "Weak",
+    max: "Superpower",
+    source: "Source: Global Firepower Index 2025 / SIPRI",
+    getValue: (d) => {
+      const inf = CI[d?.__code];
+      if (!inf) return 0.15;
+      return Math.max(0.1, 1 - (inf.military_rank / 50));
+    }
+  },
+  nuclear: {
+    title: "NUCLEAR STATUS",
+    gradient: "linear-gradient(90deg, #1A2A3A, #FFD700, #FF2020)",
+    min: "Non-nuclear",
+    max: "Nuclear arsenal",
+    source: "Source: Federation of American Scientists / SIPRI",
+    getValue: (d) => {
+      const inf = CI[d?.__code];
+      if (!inf) return 0.05;
+      if (!inf.nuclear) return 0.05;
+      return Math.min(1, 0.3 + (inf.warheads / 6000) * 0.7);
+    }
+  },
+  corruption: {
+    title: "CORRUPTION",
+    gradient: "linear-gradient(90deg, #40C080, #E8A840, #E04848)",
+    min: "Clean",
+    max: "Corrupt",
+    source: "Source: Transparency International CPI 2024 (inverted — red = more corrupt)",
+    getValue: (d) => {
+      const inf = CI[d?.__code];
+      if (!inf) return 0.5;
+      return 1 - (inf.corruption / 100);
+    }
+  },
+  pressFreedom: {
+    title: "PRESS FREEDOM",
+    gradient: "linear-gradient(90deg, #40C080, #E8A840, #E04848)",
+    min: "Free press",
+    max: "Censored",
+    source: "Source: Reporters Without Borders (RSF) 2024",
+    getValue: (d) => {
+      const inf = CI[d?.__code];
+      if (!inf) return 0.5;
+      return Math.min(1, inf.press_rank / 180);
+    }
+  },
+  debt: {
+    title: "DEBT-TO-GDP",
+    gradient: "linear-gradient(90deg, #40C080, #E8A840, #E04848, #8B0000)",
+    min: "Low debt",
+    max: "Extreme debt",
+    source: "Source: IMF / World Bank 2024",
+    getValue: (d) => {
+      const inf = CI[d?.__code];
+      if (!inf) return 0.3;
+      return Math.min(1, inf.debt_gdp / 260);
+    }
+  },
+  influence: {
+    title: "FOREIGN INFLUENCE",
+    gradient: "linear-gradient(90deg, #3A4A5A, #4B92DB, #FFD700, #E04848)",
+    min: "Independent",
+    max: "Heavily influenced",
+    source: "Composite: foreign bases, trade dependency, political influence",
+    getValue: (d) => {
+      const inf = CI[d?.__code];
+      if (!inf) return 0.3;
+      let score = 0;
+      score += inf.foreign_bases_in.length > 0 ? 0.3 : 0;
+      score += inf.foreign_bases_in.reduce((s, b) => s + b.count, 0) * 0.02;
+      const topTrade = inf.trade_partners[0]?.pct || 0;
+      score += topTrade > 50 ? 0.4 : topTrade > 20 ? 0.2 : 0.05;
+      return Math.min(1, score);
+    }
   }
 };
 
@@ -2445,8 +2529,9 @@ function getCountryColor(isoCode, mode) {
     return getAllianceColor(data);
   }
   const config = COLOR_MODES[mode] || COLOR_MODES.economy;
-  const value = config.getValue(data);
-  if (mode === 'risk') {
+  const dataWithCode = data ? Object.assign({__code: isoCode}, data) : {__code: isoCode};
+  const value = config.getValue(dataWithCode);
+  if (mode === 'risk' || mode === 'corruption' || mode === 'pressFreedom' || mode === 'debt') {
     return triLerp('#40C080', '#E8A840', '#E04848', value);
   }
   if (mode === 'aiReadiness') {
@@ -2455,20 +2540,39 @@ function getCountryColor(isoCode, mode) {
   if (mode === 'internet') {
     return lerpColor('#162036', '#40E0D0', value);
   }
+  if (mode === 'military') {
+    return lerpColor('#3A4A5A', '#FF2020', value);
+  }
+  if (mode === 'nuclear') {
+    return value < 0.1 ? '#1A2A3A' : lerpColor('#FFD700', '#FF2020', value);
+  }
+  if (mode === 'influence') {
+    return triLerp('#3A4A5A', '#4B92DB', '#E04848', value);
+  }
   return triLerp('#E04848', '#E8A840', '#40C080', value);
 }
 
 function getMetricText(isoCode, mode) {
   const d = COUNTRY_DATA[isoCode];
-  if (!d) return 'Limited data';
+  const inf = CI[isoCode];
+  if (!d && !inf) return 'Limited data';
   switch (mode) {
-    case 'economy': return 'GDP/cap: $' + d.gdpPerCapita.toLocaleString();
-    case 'stability': return 'Stability: ' + d.stability + '/10';
-    case 'aiReadiness': return 'AI Readiness: ' + d.aiReadiness + '/10';
-    case 'internet': return 'Internet: ' + d.internet + '%';
-    case 'risk': return 'Risk: ' + d.riskLevel.charAt(0).toUpperCase() + d.riskLevel.slice(1);
-    case 'alliances': return d.alliances ? d.alliances[0] : 'No major alliance';
-    case 'custom': return 'GDP/cap: $' + d.gdpPerCapita.toLocaleString();
+    case 'economy': return d ? 'GDP/cap: $' + d.gdpPerCapita.toLocaleString() : 'No data';
+    case 'stability': return d ? 'Stability: ' + d.stability + '/10' : 'No data';
+    case 'aiReadiness': return d ? 'AI Readiness: ' + d.aiReadiness + '/10' : 'No data';
+    case 'internet': return d ? 'Internet: ' + d.internet + '%' : 'No data';
+    case 'risk': return d ? 'Risk: ' + d.riskLevel.charAt(0).toUpperCase() + d.riskLevel.slice(1) : 'No data';
+    case 'alliances': return d?.alliances ? d.alliances[0] : 'No major alliance';
+    case 'military': return inf ? '#' + inf.military_rank + ' — $' + inf.military_budget + 'B budget' : 'No data';
+    case 'nuclear': return inf ? (inf.nuclear ? inf.warheads.toLocaleString() + ' warheads' : 'Non-nuclear') : 'No data';
+    case 'corruption': return inf ? 'CPI: ' + inf.corruption + '/100' : 'No data';
+    case 'pressFreedom': return inf ? 'RSF rank: #' + inf.press_rank + '/180' : 'No data';
+    case 'debt': return inf ? 'Debt: ' + inf.debt_gdp + '% of GDP' : 'No data';
+    case 'influence': {
+      if (!inf) return 'No data';
+      const bases = inf.foreign_bases_in.reduce((s, b) => s + b.count, 0);
+      return bases > 0 ? bases + ' foreign bases hosted' : 'No foreign bases';
+    }
     default: return '';
   }
 }
@@ -2806,6 +2910,8 @@ function renderAssistantTab(alpha2) {
       <div class="exports-text">${d.keyExports.join(', ')}</div>
     </div>
 
+    ${renderInfluenceSection(alpha2)}
+
     <div class="chat-container">
       <div class="chat-history" id="chat-history"></div>
       <div class="chat-input-row">
@@ -2815,6 +2921,95 @@ function renderAssistantTab(alpha2) {
     </div>
   `;
   container.innerHTML = html;
+}
+
+function renderInfluenceSection(alpha2) {
+  const inf = CI[alpha2];
+  if (!inf) return '';
+
+  const cName = (code) => COUNTRY_DATA[code]?.name || code;
+  const typeColor = (t) => t === 'military' ? '#E04848' : t === 'economic' ? '#E8A840' : t === 'political' ? '#4B92DB' : '#40C080';
+  const typeBadge = (t) => `<span style="display:inline-block;padding:2px 6px;border-radius:3px;font-size:9px;font-weight:700;letter-spacing:0.5px;background:${typeColor(t)}22;color:${typeColor(t)};border:1px solid ${typeColor(t)}44;">${t.toUpperCase()}</span>`;
+
+  let html = '';
+
+  html += `<div class="briefing-section">
+    <div class="briefing-section-title">Military & Nuclear</div>
+    <div class="briefing-grid">
+      <div class="briefing-stat">
+        <div class="briefing-stat-label">Power Rank</div>
+        <div class="briefing-stat-value">#${inf.military_rank}</div>
+      </div>
+      <div class="briefing-stat">
+        <div class="briefing-stat-label">Budget</div>
+        <div class="briefing-stat-value">$${inf.military_budget}B</div>
+      </div>
+      <div class="briefing-stat">
+        <div class="briefing-stat-label">Nuclear</div>
+        <div class="briefing-stat-value" style="color:${inf.nuclear ? '#E04848' : '#40C080'}">${inf.nuclear ? inf.warheads.toLocaleString() + ' warheads' : 'No'}</div>
+      </div>
+      <div class="briefing-stat">
+        <div class="briefing-stat-label">Debt/GDP</div>
+        <div class="briefing-stat-value">${inf.debt_gdp}%</div>
+      </div>
+    </div>
+    <div class="briefing-grid" style="margin-top:8px;">
+      <div class="briefing-stat">
+        <div class="briefing-stat-label">Corruption (CPI)</div>
+        <div class="briefing-stat-value" style="color:${inf.corruption > 60 ? '#40C080' : inf.corruption > 35 ? '#E8A840' : '#E04848'}">${inf.corruption}/100</div>
+      </div>
+      <div class="briefing-stat">
+        <div class="briefing-stat-label">Press Freedom</div>
+        <div class="briefing-stat-value" style="color:${inf.press_rank < 40 ? '#40C080' : inf.press_rank < 100 ? '#E8A840' : '#E04848'}">#${inf.press_rank}/180</div>
+      </div>
+    </div>
+  </div>`;
+
+  html += `<div class="briefing-section">
+    <div class="briefing-section-title">Foreign Influence On This Country</div>
+    <ul class="briefing-list">
+      ${inf.influenced_by.map(i => `<li>${getFlag(i.code)} <strong>${cName(i.code)}</strong> ${typeBadge(i.type)}</li>`).join('')}
+    </ul>
+  </div>`;
+
+  html += `<div class="briefing-section">
+    <div class="briefing-section-title">Countries This Nation Influences</div>
+    <ul class="briefing-list">
+      ${inf.influences.map(i => `<li>${getFlag(i.code)} <strong>${cName(i.code)}</strong> ${typeBadge(i.type)}</li>`).join('')}
+    </ul>
+  </div>`;
+
+  html += `<div class="briefing-section">
+    <div class="briefing-section-title">Trade Dependencies</div>
+    ${inf.trade_partners.map(tp => `<div style="display:flex;align-items:center;gap:8px;margin-bottom:6px;">
+      <span>${getFlag(tp.code)}</span>
+      <span style="flex:1;font-size:13px;font-weight:600;">${cName(tp.code)}</span>
+      <div style="width:100px;height:6px;background:var(--surface-3);border-radius:3px;overflow:hidden;">
+        <div style="width:${Math.min(tp.pct, 100)}%;height:100%;background:${tp.pct > 50 ? '#E04848' : tp.pct > 20 ? '#E8A840' : '#4B92DB'};border-radius:3px;"></div>
+      </div>
+      <span style="font-size:12px;font-weight:700;color:${tp.pct > 50 ? '#E04848' : 'var(--text-muted)'};">${tp.pct}%</span>
+    </div>`).join('')}
+  </div>`;
+
+  if (inf.foreign_bases_in.length > 0) {
+    html += `<div class="briefing-section">
+      <div class="briefing-section-title">Foreign Military Bases Hosted</div>
+      <ul class="briefing-list">
+        ${inf.foreign_bases_in.map(b => `<li>${getFlag(b.by)} <strong>${cName(b.by)}</strong> — ${b.count} base${b.count > 1 ? 's' : ''}</li>`).join('')}
+      </ul>
+    </div>`;
+  }
+
+  if (inf.bases_abroad.length > 0) {
+    html += `<div class="briefing-section">
+      <div class="briefing-section-title">Military Bases Abroad</div>
+      <ul class="briefing-list">
+        ${inf.bases_abroad.map(b => `<li>${getFlag(b.in_country)} <strong>${cName(b.in_country)}</strong> — ${b.count} base${b.count > 1 ? 's' : ''}</li>`).join('')}
+      </ul>
+    </div>`;
+  }
+
+  return html;
 }
 
 function sendChat() {
@@ -3037,6 +3232,8 @@ function flyToCountry(alpha2) {
 const ATLAS_REPORT_URL = 'https://raw.githubusercontent.com/BosRoss/bosssystems.co/main/atlas_report.json';
 let atlasReport = null;
 
+let satMarkers = [];
+
 async function fetchAtlasReport() {
   try {
     const r = await fetch(ATLAS_REPORT_URL + '?t=' + Date.now());
@@ -3045,10 +3242,37 @@ async function fetchAtlasReport() {
       renderPredictionsTab();
       renderStreamsTab();
       renderBossBanner();
+      renderSatellites();
     }
   } catch (e) {
     console.warn('ATLAS report fetch failed:', e);
   }
+}
+
+function renderSatellites() {
+  if (!atlasReport || !map) return;
+  satMarkers.forEach(m => map.removeLayer(m));
+  satMarkers = [];
+
+  const tracked = (atlasReport.satellites || {}).tracked || [];
+  if (tracked.length === 0) return;
+
+  const satIcon = L.divIcon({
+    className: '',
+    html: '<div style="width:6px;height:6px;background:#FFD700;border-radius:50%;box-shadow:0 0 8px #FFD700;"></div>',
+    iconSize: [6, 6],
+    iconAnchor: [3, 3]
+  });
+
+  tracked.forEach(sat => {
+    if (!sat.lat || !sat.lon) return;
+    const marker = L.marker([sat.lat, sat.lon], { icon: satIcon, interactive: true })
+      .bindTooltip(`<div style="font-weight:700;font-size:11px;">${sat.name}</div><div style="font-size:10px;color:#aaa;">${sat.group} | Alt: ${sat.alt_km}km</div>`, {
+        className: 'country-tooltip', direction: 'top', offset: [0, -8]
+      });
+    marker.addTo(map);
+    satMarkers.push(marker);
+  });
 }
 
 // ============================================================
