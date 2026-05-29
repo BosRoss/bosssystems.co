@@ -1,0 +1,2969 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>ATLAS — Geopolitical Intelligence Dashboard</title>
+<meta name="description" content="ATLAS — Interactive geopolitical intelligence dashboard with real-time world map, country briefings, and global event feed.">
+<link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" />
+<style>
+/* ========== RESET & VARIABLES ========== */
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+:root {
+  --primary: #4B92DB;
+  --primary-light: #6AADEE;
+  --primary-dark: #3A78B8;
+  --bg: #060A10;
+  --surface: #0C1220;
+  --surface-2: #101828;
+  --surface-3: #162036;
+  --text: #E0E8F4;
+  --text-muted: #6A7A90;
+  --text-dim: #3A4A5A;
+  --border: #1A2A3A;
+  --success: #40C080;
+  --warning: #E8A840;
+  --danger: #E04848;
+  --font: -apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica, Arial, sans-serif;
+}
+
+html, body {
+  height: 100%;
+  overflow: hidden;
+  background: var(--bg);
+  color: var(--text);
+  font-family: var(--font);
+  -webkit-font-smoothing: antialiased;
+}
+
+/* ========== LOADING OVERLAY ========== */
+#loading-overlay {
+  position: fixed;
+  inset: 0;
+  z-index: 10000;
+  background: var(--bg);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  transition: opacity 0.6s ease, visibility 0.6s ease;
+}
+#loading-overlay.hidden {
+  opacity: 0;
+  visibility: hidden;
+  pointer-events: none;
+}
+#loading-overlay .loading-title {
+  font-size: 28px;
+  font-weight: 700;
+  letter-spacing: 8px;
+  color: var(--primary);
+  margin-bottom: 24px;
+}
+#loading-overlay .loading-dot {
+  width: 12px;
+  height: 12px;
+  border-radius: 50%;
+  background: var(--primary);
+  animation: pulse-dot 1.4s ease-in-out infinite;
+}
+@keyframes pulse-dot {
+  0%, 100% { opacity: 0.3; transform: scale(0.8); }
+  50% { opacity: 1; transform: scale(1.2); }
+}
+#loading-overlay .loading-sub {
+  margin-top: 16px;
+  color: var(--text-muted);
+  font-size: 13px;
+  letter-spacing: 3px;
+}
+
+/* ========== TOP BAR ========== */
+#topbar {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 50px;
+  background: var(--surface);
+  border-bottom: 1px solid var(--border);
+  display: flex;
+  align-items: center;
+  padding: 0 16px;
+  z-index: 1000;
+  gap: 12px;
+  overflow: hidden;
+}
+#topbar::after {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  height: 1px;
+  background: linear-gradient(90deg, transparent, var(--primary), transparent);
+  opacity: 0.4;
+  animation: scanline 4s linear infinite;
+}
+@keyframes scanline {
+  0% { transform: translateX(-100%); }
+  100% { transform: translateX(100%); }
+}
+
+.topbar-logo {
+  font-size: 18px;
+  font-weight: 800;
+  letter-spacing: 4px;
+  color: var(--primary);
+  flex-shrink: 0;
+  cursor: default;
+}
+.topbar-logo span {
+  color: var(--text-dim);
+  font-weight: 400;
+  font-size: 10px;
+  letter-spacing: 2px;
+  margin-left: 8px;
+  vertical-align: middle;
+}
+
+#color-mode-select {
+  background: var(--surface-2);
+  border: 1px solid var(--border);
+  color: var(--text);
+  padding: 6px 12px;
+  border-radius: 6px;
+  font-size: 13px;
+  font-family: var(--font);
+  cursor: pointer;
+  outline: none;
+  flex-shrink: 0;
+  transition: border-color 0.2s;
+}
+#color-mode-select:hover { border-color: var(--primary); }
+#color-mode-select:focus { border-color: var(--primary); }
+
+#country-search {
+  background: var(--surface-2);
+  border: 1px solid var(--border);
+  color: var(--text);
+  padding: 6px 12px;
+  border-radius: 6px;
+  font-size: 13px;
+  font-family: var(--font);
+  flex: 1;
+  max-width: 280px;
+  outline: none;
+  transition: border-color 0.2s;
+}
+#country-search::placeholder { color: var(--text-dim); }
+#country-search:focus { border-color: var(--primary); }
+
+#search-results {
+  position: absolute;
+  top: 46px;
+  left: 200px;
+  width: 280px;
+  max-height: 300px;
+  overflow-y: auto;
+  background: var(--surface-2);
+  border: 1px solid var(--border);
+  border-radius: 6px;
+  display: none;
+  z-index: 2000;
+}
+#search-results .search-item {
+  padding: 8px 14px;
+  cursor: pointer;
+  font-size: 13px;
+  color: var(--text);
+  transition: background 0.15s;
+}
+#search-results .search-item:hover {
+  background: var(--surface-3);
+}
+
+.topbar-right {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  margin-left: auto;
+  flex-shrink: 0;
+}
+
+.topbar-btn {
+  background: none;
+  border: 1px solid var(--border);
+  color: var(--text-muted);
+  padding: 5px 12px;
+  border-radius: 6px;
+  font-size: 12px;
+  font-family: var(--font);
+  cursor: pointer;
+  transition: all 0.2s;
+  letter-spacing: 1px;
+}
+.topbar-btn:hover {
+  border-color: var(--primary);
+  color: var(--primary);
+}
+.topbar-btn.active {
+  border-color: var(--primary);
+  color: var(--primary);
+  background: rgba(75, 146, 219, 0.1);
+}
+
+#mobile-toggle {
+  display: none;
+  background: none;
+  border: none;
+  color: var(--text);
+  font-size: 22px;
+  cursor: pointer;
+  padding: 4px;
+}
+
+/* ========== MAIN LAYOUT ========== */
+#app {
+  display: flex;
+  height: 100vh;
+  padding-top: 50px;
+}
+
+#map-container {
+  flex: 0 0 65%;
+  position: relative;
+  height: calc(100vh - 50px);
+}
+
+#map {
+  width: 100%;
+  height: 100%;
+  background: var(--bg);
+}
+
+/* Leaflet overrides */
+.leaflet-control-zoom a {
+  background: var(--surface-2) !important;
+  color: var(--text) !important;
+  border-color: var(--border) !important;
+  width: 32px !important;
+  height: 32px !important;
+  line-height: 32px !important;
+  font-size: 16px !important;
+}
+.leaflet-control-zoom a:hover {
+  background: var(--surface-3) !important;
+  color: var(--primary) !important;
+}
+.leaflet-control-zoom {
+  border: none !important;
+  box-shadow: none !important;
+}
+
+/* ========== LEGEND ========== */
+#legend {
+  position: absolute;
+  bottom: 60px;
+  left: 16px;
+  z-index: 800;
+  background: rgba(12, 18, 32, 0.92);
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  padding: 12px 16px;
+  min-width: 180px;
+  backdrop-filter: blur(8px);
+}
+#legend-title {
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 2px;
+  color: var(--primary);
+  margin-bottom: 8px;
+  text-transform: uppercase;
+}
+#legend-bar {
+  height: 8px;
+  border-radius: 4px;
+  margin-bottom: 6px;
+  width: 100%;
+}
+#legend-labels {
+  display: flex;
+  justify-content: space-between;
+  font-size: 10px;
+  color: var(--text-muted);
+  margin-bottom: 6px;
+}
+#legend-source {
+  font-size: 9px;
+  color: var(--text-dim);
+  font-style: italic;
+}
+
+/* ========== FOCUS INDICATOR ========== */
+#focus-indicator {
+  position: absolute;
+  top: 12px;
+  left: 50%;
+  transform: translateX(-50%);
+  z-index: 800;
+  background: rgba(12, 18, 32, 0.9);
+  border: 1px solid var(--primary);
+  border-radius: 20px;
+  padding: 5px 16px;
+  font-size: 12px;
+  color: var(--primary);
+  letter-spacing: 1px;
+  display: none;
+  backdrop-filter: blur(8px);
+}
+
+/* ========== SIDEBAR ========== */
+#sidebar {
+  flex: 0 0 35%;
+  height: calc(100vh - 50px);
+  background: var(--surface);
+  border-left: 1px solid var(--border);
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+}
+
+.sidebar-tabs {
+  display: flex;
+  border-bottom: 1px solid var(--border);
+  flex-shrink: 0;
+}
+.sidebar-tab {
+  flex: 1;
+  padding: 10px 8px;
+  text-align: center;
+  font-size: 11px;
+  font-weight: 600;
+  letter-spacing: 1.5px;
+  color: var(--text-muted);
+  cursor: pointer;
+  border-bottom: 2px solid transparent;
+  transition: all 0.2s;
+  background: none;
+  border-top: none;
+  border-left: none;
+  border-right: none;
+  font-family: var(--font);
+}
+.sidebar-tab:hover {
+  color: var(--text);
+  background: var(--surface-2);
+}
+.sidebar-tab.active {
+  color: var(--primary);
+  border-bottom-color: var(--primary);
+}
+
+.sidebar-content {
+  flex: 1;
+  overflow-y: auto;
+  overflow-x: hidden;
+}
+.sidebar-content::-webkit-scrollbar { width: 6px; }
+.sidebar-content::-webkit-scrollbar-track { background: transparent; }
+.sidebar-content::-webkit-scrollbar-thumb { background: var(--border); border-radius: 3px; }
+.sidebar-content::-webkit-scrollbar-thumb:hover { background: var(--text-dim); }
+
+.tab-panel {
+  display: none;
+  padding: 16px;
+  animation: fadeIn 0.3s ease;
+}
+.tab-panel.active { display: block; }
+
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(6px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+/* ========== ASSISTANT TAB ========== */
+.welcome-message {
+  text-align: center;
+  padding: 60px 20px;
+}
+.welcome-icon {
+  font-size: 48px;
+  margin-bottom: 16px;
+  opacity: 0.6;
+}
+.welcome-title {
+  font-size: 18px;
+  font-weight: 700;
+  color: var(--text);
+  margin-bottom: 12px;
+}
+.welcome-text {
+  font-size: 13px;
+  color: var(--text-muted);
+  line-height: 1.6;
+  max-width: 300px;
+  margin: 0 auto;
+}
+
+.country-header {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  margin-bottom: 6px;
+}
+.country-flag {
+  font-size: 36px;
+  line-height: 1;
+}
+.country-name-big {
+  font-size: 22px;
+  font-weight: 800;
+  color: var(--text);
+  letter-spacing: 1px;
+}
+.briefing-label {
+  font-size: 10px;
+  font-weight: 700;
+  letter-spacing: 3px;
+  color: var(--primary);
+  margin-bottom: 20px;
+  text-transform: uppercase;
+}
+
+.briefing-section {
+  margin-bottom: 18px;
+}
+.briefing-section-title {
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 2px;
+  color: var(--primary-light);
+  margin-bottom: 8px;
+  text-transform: uppercase;
+  padding-bottom: 4px;
+  border-bottom: 1px solid var(--border);
+}
+.briefing-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 8px;
+}
+.briefing-stat {
+  background: var(--surface-2);
+  padding: 10px;
+  border-radius: 6px;
+  border: 1px solid var(--border);
+}
+.briefing-stat-label {
+  font-size: 10px;
+  color: var(--text-dim);
+  letter-spacing: 1px;
+  margin-bottom: 4px;
+  text-transform: uppercase;
+}
+.briefing-stat-value {
+  font-size: 15px;
+  font-weight: 700;
+  color: var(--text);
+}
+
+.briefing-list {
+  list-style: none;
+  padding: 0;
+}
+.briefing-list li {
+  position: relative;
+  padding: 6px 0 6px 16px;
+  font-size: 13px;
+  color: var(--text);
+  line-height: 1.5;
+}
+.briefing-list li::before {
+  content: '';
+  position: absolute;
+  left: 0;
+  top: 12px;
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: var(--primary);
+}
+
+.risk-badge {
+  display: inline-block;
+  padding: 4px 14px;
+  border-radius: 20px;
+  font-size: 12px;
+  font-weight: 700;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+}
+.risk-badge.low { background: rgba(64, 192, 128, 0.15); color: var(--success); border: 1px solid rgba(64, 192, 128, 0.3); }
+.risk-badge.medium { background: rgba(232, 168, 64, 0.15); color: var(--warning); border: 1px solid rgba(232, 168, 64, 0.3); }
+.risk-badge.high { background: rgba(224, 72, 72, 0.15); color: var(--danger); border: 1px solid rgba(224, 72, 72, 0.3); }
+.risk-badge.critical { background: rgba(224, 72, 72, 0.25); color: #FF6060; border: 1px solid rgba(224, 72, 72, 0.5); }
+
+.alliance-tags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+}
+.alliance-tag {
+  padding: 3px 10px;
+  border-radius: 12px;
+  font-size: 11px;
+  font-weight: 600;
+  letter-spacing: 0.5px;
+  background: var(--surface-3);
+  border: 1px solid var(--border);
+  color: var(--text-muted);
+}
+
+.exports-text {
+  font-size: 13px;
+  color: var(--text-muted);
+  line-height: 1.6;
+}
+
+.limited-intel {
+  text-align: center;
+  padding: 40px 20px;
+  color: var(--text-muted);
+}
+.limited-intel-icon {
+  font-size: 32px;
+  margin-bottom: 12px;
+  opacity: 0.5;
+}
+.limited-intel-text {
+  font-size: 14px;
+  margin-bottom: 8px;
+}
+.limited-intel-sub {
+  font-size: 12px;
+  color: var(--text-dim);
+}
+
+/* Chat input */
+.chat-container {
+  margin-top: 20px;
+  border-top: 1px solid var(--border);
+  padding-top: 16px;
+}
+.chat-history {
+  max-height: 200px;
+  overflow-y: auto;
+  margin-bottom: 12px;
+}
+.chat-bubble {
+  padding: 8px 12px;
+  border-radius: 8px;
+  margin-bottom: 8px;
+  font-size: 13px;
+  line-height: 1.5;
+  animation: fadeIn 0.3s ease;
+}
+.chat-bubble.user {
+  background: rgba(75, 146, 219, 0.15);
+  border: 1px solid rgba(75, 146, 219, 0.2);
+  color: var(--primary-light);
+  margin-left: 20px;
+}
+.chat-bubble.assistant {
+  background: var(--surface-2);
+  border: 1px solid var(--border);
+  color: var(--text-muted);
+  margin-right: 20px;
+}
+.chat-input-row {
+  display: flex;
+  gap: 8px;
+}
+.chat-input {
+  flex: 1;
+  background: var(--surface-2);
+  border: 1px solid var(--border);
+  color: var(--text);
+  padding: 8px 12px;
+  border-radius: 8px;
+  font-size: 13px;
+  font-family: var(--font);
+  outline: none;
+  transition: border-color 0.2s;
+}
+.chat-input::placeholder { color: var(--text-dim); }
+.chat-input:focus { border-color: var(--primary); }
+.chat-send {
+  background: var(--primary);
+  border: none;
+  color: #fff;
+  width: 36px;
+  height: 36px;
+  border-radius: 8px;
+  cursor: pointer;
+  font-size: 16px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: background 0.2s;
+  flex-shrink: 0;
+}
+.chat-send:hover { background: var(--primary-dark); }
+
+/* ========== FEED TAB ========== */
+.feed-item {
+  padding: 12px;
+  background: var(--surface-2);
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  margin-bottom: 10px;
+  transition: all 0.2s;
+  animation: feedFadeIn 0.4s ease;
+  cursor: default;
+}
+.feed-item:hover {
+  border-color: var(--primary-dark);
+  background: var(--surface-3);
+}
+.feed-item.highlighted {
+  border-color: var(--primary);
+  box-shadow: 0 0 12px rgba(75, 146, 219, 0.1);
+}
+
+@keyframes feedFadeIn {
+  from { opacity: 0; transform: translateX(8px); }
+  to { opacity: 1; transform: translateX(0); }
+}
+
+.feed-meta {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  margin-bottom: 6px;
+}
+.feed-category {
+  padding: 2px 8px;
+  border-radius: 4px;
+  font-size: 10px;
+  font-weight: 700;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+}
+.feed-category.TRADE { background: rgba(106, 173, 238, 0.15); color: #6AADEE; }
+.feed-category.SECURITY { background: rgba(224, 72, 72, 0.15); color: #E04848; }
+.feed-category.TECHNOLOGY { background: rgba(160, 120, 240, 0.15); color: #A078F0; }
+.feed-category.ENERGY { background: rgba(232, 168, 64, 0.15); color: #E8A840; }
+.feed-category.CLIMATE { background: rgba(64, 192, 128, 0.15); color: #40C080; }
+.feed-category.GOVERNANCE { background: rgba(75, 146, 219, 0.15); color: #4B92DB; }
+.feed-category.CONFLICT { background: rgba(224, 72, 72, 0.2); color: #FF6060; }
+.feed-category.ECONOMY { background: rgba(232, 200, 64, 0.15); color: #E8C840; }
+
+.feed-region {
+  font-size: 10px;
+  color: var(--text-dim);
+  letter-spacing: 1px;
+}
+.feed-title {
+  font-size: 14px;
+  font-weight: 600;
+  color: var(--text);
+  margin-bottom: 4px;
+  line-height: 1.4;
+}
+.feed-detail {
+  font-size: 12px;
+  color: var(--text-muted);
+  line-height: 1.5;
+}
+
+/* ========== FOCUS TAB ========== */
+.focus-setup {
+  padding: 20px 0;
+}
+.focus-title {
+  font-size: 16px;
+  font-weight: 700;
+  color: var(--text);
+  margin-bottom: 4px;
+}
+.focus-subtitle {
+  font-size: 13px;
+  color: var(--text-muted);
+  margin-bottom: 20px;
+}
+.focus-option {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 10px 12px;
+  background: var(--surface-2);
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  margin-bottom: 8px;
+  cursor: pointer;
+  transition: all 0.2s;
+}
+.focus-option:hover {
+  border-color: var(--primary-dark);
+  background: var(--surface-3);
+}
+.focus-option.selected {
+  border-color: var(--primary);
+  background: rgba(75, 146, 219, 0.08);
+}
+.focus-option input[type="checkbox"] {
+  accent-color: var(--primary);
+  width: 16px;
+  height: 16px;
+  flex-shrink: 0;
+}
+.focus-option label {
+  font-size: 13px;
+  color: var(--text);
+  cursor: pointer;
+  flex: 1;
+}
+
+.focus-save {
+  margin-top: 16px;
+  width: 100%;
+  padding: 10px;
+  background: var(--primary);
+  border: none;
+  color: #fff;
+  font-size: 13px;
+  font-weight: 700;
+  letter-spacing: 1px;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: background 0.2s;
+  font-family: var(--font);
+}
+.focus-save:hover { background: var(--primary-dark); }
+
+.focus-active {
+  padding: 12px 0;
+}
+.focus-watching {
+  font-size: 12px;
+  color: var(--text-muted);
+  margin-bottom: 8px;
+  letter-spacing: 1px;
+}
+.focus-tags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+  margin-bottom: 16px;
+}
+.focus-tag {
+  padding: 4px 12px;
+  border-radius: 14px;
+  font-size: 11px;
+  font-weight: 600;
+  background: rgba(75, 146, 219, 0.12);
+  border: 1px solid rgba(75, 146, 219, 0.25);
+  color: var(--primary-light);
+}
+.focus-edit-btn {
+  background: none;
+  border: 1px solid var(--border);
+  color: var(--text-muted);
+  padding: 6px 14px;
+  border-radius: 6px;
+  font-size: 12px;
+  cursor: pointer;
+  transition: all 0.2s;
+  font-family: var(--font);
+  margin-bottom: 16px;
+}
+.focus-edit-btn:hover {
+  border-color: var(--primary);
+  color: var(--primary);
+}
+
+/* ========== TOOLTIP ========== */
+.country-tooltip {
+  background: rgba(12, 18, 32, 0.95) !important;
+  border: 1px solid var(--border) !important;
+  border-radius: 6px !important;
+  padding: 8px 12px !important;
+  color: var(--text) !important;
+  font-family: var(--font) !important;
+  font-size: 12px !important;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.4) !important;
+}
+.country-tooltip .tooltip-name {
+  font-weight: 700;
+  font-size: 13px;
+  margin-bottom: 2px;
+}
+.country-tooltip .tooltip-metric {
+  color: var(--text-muted);
+  font-size: 11px;
+}
+.leaflet-tooltip-top:before,
+.leaflet-tooltip-bottom:before,
+.leaflet-tooltip-left:before,
+.leaflet-tooltip-right:before {
+  border-top-color: rgba(12, 18, 32, 0.95) !important;
+}
+
+/* ========== MOBILE ========== */
+@media (max-width: 768px) {
+  #topbar {
+    padding: 0 10px;
+  }
+  .topbar-logo span { display: none; }
+  #color-mode-select { max-width: 100px; font-size: 11px; }
+  #country-search { max-width: 120px; font-size: 11px; }
+  .topbar-right .topbar-btn { display: none; }
+  #mobile-toggle { display: block; }
+
+  #app {
+    flex-direction: column;
+    position: relative;
+  }
+  #map-container {
+    flex: 1 1 auto;
+    width: 100%;
+  }
+  #sidebar {
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    height: 40%;
+    flex: none;
+    border-left: none;
+    border-top: 1px solid var(--border);
+    transform: translateY(calc(100% - 44px));
+    transition: transform 0.35s cubic-bezier(0.4, 0, 0.2, 1);
+    z-index: 900;
+    border-radius: 16px 16px 0 0;
+  }
+  #sidebar.expanded {
+    transform: translateY(0);
+  }
+  #sidebar::before {
+    content: '';
+    display: block;
+    width: 36px;
+    height: 4px;
+    background: var(--text-dim);
+    border-radius: 2px;
+    margin: 8px auto 4px;
+    flex-shrink: 0;
+  }
+  #legend { bottom: 80px; }
+  #search-results { left: 80px; width: 200px; }
+}
+</style>
+</head>
+<body>
+
+<!-- Loading Overlay -->
+<div id="loading-overlay">
+  <div class="loading-title">ATLAS</div>
+  <div class="loading-dot"></div>
+  <div class="loading-sub">INITIALIZING...</div>
+</div>
+
+<!-- Top Bar -->
+<div id="topbar">
+  <div class="topbar-logo">ATLAS<span>INTELLIGENCE</span></div>
+  <select id="color-mode-select">
+    <option value="economy">Economy</option>
+    <option value="stability">Stability</option>
+    <option value="aiReadiness">AI Readiness</option>
+    <option value="internet">Internet</option>
+    <option value="risk">Risk</option>
+    <option value="alliances">Alliances</option>
+    <option value="custom">Custom</option>
+  </select>
+  <input type="text" id="country-search" placeholder="Search countries..." autocomplete="off">
+  <div id="search-results"></div>
+  <div class="topbar-right">
+    <button class="topbar-btn" id="btn-interests" onclick="switchTab('focus')">INTERESTS</button>
+    <button class="topbar-btn" id="btn-status" onclick="switchTab('feed')">STATUS</button>
+    <button id="mobile-toggle" onclick="toggleSidebar()">&#9776;</button>
+  </div>
+</div>
+
+<!-- Main Layout -->
+<div id="app">
+  <!-- Map -->
+  <div id="map-container">
+    <div id="map"></div>
+    <div id="focus-indicator"></div>
+    <div id="legend">
+      <div id="legend-title">ECONOMY</div>
+      <div id="legend-bar" style="background: linear-gradient(90deg, #E04848, #E8A840, #40C080);"></div>
+      <div id="legend-labels"><span id="legend-min">Low</span><span id="legend-max">High</span></div>
+      <div id="legend-source">Source: World Bank / IMF estimates</div>
+    </div>
+  </div>
+
+  <!-- Sidebar -->
+  <div id="sidebar">
+    <div class="sidebar-tabs">
+      <button class="sidebar-tab active" data-tab="assistant" onclick="switchTab('assistant')">AI ASSISTANT</button>
+      <button class="sidebar-tab" data-tab="feed" onclick="switchTab('feed')">LIVE FEED</button>
+      <button class="sidebar-tab" data-tab="focus" onclick="switchTab('focus')">MY FOCUS</button>
+    </div>
+    <div class="sidebar-content">
+      <div class="tab-panel active" id="panel-assistant">
+        <div id="assistant-content">
+          <div class="welcome-message">
+            <div class="welcome-icon">&#127760;</div>
+            <div class="welcome-title">ATLAS Intelligence</div>
+            <div class="welcome-text">Click any country on the map to view its intelligence briefing. Use the color modes above to visualize different metrics across the globe.</div>
+          </div>
+        </div>
+      </div>
+      <div class="tab-panel" id="panel-feed">
+        <div id="feed-content"></div>
+      </div>
+      <div class="tab-panel" id="panel-focus">
+        <div id="focus-content"></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/topojson-client@3"></script>
+<script>
+// ============================================================
+// ISO 3166-1 Numeric → Alpha-2 Code Mapping
+// ============================================================
+const NUM_TO_ALPHA2 = {
+  4:"AF",8:"AL",12:"DZ",16:"AS",20:"AD",24:"AO",28:"AG",31:"AZ",32:"AR",36:"AU",
+  40:"AT",44:"BS",48:"BH",50:"BD",51:"AM",52:"BB",56:"BE",60:"BM",64:"BT",68:"BO",
+  70:"BA",72:"BW",76:"BR",84:"BZ",86:"IO",90:"SB",92:"VG",96:"BN",100:"BG",104:"MM",
+  108:"BI",112:"BY",116:"KH",120:"CM",124:"CA",132:"CV",140:"CF",144:"LK",148:"TD",
+  152:"CL",156:"CN",158:"TW",162:"CX",166:"CC",170:"CO",174:"KM",175:"YT",178:"CG",
+  180:"CD",184:"CK",188:"CR",191:"HR",192:"CU",196:"CY",203:"CZ",204:"BJ",208:"DK",
+  212:"DM",214:"DO",218:"EC",222:"SV",226:"GQ",231:"ET",232:"ER",233:"EE",234:"FO",
+  238:"FK",242:"FJ",246:"FI",250:"FR",254:"GF",258:"PF",260:"TF",262:"DJ",266:"GA",
+  268:"GE",270:"GM",275:"PS",276:"DE",288:"GH",292:"GI",296:"KI",300:"GR",304:"GL",
+  308:"GD",312:"GP",316:"GU",320:"GT",324:"GN",328:"GY",332:"HT",336:"VA",340:"HN",
+  344:"HK",348:"HU",352:"IS",356:"IN",360:"ID",364:"IR",368:"IQ",372:"IE",376:"IL",
+  380:"IT",384:"CI",388:"JM",392:"JP",398:"KZ",400:"JO",404:"KE",408:"KP",410:"KR",
+  414:"KW",417:"KG",418:"LA",422:"LB",426:"LS",428:"LV",430:"LR",434:"LY",438:"LI",
+  440:"LT",442:"LU",446:"MO",450:"MG",454:"MW",458:"MY",462:"MV",466:"ML",470:"MT",
+  474:"MQ",478:"MR",480:"MU",484:"MX",492:"MC",496:"MN",498:"MD",499:"ME",504:"MA",
+  508:"MZ",512:"OM",516:"NA",520:"NR",524:"NP",528:"NL",531:"CW",533:"AW",540:"NC",
+  548:"VU",554:"NZ",558:"NI",562:"NE",566:"NG",570:"NU",574:"NF",578:"NO",580:"MP",
+  581:"UM",583:"FM",584:"MH",585:"PW",586:"PK",591:"PA",598:"PG",600:"PY",604:"PE",
+  608:"PH",612:"PN",616:"PL",620:"PT",624:"GW",626:"TL",630:"PR",634:"QA",638:"RE",
+  642:"RO",643:"RU",646:"RW",652:"BL",654:"SH",659:"KN",660:"AI",662:"LC",663:"MF",
+  666:"PM",670:"VC",678:"ST",682:"SA",686:"SN",688:"RS",690:"SC",694:"SL",702:"SG",
+  703:"SK",704:"VN",705:"SI",706:"SO",710:"ZA",716:"ZW",724:"ES",728:"SS",729:"SD",
+  732:"EH",740:"SR",744:"SJ",748:"SZ",752:"SE",756:"CH",760:"SY",762:"TJ",764:"TH",
+  768:"TG",772:"TK",776:"TO",780:"TT",784:"AE",788:"TN",792:"TR",795:"TM",796:"TC",
+  798:"TV",800:"UG",804:"UA",807:"MK",818:"EG",826:"GB",831:"GG",832:"JE",833:"IM",
+  834:"TZ",840:"US",854:"BF",858:"UY",860:"UZ",862:"VE",876:"WF",882:"WS",887:"YE",
+  894:"ZM"
+};
+
+// ============================================================
+// Country Flag Emoji Helper
+// ============================================================
+function getFlag(code) {
+  if (!code || code.length !== 2) return '';
+  return String.fromCodePoint(...[...code.toUpperCase()].map(c => 0x1F1E6 + c.charCodeAt(0) - 65));
+}
+
+// ============================================================
+// Country Data — 60 Countries with Real Data
+// ============================================================
+const COUNTRY_DATA = {
+  "US": {
+    name: "United States", continent: "North America",
+    gdp: 28780000, gdpPerCapita: 85370, population: 335000000,
+    stability: 7.5, aiReadiness: 9.5, internet: 95, riskLevel: "low",
+    alliances: ["NATO", "G7", "Five Eyes", "AUKUS", "USMCA"],
+    politicalSystem: "Federal presidential constitutional republic",
+    leader: "Donald Trump",
+    keyExports: ["Technology", "Petroleum", "Machinery", "Pharmaceuticals", "Aircraft"],
+    keyIssues: [
+      "AI regulation debate intensifying between innovation-first and safety-first camps",
+      "US-China tech competition reshaping global semiconductor supply chains",
+      "Energy transition policies driving massive domestic manufacturing investment",
+      "Federal debt exceeding $36 trillion with bipartisan deficit spending"
+    ],
+    implications: [
+      "AI regulatory framework emerging from executive orders will shape global governance norms",
+      "CHIPS Act and IRA driving semiconductor and clean energy reshoring at historic scale",
+      "Dollar dominance questioned by BRICS alternatives but remains structurally entrenched"
+    ]
+  },
+  "CN": {
+    name: "China", continent: "Asia",
+    gdp: 18530000, gdpPerCapita: 13140, population: 1412000000,
+    stability: 7.0, aiReadiness: 8.8, internet: 76, riskLevel: "medium",
+    alliances: ["BRICS", "SCO", "RCEP"],
+    politicalSystem: "Unitary one-party socialist republic",
+    leader: "Xi Jinping",
+    keyExports: ["Electronics", "Machinery", "Textiles", "Solar Panels", "EVs"],
+    keyIssues: [
+      "Real estate sector restructuring continues with Evergrande-era fallout unresolved",
+      "Youth unemployment over 15% driving social tensions and policy shifts",
+      "AI development racing ahead with DeepSeek and domestic LLM ecosystem",
+      "Taiwan Strait tensions remain the highest geopolitical flashpoint in Asia"
+    ],
+    implications: [
+      "China's EV and solar dominance forcing Western industrial policy responses",
+      "Belt and Road debt diplomacy creating dependency relationships across Global South",
+      "Demographic decline accelerating — population peaked in 2022, labor force shrinking"
+    ]
+  },
+  "JP": {
+    name: "Japan", continent: "Asia",
+    gdp: 4230000, gdpPerCapita: 33950, population: 124500000,
+    stability: 8.5, aiReadiness: 7.8, internet: 93, riskLevel: "low",
+    alliances: ["G7", "Quad", "US-Japan Alliance"],
+    politicalSystem: "Unitary parliamentary constitutional monarchy",
+    leader: "Shigeru Ishiba",
+    keyExports: ["Automobiles", "Semiconductors", "Machinery", "Steel", "Chemicals"],
+    keyIssues: [
+      "Yen weakness persisting despite BOJ rate hikes, impacting import costs",
+      "Record defense spending as Japan rearms amid China-Taiwan tensions",
+      "Severe demographic crisis with population declining 800K+ per year",
+      "Semiconductor revival push with TSMC fabs in Kumamoto"
+    ],
+    implications: [
+      "Japan's defense normalization reshaping Indo-Pacific security architecture",
+      "BOJ policy shifts have global bond market implications given Japan's creditor status",
+      "Immigration policy slowly liberalizing out of demographic necessity"
+    ]
+  },
+  "DE": {
+    name: "Germany", continent: "Europe",
+    gdp: 4460000, gdpPerCapita: 53380, population: 83500000,
+    stability: 8.0, aiReadiness: 7.5, internet: 92, riskLevel: "low",
+    alliances: ["NATO", "EU", "G7"],
+    politicalSystem: "Federal parliamentary republic",
+    leader: "Friedrich Merz",
+    keyExports: ["Automobiles", "Machinery", "Chemicals", "Pharmaceuticals", "Electronics"],
+    keyIssues: [
+      "Industrial recession as energy-intensive manufacturing relocates post-Russia gas cutoff",
+      "EV transition threatening traditional auto industry employment base",
+      "Defense spending finally reaching 2% NATO target after decades of underinvestment",
+      "Coalition politics fragmented with AfD gaining in eastern states"
+    ],
+    implications: [
+      "Germany's industrial model undergoing fundamental restructuring — ripple effects across EU supply chains",
+      "European defense autonomy depends heavily on German fiscal commitment",
+      "Energy infrastructure pivoting from Russian pipeline gas to LNG and renewables"
+    ]
+  },
+  "IN": {
+    name: "India", continent: "Asia",
+    gdp: 3940000, gdpPerCapita: 2730, population: 1441000000,
+    stability: 6.5, aiReadiness: 7.0, internet: 52, riskLevel: "medium",
+    alliances: ["BRICS", "Quad", "SCO", "G20"],
+    politicalSystem: "Federal parliamentary constitutional republic",
+    leader: "Narendra Modi",
+    keyExports: ["IT Services", "Petroleum Products", "Pharmaceuticals", "Gems", "Textiles"],
+    keyIssues: [
+      "World's most populous country leveraging demographic dividend for manufacturing growth",
+      "Make in India and PLI schemes attracting Apple, Samsung semiconductor investments",
+      "Digital public infrastructure (UPI, Aadhaar) becoming global model for fintech",
+      "Water stress and extreme heat events threatening agricultural productivity"
+    ],
+    implications: [
+      "India positioned as key swing state in US-China competition, extracting concessions from both",
+      "UPI-style digital payments being adopted across Global South — India as tech exporter",
+      "Demographic advantage window closing by 2040 — pressure to industrialize fast"
+    ]
+  },
+  "GB": {
+    name: "United Kingdom", continent: "Europe",
+    gdp: 3340000, gdpPerCapita: 49280, population: 67800000,
+    stability: 7.8, aiReadiness: 8.2, internet: 96, riskLevel: "low",
+    alliances: ["NATO", "G7", "Five Eyes", "AUKUS", "Commonwealth"],
+    politicalSystem: "Unitary parliamentary constitutional monarchy",
+    leader: "Keir Starmer",
+    keyExports: ["Financial Services", "Pharmaceuticals", "Machinery", "Petroleum", "Aerospace"],
+    keyIssues: [
+      "Post-Brexit trade friction continuing to drag on economic performance",
+      "AI safety leadership position with Bletchley Park summit legacy",
+      "NHS funding crisis and healthcare workforce shortages",
+      "Cost of living pressures and housing affordability crisis"
+    ],
+    implications: [
+      "UK AI Safety Institute becoming template for international AI governance coordination",
+      "Financial services sector adapting to post-Brexit regulatory divergence",
+      "AUKUS submarine deal deepening Anglo-sphere security integration"
+    ]
+  },
+  "FR": {
+    name: "France", continent: "Europe",
+    gdp: 3050000, gdpPerCapita: 44940, population: 67850000,
+    stability: 7.0, aiReadiness: 7.4, internet: 92, riskLevel: "low",
+    alliances: ["NATO", "EU", "G7", "UN Security Council P5"],
+    politicalSystem: "Unitary semi-presidential republic",
+    leader: "Emmanuel Macron",
+    keyExports: ["Aerospace", "Wine", "Pharmaceuticals", "Luxury Goods", "Agriculture"],
+    keyIssues: [
+      "Political fragmentation after snap election produced hung parliament",
+      "Nuclear energy renaissance positioning France as EU clean energy leader",
+      "Pension reform protests revealed deep social contract tensions",
+      "Sahel military withdrawal ending decades of French African influence"
+    ],
+    implications: [
+      "Macron's European sovereignty push gaining traction amid US reliability concerns",
+      "French nuclear fleet gives strategic energy independence advantage in EU",
+      "Loss of African sphere of influence creating vacuum filled by Russia and China"
+    ]
+  },
+  "IT": {
+    name: "Italy", continent: "Europe",
+    gdp: 2260000, gdpPerCapita: 38240, population: 59100000,
+    stability: 6.8, aiReadiness: 6.2, internet: 87, riskLevel: "medium",
+    alliances: ["NATO", "EU", "G7"],
+    politicalSystem: "Unitary parliamentary republic",
+    leader: "Giorgia Meloni",
+    keyExports: ["Machinery", "Fashion", "Automobiles", "Food Products", "Pharmaceuticals"],
+    keyIssues: [
+      "Public debt at 140% of GDP constraining fiscal flexibility",
+      "Demographic crisis among worst in Europe — fertility rate 1.2",
+      "Migration policy at center of EU political debates",
+      "Southern economic gap persists despite EU recovery fund investments"
+    ],
+    implications: [
+      "Italy's debt sustainability depends on ECB policy — any rate spike creates stress",
+      "Meloni government shifting EU migration policy toward externalization deals",
+      "Italian manufacturing excellence in niche sectors remains globally competitive"
+    ]
+  },
+  "BR": {
+    name: "Brazil", continent: "South America",
+    gdp: 2170000, gdpPerCapita: 10300, population: 216000000,
+    stability: 6.0, aiReadiness: 5.8, internet: 84, riskLevel: "medium",
+    alliances: ["BRICS", "Mercosur", "G20"],
+    politicalSystem: "Federal presidential constitutional republic",
+    leader: "Luiz Inacio Lula da Silva",
+    keyExports: ["Soybeans", "Iron Ore", "Petroleum", "Beef", "Sugar"],
+    keyIssues: [
+      "Amazon deforestation rates declining under Lula but enforcement capacity limited",
+      "BRICS presidency amplifying Brazil's voice in global governance reform",
+      "Fiscal credibility concerns as spending pressures mount ahead of 2026 elections",
+      "Agribusiness boom driving record exports but increasing climate vulnerability"
+    ],
+    implications: [
+      "Brazil's BRICS leadership positioning it as key mediator between West and Global South",
+      "Amazon preservation is a global climate variable — Brazilian policy has planetary impact",
+      "Pre-salt oil reserves creating tension between development revenue and climate commitments"
+    ]
+  },
+  "CA": {
+    name: "Canada", continent: "North America",
+    gdp: 2240000, gdpPerCapita: 55960, population: 40000000,
+    stability: 8.5, aiReadiness: 7.8, internet: 97, riskLevel: "low",
+    alliances: ["NATO", "G7", "Five Eyes", "USMCA", "Commonwealth"],
+    politicalSystem: "Federal parliamentary constitutional monarchy",
+    leader: "Mark Carney",
+    keyExports: ["Petroleum", "Automobiles", "Gold", "Lumber", "Natural Gas"],
+    keyIssues: [
+      "Housing affordability crisis driving major policy interventions",
+      "Immigration backlash after record intake straining services",
+      "Critical minerals strategy positioning Canada in EV supply chain",
+      "US tariff threats creating economic uncertainty and trade diversification push"
+    ],
+    implications: [
+      "Canada's critical minerals (lithium, nickel, cobalt) essential for Western EV independence",
+      "USMCA renegotiation in 2026 will test US-Canada economic relationship",
+      "AI research ecosystem (Toronto, Montreal) attracting global talent and investment"
+    ]
+  },
+  "RU": {
+    name: "Russia", continent: "Europe/Asia",
+    gdp: 2020000, gdpPerCapita: 14020, population: 144000000,
+    stability: 4.0, aiReadiness: 5.5, internet: 88, riskLevel: "high",
+    alliances: ["BRICS", "SCO", "CSTO", "UN Security Council P5"],
+    politicalSystem: "Federal semi-presidential republic",
+    leader: "Vladimir Putin",
+    keyExports: ["Petroleum", "Natural Gas", "Metals", "Wheat", "Fertilizers"],
+    keyIssues: [
+      "War in Ukraine entering fourth year with massive human and economic costs",
+      "Western sanctions regime forcing economic reorientation toward China and India",
+      "Brain drain accelerating as tech workers and professionals emigrate",
+      "Military-industrial complex consuming growing share of federal budget"
+    ],
+    implications: [
+      "Russia's energy pivot to Asia reshaping global oil and gas trade flows permanently",
+      "Sanctions evasion networks through Central Asia and UAE undermining Western leverage",
+      "Russian nuclear doctrine shifts lowering threshold for escalation"
+    ]
+  },
+  "KR": {
+    name: "South Korea", continent: "Asia",
+    gdp: 1720000, gdpPerCapita: 33150, population: 51900000,
+    stability: 7.0, aiReadiness: 8.0, internet: 98, riskLevel: "low",
+    alliances: ["US-ROK Alliance", "G20"],
+    politicalSystem: "Unitary presidential constitutional republic",
+    leader: "Han Duck-soo (Acting)",
+    keyExports: ["Semiconductors", "Automobiles", "Ships", "Petrochemicals", "Electronics"],
+    keyIssues: [
+      "Political crisis after brief martial law declaration shook democratic institutions",
+      "World's lowest fertility rate (0.72) creating existential demographic challenge",
+      "Samsung and SK Hynix critical to global memory chip supply",
+      "North Korea tensions elevated with expanded Russia-DPRK military cooperation"
+    ],
+    implications: [
+      "Korean semiconductor industry is a single point of failure for global tech supply chains",
+      "Demographic collapse will halve South Korea's population by 2100 at current rates",
+      "US-ROK alliance deepening but domestic politics creating friction points"
+    ]
+  },
+  "AU": {
+    name: "Australia", continent: "Oceania",
+    gdp: 1790000, gdpPerCapita: 68380, population: 26200000,
+    stability: 8.5, aiReadiness: 7.5, internet: 96, riskLevel: "low",
+    alliances: ["AUKUS", "Five Eyes", "Quad", "ANZUS", "G20"],
+    politicalSystem: "Federal parliamentary constitutional monarchy",
+    leader: "Anthony Albanese",
+    keyExports: ["Iron Ore", "Coal", "LNG", "Gold", "Education Services"],
+    keyIssues: [
+      "AUKUS nuclear submarine program reshaping defense posture and industrial base",
+      "China trade normalization after years of coercive economic pressure",
+      "Housing crisis and immigration policy driving political debates",
+      "Critical minerals and rare earths strategy for supply chain diversification"
+    ],
+    implications: [
+      "Australia's critical minerals reserves essential for Western tech independence from China",
+      "AUKUS creating new defense industrial base in Indo-Pacific",
+      "Climate vulnerability (fires, floods, reef bleaching) accelerating policy shifts"
+    ]
+  },
+  "ES": {
+    name: "Spain", continent: "Europe",
+    gdp: 1580000, gdpPerCapita: 33090, population: 47800000,
+    stability: 7.2, aiReadiness: 6.5, internet: 93, riskLevel: "low",
+    alliances: ["NATO", "EU"],
+    politicalSystem: "Unitary parliamentary constitutional monarchy",
+    leader: "Pedro Sanchez",
+    keyExports: ["Automobiles", "Machinery", "Food Products", "Pharmaceuticals", "Tourism"],
+    keyIssues: [
+      "Tourism-dependent economy diversifying into renewable energy leadership",
+      "Catalonia independence tensions reduced but not resolved",
+      "Youth unemployment persistently high despite overall economic recovery",
+      "Housing costs in major cities driving social discontent"
+    ],
+    implications: [
+      "Spain becoming EU's renewable energy hub with massive solar and wind capacity",
+      "Strategic position as gateway between Europe and North Africa/Latin America",
+      "Recovery fund investments driving modernization of Spanish economy"
+    ]
+  },
+  "MX": {
+    name: "Mexico", continent: "North America",
+    gdp: 1790000, gdpPerCapita: 13630, population: 131000000,
+    stability: 5.5, aiReadiness: 5.0, internet: 76, riskLevel: "medium",
+    alliances: ["USMCA", "Pacific Alliance", "G20"],
+    politicalSystem: "Federal presidential constitutional republic",
+    leader: "Claudia Sheinbaum",
+    keyExports: ["Automobiles", "Electronics", "Petroleum", "Machinery", "Agricultural Products"],
+    keyIssues: [
+      "Nearshoring boom as companies relocate manufacturing from China",
+      "Cartel violence and security challenges remain persistent",
+      "USMCA renegotiation creating uncertainty for trade-dependent sectors",
+      "Energy policy tensions between state oil company and renewable transition"
+    ],
+    implications: [
+      "Mexico is the biggest nearshoring beneficiary of US-China decoupling",
+      "Security situation directly impacts US border policy and bilateral relations",
+      "First female president navigating complex relationship with US administration"
+    ]
+  },
+  "ID": {
+    name: "Indonesia", continent: "Asia",
+    gdp: 1420000, gdpPerCapita: 5050, population: 281000000,
+    stability: 6.5, aiReadiness: 5.2, internet: 67, riskLevel: "medium",
+    alliances: ["ASEAN", "G20"],
+    politicalSystem: "Unitary presidential constitutional republic",
+    leader: "Prabowo Subianto",
+    keyExports: ["Palm Oil", "Coal", "Nickel", "Petroleum", "Rubber"],
+    keyIssues: [
+      "Nickel processing dominance making Indonesia critical for EV battery supply chains",
+      "New capital city Nusantara under construction in Borneo amid controversy",
+      "Deforestation for palm oil and mining driving biodiversity loss",
+      "Digital economy growing rapidly with 200M+ internet users"
+    ],
+    implications: [
+      "Indonesia controls 50%+ of global nickel processing — leverage over EV supply chain",
+      "Largest Muslim-majority democracy provides model for moderate governance",
+      "ASEAN centrality gives Indonesia outsized diplomatic influence in Indo-Pacific"
+    ]
+  },
+  "NL": {
+    name: "Netherlands", continent: "Europe",
+    gdp: 1090000, gdpPerCapita: 62450, population: 17500000,
+    stability: 8.5, aiReadiness: 7.8, internet: 97, riskLevel: "low",
+    alliances: ["NATO", "EU"],
+    politicalSystem: "Unitary parliamentary constitutional monarchy",
+    leader: "Dick Schoof",
+    keyExports: ["Machinery", "Chemicals", "Food Products", "Petroleum Products", "Electronics"],
+    keyIssues: [
+      "ASML export controls on advanced lithography are a linchpin of China tech containment",
+      "Nitrogen pollution crisis forcing agricultural sector restructuring",
+      "Housing shortage and immigration policy dominating politics",
+      "Climate vulnerability as a low-lying nation with rising sea levels"
+    ],
+    implications: [
+      "ASML is the world's sole manufacturer of EUV lithography — Netherlands holds a chokepoint in global semiconductor supply",
+      "Dutch agricultural technology expertise exported worldwide",
+      "Port of Rotterdam remains Europe's largest — critical trade infrastructure"
+    ]
+  },
+  "SA": {
+    name: "Saudi Arabia", continent: "Asia",
+    gdp: 1070000, gdpPerCapita: 30440, population: 35200000,
+    stability: 6.5, aiReadiness: 6.0, internet: 99, riskLevel: "medium",
+    alliances: ["OPEC+", "GCC", "G20"],
+    politicalSystem: "Unitary Islamic absolute monarchy",
+    leader: "Mohammed bin Salman (Crown Prince/PM)",
+    keyExports: ["Petroleum", "Petrochemicals", "Plastics", "Aluminum", "Fertilizers"],
+    keyIssues: [
+      "Vision 2030 economic diversification accelerating with NEOM and tourism mega-projects",
+      "OPEC+ production management balancing revenue needs against market share",
+      "Normalization with Iran via China-brokered deal reshaping regional dynamics",
+      "Sovereign wealth fund (PIF) becoming major global investor"
+    ],
+    implications: [
+      "Saudi spare oil capacity gives it unique leverage over global energy prices",
+      "China-brokered Saudi-Iran detente reduces US influence in Gulf region",
+      "PIF investments in AI, gaming, sports creating soft power channels"
+    ]
+  },
+  "TR": {
+    name: "Turkey", continent: "Europe/Asia",
+    gdp: 1110000, gdpPerCapita: 12860, population: 86000000,
+    stability: 5.5, aiReadiness: 5.5, internet: 83, riskLevel: "medium",
+    alliances: ["NATO", "G20"],
+    politicalSystem: "Unitary presidential constitutional republic",
+    leader: "Recep Tayyip Erdogan",
+    keyExports: ["Automobiles", "Machinery", "Textiles", "Steel", "Electronics"],
+    keyIssues: [
+      "Inflation crisis with rates exceeding 50% eroding purchasing power",
+      "NATO member maintaining relations with both Russia and Ukraine",
+      "Drone warfare technology exports expanding Turkish defense influence",
+      "Syrian refugee population and regional instability on southern border"
+    ],
+    implications: [
+      "Turkey's NATO membership while engaging Russia creates alliance management challenges",
+      "Bayraktar drones changing battlefield dynamics globally — growing export customer base",
+      "Bosphorus Strait control gives strategic leverage over Black Sea access"
+    ]
+  },
+  "CH": {
+    name: "Switzerland", continent: "Europe",
+    gdp: 906000, gdpPerCapita: 104540, population: 8670000,
+    stability: 9.5, aiReadiness: 8.0, internet: 96, riskLevel: "low",
+    alliances: ["EFTA"],
+    politicalSystem: "Federal semi-direct democracy",
+    leader: "Karin Keller-Sutter (President)",
+    keyExports: ["Pharmaceuticals", "Watches", "Machinery", "Chemicals", "Financial Services"],
+    keyIssues: [
+      "Credit Suisse collapse and UBS merger created systemic banking risk concerns",
+      "Neutrality doctrine tested by Ukraine conflict and Western sanctions alignment",
+      "Pharmaceutical industry (Roche, Novartis) dominates Swiss exports",
+      "EU relations stalled after framework agreement collapse"
+    ],
+    implications: [
+      "Switzerland's financial center reputation damaged by Credit Suisse — regulatory overhaul underway",
+      "Neutrality erosion could reshape Switzerland's role as diplomatic mediator",
+      "Swiss commodity trading hub (Zug, Geneva) handles 35% of global oil trades"
+    ]
+  },
+  "TW": {
+    name: "Taiwan", continent: "Asia",
+    gdp: 790000, gdpPerCapita: 33710, population: 23400000,
+    stability: 7.0, aiReadiness: 8.5, internet: 93, riskLevel: "high",
+    alliances: ["US-Taiwan Relations Act", "Unofficial Western alignment"],
+    politicalSystem: "Unitary semi-presidential republic",
+    leader: "Lai Ching-te",
+    keyExports: ["Semiconductors", "Electronics", "Machinery", "Plastics", "Chemicals"],
+    keyIssues: [
+      "TSMC produces 90% of world's advanced chips — existential importance to global tech",
+      "PLA military exercises around Taiwan increasing in frequency and scale",
+      "US arms sales and strategic ambiguity policy under growing pressure",
+      "Domestic debate over cross-strait relations and defense spending"
+    ],
+    implications: [
+      "A Taiwan contingency would be the most consequential geopolitical event since WWII",
+      "TSMC Arizona and Japan fabs are insurance against cross-strait disruption",
+      "Silicon Shield doctrine — Taiwan's chip dominance deters invasion through mutual economic destruction"
+    ]
+  },
+  "PL": {
+    name: "Poland", continent: "Europe",
+    gdp: 842000, gdpPerCapita: 22160, population: 38000000,
+    stability: 7.5, aiReadiness: 6.0, internet: 88, riskLevel: "low",
+    alliances: ["NATO", "EU"],
+    politicalSystem: "Unitary semi-presidential republic",
+    leader: "Donald Tusk (PM)",
+    keyExports: ["Machinery", "Automobiles", "Furniture", "Electronics", "Food Products"],
+    keyIssues: [
+      "Largest defense spending increase in NATO as frontline state against Russia",
+      "EU rule-of-law disputes resolved under new government",
+      "Ukrainian refugee integration — largest host country by population share",
+      "Manufacturing hub growth as nearshoring alternative to Asia"
+    ],
+    implications: [
+      "Poland emerging as NATO's eastern anchor with army set to become Europe's largest",
+      "Rapid economic growth transforming Poland into major EU economy",
+      "Energy security push with nuclear power program and LNG terminals"
+    ]
+  },
+  "SE": {
+    name: "Sweden", continent: "Europe",
+    gdp: 600000, gdpPerCapita: 57910, population: 10350000,
+    stability: 8.5, aiReadiness: 8.0, internet: 97, riskLevel: "low",
+    alliances: ["NATO", "EU"],
+    politicalSystem: "Unitary parliamentary constitutional monarchy",
+    leader: "Ulf Kristersson (PM)",
+    keyExports: ["Machinery", "Motor Vehicles", "Paper", "Iron and Steel", "Pharmaceuticals"],
+    keyIssues: [
+      "NATO membership ending 200 years of neutrality — historic strategic shift",
+      "Gang violence and integration challenges reshaping domestic politics",
+      "Green steel initiative (HYBRIT) could decarbonize heavy industry",
+      "Tech ecosystem (Spotify, Klarna, Ericsson) driving innovation economy"
+    ],
+    implications: [
+      "Swedish NATO accession closes the Baltic Sea gap — Russia's naval access restricted",
+      "HYBRIT fossil-free steel technology could disrupt global steel industry",
+      "Nordic defense cooperation reaching unprecedented levels"
+    ]
+  },
+  "BE": {
+    name: "Belgium", continent: "Europe",
+    gdp: 624000, gdpPerCapita: 53990, population: 11560000,
+    stability: 7.8, aiReadiness: 6.8, internet: 93, riskLevel: "low",
+    alliances: ["NATO", "EU"],
+    politicalSystem: "Federal parliamentary constitutional monarchy",
+    leader: "Alexander De Croo (PM)",
+    keyExports: ["Chemicals", "Machinery", "Diamonds", "Pharmaceuticals", "Food Products"],
+    keyIssues: [
+      "Host to EU and NATO headquarters — institutional capital of Europe",
+      "Linguistic division between Flemish and Francophone communities",
+      "Nuclear phase-out timeline extended due to energy security concerns",
+      "Port of Antwerp-Bruges is Europe's second-largest"
+    ],
+    implications: [
+      "Belgium's institutional hosting role gives it outsized diplomatic influence",
+      "Diamond trade hub (Antwerp) facing competition from lab-grown and Indian processing",
+      "Complex federal structure sometimes paralyzes policy-making but ensures consensus"
+    ]
+  },
+  "AR": {
+    name: "Argentina", continent: "South America",
+    gdp: 640000, gdpPerCapita: 13710, population: 46700000,
+    stability: 5.0, aiReadiness: 5.0, internet: 87, riskLevel: "high",
+    alliances: ["Mercosur", "G20"],
+    politicalSystem: "Federal presidential constitutional republic",
+    leader: "Javier Milei",
+    keyExports: ["Soybeans", "Petroleum", "Corn", "Automobiles", "Beef"],
+    keyIssues: [
+      "Radical libertarian economic reforms including dollarization attempts",
+      "Hyperinflation exceeding 200% annually devastating purchasing power",
+      "Vaca Muerta shale formation is world's second-largest — energy export potential",
+      "Lithium triangle resources critical for global battery supply chain"
+    ],
+    implications: [
+      "Milei's shock therapy experiment being watched globally as test of libertarian economics",
+      "Vaca Muerta development could make Argentina a major energy exporter",
+      "Lithium reserves in northwest Argentina attract Chinese and Western mining investment"
+    ]
+  },
+  "TH": {
+    name: "Thailand", continent: "Asia",
+    gdp: 515000, gdpPerCapita: 7230, population: 71200000,
+    stability: 5.5, aiReadiness: 5.5, internet: 88, riskLevel: "medium",
+    alliances: ["ASEAN", "US Treaty Ally"],
+    politicalSystem: "Unitary parliamentary constitutional monarchy",
+    leader: "Paetongtarn Shinawatra (PM)",
+    keyExports: ["Electronics", "Automobiles", "Rubber", "Rice", "Jewelry"],
+    keyIssues: [
+      "Political instability with frequent constitutional court interventions",
+      "Auto industry transitioning to EV production hub for Southeast Asia",
+      "Tourism recovery post-pandemic driving economic rebound",
+      "Aging population and declining birth rate emerging as long-term concern"
+    ],
+    implications: [
+      "Thailand positioning as ASEAN's EV manufacturing hub with Chinese investment",
+      "Strategic location between Indian and Pacific oceans gives diplomatic flexibility",
+      "Tourism sector (15% of GDP) makes economy vulnerable to global disruptions"
+    ]
+  },
+  "NG": {
+    name: "Nigeria", continent: "Africa",
+    gdp: 477000, gdpPerCapita: 2080, population: 229000000,
+    stability: 4.0, aiReadiness: 3.5, internet: 55, riskLevel: "high",
+    alliances: ["OPEC", "AU", "ECOWAS"],
+    politicalSystem: "Federal presidential constitutional republic",
+    leader: "Bola Tinubu",
+    keyExports: ["Petroleum", "Cocoa", "Rubber", "Natural Gas", "Textiles"],
+    keyIssues: [
+      "Fuel subsidy removal causing massive inflation and social unrest",
+      "Naira devaluation and currency reform creating short-term economic pain",
+      "Security challenges from Boko Haram, bandits, and separatist movements",
+      "Largest economy and population in Africa with enormous demographic potential"
+    ],
+    implications: [
+      "Nigeria's population projected to reach 400M by 2050 — Africa's demographic giant",
+      "Tech ecosystem (Lagos) producing Africa's most valuable startups",
+      "Oil dependency makes economy vulnerable but gas reserves offer transition path"
+    ]
+  },
+  "IL": {
+    name: "Israel", continent: "Asia",
+    gdp: 525000, gdpPerCapita: 55540, population: 9450000,
+    stability: 4.5, aiReadiness: 9.0, internet: 92, riskLevel: "high",
+    alliances: ["US Strategic Ally", "Abraham Accords"],
+    politicalSystem: "Unitary parliamentary republic",
+    leader: "Benjamin Netanyahu",
+    keyExports: ["Technology", "Diamonds", "Pharmaceuticals", "Chemicals", "Military Equipment"],
+    keyIssues: [
+      "Gaza conflict creating humanitarian crisis and international isolation",
+      "Regional escalation risk with Hezbollah, Iran, and Houthis",
+      "Tech sector (8200 alumni ecosystem) remains globally competitive despite conflict",
+      "Judicial reform controversy deeply polarizing society"
+    ],
+    implications: [
+      "Conflict reshaping Abraham Accords trajectory and Saudi normalization timeline",
+      "Israeli defense tech and cyber capabilities remain in high global demand",
+      "Regional instability affecting global shipping through Red Sea disruptions"
+    ]
+  },
+  "AT": {
+    name: "Austria", continent: "Europe",
+    gdp: 516000, gdpPerCapita: 56800, population: 9080000,
+    stability: 8.5, aiReadiness: 6.8, internet: 93, riskLevel: "low",
+    alliances: ["EU"],
+    politicalSystem: "Federal parliamentary republic",
+    leader: "Alexander Van der Bellen (President)",
+    keyExports: ["Machinery", "Motor Vehicles", "Iron and Steel", "Chemicals", "Pharmaceuticals"],
+    keyIssues: [
+      "Far-right FPO gaining political ground on migration and identity issues",
+      "Energy transition from Russian gas dependency ongoing",
+      "Tourism sector (major contributor to GDP) fully recovered",
+      "Manufacturing sector closely integrated with German industrial base"
+    ],
+    implications: [
+      "Austrian politics trending rightward alongside broader European pattern",
+      "Vienna remains key diplomatic hub for international organizations (UN, OSCE, OPEC)",
+      "Landlocked position makes Austria dependent on EU energy infrastructure cooperation"
+    ]
+  },
+  "IE": {
+    name: "Ireland", continent: "Europe",
+    gdp: 546000, gdpPerCapita: 106210, population: 5140000,
+    stability: 8.8, aiReadiness: 7.5, internet: 96, riskLevel: "low",
+    alliances: ["EU"],
+    politicalSystem: "Unitary parliamentary republic",
+    leader: "Micheal Martin (Taoiseach)",
+    keyExports: ["Pharmaceuticals", "Technology", "Medical Devices", "Food Products", "Chemicals"],
+    keyIssues: [
+      "Corporate tax haven status under pressure from OECD global minimum tax",
+      "Housing crisis with record homelessness despite economic growth",
+      "US tech giants (Apple, Google, Meta) headquartered for EU operations",
+      "Northern Ireland protocol tensions manageable under Windsor Framework"
+    ],
+    implications: [
+      "Ireland's 15% global minimum tax adoption reshaping corporate tax landscape",
+      "Pharmaceutical and tech FDI makes Ireland a critical node in transatlantic supply chains",
+      "Brexit's Northern Ireland dimension keeps Irish reunification question politically active"
+    ]
+  },
+  "NO": {
+    name: "Norway", continent: "Europe",
+    gdp: 530000, gdpPerCapita: 96930, population: 5470000,
+    stability: 9.2, aiReadiness: 7.5, internet: 98, riskLevel: "low",
+    alliances: ["NATO"],
+    politicalSystem: "Unitary parliamentary constitutional monarchy",
+    leader: "Jonas Gahr Store (PM)",
+    keyExports: ["Petroleum", "Natural Gas", "Fish", "Metals", "Chemicals"],
+    keyIssues: [
+      "Sovereign wealth fund ($1.7T) is world's largest — influences global markets",
+      "Europe's largest gas supplier after Russia's pipeline cuts to EU",
+      "Arctic sovereignty and resource claims gaining strategic importance",
+      "EV adoption rate highest in world — over 80% of new car sales electric"
+    ],
+    implications: [
+      "Norway's sovereign fund investment decisions affect global corporate governance norms",
+      "Norwegian gas replacing Russian gas makes Norway critical to European energy security",
+      "Arctic melting opening new shipping routes and resource extraction opportunities"
+    ]
+  },
+  "SG": {
+    name: "Singapore", continent: "Asia",
+    gdp: 515000, gdpPerCapita: 88450, population: 5820000,
+    stability: 9.0, aiReadiness: 8.5, internet: 99, riskLevel: "low",
+    alliances: ["ASEAN", "Five Power Defence"],
+    politicalSystem: "Unitary parliamentary republic",
+    leader: "Lawrence Wong (PM)",
+    keyExports: ["Electronics", "Refined Petroleum", "Chemicals", "Financial Services", "Pharmaceuticals"],
+    keyIssues: [
+      "Semiconductor and AI hub strategy attracting global tech investment",
+      "Leadership transition to new generation after Lee Hsien Loong stepped down",
+      "Wealth management center growth attracting Chinese and global capital",
+      "Water security and climate resilience for low-lying island state"
+    ],
+    implications: [
+      "Singapore's neutrality and rule of law make it Asia's premier financial and arbitration hub",
+      "Strait of Malacca chokepoint (40% of global trade passes through) gives strategic significance",
+      "Smart nation initiatives making Singapore a testbed for urban technology deployment"
+    ]
+  },
+  "MY": {
+    name: "Malaysia", continent: "Asia",
+    gdp: 407000, gdpPerCapita: 12300, population: 33100000,
+    stability: 6.5, aiReadiness: 5.8, internet: 97, riskLevel: "low",
+    alliances: ["ASEAN", "Five Power Defence", "RCEP"],
+    politicalSystem: "Federal parliamentary constitutional monarchy",
+    leader: "Anwar Ibrahim (PM)",
+    keyExports: ["Electronics", "Petroleum", "Palm Oil", "LNG", "Chemicals"],
+    keyIssues: [
+      "Semiconductor packaging and testing hub — critical in global chip supply chain",
+      "Palm oil industry facing EU deforestation regulation challenges",
+      "Multiethnic coalition government maintaining stability after years of turmoil",
+      "South China Sea territorial disputes with China and neighboring states"
+    ],
+    implications: [
+      "Malaysia's semiconductor packaging role means disruption there impacts global tech supply",
+      "Strategic position on Strait of Malacca gives trade leverage",
+      "Relatively successful multiethnic governance model in Muslim-majority democracy"
+    ]
+  },
+  "EG": {
+    name: "Egypt", continent: "Africa",
+    gdp: 395000, gdpPerCapita: 3680, population: 107400000,
+    stability: 5.0, aiReadiness: 4.0, internet: 72, riskLevel: "medium",
+    alliances: ["AU", "Arab League"],
+    politicalSystem: "Unitary semi-presidential republic",
+    leader: "Abdel Fattah el-Sisi",
+    keyExports: ["Petroleum", "Natural Gas", "Textiles", "Chemicals", "Food Products"],
+    keyIssues: [
+      "Suez Canal revenue disrupted by Houthi Red Sea attacks",
+      "Currency devaluation and IMF bailout conditions straining population",
+      "Population growth outpacing economic capacity — 2M added per year",
+      "Water security threatened by Grand Ethiopian Renaissance Dam dispute"
+    ],
+    implications: [
+      "Suez Canal disruption forces global shipping rerouting around Africa — adds weeks and billions in costs",
+      "Egypt's stability is a linchpin for Eastern Mediterranean and North African security",
+      "Nile water dispute with Ethiopia could escalate into major interstate conflict"
+    ]
+  },
+  "PH": {
+    name: "Philippines", continent: "Asia",
+    gdp: 435000, gdpPerCapita: 3860, population: 112900000,
+    stability: 5.5, aiReadiness: 4.5, internet: 73, riskLevel: "medium",
+    alliances: ["ASEAN", "US Treaty Ally"],
+    politicalSystem: "Unitary presidential constitutional republic",
+    leader: "Ferdinand Marcos Jr.",
+    keyExports: ["Electronics", "Machinery", "Coconut Products", "Copper", "Fruits"],
+    keyIssues: [
+      "South China Sea confrontations with Chinese maritime militia intensifying",
+      "BPO industry ($35B) makes Philippines a global outsourcing hub",
+      "Remittances from 10M+ overseas workers critical to economy",
+      "Climate vulnerability — typhoon damage averaging $3B+ annually"
+    ],
+    implications: [
+      "Philippines' renewed US alliance tilt reshaping South China Sea dynamics",
+      "BPO sector employing 1.7M workers faces disruption from AI automation",
+      "Strategic location across key shipping lanes amplifies geopolitical importance"
+    ]
+  },
+  "BD": {
+    name: "Bangladesh", continent: "Asia",
+    gdp: 460000, gdpPerCapita: 2690, population: 171000000,
+    stability: 4.5, aiReadiness: 3.5, internet: 40, riskLevel: "medium",
+    alliances: ["SAARC"],
+    politicalSystem: "Interim government (transition)",
+    leader: "Muhammad Yunus (Chief Adviser)",
+    keyExports: ["Garments", "Textiles", "Jute", "Shrimp", "Leather"],
+    keyIssues: [
+      "Political transition after mass student protests toppled Hasina government",
+      "World's second-largest garment exporter — $55B industry employing 4M",
+      "Climate change existential threat — one-third of country flood-prone",
+      "Rohingya refugee crisis straining resources in Cox's Bazar"
+    ],
+    implications: [
+      "Bangladesh garment industry disruption would impact global fast fashion supply chains",
+      "Climate displacement could create tens of millions of climate refugees by 2050",
+      "Demographic dividend opportunity with large young workforce if governance stabilizes"
+    ]
+  },
+  "ZA": {
+    name: "South Africa", continent: "Africa",
+    gdp: 377000, gdpPerCapita: 6190, population: 60900000,
+    stability: 5.5, aiReadiness: 5.0, internet: 72, riskLevel: "medium",
+    alliances: ["BRICS", "AU", "G20", "SADC"],
+    politicalSystem: "Unitary parliamentary constitutional republic",
+    leader: "Cyril Ramaphosa",
+    keyExports: ["Gold", "Platinum", "Diamonds", "Iron Ore", "Coal", "Automobiles"],
+    keyIssues: [
+      "Rolling blackouts (load-shedding) from Eskom grid failures crippling economy",
+      "ANC coalition government after losing majority for first time in 30 years",
+      "Youth unemployment exceeding 45% — highest in the world",
+      "Platinum and manganese reserves critical for clean energy transition"
+    ],
+    implications: [
+      "South Africa's grid crisis demonstrates infrastructure decay risk in emerging markets",
+      "Platinum group metals (70% of global reserves) essential for hydrogen fuel cells",
+      "BRICS membership amplifies South African voice in Global South governance"
+    ]
+  },
+  "AE": {
+    name: "United Arab Emirates", continent: "Asia",
+    gdp: 509000, gdpPerCapita: 50600, population: 10070000,
+    stability: 7.5, aiReadiness: 7.5, internet: 99, riskLevel: "low",
+    alliances: ["GCC", "OPEC", "Abraham Accords"],
+    politicalSystem: "Federal elective constitutional monarchy",
+    leader: "Mohammed bin Zayed (President)",
+    keyExports: ["Petroleum", "Gold", "Aluminum", "Diamonds", "Natural Gas"],
+    keyIssues: [
+      "Dubai/Abu Dhabi positioning as global AI and fintech hub",
+      "COP28 host pushed oil phase-down language into climate agreement",
+      "Sanctions evasion hub concerns from Western regulators",
+      "Sovereign wealth funds (ADIA, Mubadala) among world's largest investors"
+    ],
+    implications: [
+      "UAE's AI strategy and sovereign fund investments creating new tech power center",
+      "Abraham Accords normalization with Israel reshaping Middle Eastern alignment",
+      "Dubai's logistics hub status makes it a critical node in global trade networks"
+    ]
+  },
+  "DK": {
+    name: "Denmark", continent: "Europe",
+    gdp: 406000, gdpPerCapita: 68830, population: 5900000,
+    stability: 9.0, aiReadiness: 7.8, internet: 98, riskLevel: "low",
+    alliances: ["NATO", "EU"],
+    politicalSystem: "Unitary parliamentary constitutional monarchy",
+    leader: "Mette Frederiksen (PM)",
+    keyExports: ["Pharmaceuticals", "Machinery", "Wind Turbines", "Food Products", "Oil"],
+    keyIssues: [
+      "Greenland sovereignty and strategic importance elevated by US interest",
+      "Novo Nordisk (Ozempic) making Denmark a pharmaceutical superpower",
+      "Wind energy leader through Vestas and Orsted global operations",
+      "Arctic geopolitics drawing Denmark into great power competition"
+    ],
+    implications: [
+      "Novo Nordisk's GLP-1 drugs becoming one of the most valuable pharmaceutical franchises in history",
+      "Greenland's rare earth minerals and Arctic position make Denmark strategically vital",
+      "Danish wind energy companies shaping global offshore wind industry"
+    ]
+  },
+  "CL": {
+    name: "Chile", continent: "South America",
+    gdp: 335000, gdpPerCapita: 18500, population: 19500000,
+    stability: 7.0, aiReadiness: 5.5, internet: 90, riskLevel: "low",
+    alliances: ["Pacific Alliance", "OECD"],
+    politicalSystem: "Unitary presidential constitutional republic",
+    leader: "Gabriel Boric",
+    keyExports: ["Copper", "Lithium", "Fruit", "Fish", "Wine"],
+    keyIssues: [
+      "World's largest copper producer facing declining ore grades",
+      "Lithium nationalization debate affecting investor confidence",
+      "Constitutional reform process ongoing after failed referendums",
+      "Renewable energy adoption accelerating with solar in Atacama Desert"
+    ],
+    implications: [
+      "Chile controls 25% of global copper and has largest lithium reserves — critical mineral superpower",
+      "Lithium policy decisions directly impact global EV battery costs and supply",
+      "Political stability and reform trajectory watched by Latin American investors"
+    ]
+  },
+  "CO": {
+    name: "Colombia", continent: "South America",
+    gdp: 343000, gdpPerCapita: 6530, population: 52500000,
+    stability: 5.0, aiReadiness: 4.8, internet: 73, riskLevel: "medium",
+    alliances: ["Pacific Alliance", "NATO Partner", "OECD"],
+    politicalSystem: "Unitary presidential constitutional republic",
+    leader: "Gustavo Petro",
+    keyExports: ["Petroleum", "Coal", "Coffee", "Gold", "Flowers"],
+    keyIssues: [
+      "First leftist president pushing ambitious social and environmental reforms",
+      "Peace process with ELN guerrillas ongoing but fragile",
+      "Oil-dependent economy facing transition pressure from climate policy",
+      "Cocaine production at record levels despite eradication efforts"
+    ],
+    implications: [
+      "Colombia's political shift reflects broader Latin American left-wing trend",
+      "Petro's push to halt new oil exploration tests economic vs. climate trade-offs",
+      "Strategic US ally in region with growing independence in foreign policy"
+    ]
+  },
+  "FI": {
+    name: "Finland", continent: "Europe",
+    gdp: 302000, gdpPerCapita: 54330, population: 5560000,
+    stability: 9.0, aiReadiness: 8.2, internet: 97, riskLevel: "low",
+    alliances: ["NATO", "EU"],
+    politicalSystem: "Unitary parliamentary republic",
+    leader: "Petteri Orpo (PM)",
+    keyExports: ["Machinery", "Electronics", "Paper", "Chemicals", "Metals"],
+    keyIssues: [
+      "NATO membership adding 1,340km border with Russia — longest in alliance",
+      "Education system reforms maintaining global competitiveness",
+      "Nokia legacy evolving into 5G/6G network technology leadership",
+      "Arctic policy gaining importance as northern routes open"
+    ],
+    implications: [
+      "Finland's NATO accession doubles the alliance's border with Russia — major strategic shift",
+      "Finnish defense readiness model (900,000 trained reservists) studied by NATO allies",
+      "AI and education technology exports leveraging Finland's education brand"
+    ]
+  },
+  "CZ": {
+    name: "Czech Republic", continent: "Europe",
+    gdp: 330000, gdpPerCapita: 30810, population: 10700000,
+    stability: 8.0, aiReadiness: 6.5, internet: 91, riskLevel: "low",
+    alliances: ["NATO", "EU"],
+    politicalSystem: "Unitary parliamentary republic",
+    leader: "Petr Fiala (PM)",
+    keyExports: ["Automobiles", "Machinery", "Electronics", "Glass", "Chemicals"],
+    keyIssues: [
+      "Auto industry hub (Skoda, Hyundai) transitioning to EV production",
+      "Czech ammunition initiative for Ukraine becoming key procurement channel",
+      "Skilled manufacturing workforce attracting nearshoring investment",
+      "Energy diversification away from Russian dependency completed"
+    ],
+    implications: [
+      "Czech Republic's Ukraine ammunition initiative demonstrated creative defense procurement",
+      "Central European manufacturing hub benefiting from supply chain regionalization",
+      "Strong democratic governance provides stability anchor in Central Europe"
+    ]
+  },
+  "VN": {
+    name: "Vietnam", continent: "Asia",
+    gdp: 449000, gdpPerCapita: 4470, population: 100400000,
+    stability: 6.5, aiReadiness: 5.0, internet: 79, riskLevel: "low",
+    alliances: ["ASEAN", "RCEP"],
+    politicalSystem: "Unitary one-party socialist republic",
+    leader: "To Lam (General Secretary/President)",
+    keyExports: ["Electronics", "Textiles", "Footwear", "Seafood", "Furniture"],
+    keyIssues: [
+      "Fastest-growing major economy in Southeast Asia fueled by FDI",
+      "Samsung's largest global manufacturing base is in Vietnam",
+      "Anti-corruption campaign reshuffling political elite",
+      "South China Sea disputes with China managed through careful diplomacy"
+    ],
+    implications: [
+      "Vietnam is the top beneficiary of China+1 manufacturing diversification strategy",
+      "Samsung Vietnam produces 50% of Samsung's global smartphone output",
+      "Balanced foreign policy (US and China engagement) maximizes economic leverage"
+    ]
+  },
+  "RO": {
+    name: "Romania", continent: "Europe",
+    gdp: 350000, gdpPerCapita: 18290, population: 19100000,
+    stability: 7.0, aiReadiness: 5.5, internet: 84, riskLevel: "low",
+    alliances: ["NATO", "EU"],
+    politicalSystem: "Unitary semi-presidential republic",
+    leader: "Nicusor Dan (President)",
+    keyExports: ["Machinery", "Automobiles", "Electronics", "Textiles", "Cereals"],
+    keyIssues: [
+      "Black Sea NATO security buildup as frontline state near Ukraine conflict",
+      "IT sector boom making Romania a European tech outsourcing hub",
+      "Brain drain of skilled workers to Western Europe remains challenge",
+      "Energy independence improving with Black Sea gas development"
+    ],
+    implications: [
+      "Romania's Black Sea position makes it critical for NATO's southeastern defense",
+      "IT workforce (200,000+ developers) attracting Western tech company offices",
+      "EU accession benefits driving rapid economic convergence with Western Europe"
+    ]
+  },
+  "PT": {
+    name: "Portugal", continent: "Europe",
+    gdp: 287000, gdpPerCapita: 27780, population: 10330000,
+    stability: 8.0, aiReadiness: 6.5, internet: 85, riskLevel: "low",
+    alliances: ["NATO", "EU"],
+    politicalSystem: "Unitary semi-presidential republic",
+    leader: "Luis Montenegro (PM)",
+    keyExports: ["Automobiles", "Machinery", "Textiles", "Cork", "Petroleum Products"],
+    keyIssues: [
+      "Tech and startup hub (Lisbon) attracting digital nomads and investment",
+      "Golden visa program scaled back amid housing affordability concerns",
+      "Renewable energy exceeding 60% of electricity generation",
+      "Lithium deposits in northern Portugal attracting mining interest"
+    ],
+    implications: [
+      "Portugal's renewable energy success provides EU transition model",
+      "Atlantic position gives strategic relevance for transatlantic defense",
+      "Portuguese-speaking world (250M+ people) creates unique diplomatic network"
+    ]
+  },
+  "NZ": {
+    name: "New Zealand", continent: "Oceania",
+    gdp: 252000, gdpPerCapita: 48780, population: 5160000,
+    stability: 9.0, aiReadiness: 7.0, internet: 96, riskLevel: "low",
+    alliances: ["Five Eyes", "ANZUS"],
+    politicalSystem: "Unitary parliamentary constitutional monarchy",
+    leader: "Christopher Luxon (PM)",
+    keyExports: ["Dairy", "Meat", "Timber", "Wine", "Fruit"],
+    keyIssues: [
+      "China trade dependency (30% of exports) creating economic vulnerability",
+      "Housing affordability among worst in OECD",
+      "Agriculture emissions reduction targets challenging farming sector",
+      "Pacific Islands diplomacy competing with Chinese influence"
+    ],
+    implications: [
+      "New Zealand's Five Eyes membership creates tension with China trade relationship",
+      "Pacific Islands diplomatic competition between NZ/Australia and China intensifying",
+      "Agricultural innovation and sustainability practices exported globally"
+    ]
+  },
+  "PE": {
+    name: "Peru", continent: "South America",
+    gdp: 268000, gdpPerCapita: 7750, population: 34600000,
+    stability: 4.5, aiReadiness: 4.0, internet: 71, riskLevel: "medium",
+    alliances: ["Pacific Alliance", "APEC"],
+    politicalSystem: "Unitary presidential constitutional republic",
+    leader: "Dina Boluarte",
+    keyExports: ["Copper", "Gold", "Zinc", "Lead", "Agricultural Products"],
+    keyIssues: [
+      "Political instability with six presidents in five years",
+      "Major copper and gold producer critical to global supply chains",
+      "Social protests and inequality driving persistent governance crisis",
+      "Amazon deforestation from illegal mining operations"
+    ],
+    implications: [
+      "Peru's copper output (10% of global supply) essential for green energy transition",
+      "Political dysfunction creating investment uncertainty despite resource wealth",
+      "Lithium and rare earth potential remains largely unexplored"
+    ]
+  },
+  "KZ": {
+    name: "Kazakhstan", continent: "Asia",
+    gdp: 261000, gdpPerCapita: 13100, population: 19900000,
+    stability: 6.0, aiReadiness: 4.5, internet: 92, riskLevel: "medium",
+    alliances: ["SCO", "CSTO", "EAEU"],
+    politicalSystem: "Unitary presidential republic",
+    leader: "Kassym-Jomart Tokayev",
+    keyExports: ["Petroleum", "Natural Gas", "Uranium", "Metals", "Grain"],
+    keyIssues: [
+      "World's largest uranium producer — 43% of global supply",
+      "Balancing act between Russia, China, and Western engagement",
+      "Oil revenue dependency and diversification challenges",
+      "2022 protests prompted political reform agenda"
+    ],
+    implications: [
+      "Kazakhstan's uranium dominance makes it critical for global nuclear energy expansion",
+      "Central Asian pivot — distancing from Moscow while managing Chinese economic influence",
+      "Caspian pipeline routes give Kazakhstan leverage over regional energy flows"
+    ]
+  },
+  "UA": {
+    name: "Ukraine", continent: "Europe",
+    gdp: 179000, gdpPerCapita: 4540, population: 37000000,
+    stability: 2.5, aiReadiness: 5.0, internet: 79, riskLevel: "critical",
+    alliances: ["EU Candidate", "NATO Partner"],
+    politicalSystem: "Unitary semi-presidential republic",
+    leader: "Volodymyr Zelenskyy",
+    keyExports: ["Agricultural Products", "Iron and Steel", "Machinery", "Chemicals"],
+    keyIssues: [
+      "Full-scale Russian invasion since February 2022 — largest European war since WWII",
+      "Western military and financial aid exceeding $200 billion",
+      "EU membership candidacy accelerating institutional reforms despite war",
+      "Reconstruction estimated at $500B+ — largest rebuilding challenge since Marshall Plan"
+    ],
+    implications: [
+      "War outcome will define European security architecture for decades",
+      "Ukraine's drone warfare innovations reshaping military doctrine globally",
+      "Agricultural disruption (Ukraine was a top wheat/corn exporter) affects global food prices"
+    ]
+  },
+  "QA": {
+    name: "Qatar", continent: "Asia",
+    gdp: 220000, gdpPerCapita: 87660, population: 2510000,
+    stability: 7.5, aiReadiness: 6.0, internet: 99, riskLevel: "low",
+    alliances: ["GCC", "OPEC"],
+    politicalSystem: "Unitary semi-constitutional monarchy",
+    leader: "Tamim bin Hamad Al Thani (Emir)",
+    keyExports: ["LNG", "Petroleum", "Chemicals", "Aluminum", "Fertilizers"],
+    keyIssues: [
+      "World's largest LNG exporter expanding production capacity by 60%",
+      "Diplomatic mediator role in Gaza, Afghanistan, and other conflicts",
+      "Post-World Cup economic diversification and soft power strategy",
+      "North Field expansion will cement LNG dominance through 2030s"
+    ],
+    implications: [
+      "Qatar's LNG expansion will reshape global gas markets and European energy security",
+      "Diplomatic mediation role gives Qatar outsized influence relative to size",
+      "Al Jazeera media network amplifies Qatari soft power across Arab world"
+    ]
+  },
+  "KW": {
+    name: "Kuwait", continent: "Asia",
+    gdp: 164000, gdpPerCapita: 37280, population: 4400000,
+    stability: 6.5, aiReadiness: 4.5, internet: 98, riskLevel: "low",
+    alliances: ["GCC", "OPEC"],
+    politicalSystem: "Unitary constitutional monarchy",
+    leader: "Mishal Al-Ahmad Al-Jaber Al-Sabah (Emir)",
+    keyExports: ["Petroleum", "Petrochemicals", "Fertilizers"],
+    keyIssues: [
+      "Oil dependency exceeding 90% of government revenue",
+      "Political gridlock between parliament and ruling family",
+      "Vision 2035 economic diversification progressing slowly",
+      "Large sovereign wealth fund ($900B+) providing fiscal buffer"
+    ],
+    implications: [
+      "Kuwait Investment Authority is one of world's oldest and largest sovereign funds",
+      "Oil production capacity constraints limit OPEC+ flexibility",
+      "Political system unique in Gulf — elected parliament creates policy friction"
+    ]
+  },
+  "HU": {
+    name: "Hungary", continent: "Europe",
+    gdp: 212000, gdpPerCapita: 21720, population: 9760000,
+    stability: 6.5, aiReadiness: 5.5, internet: 90, riskLevel: "low",
+    alliances: ["NATO", "EU"],
+    politicalSystem: "Unitary parliamentary republic",
+    leader: "Viktor Orban (PM)",
+    keyExports: ["Machinery", "Automobiles", "Electronics", "Pharmaceuticals", "Food Products"],
+    keyIssues: [
+      "EU-Hungary tensions over rule of law, media freedom, and frozen funds",
+      "Battery manufacturing hub with CATL and Samsung SDI gigafactories",
+      "Maintaining Russia ties while in NATO creating alliance friction",
+      "Chinese EV investment (BYD factory) deepening economic ties with Beijing"
+    ],
+    implications: [
+      "Hungary's EU veto power gives Orban outsized leverage on sanctions and foreign policy",
+      "EV battery manufacturing concentration in Hungary creates new industrial dependency",
+      "Orban's governance model watched as template by illiberal movements worldwide"
+    ]
+  },
+  "KE": {
+    name: "Kenya", continent: "Africa",
+    gdp: 113000, gdpPerCapita: 2080, population: 54500000,
+    stability: 5.0, aiReadiness: 4.5, internet: 42, riskLevel: "medium",
+    alliances: ["AU", "EAC"],
+    politicalSystem: "Unitary presidential constitutional republic",
+    leader: "William Ruto",
+    keyExports: ["Tea", "Coffee", "Cut Flowers", "Petroleum Products", "Vegetables"],
+    keyIssues: [
+      "Gen-Z tax protests in 2024 forced government policy reversals",
+      "M-Pesa mobile money pioneered financial inclusion — model for global fintech",
+      "East Africa's tech hub (Silicon Savannah) attracting international investment",
+      "Debt sustainability concerns with Chinese and commercial lending"
+    ],
+    implications: [
+      "Kenya's tech ecosystem producing innovations adopted across Africa and beyond",
+      "Geothermal energy (45% of electricity) provides clean energy success story",
+      "Youth demographic bulge creates both opportunity and political pressure"
+    ]
+  },
+  "ET": {
+    name: "Ethiopia", continent: "Africa",
+    gdp: 156000, gdpPerCapita: 1280, population: 123000000,
+    stability: 3.5, aiReadiness: 2.5, internet: 25, riskLevel: "high",
+    alliances: ["AU", "BRICS (new member)"],
+    politicalSystem: "Federal parliamentary republic",
+    leader: "Abiy Ahmed (PM)",
+    keyExports: ["Coffee", "Gold", "Oilseeds", "Flowers", "Livestock"],
+    keyIssues: [
+      "Post-Tigray War reconstruction and reconciliation ongoing",
+      "Grand Ethiopian Renaissance Dam creating tensions with Egypt and Sudan",
+      "Second most populous country in Africa with rapid population growth",
+      "New BRICS membership expanding diplomatic reach"
+    ],
+    implications: [
+      "GERD dam will reshape Nile water politics affecting 250M+ people downstream",
+      "Ethiopia's population projected to reach 200M by 2050 — major demographic force",
+      "Addis Ababa hosts AU headquarters — diplomatic capital of Africa"
+    ]
+  },
+  "GH": {
+    name: "Ghana", continent: "Africa",
+    gdp: 76000, gdpPerCapita: 2300, population: 33100000,
+    stability: 6.0, aiReadiness: 3.8, internet: 68, riskLevel: "medium",
+    alliances: ["AU", "ECOWAS", "Commonwealth"],
+    politicalSystem: "Unitary presidential constitutional republic",
+    leader: "John Mahama",
+    keyExports: ["Gold", "Cocoa", "Petroleum", "Manganese", "Aluminum"],
+    keyIssues: [
+      "Debt restructuring under IMF program after sovereign default",
+      "Africa's second-largest gold producer with illegal mining challenges",
+      "Democratic transition model for West Africa — peaceful power transfers",
+      "Cocoa price surge benefiting farmers but processing capacity limited"
+    ],
+    implications: [
+      "Ghana's democratic stability provides regional anchor in coup-prone West Africa",
+      "Debt crisis reflects broader emerging market sovereign debt sustainability challenges",
+      "Cocoa supply from Ghana and Cote d'Ivoire (60% of global) affected by climate change"
+    ]
+  },
+  "MA": {
+    name: "Morocco", continent: "Africa",
+    gdp: 150000, gdpPerCapita: 4010, population: 37500000,
+    stability: 6.5, aiReadiness: 4.5, internet: 88, riskLevel: "low",
+    alliances: ["AU", "Arab League"],
+    politicalSystem: "Unitary parliamentary constitutional monarchy",
+    leader: "Mohammed VI (King)",
+    keyExports: ["Phosphates", "Automobiles", "Textiles", "Agriculture", "Aerospace"],
+    keyIssues: [
+      "World's largest phosphate reserves (70% of global) — critical for fertilizers",
+      "Automotive industry becoming Africa's largest car manufacturer",
+      "Western Sahara sovereignty dispute continues with Polisario Front",
+      "Renewable energy target of 52% by 2030 with massive solar installations"
+    ],
+    implications: [
+      "Morocco's phosphate monopoly gives it food security leverage as fertilizer prices spike",
+      "Automotive and aerospace manufacturing hub positioning Morocco as Africa's industrial leader",
+      "Strategic location as gateway between Europe and Africa attracting logistics investment"
+    ]
+  },
+  "IQ": {
+    name: "Iraq", continent: "Asia",
+    gdp: 264000, gdpPerCapita: 5980, population: 44200000,
+    stability: 3.5, aiReadiness: 2.5, internet: 78, riskLevel: "high",
+    alliances: ["OPEC", "Arab League"],
+    politicalSystem: "Federal parliamentary republic",
+    leader: "Mohammed Shia al-Sudani (PM)",
+    keyExports: ["Petroleum", "Crude Oil"],
+    keyIssues: [
+      "Oil production disputes with Kurdistan region affecting output",
+      "Iranian political influence vs. growing nationalist sentiment",
+      "Post-ISIS reconstruction still incomplete in Mosul and western provinces",
+      "Youth unemployment and corruption driving periodic mass protests"
+    ],
+    implications: [
+      "Iraq's oil production (OPEC's second-largest) directly affects global energy prices",
+      "Iranian-US proxy competition in Iraq creates persistent instability",
+      "Water scarcity from Turkish dam projects threatening Iraqi agriculture"
+    ]
+  },
+  "DZ": {
+    name: "Algeria", continent: "Africa",
+    gdp: 240000, gdpPerCapita: 5250, population: 45700000,
+    stability: 5.0, aiReadiness: 3.0, internet: 71, riskLevel: "medium",
+    alliances: ["OPEC", "AU", "Arab League"],
+    politicalSystem: "Unitary semi-presidential republic",
+    leader: "Abdelmadjid Tebboune",
+    keyExports: ["Petroleum", "Natural Gas", "Phosphates", "Iron Ore"],
+    keyIssues: [
+      "Europe's third-largest natural gas supplier seeking to fill Russian supply gap",
+      "Generational leadership transition challenges in post-Bouteflika era",
+      "Western Sahara dispute with Morocco shaping regional alliances",
+      "Youth unemployment exceeding 30% despite hydrocarbon wealth"
+    ],
+    implications: [
+      "Algeria's gas pipeline capacity to Europe gaining strategic importance",
+      "North African stability depends partly on Algerian economic performance",
+      "Sahel instability on southern border creating security challenges"
+    ]
+  },
+  "PK": {
+    name: "Pakistan", continent: "Asia",
+    gdp: 374000, gdpPerCapita: 1580, population: 236000000,
+    stability: 3.5, aiReadiness: 3.5, internet: 36, riskLevel: "high",
+    alliances: ["SCO", "OIC"],
+    politicalSystem: "Federal parliamentary republic",
+    leader: "Shehbaz Sharif (PM)",
+    keyExports: ["Textiles", "Rice", "Leather", "Sports Goods", "Surgical Instruments"],
+    keyIssues: [
+      "Political crisis with PTI party crackdown and Imran Khan imprisonment",
+      "IMF bailout conditions imposing austerity on struggling economy",
+      "Nuclear-armed state with India tensions over Kashmir",
+      "Climate catastrophe — 2022 floods affected 33 million people"
+    ],
+    implications: [
+      "Pakistan's instability risks as nuclear-armed state of 240M people concern global security",
+      "CPEC (China-Pakistan Economic Corridor) deepening Chinese strategic presence",
+      "Climate vulnerability extreme — 2022 floods caused $30B in damage"
+    ]
+  }
+};
+
+// ============================================================
+// Feed Events Data
+// ============================================================
+const FEED_EVENTS = [
+  { category: "TECHNOLOGY", region: "Global", title: "AI governance frameworks diverge between US, EU, and China approaches", detail: "The EU AI Act enforcement begins while the US relies on executive orders and China implements its own AI regulations, creating a fragmented global governance landscape that companies must navigate.", countries: ["US", "DE", "FR", "CN"] },
+  { category: "TRADE", region: "Asia-Pacific", title: "RCEP trade bloc reports sustained growth in intra-regional trade", detail: "The 15-member Regional Comprehensive Economic Partnership continues to deepen Asian economic integration, with rules of origin provisions shifting supply chains within the bloc.", countries: ["CN", "JP", "KR", "AU", "ID", "VN", "TH", "MY", "NZ", "PH"] },
+  { category: "SECURITY", region: "Europe", title: "NATO defense spending reaches record levels amid Ukraine conflict", detail: "More than 20 NATO members now meeting the 2% GDP defense spending target, with Poland and Baltic states exceeding 3%, as the alliance undergoes its largest force posture shift since the Cold War.", countries: ["PL", "DE", "FR", "GB", "US"] },
+  { category: "ENERGY", region: "Middle East", title: "OPEC+ navigates production cuts amid shifting demand forecasts", detail: "Saudi Arabia and Russia lead voluntary production cuts to support oil prices, while non-OPEC supply growth from the US, Brazil, and Guyana complicates cartel strategy.", countries: ["SA", "RU", "AE", "IQ", "KW"] },
+  { category: "ECONOMY", region: "South America", title: "Argentina's economic reforms show early signs of inflation reduction", detail: "President Milei's austerity measures and fiscal surplus push bring inflation below 100% annualized, but social costs mount as poverty rates climb and public services contract.", countries: ["AR"] },
+  { category: "CONFLICT", region: "Eastern Europe", title: "Ukraine conflict enters attrition phase with shifting front lines", detail: "Drone warfare and electronic warfare capabilities evolving rapidly on both sides, with Western ammunition production scaling up to sustain Ukrainian defense operations.", countries: ["UA", "RU", "PL"] },
+  { category: "CLIMATE", region: "Global", title: "2025 on track to exceed 1.5C warming threshold for consecutive years", detail: "Global average temperatures continue to break records, accelerating discussions about climate adaptation funding and loss and damage mechanisms for vulnerable nations.", countries: ["BD", "PH", "KE", "ET"] },
+  { category: "TECHNOLOGY", region: "Asia", title: "Semiconductor supply chain diversification reshaping global chip geography", detail: "TSMC fabs in Arizona and Japan, Samsung expansion in Texas, and Intel investments in Europe and Ohio are redistributing chip manufacturing away from Taiwan concentration.", countries: ["TW", "US", "JP", "DE", "KR"] },
+  { category: "TRADE", region: "Africa", title: "African Continental Free Trade Area implementation gains momentum", detail: "The AfCFTA, covering 1.4 billion people, begins reducing tariffs on goods and services, with pilot projects in automotive and agricultural processing sectors.", countries: ["NG", "KE", "ZA", "GH", "ET", "MA"] },
+  { category: "GOVERNANCE", region: "Europe", title: "EU enlargement process accelerates with Ukraine and Moldova candidacies", detail: "The European Council opens accession negotiations with Ukraine and Moldova, while Western Balkans candidates express frustration with their prolonged waiting periods.", countries: ["UA", "DE", "FR"] },
+  { category: "ENERGY", region: "Asia-Pacific", title: "India surpasses China as largest new solar capacity installer", detail: "India's rooftop and utility-scale solar installations exceed 50 GW cumulative capacity, driven by PLI scheme subsidies and falling module costs.", countries: ["IN", "CN"] },
+  { category: "SECURITY", region: "Indo-Pacific", title: "South China Sea tensions escalate with maritime confrontations", detail: "Philippines and China coast guard vessels in repeated standoffs at disputed reefs, while ASEAN consensus on a Code of Conduct remains elusive.", countries: ["PH", "CN", "VN", "MY", "ID"] },
+  { category: "ECONOMY", region: "Europe", title: "European Central Bank navigates rate decisions amid growth concerns", detail: "The ECB begins easing monetary policy as eurozone inflation falls closer to target, but divergent economic performance between northern and southern member states complicates strategy.", countries: ["DE", "FR", "IT", "ES", "NL"] },
+  { category: "TECHNOLOGY", region: "Middle East", title: "UAE and Saudi Arabia emerge as AI investment frontrunners", detail: "Gulf sovereign wealth funds deploying billions in AI infrastructure, with Abu Dhabi's G42 and Saudi Arabia's data center buildout positioning the region as a global AI hub.", countries: ["AE", "SA"] },
+  { category: "CONFLICT", region: "Middle East", title: "Gaza humanitarian situation remains critical amid ongoing military operations", detail: "International pressure mounts for ceasefire as civilian casualties climb. Red Sea shipping disruptions from Houthi attacks affect 12% of global trade.", countries: ["IL", "EG", "SA", "QA"] },
+  { category: "TRADE", region: "North America", title: "USMCA review period approaches amid tariff uncertainties", detail: "The 2026 joint review of the US-Mexico-Canada trade agreement expected to renegotiate auto rules of origin, digital trade, and labor enforcement provisions.", countries: ["US", "MX", "CA"] },
+  { category: "GOVERNANCE", region: "Global", title: "BRICS expansion reshapes multilateral diplomacy", detail: "With new members including Ethiopia, Egypt, UAE, and Saudi Arabia, BRICS now represents 46% of world population and 36% of global GDP, amplifying calls for UN Security Council reform.", countries: ["CN", "IN", "BR", "RU", "ZA", "SA", "AE", "EG", "ET"] },
+  { category: "ENERGY", region: "Europe", title: "Norway and Qatar vie for European natural gas market share", detail: "As European LNG terminal capacity expands, Qatar's North Field and Norway's Troll field compete to supply the continent's post-Russian-gas energy needs.", countries: ["NO", "QA", "DE", "NL"] },
+  { category: "ECONOMY", region: "Asia", title: "Japan navigates yen weakness and BOJ policy normalization", detail: "The Bank of Japan's gradual rate hikes aim to stabilize the yen without derailing economic recovery, as Japanese corporations report record profits from export competitiveness.", countries: ["JP"] },
+  { category: "CLIMATE", region: "South America", title: "Amazon deforestation rates decline but forest degradation concerns persist", detail: "Brazil reports lowest deforestation rates in a decade under enforcement crackdowns, but selective logging and fire damage continue to degrade forest carbon storage capacity.", countries: ["BR", "CO", "PE"] },
+  { category: "SECURITY", region: "Africa", title: "Sahel military juntas consolidate power amid Western withdrawal", detail: "Mali, Niger, and Burkina Faso deepen cooperation through the Alliance of Sahel States, while France and UN peacekeeping missions withdraw from the region.", countries: ["FR", "NG"] },
+  { category: "TECHNOLOGY", region: "Europe", title: "European tech sovereignty push drives domestic cloud and AI investment", detail: "EU Digital Decade targets spur government investment in domestic cloud infrastructure and AI capabilities, with Gaia-X and national AI strategies receiving increased funding.", countries: ["DE", "FR", "FI", "SE", "NL"] },
+  { category: "TRADE", region: "Asia", title: "Vietnam surpasses expectations as manufacturing alternative to China", detail: "Vietnam's electronics exports exceed $120B annually as Samsung, Intel, and Apple suppliers deepen investments. Infrastructure bottlenecks remain the key constraint on growth.", countries: ["VN", "KR", "JP"] },
+  { category: "ECONOMY", region: "Africa", title: "Nigeria's economic reforms face implementation challenges", detail: "Fuel subsidy removal and naira float aimed at attracting investment, but inflationary impact on 100M+ citizens living below poverty line creates political backlash.", countries: ["NG"] },
+  { category: "GOVERNANCE", region: "Asia", title: "India's digital public infrastructure adopted by developing nations", detail: "India Stack components (UPI, Aadhaar, DigiLocker) being replicated across Global South, with G20 framework for digital public goods accelerating adoption.", countries: ["IN", "KE", "BD", "PH"] }
+];
+
+// ============================================================
+// Interest Categories Mapping
+// ============================================================
+const INTEREST_CATEGORIES = {
+  "Economy & Markets": ["ECONOMY", "TRADE"],
+  "Political Stability & Governance": ["GOVERNANCE"],
+  "Technology & AI": ["TECHNOLOGY"],
+  "Energy & Natural Resources": ["ENERGY"],
+  "Military & Security": ["SECURITY", "CONFLICT"],
+  "Trade & Commerce": ["TRADE"],
+  "Climate & Environment": ["CLIMATE"],
+  "Demographics & Labor": ["ECONOMY", "GOVERNANCE"]
+};
+
+// ============================================================
+// Color Mode Configurations
+// ============================================================
+const COLOR_MODES = {
+  economy: {
+    title: "ECONOMY",
+    gradient: "linear-gradient(90deg, #E04848, #E8A840, #40C080)",
+    min: "Low GDP/cap",
+    max: "High GDP/cap",
+    source: "Source: World Bank / IMF estimates",
+    getValue: (d) => d ? Math.min(d.gdpPerCapita / 100000, 1) : 0.3
+  },
+  stability: {
+    title: "STABILITY",
+    gradient: "linear-gradient(90deg, #E04848, #E8A840, #40C080)",
+    min: "Unstable",
+    max: "Stable",
+    source: "Source: Freedom House / Economist Intelligence Unit",
+    getValue: (d) => d ? d.stability / 10 : 0.3
+  },
+  aiReadiness: {
+    title: "AI READINESS",
+    gradient: "linear-gradient(90deg, #3A4A5A, #4B92DB, #6AADEE)",
+    min: "Low adoption",
+    max: "High adoption",
+    source: "Source: Stanford HAI / Oxford Insights AI Readiness Index",
+    getValue: (d) => d ? d.aiReadiness / 10 : 0.2
+  },
+  internet: {
+    title: "INTERNET PENETRATION",
+    gradient: "linear-gradient(90deg, #162036, #1A6A6A, #40E0D0)",
+    min: "Low access",
+    max: "High access",
+    source: "Source: ITU / World Bank",
+    getValue: (d) => d ? d.internet / 100 : 0.2
+  },
+  risk: {
+    title: "RISK ASSESSMENT",
+    gradient: "linear-gradient(90deg, #40C080, #E8A840, #E04848)",
+    min: "Low risk",
+    max: "High risk",
+    source: "Source: Composite index — political, economic, security risk factors",
+    getValue: (d) => {
+      if (!d) return 0.5;
+      const riskMap = { low: 0.2, medium: 0.5, high: 0.75, critical: 0.95 };
+      return riskMap[d.riskLevel] || 0.5;
+    }
+  },
+  alliances: {
+    title: "ALLIANCES & BLOCS",
+    gradient: "linear-gradient(90deg, #4B92DB, #E8A840, #FFD700, #40C080, #6A7A90)",
+    min: "NATO",
+    max: "Other",
+    source: "Colored by primary alliance bloc membership",
+    getValue: (d) => 0
+  },
+  custom: {
+    title: "CUSTOM",
+    gradient: "linear-gradient(90deg, #E04848, #E8A840, #40C080)",
+    min: "Low",
+    max: "High",
+    source: "Based on your selected interests",
+    getValue: (d) => d ? Math.min(d.gdpPerCapita / 100000, 1) : 0.3
+  }
+};
+
+// ============================================================
+// Color Helpers
+// ============================================================
+function lerpColor(a, b, t) {
+  const ah = parseInt(a.replace('#', ''), 16);
+  const bh = parseInt(b.replace('#', ''), 16);
+  const ar = (ah >> 16) & 0xFF, ag = (ah >> 8) & 0xFF, ab = ah & 0xFF;
+  const br = (bh >> 16) & 0xFF, bg = (bh >> 8) & 0xFF, bb = bh & 0xFF;
+  const rr = Math.round(ar + (br - ar) * t);
+  const rg = Math.round(ag + (bg - ag) * t);
+  const rb = Math.round(ab + (bb - ab) * t);
+  return '#' + ((1 << 24) + (rr << 16) + (rg << 8) + rb).toString(16).slice(1);
+}
+
+function triLerp(c1, c2, c3, t) {
+  if (t < 0.5) return lerpColor(c1, c2, t * 2);
+  return lerpColor(c2, c3, (t - 0.5) * 2);
+}
+
+function getAllianceColor(d) {
+  if (!d) return '#3A4A5A';
+  const a = d.alliances || [];
+  const joined = a.join(' ');
+  if (joined.includes('NATO')) return '#4B92DB';
+  if (joined.includes('BRICS')) return '#E8A840';
+  if (joined.includes('EU') && !joined.includes('NATO')) return '#FFD700';
+  if (joined.includes('ASEAN')) return '#40C080';
+  if (joined.includes('GCC') || joined.includes('OPEC')) return '#C080FF';
+  if (joined.includes('SCO')) return '#FF8040';
+  return '#6A7A90';
+}
+
+function getCountryColor(isoCode, mode) {
+  const data = COUNTRY_DATA[isoCode];
+  if (mode === 'alliances') {
+    return getAllianceColor(data);
+  }
+  const config = COLOR_MODES[mode] || COLOR_MODES.economy;
+  const value = config.getValue(data);
+  if (mode === 'risk') {
+    return triLerp('#40C080', '#E8A840', '#E04848', value);
+  }
+  if (mode === 'aiReadiness') {
+    return lerpColor('#3A4A5A', '#6AADEE', value);
+  }
+  if (mode === 'internet') {
+    return lerpColor('#162036', '#40E0D0', value);
+  }
+  return triLerp('#E04848', '#E8A840', '#40C080', value);
+}
+
+function getMetricText(isoCode, mode) {
+  const d = COUNTRY_DATA[isoCode];
+  if (!d) return 'Limited data';
+  switch (mode) {
+    case 'economy': return 'GDP/cap: $' + d.gdpPerCapita.toLocaleString();
+    case 'stability': return 'Stability: ' + d.stability + '/10';
+    case 'aiReadiness': return 'AI Readiness: ' + d.aiReadiness + '/10';
+    case 'internet': return 'Internet: ' + d.internet + '%';
+    case 'risk': return 'Risk: ' + d.riskLevel.charAt(0).toUpperCase() + d.riskLevel.slice(1);
+    case 'alliances': return d.alliances ? d.alliances[0] : 'No major alliance';
+    case 'custom': return 'GDP/cap: $' + d.gdpPerCapita.toLocaleString();
+    default: return '';
+  }
+}
+
+// ============================================================
+// Region Detection
+// ============================================================
+function getVisibleRegion(map) {
+  const bounds = map.getBounds();
+  const center = bounds.getCenter();
+  const lat = center.lat, lng = center.lng;
+  if (lat > 35 && lng > -30 && lng < 60) return 'Europe';
+  if (lat > 10 && lat < 55 && lng > 60 && lng < 150) return 'Asia';
+  if (lat > -10 && lat < 35 && lng > 25 && lng < 65) return 'Middle East';
+  if (lat > -40 && lat < 40 && lng > -25 && lng < 55) return 'Africa';
+  if (lat > 10 && lng > -170 && lng < -30) return 'North America';
+  if (lat < 15 && lng > -90 && lng < -30) return 'South America';
+  if (lat < 0 && lng > 100) return 'Asia-Pacific';
+  return null;
+}
+
+// ============================================================
+// Format Helpers
+// ============================================================
+function formatPop(n) {
+  if (n >= 1e9) return (n / 1e9).toFixed(2) + 'B';
+  if (n >= 1e6) return (n / 1e6).toFixed(1) + 'M';
+  if (n >= 1e3) return (n / 1e3).toFixed(0) + 'K';
+  return n.toString();
+}
+function formatGDP(n) {
+  if (n >= 1e6) return '$' + (n / 1e6).toFixed(2) + 'T';
+  if (n >= 1e3) return '$' + (n / 1e3).toFixed(0) + 'B';
+  return '$' + n + 'M';
+}
+
+// ============================================================
+// STATE
+// ============================================================
+let currentMode = 'economy';
+let selectedCountryCode = null;
+let geoJsonLayer = null;
+let map = null;
+let chatHistory = [];
+
+// ============================================================
+// MAP INITIALIZATION
+// ============================================================
+function initMap() {
+  map = L.map('map', {
+    center: [20, 0],
+    zoom: 2.5,
+    minZoom: 2,
+    maxZoom: 8,
+    zoomControl: false,
+    attributionControl: false,
+    worldCopyJump: true
+  });
+
+  L.tileLayer('https://{s}.basemaps.cartocdn.com/dark_all/{z}/{x}/{y}{r}.png', {
+    subdomains: 'abcd',
+    maxZoom: 19
+  }).addTo(map);
+
+  L.control.zoom({ position: 'bottomleft' }).addTo(map);
+
+  // Fetch GeoJSON
+  fetch('https://cdn.jsdelivr.net/npm/world-atlas@2/countries-110m.json')
+    .then(r => r.json())
+    .then(world => {
+      const countries = topojson.feature(world, world.objects.countries);
+
+      geoJsonLayer = L.geoJSON(countries, {
+        style: featureStyle,
+        onEachFeature: onEachFeature
+      }).addTo(map);
+
+      addDisputedBorders();
+      hideLoading();
+    })
+    .catch(err => {
+      console.error('Failed to load world data:', err);
+      document.querySelector('#loading-overlay .loading-sub').textContent = 'FAILED TO LOAD MAP DATA — RETRYING...';
+      setTimeout(initMap, 3000);
+    });
+
+  // Map events
+  map.on('moveend', onMapMove);
+}
+
+function featureStyle(feature) {
+  const numId = feature.id || feature.properties?.id;
+  const alpha2 = NUM_TO_ALPHA2[numId] || '';
+  const color = getCountryColor(alpha2, currentMode);
+  const isSelected = alpha2 === selectedCountryCode;
+  return {
+    fillColor: color,
+    fillOpacity: isSelected ? 0.9 : 0.65,
+    weight: isSelected ? 2 : 0.5,
+    color: isSelected ? '#4B92DB' : 'rgba(255,255,255,0.1)',
+    opacity: 1
+  };
+}
+
+function onEachFeature(feature, layer) {
+  const numId = feature.id || feature.properties?.id;
+  const alpha2 = NUM_TO_ALPHA2[numId] || '';
+  const data = COUNTRY_DATA[alpha2];
+  const name = data ? data.name : (feature.properties?.name || 'Unknown');
+
+  // Tooltip
+  const tooltipContent = `<div class="tooltip-name">${getFlag(alpha2)} ${name}</div><div class="tooltip-metric">${getMetricText(alpha2, currentMode)}</div>`;
+  layer.bindTooltip(tooltipContent, {
+    className: 'country-tooltip',
+    sticky: true,
+    direction: 'top',
+    offset: [0, -10]
+  });
+
+  // Hover
+  layer.on('mouseover', function (e) {
+    if (alpha2 !== selectedCountryCode) {
+      this.setStyle({ fillOpacity: 0.85, weight: 1, color: 'rgba(255,255,255,0.3)' });
+    }
+  });
+  layer.on('mouseout', function (e) {
+    if (alpha2 !== selectedCountryCode) {
+      geoJsonLayer.resetStyle(this);
+    }
+  });
+
+  // Click
+  layer.on('click', function (e) {
+    selectCountry(alpha2, name, layer);
+    L.DomEvent.stopPropagation(e);
+  });
+}
+
+function selectCountry(alpha2, name, layer) {
+  selectedCountryCode = alpha2;
+  if (geoJsonLayer) {
+    geoJsonLayer.setStyle(featureStyle);
+  }
+  if (layer) {
+    layer.setStyle({
+      fillOpacity: 0.9,
+      weight: 2.5,
+      color: '#4B92DB'
+    });
+    layer.bringToFront();
+    const bounds = layer.getBounds();
+    map.flyToBounds(bounds, { padding: [60, 60], maxZoom: 5, duration: 0.8 });
+  }
+  chatHistory = [];
+  renderAssistantTab(alpha2);
+  switchTab('assistant');
+  localStorage.setItem('atlas_lastCountry', alpha2);
+}
+
+// ============================================================
+// DISPUTED BORDERS
+// ============================================================
+function addDisputedBorders() {
+  const disputedBorders = [
+    { name: "Kashmir Line of Control", coords: [[35.5, 74.0], [34.8, 75.0], [34.0, 76.0], [33.2, 77.5], [32.5, 78.5]], parties: "India / Pakistan / China" },
+    { name: "Crimea", coords: [[46.2, 33.4], [45.5, 33.5], [45.0, 33.6], [44.6, 34.2], [44.4, 33.8], [44.5, 35.5], [44.8, 36.4], [45.4, 36.8], [46.1, 36.2]], parties: "Ukraine / Russia (disputed)" },
+    { name: "Western Sahara", coords: [[27.7, -13.2], [26.0, -13.0], [24.5, -13.5], [23.0, -13.2], [22.0, -14.5], [21.4, -17.0]], parties: "Morocco / Sahrawi Republic" },
+    { name: "Golan Heights", coords: [[33.3, 35.75], [33.0, 35.85], [32.75, 35.8]], parties: "Israel / Syria (disputed)" },
+    { name: "Taiwan Strait", coords: [[25.5, 119.8], [24.5, 119.5], [23.5, 119.2], [22.5, 118.8]], parties: "Geopolitical flashpoint" }
+  ];
+
+  disputedBorders.forEach(border => {
+    const line = L.polyline(border.coords.map(c => [c[0], c[1]]), {
+      color: '#E8A840',
+      weight: 2,
+      dashArray: '8, 4',
+      opacity: 0.7,
+      interactive: true
+    }).addTo(map);
+
+    line.bindTooltip(
+      `<div class="tooltip-name">${border.name}</div><div class="tooltip-metric">Disputed — ${border.parties}</div>`,
+      { className: 'country-tooltip', sticky: true, direction: 'top' }
+    );
+  });
+}
+
+// ============================================================
+// MAP MOVE HANDLER
+// ============================================================
+function onMapMove() {
+  const zoom = map.getZoom();
+  const focusIndicator = document.getElementById('focus-indicator');
+
+  if (zoom > 4) {
+    const region = getVisibleRegion(map);
+    if (region) {
+      focusIndicator.textContent = 'Focusing on: ' + region;
+      focusIndicator.style.display = 'block';
+      highlightFeedByRegion(region);
+    } else {
+      focusIndicator.style.display = 'none';
+      clearFeedHighlights();
+    }
+  } else {
+    focusIndicator.style.display = 'none';
+    clearFeedHighlights();
+  }
+}
+
+function highlightFeedByRegion(region) {
+  const items = document.querySelectorAll('.feed-item');
+  items.forEach(item => {
+    const itemRegion = item.dataset.region || '';
+    if (itemRegion.includes(region) || region.includes(itemRegion.split('-')[0]?.trim())) {
+      item.classList.add('highlighted');
+    } else {
+      item.classList.remove('highlighted');
+    }
+  });
+}
+
+function clearFeedHighlights() {
+  document.querySelectorAll('.feed-item').forEach(i => i.classList.remove('highlighted'));
+}
+
+// ============================================================
+// SIDEBAR RENDERING
+// ============================================================
+function switchTab(tabName) {
+  document.querySelectorAll('.sidebar-tab').forEach(t => t.classList.remove('active'));
+  document.querySelectorAll('.tab-panel').forEach(p => p.classList.remove('active'));
+  document.querySelector(`.sidebar-tab[data-tab="${tabName}"]`)?.classList.add('active');
+  document.getElementById('panel-' + tabName)?.classList.add('active');
+
+  // Mobile expand
+  if (window.innerWidth <= 768) {
+    document.getElementById('sidebar').classList.add('expanded');
+  }
+}
+
+function toggleSidebar() {
+  document.getElementById('sidebar').classList.toggle('expanded');
+}
+
+// ========== Assistant Tab ==========
+function renderAssistantTab(alpha2) {
+  const container = document.getElementById('assistant-content');
+  const d = COUNTRY_DATA[alpha2];
+
+  if (!d) {
+    container.innerHTML = `
+      <div class="country-header">
+        <div class="country-flag">${getFlag(alpha2)}</div>
+        <div class="country-name-big">${alpha2 || 'Unknown'}</div>
+      </div>
+      <div class="briefing-label">ATLAS INTELLIGENCE BRIEFING</div>
+      <div class="limited-intel">
+        <div class="limited-intel-icon">&#128274;</div>
+        <div class="limited-intel-text">Limited intelligence available</div>
+        <div class="limited-intel-sub">Detailed briefings available for 60 major countries. This territory has limited coverage in the current intelligence database.</div>
+      </div>`;
+    return;
+  }
+
+  let html = `
+    <div class="country-header">
+      <div class="country-flag">${getFlag(alpha2)}</div>
+      <div class="country-name-big">${d.name}</div>
+    </div>
+    <div class="briefing-label">ATLAS INTELLIGENCE BRIEFING</div>
+
+    <div class="briefing-section">
+      <div class="briefing-section-title">Overview</div>
+      <div class="briefing-grid">
+        <div class="briefing-stat">
+          <div class="briefing-stat-label">Population</div>
+          <div class="briefing-stat-value">${formatPop(d.population)}</div>
+        </div>
+        <div class="briefing-stat">
+          <div class="briefing-stat-label">GDP</div>
+          <div class="briefing-stat-value">${formatGDP(d.gdp)}</div>
+        </div>
+        <div class="briefing-stat">
+          <div class="briefing-stat-label">GDP per Capita</div>
+          <div class="briefing-stat-value">$${d.gdpPerCapita.toLocaleString()}</div>
+        </div>
+        <div class="briefing-stat">
+          <div class="briefing-stat-label">Internet</div>
+          <div class="briefing-stat-value">${d.internet}%</div>
+        </div>
+      </div>
+      <div style="margin-top:10px;">
+        <div class="briefing-stat" style="display:block;">
+          <div class="briefing-stat-label">Political System</div>
+          <div class="briefing-stat-value" style="font-size:13px; font-weight:600;">${d.politicalSystem}</div>
+        </div>
+      </div>
+      ${d.leader ? `<div style="margin-top:8px;">
+        <div class="briefing-stat" style="display:block;">
+          <div class="briefing-stat-label">Leader</div>
+          <div class="briefing-stat-value" style="font-size:13px; font-weight:600;">${d.leader}</div>
+        </div>
+      </div>` : ''}
+    </div>
+
+    <div class="briefing-section">
+      <div class="briefing-section-title">Key Points</div>
+      <ul class="briefing-list">
+        ${d.keyIssues.map(i => `<li>${i}</li>`).join('')}
+      </ul>
+    </div>
+
+    <div class="briefing-section">
+      <div class="briefing-section-title">Implications</div>
+      <ul class="briefing-list">
+        ${d.implications.map(i => `<li>${i}</li>`).join('')}
+      </ul>
+    </div>
+
+    <div class="briefing-section">
+      <div class="briefing-section-title">Risk Assessment</div>
+      <span class="risk-badge ${d.riskLevel}">${d.riskLevel}</span>
+    </div>
+
+    <div class="briefing-section">
+      <div class="briefing-section-title">Alliances & Memberships</div>
+      <div class="alliance-tags">
+        ${d.alliances.map(a => `<span class="alliance-tag">${a}</span>`).join('')}
+      </div>
+    </div>
+
+    <div class="briefing-section">
+      <div class="briefing-section-title">Key Exports</div>
+      <div class="exports-text">${d.keyExports.join(', ')}</div>
+    </div>
+
+    <div class="chat-container">
+      <div class="chat-history" id="chat-history"></div>
+      <div class="chat-input-row">
+        <input type="text" class="chat-input" id="chat-input" placeholder="Ask ATLAS about ${d.name}..." onkeydown="if(event.key==='Enter')sendChat()">
+        <button class="chat-send" onclick="sendChat()">&rarr;</button>
+      </div>
+    </div>
+  `;
+  container.innerHTML = html;
+}
+
+function sendChat() {
+  const input = document.getElementById('chat-input');
+  if (!input) return;
+  const question = input.value.trim();
+  if (!question) return;
+  input.value = '';
+
+  chatHistory.push({ role: 'user', text: question });
+  chatHistory.push({ role: 'assistant', text: 'Connect an Anthropic API key for live AI analysis. For now, review the intelligence briefing above.' });
+
+  const historyEl = document.getElementById('chat-history');
+  if (historyEl) {
+    historyEl.innerHTML = chatHistory.map(m =>
+      `<div class="chat-bubble ${m.role}">${m.text}</div>`
+    ).join('');
+    historyEl.scrollTop = historyEl.scrollHeight;
+  }
+}
+
+// ========== Feed Tab ==========
+function renderFeedTab(filterCategories) {
+  const container = document.getElementById('feed-content');
+  let events = FEED_EVENTS;
+  if (filterCategories && filterCategories.length > 0) {
+    events = events.filter(e => filterCategories.includes(e.category));
+  }
+  container.innerHTML = events.map((e, i) => `
+    <div class="feed-item" data-region="${e.region}" data-countries="${(e.countries||[]).join(',')}" style="animation-delay: ${i * 0.05}s">
+      <div class="feed-meta">
+        <span class="feed-category ${e.category}">${e.category}</span>
+        <span class="feed-region">${e.region}</span>
+      </div>
+      <div class="feed-title">${e.title}</div>
+      <div class="feed-detail">${e.detail}</div>
+    </div>
+  `).join('');
+}
+
+// ========== Focus Tab ==========
+function renderFocusTab() {
+  const container = document.getElementById('focus-content');
+  const saved = localStorage.getItem('atlas_interests');
+
+  if (!saved) {
+    renderFocusSetup(container);
+  } else {
+    renderFocusActive(container, JSON.parse(saved));
+  }
+}
+
+function renderFocusSetup(container) {
+  const interests = Object.keys(INTEREST_CATEGORIES);
+  container.innerHTML = `
+    <div class="focus-setup">
+      <div class="focus-title">What intelligence matters most to you?</div>
+      <div class="focus-subtitle">Select your areas of interest to personalize your feed.</div>
+      ${interests.map((interest, i) => `
+        <div class="focus-option" onclick="this.classList.toggle('selected'); this.querySelector('input').checked = !this.querySelector('input').checked;">
+          <input type="checkbox" id="interest-${i}" value="${interest}">
+          <label for="interest-${i}">${interest}</label>
+        </div>
+      `).join('')}
+      <button class="focus-save" onclick="saveInterests()">SAVE INTERESTS</button>
+    </div>
+  `;
+}
+
+function renderFocusActive(container, interests) {
+  const categories = new Set();
+  interests.forEach(interest => {
+    (INTEREST_CATEGORIES[interest] || []).forEach(c => categories.add(c));
+  });
+
+  container.innerHTML = `
+    <div class="focus-active">
+      <div class="focus-watching">YOUR AGENT IS WATCHING:</div>
+      <div class="focus-tags">
+        ${interests.map(i => `<span class="focus-tag">${i}</span>`).join('')}
+      </div>
+      <button class="focus-edit-btn" onclick="editInterests()">Edit interests</button>
+      <div id="focus-feed"></div>
+    </div>
+  `;
+
+  // Render filtered feed
+  const filteredEvents = FEED_EVENTS.filter(e => categories.has(e.category));
+  const feedContainer = document.getElementById('focus-feed');
+  feedContainer.innerHTML = filteredEvents.map((e, i) => `
+    <div class="feed-item" data-region="${e.region}" style="animation-delay: ${i * 0.05}s">
+      <div class="feed-meta">
+        <span class="feed-category ${e.category}">${e.category}</span>
+        <span class="feed-region">${e.region}</span>
+      </div>
+      <div class="feed-title">${e.title}</div>
+      <div class="feed-detail">${e.detail}</div>
+    </div>
+  `).join('');
+
+  if (filteredEvents.length === 0) {
+    feedContainer.innerHTML = '<div style="text-align:center; color:var(--text-muted); padding:40px 0;">No matching events for your current interests.</div>';
+  }
+}
+
+function saveInterests() {
+  const checked = [...document.querySelectorAll('.focus-option input:checked')].map(el => el.value);
+  if (checked.length === 0) return;
+  localStorage.setItem('atlas_interests', JSON.stringify(checked));
+  renderFocusTab();
+}
+
+function editInterests() {
+  localStorage.removeItem('atlas_interests');
+  renderFocusTab();
+}
+
+// ============================================================
+// COLOR MODE CHANGE
+// ============================================================
+function changeColorMode(mode) {
+  currentMode = mode;
+  const config = COLOR_MODES[mode];
+  document.getElementById('legend-title').textContent = config.title;
+  document.getElementById('legend-bar').style.background = config.gradient;
+  document.getElementById('legend-min').textContent = config.min;
+  document.getElementById('legend-max').textContent = config.max;
+  document.getElementById('legend-source').textContent = config.source;
+
+  if (geoJsonLayer) {
+    geoJsonLayer.setStyle(featureStyle);
+    // Update tooltips
+    geoJsonLayer.eachLayer(layer => {
+      const numId = layer.feature?.id || layer.feature?.properties?.id;
+      const alpha2 = NUM_TO_ALPHA2[numId] || '';
+      const data = COUNTRY_DATA[alpha2];
+      const name = data ? data.name : (layer.feature?.properties?.name || 'Unknown');
+      const tooltipContent = `<div class="tooltip-name">${getFlag(alpha2)} ${name}</div><div class="tooltip-metric">${getMetricText(alpha2, currentMode)}</div>`;
+      layer.setTooltipContent(tooltipContent);
+    });
+  }
+}
+
+// ============================================================
+// SEARCH
+// ============================================================
+function initSearch() {
+  const input = document.getElementById('country-search');
+  const results = document.getElementById('search-results');
+
+  input.addEventListener('input', function () {
+    const query = this.value.toLowerCase().trim();
+    if (query.length < 2) {
+      results.style.display = 'none';
+      return;
+    }
+    // Search all known countries
+    const allCountries = [];
+    // From COUNTRY_DATA
+    Object.entries(COUNTRY_DATA).forEach(([code, data]) => {
+      allCountries.push({ code, name: data.name });
+    });
+    // From NUM_TO_ALPHA2 for non-data countries
+    if (geoJsonLayer) {
+      geoJsonLayer.eachLayer(layer => {
+        const numId = layer.feature?.id || layer.feature?.properties?.id;
+        const alpha2 = NUM_TO_ALPHA2[numId] || '';
+        if (alpha2 && !COUNTRY_DATA[alpha2]) {
+          const name = layer.feature?.properties?.name || alpha2;
+          if (!allCountries.find(c => c.code === alpha2)) {
+            allCountries.push({ code: alpha2, name });
+          }
+        }
+      });
+    }
+
+    const matches = allCountries.filter(c => c.name.toLowerCase().includes(query)).slice(0, 10);
+    if (matches.length === 0) {
+      results.style.display = 'none';
+      return;
+    }
+    results.innerHTML = matches.map(m =>
+      `<div class="search-item" data-code="${m.code}">${getFlag(m.code)} ${m.name}</div>`
+    ).join('');
+    results.style.display = 'block';
+
+    results.querySelectorAll('.search-item').forEach(item => {
+      item.addEventListener('click', function () {
+        const code = this.dataset.code;
+        results.style.display = 'none';
+        input.value = '';
+        flyToCountry(code);
+      });
+    });
+  });
+
+  document.addEventListener('click', function (e) {
+    if (!e.target.closest('#country-search') && !e.target.closest('#search-results')) {
+      results.style.display = 'none';
+    }
+  });
+}
+
+function flyToCountry(alpha2) {
+  if (!geoJsonLayer) return;
+  geoJsonLayer.eachLayer(layer => {
+    const numId = layer.feature?.id || layer.feature?.properties?.id;
+    const code = NUM_TO_ALPHA2[numId] || '';
+    if (code === alpha2) {
+      const data = COUNTRY_DATA[alpha2];
+      const name = data ? data.name : (layer.feature?.properties?.name || alpha2);
+      selectCountry(alpha2, name, layer);
+    }
+  });
+}
+
+// ============================================================
+// LOADING
+// ============================================================
+function hideLoading() {
+  setTimeout(() => {
+    document.getElementById('loading-overlay').classList.add('hidden');
+  }, 600);
+}
+
+// ============================================================
+// INITIALIZATION
+// ============================================================
+document.addEventListener('DOMContentLoaded', function () {
+  initMap();
+  initSearch();
+  renderFeedTab();
+  renderFocusTab();
+
+  // Color mode change
+  document.getElementById('color-mode-select').addEventListener('change', function () {
+    changeColorMode(this.value);
+  });
+
+  // Restore last country
+  const lastCountry = localStorage.getItem('atlas_lastCountry');
+  if (lastCountry && COUNTRY_DATA[lastCountry]) {
+    // We'll fly to it after the map loads — handled in the fetch callback delay
+    setTimeout(() => flyToCountry(lastCountry), 1500);
+  }
+
+  // Mobile drag for sidebar
+  if (window.innerWidth <= 768) {
+    const sidebar = document.getElementById('sidebar');
+    let startY = 0;
+    sidebar.addEventListener('touchstart', function (e) {
+      if (e.target.closest('.sidebar-content')) return;
+      startY = e.touches[0].clientY;
+    });
+    sidebar.addEventListener('touchmove', function (e) {
+      const diff = startY - e.touches[0].clientY;
+      if (diff > 30) sidebar.classList.add('expanded');
+      if (diff < -30) sidebar.classList.remove('expanded');
+    });
+  }
+});
+</script>
+</body>
+</html>
