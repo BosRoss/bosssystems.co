@@ -47,6 +47,7 @@ html, body { height: 100%; overflow: hidden; background: var(--bg); color: var(-
 #app { display: flex; height: 100vh; padding-top: 48px; }
 #map-wrap { flex: 0 0 60%; position: relative; }
 #map { width: 100%; height: 100%; background: var(--bg); }
+.leaflet-tile-pane { filter: brightness(0.75) contrast(1.1) saturate(0.8); }
 .leaflet-control-zoom a { background: var(--surface-2) !important; color: var(--text) !important; border-color: var(--border) !important; }
 .leaflet-control-zoom { border: none !important; box-shadow: none !important; }
 
@@ -142,6 +143,51 @@ html, body { height: 100%; overflow: hidden; background: var(--bg); color: var(-
 .calibration-item .cal-status.confirmed { background: rgba(64,192,128,0.15); color: var(--success); }
 .calibration-item .cal-status.partial { background: rgba(232,168,64,0.15); color: var(--warning); }
 
+/* Assessment cards */
+.assess-card { padding: 14px; background: var(--surface-2); border: 1px solid var(--border); border-radius: 8px; margin-bottom: 12px; border-left: 3px solid var(--primary); }
+.assess-card .assess-header { display: flex; align-items: flex-start; justify-content: space-between; gap: 10px; margin-bottom: 8px; }
+.assess-card .assess-title { font-size: 14px; font-weight: 700; line-height: 1.4; flex: 1; }
+.assess-card .assess-cat { font-size: 9px; font-weight: 700; letter-spacing: 1px; padding: 3px 8px; border-radius: 10px; text-transform: uppercase; white-space: nowrap; flex-shrink: 0; }
+.assess-cat.cat-geopolitical { background: rgba(224,72,72,0.15); color: var(--danger); }
+.assess-cat.cat-economic { background: rgba(232,168,64,0.15); color: var(--warning); }
+.assess-cat.cat-environmental { background: rgba(64,192,128,0.15); color: var(--success); }
+.assess-cat.cat-technology { background: rgba(75,146,219,0.15); color: var(--primary); }
+.assess-cat.cat-security { background: rgba(160,80,200,0.15); color: #C080E0; }
+.assess-card .assess-confidence { margin-bottom: 10px; }
+.assess-card .assess-conf-bar { width: 100%; height: 5px; background: var(--surface-3); border-radius: 3px; overflow: hidden; margin-top: 4px; }
+.assess-card .assess-conf-fill { height: 100%; border-radius: 3px; }
+.assess-card .assess-conf-label { font-size: 10px; color: var(--text-muted); display: flex; justify-content: space-between; }
+.assess-card .assess-conf-label b { color: var(--text); }
+.assess-card .assess-analysis { font-size: 12px; line-height: 1.6; color: var(--text-muted); margin-bottom: 10px; white-space: pre-wrap; }
+.assess-card .assess-implications { margin-bottom: 10px; padding: 8px 10px; background: var(--surface-3); border-radius: 6px; }
+.assess-card .assess-implications .impl-label { font-size: 9px; font-weight: 700; letter-spacing: 1px; color: var(--primary); margin-bottom: 4px; }
+.assess-card .assess-implications li { font-size: 11px; color: var(--text-muted); line-height: 1.5; margin-left: 14px; margin-bottom: 2px; }
+.assess-card .assess-meta { display: flex; flex-wrap: wrap; gap: 8px; align-items: center; margin-bottom: 8px; }
+.assess-card .assess-horizon { font-size: 10px; font-weight: 700; padding: 2px 8px; border-radius: 10px; background: rgba(75,146,219,0.15); color: var(--primary); }
+.assess-card .assess-sources { font-size: 10px; color: var(--text-dim); }
+.assess-card .assess-biz { margin-top: 8px; padding: 8px 10px; background: rgba(64,192,128,0.06); border: 1px solid rgba(64,192,128,0.2); border-radius: 6px; font-size: 11px; line-height: 1.5; color: var(--text-muted); }
+.assess-card .assess-biz .biz-label { font-size: 9px; font-weight: 700; letter-spacing: 1px; color: var(--success); margin-bottom: 3px; }
+
+/* Opportunity cards */
+.opp-card { padding: 14px; background: var(--surface-2); border: 1px solid var(--border); border-radius: 8px; margin-bottom: 12px; border-left: 3px solid var(--success); }
+.opp-card .opp-header { display: flex; align-items: flex-start; justify-content: space-between; gap: 10px; margin-bottom: 6px; }
+.opp-card .opp-title { font-size: 13px; font-weight: 700; line-height: 1.4; flex: 1; }
+.opp-card .opp-urgency { font-size: 9px; font-weight: 700; letter-spacing: 1px; padding: 3px 8px; border-radius: 10px; text-transform: uppercase; white-space: nowrap; flex-shrink: 0; }
+.opp-urgency.urg-immediate { background: rgba(224,72,72,0.15); color: var(--danger); }
+.opp-urgency.urg-this_week { background: rgba(232,168,64,0.15); color: var(--warning); }
+.opp-urgency.urg-this_month { background: rgba(255,215,0,0.15); color: #E8D040; }
+.opp-urgency.urg-emerging { background: rgba(75,146,219,0.15); color: var(--primary); }
+.opp-card .opp-cat { font-size: 9px; font-weight: 700; letter-spacing: 1px; color: var(--text-dim); text-transform: uppercase; margin-bottom: 6px; }
+.opp-card .opp-region { font-size: 11px; color: var(--text-muted); margin-bottom: 8px; }
+.opp-card .opp-revenue { font-size: 16px; font-weight: 800; color: var(--success); margin-bottom: 8px; }
+.opp-card .opp-conf { display: flex; align-items: center; gap: 8px; margin-bottom: 10px; }
+.opp-card .opp-conf-bar { flex: 1; height: 4px; background: var(--surface-3); border-radius: 2px; overflow: hidden; }
+.opp-card .opp-conf-fill { height: 100%; border-radius: 2px; }
+.opp-card .opp-conf-pct { font-size: 11px; font-weight: 700; color: var(--text-muted); min-width: 36px; text-align: right; }
+.opp-card .opp-action { padding: 8px 10px; background: rgba(64,192,128,0.06); border: 1px solid rgba(64,192,128,0.2); border-radius: 6px; font-size: 12px; line-height: 1.5; color: var(--text); margin-bottom: 8px; }
+.opp-card .opp-action .act-label { font-size: 9px; font-weight: 700; letter-spacing: 1px; color: var(--success); margin-bottom: 3px; }
+.opp-card .opp-evidence { font-size: 10px; color: var(--text-dim); }
+
 .section-title { font-size: 10px; font-weight: 700; letter-spacing: 2px; color: var(--primary); margin-bottom: 10px; text-transform: uppercase; }
 .empty-state { text-align: center; padding: 30px; color: var(--text-muted); font-size: 13px; line-height: 1.6; }
 
@@ -194,6 +240,8 @@ html, body { height: 100%; overflow: hidden; background: var(--bg); color: var(-
       <button class="tab active" data-tab="anomalies">ANOMALIES</button>
       <button class="tab" data-tab="claims">CLAIMS</button>
       <button class="tab" data-tab="flights">FLIGHTS</button>
+      <button class="tab" data-tab="assess">ASSESS</button>
+      <button class="tab" data-tab="opps">OPPS</button>
       <button class="tab" data-tab="predictions">MARKETS</button>
       <button class="tab" data-tab="feed">FEED</button>
       <button class="tab" data-tab="calibration">HISTORY</button>
@@ -202,6 +250,8 @@ html, body { height: 100%; overflow: hidden; background: var(--bg); color: var(-
       <div class="panel active" id="panel-anomalies"></div>
       <div class="panel" id="panel-claims"></div>
       <div class="panel" id="panel-flights"></div>
+      <div class="panel" id="panel-assess"></div>
+      <div class="panel" id="panel-opps"></div>
       <div class="panel" id="panel-predictions"></div>
       <div class="panel" id="panel-feed"></div>
       <div class="panel" id="panel-calibration"></div>
@@ -341,6 +391,8 @@ html, body { height: 100%; overflow: hidden; background: var(--bg); color: var(-
     renderAnomalies();
     renderClaims();
     renderFlights();
+    renderAssessments();
+    renderOpportunities();
     renderPredictions();
     renderFeed();
     renderCalibration();
@@ -364,6 +416,12 @@ html, body { height: 100%; overflow: hidden; background: var(--bg); color: var(-
     const flightCount = (data.adsb || []).length;
     const flightTab = document.querySelector('[data-tab="flights"]');
     if (flightCount > 0) flightTab.innerHTML = 'FLIGHTS<span class="tab-count" style="background:rgba(232,168,64,0.2);color:var(--warning)">' + flightCount + '</span>';
+    const assessCount = (data.assessments || []).length;
+    const assessTab = document.querySelector('[data-tab="assess"]');
+    if (assessCount > 0) assessTab.innerHTML = 'ASSESS<span class="tab-count" style="background:rgba(75,146,219,0.2);color:var(--primary)">' + assessCount + '</span>';
+    const oppsCount = (data.opportunities || []).length;
+    const oppsTab = document.querySelector('[data-tab="opps"]');
+    if (oppsCount > 0) oppsTab.innerHTML = 'OPPS<span class="tab-count" style="background:rgba(64,192,128,0.2);color:var(--success)">' + oppsCount + '</span>';
   }
 
   function renderAnomalyBanner() {
@@ -690,6 +748,149 @@ html, body { height: 100%; overflow: hidden; background: var(--bg); color: var(-
         }
       });
     });
+  }
+
+  function renderAssessments() {
+    const panel = document.getElementById('panel-assess');
+    const assessments = data.assessments || [];
+    if (!assessments.length) {
+      panel.innerHTML = '<div class="section-title">ATLAS ASSESSMENTS</div><div class="empty-state">No assessments generated this scan.<br><br>Assessments are ATLAS\'s own analysis of global events — synthesized from all ingested sources.<br><br>Run at <b>ACTIVE</b> or <b>SURGE</b> power for full cross-source analysis and assessment generation.<br><br><code style="font-size:11px;color:var(--text-dim)">python3 scripts/atlas.py --power ACTIVE</code></div>';
+      return;
+    }
+    let html = '<div class="section-title">ATLAS ASSESSMENTS (' + assessments.length + ')</div>';
+    html += '<p style="font-size:11px;color:var(--text-dim);margin-bottom:12px;line-height:1.4">ATLAS-generated analysis synthesized from multiple intelligence sources. These are not raw feeds — they are assessed conclusions with confidence levels.</p>';
+
+    for (const a of assessments) {
+      const cat = (a.category || 'unknown').toLowerCase();
+      const conf = a.confidence || 0;
+      const confColor = conf >= 80 ? 'var(--success)' : conf >= 60 ? 'var(--primary)' : conf >= 40 ? 'var(--warning)' : 'var(--danger)';
+      const horizonLabel = {'24h':'24 HOURS','7d':'7 DAYS','30d':'30 DAYS','90d':'90 DAYS'}[a.time_horizon] || (a.time_horizon || '').toUpperCase();
+      const sources = a.sources_used || [];
+
+      html += '<div class="assess-card">';
+
+      // Header: title + category badge
+      html += '<div class="assess-header">';
+      html += '<div class="assess-title">' + esc(a.title) + '</div>';
+      html += '<span class="assess-cat cat-' + cat + '">' + esc(a.category || 'unknown') + '</span>';
+      html += '</div>';
+
+      // Confidence bar
+      html += '<div class="assess-confidence">';
+      html += '<div class="assess-conf-label"><span>Confidence</span><b>' + conf + '%</b></div>';
+      html += '<div class="assess-conf-bar"><div class="assess-conf-fill" style="width:' + Math.min(conf, 100) + '%;background:' + confColor + '"></div></div>';
+      html += '</div>';
+
+      // Analysis text
+      html += '<div class="assess-analysis">' + esc(a.analysis) + '</div>';
+
+      // Implications
+      const implications = a.implications || [];
+      if (implications.length) {
+        html += '<div class="assess-implications">';
+        html += '<div class="impl-label">IMPLICATIONS</div>';
+        html += '<ul style="margin:0;padding:0">';
+        for (const imp of implications) {
+          html += '<li>' + esc(imp) + '</li>';
+        }
+        html += '</ul></div>';
+      }
+
+      // Meta row: time horizon + sources
+      html += '<div class="assess-meta">';
+      if (horizonLabel) {
+        html += '<span class="assess-horizon">' + horizonLabel + '</span>';
+      }
+      if (sources.length) {
+        html += '<span class="assess-sources">Sources: ' + sources.map(s => esc(s)).join(', ') + '</span>';
+      }
+      html += '</div>';
+
+      // Business angle
+      if (a.business_angle) {
+        html += '<div class="assess-biz">';
+        html += '<div class="biz-label">BUSINESS ANGLE</div>';
+        html += esc(a.business_angle);
+        html += '</div>';
+      }
+
+      html += '</div>';
+    }
+    panel.innerHTML = html;
+  }
+
+  function renderOpportunities() {
+    const panel = document.getElementById('panel-opps');
+    const opportunities = data.opportunities || [];
+    if (!opportunities.length) {
+      panel.innerHTML = '<div class="section-title">BUSINESS OPPORTUNITIES</div><div class="empty-state">No opportunities detected this scan.<br><br>ATLAS identifies business opportunities from intelligence data — weather demand, market gaps, competitor failures, and emerging trends.<br><br>Opportunities appear when cross-source analysis reveals actionable business signals.<br><br><code style="font-size:11px;color:var(--text-dim)">python3 scripts/atlas.py --power ACTIVE</code></div>';
+      return;
+    }
+
+    // Sort by urgency priority: immediate > this_week > this_month > emerging
+    const urgencyOrder = {'immediate': 0, 'this_week': 1, 'this_month': 2, 'emerging': 3};
+    const sorted = [...opportunities].sort((a, b) => {
+      const ua = urgencyOrder[a.urgency] !== undefined ? urgencyOrder[a.urgency] : 4;
+      const ub = urgencyOrder[b.urgency] !== undefined ? urgencyOrder[b.urgency] : 4;
+      return ua - ub;
+    });
+
+    let html = '<div class="section-title">BUSINESS OPPORTUNITIES (' + sorted.length + ')</div>';
+    html += '<p style="font-size:11px;color:var(--text-dim);margin-bottom:12px;line-height:1.4">Actionable opportunities identified from intelligence data. Sorted by urgency — red means act now.</p>';
+
+    for (const o of sorted) {
+      const urgency = (o.urgency || 'emerging').toLowerCase();
+      const urgencyLabel = {'immediate':'IMMEDIATE','this_week':'THIS WEEK','this_month':'THIS MONTH','emerging':'EMERGING'}[urgency] || urgency.toUpperCase();
+      const catLabel = (o.category || '').replace(/_/g, ' ').toUpperCase();
+      const conf = o.confidence || 0;
+      const confColor = conf >= 80 ? 'var(--success)' : conf >= 60 ? 'var(--primary)' : conf >= 40 ? 'var(--warning)' : 'var(--danger)';
+      const evidence = o.evidence || [];
+
+      html += '<div class="opp-card">';
+
+      // Header: opportunity description + urgency badge
+      html += '<div class="opp-header">';
+      html += '<div class="opp-title">' + esc(o.opportunity) + '</div>';
+      html += '<span class="opp-urgency urg-' + urgency + '">' + urgencyLabel + '</span>';
+      html += '</div>';
+
+      // Category
+      if (catLabel) {
+        html += '<div class="opp-cat">' + esc(catLabel) + '</div>';
+      }
+
+      // Region
+      if (o.region) {
+        html += '<div class="opp-region">Region: <b style="color:var(--text)">' + esc(o.region) + '</b></div>';
+      }
+
+      // Revenue potential
+      if (o.potential_revenue) {
+        html += '<div class="opp-revenue">' + esc(o.potential_revenue) + '</div>';
+      }
+
+      // Confidence bar
+      html += '<div class="opp-conf">';
+      html += '<div class="opp-conf-bar"><div class="opp-conf-fill" style="width:' + Math.min(conf, 100) + '%;background:' + confColor + '"></div></div>';
+      html += '<span class="opp-conf-pct">' + conf + '%</span>';
+      html += '</div>';
+
+      // Action to take
+      if (o.action) {
+        html += '<div class="opp-action">';
+        html += '<div class="act-label">ACTION</div>';
+        html += esc(o.action);
+        html += '</div>';
+      }
+
+      // Evidence sources
+      if (evidence.length) {
+        html += '<div class="opp-evidence">Evidence: ' + evidence.map(e => esc(e)).join(' | ') + '</div>';
+      }
+
+      html += '</div>';
+    }
+    panel.innerHTML = html;
   }
 
   function flightHTML(f, key) {
