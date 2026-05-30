@@ -920,9 +920,33 @@ html, body { height: 100%; overflow: hidden; background: var(--bg); color: var(-
       // Analysis text
       html += '<div class="assess-analysis">' + esc(a.analysis) + '</div>';
 
-      // Implications
+      // Hypotheses (new fused intelligence)
+      const hypotheses = a.hypotheses || [];
+      if (hypotheses.length) {
+        html += '<div class="assess-implications" style="border-left:2px solid var(--primary);padding-left:10px;margin:8px 0">';
+        html += '<div class="impl-label" style="color:var(--primary)">HYPOTHESES</div>';
+        html += '<ul style="margin:0;padding:0">';
+        for (const h of hypotheses) {
+          html += '<li style="margin-bottom:4px">' + esc(h) + '</li>';
+        }
+        html += '</ul></div>';
+      }
+
+      // Watch For (disambiguating indicators)
+      const watchFor = a.watch_for || [];
+      if (watchFor.length) {
+        html += '<div class="assess-implications" style="border-left:2px solid var(--warning);padding-left:10px;margin:8px 0">';
+        html += '<div class="impl-label" style="color:var(--warning)">WATCH FOR</div>';
+        html += '<ul style="margin:0;padding:0">';
+        for (const w of watchFor) {
+          html += '<li style="margin-bottom:3px">' + esc(w) + '</li>';
+        }
+        html += '</ul></div>';
+      }
+
+      // Legacy implications (backward compat)
       const implications = a.implications || [];
-      if (implications.length) {
+      if (implications.length && !hypotheses.length) {
         html += '<div class="assess-implications">';
         html += '<div class="impl-label">IMPLICATIONS</div>';
         html += '<ul style="margin:0;padding:0">';
