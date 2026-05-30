@@ -43,6 +43,11 @@ html, body { height: 100%; overflow: hidden; background: var(--bg); color: var(-
 .topbar-stat { font-size: 11px; color: var(--text-muted); }
 .topbar-stat b { color: var(--text); }
 #scan-time { font-size: 10px; color: var(--text-dim); }
+#scan-btn { font-size: 9px; font-weight: 700; letter-spacing: 1px; padding: 5px 14px; border: 1px solid var(--primary-dark); border-radius: 6px; cursor: pointer; background: rgba(75,146,219,0.15); color: var(--primary); font-family: var(--font); transition: all 0.2s; }
+#scan-btn:hover { background: rgba(75,146,219,0.3); border-color: var(--primary); }
+#scan-btn.scanning { background: rgba(232,168,64,0.15); color: var(--warning); border-color: rgba(232,168,64,0.4); }
+@keyframes scan-pulse { 0%, 100% { opacity: 1; } 50% { opacity: 0.5; } }
+#scan-btn.scanning { animation: scan-pulse 1.2s infinite; }
 
 #power-selector { display: flex; gap: 2px; background: var(--surface-2); border-radius: 8px; padding: 2px; border: 1px solid var(--border); }
 .pwr-btn { font-size: 9px; font-weight: 700; letter-spacing: 1px; padding: 4px 10px; border: none; border-radius: 6px; cursor: pointer; background: transparent; color: var(--text-dim); font-family: var(--font); transition: all 0.2s; }
@@ -265,6 +270,7 @@ html, body { height: 100%; overflow: hidden; background: var(--bg); color: var(-
     <span class="topbar-stat"><b id="stat-sources">0</b> sources</span>
     <span class="topbar-stat"><b id="stat-points">0</b> pts</span>
     <span class="topbar-stat"><b id="stat-anomalies">0</b> anomalies</span>
+    <button id="scan-btn" title="Trigger manual intelligence scan">SCAN</button>
     <span id="scan-time"></span>
   </div>
 </div>
@@ -284,6 +290,7 @@ html, body { height: 100%; overflow: hidden; background: var(--bg); color: var(-
       <div class="legend-row"><div class="legend-dot" style="background:#E04848"></div> Earthquakes</div>
       <div class="legend-row"><div class="legend-dot" style="background:#FF6600"></div> NASA Events</div>
       <div class="legend-row"><div class="legend-dot" style="background:#40E0D0"></div> Radiation</div>
+      <div class="legend-row"><div class="legend-dot" style="background:#FF4500"></div> Wildfires</div>
       <div class="legend-row"><div class="legend-dot" style="background:#FFD700"></div> ISS</div>
       <div class="legend-row"><div class="legend-dot" style="background:#FF4444;border:2px dashed #FF4444;background:transparent"></div> Anomaly Zone</div>
     </div>
@@ -1186,7 +1193,10 @@ html, body { height: 100%; overflow: hidden; background: var(--bg); color: var(-
     const reddit = (data.reddit || []).slice(0, 15);
     const rss = (data.rss || []).slice(0, 10);
     const hn = (data.hackernews || []).slice(0, 10);
-    const all = [...gdelt, ...reddit, ...rss, ...hn].slice(0, 50);
+    const fires = (data.fires || []).map(f => ({...f, source: 'fire', category: 'wildfire'})).slice(0, 5);
+    const volcanoes = (data.volcanoes || []).map(v => ({...v, source: 'volcano'})).slice(0, 5);
+    const cisa = (data.cisa_kev || []).map(c => ({title: c.vulnerability + ' — ' + c.vendor + ' ' + c.product, source: 'cisa_kev', date: c.date_added, category: c.known_ransomware === 'Known' ? 'ransomware' : 'vulnerability'})).slice(0, 5);
+    const all = [...gdelt, ...reddit, ...rss, ...hn, ...fires, ...volcanoes, ...cisa].slice(0, 60);
     if (!all.length) {
       panel.innerHTML = '<div class="section-title">INTELLIGENCE FEED</div><div class="empty-state">No feed data.</div>';
       return;
@@ -1409,12 +1419,69 @@ html, body { height: 100%; overflow: hidden; background: var(--bg); color: var(-
       issMarker.bindTooltip('<b>ISS</b><br>International Space Station<br>' + iss.latitude.toFixed(2) + ', ' + iss.longitude.toFixed(2), {className: 'dark-tooltip'});
       issMarker.addTo(map);
     }
+
+    // Active fires
+    for (const f of data.fires || []) {
+      if (!f.coordinates || f.coordinates.length < 2) continue;
+      const m = L.circleMarker([f.coordinates[1], f.coordinates[0]], {
+        radius: 5, color: '#FF4500', fillColor: '#FF4500', fillOpacity: 0.7, weight: 1,
+      });
+      m.bindTooltip('<b>FIRE</b><br>' + esc(f.title || ''), {className: 'dark-tooltip'});
+      m.addTo(map);
+    }
   }
 
   function esc(s) {
     if (!s) return '';
     return String(s).replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;');
   }
+
+  // Manual scan trigger via ntfy
+  document.getElementById('scan-btn').addEventListener('click', async function() {
+    const btn = this;
+    if (btn.classList.contains('scanning')) return;
+    btn.classList.add('scanning');
+    btn.textContent = 'SCANNING...';
+    const oldGenerated = data ? data.generated : null;
+    try {
+      await fetch('https://ntfy.hostux.net/atlas-scan-trigger', {
+        method: 'POST',
+        body: 'Manual scan from dashboard',
+      });
+      btn.textContent = 'TRIGGERED';
+      // Poll for new data every 20s for up to 3 minutes
+      let polls = 0;
+      const poller = setInterval(async () => {
+        polls++;
+        if (polls > 9) {
+          clearInterval(poller);
+          btn.classList.remove('scanning');
+          btn.textContent = 'SCAN';
+          return;
+        }
+        try {
+          const r = await fetch(DATA_URL + '?t=' + Date.now());
+          if (r.ok) {
+            const fresh = await r.json();
+            if (fresh.generated && fresh.generated !== oldGenerated) {
+              data = fresh;
+              render();
+              clearInterval(poller);
+              btn.classList.remove('scanning');
+              btn.textContent = 'DONE';
+              setTimeout(() => { btn.textContent = 'SCAN'; }, 3000);
+            }
+          }
+        } catch(e) {}
+      }, 20000);
+    } catch(e) {
+      btn.textContent = 'FAILED';
+      setTimeout(() => {
+        btn.classList.remove('scanning');
+        btn.textContent = 'SCAN';
+      }, 3000);
+    }
+  });
 
   loadData();
 })();
