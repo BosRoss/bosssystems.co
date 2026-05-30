@@ -291,6 +291,7 @@ html, body { height: 100%; overflow: hidden; background: var(--bg); color: var(-
       <div class="legend-row"><div class="legend-dot" style="background:#FF6600"></div> NASA Events</div>
       <div class="legend-row"><div class="legend-dot" style="background:#40E0D0"></div> Radiation</div>
       <div class="legend-row"><div class="legend-dot" style="background:#FF4500"></div> Wildfires</div>
+      <div class="legend-row"><div class="legend-dot" style="background:#FF8C00"></div> GDACS Alerts</div>
       <div class="legend-row"><div class="legend-dot" style="background:#FFD700"></div> ISS</div>
       <div class="legend-row"><div class="legend-dot" style="background:#FF4444;border:2px dashed #FF4444;background:transparent"></div> Anomaly Zone</div>
     </div>
@@ -1197,11 +1198,12 @@ html, body { height: 100%; overflow: hidden; background: var(--bg); color: var(-
     const cisa = (data.cisa_kev || []).map(c => ({title: c.vulnerability + ' — ' + c.vendor + ' ' + c.product, source: 'cisa_kev', date: c.date_added, tier: 'CYBER', category: c.known_ransomware === 'Known' ? 'ransomware' : 'vulnerability'})).slice(0, 5);
     const fires = (data.fires || []).map(f => ({...f, source: 'fire', tier: 'PHYSICAL', category: 'wildfire'})).slice(0, 5);
     const volcanoes = (data.volcanoes || []).map(v => ({...v, source: 'volcano', tier: 'PHYSICAL'})).slice(0, 5);
+    const gdacsItems = (data.gdacs || []).filter(g => g.alert_level === 'Orange' || g.alert_level === 'Red').map(g => ({title: g.name, source: 'gdacs', tier: 'DISASTER', category: g.event_type, date: g.date, alert_level: g.alert_level})).slice(0, 10);
     // TIER 2: Confirmation (mainstream news, Reddit, HN)
     const reddit = (data.reddit || []).slice(0, 10);
     const rss = (data.rss || []).map(r => ({...r, tier: 'NEWS'})).slice(0, 8);
     const hn = (data.hackernews || []).slice(0, 5);
-    const all = [...tt, ...official, ...gdelt, ...cisa, ...fires, ...volcanoes, ...reddit, ...rss, ...hn].slice(0, 80);
+    const all = [...tt, ...official, ...gdacsItems, ...gdelt, ...cisa, ...fires, ...volcanoes, ...reddit, ...rss, ...hn].slice(0, 80);
     if (!all.length) {
       panel.innerHTML = '<div class="section-title">INTELLIGENCE FEED</div><div class="empty-state">No feed data.</div>';
       return;
@@ -1217,6 +1219,7 @@ html, body { height: 100%; overflow: hidden; background: var(--bg); color: var(-
       const tierBadge = tier === 'ANALYSIS' ? '<span style="color:var(--primary);font-size:9px;font-weight:700;margin-right:4px">ANALYSIS</span>'
         : tier === 'OFFICIAL' ? '<span style="color:var(--warning);font-size:9px;font-weight:700;margin-right:4px">OFFICIAL</span>'
         : tier === 'CYBER' ? '<span style="color:var(--danger);font-size:9px;font-weight:700;margin-right:4px">CYBER</span>'
+        : tier === 'DISASTER' ? '<span style="color:#FF8C00;font-size:9px;font-weight:700;margin-right:4px">DISASTER</span>'
         : tier === 'NEWS' ? '<span style="color:var(--text-dim);font-size:9px;font-weight:700;margin-right:4px">NEWS</span>'
         : '';
       html += '<div class="feed-item">';
@@ -1439,6 +1442,24 @@ html, body { height: 100%; overflow: hidden; background: var(--bg); color: var(-
         radius: 5, color: '#FF4500', fillColor: '#FF4500', fillOpacity: 0.7, weight: 1,
       });
       m.bindTooltip('<b>FIRE</b><br>' + esc(f.title || ''), {className: 'dark-tooltip'});
+      m.addTo(map);
+    }
+
+    // GDACS disaster alerts
+    const gdacsColors = {Red: '#FF0000', Orange: '#FF8C00', Green: '#32CD32'};
+    const gdacsLabels = {EQ: 'EARTHQUAKE', TC: 'CYCLONE', FL: 'FLOOD', VO: 'VOLCANO', DR: 'DROUGHT', WF: 'WILDFIRE'};
+    for (const g of data.gdacs || []) {
+      const coords = g.coordinates;
+      if (!coords || coords.length < 2) continue;
+      const alert = g.alert_level || 'Green';
+      const col = gdacsColors[alert] || '#32CD32';
+      const rad = alert === 'Red' ? 10 : alert === 'Orange' ? 8 : 5;
+      const m = L.circleMarker([coords[1], coords[0]], {
+        radius: rad, color: col, fillColor: col, fillOpacity: alert === 'Green' ? 0.3 : 0.6,
+        weight: alert === 'Red' ? 2 : 1, dashArray: alert !== 'Green' ? '' : '3,3',
+      });
+      const label = gdacsLabels[g.event_type] || g.event_type;
+      m.bindTooltip('<b>GDACS ' + alert.toUpperCase() + '</b><br>' + esc(label) + ': ' + esc(g.name || '') + '<br>' + esc(g.severity_text || ''), {className: 'dark-tooltip'});
       m.addTo(map);
     }
   }
