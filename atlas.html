@@ -44,6 +44,15 @@ html, body { height: 100%; overflow: hidden; background: var(--bg); color: var(-
 .topbar-stat b { color: var(--text); }
 #scan-time { font-size: 10px; color: var(--text-dim); }
 
+#power-selector { display: flex; gap: 2px; background: var(--surface-2); border-radius: 8px; padding: 2px; border: 1px solid var(--border); }
+.pwr-btn { font-size: 9px; font-weight: 700; letter-spacing: 1px; padding: 4px 10px; border: none; border-radius: 6px; cursor: pointer; background: transparent; color: var(--text-dim); font-family: var(--font); transition: all 0.2s; }
+.pwr-btn:hover { color: var(--text-muted); background: var(--surface-3); }
+.pwr-btn.active[data-power="SLEEP"] { background: rgba(106,122,144,0.2); color: var(--text-muted); }
+.pwr-btn.active[data-power="IDLE"] { background: rgba(64,192,128,0.2); color: var(--success); }
+.pwr-btn.active[data-power="ACTIVE"] { background: rgba(232,168,64,0.2); color: var(--warning); }
+.pwr-btn.active[data-power="SURGE"] { background: rgba(224,72,72,0.2); color: var(--danger); }
+#power-status { font-size: 9px; color: var(--text-dim); margin-left: 4px; display: none; }
+
 #app { display: flex; height: 100vh; padding-top: 48px; }
 #map-wrap { flex: 0 0 60%; position: relative; }
 #map { width: 100%; height: 100%; background: var(--bg); }
@@ -205,8 +214,13 @@ html, body { height: 100%; overflow: hidden; background: var(--bg); color: var(-
 <div id="loading"><h1>ATLAS</h1><p>INITIALIZING INTELLIGENCE ENGINE</p></div>
 
 <div id="topbar">
-  <div class="logo">ATLAS<span>v2</span></div>
-  <div id="power-badge" class="power-SLEEP">SLEEP</div>
+  <div class="logo">ATLAS<span>v3</span></div>
+  <div id="power-selector">
+    <button class="pwr-btn" data-power="SLEEP" title="Every 6 hours — core sources only">SLEEP</button>
+    <button class="pwr-btn" data-power="IDLE" title="Every 2 hours — full 16-source sweep">IDLE</button>
+    <button class="pwr-btn" data-power="ACTIVE" title="Every 30 min — all sources + ADS-B + deep analysis">ACTIVE</button>
+    <button class="pwr-btn" data-power="SURGE" title="Every 10 min — maximum depth, continuous">SURGE</button>
+  </div>
   <div class="topbar-right">
     <span class="topbar-stat"><b id="stat-sources">0</b> sources</span>
     <span class="topbar-stat"><b id="stat-points">0</b> pts</span>
@@ -404,9 +418,10 @@ html, body { height: 100%; overflow: hidden; background: var(--bg); color: var(-
     const anomCount = (data.anomalies || []).length;
     document.getElementById('stat-anomalies').textContent = anomCount;
     const power = data.power_level || 'SLEEP';
-    const badge = document.getElementById('power-badge');
-    badge.textContent = power;
-    badge.className = 'power-' + power;
+    // Set active power button
+    document.querySelectorAll('.pwr-btn').forEach(btn => {
+      btn.classList.toggle('active', btn.dataset.power === power);
+    });
     if (data.generated) {
       document.getElementById('scan-time').textContent = new Date(data.generated).toLocaleString();
     }
@@ -423,6 +438,27 @@ html, body { height: 100%; overflow: hidden; background: var(--bg); color: var(-
     const oppsTab = document.querySelector('[data-tab="opps"]');
     if (oppsCount > 0) oppsTab.innerHTML = 'OPPS<span class="tab-count" style="background:rgba(64,192,128,0.2);color:var(--success)">' + oppsCount + '</span>';
   }
+
+  // Power level selector — sends ntfy to change power
+  document.querySelectorAll('.pwr-btn').forEach(btn => {
+    btn.addEventListener('click', () => {
+      const level = btn.dataset.power;
+      document.querySelectorAll('.pwr-btn').forEach(b => b.classList.remove('active'));
+      btn.classList.add('active');
+      // Send power change to ntfy for daemon pickup
+      fetch('https://ntfy.hostux.net/bossai-agent-tasks', {
+        method: 'POST',
+        body: JSON.stringify({task: 'python3 scripts/atlas_power.py ' + level + ' && python3 scripts/atlas.py --scan-and-deploy', impact_dollars: 0, irreversible: false, source: 'atlas-dashboard'}),
+        headers: {'Title': 'ATLAS: Power → ' + level, 'Priority': level === 'SURGE' ? 'urgent' : 'default'}
+      }).then(() => {
+        btn.style.outline = '2px solid var(--success)';
+        setTimeout(() => { btn.style.outline = 'none'; }, 1500);
+      }).catch(() => {
+        btn.style.outline = '2px solid var(--danger)';
+        setTimeout(() => { btn.style.outline = 'none'; }, 1500);
+      });
+    });
+  });
 
   function renderAnomalyBanner() {
     const banner = document.getElementById('anomaly-banner');
