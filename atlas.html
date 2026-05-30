@@ -84,8 +84,12 @@ html, body { height: 100%; overflow: hidden; background: var(--bg); color: var(-
 .legend-dot { width: 8px; height: 8px; border-radius: 50%; flex-shrink: 0; }
 
 #sidebar { flex: 1; display: flex; flex-direction: column; background: var(--surface); border-left: 1px solid var(--border); overflow: hidden; min-width: 0; }
-.tabs { display: flex; border-bottom: 1px solid var(--border); flex-shrink: 0; }
-.tab { flex: 1; padding: 10px 4px; font-size: 10px; font-weight: 700; letter-spacing: 1px; text-align: center; background: none; border: none; color: var(--text-muted); cursor: pointer; border-bottom: 2px solid transparent; font-family: var(--font); white-space: nowrap; transition: color 0.2s; }
+.tabs-wrap { position: relative; flex-shrink: 0; }
+.tabs-wrap::after { content: ''; position: absolute; top: 0; right: 0; bottom: 1px; width: 32px; background: linear-gradient(to right, transparent, var(--surface)); pointer-events: none; z-index: 1; transition: opacity 0.2s; }
+.tabs-wrap.scrolled-end::after { opacity: 0; }
+.tabs { display: flex; border-bottom: 1px solid var(--border); overflow-x: auto; overflow-y: hidden; scrollbar-width: none; -ms-overflow-style: none; -webkit-overflow-scrolling: touch; }
+.tabs::-webkit-scrollbar { display: none; }
+.tab { flex: 0 0 auto; padding: 10px 12px; font-size: 10px; font-weight: 700; letter-spacing: 1px; text-align: center; background: none; border: none; color: var(--text-muted); cursor: pointer; border-bottom: 2px solid transparent; font-family: var(--font); white-space: nowrap; transition: color 0.2s; }
 .tab:hover { color: var(--text); }
 .tab.active { color: var(--primary); border-bottom-color: var(--primary); }
 .tab .tab-count { font-size: 9px; font-weight: 800; background: rgba(224,72,72,0.2); color: var(--danger); padding: 1px 5px; border-radius: 8px; margin-left: 3px; }
@@ -287,16 +291,18 @@ html, body { height: 100%; overflow: hidden; background: var(--bg); color: var(-
 
   <div id="sidebar">
     <div id="headlines-ticker"></div>
-    <div class="tabs">
-      <button class="tab active" data-tab="anomalies">ANOMALIES</button>
-      <button class="tab" data-tab="claims">CLAIMS</button>
-      <button class="tab" data-tab="flights">FLIGHTS</button>
-      <button class="tab" data-tab="assess">ASSESS</button>
-      <button class="tab" data-tab="opps">OPPS</button>
-      <button class="tab" data-tab="predictions">MARKETS</button>
-      <button class="tab" data-tab="feed">FEED</button>
-      <button class="tab" data-tab="calibration">HISTORY</button>
-      <button class="tab" data-tab="trader">TRADER</button>
+    <div class="tabs-wrap">
+      <div class="tabs">
+        <button class="tab active" data-tab="anomalies">ANOMALIES</button>
+        <button class="tab" data-tab="claims">CLAIMS</button>
+        <button class="tab" data-tab="flights">FLIGHTS</button>
+        <button class="tab" data-tab="assess">INTEL</button>
+        <button class="tab" data-tab="opps">OPPS</button>
+        <button class="tab" data-tab="predictions">MARKETS</button>
+        <button class="tab" data-tab="feed">FEED</button>
+        <button class="tab" data-tab="calibration">HISTORY</button>
+        <button class="tab" data-tab="trader">TRADER</button>
+      </div>
     </div>
     <div class="panel-wrap">
       <div class="panel active" id="panel-anomalies"></div>
@@ -394,12 +400,20 @@ html, body { height: 100%; overflow: hidden; background: var(--bg); color: var(-
   L.tileLayer('https://{s}.basemaps.cartocdn.com/dark_nolabels/{z}/{x}/{y}{r}.png', { maxZoom: 18, subdomains: 'abcd' }).addTo(map);
 
   // Tab switching
+  const tabsContainer = document.querySelector('.tabs');
+  const tabsWrap = document.querySelector('.tabs-wrap');
+  tabsContainer.addEventListener('scroll', () => {
+    const atEnd = tabsContainer.scrollLeft + tabsContainer.clientWidth >= tabsContainer.scrollWidth - 4;
+    tabsWrap.classList.toggle('scrolled-end', atEnd);
+  });
+
   document.querySelectorAll('.tab').forEach(tab => {
     tab.addEventListener('click', () => {
       document.querySelectorAll('.tab').forEach(t => t.classList.remove('active'));
       document.querySelectorAll('.panel').forEach(p => p.classList.remove('active'));
       tab.classList.add('active');
       document.getElementById('panel-' + tab.dataset.tab).classList.add('active');
+      tab.scrollIntoView({ behavior: 'smooth', inline: 'center', block: 'nearest' });
     });
   });
 
