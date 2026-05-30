@@ -824,7 +824,7 @@ html, body { height: 100%; overflow: hidden; background: var(--bg); color: var(-
 
   // Map init with custom pane for countries
   map = L.map('map', { center:[20,0], zoom:2, preferCanvas:true, zoomControl:true, attributionControl:false, minZoom:2, maxBounds:[[-85,-180],[85,180]], maxBoundsViscosity:1.0 });
-  L.tileLayer('https://{s}.basemaps.cartocdn.com/dark_nolabels/{z}/{x}/{y}{r}.png', { maxZoom:18, subdomains:'abcd', noWrap:true, bounds:[[-85,-180],[85,180]] }).addTo(map);
+  L.tileLayer('https://{s}.basemaps.cartocdn.com/dark_nolabels/{z}/{x}/{y}{r}.png', { maxZoom:18, subdomains:'abcd', noWrap:true }).addTo(map);
   map.createPane('countries');
   map.getPane('countries').style.zIndex = 450;
   map.createPane('markers');
@@ -852,6 +852,19 @@ html, body { height: 100%; overflow: hidden; background: var(--bg); color: var(-
     .then(world => {
       if (typeof topojson === 'undefined') return;
       const countries = topojson.feature(world, world.objects.countries);
+      // Fix antimeridian: prevent polygons crossing 180° from rendering as horizontal bands
+      countries.features.forEach(function(f) {
+        function fixRing(ring) {
+          for (var i = 1; i < ring.length; i++) {
+            var d = ring[i][0] - ring[i-1][0];
+            if (d > 180) ring[i][0] -= 360;
+            else if (d < -180) ring[i][0] += 360;
+          }
+        }
+        var g = f.geometry;
+        if (g.type === 'Polygon') g.coordinates.forEach(fixRing);
+        else if (g.type === 'MultiPolygon') g.coordinates.forEach(function(p) { p.forEach(fixRing); });
+      });
       geoJsonLayer = L.geoJSON(countries, {
         pane: 'countries',
         style: function(feature) {
