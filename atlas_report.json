@@ -1,134 +1,83 @@
 {
-  "generated": "2026-05-29T22:17:24.360662+00:00",
+  "generated": "2026-05-30T00:08:26.593819+00:00",
   "version": "2.0",
   "power_level": "IDLE",
-  "scan_duration_seconds": 546.1,
+  "scan_duration_seconds": 771.1,
   "sources_scanned": 13,
-  "data_points": 381,
-  "anomalies": [
+  "data_points": 374,
+  "anomalies": [],
+  "claims": [
     {
-      "pattern": "mil_air_no_news",
-      "score": 95,
-      "description": "13 military aircraft near (30,-120) with minimal news coverage",
-      "aircraft_types": {
-        "T38": 1,
-        "H60": 7,
-        "C30J": 1,
-        "BE20": 2,
-        "T34T": 1,
-        "V22": 1
-      },
-      "lat": 30,
-      "lon": -120,
-      "evidence_count": 13,
-      "news_count": 0
+      "claim": "A Trump council recommends overhauling FEMA . Here are 3 key changes",
+      "velocity": 8,
+      "unique_sources": 8,
+      "countries_reporting": [
+        "United States"
+      ],
+      "avg_tone": 0.0,
+      "tone_label": "neutral",
+      "reddit_mentions": 0,
+      "related_predictions": [],
+      "first_seen": "20260508T000000Z",
+      "articles": [
+        {
+          "title": "A Trump council recommends overhauling FEMA . Here are 3 key changes",
+          "source": "kyuk.org",
+          "url": "https://www.kyuk.org/public-safety/2026-05-07/a-trump-council-recommends-overhauling-fema-here-are-3-key-changes"
+        },
+        {
+          "title": "A Trump council recommends overhauling FEMA . Here are 3 key changes",
+          "source": "kedm.org",
+          "url": "https://www.kedm.org/npr-news/2026-05-07/a-trump-council-recommends-overhauling-fema-here-are-3-key-changes"
+        },
+        {
+          "title": "A Trump council recommends overhauling FEMA . Here are 3 key changes",
+          "source": "wclk.com",
+          "url": "https://www.wclk.com/2026-05-07/a-trump-council-recommends-overhauling-fema-here-are-3-key-changes"
+        },
+        {
+          "title": "A Trump council recommends overhauling FEMA . Here are 3 key changes",
+          "source": "wglt.org",
+          "url": "https://www.wglt.org/2026-05-07/a-trump-council-recommends-overhauling-fema-here-are-3-key-changes"
+        },
+        {
+          "title": "A Trump council recommends overhauling FEMA . Here are 3 key changes",
+          "source": "ualrpublicradio.org",
+          "url": "https://www.ualrpublicradio.org/npr-news/2026-05-07/a-trump-council-recommends-overhauling-fema-here-are-3-key-changes"
+        }
+      ]
     },
     {
-      "pattern": "mil_air_no_news",
-      "score": 95,
-      "description": "17 military aircraft near (30,-90) with minimal news coverage",
-      "aircraft_types": {
-        "BE20": 2,
-        "TEX2": 8,
-        "C30J": 2,
-        "H53S": 1,
-        "HAWK": 1,
-        "D328": 1,
-        "A119": 1,
-        "H60": 1
-      },
-      "lat": 30,
-      "lon": -90,
-      "evidence_count": 17,
-      "news_count": 0
-    },
-    {
-      "pattern": "mil_air_no_news",
-      "score": 95,
-      "description": "15 military aircraft near (40,-80) with minimal news coverage",
-      "aircraft_types": {
-        "H60": 3,
-        "BE20": 2,
-        "C30J": 2,
-        "GLF5": 1,
-        "ASTR": 1,
-        "": 4,
-        "EC45": 1,
-        "C172": 1
-      },
-      "lat": 40,
-      "lon": -80,
-      "evidence_count": 15,
-      "news_count": 0
-    },
-    {
-      "pattern": "mil_air_no_news",
-      "score": 80,
-      "description": "8 military aircraft near (50,-120) with minimal news coverage",
-      "aircraft_types": {
-        "H60": 3,
-        "S92": 1,
-        "C17": 1,
-        "": 1,
-        "T38": 1,
-        "K35R": 1
-      },
-      "lat": 50,
-      "lon": -120,
-      "evidence_count": 8,
-      "news_count": 0
-    },
-    {
-      "pattern": "mil_air_no_news",
-      "score": 80,
-      "description": "8 military aircraft near (40,-100) with minimal news coverage",
-      "aircraft_types": {
-        "HAWK": 2,
-        "B737": 1,
-        "C172": 1,
-        "C30J": 1,
-        "TEX2": 1,
-        "BE20": 1,
-        "GLF5": 1
-      },
-      "lat": 40,
-      "lon": -100,
-      "evidence_count": 8,
-      "news_count": 0
-    },
-    {
-      "pattern": "mil_air_no_news",
-      "score": 80,
-      "description": "8 military aircraft near (30,-100) with minimal news coverage",
-      "aircraft_types": {
-        "C560": 2,
-        "EC45": 1,
-        "TEX2": 3,
-        "HAWK": 1,
-        "C17": 1
-      },
-      "lat": 30,
-      "lon": -100,
-      "evidence_count": 8,
-      "news_count": 0
-    },
-    {
-      "pattern": "mil_air_no_news",
-      "score": 65,
-      "description": "5 military aircraft near (40,-120) with minimal news coverage",
-      "aircraft_types": {
-        "BE20": 1,
-        "P28A": 1,
-        "K35R": 1,
-        "B736": 2
-      },
-      "lat": 40,
-      "lon": -120,
-      "evidence_count": 5,
-      "news_count": 0
+      "claim": "Insurance commissioner candidates float bigger California role",
+      "velocity": 3,
+      "unique_sources": 3,
+      "countries_reporting": [
+        "United States"
+      ],
+      "avg_tone": 0.0,
+      "tone_label": "neutral",
+      "reddit_mentions": 0,
+      "related_predictions": [],
+      "first_seen": "20260516T123000Z",
+      "articles": [
+        {
+          "title": "Insurance commissioner candidates float bigger California role",
+          "source": "laist.com",
+          "url": "https://laist.com/news/politics/insurance-commissioner-candidates-float-bigger-california-role"
+        },
+        {
+          "title": "Insurance commissioner candidates float bigger California role",
+          "source": "almanacnews.com",
+          "url": "https://www.almanacnews.com/calmatters/2026/05/16/insurance-commissioner-candidates-float-bigger-california-role/"
+        },
+        {
+          "title": "Insurance commissioner candidates float bigger California role",
+          "source": "paloaltoonline.com",
+          "url": "https://www.paloaltoonline.com/calmatters/2026/05/16/insurance-commissioner-candidates-float-bigger-california-role/"
+        }
+      ]
     }
   ],
-  "claims": [],
   "historical_calibration": [
     {
       "claim": "MKUltra mind control program",
@@ -176,1772 +125,171 @@
   "gdelt": [
     {
       "source": "gdelt",
-      "title": "Internet Access in Iran Remains Restricted Despite Partial Restoration After 88 - Day Blackout",
-      "url": "https://irannewsupdate.com/news/general/internet-access-in-iran-remains-restricted-despite-partial-restoration-after-88-day-blackout/",
-      "published": "20260529T070000Z",
-      "domain": "irannewsupdate.com",
+      "title": "The world most disaster prone cities",
+      "url": "https://geographical.co.uk/news/the-worlds-most-disaster-prone-cities",
+      "published": "20260528T191500Z",
+      "domain": "geographical.co.uk",
       "language": "English",
-      "country": "Iran",
-      "category": "digital_rights",
+      "country": "United Kingdom",
+      "category": "disaster",
       "tone": 0.0
     },
     {
       "source": "gdelt",
-      "title": "Amnesty International Warns of Intensifying Repression in Iran Amid Mass Arrests and Political Executions",
-      "url": "https://irannewsupdate.com/news/human-rights/amnesty-international-warns-of-intensifying-repression-in-iran-amid-mass-arrests-and-political-executions/",
-      "published": "20260529T070000Z",
-      "domain": "irannewsupdate.com",
-      "language": "English",
-      "country": "Iran",
-      "category": "digital_rights",
+      "title": " \u300c \u8d85\u7d1a\u8056\u5b30 \u300d \u6700\u5feb5 - 7\u6708\u56de\u6b78 \u3001 \u7f8e\u4f0a\u6230\u722d\u524d\u666f\u672a\u660e \uff0c \u4e9e\u6d32\u80fd\u6e90\u5b89\u5168\u8207\u7ce7\u98df\u4f9b\u61c9\u96ea\u4e0a\u52a0\u971c - TNL The News Lens \u95dc\u9375\u8a55\u8ad6\u7db2",
+      "url": "https://www.thenewslens.com/article/267905",
+      "published": "20260522T033000Z",
+      "domain": "thenewslens.com",
+      "language": "Chinese",
+      "country": "Taiwan",
+      "category": "disaster",
       "tone": 0.0
     },
     {
       "source": "gdelt",
-      "title": "Iran Expands Internet Control as Former State Media Chief Reveals Chinese - Style Restriction Plan",
-      "url": "https://irannewsupdate.com/news/general/iran-expands-internet-control-as-former-state-media-chief-reveals-chinese-style-restriction-plan/",
-      "published": "20260525T093000Z",
-      "domain": "irannewsupdate.com",
-      "language": "English",
-      "country": "Iran",
-      "category": "digital_rights",
-      "tone": 0.0
-    },
-    {
-      "source": "gdelt",
-      "title": "Iran Internet Blackout Enters 13th Week as Digital Isolation Deepens",
-      "url": "https://irannewsupdate.com/news/general/irans-internet-blackout-enters-13th-week-as-digital-isolation-deepens/",
-      "published": "20260524T093000Z",
-      "domain": "irannewsupdate.com",
-      "language": "English",
-      "country": "Iran",
-      "category": "digital_rights",
-      "tone": 0.0
-    },
-    {
-      "source": "gdelt",
-      "title": "In Iran , Internet Access Becomes a Luxury for the Few",
-      "url": "https://en.tempo.co/read/2105131/in-iran-internet-access-becomes-a-luxury-for-the-few",
-      "published": "20260524T030000Z",
-      "domain": "en.tempo.co",
-      "language": "English",
-      "country": "",
-      "category": "digital_rights",
-      "tone": 0.0
-    },
-    {
-      "source": "gdelt",
-      "title": "In Iran , internet access becomes a luxury for the few",
-      "url": "https://www.dw.com/en/in-iran-internet-access-becomes-a-luxury-for-the-few/a-77231518",
-      "published": "20260520T154500Z",
-      "domain": "dw.com",
-      "language": "English",
-      "country": "Germany",
-      "category": "digital_rights",
-      "tone": 0.0
-    },
-    {
-      "source": "gdelt",
-      "title": "Internet Shutdown for 90 Million Iranians Creates  A Prison Within a Prison , Art Student Says",
-      "url": "https://themedialine.org/top-stories/internet-shutdown-for-90-million-iranians-creates-a-prison-within-a-prison-art-student-says/",
-      "published": "20260503T133000Z",
-      "domain": "themedialine.org",
-      "language": "English",
-      "country": "Israel",
-      "category": "digital_rights",
-      "tone": 0.0
-    },
-    {
-      "source": "gdelt",
-      "title": "Russia and Iran Build Sovereign , State - Controlled Internets",
-      "url": "https://www.realclearworld.com/articles/2026/05/02/russia_and_iran_build_sovereign_state-controlled_internets_1180360.html",
-      "published": "20260502T183000Z",
-      "domain": "realclearworld.com",
+      "title": "Insurance commissioner candidates float bigger California role",
+      "url": "https://laist.com/news/politics/insurance-commissioner-candidates-float-bigger-california-role",
+      "published": "20260519T004500Z",
+      "domain": "laist.com",
       "language": "English",
       "country": "United States",
-      "category": "digital_rights",
+      "category": "disaster",
       "tone": 0.0
     },
     {
       "source": "gdelt",
-      "title": "Kremlin forcing big firms to join  witch - hunt  against internet rebels , claims report | Russia",
-      "url": "https://www.theguardian.com/world/2026/apr/21/kremlin-russia-forcing-firms-join-vpn-witch-hunt-internet",
-      "published": "20260421T140000Z",
-      "domain": "theguardian.com",
+      "title": "Insurance commissioner candidates float bigger California role",
+      "url": "https://www.almanacnews.com/calmatters/2026/05/16/insurance-commissioner-candidates-float-bigger-california-role/",
+      "published": "20260516T154500Z",
+      "domain": "almanacnews.com",
       "language": "English",
-      "country": "United Kingdom",
-      "category": "digital_rights",
+      "country": "United States",
+      "category": "disaster",
       "tone": 0.0
     },
     {
       "source": "gdelt",
-      "title": "  \u0426\u0438\u0444\u0440\u043e\u0432\u043e\u0439 \u0430\u043f\u0430\u0440\u0442\u0435\u0438\u0434 : \u043a\u0430\u043a \u0438\u0440\u0430\u043d\u0446\u044b \u0436\u0438\u0432\u0443\u0442 \u0431\u0435\u0437 \u0434\u043e\u0441\u0442\u0443\u043f\u0430 \u0432 \u0438\u043d\u0442\u0435\u0440\u043d\u0435\u0442",
-      "url": "https://www.dw.com/ru/cifrovoj-aparteid-kak-irancy-zivut-v-usloviah-blokirovki-interneta/a-76857350",
-      "published": "20260420T141500Z",
-      "domain": "dw.com",
-      "language": "Russian",
-      "country": "Germany",
-      "category": "digital_rights",
-      "tone": 0.0
-    },
-    {
-      "source": "gdelt",
-      "title": "Russia Introduces Full Telegram Ban Nationwide",
-      "url": "https://www.kyivpost.com/post/73690",
-      "published": "20260410T181500Z",
-      "domain": "kyivpost.com",
+      "title": "Insurance commissioner candidates float bigger California role",
+      "url": "https://www.paloaltoonline.com/calmatters/2026/05/16/insurance-commissioner-candidates-float-bigger-california-role/",
+      "published": "20260516T123000Z",
+      "domain": "paloaltoonline.com",
       "language": "English",
-      "country": "Ukraine",
-      "category": "digital_rights",
+      "country": "United States",
+      "category": "disaster",
       "tone": 0.0
     },
     {
       "source": "gdelt",
-      "title": "The $100 Billion Ghost : Why the 2026 Hunt for Bitcoin Creator Satoshi Nakamoto Has Reached a Fever Pitch",
-      "url": "https://indianexpress.com/article/world/my-quest-solve-bitcoin-great-mystery-10628748/",
-      "published": "20260410T021500Z",
-      "domain": "indianexpress.com",
+      "title": "A Trump council recommends overhauling FEMA . Here are 3 key changes",
+      "url": "https://www.kyuk.org/public-safety/2026-05-07/a-trump-council-recommends-overhauling-fema-here-are-3-key-changes",
+      "published": "20260513T221500Z",
+      "domain": "kyuk.org",
       "language": "English",
-      "country": "India",
-      "category": "digital_rights",
+      "country": "United States",
+      "category": "disaster",
       "tone": 0.0
     },
     {
       "source": "gdelt",
-      "title": "Your take : Public Reaction to MeitY Draft IT Rules ( 2026 ) ",
-      "url": "https://www.medianama.com/2026/04/223-public-opinion-draft-it-rules-amendments-free-speech-india/",
-      "published": "20260408T094500Z",
-      "domain": "medianama.com",
+      "title": "Extreme weather financial effect on homeownership",
+      "url": "https://www.ukiahdailyjournal.com/2024/10/18/extreme-weather-home-owners/",
+      "published": "20260509T113000Z",
+      "domain": "ukiahdailyjournal.com",
       "language": "English",
-      "country": "India",
-      "category": "digital_rights",
+      "country": "United States",
+      "category": "disaster",
       "tone": 0.0
     },
     {
       "source": "gdelt",
-      "title": "A game of cat and mouse : Russia new target in its  great crackdown  ",
-      "url": "https://www.sbs.com.au/news/article/russia-internet-crackdown-vpns-cat-and-mouse/7rq19r6zi",
-      "published": "20260402T053000Z",
-      "domain": "sbs.com.au",
-      "language": "English",
-      "country": "Australia",
-      "category": "digital_rights",
+      "title": "\u30b5\u30f3\u30c7\u30fc\u65e9\u8d77\u30ad\u30cd\u30de \u300e \u30b5\u30f3\u30ad\u30e5\u30fc \u3001 \u30c1\u30e3\u30c3\u30af \u300f | \u3072\u308d\u305f\u307f\u3086\u7d00\u306e\u30b5\u30f3\u30c7\u30fc\u65e9\u8d77\u304d\u6709\u697d\u753a | \u30cb\u30c3\u30dd\u30f3\u653e\u9001 \u30e9\u30b8\u30aaAM1242+FM93",
+      "url": "https://www.1242.com/sunday/sunday_blog/20260503-359109/",
+      "published": "20260508T093000Z",
+      "domain": "1242.com",
+      "language": "Japanese",
+      "country": "Japan",
+      "category": "disaster",
       "tone": 0.0
     },
     {
       "source": "gdelt",
-      "title": "Inside the desperate measures taken by Iran youth to break through Internet blackout and smuggle messages out to their despairing families \u2026 as they risk DEATH - or worse",
-      "url": "https://www.dailymail.co.uk/news/article-15664767/Inside-desperate-Irans-youth-break-Internet-blackout-smuggle-messages-despairing-families-risk-DEATH.html",
-      "published": "20260321T213000Z",
-      "domain": "dailymail.co.uk",
+      "title": "A Trump council recommends overhauling FEMA . Here are 3 key changes",
+      "url": "https://www.kedm.org/npr-news/2026-05-07/a-trump-council-recommends-overhauling-fema-here-are-3-key-changes",
+      "published": "20260508T010000Z",
+      "domain": "kedm.org",
       "language": "English",
-      "country": "United Kingdom",
-      "category": "digital_rights",
+      "country": "United States",
+      "category": "disaster",
+      "tone": 0.0
+    },
+    {
+      "source": "gdelt",
+      "title": "A Trump council recommends overhauling FEMA . Here are 3 key changes",
+      "url": "https://www.wclk.com/2026-05-07/a-trump-council-recommends-overhauling-fema-here-are-3-key-changes",
+      "published": "20260508T010000Z",
+      "domain": "wclk.com",
+      "language": "English",
+      "country": "United States",
+      "category": "disaster",
+      "tone": 0.0
+    },
+    {
+      "source": "gdelt",
+      "title": "A Trump council recommends overhauling FEMA . Here are 3 key changes",
+      "url": "https://www.wglt.org/2026-05-07/a-trump-council-recommends-overhauling-fema-here-are-3-key-changes",
+      "published": "20260508T003000Z",
+      "domain": "wglt.org",
+      "language": "English",
+      "country": "United States",
+      "category": "disaster",
+      "tone": 0.0
+    },
+    {
+      "source": "gdelt",
+      "title": "A Trump council recommends overhauling FEMA . Here are 3 key changes",
+      "url": "https://www.ualrpublicradio.org/npr-news/2026-05-07/a-trump-council-recommends-overhauling-fema-here-are-3-key-changes",
+      "published": "20260508T003000Z",
+      "domain": "ualrpublicradio.org",
+      "language": "English",
+      "country": "United States",
+      "category": "disaster",
+      "tone": 0.0
+    },
+    {
+      "source": "gdelt",
+      "title": "A Trump council recommends overhauling FEMA . Here are 3 key changes",
+      "url": "https://www.tspr.org/npr-news/2026-05-07/a-trump-council-recommends-overhauling-fema-here-are-3-key-changes",
+      "published": "20260508T000000Z",
+      "domain": "tspr.org",
+      "language": "English",
+      "country": "United States",
+      "category": "disaster",
+      "tone": 0.0
+    },
+    {
+      "source": "gdelt",
+      "title": "A Trump council recommends overhauling FEMA . Here are 3 key changes",
+      "url": "https://www.wutc.org/2026-05-07/a-trump-council-recommends-overhauling-fema-here-are-3-key-changes",
+      "published": "20260508T000000Z",
+      "domain": "wutc.org",
+      "language": "English",
+      "country": "United States",
+      "category": "disaster",
+      "tone": 0.0
+    },
+    {
+      "source": "gdelt",
+      "title": "A Trump council recommends overhauling FEMA . Here are 3 key changes",
+      "url": "https://www.ketr.org/2026-05-07/a-trump-council-recommends-overhauling-fema-here-are-3-key-changes",
+      "published": "20260508T000000Z",
+      "domain": "ketr.org",
+      "language": "English",
+      "country": "United States",
+      "category": "disaster",
       "tone": 0.0
     }
   ],
-  "adsb": [
-    {
-      "source": "adsb",
-      "hex": "ae04d8",
-      "callsign": "KLIPR01",
-      "type": "B737",
-      "description": "",
-      "operator": "",
-      "lat": 21.591161,
-      "lon": -157.710826,
-      "altitude_ft": 7225,
-      "speed_kts": 242.1,
-      "squawk": "2365",
-      "country": "165830",
-      "category": "A3",
-      "emergency": false
-    },
-    {
-      "source": "adsb",
-      "hex": "af3be4",
-      "callsign": "C6067",
-      "type": "",
-      "description": "",
-      "operator": "",
-      "lat": 60.788361,
-      "lon": -147.694513,
-      "altitude_ft": 500,
-      "speed_kts": 125.0,
-      "squawk": "1277",
-      "country": "",
-      "category": "A7",
-      "emergency": false
-    },
-    {
-      "source": "adsb",
-      "hex": "ae03fd",
-      "callsign": "PAT960",
-      "type": "BE20",
-      "description": "",
-      "operator": "",
-      "lat": 50.719849,
-      "lon": -126.866034,
-      "altitude_ft": 27000,
-      "speed_kts": 256.8,
-      "squawk": "4104",
-      "country": "84-00144",
-      "category": "A1",
-      "emergency": false
-    },
-    {
-      "source": "adsb",
-      "hex": "ae577a",
-      "callsign": "R20650",
-      "type": "H60",
-      "description": "",
-      "operator": "",
-      "lat": 47.114685,
-      "lon": -122.880501,
-      "altitude_ft": 3850,
-      "speed_kts": 108.5,
-      "squawk": "4621",
-      "country": "14-20650",
-      "category": "A7",
-      "emergency": false
-    },
-    {
-      "source": "adsb",
-      "hex": "c2b409",
-      "callsign": "STGR02",
-      "type": "S92",
-      "description": "",
-      "operator": "",
-      "lat": 48.460883,
-      "lon": -122.696242,
-      "altitude_ft": 3400,
-      "speed_kts": 260.0,
-      "squawk": "7076",
-      "country": "148802",
-      "category": "A0",
-      "emergency": false
-    },
-    {
-      "source": "adsb",
-      "hex": "af3bcd",
-      "callsign": "",
-      "type": "H60",
-      "description": "",
-      "operator": "",
-      "lat": 47.116172,
-      "lon": -122.615943,
-      "altitude_ft": 450,
-      "speed_kts": 51.7,
-      "squawk": "1200",
-      "country": "25-21309",
-      "category": "A7",
-      "emergency": false
-    },
-    {
-      "source": "adsb",
-      "hex": "ae4d69",
-      "callsign": "THBRD14",
-      "type": "C17",
-      "description": "",
-      "operator": "",
-      "lat": 45.848275,
-      "lon": -122.615936,
-      "altitude_ft": 24525,
-      "speed_kts": 441.8,
-      "squawk": "2004",
-      "country": "10-0216",
-      "category": "A5",
-      "emergency": false
-    },
-    {
-      "source": "adsb",
-      "hex": "ae04f3",
-      "callsign": "PAT884",
-      "type": "BE20",
-      "description": "",
-      "operator": "",
-      "lat": 44.310059,
-      "lon": -122.560992,
-      "altitude_ft": 21950,
-      "speed_kts": 254.0,
-      "squawk": "7652",
-      "country": "84-00164",
-      "category": "A1",
-      "emergency": false
-    },
-    {
-      "source": "adsb",
-      "hex": "ae56b1",
-      "callsign": "R20585",
-      "type": "H60",
-      "description": "",
-      "operator": "",
-      "lat": 47.018133,
-      "lon": -122.493826,
-      "altitude_ft": 725,
-      "speed_kts": 93.0,
-      "squawk": "0001",
-      "country": "13-20585",
-      "category": "A7",
-      "emergency": false
-    },
-    {
-      "source": "adsb",
-      "hex": "ae684d",
-      "callsign": "",
-      "type": "",
-      "description": "",
-      "operator": "",
-      "lat": 48.274535,
-      "lon": -122.432535,
-      "altitude_ft": 2875,
-      "speed_kts": 175.0,
-      "squawk": "4763",
-      "country": "",
-      "category": "",
-      "emergency": false
-    },
-    {
-      "source": "adsb",
-      "hex": "ae63e1",
-      "callsign": "BOE117",
-      "type": "T38",
-      "description": "",
-      "operator": "",
-      "lat": 47.912899,
-      "lon": -122.281883,
-      "altitude_ft": "ground",
-      "speed_kts": 9.8,
-      "squawk": "",
-      "country": "64-13285",
-      "category": "A5",
-      "emergency": false
-    },
-    {
-      "source": "adsb",
-      "hex": "a3c2af",
-      "callsign": "N341TA",
-      "type": "P28A",
-      "description": "",
-      "operator": "",
-      "lat": 38.248398,
-      "lon": -121.477057,
-      "altitude_ft": 4400,
-      "speed_kts": 85.9,
-      "squawk": "1200",
-      "country": "N341TA",
-      "category": "A1",
-      "emergency": false
-    },
-    {
-      "source": "adsb",
-      "hex": "ae0422",
-      "callsign": "",
-      "type": "K35R",
-      "description": "",
-      "operator": "",
-      "lat": 39.86282,
-      "lon": -120.077376,
-      "altitude_ft": 37025,
-      "speed_kts": 515.0,
-      "squawk": "2651",
-      "country": "59-1499",
-      "category": "",
-      "emergency": false
-    },
-    {
-      "source": "adsb",
-      "hex": "ae00aa",
-      "callsign": "DRAG29",
-      "type": "T38",
-      "description": "",
-      "operator": "",
-      "lat": 34.88769,
-      "lon": -117.920609,
-      "altitude_ft": 3150,
-      "speed_kts": 320.3,
-      "squawk": "0042",
-      "country": "64-13302",
-      "category": "A6",
-      "emergency": false
-    },
-    {
-      "source": "adsb",
-      "hex": "ae4d2d",
-      "callsign": "",
-      "type": "H60",
-      "description": "",
-      "operator": "",
-      "lat": 33.446457,
-      "lon": -117.713617,
-      "altitude_ft": 100,
-      "speed_kts": 0,
-      "squawk": "1200",
-      "country": "168535",
-      "category": "A7",
-      "emergency": false
-    },
-    {
-      "source": "adsb",
-      "hex": "ae5ded",
-      "callsign": "C2014",
-      "type": "C30J",
-      "description": "",
-      "operator": "",
-      "lat": 33.124649,
-      "lon": -117.685492,
-      "altitude_ft": 5425,
-      "speed_kts": 175.9,
-      "squawk": "1200",
-      "country": "2014",
-      "category": "A3",
-      "emergency": false
-    },
-    {
-      "source": "adsb",
-      "hex": "ae065d",
-      "callsign": "",
-      "type": "K35R",
-      "description": "",
-      "operator": "",
-      "lat": 47.645215,
-      "lon": -117.53718,
-      "altitude_ft": 3650,
-      "speed_kts": 166.0,
-      "squawk": "3615",
-      "country": "60-0320",
-      "category": "",
-      "emergency": false
-    },
-    {
-      "source": "adsb",
-      "hex": "adfe92",
-      "callsign": "LOST05",
-      "type": "BE20",
-      "description": "",
-      "operator": "",
-      "lat": 33.251999,
-      "lon": -117.454175,
-      "altitude_ft": 6925,
-      "speed_kts": 239.4,
-      "squawk": "3701",
-      "country": "95-00093",
-      "category": "A1",
-      "emergency": false
-    },
-    {
-      "source": "adsb",
-      "hex": "ae4fa0",
-      "callsign": "SHWK402",
-      "type": "H60",
-      "description": "",
-      "operator": "",
-      "lat": 33.340945,
-      "lon": -117.308985,
-      "altitude_ft": 1175,
-      "speed_kts": 84.9,
-      "squawk": "4541",
-      "country": "168080",
-      "category": "A7",
-      "emergency": false
-    },
-    {
-      "source": "adsb",
-      "hex": "ae4d2e",
-      "callsign": "NITE11",
-      "type": "H60",
-      "description": "",
-      "operator": "",
-      "lat": 32.62088,
-      "lon": -117.27746,
-      "altitude_ft": 775,
-      "speed_kts": 91.4,
-      "squawk": "4561",
-      "country": "168536",
-      "category": "A7",
-      "emergency": false
-    },
-    {
-      "source": "adsb",
-      "hex": "ae2793",
-      "callsign": "GH71",
-      "type": "H60",
-      "description": "",
-      "operator": "",
-      "lat": 32.614655,
-      "lon": -117.263727,
-      "altitude_ft": 200,
-      "speed_kts": 71.9,
-      "squawk": "1200",
-      "country": "166348",
-      "category": "A7",
-      "emergency": false
-    },
-    {
-      "source": "adsb",
-      "hex": "ae60ea",
-      "callsign": "DG3",
-      "type": "T34T",
-      "description": "",
-      "operator": "",
-      "lat": 32.694729,
-      "lon": -117.204401,
-      "altitude_ft": "ground",
-      "speed_kts": 19.5,
-      "squawk": "0163",
-      "country": "160475",
-      "category": "A2",
-      "emergency": false
-    },
-    {
-      "source": "adsb",
-      "hex": "ae2bf2",
-      "callsign": "SHWK417",
-      "type": "H60",
-      "description": "",
-      "operator": "",
-      "lat": 32.561188,
-      "lon": -117.118268,
-      "altitude_ft": -100,
-      "speed_kts": 0,
-      "squawk": "",
-      "country": "166575",
-      "category": "A7",
-      "emergency": false
-    },
-    {
-      "source": "adsb",
-      "hex": "ae278e",
-      "callsign": "LS16",
-      "type": "H60",
-      "description": "",
-      "operator": "",
-      "lat": 32.563244,
-      "lon": -117.117565,
-      "altitude_ft": -150,
-      "speed_kts": 1.2,
-      "squawk": "1200",
-      "country": "166343",
-      "category": "A7",
-      "emergency": false
-    },
-    {
-      "source": "adsb",
-      "hex": "ae4fca",
-      "callsign": "SHWK406",
-      "type": "H60",
-      "description": "",
-      "operator": "",
-      "lat": 33.463518,
-      "lon": -116.918522,
-      "altitude_ft": 2850,
-      "speed_kts": 124.7,
-      "squawk": "",
-      "country": "168122",
-      "category": "A7",
-      "emergency": false
-    },
-    {
-      "source": "adsb",
-      "hex": "ae6ba4",
-      "callsign": "SCRCH53",
-      "type": "V22",
-      "description": "",
-      "operator": "",
-      "lat": 32.679428,
-      "lon": -116.266223,
-      "altitude_ft": 9050,
-      "speed_kts": 275.2,
-      "squawk": "4776",
-      "country": "169451",
-      "category": "A7",
-      "emergency": false
-    },
-    {
-      "source": "adsb",
-      "hex": "a3685d",
-      "callsign": "JANET59",
-      "type": "B736",
-      "description": "",
-      "operator": "",
-      "lat": 36.170065,
-      "lon": -115.311097,
-      "altitude_ft": 12625,
-      "speed_kts": 271.4,
-      "squawk": "4647",
-      "country": "N319BD",
-      "category": "A3",
-      "emergency": false
-    },
-    {
-      "source": "adsb",
-      "hex": "ae06e1",
-      "callsign": "VM553",
-      "type": "BE20",
-      "description": "",
-      "operator": "",
-      "lat": 33.675889,
-      "lon": -115.233536,
-      "altitude_ft": 19000,
-      "speed_kts": 301.8,
-      "squawk": "3345",
-      "country": "163553",
-      "category": "A1",
-      "emergency": false
-    },
-    {
-      "source": "adsb",
-      "hex": "a4207f",
-      "callsign": "JANET48",
-      "type": "B736",
-      "description": "",
-      "operator": "",
-      "lat": 36.01593,
-      "lon": -115.063877,
-      "altitude_ft": 7950,
-      "speed_kts": 191.9,
-      "squawk": "5333",
-      "country": "N365SR",
-      "category": "A3",
-      "emergency": false
-    },
-    {
-      "source": "adsb",
-      "hex": "ae06d9",
-      "callsign": "EASY61",
-      "type": "BE20",
-      "description": "",
-      "operator": "",
-      "lat": 33.025635,
-      "lon": -112.448584,
-      "altitude_ft": 20000,
-      "speed_kts": 232.2,
-      "squawk": "0733",
-      "country": "163561",
-      "category": "A1",
-      "emergency": false
-    },
-    {
-      "source": "adsb",
-      "hex": "ae6046",
-      "callsign": "RAIDR29",
-      "type": "C30J",
-      "description": "",
-      "operator": "",
-      "lat": 33.427754,
-      "lon": -112.009399,
-      "altitude_ft": "ground",
-      "speed_kts": 17.5,
-      "squawk": "4123",
-      "country": "169536",
-      "category": "A3",
-      "emergency": false
-    },
-    {
-      "source": "adsb",
-      "hex": "ae59ab",
-      "callsign": "R08140",
-      "type": "H47",
-      "description": "",
-      "operator": "",
-      "lat": 33.135544,
-      "lon": -111.958923,
-      "altitude_ft": 4075,
-      "speed_kts": 123.3,
-      "squawk": "4335",
-      "country": "13-08140",
-      "category": "A7",
-      "emergency": false
-    },
-    {
-      "source": "adsb",
-      "hex": "ae2fa9",
-      "callsign": "RCH797",
-      "type": "C17",
-      "description": "",
-      "operator": "",
-      "lat": 45.599762,
-      "lon": -110.361618,
-      "altitude_ft": 36000,
-      "speed_kts": 474.0,
-      "squawk": "1145",
-      "country": "08-8197",
-      "category": "A5",
-      "emergency": false
-    },
-    {
-      "source": "adsb",
-      "hex": "c2b021",
-      "callsign": "APLO16",
-      "type": "TEX2",
-      "description": "",
-      "operator": "",
-      "lat": 50.235218,
-      "lon": -106.342386,
-      "altitude_ft": 13050,
-      "speed_kts": 153.0,
-      "squawk": "0116",
-      "country": "156109",
-      "category": "A1",
-      "emergency": false
-    },
-    {
-      "source": "adsb",
-      "hex": "adfb90",
-      "callsign": "QPK01",
-      "type": "",
-      "description": "",
-      "operator": "",
-      "lat": 38.807389,
-      "lon": -105.301086,
-      "altitude_ft": -1000,
-      "speed_kts": 0.7,
-      "squawk": "1274",
-      "country": "",
-      "category": "A0",
-      "emergency": false
-    },
-    {
-      "source": "adsb",
-      "hex": "c2b02b",
-      "callsign": "BDIT31",
-      "type": "TEX2",
-      "description": "",
-      "operator": "",
-      "lat": 50.05806,
-      "lon": -105.238543,
-      "altitude_ft": 17275,
-      "speed_kts": 202.3,
-      "squawk": "0131",
-      "country": "156110",
-      "category": "A1",
-      "emergency": false
-    },
-    {
-      "source": "adsb",
-      "hex": "ae62d4",
-      "callsign": "BOBCT45",
-      "type": "HAWK",
-      "description": "",
-      "operator": "",
-      "lat": 38.282593,
-      "lon": -104.705492,
-      "altitude_ft": 7050,
-      "speed_kts": 213.2,
-      "squawk": "5162",
-      "country": "165498",
-      "category": "A6",
-      "emergency": false
-    },
-    {
-      "source": "adsb",
-      "hex": "ae0945",
-      "callsign": "SAM587",
-      "type": "B737",
-      "description": "",
-      "operator": "",
-      "lat": 38.805061,
-      "lon": -104.69063,
-      "altitude_ft": "ground",
-      "speed_kts": 5.0,
-      "squawk": "0731",
-      "country": "01-0040",
-      "category": "",
-      "emergency": false
-    },
-    {
-      "source": "adsb",
-      "hex": "a8b6be",
-      "callsign": "N6601K",
-      "type": "C172",
-      "description": "",
-      "operator": "",
-      "lat": 39.231308,
-      "lon": -104.599815,
-      "altitude_ft": 8900,
-      "speed_kts": 70.1,
-      "squawk": "1200",
-      "country": "N6601K",
-      "category": "A1",
-      "emergency": false
-    },
-    {
-      "source": "adsb",
-      "hex": "ae62b8",
-      "callsign": "BOBCT85",
-      "type": "HAWK",
-      "description": "",
-      "operator": "",
-      "lat": 38.203466,
-      "lon": -104.579514,
-      "altitude_ft": 8150,
-      "speed_kts": 246.1,
-      "squawk": "5105",
-      "country": "165467",
-      "category": "A6",
-      "emergency": false
-    },
-    {
-      "source": "adsb",
-      "hex": "adfec0",
-      "callsign": "PAT291",
-      "type": "C560",
-      "description": "",
-      "operator": "",
-      "lat": 32.844931,
-      "lon": -100.532918,
-      "altitude_ft": 39000,
-      "speed_kts": 477.6,
-      "squawk": "1565",
-      "country": "96-00110",
-      "category": "A2",
-      "emergency": false
-    },
-    {
-      "source": "adsb",
-      "hex": "adfebe",
-      "callsign": "PAT060",
-      "type": "C560",
-      "description": "",
-      "operator": "",
-      "lat": 32.540876,
-      "lon": -99.900026,
-      "altitude_ft": 40000,
-      "speed_kts": 371.0,
-      "squawk": "7316",
-      "country": "96-00108",
-      "category": "A2",
-      "emergency": false
-    },
-    {
-      "source": "adsb",
-      "hex": "ae1f50",
-      "callsign": "01172065",
-      "type": "EC45",
-      "description": "",
-      "operator": "",
-      "lat": 27.500409,
-      "lon": -99.475074,
-      "altitude_ft": 1300,
-      "speed_kts": 112.1,
-      "squawk": "1200",
-      "country": "08-72065",
-      "category": "A7",
-      "emergency": false
-    },
-    {
-      "source": "adsb",
-      "hex": "ae4bde",
-      "callsign": "E05701",
-      "type": "C30J",
-      "description": "",
-      "operator": "",
-      "lat": 38.82106,
-      "lon": -99.316287,
-      "altitude_ft": 26000,
-      "speed_kts": 330.1,
-      "squawk": "7215",
-      "country": "10-5701",
-      "category": "A3",
-      "emergency": false
-    },
-    {
-      "source": "adsb",
-      "hex": "0d04c2",
-      "callsign": "SMX02",
-      "type": "GLF4",
-      "description": "",
-      "operator": "",
-      "lat": 19.016556,
-      "lon": -99.202717,
-      "altitude_ft": 17275,
-      "speed_kts": 294.0,
-      "squawk": "6520",
-      "country": "ANX-1202",
-      "category": "A2",
-      "emergency": false
-    },
-    {
-      "source": "adsb",
-      "hex": "ae2ed8",
-      "callsign": "RNGR770",
-      "type": "TEX2",
-      "description": "",
-      "operator": "",
-      "lat": 27.399902,
-      "lon": -98.873015,
-      "altitude_ft": 2525,
-      "speed_kts": 232.8,
-      "squawk": "5570",
-      "country": "166091",
-      "category": "A1",
-      "emergency": false
-    },
-    {
-      "source": "adsb",
-      "hex": "ae2ef4",
-      "callsign": "BB119",
-      "type": "TEX2",
-      "description": "",
-      "operator": "",
-      "lat": 30.20319,
-      "lon": -97.65397,
-      "altitude_ft": "ground",
-      "speed_kts": 0.0,
-      "squawk": "1200",
-      "country": "166119",
-      "category": "A1",
-      "emergency": false
-    },
-    {
-      "source": "adsb",
-      "hex": "ae1e50",
-      "callsign": "EVIL56",
-      "type": "TEX2",
-      "description": "",
-      "operator": "",
-      "lat": 37.609786,
-      "lon": -97.413264,
-      "altitude_ft": 2925,
-      "speed_kts": 185.9,
-      "squawk": "4716",
-      "country": "07-3880",
-      "category": "A1",
-      "emergency": false
-    },
-    {
-      "source": "adsb",
-      "hex": "a1926a",
-      "callsign": "N200EC",
-      "type": "BE20",
-      "description": "",
-      "operator": "",
-      "lat": 37.945312,
-      "lon": -96.738184,
-      "altitude_ft": 42275,
-      "speed_kts": 516.1,
-      "squawk": "2775",
-      "country": "5T-BYD",
-      "category": "A2",
-      "emergency": false
-    },
-    {
-      "source": "adsb",
-      "hex": "ae4a24",
-      "callsign": "BOMR872",
-      "type": "TEX2",
-      "description": "",
-      "operator": "",
-      "lat": 29.585902,
-      "lon": -96.673817,
-      "altitude_ft": 9100,
-      "speed_kts": 238.7,
-      "squawk": "4605",
-      "country": "166155",
-      "category": "A1",
-      "emergency": false
-    },
-    {
-      "source": "adsb",
-      "hex": "ae630d",
-      "callsign": "HAWK216",
-      "type": "HAWK",
-      "description": "",
-      "operator": "",
-      "lat": 30.764923,
-      "lon": -96.52534,
-      "altitude_ft": 3100,
-      "speed_kts": 198.7,
-      "squawk": "4214",
-      "country": "167084",
-      "category": "A6",
-      "emergency": false
-    },
-    {
-      "source": "adsb",
-      "hex": "ae4f15",
-      "callsign": "RCH154",
-      "type": "C17",
-      "description": "",
-      "operator": "",
-      "lat": 29.790245,
-      "lon": -96.350234,
-      "altitude_ft": 29300,
-      "speed_kts": 426.0,
-      "squawk": "2644",
-      "country": "10-0221",
-      "category": "",
-      "emergency": false
-    },
-    {
-      "source": "adsb",
-      "hex": "ae109a",
-      "callsign": "C102",
-      "type": "GLF5",
-      "description": "",
-      "operator": "",
-      "lat": 36.448746,
-      "lon": -95.33844,
-      "altitude_ft": 10075,
-      "speed_kts": 312.4,
-      "squawk": "5660",
-      "country": "02",
-      "category": "A3",
-      "emergency": false
-    },
-    {
-      "source": "adsb",
-      "hex": "adfe95",
-      "callsign": "PAT293",
-      "type": "BE20",
-      "description": "",
-      "operator": "",
-      "lat": 34.347885,
-      "lon": -91.742678,
-      "altitude_ft": 24000,
-      "speed_kts": 253.2,
-      "squawk": "4032",
-      "country": "95-00096",
-      "category": "A1",
-      "emergency": false
-    },
-    {
-      "source": "adsb",
-      "hex": "ae08f8",
-      "callsign": "PAT160",
-      "type": "BE20",
-      "description": "",
-      "operator": "",
-      "lat": 30.379758,
-      "lon": -90.00379,
-      "altitude_ft": 11025,
-      "speed_kts": 234.8,
-      "squawk": "5201",
-      "country": "84-24375",
-      "category": "A1",
-      "emergency": false
-    },
-    {
-      "source": "adsb",
-      "hex": "ae2eda",
-      "callsign": "SH093",
-      "type": "TEX2",
-      "description": "",
-      "operator": "",
-      "lat": 29.864365,
-      "lon": -89.994031,
-      "altitude_ft": 550,
-      "speed_kts": 118.8,
-      "squawk": "0743",
-      "country": "166093",
-      "category": "A1",
-      "emergency": false
-    },
-    {
-      "source": "adsb",
-      "hex": "ae54f7",
-      "callsign": "RN229",
-      "type": "TEX2",
-      "description": "",
-      "operator": "",
-      "lat": 29.871733,
-      "lon": -89.831651,
-      "altitude_ft": 2125,
-      "speed_kts": 231.3,
-      "squawk": "0251",
-      "country": "166229",
-      "category": "A1",
-      "emergency": false
-    },
-    {
-      "source": "adsb",
-      "hex": "ae4e9c",
-      "callsign": "RN178",
-      "type": "TEX2",
-      "description": "",
-      "operator": "",
-      "lat": 30.024536,
-      "lon": -89.595929,
-      "altitude_ft": 1550,
-      "speed_kts": 207.1,
-      "squawk": "0244",
-      "country": "166178",
-      "category": "A1",
-      "emergency": false
-    },
-    {
-      "source": "adsb",
-      "hex": "ae2ef3",
-      "callsign": "",
-      "type": "TEX2",
-      "description": "",
-      "operator": "",
-      "lat": 30.595139,
-      "lon": -89.485958,
-      "altitude_ft": 3100,
-      "speed_kts": 179.5,
-      "squawk": "",
-      "country": "166118",
-      "category": "A1",
-      "emergency": false
-    },
-    {
-      "source": "adsb",
-      "hex": "ae6a13",
-      "callsign": "OTIS48",
-      "type": "C30J",
-      "description": "",
-      "operator": "",
-      "lat": 30.890854,
-      "lon": -88.914292,
-      "altitude_ft": 2025,
-      "speed_kts": 209.5,
-      "squawk": "1200",
-      "country": "170038",
-      "category": "A3",
-      "emergency": false
-    },
-    {
-      "source": "adsb",
-      "hex": "ae4b30",
-      "callsign": "CONDOR11",
-      "type": "H53S",
-      "description": "",
-      "operator": "",
-      "lat": 30.898956,
-      "lon": -88.905999,
-      "altitude_ft": 1675,
-      "speed_kts": 122.1,
-      "squawk": "1200",
-      "country": "161260",
-      "category": "A7",
-      "emergency": false
-    },
-    {
-      "source": "adsb",
-      "hex": "ae62d8",
-      "callsign": "TALON61",
-      "type": "HAWK",
-      "description": "",
-      "operator": "",
-      "lat": 32.603465,
-      "lon": -88.782928,
-      "altitude_ft": 10125,
-      "speed_kts": 303.2,
-      "squawk": "",
-      "country": "165601",
-      "category": "A6",
-      "emergency": false
-    },
-    {
-      "source": "adsb",
-      "hex": "ae68bc",
-      "callsign": "",
-      "type": "D328",
-      "description": "",
-      "operator": "",
-      "lat": 30.745239,
-      "lon": -88.09975,
-      "altitude_ft": 2950,
-      "speed_kts": 165.1,
-      "squawk": "1553",
-      "country": "12-3050",
-      "category": "A2",
-      "emergency": false
-    },
-    {
-      "source": "adsb",
-      "hex": "ae1e6f",
-      "callsign": "RN017",
-      "type": "TEX2",
-      "description": "",
-      "operator": "",
-      "lat": 30.671268,
-      "lon": -88.066022,
-      "altitude_ft": 500,
-      "speed_kts": 111.0,
-      "squawk": "1023",
-      "country": "166017",
-      "category": "A1",
-      "emergency": false
-    },
-    {
-      "source": "adsb",
-      "hex": "ae6962",
-      "callsign": "SAM548",
-      "type": "GLF5",
-      "description": "",
-      "operator": "",
-      "lat": 40.595112,
-      "lon": -87.757101,
-      "altitude_ft": 41000,
-      "speed_kts": 461.0,
-      "squawk": "3652",
-      "country": "18-1947",
-      "category": "",
-      "emergency": false
-    },
-    {
-      "source": "adsb",
-      "hex": "ae1e72",
-      "callsign": "BB020",
-      "type": "TEX2",
-      "description": "",
-      "operator": "",
-      "lat": 30.975906,
-      "lon": -87.663867,
-      "altitude_ft": 4500,
-      "speed_kts": 209.9,
-      "squawk": "1200",
-      "country": "166020",
-      "category": "A1",
-      "emergency": false
-    },
-    {
-      "source": "adsb",
-      "hex": "ae2ef0",
-      "callsign": "SH115",
-      "type": "TEX2",
-      "description": "",
-      "operator": "",
-      "lat": 30.781036,
-      "lon": -87.503518,
-      "altitude_ft": 6050,
-      "speed_kts": 215.7,
-      "squawk": "1065",
-      "country": "166115",
-      "category": "A1",
-      "emergency": false
-    },
-    {
-      "source": "adsb",
-      "hex": "ae4a25",
-      "callsign": "SH156",
-      "type": "TEX2",
-      "description": "",
-      "operator": "",
-      "lat": 31.048508,
-      "lon": -87.175706,
-      "altitude_ft": 4550,
-      "speed_kts": 175.9,
-      "squawk": "",
-      "country": "166156",
-      "category": "A1",
-      "emergency": false
-    },
-    {
-      "source": "adsb",
-      "hex": "ae7428",
-      "callsign": "LY741",
-      "type": "A119",
-      "description": "",
-      "operator": "",
-      "lat": 30.886153,
-      "lon": -86.768811,
-      "altitude_ft": 2150,
-      "speed_kts": 80.5,
-      "squawk": "4226",
-      "country": "170253",
-      "category": "A7",
-      "emergency": false
-    },
-    {
-      "source": "adsb",
-      "hex": "ae595c",
-      "callsign": "CHEAT52",
-      "type": "C30J",
-      "description": "",
-      "operator": "",
-      "lat": 30.634323,
-      "lon": -86.762534,
-      "altitude_ft": 625,
-      "speed_kts": 208.8,
-      "squawk": "4652",
-      "country": "14-5788",
-      "category": "A3",
-      "emergency": false
-    },
-    {
-      "source": "adsb",
-      "hex": "ae189c",
-      "callsign": "SPAR16",
-      "type": "B737",
-      "description": "",
-      "operator": "",
-      "lat": 38.49614,
-      "lon": -86.367981,
-      "altitude_ft": 34000,
-      "speed_kts": 445.3,
-      "squawk": "3560",
-      "country": "05-0932",
-      "category": "A3",
-      "emergency": false
-    },
-    {
-      "source": "adsb",
-      "hex": "ae5379",
-      "callsign": "SUPRT81",
-      "type": "H60",
-      "description": "",
-      "operator": "",
-      "lat": 31.52005,
-      "lon": -85.686089,
-      "altitude_ft": 1975,
-      "speed_kts": 133.5,
-      "squawk": "4563",
-      "country": "12-20468",
-      "category": "A7",
-      "emergency": false
-    },
-    {
-      "source": "adsb",
-      "hex": "ae58e9",
-      "callsign": "MAKO6",
-      "type": "TEX2",
-      "description": "",
-      "operator": "",
-      "lat": 30.392885,
-      "lon": -84.456738,
-      "altitude_ft": 9475,
-      "speed_kts": 280.2,
-      "squawk": "5561",
-      "country": "166244",
-      "category": "A1",
-      "emergency": false
-    },
-    {
-      "source": "adsb",
-      "hex": "ae01d6",
-      "callsign": "BALLR63",
-      "type": "R135",
-      "description": "",
-      "operator": "",
-      "lat": 26.88208,
-      "lon": -83.309171,
-      "altitude_ft": 35000,
-      "speed_kts": 404.5,
-      "squawk": "0624",
-      "country": "61-2663",
-      "category": "A5",
-      "emergency": false
-    },
-    {
-      "source": "adsb",
-      "hex": "ae6a1f",
-      "callsign": "G21109",
-      "type": "H60",
-      "description": "",
-      "operator": "",
-      "lat": 35.581421,
-      "lon": -80.331688,
-      "altitude_ft": 3250,
-      "speed_kts": 160.6,
-      "squawk": "2566",
-      "country": "20-21109",
-      "category": "A7",
-      "emergency": false
-    },
-    {
-      "source": "adsb",
-      "hex": "ae04ad",
-      "callsign": "WING40",
-      "type": "C560",
-      "description": "",
-      "operator": "",
-      "lat": 29.669976,
-      "lon": -80.317544,
-      "altitude_ft": 40225,
-      "speed_kts": 345.9,
-      "squawk": "6065",
-      "country": "99-00104",
-      "category": "A2",
-      "emergency": false
-    },
-    {
-      "source": "adsb",
-      "hex": "15cd28",
-      "callsign": "VVTP38",
-      "type": "BE20",
-      "description": "",
-      "operator": "",
-      "lat": 36.70665,
-      "lon": -80.168037,
-      "altitude_ft": 23000,
-      "speed_kts": 264.8,
-      "squawk": "5674",
-      "country": "823132",
-      "category": "A1",
-      "emergency": false
-    },
-    {
-      "source": "adsb",
-      "hex": "ae2237",
-      "callsign": "",
-      "type": "CN35",
-      "description": "",
-      "operator": "",
-      "lat": 25.308792,
-      "lon": -79.45165,
-      "altitude_ft": 6025,
-      "speed_kts": 0,
-      "squawk": "",
-      "country": "2301",
-      "category": "A2",
-      "emergency": false
-    },
-    {
-      "source": "adsb",
-      "hex": "ac9cfe",
-      "callsign": "ANVIL48",
-      "type": "BE20",
-      "description": "",
-      "operator": "",
-      "lat": 36.665909,
-      "lon": -79.068089,
-      "altitude_ft": 21000,
-      "speed_kts": 274.8,
-      "squawk": "1655",
-      "country": "09-01118",
-      "category": "A1",
-      "emergency": false
-    },
-    {
-      "source": "adsb",
-      "hex": "ae130c",
-      "callsign": "OTIS21",
-      "type": "C30J",
-      "description": "",
-      "operator": "",
-      "lat": 35.150059,
-      "lon": -78.078346,
-      "altitude_ft": 11000,
-      "speed_kts": 288.4,
-      "squawk": "4604",
-      "country": "166513",
-      "category": "A3",
-      "emergency": false
-    },
-    {
-      "source": "adsb",
-      "hex": "ae6961",
-      "callsign": "SAM758",
-      "type": "GLF5",
-      "description": "",
-      "operator": "",
-      "lat": 37.858503,
-      "lon": -77.210822,
-      "altitude_ft": 13800,
-      "speed_kts": 354.0,
-      "squawk": "5617",
-      "country": "18-1942",
-      "category": "",
-      "emergency": false
-    },
-    {
-      "source": "adsb",
-      "hex": "0c204e",
-      "callsign": "PANAMA1",
-      "type": "E35L",
-      "description": "",
-      "operator": "",
-      "lat": 16.871136,
-      "lon": -77.036035,
-      "altitude_ft": 40000,
-      "speed_kts": 435.8,
-      "squawk": "0165",
-      "country": "HP-1A",
-      "category": "A2",
-      "emergency": false
-    },
-    {
-      "source": "adsb",
-      "hex": "ae0110",
-      "callsign": "SCORE06",
-      "type": "ASTR",
-      "description": "",
-      "operator": "",
-      "lat": 37.678869,
-      "lon": -76.694601,
-      "altitude_ft": 4975,
-      "speed_kts": 259.4,
-      "squawk": "5370",
-      "country": "941570",
-      "category": "A2",
-      "emergency": false
-    },
-    {
-      "source": "adsb",
-      "hex": "ae4f31",
-      "callsign": "DSTY612",
-      "type": "H60",
-      "description": "",
-      "operator": "",
-      "lat": 36.692148,
-      "lon": -76.599017,
-      "altitude_ft": 475,
-      "speed_kts": 107.2,
-      "squawk": "1200",
-      "country": "167886",
-      "category": "A7",
-      "emergency": false
-    },
-    {
-      "source": "adsb",
-      "hex": "ae6c1e",
-      "callsign": "TITAN05",
-      "type": "C30J",
-      "description": "",
-      "operator": "",
-      "lat": 36.276443,
-      "lon": -76.241856,
-      "altitude_ft": 3050,
-      "speed_kts": 171.7,
-      "squawk": "6242",
-      "country": "170282",
-      "category": "A3",
-      "emergency": false
-    },
-    {
-      "source": "adsb",
-      "hex": "ae4d3a",
-      "callsign": "DSTY610",
-      "type": "H60",
-      "description": "",
-      "operator": "",
-      "lat": 37.019084,
-      "lon": -76.195798,
-      "altitude_ft": 600,
-      "speed_kts": 140.2,
-      "squawk": "1200",
-      "country": "168548",
-      "category": "A7",
-      "emergency": false
-    },
-    {
-      "source": "adsb",
-      "hex": "aef832",
-      "callsign": "R43545",
-      "type": "",
-      "description": "",
-      "operator": "",
-      "lat": 43.649054,
-      "lon": -76.175341,
-      "altitude_ft": 3200,
-      "speed_kts": 118.9,
-      "squawk": "5362",
-      "country": "",
-      "category": "A7",
-      "emergency": false
-    },
-    {
-      "source": "adsb",
-      "hex": "afa813",
-      "callsign": "R43544",
-      "type": "",
-      "description": "",
-      "operator": "",
-      "lat": 43.920502,
-      "lon": -75.720648,
-      "altitude_ft": 4900,
-      "speed_kts": 123.0,
-      "squawk": "5340",
-      "country": "",
-      "category": "A7",
-      "emergency": false
-    },
-    {
-      "source": "adsb",
-      "hex": "ae202a",
-      "callsign": "72283",
-      "type": "EC45",
-      "description": "",
-      "operator": "",
-      "lat": 39.52066,
-      "lon": -75.72052,
-      "altitude_ft": 450,
-      "speed_kts": 2.3,
-      "squawk": "1200",
-      "country": "13-72283",
-      "category": "A7",
-      "emergency": false
-    },
-    {
-      "source": "adsb",
-      "hex": "c2b369",
-      "callsign": "CFC3156",
-      "type": "CL60",
-      "description": "",
-      "operator": "",
-      "lat": 45.322805,
-      "lon": -75.673493,
-      "altitude_ft": "ground",
-      "speed_kts": 14.2,
-      "squawk": "1702",
-      "country": "144617",
-      "category": "A2",
-      "emergency": false
-    },
-    {
-      "source": "adsb",
-      "hex": "af6fad",
-      "callsign": "",
-      "type": "",
-      "description": "",
-      "operator": "",
-      "lat": 39.4688,
-      "lon": -75.605202,
-      "altitude_ft": 23175,
-      "speed_kts": 404.0,
-      "squawk": "3675",
-      "country": "",
-      "category": "",
-      "emergency": false
-    },
-    {
-      "source": "adsb",
-      "hex": "a1f5f1",
-      "callsign": "N2250E",
-      "type": "C172",
-      "description": "",
-      "operator": "",
-      "lat": 39.060307,
-      "lon": -75.57373,
-      "altitude_ft": 3950,
-      "speed_kts": 70.2,
-      "squawk": "0315",
-      "country": "N2250E",
-      "category": "A1",
-      "emergency": false
-    },
-    {
-      "source": "adsb",
-      "hex": "af094e",
-      "callsign": "R43542",
-      "type": "",
-      "description": "",
-      "operator": "",
-      "lat": 44.691742,
-      "lon": -75.408587,
-      "altitude_ft": 1600,
-      "speed_kts": 107.1,
-      "squawk": "5305",
-      "country": "",
-      "category": "A7",
-      "emergency": false
-    },
-    {
-      "source": "adsb",
-      "hex": "ae571b",
-      "callsign": "WING07",
-      "type": "BE20",
-      "description": "",
-      "operator": "",
-      "lat": 40.033621,
-      "lon": -74.558529,
-      "altitude_ft": 625,
-      "speed_kts": 104.0,
-      "squawk": "0401",
-      "country": "10-00258",
-      "category": "A1",
-      "emergency": false
-    },
-    {
-      "source": "adsb",
-      "hex": "ae0584",
-      "callsign": "RCH1821",
-      "type": "C5M",
-      "description": "",
-      "operator": "",
-      "lat": 41.992079,
-      "lon": -72.111733,
-      "altitude_ft": 13650,
-      "speed_kts": 400.0,
-      "squawk": "1344",
-      "country": "87-0039",
-      "category": "",
-      "emergency": false
-    },
-    {
-      "source": "adsb",
-      "hex": "ae1238",
-      "callsign": "RCH862",
-      "type": "C17",
-      "description": "",
-      "operator": "",
-      "lat": 54.186231,
-      "lon": -2.986474,
-      "altitude_ft": 33000,
-      "speed_kts": 496.0,
-      "squawk": "1155",
-      "country": "03-3127",
-      "category": "",
-      "emergency": false
-    },
-    {
-      "source": "adsb",
-      "hex": "477ff1",
-      "callsign": "BRK77",
-      "type": "C17",
-      "description": "",
-      "operator": "",
-      "lat": 51.183563,
-      "lon": -2.059565,
-      "altitude_ft": 37000,
-      "speed_kts": 473.0,
-      "squawk": "3444",
-      "country": "01",
-      "category": "A5",
-      "emergency": false
-    },
-    {
-      "source": "adsb",
-      "hex": "ae1171",
-      "callsign": "RCH260",
-      "type": "C17",
-      "description": "",
-      "operator": "",
-      "lat": 49.491626,
-      "lon": 8.639371,
-      "altitude_ft": 20000,
-      "speed_kts": 386.0,
-      "squawk": "1167",
-      "country": "02-1099",
-      "category": "",
-      "emergency": false
-    },
-    {
-      "source": "adsb",
-      "hex": "33fe7a",
-      "callsign": "IAM1425",
-      "type": "B762",
-      "description": "",
-      "operator": "",
-      "lat": 40.264389,
-      "lon": 14.162476,
-      "altitude_ft": 30925,
-      "speed_kts": 439.3,
-      "squawk": "2020",
-      "country": "MM62226",
-      "category": "A4",
-      "emergency": false
-    },
-    {
-      "source": "adsb",
-      "hex": "ae1194",
-      "callsign": "OTIS51",
-      "type": "C30J",
-      "description": "",
-      "operator": "",
-      "lat": 66.274326,
-      "lon": 19.488552,
-      "altitude_ft": 26975,
-      "speed_kts": 319.1,
-      "squawk": "0212",
-      "country": "166472",
-      "category": "A3",
-      "emergency": false
-    }
-  ],
+  "adsb": [],
   "aisstream": [],
   "wikipedia": [],
   "ioda": [],
@@ -1951,8 +299,8 @@
       {
         "source": "polymarket",
         "question": "US x Iran permanent peace deal by May 31, 2026?",
-        "probability": 6.5,
-        "volume": "77188830.17478123",
+        "probability": 5.5,
+        "volume": "77683203.92943116",
         "url": "https://polymarket.com/event/us-x-iran-permanent-peace-deal-by-may-31-2026-333-871-241-192-799-449-125",
         "end_date": "2026-05-31T00:00:00Z"
       },
@@ -1960,7 +308,7 @@
         "source": "polymarket",
         "question": "Will the Iran ceasefire continue through May 24?",
         "probability": 99.9,
-        "volume": "24234522.573273886",
+        "volume": "24246337.289273888",
         "url": "https://polymarket.com/event/will-the-iran-ceasefire-continue-through-may-24-733",
         "end_date": ""
       },
@@ -1968,25 +316,25 @@
         "source": "polymarket",
         "question": "Will Congo DR win the 2026 FIFA World Cup?",
         "probability": 0.1,
-        "volume": "26708291.64678795",
+        "volume": "26710178.302787937",
         "url": "https://polymarket.com/event/will-congo-dr-win-the-2026-fifa-world-cup",
         "end_date": "2026-07-20T00:00:00Z"
       },
       {
         "source": "polymarket",
-        "question": "Roland Garros ATP: Casper Ruud vs Tommy Paul",
-        "probability": 100.0,
-        "volume": "2335886.977397004",
-        "url": "https://polymarket.com/event/atp-ruud-paul-2026-05-29",
-        "end_date": "2026-06-05T09:00:00Z"
+        "question": "Will Donald Trump announce that the United States blockade of the Strait of Hormuz has been lifted by May 31, 2026?",
+        "probability": 29.5,
+        "volume": "8345738.440662144",
+        "url": "https://polymarket.com/event/will-donald-trump-announce-that-the-united-states-blockade-of-the-strait-of-hormuz-has-been-lifted-by-may-31-2026-313-388-459-589-533",
+        "end_date": "2026-05-31T00:00:00Z"
       },
       {
         "source": "polymarket",
-        "question": "Will Donald Trump announce that the United States blockade of the Strait of Hormuz has been lifted by May 31, 2026?",
-        "probability": 26.5,
-        "volume": "8283521.937554142",
-        "url": "https://polymarket.com/event/will-donald-trump-announce-that-the-united-states-blockade-of-the-strait-of-hormuz-has-been-lifted-by-may-31-2026-313-388-459-589-533",
-        "end_date": "2026-05-31T00:00:00Z"
+        "question": "Atlanta Braves vs. Cincinnati Reds",
+        "probability": 80.5,
+        "volume": "2043718.1485069992",
+        "url": "https://polymarket.com/event/mlb-atl-cin-2026-05-29",
+        "end_date": "2026-06-05T22:40:00Z"
       },
       {
         "source": "polymarket",
@@ -2000,55 +348,47 @@
         "source": "polymarket",
         "question": "Will South Africa win the 2026 FIFA World Cup?",
         "probability": 0.1,
-        "volume": "33177094.41789426",
+        "volume": "33178094.41789426",
         "url": "https://polymarket.com/event/will-south-africa-win-the-2026-fifa-world-cup",
         "end_date": "2026-07-20T00:00:00Z"
       },
       {
         "source": "polymarket",
-        "question": "Will Scotland win the 2026 FIFA World Cup?",
-        "probability": 0.2,
-        "volume": "29926789.816413887",
-        "url": "https://polymarket.com/event/will-scotland-win-the-2026-fifa-world-cup",
-        "end_date": "2026-07-20T00:00:00Z"
-      },
-      {
-        "source": "polymarket",
-        "question": "US announces new Iran agreement/ceasefire extension by May 31?",
-        "probability": 24.5,
-        "volume": "4074387.855249976",
-        "url": "https://polymarket.com/event/us-announces-new-iran-agreementceasefire-extension-by-may-31-665-831-238",
-        "end_date": ""
-      },
-      {
-        "source": "polymarket",
-        "question": "Atlanta Braves vs. Cincinnati Reds",
-        "probability": 54.5,
-        "volume": "1352065.0143829982",
-        "url": "https://polymarket.com/event/mlb-atl-cin-2026-05-29",
-        "end_date": "2026-06-05T22:40:00Z"
-      },
-      {
-        "source": "polymarket",
-        "question": "Will Arsenal win the 2025\u201326 Champions League?",
-        "probability": 43.5,
-        "volume": "9610255.776544178",
-        "url": "https://polymarket.com/event/will-arsenal-win-the-202526-champions-league",
-        "end_date": "2026-05-31T00:00:00Z"
+        "question": "Will WTI Crude Oil (WTI) hit (LOW) $85 in May?",
+        "probability": 0.8,
+        "volume": "3012419.443331999",
+        "url": "https://polymarket.com/event/will-wti-crude-oil-wti-hit-low-85-in-may-266-388-493-155-935-263-225-869-296-224-342-748-678",
+        "end_date": "2026-06-01T03:59:59.999Z"
       },
       {
         "source": "polymarket",
         "question": "US announces new Iran agreement/ceasefire extension by May 29?",
-        "probability": 3.9,
-        "volume": "1797820.5520340065",
+        "probability": 1.8,
+        "volume": "1947074.325084006",
         "url": "https://polymarket.com/event/us-announces-new-iran-agreementceasefire-extension-by-may-29",
         "end_date": "2026-05-29T00:00:00Z"
       },
       {
         "source": "polymarket",
+        "question": "US announces new Iran agreement/ceasefire extension by May 31?",
+        "probability": 26.5,
+        "volume": "4088488.9987749755",
+        "url": "https://polymarket.com/event/us-announces-new-iran-agreementceasefire-extension-by-may-31-665-831-238",
+        "end_date": ""
+      },
+      {
+        "source": "polymarket",
+        "question": "Will Arsenal win the 2025\u201326 Champions League?",
+        "probability": 43.5,
+        "volume": "9615174.04592418",
+        "url": "https://polymarket.com/event/will-arsenal-win-the-202526-champions-league",
+        "end_date": "2026-05-31T00:00:00Z"
+      },
+      {
+        "source": "polymarket",
         "question": "Spurs vs. Thunder",
         "probability": 42.5,
-        "volume": "1119361.7087669994",
+        "volume": "1217727.3380310002",
         "url": "https://polymarket.com/event/nba-sas-okc-2026-05-30",
         "end_date": "2026-05-31T00:00:00Z"
       },
@@ -2056,57 +396,65 @@
         "source": "polymarket",
         "question": "Will Paris Saint-Germain FC win on 2026-05-30?",
         "probability": 39.5,
-        "volume": "2286468.0824099802",
+        "volume": "2319680.864611981",
         "url": "https://polymarket.com/event/ucl-psg-ars-2026-05-30-psg",
         "end_date": "2026-05-30T16:00:00Z"
       },
       {
         "source": "polymarket",
+        "question": "Roland Garros ATP: Quentin Halys vs Alexander Zverev",
+        "probability": 0.1,
+        "volume": "1093155.9995510003",
+        "url": "https://polymarket.com/event/atp-halys-zverev-2026-05-29",
+        "end_date": "2026-06-05T09:00:00Z"
+      },
+      {
+        "source": "polymarket",
         "question": "Will PSG win the 2025\u201326 Champions League?",
         "probability": 57.5,
-        "volume": "11864912.656910865",
+        "volume": "11879938.14957787",
         "url": "https://polymarket.com/event/will-psg-win-the-202526-champions-league",
         "end_date": "2026-05-31T00:00:00Z"
       },
       {
         "source": "polymarket",
+        "question": "MicroStrategy sells any Bitcoin by May 31, 2026?",
+        "probability": 25.7,
+        "volume": "7237389.2685409",
+        "url": "https://polymarket.com/event/microstrategy-sells-any-bitcoin-by-may-31-2026",
+        "end_date": "2026-07-01T04:00:00Z"
+      },
+      {
+        "source": "polymarket",
         "question": "Will the Fed decrease interest rates by 50+ bps after the June 2026 meeting?",
         "probability": 0.5,
-        "volume": "11832757.205896297",
+        "volume": "11835778.846496299",
         "url": "https://polymarket.com/event/will-the-fed-decrease-interest-rates-by-50-bps-after-the-june-2026-meeting",
         "end_date": "2026-06-17T00:00:00Z"
       },
       {
         "source": "polymarket",
-        "question": "US x Iran permanent peace deal by June 7, 2026?",
-        "probability": 19.5,
-        "volume": "4233836.2022339925",
-        "url": "https://polymarket.com/event/us-x-iran-permanent-peace-deal-by-june-7-2026",
-        "end_date": "2026-06-07T00:00:00Z"
-      },
-      {
-        "source": "polymarket",
-        "question": "Will WTI Crude Oil (WTI) hit (LOW) $85 in May?",
-        "probability": 0.8,
-        "volume": "2340522.8973920033",
-        "url": "https://polymarket.com/event/will-wti-crude-oil-wti-hit-low-85-in-may-266-388-493-155-935-263-225-869-296-224-342-748-678",
-        "end_date": "2026-06-01T03:59:59.999Z"
-      },
-      {
-        "source": "polymarket",
         "question": "Will Turkiye win the 2026 FIFA World Cup?",
         "probability": 0.8,
-        "volume": "17706208.654371906",
+        "volume": "17729093.613940913",
         "url": "https://polymarket.com/event/will-turkiye-win-the-2026-fifa-world-cup",
         "end_date": "2026-07-20T00:00:00Z"
       },
       {
         "source": "polymarket",
-        "question": "Strait of Hormuz traffic returns to normal by end of May?",
-        "probability": 0.4,
-        "volume": "30996210.292919282",
-        "url": "https://polymarket.com/event/strait-of-hormuz-traffic-returns-to-normal-by-end-of-may",
-        "end_date": "2026-05-31T00:00:00Z"
+        "question": "Iran closes its airspace by May 27?",
+        "probability": 0.1,
+        "volume": "3688106.458149001",
+        "url": "https://polymarket.com/event/iran-closes-its-airspace-by-may-29",
+        "end_date": "2026-05-27T00:00:00Z"
+      },
+      {
+        "source": "polymarket",
+        "question": "US x Iran permanent peace deal by June 7, 2026?",
+        "probability": 18.5,
+        "volume": "4242895.436159992",
+        "url": "https://polymarket.com/event/us-x-iran-permanent-peace-deal-by-june-7-2026",
+        "end_date": "2026-06-07T00:00:00Z"
       }
     ],
     "manifold": [
@@ -2146,6 +494,32 @@
     "metaculus": []
   },
   "earthquakes": [
+    {
+      "source": "usgs",
+      "magnitude": 2.7,
+      "place": "35 km NNW of Toyah, Texas",
+      "time": "2026-05-29T23:21:04.782000+00:00",
+      "coordinates": [
+        -103.957,
+        31.604
+      ],
+      "alert": null,
+      "tsunami": 0,
+      "url": "https://earthquake.usgs.gov/earthquakes/eventpage/tx2026knlxkn"
+    },
+    {
+      "source": "usgs",
+      "magnitude": 4.8,
+      "place": "116 km SSE of Lorengau, Papua New Guinea",
+      "time": "2026-05-29T23:17:03.497000+00:00",
+      "coordinates": [
+        147.7323,
+        -2.9833
+      ],
+      "alert": null,
+      "tsunami": 0,
+      "url": "https://earthquake.usgs.gov/earthquakes/eventpage/us7000spg0"
+    },
     {
       "source": "usgs",
       "magnitude": 5.2,
@@ -2509,35 +883,36 @@
       "alert": null,
       "tsunami": 0,
       "url": "https://earthquake.usgs.gov/earthquakes/eventpage/us7000sp6y"
-    },
-    {
-      "source": "usgs",
-      "magnitude": 2.5,
-      "place": "Blue Origin New Glenn rocket explosion",
-      "time": "2026-05-29T01:00:03+00:00",
-      "coordinates": [
-        -80.538,
-        28.471
-      ],
-      "alert": null,
-      "tsunami": 0,
-      "url": "https://earthquake.usgs.gov/earthquakes/eventpage/us7000spdd"
-    },
-    {
-      "source": "usgs",
-      "magnitude": 2.5,
-      "place": "64 km ENE of Pedro Bay, Alaska",
-      "time": "2026-05-29T00:38:46.185000+00:00",
-      "coordinates": [
-        -152.979,
-        59.92
-      ],
-      "alert": null,
-      "tsunami": 0,
-      "url": "https://earthquake.usgs.gov/earthquakes/eventpage/aka2026knknoo"
     }
   ],
   "weather": [
+    {
+      "source": "noaa",
+      "event": "Severe Thunderstorm Warning",
+      "state": "TX",
+      "headline": "Severe Thunderstorm Warning issued May 29 at 7:05PM CDT until May 29 at 7:15PM CDT by NWS Amarillo TX",
+      "severity": "Severe",
+      "urgency": "Immediate",
+      "expires": "2026-05-29T19:15:00-05:00"
+    },
+    {
+      "source": "noaa",
+      "event": "Severe Thunderstorm Warning",
+      "state": "TX",
+      "headline": "Severe Thunderstorm Warning issued May 29 at 6:55PM CDT until May 29 at 8:00PM CDT by NWS Amarillo TX",
+      "severity": "Severe",
+      "urgency": "Immediate",
+      "expires": "2026-05-29T20:00:00-05:00"
+    },
+    {
+      "source": "noaa",
+      "event": "Special Weather Statement",
+      "state": "TX",
+      "headline": "Special Weather Statement issued May 29 at 6:40PM CDT by NWS Amarillo TX",
+      "severity": "Moderate",
+      "urgency": "Expected",
+      "expires": "2026-05-29T19:15:00-05:00"
+    },
     {
       "source": "noaa",
       "event": "Severe Thunderstorm Watch",
@@ -2585,39 +960,21 @@
     },
     {
       "source": "noaa",
-      "event": "Air Quality Alert",
-      "state": "TX",
-      "headline": "Air Quality Alert issued May 28 at 3:16PM CDT by NWS Houston/Galveston TX",
-      "severity": "Unknown",
-      "urgency": "Unknown",
-      "expires": "2026-05-29T19:30:00-05:00"
-    },
-    {
-      "source": "noaa",
-      "event": "Air Quality Alert",
-      "state": "TX",
-      "headline": "Air Quality Alert issued May 28 at 3:12PM CDT by NWS Fort Worth TX",
-      "severity": "Unknown",
-      "urgency": "Unknown",
-      "expires": "2026-05-29T18:15:00-05:00"
-    },
-    {
-      "source": "noaa",
-      "event": "Air Quality Alert",
-      "state": "TX",
-      "headline": "Air Quality Alert issued May 28 at 3:05PM CDT by NWS Austin/San Antonio TX",
-      "severity": "Unknown",
-      "urgency": "Unknown",
-      "expires": "2026-05-29T19:15:00-05:00"
+      "event": "Special Weather Statement",
+      "state": "MS",
+      "headline": "Special Weather Statement issued May 29 at 6:51PM CDT by NWS Jackson MS",
+      "severity": "Moderate",
+      "urgency": "Expected",
+      "expires": "2026-05-29T19:45:00-05:00"
     },
     {
       "source": "noaa",
       "event": "Special Weather Statement",
       "state": "MS",
-      "headline": "Special Weather Statement issued May 29 at 5:06PM CDT by NWS Jackson MS",
+      "headline": "Special Weather Statement issued May 29 at 6:48PM CDT by NWS Jackson MS",
       "severity": "Moderate",
       "urgency": "Expected",
-      "expires": "2026-05-29T17:45:00-05:00"
+      "expires": "2026-05-29T19:45:00-05:00"
     },
     {
       "source": "noaa",
@@ -2675,12 +1032,12 @@
     },
     {
       "source": "noaa",
-      "event": "Flood Warning",
-      "state": "MS",
-      "headline": "Flood Warning issued May 29 at 8:01AM CDT by NWS New Orleans LA",
-      "severity": "Severe",
-      "urgency": "Immediate",
-      "expires": "2026-05-30T00:15:00-05:00"
+      "event": "Special Weather Statement",
+      "state": "AR",
+      "headline": "Special Weather Statement issued May 29 at 7:03PM CDT by NWS Memphis TN",
+      "severity": "Moderate",
+      "urgency": "Expected",
+      "expires": "2026-05-29T19:30:00-05:00"
     },
     {
       "source": "noaa",
@@ -2693,21 +1050,21 @@
     },
     {
       "source": "noaa",
-      "event": "Flood Advisory",
-      "state": "AL",
-      "headline": "Flood Advisory issued May 29 at 2:39PM CDT until May 29 at 5:45PM CDT by NWS Birmingham AL",
-      "severity": "Minor",
-      "urgency": "Expected",
-      "expires": "2026-05-29T17:45:00-05:00"
-    },
-    {
-      "source": "noaa",
       "event": "Rip Current Statement",
       "state": "AL",
       "headline": "Rip Current Statement issued May 29 at 12:03PM CDT until May 30 at 6:00AM CDT by NWS Mobile AL",
       "severity": "Moderate",
       "urgency": "Expected",
       "expires": "2026-05-29T23:00:00-05:00"
+    },
+    {
+      "source": "noaa",
+      "event": "Flood Advisory",
+      "state": "TN",
+      "headline": "Flood Advisory issued May 29 at 5:27PM CDT until May 29 at 7:30PM CDT by NWS Nashville TN",
+      "severity": "Minor",
+      "urgency": "Expected",
+      "expires": "2026-05-29T19:30:00-05:00"
     },
     {
       "source": "noaa",
@@ -2729,30 +1086,30 @@
     },
     {
       "source": "noaa",
+      "event": "Special Weather Statement",
+      "state": "OK",
+      "headline": "Special Weather Statement issued May 29 at 7:07PM CDT by NWS Norman OK",
+      "severity": "Moderate",
+      "urgency": "Expected",
+      "expires": "2026-05-29T19:30:00-05:00"
+    },
+    {
+      "source": "noaa",
       "event": "Severe Thunderstorm Warning",
       "state": "OK",
-      "headline": "Severe Thunderstorm Warning issued May 29 at 5:16PM CDT until May 29 at 5:45PM CDT by NWS Norman OK",
+      "headline": "Severe Thunderstorm Warning issued May 29 at 6:54PM CDT until May 29 at 7:30PM CDT by NWS Norman OK",
       "severity": "Severe",
       "urgency": "Immediate",
-      "expires": "2026-05-29T17:45:00-05:00"
+      "expires": "2026-05-29T19:30:00-05:00"
     },
     {
       "source": "noaa",
-      "event": "Special Weather Statement",
+      "event": "Flood Advisory",
       "state": "OK",
-      "headline": "Special Weather Statement issued May 29 at 5:13PM CDT by NWS Norman OK",
-      "severity": "Moderate",
+      "headline": "Flood Advisory issued May 29 at 5:22PM CDT until May 29 at 8:30PM CDT by NWS Norman OK",
+      "severity": "Minor",
       "urgency": "Expected",
-      "expires": "2026-05-29T17:45:00-05:00"
-    },
-    {
-      "source": "noaa",
-      "event": "Special Weather Statement",
-      "state": "OK",
-      "headline": "Special Weather Statement issued May 29 at 5:03PM CDT by NWS Norman OK",
-      "severity": "Moderate",
-      "urgency": "Expected",
-      "expires": "2026-05-29T17:30:00-05:00"
+      "expires": "2026-05-29T20:30:00-05:00"
     },
     {
       "source": "noaa",
@@ -2792,15 +1149,6 @@
     },
     {
       "source": "noaa",
-      "event": "Special Weather Statement",
-      "state": "LA",
-      "headline": "Special Weather Statement issued May 29 at 4:37PM CDT by NWS Jackson MS",
-      "severity": "Moderate",
-      "urgency": "Expected",
-      "expires": "2026-05-29T17:30:00-05:00"
-    },
-    {
-      "source": "noaa",
       "event": "Flood Warning",
       "state": "LA",
       "headline": "Flood Warning issued May 29 at 10:20AM CDT until May 31 at 7:00AM CDT by NWS Lake Charles LA",
@@ -2828,21 +1176,48 @@
     },
     {
       "source": "noaa",
+      "event": "Severe Thunderstorm Warning",
+      "state": "FL",
+      "headline": "Severe Thunderstorm Warning issued May 29 at 7:54PM EDT until May 29 at 8:30PM EDT by NWS Miami FL",
+      "severity": "Severe",
+      "urgency": "Immediate",
+      "expires": "2026-05-29T20:30:00-04:00"
+    },
+    {
+      "source": "noaa",
       "event": "Special Weather Statement",
       "state": "FL",
-      "headline": "Special Weather Statement issued May 29 at 6:15PM EDT by NWS Jacksonville FL",
+      "headline": "Special Weather Statement issued May 29 at 7:45PM EDT by NWS Miami FL",
       "severity": "Moderate",
       "urgency": "Expected",
-      "expires": "2026-05-29T18:45:00-04:00"
+      "expires": "2026-05-29T20:15:00-04:00"
     },
     {
       "source": "noaa",
       "event": "Flood Advisory",
       "state": "FL",
-      "headline": "Flood Advisory issued May 29 at 5:24PM EDT until May 29 at 6:45PM EDT by NWS Melbourne FL",
+      "headline": "Flood Advisory issued May 29 at 7:38PM EDT until May 29 at 9:00PM EDT by NWS Melbourne FL",
       "severity": "Minor",
       "urgency": "Expected",
-      "expires": "2026-05-29T18:45:00-04:00"
+      "expires": "2026-05-29T21:00:00-04:00"
+    },
+    {
+      "source": "noaa",
+      "event": "Flood Advisory",
+      "state": "FL",
+      "headline": "Flood Advisory issued May 29 at 6:37PM EDT until May 29 at 9:45PM EDT by NWS Jacksonville FL",
+      "severity": "Minor",
+      "urgency": "Expected",
+      "expires": "2026-05-29T21:45:00-04:00"
+    },
+    {
+      "source": "noaa",
+      "event": "Flood Advisory",
+      "state": "FL",
+      "headline": "Flood Advisory issued May 29 at 6:18PM EDT until May 29 at 9:30PM EDT by NWS Jacksonville FL",
+      "severity": "Minor",
+      "urgency": "Expected",
+      "expires": "2026-05-29T21:30:00-04:00"
     },
     {
       "source": "noaa",
@@ -2863,342 +1238,11 @@
       "expires": "2026-05-30T04:00:00-04:00"
     }
   ],
-  "nasa_events": [
-    {
-      "source": "nasa",
-      "title": "Tropical Storm Jangmi",
-      "category": "severeStorms",
-      "date": "2026-05-29",
-      "coordinates": [
-        131.7,
-        16.5
-      ],
-      "url": "https://eonet.gsfc.nasa.gov/api/v3/events/EONET_20279"
-    },
-    {
-      "source": "nasa",
-      "title": "Black Ridge Wildfire, Lincoln, Idaho",
-      "category": "wildfires",
-      "date": "2026-05-25",
-      "coordinates": [
-        -113.935667,
-        43.050333
-      ],
-      "url": "https://eonet.gsfc.nasa.gov/api/v3/events/EONET_20254"
-    },
-    {
-      "source": "nasa",
-      "title": "Dewoff Wildfire, Blaine, Idaho",
-      "category": "wildfires",
-      "date": "2026-05-25",
-      "coordinates": [
-        -113.248133,
-        42.67045
-      ],
-      "url": "https://eonet.gsfc.nasa.gov/api/v3/events/EONET_20251"
-    },
-    {
-      "source": "nasa",
-      "title": "0231 ZEN Wildfire, Wasco, Oregon",
-      "category": "wildfires",
-      "date": "2026-05-25",
-      "coordinates": [
-        -120.43789,
-        44.85563
-      ],
-      "url": "https://eonet.gsfc.nasa.gov/api/v3/events/EONET_20252"
-    },
-    {
-      "source": "nasa",
-      "title": "Egberts Wildfire, Elko, Nevada",
-      "category": "wildfires",
-      "date": "2026-05-25",
-      "coordinates": [
-        -115.0565,
-        40.9655
-      ],
-      "url": "https://eonet.gsfc.nasa.gov/api/v3/events/EONET_20257"
-    },
-    {
-      "source": "nasa",
-      "title": "Summit Creek Wildfire, Cassia, Idaho",
-      "category": "wildfires",
-      "date": "2026-05-25",
-      "coordinates": [
-        -113.73075,
-        42.17555
-      ],
-      "url": "https://eonet.gsfc.nasa.gov/api/v3/events/EONET_20250"
-    },
-    {
-      "source": "nasa",
-      "title": "Kinyon Springs Wildfire, Owyhee, Idaho",
-      "category": "wildfires",
-      "date": "2026-05-25",
-      "coordinates": [
-        -115.244683,
-        42.734717
-      ],
-      "url": "https://eonet.gsfc.nasa.gov/api/v3/events/EONET_20258"
-    },
-    {
-      "source": "nasa",
-      "title": "MILE MARKER 44 FIRE - BROWARD Wildfire, Broward, Florida",
-      "category": "wildfires",
-      "date": "2026-05-23",
-      "coordinates": [
-        -80.7791667,
-        26.0994444
-      ],
-      "url": "https://eonet.gsfc.nasa.gov/api/v3/events/EONET_20259"
-    },
-    {
-      "source": "nasa",
-      "title": "COUNTRY MEADOW Wildfire, Benton, Washington",
-      "category": "wildfires",
-      "date": "2026-05-23",
-      "coordinates": [
-        -119.33745,
-        46.16526
-      ],
-      "url": "https://eonet.gsfc.nasa.gov/api/v3/events/EONET_20253"
-    },
-    {
-      "source": "nasa",
-      "title": "340 Wildfire, Wakulla, Florida",
-      "category": "wildfires",
-      "date": "2026-05-23",
-      "coordinates": [
-        -84.565664,
-        30.053136
-      ],
-      "url": "https://eonet.gsfc.nasa.gov/api/v3/events/EONET_20263"
-    },
-    {
-      "source": "nasa",
-      "title": "Mile Marker 44 Wildfire, Broward, Florida",
-      "category": "wildfires",
-      "date": "2026-05-23",
-      "coordinates": [
-        -80.766667,
-        26.15
-      ],
-      "url": "https://eonet.gsfc.nasa.gov/api/v3/events/EONET_20249"
-    },
-    {
-      "source": "nasa",
-      "title": "Quartz Wildfire, Pershing, Nevada",
-      "category": "wildfires",
-      "date": "2026-05-23",
-      "coordinates": [
-        -118.014333,
-        40.709867
-      ],
-      "url": "https://eonet.gsfc.nasa.gov/api/v3/events/EONET_20260"
-    },
-    {
-      "source": "nasa",
-      "title": "Thousand Wildfire, Northwest Arctic, Alaska",
-      "category": "wildfires",
-      "date": "2026-05-23",
-      "coordinates": [
-        -159.286667,
-        66.435
-      ],
-      "url": "https://eonet.gsfc.nasa.gov/api/v3/events/EONET_20262"
-    },
-    {
-      "source": "nasa",
-      "title": "WaWa 2 Wildfire, Highlands, Florida",
-      "category": "wildfires",
-      "date": "2026-05-23",
-      "coordinates": [
-        -81.2598,
-        27.644633
-      ],
-      "url": "https://eonet.gsfc.nasa.gov/api/v3/events/EONET_20256"
-    },
-    {
-      "source": "nasa",
-      "title": "Shell Wildfire, Lake, Florida",
-      "category": "wildfires",
-      "date": "2026-05-22",
-      "coordinates": [
-        -81.507167,
-        29.073833
-      ],
-      "url": "https://eonet.gsfc.nasa.gov/api/v3/events/EONET_20264"
-    },
-    {
-      "source": "nasa",
-      "title": "Trigg Wildfire, San Miguel, New Mexico",
-      "category": "wildfires",
-      "date": "2026-05-21",
-      "coordinates": [
-        -103.948693,
-        35.53034
-      ],
-      "url": "https://eonet.gsfc.nasa.gov/api/v3/events/EONET_20261"
-    },
-    {
-      "source": "nasa",
-      "title": "DeSoto BB 8374 S RX Prescribed Fire, Harrison, Mississippi",
-      "category": "wildfires",
-      "date": "2026-05-20",
-      "coordinates": [
-        -89.035278,
-        30.673333
-      ],
-      "url": "https://eonet.gsfc.nasa.gov/api/v3/events/EONET_20230"
-    },
-    {
-      "source": "nasa",
-      "title": "Chickasawhay CPT 451 452 RX Prescribed Fire, Greene, Mississippi",
-      "category": "wildfires",
-      "date": "2026-05-20",
-      "coordinates": [
-        -88.6597,
-        31.4154
-      ],
-      "url": "https://eonet.gsfc.nasa.gov/api/v3/events/EONET_20229"
-    },
-    {
-      "source": "nasa",
-      "title": "CADDUGGEN Wildfire, Carteret, North Carolina",
-      "category": "wildfires",
-      "date": "2026-05-20",
-      "coordinates": [
-        -76.385286,
-        34.926008
-      ],
-      "url": "https://eonet.gsfc.nasa.gov/api/v3/events/EONET_20231"
-    },
-    {
-      "source": "nasa",
-      "title": "Rifle Range Rd Wildfire, Collier, Florida",
-      "category": "wildfires",
-      "date": "2026-05-19",
-      "coordinates": [
-        -81.6369444,
-        26.1155556
-      ],
-      "url": "https://eonet.gsfc.nasa.gov/api/v3/events/EONET_20236"
-    },
-    {
-      "source": "nasa",
-      "title": "Foothill Wildfire, Santa Barbara, California",
-      "category": "wildfires",
-      "date": "2026-05-19",
-      "coordinates": [
-        -119.6036111,
-        34.8297222
-      ],
-      "url": "https://eonet.gsfc.nasa.gov/api/v3/events/EONET_20232"
-    },
-    {
-      "source": "nasa",
-      "title": "MTZ/SDU/TUSIL Wildfire, San Diego, California",
-      "category": "wildfires",
-      "date": "2026-05-19",
-      "coordinates": [
-        -116.362754,
-        32.732894
-      ],
-      "url": "https://eonet.gsfc.nasa.gov/api/v3/events/EONET_20238"
-    },
-    {
-      "source": "nasa",
-      "title": "VERONA Wildfire, Riverside, California",
-      "category": "wildfires",
-      "date": "2026-05-19",
-      "coordinates": [
-        -117.08441,
-        33.76272
-      ],
-      "url": "https://eonet.gsfc.nasa.gov/api/v3/events/EONET_20234"
-    },
-    {
-      "source": "nasa",
-      "title": "BAIN Wildfire, Riverside, California",
-      "category": "wildfires",
-      "date": "2026-05-19",
-      "coordinates": [
-        -117.505889,
-        33.975363
-      ],
-      "url": "https://eonet.gsfc.nasa.gov/api/v3/events/EONET_20233"
-    },
-    {
-      "source": "nasa",
-      "title": "DeSoto BB 7310 S RX Prescribed Fire, Perry, Mississippi",
-      "category": "wildfires",
-      "date": "2026-05-19",
-      "coordinates": [
-        -88.857778,
-        31.024444
-      ],
-      "url": "https://eonet.gsfc.nasa.gov/api/v3/events/EONET_20241"
-    },
-    {
-      "source": "nasa",
-      "title": "Chickasawhay CPT 366 RX Prescribed Fire, Wayne, Mississippi",
-      "category": "wildfires",
-      "date": "2026-05-19",
-      "coordinates": [
-        -88.9338,
-        31.4618
-      ],
-      "url": "https://eonet.gsfc.nasa.gov/api/v3/events/EONET_20240"
-    },
-    {
-      "source": "nasa",
-      "title": "RX WINN BU  24 Prescribed Fire, Winn, Louisiana",
-      "category": "wildfires",
-      "date": "2026-05-19",
-      "coordinates": [
-        -92.841389,
-        32.056667
-      ],
-      "url": "https://eonet.gsfc.nasa.gov/api/v3/events/EONET_20242"
-    },
-    {
-      "source": "nasa",
-      "title": "Kress Wildfire, Swisher, Texas",
-      "category": "wildfires",
-      "date": "2026-05-18",
-      "coordinates": [
-        -101.7812159,
-        34.38652018
-      ],
-      "url": "https://eonet.gsfc.nasa.gov/api/v3/events/EONET_20153"
-    },
-    {
-      "source": "nasa",
-      "title": "SANDY Wildfire, Ventura, California",
-      "category": "wildfires",
-      "date": "2026-05-18",
-      "coordinates": [
-        -118.743684,
-        34.250088
-      ],
-      "url": "https://eonet.gsfc.nasa.gov/api/v3/events/EONET_20157"
-    },
-    {
-      "source": "nasa",
-      "title": "RIVER Wildfire, Kern, California",
-      "category": "wildfires",
-      "date": "2026-05-18",
-      "coordinates": [
-        -118.7891667,
-        35.4458333
-      ],
-      "url": "https://eonet.gsfc.nasa.gov/api/v3/events/EONET_20159"
-    }
-  ],
+  "nasa_events": [],
   "iss": {
-    "latitude": 45.0265,
-    "longitude": -145.468,
-    "timestamp": "2026-05-29T22:42:57+00:00"
+    "latitude": 28.3388,
+    "longitude": 165.542,
+    "timestamp": "2026-05-30T00:08:49+00:00"
   },
   "safecast": [],
   "acled": [],
@@ -3227,6 +1271,13 @@
     {
       "source": "reddit",
       "subreddit": "r/worldnews",
+      "title": "Japan\u2019s 2025 census reflects steepest fall in population on record, data shows",
+      "url": "https://www.reddit.com/r/worldnews/comments/1tre8i1/japans_2025_census_reflects_steepest_fall_in/",
+      "timestamp": "2026-05-29T20:14:10+00:00"
+    },
+    {
+      "source": "reddit",
+      "subreddit": "r/worldnews",
       "title": "Nato ready to defend \u2018every inch\u2019 of territory as Russian drone hits Romania",
       "url": "https://www.reddit.com/r/worldnews/comments/1tqwkwy/nato_ready_to_defend_every_inch_of_territory_as/",
       "timestamp": "2026-05-29T09:34:38+00:00"
@@ -3241,16 +1292,16 @@
     {
       "source": "reddit",
       "subreddit": "r/worldnews",
-      "title": "Japan\u2019s 2025 census reflects steepest fall in population on record, data shows",
-      "url": "https://www.reddit.com/r/worldnews/comments/1tre8i1/japans_2025_census_reflects_steepest_fall_in/",
-      "timestamp": "2026-05-29T20:14:10+00:00"
+      "title": "Zelenskyy: Russia is preparing for new large-scale attack on Ukraine",
+      "url": "https://www.reddit.com/r/worldnews/comments/1tr0ewo/zelenskyy_russia_is_preparing_for_new_largescale/",
+      "timestamp": "2026-05-29T12:31:24+00:00"
     },
     {
       "source": "reddit",
       "subreddit": "r/worldnews",
-      "title": "Zelenskyy: Russia is preparing for new large-scale attack on Ukraine",
-      "url": "https://www.reddit.com/r/worldnews/comments/1tr0ewo/zelenskyy_russia_is_preparing_for_new_largescale/",
-      "timestamp": "2026-05-29T12:31:24+00:00"
+      "title": "Russian \"Shadow Fleet\" continues sailing along norwegian coast - Authorities cannot stop it.",
+      "url": "https://www.reddit.com/r/worldnews/comments/1tri461/russian_shadow_fleet_continues_sailing_along/",
+      "timestamp": "2026-05-29T22:41:20+00:00"
     },
     {
       "source": "reddit",
@@ -3268,24 +1319,10 @@
     },
     {
       "source": "reddit",
-      "subreddit": "r/worldnews",
-      "title": "Lula says Brazil will not be treated like \u2018tinpot country\u2019 after US designated Brazil\u2019s two largest criminal gangs as terrorist organizations",
-      "url": "https://www.reddit.com/r/worldnews/comments/1trdpem/lula_says_brazil_will_not_be_treated_like_tinpot/",
-      "timestamp": "2026-05-29T19:55:13+00:00"
-    },
-    {
-      "source": "reddit",
       "subreddit": "r/geopolitics",
       "title": "AMA - I\u2019m the author of China\u2019s Backstory: The History Beijing Doesn\u2019t Want You to Read. Ask Me Anything about the historical drivers of the PRC\u2019s modern geopolitical strategy! AMA!",
       "url": "https://www.reddit.com/r/geopolitics/comments/1t1zotc/ama_im_the_author_of_chinas_backstory_the_history/",
       "timestamp": "2026-05-02T19:43:16+00:00"
-    },
-    {
-      "source": "reddit",
-      "subreddit": "r/geopolitics",
-      "title": "LIVE: Trump announces lifting of Iran naval blockade",
-      "url": "https://www.reddit.com/r/geopolitics/comments/1tr4v82/live_trump_announces_lifting_of_iran_naval/",
-      "timestamp": "2026-05-29T15:11:12+00:00"
     },
     {
       "source": "reddit",
@@ -3297,9 +1334,16 @@
     {
       "source": "reddit",
       "subreddit": "r/geopolitics",
-      "title": "\ud83c\uddfa\ud83c\udde6 Ukraine has managed to stop Russia. Now what? - The tides are turning on the battlefield and the balance of power is shifting in Europe's favour. Putin is down but not out, and his options are incr",
-      "url": "https://www.reddit.com/r/geopolitics/comments/1tqzu2x/ukraine_has_managed_to_stop_russia_now_what_the/",
-      "timestamp": "2026-05-29T12:07:52+00:00"
+      "title": "LIVE: Trump announces lifting of Iran naval blockade",
+      "url": "https://www.reddit.com/r/geopolitics/comments/1tr4v82/live_trump_announces_lifting_of_iran_naval/",
+      "timestamp": "2026-05-29T15:11:12+00:00"
+    },
+    {
+      "source": "reddit",
+      "subreddit": "r/geopolitics",
+      "title": "French Presidential Candidate M\u00e9lenchon Calls Israel \u2018Region\u2019s Most Dangerous State\u2019",
+      "url": "https://www.reddit.com/r/geopolitics/comments/1trjlk1/french_presidential_candidate_m\u00e9lenchon_calls/",
+      "timestamp": "2026-05-29T23:43:43+00:00"
     },
     {
       "source": "reddit",
@@ -3311,16 +1355,16 @@
     {
       "source": "reddit",
       "subreddit": "r/geopolitics",
-      "title": "Drone Hits Apartment Building In Romania, Sparking Fears Of Russian Attack On NATO Country",
-      "url": "https://www.reddit.com/r/geopolitics/comments/1tqrc0o/drone_hits_apartment_building_in_romania_sparking/",
-      "timestamp": "2026-05-29T04:50:17+00:00"
+      "title": "UN places Israel and Russia on sexual violence blacklist",
+      "url": "https://www.reddit.com/r/geopolitics/comments/1trawcg/un_places_israel_and_russia_on_sexual_violence/",
+      "timestamp": "2026-05-29T18:24:36+00:00"
     },
     {
       "source": "reddit",
       "subreddit": "r/geopolitics",
-      "title": "UN places Israel and Russia on sexual violence blacklist",
-      "url": "https://www.reddit.com/r/geopolitics/comments/1trawcg/un_places_israel_and_russia_on_sexual_violence/",
-      "timestamp": "2026-05-29T18:24:36+00:00"
+      "title": "\ud83c\uddfa\ud83c\udde6 Ukraine has managed to stop Russia. Now what? - The tides are turning on the battlefield and the balance of power is shifting in Europe's favour. Putin is down but not out, and his options are incr",
+      "url": "https://www.reddit.com/r/geopolitics/comments/1tqzu2x/ukraine_has_managed_to_stop_russia_now_what_the/",
+      "timestamp": "2026-05-29T12:07:52+00:00"
     },
     {
       "source": "reddit",
@@ -3332,16 +1376,16 @@
     {
       "source": "reddit",
       "subreddit": "r/geopolitics",
-      "title": "I\u2019ve fought against Putin for 25 years. He's never been so vulnerable",
-      "url": "https://www.reddit.com/r/geopolitics/comments/1tquvqj/ive_fought_against_putin_for_25_years_hes_never/",
-      "timestamp": "2026-05-29T07:59:33+00:00"
+      "title": "Drone Hits Apartment Building In Romania, Sparking Fears Of Russian Attack On NATO Country",
+      "url": "https://www.reddit.com/r/geopolitics/comments/1tqrc0o/drone_hits_apartment_building_in_romania_sparking/",
+      "timestamp": "2026-05-29T04:50:17+00:00"
     },
     {
       "source": "reddit",
       "subreddit": "r/geopolitics",
-      "title": "Netanyahu orders Israeli army to seize \u201870% of Gaza Strip\u2019, violating ceasefire deal | Gaza",
-      "url": "https://www.reddit.com/r/geopolitics/comments/1tr1g97/netanyahu_orders_israeli_army_to_seize_70_of_gaza/",
-      "timestamp": "2026-05-29T13:11:51+00:00"
+      "title": "India willing to buy heaps of Canadian uranium, invest in mines, high commissioner says",
+      "url": "https://www.reddit.com/r/geopolitics/comments/1trilxd/india_willing_to_buy_heaps_of_canadian_uranium/",
+      "timestamp": "2026-05-29T23:01:49+00:00"
     },
     {
       "source": "reddit",
@@ -3349,6 +1393,13 @@
       "title": "Monthly Mod and Subreddit Feedback",
       "url": "https://www.reddit.com/r/Intelligence/comments/1t3ecwh/monthly_mod_and_subreddit_feedback/",
       "timestamp": "2026-05-04T11:00:59+00:00"
+    },
+    {
+      "source": "reddit",
+      "subreddit": "r/intelligence",
+      "title": "Exclusive: Iran Missile Damaged Sensitive Israeli Intelligence Site",
+      "url": "https://www.reddit.com/r/Intelligence/comments/1triv9h/exclusive_iran_missile_damaged_sensitive_israeli/",
+      "timestamp": "2026-05-29T23:12:52+00:00"
     },
     {
       "source": "reddit",
@@ -3408,13 +1459,6 @@
     },
     {
       "source": "reddit",
-      "subreddit": "r/intelligence",
-      "title": "CIA/Mossad Harassment? Help!",
-      "url": "https://www.reddit.com/r/Intelligence/comments/1tqu8br/ciamossad_harassment_help/",
-      "timestamp": "2026-05-29T07:23:22+00:00"
-    },
-    {
-      "source": "reddit",
       "subreddit": "r/smallbusiness",
       "title": "Promote your business, week of April 13, 2026",
       "url": "https://www.reddit.com/r/smallbusiness/comments/1sk086d/promote_your_business_week_of_april_13_2026/",
@@ -3430,16 +1474,16 @@
     {
       "source": "reddit",
       "subreddit": "r/smallbusiness",
-      "title": "What\u2019s the Best Boring Business to Own in 2026?",
-      "url": "https://www.reddit.com/r/smallbusiness/comments/1tr2sm6/whats_the_best_boring_business_to_own_in_2026/",
-      "timestamp": "2026-05-29T14:00:46+00:00"
+      "title": "Landlord is asking me to pay for exterior property upgrades and improvements of 25k+ when I asked to renew an expiring lease. Is this legal? He said if I don\u2019t want to pay 25k and",
+      "url": "https://www.reddit.com/r/smallbusiness/comments/1trgbrk/landlord_is_asking_me_to_pay_for_exterior/",
+      "timestamp": "2026-05-29T21:30:59+00:00"
     },
     {
       "source": "reddit",
       "subreddit": "r/smallbusiness",
-      "title": "Letting a departing employee keep his laptop",
-      "url": "https://www.reddit.com/r/smallbusiness/comments/1tr3wsv/letting_a_departing_employee_keep_his_laptop/",
-      "timestamp": "2026-05-29T14:39:42+00:00"
+      "title": "What\u2019s the Best Boring Business to Own in 2026?",
+      "url": "https://www.reddit.com/r/smallbusiness/comments/1tr2sm6/whats_the_best_boring_business_to_own_in_2026/",
+      "timestamp": "2026-05-29T14:00:46+00:00"
     },
     {
       "source": "reddit",
@@ -3451,16 +1495,16 @@
     {
       "source": "reddit",
       "subreddit": "r/smallbusiness",
-      "title": "Everything feels manageable until bigger bills come up",
-      "url": "https://www.reddit.com/r/smallbusiness/comments/1trar87/everything_feels_manageable_until_bigger_bills/",
-      "timestamp": "2026-05-29T18:20:02+00:00"
+      "title": "Letting a departing employee keep his laptop",
+      "url": "https://www.reddit.com/r/smallbusiness/comments/1tr3wsv/letting_a_departing_employee_keep_his_laptop/",
+      "timestamp": "2026-05-29T14:39:42+00:00"
     },
     {
       "source": "reddit",
       "subreddit": "r/smallbusiness",
-      "title": "Landlord is asking me to pay for exterior property upgrades and improvements of 25k+ when I asked to renew an expiring lease. Is this legal? He said if I don\u2019t want to pay 25k and",
-      "url": "https://www.reddit.com/r/smallbusiness/comments/1trgbrk/landlord_is_asking_me_to_pay_for_exterior/",
-      "timestamp": "2026-05-29T21:30:59+00:00"
+      "title": "Everything feels manageable until bigger bills come up",
+      "url": "https://www.reddit.com/r/smallbusiness/comments/1trar87/everything_feels_manageable_until_bigger_bills/",
+      "timestamp": "2026-05-29T18:20:02+00:00"
     },
     {
       "source": "reddit",
@@ -3472,9 +1516,9 @@
     {
       "source": "reddit",
       "subreddit": "r/smallbusiness",
-      "title": "Best steps in starting a business",
-      "url": "https://www.reddit.com/r/smallbusiness/comments/1tr5br9/best_steps_in_starting_a_business/",
-      "timestamp": "2026-05-29T15:26:01+00:00"
+      "title": "What's one mindset shift that helped you most in business?",
+      "url": "https://www.reddit.com/r/smallbusiness/comments/1trh1z6/whats_one_mindset_shift_that_helped_you_most_in/",
+      "timestamp": "2026-05-29T21:59:28+00:00"
     },
     {
       "source": "reddit",
@@ -3535,16 +1579,16 @@
     {
       "source": "reddit",
       "subreddit": "r/HVAC",
-      "title": "The dream",
-      "url": "https://www.reddit.com/r/HVAC/comments/1tr5xsn/the_dream/",
-      "timestamp": "2026-05-29T15:46:15+00:00"
+      "title": "Just another wall hung",
+      "url": "https://www.reddit.com/r/HVAC/comments/1trcbqv/just_another_wall_hung/",
+      "timestamp": "2026-05-29T19:09:49+00:00"
     },
     {
       "source": "reddit",
       "subreddit": "r/HVAC",
-      "title": "Just another wall hung",
-      "url": "https://www.reddit.com/r/HVAC/comments/1trcbqv/just_another_wall_hung/",
-      "timestamp": "2026-05-29T19:09:49+00:00"
+      "title": "The dream",
+      "url": "https://www.reddit.com/r/HVAC/comments/1tr5xsn/the_dream/",
+      "timestamp": "2026-05-29T15:46:15+00:00"
     },
     {
       "source": "reddit",
@@ -3577,6 +1621,13 @@
     {
       "source": "reddit",
       "subreddit": "r/Plumbing",
+      "title": "What did I do wrong?",
+      "url": "https://www.reddit.com/r/Plumbing/comments/1trj70y/what_did_i_do_wrong/",
+      "timestamp": "2026-05-29T23:26:22+00:00"
+    },
+    {
+      "source": "reddit",
+      "subreddit": "r/Plumbing",
       "title": "Moved into a newly built rental town house. Sink has been god awful smelly. Is this normal?",
       "url": "https://www.reddit.com/r/Plumbing/comments/1tr62au/moved_into_a_newly_built_rental_town_house_sink/",
       "timestamp": "2026-05-29T15:50:21+00:00"
@@ -3591,6 +1642,13 @@
     {
       "source": "reddit",
       "subreddit": "r/Plumbing",
+      "title": "I have a weird shower configuration and i need help on finding a new shower head.",
+      "url": "https://www.reddit.com/r/Plumbing/comments/1trgclp/i_have_a_weird_shower_configuration_and_i_need/",
+      "timestamp": "2026-05-29T21:31:54+00:00"
+    },
+    {
+      "source": "reddit",
+      "subreddit": "r/Plumbing",
       "title": "Anyone know what this is?",
       "url": "https://www.reddit.com/r/Plumbing/comments/1tr8rog/anyone_know_what_this_is/",
       "timestamp": "2026-05-29T17:16:51+00:00"
@@ -3598,30 +1656,16 @@
     {
       "source": "reddit",
       "subreddit": "r/Plumbing",
-      "title": "Can someone tell me which of these valves is in and which is off?",
-      "url": "https://www.reddit.com/r/Plumbing/comments/1tre7w9/can_someone_tell_me_which_of_these_valves_is_in/",
-      "timestamp": "2026-05-29T20:13:31+00:00"
+      "title": "Backflow on washer drain hose",
+      "url": "https://www.reddit.com/r/Plumbing/comments/1trjfn6/backflow_on_washer_drain_hose/",
+      "timestamp": "2026-05-29T23:36:39+00:00"
     },
     {
       "source": "reddit",
       "subreddit": "r/Plumbing",
-      "title": "Sewer",
-      "url": "https://www.reddit.com/r/Plumbing/comments/1tr37ce/sewer/",
-      "timestamp": "2026-05-29T14:14:58+00:00"
-    },
-    {
-      "source": "reddit",
-      "subreddit": "r/Plumbing",
-      "title": "Do these bubbles indicate source of toilet leak",
-      "url": "https://www.reddit.com/r/Plumbing/comments/1tr9tqw/do_these_bubbles_indicate_source_of_toilet_leak/",
-      "timestamp": "2026-05-29T17:51:21+00:00"
-    },
-    {
-      "source": "reddit",
-      "subreddit": "r/Plumbing",
-      "title": "Loud air draining noise coming from the toilet?",
-      "url": "https://www.reddit.com/r/Plumbing/comments/1tr6cma/loud_air_draining_noise_coming_from_the_toilet/",
-      "timestamp": "2026-05-29T15:59:54+00:00"
+      "title": "We\u2019re trying to determine the best location to install a PRV in our 6-month-old new build in Georgia. Current water pressure is around 83 psi.",
+      "url": "https://www.reddit.com/r/Plumbing/comments/1trdkbt/were_trying_to_determine_the_best_location_to/",
+      "timestamp": "2026-05-29T19:50:26+00:00"
     },
     {
       "source": "reddit",
@@ -3668,16 +1712,16 @@
     {
       "source": "reddit",
       "subreddit": "r/electricians",
-      "title": "EFF it Friday.",
-      "url": "https://www.reddit.com/r/electricians/comments/1tr6bek/eff_it_friday/",
-      "timestamp": "2026-05-29T15:58:45+00:00"
+      "title": "Any life hacks on how to cut pipe and strut straight with a bandsaw?",
+      "url": "https://www.reddit.com/r/electricians/comments/1trgtqs/any_life_hacks_on_how_to_cut_pipe_and_strut/",
+      "timestamp": "2026-05-29T21:50:22+00:00"
     },
     {
       "source": "reddit",
       "subreddit": "r/electricians",
-      "title": "Found a simple hack in the wild.",
-      "url": "https://www.reddit.com/r/electricians/comments/1tra7d5/found_a_simple_hack_in_the_wild/",
-      "timestamp": "2026-05-29T18:02:51+00:00"
+      "title": "EFF it Friday.",
+      "url": "https://www.reddit.com/r/electricians/comments/1tr6bek/eff_it_friday/",
+      "timestamp": "2026-05-29T15:58:45+00:00"
     },
     {
       "source": "reddit",
@@ -3689,9 +1733,9 @@
     {
       "source": "reddit",
       "subreddit": "r/electricians",
-      "title": "\u201cdon\u2019t be an electrician\u201d \u201cbe an electrician!\u201d holy fuck idk what to do",
-      "url": "https://www.reddit.com/r/electricians/comments/1tr7u39/dont_be_an_electrician_be_an_electrician_holy/",
-      "timestamp": "2026-05-29T16:46:17+00:00"
+      "title": "Found a simple hack in the wild.",
+      "url": "https://www.reddit.com/r/electricians/comments/1tra7d5/found_a_simple_hack_in_the_wild/",
+      "timestamp": "2026-05-29T18:02:51+00:00"
     },
     {
       "source": "reddit",
@@ -3717,9 +1761,23 @@
     {
       "source": "reddit",
       "subreddit": "r/collapse",
+      "title": "One year left: my personal collapse journey",
+      "url": "https://www.reddit.com/r/collapse/comments/1tri0qj/one_year_left_my_personal_collapse_journey/",
+      "timestamp": "2026-05-29T22:37:16+00:00"
+    },
+    {
+      "source": "reddit",
+      "subreddit": "r/collapse",
       "title": "DOJ subpoenas Reddit in effort to unmask Trump critics",
       "url": "https://www.reddit.com/r/collapse/comments/1tr4gts/doj_subpoenas_reddit_in_effort_to_unmask_trump/",
       "timestamp": "2026-05-29T14:58:22+00:00"
+    },
+    {
+      "source": "reddit",
+      "subreddit": "r/collapse",
+      "title": "Seems Accurate.",
+      "url": "https://www.reddit.com/r/collapse/comments/1trjvci/seems_accurate/",
+      "timestamp": "2026-05-29T23:55:36+00:00"
     },
     {
       "source": "reddit",
@@ -3748,20 +1806,6 @@
       "title": "Officially in the weak El Nino phase as of 2 days ago. The Fuse has lit, stage is set.",
       "url": "https://www.reddit.com/r/collapse/comments/1tqcdsk/officially_in_the_weak_el_nino_phase_as_of_2_days/",
       "timestamp": "2026-05-28T18:41:13+00:00"
-    },
-    {
-      "source": "reddit",
-      "subreddit": "r/collapse",
-      "title": "Accelerating climate consequences of Hormuz",
-      "url": "https://www.reddit.com/r/collapse/comments/1tqqjju/accelerating_climate_consequences_of_hormuz/",
-      "timestamp": "2026-05-29T04:11:40+00:00"
-    },
-    {
-      "source": "reddit",
-      "subreddit": "r/collapse",
-      "title": "More Americans are going hungry now than during the pandemic, as people face a \"remarkable\" rise in food insecurity, New York Fed says",
-      "url": "https://www.reddit.com/r/collapse/comments/1tqc879/more_americans_are_going_hungry_now_than_during/",
-      "timestamp": "2026-05-28T18:35:45+00:00"
     },
     {
       "source": "reddit",
@@ -3794,16 +1838,16 @@
     {
       "source": "reddit",
       "subreddit": "r/preppers",
-      "title": "Lately I've been interested in preparedness/survival topics \u2014 any recommendations for channels, books, or podcasts?",
-      "url": "https://www.reddit.com/r/preppers/comments/1tralo7/lately_ive_been_interested_in/",
-      "timestamp": "2026-05-29T18:15:19+00:00"
+      "title": "hygiene question",
+      "url": "https://www.reddit.com/r/preppers/comments/1trero6/hygiene_question/",
+      "timestamp": "2026-05-29T20:33:17+00:00"
     },
     {
       "source": "reddit",
       "subreddit": "r/preppers",
-      "title": "hygiene question",
-      "url": "https://www.reddit.com/r/preppers/comments/1trero6/hygiene_question/",
-      "timestamp": "2026-05-29T20:33:17+00:00"
+      "title": "Lately I've been interested in preparedness/survival topics \u2014 any recommendations for channels, books, or podcasts?",
+      "url": "https://www.reddit.com/r/preppers/comments/1tralo7/lately_ive_been_interested_in/",
+      "timestamp": "2026-05-29T18:15:19+00:00"
     },
     {
       "source": "reddit",
@@ -3857,16 +1901,16 @@
     {
       "source": "reddit",
       "subreddit": "r/privacy",
-      "title": "US says troops were targeted with location data, as senator warns ad industry is a \u2018national security threat\u2019",
-      "url": "https://www.reddit.com/r/privacy/comments/1tqvsnc/us_says_troops_were_targeted_with_location_data/",
-      "timestamp": "2026-05-29T08:50:42+00:00"
+      "title": "Ken Paxton just destroyed your ability to talk to friends on discord.",
+      "url": "https://www.reddit.com/r/privacy/comments/1trjn48/ken_paxton_just_destroyed_your_ability_to_talk_to/",
+      "timestamp": "2026-05-29T23:45:37+00:00"
     },
     {
       "source": "reddit",
       "subreddit": "r/privacy",
-      "title": "Papers, Please: Online Age Checks Create a Pointless Privacy Risks\u2014 One of the world\u2019s leading age verification providers(clients include Meta, OnlyFans, Sony PlayStation, and TikTok) collect and shar",
-      "url": "https://www.reddit.com/r/privacy/comments/1tr55l1/papers_please_online_age_checks_create_a/",
-      "timestamp": "2026-05-29T15:20:34+00:00"
+      "title": "US says troops were targeted with location data, as senator warns ad industry is a \u2018national security threat\u2019",
+      "url": "https://www.reddit.com/r/privacy/comments/1tqvsnc/us_says_troops_were_targeted_with_location_data/",
+      "timestamp": "2026-05-29T08:50:42+00:00"
     },
     {
       "source": "reddit",
@@ -3878,6 +1922,13 @@
     {
       "source": "reddit",
       "subreddit": "r/privacy",
+      "title": "Papers, Please: Online Age Checks Create a Pointless Privacy Risks\u2014 One of the world\u2019s leading age verification providers(clients include Meta, OnlyFans, Sony PlayStation, and TikTok) collect and shar",
+      "url": "https://www.reddit.com/r/privacy/comments/1tr55l1/papers_please_online_age_checks_create_a/",
+      "timestamp": "2026-05-29T15:20:34+00:00"
+    },
+    {
+      "source": "reddit",
+      "subreddit": "r/privacy",
       "title": "The DOJ Wants to Know Who on Reddit and X Is Criticizing ICE's Tactics",
       "url": "https://www.reddit.com/r/privacy/comments/1tqs7s4/the_doj_wants_to_know_who_on_reddit_and_x_is/",
       "timestamp": "2026-05-29T05:35:35+00:00"
@@ -3885,23 +1936,16 @@
     {
       "source": "reddit",
       "subreddit": "r/privacy",
+      "title": "Ex Employer and Paychex won't delete my IRIS",
+      "url": "https://www.reddit.com/r/privacy/comments/1trhrq5/ex_employer_and_paychex_wont_delete_my_iris/",
+      "timestamp": "2026-05-29T22:27:11+00:00"
+    },
+    {
+      "source": "reddit",
+      "subreddit": "r/privacy",
       "title": "The form asked my permission to share my health data. Then it wouldn\u2019t let me say no.",
       "url": "https://www.reddit.com/r/privacy/comments/1tqw5yq/the_form_asked_my_permission_to_share_my_health/",
       "timestamp": "2026-05-29T09:11:34+00:00"
-    },
-    {
-      "source": "reddit",
-      "subreddit": "r/privacy",
-      "title": "Texas\u2019 app age verification law allowed to go into effect for now",
-      "url": "https://www.reddit.com/r/privacy/comments/1tqosed/texas_app_age_verification_law_allowed_to_go_into/",
-      "timestamp": "2026-05-29T02:50:36+00:00"
-    },
-    {
-      "source": "reddit",
-      "subreddit": "r/privacy",
-      "title": "ID Request in Clinic",
-      "url": "https://www.reddit.com/r/privacy/comments/1tqh9nl/id_request_in_clinic/",
-      "timestamp": "2026-05-28T21:34:03+00:00"
     },
     {
       "source": "reddit",
@@ -3927,9 +1971,9 @@
     {
       "source": "reddit",
       "subreddit": "r/technology",
-      "title": "Amazon scraps AI leaderboard to stop workers boosting usage scores \u2014 Senior executive tells staff \u2018don\u2019t use AI just for the sake of using AI\u2019 as computing costs rise",
-      "url": "https://www.reddit.com/r/technology/comments/1tqyu5e/amazon_scraps_ai_leaderboard_to_stop_workers/",
-      "timestamp": "2026-05-29T11:25:01+00:00"
+      "title": "AI billionaires brace for pitchforks",
+      "url": "https://www.reddit.com/r/technology/comments/1trfy7w/ai_billionaires_brace_for_pitchforks/",
+      "timestamp": "2026-05-29T21:17:02+00:00"
     },
     {
       "source": "reddit",
@@ -3937,6 +1981,13 @@
       "title": "Fed up with vibe coders, dev sneaks data-nuking prompt injection into their code",
       "url": "https://www.reddit.com/r/technology/comments/1tre4w1/fed_up_with_vibe_coders_dev_sneaks_datanuking/",
       "timestamp": "2026-05-29T20:10:27+00:00"
+    },
+    {
+      "source": "reddit",
+      "subreddit": "r/technology",
+      "title": "Amazon scraps AI leaderboard to stop workers boosting usage scores \u2014 Senior executive tells staff \u2018don\u2019t use AI just for the sake of using AI\u2019 as computing costs rise",
+      "url": "https://www.reddit.com/r/technology/comments/1tqyu5e/amazon_scraps_ai_leaderboard_to_stop_workers/",
+      "timestamp": "2026-05-29T11:25:01+00:00"
     },
     {
       "source": "reddit",
@@ -3955,23 +2006,16 @@
     {
       "source": "reddit",
       "subreddit": "r/technology",
+      "title": "The owner of 110 Pizza Huts is suing the chain, claiming $100 million in losses from the botch adaption of an AI tool",
+      "url": "https://www.reddit.com/r/technology/comments/1trgu8w/the_owner_of_110_pizza_huts_is_suing_the_chain/",
+      "timestamp": "2026-05-29T21:50:58+00:00"
+    },
+    {
+      "source": "reddit",
+      "subreddit": "r/technology",
       "title": "Ohio suspends data center tax break as tech firms face pressure to pay the cost to power AI",
       "url": "https://www.reddit.com/r/technology/comments/1tra28z/ohio_suspends_data_center_tax_break_as_tech_firms/",
       "timestamp": "2026-05-29T17:58:45+00:00"
-    },
-    {
-      "source": "reddit",
-      "subreddit": "r/technology",
-      "title": "AI billionaires brace for pitchforks",
-      "url": "https://www.reddit.com/r/technology/comments/1trfy7w/ai_billionaires_brace_for_pitchforks/",
-      "timestamp": "2026-05-29T21:17:02+00:00"
-    },
-    {
-      "source": "reddit",
-      "subreddit": "r/technology",
-      "title": "Zig president says AI coding contributions are 'invariably garbage,' so he banned them",
-      "url": "https://www.reddit.com/r/technology/comments/1trc4on/zig_president_says_ai_coding_contributions_are/",
-      "timestamp": "2026-05-29T19:03:32+00:00"
     },
     {
       "source": "reddit",
@@ -3990,13 +2034,6 @@
     {
       "source": "reddit",
       "subreddit": "r/economics",
-      "title": "Microsoft AI chief gives it 18 months\u2014for all white-collar work to be automated by AI",
-      "url": "https://www.reddit.com/r/Economics/comments/1tra1m1/microsoft_ai_chief_gives_it_18_monthsfor_all/",
-      "timestamp": "2026-05-29T17:58:14+00:00"
-    },
-    {
-      "source": "reddit",
-      "subreddit": "r/economics",
       "title": "College grads expect an $80k salary. Good luck with that",
       "url": "https://www.reddit.com/r/Economics/comments/1trfysj/college_grads_expect_an_80k_salary_good_luck_with/",
       "timestamp": "2026-05-29T21:17:39+00:00"
@@ -4004,9 +2041,9 @@
     {
       "source": "reddit",
       "subreddit": "r/economics",
-      "title": "Canada slips into technical recession as economic growth stalls in 1st quarter | CBC News",
-      "url": "https://www.reddit.com/r/Economics/comments/1tr15xz/canada_slips_into_technical_recession_as_economic/",
-      "timestamp": "2026-05-29T13:00:59+00:00"
+      "title": "Microsoft AI chief gives it 18 months\u2014for all white-collar work to be automated by AI",
+      "url": "https://www.reddit.com/r/Economics/comments/1tra1m1/microsoft_ai_chief_gives_it_18_monthsfor_all/",
+      "timestamp": "2026-05-29T17:58:14+00:00"
     },
     {
       "source": "reddit",
@@ -4018,9 +2055,16 @@
     {
       "source": "reddit",
       "subreddit": "r/economics",
-      "title": "Home prices have risen much faster than incomes over the past 20 years, Fed analysis finds",
-      "url": "https://www.reddit.com/r/Economics/comments/1tqw24g/home_prices_have_risen_much_faster_than_incomes/",
-      "timestamp": "2026-05-29T09:05:19+00:00"
+      "title": "Canada slips into technical recession as economic growth stalls in 1st quarter | CBC News",
+      "url": "https://www.reddit.com/r/Economics/comments/1tr15xz/canada_slips_into_technical_recession_as_economic/",
+      "timestamp": "2026-05-29T13:00:59+00:00"
+    },
+    {
+      "source": "reddit",
+      "subreddit": "r/economics",
+      "title": "Canada\u2019s top-skilled workers are leaving for the U.S. in droves for lower taxes and higher pay: TD study",
+      "url": "https://www.reddit.com/r/Economics/comments/1trfao8/canadas_topskilled_workers_are_leaving_for_the_us/",
+      "timestamp": "2026-05-29T20:52:38+00:00"
     },
     {
       "source": "reddit",
@@ -4032,23 +2076,30 @@
     {
       "source": "reddit",
       "subreddit": "r/economics",
+      "title": "Home prices have risen much faster than incomes over the past 20 years, Fed analysis finds",
+      "url": "https://www.reddit.com/r/Economics/comments/1tqw24g/home_prices_have_risen_much_faster_than_incomes/",
+      "timestamp": "2026-05-29T09:05:19+00:00"
+    },
+    {
+      "source": "reddit",
+      "subreddit": "r/economics",
       "title": "Inflation is at a three-year high \u2014 and now many Americans are burning through their savings",
       "url": "https://www.reddit.com/r/Economics/comments/1tr41sa/inflation_is_at_a_threeyear_high_and_now_many/",
       "timestamp": "2026-05-29T14:44:13+00:00"
     },
     {
       "source": "reddit",
-      "subreddit": "r/economics",
-      "title": "Pandemic relief funds accidentally broke the housing market by helping scammers inflate local home prices nearly 6%, study finds",
-      "url": "https://www.reddit.com/r/Economics/comments/1trdxlz/pandemic_relief_funds_accidentally_broke_the/",
-      "timestamp": "2026-05-29T20:03:13+00:00"
+      "subreddit": "r/CryptoCurrency",
+      "title": "Daily Crypto Discussion - May 29, 2026 (GMT+0)",
+      "url": "https://www.reddit.com/r/CryptoCurrency/comments/1trikw9/daily_crypto_discussion_may_29_2026_gmt0/",
+      "timestamp": "2026-05-29T23:00:42+00:00"
     },
     {
       "source": "reddit",
       "subreddit": "r/CryptoCurrency",
-      "title": "Daily Crypto Discussion - May 28, 2026 (GMT+0)",
-      "url": "https://www.reddit.com/r/CryptoCurrency/comments/1tqjhve/daily_crypto_discussion_may_28_2026_gmt0/",
-      "timestamp": "2026-05-28T23:00:58+00:00"
+      "title": "Bessent says US has seized $1 billion in Iranian crypto assets",
+      "url": "https://www.reddit.com/r/CryptoCurrency/comments/1trhd7s/bessent_says_us_has_seized_1_billion_in_iranian/",
+      "timestamp": "2026-05-29T22:11:24+00:00"
     },
     {
       "source": "reddit",
@@ -4074,9 +2125,23 @@
     {
       "source": "reddit",
       "subreddit": "r/CryptoCurrency",
-      "title": "Bessent says US has seized $1 billion in Iranian crypto assets",
-      "url": "https://www.reddit.com/r/CryptoCurrency/comments/1trhd7s/bessent_says_us_has_seized_1_billion_in_iranian/",
-      "timestamp": "2026-05-29T22:11:24+00:00"
+      "title": "How do you think they did this?",
+      "url": "https://www.reddit.com/r/CryptoCurrency/comments/1tre6d6/how_do_you_think_they_did_this/",
+      "timestamp": "2026-05-29T20:11:55+00:00"
+    },
+    {
+      "source": "reddit",
+      "subreddit": "r/CryptoCurrency",
+      "title": "US regulator tries to withdraw penalty against Trump donors\u2019 crypto company",
+      "url": "https://www.reddit.com/r/CryptoCurrency/comments/1trhsvo/us_regulator_tries_to_withdraw_penalty_against/",
+      "timestamp": "2026-05-29T22:28:30+00:00"
+    },
+    {
+      "source": "reddit",
+      "subreddit": "r/CryptoCurrency",
+      "title": "Jamie Diamond hates the CLARITY Act",
+      "url": "https://www.reddit.com/r/CryptoCurrency/comments/1trfc6x/jamie_diamond_hates_the_clarity_act/",
+      "timestamp": "2026-05-29T20:54:04+00:00"
     },
     {
       "source": "reddit",
@@ -4088,30 +2153,9 @@
     {
       "source": "reddit",
       "subreddit": "r/CryptoCurrency",
-      "title": "How do you think they did this?",
-      "url": "https://www.reddit.com/r/CryptoCurrency/comments/1tre6d6/how_do_you_think_they_did_this/",
-      "timestamp": "2026-05-29T20:11:55+00:00"
-    },
-    {
-      "source": "reddit",
-      "subreddit": "r/CryptoCurrency",
       "title": "Bitcoin drops below $73,000 as U.S. strikes on Iran spark $1 billion liquidations",
       "url": "https://www.reddit.com/r/CryptoCurrency/comments/1tq1y4j/bitcoin_drops_below_73000_as_us_strikes_on_iran/",
       "timestamp": "2026-05-28T12:20:10+00:00"
-    },
-    {
-      "source": "reddit",
-      "subreddit": "r/CryptoCurrency",
-      "title": "Guys, don\u2019t panic sell. The bull arrives in Q1 2027",
-      "url": "https://www.reddit.com/r/CryptoCurrency/comments/1tqc3mp/guys_dont_panic_sell_the_bull_arrives_in_q1_2027/",
-      "timestamp": "2026-05-28T18:31:16+00:00"
-    },
-    {
-      "source": "reddit",
-      "subreddit": "r/CryptoCurrency",
-      "title": "Best investment relative to current price and ATH?",
-      "url": "https://www.reddit.com/r/CryptoCurrency/comments/1tqzkam/best_investment_relative_to_current_price_and_ath/",
-      "timestamp": "2026-05-29T11:56:35+00:00"
     },
     {
       "source": "reddit",
@@ -4277,16 +2321,16 @@
     {
       "source": "reddit",
       "subreddit": "r/cybersecurity",
-      "title": "Did something happen to haveibeenpwned? Any alternatives?",
-      "url": "https://www.reddit.com/r/cybersecurity/comments/1tqujoa/did_something_happen_to_haveibeenpwned_any/",
-      "timestamp": "2026-05-29T07:40:26+00:00"
+      "title": "Botnet of more than 17 million devices dismantled",
+      "url": "https://www.reddit.com/r/cybersecurity/comments/1trdf28/botnet_of_more_than_17_million_devices_dismantled/",
+      "timestamp": "2026-05-29T19:45:37+00:00"
     },
     {
       "source": "reddit",
       "subreddit": "r/cybersecurity",
-      "title": "Botnet of more than 17 million devices dismantled",
-      "url": "https://www.reddit.com/r/cybersecurity/comments/1trdf28/botnet_of_more_than_17_million_devices_dismantled/",
-      "timestamp": "2026-05-29T19:45:37+00:00"
+      "title": "Did something happen to haveibeenpwned? Any alternatives?",
+      "url": "https://www.reddit.com/r/cybersecurity/comments/1tqujoa/did_something_happen_to_haveibeenpwned_any/",
+      "timestamp": "2026-05-29T07:40:26+00:00"
     },
     {
       "source": "reddit",
@@ -4333,16 +2377,16 @@
     {
       "source": "reddit",
       "subreddit": "r/space",
-      "title": "Here\u2019s why the failure of Blue Origin\u2019s New Glenn rocket is so catastrophic | \u201cI hope that it makes it far enough away from the pad that it does not cause pad damage.\u201d",
-      "url": "https://www.reddit.com/r/space/comments/1tr14yu/heres_why_the_failure_of_blue_origins_new_glenn/",
-      "timestamp": "2026-05-29T13:00:07+00:00"
+      "title": "Perspective From a (Former) Blue Origin Engineer",
+      "url": "https://www.reddit.com/r/space/comments/1trg9pw/perspective_from_a_former_blue_origin_engineer/",
+      "timestamp": "2026-05-29T21:28:56+00:00"
     },
     {
       "source": "reddit",
       "subreddit": "r/space",
-      "title": "Perspective From a (Former) Blue Origin Engineer",
-      "url": "https://www.reddit.com/r/space/comments/1trg9pw/perspective_from_a_former_blue_origin_engineer/",
-      "timestamp": "2026-05-29T21:28:56+00:00"
+      "title": "Here\u2019s why the failure of Blue Origin\u2019s New Glenn rocket is so catastrophic | \u201cI hope that it makes it far enough away from the pad that it does not cause pad damage.\u201d",
+      "url": "https://www.reddit.com/r/space/comments/1tr14yu/heres_why_the_failure_of_blue_origins_new_glenn/",
+      "timestamp": "2026-05-29T13:00:07+00:00"
     },
     {
       "source": "reddit",
@@ -4389,9 +2433,9 @@
     {
       "source": "reddit",
       "subreddit": "r/space",
-      "title": "Blue Origin rocket explodes on launchpad during ground test",
-      "url": "https://www.reddit.com/r/space/comments/1tqy7wz/blue_origin_rocket_explodes_on_launchpad_during/",
-      "timestamp": "2026-05-29T10:56:51+00:00"
+      "title": "What The Blue Origin Rocket Explosion Means for America's Return to the Moon",
+      "url": "https://www.reddit.com/r/space/comments/1trgbt8/what_the_blue_origin_rocket_explosion_means_for/",
+      "timestamp": "2026-05-29T21:31:02+00:00"
     },
     {
       "source": "reddit",
@@ -4410,13 +2454,6 @@
     {
       "source": "reddit",
       "subreddit": "r/aviation",
-      "title": "Blue Origins' New Glenn rocket just exploded on the pad.",
-      "url": "https://www.reddit.com/r/aviation/comments/1tqnfxz/blue_origins_new_glenn_rocket_just_exploded_on/",
-      "timestamp": "2026-05-29T01:50:43+00:00"
-    },
-    {
-      "source": "reddit",
-      "subreddit": "r/aviation",
       "title": "Aftermath of New Glenn explosion",
       "url": "https://www.reddit.com/r/aviation/comments/1tr9acj/aftermath_of_new_glenn_explosion/",
       "timestamp": "2026-05-29T17:33:37+00:00"
@@ -4424,9 +2461,9 @@
     {
       "source": "reddit",
       "subreddit": "r/aviation",
-      "title": "Is this the spooky 757 that we don\u2019t talk about? I saw it from both sides and saw no registration",
-      "url": "https://www.reddit.com/r/aviation/comments/1tr0fov/is_this_the_spooky_757_that_we_dont_talk_about_i/",
-      "timestamp": "2026-05-29T12:32:20+00:00"
+      "title": "Blue Origins' New Glenn rocket just exploded on the pad.",
+      "url": "https://www.reddit.com/r/aviation/comments/1tqnfxz/blue_origins_new_glenn_rocket_just_exploded_on/",
+      "timestamp": "2026-05-29T01:50:43+00:00"
     },
     {
       "source": "reddit",
@@ -4438,16 +2475,16 @@
     {
       "source": "reddit",
       "subreddit": "r/aviation",
-      "title": "B777F overtaking a B777F",
-      "url": "https://www.reddit.com/r/aviation/comments/1tr6w8w/b777f_overtaking_a_b777f/",
-      "timestamp": "2026-05-29T16:16:34+00:00"
+      "title": "Is this the spooky 757 that we don\u2019t talk about? I saw it from both sides and saw no registration",
+      "url": "https://www.reddit.com/r/aviation/comments/1tr0fov/is_this_the_spooky_757_that_we_dont_talk_about_i/",
+      "timestamp": "2026-05-29T12:32:20+00:00"
     },
     {
       "source": "reddit",
       "subreddit": "r/aviation",
-      "title": "Chopper at St. Gallen, Switzerland",
-      "url": "https://www.reddit.com/r/aviation/comments/1tqaazn/chopper_at_st_gallen_switzerland/",
-      "timestamp": "2026-05-28T17:28:25+00:00"
+      "title": "B777F overtaking a B777F",
+      "url": "https://www.reddit.com/r/aviation/comments/1tr6w8w/b777f_overtaking_a_b777f/",
+      "timestamp": "2026-05-29T16:16:34+00:00"
     },
     {
       "source": "reddit",
@@ -4459,9 +2496,16 @@
     {
       "source": "reddit",
       "subreddit": "r/aviation",
-      "title": "Swiss to dismantle some A220s",
-      "url": "https://www.reddit.com/r/aviation/comments/1tr1vp6/swiss_to_dismantle_some_a220s/",
-      "timestamp": "2026-05-29T13:27:14+00:00"
+      "title": "A350 Flap indicator question",
+      "url": "https://www.reddit.com/r/aviation/comments/1trdntj/a350_flap_indicator_question/",
+      "timestamp": "2026-05-29T19:53:45+00:00"
+    },
+    {
+      "source": "reddit",
+      "subreddit": "r/aviation",
+      "title": "American Airlines trading cards",
+      "url": "https://www.reddit.com/r/aviation/comments/1trgrq8/american_airlines_trading_cards/",
+      "timestamp": "2026-05-29T21:48:11+00:00"
     },
     {
       "source": "reddit",
@@ -4476,6 +2520,13 @@
       "title": "Anyone promoting a corporation or product will have their posts removed and be banned.",
       "url": "https://www.reddit.com/r/shipping/comments/3n5jv6/anyone_promoting_a_corporation_or_product_will/",
       "timestamp": "2015-10-01T21:40:53+00:00"
+    },
+    {
+      "source": "reddit",
+      "subreddit": "r/shipping",
+      "title": "Best way to ship",
+      "url": "https://www.reddit.com/r/shipping/comments/1trhvhv/best_way_to_ship/",
+      "timestamp": "2026-05-29T22:31:26+00:00"
     },
     {
       "source": "reddit",
@@ -4525,155 +2576,148 @@
       "title": "dont you just love it?",
       "url": "https://www.reddit.com/r/shipping/comments/1tqxd09/dont_you_just_love_it/",
       "timestamp": "2026-05-29T10:14:42+00:00"
-    },
-    {
-      "source": "reddit",
-      "subreddit": "r/shipping",
-      "title": "Parcel tracking too long to arrive!",
-      "url": "https://www.reddit.com/r/shipping/comments/1tqw4ck/parcel_tracking_too_long_to_arrive/",
-      "timestamp": "2026-05-29T09:08:52+00:00"
     }
   ],
   "hackernews": [
     {
       "source": "hackernews",
+      "title": "You can just say it",
+      "url": "https://noperator.dev/posts/you-can-just-say-it/",
+      "score": 134,
+      "comments": 43
+    },
+    {
+      "source": "hackernews",
       "title": "SQLite is all you need for durable workflows",
       "url": "https://obeli.sk/blog/sqlite-is-all-you-need-for-durable-workflows/",
-      "score": 262,
-      "comments": 145
+      "score": 315,
+      "comments": 182
     },
     {
       "source": "hackernews",
       "title": "The dead economy theory",
       "url": "https://www.owenmcgrann.com/p/the-dead-economy-theory",
-      "score": 514,
-      "comments": 696
+      "score": 627,
+      "comments": 812
     },
     {
       "source": "hackernews",
-      "title": "Notes from the Mistral AI Now Summit in Paris",
+      "title": "Notes from the Mistral AI Now Summit",
       "url": "https://koenvangilst.nl/lab/mistral-ai-now-summit",
-      "score": 282,
-      "comments": 91
-    },
-    {
-      "source": "hackernews",
-      "title": "EV Stupidity Checklist",
-      "url": "http://hypercritical.co/2026/05/29/ev-stupidity-checklist",
-      "score": 36,
-      "comments": 17
-    },
-    {
-      "source": "hackernews",
-      "title": "On Rendering Diffs",
-      "url": "https://pierre.computer/writing/on-rendering-diffs",
-      "score": 108,
-      "comments": 27
+      "score": 300,
+      "comments": 104
     },
     {
       "source": "hackernews",
       "title": "Shift will clean homes for free to train future robots",
       "url": "https://www.theverge.com/ai-artificial-intelligence/939765/ai-training-data-startup-shift-free-cleaning",
-      "score": 44,
-      "comments": 66
+      "score": 70,
+      "comments": 94
     },
     {
       "source": "hackernews",
       "title": "Show HN: Tiny-vLLM \u2013 high performance LLM inference engine in C++ and CUDA",
       "url": "https://github.com/jmaczan/tiny-vllm",
-      "score": 49,
-      "comments": 6
-    },
-    {
-      "source": "hackernews",
-      "title": "Bijou64: A variable-length integer encoding",
-      "url": "https://www.inkandswitch.com/tangents/bijou64/",
-      "score": 194,
-      "comments": 70
-    },
-    {
-      "source": "hackernews",
-      "title": "The California state assembly has passed the 'Protect Our Games Act'",
-      "url": "https://www.invenglobal.com/articles/22330/stop-killing-games-movement-gains-momentum-california-assembly-passes-game-protection-bill",
-      "score": 133,
-      "comments": 132
-    },
-    {
-      "source": "hackernews",
-      "title": "It's hard to justify buying a Framework 12",
-      "url": "https://www.jeffgeerling.com/blog/2026/its-hard-to-justify-framework-12/",
-      "score": 173,
-      "comments": 323
-    },
-    {
-      "source": "hackernews",
-      "title": "Liquid AI reveals 8B-A1B MoE trained on 38T",
-      "url": "https://www.liquid.ai/blog/lfm2-5-8b-a1b",
-      "score": 121,
-      "comments": 37
-    },
-    {
-      "source": "hackernews",
-      "title": "Rothko for your current weather conditions",
-      "url": "https://rothko.joonas.wtf/",
-      "score": 94,
-      "comments": 10
-    },
-    {
-      "source": "hackernews",
-      "title": "Show HN: Zot \u2013 Yet another coding agent harness",
-      "url": "https://www.zot.sh",
-      "score": 43,
-      "comments": 53
-    },
-    {
-      "source": "hackernews",
-      "title": "GTA 6 Developers Unionize",
-      "url": "https://rockstarintel.com/gta-6-developers-announce-rockstar-games-union/",
-      "score": 508,
-      "comments": 334
-    },
-    {
-      "source": "hackernews",
-      "title": "Why I collect DLES",
-      "url": "https://dles.gg/blog/dles-gg-manifesto",
-      "score": 16,
-      "comments": 4
-    },
-    {
-      "source": "hackernews",
-      "title": "Show HN: TV Explorer. Adding advanced UI to free online TV",
-      "url": "https://tvexplorer.live",
-      "score": 82,
-      "comments": 17
-    },
-    {
-      "source": "hackernews",
-      "title": "Is AI causing a repeat of frontend\u2019s lost decade?",
-      "url": "https://mastrojs.github.io/blog/2026-05-23-is-AI-causing-a-repeat-of-frontends-lost-decade/",
-      "score": 253,
-      "comments": 215
+      "score": 72,
+      "comments": 7
     },
     {
       "source": "hackernews",
       "title": "Print with dozens of colors: Our new open-source ColorMix for PrusaSlicer",
       "url": "https://blog.prusa3d.com/our-new-open-source-colormix-model-in-prusaslicer-and-easyprint_136079/",
+      "score": 44,
+      "comments": 1
+    },
+    {
+      "source": "hackernews",
+      "title": "Snowboard Kids 2 is 100% Decompiled",
+      "url": "https://blog.chrislewis.au/snowboard-kids-2-is-100-decompiled/",
+      "score": 14,
+      "comments": 2
+    },
+    {
+      "source": "hackernews",
+      "title": "It's hard to justify buying a Framework 12",
+      "url": "https://www.jeffgeerling.com/blog/2026/its-hard-to-justify-framework-12/",
+      "score": 206,
+      "comments": 360
+    },
+    {
+      "source": "hackernews",
+      "title": "Bijou64: A variable-length integer encoding",
+      "url": "https://www.inkandswitch.com/tangents/bijou64/",
+      "score": 198,
+      "comments": 73
+    },
+    {
+      "source": "hackernews",
+      "title": "Liquid AI reveals 8B-A1B MoE trained on 38T",
+      "url": "https://www.liquid.ai/blog/lfm2-5-8b-a1b",
+      "score": 142,
+      "comments": 45
+    },
+    {
+      "source": "hackernews",
+      "title": "On Rendering Diffs",
+      "url": "https://pierre.computer/writing/on-rendering-diffs",
+      "score": 134,
+      "comments": 35
+    },
+    {
+      "source": "hackernews",
+      "title": "Free full BGP feed. IPv4 and IPv6",
+      "url": "https://lukasz.bromirski.net/post/bgp-w-labie-3/",
+      "score": 19,
+      "comments": 7
+    },
+    {
+      "source": "hackernews",
+      "title": "The California state assembly has passed the 'Protect Our Games Act'",
+      "url": "https://www.invenglobal.com/articles/22330/stop-killing-games-movement-gains-momentum-california-assembly-passes-game-protection-bill",
+      "score": 165,
+      "comments": 167
+    },
+    {
+      "source": "hackernews",
+      "title": "Is AI causing a repeat of frontend\u2019s lost decade?",
+      "url": "https://mastrojs.github.io/blog/2026-05-23-is-AI-causing-a-repeat-of-frontends-lost-decade/",
+      "score": 277,
+      "comments": 238
+    },
+    {
+      "source": "hackernews",
+      "title": "Rothko for your current weather conditions",
+      "url": "https://rothko.joonas.wtf/",
+      "score": 115,
+      "comments": 11
+    },
+    {
+      "source": "hackernews",
+      "title": "Finding Miscompiles for Fun, Not Profit",
+      "url": "https://newsletter.semianalysis.com/p/finding-miscompiles-for-fun-not-profit",
       "score": 13,
-      "comments": 0
+      "comments": 1
     },
     {
       "source": "hackernews",
-      "title": "CAPTCHAs can still detect AI agents",
-      "url": "https://research.roundtable.ai/captchas-detect-ai/",
-      "score": 55,
-      "comments": 46
+      "title": "GTA 6 Developers Unionize",
+      "url": "https://rockstarintel.com/gta-6-developers-announce-rockstar-games-union/",
+      "score": 547,
+      "comments": 373
     },
     {
       "source": "hackernews",
-      "title": "The mysterious Hy3 LLM is topping OpenRouter Model Rankings by a large margin",
-      "url": "https://minimaxir.com/2026/05/openrouter-hy3/",
-      "score": 92,
-      "comments": 88
+      "title": "Citing 'severe' math deficits, UC faculty demand a return to SAT tests for STEM",
+      "url": "https://www.latimes.com/california/story/2026-05-27/uc-math-professors-demand-return-of-sat-for-stem-admissions",
+      "score": 438,
+      "comments": 652
+    },
+    {
+      "source": "hackernews",
+      "title": "Letter from the Duke of Wellington to the British Foreign Office (1809)",
+      "url": "https://wellsoc.org/society-member-pages/anecdotes-of-wellington/",
+      "score": 47,
+      "comments": 13
     }
   ],
   "rss": [
@@ -4689,7 +2733,7 @@
     },
     {
       "source": "rss_bbc_world",
-      "title": "Trump holds meeting to make 'final determination' on Iran deal",
+      "title": "No deal announced after Trump meeting to make 'final determination' on Iran",
       "url": "https://www.bbc.com/news/articles/c0r2d40r91qo?at_medium=RSS&at_campaign=rss"
     },
     {
@@ -4776,6 +2820,106 @@
       "source": "rss_bbc_business",
       "title": "The \u00a35 coffee that tells a story of global economic turmoil",
       "url": "https://www.bbc.com/news/articles/cr5pp1m6z06o?at_medium=RSS&at_campaign=rss"
+    },
+    {
+      "source": "rss_aljazeera",
+      "title": "Iran war live: Trump due to make \u2018final determination\u2019 on deal with Tehran",
+      "url": "https://www.aljazeera.com/news/liveblog/2026/5/30/iran-war-live-trump-due-to-make-final-determination-on-deal-with-tehran?traffic_source=rss"
+    },
+    {
+      "source": "rss_aljazeera",
+      "title": "Trump pledges to withdraw from Kennedy Center after court strikes his name",
+      "url": "https://www.aljazeera.com/news/2026/5/29/trump-pledges-to-withdraw-from-kennedy-center-after-court-strikes-his-name?traffic_source=rss"
+    },
+    {
+      "source": "rss_aljazeera",
+      "title": "ICE agent arrested over shooting of Venezuelan man in US immigration raid",
+      "url": "https://www.aljazeera.com/news/2026/5/29/ice-agent-arrested-over-shooting-of-venezuelan-man-in-us-immigration-raid?traffic_source=rss"
+    },
+    {
+      "source": "rss_aljazeera",
+      "title": "\u2018Arbitrary measures\u2019: Lula slams US \u2018terror\u2019 designation for Brazil gangs",
+      "url": "https://www.aljazeera.com/news/2026/5/29/arbitrary-measures-lula-slams-us-terror-designation-for-brazil-gangs?traffic_source=rss"
+    },
+    {
+      "source": "rss_aljazeera",
+      "title": "Ebola treatment centre rebuilt after being torched by protesters in DRC",
+      "url": "https://www.aljazeera.com/video/newsfeed/2026/5/29/ebola-treatment-centre-rebuilt-after-being-torched-by-protesters-in-drc?traffic_source=rss"
+    },
+    {
+      "source": "rss_aljazeera",
+      "title": "UN: \u201c100% of Gaza\u201d should be for Palestinians",
+      "url": "https://www.aljazeera.com/video/newsfeed/2026/5/29/un-100-of-gaza-should-be-for-palestinians?traffic_source=rss"
+    },
+    {
+      "source": "rss_aljazeera",
+      "title": "Iran denies ceasefire deal with US is \u201cfinalised\u201d",
+      "url": "https://www.aljazeera.com/video/newsfeed/2026/5/29/iran-denies-ceasefire-deal-with-us-is?traffic_source=rss"
+    },
+    {
+      "source": "rss_aljazeera",
+      "title": "How realistic is Trump\u2019s Iran framework?",
+      "url": "https://www.aljazeera.com/video/newsfeed/2026/5/29/how-realistic-is-trumps-iran-framework?traffic_source=rss"
+    },
+    {
+      "source": "rss_aljazeera",
+      "title": "Could Alberta trigger Canada\u2019s Brexit moment?",
+      "url": "https://www.aljazeera.com/video/the-take-2/2026/5/29/aje-onl-can_albertareferendum_av_v2-290526?traffic_source=rss"
+    },
+    {
+      "source": "rss_aljazeera",
+      "title": "Polish president threatens to strip Ukraine\u2019s Zelenskyy of top state honour",
+      "url": "https://www.aljazeera.com/news/2026/5/29/polish-president-threatens-to-strip-ukraines-zelenskyy-of-top-state-honour?traffic_source=rss"
+    },
+    {
+      "source": "rss_ars_technica",
+      "title": "Proposed new US funding rules: We can cancel any grant at any time",
+      "url": "https://arstechnica.com/science/2026/05/the-office-of-management-and-budget-tries-again-to-cripple-us-science/"
+    },
+    {
+      "source": "rss_ars_technica",
+      "title": "Kenyan court blocks Trump admin from dumping Ebola-exposed Americans there",
+      "url": "https://arstechnica.com/health/2026/05/kenyan-court-blocks-trump-admin-from-dumping-ebola-exposed-americans-there/"
+    },
+    {
+      "source": "rss_ars_technica",
+      "title": "Botnet of more than 17 million devices dismantled",
+      "url": "https://arstechnica.com/security/2026/05/botnet-of-more-than-17-million-devices-dismantled/"
+    },
+    {
+      "source": "rss_ars_technica",
+      "title": "Analysis of Texas measles outbreak shows just how dangerous virus is",
+      "url": "https://arstechnica.com/health/2026/05/analysis-of-texas-measles-outbreak-shows-just-how-dangerous-virus-is/"
+    },
+    {
+      "source": "rss_ars_technica",
+      "title": "House of the Dragon S3 trailer revels in dragons, fire, and blood",
+      "url": "https://arstechnica.com/culture/2026/05/house-of-the-dragon-s3-trailer-revels-in-dragons-fire-and-blood/"
+    },
+    {
+      "source": "rss_ars_technica",
+      "title": "Trump FCC warns all broadcasters to follow orders or be punished like ABC",
+      "url": "https://arstechnica.com/tech-policy/2026/05/trump-fcc-warns-all-broadcasters-to-follow-orders-or-be-punished-like-abc/"
+    },
+    {
+      "source": "rss_ars_technica",
+      "title": "DOJ sues states that rejected ICE requests for undercover license plates",
+      "url": "https://arstechnica.com/tech-policy/2026/05/doj-sues-states-that-rejected-ice-requests-for-undercover-license-plates/"
+    },
+    {
+      "source": "rss_ars_technica",
+      "title": "Startup offers free home cleaning\u2014if it can record it all for robot training",
+      "url": "https://arstechnica.com/ai/2026/05/robot-training-startup-will-send-humans-wearing-cameras-to-clean-your-home/"
+    },
+    {
+      "source": "rss_ars_technica",
+      "title": "After years of stability, F1 reliability can no longer be taken for granted",
+      "url": "https://arstechnica.com/cars/2026/05/f1-in-2026-to-finish-first-first-you-have-to-finish/"
+    },
+    {
+      "source": "rss_ars_technica",
+      "title": "Severed sea cucumber appendages don't seem to die",
+      "url": "https://arstechnica.com/science/2026/05/severed-sea-cucumber-appendages-dont-seem-to-die/"
     }
   ],
   "govinfo": [
