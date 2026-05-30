@@ -197,6 +197,42 @@ html, body { height: 100%; overflow: hidden; background: var(--bg); color: var(-
 .opp-card .opp-action .act-label { font-size: 9px; font-weight: 700; letter-spacing: 1px; color: var(--success); margin-bottom: 3px; }
 .opp-card .opp-evidence { font-size: 10px; color: var(--text-dim); }
 
+.item-date { font-size: 10px; color: var(--text-dim); margin-top: 4px; }
+
+/* ATLAS Headlines Ticker */
+#headlines-ticker { background: var(--surface-3); border-bottom: 1px solid var(--border); flex-shrink: 0; max-height: 180px; overflow-y: auto; }
+#headlines-ticker:empty { display: none; }
+.headline-item { padding: 10px 14px; border-bottom: 1px solid var(--border); cursor: pointer; transition: background 0.15s; }
+.headline-item:last-child { border-bottom: none; }
+.headline-item:hover { background: rgba(75,146,219,0.06); }
+.headline-item .hl-top { display: flex; align-items: center; gap: 8px; }
+.headline-item .hl-text { font-size: 12px; font-weight: 700; line-height: 1.4; flex: 1; }
+.headline-item .hl-cat { font-size: 8px; font-weight: 700; letter-spacing: 1px; padding: 2px 6px; border-radius: 8px; text-transform: uppercase; white-space: nowrap; flex-shrink: 0; }
+.headline-item .hl-date { font-size: 10px; color: var(--text-dim); margin-top: 2px; }
+.headline-item .hl-expand { display: none; margin-top: 8px; padding-top: 8px; border-top: 1px solid var(--border); }
+.headline-item.expanded .hl-expand { display: block; }
+.headline-item .hl-analysis { font-size: 11px; line-height: 1.6; color: var(--text-muted); margin-bottom: 6px; }
+.headline-item .hl-sources { font-size: 9px; color: var(--text-dim); letter-spacing: 1px; text-transform: uppercase; }
+
+/* ATLAS Predictions dual-bar layout */
+.pred-card { padding: 14px; background: var(--surface-2); border: 1px solid var(--border); border-radius: 8px; margin-bottom: 12px; }
+.pred-card .pred-question { font-size: 13px; font-weight: 600; line-height: 1.4; margin-bottom: 10px; }
+.pred-card .pred-bars { margin-bottom: 8px; }
+.pred-bar-row { display: flex; align-items: center; gap: 8px; margin-bottom: 4px; }
+.pred-bar-label { font-size: 9px; font-weight: 700; letter-spacing: 1px; min-width: 52px; text-align: right; }
+.pred-bar-track { flex: 1; height: 8px; background: var(--surface-3); border-radius: 4px; overflow: hidden; }
+.pred-bar-fill { height: 100%; border-radius: 4px; transition: width 0.4s; }
+.pred-bar-pct { font-size: 12px; font-weight: 700; min-width: 36px; }
+.pred-divergence { font-size: 11px; font-weight: 700; padding: 4px 10px; border-radius: 6px; margin-bottom: 8px; display: inline-block; }
+.pred-divergence.edge { background: rgba(64,192,128,0.12); color: var(--success); border: 1px solid rgba(64,192,128,0.3); }
+.pred-divergence.neutral { background: rgba(106,122,144,0.1); color: var(--text-muted); border: 1px solid rgba(106,122,144,0.2); }
+.pred-reasoning { font-size: 11px; line-height: 1.6; color: var(--text-muted); margin-bottom: 8px; }
+.pred-meta { display: flex; flex-wrap: wrap; gap: 6px; align-items: center; }
+.pred-badge { font-size: 9px; font-weight: 700; letter-spacing: 1px; padding: 2px 7px; border-radius: 8px; text-transform: uppercase; }
+.pred-badge.conf-high { background: rgba(64,192,128,0.15); color: var(--success); }
+.pred-badge.conf-medium { background: rgba(232,168,64,0.15); color: var(--warning); }
+.pred-badge.conf-low { background: rgba(224,72,72,0.15); color: var(--danger); }
+
 .section-title { font-size: 10px; font-weight: 700; letter-spacing: 2px; color: var(--primary); margin-bottom: 10px; text-transform: uppercase; }
 .empty-state { text-align: center; padding: 30px; color: var(--text-muted); font-size: 13px; line-height: 1.6; }
 
@@ -250,6 +286,7 @@ html, body { height: 100%; overflow: hidden; background: var(--bg); color: var(-
   </div>
 
   <div id="sidebar">
+    <div id="headlines-ticker"></div>
     <div class="tabs">
       <button class="tab active" data-tab="anomalies">ANOMALIES</button>
       <button class="tab" data-tab="claims">CLAIMS</button>
@@ -278,6 +315,26 @@ html, body { height: 100%; overflow: hidden; background: var(--bg); color: var(-
 (function() {
   const DATA_URL = 'https://raw.githubusercontent.com/BosRoss/bosssystems.co/main/atlas_report.json';
   const LOCAL_URL = '../atlas_data/latest.json';
+
+  function relTime(dateStr) {
+    if (!dateStr) return '';
+    var d = new Date(dateStr);
+    if (isNaN(d)) return dateStr;
+    var diff = (Date.now() - d.getTime()) / 1000;
+    if (diff < 0) return 'upcoming';
+    if (diff < 3600) return Math.floor(diff/60) + 'm ago';
+    if (diff < 86400) return Math.floor(diff/3600) + 'h ago';
+    if (diff < 172800) return 'yesterday';
+    if (diff < 604800) return Math.floor(diff/86400) + 'd ago';
+    return d.toLocaleDateString();
+  }
+
+  function dateHTML(dateStr) {
+    if (!dateStr) return '';
+    var d = new Date(dateStr);
+    var full = isNaN(d) ? dateStr : d.toLocaleString();
+    return '<div class="item-date" title="' + esc(full) + '">' + esc(relTime(dateStr)) + '</div>';
+  }
 
   let map, data = null;
   let flightMarkers = [], quakeMarkers = [], nasaMarkers = [], radiationMarkers = [];
@@ -402,6 +459,7 @@ html, body { height: 100%; overflow: hidden; background: var(--bg); color: var(-
     renderTopbar();
     renderMapLayers();
     renderAnomalyBanner();
+    renderHeadlines();
     renderAnomalies();
     renderClaims();
     renderFlights();
@@ -437,6 +495,9 @@ html, body { height: 100%; overflow: hidden; background: var(--bg); color: var(-
     const oppsCount = (data.opportunities || []).length;
     const oppsTab = document.querySelector('[data-tab="opps"]');
     if (oppsCount > 0) oppsTab.innerHTML = 'OPPS<span class="tab-count" style="background:rgba(64,192,128,0.2);color:var(--success)">' + oppsCount + '</span>';
+    const predCount = ((data.predictions || {}).atlas_predictions || []).length;
+    const predTab = document.querySelector('[data-tab="predictions"]');
+    if (predCount > 0) predTab.innerHTML = 'MARKETS<span class="tab-count" style="background:rgba(75,146,219,0.2);color:var(--primary)">' + predCount + '</span>';
   }
 
   // Power level selector — sends ntfy to change power
@@ -459,6 +520,39 @@ html, body { height: 100%; overflow: hidden; background: var(--bg); color: var(-
       });
     });
   });
+
+  function renderHeadlines() {
+    var ticker = document.getElementById('headlines-ticker');
+    var headlines = data.headlines || [];
+    if (!headlines.length) { ticker.innerHTML = ''; return; }
+    var html = '';
+    for (var i = 0; i < headlines.length; i++) {
+      var h = headlines[i];
+      var cat = (h.category || 'intel').toLowerCase();
+      var catCls = 'cat-' + cat;
+      // Reuse assess-cat colors for category badges
+      html += '<div class="headline-item" data-idx="' + i + '">';
+      html += '<div class="hl-top">';
+      html += '<div class="hl-text">' + esc(h.headline) + '</div>';
+      html += '<span class="hl-cat assess-cat ' + catCls + '">' + esc(h.category || 'intel') + '</span>';
+      html += '</div>';
+      html += '<div class="hl-date" title="' + esc(h.date || '') + '">' + esc(relTime(h.date)) + '</div>';
+      html += '<div class="hl-expand">';
+      if (h.analysis) html += '<div class="hl-analysis">' + esc(h.analysis) + '</div>';
+      if (h.sources_used && h.sources_used.length) {
+        html += '<div class="hl-sources">Sources: ' + h.sources_used.map(function(s){return esc(s)}).join(', ') + '</div>';
+      }
+      html += '</div>';
+      html += '</div>';
+    }
+    ticker.innerHTML = html;
+    // Click to expand/collapse
+    ticker.querySelectorAll('.headline-item').forEach(function(item) {
+      item.addEventListener('click', function() {
+        item.classList.toggle('expanded');
+      });
+    });
+  }
 
   function renderAnomalyBanner() {
     const banner = document.getElementById('anomaly-banner');
@@ -524,6 +618,7 @@ html, body { height: 100%; overflow: hidden; background: var(--bg); color: var(-
       html += '<div class="score">' + a.score + '</div>';
       html += '<div class="pattern">' + esc(a.pattern) + '</div>';
       html += '<div class="desc">' + esc(a.description) + '</div>';
+      html += dateHTML(a.date);
 
       if (a.evidence_count) html += '<div class="detail">Evidence: ' + a.evidence_count + ' data points';
       if (a.news_count !== undefined) html += ' | News coverage: ' + a.news_count + ' articles';
@@ -712,6 +807,7 @@ html, body { height: 100%; overflow: hidden; background: var(--bg); color: var(-
       html += '<span class="velocity">' + c.velocity + ' sources</span>';
       html += '<span class="claim-tone ' + toneClass + '">' + toneClass + ' tone</span>';
       html += '<div class="claim-title">' + esc(c.claim) + '</div>';
+      html += dateHTML(c.date);
       html += '<div class="claim-meta">' + c.unique_sources + ' unique domains';
       if (c.countries_reporting && c.countries_reporting.length) html += ' | ' + c.countries_reporting.length + ' countries reporting';
       html += ' | Reddit mentions: ' + (c.reddit_mentions || 0);
@@ -810,6 +906,7 @@ html, body { height: 100%; overflow: hidden; background: var(--bg); color: var(-
       html += '<div class="assess-title">' + esc(a.title) + '</div>';
       html += '<span class="assess-cat cat-' + cat + '">' + esc(a.category || 'unknown') + '</span>';
       html += '</div>';
+      html += dateHTML(a.date);
 
       // Confidence bar
       html += '<div class="assess-confidence">';
@@ -889,6 +986,7 @@ html, body { height: 100%; overflow: hidden; background: var(--bg); color: var(-
       html += '<div class="opp-title">' + esc(o.opportunity) + '</div>';
       html += '<span class="opp-urgency urg-' + urgency + '">' + urgencyLabel + '</span>';
       html += '</div>';
+      html += dateHTML(o.date);
 
       // Category
       if (catLabel) {
@@ -935,10 +1033,13 @@ html, body { height: 100%; overflow: hidden; background: var(--bg); color: var(-
     const name = info ? info.name : (f.description || f.type || '?');
     const role = info ? info.role : '';
     const alt = f.altitude_ft && f.altitude_ft !== 'ground' ? Math.round(f.altitude_ft/100)*100 + 'ft' : (f.altitude_ft === 'ground' ? 'GND' : '');
+    const dateStr = f.date ? ' title="' + esc(new Date(f.date).toLocaleString()) + '"' : '';
+    const dateDisplay = f.date ? '<div class="item-date"' + dateStr + '>' + esc(relTime(f.date)) + '</div>' : '';
     return '<div class="flight-item' + cls + '" data-lat="' + f.lat + '" data-lon="' + f.lon + '">' +
       '<div style="flex:1"><span class="callsign">' + esc(f.callsign || f.hex) + '</span> ' +
       '<span class="type">' + esc(name) + '</span>' +
       (role ? '<div class="role">' + esc(role) + '</div>' : '') +
+      dateDisplay +
       '</div>' +
       '<span class="alt">' + alt + '</span>' +
       '</div>';
@@ -947,26 +1048,94 @@ html, body { height: 100%; overflow: hidden; background: var(--bg); color: var(-
   function renderPredictions() {
     const panel = document.getElementById('panel-predictions');
     const preds = data.predictions || {};
+    const atlasPreds = preds.atlas_predictions || [];
     const poly = preds.polymarket || [];
     const mani = preds.manifold || [];
     const meta = preds.metaculus || [];
-    const all = [...poly, ...mani, ...meta];
-    if (!all.length) {
-      panel.innerHTML = '<div class="section-title">PREDICTION MARKETS</div><div class="empty-state">No predictions loaded.</div>';
+    const marketAll = [...poly, ...mani, ...meta];
+
+    if (!atlasPreds.length && !marketAll.length) {
+      panel.innerHTML = '<div class="section-title">ATLAS PREDICTIONS</div><div class="empty-state">No predictions loaded.<br><br>Run at <b>ACTIVE</b> or <b>SURGE</b> power for ATLAS to generate its own probability assessments and compare against prediction markets.</div>';
       return;
     }
-    let html = '<div class="section-title">PREDICTION MARKETS (' + all.length + ')</div>';
-    html += '<p style="font-size:11px;color:var(--text-dim);margin-bottom:10px;line-height:1.4">Real-money prediction markets. Historically more accurate than expert panels for geopolitical forecasting.</p>';
-    for (const p of all.slice(0, 30)) {
-      const prob = p.probability || p.prediction || 0;
-      const color = prob > 80 ? 'var(--success)' : prob > 50 ? 'var(--primary)' : prob > 25 ? 'var(--warning)' : 'var(--danger)';
-      const url = p.url || '';
-      html += '<div class="prediction-card">';
-      html += '<div class="pq">' + (url ? '<a href="' + esc(url) + '" target="_blank" style="color:var(--text);text-decoration:none">' + esc(p.question) + '</a>' : esc(p.question)) + '</div>';
-      html += '<div class="pbar"><div class="pbar-fill" style="width:' + Math.min(prob, 100) + '%;background:' + color + '"></div></div>';
-      html += '<div class="pmeta"><span class="prob" style="color:' + color + '">' + prob + '%</span><span style="text-transform:uppercase;letter-spacing:1px;font-size:9px">' + (p.source || '') + '</span></div>';
+
+    let html = '';
+
+    // ATLAS Predictions (primary section)
+    if (atlasPreds.length) {
+      html += '<div class="section-title">ATLAS PREDICTIONS (' + atlasPreds.length + ')</div>';
+      html += '<p style="font-size:11px;color:var(--text-dim);margin-bottom:12px;line-height:1.4">ATLAS-generated probability assessments compared against prediction markets. Green divergence = ATLAS sees an edge the market may be missing.</p>';
+
+      for (const p of atlasPreds) {
+        const atlasProb = p.atlas_probability || 0;
+        const marketProb = p.market_probability || 0;
+        const divergence = p.divergence || (atlasProb - marketProb);
+        const absDivergence = Math.abs(divergence);
+        const isEdge = absDivergence >= 10;
+        const divSign = divergence > 0 ? '+' : '';
+        const divDirection = divergence > 0 ? 'ATLAS sees higher' : divergence < 0 ? 'ATLAS sees lower' : 'aligned';
+        const conf = (p.confidence || 'medium').toLowerCase();
+        const cat = (p.category || 'general').toLowerCase();
+
+        html += '<div class="pred-card">';
+        html += '<div class="pred-question">' + esc(p.question) + '</div>';
+        html += dateHTML(p.date);
+
+        // Dual probability bars
+        html += '<div class="pred-bars">';
+        // ATLAS bar
+        html += '<div class="pred-bar-row">';
+        html += '<span class="pred-bar-label" style="color:var(--primary)">ATLAS</span>';
+        html += '<div class="pred-bar-track"><div class="pred-bar-fill" style="width:' + Math.min(atlasProb, 100) + '%;background:var(--primary)"></div></div>';
+        html += '<span class="pred-bar-pct" style="color:var(--primary)">' + atlasProb + '%</span>';
+        html += '</div>';
+        // Market bar
+        html += '<div class="pred-bar-row">';
+        html += '<span class="pred-bar-label" style="color:var(--text-muted)">MARKET</span>';
+        html += '<div class="pred-bar-track"><div class="pred-bar-fill" style="width:' + Math.min(marketProb, 100) + '%;background:var(--text-dim)"></div></div>';
+        html += '<span class="pred-bar-pct" style="color:var(--text-muted)">' + marketProb + '%</span>';
+        html += '</div>';
+        html += '</div>';
+
+        // Divergence
+        html += '<div class="pred-divergence ' + (isEdge ? 'edge' : 'neutral') + '">DIVERGENCE: ' + divSign + absDivergence + '% &larr; ' + divDirection + '</div>';
+
+        // Reasoning
+        if (p.atlas_reasoning) {
+          html += '<div class="pred-reasoning">' + esc(p.atlas_reasoning) + '</div>';
+        }
+
+        // Badges: confidence, category, market source
+        html += '<div class="pred-meta">';
+        html += '<span class="pred-badge conf-' + conf + '">' + conf + ' confidence</span>';
+        html += '<span class="pred-badge" style="background:rgba(75,146,219,0.12);color:var(--primary)">' + esc(cat) + '</span>';
+        if (p.market_source) {
+          html += '<span style="font-size:9px;color:var(--text-dim);letter-spacing:1px;text-transform:uppercase">vs ' + esc(p.market_source) + '</span>';
+        }
+        html += '</div>';
+
+        html += '</div>';
+      }
+    }
+
+    // Raw market data (secondary, collapsed section)
+    if (marketAll.length) {
+      html += '<div style="margin-top:16px"><div class="section-title">RAW MARKET DATA (' + marketAll.length + ')</div>';
+      html += '<p style="font-size:11px;color:var(--text-dim);margin-bottom:10px;line-height:1.4">Unprocessed prediction market odds from Polymarket, Manifold, and Metaculus.</p>';
+      for (const p of marketAll.slice(0, 30)) {
+        const prob = p.probability || p.prediction || 0;
+        const color = prob > 80 ? 'var(--success)' : prob > 50 ? 'var(--primary)' : prob > 25 ? 'var(--warning)' : 'var(--danger)';
+        const url = p.url || '';
+        html += '<div class="prediction-card">';
+        html += '<div class="pq">' + (url ? '<a href="' + esc(url) + '" target="_blank" style="color:var(--text);text-decoration:none">' + esc(p.question) + '</a>' : esc(p.question)) + '</div>';
+        html += '<div class="pbar"><div class="pbar-fill" style="width:' + Math.min(prob, 100) + '%;background:' + color + '"></div></div>';
+        html += '<div class="pmeta"><span class="prob" style="color:' + color + '">' + prob + '%</span><span style="text-transform:uppercase;letter-spacing:1px;font-size:9px">' + (p.source || '') + '</span></div>';
+        html += dateHTML(p.date);
+        html += '</div>';
+      }
       html += '</div>';
     }
+
     panel.innerHTML = html;
   }
 
@@ -990,6 +1159,7 @@ html, body { height: 100%; overflow: hidden; background: var(--bg); color: var(-
       html += '<div class="feed-item">';
       html += '<div class="feed-source">' + esc(src) + esc(cat) + '</div>';
       html += '<div class="feed-title">' + (url ? '<a href="' + esc(url) + '" target="_blank">' + esc(title) + '</a>' : esc(title)) + '</div>';
+      html += dateHTML(item.date);
       html += '</div>';
     }
     panel.innerHTML = html;
