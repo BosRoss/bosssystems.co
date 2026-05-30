@@ -70,7 +70,7 @@ html, body { height: 100%; overflow: hidden; background: var(--bg); color: var(-
 #app { display: flex; height: 100vh; padding-top: 64px; }
 #map-wrap { flex: 0 0 60%; position: relative; }
 #map { width: 100%; height: 100%; background: var(--bg); }
-.leaflet-tile-pane { filter: brightness(0.55) contrast(1.2) saturate(0.4); }
+.leaflet-tile-pane { filter: brightness(0.7) saturate(0.3); }
 .leaflet-control-zoom a { background: var(--surface-2) !important; color: var(--text) !important; border-color: var(--border) !important; border-radius: var(--radius) !important; font-family: var(--font-data) !important; }
 .leaflet-control-zoom { border: none !important; box-shadow: none !important; border-radius: var(--radius) !important; }
 
@@ -297,6 +297,22 @@ html, body { height: 100%; overflow: hidden; background: var(--bg); color: var(-
 .dark-tooltip { background: rgba(8,12,20,0.96) !important; border: 1px solid var(--border) !important; border-radius: var(--radius) !important; padding: 5px 8px !important; color: var(--text) !important; font-size: 10px !important; font-family: var(--font-ui) !important; box-shadow: 0 4px 12px rgba(0,0,0,0.5) !important; line-height: 1.4 !important; }
 .dark-tooltip em { color: var(--primary-light); font-style: normal; font-size: 9px; }
 
+.pol-card { padding: 10px; background: var(--surface-2); border: 1px solid var(--border); border-radius: var(--radius); margin-bottom: 6px; cursor: pointer; transition: all 0.15s; }
+.pol-card:hover { border-color: var(--primary-dark); background: rgba(75,146,219,0.03); }
+.pol-card.pol-selected { border-color: var(--primary); border-left: 3px solid var(--primary); background: rgba(75,146,219,0.05); }
+.pol-card .pol-header { display: flex; align-items: center; gap: 6px; margin-bottom: 4px; }
+.pol-card .pol-flag { font-size: 16px; line-height: 1; }
+.pol-card .pol-name { font-size: 12px; font-weight: 700; color: var(--text); flex: 1; }
+.pol-card .pol-score { font-size: 11px; font-weight: 700; font-family: var(--font-data); min-width: 28px; text-align: right; }
+.pol-card .pol-bar { width: 100%; height: 3px; background: var(--surface-3); border-radius: 1px; overflow: hidden; margin-bottom: 5px; }
+.pol-card .pol-bar-fill { height: 100%; border-radius: 1px; }
+.pol-card .pol-text { font-size: 10px; line-height: 1.6; color: var(--text-muted); }
+.pol-card .pol-regime { font-size: 8px; font-weight: 700; letter-spacing: 1px; padding: 2px 6px; border-radius: var(--radius); text-transform: uppercase; font-family: var(--font-data); display: inline-block; margin-bottom: 4px; }
+.pol-regime.r-full { background: rgba(0,204,102,0.15); color: var(--success); }
+.pol-regime.r-flawed { background: rgba(75,146,219,0.15); color: var(--primary); }
+.pol-regime.r-hybrid { background: rgba(232,168,64,0.15); color: var(--warning); }
+.pol-regime.r-auth { background: rgba(224,72,72,0.15); color: var(--danger); }
+
 @media (max-width: 768px) {
   #app { flex-direction: column; }
   #map-wrap { flex: 1 1 50%; }
@@ -329,6 +345,7 @@ html, body { height: 100%; overflow: hidden; background: var(--bg); color: var(-
       <option value="alliances">Alliance Blocs</option>
       <option value="pressFreedom">Press Freedom</option>
       <option value="corruption">Corruption Index</option>
+      <option value="democracyIndex">Democracy Index</option>
     </optgroup>
     <optgroup label="ECONOMIC">
       <option value="debtToGdp">Debt-to-GDP Ratio</option>
@@ -405,6 +422,7 @@ html, body { height: 100%; overflow: hidden; background: var(--bg); color: var(-
         <button class="tab" data-tab="feed">FEED</button>
         <button class="tab" data-tab="calibration">HISTORY</button>
         <button class="tab" data-tab="trader">TRADER</button>
+        <button class="tab" data-tab="politics">POL</button>
         <button class="tab" data-tab="brief">BRIEF</button>
       </div>
     </div>
@@ -418,6 +436,7 @@ html, body { height: 100%; overflow: hidden; background: var(--bg); color: var(-
       <div class="panel" id="panel-feed"></div>
       <div class="panel" id="panel-calibration"></div>
       <div class="panel" id="panel-trader"></div>
+      <div class="panel" id="panel-politics"></div>
       <div class="panel" id="panel-brief">
         <div id="brief-content">
           <div class="welcome-message">
@@ -647,7 +666,76 @@ html, body { height: 100%; overflow: hidden; background: var(--bg); color: var(-
   }
 
   // ============================================================
-  // 17 Color Mode Configurations
+  // Political Landscape — Real Talk, No Media Spin
+  // ============================================================
+  const POLITICAL_DATA = {
+    "US":{democracyScore:7.0,realPolitics:"Corporate duopoly. Both parties serve Wall Street and defense contractors. Regulatory capture, gerrymandering, and media tribalism keep structural reform impossible. Public trust in institutions at historic low."},
+    "CN":{democracyScore:1.0,realPolitics:"Xi holds more power than any leader since Mao. CCP controls all media, internet, and judiciary. Surveillance state monitors 1.4 billion people. Dissent is criminal — disappearances routine."},
+    "JP":{democracyScore:7.5,realPolitics:"One-party democracy — LDP ruled almost continuously since 1955. Bureaucracy runs the country regardless of PM. Media self-censors on imperial family and organized crime's political ties."},
+    "DE":{democracyScore:8.0,realPolitics:"Coalition gridlock is standard. AfD rise reflects genuine frustration with immigration and deindustrialization that mainstream parties refused to address. Media consensus culture makes dissent feel extreme."},
+    "IN":{democracyScore:5.5,realPolitics:"BJP has systematically weakened democratic institutions while maintaining democratic form. Media largely captured — critical journalists face raids and charges. Muslim minority increasingly marginalized. Becoming electoral autocracy."},
+    "GB":{democracyScore:7.5,realPolitics:"Real power sits with City of London and media barons. Labour won by default against collapsed Conservatives. NHS quietly privatized through underfunding. Among most extensive surveillance states in democracies."},
+    "FR":{democracyScore:7.0,realPolitics:"Macron governs without mandate — parliament ungovernable. Yellow vests and pension protests showed deep disconnect between Paris elite and the rest of France. Le Pen's RN is the real opposition."},
+    "IT":{democracyScore:7.0,realPolitics:"No government can fix structural issues: north-south divide, brain drain, organized crime in southern economy. Five governments in five years before Meloni. EU funding keeps things afloat."},
+    "BR":{democracyScore:6.0,realPolitics:"Deeply polarized — Bolsonaro base (military, agribusiness, evangelicals) vs Lula coalition. Congress is a horse-trading bazaar. Agribusiness lobby blocks Amazon enforcement. Military retains outsized influence."},
+    "CA":{democracyScore:8.0,realPolitics:"Both parties serve real estate and resource extraction interests. Housing crisis is a policy choice protected by NIMBYism. Extreme media concentration. Indigenous inequality persists despite reconciliation rhetoric."},
+    "RU":{democracyScore:1.5,realPolitics:"Full authoritarian state. All opposition eliminated — Navalny died in prison. Elections are theater. Media is state propaganda. Criticizing the war is criminal. Regime stable through fear and nationalism."},
+    "KR":{democracyScore:6.5,realPolitics:"Martial law declaration exposed institutional fragility. Chaebols hold enormous political influence. Prosecution weaponized against opponents. Media highly partisan. North Korea threat justifies security overreach."},
+    "AU":{democracyScore:8.0,realPolitics:"Two-party system serving mining and property interests. Climate policy hostage to fossil fuel lobby for decades. Murdoch media dominance shapes debate. AUKUS commits Australia to US-China rivalry without public debate."},
+    "ES":{democracyScore:7.5,realPolitics:"Catalonia patched not resolved. Sanchez governs through fragile coalition dependent on regional parties. Systemic corruption persists. Tourism dependence creates precarious service economy. Franco-era fault lines still visible."},
+    "MX":{democracyScore:5.0,realPolitics:"Cartels are the real governing power in large parts of the country. Most dangerous country for journalists — murdered with impunity. Judiciary restructured to serve ruling party. Corruption endemic at every level."},
+    "ID":{democracyScore:5.5,realPolitics:"Democracy backsliding — dynasticism rising, anti-corruption commission weakened, military influence returning. Jokowi's son as VP via controversial court ruling. Resource extraction serves oligarchs, not communities."},
+    "NL":{democracyScore:8.5,realPolitics:"Coalition shifted right on immigration. ASML is real center of Dutch power — semiconductor chokepoint nobody discusses publicly. Drug trafficking through Rotterdam makes Netherlands a distribution narco-state."},
+    "SA":{democracyScore:1.0,realPolitics:"Absolute monarchy rebranded as reform. MBS is modernizer AND authoritarian — Khashoggi murder showed both faces. Dissent impossible — activists jailed for tweets. Oil money buys international silence."},
+    "TR":{democracyScore:4.0,realPolitics:"Erdogan transformed parliamentary democracy into presidential autocracy. Media captured, judiciary subservient. Patronage networks and religious identity keep base loyal despite economic mismanagement."},
+    "CH":{democracyScore:9.0,realPolitics:"Direct democracy works well but Switzerland is world's largest money laundering hub and commodity trading center. Neutrality is a business model, not a principle. SVP (populist right) consistently largest party."},
+    "TW":{democracyScore:8.5,realPolitics:"Genuine vibrant democracy under existential military threat. Strong civil society and free media, but susceptible to Chinese disinformation operations. Real concern: economic overreliance on semiconductor monoculture."},
+    "PL":{democracyScore:7.5,realPolitics:"Recovering from PiS attempt to capture judiciary. Tusk reversing democratic backsliding but faces packed constitutional tribunal. Media highly polarized. Ukraine war hardened security consensus."},
+    "SE":{democracyScore:8.5,realPolitics:"Social democratic model under strain. Gang violence from failed integration reshaping politics — Sweden Democrats (far-right) now kingmakers. Media self-censored on immigration for years."},
+    "BE":{democracyScore:7.5,realPolitics:"Country that barely functions as unified state. Flemish-Walloon divide means government formation takes months or years. Drug trafficking through Antwerp becoming existential governance issue."},
+    "AR":{democracyScore:5.5,realPolitics:"Milei's libertarian experiment gutting the state. Politics swings between Peronist populism and market liberalism — both failing. Provinces are feudal fiefdoms. Middle class destroyed by currency collapse."},
+    "TH":{democracyScore:3.5,realPolitics:"Military is the real power — coups are the succession mechanism. Lese-majeste law makes discussing monarchy impossible (15-year sentences). Democracy is performative when generals approve."},
+    "NG":{democracyScore:4.0,realPolitics:"Democracy captured by small elite rotating power among themselves. Large portions of country ungovernable — Boko Haram, bandits, separatists. Oil revenue looted for decades. Election fraud standard practice."},
+    "IL":{democracyScore:6.0,realPolitics:"Democracy for Jewish citizens, military occupation for Palestinians. Netanyahu faces corruption charges while governing with ultranationalist coalition. Settler movement operates above the law. Judiciary under assault."},
+    "AT":{democracyScore:8.0,realPolitics:"FPO's rise reflects genuine voter revolt against establishment consensus on immigration and EU policy. Austria cycles between grand coalition inertia and right-wing populist disruption."},
+    "IE":{democracyScore:8.5,realPolitics:"Economy built on corporate tax arbitrage — OECD minimum tax threatens the model. Housing crisis politically explosive. Political system runs through clientelism. Sinn Fein rise reflects economic frustration."},
+    "NO":{democracyScore:9.5,realPolitics:"Oil fund wealth masks policy failures. Government expanded fossil fuel production while lecturing world on climate — the hypocrisy is deliberate policy. Governance genuinely competent by global standards."},
+    "SG":{democracyScore:3.5,realPolitics:"Authoritarian state with efficient governance. PAP ruled since independence — opposition systematically disadvantaged. Press freedom ranks with authoritarian states. Meritocracy narrative masks growing class stratification."},
+    "MY":{democracyScore:5.0,realPolitics:"Managed democracy with Malay-Muslim supremacy constitutionally embedded. Corruption deep — 1MDB was symptom, not anomaly. Chinese and Indian minorities face systemic discrimination."},
+    "EG":{democracyScore:1.5,realPolitics:"Military dictatorship with civilian facade. Sisi eliminated all opposition — 60,000+ political prisoners. Military-owned enterprises crowd out private sector. Suez Canal and gas revenue buy regime survival."},
+    "PH":{democracyScore:5.0,realPolitics:"Political dynasties control provinces as feudal fiefdoms. Marcos family returned despite documented theft of billions. Drug war killed thousands extrajudicially. Journalists regularly murdered."},
+    "BD":{democracyScore:4.5,realPolitics:"Student revolution toppled Hasina's authoritarian rule — transition fragile. Politics was two-family dynasty fight for decades. Garment industry built on exploitation. Military lurks as kingmaker."},
+    "ZA":{democracyScore:7.0,realPolitics:"ANC lost majority after 30 years of dominance. Zuma-era corruption was industrial-scale state capture. Eskom grid collapse is governance failure. Economic apartheid persists — inequality among world's highest."},
+    "AE":{democracyScore:1.0,realPolitics:"Absolute monarchy with modernist branding. No elections, no free press, no political opposition. Migrant workers (90% of population) have zero political rights. Dubai is global money-laundering hub."},
+    "DK":{democracyScore:9.0,realPolitics:"Functional democracy with growing far-right influence on immigration. Social Democrats adopted strict immigration stance to neutralize populists. Greenland tensions exposed colonial relationship."},
+    "CL":{democracyScore:7.5,realPolitics:"Inequality remains extreme post-Pinochet. Boric's progressive agenda blocked by conservative Congress. Constitutional reform failed twice. Lithium nationalization vs foreign investment tension unresolved."},
+    "CO":{democracyScore:5.5,realPolitics:"First leftist president but government dysfunctional. Cocaine economy is a parallel state — production at record levels. FARC ex-combatants being murdered. Land reform promised for decades, never delivered."},
+    "FI":{democracyScore:9.5,realPolitics:"Among world's healthiest democracies. Media freedom, transparency, and governance genuinely excellent. NATO membership was dramatic shift. Political corruption minimal by any global standard."},
+    "CZ":{democracyScore:8.0,realPolitics:"Stable democracy with Euroskeptic tendencies. Babis (oligarch-politician) remains major force despite losing power. Media ownership by politically connected businessmen is concerning."},
+    "VN":{democracyScore:1.0,realPolitics:"Communist party dictatorship with capitalist economy. Zero political freedom — no opposition, no free press, no independent judiciary. Anti-corruption campaign also used to purge rivals."},
+    "RO":{democracyScore:6.5,realPolitics:"Democracy functions but corruption deeply embedded. Intelligence services (SRI) have outsized political influence. Far-right nearly won presidency in constitutional crisis. Brain drain hollowing out workforce."},
+    "PT":{democracyScore:8.0,realPolitics:"Stable democracy with low political drama. PS dominance ended with corruption scandal. Housing crisis from tourism and golden visas driving anger. Drug decriminalization is genuine policy success."},
+    "NZ":{democracyScore:9.0,realPolitics:"Genuine democracy with strong institutions. Shift to Luxon reflects pandemic fatigue. China trade dependency limits foreign policy independence. Housing bubble unsolved. Brain drain to Australia structural."},
+    "PE":{democracyScore:4.0,realPolitics:"Near-failed state — six presidents in five years shows institutional collapse. Boluarte has no mandate. Informal economy enormous. Mining drives GDP but communities face environmental destruction. Corruption universal."},
+    "KZ":{democracyScore:2.0,realPolitics:"Post-Soviet strongman state. 2022 protests were genuine uprising, brutally suppressed (hundreds killed). Nazarbayev family still controls vast assets. Media controlled. Opposition exists only in exile."},
+    "UA":{democracyScore:5.5,realPolitics:"Wartime democracy — Zelenskyy centralized power from necessity but democratic culture survives. Pre-war oligarch capture destroyed by war. EU accession reforms real. Reconstruction will be biggest corruption test."},
+    "QA":{democracyScore:1.0,realPolitics:"Absolute monarchy. Al Jazeera is foreign policy tool, not free press — covers everyone's politics except Qatar's. Migrant workers (90% of population) exploited despite reform rhetoric."},
+    "KW":{democracyScore:3.0,realPolitics:"Elected parliament that actually has power — unique in Gulf. But political gridlock between parliament and ruling family creates dysfunction. Parliament dissolved repeatedly when it challenges government."},
+    "HU":{democracyScore:5.0,realPolitics:"Orban built hybrid regime — elections happen but playing field so tilted they're not competitive. Media captured, judiciary weakened. EU funds used as patronage. Democracy in name, competitive authoritarianism in practice."},
+    "KE":{democracyScore:5.0,realPolitics:"Gen-Z protests showed young population rejecting traditional corruption. Political system is ethnic coalition-building masquerading as ideology. Judiciary occasionally independent. Security services operate with impunity."},
+    "ET":{democracyScore:2.5,realPolitics:"Abiy won Nobel Peace Prize then launched war killing hundreds of thousands. Amhara-Oromo ethnic tensions unresolved. Media severely restricted. Country held together by federal force, not consent."},
+    "GH":{democracyScore:6.5,realPolitics:"One of Africa's most functional democracies — power alternates peacefully. But debt default exposed governance failure. Illegal gold mining (galamsey) devastating environment. IMF austerity biting hard."},
+    "MA":{democracyScore:3.0,realPolitics:"King rules with real power behind parliamentary facade. Constitutional reforms after Arab Spring were cosmetic. Journalists jailed for years. Western Sahara non-negotiable — enormous resources spent on control."},
+    "IQ":{democracyScore:3.0,realPolitics:"Sectarian quota system fragments governance. Iran's influence pervasive through militias. Corruption among world's worst — oil revenue disappears into nothing. Youth protests met with sniper fire."},
+    "DZ":{democracyScore:2.0,realPolitics:"Military controls country behind civilian president facade. Hirak protests removed Bouteflika but the system survived. Tebboune is military-approved placeholder. Press constrained, activists imprisoned."},
+    "PK":{democracyScore:3.0,realPolitics:"Military is the permanent government — civilians serve at generals' pleasure. Imran Khan imprisoned. ISI operates as state within state. Blasphemy laws weaponized. Democracy is theater directed by GHQ."}
+  };
+  for (const [code, pol] of Object.entries(POLITICAL_DATA)) {
+    if (COUNTRY_DATA[code]) Object.assign(COUNTRY_DATA[code], pol);
+  }
+
+  // ============================================================
+  // 18 Color Mode Configurations
   // ============================================================
   const COLOR_MODES = {
     economy:        { title:"ECONOMY",              gradient:"linear-gradient(90deg,#E04848,#E8A840,#00CC66)", min:"Low GDP/cap", max:"High GDP/cap",     source:"World Bank / IMF",                    getValue:d=>d?Math.min(d.gdpPerCapita/100000,1):0 },
@@ -667,6 +755,7 @@ html, body { height: 100%; overflow: hidden; background: var(--bg); color: var(-
     climateRisk:    { title:"CLIMATE RISK",           gradient:"linear-gradient(90deg,#00CC66,#E8A840,#E04848)", min:"Low risk",   max:"Extreme",          source:"ND-GAIN / WRI",                       getValue:d=>d&&d.climateRisk?d.climateRisk/10:0 },
     waterStress:    { title:"WATER STRESS",           gradient:"linear-gradient(90deg,#4B92DB,#E8A840,#E04848)", min:"Low",        max:"Critical",         source:"WRI Aqueduct",                        getValue:d=>d&&d.waterStress?Math.min(d.waterStress/5,1):0 },
     refugeesHosted: { title:"REFUGEES HOSTED",        gradient:"linear-gradient(90deg,#162036,#E8A840,#E04848)", min:"Few",        max:"Many (thousands)", source:"UNHCR",                               getValue:d=>d&&d.refugeesHosted?Math.min(d.refugeesHosted/3500,1):0 },
+    democracyIndex: { title:"DEMOCRACY INDEX",       gradient:"linear-gradient(90deg,#E04848,#E8A840,#00CC66)", min:"Authoritarian", max:"Full democracy", source:"Composite — EIU/Freedom House/V-Dem", getValue:d=>d&&d.democracyScore?d.democracyScore/10:0 },
   };
 
   function lerpColor(a,b,t) { const ah=parseInt(a.replace('#',''),16),bh=parseInt(b.replace('#',''),16); const ar=(ah>>16)&0xFF,ag=(ah>>8)&0xFF,ab=ah&0xFF; const br=(bh>>16)&0xFF,bg=(bh>>8)&0xFF,bb=bh&0xFF; return '#'+((1<<24)+(Math.round(ar+(br-ar)*t)<<16)+(Math.round(ag+(bg-ag)*t)<<8)+Math.round(ab+(bb-ab)*t)).toString(16).slice(1); }
@@ -712,6 +801,7 @@ html, body { height: 100%; overflow: hidden; background: var(--bg); color: var(-
       case 'climateRisk': return d.climateRisk ? 'Climate Risk: ' + d.climateRisk + '/10' : 'N/A';
       case 'waterStress': return d.waterStress ? 'Water Stress: ' + d.waterStress + '/5' : 'N/A';
       case 'refugeesHosted': return d.refugeesHosted ? 'Refugees: ' + d.refugeesHosted.toLocaleString() + 'K' : 'N/A';
+      case 'democracyIndex': return d.democracyScore ? 'Democracy: ' + d.democracyScore + '/10' : 'N/A';
       default: return 'GDP/cap: $' + d.gdpPerCapita.toLocaleString();
     }
   }
@@ -872,6 +962,14 @@ html, body { height: 100%; overflow: hidden; background: var(--bg); color: var(-
       h += '</div></div>';
     }
 
+    if (d.realPolitics) {
+      var regimeLabel = !d.democracyScore?'':d.democracyScore>=8?'FULL DEMOCRACY':d.democracyScore>=6?'FLAWED DEMOCRACY':d.democracyScore>=4?'HYBRID REGIME':'AUTHORITARIAN';
+      var regimeClass = !d.democracyScore?'':d.democracyScore>=8?'r-full':d.democracyScore>=6?'r-flawed':d.democracyScore>=4?'r-hybrid':'r-auth';
+      h += '<div class="briefing-section"><div class="briefing-section-title">POLITICAL LANDSCAPE — NO SPIN</div>';
+      if (regimeLabel) h += '<span class="pol-regime '+regimeClass+'">'+regimeLabel+' ('+d.democracyScore+'/10)</span>';
+      h += '<div style="font-size:11px;line-height:1.7;color:var(--text-muted);margin-top:6px">'+d.realPolitics+'</div></div>';
+    }
+
     h += '<div class="briefing-section"><div class="briefing-section-title">KEY INTELLIGENCE</div><ul class="briefing-list">';
     for (var i = 0; i < d.keyIssues.length; i++) h += '<li>' + d.keyIssues[i] + '</li>';
     h += '</ul></div>';
@@ -958,7 +1056,7 @@ html, body { height: 100%; overflow: hidden; background: var(--bg); color: var(-
     if (!data) return;
     renderTopbar(); renderMapLayers(); renderAnomalyBanner(); renderHeadlines();
     renderAnomalies(); renderClaims(); renderFlights(); renderAssessments();
-    renderOpportunities(); renderPredictions(); renderFeed(); renderCalibration(); renderTrader();
+    renderOpportunities(); renderPredictions(); renderFeed(); renderCalibration(); renderTrader(); renderPolitics();
   }
 
   function renderTopbar() {
@@ -1271,6 +1369,34 @@ html, body { height: 100%; overflow: hidden; background: var(--bg); color: var(-
     panel.innerHTML=html;
   }
 
+  function renderPolitics() {
+    var panel = document.getElementById('panel-politics');
+    var codes = Object.keys(COUNTRY_DATA).filter(function(c){return COUNTRY_DATA[c].realPolitics;});
+    codes.sort(function(a,b){return(COUNTRY_DATA[a].democracyScore||0)-(COUNTRY_DATA[b].democracyScore||0);});
+    var html = '<div class="section-title">POLITICAL LANDSCAPE — UNFILTERED ('+codes.length+' COUNTRIES)</div>';
+    html += '<div style="font-size:10px;color:var(--text-dim);margin-bottom:10px;line-height:1.5">Real political dynamics, not what mainstream media feeds you. Sorted by democracy score — authoritarian regimes first.</div>';
+    for (var i=0; i<codes.length; i++) {
+      var c = codes[i], d = COUNTRY_DATA[c], score = d.democracyScore||0;
+      var regimeLabel = score>=8?'FULL DEMOCRACY':score>=6?'FLAWED DEMOCRACY':score>=4?'HYBRID REGIME':'AUTHORITARIAN';
+      var regimeClass = score>=8?'r-full':score>=6?'r-flawed':score>=4?'r-hybrid':'r-auth';
+      var scoreColor = score>=8?'var(--success)':score>=6?'var(--primary)':score>=4?'var(--warning)':'var(--danger)';
+      var barW = Math.max(3, score*10);
+      var isSelected = c === selectedCountryCode;
+      html += '<div class="pol-card'+(isSelected?' pol-selected':'')+'" data-code="'+c+'">';
+      html += '<div class="pol-header"><span class="pol-flag">'+getFlag(c)+'</span><span class="pol-name">'+esc(d.name)+'</span><span class="pol-score" style="color:'+scoreColor+'">'+score+'</span></div>';
+      html += '<div class="pol-bar"><div class="pol-bar-fill" style="width:'+barW+'%;background:'+scoreColor+'"></div></div>';
+      html += '<span class="pol-regime '+regimeClass+'">'+regimeLabel+'</span>';
+      html += '<div class="pol-text">'+esc(d.realPolitics)+'</div></div>';
+    }
+    panel.innerHTML = html;
+    panel.querySelectorAll('.pol-card').forEach(function(card) {
+      card.addEventListener('click', function() {
+        var code = card.dataset.code;
+        selectCountryOnMap(code, COUNTRY_DATA[code].name);
+      });
+    });
+  }
+
   function renderMapLayers() {
     flightMarkers.forEach(function(m){map.removeLayer(m)});quakeMarkers.forEach(function(m){map.removeLayer(m)});nasaMarkers.forEach(function(m){map.removeLayer(m)});
     radiationMarkers.forEach(function(m){map.removeLayer(m)});anomalyMarkers.forEach(function(m){map.removeLayer(m)});fireMarkers.forEach(function(m){map.removeLayer(m)});gdacsMarkers.forEach(function(m){map.removeLayer(m)});
@@ -1298,6 +1424,7 @@ html, body { height: 100%; overflow: hidden; background: var(--bg); color: var(-
     }catch(e){btn.textContent='FAILED';setTimeout(function(){btn.classList.remove('scanning');btn.textContent='SCAN';},3000);}
   });
 
+  renderPolitics();
   loadData();
 })();
 </script>
