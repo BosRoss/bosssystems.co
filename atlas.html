@@ -327,6 +327,29 @@ html, body { height: 100%; overflow: hidden; background: var(--bg); color: var(-
   .tab .tab-count { display: none; }
   #classification { font-size: 7px; letter-spacing: 2px; }
 }
+
+.dismiss-btn { position: absolute; top: 4px; right: 6px; font-size: 11px; color: var(--text-dim); cursor: pointer; background: none; border: none; padding: 0; line-height: 1; font-family: var(--font-data); z-index: 1; }
+.dismiss-btn:hover { color: var(--text); }
+.dismissed-card { opacity: 0.3; position: relative; }
+.dismissed-card::after { content: 'DISMISSED'; position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); font-size: 9px; font-weight: 700; letter-spacing: 3px; color: var(--text-dim); font-family: var(--font-data); pointer-events: none; }
+.hidden-toggle-bar { display: flex; align-items: center; gap: 8px; margin-bottom: 8px; }
+.hidden-toggle-btn { font-size: 8px; letter-spacing: 1px; color: var(--text-dim); font-family: var(--font-data); cursor: pointer; padding: 2px 6px; background: var(--surface-2); border: 1px solid var(--border); }
+.hidden-toggle-btn:hover { color: var(--text-muted); border-color: var(--text-dim); }
+.hidden-clear-btn { font-size: 8px; letter-spacing: 1px; color: var(--text-dim); font-family: var(--font-data); cursor: pointer; padding: 2px 6px; background: none; border: none; text-decoration: underline; }
+.hidden-clear-btn:hover { color: var(--text-muted); }
+
+.intel-type { font-size: 7px; font-weight: 700; letter-spacing: 2px; padding: 1px 5px; text-transform: uppercase; font-family: var(--font-data); display: inline-block; margin-bottom: 4px; margin-right: 4px; }
+.intel-type.sigint { background: rgba(107,141,181,0.12); color: var(--accent); border: 1px solid rgba(107,141,181,0.2); }
+.intel-type.finint { background: rgba(212,168,67,0.12); color: var(--warning); border: 1px solid rgba(212,168,67,0.2); }
+.intel-type.geoint { background: rgba(196,64,64,0.12); color: var(--danger); border: 1px solid rgba(196,64,64,0.2); }
+.intel-type.busint { background: rgba(74,222,128,0.12); color: var(--success); border: 1px solid rgba(74,222,128,0.2); }
+.intel-type.techint { background: rgba(160,80,200,0.12); color: #C080E0; border: 1px solid rgba(160,80,200,0.2); }
+.intel-type.envint { background: rgba(64,224,208,0.12); color: #40E0D0; border: 1px solid rgba(64,224,208,0.2); }
+.intel-type.osint { background: rgba(201,169,110,0.12); color: var(--primary); border: 1px solid rgba(201,169,110,0.2); }
+.intel-type.mktint { background: rgba(255,176,0,0.12); color: #FFB000; border: 1px solid rgba(255,176,0,0.2); }
+.intel-type.fusint { background: rgba(255,255,255,0.08); color: var(--text); border: 1px solid rgba(255,255,255,0.15); }
+.intel-type.wxint { background: rgba(100,149,237,0.12); color: #6495ED; border: 1px solid rgba(100,149,237,0.2); }
+.intel-type.compint { background: rgba(255,99,71,0.12); color: #FF6347; border: 1px solid rgba(255,99,71,0.2); }
 </style>
 </head>
 <body>
@@ -486,6 +509,26 @@ html, body { height: 100%; overflow: hidden; background: var(--bg); color: var(-
   function formatPop(n) { if(n>=1e9) return (n/1e9).toFixed(2)+'B'; if(n>=1e6) return (n/1e6).toFixed(1)+'M'; if(n>=1e3) return (n/1e3).toFixed(0)+'K'; return n.toString(); }
   function formatGDP(n) { if(n>=1e6) return '$'+(n/1e6).toFixed(2)+'T'; if(n>=1e3) return '$'+(n/1e3).toFixed(0)+'B'; return '$'+n+'M'; }
   function getFlag(code) { if(!code||code.length!==2) return ''; return String.fromCodePoint(...[...code.toUpperCase()].map(c=>0x1F1E6+c.charCodeAt(0)-65)); }
+
+  // Dismiss/hide system
+  function simpleHash(str) { var hash=0; if(!str) return '0'; for(var i=0;i<str.length;i++){hash=((hash<<5)-hash)+str.charCodeAt(i);hash|=0;} return String(Math.abs(hash)); }
+  function getDismissed(tab) { try{return JSON.parse(localStorage.getItem('atlas_dismissed_'+tab)||'[]');}catch(e){return[];} }
+  function isDismissed(tab, hash) { return getDismissed(tab).indexOf(hash)!==-1; }
+  function dismissItem(tab, hash) { var arr=getDismissed(tab); if(arr.indexOf(hash)===-1){arr.push(hash);localStorage.setItem('atlas_dismissed_'+tab,JSON.stringify(arr));} render(); }
+  function clearDismissed(tab) { localStorage.removeItem('atlas_dismissed_'+tab); render(); }
+  var showHiddenState = {};
+  function toggleShowHidden(tab) { showHiddenState[tab]=!showHiddenState[tab]; render(); }
+  function dismissBtnHTML(tab, hash) { return '<button class="dismiss-btn" onclick="event.stopPropagation();dismissItem(\''+tab+'\',\''+hash+'\')" title="Dismiss">&times;</button>'; }
+  function hiddenToggleHTML(tab, hiddenCount) { if(hiddenCount<=0) return ''; return '<div class="hidden-toggle-bar"><button class="hidden-toggle-btn" onclick="toggleShowHidden(\''+tab+'\')">'+(showHiddenState[tab]?'HIDE':'SHOW HIDDEN')+' ('+hiddenCount+')</button><button class="hidden-clear-btn" onclick="clearDismissed(\''+tab+'\')">CLEAR ALL</button></div>'; }
+  window.dismissItem = dismissItem;
+  window.clearDismissed = clearDismissed;
+  window.toggleShowHidden = toggleShowHidden;
+
+  // Intel type labels
+  function getAssessIntelType(category) { var c=(category||'').toLowerCase(); var map={geopolitical:'GEOINT',economic:'FININT',market_opportunity:'BUSINT',environmental:'ENVINT',technology:'TECHINT',security:'SIGINT'}; return map[c]||'BUSINT'; }
+  function getOppIntelType(category) { var c=(category||'').toLowerCase(); if(c.indexOf('weather')!==-1) return 'WXINT'; if(c.indexOf('pain')!==-1||c.indexOf('reddit')!==-1) return 'OSINT'; if(c.indexOf('competitor')!==-1) return 'COMPINT'; if(c.indexOf('commodity')!==-1||c.indexOf('economic')!==-1) return 'FININT'; return 'BUSINT'; }
+  function getPredIntelType(source) { var s=(source||'').toLowerCase(); if(s==='polymarket'||s==='manifold') return 'MKTINT'; if(s==='atlas') return 'FUSINT'; return 'FUSINT'; }
+  function intelTypeHTML(type) { return '<span class="intel-type '+type.toLowerCase()+'">'+type+'</span>'; }
 
   let map, data = null;
   let flightMarkers=[], quakeMarkers=[], nasaMarkers=[], radiationMarkers=[], fireMarkers=[], gdacsMarkers=[];
@@ -1233,10 +1276,17 @@ html, body { height: 100%; overflow: hidden; background: var(--bg); color: var(-
   function renderClaims() {
     var panel = document.getElementById('panel-claims'), claims = data.claims || [];
     if (!claims.length) { panel.innerHTML = '<div class="section-title">CLAIMS TRACKER</div><div class="empty-state">No claims with velocity detected.<br><br>Claims appear when 3+ sources report the same event.</div>'; return; }
+    var dismissed = getDismissed('claims');
+    var hiddenCount = 0;
+    for (var i=0;i<claims.length;i++) { var h=simpleHash(claims[i].claim); if(dismissed.indexOf(h)!==-1) hiddenCount++; }
     var html = '<div class="section-title">ACTIVE CLAIMS (' + claims.length + ')</div>';
+    html += hiddenToggleHTML('claims', hiddenCount);
     for (var c of claims) {
+      var hash = simpleHash(c.claim);
+      var isHidden = dismissed.indexOf(hash)!==-1;
+      if(isHidden && !showHiddenState['claims']) continue;
       var tone = c.tone_label || 'neutral';
-      html += '<div class="claim-card"><span class="velocity">' + c.velocity + ' sources</span><span class="claim-tone ' + tone + '">' + tone + '</span><div class="claim-title">' + esc(c.claim) + '</div>' + dateHTML(c.date) + '<div class="claim-meta">' + c.unique_sources + ' domains';
+      html += '<div class="claim-card'+(isHidden?' dismissed-card':'')+'" style="position:relative">'+(!isHidden?dismissBtnHTML('claims',hash):'')+'<span class="velocity">' + c.velocity + ' sources</span><span class="claim-tone ' + tone + '">' + tone + '</span><div class="claim-title">' + esc(c.claim) + '</div>' + dateHTML(c.date) + '<div class="claim-meta">' + c.unique_sources + ' domains';
       if (c.countries_reporting && c.countries_reporting.length) html += ' | ' + c.countries_reporting.length + ' countries';
       html += ' | Reddit: ' + (c.reddit_mentions || 0) + '</div>';
       if (c.related_predictions && c.related_predictions.length) html += '<div class="claim-sources" style="margin-top:5px;padding:5px;background:var(--surface-3);border-radius:2px"><span style="font-size:8px;letter-spacing:1px;color:var(--primary);font-family:var(--font-data)">PREDICTION MARKET</span><br>' + esc(c.related_predictions[0].question) + ' — <b style="color:var(--text)">' + c.related_predictions[0].probability + '%</b></div>';
@@ -1272,12 +1322,20 @@ html, body { height: 100%; overflow: hidden; background: var(--bg); color: var(-
   function renderAssessments() {
     var panel = document.getElementById('panel-assess'), assessments = data.assessments || [];
     if (!assessments.length) { panel.innerHTML = '<div class="section-title">ATLAS ASSESSMENTS</div><div class="empty-state">No assessments. Run at <b>ACTIVE</b> or <b>SURGE</b> for full analysis.</div>'; return; }
+    var dismissed = getDismissed('assess');
+    var hiddenCount = 0;
+    for (var i=0;i<assessments.length;i++) { var h=simpleHash(assessments[i].title); if(dismissed.indexOf(h)!==-1) hiddenCount++; }
     var html = '<div class="section-title">ATLAS ASSESSMENTS (' + assessments.length + ')</div>';
+    html += hiddenToggleHTML('assess', hiddenCount);
     for (var a of assessments) {
+      var hash = simpleHash(a.title);
+      var isHidden = dismissed.indexOf(hash)!==-1;
+      if(isHidden && !showHiddenState['assess']) continue;
       var cat=(a.category||'unknown').toLowerCase(), conf=a.confidence||0;
       var confColor=conf>=80?'var(--success)':conf>=60?'var(--primary)':conf>=40?'var(--warning)':'var(--danger)';
       var horizonLabel={'24h':'24H','7d':'7D','30d':'30D','90d':'90D'}[a.time_horizon]||(a.time_horizon||'').toUpperCase();
-      html += '<div class="assess-card"><div class="assess-header"><div class="assess-title">'+esc(a.title)+'</div><span class="assess-cat cat-'+cat+'">'+esc(a.category||'unknown')+'</span></div>'+dateHTML(a.date);
+      var intelType = getAssessIntelType(a.category);
+      html += '<div class="assess-card'+(isHidden?' dismissed-card':'')+'" style="position:relative">'+(!isHidden?dismissBtnHTML('assess',hash):'')+'<div class="assess-header"><div class="assess-title">'+intelTypeHTML(intelType)+esc(a.title)+'</div><span class="assess-cat cat-'+cat+'">'+esc(a.category||'unknown')+'</span></div>'+dateHTML(a.date);
       html += '<div class="assess-confidence"><div class="assess-conf-label"><span>Confidence</span><b>'+conf+'%</b></div><div class="assess-conf-bar"><div class="assess-conf-fill" style="width:'+Math.min(conf,100)+'%;background:'+confColor+'"></div></div></div>';
       html += '<div class="assess-analysis">'+esc(a.analysis)+'</div>';
       if(a.hypotheses&&a.hypotheses.length){html+='<div class="assess-implications" style="border-left:2px solid var(--primary);padding-left:8px"><div class="impl-label" style="color:var(--primary)">HYPOTHESES</div><ul style="margin:0;padding:0">';for(var h of a.hypotheses)html+='<li>'+esc(h)+'</li>';html+='</ul></div>';}
@@ -1295,11 +1353,21 @@ html, body { height: 100%; overflow: hidden; background: var(--bg); color: var(-
     if (!opps.length) { panel.innerHTML = '<div class="section-title">BUSINESS OPPORTUNITIES</div><div class="empty-state">No opportunities detected. Run at <b>ACTIVE</b> or <b>SURGE</b>.</div>'; return; }
     var urgencyOrder={immediate:0,this_week:1,this_month:2,emerging:3};
     var sorted=[...opps].sort(function(a,b){return(urgencyOrder[a.urgency]||4)-(urgencyOrder[b.urgency]||4);});
+    var dismissed = getDismissed('opps');
+    var hiddenCount = 0;
+    for (var i=0;i<sorted.length;i++) { var h=simpleHash(sorted[i].opportunity); if(dismissed.indexOf(h)!==-1) hiddenCount++; }
     var html='<div class="section-title">OPPORTUNITIES ('+sorted.length+')</div>';
+    html += hiddenToggleHTML('opps', hiddenCount);
     for(var o of sorted){
+      var hash = simpleHash(o.opportunity);
+      var isHidden = dismissed.indexOf(hash)!==-1;
+      if(isHidden && !showHiddenState['opps']) continue;
       var urgency=(o.urgency||'emerging').toLowerCase(),urgencyLabel={immediate:'IMMEDIATE',this_week:'THIS WEEK',this_month:'THIS MONTH',emerging:'EMERGING'}[urgency]||urgency.toUpperCase();
       var conf=o.confidence||0,confColor=conf>=80?'var(--success)':conf>=60?'var(--primary)':conf>=40?'var(--warning)':'var(--danger)';
-      html+='<div class="opp-card"><div class="opp-header"><div class="opp-title">'+esc(o.opportunity)+'</div><span class="opp-urgency urg-'+urgency+'">'+urgencyLabel+'</span></div>'+dateHTML(o.date);
+      var intelType = getOppIntelType(o.category);
+      html+='<div class="opp-card'+(isHidden?' dismissed-card':'')+'" style="position:relative">'+(!isHidden?dismissBtnHTML('opps',hash):'');
+      html+=intelTypeHTML(intelType);
+      html+='<div class="opp-header"><div class="opp-title">'+esc(o.opportunity)+'</div><span class="opp-urgency urg-'+urgency+'">'+urgencyLabel+'</span></div>'+dateHTML(o.date);
       if(o.category)html+='<div class="opp-cat">'+esc(o.category.replace(/_/g,' ').toUpperCase())+'</div>';
       if(o.region)html+='<div class="opp-region">Region: <b style="color:var(--text)">'+esc(o.region)+'</b></div>';
       if(o.potential_revenue)html+='<div class="opp-revenue">'+esc(o.potential_revenue)+'</div>';
@@ -1314,12 +1382,22 @@ html, body { height: 100%; overflow: hidden; background: var(--bg); color: var(-
   function renderPredictions() {
     var panel=document.getElementById('panel-predictions'),preds=data.predictions||{},atlasPreds=preds.atlas_predictions||[],poly=preds.polymarket||[],mani=preds.manifold||[],meta=preds.metaculus||[],marketAll=[...poly,...mani,...meta];
     if(!atlasPreds.length&&!marketAll.length){panel.innerHTML='<div class="section-title">ATLAS PREDICTIONS</div><div class="empty-state">No predictions. Run at <b>ACTIVE</b>+ for ATLAS probability assessments.</div>';return;}
+    var dismissed = getDismissed('predictions');
+    var hiddenCount = 0;
+    var allPredItems = atlasPreds.concat(marketAll);
+    for (var i=0;i<allPredItems.length;i++) { var h=simpleHash(allPredItems[i].question); if(dismissed.indexOf(h)!==-1) hiddenCount++; }
     var html='';
+    html += hiddenToggleHTML('predictions', hiddenCount);
     if(atlasPreds.length){
       html+='<div class="section-title">ATLAS PREDICTIONS ('+atlasPreds.length+')</div>';
       for(var p of atlasPreds){
+        var hash = simpleHash(p.question);
+        var isHidden = dismissed.indexOf(hash)!==-1;
+        if(isHidden && !showHiddenState['predictions']) continue;
         var ap=p.atlas_probability||0,mp=p.market_probability||0,div=p.divergence||(ap-mp),abDiv=Math.abs(div),isEdge=abDiv>=10;
-        html+='<div class="pred-card"><div class="pred-question">'+esc(p.question)+'</div>'+dateHTML(p.date);
+        var intelType = getPredIntelType(p.market_source||'atlas');
+        html+='<div class="pred-card'+(isHidden?' dismissed-card':'')+'" style="position:relative">'+(!isHidden?dismissBtnHTML('predictions',hash):'');
+        html+=intelTypeHTML(intelType)+'<div class="pred-question">'+esc(p.question)+'</div>'+dateHTML(p.date);
         html+='<div class="pred-bars"><div class="pred-bar-row"><span class="pred-bar-label" style="color:var(--primary)">ATLAS</span><div class="pred-bar-track"><div class="pred-bar-fill" style="width:'+Math.min(ap,100)+'%;background:var(--primary)"></div></div><span class="pred-bar-pct" style="color:var(--primary)">'+ap+'%</span></div>';
         html+='<div class="pred-bar-row"><span class="pred-bar-label" style="color:var(--text-muted)">MARKET</span><div class="pred-bar-track"><div class="pred-bar-fill" style="width:'+Math.min(mp,100)+'%;background:var(--text-dim)"></div></div><span class="pred-bar-pct" style="color:var(--text-muted)">'+mp+'%</span></div></div>';
         html+='<div class="pred-divergence '+(isEdge?'edge':'neutral')+'">DIV: '+(div>0?'+':'')+abDiv+'%</div>';
@@ -1332,8 +1410,14 @@ html, body { height: 100%; overflow: hidden; background: var(--bg); color: var(-
     }
     if(marketAll.length){
       html+='<div style="margin-top:14px"><div class="section-title">RAW MARKET DATA ('+marketAll.length+')</div>';
-      for(var p of marketAll.slice(0,30)){var prob=p.probability||p.prediction||0;var color=prob>80?'var(--success)':prob>50?'var(--primary)':prob>25?'var(--warning)':'var(--danger)';
-        html+='<div class="prediction-card"><div class="pq">'+(p.url?'<a href="'+esc(p.url)+'" target="_blank" style="color:var(--text);text-decoration:none">'+esc(p.question)+'</a>':esc(p.question))+'</div><div class="pbar"><div class="pbar-fill" style="width:'+Math.min(prob,100)+'%;background:'+color+'"></div></div><div class="pmeta"><span class="prob" style="color:'+color+'">'+prob+'%</span><span style="text-transform:uppercase;letter-spacing:1px;font-size:8px;font-family:var(--font-data)">'+(p.source||'')+'</span></div>'+dateHTML(p.date)+'</div>';}
+      for(var p of marketAll.slice(0,30)){
+        var hash = simpleHash(p.question);
+        var isHidden = dismissed.indexOf(hash)!==-1;
+        if(isHidden && !showHiddenState['predictions']) continue;
+        var prob=p.probability||p.prediction||0;var color=prob>80?'var(--success)':prob>50?'var(--primary)':prob>25?'var(--warning)':'var(--danger)';
+        var intelType = getPredIntelType(p.source);
+        html+='<div class="prediction-card'+(isHidden?' dismissed-card':'')+'" style="position:relative">'+(!isHidden?dismissBtnHTML('predictions',hash):'');
+        html+=intelTypeHTML(intelType)+'<div class="pq">'+(p.url?'<a href="'+esc(p.url)+'" target="_blank" style="color:var(--text);text-decoration:none">'+esc(p.question)+'</a>':esc(p.question))+'</div><div class="pbar"><div class="pbar-fill" style="width:'+Math.min(prob,100)+'%;background:'+color+'"></div></div><div class="pmeta"><span class="prob" style="color:'+color+'">'+prob+'%</span><span style="text-transform:uppercase;letter-spacing:1px;font-size:8px;font-family:var(--font-data)">'+(p.source||'')+'</span></div>'+dateHTML(p.date)+'</div>';}
       html+='</div>';
     }
     panel.innerHTML=html;
@@ -1353,20 +1437,36 @@ html, body { height: 100%; overflow: hidden; background: var(--bg); color: var(-
     var hn=(data.hackernews||[]).slice(0,5);
     var all=[...tt,...official,...gdacsItems,...gdelt,...cisa,...fires,...volcanoes,...reddit,...rss,...hn].slice(0,80);
     if(!all.length){panel.innerHTML='<div class="section-title">INTELLIGENCE FEED</div><div class="empty-state">No feed data.</div>';return;}
+    var dismissed = getDismissed('feed');
+    var hiddenCount = 0;
+    for (var i=0;i<all.length;i++) { var h=simpleHash(all[i].title); if(dismissed.indexOf(h)!==-1) hiddenCount++; }
     var t1=all.filter(function(i){return i.tier==='ANALYSIS'||i.tier==='OFFICIAL'}).length;
     var html='<div class="section-title">FEED ('+all.length+' items, '+t1+' primary)</div>';
+    html += hiddenToggleHTML('feed', hiddenCount);
     for(var item of all){
+      var hash = simpleHash(item.title);
+      var isHidden = dismissed.indexOf(hash)!==-1;
+      if(isHidden && !showHiddenState['feed']) continue;
       var src=item.subreddit||item.source||'',title=item.title||'',url=item.url||'',tier=item.tier||'';
       var tierBadge=tier==='ANALYSIS'?'<span style="color:var(--primary);font-size:8px;font-weight:700;margin-right:3px;font-family:var(--font-data)">ANALYSIS</span>':tier==='OFFICIAL'?'<span style="color:var(--warning);font-size:8px;font-weight:700;margin-right:3px;font-family:var(--font-data)">OFFICIAL</span>':tier==='CYBER'?'<span style="color:var(--danger);font-size:8px;font-weight:700;margin-right:3px;font-family:var(--font-data)">CYBER</span>':tier==='DISASTER'?'<span style="color:#FF8C00;font-size:8px;font-weight:700;margin-right:3px;font-family:var(--font-data)">DISASTER</span>':'';
-      html+='<div class="feed-item"><div class="feed-source">'+tierBadge+esc(src)+'</div><div class="feed-title">'+(url?'<a href="'+esc(url)+'" target="_blank">'+esc(title)+'</a>':esc(title))+'</div>'+dateHTML(item.date)+'</div>';
+      html+='<div class="feed-item'+(isHidden?' dismissed-card':'')+'" style="position:relative">'+(!isHidden?dismissBtnHTML('feed',hash):'')+'<div class="feed-source">'+tierBadge+esc(src)+'</div><div class="feed-title">'+(url?'<a href="'+esc(url)+'" target="_blank">'+esc(title)+'</a>':esc(title))+'</div>'+dateHTML(item.date)+'</div>';
     }
     panel.innerHTML=html;
   }
 
   function renderCalibration() {
     var panel=document.getElementById('panel-calibration'),cal=data.historical_calibration||[];
+    var dismissed = getDismissed('calibration');
+    var hiddenCount = 0;
+    for (var i=0;i<cal.length;i++) { var h=simpleHash(cal[i].claim); if(dismissed.indexOf(h)!==-1) hiddenCount++; }
     var html='<div class="section-title">HISTORICAL CALIBRATION</div><p style="font-size:11px;color:var(--text-muted);margin-bottom:12px;line-height:1.6">Events initially dismissed that were later confirmed. Calibration data — not endorsement of unverified claims.</p>';
-    for(var c of cal){html+='<div class="calibration-item"><span class="cal-status '+(c.status==='confirmed'?'confirmed':'partial')+'">'+c.status+'</span><div class="cal-claim">'+esc(c.claim)+'</div><div class="cal-meta">Denied for <b style="color:var(--text)">'+c.years_denied+' years</b><br>'+esc(c.evidence)+'</div></div>';}
+    html += hiddenToggleHTML('calibration', hiddenCount);
+    for(var c of cal){
+      var hash = simpleHash(c.claim);
+      var isHidden = dismissed.indexOf(hash)!==-1;
+      if(isHidden && !showHiddenState['calibration']) continue;
+      html+='<div class="calibration-item'+(isHidden?' dismissed-card':'')+'" style="position:relative">'+(!isHidden?dismissBtnHTML('calibration',hash):'')+'<span class="cal-status '+(c.status==='confirmed'?'confirmed':'partial')+'">'+c.status+'</span><div class="cal-claim">'+esc(c.claim)+'</div><div class="cal-meta">Denied for <b style="color:var(--text)">'+c.years_denied+' years</b><br>'+esc(c.evidence)+'</div></div>';
+    }
     panel.innerHTML=html;
   }
 
