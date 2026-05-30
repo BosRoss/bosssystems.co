@@ -674,6 +674,7 @@ html, body { height: 100%; overflow: hidden; background: var(--bg); color: var(-
   }
   function getCountryColor(isoCode, mode) {
     const d = COUNTRY_DATA[isoCode];
+    if(!d) return '#151C28';
     if(mode==='alliances') return getAllianceColor(d);
     const cfg = COLOR_MODES[mode]||COLOR_MODES.economy;
     const v = cfg.getValue(d);
@@ -735,7 +736,8 @@ html, body { height: 100%; overflow: hidden; background: var(--bg); color: var(-
           const alpha2 = NUM_TO_ALPHA2[numId] || '';
           const color = getCountryColor(alpha2, currentColorMode);
           const isSelected = alpha2 === selectedCountryCode;
-          return { fillColor: color, fillOpacity: isSelected ? 0.75 : 0.30, weight: isSelected ? 1.5 : 0.4, color: isSelected ? '#4B92DB' : 'rgba(255,255,255,0.08)', opacity: 1 };
+          const hasData = !!COUNTRY_DATA[alpha2];
+          return { fillColor: color, fillOpacity: isSelected ? 0.75 : (hasData ? 0.30 : 0.10), weight: isSelected ? 1.5 : 0.4, color: isSelected ? '#4B92DB' : 'rgba(255,255,255,0.08)', opacity: 1 };
         },
         onEachFeature: function(feature, layer) {
           const numId = feature.id || (feature.properties && feature.properties.id);
