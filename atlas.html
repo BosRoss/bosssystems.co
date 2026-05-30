@@ -78,7 +78,7 @@ body::after { content:''; position:fixed; inset:0; z-index:9999; pointer-events:
 #map-wrap { flex: 0 0 60%; position: relative; border-right: 1px solid var(--primary); }
 #map-wrap::before { content:''; position:absolute; inset:0; z-index:799; pointer-events:none; border: 1px solid rgba(0,255,65,0.08); }
 #map { width: 100%; height: 100%; background: var(--bg); }
-.leaflet-tile-pane { filter: brightness(0.5) saturate(0.15) hue-rotate(80deg); }
+.leaflet-tile-pane { filter: none; }
 .leaflet-control-zoom a { background: rgba(0,12,0,0.9) !important; color: var(--primary) !important; border-color: var(--border) !important; font-family: var(--font-data) !important; font-weight: 700 !important; }
 .leaflet-control-zoom { border: 1px solid var(--border) !important; box-shadow: none !important; }
 
@@ -839,10 +839,12 @@ body::after { content:''; position:fixed; inset:0; z-index:9999; pointer-events:
   }
 
   // Map init with custom pane for countries
-  map = L.map('map', { center:[20,0], zoom:2, preferCanvas:true, zoomControl:true, attributionControl:false });
-  L.tileLayer('https://{s}.basemaps.cartocdn.com/dark_nolabels/{z}/{x}/{y}{r}.png', { maxZoom:18, subdomains:'abcd' }).addTo(map);
+  map = L.map('map', { center:[20,0], zoom:2, preferCanvas:true, zoomControl:true, attributionControl:false, minZoom:2, maxBounds:[[-85,-180],[85,180]], maxBoundsViscosity:1.0 });
+  L.tileLayer('https://{s}.basemaps.cartocdn.com/dark_nolabels/{z}/{x}/{y}{r}.png', { maxZoom:18, subdomains:'abcd', noWrap:true, bounds:[[-85,-180],[85,180]] }).addTo(map);
   map.createPane('countries');
-  map.getPane('countries').style.zIndex = 250;
+  map.getPane('countries').style.zIndex = 450;
+  map.createPane('markers');
+  map.getPane('markers').style.zIndex = 440;
 
   // Coordinate display
   map.on('mousemove', function(e) {
@@ -874,7 +876,7 @@ body::after { content:''; position:fixed; inset:0; z-index:9999; pointer-events:
           const color = getCountryColor(alpha2, currentColorMode);
           const isSelected = alpha2 === selectedCountryCode;
           const hasData = !!COUNTRY_DATA[alpha2];
-          return { fillColor:color, fillOpacity:isSelected?0.7:(hasData?0.28:0.06), weight:isSelected?1.5:0.3, color:isSelected?'#4B92DB':'rgba(255,255,255,0.05)', opacity:1 };
+          return { fillColor:color, fillOpacity:isSelected?0.7:(hasData?0.28:0.06), weight:isSelected?1.5:0.3, color:isSelected?'#00FF41':'rgba(0,255,65,0.08)', opacity:1 };
         },
         onEachFeature: function(feature, layer) {
           const numId = feature.id || (feature.properties && feature.properties.id);
@@ -919,7 +921,7 @@ body::after { content:''; position:fixed; inset:0; z-index:9999; pointer-events:
         const alpha2 = NUM_TO_ALPHA2[numId] || '';
         const isSelected = alpha2 === selectedCountryCode;
         const color = getCountryColor(alpha2, currentColorMode);
-        l.setStyle({ fillColor:color, fillOpacity:isSelected?0.7:0.28, weight:isSelected?1.5:0.3, color:isSelected?'#4B92DB':'rgba(255,255,255,0.05)' });
+        l.setStyle({ fillColor:color, fillOpacity:isSelected?0.7:0.28, weight:isSelected?1.5:0.3, color:isSelected?'#00FF41':'rgba(0,255,65,0.08)' });
         const cd = COUNTRY_DATA[alpha2];
         const name = cd ? cd.name : 'Unknown';
         l.unbindTooltip();
@@ -1249,13 +1251,15 @@ body::after { content:''; position:fixed; inset:0; z-index:9999; pointer-events:
 
   function renderFlights() {
     var panel = document.getElementById('panel-flights'), flights = data.adsb || [];
-    if (!flights.length) { panel.innerHTML = '<div class="section-title">MILITARY AIRCRAFT (ADS-B)</div><div class="empty-state">No flight data. Requires <b>ACTIVE</b> or <b>SURGE</b> power.</div>'; return; }
-    var critical=[], operational=[], routine=[];
-    for (var f of flights) { var info=AIRCRAFT[f.type]; if(!info){routine.push(f);continue;} if(['Nuclear C2 (TACAMO)','Airborne Command Post','Strategic Bomber','Stealth Bomber'].includes(info.role))critical.push(f); else if(['Trainer','Light Transport'].includes(info.role))routine.push(f); else operational.push(f); }
-    var html = '<div class="section-title">MILITARY AIRCRAFT (' + flights.length + ')</div>';
-    if (critical.length) { html += '<div style="font-size:8px;font-weight:700;letter-spacing:1px;color:var(--danger);margin:8px 0 4px;font-family:var(--font-data)">CRITICAL ('+critical.length+')</div>'; critical.forEach(function(f,i){html+=flightHTML(f);}); }
-    if (operational.length) { html += '<div style="font-size:8px;font-weight:700;letter-spacing:1px;color:var(--warning);margin:8px 0 4px;font-family:var(--font-data)">OPERATIONAL ('+operational.length+')</div>'; operational.slice(0,30).forEach(function(f){html+=flightHTML(f);}); if(operational.length>30)html+='<div style="font-size:10px;color:var(--text-dim);padding:4px">+ '+(operational.length-30)+' more</div>'; }
-    if (routine.length) { html += '<div style="font-size:8px;font-weight:700;letter-spacing:1px;color:var(--text-dim);margin:8px 0 4px;font-family:var(--font-data)">ROUTINE ('+routine.length+')</div>'; routine.slice(0,15).forEach(function(f){html+=flightHTML(f);}); if(routine.length>15)html+='<div style="font-size:10px;color:var(--text-dim);padding:4px">+ '+(routine.length-15)+' more</div>'; }
+    if (!flights.length) { panel.innerHTML = '<div class="section-title">HIGH-INTEREST AIRCRAFT (ADS-B)</div><div class="empty-state">No flight data. Requires <b>ACTIVE</b> or <b>SURGE</b> power.</div>'; return; }
+    var HIGH_SIG=['Nuclear C2 (TACAMO)','Airborne Command Post','Airborne Early Warning','Strategic Bomber','Stealth Bomber','SIGINT Collection','ISR Drone','Armed ISR Drone','Maritime Patrol'];
+    var critical=[], sigint=[];
+    for (var f of flights) { var info=AIRCRAFT[f.type]; if(!info)continue; if(['Nuclear C2 (TACAMO)','Airborne Command Post','Strategic Bomber','Stealth Bomber'].includes(info.role))critical.push(f); else if(HIGH_SIG.includes(info.role))sigint.push(f); }
+    var total = critical.length + sigint.length;
+    var html = '<div class="section-title">HIGH-INTEREST AIRCRAFT (' + total + ' of ' + flights.length + ' tracked)</div>';
+    if (!total) { html += '<div class="empty-state">No high-interest aircraft detected. ' + flights.length + ' routine flights tracked.</div>'; }
+    if (critical.length) { html += '<div style="font-size:8px;font-weight:700;letter-spacing:2px;color:var(--danger);margin:8px 0 4px;font-family:var(--font-data)">CRITICAL — STRATEGIC ASSETS ('+critical.length+')</div>'; critical.forEach(function(f){html+=flightHTML(f);}); }
+    if (sigint.length) { html += '<div style="font-size:8px;font-weight:700;letter-spacing:2px;color:var(--warning);margin:8px 0 4px;font-family:var(--font-data)">SIGINT / ISR / PATROL ('+sigint.length+')</div>'; sigint.forEach(function(f){html+=flightHTML(f);}); }
     panel.innerHTML = html;
     panel.querySelectorAll('.flight-item').forEach(function(item) {
       item.addEventListener('click', function() { var lat=parseFloat(item.dataset.lat),lon=parseFloat(item.dataset.lon); if(!isNaN(lat)&&!isNaN(lon)){flyToPoint(lat,lon,8);panel.querySelectorAll('.flight-item').forEach(function(fi){fi.classList.remove('selected');});item.classList.add('selected');} });
@@ -1427,7 +1431,7 @@ body::after { content:''; position:fixed; inset:0; z-index:9999; pointer-events:
     flightMarkers=[];quakeMarkers=[];nasaMarkers=[];radiationMarkers=[];anomalyMarkers=[];fireMarkers=[];gdacsMarkers=[];issMarker=null;
 
     if(layerState.anomalies){var anomalies=data.anomalies||[];for(var a of anomalies){if(a.lat==null||a.lon==null)continue;var radius=Math.max(100000,(a.score/95)*300000);var zone=L.circle([a.lat,a.lon],{radius:radius,color:'#FF4444',fillColor:'rgba(255,68,68,0.06)',weight:1.5,dashArray:'6 4',fillOpacity:0.6});zone.bindTooltip('<b>ANOMALY ['+a.score+']</b><br>'+esc(a.pattern||''),{className:'dark-tooltip'});zone.addTo(map);anomalyMarkers.push(zone);}}
-    if(layerState.aircraft){for(var f of(data.adsb||[])){if(!f.lat||!f.lon)continue;var info=AIRCRAFT[f.type];var isHigh=info&&['Nuclear C2 (TACAMO)','Airborne Command Post','Strategic Bomber','Stealth Bomber','SIGINT Collection'].includes(info.role);var m=L.circleMarker([f.lat,f.lon],{radius:f.emergency?7:(isHigh?5:3),color:f.emergency?'#FF0000':(isHigh?'#FF6600':'#E8A840'),fillColor:f.emergency?'#FF0000':(isHigh?'#FF6600':'#E8A840'),fillOpacity:0.85,weight:isHigh?2:1});m.bindTooltip('<b>'+(f.callsign||f.hex)+'</b><br>'+(info?info.name:(f.description||f.type||'?'))+(info?'<br><em>'+info.role+'</em>':''),{className:'dark-tooltip'});m.addTo(map);flightMarkers.push(m);}}
+    if(layerState.aircraft){var HIGH_SIG_ROLES=['Nuclear C2 (TACAMO)','Airborne Command Post','Airborne Early Warning','Strategic Bomber','Stealth Bomber','SIGINT Collection','ISR Drone','Armed ISR Drone','Maritime Patrol'];for(var f of(data.adsb||[])){if(!f.lat||!f.lon)continue;var info=AIRCRAFT[f.type];var isHigh=info&&HIGH_SIG_ROLES.includes(info.role);if(!isHigh&&!f.emergency)continue;var m=L.circleMarker([f.lat,f.lon],{radius:f.emergency?8:6,color:f.emergency?'#FF0000':'#FF6600',fillColor:f.emergency?'#FF0000':'#FF6600',fillOpacity:0.9,weight:2});m.bindTooltip('<b>'+(f.callsign||f.hex)+'</b><br>'+(info?info.name:(f.description||f.type||'?'))+(info?'<br><em>'+info.role+'</em>':''),{className:'dark-tooltip'});m.addTo(map);flightMarkers.push(m);}}
     if(layerState.quakes){for(var q of(data.earthquakes||[])){var coords=q.coordinates;if(!coords||coords.length<2)continue;var mag=q.magnitude||3;var m=L.circleMarker([coords[1],coords[0]],{radius:Math.max(3,mag*2),color:'#E04848',fillColor:'#E04848',fillOpacity:mag>=5?0.7:0.35,weight:1});m.bindTooltip('<b>M'+mag+'</b><br>'+(q.place||''),{className:'dark-tooltip'});m.addTo(map);quakeMarkers.push(m);}}
     if(layerState.nasa){for(var ev of(data.nasa_events||[])){if(!ev.coordinates)continue;var c=ev.coordinates;var lat=Array.isArray(c[0])?c[0][1]:c[1];var lon=Array.isArray(c[0])?c[0][0]:c[0];if(!lat||!lon)continue;var m=L.circleMarker([lat,lon],{radius:5,color:'#FF6600',fillColor:'#FF6600',fillOpacity:0.6,weight:1});m.bindTooltip('<b>'+(ev.title||'')+'</b><br>'+(ev.category||''),{className:'dark-tooltip'});m.addTo(map);nasaMarkers.push(m);}}
     if(layerState.radiation){for(var r of(data.safecast||[])){if(!r.latitude||!r.longitude)continue;var m=L.circleMarker([r.latitude,r.longitude],{radius:r.elevated?7:4,color:'#40E0D0',fillColor:'#40E0D0',fillOpacity:r.elevated?0.8:0.5,weight:1});m.bindTooltip('<b>'+r.cpm+' CPM</b>'+(r.elevated?' ELEVATED':''),{className:'dark-tooltip'});m.addTo(map);radiationMarkers.push(m);}}
