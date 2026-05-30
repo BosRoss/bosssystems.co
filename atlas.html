@@ -1189,26 +1189,38 @@ html, body { height: 100%; overflow: hidden; background: var(--bg); color: var(-
 
   function renderFeed() {
     const panel = document.getElementById('panel-feed');
-    const gdelt = (data.gdelt || []).slice(0, 20);
-    const reddit = (data.reddit || []).slice(0, 15);
-    const rss = (data.rss || []).slice(0, 10);
-    const hn = (data.hackernews || []).slice(0, 10);
-    const fires = (data.fires || []).map(f => ({...f, source: 'fire', category: 'wildfire'})).slice(0, 5);
-    const volcanoes = (data.volcanoes || []).map(v => ({...v, source: 'volcano'})).slice(0, 5);
-    const cisa = (data.cisa_kev || []).map(c => ({title: c.vulnerability + ' — ' + c.vendor + ' ' + c.product, source: 'cisa_kev', date: c.date_added, category: c.known_ransomware === 'Known' ? 'ransomware' : 'vulnerability'})).slice(0, 5);
-    const all = [...gdelt, ...reddit, ...rss, ...hn, ...fires, ...volcanoes, ...cisa].slice(0, 60);
+    // TIER 1: Primary intelligence (think tanks, official sources) — shown first
+    const tt = (data.think_tanks || []).map(t => ({...t, tier: 'ANALYSIS'})).slice(0, 20);
+    const official = (data.official_feeds || []).map(o => ({...o, tier: 'OFFICIAL'})).slice(0, 10);
+    // TIER 1.5: Structured databases
+    const gdelt = (data.gdelt || []).slice(0, 15);
+    const cisa = (data.cisa_kev || []).map(c => ({title: c.vulnerability + ' — ' + c.vendor + ' ' + c.product, source: 'cisa_kev', date: c.date_added, tier: 'CYBER', category: c.known_ransomware === 'Known' ? 'ransomware' : 'vulnerability'})).slice(0, 5);
+    const fires = (data.fires || []).map(f => ({...f, source: 'fire', tier: 'PHYSICAL', category: 'wildfire'})).slice(0, 5);
+    const volcanoes = (data.volcanoes || []).map(v => ({...v, source: 'volcano', tier: 'PHYSICAL'})).slice(0, 5);
+    // TIER 2: Confirmation (mainstream news, Reddit, HN)
+    const reddit = (data.reddit || []).slice(0, 10);
+    const rss = (data.rss || []).map(r => ({...r, tier: 'NEWS'})).slice(0, 8);
+    const hn = (data.hackernews || []).slice(0, 5);
+    const all = [...tt, ...official, ...gdelt, ...cisa, ...fires, ...volcanoes, ...reddit, ...rss, ...hn].slice(0, 80);
     if (!all.length) {
       panel.innerHTML = '<div class="section-title">INTELLIGENCE FEED</div><div class="empty-state">No feed data.</div>';
       return;
     }
-    let html = '<div class="section-title">INTELLIGENCE FEED (' + all.length + ' items)</div>';
+    const t1 = all.filter(i => i.tier === 'ANALYSIS' || i.tier === 'OFFICIAL').length;
+    let html = '<div class="section-title">INTELLIGENCE FEED (' + all.length + ' items, ' + t1 + ' primary)</div>';
     for (const item of all) {
       const src = item.subreddit || item.source || '';
       const title = item.title || '';
       const url = item.url || '';
       const cat = item.category ? ' / ' + item.category : '';
+      const tier = item.tier || '';
+      const tierBadge = tier === 'ANALYSIS' ? '<span style="color:var(--primary);font-size:9px;font-weight:700;margin-right:4px">ANALYSIS</span>'
+        : tier === 'OFFICIAL' ? '<span style="color:var(--warning);font-size:9px;font-weight:700;margin-right:4px">OFFICIAL</span>'
+        : tier === 'CYBER' ? '<span style="color:var(--danger);font-size:9px;font-weight:700;margin-right:4px">CYBER</span>'
+        : tier === 'NEWS' ? '<span style="color:var(--text-dim);font-size:9px;font-weight:700;margin-right:4px">NEWS</span>'
+        : '';
       html += '<div class="feed-item">';
-      html += '<div class="feed-source">' + esc(src) + esc(cat) + '</div>';
+      html += '<div class="feed-source">' + tierBadge + esc(src) + esc(cat) + '</div>';
       html += '<div class="feed-title">' + (url ? '<a href="' + esc(url) + '" target="_blank">' + esc(title) + '</a>' : esc(title)) + '</div>';
       html += dateHTML(item.date);
       html += '</div>';
