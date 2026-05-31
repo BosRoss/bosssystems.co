@@ -1,0 +1,918 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>BOSS Lead Engine</title>
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body {
+            background: #0a0a0f;
+            color: #e0e0e0;
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            line-height: 1.5;
+            min-height: 100vh;
+        }
+
+        /* Header */
+        .header {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 16px 24px;
+            border-bottom: 1px solid #1a1a2e;
+            background: #0d0d14;
+        }
+        .header-left {
+            display: flex;
+            align-items: center;
+            gap: 16px;
+        }
+        .header h1 {
+            font-size: 18px;
+            font-weight: 700;
+            letter-spacing: 2px;
+            color: #c9a96e;
+        }
+        .engine-state {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            font-size: 12px;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+        .state-dot {
+            width: 8px;
+            height: 8px;
+            border-radius: 50%;
+            background: #22c55e;
+            animation: pulse 2s infinite;
+        }
+        .state-dot.paused { background: #ef4444; animation: none; }
+        @keyframes pulse {
+            0%, 100% { opacity: 1; }
+            50% { opacity: 0.5; }
+        }
+        .header-right {
+            font-size: 12px;
+            color: #888;
+        }
+
+        /* Main container */
+        .container {
+            padding: 20px 24px;
+            max-width: 1600px;
+            margin: 0 auto;
+        }
+
+        /* KPI Strip */
+        .kpi-strip {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 16px;
+            margin-bottom: 24px;
+        }
+        .kpi-card {
+            background: #12121c;
+            border: 1px solid #1a1a2e;
+            border-radius: 8px;
+            padding: 16px 20px;
+        }
+        .kpi-label {
+            font-size: 11px;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            color: #888;
+            margin-bottom: 6px;
+        }
+        .kpi-value {
+            font-size: 28px;
+            font-weight: 700;
+            color: #fff;
+        }
+        .kpi-sub {
+            font-size: 11px;
+            color: #666;
+            margin-top: 4px;
+        }
+        .kpi-tier-breakdown {
+            display: flex;
+            gap: 12px;
+            margin-top: 6px;
+        }
+        .tier-chip {
+            font-size: 11px;
+            font-weight: 600;
+            padding: 2px 8px;
+            border-radius: 4px;
+        }
+        .tier-superniche { background: rgba(201,169,110,0.2); color: #c9a96e; }
+        .tier-hot { background: rgba(249,115,22,0.2); color: #f97316; }
+        .tier-warm { background: rgba(107,114,128,0.2); color: #9ca3af; }
+
+        /* Progress bar */
+        .progress-bar-container {
+            width: 100%;
+            height: 8px;
+            background: #1a1a2e;
+            border-radius: 4px;
+            margin-top: 10px;
+            overflow: hidden;
+        }
+        .progress-bar-fill {
+            height: 100%;
+            border-radius: 4px;
+            background: #c9a96e;
+            transition: width 0.5s ease;
+        }
+        .progress-bar-fill.warning { background: #ef4444; }
+
+        /* Middle row */
+        .middle-row {
+            display: grid;
+            grid-template-columns: 60% 40%;
+            gap: 16px;
+            margin-bottom: 24px;
+        }
+
+        /* Panel styles */
+        .panel {
+            background: #12121c;
+            border: 1px solid #1a1a2e;
+            border-radius: 8px;
+            overflow: hidden;
+        }
+        .panel-header {
+            padding: 12px 16px;
+            border-bottom: 1px solid #1a1a2e;
+            font-size: 12px;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            color: #c9a96e;
+        }
+        .panel-body {
+            padding: 0;
+        }
+
+        /* Signals table */
+        .signals-table {
+            width: 100%;
+            border-collapse: collapse;
+            font-size: 12px;
+        }
+        .signals-table th {
+            padding: 8px 12px;
+            text-align: left;
+            font-weight: 600;
+            color: #888;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            font-size: 10px;
+            border-bottom: 1px solid #1a1a2e;
+            background: #0f0f18;
+        }
+        .signals-table td {
+            padding: 8px 12px;
+            border-bottom: 1px solid #111119;
+            vertical-align: top;
+        }
+        .signals-table tr:hover { background: #16162a; }
+        .urgency-today { color: #ef4444; font-weight: 600; }
+        .urgency-week { color: #f97316; font-weight: 600; }
+        .urgency-month { color: #eab308; font-weight: 600; }
+
+        /* Lead pipeline */
+        .lead-pipeline {
+            max-height: 480px;
+            overflow-y: auto;
+            padding: 12px;
+        }
+        .lead-pipeline::-webkit-scrollbar { width: 4px; }
+        .lead-pipeline::-webkit-scrollbar-thumb { background: #333; border-radius: 2px; }
+        .tier-group { margin-bottom: 16px; }
+        .tier-group-label {
+            font-size: 10px;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            margin-bottom: 8px;
+            padding-left: 4px;
+        }
+        .lead-card {
+            background: #0d0d14;
+            border: 1px solid #1a1a2e;
+            border-radius: 6px;
+            padding: 10px 12px;
+            margin-bottom: 6px;
+        }
+        .lead-card.tier-superniche-card { border-left: 3px solid #c9a96e; }
+        .lead-card.tier-hot-card { border-left: 3px solid #f97316; }
+        .lead-card.tier-warm-card { border-left: 3px solid #4b5563; }
+        .lead-card-top {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        .lead-name {
+            font-size: 13px;
+            font-weight: 600;
+            color: #fff;
+        }
+        .lead-score {
+            font-size: 11px;
+            font-weight: 700;
+            color: #c9a96e;
+        }
+        .lead-meta {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            margin-top: 4px;
+            font-size: 11px;
+            color: #888;
+        }
+        .channel-icon {
+            font-size: 12px;
+        }
+        .sequence-status {
+            font-size: 10px;
+            padding: 2px 6px;
+            border-radius: 3px;
+            background: #1a1a2e;
+            color: #aaa;
+        }
+
+        /* Channel section */
+        .channel-section {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 16px;
+            margin-bottom: 24px;
+        }
+        .bar-chart {
+            padding: 16px;
+        }
+        .bar-row {
+            display: flex;
+            align-items: center;
+            margin-bottom: 10px;
+        }
+        .bar-label {
+            width: 100px;
+            font-size: 11px;
+            color: #888;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+        .bar-track {
+            flex: 1;
+            height: 20px;
+            background: #1a1a2e;
+            border-radius: 4px;
+            overflow: hidden;
+            position: relative;
+        }
+        .bar-fill {
+            height: 100%;
+            background: #c9a96e;
+            border-radius: 4px;
+            transition: width 0.5s ease;
+        }
+        .bar-value {
+            width: 40px;
+            text-align: right;
+            font-size: 12px;
+            font-weight: 600;
+            color: #fff;
+            margin-left: 10px;
+        }
+
+        /* Funnel */
+        .funnel {
+            padding: 16px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+        }
+        .funnel-step {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 100%;
+            margin-bottom: 4px;
+        }
+        .funnel-bar {
+            height: 28px;
+            background: linear-gradient(90deg, #c9a96e22, #c9a96e44);
+            border: 1px solid #c9a96e33;
+            border-radius: 4px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 0 12px;
+            transition: width 0.5s ease;
+        }
+        .funnel-label {
+            font-size: 11px;
+            color: #ccc;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+        .funnel-value {
+            font-size: 12px;
+            font-weight: 700;
+            color: #c9a96e;
+        }
+
+        /* Bottom row */
+        .bottom-row {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 16px;
+            margin-bottom: 24px;
+        }
+
+        /* Feed health table */
+        .feed-table {
+            width: 100%;
+            border-collapse: collapse;
+            font-size: 12px;
+        }
+        .feed-table th {
+            padding: 8px 12px;
+            text-align: left;
+            font-weight: 600;
+            color: #888;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            font-size: 10px;
+            border-bottom: 1px solid #1a1a2e;
+            background: #0f0f18;
+        }
+        .feed-table td {
+            padding: 8px 12px;
+            border-bottom: 1px solid #111119;
+        }
+        .feed-status {
+            width: 8px;
+            height: 8px;
+            border-radius: 50%;
+            display: inline-block;
+        }
+        .feed-status.green { background: #22c55e; }
+        .feed-status.yellow { background: #eab308; }
+        .feed-status.red { background: #ef4444; }
+
+        /* Spend tracker */
+        .spend-tracker {
+            padding: 16px;
+        }
+        .spend-item {
+            margin-bottom: 16px;
+        }
+        .spend-item-header {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 6px;
+        }
+        .spend-item-label {
+            font-size: 12px;
+            color: #ccc;
+        }
+        .spend-item-value {
+            font-size: 12px;
+            font-weight: 600;
+            color: #fff;
+        }
+        .spend-projection {
+            font-size: 11px;
+            color: #888;
+            margin-top: 4px;
+        }
+        .circuit-breaker {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            margin-top: 8px;
+            font-size: 11px;
+            color: #888;
+        }
+        .cb-status {
+            padding: 2px 8px;
+            border-radius: 3px;
+            font-size: 10px;
+            font-weight: 600;
+            text-transform: uppercase;
+        }
+        .cb-closed { background: rgba(34,197,94,0.2); color: #22c55e; }
+        .cb-open { background: rgba(239,68,68,0.2); color: #ef4444; }
+
+        /* Footer */
+        .footer {
+            padding: 16px 24px;
+            border-top: 1px solid #1a1a2e;
+            text-align: center;
+            font-size: 11px;
+            color: #555;
+        }
+        .footer code {
+            background: #1a1a2e;
+            padding: 2px 6px;
+            border-radius: 3px;
+            font-size: 11px;
+            color: #888;
+        }
+
+        /* Loading state */
+        .loading {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 60px;
+            color: #555;
+            font-size: 13px;
+        }
+        .error-msg {
+            background: rgba(239,68,68,0.1);
+            border: 1px solid rgba(239,68,68,0.3);
+            color: #ef4444;
+            padding: 12px 16px;
+            border-radius: 6px;
+            font-size: 12px;
+            margin: 20px 0;
+        }
+
+        /* Responsive */
+        @media (max-width: 1024px) {
+            .middle-row { grid-template-columns: 1fr; }
+            .channel-section { grid-template-columns: 1fr; }
+            .bottom-row { grid-template-columns: 1fr; }
+            .kpi-strip { grid-template-columns: repeat(2, 1fr); }
+        }
+        @media (max-width: 600px) {
+            .kpi-strip { grid-template-columns: 1fr; }
+            .header { flex-direction: column; gap: 8px; align-items: flex-start; }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Header -->
+    <div class="header">
+        <div class="header-left">
+            <h1>BOSS LEAD ENGINE</h1>
+            <div class="engine-state">
+                <span class="state-dot" id="stateDot"></span>
+                <span id="stateLabel">ACTIVE</span>
+            </div>
+        </div>
+        <div class="header-right">
+            Last scan: <span id="lastScan">--</span>
+        </div>
+    </div>
+
+    <div class="container">
+        <!-- KPI Strip -->
+        <div class="kpi-strip">
+            <div class="kpi-card">
+                <div class="kpi-label">Signals Firing</div>
+                <div class="kpi-value" id="kpiSignals">--</div>
+                <div class="kpi-sub">Active demand + pain signals</div>
+            </div>
+            <div class="kpi-card">
+                <div class="kpi-label">Leads by Tier</div>
+                <div class="kpi-value" id="kpiLeadsTotal">--</div>
+                <div class="kpi-tier-breakdown">
+                    <span class="tier-chip tier-superniche" id="kpiSuperniche">S: --</span>
+                    <span class="tier-chip tier-hot" id="kpiHot">H: --</span>
+                    <span class="tier-chip tier-warm" id="kpiWarm">W: --</span>
+                </div>
+            </div>
+            <div class="kpi-card">
+                <div class="kpi-label">Cost per Qualified Lead</div>
+                <div class="kpi-value" id="kpiCPL">--</div>
+                <div class="kpi-sub">Spend / SUPERNICHE leads</div>
+            </div>
+            <div class="kpi-card">
+                <div class="kpi-label">Spend vs Cap</div>
+                <div class="kpi-value" id="kpiSpend">--</div>
+                <div class="progress-bar-container">
+                    <div class="progress-bar-fill" id="spendBar" style="width: 0%"></div>
+                </div>
+                <div class="kpi-sub" id="spendSub">$0 / $300</div>
+            </div>
+        </div>
+
+        <!-- Middle row: Signals + Pipeline -->
+        <div class="middle-row">
+            <div class="panel">
+                <div class="panel-header">Live Signals</div>
+                <div class="panel-body">
+                    <table class="signals-table">
+                        <thead>
+                            <tr>
+                                <th>Type</th>
+                                <th>Area</th>
+                                <th>Niche</th>
+                                <th>Urgency</th>
+                                <th>Pitch Hook</th>
+                                <th>Age</th>
+                            </tr>
+                        </thead>
+                        <tbody id="signalsBody">
+                            <tr><td colspan="6" class="loading">Loading signals...</td></tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+            <div class="panel">
+                <div class="panel-header">Lead Pipeline</div>
+                <div class="panel-body">
+                    <div class="lead-pipeline" id="leadPipeline">
+                        <div class="loading">Loading leads...</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Channel / Sequence Status -->
+        <div class="channel-section">
+            <div class="panel">
+                <div class="panel-header">Channel Activity (This Week)</div>
+                <div class="panel-body bar-chart" id="channelBars">
+                    <div class="loading">Loading...</div>
+                </div>
+            </div>
+            <div class="panel">
+                <div class="panel-header">Conversion Funnel</div>
+                <div class="panel-body funnel" id="funnelContainer">
+                    <div class="loading">Loading...</div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Bottom row: Feed Health + Spend Tracker -->
+        <div class="bottom-row">
+            <div class="panel">
+                <div class="panel-header">Feed Health</div>
+                <div class="panel-body">
+                    <table class="feed-table">
+                        <thead>
+                            <tr>
+                                <th>Source</th>
+                                <th>Last Hit</th>
+                                <th>Status</th>
+                                <th>Today</th>
+                            </tr>
+                        </thead>
+                        <tbody id="feedBody">
+                            <tr><td colspan="4" class="loading">Loading...</td></tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+            <div class="panel">
+                <div class="panel-header">Spend Tracker</div>
+                <div class="panel-body spend-tracker" id="spendTracker">
+                    <div class="loading">Loading...</div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <div class="footer">
+        Engine v1.0 | Data refreshes every scan | Kill switch: <code>python3 boss_command.py engine pause</code>
+    </div>
+
+    <script>
+        (function() {
+            var DATA_URL = 'https://raw.githubusercontent.com/BosRoss/bosssystems.co/main/engine_report.json';
+
+            function fetchData() {
+                fetch(DATA_URL)
+                    .then(function(res) {
+                        if (!res.ok) throw new Error('HTTP ' + res.status);
+                        return res.json();
+                    })
+                    .then(function(data) {
+                        render(data);
+                    })
+                    .catch(function(err) {
+                        renderError(err.message);
+                    });
+            }
+
+            function render(data) {
+                // Header
+                var state = (data.engine_state || 'active').toLowerCase();
+                var dot = document.getElementById('stateDot');
+                var label = document.getElementById('stateLabel');
+                if (state === 'paused') {
+                    dot.className = 'state-dot paused';
+                    label.textContent = 'PAUSED';
+                } else {
+                    dot.className = 'state-dot';
+                    label.textContent = 'ACTIVE';
+                }
+                document.getElementById('lastScan').textContent = formatTimestamp(data.generated);
+
+                // KPIs
+                var kpis = data.kpis || {};
+                document.getElementById('kpiSignals').textContent = kpis.signals_firing || 0;
+
+                var totalLeads = (kpis.leads_superniche || 0) + (kpis.leads_hot || 0) + (kpis.leads_warm || 0);
+                document.getElementById('kpiLeadsTotal').textContent = totalLeads;
+                document.getElementById('kpiSuperniche').textContent = 'S: ' + (kpis.leads_superniche || 0);
+                document.getElementById('kpiHot').textContent = 'H: ' + (kpis.leads_hot || 0);
+                document.getElementById('kpiWarm').textContent = 'W: ' + (kpis.leads_warm || 0);
+
+                var cpl = kpis.cost_per_qualified || 0;
+                document.getElementById('kpiCPL').textContent = '$' + cpl.toFixed(2);
+
+                var spend = kpis.total_spend || 0;
+                var cap = kpis.spend_cap || 300;
+                var pct = cap > 0 ? (spend / cap) * 100 : 0;
+                document.getElementById('kpiSpend').textContent = Math.round(pct) + '%';
+                document.getElementById('spendSub').textContent = '$' + spend.toFixed(0) + ' / $' + cap.toFixed(0);
+                var bar = document.getElementById('spendBar');
+                bar.style.width = Math.min(pct, 100) + '%';
+                if (pct >= 80) {
+                    bar.className = 'progress-bar-fill warning';
+                } else {
+                    bar.className = 'progress-bar-fill';
+                }
+
+                // Signals
+                renderSignals(data.signals || []);
+
+                // Lead pipeline
+                renderLeads(data.leads || []);
+
+                // Channels
+                renderChannels(data.channels || {});
+
+                // Funnel
+                renderFunnel(data.conversion_funnel || {});
+
+                // Feed health
+                renderFeeds(data.feeds || []);
+
+                // Spend tracker
+                renderSpendTracker(kpis);
+            }
+
+            function renderSignals(signals) {
+                var urgencyOrder = { 'today': 0, 'this_week': 1, 'this_month': 2 };
+                signals.sort(function(a, b) {
+                    var ua = urgencyOrder[a.urgency] !== undefined ? urgencyOrder[a.urgency] : 3;
+                    var ub = urgencyOrder[b.urgency] !== undefined ? urgencyOrder[b.urgency] : 3;
+                    if (ua !== ub) return ua - ub;
+                    // Sort by freshness (discovered_at descending)
+                    var da = a.discovered_at || a.detected || '';
+                    var db = b.discovered_at || b.detected || '';
+                    return db.localeCompare(da);
+                });
+
+                var rows = signals.slice(0, 20);
+                var tbody = document.getElementById('signalsBody');
+                if (rows.length === 0) {
+                    tbody.innerHTML = '<tr><td colspan="6" style="padding:20px;color:#555;text-align:center;">No signals currently firing</td></tr>';
+                    return;
+                }
+                var html = '';
+                for (var i = 0; i < rows.length; i++) {
+                    var s = rows[i];
+                    var urgClass = '';
+                    var urgLabel = s.urgency || '--';
+                    if (s.urgency === 'today') urgClass = 'urgency-today';
+                    else if (s.urgency === 'this_week') urgClass = 'urgency-week';
+                    else if (s.urgency === 'this_month') urgClass = 'urgency-month';
+
+                    var age = getAge(s.discovered_at || s.detected || '');
+                    html += '<tr>';
+                    html += '<td>' + esc(s.type || s.signal_type || '--') + '</td>';
+                    html += '<td>' + esc(s.area || s.city || '--') + '</td>';
+                    html += '<td>' + esc(s.niche || s.category || '--') + '</td>';
+                    html += '<td class="' + urgClass + '">' + esc(urgLabel) + '</td>';
+                    html += '<td>' + esc(s.pitch_hook || s.hook || '--') + '</td>';
+                    html += '<td>' + esc(age) + '</td>';
+                    html += '</tr>';
+                }
+                tbody.innerHTML = html;
+            }
+
+            function renderLeads(leads) {
+                var container = document.getElementById('leadPipeline');
+                if (leads.length === 0) {
+                    container.innerHTML = '<div style="padding:20px;color:#555;text-align:center;">No leads in pipeline</div>';
+                    return;
+                }
+
+                var tiers = ['SUPERNICHE', 'HOT', 'WARM'];
+                var grouped = {};
+                for (var i = 0; i < tiers.length; i++) grouped[tiers[i]] = [];
+                for (var i = 0; i < leads.length; i++) {
+                    var tier = (leads[i].tier || 'WARM').toUpperCase();
+                    if (!grouped[tier]) grouped[tier] = [];
+                    grouped[tier].push(leads[i]);
+                }
+
+                var html = '';
+                var count = 0;
+                for (var t = 0; t < tiers.length; t++) {
+                    var tier = tiers[t];
+                    var list = grouped[tier];
+                    if (list.length === 0) continue;
+
+                    var labelColor = tier === 'SUPERNICHE' ? '#c9a96e' : (tier === 'HOT' ? '#f97316' : '#6b7280');
+                    html += '<div class="tier-group">';
+                    html += '<div class="tier-group-label" style="color:' + labelColor + '">' + tier + ' (' + list.length + ')</div>';
+                    for (var i = 0; i < list.length && count < 15; i++, count++) {
+                        var l = list[i];
+                        var cardClass = tier === 'SUPERNICHE' ? 'tier-superniche-card' : (tier === 'HOT' ? 'tier-hot-card' : 'tier-warm-card');
+                        var channelIcon = getChannelIcon(l.channel);
+                        html += '<div class="lead-card ' + cardClass + '">';
+                        html += '<div class="lead-card-top">';
+                        html += '<span class="lead-name">' + esc(l.name || '--') + '</span>';
+                        html += '<span class="lead-score">' + (l.score || 0) + '</span>';
+                        html += '</div>';
+                        html += '<div class="lead-meta">';
+                        html += '<span>' + esc(l.city || '--') + '</span>';
+                        html += '<span class="channel-icon">' + channelIcon + '</span>';
+                        html += '<span class="sequence-status">' + esc(l.sequence_status || 'queued') + '</span>';
+                        html += '</div>';
+                        html += '</div>';
+                    }
+                    html += '</div>';
+                    if (count >= 15) break;
+                }
+                container.innerHTML = html;
+            }
+
+            function renderChannels(channels) {
+                var container = document.getElementById('channelBars');
+                var items = [
+                    { label: 'Emails Sent', value: channels.emails_sent || 0 },
+                    { label: 'Texts Sent', value: channels.texts_sent || 0 },
+                    { label: 'Calls Made', value: channels.calls_made || 0 },
+                    { label: 'Meetings Set', value: channels.meetings_set || 0 },
+                    { label: 'Closes', value: channels.closes || 0 }
+                ];
+                var max = 1;
+                for (var i = 0; i < items.length; i++) {
+                    if (items[i].value > max) max = items[i].value;
+                }
+                var html = '';
+                for (var i = 0; i < items.length; i++) {
+                    var pct = (items[i].value / max) * 100;
+                    html += '<div class="bar-row">';
+                    html += '<div class="bar-label">' + items[i].label + '</div>';
+                    html += '<div class="bar-track"><div class="bar-fill" style="width:' + pct + '%"></div></div>';
+                    html += '<div class="bar-value">' + items[i].value + '</div>';
+                    html += '</div>';
+                }
+                container.innerHTML = html;
+            }
+
+            function renderFunnel(funnel) {
+                var container = document.getElementById('funnelContainer');
+                var steps = [
+                    { label: 'Signals', value: funnel.signals || 0 },
+                    { label: 'Leads', value: funnel.leads || 0 },
+                    { label: 'Contacted', value: funnel.contacted || 0 },
+                    { label: 'Replied', value: funnel.replied || 0 },
+                    { label: 'Meeting', value: funnel.meeting || 0 },
+                    { label: 'Close', value: funnel.close || 0 }
+                ];
+                var max = steps[0].value || 1;
+                var html = '';
+                for (var i = 0; i < steps.length; i++) {
+                    var widthPct = Math.max((steps[i].value / max) * 100, 20);
+                    html += '<div class="funnel-step">';
+                    html += '<div class="funnel-bar" style="width:' + widthPct + '%">';
+                    html += '<span class="funnel-label">' + steps[i].label + '</span>';
+                    html += '<span class="funnel-value">' + steps[i].value + '</span>';
+                    html += '</div>';
+                    html += '</div>';
+                }
+                container.innerHTML = html;
+            }
+
+            function renderFeeds(feeds) {
+                var tbody = document.getElementById('feedBody');
+                if (feeds.length === 0) {
+                    tbody.innerHTML = '<tr><td colspan="4" style="padding:20px;color:#555;text-align:center;">No feeds configured</td></tr>';
+                    return;
+                }
+                var html = '';
+                for (var i = 0; i < feeds.length; i++) {
+                    var f = feeds[i];
+                    var status = (f.status || 'green').toLowerCase();
+                    html += '<tr>';
+                    html += '<td>' + esc(f.name || '--') + '</td>';
+                    html += '<td>' + formatTimestamp(f.last_hit) + '</td>';
+                    html += '<td><span class="feed-status ' + status + '"></span></td>';
+                    html += '<td>' + (f.data_points_today || 0) + '</td>';
+                    html += '</tr>';
+                }
+                tbody.innerHTML = html;
+            }
+
+            function renderSpendTracker(kpis) {
+                var container = document.getElementById('spendTracker');
+                var spend = kpis.total_spend || 0;
+                var cap = kpis.spend_cap || 300;
+                var pct = cap > 0 ? (spend / cap) * 100 : 0;
+
+                // Projection: assume 30-day month, estimate daily burn
+                var today = new Date();
+                var dayOfMonth = today.getDate() || 1;
+                var dailyBurn = dayOfMonth > 0 ? spend / dayOfMonth : 0;
+                var projection = dailyBurn * 30;
+
+                var cbStatus = pct >= 95 ? 'OPEN' : 'CLOSED';
+                var cbClass = pct >= 95 ? 'cb-open' : 'cb-closed';
+
+                var html = '';
+                html += '<div class="spend-item">';
+                html += '<div class="spend-item-header">';
+                html += '<span class="spend-item-label">Google Places API</span>';
+                html += '<span class="spend-item-value">$' + spend.toFixed(2) + ' / $' + cap.toFixed(0) + '</span>';
+                html += '</div>';
+                html += '<div class="progress-bar-container">';
+                html += '<div class="progress-bar-fill' + (pct >= 80 ? ' warning' : '') + '" style="width:' + Math.min(pct, 100) + '%"></div>';
+                html += '</div>';
+                html += '<div class="spend-projection">Monthly projection: $' + projection.toFixed(2) + ' at current burn rate ($' + dailyBurn.toFixed(2) + '/day)</div>';
+                html += '<div class="circuit-breaker">Circuit breaker: <span class="cb-status ' + cbClass + '">' + cbStatus + '</span></div>';
+                html += '</div>';
+
+                container.innerHTML = html;
+            }
+
+            function renderError(msg) {
+                var container = document.querySelector('.container');
+                var el = document.createElement('div');
+                el.className = 'error-msg';
+                el.textContent = 'Failed to load engine data: ' + msg + '. Check that engine_report.json exists in the repository.';
+                container.insertBefore(el, container.firstChild);
+            }
+
+            // Utilities
+            function esc(str) {
+                var div = document.createElement('div');
+                div.textContent = str;
+                return div.innerHTML;
+            }
+
+            function formatTimestamp(iso) {
+                if (!iso) return '--';
+                try {
+                    var d = new Date(iso);
+                    if (isNaN(d.getTime())) return iso;
+                    return d.toLocaleString('en-US', {
+                        month: 'short', day: 'numeric',
+                        hour: '2-digit', minute: '2-digit',
+                        hour12: true
+                    });
+                } catch (e) {
+                    return iso;
+                }
+            }
+
+            function getAge(iso) {
+                if (!iso) return '--';
+                try {
+                    var d = new Date(iso);
+                    if (isNaN(d.getTime())) return '--';
+                    var diff = Date.now() - d.getTime();
+                    var mins = Math.floor(diff / 60000);
+                    if (mins < 60) return mins + 'm';
+                    var hrs = Math.floor(mins / 60);
+                    if (hrs < 24) return hrs + 'h';
+                    var days = Math.floor(hrs / 24);
+                    return days + 'd';
+                } catch (e) {
+                    return '--';
+                }
+            }
+
+            function getChannelIcon(channel) {
+                if (!channel) return '';
+                var c = channel.toLowerCase();
+                if (c === 'email') return '✉';
+                if (c === 'text' || c === 'sms') return '\u{1F4AC}';
+                if (c === 'call' || c === 'phone') return '\u{1F4DE}';
+                return c;
+            }
+
+            // Init
+            fetchData();
+        })();
+    </script>
+</body>
+</html>
