@@ -1,0 +1,303 @@
+{
+  "generated": "2026-05-31T21:09:32.112453+00:00",
+  "engine_state": "active",
+  "signals": [
+    {
+      "type": "flood",
+      "area": "George, MS; Greene, MS; Jackson, MS",
+      "niche": "plumbing",
+      "action": "Flood warnings in George, MS; Greene, MS; Jackson, MS. Plumbers, restoration, mold companies will spike.",
+      "urgency": "today",
+      "pitch_hook": "Water damage calls are coming. Every one you miss is $500+ walking away."
+    },
+    {
+      "type": "flood",
+      "area": "George, MS; Greene, MS",
+      "niche": "plumbing",
+      "action": "Flood warnings in George, MS; Greene, MS. Plumbers, restoration, mold companies will spike.",
+      "urgency": "today",
+      "pitch_hook": "Water damage calls are coming. Every one you miss is $500+ walking away."
+    },
+    {
+      "type": "flood",
+      "area": "Jackson, MS",
+      "niche": "plumbing",
+      "action": "Flood warnings in Jackson, MS. Plumbers, restoration, mold companies will spike.",
+      "urgency": "today",
+      "pitch_hook": "Water damage calls are coming. Every one you miss is $500+ walking away."
+    },
+    {
+      "type": "flood",
+      "area": "St. Tammany, LA; Hancock, MS; Pearl River, MS",
+      "niche": "plumbing",
+      "action": "Flood warnings in St. Tammany, LA; Hancock, MS; Pearl River, MS. Plumbers, restoration, mold companies will spike.",
+      "urgency": "today",
+      "pitch_hook": "Water damage calls are coming. Every one you miss is $500+ walking away."
+    },
+    {
+      "type": "flood",
+      "area": "White, AR; Woodruff, AR",
+      "niche": "plumbing",
+      "action": "Flood warnings in White, AR; Woodruff, AR. Plumbers, restoration, mold companies will spike.",
+      "urgency": "today",
+      "pitch_hook": "Water damage calls are coming. Every one you miss is $500+ walking away."
+    },
+    {
+      "type": "flood",
+      "area": "Jackson, AR; Woodruff, AR",
+      "niche": "plumbing",
+      "action": "Flood warnings in Jackson, AR; Woodruff, AR. Plumbers, restoration, mold companies will spike.",
+      "urgency": "today",
+      "pitch_hook": "Water damage calls are coming. Every one you miss is $500+ walking away."
+    },
+    {
+      "type": "flood",
+      "area": "Fentress, TN; Overton, TN",
+      "niche": "plumbing",
+      "action": "Flood warnings in Fentress, TN; Overton, TN. Plumbers, restoration, mold companies will spike.",
+      "urgency": "today",
+      "pitch_hook": "Water damage calls are coming. Every one you miss is $500+ walking away."
+    },
+    {
+      "type": "flood",
+      "area": "Rapides, LA",
+      "niche": "plumbing",
+      "action": "Flood warnings in Rapides, LA. Plumbers, restoration, mold companies will spike.",
+      "urgency": "today",
+      "pitch_hook": "Water damage calls are coming. Every one you miss is $500+ walking away."
+    },
+    {
+      "type": "storm",
+      "area": "Dougherty, GA; Lee, GA; Terrell, GA; Worth, GA",
+      "niche": "roofing",
+      "action": "Storm damage in Dougherty, GA; Lee, GA; Terrell, GA; Worth, GA. Roofers and restoration companies about to get flooded.",
+      "urgency": "today",
+      "pitch_hook": "After a storm like that, you'll get 10x your normal call volume. Ready for it?"
+    },
+    {
+      "type": "flood",
+      "area": "Brantley, GA; Camden, GA; Glynn, GA",
+      "niche": "plumbing",
+      "action": "Flood warnings in Brantley, GA; Camden, GA; Glynn, GA. Plumbers, restoration, mold companies will spike.",
+      "urgency": "today",
+      "pitch_hook": "Water damage calls are coming. Every one you miss is $500+ walking away."
+    }
+  ],
+  "leads": [
+    {
+      "name": "",
+      "city": "",
+      "score": 69,
+      "tier": "SUPERNICHE",
+      "channel": "text",
+      "sequence_status": "queued",
+      "trigger": ""
+    },
+    {
+      "name": "",
+      "city": "",
+      "score": 69,
+      "tier": "SUPERNICHE",
+      "channel": "text",
+      "sequence_status": "queued",
+      "trigger": ""
+    },
+    {
+      "name": "",
+      "city": "",
+      "score": 55,
+      "tier": "SUPERNICHE",
+      "channel": "call_queue",
+      "sequence_status": "queued",
+      "trigger": ""
+    },
+    {
+      "name": "",
+      "city": "",
+      "score": 55,
+      "tier": "SUPERNICHE",
+      "channel": "call_queue",
+      "sequence_status": "queued",
+      "trigger": ""
+    },
+    {
+      "name": "",
+      "city": "",
+      "score": 55,
+      "tier": "SUPERNICHE",
+      "channel": "call_queue",
+      "sequence_status": "queued",
+      "trigger": ""
+    },
+    {
+      "name": "",
+      "city": "",
+      "score": 55,
+      "tier": "SUPERNICHE",
+      "channel": "call_queue",
+      "sequence_status": "queued",
+      "trigger": ""
+    },
+    {
+      "name": "",
+      "city": "",
+      "score": 55,
+      "tier": "SUPERNICHE",
+      "channel": "call_queue",
+      "sequence_status": "queued",
+      "trigger": ""
+    },
+    {
+      "name": "",
+      "city": "",
+      "score": 55,
+      "tier": "SUPERNICHE",
+      "channel": "call_queue",
+      "sequence_status": "queued",
+      "trigger": ""
+    },
+    {
+      "name": "",
+      "city": "",
+      "score": 55,
+      "tier": "SUPERNICHE",
+      "channel": "text",
+      "sequence_status": "queued",
+      "trigger": ""
+    },
+    {
+      "name": "",
+      "city": "",
+      "score": 54,
+      "tier": "HOT",
+      "channel": "call_queue",
+      "sequence_status": "queued",
+      "trigger": ""
+    },
+    {
+      "name": "",
+      "city": "",
+      "score": 53,
+      "tier": "HOT",
+      "channel": "call_queue",
+      "sequence_status": "queued",
+      "trigger": ""
+    },
+    {
+      "name": "",
+      "city": "",
+      "score": 53,
+      "tier": "HOT",
+      "channel": "call_queue",
+      "sequence_status": "queued",
+      "trigger": ""
+    },
+    {
+      "name": "",
+      "city": "",
+      "score": 49,
+      "tier": "HOT",
+      "channel": "call_queue",
+      "sequence_status": "queued",
+      "trigger": ""
+    },
+    {
+      "name": "",
+      "city": "",
+      "score": 49,
+      "tier": "HOT",
+      "channel": "text",
+      "sequence_status": "queued",
+      "trigger": ""
+    },
+    {
+      "name": "",
+      "city": "",
+      "score": 49,
+      "tier": "HOT",
+      "channel": "call_queue",
+      "sequence_status": "queued",
+      "trigger": ""
+    }
+  ],
+  "kpis": {
+    "signals_firing": 10,
+    "leads_superniche": 9,
+    "leads_hot": 30,
+    "leads_warm": 59,
+    "cost_per_qualified": 0.07,
+    "total_spend": 0.6400000000000003,
+    "spend_cap": 300.0
+  },
+  "channels": {
+    "emails_sent": 39,
+    "texts_sent": 8,
+    "calls_made": 0,
+    "meetings_set": 0,
+    "closes": 0
+  },
+  "feeds": [
+    {
+      "name": "NOAA",
+      "last_hit": "2026-05-31T20:02:16.081033+00:00",
+      "status": "yellow",
+      "data_points_today": 0
+    },
+    {
+      "name": "REDDIT",
+      "last_hit": "2026-05-31T20:02:16.081033+00:00",
+      "status": "green",
+      "data_points_today": 801
+    },
+    {
+      "name": "USGS",
+      "last_hit": "2026-05-31T20:02:16.081033+00:00",
+      "status": "yellow",
+      "data_points_today": 0
+    },
+    {
+      "name": "HACKERNEWS",
+      "last_hit": "2026-05-31T20:02:16.081033+00:00",
+      "status": "green",
+      "data_points_today": 30
+    },
+    {
+      "name": "FEMA",
+      "last_hit": "2026-05-31T20:02:16.081033+00:00",
+      "status": "green",
+      "data_points_today": 5
+    },
+    {
+      "name": "COMMODITIES",
+      "last_hit": "2026-05-31T20:02:16.081033+00:00",
+      "status": "green",
+      "data_points_today": 7
+    },
+    {
+      "name": "RSS",
+      "last_hit": "2026-05-31T20:02:16.081033+00:00",
+      "status": "green",
+      "data_points_today": 160
+    },
+    {
+      "name": "FRED",
+      "last_hit": "2026-05-31T20:02:16.081033+00:00",
+      "status": "yellow",
+      "data_points_today": 0
+    },
+    {
+      "name": "BLS",
+      "last_hit": "2026-05-31T20:02:16.081033+00:00",
+      "status": "green",
+      "data_points_today": 9
+    }
+  ],
+  "conversion_funnel": {
+    "signals": 10,
+    "leads": 98,
+    "contacted": 47,
+    "replied": 0,
+    "meeting": 0,
+    "close": 0
+  }
+}
