@@ -87,6 +87,23 @@
   .spinner{width:40px;height:40px;border:2px solid var(--border);border-top-color:var(--gold);border-radius:50%;animation:spin 1s linear infinite;margin:0 auto 1rem}
   @keyframes spin{to{transform:rotate(360deg)}}
 
+  /* Lead Gate */
+  .gate-card{background:var(--gray);border:1px solid var(--gold);padding:2.5rem;max-width:520px;margin:3rem auto;text-align:center}
+  .gate-card h2{font-size:1.5rem;font-weight:900;margin-bottom:.5rem}
+  .gate-card .gate-sub{color:#888;font-size:.95rem;line-height:1.5;margin-bottom:1.5rem}
+  .gate-card .gate-teaser{color:var(--gold);font-size:1.8rem;font-weight:900;margin-bottom:1.5rem}
+  .gate-card input[type="tel"]{width:100%;background:#0a0a0a;border:1px solid var(--border);color:var(--text);padding:1rem;font-size:1.1rem;text-align:center;margin-bottom:1rem;outline:none;transition:.2s}
+  .gate-card input[type="tel"]:focus{border-color:var(--gold)}
+  .gate-card .gate-btn{width:100%;background:var(--gold);color:var(--dark);border:none;padding:1.1rem;font-size:1.1rem;font-weight:900;letter-spacing:1px;cursor:pointer;transition:.1s}
+  .gate-card .gate-btn:hover{opacity:.92}
+  .gate-card .gate-alt{color:#555;font-size:.8rem;margin-top:1rem}
+  .gate-card .gate-alt a{color:#888;cursor:pointer;text-decoration:underline}
+  .gate-card .gate-alt a:hover{color:var(--gold)}
+  .gate-email-row{display:none;margin-top:1rem}
+  .gate-email-row input[type="email"]{width:100%;background:#0a0a0a;border:1px solid var(--border);color:var(--text);padding:1rem;font-size:1.1rem;text-align:center;outline:none;transition:.2s}
+  .gate-email-row input[type="email"]:focus{border-color:var(--gold)}
+  .gate-privacy{color:#444;font-size:.72rem;margin-top:.75rem}
+
   @media(max-width:600px){
     .stats-row{grid-template-columns:1fr 1fr}
     .auto-top{grid-template-columns:1fr;gap:.5rem}
@@ -400,6 +417,71 @@ function getRecommendations(btype, jobValue) {
     .sort((a, b) => b.priority - a.priority);
 }
 
+function showLeadGate(businessType, city, estimatedLoss) {
+  return new Promise(resolve => {
+    const gateHTML = `
+      <div class="gate-card">
+        <div class="gate-teaser">${fmt(estimatedLoss)}/yr</div>
+        <h2>Your analysis is ready.</h2>
+        <p class="gate-sub">Enter your phone number to unlock your full ROI breakdown, automation recommendations, and custom pricing.</p>
+        <input type="tel" id="gate-phone" placeholder="(555) 123-4567" autocomplete="tel" />
+        <button class="gate-btn" id="gate-submit-btn" onclick="submitLeadGate()">UNLOCK MY FULL RESULTS</button>
+        <div class="gate-email-row" id="gate-email-row">
+          <input type="email" id="gate-email" placeholder="you@email.com" autocomplete="email" />
+          <button class="gate-btn" style="margin-top:.75rem" onclick="submitLeadGate()">UNLOCK MY FULL RESULTS</button>
+        </div>
+        <p class="gate-alt"><a onclick="document.getElementById('gate-email-row').style.display='block';this.parentElement.style.display='none'">Use email instead</a></p>
+        <p class="gate-privacy">No spam. We just want to send you a copy of your results.</p>
+      </div>
+    `;
+    document.getElementById('results-content').innerHTML = gateHTML;
+
+    // Store resolve + data so the submit handler can call it
+    window._gateResolve = resolve;
+    window._gateData = { businessType, city, estimatedLoss };
+  });
+}
+
+function submitLeadGate() {
+  const phone = (document.getElementById('gate-phone').value || '').trim();
+  const email = (document.getElementById('gate-email').value || '').trim();
+
+  if (!phone && !email) {
+    document.getElementById('gate-phone').style.borderColor = '#c0392b';
+    document.getElementById('gate-phone').setAttribute('placeholder', 'Enter your number to continue');
+    return;
+  }
+
+  // Disable button to prevent double-click
+  const btns = document.querySelectorAll('.gate-btn');
+  btns.forEach(b => { b.disabled = true; b.textContent = 'Unlocking...'; });
+
+  const data = window._gateData;
+  const payload = {
+    phone: phone || null,
+    email: email || null,
+    businessType: data.businessType,
+    city: data.city,
+    estimatedLoss: data.estimatedLoss
+  };
+
+  // Fire-and-forget webhook
+  fetch('https://jamross.app.n8n.cloud/webhook/analyze-lead', {
+    method: 'POST',
+    headers: { 'Content-Type': 'application/json' },
+    body: JSON.stringify(payload)
+  }).catch(() => {}); // silently ignore errors
+
+  // Mark as captured so they never see the gate again
+  localStorage.setItem('boss_analyze_lead', JSON.stringify(payload));
+
+  // Resolve the promise to continue showing results
+  if (window._gateResolve) {
+    window._gateResolve();
+    window._gateResolve = null;
+  }
+}
+
 async function runAnalysis() {
   const btype = document.getElementById('btype').value;
   const city  = document.getElementById('city').value.trim();
@@ -437,6 +519,12 @@ async function runAnalysis() {
   const totalValue = top10.reduce((s, r) => s + r.value, 0);
   const totalCost  = top10.reduce((s, r) => s + r.cost, 0);
   const roi = Math.round(totalValue / Math.max(totalCost * 12, 1));
+
+  // Lead gate — show unless already captured
+  const alreadyCaptured = localStorage.getItem('boss_analyze_lead');
+  if (!alreadyCaptured) {
+    await showLeadGate(btype, city, totalValue);
+  }
 
   const bizLabel = bname || (d.label + ' in ' + city);
   const jobLabel = jobValue ? `$${fmt_num(jobValue)} (your number)` : `$${fmt_num(job)} (${d.label} average)`;
