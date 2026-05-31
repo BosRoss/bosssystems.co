@@ -1,0 +1,157 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="The BOSS Guarantee — 7-day free trial, cancel anytime, 72-hour delivery, pays for itself or your money back.">
+  <title>BOSS Systems — The BOSS Guarantee</title>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --bg: #0a0a0f;
+      --bg-card: #12121a;
+      --gold: #c9a96e;
+      --gold-light: #dfc070;
+      --text: #f0ede8;
+      --text-muted: #9a9690;
+      --border: rgba(201, 169, 110, 0.15);
+    }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+      background: var(--bg);
+      color: var(--text);
+      line-height: 1.6;
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      padding: 60px 20px 40px;
+    }
+
+    .container {
+      max-width: 720px;
+      width: 100%;
+    }
+
+    h1 {
+      font-size: 2.2rem;
+      font-weight: 700;
+      color: var(--gold);
+      text-align: center;
+      margin-bottom: 48px;
+    }
+
+    .guarantees {
+      display: flex;
+      flex-direction: column;
+      gap: 24px;
+      margin-bottom: 56px;
+    }
+
+    .guarantee-card {
+      background: var(--bg-card);
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      padding: 32px;
+      transition: border-color 0.2s ease;
+    }
+
+    .guarantee-card:hover {
+      border-color: rgba(201, 169, 110, 0.4);
+    }
+
+    .guarantee-card h2 {
+      font-size: 1.2rem;
+      font-weight: 600;
+      color: var(--gold);
+      margin-bottom: 10px;
+    }
+
+    .guarantee-card p {
+      color: var(--text-muted);
+      font-size: 1rem;
+      line-height: 1.7;
+    }
+
+    .contact-section {
+      text-align: center;
+      padding: 32px;
+      background: var(--bg-card);
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      margin-bottom: 48px;
+    }
+
+    .contact-section p {
+      color: var(--text-muted);
+      font-size: 1.05rem;
+    }
+
+    .contact-section strong {
+      color: var(--text);
+    }
+
+    .footer-link {
+      text-align: center;
+      padding-top: 24px;
+      border-top: 1px solid var(--border);
+    }
+
+    .footer-link a {
+      color: var(--gold);
+      text-decoration: none;
+      font-size: 0.95rem;
+      font-weight: 500;
+      transition: opacity 0.2s ease;
+    }
+
+    .footer-link a:hover { opacity: 0.75; }
+
+    @media (max-width: 600px) {
+      body { padding: 40px 16px 32px; }
+      h1 { font-size: 1.7rem; margin-bottom: 36px; }
+      .guarantee-card { padding: 24px 20px; }
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <h1>The BOSS Guarantee</h1>
+
+    <div class="guarantees">
+      <div class="guarantee-card">
+        <h2>7-Day Free Trial</h2>
+        <p>Your AI receptionist runs free for 7 days. No card required. No payment until you've heard it work.</p>
+      </div>
+
+      <div class="guarantee-card">
+        <h2>Cancel Anytime</h2>
+        <p>One text to 903-714-6162 and you're done. No contracts, no cancellation fees, no hassle.</p>
+      </div>
+
+      <div class="guarantee-card">
+        <h2>72-Hour Delivery</h2>
+        <p>Your AI is live and taking calls within 72 hours of payment. If we miss that deadline, you get a full refund.</p>
+      </div>
+
+      <div class="guarantee-card">
+        <h2>It Pays For Itself</h2>
+        <p>If your AI receptionist doesn't save you more than $60/month in the first 30 days, we'll refund your first month. No questions asked.</p>
+      </div>
+    </div>
+
+    <div class="contact-section">
+      <p>Questions? Text Boston directly: <strong>903-714-6162</strong></p>
+    </div>
+
+    <div class="footer-link">
+      <a href="https://bosssystems.co">&larr; Back to bosssystems.co</a>
+    </div>
+  </div>
+</body>
+</html>
