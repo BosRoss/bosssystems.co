@@ -1,0 +1,223 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="BOSS Systems — Send payment via Venmo, Zelle, or Cash App.">
+  <title>BOSS Systems — Payment</title>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --bg: #0a0a0f;
+      --bg-card: #12121a;
+      --gold: #c9a96e;
+      --gold-light: #dfc070;
+      --text: #f0ede8;
+      --text-muted: #9a9690;
+      --border: rgba(201, 169, 110, 0.15);
+      --venmo-blue: #3d95ce;
+      --zelle-purple: #6d1ed4;
+      --cashapp-green: #00d632;
+    }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+      background: var(--bg);
+      color: var(--text);
+      line-height: 1.6;
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      padding: 60px 20px 40px;
+    }
+
+    .container {
+      max-width: 680px;
+      width: 100%;
+    }
+
+    h1 {
+      font-size: 2rem;
+      font-weight: 700;
+      color: var(--gold);
+      text-align: center;
+      margin-bottom: 8px;
+    }
+
+    .subtext {
+      text-align: center;
+      color: var(--text-muted);
+      font-size: 1.05rem;
+      margin-bottom: 48px;
+    }
+
+    .payment-cards {
+      display: flex;
+      flex-direction: column;
+      gap: 20px;
+      margin-bottom: 48px;
+    }
+
+    .payment-card {
+      background: var(--bg-card);
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      padding: 28px 32px;
+      transition: transform 0.2s ease, border-color 0.2s ease;
+    }
+
+    .payment-card:hover {
+      transform: translateY(-2px);
+    }
+
+    .payment-card.venmo:hover { border-color: var(--venmo-blue); }
+    .payment-card.zelle:hover { border-color: var(--zelle-purple); }
+    .payment-card.cashapp:hover { border-color: var(--cashapp-green); }
+
+    .card-header {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      margin-bottom: 8px;
+    }
+
+    .card-dot {
+      width: 12px;
+      height: 12px;
+      border-radius: 50%;
+      flex-shrink: 0;
+    }
+
+    .venmo .card-dot { background: var(--venmo-blue); }
+    .zelle .card-dot { background: var(--zelle-purple); }
+    .cashapp .card-dot { background: var(--cashapp-green); }
+
+    .card-title {
+      font-size: 1.25rem;
+      font-weight: 600;
+    }
+
+    .card-handle {
+      font-size: 1.1rem;
+      color: var(--text-muted);
+      margin-bottom: 12px;
+      padding-left: 24px;
+    }
+
+    .card-link {
+      display: inline-block;
+      padding-left: 24px;
+      font-size: 0.95rem;
+      font-weight: 500;
+      text-decoration: none;
+      transition: opacity 0.2s ease;
+    }
+
+    .card-link:hover { opacity: 0.8; }
+
+    .venmo .card-link { color: var(--venmo-blue); }
+    .zelle .card-link { color: var(--zelle-purple); }
+    .cashapp .card-link { color: var(--cashapp-green); }
+
+    .info-section {
+      background: var(--bg-card);
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      padding: 28px 32px;
+      margin-bottom: 20px;
+    }
+
+    .info-section p {
+      color: var(--text-muted);
+      font-size: 0.95rem;
+      line-height: 1.7;
+    }
+
+    .info-section p strong {
+      color: var(--text);
+    }
+
+    .note {
+      text-align: center;
+      color: var(--text-muted);
+      font-size: 0.88rem;
+      margin-bottom: 48px;
+      line-height: 1.6;
+    }
+
+    .footer-link {
+      text-align: center;
+      padding-top: 24px;
+      border-top: 1px solid var(--border);
+    }
+
+    .footer-link a {
+      color: var(--gold);
+      text-decoration: none;
+      font-size: 0.95rem;
+      font-weight: 500;
+      transition: opacity 0.2s ease;
+    }
+
+    .footer-link a:hover { opacity: 0.75; }
+
+    @media (max-width: 600px) {
+      body { padding: 40px 16px 32px; }
+      h1 { font-size: 1.6rem; }
+      .payment-card { padding: 22px 20px; }
+      .card-handle { padding-left: 0; }
+      .card-link { padding-left: 0; }
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <h1>BOSS Systems — Payment</h1>
+    <p class="subtext">Choose your preferred payment method</p>
+
+    <div class="payment-cards">
+      <div class="payment-card venmo">
+        <div class="card-header">
+          <span class="card-dot"></span>
+          <span class="card-title">Venmo</span>
+        </div>
+        <p class="card-handle">@BosRoss</p>
+        <a href="venmo://paycharge?txn=pay&recipients=BosRoss" class="card-link">Tap to open Venmo &rarr;</a>
+      </div>
+
+      <div class="payment-card zelle">
+        <div class="card-header">
+          <span class="card-dot"></span>
+          <span class="card-title">Zelle</span>
+        </div>
+        <p class="card-handle">bosrossall@gmail.com</p>
+        <a href="#" class="card-link">Send via your banking app</a>
+      </div>
+
+      <div class="payment-card cashapp">
+        <div class="card-header">
+          <span class="card-dot"></span>
+          <span class="card-title">Cash App</span>
+        </div>
+        <p class="card-handle">$BosRoss</p>
+        <a href="https://cash.app/$BosRoss" class="card-link">Tap to open Cash App &rarr;</a>
+      </div>
+    </div>
+
+    <div class="info-section">
+      <p><strong>After payment,</strong> text <strong>903-714-6162</strong> with your receipt screenshot and we'll get started within 24 hours.</p>
+    </div>
+
+    <p class="note">All payments include a digital receipt via email. Need an invoice for your records? Text Boston and we'll send one.</p>
+
+    <div class="footer-link">
+      <a href="https://bosssystems.co">&larr; Back to bosssystems.co</a>
+    </div>
+  </div>
+</body>
+</html>
