@@ -1,14 +1,22 @@
 {
-  "generated": "2026-05-31T21:22:34.287776+00:00",
+  "generated": "2026-05-31T22:14:20.993204+00:00",
   "engine_state": "active",
   "signals": [
     {
-      "type": "flood",
-      "area": "George, MS; Greene, MS; Jackson, MS",
-      "niche": "plumbing",
-      "action": "Flood warnings in George, MS; Greene, MS; Jackson, MS. Plumbers, restoration, mold companies will spike.",
+      "type": "storm",
+      "area": "Brewster, TX",
+      "niche": "roofing",
+      "action": "Storm damage in Brewster, TX. Roofers and restoration companies about to get flooded.",
       "urgency": "today",
-      "pitch_hook": "Water damage calls are coming. Every one you miss is $500+ walking away."
+      "pitch_hook": "After a storm like that, you'll get 10x your normal call volume. Ready for it?"
+    },
+    {
+      "type": "storm",
+      "area": "Pecos, TX",
+      "niche": "roofing",
+      "action": "Storm damage in Pecos, TX. Roofers and restoration companies about to get flooded.",
+      "urgency": "today",
+      "pitch_hook": "After a storm like that, you'll get 10x your normal call volume. Ready for it?"
     },
     {
       "type": "flood",
@@ -35,6 +43,22 @@
       "pitch_hook": "Water damage calls are coming. Every one you miss is $500+ walking away."
     },
     {
+      "type": "storm",
+      "area": "Clay, AR",
+      "niche": "roofing",
+      "action": "Storm damage in Clay, AR. Roofers and restoration companies about to get flooded.",
+      "urgency": "today",
+      "pitch_hook": "After a storm like that, you'll get 10x your normal call volume. Ready for it?"
+    },
+    {
+      "type": "storm",
+      "area": "Clay, AR; Dunklin, MO; Pemiscot, MO",
+      "niche": "roofing",
+      "action": "Storm damage in Clay, AR; Dunklin, MO; Pemiscot, MO. Roofers and restoration companies about to get flooded.",
+      "urgency": "today",
+      "pitch_hook": "After a storm like that, you'll get 10x your normal call volume. Ready for it?"
+    },
+    {
       "type": "flood",
       "area": "White, AR; Woodruff, AR",
       "niche": "plumbing",
@@ -51,126 +75,57 @@
       "pitch_hook": "Water damage calls are coming. Every one you miss is $500+ walking away."
     },
     {
-      "type": "flood",
-      "area": "Fentress, TN; Overton, TN",
-      "niche": "plumbing",
-      "action": "Flood warnings in Fentress, TN; Overton, TN. Plumbers, restoration, mold companies will spike.",
-      "urgency": "today",
-      "pitch_hook": "Water damage calls are coming. Every one you miss is $500+ walking away."
-    },
-    {
-      "type": "flood",
-      "area": "Rapides, LA",
-      "niche": "plumbing",
-      "action": "Flood warnings in Rapides, LA. Plumbers, restoration, mold companies will spike.",
-      "urgency": "today",
-      "pitch_hook": "Water damage calls are coming. Every one you miss is $500+ walking away."
-    },
-    {
       "type": "storm",
-      "area": "Dougherty, GA; Lee, GA; Terrell, GA; Worth, GA",
+      "area": "Autauga, AL",
       "niche": "roofing",
-      "action": "Storm damage in Dougherty, GA; Lee, GA; Terrell, GA; Worth, GA. Roofers and restoration companies about to get flooded.",
+      "action": "Storm damage in Autauga, AL. Roofers and restoration companies about to get flooded.",
       "urgency": "today",
       "pitch_hook": "After a storm like that, you'll get 10x your normal call volume. Ready for it?"
-    },
-    {
-      "type": "flood",
-      "area": "Brantley, GA; Camden, GA; Glynn, GA",
-      "niche": "plumbing",
-      "action": "Flood warnings in Brantley, GA; Camden, GA; Glynn, GA. Plumbers, restoration, mold companies will spike.",
-      "urgency": "today",
-      "pitch_hook": "Water damage calls are coming. Every one you miss is $500+ walking away."
     }
   ],
   "leads": [
     {
       "name": "",
       "city": "",
-      "score": 69,
+      "score": 63,
       "tier": "SUPERNICHE",
-      "channel": "text",
+      "channel": "watchlist",
       "sequence_status": "queued",
       "trigger": ""
     },
     {
       "name": "",
       "city": "",
-      "score": 69,
+      "score": 63,
       "tier": "SUPERNICHE",
-      "channel": "text",
+      "channel": "watchlist",
       "sequence_status": "queued",
       "trigger": ""
     },
     {
       "name": "",
       "city": "",
-      "score": 55,
+      "score": 62,
       "tier": "SUPERNICHE",
-      "channel": "call_queue",
+      "channel": "watchlist",
       "sequence_status": "queued",
       "trigger": ""
     },
     {
       "name": "",
       "city": "",
-      "score": 55,
+      "score": 57,
       "tier": "SUPERNICHE",
-      "channel": "call_queue",
+      "channel": "email",
       "sequence_status": "queued",
-      "trigger": ""
-    },
-    {
-      "name": "",
-      "city": "",
-      "score": 55,
-      "tier": "SUPERNICHE",
-      "channel": "call_queue",
-      "sequence_status": "queued",
-      "trigger": ""
-    },
-    {
-      "name": "",
-      "city": "",
-      "score": 55,
-      "tier": "SUPERNICHE",
-      "channel": "call_queue",
-      "sequence_status": "queued",
-      "trigger": ""
-    },
-    {
-      "name": "",
-      "city": "",
-      "score": 55,
-      "tier": "SUPERNICHE",
-      "channel": "call_queue",
-      "sequence_status": "queued",
-      "trigger": ""
-    },
-    {
-      "name": "",
-      "city": "",
-      "score": 55,
-      "tier": "SUPERNICHE",
-      "channel": "call_queue",
-      "sequence_status": "queued",
-      "trigger": ""
-    },
-    {
-      "name": "",
-      "city": "",
-      "score": 55,
-      "tier": "SUPERNICHE",
-      "channel": "text",
-      "sequence_status": "queued",
-      "trigger": ""
+      "trigger": "economic"
     },
     {
       "name": "",
       "city": "",
       "score": 54,
       "tier": "HOT",
-      "channel": "call_queue",
+      "channel": "watchlist",
       "sequence_status": "queued",
       "trigger": ""
     },
@@ -179,58 +134,103 @@
       "city": "",
       "score": 53,
       "tier": "HOT",
-      "channel": "call_queue",
+      "channel": "email",
       "sequence_status": "queued",
       "trigger": ""
     },
     {
       "name": "",
       "city": "",
-      "score": 53,
+      "score": 48,
       "tier": "HOT",
-      "channel": "call_queue",
+      "channel": "watchlist",
       "sequence_status": "queued",
       "trigger": ""
     },
     {
       "name": "",
       "city": "",
-      "score": 49,
+      "score": 48,
       "tier": "HOT",
-      "channel": "call_queue",
+      "channel": "watchlist",
+      "sequence_status": "queued",
+      "trigger": "economic"
+    },
+    {
+      "name": "",
+      "city": "",
+      "score": 48,
+      "tier": "HOT",
+      "channel": "watchlist",
+      "sequence_status": "queued",
+      "trigger": "economic"
+    },
+    {
+      "name": "",
+      "city": "",
+      "score": 47,
+      "tier": "HOT",
+      "channel": "email",
       "sequence_status": "queued",
       "trigger": ""
     },
     {
       "name": "",
       "city": "",
-      "score": 49,
+      "score": 45,
       "tier": "HOT",
-      "channel": "text",
+      "channel": "watchlist",
       "sequence_status": "queued",
       "trigger": ""
     },
     {
       "name": "",
       "city": "",
-      "score": 49,
+      "score": 45,
       "tier": "HOT",
-      "channel": "call_queue",
+      "channel": "watchlist",
       "sequence_status": "queued",
       "trigger": ""
+    },
+    {
+      "name": "",
+      "city": "",
+      "score": 45,
+      "tier": "HOT",
+      "channel": "watchlist",
+      "sequence_status": "queued",
+      "trigger": ""
+    },
+    {
+      "name": "",
+      "city": "",
+      "score": 45,
+      "tier": "HOT",
+      "channel": "watchlist",
+      "sequence_status": "queued",
+      "trigger": ""
+    },
+    {
+      "name": "",
+      "city": "",
+      "score": 45,
+      "tier": "HOT",
+      "channel": "watchlist",
+      "sequence_status": "queued",
+      "trigger": "economic"
     }
   ],
   "kpis": {
     "signals_firing": 10,
-    "leads_superniche": 9,
-    "leads_hot": 31,
-    "leads_warm": 61,
-    "cost_per_qualified": 0.14,
-    "total_spend": 1.280000000000001,
+    "leads_superniche": 4,
+    "leads_hot": 20,
+    "leads_warm": 60,
+    "cost_per_qualified": 0.47,
+    "total_spend": 1.8880000000000015,
     "spend_cap": 300.0
   },
   "channels": {
-    "emails_sent": 40,
+    "emails_sent": 53,
     "texts_sent": 8,
     "calls_made": 0,
     "meetings_set": 0,
@@ -239,63 +239,63 @@
   "feeds": [
     {
       "name": "NOAA",
-      "last_hit": "2026-05-31T20:02:16.081033+00:00",
+      "last_hit": "2026-05-31T22:08:30.660263+00:00",
       "status": "yellow",
       "data_points_today": 0
     },
     {
       "name": "REDDIT",
-      "last_hit": "2026-05-31T20:02:16.081033+00:00",
+      "last_hit": "2026-05-31T22:08:30.660263+00:00",
       "status": "green",
       "data_points_today": 801
     },
     {
       "name": "USGS",
-      "last_hit": "2026-05-31T20:02:16.081033+00:00",
+      "last_hit": "2026-05-31T22:08:30.660263+00:00",
       "status": "yellow",
       "data_points_today": 0
     },
     {
       "name": "HACKERNEWS",
-      "last_hit": "2026-05-31T20:02:16.081033+00:00",
+      "last_hit": "2026-05-31T22:08:30.660263+00:00",
       "status": "green",
       "data_points_today": 30
     },
     {
       "name": "FEMA",
-      "last_hit": "2026-05-31T20:02:16.081033+00:00",
+      "last_hit": "2026-05-31T22:08:30.660263+00:00",
       "status": "green",
-      "data_points_today": 5
+      "data_points_today": 20
     },
     {
       "name": "COMMODITIES",
-      "last_hit": "2026-05-31T20:02:16.081033+00:00",
+      "last_hit": "2026-05-31T22:08:30.660263+00:00",
       "status": "green",
       "data_points_today": 7
     },
     {
       "name": "RSS",
-      "last_hit": "2026-05-31T20:02:16.081033+00:00",
+      "last_hit": "2026-05-31T22:08:30.660263+00:00",
       "status": "green",
       "data_points_today": 160
     },
     {
       "name": "FRED",
-      "last_hit": "2026-05-31T20:02:16.081033+00:00",
+      "last_hit": "2026-05-31T22:08:30.660263+00:00",
       "status": "yellow",
       "data_points_today": 0
     },
     {
       "name": "BLS",
-      "last_hit": "2026-05-31T20:02:16.081033+00:00",
+      "last_hit": "2026-05-31T22:08:30.660263+00:00",
       "status": "green",
       "data_points_today": 9
     }
   ],
   "conversion_funnel": {
     "signals": 10,
-    "leads": 101,
-    "contacted": 48,
+    "leads": 84,
+    "contacted": 61,
     "replied": 0,
     "meeting": 0,
     "close": 0
