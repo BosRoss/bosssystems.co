@@ -1,0 +1,882 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="AI receptionist for small businesses — $60/month flat. Unlimited calls, no per-minute billing, no contracts. Live in 72 hours. Try free for 7 days.">
+  <meta name="keywords" content="AI receptionist, AI phone answering, cheap AI receptionist, AI receptionist under $100, small business phone answering, BOSS Systems">
+  <meta property="og:title" content="AI Receptionist — $60/month Flat | BOSS Systems">
+  <meta property="og:description" content="Every call answered. $60/month. No surprises. Unlimited AI phone answering for small businesses. No per-minute billing. No contracts. Live in 72 hours.">
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://bosssystems.co/receptionist">
+  <title>AI Receptionist — $60/month Flat | BOSS Systems</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --bg: #0a0a0f;
+      --bg-2: #0f0f16;
+      --bg-3: #14141c;
+      --bg-4: #1a1a24;
+      --gold: #c9a96e;
+      --gold-light: #dfc070;
+      --gold-dark: #a8883a;
+      --text: #f0ede8;
+      --text-muted: #9a9690;
+      --text-dim: #6a6660;
+      --green: #4caf50;
+      --red: #e74c3c;
+      --border: #222;
+      --border-gold: rgba(201,169,110,0.25);
+      --font: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica, Arial, sans-serif;
+      --radius: 6px;
+      --radius-lg: 12px;
+      --max-width: 1140px;
+    }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      font-family: var(--font);
+      background: var(--bg);
+      color: var(--text);
+      line-height: 1.6;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    a { color: var(--gold); text-decoration: none; transition: color 0.2s; }
+    a:hover { color: var(--gold-light); }
+
+    .container {
+      max-width: var(--max-width);
+      margin: 0 auto;
+      padding: 0 24px;
+    }
+
+    /* ========== NAV ========== */
+    nav {
+      position: fixed;
+      top: 0;
+      left: 0;
+      right: 0;
+      z-index: 1000;
+      background: rgba(10,10,15,0.95);
+      backdrop-filter: blur(12px);
+      border-bottom: 1px solid var(--border);
+      padding: 16px 0;
+    }
+
+    .nav-inner {
+      max-width: var(--max-width);
+      margin: 0 auto;
+      padding: 0 24px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+
+    .nav-logo {
+      font-size: 1.1rem;
+      font-weight: 700;
+      color: var(--text);
+      letter-spacing: -0.02em;
+    }
+
+    .nav-logo span { color: var(--gold); }
+
+    .nav-links { display: flex; gap: 28px; align-items: center; }
+    .nav-links a { color: var(--text-muted); font-size: 0.9rem; font-weight: 500; }
+    .nav-links a:hover { color: var(--gold); }
+
+    .nav-cta {
+      background: var(--gold);
+      color: #0a0a0f;
+      padding: 8px 18px;
+      border-radius: var(--radius);
+      font-weight: 600;
+      font-size: 0.85rem;
+    }
+    .nav-cta:hover { background: var(--gold-light); color: #0a0a0f; }
+
+    /* ========== HERO ========== */
+    .hero {
+      padding: 160px 0 100px;
+      text-align: center;
+    }
+
+    .hero-badge {
+      display: inline-block;
+      background: rgba(201,169,110,0.1);
+      border: 1px solid var(--border-gold);
+      border-radius: 100px;
+      padding: 6px 16px;
+      font-size: 0.8rem;
+      font-weight: 500;
+      color: var(--gold);
+      margin-bottom: 28px;
+      letter-spacing: 0.02em;
+    }
+
+    .hero h1 {
+      font-size: clamp(2.2rem, 5vw, 3.8rem);
+      font-weight: 800;
+      line-height: 1.1;
+      letter-spacing: -0.03em;
+      margin-bottom: 20px;
+    }
+
+    .hero h1 .gold { color: var(--gold); }
+
+    .hero-sub {
+      font-size: clamp(1rem, 2vw, 1.25rem);
+      color: var(--text-muted);
+      max-width: 600px;
+      margin: 0 auto 40px;
+      line-height: 1.5;
+    }
+
+    .hero-ctas {
+      display: flex;
+      gap: 16px;
+      justify-content: center;
+      flex-wrap: wrap;
+    }
+
+    .btn-primary {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      background: var(--gold);
+      color: #0a0a0f;
+      padding: 14px 28px;
+      border-radius: var(--radius);
+      font-weight: 700;
+      font-size: 1rem;
+      transition: background 0.2s, transform 0.2s;
+    }
+    .btn-primary:hover { background: var(--gold-light); color: #0a0a0f; transform: translateY(-1px); }
+
+    .btn-secondary {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      background: transparent;
+      color: var(--text);
+      padding: 14px 28px;
+      border-radius: var(--radius);
+      font-weight: 600;
+      font-size: 1rem;
+      border: 1px solid var(--border);
+      transition: border-color 0.2s, transform 0.2s;
+    }
+    .btn-secondary:hover { border-color: var(--gold); transform: translateY(-1px); }
+
+    /* ========== SECTIONS ========== */
+    section { padding: 80px 0; }
+
+    .section-label {
+      font-size: 0.75rem;
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: 0.1em;
+      color: var(--gold);
+      margin-bottom: 12px;
+    }
+
+    .section-title {
+      font-size: clamp(1.6rem, 3.5vw, 2.4rem);
+      font-weight: 700;
+      line-height: 1.2;
+      letter-spacing: -0.02em;
+      margin-bottom: 16px;
+    }
+
+    .section-subtitle {
+      font-size: 1.05rem;
+      color: var(--text-muted);
+      max-width: 600px;
+      margin-bottom: 48px;
+    }
+
+    /* ========== FEATURES ========== */
+    .features-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 20px;
+    }
+
+    .feature-card {
+      background: var(--bg-2);
+      border: 1px solid var(--border);
+      border-radius: var(--radius-lg);
+      padding: 28px;
+      transition: border-color 0.2s;
+    }
+    .feature-card:hover { border-color: var(--border-gold); }
+
+    .feature-icon {
+      width: 40px;
+      height: 40px;
+      background: rgba(201,169,110,0.1);
+      border-radius: 8px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin-bottom: 16px;
+      font-size: 1.2rem;
+    }
+
+    .feature-card h3 {
+      font-size: 1rem;
+      font-weight: 600;
+      margin-bottom: 8px;
+    }
+
+    .feature-card p {
+      font-size: 0.9rem;
+      color: var(--text-muted);
+      line-height: 1.5;
+    }
+
+    /* ========== COMPARISON TABLE ========== */
+    .comparison-section {
+      background: var(--bg-2);
+      border-radius: var(--radius-lg);
+      padding: 48px 0;
+    }
+
+    .table-wrapper {
+      overflow-x: auto;
+      -webkit-overflow-scrolling: touch;
+      margin: 0 24px;
+    }
+
+    .comparison-table {
+      width: 100%;
+      min-width: 800px;
+      border-collapse: collapse;
+      font-size: 0.85rem;
+    }
+
+    .comparison-table th,
+    .comparison-table td {
+      padding: 14px 12px;
+      text-align: center;
+      border-bottom: 1px solid var(--border);
+      white-space: nowrap;
+    }
+
+    .comparison-table th {
+      font-weight: 600;
+      font-size: 0.8rem;
+      color: var(--text-muted);
+      text-transform: uppercase;
+      letter-spacing: 0.04em;
+    }
+
+    .comparison-table th:first-child,
+    .comparison-table td:first-child {
+      text-align: left;
+      font-weight: 500;
+      white-space: normal;
+      min-width: 160px;
+    }
+
+    .comparison-table td:first-child {
+      color: var(--text);
+    }
+
+    .col-boss {
+      background: rgba(201,169,110,0.06);
+      border-left: 2px solid var(--gold);
+      border-right: 2px solid var(--gold);
+    }
+
+    .comparison-table thead .col-boss {
+      color: var(--gold) !important;
+      font-weight: 700 !important;
+      font-size: 0.85rem !important;
+      border-top: 2px solid var(--gold);
+      border-top-left-radius: var(--radius);
+      border-top-right-radius: var(--radius);
+    }
+
+    .comparison-table tbody tr:last-child .col-boss {
+      border-bottom: 2px solid var(--gold);
+    }
+
+    .check { color: var(--green); font-weight: 700; font-size: 1.1rem; }
+    .cross { color: var(--red); font-size: 0.8rem; }
+
+    /* ========== DEMO SECTION ========== */
+    .demo-section {
+      text-align: center;
+      padding: 80px 0;
+    }
+
+    .demo-box {
+      background: var(--bg-3);
+      border: 1px solid var(--border-gold);
+      border-radius: var(--radius-lg);
+      padding: 48px 32px;
+      max-width: 640px;
+      margin: 0 auto;
+    }
+
+    .demo-box h2 {
+      font-size: 1.6rem;
+      font-weight: 700;
+      margin-bottom: 16px;
+    }
+
+    .demo-box p {
+      color: var(--text-muted);
+      margin-bottom: 32px;
+      font-size: 1rem;
+      line-height: 1.6;
+    }
+
+    .phone-btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 12px;
+      background: var(--gold);
+      color: #0a0a0f;
+      padding: 18px 36px;
+      border-radius: var(--radius-lg);
+      font-weight: 700;
+      font-size: 1.2rem;
+      transition: background 0.2s, transform 0.2s;
+    }
+    .phone-btn:hover { background: var(--gold-light); color: #0a0a0f; transform: translateY(-2px); }
+
+    .phone-btn svg {
+      width: 22px;
+      height: 22px;
+    }
+
+    /* ========== PRICING ========== */
+    .pricing-section { text-align: center; }
+
+    .pricing-card {
+      background: var(--bg-3);
+      border: 2px solid var(--gold);
+      border-radius: var(--radius-lg);
+      padding: 48px 36px;
+      max-width: 480px;
+      margin: 0 auto;
+    }
+
+    .pricing-card .price-tag {
+      font-size: 0.85rem;
+      font-weight: 500;
+      color: var(--gold);
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      margin-bottom: 12px;
+    }
+
+    .pricing-card .price {
+      font-size: 3.5rem;
+      font-weight: 800;
+      letter-spacing: -0.04em;
+      margin-bottom: 4px;
+    }
+
+    .pricing-card .price span {
+      font-size: 1.2rem;
+      font-weight: 400;
+      color: var(--text-muted);
+    }
+
+    .pricing-card .trial {
+      font-size: 1.1rem;
+      color: var(--gold);
+      font-weight: 600;
+      margin-bottom: 28px;
+    }
+
+    .pricing-list {
+      list-style: none;
+      text-align: left;
+      margin-bottom: 32px;
+    }
+
+    .pricing-list li {
+      padding: 10px 0;
+      border-bottom: 1px solid var(--border);
+      font-size: 0.95rem;
+      color: var(--text-muted);
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+
+    .pricing-list li::before {
+      content: "\2713";
+      color: var(--green);
+      font-weight: 700;
+      font-size: 1rem;
+      flex-shrink: 0;
+    }
+
+    .pricing-footnote {
+      margin-top: 24px;
+      font-size: 0.95rem;
+      color: var(--text-muted);
+      font-style: italic;
+    }
+
+    /* ========== FAQ ========== */
+    .faq-section { max-width: 720px; margin: 0 auto; padding: 80px 24px; }
+
+    .faq-item {
+      border-bottom: 1px solid var(--border);
+      padding: 24px 0;
+    }
+
+    .faq-item:first-of-type { border-top: 1px solid var(--border); }
+
+    .faq-question {
+      font-size: 1.05rem;
+      font-weight: 600;
+      margin-bottom: 10px;
+      color: var(--text);
+    }
+
+    .faq-answer {
+      font-size: 0.95rem;
+      color: var(--text-muted);
+      line-height: 1.6;
+    }
+
+    /* ========== CTA FOOTER ========== */
+    .cta-footer {
+      background: var(--bg-2);
+      border-top: 1px solid var(--border);
+      padding: 80px 0;
+      text-align: center;
+    }
+
+    .cta-footer h2 {
+      font-size: clamp(1.6rem, 3vw, 2.2rem);
+      font-weight: 700;
+      margin-bottom: 12px;
+    }
+
+    .cta-footer p {
+      color: var(--text-muted);
+      font-size: 1.05rem;
+      margin-bottom: 32px;
+    }
+
+    .cta-actions {
+      display: flex;
+      gap: 16px;
+      justify-content: center;
+      flex-wrap: wrap;
+      margin-bottom: 16px;
+    }
+
+    .cta-subtext {
+      font-size: 0.9rem;
+      color: var(--text-dim);
+      margin-top: 16px;
+    }
+
+    /* ========== FOOTER ========== */
+    footer {
+      border-top: 1px solid var(--border);
+      padding: 40px 0;
+    }
+
+    .footer-inner {
+      max-width: var(--max-width);
+      margin: 0 auto;
+      padding: 0 24px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      flex-wrap: wrap;
+      gap: 16px;
+    }
+
+    .footer-brand {
+      font-size: 0.85rem;
+      color: var(--text-dim);
+    }
+
+    .footer-links {
+      display: flex;
+      gap: 24px;
+    }
+
+    .footer-links a {
+      font-size: 0.85rem;
+      color: var(--text-muted);
+    }
+    .footer-links a:hover { color: var(--gold); }
+
+    /* ========== RESPONSIVE ========== */
+    @media (max-width: 768px) {
+      .hero { padding: 120px 0 60px; }
+
+      .nav-links { display: none; }
+
+      .features-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .comparison-section { padding: 32px 0; }
+
+      .table-wrapper { margin: 0 12px; }
+
+      .demo-box { padding: 32px 20px; }
+
+      .pricing-card { padding: 36px 24px; }
+
+      .footer-inner {
+        flex-direction: column;
+        text-align: center;
+      }
+
+      section { padding: 60px 0; }
+    }
+
+    @media (max-width: 480px) {
+      .hero-ctas { flex-direction: column; align-items: center; }
+      .btn-primary, .btn-secondary { width: 100%; justify-content: center; }
+      .cta-actions { flex-direction: column; align-items: center; }
+      .phone-btn { width: 100%; justify-content: center; font-size: 1rem; padding: 16px 24px; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- NAV -->
+  <nav>
+    <div class="nav-inner">
+      <a href="https://bosssystems.co" class="nav-logo">BOSS<span>.</span></a>
+      <div class="nav-links">
+        <a href="#features">Features</a>
+        <a href="#compare">Compare</a>
+        <a href="#pricing">Pricing</a>
+        <a href="#faq">FAQ</a>
+        <a href="tel:9034830168" class="nav-cta">Try Free</a>
+      </div>
+    </div>
+  </nav>
+
+  <!-- HERO -->
+  <section class="hero">
+    <div class="container">
+      <div class="hero-badge">AI Receptionist for Small Business</div>
+      <h1>Every Call Answered.<br><span class="gold">$60/month.</span> No Surprises.</h1>
+      <p class="hero-sub">Unlimited AI phone answering for small businesses. No per-minute billing. No contracts. Live in 72 hours.</p>
+      <div class="hero-ctas">
+        <a href="tel:9034830168" class="btn-primary">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"/></svg>
+          Try Free for 7 Days
+        </a>
+        <a href="#demo" class="btn-secondary">See How It Works</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- FEATURES -->
+  <section id="features">
+    <div class="container">
+      <div class="section-label">What You Get</div>
+      <h2 class="section-title">Everything your receptionist does. For $60.</h2>
+      <p class="section-subtitle">No hidden fees. No per-minute charges. No overages. Just every call handled, every time.</p>
+
+      <div class="features-grid">
+        <div class="feature-card">
+          <div class="feature-icon">&#128222;</div>
+          <h3>24/7 AI Phone Answering</h3>
+          <p>Every call answered instantly, day or night. No voicemail, no missed revenue.</p>
+        </div>
+        <div class="feature-card">
+          <div class="feature-icon">&#9854;</div>
+          <h3>Unlimited Simultaneous Calls</h3>
+          <p>10 calls at once? No problem. Never a busy signal, never a hold queue.</p>
+        </div>
+        <div class="feature-card">
+          <div class="feature-icon">&#128172;</div>
+          <h3>Missed Call Text-Back in 60s</h3>
+          <p>If someone hangs up before the AI answers, they get a text in under 60 seconds.</p>
+        </div>
+        <div class="feature-card">
+          <div class="feature-icon">&#128197;</div>
+          <h3>Appointment Booking</h3>
+          <p>Books directly to your Google Calendar, Calendly, or any scheduling tool you use.</p>
+        </div>
+        <div class="feature-card">
+          <div class="feature-icon">&#128260;</div>
+          <h3>Call Transfers for Emergencies</h3>
+          <p>Real emergencies go straight to your cell. Everything else is handled automatically.</p>
+        </div>
+        <div class="feature-card">
+          <div class="feature-icon">&#9881;</div>
+          <h3>Custom-Trained on YOUR Business</h3>
+          <p>Your services, your pricing, your hours, your personality. Not a generic template.</p>
+        </div>
+        <div class="feature-card">
+          <div class="feature-icon">&#127897;</div>
+          <h3>Call Recordings &amp; Transcripts</h3>
+          <p>Every call recorded and transcribed. Review conversations anytime from your dashboard.</p>
+        </div>
+        <div class="feature-card">
+          <div class="feature-icon">&#11088;</div>
+          <h3>Review Request Automation</h3>
+          <p>After every completed job, automatically request a Google review. Build your reputation on autopilot.</p>
+        </div>
+        <div class="feature-card">
+          <div class="feature-icon">&#127769;</div>
+          <h3>After-Hours Coverage</h3>
+          <p>Nights, weekends, holidays. Your business never stops answering.</p>
+        </div>
+        <div class="feature-card">
+          <div class="feature-icon">&#127760;</div>
+          <h3>Bilingual (English/Spanish)</h3>
+          <p>Serve your entire customer base without hiring bilingual staff.</p>
+        </div>
+        <div class="feature-card">
+          <div class="feature-icon">&#128275;</div>
+          <h3>No Contracts &mdash; Cancel Anytime</h3>
+          <p>Month-to-month. Cancel with a single text message. No fees, no questions.</p>
+        </div>
+        <div class="feature-card">
+          <div class="feature-icon">&#9889;</div>
+          <h3>Live in 72 Hours</h3>
+          <p>We build and deploy your AI receptionist in 3 days or less. Start answering calls this week.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- COMPARISON -->
+  <section id="compare" class="comparison-section">
+    <div class="container">
+      <div class="section-label">How We Compare</div>
+      <h2 class="section-title">BOSS vs. every other AI receptionist</h2>
+      <p class="section-subtitle">We checked the pricing pages so you don't have to. Here's the real breakdown.</p>
+    </div>
+    <div class="table-wrapper">
+      <table class="comparison-table">
+        <thead>
+          <tr>
+            <th>Feature</th>
+            <th class="col-boss">BOSS ($60/mo)</th>
+            <th>Goodcall ($59)</th>
+            <th>Dialzara ($29+)</th>
+            <th>Rosie ($49+)</th>
+            <th>My AI Front Desk ($99)</th>
+            <th>Smith.ai ($292+)</th>
+            <th>Ruby ($235+)</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>Unlimited calls</td>
+            <td class="col-boss"><span class="check">&#10003;</span></td>
+            <td><span class="check">&#10003;</span></td>
+            <td><span class="cross">&#10007; 60 min</span></td>
+            <td><span class="cross">&#10007; 250 min</span></td>
+            <td><span class="cross">&#10007; 200 min</span></td>
+            <td><span class="cross">&#10007; 30 calls</span></td>
+            <td><span class="cross">&#10007; 50 min</span></td>
+          </tr>
+          <tr>
+            <td>No overage charges</td>
+            <td class="col-boss"><span class="check">&#10003;</span></td>
+            <td><span class="check">&#10003;</span></td>
+            <td><span class="cross">&#10007; $0.48/min</span></td>
+            <td><span class="cross">&#10007; $0.25/min</span></td>
+            <td><span class="cross">&#10007; $0.12/min</span></td>
+            <td><span class="cross">&#10007; $9.75/call</span></td>
+            <td><span class="cross">&#10007; $4.75/min</span></td>
+          </tr>
+          <tr>
+            <td>SMS text-back</td>
+            <td class="col-boss"><span class="check">&#10003;</span></td>
+            <td><span class="cross">&#10007;</span></td>
+            <td><span class="cross">&#10007;</span></td>
+            <td><span class="cross">&#10007; $149 plan</span></td>
+            <td><span class="check">&#10003;</span></td>
+            <td><span class="check">&#10003;</span></td>
+            <td><span class="check">&#10003;</span></td>
+          </tr>
+          <tr>
+            <td>Appointment booking</td>
+            <td class="col-boss"><span class="check">&#10003;</span></td>
+            <td><span class="check">&#10003;</span></td>
+            <td><span class="check">&#10003;</span></td>
+            <td><span class="cross">&#10007; $149 plan</span></td>
+            <td><span class="check">&#10003;</span></td>
+            <td><span class="check">&#10003;</span></td>
+            <td><span class="check">&#10003;</span></td>
+          </tr>
+          <tr>
+            <td>Review automation</td>
+            <td class="col-boss"><span class="check">&#10003;</span></td>
+            <td><span class="cross">&#10007;</span></td>
+            <td><span class="cross">&#10007;</span></td>
+            <td><span class="cross">&#10007;</span></td>
+            <td><span class="cross">&#10007;</span></td>
+            <td><span class="cross">&#10007;</span></td>
+            <td><span class="cross">&#10007;</span></td>
+          </tr>
+          <tr>
+            <td>Payment collection</td>
+            <td class="col-boss"><span class="check">&#10003;</span></td>
+            <td><span class="cross">&#10007;</span></td>
+            <td><span class="cross">&#10007;</span></td>
+            <td><span class="cross">&#10007;</span></td>
+            <td><span class="cross">&#10007;</span></td>
+            <td><span class="cross">&#10007;</span></td>
+            <td><span class="cross">&#10007;</span></td>
+          </tr>
+          <tr>
+            <td>Outbound follow-up</td>
+            <td class="col-boss"><span class="check">&#10003;</span></td>
+            <td><span class="cross">&#10007;</span></td>
+            <td><span class="cross">&#10007; $750/mo</span></td>
+            <td><span class="cross">&#10007;</span></td>
+            <td><span class="cross">&#10007;</span></td>
+            <td><span class="cross">&#10007;</span></td>
+            <td><span class="cross">&#10007;</span></td>
+          </tr>
+          <tr>
+            <td>Custom-built for your business</td>
+            <td class="col-boss"><span class="check">&#10003;</span></td>
+            <td><span class="cross">&#10007;</span></td>
+            <td><span class="cross">&#10007;</span></td>
+            <td><span class="cross">&#10007;</span></td>
+            <td><span class="cross">&#10007;</span></td>
+            <td><span class="cross">&#10007;</span></td>
+            <td><span class="cross">&#10007;</span></td>
+          </tr>
+          <tr>
+            <td>No contracts</td>
+            <td class="col-boss"><span class="check">&#10003;</span></td>
+            <td><span class="check">&#10003;</span></td>
+            <td><span class="check">&#10003;</span></td>
+            <td><span class="check">&#10003;</span></td>
+            <td><span class="check">&#10003;</span></td>
+            <td><span class="check">&#10003;</span></td>
+            <td><span class="check">&#10003;</span></td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </section>
+
+  <!-- DEMO -->
+  <section id="demo" class="demo-section">
+    <div class="container">
+      <div class="demo-box">
+        <div class="section-label">Hear It Live</div>
+        <h2>Call right now. Judge for yourself.</h2>
+        <p>This number is set up as a real HVAC business. You'll hear exactly how our AI handles a customer call &mdash; books appointments, answers questions, and sounds like a real person.</p>
+        <a href="tel:9034830168" class="phone-btn">
+          <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"/></svg>
+          (903) 483-0168
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <!-- PRICING -->
+  <section id="pricing" class="pricing-section">
+    <div class="container">
+      <div class="section-label">Simple Pricing</div>
+      <h2 class="section-title">One plan. Everything included.</h2>
+      <p class="section-subtitle" style="margin-left:auto;margin-right:auto;">No tiers to decode. No hidden fees to discover on your first bill.</p>
+
+      <div class="pricing-card">
+        <div class="price-tag">AI Receptionist</div>
+        <div class="trial">7 days free &mdash; no card required</div>
+        <div class="price">$60<span>/month</span></div>
+        <ul class="pricing-list">
+          <li>Unlimited inbound calls</li>
+          <li>No setup fee</li>
+          <li>No per-minute charges</li>
+          <li>No overage fees ever</li>
+          <li>No contracts &mdash; cancel with one text</li>
+          <li>Custom-built for your business</li>
+          <li>Live in 72 hours</li>
+        </ul>
+        <a href="tel:9034830168" class="btn-primary" style="width:100%;justify-content:center;">Start Free Trial</a>
+        <p class="pricing-footnote">"That's less than 2 missed calls per month for most service businesses."</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- FAQ -->
+  <section id="faq" class="faq-section">
+    <div class="section-label">FAQ</div>
+    <h2 class="section-title">Common questions</h2>
+
+    <div class="faq-item">
+      <div class="faq-question">What if I already have Ruby/Smith.ai?</div>
+      <div class="faq-answer">We'll run alongside them free for 7 days. You'll see the difference &mdash; in coverage, in features, and especially on your bill.</div>
+    </div>
+
+    <div class="faq-item">
+      <div class="faq-question">Will it work for my specific business?</div>
+      <div class="faq-answer">We custom-build it for your business type, hours, services, and pricing. This is not a template you configure yourself. We do the work.</div>
+    </div>
+
+    <div class="faq-item">
+      <div class="faq-question">What happens after hours?</div>
+      <div class="faq-answer">It answers 24/7. Books appointments, takes messages, transfers emergencies to your cell. Nights, weekends, holidays &mdash; covered.</div>
+    </div>
+
+    <div class="faq-item">
+      <div class="faq-question">Can I keep my current number?</div>
+      <div class="faq-answer">Yes. We set up call forwarding in 5 minutes. Your number stays the same. Your customers won't notice a thing (except that someone always picks up now).</div>
+    </div>
+
+    <div class="faq-item">
+      <div class="faq-question">What if I don't like it?</div>
+      <div class="faq-answer">Cancel anytime with one text. No fees, no hassle, no "retention specialist" trying to keep you. We earn your business every month.</div>
+    </div>
+  </section>
+
+  <!-- CTA FOOTER -->
+  <section class="cta-footer">
+    <div class="container">
+      <h2>Ready to stop missing calls?</h2>
+      <p>Two ways to get started. Pick whichever feels right.</p>
+      <div class="cta-actions">
+        <a href="sms:9037146162" class="btn-primary">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg>
+          Text 903-714-6162 to Get Started
+        </a>
+        <a href="tel:9034830168" class="btn-secondary">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"/></svg>
+          Call (903) 483-0168 to Hear It Live
+        </a>
+      </div>
+      <p class="cta-subtext">No sales pitch. No pressure. Just hear it work.</p>
+    </div>
+  </section>
+
+  <!-- FOOTER -->
+  <footer>
+    <div class="footer-inner">
+      <div class="footer-brand">&copy; 2026 BOSS Systems &mdash; Tyler, TX</div>
+      <div class="footer-links">
+        <a href="https://bosssystems.co">Home</a>
+        <a href="https://bosssystems.co/compare">Compare</a>
+        <a href="https://bosssystems.co/guarantee">Guarantee</a>
+      </div>
+    </div>
+  </footer>
+
+</body>
+</html>
