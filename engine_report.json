@@ -1,5 +1,5 @@
 {
-  "generated": "2026-05-31T21:09:32.112453+00:00",
+  "generated": "2026-05-31T21:22:34.287776+00:00",
   "engine_state": "active",
   "signals": [
     {
@@ -223,14 +223,14 @@
   "kpis": {
     "signals_firing": 10,
     "leads_superniche": 9,
-    "leads_hot": 30,
-    "leads_warm": 59,
-    "cost_per_qualified": 0.07,
-    "total_spend": 0.6400000000000003,
+    "leads_hot": 31,
+    "leads_warm": 61,
+    "cost_per_qualified": 0.14,
+    "total_spend": 1.280000000000001,
     "spend_cap": 300.0
   },
   "channels": {
-    "emails_sent": 39,
+    "emails_sent": 40,
     "texts_sent": 8,
     "calls_made": 0,
     "meetings_set": 0,
@@ -294,8 +294,8 @@
   ],
   "conversion_funnel": {
     "signals": 10,
-    "leads": 98,
-    "contacted": 47,
+    "leads": 101,
+    "contacted": 48,
     "replied": 0,
     "meeting": 0,
     "close": 0
