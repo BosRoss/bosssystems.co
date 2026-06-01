@@ -1,5 +1,5 @@
 {
-  "generated": "2026-06-01T00:20:17.723901+00:00",
+  "generated": "2026-06-01T01:45:44.392099+00:00",
   "engine_state": "active",
   "signals": [
     {
@@ -85,8 +85,8 @@
   ],
   "leads": [
     {
-      "name": "",
-      "city": "",
+      "name": "plumbing",
+      "city": "MS",
       "score": 63,
       "tier": "SUPERNICHE",
       "channel": "watchlist",
@@ -94,8 +94,8 @@
       "trigger": ""
     },
     {
-      "name": "",
-      "city": "",
+      "name": "plumbing",
+      "city": "AR",
       "score": 63,
       "tier": "SUPERNICHE",
       "channel": "watchlist",
@@ -103,8 +103,8 @@
       "trigger": ""
     },
     {
-      "name": "",
-      "city": "",
+      "name": "plumber",
+      "city": "AL",
       "score": 62,
       "tier": "SUPERNICHE",
       "channel": "watchlist",
@@ -112,8 +112,8 @@
       "trigger": ""
     },
     {
-      "name": "",
-      "city": "",
+      "name": "plumber",
+      "city": "OK",
       "score": 57,
       "tier": "SUPERNICHE",
       "channel": "email",
@@ -121,8 +121,8 @@
       "trigger": "economic"
     },
     {
-      "name": "",
-      "city": "",
+      "name": "plumber",
+      "city": "AL",
       "score": 54,
       "tier": "HOT",
       "channel": "watchlist",
@@ -130,8 +130,8 @@
       "trigger": ""
     },
     {
-      "name": "",
-      "city": "",
+      "name": "plumber",
+      "city": "AL",
       "score": 53,
       "tier": "HOT",
       "channel": "email",
@@ -139,8 +139,8 @@
       "trigger": ""
     },
     {
-      "name": "",
-      "city": "",
+      "name": "HVAC contractor",
+      "city": "NM",
       "score": 48,
       "tier": "HOT",
       "channel": "watchlist",
@@ -148,8 +148,8 @@
       "trigger": ""
     },
     {
-      "name": "",
-      "city": "",
+      "name": "HVAC contractor",
+      "city": "OK",
       "score": 48,
       "tier": "HOT",
       "channel": "watchlist",
@@ -157,8 +157,8 @@
       "trigger": "economic"
     },
     {
-      "name": "",
-      "city": "",
+      "name": "HVAC contractor",
+      "city": "OK",
       "score": 48,
       "tier": "HOT",
       "channel": "watchlist",
@@ -166,8 +166,8 @@
       "trigger": "economic"
     },
     {
-      "name": "",
-      "city": "",
+      "name": "HVAC contractor",
+      "city": "AL",
       "score": 47,
       "tier": "HOT",
       "channel": "email",
@@ -175,8 +175,8 @@
       "trigger": ""
     },
     {
-      "name": "",
-      "city": "",
+      "name": "plumber",
+      "city": "NM",
       "score": 45,
       "tier": "HOT",
       "channel": "watchlist",
@@ -184,8 +184,8 @@
       "trigger": ""
     },
     {
-      "name": "",
-      "city": "",
+      "name": "plumber",
+      "city": "NM",
       "score": 45,
       "tier": "HOT",
       "channel": "watchlist",
@@ -193,8 +193,8 @@
       "trigger": ""
     },
     {
-      "name": "",
-      "city": "",
+      "name": "plumber",
+      "city": "NM",
       "score": 45,
       "tier": "HOT",
       "channel": "watchlist",
@@ -202,8 +202,8 @@
       "trigger": ""
     },
     {
-      "name": "",
-      "city": "",
+      "name": "plumber",
+      "city": "NM",
       "score": 45,
       "tier": "HOT",
       "channel": "watchlist",
@@ -211,8 +211,8 @@
       "trigger": ""
     },
     {
-      "name": "",
-      "city": "",
+      "name": "plumber",
+      "city": "OK",
       "score": 45,
       "tier": "HOT",
       "channel": "watchlist",
