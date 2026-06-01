@@ -44,8 +44,8 @@ nav{position:sticky;top:0;z-index:100;background:rgba(8,8,8,.97);border-bottom:1
 /* COURSE */
 #course-area{display:none}
 .progress-wrap{background:var(--gray2);border:1px solid var(--border);padding:14px 16px;margin-bottom:24px;display:flex;align-items:center;gap:12px}
-.progress-bar{flex:1;height:4px;background:var(--border);position:relative;overflow:hidden}
-.progress-fill{height:100%;background:var(--gold);transition:width .4s ease;width:0}
+.progress-bar{flex:1;height:8px;background:var(--border);position:relative;overflow:hidden;border-radius:4px}
+.progress-fill{height:100%;background:var(--gold);transition:width .4s ease,background .3s;width:0;border-radius:4px}
 .progress-text{font-size:11px;color:var(--dim);font-weight:600;white-space:nowrap}
 
 .track-label{font-size:10px;letter-spacing:3px;text-transform:uppercase;color:var(--gold);margin:28px 0 12px;padding-bottom:8px;border-bottom:1px solid var(--border)}
@@ -318,7 +318,8 @@ pressure: {
       {h:'Not pre-treating stains',t:'Oil stains on driveways need degreaser ($8/gallon at Home Depot). Spray it 10 min before pressure washing. Without it, the stain stays and the customer thinks you did a bad job.'},
       {h:'Hitting windows with high pressure',t:'You will break a window. Tape off low windows or angle away from them. If you break one, own it and pay for it immediately — your reputation is worth more than a $100 window.'},
       {h:'Leaving stripes',t:'Uneven passes leave visible stripes on concrete. Use a surface cleaner attachment (flat spinning disc) for driveways — it prevents stripes and is 3x faster than a wand.'},
-      {h:'Skipping safety gear',t:'Wear safety glasses (kickback debris is real), hearing protection with gas washers (85+ dB), and closed-toe shoes. Never point the nozzle at anyone. A 3,000 PSI stream can cut skin. Drink water constantly — pressure washing in Texas summer heat is exhausting.'}
+      {h:'Skipping safety gear',t:'Wear safety glasses (kickback debris is real), hearing protection with gas washers (85+ dB), and closed-toe shoes. Never point the nozzle at anyone. A 3,000 PSI stream can cut skin. Drink water constantly — pressure washing in Texas summer heat is exhausting.'},
+      {h:'Spraying near electrical',t:'Cover or avoid outdoor outlets, light fixtures, junction boxes, and breaker panels. Water + electricity + 3,000 PSI = serious electrocution risk. Check the house exterior for outlets before you start spraying. This is one of the top causes of pressure washing injuries.'}
     ]
   },
   upsells: {
@@ -595,7 +596,8 @@ pets: {
       {h:'Taking on aggressive dogs',t:'If a dog shows signs of aggression during a meet-and-greet, politely decline. A dog bite means liability, medical bills, and the end of your pet sitting career. Trust your gut.'},
       {h:'Not doing a meet-and-greet',t:'ALWAYS meet the pet before the first booking. Check: does the dog listen? Is it leash-reactive? Where\'s the food, the leash, the vet info? 15 minutes now saves headaches later.'},
       {h:'Forgetting to send updates',t:'Owners want to see their pets. Send 1-2 photos per visit with a text: "Bella had a great walk! She loved the park today." This is the #1 thing that earns five-star reviews and referrals.'},
-      {h:'Overbooking walks',t:'Don\'t book 10 walks in 4 hours across town. Realistic pace: 3 walks per hour block in the same neighborhood. Factor in drive time. Rushing = poor service.'}
+      {h:'Overbooking walks',t:'Don\'t book 10 walks in 4 hours across town. Realistic pace: 3 walks per hour block in the same neighborhood. Factor in drive time. Rushing = poor service.'},
+      {h:'No emergency plan for overnights',t:'Before any overnight stay, text the owner and confirm: emergency vet name and number, what to do if the pet gets sick, and a spending limit for emergencies (e.g. "call me before anything over $100"). Without this, you could end up with a $2,000 vet bill and no agreement about who pays.'}
     ]
   },
   upsells: {
@@ -613,7 +615,7 @@ organizing: {
     title: 'Pricing & Quoting Organizing',
     points: [
       {h:'Charge by the room, not by the hour',t:'Closet: $150-200. Pantry: $125-175. Garage: $300-500. Kids room: $200-275. Flat-rate feels safer to clients and rewards you for getting faster.'},
-      {h:'Or charge hourly: $50-75/hour',t:'Some organizers prefer hourly for unpredictable spaces. Either works — but quote a maximum ("$65/hour, most pantries take 2-3 hours = $130-195 max") so clients know the ceiling.'},
+      {h:'Or charge hourly: $35-65/hour',t:'Some organizers prefer hourly for unpredictable spaces. Start at $35-40/hour as a teen, raise to $50-65 after you\'ve built a portfolio and reviews. Quote a maximum ("$40/hour, most pantries take 2-3 hours = $80-120 max") so clients know the ceiling.'},
       {h:'Product markup is free money',t:'Buy bins, labels, and drawer dividers from Dollar Tree ($1.25 each). Bill them to the client at $5-8 each "included in the service." 4x markup is standard.'},
       {h:'Virtual consult: $40-50 for 30 min',t:'FaceTime walkthrough where you tell them what to buy, what to toss, and how to arrange it. Zero travel. Good for clients outside your area or for quick wins.'}
     ]
@@ -704,9 +706,9 @@ social: {
   pricing: {
     title: 'Pricing & Quoting Social Media',
     points: [
-      {h:'Base package: $250/month per client',t:'3 posts/week on Instagram + Facebook. You create the content, write captions, schedule posts. That\'s 12-13 posts/month. At 20 min per post, it\'s ~4-5 hours/month per client.'},
+      {h:'Base package: $150-250/month per client',t:'3 posts/week on Instagram + Facebook. You create the content, write captions, schedule posts. That\'s 12-13 posts/month. Realistically takes 6-8 hours/month per client (content creation, scheduling, engagement, analytics). Start at $150/month in small towns, raise to $250 once you can show results.'},
       {h:'Premium: $400/month',t:'5 posts/week + stories + DM management + monthly analytics report. More work but much better results for the client. Position this as "the serious option."'},
-      {h:'Don\'t charge less than $200/month',t:'Below $200, you can\'t deliver quality and the math doesn\'t work. If a client can\'t afford $200/month for social media, they\'re not your client.'},
+      {h:'Don\'t charge less than $150/month',t:'Below $150, you can\'t deliver quality and the math doesn\'t work. At 6-8 hours of real work per client, $150 is about $20/hour. That\'s your floor — go lower and you\'ll burn out or cut corners.'},
       {h:'Charge setup fee: $100-150',t:'First month requires extra work: creating templates, understanding their brand, setting up scheduling tools. Charge a one-time setup fee to cover this.'}
     ]
   },
@@ -754,7 +756,8 @@ var GENERAL = [
     {h:'Work safe in the heat',t:'East Texas summers hit 100+ degrees. Drink water every 20-30 minutes. Take shade breaks. Know the signs of heat exhaustion: dizziness, nausea, confusion, no sweating. If you feel these, STOP and get to shade and water immediately. No job is worth a hospital visit.'},
     {h:'Get the job in writing',t:'Text the customer before every job: "Confirming [service] at [address] on [date] for $[price]." That text is your agreement. It prevents "I thought it was going to be cheaper" disputes. For bigger jobs ($300+), be even more specific about what\'s included.'},
     {h:'Know what you can\'t do',t:'Don\'t take jobs that require a license (electrical, plumbing, HVAC, tree removal near power lines). Don\'t handle hazardous materials. Don\'t do work on roofs or at heights. If a job feels unsafe or over your head, say no and refer it out. Your safety and reputation matter more than one job.'},
-    {h:'Tell your parents what you\'re doing',t:'They should know where you are, what jobs you\'re doing, and when to expect you back. If something goes wrong at a job site — injury, dispute, uncomfortable situation — call a parent first. You\'re running a business, but you\'re also a teenager. That\'s not a weakness, it\'s smart.'}
+    {h:'Tell your parents what you\'re doing',t:'They should know where you are, what jobs you\'re doing, and when to expect you back. If something goes wrong at a job site — injury, dispute, uncomfortable situation — call a parent first. You\'re running a business, but you\'re also a teenager. That\'s not a weakness, it\'s smart.'},
+    {h:'If a customer makes you uncomfortable, leave',t:'You will be alone in strangers\' homes and on their property. If anyone makes you uncomfortable — for any reason — leave immediately. Text a parent the address. You don\'t need a reason and you don\'t owe an explanation. Trust your gut. No amount of money is worth feeling unsafe.'}
   ]},
   {id:'pricing',title:'Pricing Your Work',points:[
     {h:'Know your real cost per job',t:'Add up: gas, supplies, dump fees, wear on equipment. That\'s your cost. If your cost is $40 and you charge $150, your profit is $110. If you don\'t know your cost, you\'re guessing.'},
@@ -954,11 +957,15 @@ function renderLesson(lesson, style, idx, quiz) {
   }
 
   if (quiz) {
-    bodyHtml += '<div class="lesson-quiz" id="lq-' + idx + '">';
+    var shuffled = quiz.opts.slice();
+    var correctText = shuffled[quiz.a];
+    if (Math.random() > 0.5) shuffled.reverse();
+    var newCorrect = shuffled.indexOf(correctText);
+    bodyHtml += '<div class="lesson-quiz" id="lq-' + idx + '" data-ci="' + newCorrect + '">';
     bodyHtml += '<div class="lesson-quiz-q">Quick check: ' + quiz.q + '</div>';
     bodyHtml += '<div class="lesson-quiz-opts">';
-    quiz.opts.forEach(function(opt, oi) {
-      bodyHtml += '<button class="quiz-opt-btn" onclick="checkQuiz(' + idx + ',' + oi + ',' + quiz.a + ',this)">' + opt + '</button>';
+    shuffled.forEach(function(opt, oi) {
+      bodyHtml += '<button class="quiz-opt-btn" onclick="checkQuiz(' + idx + ',' + oi + ',this)">' + opt + '</button>';
     });
     bodyHtml += '</div></div>';
   }
@@ -978,9 +985,10 @@ function toggleLesson(header) {
   lesson.classList.toggle('open');
 }
 
-function checkQuiz(idx, picked, correct, btn) {
+function checkQuiz(idx, picked, btn) {
   var quizEl = document.getElementById('lq-' + idx);
   if (!quizEl) return;
+  var correct = parseInt(quizEl.dataset.ci);
   var btns = quizEl.querySelectorAll('.quiz-opt-btn');
   if (picked === correct) {
     btn.classList.add('correct');
@@ -1046,9 +1054,20 @@ function restoreProgress() {
       if (el && !el.classList.contains('done')) {
         el.classList.add('done');
         el.innerHTML = '&#10003;';
+        var idx = id.replace('check-', '');
+        var quiz = document.getElementById('lq-' + idx);
+        if (quiz) {
+          var btns = quiz.querySelectorAll('.quiz-opt-btn');
+          var ci = parseInt(quiz.dataset.ci);
+          btns.forEach(function(b, bi) {
+            b.disabled = true;
+            if (bi === ci) b.classList.add('correct');
+          });
+        }
       }
     });
     updateProgress();
+    checkMilestones();
   } catch(e) {}
 }
 
@@ -1056,8 +1075,10 @@ function updateProgress() {
   var total = document.querySelectorAll('.lesson').length;
   var done = document.querySelectorAll('.lesson-check.done').length;
   var pct = total > 0 ? Math.round(done / total * 100) : 0;
-  document.getElementById('progress-fill').style.width = pct + '%';
-  document.getElementById('progress-text').textContent = done + ' / ' + total + ' lessons';
+  var fill = document.getElementById('progress-fill');
+  fill.style.width = pct + '%';
+  if (pct >= 50) fill.style.background = 'var(--green)';
+  document.getElementById('progress-text').textContent = pct + '% — ' + done + ' / ' + total + ' lessons';
 }
 
 // ──── Q&A ────
@@ -1151,7 +1172,7 @@ function applyKillState() {
     if (ans) { ans.style.display = 'none'; }
   }
 }
-if (window.location.search.indexOf('bk=0817') >= 0) {
+if (new URLSearchParams(window.location.search).get('bk') === '0817') {
   document.getElementById('kill-switch').style.display = 'block';
   applyKillState();
 }
