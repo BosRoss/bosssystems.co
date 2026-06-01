@@ -81,6 +81,24 @@ nav{position:sticky;top:0;z-index:100;background:rgba(8,8,8,.97);border-bottom:1
 .qa-answer strong{color:var(--text)}
 .qa-loading{color:var(--dim);font-size:12px;font-style:italic;display:none}
 
+/* LESSON QUIZ CHECK */
+.lesson-quiz{margin-top:14px;padding:14px;background:var(--dark);border:1px solid var(--border)}
+.lesson-quiz-q{font-size:12px;font-weight:700;color:var(--text);margin-bottom:10px}
+.lesson-quiz-opts{display:flex;flex-direction:column;gap:6px}
+.quiz-opt-btn{background:var(--gray3);border:1px solid var(--border);color:var(--muted);padding:10px 14px;font-size:12px;cursor:pointer;font-family:var(--font);text-align:left;transition:all .15s}
+.quiz-opt-btn:hover{border-color:var(--dim);color:var(--text)}
+.quiz-opt-btn.correct{border-color:var(--green);color:var(--green);background:var(--green-dim)}
+.quiz-opt-btn.wrong{border-color:#e05c5c;color:#e05c5c;background:rgba(224,92,92,0.06)}
+
+/* MILESTONE */
+.milestone{background:rgba(201,168,76,0.06);border:1px solid var(--border-gold);padding:20px;text-align:center;margin:16px 0;display:none}
+.milestone-text{font-size:14px;font-weight:700;color:var(--gold)}
+.milestone-sub{font-size:12px;color:var(--muted);margin-top:6px}
+
+/* START OVER */
+.start-over{font-size:11px;color:var(--dim);cursor:pointer;border:none;background:none;font-family:var(--font);text-decoration:underline}
+.start-over:hover{color:var(--muted)}
+
 /* KILL SWITCH */
 .kill-switch{position:fixed;bottom:16px;right:16px;z-index:200;display:none}
 .kill-btn{background:rgba(224,92,92,0.1);border:1px solid rgba(224,92,92,0.3);color:#e05c5c;font-size:9px;letter-spacing:1px;padding:6px 12px;cursor:pointer;font-family:var(--font)}
@@ -166,7 +184,10 @@ footer{border-top:1px solid var(--border);padding:20px;text-align:center;font-si
     <div class="progress-wrap">
       <div class="progress-bar"><div class="progress-fill" id="progress-fill"></div></div>
       <div class="progress-text" id="progress-text">0 / 0 lessons</div>
+      <button class="start-over" onclick="startOver()">Start over</button>
     </div>
+    <div class="milestone" id="milestone-field"><div class="milestone-text">Your business track is complete.</div><div class="milestone-sub">You know enough about pricing, equipment, and mistakes to take your first job.</div></div>
+    <div class="milestone" id="milestone-all"><div class="milestone-text">You finished BOSS Learn.</div><div class="milestone-sub">You're more prepared than 90% of people who start a service business. Go get your first customer.</div></div>
     <div id="course-content"></div>
 
     <!-- QA -->
@@ -479,7 +500,7 @@ pool: {
     title: 'Common Mistakes',
     points: [
       {h:'Not testing chemicals first',t:'Always test BEFORE adding anything. Adding chlorine to a pool with high pH is wasted money — the chlorine won\'t work. Test > adjust pH > then chlorinate.'},
-      {h:'Mixing chemicals',t:'NEVER mix chlorine and acid. It creates toxic chlorine gas. Add chemicals separately, at different times. This is a real safety issue, not just a tip.'},
+      {h:'Mixing chemicals',t:'NEVER mix chlorine and acid. It creates toxic chlorine gas. Add chemicals separately, at different times. Also never leave chlorine tabs in a sealed container in a hot car — Texas summer cars hit 150+ degrees and chlorine off-gassing in an enclosed space can hospitalize you. Transport chemicals with windows cracked. This is a real safety issue, not just a tip.'},
       {h:'Ignoring the filter',t:'A dirty filter = a dirty pool no matter how much chemical you dump in. Clean or backwash the filter every 2-4 weeks. Ask the homeowner when it was last cleaned.'},
       {h:'Over-promising on green pools',t:'A green pool takes 2-5 days to clear, not 2 hours. Tell customers "48-72 hours minimum." If you promise same-day and fail, you look incompetent. Underpromise, overdeliver.'},
       {h:'Ignoring safety around pools',t:'Never service a pool when children are in or near the water unsupervised. Always know where the equipment shutoff is. If you splash muriatic acid or concentrated chlorine on skin, flush with water for 15+ minutes immediately. Carry a gallon of water for emergency rinses. This is real — pool chemicals cause burns.'}
@@ -729,7 +750,7 @@ social: {
 // ──── GENERAL OWNERSHIP LESSONS ────
 var GENERAL = [
   {id:'safety',title:'Protecting Yourself & Your Business',points:[
-    {h:'Get general liability insurance',t:'$25-50/month through providers like Next Insurance or Thimble. Covers you if you damage a client\'s property (break a window pressure washing, scratch a car detailing). Without it, YOU and your parents pay out of pocket. Many clients will ask for proof of insurance before hiring you.'},
+    {h:'Get general liability insurance',t:'$25-50/month through providers like Next Insurance or Thimble. Covers you if you damage a client\'s property (break a window pressure washing, scratch a car detailing). Without it, YOU and your parents pay out of pocket. Important: if you\'re under 18, a parent must be the named insured on the policy. Also tell your family\'s auto insurer if you\'re using a vehicle for business — personal auto doesn\'t cover commercial use.'},
     {h:'Work safe in the heat',t:'East Texas summers hit 100+ degrees. Drink water every 20-30 minutes. Take shade breaks. Know the signs of heat exhaustion: dizziness, nausea, confusion, no sweating. If you feel these, STOP and get to shade and water immediately. No job is worth a hospital visit.'},
     {h:'Get the job in writing',t:'Text the customer before every job: "Confirming [service] at [address] on [date] for $[price]." That text is your agreement. It prevents "I thought it was going to be cheaper" disputes. For bigger jobs ($300+), be even more specific about what\'s included.'},
     {h:'Know what you can\'t do',t:'Don\'t take jobs that require a license (electrical, plumbing, HVAC, tree removal near power lines). Don\'t handle hazardous materials. Don\'t do work on roofs or at heights. If a job feels unsafe or over your head, say no and refer it out. Your safety and reputation matter more than one job.'},
@@ -739,7 +760,8 @@ var GENERAL = [
     {h:'Know your real cost per job',t:'Add up: gas, supplies, dump fees, wear on equipment. That\'s your cost. If your cost is $40 and you charge $150, your profit is $110. If you don\'t know your cost, you\'re guessing.'},
     {h:'Don\'t price based on what you\'d pay',t:'You\'re 16-17. Your sense of "expensive" is skewed low. A $200 driveway wash sounds like a lot to you — to a homeowner it\'s Tuesday. Price based on the market, not your wallet.'},
     {h:'Round numbers look professional',t:'$150 beats $147. $250 beats $243. Clean, round numbers feel confident. Weird numbers feel like you\'re making it up.'},
-    {h:'If nobody pushes back on price, you\'re too cheap',t:'Ideal: 1 in 5 people says "that\'s a bit much." If everyone says yes instantly, raise your prices 15-20%. You\'re leaving money on the table.'}
+    {h:'If nobody pushes back on price, you\'re too cheap',t:'Ideal: 1 in 5 people says "that\'s a bit much." If everyone says yes instantly, raise your prices 15-20%. You\'re leaving money on the table.'},
+    {h:'Start at the low end for your first 5 jobs',t:'The pricing ranges in your business section are market rates for experienced operators. As a new teen with no reviews, start at the low end of those ranges. After 5 jobs and some reviews, raise to the middle. After 15+ jobs, charge the full rate. Earning your reputation first is smarter than pricing yourself out of every job.'}
   ]},
   {id:'getting',title:'Getting Your First 10 Customers',points:[
     {h:'Start with people who already trust you',t:'Parents\' friends, neighbors, family friends, your parents\' coworkers. Text them directly: "Hey I started a [business] this summer. Can I do yours? First one\'s discounted." 3-5 will say yes.'},
@@ -786,10 +808,31 @@ var GENERAL = [
   {id:'growth',title:'When to Raise Prices or Grow',points:[
     {h:'Raise prices when you\'re consistently fully booked',t:'If you\'re turning away work, you\'re too cheap. Raise prices 10-15% for new customers first. Existing customers stay at the old rate for 60 days, then catch up.'},
     {h:'Raise prices when you learn something new',t:'Added a new skill, bought better equipment, got faster? Your service is now worth more. Communicate it: "I\'ve upgraded my equipment — new rate is $X."'},
-    {h:'Hire help when you\'re leaving $500+/week on the table',t:'If you\'re turning away that much work, bring a friend as a helper and pay them per job (e.g. $50 for a half-day). Keep it casual — if you pay anyone over $600/year you need to report it to the IRS (1099). Don\'t do formal W-2 employment as a teen, the paperwork isn\'t worth it yet.'},
+    {h:'Hire help when you\'re leaving $500+/week on the table',t:'If you\'re turning away that much work, bring a friend as a helper and pay them per job (e.g. $50 for a half-day). Before paying anyone, have your parents talk to an accountant — the IRS has rules about W-2 vs 1099 classification, and getting it wrong has real penalties. If you pay anyone over $600/year, you\'re required to report it.'},
     {h:'Don\'t grow just to grow',t:'10 happy clients at $150/each beats 25 stressed clients at $75/each. Sustainable > big. You want to enjoy the summer, not hate your life by August.'}
   ]}
 ];
+
+// ──── QUIZ QUESTIONS PER LESSON ────
+var FIELD_QUIZ = {
+  pricing: {q:'How should you charge for most service jobs?',opts:['Flat rate or by the job','By the hour'],a:0},
+  equipment: {q:'When should you invest in expensive equipment?',opts:['After you have steady clients and income','Before your first job so you look professional'],a:0},
+  season: {q:'What should you do during your slow season?',opts:['Find related services to keep revenue coming in','Wait it out — business will pick up'],a:0},
+  mistakes: {q:'When you make a mistake on a job, what do you do?',opts:['Own it immediately, fix it, no charge','Hope the client doesn\'t notice'],a:0},
+  upsells: {q:'What\'s the best time to offer an add-on service?',opts:['After you\'ve done the main job well','Before they\'ve seen any of your work'],a:0}
+};
+var GEN_QUIZ = {
+  safety: {q:'Do you need liability insurance?',opts:['Yes — $25-50/month protects you and your family','No — that\'s for big companies only'],a:0},
+  pricing: {q:'If no customer ever pushes back on your price, what does that mean?',opts:['You\'re probably too cheap — raise prices 15%','You\'ve found the perfect price point'],a:0},
+  getting: {q:'Where should your first customers come from?',opts:['People who already know and trust you','Cold-calling strangers from the phone book'],a:0},
+  keeping: {q:'What\'s the #1 thing that keeps customers coming back?',opts:['Showing up when you said you would','Being the cheapest option in town'],a:0},
+  money: {q:'How much of your earnings should you set aside for taxes?',opts:['25-30% of everything','5-10% should be enough'],a:0},
+  scheduling: {q:'Why should you batch jobs by neighborhood?',opts:['Driving between jobs kills your hourly rate','It\'s easier to find parking'],a:0},
+  service: {q:'A customer is upset about your work. What do you say?',opts:['I understand — let me make this right','Actually, I did do that correctly'],a:0},
+  reviews: {q:'When\'s the best time to ask for a Google review?',opts:['Right after they see the finished result','A week later, by text'],a:0},
+  numbers: {q:'How often should you track revenue and costs?',opts:['Every week — 5 minutes on Sunday','Once a month, at tax time'],a:0},
+  growth: {q:'When should you raise your prices?',opts:['When you\'re consistently turning away work','After your very first job'],a:0}
+};
 
 // ──── BUILD COURSE ────
 function buildCourse() {
@@ -826,17 +869,35 @@ function buildCourse() {
   fieldLessons.forEach(function(key, i) {
     var lesson = field[key];
     if (!lesson) return;
-    html += renderLesson(lesson, style, i);
+    html += renderLesson(lesson, style, i, FIELD_QUIZ[key]);
   });
 
   html += '<div class="track-label">RUNNING A BUSINESS</div>';
   generalLessons.forEach(function(lesson, i) {
-    html += renderLesson(lesson, style, fieldLessons.length + i);
+    html += renderLesson(lesson, style, fieldLessons.length + i, GEN_QUIZ[lesson.id]);
   });
 
   document.getElementById('course-content').innerHTML = html;
 
-  if (answers.pace === 'bit') {
+  if (answers.pace === 'pick') {
+    var trackLabels = document.querySelectorAll('.track-label');
+    trackLabels.forEach(function(tl) {
+      tl.style.cursor = 'pointer';
+      var next = tl.nextElementSibling;
+      while (next && !next.classList.contains('track-label')) {
+        if (next.classList.contains('lesson')) next.style.display = 'none';
+        next = next.nextElementSibling;
+      }
+      tl.onclick = function() {
+        var n = this.nextElementSibling;
+        while (n && !n.classList.contains('track-label')) {
+          if (n.classList.contains('lesson')) n.style.display = n.style.display === 'none' ? '' : 'none';
+          n = n.nextElementSibling;
+        }
+      };
+      tl.textContent = tl.textContent + ' (tap to expand)';
+    });
+  } else if (answers.pace === 'bit') {
     var lessons = document.querySelectorAll('.lesson');
     for (var i = 5; i < lessons.length; i++) {
       lessons[i].style.display = 'none';
@@ -868,7 +929,7 @@ function buildCourse() {
   restoreProgress();
 }
 
-function renderLesson(lesson, style, idx) {
+function renderLesson(lesson, style, idx, quiz) {
   var bodyHtml = '';
   var pts = lesson.points;
 
@@ -892,6 +953,16 @@ function renderLesson(lesson, style, idx) {
     });
   }
 
+  if (quiz) {
+    bodyHtml += '<div class="lesson-quiz" id="lq-' + idx + '">';
+    bodyHtml += '<div class="lesson-quiz-q">Quick check: ' + quiz.q + '</div>';
+    bodyHtml += '<div class="lesson-quiz-opts">';
+    quiz.opts.forEach(function(opt, oi) {
+      bodyHtml += '<button class="quiz-opt-btn" onclick="checkQuiz(' + idx + ',' + oi + ',' + quiz.a + ',this)">' + opt + '</button>';
+    });
+    bodyHtml += '</div></div>';
+  }
+
   return '<div class="lesson" data-idx="' + idx + '">' +
     '<div class="lesson-header" onclick="toggleLesson(this)">' +
       '<div class="lesson-check" id="check-' + idx + '"></div>' +
@@ -904,18 +975,57 @@ function renderLesson(lesson, style, idx) {
 
 function toggleLesson(header) {
   var lesson = header.parentElement;
-  var wasOpen = lesson.classList.contains('open');
   lesson.classList.toggle('open');
-  if (wasOpen) {
-    var idx = lesson.dataset.idx;
+}
+
+function checkQuiz(idx, picked, correct, btn) {
+  var quizEl = document.getElementById('lq-' + idx);
+  if (!quizEl) return;
+  var btns = quizEl.querySelectorAll('.quiz-opt-btn');
+  if (picked === correct) {
+    btn.classList.add('correct');
+    btns.forEach(function(b){ b.disabled = true; });
     var check = document.getElementById('check-' + idx);
     if (check && !check.classList.contains('done')) {
       check.classList.add('done');
       check.innerHTML = '&#10003;';
       saveProgress();
       updateProgress();
+      checkMilestones();
     }
+  } else {
+    btn.classList.add('wrong');
+    btn.disabled = true;
   }
+}
+
+function startOver() {
+  localStorage.removeItem('learn_biz');
+  localStorage.removeItem('learn_style');
+  localStorage.removeItem('learn_depth');
+  localStorage.removeItem('learn_pace');
+  localStorage.removeItem('learn_progress');
+  document.getElementById('course-area').style.display = 'none';
+  document.getElementById('qa-section').style.display = 'none';
+  document.getElementById('quiz-section').style.display = '';
+  document.getElementById('course-content').innerHTML = '';
+  document.getElementById('milestone-field').style.display = 'none';
+  document.getElementById('milestone-all').style.display = 'none';
+  document.querySelectorAll('.q-opt').forEach(function(o){ o.classList.remove('selected'); });
+  document.getElementById('biz-select').value = '';
+  answers = {};
+  document.getElementById('build-btn').disabled = true;
+}
+
+function checkMilestones() {
+  var lessons = document.querySelectorAll('.lesson');
+  var fieldCount = 0; var fieldDone = 0;
+  var totalDone = document.querySelectorAll('.lesson-check.done').length;
+  lessons.forEach(function(l, i) {
+    if (i < 5) { fieldCount++; if (document.getElementById('check-' + i) && document.getElementById('check-' + i).classList.contains('done')) fieldDone++; }
+  });
+  if (fieldDone >= 5) document.getElementById('milestone-field').style.display = 'block';
+  if (totalDone >= lessons.length && lessons.length > 0) document.getElementById('milestone-all').style.display = 'block';
 }
 
 function saveProgress() {
@@ -990,8 +1100,7 @@ function askQuestion() {
   })
   .then(function(res) { return res.json(); })
   .then(function(data) {
-    qaDaily++;
-    var qaCt = parseInt(localStorage.getItem('learn_qa_count') || '0', 10) + 1;
+    var qaCt = getQaCount() + 1;
     localStorage.setItem('learn_qa_count', qaCt);
     localStorage.setItem('learn_qa_date', new Date().toDateString());
     document.getElementById('qa-answer').textContent = data.answer || data.response || 'No answer received. Try rephrasing your question.';
@@ -1042,7 +1151,7 @@ function applyKillState() {
     if (ans) { ans.style.display = 'none'; }
   }
 }
-if (window.location.search.indexOf('admin=1') >= 0) {
+if (window.location.search.indexOf('bk=0817') >= 0) {
   document.getElementById('kill-switch').style.display = 'block';
   applyKillState();
 }
