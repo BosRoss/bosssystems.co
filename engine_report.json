@@ -1,22 +1,14 @@
 {
-  "generated": "2026-06-01T04:32:42.054246+00:00",
+  "generated": "2026-06-01T19:56:31.996151+00:00",
   "engine_state": "active",
   "signals": [
     {
-      "type": "flood",
-      "area": "Lubbock, TX",
-      "niche": "plumbing",
-      "action": "Flood warnings in Lubbock, TX. Plumbers, restoration, mold companies will spike.",
+      "type": "storm",
+      "area": "Alcorn, MS; Benton, MS; Calhoun, MS; Chickasaw, MS; Coahoma, MS; DeSoto, MS; Itawamba, MS; Lafayette, MS; Lee, MS; Marshall, MS; Monroe, MS; Panola, MS; Pontotoc, MS; Prentiss, MS; Quitman, MS; Tallah",
+      "niche": "roofing",
+      "action": "Storm damage in Alcorn, MS; Benton, MS; Calhoun, MS; Chickasaw, MS; Coahoma, MS; DeSoto, MS; Itawamba, MS; Lafayette, MS; Lee, MS; Marshall, MS; Monroe, MS; Panola, MS; Pontotoc, MS; Prentiss, MS; Quitman, MS; Tallah. Roofers and restoration companies about to get flooded.",
       "urgency": "today",
-      "pitch_hook": "Water damage calls are coming. Every one you miss is $500+ walking away."
-    },
-    {
-      "type": "flood",
-      "area": "Foard, TX",
-      "niche": "plumbing",
-      "action": "Flood warnings in Foard, TX. Plumbers, restoration, mold companies will spike.",
-      "urgency": "today",
-      "pitch_hook": "Water damage calls are coming. Every one you miss is $500+ walking away."
+      "pitch_hook": "After a storm like that, you'll get 10x your normal call volume. Ready for it?"
     },
     {
       "type": "flood",
@@ -27,12 +19,12 @@
       "pitch_hook": "Water damage calls are coming. Every one you miss is $500+ walking away."
     },
     {
-      "type": "flood",
-      "area": "St. Tammany, LA; Hancock, MS; Pearl River, MS",
-      "niche": "plumbing",
-      "action": "Flood warnings in St. Tammany, LA; Hancock, MS; Pearl River, MS. Plumbers, restoration, mold companies will spike.",
+      "type": "storm",
+      "area": "Clay, MS; Grenada, MS; Lowndes, MS; Noxubee, MS; Oktibbeha, MS; Webster, MS",
+      "niche": "roofing",
+      "action": "Storm damage in Clay, MS; Grenada, MS; Lowndes, MS; Noxubee, MS; Oktibbeha, MS; Webster, MS. Roofers and restoration companies about to get flooded.",
       "urgency": "today",
-      "pitch_hook": "Water damage calls are coming. Every one you miss is $500+ walking away."
+      "pitch_hook": "After a storm like that, you'll get 10x your normal call volume. Ready for it?"
     },
     {
       "type": "flood",
@@ -43,6 +35,30 @@
       "pitch_hook": "Water damage calls are coming. Every one you miss is $500+ walking away."
     },
     {
+      "type": "storm",
+      "area": "Benton, AR; Carroll, AR; Crawford, AR; Franklin, AR; Madison, AR; Sebastian, AR; Washington, AR",
+      "niche": "roofing",
+      "action": "Storm damage in Benton, AR; Carroll, AR; Crawford, AR; Franklin, AR; Madison, AR; Sebastian, AR; Washington, AR. Roofers and restoration companies about to get flooded.",
+      "urgency": "today",
+      "pitch_hook": "After a storm like that, you'll get 10x your normal call volume. Ready for it?"
+    },
+    {
+      "type": "storm",
+      "area": "Arkansas, AR; Baxter, AR; Boone, AR; Cleburne, AR; Conway, AR; Faulkner, AR; Fulton, AR; Garland, AR; Independence, AR; Izard, AR; Jackson, AR; Jefferson, AR; Johnson, AR; Lawrence, AR; Logan, AR; Lon",
+      "niche": "roofing",
+      "action": "Storm damage in Arkansas, AR; Baxter, AR; Boone, AR; Cleburne, AR; Conway, AR; Faulkner, AR; Fulton, AR; Garland, AR; Independence, AR; Izard, AR; Jackson, AR; Jefferson, AR; Johnson, AR; Lawrence, AR; Logan, AR; Lon. Roofers and restoration companies about to get flooded.",
+      "urgency": "today",
+      "pitch_hook": "After a storm like that, you'll get 10x your normal call volume. Ready for it?"
+    },
+    {
+      "type": "storm",
+      "area": "Craighead, AR; Crittenden, AR; Cross, AR; Greene, AR; Lee, AR; Phillips, AR; Poinsett, AR; St. Francis, AR",
+      "niche": "roofing",
+      "action": "Storm damage in Craighead, AR; Crittenden, AR; Cross, AR; Greene, AR; Lee, AR; Phillips, AR; Poinsett, AR; St. Francis, AR. Roofers and restoration companies about to get flooded.",
+      "urgency": "today",
+      "pitch_hook": "After a storm like that, you'll get 10x your normal call volume. Ready for it?"
+    },
+    {
       "type": "flood",
       "area": "Jackson, AR; Woodruff, AR",
       "niche": "plumbing",
@@ -51,36 +67,20 @@
       "pitch_hook": "Water damage calls are coming. Every one you miss is $500+ walking away."
     },
     {
-      "type": "flood",
-      "area": "White, AR; Woodruff, AR",
-      "niche": "plumbing",
-      "action": "Flood warnings in White, AR; Woodruff, AR. Plumbers, restoration, mold companies will spike.",
-      "urgency": "today",
-      "pitch_hook": "Water damage calls are coming. Every one you miss is $500+ walking away."
-    },
-    {
-      "type": "flood",
-      "area": "Major, OK",
-      "niche": "plumbing",
-      "action": "Flood warnings in Major, OK. Plumbers, restoration, mold companies will spike.",
-      "urgency": "today",
-      "pitch_hook": "Water damage calls are coming. Every one you miss is $500+ walking away."
-    },
-    {
       "type": "storm",
-      "area": "Blaine, OK; Dewey, OK; Major, OK",
+      "area": "Jefferson, AL; St. Clair, AL",
       "niche": "roofing",
-      "action": "Storm damage in Blaine, OK; Dewey, OK; Major, OK. Roofers and restoration companies about to get flooded.",
+      "action": "Storm damage in Jefferson, AL; St. Clair, AL. Roofers and restoration companies about to get flooded.",
       "urgency": "today",
       "pitch_hook": "After a storm like that, you'll get 10x your normal call volume. Ready for it?"
     },
     {
-      "type": "flood",
-      "area": "Blaine, OK; Dewey, OK; Major, OK",
-      "niche": "plumbing",
-      "action": "Flood warnings in Blaine, OK; Dewey, OK; Major, OK. Plumbers, restoration, mold companies will spike.",
+      "type": "storm",
+      "area": "Pickens, AL; Tuscaloosa, AL",
+      "niche": "roofing",
+      "action": "Storm damage in Pickens, AL; Tuscaloosa, AL. Roofers and restoration companies about to get flooded.",
       "urgency": "today",
-      "pitch_hook": "Water damage calls are coming. Every one you miss is $500+ walking away."
+      "pitch_hook": "After a storm like that, you'll get 10x your normal call volume. Ready for it?"
     }
   ],
   "leads": [
@@ -239,55 +239,55 @@
   "feeds": [
     {
       "name": "NOAA",
-      "last_hit": "2026-06-01T04:26:38.001361+00:00",
+      "last_hit": "2026-06-01T19:49:32.455233+00:00",
       "status": "yellow",
       "data_points_today": 0
     },
     {
       "name": "REDDIT",
-      "last_hit": "2026-06-01T04:26:38.001361+00:00",
+      "last_hit": "2026-06-01T19:49:32.455233+00:00",
       "status": "green",
-      "data_points_today": 801
+      "data_points_today": 781
     },
     {
       "name": "USGS",
-      "last_hit": "2026-06-01T04:26:38.001361+00:00",
+      "last_hit": "2026-06-01T19:49:32.455233+00:00",
       "status": "yellow",
       "data_points_today": 0
     },
     {
       "name": "HACKERNEWS",
-      "last_hit": "2026-06-01T04:26:38.001361+00:00",
+      "last_hit": "2026-06-01T19:49:32.455233+00:00",
       "status": "green",
       "data_points_today": 30
     },
     {
       "name": "FEMA",
-      "last_hit": "2026-06-01T04:26:38.001361+00:00",
+      "last_hit": "2026-06-01T19:49:32.455233+00:00",
       "status": "green",
       "data_points_today": 20
     },
     {
       "name": "COMMODITIES",
-      "last_hit": "2026-06-01T04:26:38.001361+00:00",
+      "last_hit": "2026-06-01T19:49:32.455233+00:00",
       "status": "green",
       "data_points_today": 7
     },
     {
       "name": "RSS",
-      "last_hit": "2026-06-01T04:26:38.001361+00:00",
+      "last_hit": "2026-06-01T19:49:32.455233+00:00",
       "status": "green",
       "data_points_today": 160
     },
     {
       "name": "FRED",
-      "last_hit": "2026-06-01T04:26:38.001361+00:00",
+      "last_hit": "2026-06-01T19:49:32.455233+00:00",
       "status": "yellow",
       "data_points_today": 0
     },
     {
       "name": "BLS",
-      "last_hit": "2026-06-01T04:26:38.001361+00:00",
+      "last_hit": "2026-06-01T19:49:32.455233+00:00",
       "status": "green",
       "data_points_today": 9
     }
