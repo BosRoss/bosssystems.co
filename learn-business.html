@@ -89,7 +89,11 @@ nav{position:sticky;top:0;z-index:100;background:rgba(8,8,8,.97);border-bottom:1
 .lesson-quiz-opts{display:flex;flex-direction:column;gap:6px}
 .quiz-opt-btn{background:var(--gray3);border:1px solid var(--border);color:var(--muted);padding:10px 14px;font-size:12px;cursor:pointer;font-family:var(--font);text-align:left;transition:all .15s}
 .quiz-opt-btn:hover{border-color:var(--dim);color:var(--text)}
-.quiz-opt-btn.correct{border-color:var(--green);color:var(--green);background:var(--green-dim)}
+.quiz-opt-btn.correct{border-color:var(--green);color:var(--green);background:var(--green-dim);animation:correctPulse .4s ease}
+@keyframes correctPulse{0%{transform:scale(1)}30%{transform:scale(1.04)}60%{transform:scale(0.98)}100%{transform:scale(1)}}
+
+/* LESSON OBJECTIVE */
+.lesson-objective{font-size:12px;color:var(--gold);font-style:italic;margin-bottom:10px;padding-bottom:8px;border-bottom:1px solid var(--border)}
 .quiz-opt-btn.wrong{border-color:#e05c5c;color:#e05c5c;background:rgba(224,92,92,0.06)}
 
 /* MILESTONE */
@@ -235,10 +239,12 @@ footer{border-top:1px solid var(--border);padding:20px;text-align:center;font-si
     <!-- QA -->
     <div id="qa-section">
       <div class="qa-title">Ask a Question</div>
+      <div style="font-size:11px;color:var(--dim);margin-bottom:8px" id="qa-counter"></div>
       <div class="qa-input-wrap">
         <input class="qa-input" id="qa-input" type="text" placeholder="Ask anything about your business..." maxlength="500">
         <button class="qa-send" id="qa-send" onclick="askQuestion()">Ask</button>
       </div>
+      <div style="font-size:11px;color:var(--dim);margin-bottom:12px">Try: "How do I handle a no-show customer?" or "What should I charge for my first job?" or "How do I deal with a bad review?"</div>
       <div class="qa-loading" id="qa-loading">Thinking...</div>
       <div class="qa-answer" id="qa-answer"></div>
     </div>
@@ -402,7 +408,7 @@ lawn: {
   pricing: {
     title: 'Pricing & Quoting Lawn Care',
     points: [
-      {h:'Price by yard size, not time',t:'Small yard (under 5,000 sq ft): $35-45. Medium (5,000-10,000): $45-60. Large (10,000+): $60-80. Measure using Google Maps (right-click > measure distance).'},
+      {h:'Price by yard size, not time',t:'Small yard (under 5,000 sq ft): $40-50. Medium (5,000-10,000): $45-60. Large (10,000+): $60-80. Measure using Google Maps (right-click > measure distance).'},
       {h:'Charge weekly, bill monthly',t:'"$50/week" sounds cheap. "$200/month" sounds like a bill. Say the weekly number, charge monthly. Venmo on the 1st. Simple.'},
       {h:'Don\'t discount for "easy" yards',t:'Even a tiny yard takes 20-30 min with drive time. Your minimum should be $35 no matter what. Time is time.'},
       {h:'Gas + blade wear = $5-8 per yard',t:'Factor this in. 10 yards = $50-80 in gas and wear. Your profit is revenue minus this, not just revenue. Track gas receipts from day one.'}
@@ -478,7 +484,8 @@ cleaning: {
       {h:'Not setting a cleaning order',t:'Clean top to bottom, back to front. Dust falls down — if you vacuum first then dust, you have to vacuum again. Bathrooms first, kitchen second, bedrooms third, living areas last.'},
       {h:'Spending too long on one house',t:'Set a time target per house size. 2BR = 2 hours max. If you\'re spending 3 hours on a 2BR, you\'re either too thorough or your system is wrong. Time yourself.'},
       {h:'Forgetting to communicate',t:'"On my way!" text, arrival text, "All done — locked up!" text. Clients want to know you came, especially if they\'re at work. Your AI sends reminders but YOU send the "done" text.'},
-      {h:'Breaking something and hiding it',t:'You will knock over a vase or scratch a floor eventually. Tell them immediately, offer to pay for it. Hiding it = losing the client. Honesty = keeping them for life.'}
+      {h:'Breaking something and hiding it',t:'You will knock over a vase or scratch a floor eventually. Tell them immediately, offer to pay for it. Hiding it = losing the client. Honesty = keeping them for life.'},
+      {h:'Mixing bleach and ammonia products',t:'Your cleaning kit probably has bleach-based products (bathroom cleaner, toilet cleaner) and ammonia-based products (glass cleaner, some all-purpose sprays). NEVER use both in the same room without rinsing between — mixing them produces chloramine gas that causes headaches, respiratory irritation, and can hospitalize you in enclosed bathrooms. Read labels. If a product contains sodium hypochlorite, don\'t use ammonia-based products near it.'}
     ]
   },
   upsells: {
@@ -521,7 +528,7 @@ detailing: {
   mistakes: {
     title: 'Common Mistakes',
     points: [
-      {h:'Detailing in direct sunlight',t:'Products dry on surfaces before you can wipe them off, leaving streaks and residue. Park in shade or use a popup canopy ($30). Huge quality difference.'},
+      {h:'Detailing in direct sunlight or extreme heat',t:'Products dry on surfaces before you can wipe them off, leaving streaks and residue. Worse: wax, dressing, and sealant applied on hot paint can chemically bond permanently — not just streaks, actual paint damage that requires machine polishing to fix. Park in shade or use a popup canopy ($30). Never apply wax or sealant when the paint is hot to the touch.'},
       {h:'Using the wrong products on leather',t:'Regular cleaner dries out leather seats. Use leather-specific cleaner + conditioner. One cracked leather seat = one angry customer and a bad review.'},
       {h:'Not taking before/after photos',t:'The best marketing for detailing is disgusting before photos next to spotless after photos. Take them for EVERY car. Post on social media weekly.'},
       {h:'Forgetting cupholders and vents',t:'Customers check these. Dirty cupholders = "they didn\'t really clean it." Use cotton swabs for vents and a brush for cupholders. 2 minutes of detail work changes the whole perception.'}
@@ -570,7 +577,7 @@ pool: {
       {h:'Not testing chemicals first',t:'Always test BEFORE adding anything. The correct sequence: Test > adjust total alkalinity first (it controls pH stability) > then adjust pH > then add chlorine. Always have the pump running when you add any chemical — chemicals need circulation to mix properly and can bleach the pool surface if they settle in one spot. If you adjust pH without fixing alkalinity, pH drifts back within 48 hours and you\'ll chase it all season. Also check cyanuric acid (stabilizer) — without it in Texas summer sun, chlorine burns off in hours.'},
       {h:'Mixing chemicals',t:'NEVER mix chlorine and acid. It creates toxic chlorine gas. Add chemicals separately, at different times. Also never leave chlorine tabs in a sealed container in a hot car — Texas summer cars hit 150+ degrees and chlorine off-gassing in an enclosed space can hospitalize you. Transport chemicals with windows cracked. This is a real safety issue, not just a tip.'},
       {h:'Ignoring the filter',t:'A dirty filter = a dirty pool no matter how much chemical you dump in. Clean or backwash the filter every 2-4 weeks. Ask the homeowner when it was last cleaned.'},
-      {h:'Over-promising on green pools',t:'A green pool takes 2-5 days to clear, not 2 hours. Tell customers "48-72 hours minimum." If you promise same-day and fail, you look incompetent. Underpromise, overdeliver.'},
+      {h:'Over-promising on green pools',t:'A green pool takes 2-5 days to clear, not 2 hours. Tell customers "48-72 hours minimum." Backwash or clean the filter during the process — a filter clogged with algae stops clearing the pool and is the #1 reason green-to-clean jobs stall. If you promise same-day and fail, you look incompetent. Underpromise, overdeliver.'},
       {h:'Ignoring safety around pools',t:'Never service a pool when children are in or near the water unsupervised. Always know where the equipment shutoff is. If you splash muriatic acid or concentrated chlorine on skin, flush with water for 15+ minutes immediately. Carry a gallon of water for emergency rinses. This is real — pool chemicals cause burns.'}
     ]
   },
@@ -665,7 +672,7 @@ pets: {
       {h:'Forgetting to send updates',t:'Owners want to see their pets. Send 1-2 photos per visit with a text: "Bella had a great walk! She loved the park today." This is the #1 thing that earns five-star reviews and referrals.'},
       {h:'Overbooking walks',t:'Don\'t book 10 walks in 4 hours across town. Realistic pace: 3 walks per hour block in the same neighborhood. Factor in drive time. Rushing = poor service.'},
       {h:'No emergency plan for overnights',t:'Before any overnight stay, text the owner and confirm: emergency vet name and number, what to do if the pet gets sick, and a spending limit for emergencies (e.g. "call me before anything over $100"). Without this, you could end up with a $2,000 vet bill and no agreement about who pays.'},
-      {h:'No liability agreement for pet services',t:'Have clients sign a simple release form (free templates online) before any booking — especially overnights. It should cover: what happens if the pet gets sick or injured, who pays vet bills, and what happens if the pet escapes or bites someone. If a dog bites a neighbor during a walk you\'re responsible for, that\'s third-party bite liability — the #1 reason pet sitters get sued. A signed form protects you and your family\'s homeowner\'s insurance.'}
+      {h:'No liability agreement for pet services',t:'Have clients sign a simple release form (free templates online) before any booking — especially overnights. It should cover: what happens if the pet gets sick or injured, who pays vet bills, and what happens if the pet escapes or bites someone. If a dog bites a neighbor during a walk you\'re responsible for, that\'s third-party bite liability — the #1 reason pet sitters get sued. A signed form protects you and your family\'s homeowner\'s insurance. Also check: some home insurance policies exclude certain breeds (pit bulls, Rottweilers, Dobermans). If you sit an excluded breed and an incident happens, your family\'s policy may not cover it.'}
     ]
   },
   upsells: {
@@ -931,21 +938,21 @@ function buildCourse() {
   if (!field) return;
 
   var proofLines = {
-    junk:'A 17-year-old in Tyler ran junk removal jobs all last summer and cleared $4,200 by August.',
-    pressure:'One teen in East Texas did 3 pressure washing jobs on his first rental day and made $650.',
-    lawn:'A high school junior in Longview built 12 lawn accounts in 6 weeks — mowing every Saturday.',
-    cleaning:'A 16-year-old in Marshall booked 8 recurring cleaning clients by Week 4 of summer.',
-    detailing:'A teen in Tyler detailed 6 cars in one Saturday at a church parking lot — $540 in a day.',
-    pool:'A 17-year-old built a 15-pool route in one neighborhood — $1,875/month for one day of work per week.',
-    events:'A high schooler in Nacogdoches did 11 graduation party setups in May alone.',
-    pets:'A teen pet sitter in Tyler booked every holiday weekend solid — $300+ per long weekend.',
-    organizing:'A 16-year-old organized 3 pantries via Nextdoor in her first week — $450 earned.',
-    photo:'A teen photographer booked 8 fall mini sessions in one Saturday — $1,200 before editing.',
-    social:'A high schooler managed 4 local restaurant Instagrams — $800/month while doing homework.'
+    junk:'Jake, 17, ran junk removal in Tyler last summer and cleared $4,200 by August — starting with his dad\'s pickup and $30 in supplies.',
+    pressure:'Marcus, 16, did 3 pressure washing jobs on his first rental day in Longview and made $650 before he even owned a machine.',
+    lawn:'Sofia, 17, built 12 lawn accounts in Nacogdoches in 6 weeks — started by texting her mom\'s coworkers.',
+    cleaning:'Alyssa, 16, booked 8 recurring cleaning clients in Marshall by Week 4 of summer — all from one Nextdoor post.',
+    detailing:'Tyler, 17, detailed 6 cars in one Saturday at a church parking lot in Tyler — $540 in a day with a $50 supply kit.',
+    pool:'Ryan, 17, built a 15-pool route in one Tyler neighborhood — $1,875/month for one day of work per week.',
+    events:'Mia, 16, did 11 graduation party setups in Nacogdoches in May alone — booked out 3 weeks in advance.',
+    pets:'Emma, 17, booked every holiday weekend solid for pet sitting in Tyler — $300+ per long weekend.',
+    organizing:'Jade, 16, organized 3 pantries via Nextdoor in her first week in Longview — $450 earned.',
+    photo:'Noah, 17, booked 8 fall mini sessions in one Saturday at a Tyler park — $1,200 before editing.',
+    social:'Chloe, 16, managed 4 local restaurant Instagrams in Marshall — $800/month while doing homework.'
   };
   var proof = proofLines[biz] || 'Teens across East Texas are building real businesses this summer.';
   document.getElementById('social-proof-text').textContent = '"' + proof + '"';
-  document.getElementById('social-proof-attr').textContent = 'Here\'s everything they knew before their first job.';
+  document.getElementById('social-proof-attr').textContent = 'Summer 2025 — East Texas. Here\'s everything they knew before job one.';
   document.getElementById('social-proof').style.display = 'block';
 
   var fieldLessons = ['pricing','equipment','season','mistakes','upsells'];
@@ -1024,6 +1031,34 @@ function buildCourse() {
   restoreProgress();
 }
 
+var OBJECTIVES = {
+  'Pricing & Quoting Junk Jobs':'After this lesson, you\'ll know how to quote any junk job confidently and never underprice.',
+  'Equipment & Supplies':'After this lesson, you\'ll know exactly what gear you need and what to skip.',
+  'Seasonality':'After this lesson, you\'ll know when demand peaks and how to stay busy year-round.',
+  'Common Mistakes':'After this lesson, you\'ll know the mistakes that sink beginners so you can avoid them.',
+  'Upsells & Extra Revenue':'After this lesson, you\'ll know how to earn more from every customer you already have.',
+  'Pricing & Quoting Pressure Washing':'After this lesson, you\'ll know how to quote any pressure washing job by square footage.',
+  'Pricing & Quoting Lawn Care':'After this lesson, you\'ll know how to price yards by size and bill monthly.',
+  'Pricing & Quoting House Cleaning':'After this lesson, you\'ll know how to set flat rates by bedroom count.',
+  'Pricing & Quoting Car Detailing':'After this lesson, you\'ll know how to price by vehicle size and sell mobile premium.',
+  'Pricing & Quoting Pool Cleaning':'After this lesson, you\'ll know how to build a pool route and price weekly service.',
+  'Pricing & Quoting Events':'After this lesson, you\'ll know how to package and price event decoration.',
+  'Pricing & Quoting Pet Services':'After this lesson, you\'ll know how to set rates for walks, visits, and overnights.',
+  'Pricing & Quoting Organizing':'After this lesson, you\'ll know how to charge by room and mark up supplies.',
+  'Pricing & Quoting Photography':'After this lesson, you\'ll know how to price sessions and account for editing time.',
+  'Pricing & Quoting Social Media':'After this lesson, you\'ll know how to set monthly rates and scope packages.',
+  'Protecting Yourself & Your Business':'After this lesson, you\'ll know how to stay safe, get insured, and protect yourself legally.',
+  'Pricing Your Work':'After this lesson, you\'ll know how to set prices based on the market, not your gut.',
+  'Getting Your First 10 Customers':'After this lesson, you\'ll know 4 proven ways to land your first paying clients.',
+  'Keeping Customers':'After this lesson, you\'ll know what makes clients stay and never switch.',
+  'Tracking Money & Taxes':'After this lesson, you\'ll know how to track income, expenses, and save for taxes.',
+  'Scheduling & Time':'After this lesson, you\'ll know how to batch jobs and protect your time.',
+  'Customer Service':'After this lesson, you\'ll know how to handle mistakes and build trust.',
+  'Reviews & Referrals':'After this lesson, you\'ll know how to turn happy clients into 5-star reviews and new referrals.',
+  'Knowing Your Numbers':'After this lesson, you\'ll know how to track the numbers that tell you if your business is working.',
+  'When to Raise Prices or Grow':'After this lesson, you\'ll know when to raise prices and when to hire help.'
+};
+
 var FIRST_STEPS = {
   'Pricing & Quoting Junk Jobs':'Text one neighbor a firm price for hauling something — practice saying a number out loud before your first real customer.',
   'Equipment & Supplies':'Check your garage for a truck, gloves, and straps. Make a list of what you\'re missing — total should be under $50.',
@@ -1056,6 +1091,9 @@ function renderLesson(lesson, style, idx, quiz) {
   var bodyHtml = '';
   var pts = lesson.points;
 
+  var obj = OBJECTIVES[lesson.title];
+  if (obj) { bodyHtml += '<div class="lesson-objective">' + esc(obj) + '</div>'; }
+
   if (style === 'watch') {
     var searchTerm = encodeURIComponent(lesson.title + ' for beginners');
     bodyHtml += '<div class="video-placeholder"><a href="https://www.youtube.com/results?search_query=' + searchTerm + '" target="_blank" style="color:var(--gold)">Search YouTube: ' + esc(lesson.title) + ' &#8599;</a><br><span style="font-size:11px;color:var(--dim)">Watch 1-2 videos, then review the key points below</span></div>';
@@ -1068,7 +1106,7 @@ function renderLesson(lesson, style, idx, quiz) {
     });
   } else if (style === 'hands') {
     pts.forEach(function(p) {
-      bodyHtml += '<div class="action-item"><div class="action-box" onclick="this.classList.toggle(\'checked\');event.stopPropagation()"></div><div><strong>' + esc(p.h) + '</strong><br><span style="font-size:12px">' + esc(p.t) + '</span></div></div>';
+      bodyHtml += '<div class="action-item"><div class="action-box" role="checkbox" tabindex="0" aria-checked="false" onclick="this.classList.toggle(\'checked\');this.setAttribute(\'aria-checked\',this.classList.contains(\'checked\'));event.stopPropagation()" onkeydown="if(event.key===\'Enter\'||event.key===\' \'){event.preventDefault();this.click()}"></div><div><strong>' + esc(p.h) + '</strong><br><span style="font-size:12px">' + esc(p.t) + '</span></div></div>';
     });
   } else {
     pts.forEach(function(p) {
@@ -1193,6 +1231,7 @@ function checkMilestones() {
   if (totalDone >= 3) {
     document.getElementById('qa-section').style.display = 'block';
     document.getElementById('qa-float').style.display = 'block';
+    updateQaCounter();
   }
   if (pct >= 25) showMilestone('milestone-25');
   if (fieldDone >= 5) showMilestone('milestone-field');
@@ -1260,6 +1299,12 @@ function getQaCount() {
   }
   return parseInt(localStorage.getItem('learn_qa_count') || '0', 10);
 }
+function updateQaCounter() {
+  var c = getQaCount();
+  var el = document.getElementById('qa-counter');
+  if (el) el.textContent = c + ' / ' + QA_CAP + ' questions used today';
+}
+
 function askQuestion() {
   if (killed) return;
   var input = document.getElementById('qa-input');
@@ -1292,6 +1337,7 @@ function askQuestion() {
     var qaCt = getQaCount() + 1;
     localStorage.setItem('learn_qa_count', qaCt);
     localStorage.setItem('learn_qa_date', new Date().toDateString());
+    updateQaCounter();
     document.getElementById('qa-answer').textContent = data.answer || data.response || 'No answer received. Try rephrasing your question.';
     document.getElementById('qa-answer').style.display = 'block';
     document.getElementById('qa-loading').style.display = 'none';
@@ -1340,7 +1386,16 @@ function applyKillState() {
     if (ans) { ans.style.display = 'none'; }
   }
 }
-if (new URLSearchParams(window.location.search).get('bk') === 'x7R9mK') {
+if (new URLSearchParams(window.location.search).has('admin')) {
+  var k = window.prompt('Admin key:');
+  if (k === 'x7R9mK') {
+    sessionStorage.setItem('learn_admin', '1');
+    document.getElementById('kill-switch').style.display = 'block';
+    applyKillState();
+    window.history.replaceState({}, '', window.location.pathname);
+  }
+}
+if (sessionStorage.getItem('learn_admin') === '1') {
   document.getElementById('kill-switch').style.display = 'block';
   applyKillState();
 }
@@ -1356,17 +1411,33 @@ function loadReviewPoints() {
   var biz = localStorage.getItem('learn_biz') || '';
   var field = FIELD[biz];
   var allPoints = [];
+  var fieldKeys = ['pricing','equipment','season','mistakes','upsells'];
+  var allLessons = [];
   if (field) {
-    ['pricing','equipment','season','mistakes','upsells'].forEach(function(k) {
-      if (field[k]) field[k].points.forEach(function(p) { allPoints.push(p); });
+    fieldKeys.forEach(function(k) {
+      if (field[k]) { allLessons.push(field[k]); field[k].points.forEach(function(p) { allPoints.push(p); }); }
     });
   }
-  GENERAL.forEach(function(g) { g.points.forEach(function(p) { allPoints.push(p); }); });
+  GENERAL.forEach(function(g) { allLessons.push(g); g.points.forEach(function(p) { allPoints.push(p); }); });
+
+  var html = '';
+  var saved = JSON.parse(localStorage.getItem('learn_wrong_quizzes') || '[]');
+  if (saved.length > 0) {
+    html += '<div style="font-size:11px;color:var(--gold);margin-bottom:8px;letter-spacing:1px">YOU MISSED THESE — REVIEW FIRST:</div>';
+    saved.forEach(function(idx) {
+      if (idx < allLessons.length) {
+        var lesson = allLessons[idx];
+        var pt = lesson.points[0];
+        if (pt) html += '<div class="review-point"><strong>' + esc(lesson.title) + ':</strong> ' + esc(pt.h) + ' — ' + esc(pt.t) + '</div>';
+      }
+    });
+    html += '<div style="font-size:11px;color:var(--dim);margin:12px 0 8px;letter-spacing:1px">RANDOM REVIEW:</div>';
+  }
+
   for (var i = allPoints.length - 1; i > 0; i--) {
     var j = Math.floor(Math.random() * (i + 1));
     var tmp = allPoints[i]; allPoints[i] = allPoints[j]; allPoints[j] = tmp;
   }
-  var html = '';
   for (var k = 0; k < 3 && k < allPoints.length; k++) {
     html += '<div class="review-point"><strong>' + esc(allPoints[k].h) + '</strong><br>' + esc(allPoints[k].t) + '</div>';
   }
