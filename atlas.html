@@ -454,6 +454,7 @@ html, body { height: 100%; overflow: hidden; background: var(--bg); color: var(-
         <button class="tab" data-tab="trader">TRADER</button>
         <button class="tab" data-tab="politics">POL</button>
         <button class="tab" data-tab="brief">BRIEF</button>
+        <button class="tab" data-tab="ask">ASK</button>
       </div>
     </div>
     <div class="panel-wrap">
@@ -474,6 +475,19 @@ html, body { height: 100%; overflow: hidden; background: var(--bg); color: var(-
             <div class="welcome-title">Country Intelligence</div>
             <div class="welcome-text">Click any country on the map to view its full intelligence briefing.</div>
           </div>
+        </div>
+      </div>
+      <div class="panel" id="panel-ask">
+        <div style="padding:12px;">
+          <div style="font-size:10px;font-weight:700;letter-spacing:2px;color:var(--primary);margin-bottom:8px;font-family:var(--font-data);">ATLAS INTELLIGENCE ANALYST</div>
+          <div style="font-size:10px;color:var(--text-dim);margin-bottom:12px;line-height:1.5;">Ask questions about current intel. Answers are grounded in live ATLAS data.</div>
+          <div id="chat-history" class="chat-history"></div>
+          <div class="chat-input-row">
+            <input type="text" id="chat-input" class="chat-input" placeholder="Ask about any topic..." maxlength="300">
+            <button id="chat-send" class="chat-send" title="Send">&#9654;</button>
+          </div>
+          <div id="chat-status" style="font-size:9px;color:var(--text-dim);margin-top:6px;font-family:var(--font-data);"></div>
+          <div style="font-size:8px;color:var(--text-dim);margin-top:8px;font-family:var(--font-data);letter-spacing:0.5px;">Powered by Claude Haiku &middot; Max 20 queries/day</div>
         </div>
       </div>
     </div>
@@ -1550,6 +1564,73 @@ html, body { height: 100%; overflow: hidden; background: var(--bg); color: var(-
 
   renderPolitics();
   loadData();
+
+  // ─── ATLAS CHATBOT ───
+  var chatQueries = parseInt(localStorage.getItem('atlas_chat_count_'+new Date().toISOString().slice(0,10)) || '0');
+  var CHAT_DAILY_CAP = 20;
+  var CHAT_ENDPOINT = 'https://jamross.app.n8n.cloud/webhook/atlas-chatbot';
+
+  function chatAddBubble(text, role) {
+    var h = document.getElementById('chat-history');
+    var d = document.createElement('div');
+    d.className = 'chat-bubble ' + role;
+    d.textContent = text;
+    h.appendChild(d);
+    h.scrollTop = h.scrollHeight;
+  }
+
+  function chatSetStatus(msg) {
+    document.getElementById('chat-status').textContent = msg;
+  }
+
+  async function chatSend() {
+    var input = document.getElementById('chat-input');
+    var q = input.value.trim();
+    if (!q) return;
+    if (chatQueries >= CHAT_DAILY_CAP) {
+      chatSetStatus('Daily query limit reached ('+CHAT_DAILY_CAP+'). Resets tomorrow.');
+      return;
+    }
+
+    chatAddBubble(q, 'user');
+    input.value = '';
+    chatSetStatus('Analyzing...');
+
+    var context = {};
+    if (data) {
+      context.assessments = (data.assessments || []).slice(0, 8);
+      context.opportunities = (data.opportunities || []).slice(0, 5);
+      context.anomalies = (data.anomalies || []).slice(0, 5);
+      context.predictions = (data.predictions || []).slice(0, 8);
+      context.headlines = (data.headlines || []).slice(0, 10);
+      context.scan_time = data.generated || data.timestamp || '';
+      context.power_level = data.power_level || '';
+      context.sources_count = data.sources_scanned || 0;
+    }
+
+    try {
+      var r = await fetch(CHAT_ENDPOINT, {
+        method: 'POST',
+        headers: {'Content-Type': 'application/json'},
+        body: JSON.stringify({question: q, context: context})
+      });
+      if (!r.ok) throw new Error('HTTP ' + r.status);
+      var resp = await r.json();
+      chatAddBubble(resp.answer || 'No response.', 'assistant');
+      chatQueries++;
+      localStorage.setItem('atlas_chat_count_'+new Date().toISOString().slice(0,10), chatQueries.toString());
+      chatSetStatus('Queries today: ' + chatQueries + '/' + CHAT_DAILY_CAP);
+    } catch(e) {
+      chatAddBubble('Error: ' + e.message, 'assistant');
+      chatSetStatus('Request failed. Try again.');
+    }
+  }
+
+  document.getElementById('chat-send').addEventListener('click', chatSend);
+  document.getElementById('chat-input').addEventListener('keydown', function(e) {
+    if (e.key === 'Enter') chatSend();
+  });
+
 })();
 </script>
 </body>
