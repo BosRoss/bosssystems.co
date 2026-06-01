@@ -321,12 +321,24 @@ html, body { height: 100%; overflow: hidden; background: var(--bg); color: var(-
 
 @media (max-width: 768px) {
   #app { flex-direction: column; }
-  #map-wrap { flex: 1 1 50%; }
-  #sidebar { flex: 1 1 50%; border-left: none; border-top: 1px solid var(--primary); }
+  #map-wrap { flex: 0 0 40%; min-height: 0; transition: flex 0.3s ease; }
+  #sidebar { flex: 1 1 60%; border-left: none; border-top: none; min-height: 0; transition: flex 0.3s ease; }
   .tab { font-size: 8px; padding: 6px 2px; letter-spacing: 0; }
   .tab .tab-count { display: none; }
   #classification { font-size: 7px; letter-spacing: 2px; }
+  #panel-toggle { display: flex; }
+  #app.panel-expanded #map-wrap { flex: 0 0 0%; overflow: hidden; }
+  #app.panel-expanded #sidebar { flex: 1 1 100%; }
+  #app.panel-expanded #panel-toggle .toggle-label::after { content: 'SHOW MAP'; }
+  #app.panel-expanded #panel-toggle .toggle-label::before { content: none; }
+  #app.panel-expanded #panel-toggle .toggle-arrow { transform: rotate(180deg); }
 }
+#panel-toggle { display: none; align-items: center; justify-content: center; gap: 8px; background: var(--surface); border-top: 1px solid var(--primary); border-bottom: 1px solid var(--border); padding: 6px 0; cursor: pointer; -webkit-tap-highlight-color: transparent; user-select: none; z-index: 10; }
+#panel-toggle:active { background: var(--surface-2); }
+.toggle-arrow { font-size: 10px; color: var(--primary); transition: transform 0.3s; }
+.toggle-label { font-size: 9px; font-weight: 700; letter-spacing: 2px; color: var(--primary); font-family: var(--font-data); }
+.toggle-label::before { content: 'EXPAND PANEL'; }
+.toggle-label::after { content: none; }
 
 .dismiss-btn { position: absolute; top: 4px; right: 6px; font-size: 11px; color: var(--text-dim); cursor: pointer; background: none; border: none; padding: 0; line-height: 1; font-family: var(--font-data); z-index: 1; }
 .dismiss-btn:hover { color: var(--text); }
@@ -439,6 +451,11 @@ html, body { height: 100%; overflow: hidden; background: var(--bg); color: var(-
     <div id="coord-display">0.0000, 0.0000</div>
   </div>
 
+  <div id="panel-toggle" role="button" aria-label="Expand or collapse content panel">
+    <span class="toggle-arrow">&#9650;</span>
+    <span class="toggle-label"></span>
+    <span class="toggle-arrow">&#9650;</span>
+  </div>
   <div id="sidebar">
     <div id="headlines-ticker"></div>
     <div class="tabs-wrap">
@@ -1630,6 +1647,15 @@ html, body { height: 100%; overflow: hidden; background: var(--bg); color: var(-
   document.getElementById('chat-input').addEventListener('keydown', function(e) {
     if (e.key === 'Enter') chatSend();
   });
+
+  var panelToggle = document.getElementById('panel-toggle');
+  if (panelToggle) {
+    panelToggle.addEventListener('click', function() {
+      var app = document.getElementById('app');
+      app.classList.toggle('panel-expanded');
+      if (map) setTimeout(function() { map.invalidateSize(); }, 350);
+    });
+  }
 
 })();
 </script>
