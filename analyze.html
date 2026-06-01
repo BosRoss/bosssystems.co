@@ -465,11 +465,20 @@ function submitLeadGate() {
     estimatedLoss: data.estimatedLoss
   };
 
-  // Fire-and-forget webhook
-  fetch('https://jamross.app.n8n.cloud/webhook/analyze-lead', {
+  // Fire-and-forget webhook → Hot Lead Handler (active workflow)
+  fetch('https://jamross.app.n8n.cloud/webhook/hot-lead-detected', {
     method: 'POST',
     headers: { 'Content-Type': 'application/json' },
-    body: JSON.stringify(payload)
+    body: JSON.stringify({
+      businessName: payload.businessType + ' business',
+      phone: payload.phone || '',
+      callerNotes: 'WEBSITE ANALYZE LEAD: ' + payload.businessType + ' in ' + payload.city + ' — est. loss $' + (payload.estimatedLoss || '?') + '/yr',
+      city: payload.city,
+      niche: payload.businessType,
+      callId: 'analyze-' + Date.now(),
+      email: payload.email || '',
+      source: 'analyze_page'
+    })
   }).catch(() => {}); // silently ignore errors
 
   // Mark as captured so they never see the gate again
