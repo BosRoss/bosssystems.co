@@ -1,22 +1,38 @@
 {
-  "generated": "2026-05-31T22:14:20.993204+00:00",
+  "generated": "2026-06-01T00:20:17.723901+00:00",
   "engine_state": "active",
   "signals": [
     {
       "type": "storm",
-      "area": "Brewster, TX",
+      "area": "Crosby, TX; Dickens, TX; Garza, TX; Kent, TX",
       "niche": "roofing",
-      "action": "Storm damage in Brewster, TX. Roofers and restoration companies about to get flooded.",
+      "action": "Storm damage in Crosby, TX; Dickens, TX; Garza, TX; Kent, TX. Roofers and restoration companies about to get flooded.",
       "urgency": "today",
       "pitch_hook": "After a storm like that, you'll get 10x your normal call volume. Ready for it?"
     },
     {
-      "type": "storm",
-      "area": "Pecos, TX",
-      "niche": "roofing",
-      "action": "Storm damage in Pecos, TX. Roofers and restoration companies about to get flooded.",
+      "type": "flood",
+      "area": "Crosby, TX; Dickens, TX",
+      "niche": "plumbing",
+      "action": "Flood warnings in Crosby, TX; Dickens, TX. Plumbers, restoration, mold companies will spike.",
       "urgency": "today",
-      "pitch_hook": "After a storm like that, you'll get 10x your normal call volume. Ready for it?"
+      "pitch_hook": "Water damage calls are coming. Every one you miss is $500+ walking away."
+    },
+    {
+      "type": "flood",
+      "area": "Brewster, TX",
+      "niche": "plumbing",
+      "action": "Flood warnings in Brewster, TX. Plumbers, restoration, mold companies will spike.",
+      "urgency": "today",
+      "pitch_hook": "Water damage calls are coming. Every one you miss is $500+ walking away."
+    },
+    {
+      "type": "flood",
+      "area": "Pecos, TX",
+      "niche": "plumbing",
+      "action": "Flood warnings in Pecos, TX. Plumbers, restoration, mold companies will spike.",
+      "urgency": "today",
+      "pitch_hook": "Water damage calls are coming. Every one you miss is $500+ walking away."
     },
     {
       "type": "flood",
@@ -44,43 +60,27 @@
     },
     {
       "type": "storm",
-      "area": "Clay, AR",
+      "area": "Lonoke, AR; Pulaski, AR",
       "niche": "roofing",
-      "action": "Storm damage in Clay, AR. Roofers and restoration companies about to get flooded.",
+      "action": "Storm damage in Lonoke, AR; Pulaski, AR. Roofers and restoration companies about to get flooded.",
       "urgency": "today",
       "pitch_hook": "After a storm like that, you'll get 10x your normal call volume. Ready for it?"
     },
     {
       "type": "storm",
-      "area": "Clay, AR; Dunklin, MO; Pemiscot, MO",
+      "area": "Randolph, AR; Sharp, AR",
       "niche": "roofing",
-      "action": "Storm damage in Clay, AR; Dunklin, MO; Pemiscot, MO. Roofers and restoration companies about to get flooded.",
+      "action": "Storm damage in Randolph, AR; Sharp, AR. Roofers and restoration companies about to get flooded.",
       "urgency": "today",
       "pitch_hook": "After a storm like that, you'll get 10x your normal call volume. Ready for it?"
     },
     {
       "type": "flood",
-      "area": "White, AR; Woodruff, AR",
+      "area": "Randolph, AR; Sharp, AR",
       "niche": "plumbing",
-      "action": "Flood warnings in White, AR; Woodruff, AR. Plumbers, restoration, mold companies will spike.",
+      "action": "Flood warnings in Randolph, AR; Sharp, AR. Plumbers, restoration, mold companies will spike.",
       "urgency": "today",
       "pitch_hook": "Water damage calls are coming. Every one you miss is $500+ walking away."
-    },
-    {
-      "type": "flood",
-      "area": "Jackson, AR; Woodruff, AR",
-      "niche": "plumbing",
-      "action": "Flood warnings in Jackson, AR; Woodruff, AR. Plumbers, restoration, mold companies will spike.",
-      "urgency": "today",
-      "pitch_hook": "Water damage calls are coming. Every one you miss is $500+ walking away."
-    },
-    {
-      "type": "storm",
-      "area": "Autauga, AL",
-      "niche": "roofing",
-      "action": "Storm damage in Autauga, AL. Roofers and restoration companies about to get flooded.",
-      "urgency": "today",
-      "pitch_hook": "After a storm like that, you'll get 10x your normal call volume. Ready for it?"
     }
   ],
   "leads": [
@@ -239,55 +239,55 @@
   "feeds": [
     {
       "name": "NOAA",
-      "last_hit": "2026-05-31T22:08:30.660263+00:00",
+      "last_hit": "2026-06-01T00:14:25.591318+00:00",
       "status": "yellow",
       "data_points_today": 0
     },
     {
       "name": "REDDIT",
-      "last_hit": "2026-05-31T22:08:30.660263+00:00",
+      "last_hit": "2026-06-01T00:14:25.591318+00:00",
       "status": "green",
       "data_points_today": 801
     },
     {
       "name": "USGS",
-      "last_hit": "2026-05-31T22:08:30.660263+00:00",
+      "last_hit": "2026-06-01T00:14:25.591318+00:00",
       "status": "yellow",
       "data_points_today": 0
     },
     {
       "name": "HACKERNEWS",
-      "last_hit": "2026-05-31T22:08:30.660263+00:00",
+      "last_hit": "2026-06-01T00:14:25.591318+00:00",
       "status": "green",
       "data_points_today": 30
     },
     {
       "name": "FEMA",
-      "last_hit": "2026-05-31T22:08:30.660263+00:00",
+      "last_hit": "2026-06-01T00:14:25.591318+00:00",
       "status": "green",
       "data_points_today": 20
     },
     {
       "name": "COMMODITIES",
-      "last_hit": "2026-05-31T22:08:30.660263+00:00",
+      "last_hit": "2026-06-01T00:14:25.591318+00:00",
       "status": "green",
       "data_points_today": 7
     },
     {
       "name": "RSS",
-      "last_hit": "2026-05-31T22:08:30.660263+00:00",
+      "last_hit": "2026-06-01T00:14:25.591318+00:00",
       "status": "green",
       "data_points_today": 160
     },
     {
       "name": "FRED",
-      "last_hit": "2026-05-31T22:08:30.660263+00:00",
+      "last_hit": "2026-06-01T00:14:25.591318+00:00",
       "status": "yellow",
       "data_points_today": 0
     },
     {
       "name": "BLS",
-      "last_hit": "2026-05-31T22:08:30.660263+00:00",
+      "last_hit": "2026-06-01T00:14:25.591318+00:00",
       "status": "green",
       "data_points_today": 9
     }
