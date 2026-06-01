@@ -1,0 +1,487 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ATLAS Quant Sandbox — SIMULATION ONLY</title>
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body {
+            background: #0a0a0f;
+            color: #e0e0e0;
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            line-height: 1.5;
+            min-height: 100vh;
+        }
+        .sim-banner {
+            background: #7f1d1d;
+            color: #fca5a5;
+            text-align: center;
+            padding: 8px;
+            font-size: 13px;
+            font-weight: 700;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            border-bottom: 2px solid #dc2626;
+        }
+        .header {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 16px 24px;
+            border-bottom: 1px solid #1a1a2e;
+            background: #0d0d14;
+        }
+        .header-left { display: flex; align-items: center; gap: 16px; }
+        .header h1 {
+            font-size: 18px;
+            font-weight: 700;
+            letter-spacing: 2px;
+            color: #c9a96e;
+        }
+        .header-right { font-size: 12px; color: #888; }
+        .state-badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+            font-size: 11px;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            padding: 4px 10px;
+            border-radius: 4px;
+            background: #1a1a2e;
+        }
+        .state-dot {
+            width: 8px; height: 8px; border-radius: 50%;
+            background: #22c55e;
+            animation: pulse 2s infinite;
+        }
+        .state-dot.paused { background: #ef4444; animation: none; }
+        @keyframes pulse { 0%,100%{opacity:1} 50%{opacity:0.5} }
+        .container { padding: 20px 24px; max-width: 1400px; margin: 0 auto; }
+        .kpi-strip {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 16px;
+            margin-bottom: 24px;
+        }
+        .kpi-card {
+            background: #12121c;
+            border: 1px solid #1a1a2e;
+            border-radius: 8px;
+            padding: 16px;
+            text-align: center;
+        }
+        .kpi-label {
+            font-size: 11px;
+            color: #888;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            margin-bottom: 4px;
+        }
+        .kpi-value {
+            font-size: 28px;
+            font-weight: 700;
+            color: #c9a96e;
+        }
+        .kpi-sub { font-size: 11px; color: #666; margin-top: 2px; }
+        .section {
+            background: #12121c;
+            border: 1px solid #1a1a2e;
+            border-radius: 8px;
+            padding: 20px;
+            margin-bottom: 20px;
+        }
+        .section-title {
+            font-size: 14px;
+            font-weight: 700;
+            color: #c9a96e;
+            text-transform: uppercase;
+            letter-spacing: 1.5px;
+            margin-bottom: 16px;
+            padding-bottom: 8px;
+            border-bottom: 1px solid #1a1a2e;
+        }
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            font-size: 13px;
+        }
+        th {
+            text-align: left;
+            padding: 8px 12px;
+            border-bottom: 1px solid #1a1a2e;
+            color: #888;
+            font-size: 11px;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+        td {
+            padding: 10px 12px;
+            border-bottom: 1px solid #0f0f18;
+        }
+        .pass { color: #22c55e; font-weight: 600; }
+        .fail { color: #ef4444; font-weight: 600; }
+        .neutral { color: #888; }
+        .positive { color: #22c55e; }
+        .negative { color: #ef4444; }
+        .chart-container {
+            width: 100%;
+            height: 200px;
+            position: relative;
+            margin-top: 12px;
+        }
+        canvas { width: 100% !important; height: 100% !important; }
+        .grid-2 { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; }
+        .regime-bar {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            margin-bottom: 6px;
+        }
+        .regime-label { width: 50px; font-size: 12px; color: #888; }
+        .regime-fill {
+            height: 16px;
+            border-radius: 3px;
+            min-width: 2px;
+            transition: width 0.3s;
+        }
+        .regime-val { font-size: 11px; color: #aaa; margin-left: 6px; }
+        .journal-entry {
+            padding: 10px 0;
+            border-bottom: 1px solid #0f0f18;
+        }
+        .journal-meta { font-size: 11px; color: #666; }
+        .journal-verdict { font-weight: 600; margin: 2px 0; }
+        .journal-detail { font-size: 12px; color: #aaa; }
+        .footer {
+            text-align: center;
+            padding: 20px;
+            font-size: 11px;
+            color: #555;
+            border-top: 1px solid #1a1a2e;
+        }
+        @media (max-width: 768px) {
+            .kpi-strip { grid-template-columns: repeat(2, 1fr); }
+            .grid-2 { grid-template-columns: 1fr; }
+        }
+    </style>
+</head>
+<body>
+    <div class="sim-banner">PAPER / SIMULATION ONLY &mdash; NOT FINANCIAL ADVICE &mdash; NO REAL MONEY</div>
+
+    <div class="header">
+        <div class="header-left">
+            <h1>ATLAS QUANT SANDBOX</h1>
+            <span class="state-badge">
+                <span class="state-dot" id="stateDot"></span>
+                <span id="stateText">LOADING</span>
+            </span>
+        </div>
+        <div class="header-right">
+            <span id="lastUpdate">Loading...</span>
+        </div>
+    </div>
+
+    <div class="container">
+        <!-- KPI Strip -->
+        <div class="kpi-strip">
+            <div class="kpi-card">
+                <div class="kpi-label">Strategies Tested</div>
+                <div class="kpi-value" id="kpiTested">—</div>
+                <div class="kpi-sub">Pre-registered hypotheses</div>
+            </div>
+            <div class="kpi-card">
+                <div class="kpi-label">Survivors</div>
+                <div class="kpi-value" id="kpiSurvivors">—</div>
+                <div class="kpi-sub">Passed all validation gates</div>
+            </div>
+            <div class="kpi-card">
+                <div class="kpi-label">Forward Predictions</div>
+                <div class="kpi-value" id="kpiFwd">—</div>
+                <div class="kpi-sub">Logged before outcome</div>
+            </div>
+            <div class="kpi-card">
+                <div class="kpi-label">Journal Entries</div>
+                <div class="kpi-value" id="kpiJournal">—</div>
+                <div class="kpi-sub">Research log</div>
+            </div>
+        </div>
+
+        <!-- Strategy Results -->
+        <div class="section">
+            <div class="section-title">Strategy Validation Results (Simulation)</div>
+            <table>
+                <thead>
+                    <tr>
+                        <th>Strategy</th>
+                        <th>Verdict</th>
+                        <th>OOS Sharpe</th>
+                        <th>OOS Return</th>
+                        <th>Benchmark</th>
+                        <th>Max DD</th>
+                        <th>Deflated SR</th>
+                        <th>Overfit Gap</th>
+                    </tr>
+                </thead>
+                <tbody id="strategyTable"></tbody>
+            </table>
+        </div>
+
+        <div class="grid-2">
+            <!-- Equity Curves -->
+            <div class="section">
+                <div class="section-title">OOS Equity Curves (Simulated)</div>
+                <div class="chart-container">
+                    <canvas id="equityChart"></canvas>
+                </div>
+            </div>
+
+            <!-- Regime Analysis -->
+            <div class="section">
+                <div class="section-title">Regime Breakdown</div>
+                <div id="regimeContainer"></div>
+            </div>
+        </div>
+
+        <div class="grid-2">
+            <!-- Forward Track Record -->
+            <div class="section">
+                <div class="section-title">Forward Paper-Trading Record</div>
+                <div id="forwardContainer">
+                    <p class="neutral" style="font-size:13px;">Predictions logged daily before market close. Scored against next-day actual returns. This is the only data that can't be overfit.</p>
+                    <table style="margin-top:12px;">
+                        <thead>
+                            <tr><th>Strategy</th><th>Days</th><th>Cumulative</th></tr>
+                        </thead>
+                        <tbody id="forwardTable"></tbody>
+                    </table>
+                </div>
+            </div>
+
+            <!-- Hypotheses -->
+            <div class="section">
+                <div class="section-title">Pre-Registered Hypotheses</div>
+                <div id="hypothesisContainer"></div>
+            </div>
+        </div>
+
+        <!-- Research Journal -->
+        <div class="section">
+            <div class="section-title">Research Journal</div>
+            <div id="journalContainer"></div>
+        </div>
+    </div>
+
+    <div class="footer">
+        ATLAS Quant Research Sandbox &mdash; BOSS Systems &mdash; PAPER/SIMULATION ONLY &mdash; NOT FINANCIAL ADVICE<br>
+        All returns are simulated with transaction costs (10 bps) and slippage (5 bps). No real money is involved.
+    </div>
+
+    <script>
+    const DATA_URL = 'https://raw.githubusercontent.com/BosRoss/bosssystems.co/main/quant_report.json';
+    const COLORS = ['#c9a96e','#4B92DB','#22c55e','#ef4444','#a855f7','#f59e0b'];
+
+    async function loadData() {
+        try {
+            const r = await fetch(DATA_URL + '?t=' + Date.now());
+            if (!r.ok) throw new Error('fetch failed');
+            return await r.json();
+        } catch(e) {
+            document.getElementById('stateText').textContent = 'DATA UNAVAILABLE';
+            document.getElementById('stateDot').classList.add('paused');
+            return null;
+        }
+    }
+
+    function renderKPIs(d) {
+        document.getElementById('kpiTested').textContent = d.total_strategies_tested || 0;
+        document.getElementById('kpiSurvivors').textContent = d.survivors || 0;
+        document.getElementById('kpiFwd').textContent = d.forward_predictions_total || 0;
+        document.getElementById('kpiJournal').textContent = d.journal_entries || 0;
+        document.getElementById('lastUpdate').textContent =
+            'Updated: ' + (d._generated_at || '').replace('T',' ').slice(0,19) + ' UTC';
+        document.getElementById('stateText').textContent = 'SIMULATION';
+    }
+
+    function renderStrategies(d) {
+        const tb = document.getElementById('strategyTable');
+        tb.innerHTML = '';
+        (d.strategies || []).forEach(s => {
+            const passed = s.passed;
+            const oos = s.oos || {};
+            const tr = document.createElement('tr');
+            tr.innerHTML = `
+                <td style="font-weight:600">${s.id}</td>
+                <td class="${passed ? 'pass' : 'fail'}">${passed ? 'PASSED' : 'FAILED'}</td>
+                <td class="${(oos.sharpe||0)>0?'positive':'negative'}">${oos.sharpe != null ? oos.sharpe : '—'}</td>
+                <td class="${(oos.return_pct||0)>0?'positive':'negative'}">${oos.return_pct != null ? oos.return_pct+'%' : '—'}</td>
+                <td>${s.benchmark_oos_return_pct != null ? s.benchmark_oos_return_pct+'%' : '—'}</td>
+                <td>${oos.max_dd_pct != null ? oos.max_dd_pct+'%' : '—'}</td>
+                <td>${s.deflated_sharpe != null ? s.deflated_sharpe : '—'}</td>
+                <td>${s.overfitting_gap != null ? s.overfitting_gap : '—'}</td>
+            `;
+            tb.appendChild(tr);
+        });
+    }
+
+    function renderEquityCurves(d) {
+        const canvas = document.getElementById('equityChart');
+        const ctx = canvas.getContext('2d');
+        const rect = canvas.parentElement.getBoundingClientRect();
+        canvas.width = rect.width * 2;
+        canvas.height = rect.height * 2;
+        ctx.scale(2, 2);
+        const W = rect.width, H = rect.height;
+
+        ctx.fillStyle = '#0a0a0f';
+        ctx.fillRect(0, 0, W, H);
+
+        const strategies = (d.strategies || []).filter(s => s.equity_curve_oos && s.equity_curve_oos.length > 1);
+        if (!strategies.length) {
+            ctx.fillStyle = '#555';
+            ctx.font = '13px sans-serif';
+            ctx.fillText('No equity curve data available', W/2 - 90, H/2);
+            return;
+        }
+
+        let allVals = [];
+        strategies.forEach(s => s.equity_curve_oos.forEach(e => allVals.push(e.value)));
+        const minV = Math.min(...allVals) * 0.98;
+        const maxV = Math.max(...allVals) * 1.02;
+        const maxPts = Math.max(...strategies.map(s => s.equity_curve_oos.length));
+
+        const pad = {l:50, r:20, t:10, b:30};
+
+        ctx.strokeStyle = '#1a1a2e';
+        ctx.lineWidth = 0.5;
+        for (let i = 0; i <= 4; i++) {
+            const y = pad.t + (H - pad.t - pad.b) * i / 4;
+            ctx.beginPath(); ctx.moveTo(pad.l, y); ctx.lineTo(W - pad.r, y); ctx.stroke();
+            const val = maxV - (maxV - minV) * i / 4;
+            ctx.fillStyle = '#555';
+            ctx.font = '10px sans-serif';
+            ctx.fillText('$' + Math.round(val).toLocaleString(), 2, y + 3);
+        }
+
+        strategies.forEach((s, si) => {
+            const pts = s.equity_curve_oos;
+            ctx.strokeStyle = COLORS[si % COLORS.length];
+            ctx.lineWidth = 1.5;
+            ctx.beginPath();
+            pts.forEach((p, i) => {
+                const x = pad.l + (W - pad.l - pad.r) * i / (maxPts - 1);
+                const y = pad.t + (H - pad.t - pad.b) * (1 - (p.value - minV) / (maxV - minV));
+                i === 0 ? ctx.moveTo(x, y) : ctx.lineTo(x, y);
+            });
+            ctx.stroke();
+
+            ctx.fillStyle = COLORS[si % COLORS.length];
+            ctx.font = '10px sans-serif';
+            ctx.fillText(s.id, W - pad.r - ctx.measureText(s.id).width - 5,
+                         pad.t + 14 * (si + 1));
+        });
+
+        // 100k baseline
+        const baseY = pad.t + (H - pad.t - pad.b) * (1 - (100000 - minV) / (maxV - minV));
+        ctx.strokeStyle = '#333';
+        ctx.setLineDash([4, 4]);
+        ctx.beginPath(); ctx.moveTo(pad.l, baseY); ctx.lineTo(W - pad.r, baseY); ctx.stroke();
+        ctx.setLineDash([]);
+    }
+
+    function renderRegimes(d) {
+        const c = document.getElementById('regimeContainer');
+        c.innerHTML = '';
+        const strat = (d.strategies || []).find(s => s.id === 'momentum_cross') || d.strategies?.[0];
+        if (!strat || !strat.regime_analysis) {
+            c.innerHTML = '<p class="neutral" style="font-size:13px;">No regime data</p>';
+            return;
+        }
+        const regimes = strat.regime_analysis;
+        const colors = {bull:'#22c55e', bear:'#ef4444', crash:'#a855f7', chop:'#888'};
+        const maxDays = Math.max(...Object.values(regimes).map(r => r.days || 0), 1);
+
+        Object.entries(regimes).forEach(([name, data]) => {
+            const pct = (data.days / maxDays) * 100;
+            const div = document.createElement('div');
+            div.className = 'regime-bar';
+            div.innerHTML = `
+                <span class="regime-label">${name}</span>
+                <div class="regime-fill" style="width:${pct}%;background:${colors[name]||'#888'}"></div>
+                <span class="regime-val">${data.days}d / ${data.total_return_pct}%</span>
+            `;
+            c.appendChild(div);
+        });
+        const note = document.createElement('p');
+        note.style.cssText = 'font-size:11px;color:#555;margin-top:8px;';
+        note.textContent = 'Based on rolling 63-day SPY return + volatility classification';
+        c.appendChild(note);
+    }
+
+    function renderForward(d) {
+        const tb = document.getElementById('forwardTable');
+        tb.innerHTML = '';
+        const strats = d.strategies || [];
+        strats.forEach(s => {
+            const fwd = s.forward || {};
+            if (!fwd.forward_days) return;
+            const tr = document.createElement('tr');
+            const cum = fwd.cumulative_return_pct || 0;
+            tr.innerHTML = `
+                <td>${s.id}</td>
+                <td>${fwd.forward_days}</td>
+                <td class="${cum >= 0 ? 'positive' : 'negative'}">${cum}%</td>
+            `;
+            tb.appendChild(tr);
+        });
+        if (!tb.children.length) {
+            const tr = document.createElement('tr');
+            tr.innerHTML = '<td colspan="3" class="neutral">No scored forward predictions yet</td>';
+            tb.appendChild(tr);
+        }
+    }
+
+    function renderHypotheses(d) {
+        const c = document.getElementById('hypothesisContainer');
+        c.innerHTML = '';
+        (d.strategies || []).forEach(s => {
+            const div = document.createElement('div');
+            div.style.cssText = 'padding:8px 0;border-bottom:1px solid #0f0f18;';
+            const reasons = (s.fail_reasons || []).join('; ');
+            div.innerHTML = `
+                <div style="font-weight:600;font-size:13px;">${s.id}
+                    <span class="${s.passed?'pass':'fail'}" style="font-size:11px;margin-left:8px;">${s.passed?'PASSED':'FAILED'}</span>
+                </div>
+                <div style="font-size:12px;color:#aaa;margin-top:4px;">${s.hypothesis || ''}</div>
+                ${reasons ? '<div style="font-size:11px;color:#ef4444;margin-top:2px;">'+reasons+'</div>' : ''}
+            `;
+            c.appendChild(div);
+        });
+    }
+
+    function renderJournal(d) {
+        const c = document.getElementById('journalContainer');
+        c.innerHTML = '';
+        if (!d.journal_entries) {
+            c.innerHTML = '<p class="neutral" style="font-size:13px;">Journal loads from quant_report.json</p>';
+        }
+    }
+
+    async function init() {
+        const d = await loadData();
+        if (!d) return;
+        renderKPIs(d);
+        renderStrategies(d);
+        renderEquityCurves(d);
+        renderRegimes(d);
+        renderForward(d);
+        renderHypotheses(d);
+        renderJournal(d);
+    }
+    init();
+    setInterval(init, 300000);
+    </script>
+</body>
+</html>
