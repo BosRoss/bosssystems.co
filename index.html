@@ -57,7 +57,9 @@
     html.theme-pink .nav-logo,
     html.theme-pink .nav-links a { color: #ffffff; }
     html.theme-pink .nav-links a:hover { color: #C9A84C; }
-    html.theme-pink .nav-hamburger span { background: #ffffff; }
+    html.theme-pink .nav-hamburger .menu-bars span { background: #ffffff; }
+    html.theme-pink .nav-hamburger .menu-label { color: #ffffff; }
+    html.theme-pink .nav-hamburger { border-color: rgba(255,255,255,0.3); background: rgba(255,255,255,0.1); }
     html.theme-pink .mobile-menu { background: #D43880; }
     html.theme-pink .mobile-menu a { color: rgba(255,255,255,0.9); }
     html.theme-pink .mobile-menu a:hover { color: #C9A84C; }
@@ -217,14 +219,36 @@
 
     .nav-hamburger {
       display: none;
-      flex-direction: column;
-      gap: 5px;
+      align-items: center;
+      gap: 6px;
       cursor: pointer;
-      padding: 4px;
+      padding: 10px 12px;
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      background: rgba(255,255,255,0.05);
+      min-width: 44px;
+      min-height: 44px;
+      transition: border-color 0.2s, background 0.2s;
     }
-    .nav-hamburger span {
+    .nav-hamburger:hover, .nav-hamburger:focus {
+      border-color: var(--gold);
+      background: rgba(201,168,76,0.08);
+    }
+    .nav-hamburger .menu-label {
+      font-size: 12px;
+      font-weight: 600;
+      letter-spacing: 1px;
+      text-transform: uppercase;
+      color: var(--text);
+    }
+    .nav-hamburger .menu-bars {
+      display: flex;
+      flex-direction: column;
+      gap: 4px;
+    }
+    .nav-hamburger .menu-bars span {
       display: block;
-      width: 22px;
+      width: 20px;
       height: 2px;
       background: var(--text);
       border-radius: 2px;
@@ -1144,7 +1168,8 @@
         </button>
         <a href="/analyze.html" class="btn btn-gold btn-sm">Analyze My Business</a>
         <div class="nav-hamburger" id="hamburger" role="button" aria-label="Menu" tabindex="0">
-          <span></span><span></span><span></span>
+          <span class="menu-label">Menu</span>
+          <div class="menu-bars"><span></span><span></span><span></span></div>
         </div>
       </div>
     </div>
