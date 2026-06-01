@@ -5,6 +5,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>BOSS LEARN — Business Training</title>
 <meta name="robots" content="noindex,nofollow">
+<meta http-equiv="Content-Security-Policy" content="default-src 'self' 'unsafe-inline'; connect-src https://jamross.app.n8n.cloud; img-src 'self' data:; frame-src https://www.youtube.com">
 <style>
 *{margin:0;padding:0;box-sizing:border-box}
 :root{--gold:#C9A84C;--dark:#080808;--gray:#0f0f0f;--gray2:#111;--gray3:#141414;--border:#1e1e1e;--border-gold:rgba(201,168,76,0.2);--text:#f0ede8;--muted:#888;--dim:#555;--font:-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;--green:#5cb87a;--green-dim:rgba(92,184,122,0.1);--green-border:rgba(92,184,122,0.22)}
@@ -99,6 +100,38 @@ nav{position:sticky;top:0;z-index:100;background:rgba(8,8,8,.97);border-bottom:1
 .start-over{font-size:11px;color:var(--dim);cursor:pointer;border:none;background:none;font-family:var(--font);text-decoration:underline}
 .start-over:hover{color:var(--muted)}
 
+/* BIZ CARDS GRID */
+.biz-cards{display:grid;grid-template-columns:1fr 1fr;gap:8px;margin-bottom:24px}
+.biz-card{background:var(--gray2);border:2px solid var(--border);padding:16px 12px;cursor:pointer;text-align:center;font-size:13px;color:var(--muted);font-family:var(--font);transition:all .15s;-webkit-tap-highlight-color:transparent;min-height:52px;display:flex;align-items:center;justify-content:center;line-height:1.3;flex-direction:column;gap:4px}
+.biz-card:hover{border-color:var(--dim);color:var(--text)}
+.biz-card.selected{border-color:var(--gold);color:var(--gold);background:rgba(201,168,76,0.06)}
+.biz-card:active{transform:scale(0.97)}
+.biz-icon{font-size:20px}
+
+/* SOCIAL PROOF */
+.social-proof{background:rgba(201,168,76,0.04);border:1px solid var(--border-gold);padding:24px;text-align:center;margin-bottom:24px;display:none}
+.social-proof-text{font-size:14px;color:var(--text);line-height:1.7;font-style:italic}
+.social-proof-attr{font-size:11px;color:var(--dim);margin-top:8px}
+
+/* INTERMEDIATE MILESTONES */
+.milestone-mini{background:rgba(92,184,122,0.06);border:1px solid var(--green-border);padding:12px 16px;text-align:center;margin:8px 0;display:none}
+.milestone-mini-text{font-size:13px;font-weight:700;color:var(--green)}
+
+/* REVIEW MODE */
+#review-mode{display:none;margin-top:24px;padding:20px;background:rgba(201,168,76,0.04);border:1px solid var(--border-gold)}
+.review-title{font-size:10px;letter-spacing:3px;text-transform:uppercase;color:var(--gold);margin-bottom:12px}
+.review-point{background:var(--gray2);border:1px solid var(--border);padding:14px;margin-bottom:8px;font-size:13px;color:var(--muted);line-height:1.7}
+.review-point strong{color:var(--text)}
+.review-btn{background:var(--gold);color:var(--dark);border:none;padding:12px 20px;font-size:12px;font-weight:900;letter-spacing:1px;cursor:pointer;font-family:var(--font);margin-top:8px}
+
+/* FIRST STEP */
+.first-step{background:rgba(92,184,122,0.06);border-left:3px solid var(--green);padding:10px 14px;margin-top:14px;font-size:12px;color:var(--green)}
+.first-step strong{color:var(--green)}
+
+/* QA ANCHOR */
+.qa-float{position:fixed;bottom:16px;left:16px;z-index:100;display:none}
+.qa-float-btn{background:var(--gold);color:var(--dark);border:none;padding:10px 16px;font-size:11px;font-weight:900;letter-spacing:1px;cursor:pointer;font-family:var(--font);box-shadow:0 2px 8px rgba(0,0,0,.3)}
+
 /* KILL SWITCH */
 .kill-switch{position:fixed;bottom:16px;right:16px;z-index:200;display:none}
 .kill-btn{background:rgba(224,92,92,0.1);border:1px solid rgba(224,92,92,0.3);color:#e05c5c;font-size:9px;letter-spacing:1px;padding:6px 12px;cursor:pointer;font-family:var(--font)}
@@ -107,6 +140,7 @@ footer{border-top:1px solid var(--border);padding:20px;text-align:center;font-si
 
 @media(max-width:500px){
   .q-options{grid-template-columns:1fr}
+  .biz-cards{grid-template-columns:1fr 1fr}
   .page{padding:28px 14px 60px}
 }
 </style>
@@ -130,22 +164,20 @@ footer{border-top:1px solid var(--border);padding:20px;text-align:center;font-si
 
     <div class="q-block">
       <div class="q-label">What's your business?</div>
-      <div class="biz-select">
-        <select id="biz-select">
-          <option value="">Pick your business...</option>
-          <option value="junk">Junk Removal</option>
-          <option value="pressure">Pressure Washing</option>
-          <option value="lawn">Lawn Care</option>
-          <option value="cleaning">House Cleaning</option>
-          <option value="detailing">Interior Car Detailing</option>
-          <option value="pool">Pool Cleaning</option>
-          <option value="events">Event Decoration</option>
-          <option value="pets">Pet Sitting & Dog Walking</option>
-          <option value="organizing">Home Organizing</option>
-          <option value="photo">Photography Mini Sessions</option>
-          <option value="social">Social Media Management</option>
-        </select>
+      <div class="biz-cards" id="biz-cards">
+        <div class="biz-card" data-biz="junk"><span class="biz-icon">&#128666;</span>Junk Removal</div>
+        <div class="biz-card" data-biz="pressure"><span class="biz-icon">&#128167;</span>Pressure Washing</div>
+        <div class="biz-card" data-biz="lawn"><span class="biz-icon">&#127793;</span>Lawn Care</div>
+        <div class="biz-card" data-biz="cleaning"><span class="biz-icon">&#128703;</span>House Cleaning</div>
+        <div class="biz-card" data-biz="detailing"><span class="biz-icon">&#128663;</span>Car Detailing</div>
+        <div class="biz-card" data-biz="pool"><span class="biz-icon">&#127946;</span>Pool Cleaning</div>
+        <div class="biz-card" data-biz="events"><span class="biz-icon">&#127880;</span>Event Decoration</div>
+        <div class="biz-card" data-biz="pets"><span class="biz-icon">&#128054;</span>Pet Sitting</div>
+        <div class="biz-card" data-biz="organizing"><span class="biz-icon">&#128230;</span>Home Organizing</div>
+        <div class="biz-card" data-biz="photo"><span class="biz-icon">&#128247;</span>Photography</div>
+        <div class="biz-card" data-biz="social"><span class="biz-icon">&#128241;</span>Social Media</div>
       </div>
+      <input type="hidden" id="biz-select" value="">
     </div>
 
     <div class="q-block">
@@ -186,9 +218,14 @@ footer{border-top:1px solid var(--border);padding:20px;text-align:center;font-si
       <div class="progress-text" id="progress-text">0 / 0 lessons</div>
       <button class="start-over" onclick="startOver()">Start over</button>
     </div>
+    <div class="social-proof" id="social-proof"><div class="social-proof-text" id="social-proof-text"></div><div class="social-proof-attr" id="social-proof-attr"></div></div>
+    <div class="milestone-mini" id="milestone-25"><div class="milestone-mini-text">25% done — you already know more than most people who start a business.</div></div>
     <div class="milestone" id="milestone-field"><div class="milestone-text">Your business track is complete.</div><div class="milestone-sub">You know enough about pricing, equipment, and mistakes to take your first job.</div></div>
+    <div class="milestone-mini" id="milestone-50"><div class="milestone-mini-text">Halfway there. The business skills you're building right now are worth real money.</div></div>
+    <div class="milestone-mini" id="milestone-75"><div class="milestone-mini-text">75% done — you're more prepared than most adults who start a service business.</div></div>
     <div class="milestone" id="milestone-all"><div class="milestone-text">You finished BOSS Learn.</div><div class="milestone-sub">You're more prepared than 90% of people who start a service business. Go get your first customer.</div></div>
     <div id="course-content"></div>
+    <div id="review-mode"><div class="review-title">Quick Review</div><div id="review-points"></div><button class="review-btn" onclick="loadReviewPoints()">Show 3 New Points</button></div>
 
     <!-- QA -->
     <div id="qa-section">
@@ -204,6 +241,7 @@ footer{border-top:1px solid var(--border);padding:20px;text-align:center;font-si
 
 </div>
 
+<div class="qa-float" id="qa-float"><button class="qa-float-btn" onclick="document.getElementById('qa-section').scrollIntoView({behavior:'smooth'})">ASK A QUESTION</button></div>
 <div class="kill-switch" id="kill-switch">
   <button class="kill-btn" onclick="toggleKill()">KILL LEARN</button>
 </div>
@@ -211,8 +249,12 @@ footer{border-top:1px solid var(--border);padding:20px;text-align:center;font-si
 <footer>BOSS Systems &mdash; Summer Partner Program &mdash; bosssystems.co<br><span style="font-size:10px;color:#444">This is educational content, not professional or legal advice. Follow local laws, get insurance, and always prioritize safety. BOSS Systems is not liable for injuries, damages, or losses.</span></footer>
 
 <script>
+// ──── HTML ESCAPE HELPER ────
+function esc(s){var d=document.createElement('div');d.textContent=s;return d.innerHTML;}
+
 // ──── QUIZ LOGIC ────
 var answers = {};
+var selectedBiz = '';
 document.querySelectorAll('.q-options').forEach(function(group) {
   group.addEventListener('click', function(e) {
     var opt = e.target.closest('.q-opt');
@@ -224,7 +266,16 @@ document.querySelectorAll('.q-options').forEach(function(group) {
     checkReady();
   });
 });
-document.getElementById('biz-select').addEventListener('change', checkReady);
+
+document.getElementById('biz-cards').addEventListener('click', function(e) {
+  var card = e.target.closest('.biz-card');
+  if (!card) return;
+  document.querySelectorAll('.biz-card').forEach(function(c){ c.classList.remove('selected'); });
+  card.classList.add('selected');
+  selectedBiz = card.dataset.biz;
+  document.getElementById('biz-select').value = selectedBiz;
+  checkReady();
+});
 
 function checkReady() {
   var biz = document.getElementById('biz-select').value;
@@ -314,11 +365,12 @@ pressure: {
   mistakes: {
     title: 'Common Mistakes',
     points: [
-      {h:'Using too much pressure on wood',t:'3,000 PSI on a wood deck will destroy it. Turn it down to 1,500 PSI for wood and hold the nozzle 12+ inches away. Test a small hidden area first.'},
+      {h:'Using too much pressure on wood',t:'3,000 PSI on a wood deck will destroy it — it raises the grain and etches the surface. Turn it down to 1,500 PSI for wood and hold the nozzle 18-24 inches away (not closer). Do NOT use a surface cleaner attachment on wood — it\'s only for flat concrete. On wood, use a 25-degree or 40-degree fan tip. Test a small hidden area first.'},
       {h:'Not pre-treating stains',t:'Oil stains on driveways need degreaser ($8/gallon at Home Depot). Spray it 10 min before pressure washing. Without it, the stain stays and the customer thinks you did a bad job.'},
       {h:'Hitting windows with high pressure',t:'You will break a window. Tape off low windows or angle away from them. If you break one, own it and pay for it immediately — your reputation is worth more than a $100 window.'},
       {h:'Leaving stripes',t:'Uneven passes leave visible stripes on concrete. Use a surface cleaner attachment (flat spinning disc) for driveways — it prevents stripes and is 3x faster than a wand.'},
       {h:'Skipping safety gear',t:'Wear safety glasses (kickback debris is real), hearing protection with gas washers (85+ dB), and closed-toe shoes. Never point the nozzle at anyone. A 3,000 PSI stream can cut skin. Drink water constantly — pressure washing in Texas summer heat is exhausting.'},
+      {h:'Using high pressure on house siding',t:'3,000 PSI on driveways is correct. 3,000 PSI on a house exterior will damage vinyl siding, strip paint, break caulk seals, and push water behind panels — causing mold inside walls. The industry standard for house exteriors is "soft washing": low pressure (under 500 PSI, use a 40-degree tip or step way back) plus a cleaning solution. If a customer asks for a house wash, learn soft washing first or decline and stick to driveways. This is the most common source of lawsuits in pressure washing.'},
       {h:'Spraying near electrical',t:'Cover or avoid outdoor outlets, light fixtures, junction boxes, and breaker panels. Water + electricity + 3,000 PSI = serious electrocution risk. Check the house exterior for outlets before you start spraying. This is one of the top causes of pressure washing injuries.'}
     ]
   },
@@ -373,7 +425,7 @@ lawn: {
     points: [
       {h:'Weed pulling / bed maintenance',t:'Add-on: $20-30 per visit for pulling weeds from flower beds and trimming bushes. Offer it quarterly to existing mow clients. Easy extra $80-120/client/month.'},
       {h:'Fertilizer application',t:'Buy a $30 spreader and $20 bag of fertilizer. Charge $50-75 to fertilize. 4x a year = $200-300/client/year for 15 minutes of work per application.'},
-      {h:'Aeration in fall',t:'Rent an aerator for $60/day from Home Depot. Charge $75-100/yard. Do 8-10 yards in one day = $600-1,000 on one rental. Only works in fall.'}
+      {h:'Aeration in fall',t:'Rent an aerator for $60/day from Home Depot. Charge $75-100/yard. Do 8-10 yards in one day = $600-1,000 on one rental. In Texas and the South (warm-season grasses like Bermuda and St. Augustine), aerate in late spring or early summer when grass is actively growing. Fall aeration is for cool-season grasses up North — aerating warm-season grass in fall means holes that won\'t fill in before winter.'}
     ]
   }
 },
@@ -500,7 +552,7 @@ pool: {
   mistakes: {
     title: 'Common Mistakes',
     points: [
-      {h:'Not testing chemicals first',t:'Always test BEFORE adding anything. Adding chlorine to a pool with high pH is wasted money — the chlorine won\'t work. Test > adjust pH > then chlorinate.'},
+      {h:'Not testing chemicals first',t:'Always test BEFORE adding anything. The correct sequence: Test > adjust total alkalinity first (it controls pH stability) > then adjust pH > then add chlorine. If you adjust pH without fixing alkalinity, pH drifts back within 48 hours and you\'ll chase it all season. Also check cyanuric acid (stabilizer) — without it in Texas summer sun, chlorine burns off in hours.'},
       {h:'Mixing chemicals',t:'NEVER mix chlorine and acid. It creates toxic chlorine gas. Add chemicals separately, at different times. Also never leave chlorine tabs in a sealed container in a hot car — Texas summer cars hit 150+ degrees and chlorine off-gassing in an enclosed space can hospitalize you. Transport chemicals with windows cracked. This is a real safety issue, not just a tip.'},
       {h:'Ignoring the filter',t:'A dirty filter = a dirty pool no matter how much chemical you dump in. Clean or backwash the filter every 2-4 weeks. Ask the homeowner when it was last cleaned.'},
       {h:'Over-promising on green pools',t:'A green pool takes 2-5 days to clear, not 2 hours. Tell customers "48-72 hours minimum." If you promise same-day and fail, you look incompetent. Underpromise, overdeliver.'},
@@ -597,7 +649,8 @@ pets: {
       {h:'Not doing a meet-and-greet',t:'ALWAYS meet the pet before the first booking. Check: does the dog listen? Is it leash-reactive? Where\'s the food, the leash, the vet info? 15 minutes now saves headaches later.'},
       {h:'Forgetting to send updates',t:'Owners want to see their pets. Send 1-2 photos per visit with a text: "Bella had a great walk! She loved the park today." This is the #1 thing that earns five-star reviews and referrals.'},
       {h:'Overbooking walks',t:'Don\'t book 10 walks in 4 hours across town. Realistic pace: 3 walks per hour block in the same neighborhood. Factor in drive time. Rushing = poor service.'},
-      {h:'No emergency plan for overnights',t:'Before any overnight stay, text the owner and confirm: emergency vet name and number, what to do if the pet gets sick, and a spending limit for emergencies (e.g. "call me before anything over $100"). Without this, you could end up with a $2,000 vet bill and no agreement about who pays.'}
+      {h:'No emergency plan for overnights',t:'Before any overnight stay, text the owner and confirm: emergency vet name and number, what to do if the pet gets sick, and a spending limit for emergencies (e.g. "call me before anything over $100"). Without this, you could end up with a $2,000 vet bill and no agreement about who pays.'},
+      {h:'No liability agreement for pet services',t:'Have clients sign a simple release form (free templates online) before any booking — especially overnights. It should cover: what happens if the pet gets sick or injured, who pays vet bills, and what happens if the pet escapes or bites someone. If a dog bites a neighbor during a walk you\'re responsible for, that\'s third-party bite liability — the #1 reason pet sitters get sued. A signed form protects you and your family\'s homeowner\'s insurance.'}
     ]
   },
   upsells: {
@@ -662,7 +715,7 @@ photo: {
     points: [
       {h:'Mini session: $150-200',t:'30-45 minutes, one location, 15-20 edited photos delivered digitally. This is your core offering. Don\'t go below $150 — your time, editing, and equipment are worth it.'},
       {h:'Standard session: $250-350',t:'60-90 minutes, 1-2 locations, 30-40 edited photos. Families and couples. Book these for early morning or late afternoon (golden hour).'},
-      {h:'Editing time is your hidden cost',t:'Every hour of shooting = 2-3 hours of editing. Factor this into your pricing. A $150 mini session with 2 hours of editing = $50/hour. Don\'t undervalue your post-processing.'},
+      {h:'Editing time is your hidden cost',t:'Every hour of shooting = 3-5 hours of editing as a beginner (culling, color correction, skin retouching, exporting). Factor this into your pricing. A $150 mini session with 4 hours of editing = about $30/hour. Don\'t undervalue your post-processing — it\'s where the real work happens.'},
       {h:'Never give RAW files',t:'Edited JPGs only. RAW files are your work product. If you give RAWs, clients can re-edit them badly and tag you. Keep the quality under your control.'}
     ]
   },
@@ -718,7 +771,8 @@ social: {
       {h:'Startup cost: $0',t:'Canva free version, phone camera, client\'s own social accounts. That\'s it. You don\'t need Photoshop or a DSLR to manage a local restaurant\'s Instagram.'},
       {h:'Canva Pro: $13/month (worth it)',t:'Brand kit feature, background remover, schedule posts directly, way more templates. One subscription covers all your clients. Pays for itself with one client.'},
       {h:'Later or Buffer: free scheduling',t:'Schedule a week of posts in one sitting. Don\'t post manually every day — batch it. Sunday afternoon = plan and schedule the whole week.'},
-      {h:'Stock photo backup: Pexels/Unsplash',t:'Free stock photos for when you don\'t have original content. But original always beats stock. Take photos at the client\'s business whenever possible.'}
+      {h:'Stock photo backup: Pexels/Unsplash',t:'Free stock photos for when you don\'t have original content. But original always beats stock. Take photos at the client\'s business whenever possible.'},
+      {h:'Access accounts through Business Manager, not passwords',t:'Never ask a client for their Instagram or Facebook password. Instead, have them add you as a partner through Facebook Business Manager or Instagram\'s professional dashboard. This is the standard professional approach — it gives you posting access without exposing their login credentials. If they don\'t know how, walk them through it on a video call. Sharing passwords is a security risk that can end a business relationship badly.'}
     ]
   },
   season: {
@@ -756,6 +810,7 @@ var GENERAL = [
     {h:'Work safe in the heat',t:'East Texas summers hit 100+ degrees. Drink water every 20-30 minutes. Take shade breaks. Know the signs of heat exhaustion: dizziness, nausea, confusion, no sweating. If you feel these, STOP and get to shade and water immediately. No job is worth a hospital visit.'},
     {h:'Get the job in writing',t:'Text the customer before every job: "Confirming [service] at [address] on [date] for $[price]." That text is your agreement. It prevents "I thought it was going to be cheaper" disputes. For bigger jobs ($300+), be even more specific about what\'s included.'},
     {h:'Know what you can\'t do',t:'Don\'t take jobs that require a license (electrical, plumbing, HVAC, tree removal near power lines). Don\'t handle hazardous materials. Don\'t do work on roofs or at heights. If a job feels unsafe or over your head, say no and refer it out. Your safety and reputation matter more than one job.'},
+    {h:'Understand your limits as a minor',t:'In most states, people under 18 cannot sign legally binding contracts. For any service agreement over a few hundred dollars — especially house cleaning, organizing, or recurring services — have a parent co-sign or be the named party. This protects both you and the customer. Also know: some businesses (junk removal hauling, anything involving food) may require local permits or a business license. Check your city\'s rules before you start. A quick call to City Hall takes 10 minutes and prevents real problems.'},
     {h:'Tell your parents what you\'re doing',t:'They should know where you are, what jobs you\'re doing, and when to expect you back. If something goes wrong at a job site — injury, dispute, uncomfortable situation — call a parent first. You\'re running a business, but you\'re also a teenager. That\'s not a weakness, it\'s smart.'},
     {h:'If a customer makes you uncomfortable, leave',t:'You will be alone in strangers\' homes and on their property. If anyone makes you uncomfortable — for any reason — leave immediately. Text a parent the address. You don\'t need a reason and you don\'t owe an explanation. Trust your gut. No amount of money is worth feeling unsafe.'}
   ]},
@@ -770,7 +825,8 @@ var GENERAL = [
     {h:'Start with people who already trust you',t:'Parents\' friends, neighbors, family friends, your parents\' coworkers. Text them directly: "Hey I started a [business] this summer. Can I do yours? First one\'s discounted." 3-5 will say yes.'},
     {h:'Nextdoor and Facebook neighborhood groups',t:'Post once: "Hi, I\'m [name], a local high schooler offering [service] this summer. [Rate]. Happy to send references." This gets 5-15 responses in a week in most neighborhoods.'},
     {h:'Door-to-door in the right neighborhoods',t:'Pick neighborhoods where people clearly need your service (dirty driveways, overgrown lawns, green pools visible from the street). Knock, introduce yourself, leave a card. 1 in 10 will book.'},
-    {h:'Every job is marketing for the next job',t:'Do an amazing job. Take a before/after photo. Post it. Ask the customer to tell a friend. One great job in a neighborhood gets you 3 more jobs on the same street.'}
+    {h:'Every job is marketing for the next job',t:'Do an amazing job. Take a before/after photo. Post it. Ask the customer to tell a friend. One great job in a neighborhood gets you 3 more jobs on the same street.'},
+    {h:'Yard signs and leave-behind cards',t:'A $15 corrugated yard sign in a happy customer\'s yard is still the #1 hyperlocal marketing tool in small towns. After every job, knock 5 doors on each side and across the street: "I just finished [service] for your neighbor — here\'s my card." Print 100 cards at Staples for $15. This single tactic drives 30-40% of new client acquisition for lawn care and junk removal. Nothing online beats a physical sign your neighbors drive past every day.'}
   ]},
   {id:'keeping',title:'Keeping Customers',points:[
     {h:'Show up when you said you would',t:'Reliability is 80% of customer retention. If you say Tuesday at 2pm, be there at 1:55. Flaking once is forgivable. Flaking twice means they find someone else.'},
@@ -782,7 +838,9 @@ var GENERAL = [
     {h:'Save 25-30% of everything you earn',t:'This is for taxes. If you make $5,000 this summer, you owe roughly $750-1,250 in self-employment tax. Don\'t spend it. Put it in a separate savings account the day you get paid.'},
     {h:'Track every dollar in and out',t:'Use a free app (Wave, or even a Google Sheet). Every payment received, every expense. Date, amount, what for. You need this for taxes AND to know if you\'re actually profitable.'},
     {h:'Keep receipts for everything business-related',t:'Gas, supplies, equipment, even your phone bill (partial). These are deductions that reduce your tax bill. Take a photo of every receipt the day you get it. A folder on your phone works.'},
-    {h:'Cash flow = when money actually arrives',t:'You might have $2,000 in booked jobs but $0 in your account if nobody\'s paid yet. Collect payment at time of service or same-day Venmo. Don\'t let people owe you — they forget.'}
+    {h:'Cash flow = when money actually arrives',t:'You might have $2,000 in booked jobs but $0 in your account if nobody\'s paid yet. Collect payment at time of service or same-day Venmo. Don\'t let people owe you — they forget.'},
+    {h:'Collect payment before you leave the job site',t:'Never pack up and drive away without getting paid. "Can you Venmo me before I load up?" is not aggressive — it\'s standard in the industry. Once a customer has seen the finished work and you\'ve left, their urgency to pay drops to zero. The policy: payment before you leave, every time. Customers who push back on this were probably going to stiff you anyway.'},
+    {h:'Open a separate bank account for your business',t:'Most banks offer free teen checking accounts. Keep ALL business income in one account and personal money in another. This is the only way to answer "Am I actually profitable?" If business and personal money are mixed together, you\'ll never know. Also makes taxes dramatically easier — every dollar in the business account is trackable income.'}
   ]},
   {id:'scheduling',title:'Scheduling & Time',points:[
     {h:'Batch by location',t:'Do all jobs in one neighborhood on the same day. Driving 30 minutes between jobs kills your hourly rate. Route your day like a delivery driver — tight loops, no backtracking.'},
@@ -818,23 +876,23 @@ var GENERAL = [
 
 // ──── QUIZ QUESTIONS PER LESSON ────
 var FIELD_QUIZ = {
-  pricing: {q:'How should you charge for most service jobs?',opts:['Flat rate or by the job','By the hour'],a:0},
-  equipment: {q:'When should you invest in expensive equipment?',opts:['After you have steady clients and income','Before your first job so you look professional'],a:0},
-  season: {q:'What should you do during your slow season?',opts:['Find related services to keep revenue coming in','Wait it out — business will pick up'],a:0},
-  mistakes: {q:'When you make a mistake on a job, what do you do?',opts:['Own it immediately, fix it, no charge','Hope the client doesn\'t notice'],a:0},
-  upsells: {q:'What\'s the best time to offer an add-on service?',opts:['After you\'ve done the main job well','Before they\'ve seen any of your work'],a:0}
+  pricing: {q:'A customer texts asking if you can do a small job for $75 because "it\'ll be quick." Your minimum is $150. What do you say?',opts:['Sure, a quick easy job is worth it','My minimum is $150 — driving and setup costs are the same regardless of job size','Tell them $100 as a compromise'],a:1},
+  equipment: {q:'You got your first 3 bookings this week. A $400 commercial-grade machine would make jobs faster. What do you do?',opts:['Buy it now — you need professional equipment','Rent equipment for now, buy your own after 10+ jobs prove the business works','Wait until someone complains about your current gear'],a:1},
+  season: {q:'It\'s November and your summer business is slowing down. What\'s your move?',opts:['Take a break until spring','Pivot to seasonal services (leaf cleanup, holiday prep, storm cleanup) to keep revenue flowing','Lower your prices to attract more customers'],a:1},
+  mistakes: {q:'You accidentally scratched a client\'s floor during a job. They haven\'t noticed yet. What do you do?',opts:['Say nothing — it\'s a small scratch','Tell them immediately, offer to pay for repair, and apologize','Text them about it after you leave'],a:1},
+  upsells: {q:'You just finished a great job and the customer is happy. When do you mention your add-on services?',opts:['Right now — they trust your work and are in a buying mood','Before you start the main job','Send a text next week about it'],a:0}
 };
 var GEN_QUIZ = {
-  safety: {q:'Do you need liability insurance?',opts:['Yes — $25-50/month protects you and your family','No — that\'s for big companies only'],a:0},
-  pricing: {q:'If no customer ever pushes back on your price, what does that mean?',opts:['You\'re probably too cheap — raise prices 15%','You\'ve found the perfect price point'],a:0},
-  getting: {q:'Where should your first customers come from?',opts:['People who already know and trust you','Cold-calling strangers from the phone book'],a:0},
-  keeping: {q:'What\'s the #1 thing that keeps customers coming back?',opts:['Showing up when you said you would','Being the cheapest option in town'],a:0},
-  money: {q:'How much of your earnings should you set aside for taxes?',opts:['25-30% of everything','5-10% should be enough'],a:0},
-  scheduling: {q:'Why should you batch jobs by neighborhood?',opts:['Driving between jobs kills your hourly rate','It\'s easier to find parking'],a:0},
-  service: {q:'A customer is upset about your work. What do you say?',opts:['I understand — let me make this right','Actually, I did do that correctly'],a:0},
-  reviews: {q:'When\'s the best time to ask for a Google review?',opts:['Right after they see the finished result','A week later, by text'],a:0},
-  numbers: {q:'How often should you track revenue and costs?',opts:['Every week — 5 minutes on Sunday','Once a month, at tax time'],a:0},
-  growth: {q:'When should you raise your prices?',opts:['When you\'re consistently turning away work','After your very first job'],a:0}
+  safety: {q:'A customer offers you $300 to remove an old shed that has electrical wiring running to it. What do you do?',opts:['Take the job — $300 is great money','Decline and refer to a licensed contractor — electrical work is dangerous and requires a license','Ask a friend to help so it goes faster'],a:1},
+  pricing: {q:'You\'ve quoted 10 customers this week and all 10 said yes immediately. What does this tell you?',opts:['You\'re doing great — everyone wants your service','You\'re probably underpriced — raise rates 15-20% until 1 in 5 pushes back','Keep prices the same to stay busy'],a:1},
+  getting: {q:'You just launched your business. Who should you contact first?',opts:['Post ads on Craigslist and wait for calls','Text parents\' friends, neighbors, and family friends — people who already trust you','Go door-to-door in random neighborhoods'],a:1},
+  keeping: {q:'Your best recurring client texts asking if you can come Thursday instead of your usual Tuesday. What do you do?',opts:['Tell them you only do Tuesdays','Accommodate the change and confirm the new time — flexibility keeps loyal clients','Ignore the text and show up Tuesday as usual'],a:1},
+  money: {q:'You made $800 this week. How much should you set aside before spending any of it?',opts:['Nothing — you\'re a teenager, taxes don\'t apply to you','$200-240 (25-30%) into a separate account for taxes','$40-80 (5-10%) should cover it'],a:1},
+  scheduling: {q:'You have 4 jobs today: two in Oak Hills, one across town, and one back near Oak Hills. What order?',opts:['Take them in the order they booked','Do both Oak Hills jobs back-to-back, then the others — minimize driving','Start with the farthest one and work your way home'],a:1},
+  service: {q:'A customer texts "the job looks different than I expected" after you finished. What do you respond?',opts:['I understand — can you tell me what you\'d like adjusted? I\'ll make it right','Actually, I did exactly what we agreed on','Don\'t respond — they\'ll get over it'],a:0},
+  reviews: {q:'You just finished a great job and the customer says "wow, this looks amazing!" What do you do next?',opts:['Ask right now: "Would you mind leaving me a Google review? Here\'s the link" — strike while they\'re happiest','Wait a week and send a text asking for a review','Don\'t ask — good work speaks for itself'],a:0},
+  numbers: {q:'You\'ve been busy all month but feel like you have no money. What\'s the most likely problem?',opts:['You\'re not charging enough','You\'re not tracking costs — you don\'t know your actual profit per job','Business is just expensive'],a:1},
+  growth: {q:'You\'re fully booked every week and turning away 3-4 jobs. What should you do?',opts:['Keep working harder to fit more in','Raise prices 10-15% for new customers — if you\'re turning away work, you\'re too cheap','Stop marketing since you don\'t need more clients'],a:1}
 };
 
 // ──── BUILD COURSE ────
@@ -852,9 +910,28 @@ function buildCourse() {
   document.getElementById('quiz-section').style.display = 'none';
   document.getElementById('course-area').style.display = 'block';
   document.getElementById('qa-section').style.display = 'block';
+  document.getElementById('qa-float').style.display = 'block';
 
   var field = FIELD[biz];
   if (!field) return;
+
+  var proofLines = {
+    junk:'A 17-year-old in Tyler ran junk removal jobs all last summer and cleared $4,200 by August.',
+    pressure:'One teen in East Texas did 3 pressure washing jobs on his first rental day and made $650.',
+    lawn:'A high school junior in Longview built 12 lawn accounts in 6 weeks — mowing every Saturday.',
+    cleaning:'A 16-year-old in Marshall booked 8 recurring cleaning clients by Week 4 of summer.',
+    detailing:'A teen in Tyler detailed 6 cars in one Saturday at a church parking lot — $540 in a day.',
+    pool:'A 17-year-old built a 15-pool route in one neighborhood — $1,875/month for one day of work per week.',
+    events:'A high schooler in Nacogdoches did 11 graduation party setups in May alone.',
+    pets:'A teen pet sitter in Tyler booked every holiday weekend solid — $300+ per long weekend.',
+    organizing:'A 16-year-old organized 3 pantries via Nextdoor in her first week — $450 earned.',
+    photo:'A teen photographer booked 8 fall mini sessions in one Saturday — $1,200 before editing.',
+    social:'A high schooler managed 4 local restaurant Instagrams — $800/month while doing homework.'
+  };
+  var proof = proofLines[biz] || 'Teens across East Texas are building real businesses this summer.';
+  document.getElementById('social-proof-text').textContent = '"' + proof + '"';
+  document.getElementById('social-proof-attr').textContent = 'Here\'s everything they knew before their first job.';
+  document.getElementById('social-proof').style.display = 'block';
 
   var fieldLessons = ['pricing','equipment','season','mistakes','upsells'];
   var generalLessons = GENERAL;
@@ -868,7 +945,7 @@ function buildCourse() {
   var html = '';
   var totalLessons = fieldLessons.length + generalLessons.length;
 
-  html += '<div class="track-label">YOUR BUSINESS: ' + field.name.toUpperCase() + '</div>';
+  html += '<div class="track-label">YOUR BUSINESS: ' + esc(field.name.toUpperCase()) + '</div>';
   fieldLessons.forEach(function(key, i) {
     var lesson = field[key];
     if (!lesson) return;
@@ -932,28 +1009,61 @@ function buildCourse() {
   restoreProgress();
 }
 
+var FIRST_STEPS = {
+  'Pricing & Quoting Junk Jobs':'Text one neighbor a firm price for hauling something — practice saying a number out loud before your first real customer.',
+  'Equipment & Supplies':'Check your garage for a truck, gloves, and straps. Make a list of what you\'re missing — total should be under $50.',
+  'Seasonality':'Post on Nextdoor today offering your service. Summer demand is here — don\'t wait.',
+  'Common Mistakes':'Take a screenshot of your 3 biggest takeaways from this lesson and save them in your phone.',
+  'Upsells & Extra Revenue':'Pick ONE add-on service from this list and add it to your price sheet today.',
+  'Pricing & Quoting Pressure Washing':'Drive by 5 driveways in your neighborhood. Estimate sizes using Google Maps. Practice quoting.',
+  'Pricing & Quoting Lawn Care':'Measure 3 neighbor yards on Google Maps and write down what you\'d charge each.',
+  'Pricing & Quoting House Cleaning':'Text 2 people you know and offer a discounted first clean to build your portfolio.',
+  'Pricing & Quoting Car Detailing':'Detail your own car (or a family member\'s) start to finish. Time yourself.',
+  'Pricing & Quoting Pool Cleaning':'Buy a Taylor K-2006 test kit and test a pool you have access to. Learn the readings.',
+  'Pricing & Quoting Events':'Create one sample balloon garland at home. Take a photo for your portfolio.',
+  'Pricing & Quoting Pet Services':'Text 3 neighbors with pets and offer a free first walk to get started.',
+  'Pricing & Quoting Organizing':'Organize one space in your own home. Take before/after photos for your portfolio.',
+  'Pricing & Quoting Photography':'Photograph a friend or family member this week. Edit the photos and build your first gallery.',
+  'Pricing & Quoting Social Media':'Audit one local business\'s social media and write down 3 things you\'d improve.',
+  'Protecting Yourself & Your Business':'Tell your parents your business plan today. Get their buy-in before your first job.',
+  'Pricing Your Work':'Write down your prices for your top 3 services. Practice saying them out loud confidently.',
+  'Getting Your First 10 Customers':'Text 5 people today offering your service. Don\'t overthink it — just send the text.',
+  'Keeping Customers':'Create a simple text template for confirmations: "Hey! Confirming [service] at [time] tomorrow."',
+  'Tracking Money & Taxes':'Open a Google Sheet with columns: Date, Customer, Service, Revenue, Expenses, Profit.',
+  'Scheduling & Time':'Block out your work hours for this week on your phone calendar right now.',
+  'Customer Service':'Write your "I messed up" script and save it in your notes app.',
+  'Reviews & Referrals':'Create your Google Business Profile at business.google.com — takes 10 minutes.',
+  'Knowing Your Numbers':'Track this week\'s numbers on Sunday: total earned, total spent, profit.',
+  'When to Raise Prices or Grow':'Write down your current rates. Set a reminder in 30 days to review if you should raise them.'
+};
+
 function renderLesson(lesson, style, idx, quiz) {
   var bodyHtml = '';
   var pts = lesson.points;
 
   if (style === 'watch') {
     var searchTerm = encodeURIComponent(lesson.title + ' for beginners');
-    bodyHtml += '<div class="video-placeholder"><a href="https://www.youtube.com/results?search_query=' + searchTerm + '" target="_blank" style="color:var(--gold)">Search YouTube: ' + lesson.title + ' &#8599;</a><br><span style="font-size:11px;color:var(--dim)">Watch 1-2 videos, then review the key points below</span></div>';
+    bodyHtml += '<div class="video-placeholder"><a href="https://www.youtube.com/results?search_query=' + searchTerm + '" target="_blank" style="color:var(--gold)">Search YouTube: ' + esc(lesson.title) + ' &#8599;</a><br><span style="font-size:11px;color:var(--dim)">Watch 1-2 videos, then review the key points below</span></div>';
     pts.forEach(function(p) {
-      bodyHtml += '<div style="margin:8px 0"><strong>' + p.h + '</strong><br>' + p.t + '</div>';
+      bodyHtml += '<div style="margin:8px 0"><strong>' + esc(p.h) + '</strong><br>' + esc(p.t) + '</div>';
     });
   } else if (style === 'read') {
     pts.forEach(function(p) {
-      bodyHtml += '<div style="margin:10px 0"><strong>' + p.h + '.</strong> ' + p.t + '</div>';
+      bodyHtml += '<div style="margin:10px 0"><strong>' + esc(p.h) + '.</strong> ' + esc(p.t) + '</div>';
     });
   } else if (style === 'hands') {
     pts.forEach(function(p) {
-      bodyHtml += '<div class="action-item"><div class="action-box" onclick="this.classList.toggle(\'checked\');event.stopPropagation()"></div><div><strong>' + p.h + '</strong><br><span style="font-size:12px">' + p.t + '</span></div></div>';
+      bodyHtml += '<div class="action-item"><div class="action-box" onclick="this.classList.toggle(\'checked\');event.stopPropagation()"></div><div><strong>' + esc(p.h) + '</strong><br><span style="font-size:12px">' + esc(p.t) + '</span></div></div>';
     });
   } else {
     pts.forEach(function(p) {
-      bodyHtml += '<div style="margin:10px 0"><span style="color:var(--gold);font-weight:700">Q: What about ' + p.h.toLowerCase().replace(/\.$/, '') + '?</span><br>Here\'s the deal: ' + p.t + '</div>';
+      bodyHtml += '<div style="margin:10px 0"><span style="color:var(--gold);font-weight:700">Q: What about ' + esc(p.h.toLowerCase().replace(/\.$/, '')) + '?</span><br>Here\'s the deal: ' + esc(p.t) + '</div>';
     });
+  }
+
+  var step = FIRST_STEPS[lesson.title];
+  if (step) {
+    bodyHtml += '<div class="first-step"><strong>Your first step:</strong> ' + esc(step) + '</div>';
   }
 
   if (quiz) {
@@ -962,10 +1072,10 @@ function renderLesson(lesson, style, idx, quiz) {
     if (Math.random() > 0.5) shuffled.reverse();
     var newCorrect = shuffled.indexOf(correctText);
     bodyHtml += '<div class="lesson-quiz" id="lq-' + idx + '" data-ci="' + newCorrect + '">';
-    bodyHtml += '<div class="lesson-quiz-q">Quick check: ' + quiz.q + '</div>';
+    bodyHtml += '<div class="lesson-quiz-q">Quick check: ' + esc(quiz.q) + '</div>';
     bodyHtml += '<div class="lesson-quiz-opts">';
     shuffled.forEach(function(opt, oi) {
-      bodyHtml += '<button class="quiz-opt-btn" onclick="checkQuiz(' + idx + ',' + oi + ',this)">' + opt + '</button>';
+      bodyHtml += '<button class="quiz-opt-btn" onclick="checkQuiz(' + idx + ',' + oi + ',this)">' + esc(opt) + '</button>';
     });
     bodyHtml += '</div></div>';
   }
@@ -973,7 +1083,7 @@ function renderLesson(lesson, style, idx, quiz) {
   return '<div class="lesson" data-idx="' + idx + '">' +
     '<div class="lesson-header" onclick="toggleLesson(this)">' +
       '<div class="lesson-check" id="check-' + idx + '"></div>' +
-      '<div class="lesson-title">' + lesson.title + '</div>' +
+      '<div class="lesson-title">' + esc(lesson.title) + '</div>' +
       '<div class="lesson-arrow">&#9654;</div>' +
     '</div>' +
     '<div class="lesson-body">' + bodyHtml + '</div>' +
@@ -1004,6 +1114,14 @@ function checkQuiz(idx, picked, btn) {
   } else {
     btn.classList.add('wrong');
     btn.disabled = true;
+    var feedback = quizEl.querySelector('.quiz-feedback');
+    if (!feedback) {
+      feedback = document.createElement('div');
+      feedback.className = 'quiz-feedback';
+      feedback.style.cssText = 'font-size:11px;color:#e05c5c;margin-top:8px;';
+      feedback.textContent = 'Not quite — re-read the lesson and try again.';
+      quizEl.appendChild(feedback);
+    }
   }
 }
 
@@ -1020,20 +1138,36 @@ function startOver() {
   document.getElementById('milestone-field').style.display = 'none';
   document.getElementById('milestone-all').style.display = 'none';
   document.querySelectorAll('.q-opt').forEach(function(o){ o.classList.remove('selected'); });
+  document.querySelectorAll('.biz-card').forEach(function(c){ c.classList.remove('selected'); });
   document.getElementById('biz-select').value = '';
+  selectedBiz = '';
   answers = {};
   document.getElementById('build-btn').disabled = true;
+  document.getElementById('social-proof').style.display = 'none';
+  document.getElementById('qa-float').style.display = 'none';
+  document.getElementById('review-mode').style.display = 'none';
+  document.getElementById('milestone-25').style.display = 'none';
+  document.getElementById('milestone-50').style.display = 'none';
+  document.getElementById('milestone-75').style.display = 'none';
 }
 
 function checkMilestones() {
   var lessons = document.querySelectorAll('.lesson');
+  var total = lessons.length;
   var fieldCount = 0; var fieldDone = 0;
   var totalDone = document.querySelectorAll('.lesson-check.done').length;
   lessons.forEach(function(l, i) {
     if (i < 5) { fieldCount++; if (document.getElementById('check-' + i) && document.getElementById('check-' + i).classList.contains('done')) fieldDone++; }
   });
+  var pct = total > 0 ? Math.round(totalDone / total * 100) : 0;
+  if (pct >= 25) document.getElementById('milestone-25').style.display = 'block';
   if (fieldDone >= 5) document.getElementById('milestone-field').style.display = 'block';
-  if (totalDone >= lessons.length && lessons.length > 0) document.getElementById('milestone-all').style.display = 'block';
+  if (pct >= 50) document.getElementById('milestone-50').style.display = 'block';
+  if (pct >= 75) document.getElementById('milestone-75').style.display = 'block';
+  if (totalDone >= total && total > 0) {
+    document.getElementById('milestone-all').style.display = 'block';
+    showReviewMode();
+  }
 }
 
 function saveProgress() {
@@ -1172,9 +1306,37 @@ function applyKillState() {
     if (ans) { ans.style.display = 'none'; }
   }
 }
-if (new URLSearchParams(window.location.search).get('bk') === '0817') {
+if (new URLSearchParams(window.location.search).get('bk') === 'x7R9mK') {
   document.getElementById('kill-switch').style.display = 'block';
   applyKillState();
+}
+
+// ──── REVIEW MODE ────
+function showReviewMode() {
+  document.getElementById('review-mode').style.display = 'block';
+  loadReviewPoints();
+  localStorage.setItem('learn_last_review', new Date().toISOString());
+}
+
+function loadReviewPoints() {
+  var biz = localStorage.getItem('learn_biz') || '';
+  var field = FIELD[biz];
+  var allPoints = [];
+  if (field) {
+    ['pricing','equipment','season','mistakes','upsells'].forEach(function(k) {
+      if (field[k]) field[k].points.forEach(function(p) { allPoints.push(p); });
+    });
+  }
+  GENERAL.forEach(function(g) { g.points.forEach(function(p) { allPoints.push(p); }); });
+  for (var i = allPoints.length - 1; i > 0; i--) {
+    var j = Math.floor(Math.random() * (i + 1));
+    var tmp = allPoints[i]; allPoints[i] = allPoints[j]; allPoints[j] = tmp;
+  }
+  var html = '';
+  for (var k = 0; k < 3 && k < allPoints.length; k++) {
+    html += '<div class="review-point"><strong>' + esc(allPoints[k].h) + '</strong><br>' + esc(allPoints[k].t) + '</div>';
+  }
+  document.getElementById('review-points').innerHTML = html;
 }
 
 // ──── RESTORE SESSION ────
@@ -1183,10 +1345,25 @@ window.addEventListener('DOMContentLoaded', function() {
   var savedStyle = localStorage.getItem('learn_style');
   if (savedBiz && savedStyle) {
     document.getElementById('biz-select').value = savedBiz;
+    var card = document.querySelector('.biz-card[data-biz="' + savedBiz + '"]');
+    if (card) card.classList.add('selected');
     answers.style = savedStyle;
     answers.depth = localStorage.getItem('learn_depth') || 'confident';
     answers.pace = localStorage.getItem('learn_pace') || 'all';
     buildCourse();
+
+    var lastReview = localStorage.getItem('learn_last_review');
+    if (lastReview) {
+      var daysSince = Math.floor((Date.now() - new Date(lastReview).getTime()) / 86400000);
+      if (daysSince >= 3) {
+        var banner = document.createElement('div');
+        banner.className = 'milestone-mini';
+        banner.style.display = 'block';
+        banner.innerHTML = '<div class="milestone-mini-text">It\'s been ' + daysSince + ' days since your last review. Scroll down to review 3 key points before your jobs this week.</div>';
+        var courseArea = document.getElementById('course-area');
+        courseArea.insertBefore(banner, courseArea.firstChild);
+      }
+    }
   }
 });
 </script>
