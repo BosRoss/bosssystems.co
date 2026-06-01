@@ -1,44 +1,52 @@
 {
-  "generated": "2026-06-01T01:45:44.392099+00:00",
+  "generated": "2026-06-01T02:26:32.599746+00:00",
   "engine_state": "active",
   "signals": [
     {
       "type": "storm",
-      "area": "Crosby, TX; Dickens, TX; Garza, TX; Kent, TX",
+      "area": "Collingsworth, TX",
       "niche": "roofing",
-      "action": "Storm damage in Crosby, TX; Dickens, TX; Garza, TX; Kent, TX. Roofers and restoration companies about to get flooded.",
+      "action": "Storm damage in Collingsworth, TX. Roofers and restoration companies about to get flooded.",
+      "urgency": "today",
+      "pitch_hook": "After a storm like that, you'll get 10x your normal call volume. Ready for it?"
+    },
+    {
+      "type": "storm",
+      "area": "Lubbock, TX",
+      "niche": "roofing",
+      "action": "Storm damage in Lubbock, TX. Roofers and restoration companies about to get flooded.",
+      "urgency": "today",
+      "pitch_hook": "After a storm like that, you'll get 10x your normal call volume. Ready for it?"
+    },
+    {
+      "type": "storm",
+      "area": "Lynn, TX",
+      "niche": "roofing",
+      "action": "Storm damage in Lynn, TX. Roofers and restoration companies about to get flooded.",
       "urgency": "today",
       "pitch_hook": "After a storm like that, you'll get 10x your normal call volume. Ready for it?"
     },
     {
       "type": "flood",
-      "area": "Crosby, TX; Dickens, TX",
+      "area": "Foard, TX",
       "niche": "plumbing",
-      "action": "Flood warnings in Crosby, TX; Dickens, TX. Plumbers, restoration, mold companies will spike.",
+      "action": "Flood warnings in Foard, TX. Plumbers, restoration, mold companies will spike.",
       "urgency": "today",
       "pitch_hook": "Water damage calls are coming. Every one you miss is $500+ walking away."
     },
     {
       "type": "flood",
-      "area": "Brewster, TX",
+      "area": "Garza, TX; Lynn, TX",
       "niche": "plumbing",
-      "action": "Flood warnings in Brewster, TX. Plumbers, restoration, mold companies will spike.",
+      "action": "Flood warnings in Garza, TX; Lynn, TX. Plumbers, restoration, mold companies will spike.",
       "urgency": "today",
       "pitch_hook": "Water damage calls are coming. Every one you miss is $500+ walking away."
     },
     {
       "type": "flood",
-      "area": "Pecos, TX",
+      "area": "Hancock, MS; Harrison, MS",
       "niche": "plumbing",
-      "action": "Flood warnings in Pecos, TX. Plumbers, restoration, mold companies will spike.",
-      "urgency": "today",
-      "pitch_hook": "Water damage calls are coming. Every one you miss is $500+ walking away."
-    },
-    {
-      "type": "flood",
-      "area": "George, MS; Greene, MS",
-      "niche": "plumbing",
-      "action": "Flood warnings in George, MS; Greene, MS. Plumbers, restoration, mold companies will spike.",
+      "action": "Flood warnings in Hancock, MS; Harrison, MS. Plumbers, restoration, mold companies will spike.",
       "urgency": "today",
       "pitch_hook": "Water damage calls are coming. Every one you miss is $500+ walking away."
     },
@@ -59,26 +67,18 @@
       "pitch_hook": "Water damage calls are coming. Every one you miss is $500+ walking away."
     },
     {
-      "type": "storm",
-      "area": "Lonoke, AR; Pulaski, AR",
-      "niche": "roofing",
-      "action": "Storm damage in Lonoke, AR; Pulaski, AR. Roofers and restoration companies about to get flooded.",
+      "type": "flood",
+      "area": "George, MS; Greene, MS",
+      "niche": "plumbing",
+      "action": "Flood warnings in George, MS; Greene, MS. Plumbers, restoration, mold companies will spike.",
       "urgency": "today",
-      "pitch_hook": "After a storm like that, you'll get 10x your normal call volume. Ready for it?"
-    },
-    {
-      "type": "storm",
-      "area": "Randolph, AR; Sharp, AR",
-      "niche": "roofing",
-      "action": "Storm damage in Randolph, AR; Sharp, AR. Roofers and restoration companies about to get flooded.",
-      "urgency": "today",
-      "pitch_hook": "After a storm like that, you'll get 10x your normal call volume. Ready for it?"
+      "pitch_hook": "Water damage calls are coming. Every one you miss is $500+ walking away."
     },
     {
       "type": "flood",
-      "area": "Randolph, AR; Sharp, AR",
+      "area": "Jackson, AR; Woodruff, AR",
       "niche": "plumbing",
-      "action": "Flood warnings in Randolph, AR; Sharp, AR. Plumbers, restoration, mold companies will spike.",
+      "action": "Flood warnings in Jackson, AR; Woodruff, AR. Plumbers, restoration, mold companies will spike.",
       "urgency": "today",
       "pitch_hook": "Water damage calls are coming. Every one you miss is $500+ walking away."
     }
@@ -239,55 +239,55 @@
   "feeds": [
     {
       "name": "NOAA",
-      "last_hit": "2026-06-01T00:14:25.591318+00:00",
+      "last_hit": "2026-06-01T02:20:24.004129+00:00",
       "status": "yellow",
       "data_points_today": 0
     },
     {
       "name": "REDDIT",
-      "last_hit": "2026-06-01T00:14:25.591318+00:00",
+      "last_hit": "2026-06-01T02:20:24.004129+00:00",
       "status": "green",
       "data_points_today": 801
     },
     {
       "name": "USGS",
-      "last_hit": "2026-06-01T00:14:25.591318+00:00",
+      "last_hit": "2026-06-01T02:20:24.004129+00:00",
       "status": "yellow",
       "data_points_today": 0
     },
     {
       "name": "HACKERNEWS",
-      "last_hit": "2026-06-01T00:14:25.591318+00:00",
+      "last_hit": "2026-06-01T02:20:24.004129+00:00",
       "status": "green",
       "data_points_today": 30
     },
     {
       "name": "FEMA",
-      "last_hit": "2026-06-01T00:14:25.591318+00:00",
+      "last_hit": "2026-06-01T02:20:24.004129+00:00",
       "status": "green",
       "data_points_today": 20
     },
     {
       "name": "COMMODITIES",
-      "last_hit": "2026-06-01T00:14:25.591318+00:00",
+      "last_hit": "2026-06-01T02:20:24.004129+00:00",
       "status": "green",
       "data_points_today": 7
     },
     {
       "name": "RSS",
-      "last_hit": "2026-06-01T00:14:25.591318+00:00",
+      "last_hit": "2026-06-01T02:20:24.004129+00:00",
       "status": "green",
       "data_points_today": 160
     },
     {
       "name": "FRED",
-      "last_hit": "2026-06-01T00:14:25.591318+00:00",
+      "last_hit": "2026-06-01T02:20:24.004129+00:00",
       "status": "yellow",
       "data_points_today": 0
     },
     {
       "name": "BLS",
-      "last_hit": "2026-06-01T00:14:25.591318+00:00",
+      "last_hit": "2026-06-01T02:20:24.004129+00:00",
       "status": "green",
       "data_points_today": 9
     }
