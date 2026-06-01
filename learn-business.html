@@ -1,0 +1,1064 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>BOSS LEARN — Business Training</title>
+<meta name="robots" content="noindex,nofollow">
+<style>
+*{margin:0;padding:0;box-sizing:border-box}
+:root{--gold:#C9A84C;--dark:#080808;--gray:#0f0f0f;--gray2:#111;--gray3:#141414;--border:#1e1e1e;--border-gold:rgba(201,168,76,0.2);--text:#f0ede8;--muted:#888;--dim:#555;--font:-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;--green:#5cb87a;--green-dim:rgba(92,184,122,0.1);--green-border:rgba(92,184,122,0.22)}
+html,body{min-height:100%;background:var(--dark);color:var(--text);font-family:var(--font);font-size:15px;line-height:1.6;-webkit-font-smoothing:antialiased;overflow-x:hidden}
+a{color:var(--gold);text-decoration:none}
+a:hover{text-decoration:underline}
+
+nav{position:sticky;top:0;z-index:100;background:rgba(8,8,8,.97);border-bottom:1px solid var(--border);padding:0 20px;height:56px;display:flex;align-items:center;justify-content:space-between}
+.nav-logo{font-weight:900;font-size:12px;letter-spacing:4px;color:var(--gold)}
+.nav-link{font-size:11px;color:var(--muted);letter-spacing:1px}
+
+.page{max-width:680px;margin:0 auto;padding:40px 16px 80px}
+.page-label{font-size:10px;letter-spacing:4px;text-transform:uppercase;color:var(--gold);margin-bottom:8px;display:block}
+.page h1{font-size:clamp(1.5rem,4vw,2rem);font-weight:900;letter-spacing:-.5px;margin-bottom:8px}
+.page-intro{font-size:14px;color:var(--muted);line-height:1.7;margin-bottom:32px}
+.optional-badge{display:inline-block;font-size:9px;letter-spacing:2px;text-transform:uppercase;color:var(--green);border:1px solid var(--green-border);background:var(--green-dim);padding:4px 10px;margin-bottom:16px}
+
+/* QUIZ */
+.quiz-section{margin-bottom:40px}
+.q-block{margin-bottom:28px}
+.q-label{font-size:13px;font-weight:700;color:var(--text);margin-bottom:10px}
+.q-options{display:grid;grid-template-columns:1fr 1fr;gap:8px}
+.q-opt{background:var(--gray2);border:2px solid var(--border);padding:14px 16px;cursor:pointer;text-align:center;font-size:13px;color:var(--muted);font-family:var(--font);transition:all .15s;-webkit-tap-highlight-color:transparent;min-height:48px;display:flex;align-items:center;justify-content:center;line-height:1.3}
+.q-opt:hover{border-color:var(--dim);color:var(--text)}
+.q-opt.selected{border-color:var(--gold);color:var(--gold);background:rgba(201,168,76,0.06)}
+.q-opt:active{transform:scale(0.97)}
+
+/* BIZ SELECT */
+.biz-select{margin-bottom:24px}
+.biz-select select{width:100%;background:var(--gray2);border:1px solid var(--border);color:var(--text);font-size:14px;padding:14px 16px;font-family:var(--font);outline:none;appearance:none;-webkit-appearance:none;background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='8' fill='%23888'%3E%3Cpath d='M0 0l6 8 6-8z'/%3E%3C/svg%3E");background-repeat:no-repeat;background-position:right 16px center}
+.biz-select select:focus{border-color:var(--gold)}
+
+.build-btn{width:100%;background:var(--gold);color:var(--dark);border:none;padding:16px;font-size:14px;font-weight:900;letter-spacing:2px;text-transform:uppercase;cursor:pointer;font-family:var(--font);transition:background .2s}
+.build-btn:hover{background:#dfc070}
+.build-btn:disabled{opacity:.3;cursor:not-allowed}
+
+/* COURSE */
+#course-area{display:none}
+.progress-wrap{background:var(--gray2);border:1px solid var(--border);padding:14px 16px;margin-bottom:24px;display:flex;align-items:center;gap:12px}
+.progress-bar{flex:1;height:4px;background:var(--border);position:relative;overflow:hidden}
+.progress-fill{height:100%;background:var(--gold);transition:width .4s ease;width:0}
+.progress-text{font-size:11px;color:var(--dim);font-weight:600;white-space:nowrap}
+
+.track-label{font-size:10px;letter-spacing:3px;text-transform:uppercase;color:var(--gold);margin:28px 0 12px;padding-bottom:8px;border-bottom:1px solid var(--border)}
+
+.lesson{background:var(--gray2);border:1px solid var(--border);margin-bottom:6px;overflow:hidden}
+.lesson-header{padding:16px 18px;cursor:pointer;display:flex;align-items:center;gap:12px;-webkit-tap-highlight-color:transparent;transition:background .12s}
+.lesson-header:active{background:var(--gray3)}
+.lesson-check{width:20px;height:20px;border:2px solid var(--border);flex-shrink:0;display:flex;align-items:center;justify-content:center;font-size:12px;color:var(--green);transition:all .2s}
+.lesson-check.done{border-color:var(--green);background:var(--green-dim)}
+.lesson-title{font-size:14px;font-weight:700;flex:1}
+.lesson-arrow{color:var(--dim);font-size:12px;flex-shrink:0;transition:transform .2s}
+.lesson.open .lesson-arrow{transform:rotate(90deg)}
+.lesson-body{display:none;padding:0 18px 18px;font-size:13px;color:var(--muted);line-height:1.8}
+.lesson.open .lesson-body{display:block}
+.lesson-body strong{color:var(--text)}
+.lesson-body ul,.lesson-body ol{margin:8px 0 8px 18px}
+.lesson-body li{margin-bottom:6px}
+.lesson-body .action-item{display:flex;align-items:flex-start;gap:8px;padding:6px 0}
+.lesson-body .action-box{width:16px;height:16px;border:1px solid var(--border);flex-shrink:0;margin-top:3px;cursor:pointer}
+.lesson-body .action-box.checked{background:var(--green-dim);border-color:var(--green)}
+.lesson-body .tip{background:rgba(201,168,76,0.06);border-left:3px solid var(--gold);padding:10px 14px;margin:10px 0;font-size:12px}
+.lesson-body .video-placeholder{background:var(--dark);border:1px solid var(--border);padding:40px 20px;text-align:center;margin:10px 0;color:var(--dim);font-size:12px}
+
+/* QA */
+#qa-section{display:none;margin-top:40px;padding-top:24px;border-top:1px solid var(--border)}
+.qa-title{font-size:10px;letter-spacing:3px;text-transform:uppercase;color:var(--gold);margin-bottom:12px}
+.qa-input-wrap{display:flex;gap:8px;margin-bottom:16px}
+.qa-input{flex:1;background:var(--gray2);border:1px solid var(--border);color:var(--text);font-size:14px;padding:12px 14px;font-family:var(--font);outline:none}
+.qa-input:focus{border-color:var(--gold)}
+.qa-send{background:var(--gold);color:var(--dark);border:none;padding:12px 20px;font-size:12px;font-weight:900;letter-spacing:1px;cursor:pointer;font-family:var(--font);white-space:nowrap}
+.qa-send:disabled{opacity:.3;cursor:not-allowed}
+.qa-answer{background:var(--gray2);border:1px solid var(--border);padding:16px;font-size:13px;color:var(--muted);line-height:1.8;display:none}
+.qa-answer strong{color:var(--text)}
+.qa-loading{color:var(--dim);font-size:12px;font-style:italic;display:none}
+
+/* KILL SWITCH */
+.kill-switch{position:fixed;bottom:16px;right:16px;z-index:200;display:none}
+.kill-btn{background:rgba(224,92,92,0.1);border:1px solid rgba(224,92,92,0.3);color:#e05c5c;font-size:9px;letter-spacing:1px;padding:6px 12px;cursor:pointer;font-family:var(--font)}
+
+footer{border-top:1px solid var(--border);padding:20px;text-align:center;font-size:11px;color:var(--dim)}
+
+@media(max-width:500px){
+  .q-options{grid-template-columns:1fr}
+  .page{padding:28px 14px 60px}
+}
+</style>
+</head>
+<body>
+
+<nav>
+  <span class="nav-logo">BOSS SYSTEMS</span>
+  <a href="summer.html" class="nav-link">Back to Partner Hub</a>
+</nav>
+
+<div class="page">
+
+  <span class="optional-badge">Your AI handles the phones — this teaches you the rest</span>
+  <span class="page-label">BOSS LEARN</span>
+  <h1>Learn to Run Your Business</h1>
+  <p class="page-intro">Your AI handles the calls, the booking, and the follow-ups. But if you want to understand how your business actually works — pricing, customers, money, growth — this is for you. Takes about 30 minutes. Go at your own pace.</p>
+
+  <!-- QUIZ -->
+  <div id="quiz-section" class="quiz-section">
+
+    <div class="q-block">
+      <div class="q-label">What's your business?</div>
+      <div class="biz-select">
+        <select id="biz-select">
+          <option value="">Pick your business...</option>
+          <option value="junk">Junk Removal</option>
+          <option value="pressure">Pressure Washing</option>
+          <option value="lawn">Lawn Care</option>
+          <option value="cleaning">House Cleaning</option>
+          <option value="detailing">Interior Car Detailing</option>
+          <option value="pool">Pool Cleaning</option>
+          <option value="events">Event Decoration</option>
+          <option value="pets">Pet Sitting & Dog Walking</option>
+          <option value="organizing">Home Organizing</option>
+          <option value="photo">Photography Mini Sessions</option>
+          <option value="social">Social Media Management</option>
+        </select>
+      </div>
+    </div>
+
+    <div class="q-block">
+      <div class="q-label">How do you learn best?</div>
+      <div class="q-options" data-q="style">
+        <div class="q-opt" data-v="watch">Watch + read</div>
+        <div class="q-opt" data-v="read">Read short articles</div>
+        <div class="q-opt" data-v="hands">Hands-on checklists</div>
+        <div class="q-opt" data-v="talk">Talk it through</div>
+      </div>
+    </div>
+
+    <div class="q-block">
+      <div class="q-label">How deep do you want to go?</div>
+      <div class="q-options" data-q="depth">
+        <div class="q-opt" data-v="basic">Just the basics</div>
+        <div class="q-opt" data-v="confident">Enough to feel confident</div>
+        <div class="q-opt" data-v="everything">I want to know everything</div>
+      </div>
+    </div>
+
+    <div class="q-block">
+      <div class="q-label">What's your pace?</div>
+      <div class="q-options" data-q="pace">
+        <div class="q-opt" data-v="all">Give me everything now</div>
+        <div class="q-opt" data-v="bit">A little at a time</div>
+        <div class="q-opt" data-v="pick">Let me pick what I need</div>
+      </div>
+    </div>
+
+    <button class="build-btn" id="build-btn" disabled onclick="buildCourse()">Build My Course</button>
+  </div>
+
+  <!-- COURSE -->
+  <div id="course-area">
+    <div class="progress-wrap">
+      <div class="progress-bar"><div class="progress-fill" id="progress-fill"></div></div>
+      <div class="progress-text" id="progress-text">0 / 0 lessons</div>
+    </div>
+    <div id="course-content"></div>
+
+    <!-- QA -->
+    <div id="qa-section">
+      <div class="qa-title">Ask a Question</div>
+      <div class="qa-input-wrap">
+        <input class="qa-input" id="qa-input" type="text" placeholder="Ask anything about your business..." maxlength="500">
+        <button class="qa-send" id="qa-send" onclick="askQuestion()">Ask</button>
+      </div>
+      <div class="qa-loading" id="qa-loading">Thinking...</div>
+      <div class="qa-answer" id="qa-answer"></div>
+    </div>
+  </div>
+
+</div>
+
+<div class="kill-switch" id="kill-switch">
+  <button class="kill-btn" onclick="toggleKill()">KILL LEARN</button>
+</div>
+
+<footer>BOSS Systems &mdash; Summer Partner Program &mdash; bosssystems.co<br><span style="font-size:10px;color:#444">This is educational content, not professional or legal advice. Follow local laws, get insurance, and always prioritize safety. BOSS Systems is not liable for injuries, damages, or losses.</span></footer>
+
+<script>
+// ──── QUIZ LOGIC ────
+var answers = {};
+document.querySelectorAll('.q-options').forEach(function(group) {
+  group.addEventListener('click', function(e) {
+    var opt = e.target.closest('.q-opt');
+    if (!opt) return;
+    var q = group.dataset.q;
+    group.querySelectorAll('.q-opt').forEach(function(o){ o.classList.remove('selected'); });
+    opt.classList.add('selected');
+    answers[q] = opt.dataset.v;
+    checkReady();
+  });
+});
+document.getElementById('biz-select').addEventListener('change', checkReady);
+
+function checkReady() {
+  var biz = document.getElementById('biz-select').value;
+  var ready = biz && answers.style && answers.depth && answers.pace;
+  document.getElementById('build-btn').disabled = !ready;
+}
+
+// ──── COURSE DATA ────
+// Field-specific lessons per business type
+var FIELD = {
+junk: {
+  name: 'Junk Removal',
+  pricing: {
+    title: 'Pricing & Quoting Junk Jobs',
+    points: [
+      {h:'Price by load, not by hour',t:'A full truck load = $350-400. Half load = $175-200. Quarter load = $100-125. Never charge hourly — customers hate open-ended pricing and you lose money on easy jobs.'},
+      {h:'Quote on the spot from photos',t:'Have customers text photos before you show up. Estimate load size from the photo. Add 20% because it\'s always more than it looks. Give a firm number, not a range.'},
+      {h:'Charge extra for heavy/hazardous items',t:'Appliances (+$25-50), mattresses (+$25), tires (+$10 each), construction debris (+$50 per half-ton). These cost more to dump. List your upcharges on your AI\'s script so callers know upfront.'},
+      {h:'Know your dump fees',t:'Call your local dump and get the per-ton fee. Most residential loads weigh 500-1500 lbs. Your dump fee is your floor — never charge less than 3x your dump cost or you\'re losing money on gas and time.'},
+      {h:'Don\'t underprice to "get started"',t:'$150 minimum for any job, even small ones. Driving to the site, loading, and dumping takes 2+ hours minimum. At $100 you\'re making less than minimum wage after gas and dump fees.'}
+    ]
+  },
+  equipment: {
+    title: 'Equipment & Supplies',
+    points: [
+      {h:'Truck or trailer is the only real requirement',t:'A pickup truck works. A truck + trailer is better. Borrow from family if possible — buying a beater trailer for $300-500 on Facebook Marketplace is worth it if you\'ll do this all summer.'},
+      {h:'Essential gear ($30-50 total)',t:'Work gloves ($10), ratchet straps ($15), moving blankets ($10), broom + dustpan ($5). That\'s it. You don\'t need a uniform or fancy equipment.'},
+      {h:'Don\'t rent a dump truck',t:'Rental trucks eat your profit. A pickup + 2 trips beats a dump truck rental at $150/day. Only rent for massive cleanout jobs ($500+) where one trip saves hours.'},
+      {h:'Get a tarp for your truck bed',t:'$15 at Home Depot. Keeps stuff from blowing out and makes cleanup easier. Your truck bed stays clean too.'}
+    ]
+  },
+  season: {
+    title: 'Seasonality',
+    points: [
+      {h:'Summer is your peak',t:'Moving season (May-August) is when people clean out houses, garages, and storage units. College students leaving = easy jobs. Ride this wave hard.'},
+      {h:'Slow months: December-February',t:'People don\'t think about junk in winter. But estate cleanouts happen year-round, so those are your off-season bread and butter.'},
+      {h:'Storm cleanup = bonus season',t:'After any big storm (fallen trees, flooded basements), demand spikes. Be the first to post on Nextdoor offering storm cleanup. Charge premium rates.'}
+    ]
+  },
+  mistakes: {
+    title: 'Common Mistakes',
+    points: [
+      {h:'Saying yes to everything',t:'Don\'t take hazardous waste, chemicals, or paint. You\'ll get fined at the dump and it\'s not worth the liability. Say "we don\'t handle that" and move on.'},
+      {h:'Not checking weight before quoting',t:'Concrete, bricks, and dirt are insanely heavy. A small pile of concrete can weigh 1,000+ lbs. Always ask "is any of it concrete or dirt?" before quoting.'},
+      {h:'Showing up without confirming',t:'Text the customer the morning of: "Hey, confirming your junk pickup today at 2pm at [address]." No-shows waste gas and time. The AI sends reminders but double-check yourself.'},
+      {h:'Forgetting to take before/after photos',t:'Every single job. Before photo, after photo. These are your marketing. Post them on social media and you\'ll get calls from the neighborhood.'},
+      {h:'Working in extreme heat without a plan',t:'Junk removal is heavy physical work in summer heat. Drink water every 20 min, take shade breaks, wear sunscreen. If you feel dizzy or stop sweating, STOP immediately — that\'s heat exhaustion. Wear work gloves and closed-toe shoes (steel-toed if possible). Watch for nails and sharp metal in junk piles.'}
+    ]
+  },
+  upsells: {
+    title: 'Upsells & Extra Revenue',
+    points: [
+      {h:'Offer a garage cleanout package',t:'"Full garage cleanout" = premium pricing ($500-800). It sounds big and scary to homeowners but usually takes 2-3 hours. Bundle it as a flat rate.'},
+      {h:'Sell salvageable items',t:'Furniture, appliances, and scrap metal have resale value. Facebook Marketplace for furniture ($20-50 per item), scrap yard for metal (copper wire pays best). Some days the stuff you haul is worth $50-100.'},
+      {h:'Referral fees for demo work',t:'When a customer needs a deck, shed, or fence torn out, refer them to a licensed contractor and ask for a 10-15% referral fee ($50-100). Demo work involves electrical, structural risks, and potential asbestos — not safe for a solo teen operator. You still make money without the risk.'}
+    ]
+  }
+},
+pressure: {
+  name: 'Pressure Washing',
+  pricing: {
+    title: 'Pricing & Quoting Pressure Washing',
+    points: [
+      {h:'Charge by square footage, not time',t:'Driveways: $0.10-0.20/sq ft. Houses: $0.15-0.30/sq ft. Decks: $0.20-0.40/sq ft. Measure once (Google Maps satellite view works), quote fast.'},
+      {h:'Minimum job: $150',t:'It takes 30 min just to set up and tear down. Small driveway at $75 means you\'re making $25/hour after gas and water. Not worth the drive. $150 minimum, no exceptions.'},
+      {h:'Standard driveway = $150-250',t:'Most residential driveways are 400-800 sq ft. Quote $150 for small, $200 for standard, $250 for large. Add $50-75 for sidewalks/walkways at the same visit.'},
+      {h:'Bundle deals close more jobs',t:'"Driveway + sidewalk + front porch = $275 (saves $50)." Customers love feeling like they got a deal. You still make great money and get more done at one location.'}
+    ]
+  },
+  equipment: {
+    title: 'Equipment & Supplies',
+    points: [
+      {h:'Rent before you buy',t:'Home Depot rents pressure washers for $60-90/day. Do 3-4 jobs on rental day = $600-1,000 revenue on $80 rental cost. After 3-4 rental days, buy your own.'},
+      {h:'Buy a 3,000+ PSI gas pressure washer',t:'$250-400 at Home Depot/Lowe\'s. Electric ones (1,500-2,000 PSI) are too weak for concrete. You need 3,000+ PSI for driveways. Surface cleaner attachment ($50-80) makes driveways 3x faster.'},
+      {h:'Bring your own water if needed',t:'Some houses have weak water pressure. A 50-gallon tank in your truck bed ($40-60 used) solves this. Fill it at home before each job.'},
+      {h:'Protective gear',t:'Safety glasses ($5), closed-toe shoes, old clothes. Pressure washers kick back mud, grime, and debris. You WILL get dirty.'}
+    ]
+  },
+  season: {
+    title: 'Seasonality',
+    points: [
+      {h:'Spring is your launch window',t:'March-May, people see their dirty driveways after winter and want them cleaned before summer cookouts. Start marketing in late February.'},
+      {h:'Summer is steady',t:'June-August stays busy with pre-party cleanups, house sales, and HOA pressure. Weekends book out 2-3 weeks in advance.'},
+      {h:'Fall bonus round',t:'September-October, people prep for holidays. "Get your house looking clean before family visits" is a real pitch that works.'}
+    ]
+  },
+  mistakes: {
+    title: 'Common Mistakes',
+    points: [
+      {h:'Using too much pressure on wood',t:'3,000 PSI on a wood deck will destroy it. Turn it down to 1,500 PSI for wood and hold the nozzle 12+ inches away. Test a small hidden area first.'},
+      {h:'Not pre-treating stains',t:'Oil stains on driveways need degreaser ($8/gallon at Home Depot). Spray it 10 min before pressure washing. Without it, the stain stays and the customer thinks you did a bad job.'},
+      {h:'Hitting windows with high pressure',t:'You will break a window. Tape off low windows or angle away from them. If you break one, own it and pay for it immediately — your reputation is worth more than a $100 window.'},
+      {h:'Leaving stripes',t:'Uneven passes leave visible stripes on concrete. Use a surface cleaner attachment (flat spinning disc) for driveways — it prevents stripes and is 3x faster than a wand.'},
+      {h:'Skipping safety gear',t:'Wear safety glasses (kickback debris is real), hearing protection with gas washers (85+ dB), and closed-toe shoes. Never point the nozzle at anyone. A 3,000 PSI stream can cut skin. Drink water constantly — pressure washing in Texas summer heat is exhausting.'}
+    ]
+  },
+  upsells: {
+    title: 'Upsells & Extra Revenue',
+    points: [
+      {h:'Driveway sealing after wash',t:'Offer concrete sealing as a follow-up service for +$100-200. The driveway must dry 24-48 hours after washing before sealing — schedule it as a separate visit. You\'ll need 2-3 buckets of sealer ($30-40 each). Learn the technique well before offering this — bad sealing jobs peel and flake.'},
+      {h:'Gutter brightening',t:'Black streaks on white gutters. 15 minutes of work per side, charge +$75-100. Spray on gutter cleaner, let it sit, rinse. Easy money.'},
+      {h:'Recurring quarterly schedule',t:'"I\'ll come back every 3 months — $125/visit instead of $175 one-time." Recurring revenue is gold. Lock in 10 quarterly clients = $5,000/year guaranteed.'}
+    ]
+  }
+},
+lawn: {
+  name: 'Lawn Care',
+  pricing: {
+    title: 'Pricing & Quoting Lawn Care',
+    points: [
+      {h:'Price by yard size, not time',t:'Small yard (under 5,000 sq ft): $35-45. Medium (5,000-10,000): $45-60. Large (10,000+): $60-80. Measure using Google Maps (right-click > measure distance).'},
+      {h:'Charge weekly, bill monthly',t:'"$50/week" sounds cheap. "$200/month" sounds like a bill. Say the weekly number, charge monthly. Venmo on the 1st. Simple.'},
+      {h:'Don\'t discount for "easy" yards',t:'Even a tiny yard takes 20-30 min with drive time. Your minimum should be $35 no matter what. Time is time.'},
+      {h:'Gas + blade wear = $5-8 per yard',t:'Factor this in. 10 yards = $50-80 in gas and wear. Your profit is revenue minus this, not just revenue. Track gas receipts from day one.'}
+    ]
+  },
+  equipment: {
+    title: 'Equipment & Supplies',
+    points: [
+      {h:'Start with what you have',t:'A push mower from the garage + a $30 string trimmer + a $25 leaf blower = ready to go. You do NOT need a zero-turn to start. Upgrade after 10 accounts.'},
+      {h:'Used equipment saves hundreds',t:'Facebook Marketplace has commercial mowers for $200-400 that shops sell for $800+. Check Craigslist too. Always test before buying — pull the cord, check the blade.'},
+      {h:'Keep blades sharp',t:'Dull blades tear grass instead of cutting it, leaving brown tips. Sharpen every 2 weeks with a $10 file or pay $10 at a hardware store. Sharp blades = clean cut = happy customers.'},
+      {h:'Carry extra gas and string',t:'Running out of gas or trimmer line mid-job is amateur hour. Keep 2 gallons of gas and extra trimmer line in your truck at all times.'}
+    ]
+  },
+  season: {
+    title: 'Seasonality',
+    points: [
+      {h:'April-October is money season',t:'Grass grows fast March-October in the South. That\'s 8 months of weekly mowing. In Texas summer heat, grass grows even faster — some clients want it twice a week.'},
+      {h:'Winter = leaf cleanups',t:'November-January, offer leaf removal ($75-150/yard). It\'s not mowing but it\'s revenue and keeps your clients locked in year-round.'},
+      {h:'Rain weeks are tricky',t:'Can\'t mow wet grass — it clogs the mower and looks terrible. Move clients to the next dry day. Communicate proactively: "Rain pushed us to Thursday" before they wonder where you are.'}
+    ]
+  },
+  mistakes: {
+    title: 'Common Mistakes',
+    points: [
+      {h:'Taking too many accounts too fast',t:'10-12 accounts is your sweet spot for one person. 20 accounts solo = you\'re exhausted by Wednesday and your quality drops. Add a helper before account #15.'},
+      {h:'Scalping the lawn',t:'Cutting too short kills grass. Never remove more than 1/3 of the blade height. Set your mower to 3-3.5 inches. Customers don\'t know grass heights but they notice brown patches.'},
+      {h:'No-showing without notice',t:'If you can\'t make it, text them BY 8 AM that morning. "Something came up, I\'ll be there tomorrow" is fine. Radio silence gets you fired. Your AI sends auto-reminders but YOU manage the exceptions.'},
+      {h:'Not edging',t:'Mowing without edging looks unfinished. Edge along driveways, sidewalks, and beds. It takes 5 extra minutes and is the difference between "$35 kid mower" and "$50 professional."'}
+    ]
+  },
+  upsells: {
+    title: 'Upsells & Extra Revenue',
+    points: [
+      {h:'Weed pulling / bed maintenance',t:'Add-on: $20-30 per visit for pulling weeds from flower beds and trimming bushes. Offer it quarterly to existing mow clients. Easy extra $80-120/client/month.'},
+      {h:'Fertilizer application',t:'Buy a $30 spreader and $20 bag of fertilizer. Charge $50-75 to fertilize. 4x a year = $200-300/client/year for 15 minutes of work per application.'},
+      {h:'Aeration in fall',t:'Rent an aerator for $60/day from Home Depot. Charge $75-100/yard. Do 8-10 yards in one day = $600-1,000 on one rental. Only works in fall.'}
+    ]
+  }
+},
+cleaning: {
+  name: 'House Cleaning',
+  pricing: {
+    title: 'Pricing & Quoting House Cleaning',
+    points: [
+      {h:'Charge flat rate, not hourly',t:'Studio/1BR: $100-130. 2BR: $130-175. 3BR: $175-225. 4BR+: $225-300. Hourly pricing punishes you for getting faster. Flat rate rewards efficiency.'},
+      {h:'First clean is always more',t:'Charge 1.5x your regular rate for the first clean. It\'s always dirtier than they say. "Deep clean" first visit = $225 for a 3BR. Then $150/visit recurring.'},
+      {h:'Recurring clients = gold',t:'Weekly client at $150 = $600/month guaranteed. Biweekly at $175 = $350/month. Lock in 8-10 recurring clients and you\'re making $4,000-6,000/month before summer\'s half over.'},
+      {h:'Move-in/move-out = premium',t:'$250-400 for a full move-out clean. Landlords and property managers need these regularly. Get on their vendor list and you\'ll have steady bookings.'}
+    ]
+  },
+  equipment: {
+    title: 'Equipment & Supplies',
+    points: [
+      {h:'$30-50 startup kit',t:'All-purpose cleaner ($4), glass cleaner ($3), toilet cleaner ($3), microfiber cloths 12-pack ($8), scrub sponges ($3), mop ($10), vacuum (borrow or use theirs), bucket ($3), gloves ($5).'},
+      {h:'Use their vacuum if possible',t:'Hauling a vacuum to every house sucks. Most homes have one. Ask on the first visit. Bring a backup handheld ($25 at Walmart) for houses that don\'t.'},
+      {h:'Skip the brand names',t:'Dollar store cleaning products work fine for most surfaces. The $8 Method spray works identically to the $3 generic. Save the margin.'},
+      {h:'Caddy or bucket system',t:'Keep all your supplies in one caddy/bucket. Carry it room to room. Never waste time walking back to your car. Efficiency = more jobs per day = more money.'}
+    ]
+  },
+  season: {
+    title: 'Seasonality',
+    points: [
+      {h:'Summer = your launch window',t:'People hire cleaners in summer because they\'re busy with vacations, kids home from school, and outdoor activities. Perfect time to build your client base.'},
+      {h:'Spring cleaning (March-April) = surge',t:'Deep cleans spike in spring. Market "spring deep clean" packages in March and you\'ll book out.'},
+      {h:'Holiday pre-clean (Nov-Dec)',t:'Everyone wants their house spotless before Thanksgiving and Christmas guests arrive. Charge premium rates — $200+ for a holiday deep clean. They\'ll pay.'}
+    ]
+  },
+  mistakes: {
+    title: 'Common Mistakes',
+    points: [
+      {h:'Not setting a cleaning order',t:'Clean top to bottom, back to front. Dust falls down — if you vacuum first then dust, you have to vacuum again. Bathrooms first, kitchen second, bedrooms third, living areas last.'},
+      {h:'Spending too long on one house',t:'Set a time target per house size. 2BR = 2 hours max. If you\'re spending 3 hours on a 2BR, you\'re either too thorough or your system is wrong. Time yourself.'},
+      {h:'Forgetting to communicate',t:'"On my way!" text, arrival text, "All done — locked up!" text. Clients want to know you came, especially if they\'re at work. Your AI sends reminders but YOU send the "done" text.'},
+      {h:'Breaking something and hiding it',t:'You will knock over a vase or scratch a floor eventually. Tell them immediately, offer to pay for it. Hiding it = losing the client. Honesty = keeping them for life.'}
+    ]
+  },
+  upsells: {
+    title: 'Upsells & Extra Revenue',
+    points: [
+      {h:'Airbnb turnovers',t:'$100-150 per turnover clean, and Airbnb hosts need them multiple times per week. One host with 2 properties = $800+/month. Find hosts on Airbnb\'s map and message them directly.'},
+      {h:'Fridge/oven deep clean',t:'Add-on: $35-50 to deep clean the inside of the fridge or oven. Takes 20 minutes, clients hate doing it, and it makes you look thorough.'},
+      {h:'Laundry service',t:'Add-on: $20-30 per load. Start a load when you arrive, fold it before you leave. Easy money and clients love it.'}
+    ]
+  }
+},
+detailing: {
+  name: 'Interior Car Detailing',
+  pricing: {
+    title: 'Pricing & Quoting Car Detailing',
+    points: [
+      {h:'Standard interior: $75-100',t:'Vacuum, wipe all surfaces, clean glass, air freshener. Takes 45-60 min. This is your bread-and-butter package.'},
+      {h:'Deep clean interior: $125-175',t:'Everything above plus shampooing seats/carpets, leather conditioning, stain removal, door jambs. Takes 1.5-2 hours. Upsell this to every standard client.'},
+      {h:'Per-car, not per-hour',t:'A Civic takes 45 min, a Suburban takes 90 min. Charge by vehicle size: Sedan $75-100, SUV $100-125, Truck $100-130, Van $125-150.'},
+      {h:'Mobile premium',t:'You go to them. That\'s worth $15-20 extra versus a shop. "We come to your driveway" is a selling point, not a cost — price it that way.'}
+    ]
+  },
+  equipment: {
+    title: 'Equipment & Supplies',
+    points: [
+      {h:'$50-100 startup',t:'Handheld vacuum ($25-40), microfiber towels 20-pack ($10), all-purpose interior cleaner ($6), glass cleaner ($4), tire shine ($5), upholstery shampoo ($8), air fresheners 6-pack ($5).'},
+      {h:'Portable carpet shampooer = game changer',t:'$80-120 at Walmart (Bissell SpotClean). Pays for itself in 1-2 deep cleans. Stained seats are the #1 thing that makes people call for detailing.'},
+      {h:'5-gallon bucket + caddy',t:'Everything fits in one bucket. Carry it car to car. No setup time. You can detail 6-8 cars in a day if you\'re efficient.'},
+      {h:'Skip the expensive brands',t:'Chemical Guys is marketing. Dollar store microfiber cloths and generic APC (all-purpose cleaner) work fine. Save the brand-name money until you\'re making $1,000+/week.'}
+    ]
+  },
+  season: {
+    title: 'Seasonality',
+    points: [
+      {h:'Summer heat = dirty interiors',t:'Texas summer melts crayons, bakes food crumbs, and makes cars smell terrible. June-August is peak demand. "Your car smells like summer — let me fix that" is a real pitch.'},
+      {h:'Back to school (August)',t:'Parents want clean cars before driving kids to school. Market "back to school car refresh" in late July.'},
+      {h:'Year-round in warm climates',t:'Unlike lawn care, car detailing works 12 months in the South. Winter is slower but not dead — people still want clean cars for holiday road trips.'}
+    ]
+  },
+  mistakes: {
+    title: 'Common Mistakes',
+    points: [
+      {h:'Detailing in direct sunlight',t:'Products dry on surfaces before you can wipe them off, leaving streaks and residue. Park in shade or use a popup canopy ($30). Huge quality difference.'},
+      {h:'Using the wrong products on leather',t:'Regular cleaner dries out leather seats. Use leather-specific cleaner + conditioner. One cracked leather seat = one angry customer and a bad review.'},
+      {h:'Not taking before/after photos',t:'The best marketing for detailing is disgusting before photos next to spotless after photos. Take them for EVERY car. Post on social media weekly.'},
+      {h:'Forgetting cupholders and vents',t:'Customers check these. Dirty cupholders = "they didn\'t really clean it." Use cotton swabs for vents and a brush for cupholders. 2 minutes of detail work changes the whole perception.'}
+    ]
+  },
+  upsells: {
+    title: 'Upsells & Extra Revenue',
+    points: [
+      {h:'Pet hair removal',t:'Add-on: $25-50. Pet hair in carpet is a nightmare to remove. Use a rubber squeegee or rubber glove trick (rub the carpet and hair balls up). Charge extra because it takes real effort.'},
+      {h:'Headlight restoration',t:'$30-50 per pair. Cloudy headlights make cars look old. A $10 headlight restoration kit from AutoZone + 15 min = easy money. YouTube the technique — it\'s simple.'},
+      {h:'Monthly subscription',t:'"$65/month for a monthly interior clean." Lock in 15 subscribers = $975/month guaranteed. Easier to keep clients than find new ones every week.'}
+    ]
+  }
+},
+pool: {
+  name: 'Pool Cleaning',
+  pricing: {
+    title: 'Pricing & Quoting Pool Cleaning',
+    points: [
+      {h:'Weekly service: $100-150/month per pool',t:'That\'s $25-37 per visit, 4x/month. Residential pools are your base. Commercial pools (hotels, apartments) pay $200-400/month but are more work.'},
+      {h:'One-time green-to-clean: $200-350',t:'When someone\'s pool turns green, they panic. "Green to clean" is emergency pricing. Shock it, filter it, come back in 48 hours to finish. High margin.'},
+      {h:'Opening/closing: $150-250 each',t:'Spring opening = remove cover, balance chemicals, start equipment. Fall closing = winterize pipes, add cover. Two visits per year per customer at premium rates.'},
+      {h:'Build a route of 15-20 pools',t:'Each pool takes 20-30 min. 15 pools = one full day of driving a route. At $125/month avg = $1,875/month from one day per week of route work. Then add more days.'}
+    ]
+  },
+  equipment: {
+    title: 'Equipment & Supplies',
+    points: [
+      {h:'Startup kit: $100-200',t:'Test strips or kit ($15), telescoping pole ($25), leaf net/skimmer ($10), pool brush ($12), pool vacuum head ($20), chlorine tabs ($30 for a bucket), shock ($12/bag), pH up/down ($10 each).'},
+      {h:'You do NOT need a truck-mounted system',t:'That\'s for huge operations. A bucket of supplies in your car trunk works fine for 20+ pools. Keep chemicals in a ventilated container (not airtight — chlorine tabs produce gas). Chemical-resistant gloves and safety glasses are mandatory when handling pool chemicals.'},
+      {h:'Get a good test kit, not strips',t:'The Taylor K-2006 test kit ($50-80, drops not strips) is the professional standard. Far more accurate than test strips. Wrong chemical readings = green pools = angry customers. Accuracy pays for itself.'},
+      {h:'Buy chemicals in bulk',t:'25 lb bucket of chlorine tabs ($80-100) lasts 20+ pools for a month. That\'s $4-5 per pool per month in chemicals. Your margin on a $125/month account is excellent.'}
+    ]
+  },
+  season: {
+    title: 'Seasonality',
+    points: [
+      {h:'May-September = peak season',t:'Pools open in late April/May. Every pool owner needs weekly service through summer. This is when you build your route. Go hard on marketing in April.'},
+      {h:'October-March = maintenance only',t:'Most residential pools close for winter. Offer monthly check-ins ($50/visit) to keep chemicals balanced and equipment running. Keeps the client for next summer.'},
+      {h:'Heat waves = green pools',t:'When temps hit 100+, pools turn green fast. This is when you get emergency calls. Be available. Green-to-clean at $300 after a heat wave = your best margin.'}
+    ]
+  },
+  mistakes: {
+    title: 'Common Mistakes',
+    points: [
+      {h:'Not testing chemicals first',t:'Always test BEFORE adding anything. Adding chlorine to a pool with high pH is wasted money — the chlorine won\'t work. Test > adjust pH > then chlorinate.'},
+      {h:'Mixing chemicals',t:'NEVER mix chlorine and acid. It creates toxic chlorine gas. Add chemicals separately, at different times. This is a real safety issue, not just a tip.'},
+      {h:'Ignoring the filter',t:'A dirty filter = a dirty pool no matter how much chemical you dump in. Clean or backwash the filter every 2-4 weeks. Ask the homeowner when it was last cleaned.'},
+      {h:'Over-promising on green pools',t:'A green pool takes 2-5 days to clear, not 2 hours. Tell customers "48-72 hours minimum." If you promise same-day and fail, you look incompetent. Underpromise, overdeliver.'},
+      {h:'Ignoring safety around pools',t:'Never service a pool when children are in or near the water unsupervised. Always know where the equipment shutoff is. If you splash muriatic acid or concentrated chlorine on skin, flush with water for 15+ minutes immediately. Carry a gallon of water for emergency rinses. This is real — pool chemicals cause burns.'}
+    ]
+  },
+  upsells: {
+    title: 'Upsells & Extra Revenue',
+    points: [
+      {h:'Equipment checks',t:'Add-on: $50-75 monthly. Check pump, filter, heater, timer, o-rings. Catch problems before they become $500 repairs. Homeowners love this because they don\'t understand pool equipment.'},
+      {h:'Tile/waterline scrubbing',t:'Add-on: $50-75. Calcium buildup at the waterline looks gross. Scrub it with a pumice stone every 2-3 months. Takes 30 min, looks transformative.'},
+      {h:'Chemical-only plans for DIY owners',t:'$50/month: you just drop off pre-measured chemicals and a test report. No cleaning. Some homeowners want to brush their own pool but hate buying chemicals. Easy recurring revenue.'}
+    ]
+  }
+},
+events: {
+  name: 'Event Decoration',
+  pricing: {
+    title: 'Pricing & Quoting Events',
+    points: [
+      {h:'Base package: $150-250',t:'Balloon garland (12ft) + tablecloth + centerpieces. 2-3 hours of setup time. This is your entry point for birthday parties.'},
+      {h:'Premium package: $300-500',t:'Full backdrop + garland + table setup + signage + chair sashes or covers. Baby showers and bridal showers pay this without blinking.'},
+      {h:'Charge for complexity, not just size',t:'A gold/black balloon garland = simple. A themed Disney princess setup with custom signage = complex. Complex = +$75-150 on top of base pricing.'},
+      {h:'Add a teardown fee or include it',t:'"Setup + teardown: $275" or "Setup only: $200, teardown included: $250." Some clients want you back to take it down. Charge for the second trip.'}
+    ]
+  },
+  equipment: {
+    title: 'Equipment & Supplies',
+    points: [
+      {h:'Starter kit from Amazon: $100-150',t:'Balloon pump ($15), balloon garland kit 120pc ($12), backdrop stand ($25), tablecloths ($15 for 4), letter board or name banner ($10), balloon tape strips ($5), fishing line ($3), command hooks ($5).'},
+      {h:'Buy neutral colors in bulk',t:'White, gold, black, and clear balloons work for 80% of events. Buy 500-count bags ($15-20). Add event-specific colors per booking — a $5 bag of pink balloons turns a generic garland into a baby shower garland.'},
+      {h:'Reuse backdrops and stands',t:'Your backdrop stand lasts forever. Buy 2-3 fabric backdrop colors ($10 each). They fold flat, store in your car, and work for dozens of events.'},
+      {h:'Invest in a balloon sizer',t:'$8 on Amazon. Makes every balloon the same size. Consistent balloons = professional-looking garlands. Inconsistent = "my cousin could\'ve done this."'}
+    ]
+  },
+  season: {
+    title: 'Seasonality',
+    points: [
+      {h:'Graduation season (May-June) = gold rush',t:'Graduation parties, grad photo backdrops, outdoor celebrations. Book these 2-3 weeks in advance. Market to parents in April.'},
+      {h:'Summer = birthday + baby shower peak',t:'June-August has more parties than any other season. Kids\' birthdays, baby showers, bridal showers, pool parties. Steady demand all summer.'},
+      {h:'October-December = holiday parties',t:'Halloween, Thanksgiving table setups, Christmas parties, New Year\'s Eve. Theme packages sell themselves.'}
+    ]
+  },
+  mistakes: {
+    title: 'Common Mistakes',
+    points: [
+      {h:'Starting setup too early',t:'Balloons deflate. If the party is at 4pm, don\'t set up at 10am. Arrive 1.5-2 hours before the event. Fresh balloons = Instagram-worthy. 6-hour-old balloons = saggy and sad.'},
+      {h:'Not getting the venue details',t:'Indoor vs outdoor changes everything. Wind destroys balloon garlands. Direct sun pops them. Always ask: indoor/outdoor, AC, and if there\'s a ceiling to hang from.'},
+      {h:'Underselling your work',t:'$75 for a balloon garland is giving away your time. Your supplies cost $20-30, setup takes 1-2 hours, plus drive time. $150 minimum. Parents paying for parties have the budget.'},
+      {h:'No portfolio photos',t:'Take a photo of every single setup. These ARE your marketing. A before/after or a finished setup photo posted on Instagram gets you 3-5 DMs per post.'}
+    ]
+  },
+  upsells: {
+    title: 'Upsells & Extra Revenue',
+    points: [
+      {h:'Custom signage',t:'Add-on: $25-50. Printed name banner, age number, or letter board with custom message. Costs $5-10 to make on Canva + print at Staples.'},
+      {h:'Photo backdrop rental',t:'Add-on: $40-75. Leave your backdrop up during the event as a photo station. Every guest takes photos = free marketing for you (watermark a small sign next to it).'},
+      {h:'Party favor packaging',t:'Add-on: $30-50. Pre-package party favors or candy bags. Buy candy in bulk ($10), add ribbon and tags ($5). Charge $3-5 per bag to the client. Easy markup.'}
+    ]
+  }
+},
+pets: {
+  name: 'Pet Sitting & Dog Walking',
+  pricing: {
+    title: 'Pricing & Quoting Pet Services',
+    points: [
+      {h:'Dog walking: $20-30 per 30-min walk',t:'Group walks (2-3 dogs at once) = $15-20 per dog. You make $45-60 for the same 30 minutes. Neighborhood routes make this efficient.'},
+      {h:'Drop-in visits: $20-25 per visit',t:'30 min: feed, water, let out, play. For cats or dogs when owners are at work. 3 visits/day for one client = $60-75/day.'},
+      {h:'Overnight pet sitting: $50-75/night',t:'Stay at the client\'s house overnight. Easiest money — you\'re basically sleeping at someone else\'s house and feeding their dog. Vacation season = booked solid.'},
+      {h:'Holiday premium: +50%',t:'Christmas, Thanksgiving, July 4th, spring break. Everyone travels, everyone needs pet care. $75 walks become $100+. Book these 2-3 weeks in advance.'}
+    ]
+  },
+  equipment: {
+    title: 'Equipment & Supplies',
+    points: [
+      {h:'Startup cost: $0',t:'Seriously. You need your phone (for GPS/photos), comfortable shoes, and maybe a spare leash ($8). Clients provide everything else — food, bowls, leash, yard.'},
+      {h:'Get a lockbox code or spare key',t:'Never depend on the client being home to let you in. Get a spare key or lockbox code. Professional pet sitters always have independent access.'},
+      {h:'Invest in treat pouch ($8)',t:'Clip-on treat pouch lets you reward dogs on walks. Dogs that like you = dogs that behave = easier walks = better reviews from owners who hear their dog loves you.'},
+      {h:'Poop bags in bulk',t:'$10 for 600 bags on Amazon. Always have them. Getting caught without a bag in a nice neighborhood = bad look.'}
+    ]
+  },
+  season: {
+    title: 'Seasonality',
+    points: [
+      {h:'Summer vacation = your peak',t:'June-August, families travel. Overnight pet sitting bookings spike. This is when you make the most money per day.'},
+      {h:'Year-round base with walking clients',t:'Daily dog walking is 12 months/year. Build a base of 5-8 walking clients and you have guaranteed weekly income rain or shine.'},
+      {h:'Holiday weekends = premium',t:'Memorial Day, July 4th, Labor Day, Thanksgiving, Christmas. Double your rates. Everyone with pets needs you and nobody else is available.'}
+    ]
+  },
+  mistakes: {
+    title: 'Common Mistakes',
+    points: [
+      {h:'Taking on aggressive dogs',t:'If a dog shows signs of aggression during a meet-and-greet, politely decline. A dog bite means liability, medical bills, and the end of your pet sitting career. Trust your gut.'},
+      {h:'Not doing a meet-and-greet',t:'ALWAYS meet the pet before the first booking. Check: does the dog listen? Is it leash-reactive? Where\'s the food, the leash, the vet info? 15 minutes now saves headaches later.'},
+      {h:'Forgetting to send updates',t:'Owners want to see their pets. Send 1-2 photos per visit with a text: "Bella had a great walk! She loved the park today." This is the #1 thing that earns five-star reviews and referrals.'},
+      {h:'Overbooking walks',t:'Don\'t book 10 walks in 4 hours across town. Realistic pace: 3 walks per hour block in the same neighborhood. Factor in drive time. Rushing = poor service.'}
+    ]
+  },
+  upsells: {
+    title: 'Upsells & Extra Revenue',
+    points: [
+      {h:'Doggy bath after walks',t:'Add-on: $15-25. Quick bath or wipe-down after a muddy walk. Owners love this because the dog doesn\'t track mud through the house.'},
+      {h:'Mail/plant/trash service',t:'Add-on: $5-10/visit. While pet sitting, also grab mail, water plants, take out trash. Tiny effort, meaningful to the client. They\'ll never switch to another sitter.'},
+      {h:'Puppy check-ins for new owners',t:'3x daily puppy visits: $45-60/day. New puppies can\'t hold it 8 hours. Working professionals will gladly pay for midday puppy breaks. High demand, recurring.'}
+    ]
+  }
+},
+organizing: {
+  name: 'Home Organizing',
+  pricing: {
+    title: 'Pricing & Quoting Organizing',
+    points: [
+      {h:'Charge by the room, not by the hour',t:'Closet: $150-200. Pantry: $125-175. Garage: $300-500. Kids room: $200-275. Flat-rate feels safer to clients and rewards you for getting faster.'},
+      {h:'Or charge hourly: $50-75/hour',t:'Some organizers prefer hourly for unpredictable spaces. Either works — but quote a maximum ("$65/hour, most pantries take 2-3 hours = $130-195 max") so clients know the ceiling.'},
+      {h:'Product markup is free money',t:'Buy bins, labels, and drawer dividers from Dollar Tree ($1.25 each). Bill them to the client at $5-8 each "included in the service." 4x markup is standard.'},
+      {h:'Virtual consult: $40-50 for 30 min',t:'FaceTime walkthrough where you tell them what to buy, what to toss, and how to arrange it. Zero travel. Good for clients outside your area or for quick wins.'}
+    ]
+  },
+  equipment: {
+    title: 'Equipment & Supplies',
+    points: [
+      {h:'Startup cost: $0-30',t:'Label maker ($15 at Walmart), trash bags, your phone for before/after photos. Most supplies are bought per-job and billed to the client.'},
+      {h:'Keep a sample kit',t:'Bring 5-6 clear bins, a label maker, and some dividers to the first visit. Let the client see and touch the finished product. "This is what your pantry will look like" closes the job.'},
+      {h:'Use the client\'s stuff first',t:'Don\'t buy new bins until you\'ve repurposed what they already have. Shoe boxes, existing containers, baskets — reuse first. Clients appreciate the frugality and it speeds up the job.'},
+      {h:'Before/after camera setup',t:'Same angle, same lighting. Put your phone on a shelf or use a tripod ($10). Consistent before/after photos are your entire marketing strategy.'}
+    ]
+  },
+  season: {
+    title: 'Seasonality',
+    points: [
+      {h:'January = New Year\'s resolution surge',t:'"This year I\'m getting organized" — half of all organizing demand hits in January. Run ads and post content in late December to catch the wave.'},
+      {h:'Spring (March-May) = spring cleaning',t:'Second biggest surge. "Spring cleaning" is a cultural moment. Attach your service to it.'},
+      {h:'Back to school (August) = kids\' rooms',t:'Parents want kids\' rooms organized before school starts. Market "back to school room reset" packages.'}
+    ]
+  },
+  mistakes: {
+    title: 'Common Mistakes',
+    points: [
+      {h:'Throwing away client\'s stuff without permission',t:'NEVER decide what\'s trash. Make three piles: Keep, Donate, Trash. Let the client decide. If they want to keep 47 mugs, that\'s their call — your job is to organize them neatly.'},
+      {h:'Making it too pretty to maintain',t:'Color-coded, Pinterest-perfect pantries look great for photos but fall apart in a week. Design systems the client will actually maintain. Labels matter more than aesthetics.'},
+      {h:'Spending too long on sentimental items',t:'When you hit a box of old photos or childhood items, the client will get emotional and slow down. Set a time limit: "Let\'s come back to the sentimental boxes at the end" and keep moving.'},
+      {h:'Not taking photos',t:'Every. Single. Job. Before, during, after. Your entire business growth depends on these photos. No photos = no social media = no new clients.'}
+    ]
+  },
+  upsells: {
+    title: 'Upsells & Extra Revenue',
+    points: [
+      {h:'Seasonal refresh visits',t:'"Come back in 3 months for a $75 refresh." Quick 1-hour visit to re-organize what\'s gotten messy. Keeps the system working and keeps you earning from the same client.'},
+      {h:'Moving packing/unpacking',t:'$50-75/hour to pack or unpack boxes during a move. Organize as you unpack = premium service. Moving clients are stressed and will pay for someone to handle it.'},
+      {h:'Donation drop-off service',t:'Add-on: $25-40. Take the donate pile to Goodwill for them. You\'re already there, the stuff is already sorted. 20 minutes of driving = easy add-on.'}
+    ]
+  }
+},
+photo: {
+  name: 'Photography Mini Sessions',
+  pricing: {
+    title: 'Pricing & Quoting Photography',
+    points: [
+      {h:'Mini session: $150-200',t:'30-45 minutes, one location, 15-20 edited photos delivered digitally. This is your core offering. Don\'t go below $150 — your time, editing, and equipment are worth it.'},
+      {h:'Standard session: $250-350',t:'60-90 minutes, 1-2 locations, 30-40 edited photos. Families and couples. Book these for early morning or late afternoon (golden hour).'},
+      {h:'Editing time is your hidden cost',t:'Every hour of shooting = 2-3 hours of editing. Factor this into your pricing. A $150 mini session with 2 hours of editing = $50/hour. Don\'t undervalue your post-processing.'},
+      {h:'Never give RAW files',t:'Edited JPGs only. RAW files are your work product. If you give RAWs, clients can re-edit them badly and tag you. Keep the quality under your control.'}
+    ]
+  },
+  equipment: {
+    title: 'Equipment & Supplies',
+    points: [
+      {h:'A good phone can start you',t:'iPhone 13+ or Samsung S21+ takes legitimately good portraits. Use portrait mode. Shoot in natural light. You do NOT need a $1,500 camera to start making money.'},
+      {h:'Lightroom Mobile = free editing',t:'Adobe Lightroom on your phone is free and powerful. Learn 5 presets: bright/airy, warm/golden, moody, black & white, vibrant. Apply consistently for a cohesive portfolio.'},
+      {h:'If you buy a camera: used Canon/Nikon + 50mm f/1.8',t:'$200-350 used on Facebook Marketplace. The 50mm f/1.8 ("nifty fifty") is $100 new and creates beautiful blurry backgrounds. Best bang for buck in photography.'},
+      {h:'Reflector: $15 game changer',t:'A 5-in-1 reflector fills shadows and adds catchlight to eyes. Hold it at waist height. The difference between "phone photo" and "professional" is often just good light.'}
+    ]
+  },
+  season: {
+    title: 'Seasonality',
+    points: [
+      {h:'May-June = graduation',t:'Senior portraits, cap-and-gown, family photos after the ceremony. Market to parents 3-4 weeks before graduation. Book as many as you can handle — this is your cash sprint.'},
+      {h:'October-November = fall mini sessions',t:'Fall leaves + family photos = the most popular time for portrait photography nationwide. Run "Fall Mini Session Days" — book 8-10 families at the same pretty location.'},
+      {h:'December = holiday cards',t:'Families need photos for Christmas cards. Offer "holiday card mini sessions" in early November. They need photos BEFORE December to order cards in time.'}
+    ]
+  },
+  mistakes: {
+    title: 'Common Mistakes',
+    points: [
+      {h:'Shooting at noon',t:'Harsh overhead sunlight = squinty eyes, deep shadows, unflattering. Shoot during golden hour (first/last hour of sunlight) or in open shade. Noon sun is the enemy.'},
+      {h:'Not directing your subjects',t:'Regular people don\'t know how to pose. Tell them exactly: "Turn 45 degrees. Put your hand in your pocket. Look at each other and laugh." Direct them or the photos will be awkward.'},
+      {h:'Delivering too many photos',t:'100 photos from a mini session isn\'t impressive — it\'s overwhelming. Cull hard. Deliver 15-20 of the BEST ones. Fewer, better photos = perceived as more professional.'},
+      {h:'Slow delivery',t:'Promise photos in 5-7 days, deliver in 3-4. Clients who wait 3+ weeks for photos leave bad reviews. Fast turnaround = more referrals. Edit same-day while your memory is fresh.'}
+    ]
+  },
+  upsells: {
+    title: 'Upsells & Extra Revenue',
+    points: [
+      {h:'Print packages',t:'Partner with a print lab (Mpix, WHCC). Order an 8x10 for $3, sell for $25. Canvas prints cost $20, sell for $75-100. Clients will pay — they just don\'t know where to print.'},
+      {h:'Additional edited photos',t:'"Your session includes 20 photos. Want all 40? Add $75." Some clients want everything. Let them pay for it.'},
+      {h:'Airbnb and real estate photos',t:'$75-150 to photograph a rental listing or small home for sale. Realtors and Airbnb hosts need this constantly. Less creative, but fast and steady money.'}
+    ]
+  }
+},
+social: {
+  name: 'Social Media Management',
+  pricing: {
+    title: 'Pricing & Quoting Social Media',
+    points: [
+      {h:'Base package: $250/month per client',t:'3 posts/week on Instagram + Facebook. You create the content, write captions, schedule posts. That\'s 12-13 posts/month. At 20 min per post, it\'s ~4-5 hours/month per client.'},
+      {h:'Premium: $400/month',t:'5 posts/week + stories + DM management + monthly analytics report. More work but much better results for the client. Position this as "the serious option."'},
+      {h:'Don\'t charge less than $200/month',t:'Below $200, you can\'t deliver quality and the math doesn\'t work. If a client can\'t afford $200/month for social media, they\'re not your client.'},
+      {h:'Charge setup fee: $100-150',t:'First month requires extra work: creating templates, understanding their brand, setting up scheduling tools. Charge a one-time setup fee to cover this.'}
+    ]
+  },
+  equipment: {
+    title: 'Equipment & Supplies',
+    points: [
+      {h:'Startup cost: $0',t:'Canva free version, phone camera, client\'s own social accounts. That\'s it. You don\'t need Photoshop or a DSLR to manage a local restaurant\'s Instagram.'},
+      {h:'Canva Pro: $13/month (worth it)',t:'Brand kit feature, background remover, schedule posts directly, way more templates. One subscription covers all your clients. Pays for itself with one client.'},
+      {h:'Later or Buffer: free scheduling',t:'Schedule a week of posts in one sitting. Don\'t post manually every day — batch it. Sunday afternoon = plan and schedule the whole week.'},
+      {h:'Stock photo backup: Pexels/Unsplash',t:'Free stock photos for when you don\'t have original content. But original always beats stock. Take photos at the client\'s business whenever possible.'}
+    ]
+  },
+  season: {
+    title: 'Seasonality',
+    points: [
+      {h:'Social media is year-round',t:'This is the beauty of this business — there\'s no off-season. Restaurants, salons, and shops need social media 365 days a year.'},
+      {h:'Q4 (October-December) = easiest upsell',t:'Black Friday, Christmas, holiday promotions — clients NEED more posts and will pay for extra coverage. Offer a "holiday social media sprint" for +$150/month.'},
+      {h:'January = new client acquisition',t:'"New year, new social media strategy" is a pitch that works on business owners every January. Run your own marketing push in late December.'}
+    ]
+  },
+  mistakes: {
+    title: 'Common Mistakes',
+    points: [
+      {h:'Posting without a plan',t:'Random posts don\'t work. Create a simple content calendar: Monday = tips, Wednesday = behind-the-scenes, Friday = customer spotlight. Consistency beats creativity.'},
+      {h:'Using the same content everywhere',t:'Instagram is visual. Facebook is conversational. TikTok is video. Repurpose content but adjust format for each platform. A photo post on Instagram becomes a text post with the photo on Facebook.'},
+      {h:'Ignoring comments and DMs',t:'If someone comments or DMs, respond within 2 hours. Social media is social — ignoring engagement kills the algorithm and the client\'s reputation. Set notifications on.'},
+      {h:'No analytics tracking',t:'If you can\'t show the client that followers grew 15% and engagement doubled, they\'ll think you\'re not doing anything. Screenshot analytics monthly. Put them in a simple report.'}
+    ]
+  },
+  upsells: {
+    title: 'Upsells & Extra Revenue',
+    points: [
+      {h:'Paid ad management',t:'Add-on: $100-150/month + ad spend. Run Facebook/Instagram ads for the client. $5-10/day ad budgets work for local businesses. You manage, they pay for ads separately.'},
+      {h:'Google Business Profile management',t:'Add-on: $50-75/month. Post weekly updates, respond to reviews, update photos. Most local businesses ignore their Google profile and it\'s the #1 place customers find them.'},
+      {h:'Content shoot days',t:'$150-250/session. Go to the client\'s business for 2 hours and shoot 30-50 photos + 5-10 short videos. That content lasts 2-3 months of posting. Do this quarterly.'}
+    ]
+  }
+}
+};
+
+// ──── GENERAL OWNERSHIP LESSONS ────
+var GENERAL = [
+  {id:'safety',title:'Protecting Yourself & Your Business',points:[
+    {h:'Get general liability insurance',t:'$25-50/month through providers like Next Insurance or Thimble. Covers you if you damage a client\'s property (break a window pressure washing, scratch a car detailing). Without it, YOU and your parents pay out of pocket. Many clients will ask for proof of insurance before hiring you.'},
+    {h:'Work safe in the heat',t:'East Texas summers hit 100+ degrees. Drink water every 20-30 minutes. Take shade breaks. Know the signs of heat exhaustion: dizziness, nausea, confusion, no sweating. If you feel these, STOP and get to shade and water immediately. No job is worth a hospital visit.'},
+    {h:'Get the job in writing',t:'Text the customer before every job: "Confirming [service] at [address] on [date] for $[price]." That text is your agreement. It prevents "I thought it was going to be cheaper" disputes. For bigger jobs ($300+), be even more specific about what\'s included.'},
+    {h:'Know what you can\'t do',t:'Don\'t take jobs that require a license (electrical, plumbing, HVAC, tree removal near power lines). Don\'t handle hazardous materials. Don\'t do work on roofs or at heights. If a job feels unsafe or over your head, say no and refer it out. Your safety and reputation matter more than one job.'},
+    {h:'Tell your parents what you\'re doing',t:'They should know where you are, what jobs you\'re doing, and when to expect you back. If something goes wrong at a job site — injury, dispute, uncomfortable situation — call a parent first. You\'re running a business, but you\'re also a teenager. That\'s not a weakness, it\'s smart.'}
+  ]},
+  {id:'pricing',title:'Pricing Your Work',points:[
+    {h:'Know your real cost per job',t:'Add up: gas, supplies, dump fees, wear on equipment. That\'s your cost. If your cost is $40 and you charge $150, your profit is $110. If you don\'t know your cost, you\'re guessing.'},
+    {h:'Don\'t price based on what you\'d pay',t:'You\'re 16-17. Your sense of "expensive" is skewed low. A $200 driveway wash sounds like a lot to you — to a homeowner it\'s Tuesday. Price based on the market, not your wallet.'},
+    {h:'Round numbers look professional',t:'$150 beats $147. $250 beats $243. Clean, round numbers feel confident. Weird numbers feel like you\'re making it up.'},
+    {h:'If nobody pushes back on price, you\'re too cheap',t:'Ideal: 1 in 5 people says "that\'s a bit much." If everyone says yes instantly, raise your prices 15-20%. You\'re leaving money on the table.'}
+  ]},
+  {id:'getting',title:'Getting Your First 10 Customers',points:[
+    {h:'Start with people who already trust you',t:'Parents\' friends, neighbors, family friends, your parents\' coworkers. Text them directly: "Hey I started a [business] this summer. Can I do yours? First one\'s discounted." 3-5 will say yes.'},
+    {h:'Nextdoor and Facebook neighborhood groups',t:'Post once: "Hi, I\'m [name], a local high schooler offering [service] this summer. [Rate]. Happy to send references." This gets 5-15 responses in a week in most neighborhoods.'},
+    {h:'Door-to-door in the right neighborhoods',t:'Pick neighborhoods where people clearly need your service (dirty driveways, overgrown lawns, green pools visible from the street). Knock, introduce yourself, leave a card. 1 in 10 will book.'},
+    {h:'Every job is marketing for the next job',t:'Do an amazing job. Take a before/after photo. Post it. Ask the customer to tell a friend. One great job in a neighborhood gets you 3 more jobs on the same street.'}
+  ]},
+  {id:'keeping',title:'Keeping Customers',points:[
+    {h:'Show up when you said you would',t:'Reliability is 80% of customer retention. If you say Tuesday at 2pm, be there at 1:55. Flaking once is forgivable. Flaking twice means they find someone else.'},
+    {h:'Communicate before they have to ask',t:'Running late? Text them. Can\'t make it? Text them the night before. Weather delay? Text them at 8am. Proactive communication = professional. Silence = amateur.'},
+    {h:'Remember small things',t:'Their dog\'s name. That they prefer the back gate. That they want the trash cans brought in. Small details make clients feel cared for. They\'ll never switch to a competitor.'},
+    {h:'Ask for feedback after the first 3 visits',t:'"Hey, is everything looking good? Anything you\'d like me to do differently?" Shows you care and catches problems before they become cancellations.'}
+  ]},
+  {id:'money',title:'Tracking Money & Taxes',points:[
+    {h:'Save 25-30% of everything you earn',t:'This is for taxes. If you make $5,000 this summer, you owe roughly $750-1,250 in self-employment tax. Don\'t spend it. Put it in a separate savings account the day you get paid.'},
+    {h:'Track every dollar in and out',t:'Use a free app (Wave, or even a Google Sheet). Every payment received, every expense. Date, amount, what for. You need this for taxes AND to know if you\'re actually profitable.'},
+    {h:'Keep receipts for everything business-related',t:'Gas, supplies, equipment, even your phone bill (partial). These are deductions that reduce your tax bill. Take a photo of every receipt the day you get it. A folder on your phone works.'},
+    {h:'Cash flow = when money actually arrives',t:'You might have $2,000 in booked jobs but $0 in your account if nobody\'s paid yet. Collect payment at time of service or same-day Venmo. Don\'t let people owe you — they forget.'}
+  ]},
+  {id:'scheduling',title:'Scheduling & Time',points:[
+    {h:'Batch by location',t:'Do all jobs in one neighborhood on the same day. Driving 30 minutes between jobs kills your hourly rate. Route your day like a delivery driver — tight loops, no backtracking.'},
+    {h:'Build in buffer time',t:'Every job takes longer than you think. Block 15-30 min between jobs for cleanup, drive time, and catching your breath. Back-to-back bookings = running late by job #3.'},
+    {h:'Mornings are for doing, afternoons are for responding',t:'Do physical work 8am-2pm when it\'s (relatively) cool. Answer texts, schedule, and handle admin 2pm-5pm. Don\'t let admin eat your work hours.'},
+    {h:'Block one day for no bookings',t:'You need a day to rest, catch up, and handle problems. Burning 7 days a week leads to burnout by July. Take Sunday off. You\'ll last longer and work better.'}
+  ]},
+  {id:'service',title:'Customer Service',points:[
+    {h:'Answer texts within 2 hours during business hours',t:'Speed = trust. Slow response = "this person doesn\'t care." The AI answers calls, but YOU respond to personal texts about changes, questions, or concerns.'},
+    {h:'When you screw up, own it immediately',t:'"Hey, I made a mistake on [X] and I want to make it right. I\'m going to [fix]. No charge." This response turns a complaint into a loyal customer 90% of the time.'},
+    {h:'Never argue with a customer',t:'Even when they\'re wrong, arguing loses. "I understand, let me make this right" beats "actually, I did do that" every time. Let your work quality speak for itself.'},
+    {h:'End every job with a thank-you text',t:'"All done! Thanks for choosing me — let me know if you need anything." Takes 10 seconds. Feels personal. Clients remember it.'}
+  ]},
+  {id:'reviews',title:'Reviews & Referrals',points:[
+    {h:'Ask for a review at the moment they\'re happiest',t:'Right after a great job, while they\'re looking at the result: "Would you mind leaving me a Google review? It really helps." In person beats text. Strike while the iron is hot.'},
+    {h:'Make it stupid easy',t:'Text them the direct link to your Google review page. Don\'t make them search for you. One tap > write > done. The harder it is, the fewer reviews you get.'},
+    {h:'Offer a referral deal',t:'"Refer a friend and you both get $15 off your next service." Costs you $30, gains you a new client worth $200+. Best ROI marketing there is.'},
+    {h:'5 reviews is the magic number',t:'A new business with 5 five-star reviews looks legitimate. A business with 0 reviews looks sketchy. Get your first 5 fast — friends, family, first customers. Then grow from there.'}
+  ]},
+  {id:'numbers',title:'Knowing Your Numbers',points:[
+    {h:'Track weekly: revenue, jobs, cost, profit',t:'Every Sunday, write down: total earned, total jobs completed, total expenses, and profit (earned minus expenses). 5 minutes. If you don\'t do this, you\'re flying blind.'},
+    {h:'Know your average revenue per job',t:'Total revenue / total jobs = average per job. If it\'s going down, you\'re taking too many cheap jobs. If it\'s going up, your pricing is improving. Track this weekly.'},
+    {h:'Know your best and worst service',t:'If you offer multiple services, track which one makes the most per hour. Do more of that. Cut the ones that aren\'t worth your time.'},
+    {h:'Monthly check: am I actually profitable?',t:'Revenue minus ALL costs (gas, supplies, phone, equipment, dump fees) = real profit. Some months you\'ll realize a "busy" week was actually low profit because costs were high. This is how you learn.'}
+  ]},
+  {id:'growth',title:'When to Raise Prices or Grow',points:[
+    {h:'Raise prices when you\'re consistently fully booked',t:'If you\'re turning away work, you\'re too cheap. Raise prices 10-15% for new customers first. Existing customers stay at the old rate for 60 days, then catch up.'},
+    {h:'Raise prices when you learn something new',t:'Added a new skill, bought better equipment, got faster? Your service is now worth more. Communicate it: "I\'ve upgraded my equipment — new rate is $X."'},
+    {h:'Hire help when you\'re leaving $500+/week on the table',t:'If you\'re turning away that much work, bring a friend as a helper and pay them per job (e.g. $50 for a half-day). Keep it casual — if you pay anyone over $600/year you need to report it to the IRS (1099). Don\'t do formal W-2 employment as a teen, the paperwork isn\'t worth it yet.'},
+    {h:'Don\'t grow just to grow',t:'10 happy clients at $150/each beats 25 stressed clients at $75/each. Sustainable > big. You want to enjoy the summer, not hate your life by August.'}
+  ]}
+];
+
+// ──── BUILD COURSE ────
+function buildCourse() {
+  var biz = document.getElementById('biz-select').value;
+  var style = answers.style;
+  var depth = answers.depth;
+  if (!biz || !style) return;
+
+  localStorage.setItem('learn_biz', biz);
+  localStorage.setItem('learn_style', style);
+  localStorage.setItem('learn_depth', depth);
+  localStorage.setItem('learn_pace', answers.pace);
+
+  document.getElementById('quiz-section').style.display = 'none';
+  document.getElementById('course-area').style.display = 'block';
+  document.getElementById('qa-section').style.display = 'block';
+
+  var field = FIELD[biz];
+  if (!field) return;
+
+  var fieldLessons = ['pricing','equipment','season','mistakes','upsells'];
+  var generalLessons = GENERAL;
+
+  if (depth === 'basic') {
+    generalLessons = GENERAL.filter(function(g){ return ['safety','pricing','getting','money','reviews'].indexOf(g.id) >= 0; });
+  } else if (depth === 'confident') {
+    generalLessons = GENERAL.filter(function(g){ return g.id !== 'growth'; });
+  }
+
+  var html = '';
+  var totalLessons = fieldLessons.length + generalLessons.length;
+
+  html += '<div class="track-label">YOUR BUSINESS: ' + field.name.toUpperCase() + '</div>';
+  fieldLessons.forEach(function(key, i) {
+    var lesson = field[key];
+    if (!lesson) return;
+    html += renderLesson(lesson, style, i);
+  });
+
+  html += '<div class="track-label">RUNNING A BUSINESS</div>';
+  generalLessons.forEach(function(lesson, i) {
+    html += renderLesson(lesson, style, fieldLessons.length + i);
+  });
+
+  document.getElementById('course-content').innerHTML = html;
+
+  if (answers.pace === 'bit') {
+    var lessons = document.querySelectorAll('.lesson');
+    for (var i = 5; i < lessons.length; i++) {
+      lessons[i].style.display = 'none';
+      lessons[i].dataset.hidden = '1';
+    }
+    if (lessons.length > 5) {
+      var moreBtn = document.createElement('button');
+      moreBtn.className = 'build-btn';
+      moreBtn.id = 'show-more-btn';
+      moreBtn.textContent = 'SHOW MORE LESSONS';
+      moreBtn.style.marginTop = '16px';
+      moreBtn.onclick = function() {
+        var hidden = document.querySelectorAll('.lesson[data-hidden="1"]');
+        var shown = 0;
+        for (var j = 0; j < hidden.length && shown < 3; j++) {
+          hidden[j].style.display = '';
+          hidden[j].removeAttribute('data-hidden');
+          shown++;
+        }
+        if (!document.querySelector('.lesson[data-hidden="1"]')) {
+          moreBtn.remove();
+        }
+      };
+      document.getElementById('course-content').appendChild(moreBtn);
+    }
+  }
+
+  updateProgress();
+  restoreProgress();
+}
+
+function renderLesson(lesson, style, idx) {
+  var bodyHtml = '';
+  var pts = lesson.points;
+
+  if (style === 'watch') {
+    var searchTerm = encodeURIComponent(lesson.title + ' for beginners');
+    bodyHtml += '<div class="video-placeholder"><a href="https://www.youtube.com/results?search_query=' + searchTerm + '" target="_blank" style="color:var(--gold)">Search YouTube: ' + lesson.title + ' &#8599;</a><br><span style="font-size:11px;color:var(--dim)">Watch 1-2 videos, then review the key points below</span></div>';
+    pts.forEach(function(p) {
+      bodyHtml += '<div style="margin:8px 0"><strong>' + p.h + '</strong><br>' + p.t + '</div>';
+    });
+  } else if (style === 'read') {
+    pts.forEach(function(p) {
+      bodyHtml += '<div style="margin:10px 0"><strong>' + p.h + '.</strong> ' + p.t + '</div>';
+    });
+  } else if (style === 'hands') {
+    pts.forEach(function(p) {
+      bodyHtml += '<div class="action-item"><div class="action-box" onclick="this.classList.toggle(\'checked\');event.stopPropagation()"></div><div><strong>' + p.h + '</strong><br><span style="font-size:12px">' + p.t + '</span></div></div>';
+    });
+  } else {
+    pts.forEach(function(p) {
+      bodyHtml += '<div style="margin:10px 0"><span style="color:var(--gold);font-weight:700">Q: What about ' + p.h.toLowerCase().replace(/\.$/, '') + '?</span><br>Here\'s the deal: ' + p.t + '</div>';
+    });
+  }
+
+  return '<div class="lesson" data-idx="' + idx + '">' +
+    '<div class="lesson-header" onclick="toggleLesson(this)">' +
+      '<div class="lesson-check" id="check-' + idx + '"></div>' +
+      '<div class="lesson-title">' + lesson.title + '</div>' +
+      '<div class="lesson-arrow">&#9654;</div>' +
+    '</div>' +
+    '<div class="lesson-body">' + bodyHtml + '</div>' +
+    '</div>';
+}
+
+function toggleLesson(header) {
+  var lesson = header.parentElement;
+  var wasOpen = lesson.classList.contains('open');
+  lesson.classList.toggle('open');
+  if (wasOpen) {
+    var idx = lesson.dataset.idx;
+    var check = document.getElementById('check-' + idx);
+    if (check && !check.classList.contains('done')) {
+      check.classList.add('done');
+      check.innerHTML = '&#10003;';
+      saveProgress();
+      updateProgress();
+    }
+  }
+}
+
+function saveProgress() {
+  var done = [];
+  document.querySelectorAll('.lesson-check.done').forEach(function(el) {
+    done.push(el.id);
+  });
+  localStorage.setItem('learn_progress', JSON.stringify(done));
+}
+
+function restoreProgress() {
+  var saved = localStorage.getItem('learn_progress');
+  if (!saved) return;
+  try {
+    var done = JSON.parse(saved);
+    done.forEach(function(id) {
+      var el = document.getElementById(id);
+      if (el && !el.classList.contains('done')) {
+        el.classList.add('done');
+        el.innerHTML = '&#10003;';
+      }
+    });
+    updateProgress();
+  } catch(e) {}
+}
+
+function updateProgress() {
+  var total = document.querySelectorAll('.lesson').length;
+  var done = document.querySelectorAll('.lesson-check.done').length;
+  var pct = total > 0 ? Math.round(done / total * 100) : 0;
+  document.getElementById('progress-fill').style.width = pct + '%';
+  document.getElementById('progress-text').textContent = done + ' / ' + total + ' lessons';
+}
+
+// ──── Q&A ────
+var QA_CAP = 10;
+function getQaCount() {
+  var saved = localStorage.getItem('learn_qa_date');
+  if (saved !== new Date().toDateString()) {
+    localStorage.setItem('learn_qa_count', '0');
+    localStorage.setItem('learn_qa_date', new Date().toDateString());
+    return 0;
+  }
+  return parseInt(localStorage.getItem('learn_qa_count') || '0', 10);
+}
+function askQuestion() {
+  if (killed) return;
+  var input = document.getElementById('qa-input');
+  var q = input.value.trim();
+  if (!q) return;
+  if (q.length > 500) { q = q.substring(0, 500); }
+  var qaCount = getQaCount();
+  if (qaCount >= QA_CAP) {
+    document.getElementById('qa-answer').textContent = 'Daily limit reached. You can ask up to ' + QA_CAP + ' questions per day. Come back tomorrow!';
+    document.getElementById('qa-answer').style.display = 'block';
+    return;
+  }
+
+  var btn = document.getElementById('qa-send');
+  btn.disabled = true;
+  btn.textContent = '...';
+  document.getElementById('qa-loading').style.display = 'block';
+  document.getElementById('qa-answer').style.display = 'none';
+
+  var biz = localStorage.getItem('learn_biz') || '';
+  var bizName = FIELD[biz] ? FIELD[biz].name : 'Unknown';
+
+  fetch('https://jamross.app.n8n.cloud/webhook/learn-qa', {
+    method: 'POST',
+    headers: {'Content-Type':'application/json'},
+    body: JSON.stringify({question: q, business: bizName})
+  })
+  .then(function(res) { return res.json(); })
+  .then(function(data) {
+    qaDaily++;
+    var qaCt = parseInt(localStorage.getItem('learn_qa_count') || '0', 10) + 1;
+    localStorage.setItem('learn_qa_count', qaCt);
+    localStorage.setItem('learn_qa_date', new Date().toDateString());
+    document.getElementById('qa-answer').textContent = data.answer || data.response || 'No answer received. Try rephrasing your question.';
+    document.getElementById('qa-answer').style.display = 'block';
+    document.getElementById('qa-loading').style.display = 'none';
+    btn.disabled = false;
+    btn.textContent = 'Ask';
+  })
+  .catch(function() {
+    document.getElementById('qa-answer').textContent = 'Could not connect. Text your BOSS Systems contact for help.';
+    document.getElementById('qa-answer').style.display = 'block';
+    document.getElementById('qa-loading').style.display = 'none';
+    btn.disabled = false;
+    btn.textContent = 'Ask';
+  });
+}
+
+document.getElementById('qa-input').addEventListener('keydown', function(e) {
+  if (e.key === 'Enter') askQuestion();
+});
+
+// ──── KILL SWITCH ────
+var killed = localStorage.getItem('learn_killed') === 'true';
+function toggleKill() {
+  killed = !killed;
+  localStorage.setItem('learn_killed', killed ? 'true' : 'false');
+  applyKillState();
+}
+function applyKillState() {
+  var btn = document.querySelector('.kill-btn');
+  if (killed) {
+    btn.textContent = 'RESUME LEARN';
+    btn.style.borderColor = 'rgba(92,184,122,0.3)';
+    btn.style.color = '#5cb87a';
+    btn.style.background = 'rgba(92,184,122,0.1)';
+    var qa = document.getElementById('qa-send');
+    if (qa) { qa.disabled = true; }
+    var ans = document.getElementById('qa-answer');
+    if (ans) { ans.textContent = 'Q&A paused by admin.'; ans.style.display = 'block'; }
+  } else {
+    btn.textContent = 'KILL LEARN';
+    btn.style.borderColor = 'rgba(224,92,92,0.3)';
+    btn.style.color = '#e05c5c';
+    btn.style.background = 'rgba(224,92,92,0.1)';
+    var qa = document.getElementById('qa-send');
+    if (qa) { qa.disabled = false; }
+    var ans = document.getElementById('qa-answer');
+    if (ans) { ans.style.display = 'none'; }
+  }
+}
+if (window.location.search.indexOf('admin=1') >= 0) {
+  document.getElementById('kill-switch').style.display = 'block';
+  applyKillState();
+}
+
+// ──── RESTORE SESSION ────
+window.addEventListener('DOMContentLoaded', function() {
+  var savedBiz = localStorage.getItem('learn_biz');
+  var savedStyle = localStorage.getItem('learn_style');
+  if (savedBiz && savedStyle) {
+    document.getElementById('biz-select').value = savedBiz;
+    answers.style = savedStyle;
+    answers.depth = localStorage.getItem('learn_depth') || 'confident';
+    answers.pace = localStorage.getItem('learn_pace') || 'all';
+    buildCourse();
+  }
+});
+</script>
+</body>
+</html>
