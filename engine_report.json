@@ -1,52 +1,20 @@
 {
-  "generated": "2026-06-01T02:26:32.599746+00:00",
+  "generated": "2026-06-01T04:32:42.054246+00:00",
   "engine_state": "active",
   "signals": [
     {
-      "type": "storm",
-      "area": "Collingsworth, TX",
-      "niche": "roofing",
-      "action": "Storm damage in Collingsworth, TX. Roofers and restoration companies about to get flooded.",
-      "urgency": "today",
-      "pitch_hook": "After a storm like that, you'll get 10x your normal call volume. Ready for it?"
-    },
-    {
-      "type": "storm",
+      "type": "flood",
       "area": "Lubbock, TX",
-      "niche": "roofing",
-      "action": "Storm damage in Lubbock, TX. Roofers and restoration companies about to get flooded.",
+      "niche": "plumbing",
+      "action": "Flood warnings in Lubbock, TX. Plumbers, restoration, mold companies will spike.",
       "urgency": "today",
-      "pitch_hook": "After a storm like that, you'll get 10x your normal call volume. Ready for it?"
-    },
-    {
-      "type": "storm",
-      "area": "Lynn, TX",
-      "niche": "roofing",
-      "action": "Storm damage in Lynn, TX. Roofers and restoration companies about to get flooded.",
-      "urgency": "today",
-      "pitch_hook": "After a storm like that, you'll get 10x your normal call volume. Ready for it?"
+      "pitch_hook": "Water damage calls are coming. Every one you miss is $500+ walking away."
     },
     {
       "type": "flood",
       "area": "Foard, TX",
       "niche": "plumbing",
       "action": "Flood warnings in Foard, TX. Plumbers, restoration, mold companies will spike.",
-      "urgency": "today",
-      "pitch_hook": "Water damage calls are coming. Every one you miss is $500+ walking away."
-    },
-    {
-      "type": "flood",
-      "area": "Garza, TX; Lynn, TX",
-      "niche": "plumbing",
-      "action": "Flood warnings in Garza, TX; Lynn, TX. Plumbers, restoration, mold companies will spike.",
-      "urgency": "today",
-      "pitch_hook": "Water damage calls are coming. Every one you miss is $500+ walking away."
-    },
-    {
-      "type": "flood",
-      "area": "Hancock, MS; Harrison, MS",
-      "niche": "plumbing",
-      "action": "Flood warnings in Hancock, MS; Harrison, MS. Plumbers, restoration, mold companies will spike.",
       "urgency": "today",
       "pitch_hook": "Water damage calls are coming. Every one you miss is $500+ walking away."
     },
@@ -79,6 +47,38 @@
       "area": "Jackson, AR; Woodruff, AR",
       "niche": "plumbing",
       "action": "Flood warnings in Jackson, AR; Woodruff, AR. Plumbers, restoration, mold companies will spike.",
+      "urgency": "today",
+      "pitch_hook": "Water damage calls are coming. Every one you miss is $500+ walking away."
+    },
+    {
+      "type": "flood",
+      "area": "White, AR; Woodruff, AR",
+      "niche": "plumbing",
+      "action": "Flood warnings in White, AR; Woodruff, AR. Plumbers, restoration, mold companies will spike.",
+      "urgency": "today",
+      "pitch_hook": "Water damage calls are coming. Every one you miss is $500+ walking away."
+    },
+    {
+      "type": "flood",
+      "area": "Major, OK",
+      "niche": "plumbing",
+      "action": "Flood warnings in Major, OK. Plumbers, restoration, mold companies will spike.",
+      "urgency": "today",
+      "pitch_hook": "Water damage calls are coming. Every one you miss is $500+ walking away."
+    },
+    {
+      "type": "storm",
+      "area": "Blaine, OK; Dewey, OK; Major, OK",
+      "niche": "roofing",
+      "action": "Storm damage in Blaine, OK; Dewey, OK; Major, OK. Roofers and restoration companies about to get flooded.",
+      "urgency": "today",
+      "pitch_hook": "After a storm like that, you'll get 10x your normal call volume. Ready for it?"
+    },
+    {
+      "type": "flood",
+      "area": "Blaine, OK; Dewey, OK; Major, OK",
+      "niche": "plumbing",
+      "action": "Flood warnings in Blaine, OK; Dewey, OK; Major, OK. Plumbers, restoration, mold companies will spike.",
       "urgency": "today",
       "pitch_hook": "Water damage calls are coming. Every one you miss is $500+ walking away."
     }
@@ -239,55 +239,55 @@
   "feeds": [
     {
       "name": "NOAA",
-      "last_hit": "2026-06-01T02:20:24.004129+00:00",
+      "last_hit": "2026-06-01T04:26:38.001361+00:00",
       "status": "yellow",
       "data_points_today": 0
     },
     {
       "name": "REDDIT",
-      "last_hit": "2026-06-01T02:20:24.004129+00:00",
+      "last_hit": "2026-06-01T04:26:38.001361+00:00",
       "status": "green",
       "data_points_today": 801
     },
     {
       "name": "USGS",
-      "last_hit": "2026-06-01T02:20:24.004129+00:00",
+      "last_hit": "2026-06-01T04:26:38.001361+00:00",
       "status": "yellow",
       "data_points_today": 0
     },
     {
       "name": "HACKERNEWS",
-      "last_hit": "2026-06-01T02:20:24.004129+00:00",
+      "last_hit": "2026-06-01T04:26:38.001361+00:00",
       "status": "green",
       "data_points_today": 30
     },
     {
       "name": "FEMA",
-      "last_hit": "2026-06-01T02:20:24.004129+00:00",
+      "last_hit": "2026-06-01T04:26:38.001361+00:00",
       "status": "green",
       "data_points_today": 20
     },
     {
       "name": "COMMODITIES",
-      "last_hit": "2026-06-01T02:20:24.004129+00:00",
+      "last_hit": "2026-06-01T04:26:38.001361+00:00",
       "status": "green",
       "data_points_today": 7
     },
     {
       "name": "RSS",
-      "last_hit": "2026-06-01T02:20:24.004129+00:00",
+      "last_hit": "2026-06-01T04:26:38.001361+00:00",
       "status": "green",
       "data_points_today": 160
     },
     {
       "name": "FRED",
-      "last_hit": "2026-06-01T02:20:24.004129+00:00",
+      "last_hit": "2026-06-01T04:26:38.001361+00:00",
       "status": "yellow",
       "data_points_today": 0
     },
     {
       "name": "BLS",
-      "last_hit": "2026-06-01T02:20:24.004129+00:00",
+      "last_hit": "2026-06-01T04:26:38.001361+00:00",
       "status": "green",
       "data_points_today": 9
     }
