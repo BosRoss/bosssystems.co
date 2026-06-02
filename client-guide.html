@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'unsafe-inline'; style-src 'unsafe-inline'; connect-src https://jamross.app.n8n.cloud;">
+<meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'unsafe-inline'; style-src 'unsafe-inline'; connect-src https://jamross.app.n8n.cloud; object-src 'none'; base-uri 'self'; frame-ancestors 'none';">
 <title>Your Guide — BOSS Systems</title>
 <meta name="robots" content="noindex,nofollow">
 <style>
@@ -189,7 +189,7 @@ footer{border-top:1px solid var(--border);padding:24px;text-align:center;font-si
   <p>Enter your dashboard code to see your personalized guide.</p>
   <div>
     <label for="code-input" class="sr-only">Dashboard Code</label>
-    <input type="text" id="code-input" class="login-input" placeholder="Enter your code" maxlength="30" autocomplete="off">
+    <input type="text" id="code-input" class="login-input" placeholder="Enter your code" maxlength="30" autocomplete="off" autocorrect="off" autocapitalize="characters" spellcheck="false">
     <br>
     <button id="login-btn" class="login-btn" onclick="doLogin()">Open My Guide</button>
     <div id="login-error" class="login-error" role="alert"></div>
@@ -216,13 +216,13 @@ footer{border-top:1px solid var(--border);padding:24px;text-align:center;font-si
 
       <div id="guide-stack"></div>
 
+      <div id="guide-trouble" class="section"></div>
+
       <div id="guide-tips" class="section"></div>
 
       <div id="guide-growth" class="section"></div>
 
       <div id="guide-results" class="section"></div>
-
-      <div id="guide-trouble" class="section"></div>
 
       <div id="guide-coming" class="section"></div>
 
@@ -276,7 +276,7 @@ footer{border-top:1px solid var(--border);padding:24px;text-align:center;font-si
 
       <div id="learn-course" style="display:none">
         <div class="progress-wrap">
-          <div class="progress-bar"><div class="progress-fill" id="progress-fill"></div></div>
+          <div class="progress-bar" role="progressbar" aria-valuenow="0" aria-valuemin="0" aria-valuemax="100" aria-label="Course progress"><div class="progress-fill" id="progress-fill"></div></div>
           <div class="progress-text" id="progress-text">0%</div>
         </div>
         <div id="lessons-container"></div>
@@ -408,12 +408,32 @@ function showContent() {
   if (sessionStorage.getItem('cg_admin') === '1') {
     document.getElementById('kill-switch').style.display = 'block';
   }
+
+  // Auto-resume course if returning user
+  if (guideData) {
+    var savedStyle = localStorage.getItem('cg_style_' + guideData.client_id);
+    var savedDepth = localStorage.getItem('cg_depth_' + guideData.client_id);
+    if (savedStyle && savedDepth) {
+      learnStyle = savedStyle;
+      learnDepth = savedDepth;
+      buildCourse();
+    }
+  }
+
+  // Focus first tab for keyboard users
+  document.getElementById('btn-guide').focus();
 }
 
 function renderGuide() {
   if (!guideData) return;
 
-  document.getElementById('guide-summary').innerHTML = '<p>' + esc(guideData.summary) + '</p>';
+  var welcomeHtml = '<p style="font-size:13px;color:var(--gold);margin-bottom:8px">Welcome, ' + esc(guideData.owner_name) + '</p>';
+  welcomeHtml += '<p>' + esc(guideData.summary) + '</p>';
+  if (guideData.generated_at) {
+    var d = new Date(guideData.generated_at);
+    welcomeHtml += '<p style="font-size:11px;color:var(--dim);margin-top:8px">Updated ' + d.toLocaleDateString('en-US', {month:'long',day:'numeric',year:'numeric'}) + '</p>';
+  }
+  document.getElementById('guide-summary').innerHTML = welcomeHtml;
 
   // Checklist
   var cl = document.getElementById('guide-checklist');
@@ -502,9 +522,13 @@ function renderGuide() {
       estimated_revenue_saved: 'Revenue saved from missed calls'
     };
     var resHtml = '<span class="section-label">What to expect</span><h2>Expected Results</h2>';
-    resHtml += '<p style="font-size:12px;color:var(--dim);margin-bottom:16px">These numbers are what similar businesses typically see after 60 days of using the system. Month 1 is usually lighter as you get set up and the number gets established.</p>';
+    resHtml += '<p style="font-size:12px;color:var(--dim);margin-bottom:16px">These numbers are what similar businesses typically see after 60 days of using the system.</p>';
     for (var k in res) {
+      if (k === 'seasonal_note') continue;
       resHtml += '<div class="tip-card"><p><strong>' + esc(labels[k] || k) + ':</strong> ' + esc(res[k]) + '</p></div>';
+    }
+    if (res.seasonal_note) {
+      resHtml += '<p style="font-size:12px;color:var(--dim);margin-top:12px;font-style:italic">' + esc(res.seasonal_note) + '</p>';
     }
     document.getElementById('guide-results').innerHTML = resHtml;
   }
@@ -523,7 +547,7 @@ function renderGuide() {
     var cnHtml = '<span class="section-label">Coming Next</span><h2>Available Upgrades</h2>';
     guideData.coming_next.forEach(function(c) {
       cnHtml += '<div class="coming-card"><div class="coming-title">' + esc(c.title) + '</div><div class="coming-desc">' + esc(c.description) + '</div>';
-      cnHtml += '<div class="coming-cta">' + esc(c.cta || 'Text Boston to add this') + '</div></div>';
+      cnHtml += '<a href="sms:9037146162" class="coming-cta" style="display:inline-block;padding:6px 0;font-size:12px">' + esc(c.cta || 'Text Boston to add this') + '</a></div>';
     });
     document.getElementById('guide-coming').innerHTML = cnHtml;
   }
@@ -569,8 +593,9 @@ document.querySelector('.tabs').addEventListener('keydown', function(e) {
 
 // Learn quiz
 function selectOpt(el, group) {
-  el.parentElement.querySelectorAll('.quiz-opt').forEach(function(o) { o.classList.remove('selected'); });
+  el.parentElement.querySelectorAll('.quiz-opt').forEach(function(o) { o.classList.remove('selected'); o.setAttribute('aria-pressed', 'false'); });
   el.classList.add('selected');
+  el.setAttribute('aria-pressed', 'true');
   if (group === 'style') learnStyle = el.getAttribute('data-val');
   if (group === 'depth') learnDepth = el.getAttribute('data-val');
   document.getElementById('build-course-btn').disabled = !(learnStyle && learnDepth);
@@ -588,6 +613,12 @@ function buildCourse() {
   document.getElementById('learn-course').style.display = 'block';
   lessonHasQuiz = {};
 
+  // Persist choices for auto-resume
+  if (guideData) {
+    localStorage.setItem('cg_style_' + guideData.client_id, learnStyle);
+    localStorage.setItem('cg_depth_' + guideData.client_id, learnDepth);
+  }
+
   var lessons = courseData.lessons;
   if (learnDepth === 'basics') lessons = lessons.slice(0, 3);
   else if (learnDepth === 'solid') lessons = lessons.slice(0, 4);
@@ -603,46 +634,54 @@ function buildCourse() {
     var div = document.createElement('div');
     div.className = 'lesson';
     div.setAttribute('data-idx', idx);
+    var bodyId = 'lesson-body-' + idx;
 
     var isDone = completedLessons[idx];
 
     var header = document.createElement('button');
     header.className = 'lesson-header';
     header.setAttribute('aria-expanded', 'false');
-    header.innerHTML = '<div class="lesson-chk' + (isDone ? ' done' : '') + '">' + (isDone ? '&#10003;' : '') + '</div>' +
-      '<div class="lesson-title">' + esc(lesson.title) + '</div>' +
-      '<span class="lesson-arrow">&#9654;</span>';
+    header.setAttribute('aria-controls', bodyId);
+    header.innerHTML = '<div class="lesson-chk' + (isDone ? ' done' : '') + '" aria-hidden="true">' + (isDone ? '&#10003;' : '') + '</div>' +
+      '<div class="lesson-title">' + esc(lesson.title) + (isDone ? ' (completed)' : '') + '</div>' +
+      '<span class="lesson-arrow" aria-hidden="true">&#9654;</span>';
     header.onclick = function() { toggleLesson(div, idx); };
     div.appendChild(header);
 
     var body = document.createElement('div');
     body.className = 'lesson-body';
+    body.id = bodyId;
 
     if (lesson.objective) {
       body.innerHTML += '<div class="lesson-objective">' + esc(lesson.objective) + '</div>';
     }
 
     var contentHtml = '';
+    var stepNum = 0;
     lesson.content.forEach(function(para) {
-      contentHtml += '<p>' + formatText(para, learnStyle) + '</p>';
+      var hasBold = para.indexOf('**') !== -1;
+      if (learnStyle === 'quick' && !hasBold) return;
+      contentHtml += formatText(para, learnStyle, stepNum);
+      stepNum++;
     });
     body.innerHTML += contentHtml;
+
+    // First step BEFORE quiz so it's not buried
+    if (lesson.first_step) {
+      body.innerHTML += '<div class="first-step"><strong>Your first step:</strong> ' + esc(lesson.first_step) + '</div>';
+    }
 
     if (lesson.quiz) {
       var qhtml = '<div class="lesson-quiz"><div class="lesson-quiz-q">' + esc(lesson.quiz.question) + '</div>';
       var shuffled = shuffleQuiz(lesson.quiz.options, lesson.quiz.correct);
       shuffled.opts.forEach(function(opt, oi) {
-        qhtml += '<button class="lq-opt" type="button" data-ci="' + (oi === shuffled.correctIdx ? '1' : '0') + '" data-lesson="' + idx + '" onclick="answerQuiz(this,' + idx + ')">' + esc(opt) + '</button>';
+        qhtml += '<button class="lq-opt" type="button" data-ci="' + (oi === shuffled.correctIdx ? '1' : '0') + '" data-lesson="' + idx + '" onclick="answerQuiz(this,' + idx + ')" aria-label="' + esc(opt) + '">' + esc(opt) + '</button>';
       });
       if (lesson.quiz.hint) {
         qhtml += '<div class="quiz-hint" style="display:none;font-size:11px;color:var(--gold);margin-top:8px;font-style:italic" role="alert">' + esc(lesson.quiz.hint) + '</div>';
       }
       qhtml += '</div>';
       body.innerHTML += qhtml;
-    }
-
-    if (lesson.first_step) {
-      body.innerHTML += '<div class="first-step"><strong>Your first step:</strong> ' + esc(lesson.first_step) + '</div>';
     }
 
     div.appendChild(body);
@@ -720,8 +759,14 @@ function updateProgress() {
     if (parseInt(k) < currentLessonCount && completedLessons[k]) done++;
   }
   var pct = Math.min(100, Math.round((done / currentLessonCount) * 100));
-  document.getElementById('progress-fill').style.width = pct + '%';
+  var fill = document.getElementById('progress-fill');
+  fill.style.width = pct + '%';
+  fill.setAttribute('aria-valuenow', pct);
   document.getElementById('progress-text').textContent = pct + '%';
+  if (pct === 100) {
+    fill.style.background = '#5cb87a';
+    document.getElementById('progress-text').textContent = '100% — Complete';
+  }
 }
 
 function saveProgress() {
@@ -811,7 +856,7 @@ function askQuestion(source) {
   })
   .catch(function(err) {
     var answer = document.getElementById(answerId);
-    answer.textContent = err && err.name === 'AbortError' ? 'Request timed out. Try again.' : 'Could not reach the server. Try again in a moment.';
+    answer.textContent = err && err.name === 'AbortError' ? 'Request timed out. Try again.' : 'Could not reach the server. Text 903-714-6162 if this keeps happening.';
     answer.style.display = 'block';
   })
   .finally(function() {
@@ -825,7 +870,7 @@ function updateQaCounter(source) {
   var remaining = QA_CAP - qaCount;
   var el = document.getElementById(source + '-qa-counter');
   if (!el) return;
-  el.textContent = 'You have ' + remaining + ' question' + (remaining !== 1 ? 's' : '') + ' today';
+  el.textContent = remaining > 0 ? remaining + ' question' + (remaining !== 1 ? 's' : '') + ' left today' : 'Limit reached — resets at midnight';
   if (remaining <= 0) {
     var send = document.getElementById(source + '-qa-send');
     var input = document.getElementById(source + '-qa-input');
@@ -861,22 +906,25 @@ function toggleKill() {
 // Utils
 function esc(s) { if (!s) return ''; var d = document.createElement('div'); d.textContent = s; return d.innerHTML; }
 
-function formatText(s, style) {
+function formatText(s, style, stepNum) {
   if (!s) return '';
   s = esc(s);
   s = s.replace(/\*\*(.+?)\*\*/g, '<strong>$1</strong>');
   var hasBold = s.indexOf('<strong>') !== -1;
   if (style === 'quick') {
-    if (hasBold) return s;
-    return '<span style="opacity:.6;font-size:12px">' + s + '</span>';
+    return '<p>' + s + '</p>';
   }
-  if (style === 'steps' && hasBold) {
+  if (style === 'steps') {
     s = s.replace(/<strong>/g, '<strong style="color:var(--gold)">');
+    return '<p style="padding-left:28px;position:relative"><span style="position:absolute;left:0;color:var(--gold);font-weight:700">' + (stepNum + 1) + '.</span>' + s + '</p>';
   }
   if (style === 'examples' && hasBold) {
-    s = s.replace(/<\/strong>/g, '</strong> &mdash;');
+    return '<div style="border-left:3px solid var(--gold);padding:8px 14px;margin:6px 0;background:rgba(201,168,76,0.04)"><p style="margin:0">' + s + '</p></div>';
   }
-  return s;
+  if (style === 'examples') {
+    return '<p style="font-size:12px;color:var(--dim)">' + s + '</p>';
+  }
+  return '<p>' + s + '</p>';
 }
 
 // Enter key on login
