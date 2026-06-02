@@ -84,9 +84,10 @@ a:hover{text-decoration:underline}
 .trouble-card .trouble-problem{font-size:13px;font-weight:700;color:var(--text);margin-bottom:4px}
 .trouble-card .trouble-action{font-size:13px;color:var(--muted);line-height:1.6}
 
-.coming-card{background:var(--gray2);border:1px solid var(--border);padding:14px 18px;margin-bottom:4px;opacity:.6}
-.coming-card .coming-title{font-size:13px;font-weight:700;color:var(--dim)}
-.coming-card .coming-desc{font-size:12px;color:var(--dim);margin-top:2px}
+.coming-card{background:var(--gray2);border:1px solid var(--border);padding:14px 18px;margin-bottom:4px}
+.coming-card .coming-title{font-size:13px;font-weight:700;color:var(--dim);opacity:.7}
+.coming-card .coming-desc{font-size:12px;color:var(--dim);margin-top:2px;opacity:.7}
+.coming-card .coming-cta{font-size:11px;color:var(--gold);margin-top:6px}
 
 /* Q&A on guide tab */
 .guide-qa{margin-top:32px;padding-top:24px;border-top:1px solid var(--border)}
@@ -233,7 +234,7 @@ footer{border-top:1px solid var(--border);padding:24px;text-align:center;font-si
           <input type="text" class="qa-input" id="guide-qa-input" placeholder="How does my AI handle emergency calls?" maxlength="500">
           <button class="qa-send" id="guide-qa-send" onclick="askQuestion('guide')">ASK</button>
         </div>
-        <div class="qa-answer" id="guide-qa-answer"></div>
+        <div class="qa-answer" id="guide-qa-answer" aria-live="polite"></div>
         <div class="qa-counter" id="guide-qa-counter"></div>
       </div>
 
@@ -287,7 +288,7 @@ footer{border-top:1px solid var(--border);padding:24px;text-align:center;font-si
             <input type="text" class="qa-input" id="learn-qa-input" placeholder="Ask anything about your AI system..." maxlength="500">
             <button class="qa-send" id="learn-qa-send" onclick="askQuestion('learn')">ASK</button>
           </div>
-          <div class="qa-answer" id="learn-qa-answer"></div>
+          <div class="qa-answer" id="learn-qa-answer" aria-live="polite"></div>
           <div class="qa-counter" id="learn-qa-counter"></div>
         </div>
       </div>
@@ -342,26 +343,31 @@ function doLogin() {
 }
 
 function tryLoadGuide(code) {
-  fetch('client_guides/manifest.json')
-    .then(function(r) { return r.ok ? r.json() : Promise.reject(); })
-    .then(function(manifest) {
-      var clientId = manifest[code];
-      if (!clientId) {
-        showLoginError('Code not found. Check your dashboard code and try again.');
-        return;
-      }
-      return fetch('client_guides/' + clientId + '.json')
-        .then(function(r) { return r.ok ? r.json() : Promise.reject(); })
-        .then(function(data) {
-          guideData = data.guide;
-          courseData = data.course;
-          sessionStorage.setItem('client_guide_' + code, JSON.stringify(data));
-          showContent();
-        });
-    })
-    .catch(function() {
-      showLoginError('Code not found. Check your dashboard code and try again.');
-    });
+  hashCode(code).then(function(hashed) {
+    return fetch('client_guides/' + hashed + '.json');
+  })
+  .then(function(r) { return r.ok ? r.json() : Promise.reject(); })
+  .then(function(data) {
+    guideData = data.guide;
+    courseData = data.course;
+    sessionStorage.setItem('client_guide_' + code, JSON.stringify(data));
+    showContent();
+  })
+  .catch(function() {
+    showLoginError('Code not found. Check your dashboard code and try again.');
+  });
+}
+
+function hashCode(code) {
+  var data = new TextEncoder().encode(code);
+  return crypto.subtle.digest('SHA-256', data).then(function(buf) {
+    var arr = new Uint8Array(buf);
+    var hex = '';
+    for (var i = 0; i < 8; i++) {
+      hex += ('0' + arr[i].toString(16)).slice(-2);
+    }
+    return hex;
+  });
 }
 
 function showLoginError(msg) {
@@ -371,12 +377,12 @@ function showLoginError(msg) {
   document.getElementById('login-btn').textContent = 'OPEN MY GUIDE';
   document.getElementById('login-btn').disabled = false;
   loginAttempts++;
-  sessionStorage.setItem('cg_login_attempts', loginAttempts);
+  localStorage.setItem('cg_login_attempts', loginAttempts);
   if (loginAttempts >= 3) {
     loginLockUntil = Date.now() + 60000;
-    sessionStorage.setItem('cg_login_lock', loginLockUntil);
+    localStorage.setItem('cg_login_lock', loginLockUntil);
     loginAttempts = 0;
-    sessionStorage.setItem('cg_login_attempts', '0');
+    localStorage.setItem('cg_login_attempts', '0');
   }
 }
 
@@ -510,7 +516,7 @@ function renderGuide() {
     var cnHtml = '<span class="section-label">Coming Next</span><h2>Available Upgrades</h2>';
     guideData.coming_next.forEach(function(c) {
       cnHtml += '<div class="coming-card"><div class="coming-title">' + esc(c.title) + '</div><div class="coming-desc">' + esc(c.description) + '</div>';
-      cnHtml += '<div style="font-size:11px;color:var(--gold);margin-top:6px">' + esc(c.cta || 'Text Boston to add this') + '</div></div>';
+      cnHtml += '<div class="coming-cta">' + esc(c.cta || 'Text Boston to add this') + '</div></div>';
     });
     document.getElementById('guide-coming').innerHTML = cnHtml;
   }
@@ -521,13 +527,37 @@ function switchTab(tab) {
   document.querySelectorAll('.tab').forEach(function(t) {
     t.classList.remove('active');
     t.setAttribute('aria-selected', 'false');
+    t.setAttribute('tabindex', '-1');
   });
   var activeTab = document.querySelector('[data-tab="' + tab + '"]');
   activeTab.classList.add('active');
   activeTab.setAttribute('aria-selected', 'true');
-  document.getElementById('tab-guide').style.display = tab === 'guide' ? 'block' : 'none';
-  document.getElementById('tab-learn').style.display = tab === 'learn' ? 'block' : 'none';
+  activeTab.setAttribute('tabindex', '0');
+  var guidePanel = document.getElementById('tab-guide');
+  var learnPanel = document.getElementById('tab-learn');
+  guidePanel.style.display = tab === 'guide' ? 'block' : 'none';
+  learnPanel.style.display = tab === 'learn' ? 'block' : 'none';
+  guidePanel.setAttribute('tabindex', tab === 'guide' ? '0' : '-1');
+  learnPanel.setAttribute('tabindex', tab === 'learn' ? '0' : '-1');
 }
+
+// Tab keyboard navigation (arrow keys)
+document.querySelector('.tabs').addEventListener('keydown', function(e) {
+  var tabs = ['guide', 'learn'];
+  var current = document.querySelector('.tab.active').getAttribute('data-tab');
+  var idx = tabs.indexOf(current);
+  if (e.key === 'ArrowRight' || e.key === 'ArrowDown') {
+    e.preventDefault();
+    var next = tabs[(idx + 1) % tabs.length];
+    switchTab(next);
+    document.querySelector('[data-tab="' + next + '"]').focus();
+  } else if (e.key === 'ArrowLeft' || e.key === 'ArrowUp') {
+    e.preventDefault();
+    var prev = tabs[(idx - 1 + tabs.length) % tabs.length];
+    switchTab(prev);
+    document.querySelector('[data-tab="' + prev + '"]').focus();
+  }
+});
 
 // Learn quiz
 function selectOpt(el, group) {
@@ -764,8 +794,7 @@ function askQuestion(source) {
     answer.style.display = 'block';
     qaCount++;
     saveQaCount();
-    updateQaCounter('guide');
-    updateQaCounter('learn');
+    updateQaCounter(source);
     input.value = '';
   })
   .catch(function() {
@@ -872,8 +901,8 @@ document.getElementById('footer-yr').textContent = new Date().getFullYear();
 })();
 
 // Login backoff: 3 failed attempts → 60s lockout
-var loginAttempts = parseInt(sessionStorage.getItem('cg_login_attempts') || '0');
-var loginLockUntil = parseInt(sessionStorage.getItem('cg_login_lock') || '0');
+var loginAttempts = parseInt(localStorage.getItem('cg_login_attempts') || '0');
+var loginLockUntil = parseInt(localStorage.getItem('cg_login_lock') || '0');
 </script>
 
 </body>
