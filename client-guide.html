@@ -328,33 +328,39 @@ function doLogin() {
   document.getElementById('login-btn').textContent = 'LOADING...';
   document.getElementById('login-btn').disabled = true;
 
-  var cached = sessionStorage.getItem('client_guide_' + code);
-  if (cached) {
-    try {
-      var d = JSON.parse(cached);
-      guideData = d.guide;
-      courseData = d.course;
-      showContent();
-      return;
-    } catch(e) {}
-  }
-
-  tryLoadGuide(code);
-}
-
-function tryLoadGuide(code) {
   hashCode(code).then(function(hashed) {
-    return fetch('client_guides/' + hashed + '.json');
+    var cached = sessionStorage.getItem('cg_' + hashed);
+    if (cached) {
+      try {
+        var d = JSON.parse(cached);
+        guideData = d.guide;
+        courseData = d.course;
+        showContent();
+        return;
+      } catch(e) {}
+    }
+    return fetch('client_guides/' + hashed + '.json')
+      .then(function(r) {
+        if (!r.ok) return Promise.reject('not_found');
+        return r.json();
+      })
+      .then(function(data) {
+        guideData = data.guide;
+        courseData = data.course;
+        sessionStorage.setItem('cg_' + hashed, JSON.stringify(data));
+        showContent();
+      });
   })
-  .then(function(r) { return r.ok ? r.json() : Promise.reject(); })
-  .then(function(data) {
-    guideData = data.guide;
-    courseData = data.course;
-    sessionStorage.setItem('client_guide_' + code, JSON.stringify(data));
-    showContent();
-  })
-  .catch(function() {
-    showLoginError('Code not found. Check your dashboard code and try again.');
+  .catch(function(err) {
+    if (err === 'not_found') {
+      showLoginError('Code not found. Check your dashboard code and try again.');
+    } else {
+      var el = document.getElementById('login-error');
+      el.textContent = 'Could not reach the server. Check your connection and try again.';
+      el.style.display = 'block';
+      document.getElementById('login-btn').textContent = 'OPEN MY GUIDE';
+      document.getElementById('login-btn').disabled = false;
+    }
   });
 }
 
@@ -363,7 +369,7 @@ function hashCode(code) {
   return crypto.subtle.digest('SHA-256', data).then(function(buf) {
     var arr = new Uint8Array(buf);
     var hex = '';
-    for (var i = 0; i < 8; i++) {
+    for (var i = 0; i < 32; i++) {
       hex += ('0' + arr[i].toString(16)).slice(-2);
     }
     return hex;
@@ -389,6 +395,7 @@ function showLoginError(msg) {
 function showContent() {
   document.getElementById('login-screen').style.display = 'none';
   document.getElementById('content-area').style.display = 'block';
+  if (location.hash) history.replaceState(null, '', location.pathname);
   renderGuide();
   loadProgress();
   loadQaCount();
@@ -543,6 +550,7 @@ function switchTab(tab) {
 
 // Tab keyboard navigation (arrow keys)
 document.querySelector('.tabs').addEventListener('keydown', function(e) {
+  if (!guideData) return;
   var tabs = ['guide', 'learn'];
   var current = document.querySelector('.tab.active').getAttribute('data-tab');
   var idx = tabs.indexOf(current);
@@ -782,10 +790,14 @@ function askQuestion(source) {
     mode: 'client'
   });
 
+  var controller = new AbortController();
+  var fetchTimeout = setTimeout(function() { controller.abort(); }, 15000);
+
   fetch('https://jamross.app.n8n.cloud/webhook/client-guide-qa', {
     method: 'POST',
     headers: { 'Content-Type': 'application/json' },
-    body: body
+    body: body,
+    signal: controller.signal
   })
   .then(function(r) { return r.json(); })
   .then(function(data) {
@@ -797,12 +809,13 @@ function askQuestion(source) {
     updateQaCounter(source);
     input.value = '';
   })
-  .catch(function() {
+  .catch(function(err) {
     var answer = document.getElementById(answerId);
-    answer.textContent = 'Could not reach the server. Try again in a moment.';
+    answer.textContent = err && err.name === 'AbortError' ? 'Request timed out. Try again.' : 'Could not reach the server. Try again in a moment.';
     answer.style.display = 'block';
   })
   .finally(function() {
+    clearTimeout(fetchTimeout);
     sendBtn.disabled = false;
     sendBtn.textContent = 'ASK';
   });
@@ -858,7 +871,7 @@ function formatText(s, style) {
     return '<span style="opacity:.6;font-size:12px">' + s + '</span>';
   }
   if (style === 'steps' && hasBold) {
-    s = s.replace('<strong>', '<strong style="color:var(--gold)">');
+    s = s.replace(/<strong>/g, '<strong style="color:var(--gold)">');
   }
   if (style === 'examples' && hasBold) {
     s = s.replace(/<\/strong>/g, '</strong> &mdash;');
