@@ -176,7 +176,7 @@ footer{border-top:1px solid var(--border);padding:24px;text-align:center;font-si
 <body>
 
 <nav class="nav">
-  <span class="nav-logo">BOSS Systems</span>
+  <span class="nav-logo" id="nav-logo">BOSS Systems</span>
   <div class="nav-links">
     <a href="client-dashboard.html" class="nav-link">Dashboard</a>
   </div>
@@ -201,12 +201,12 @@ footer{border-top:1px solid var(--border);padding:24px;text-align:center;font-si
   <div class="page">
 
     <div class="tabs" role="tablist">
-      <button class="tab active" role="tab" aria-selected="true" data-tab="guide" onclick="switchTab('guide')">Your Guide</button>
-      <button class="tab" role="tab" aria-selected="false" data-tab="learn" onclick="switchTab('learn')">Learn</button>
+      <button class="tab active" role="tab" aria-selected="true" aria-controls="tab-guide" id="btn-guide" data-tab="guide" onclick="switchTab('guide')">Your Guide</button>
+      <button class="tab" role="tab" aria-selected="false" aria-controls="tab-learn" id="btn-learn" data-tab="learn" onclick="switchTab('learn')">Learn</button>
     </div>
 
     <!-- GUIDE TAB -->
-    <div id="tab-guide" role="tabpanel">
+    <div id="tab-guide" role="tabpanel" aria-labelledby="btn-guide" tabindex="-1">
       <div id="guide-summary" class="summary-box"></div>
 
       <div id="guide-checklist" class="checklist">
@@ -246,7 +246,7 @@ footer{border-top:1px solid var(--border);padding:24px;text-align:center;font-si
     </div>
 
     <!-- LEARN TAB -->
-    <div id="tab-learn" style="display:none" role="tabpanel">
+    <div id="tab-learn" style="display:none" role="tabpanel" aria-labelledby="btn-learn" tabindex="-1">
       <div id="learn-quiz" class="learn-intro">
         <p>Learn how to get the most out of your AI system and grow your business. Go at your own pace.</p>
 
@@ -301,7 +301,7 @@ footer{border-top:1px solid var(--border);padding:24px;text-align:center;font-si
   <button class="kill-btn" id="kill-btn" onclick="toggleKill()">KILL LEARN</button>
 </div>
 
-<footer>BOSS Systems &copy; <script>document.write(new Date().getFullYear())</script> &mdash; bosssystems.co</footer>
+<footer>BOSS Systems &copy; <span id="footer-yr"></span> &mdash; bosssystems.co</footer>
 
 <script>
 var guideData = null;
@@ -318,6 +318,11 @@ var currentLessonCount = 0;
 function doLogin() {
   var code = document.getElementById('code-input').value.trim().toUpperCase();
   if (!code) return;
+  if (Date.now() < loginLockUntil) {
+    var secs = Math.ceil((loginLockUntil - Date.now()) / 1000);
+    showLoginError('Too many attempts. Try again in ' + secs + ' seconds.');
+    return;
+  }
   document.getElementById('login-error').style.display = 'none';
   document.getElementById('login-btn').textContent = 'LOADING...';
   document.getElementById('login-btn').disabled = true;
@@ -365,6 +370,14 @@ function showLoginError(msg) {
   el.style.display = 'block';
   document.getElementById('login-btn').textContent = 'OPEN MY GUIDE';
   document.getElementById('login-btn').disabled = false;
+  loginAttempts++;
+  sessionStorage.setItem('cg_login_attempts', loginAttempts);
+  if (loginAttempts >= 3) {
+    loginLockUntil = Date.now() + 60000;
+    sessionStorage.setItem('cg_login_lock', loginLockUntil);
+    loginAttempts = 0;
+    sessionStorage.setItem('cg_login_attempts', '0');
+  }
 }
 
 function showContent() {
@@ -379,13 +392,6 @@ function showContent() {
     updateQaCounter('guide');
   }
 
-  if (location.search.indexOf('admin') !== -1) {
-    var k = window.prompt('Key:');
-    if (k && k === String.fromCharCode(120,55,82,57,109,75)) {
-      document.getElementById('kill-switch').style.display = 'block';
-      sessionStorage.setItem('cg_admin', '1');
-    }
-  }
   if (sessionStorage.getItem('cg_admin') === '1') {
     document.getElementById('kill-switch').style.display = 'block';
   }
@@ -483,7 +489,7 @@ function renderGuide() {
       estimated_revenue_saved: 'Revenue saved from missed calls'
     };
     var resHtml = '<span class="section-label">What to expect</span><h2>Expected Results</h2>';
-    resHtml += '<p style="font-size:12px;color:var(--dim);margin-bottom:16px">These numbers are what similar businesses typically see after 60 days. Month 1 is usually lighter as the number gets established.</p>';
+    resHtml += '<p style="font-size:12px;color:var(--dim);margin-bottom:16px">These numbers are what similar businesses typically see after 60 days of using the system. Month 1 is usually lighter as you get set up and the number gets established.</p>';
     for (var k in res) {
       resHtml += '<div class="tip-card"><p><strong>' + esc(labels[k] || k) + ':</strong> ' + esc(res[k]) + '</p></div>';
     }
@@ -502,9 +508,9 @@ function renderGuide() {
   // Coming next (disabled features / upsell)
   if (guideData.coming_next && guideData.coming_next.length) {
     var cnHtml = '<span class="section-label">Coming Next</span><h2>Available Upgrades</h2>';
-    cnHtml += '<p style="font-size:13px;color:var(--dim);margin-bottom:12px">These features can be added to your plan anytime. Text Boston to turn them on.</p>';
     guideData.coming_next.forEach(function(c) {
-      cnHtml += '<div class="coming-card"><div class="coming-title">' + esc(c.title) + '</div><div class="coming-desc">' + esc(c.description) + '</div></div>';
+      cnHtml += '<div class="coming-card"><div class="coming-title">' + esc(c.title) + '</div><div class="coming-desc">' + esc(c.description) + '</div>';
+      cnHtml += '<div style="font-size:11px;color:var(--gold);margin-top:6px">' + esc(c.cta || 'Text Boston to add this') + '</div></div>';
     });
     document.getElementById('guide-coming').innerHTML = cnHtml;
   }
@@ -542,6 +548,7 @@ function buildCourse() {
   }
   document.getElementById('learn-quiz').style.display = 'none';
   document.getElementById('learn-course').style.display = 'block';
+  lessonHasQuiz = {};
 
   var lessons = courseData.lessons;
   if (learnDepth === 'basics') lessons = lessons.slice(0, 3);
@@ -563,7 +570,6 @@ function buildCourse() {
 
     var header = document.createElement('button');
     header.className = 'lesson-header';
-    header.setAttribute('role', 'button');
     header.setAttribute('aria-expanded', 'false');
     header.innerHTML = '<div class="lesson-chk' + (isDone ? ' done' : '') + '">' + (isDone ? '&#10003;' : '') + '</div>' +
       '<div class="lesson-title">' + esc(lesson.title) + '</div>' +
@@ -647,7 +653,15 @@ function answerQuiz(el, lessonIdx) {
     el.classList.add('wrong');
     el.style.pointerEvents = 'none';
     var hint = el.closest('.lesson-quiz').querySelector('.quiz-hint');
-    if (hint) hint.style.display = 'block';
+    if (hint) { hint.style.display = 'block'; hint.setAttribute('role', 'alert'); }
+    var feedback = document.createElement('div');
+    feedback.setAttribute('role', 'alert');
+    feedback.style.cssText = 'font-size:11px;color:var(--dim);margin-top:4px';
+    feedback.textContent = 'Not quite — try another answer.';
+    if (!el.closest('.lesson-quiz').querySelector('[role="alert"][data-retry]')) {
+      feedback.setAttribute('data-retry', '1');
+      el.closest('.lesson-quiz').appendChild(feedback);
+    }
   }
 }
 
@@ -769,7 +783,7 @@ function updateQaCounter(source) {
   var remaining = QA_CAP - qaCount;
   var el = document.getElementById(source + '-qa-counter');
   if (!el) return;
-  el.textContent = remaining + ' question' + (remaining !== 1 ? 's' : '') + ' remaining';
+  el.textContent = 'You have ' + remaining + ' question' + (remaining !== 1 ? 's' : '') + ' today';
   if (remaining <= 0) {
     var send = document.getElementById(source + '-qa-send');
     var input = document.getElementById(source + '-qa-input');
@@ -809,12 +823,16 @@ function formatText(s, style) {
   if (!s) return '';
   s = esc(s);
   s = s.replace(/\*\*(.+?)\*\*/g, '<strong>$1</strong>');
+  var hasBold = s.indexOf('<strong>') !== -1;
   if (style === 'quick') {
-    if (s.indexOf('<strong>') === 0) return s;
-    return '<span style="opacity:.7">' + s + '</span>';
+    if (hasBold) return s;
+    return '<span style="opacity:.6;font-size:12px">' + s + '</span>';
   }
-  if (style === 'steps' && s.indexOf('<strong>') === 0) {
+  if (style === 'steps' && hasBold) {
     s = s.replace('<strong>', '<strong style="color:var(--gold)">');
+  }
+  if (style === 'examples' && hasBold) {
+    s = s.replace(/<\/strong>/g, '</strong> &mdash;');
   }
   return s;
 }
@@ -826,18 +844,36 @@ document.getElementById('code-input').addEventListener('keydown', function(e) {
 
 // Auto-login from URL hash (fragment not sent to server, not in Referer)
 (function() {
-  var code = '';
   if (location.hash && location.hash.length > 1) {
-    code = location.hash.slice(1);
-  } else {
-    var params = new URLSearchParams(location.search);
-    code = params.get('code') || '';
-  }
-  if (code) {
-    document.getElementById('code-input').value = code;
+    document.getElementById('code-input').value = location.hash.slice(1);
     doLogin();
   }
 })();
+
+// Footer year
+document.getElementById('footer-yr').textContent = new Date().getFullYear();
+
+// Admin trigger: 5 clicks on logo within 3 seconds
+(function() {
+  var clicks = 0, timer = null;
+  document.getElementById('nav-logo').addEventListener('click', function() {
+    clicks++;
+    if (timer) clearTimeout(timer);
+    timer = setTimeout(function() { clicks = 0; }, 3000);
+    if (clicks >= 5) {
+      clicks = 0;
+      var k = window.prompt('Key:');
+      if (k && k === String.fromCharCode(120,55,82,57,109,75)) {
+        document.getElementById('kill-switch').style.display = 'block';
+        sessionStorage.setItem('cg_admin', '1');
+      }
+    }
+  });
+})();
+
+// Login backoff: 3 failed attempts → 60s lockout
+var loginAttempts = parseInt(sessionStorage.getItem('cg_login_attempts') || '0');
+var loginLockUntil = parseInt(sessionStorage.getItem('cg_login_lock') || '0');
 </script>
 
 </body>
