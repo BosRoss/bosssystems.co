@@ -117,6 +117,19 @@ main{padding:16px 12px 80px;max-width:600px;margin:0 auto}
 .priority-box{background:rgba(255,107,53,0.06);border:1px solid rgba(255,107,53,0.2);padding:16px;margin-bottom:16px;font-size:13px;color:var(--muted);line-height:1.7}
 .priority-box strong{color:var(--orange)}
 
+/* APPLICATIONS */
+.app-card{background:var(--bg2);border:1px solid var(--border);padding:14px 16px;margin-bottom:1px}
+.app-card:first-child{border-top:1px solid var(--gold-dim)}
+.app-name{font-size:14px;font-weight:700;color:var(--text)}
+.app-meta{font-size:11px;color:var(--muted);margin-top:3px;line-height:1.6}
+.app-meta span{color:var(--gold);font-weight:600}
+.app-note{font-size:11px;color:var(--dim);margin-top:6px;font-style:italic;line-height:1.5}
+.app-time{font-size:9px;color:var(--dim);font-family:'Share Tech Mono',monospace;margin-top:6px;letter-spacing:1px}
+.app-status{display:inline-block;font-size:8px;font-family:'Share Tech Mono',monospace;letter-spacing:1px;padding:2px 6px;border-radius:2px;margin-left:8px}
+.app-status.new{background:rgba(255,107,53,0.08);color:var(--orange);border:1px solid rgba(255,107,53,0.18)}
+.app-status.reviewed{background:rgba(0,232,122,0.08);color:var(--green);border:1px solid rgba(0,232,122,0.18)}
+.app-empty{text-align:center;padding:20px;font-size:12px;color:var(--dim);letter-spacing:1px}
+
 /* FOOTER */
 footer{text-align:center;padding:16px;font-family:'Share Tech Mono',monospace;font-size:9px;color:var(--dim);letter-spacing:2px;border-top:1px solid var(--border)}
 </style>
@@ -250,11 +263,19 @@ footer{text-align:center;padding:16px;font-family:'Share Tech Mono',monospace;fo
       <div class="quick-info"><div class="quick-name">Sales Page</div><div class="quick-desc">bosssystems.co</div></div>
       <div class="quick-arrow">&#8250;</div>
     </a>
-    <a href="https://ntfy.hostux.net/bossai-bostonrossall-alerts" class="quick-link">
+    <a href="https://ntfy.sh/bossai-bostonrossall-alerts" class="quick-link">
       <div class="quick-icon">&#9888;</div>
       <div class="quick-info"><div class="quick-name">ntfy Alerts</div><div class="quick-desc">All system notifications</div></div>
       <div class="quick-arrow">&#8250;</div>
     </a>
+  </div>
+
+  <!-- APPLICATIONS -->
+  <div class="sec-title">PARTNER APPLICATIONS</div>
+  <div id="app-list" style="margin-bottom:16px">
+    <div class="cost-card" style="text-align:center;padding:20px">
+      <div style="color:var(--dim);font-size:12px;letter-spacing:1px" id="app-loading">LOADING...</div>
+    </div>
   </div>
 
   <!-- COSTS -->
@@ -398,6 +419,41 @@ document.getElementById('retell-list').innerHTML = RETELL.map(function(r) {
   var txt = r.on ? 'LIVE' : 'NO #';
   return '<div class="retell-card"><div><div class="retell-name">'+r.name+'</div><div class="retell-num">'+r.num+'</div></div><span class="sys-status '+cls+'">'+txt+'</span></div>';
 }).join('');
+
+// APPLICATIONS
+(function loadApps() {
+  var container = document.getElementById('app-list');
+  var controller = new AbortController();
+  setTimeout(function(){ controller.abort(); }, 12000);
+
+  fetch('https://jamross.app.n8n.cloud/webhook/get-partner-applications', {signal: controller.signal})
+  .then(function(r){ return r.json(); })
+  .then(function(data) {
+    var apps = Array.isArray(data) ? data : (data.applications || []);
+    if (!apps.length) {
+      container.innerHTML = '<div class="app-empty">No pending applications</div>';
+      return;
+    }
+    container.innerHTML = apps.map(function(a) {
+      var name = (a.firstName || '') + ' ' + (a.lastName || '');
+      var status = (a.status || 'new').toLowerCase();
+      var statusCls = status === 'reviewed' ? 'reviewed' : 'new';
+      var statusTxt = status === 'reviewed' ? 'REVIEWED' : 'NEW';
+      var time = a.submittedAt ? new Date(a.submittedAt).toLocaleDateString('en-US', {month:'short',day:'numeric',hour:'numeric',minute:'2-digit'}) : '';
+      return '<div class="app-card">' +
+        '<div class="app-name">' + esc(name.trim()) + '<span class="app-status ' + statusCls + '">' + statusTxt + '</span></div>' +
+        '<div class="app-meta"><span>' + esc(a.business || '?') + '</span> · ' + esc(a.cityState || '?') + ' · Age ' + (a.age || '?') + ' · ' + esc(a.hoursPerWeek || '?') + ' hrs/wk</div>' +
+        (a.whyBusiness ? '<div class="app-note">"' + esc(a.whyBusiness).substring(0,120) + (a.whyBusiness.length > 120 ? '...' : '') + '"</div>' : '') +
+        '<div class="app-time">' + esc(time) + (a.hearAbout ? ' · via ' + esc(a.hearAbout) : '') + (a.referredBy ? ' · ref: ' + esc(a.referredBy) : '') + '</div>' +
+      '</div>';
+    }).join('');
+  })
+  .catch(function() {
+    container.innerHTML = '<div class="app-empty">Could not load applications</div>';
+  });
+
+  function esc(s) { var d = document.createElement('div'); d.textContent = s || ''; return d.innerHTML; }
+})();
 
 // SERVICE WORKER
 if ('serviceWorker' in navigator) {
