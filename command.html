@@ -1,0 +1,408 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+<meta name="apple-mobile-web-app-title" content="BOSS">
+<meta name="theme-color" content="#050608">
+<meta name="robots" content="noindex,nofollow">
+<title>BOSS — Command Center</title>
+<link rel="manifest" href="manifest-command.json">
+<link href="https://fonts.googleapis.com/css2?family=Share+Tech+Mono&family=Rajdhani:wght@400;600;700&display=swap" rel="stylesheet">
+<style>
+:root {
+  --bg:#050608;--bg2:#0c0d12;--bg3:#12141a;
+  --gold:#C9A84C;--gold-dim:#7a6530;
+  --text:#e8e8f0;--dim:#4a4a6a;--muted:#6a6a8a;
+  --green:#00e87a;--red:#ff3b3b;--blue:#4A9EE8;--orange:#FF6B35;
+  --border:#1a1c28;
+}
+*{margin:0;padding:0;box-sizing:border-box}
+body{background:var(--bg);color:var(--text);font-family:'Rajdhani',sans-serif;min-height:100vh;min-height:100dvh;overflow-x:hidden;-webkit-tap-highlight-color:transparent}
+body::before{content:'';position:fixed;inset:0;background:repeating-linear-gradient(0deg,transparent,transparent 2px,rgba(0,0,0,0.04) 2px,rgba(0,0,0,0.04) 4px);pointer-events:none;z-index:999}
+a{color:var(--gold);text-decoration:none}
+
+/* PIN SCREEN */
+#pin-screen{position:fixed;inset:0;background:var(--bg);z-index:9999;display:flex;flex-direction:column;align-items:center;justify-content:center;padding:24px}
+#pin-screen.out{display:none}
+.pin-logo{font-size:11px;font-weight:900;letter-spacing:4px;color:var(--gold);margin-bottom:32px;font-family:'Share Tech Mono',monospace}
+.pin-title{font-size:20px;font-weight:700;letter-spacing:2px;margin-bottom:8px}
+.pin-sub{font-size:12px;color:var(--dim);margin-bottom:28px;letter-spacing:1px}
+.pin-input{width:200px;background:var(--bg2);border:1px solid var(--border);color:var(--gold);font-size:28px;padding:14px;font-family:'Share Tech Mono',monospace;text-align:center;letter-spacing:8px;outline:none;-webkit-text-security:disc}
+.pin-input:focus{border-color:var(--gold)}
+.pin-error{font-size:11px;color:var(--red);margin-top:12px;font-family:'Share Tech Mono',monospace;letter-spacing:1px;height:16px}
+.pin-hint{font-size:10px;color:var(--dim);margin-top:24px;font-family:'Share Tech Mono',monospace}
+
+/* HEADER */
+header{background:linear-gradient(180deg,#09090f 0%,var(--bg) 100%);border-bottom:1px solid var(--gold-dim);padding:0 16px;position:sticky;top:0;z-index:100}
+.h-inner{display:flex;align-items:center;justify-content:space-between;height:52px;gap:8px}
+.logo-title{font-size:16px;font-weight:700;color:var(--gold);letter-spacing:3px}
+.h-right{display:flex;align-items:center;gap:10px;flex-shrink:0}
+.live-badge{display:flex;align-items:center;gap:5px;font-size:9px;color:var(--green);font-family:'Share Tech Mono',monospace;letter-spacing:1px}
+.live-dot{width:6px;height:6px;background:var(--green);border-radius:50%;animation:pulse 2s infinite}
+@keyframes pulse{0%,100%{opacity:1;box-shadow:0 0 0 0 rgba(0,232,122,0.4)}50%{opacity:.6;box-shadow:0 0 0 4px rgba(0,232,122,0)}}
+#clock{font-family:'Share Tech Mono',monospace;font-size:11px;color:var(--dim)}
+
+/* MAIN */
+main{padding:16px 12px 80px;max-width:600px;margin:0 auto}
+
+/* STATS */
+.stats-bar{display:grid;grid-template-columns:repeat(3,1fr);gap:1px;background:var(--border);margin-bottom:16px;border:1px solid var(--border)}
+.stat{background:var(--bg2);padding:14px 10px;text-align:center}
+.stat-value{font-size:24px;font-weight:700;font-family:'Share Tech Mono',monospace;line-height:1;margin-bottom:2px}
+.stat-label{font-size:8px;color:var(--dim);letter-spacing:2px;text-transform:uppercase}
+
+/* SECTION */
+.sec-title{font-size:9px;font-family:'Share Tech Mono',monospace;letter-spacing:3px;color:var(--dim);text-transform:uppercase;margin:20px 0 10px;padding-bottom:6px;border-bottom:1px solid var(--border)}
+
+/* SYSTEMS */
+.sys-list{display:flex;flex-direction:column;gap:1px;background:var(--border);border:1px solid var(--border);margin-bottom:16px}
+.sys-card{background:var(--bg2);padding:14px 16px;display:flex;justify-content:space-between;align-items:center}
+.sys-left{flex:1}
+.sys-name{font-size:13px;font-weight:700;letter-spacing:1px;color:var(--gold)}
+.sys-detail{font-size:11px;color:var(--muted);margin-top:2px}
+.sys-detail span{color:var(--text);font-weight:600}
+.sys-status{font-size:8px;font-family:'Share Tech Mono',monospace;letter-spacing:1px;padding:3px 8px;border-radius:2px;flex-shrink:0}
+.sys-status.on{background:rgba(0,232,122,0.08);color:var(--green);border:1px solid rgba(0,232,122,0.18)}
+.sys-status.off{background:rgba(74,74,106,0.12);color:var(--dim);border:1px solid rgba(74,74,106,0.2)}
+.sys-status.warn{background:rgba(255,107,53,0.08);color:var(--orange);border:1px solid rgba(255,107,53,0.18)}
+
+/* QUICK ACCESS */
+.quick-list{display:flex;flex-direction:column;gap:1px;background:var(--border);border:1px solid var(--border);margin-bottom:16px}
+.quick-link{background:var(--bg2);padding:14px 16px;display:flex;align-items:center;gap:12px;text-decoration:none;-webkit-tap-highlight-color:transparent;transition:background .12s}
+.quick-link:active{background:var(--bg3)}
+.quick-icon{font-size:18px;width:24px;text-align:center;flex-shrink:0}
+.quick-info{flex:1}
+.quick-name{font-size:14px;font-weight:700;color:var(--text)}
+.quick-desc{font-size:10px;color:var(--dim)}
+.quick-arrow{color:var(--dim);font-size:14px;flex-shrink:0}
+
+/* COSTS */
+.cost-card{background:var(--bg2);border:1px solid var(--border);padding:16px;margin-bottom:16px}
+.cost-row{display:flex;justify-content:space-between;padding:7px 0;border-bottom:1px solid var(--border);font-size:13px}
+.cost-row:last-child{border-bottom:none}
+.cost-name{color:var(--muted)}
+.cost-val{font-family:'Share Tech Mono',monospace;color:var(--text);font-weight:600}
+.cost-val.gold{color:var(--gold)}
+.cost-total{display:flex;justify-content:space-between;margin-top:10px;padding-top:10px;border-top:1px solid var(--gold-dim);font-size:16px;font-weight:700;color:var(--gold);font-family:'Share Tech Mono',monospace}
+
+/* WORKFLOWS */
+.wf-division{background:var(--bg2);border:1px solid var(--border);margin-bottom:10px;border-radius:4px;overflow:hidden}
+.wf-header{padding:12px 14px;border-bottom:1px solid var(--border);display:flex;align-items:center;gap:8px;cursor:pointer;-webkit-tap-highlight-color:transparent}
+.wf-accent{width:3px;height:24px;border-radius:2px;flex-shrink:0}
+.wf-div-name{font-size:12px;font-weight:700;letter-spacing:2px;flex:1}
+.wf-count{font-size:10px;font-family:'Share Tech Mono',monospace;color:var(--dim)}
+.wf-toggle{font-size:12px;color:var(--dim);transition:transform .2s}
+.wf-header.open .wf-toggle{transform:rotate(90deg)}
+.wf-body{display:none}
+.wf-body.open{display:block}
+.wf-row{display:flex;align-items:center;gap:8px;padding:8px 14px;border-bottom:1px solid var(--border)}
+.wf-row:last-child{border-bottom:none}
+.wf-dot{width:6px;height:6px;border-radius:50%;flex-shrink:0}
+.wf-dot.on{background:var(--green)}
+.wf-dot.off{background:var(--dim)}
+.wf-name{font-size:12px;flex:1;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.wf-badge{font-size:7px;font-family:'Share Tech Mono',monospace;letter-spacing:1px;padding:2px 5px;border-radius:2px}
+.wf-badge.on{background:rgba(0,232,122,0.08);color:var(--green);border:1px solid rgba(0,232,122,0.18)}
+.wf-badge.off{background:rgba(74,74,106,0.12);color:var(--dim);border:1px solid rgba(74,74,106,0.2)}
+
+/* RETELL */
+.retell-card{background:var(--bg2);border:1px solid var(--border);padding:12px 14px;margin-bottom:1px;display:flex;justify-content:space-between;align-items:center}
+.retell-name{font-size:13px;font-weight:600}
+.retell-num{font-size:11px;font-family:'Share Tech Mono',monospace;color:var(--gold);margin-top:2px}
+
+/* PRIORITY BOX */
+.priority-box{background:rgba(255,107,53,0.06);border:1px solid rgba(255,107,53,0.2);padding:16px;margin-bottom:16px;font-size:13px;color:var(--muted);line-height:1.7}
+.priority-box strong{color:var(--orange)}
+
+/* FOOTER */
+footer{text-align:center;padding:16px;font-family:'Share Tech Mono',monospace;font-size:9px;color:var(--dim);letter-spacing:2px;border-top:1px solid var(--border)}
+</style>
+</head>
+<body>
+
+<!-- PIN SCREEN -->
+<div id="pin-screen">
+  <div class="pin-logo">BOSS SYSTEMS</div>
+  <div class="pin-title">Command Center</div>
+  <div class="pin-sub">Enter PIN to access</div>
+  <input class="pin-input" id="pin-input" type="tel" maxlength="4" inputmode="numeric" autocomplete="off" autofocus>
+  <div class="pin-error" id="pin-error"></div>
+  <div class="pin-hint">bosssystems.co/command</div>
+</div>
+
+<!-- APP -->
+<div id="app" style="display:none">
+
+<header>
+  <div class="h-inner">
+    <span class="logo-title">BOSS</span>
+    <div class="h-right">
+      <div class="live-badge"><div class="live-dot"></div>LIVE</div>
+      <div id="clock"></div>
+    </div>
+  </div>
+</header>
+
+<main>
+
+  <!-- STATS -->
+  <div class="stats-bar">
+    <div class="stat"><div class="stat-value" style="color:var(--orange)">0</div><div class="stat-label">Hot Leads</div></div>
+    <div class="stat"><div class="stat-value" style="color:var(--green)">0</div><div class="stat-label">Clients</div></div>
+    <div class="stat"><div class="stat-value" style="color:var(--text)">$0</div><div class="stat-label">MRR</div></div>
+  </div>
+
+  <!-- PRIORITY -->
+  <div class="priority-box">
+    <strong>PRIORITY:</strong> Get first paying client. Free 60-day deploy to one HVAC operator for case study. In-person demos in Tyler. Infrastructure is built — what's missing is revenue.
+  </div>
+
+  <!-- SYSTEMS -->
+  <div class="sec-title">SYSTEMS</div>
+  <div class="sys-list">
+    <div class="sys-card">
+      <div class="sys-left">
+        <div class="sys-name">n8n Cloud</div>
+        <div class="sys-detail"><span>13/17</span> workflows &middot; ~1,600 exec left</div>
+      </div>
+      <span class="sys-status on">ACTIVE</span>
+    </div>
+    <div class="sys-card">
+      <div class="sys-left">
+        <div class="sys-name">ATLAS</div>
+        <div class="sys-detail"><span>29</span> sources &middot; IDLE (2hr scans)</div>
+      </div>
+      <span class="sys-status on">ACTIVE</span>
+    </div>
+    <div class="sys-card">
+      <div class="sys-left">
+        <div class="sys-name">Lead Engine</div>
+        <div class="sys-detail">Spend: <span>$1.89/$300</span> &middot; $4/day cap</div>
+      </div>
+      <span class="sys-status on">ACTIVE</span>
+    </div>
+    <div class="sys-card">
+      <div class="sys-left">
+        <div class="sys-name">Boston Agent</div>
+        <div class="sys-detail">Daemon running &middot; <span>$50</span> threshold</div>
+      </div>
+      <span class="sys-status on">ACTIVE</span>
+    </div>
+    <div class="sys-card">
+      <div class="sys-left">
+        <div class="sys-name">Client Dashboard</div>
+        <div class="sys-detail">Transcripts + guide linked</div>
+      </div>
+      <span class="sys-status on">ACTIVE</span>
+    </div>
+    <div class="sys-card">
+      <div class="sys-left">
+        <div class="sys-name">Retell AI</div>
+        <div class="sys-detail"><span>7</span> agents &middot; 4 need numbers</div>
+      </div>
+      <span class="sys-status warn">PARTIAL</span>
+    </div>
+  </div>
+
+  <!-- QUICK ACCESS -->
+  <div class="sec-title">QUICK ACCESS</div>
+  <div class="quick-list">
+    <a href="client-dashboard.html" class="quick-link">
+      <div class="quick-icon">&#9783;</div>
+      <div class="quick-info"><div class="quick-name">Client Dashboard</div><div class="quick-desc">Call logs, stats, transcripts</div></div>
+      <div class="quick-arrow">&#8250;</div>
+    </a>
+    <a href="client-guide.html" class="quick-link">
+      <div class="quick-icon">&#9733;</div>
+      <div class="quick-info"><div class="quick-name">Client Guide</div><div class="quick-desc">New client training</div></div>
+      <div class="quick-arrow">&#8250;</div>
+    </a>
+    <a href="atlas.html" class="quick-link">
+      <div class="quick-icon">&#9793;</div>
+      <div class="quick-info"><div class="quick-name">ATLAS</div><div class="quick-desc">Global intelligence map</div></div>
+      <div class="quick-arrow">&#8250;</div>
+    </a>
+    <a href="engine.html" class="quick-link">
+      <div class="quick-icon">&#9881;</div>
+      <div class="quick-info"><div class="quick-name">Lead Engine</div><div class="quick-desc">Signal-scored leads</div></div>
+      <div class="quick-arrow">&#8250;</div>
+    </a>
+    <a href="quant.html" class="quick-link">
+      <div class="quick-icon">&#8721;</div>
+      <div class="quick-info"><div class="quick-name">Quant Sandbox</div><div class="quick-desc">Paper-only research</div></div>
+      <div class="quick-arrow">&#8250;</div>
+    </a>
+    <a href="analyze.html" class="quick-link">
+      <div class="quick-icon">&#9878;</div>
+      <div class="quick-info"><div class="quick-name">BOSS Analyze</div><div class="quick-desc">60-second AI analysis</div></div>
+      <div class="quick-arrow">&#8250;</div>
+    </a>
+    <a href="summer.html" class="quick-link">
+      <div class="quick-icon">&#9728;</div>
+      <div class="quick-info"><div class="quick-name">Summer Program</div><div class="quick-desc">Student partners</div></div>
+      <div class="quick-arrow">&#8250;</div>
+    </a>
+    <a href="receptionist.html" class="quick-link">
+      <div class="quick-icon">&#9742;</div>
+      <div class="quick-info"><div class="quick-name">Sales Page</div><div class="quick-desc">bosssystems.co</div></div>
+      <div class="quick-arrow">&#8250;</div>
+    </a>
+    <a href="https://ntfy.hostux.net/bossai-bostonrossall-alerts" class="quick-link">
+      <div class="quick-icon">&#9888;</div>
+      <div class="quick-info"><div class="quick-name">ntfy Alerts</div><div class="quick-desc">All system notifications</div></div>
+      <div class="quick-arrow">&#8250;</div>
+    </a>
+  </div>
+
+  <!-- COSTS -->
+  <div class="sec-title">MONTHLY COSTS</div>
+  <div class="cost-card">
+    <div class="cost-row"><span class="cost-name">Claude Max</span><span class="cost-val">$100</span></div>
+    <div class="cost-row"><span class="cost-name">n8n Cloud</span><span class="cost-val">$24</span></div>
+    <div class="cost-row"><span class="cost-name">Retell AI (usage)</span><span class="cost-val">~$15</span></div>
+    <div class="cost-row"><span class="cost-name">Phone Numbers (3)</span><span class="cost-val">$6</span></div>
+    <div class="cost-total"><span>TOTAL</span><span>~$145/mo</span></div>
+  </div>
+  <div class="cost-card">
+    <div class="cost-row"><span class="cost-name">Budget</span><span class="cost-val">$5,000</span></div>
+    <div class="cost-row"><span class="cost-name">Google Places</span><span class="cost-val">$300 (exp Aug 7)</span></div>
+    <div class="cost-row"><span class="cost-name">Lead Engine Spent</span><span class="cost-val">$1.89</span></div>
+    <div class="cost-row"><span class="cost-name">Clients</span><span class="cost-val gold">0</span></div>
+    <div class="cost-row"><span class="cost-name">MRR</span><span class="cost-val gold">$0</span></div>
+  </div>
+
+  <!-- WORKFLOWS -->
+  <div class="sec-title">N8N WORKFLOWS</div>
+  <div id="wf-list"></div>
+
+  <!-- RETELL AGENTS -->
+  <div class="sec-title">RETELL AGENTS</div>
+  <div id="retell-list" style="border:1px solid var(--border)"></div>
+
+  <!-- COMMANDS -->
+  <div class="sec-title">BOSS COMMANDS</div>
+  <div class="cost-card" style="font-family:'Share Tech Mono',monospace;font-size:11px;line-height:2.2">
+    <div style="color:var(--green)">boss_command.py status</div>
+    <div style="color:var(--green)">boss_command.py hot "Name" phone "notes"</div>
+    <div style="color:var(--green)">boss_command.py paid "Name" type "City" plan</div>
+    <div style="color:var(--green)">boss_command.py targets</div>
+    <div style="color:var(--green)">boss_command.py analyze hvac "City ST"</div>
+    <div style="color:var(--green)">boss_command.py engine status</div>
+    <div style="color:var(--green)">boss_command.py engine pause</div>
+    <div style="color:var(--green)">boss_command.py partners</div>
+  </div>
+
+</main>
+
+<footer>
+  BOSS SYSTEMS &middot; TYLER TX &middot; CLAUDE MAX &middot; <span id="today-date"></span>
+</footer>
+
+</div><!-- /app -->
+
+<script>
+// PIN
+var PIN = '0817';
+var pinInput = document.getElementById('pin-input');
+var pinError = document.getElementById('pin-error');
+
+if (sessionStorage.getItem('boss_cmd_auth') === 'true') { unlock(); }
+
+pinInput.addEventListener('input', function() {
+  pinError.textContent = '';
+  if (pinInput.value.length === 4) {
+    if (pinInput.value === PIN) {
+      sessionStorage.setItem('boss_cmd_auth', 'true');
+      unlock();
+    } else {
+      pinError.textContent = 'WRONG PIN';
+      pinInput.value = '';
+    }
+  }
+});
+
+function unlock() {
+  document.getElementById('pin-screen').classList.add('out');
+  document.getElementById('app').style.display = 'block';
+}
+
+// CLOCK
+function tick() {
+  var ct = new Intl.DateTimeFormat('en-US',{timeZone:'America/Chicago',hour:'2-digit',minute:'2-digit',second:'2-digit',hour12:false}).format(new Date());
+  document.getElementById('clock').textContent = ct + ' CT';
+}
+setInterval(tick, 1000); tick();
+document.getElementById('today-date').textContent = new Date().toLocaleDateString('en-US',{month:'short',day:'numeric',year:'numeric'});
+
+// WORKFLOWS
+var DIVISIONS = {
+  'THE POSSE':{color:'#FF6B35',agents:[
+    {n:'Auto Caller',on:true},{n:'Hot Lead Nurture',on:true},{n:'Close Follow-Up',on:true},
+    {n:'Mystery Caller',on:true},{n:'Cold Email Outreach',on:false},{n:'Weekly Newsletter',on:true}
+  ]},
+  'THE WIRE':{color:'#4A9EE8',agents:[
+    {n:'ORACLE',on:true},{n:'Morning Text',on:true},{n:'Daily Task List',on:true},
+    {n:'Health Monitor',on:true},{n:'Sunday Optimizer',on:true},{n:'System Optimizer',on:false},
+    {n:'Client Dashboard API',on:true},{n:'ATLAS Chatbot',on:true}
+  ]},
+  'THE IRON':{color:'#e8e8f0',agents:[
+    {n:'Post-Call Handler',on:true},{n:'DNC Handler',on:true},
+    {n:'Pipeline Cleaner',on:true},{n:'Pre-Deploy Test',on:true}
+  ]},
+  'THE FRONTIER':{color:'#00e87a',agents:[
+    {n:'Lead Hunter',on:true},{n:'Yelp Supplement',on:true},{n:'Job Monitor',on:true},
+    {n:'Review Mining',on:true},{n:'TDLR ET Leads',on:true}
+  ]},
+  'FIELD OPS':{color:'#C9A84C',agents:[
+    {n:'Demo Switch',on:true},{n:'Sales Route Planner',on:true},{n:'Advisor Post-Call',on:true}
+  ]},
+  'PIPELINE':{color:'#a855f7',agents:[
+    {n:'Morning Brief',on:true},{n:'Hot Lead Handler',on:true},{n:'Auto-Builder',on:true},
+    {n:'Warm Lead Follow-Up',on:true},{n:'Weekly Client Monitor',on:true},{n:'Onboarding Drip',on:true}
+  ]}
+};
+
+var wfEl = document.getElementById('wf-list');
+wfEl.innerHTML = Object.entries(DIVISIONS).map(function(e, i) {
+  var name = e[0], div = e[1];
+  var onC = div.agents.filter(function(a){return a.on}).length;
+  var rows = div.agents.map(function(a) {
+    return '<div class="wf-row"><div class="wf-dot '+(a.on?'on':'off')+'"></div><div class="wf-name">'+a.n+'</div><div class="wf-badge '+(a.on?'on':'off')+'">'+(a.on?'ON':'OFF')+'</div></div>';
+  }).join('');
+  return '<div class="wf-division"><div class="wf-header" onclick="toggleWf(this)" style="--dc:'+div.color+'"><div class="wf-accent" style="background:'+div.color+'"></div><div class="wf-div-name" style="color:'+div.color+'">'+name+'</div><div class="wf-count">'+onC+'/'+div.agents.length+'</div><div class="wf-toggle">&#9654;</div></div><div class="wf-body">'+rows+'</div></div>';
+}).join('');
+
+function toggleWf(el) {
+  var body = el.nextElementSibling;
+  var wasOpen = el.classList.contains('open');
+  document.querySelectorAll('.wf-header.open').forEach(function(h){h.classList.remove('open');h.nextElementSibling.classList.remove('open')});
+  if (!wasOpen) { el.classList.add('open'); body.classList.add('open'); }
+}
+
+// RETELL
+var RETELL = [
+  {name:'Outbound Sales Caller',num:'(903) 483-0168',on:true},
+  {name:'THE BOSS (Advisor)',num:'(903) 568-8943',on:true},
+  {name:'Pipeline Agent',num:'(903) 206-1932',on:true},
+  {name:'Deal Coach',num:'(903) 326-7285',on:true},
+  {name:'Devil\'s Advocate',num:'(903) 716-5297',on:true},
+  {name:'Karen (Training)',num:'(903) 418-3148',on:true},
+  {name:'Boston Agent',num:'NEEDS NUMBER',on:false}
+];
+
+document.getElementById('retell-list').innerHTML = RETELL.map(function(r) {
+  var cls = r.on ? 'on' : 'warn';
+  var txt = r.on ? 'LIVE' : 'NO #';
+  return '<div class="retell-card"><div><div class="retell-name">'+r.name+'</div><div class="retell-num">'+r.num+'</div></div><span class="sys-status '+cls+'">'+txt+'</span></div>';
+}).join('');
+
+// SERVICE WORKER
+if ('serviceWorker' in navigator) {
+  navigator.serviceWorker.register('sw-command.js').catch(function(){});
+}
+</script>
+</body>
+</html>
