@@ -94,7 +94,7 @@
         }
         .kpi-sub {
             font-size: 11px;
-            color: #666;
+            color: #bbb;
             margin-top: 4px;
         }
         .kpi-tier-breakdown {
@@ -417,7 +417,7 @@
             border-top: 1px solid #1a1a2e;
             text-align: center;
             font-size: 11px;
-            color: #555;
+            color: #aaa;
         }
         .footer code {
             background: #1a1a2e;
@@ -433,7 +433,7 @@
             align-items: center;
             justify-content: center;
             padding: 60px;
-            color: #555;
+            color: #aaa;
             font-size: 13px;
         }
         .error-msg {
@@ -681,7 +681,7 @@
                 var rows = signals.slice(0, 20);
                 var tbody = document.getElementById('signalsBody');
                 if (rows.length === 0) {
-                    tbody.innerHTML = '<tr><td colspan="6" style="padding:20px;color:#555;text-align:center;">No signals currently firing</td></tr>';
+                    tbody.innerHTML = '<tr><td colspan="6" style="padding:20px;color:#aaa;text-align:center;">No signals currently firing</td></tr>';
                     return;
                 }
                 var html = '';
@@ -709,7 +709,7 @@
             function renderLeads(leads) {
                 var container = document.getElementById('leadPipeline');
                 if (leads.length === 0) {
-                    container.innerHTML = '<div style="padding:20px;color:#555;text-align:center;">No leads in pipeline</div>';
+                    container.innerHTML = '<div style="padding:20px;color:#aaa;text-align:center;">No leads in pipeline</div>';
                     return;
                 }
 
@@ -806,7 +806,7 @@
             function renderFeeds(feeds) {
                 var tbody = document.getElementById('feedBody');
                 if (feeds.length === 0) {
-                    tbody.innerHTML = '<tr><td colspan="4" style="padding:20px;color:#555;text-align:center;">No feeds configured</td></tr>';
+                    tbody.innerHTML = '<tr><td colspan="4" style="padding:20px;color:#aaa;text-align:center;">No feeds configured</td></tr>';
                     return;
                 }
                 var html = '';
