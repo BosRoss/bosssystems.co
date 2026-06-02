@@ -119,15 +119,19 @@ a{color:var(--gold);text-decoration:none}
 .call-table-wrap{overflow-x:auto}
 .call-table{width:100%;border-collapse:collapse}
 .call-table th{font-size:9px;letter-spacing:2px;text-transform:uppercase;color:var(--dim);padding:12px 16px;text-align:left;border-bottom:1px solid var(--border);font-weight:600;white-space:nowrap}
-.call-table tbody tr{border-bottom:1px solid var(--border);transition:background .12s}
-.call-table tbody tr:last-child{border-bottom:none}
-.call-table tbody tr:hover{background:rgba(255,255,255,.018)}
+.call-table tbody tr.call-row{border-bottom:1px solid var(--border);transition:background .12s;cursor:pointer}
+.call-table tbody tr.call-row:hover{background:rgba(255,255,255,.03)}
+.call-table tbody tr.call-row.expanded{background:rgba(201,168,76,0.04);border-bottom:none}
+.call-table tbody tr.call-detail{display:none;border-bottom:1px solid var(--border)}
+.call-table tbody tr.call-detail.open{display:table-row}
 .call-table td{padding:13px 16px;color:var(--muted);vertical-align:middle;font-size:13px}
 td.cell-dt{color:var(--text);font-weight:600;font-size:12px;white-space:nowrap}
 td.cell-dt span{display:block;color:var(--dim);font-weight:400;font-size:11px}
 td.cell-dur{font-size:12px;white-space:nowrap;color:var(--dim)}
 td.cell-notes{max-width:280px;line-height:1.45;font-size:13px}
 td.cell-caller{font-size:11px;color:var(--dim);text-align:right;white-space:nowrap}
+td.cell-expand{width:20px;color:var(--dim);font-size:10px;text-align:center;transition:color .15s}
+tr.call-row:hover td.cell-expand{color:var(--gold)}
 .badge{display:inline-flex;align-items:center;padding:3px 9px;font-size:9px;font-weight:700;letter-spacing:1px;text-transform:uppercase;gap:5px}
 .badge.booked{background:var(--green-dim);color:var(--green);border:1px solid var(--green-border)}
 .badge.callback{background:var(--amber-dim);color:var(--amber);border:1px solid var(--amber-border)}
@@ -135,6 +139,27 @@ td.cell-caller{font-size:11px;color:var(--dim);text-align:right;white-space:nowr
 .badge.hangup,.badge.voicemail,.badge.noanswer{background:rgba(255,255,255,.04);color:var(--dim);border:1px solid var(--border)}
 .badge.afterhours{background:rgba(201,168,76,0.08);color:var(--gold);border:1px solid var(--border-gold)}
 .call-log-foot{padding:14px 26px;border-top:1px solid var(--border);font-size:11px;color:var(--dim)}
+
+/* CALL DETAIL PANEL */
+.call-detail-inner{padding:20px 24px 24px;background:rgba(201,168,76,0.03);border-top:1px solid var(--border)}
+.detail-grid{display:grid;grid-template-columns:1fr 1fr 1fr;gap:16px;margin-bottom:20px}
+.detail-item{display:flex;flex-direction:column;gap:3px}
+.detail-label{font-size:9px;letter-spacing:2px;text-transform:uppercase;color:var(--dim)}
+.detail-val{font-size:13px;color:var(--text);font-weight:600}
+.detail-val.green{color:var(--green)}
+.detail-val.gold{color:var(--gold)}
+.detail-val.red{color:var(--red)}
+.detail-val.muted{color:var(--muted);font-weight:400}
+.transcript-wrap{background:var(--dark);border:1px solid var(--border);padding:16px 20px;max-height:300px;overflow-y:auto;margin-top:4px}
+.transcript-wrap::-webkit-scrollbar{width:4px}
+.transcript-wrap::-webkit-scrollbar-track{background:var(--dark)}
+.transcript-wrap::-webkit-scrollbar-thumb{background:var(--border);border-radius:2px}
+.transcript-line{padding:6px 0;font-size:13px;line-height:1.6;color:var(--muted)}
+.transcript-line .speaker{font-weight:700;font-size:11px;letter-spacing:1px;text-transform:uppercase;margin-right:8px}
+.transcript-line .speaker.ai{color:var(--gold)}
+.transcript-line .speaker.caller{color:var(--blue)}
+.detail-summary{font-size:13px;color:var(--muted);line-height:1.7;padding:12px 16px;background:var(--dark);border:1px solid var(--border);margin-top:4px}
+@media(max-width:600px){.detail-grid{grid-template-columns:1fr 1fr}}
 
 /* TIMING */
 .timing-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:1px;background:var(--border);margin-bottom:40px}
@@ -174,6 +199,7 @@ td.cell-caller{font-size:11px;color:var(--dim);text-align:right;white-space:nowr
   .timing-grid{grid-template-columns:1fr 1fr}
   .plan-grid{grid-template-columns:1fr 1fr}
   td.cell-notes{display:none}
+  td.cell-expand{display:none}
   .dash-nav-biz{display:none}
 }
 @media(max-width:520px){
@@ -292,6 +318,7 @@ td.cell-caller{font-size:11px;color:var(--dim);text-align:right;white-space:nowr
         <table class="call-table">
           <thead>
             <tr>
+              <th style="width:20px"></th>
               <th>Date &amp; Time</th>
               <th>Duration</th>
               <th>Outcome</th>
@@ -361,12 +388,12 @@ td.cell-caller{font-size:11px;color:var(--dim);text-align:right;white-space:nowr
     <!-- CONTACT -->
     <div class="contact-strip" style="margin-top:1px">
       <div class="contact-copy">
-        <p><strong>Need something changed?</strong> Script update, pricing change, new service added — text or call Boston directly. Changes go live same day.</p>
+        <p><strong>Need something changed?</strong> Script update, schedule change, new service added — text or call Boston directly. Changes go live same day.</p>
       </div>
       <div class="contact-links">
-        <a href="sms:9037146162" class="contact-link primary">Text Boston</a>
-        <a href="tel:9037146162" class="contact-link">Call Boston</a>
-        <a href="mailto:bosssystemsai@gmail.com" class="contact-link">Email</a>
+        <a href="sms:9037146162" class="contact-link primary">Need Backup?</a>
+        <a href="tel:9037146162" class="contact-link">Call HQ</a>
+        <a href="client-guide.html" class="contact-link">How It Works</a>
       </div>
     </div>
 
@@ -612,21 +639,86 @@ function applyFilter(filter) {
   var tbody = document.getElementById('call-tbody');
 
   if (filtered.length === 0) {
-    tbody.innerHTML = '<tr><td colspan="5" style="padding:36px 16px;text-align:center;color:var(--dim);font-size:13px">No calls match this filter.</td></tr>';
+    tbody.innerHTML = '<tr><td colspan="6" style="padding:36px 16px;text-align:center;color:var(--dim);font-size:13px">No calls match this filter.</td></tr>';
     return;
   }
 
-  tbody.innerHTML = filtered.map(function(c) {
+  tbody.innerHTML = filtered.map(function(c, i) {
     var oc  = (c.outcome || 'unknown').toLowerCase().replace(/\s+/g,'');
     var ahTag = c.afterHours ? '<span class="badge afterhours" style="margin-left:6px">After Hours</span>' : '';
-    return '<tr>' +
+    var rowId = 'call-' + i;
+
+    var mainRow = '<tr class="call-row" data-target="'+rowId+'" onclick="toggleCallDetail(\''+rowId+'\')">' +
+      '<td class="cell-expand">&#9654;</td>' +
       '<td class="cell-dt">'+ (c.date||'—') +'<span>'+ (c.time||'') +'</span></td>' +
       '<td class="cell-dur">'+ (c.duration||'—') +'</td>' +
       '<td><span class="badge '+oc+'">'+ (c.outcome||'—') +'</span>'+ ahTag +'</td>' +
       '<td class="cell-notes">'+ (c.notes||'—') +'</td>' +
       '<td class="cell-caller">'+ (c.caller||'—') +'</td>' +
       '</tr>';
+
+    var sentiment = c.sentiment || 'Neutral';
+    var sentimentCls = sentiment.toLowerCase() === 'positive' ? 'green' : sentiment.toLowerCase() === 'negative' ? 'red' : 'muted';
+    var endReason = c.endReason || 'Caller ended';
+    var callType = c.afterHours ? 'After Hours' : 'Business Hours';
+    var callTypeCls = c.afterHours ? 'gold' : 'muted';
+
+    var transcriptHtml = '';
+    if (c.transcript && c.transcript.length > 0) {
+      transcriptHtml = '<div style="margin-top:16px"><span class="detail-label">Full Transcript</span>' +
+        '<div class="transcript-wrap">' +
+        c.transcript.map(function(t) {
+          var spkCls = (t.role||'').toLowerCase() === 'agent' ? 'ai' : 'caller';
+          var spkLabel = spkCls === 'ai' ? 'AI' : 'Caller';
+          return '<div class="transcript-line"><span class="speaker '+spkCls+'">' + spkLabel + '</span>' + escHtml(t.content) + '</div>';
+        }).join('') +
+        '</div></div>';
+    } else {
+      transcriptHtml = '<div style="margin-top:16px"><span class="detail-label">Full Transcript</span>' +
+        '<div class="detail-summary" style="color:var(--dim)">Transcript not available for this call.</div></div>';
+    }
+
+    var summaryHtml = '';
+    if (c.summary) {
+      summaryHtml = '<div style="margin-top:16px"><span class="detail-label">AI Summary</span>' +
+        '<div class="detail-summary">' + escHtml(c.summary) + '</div></div>';
+    }
+
+    var detailRow = '<tr class="call-detail" id="'+rowId+'">' +
+      '<td colspan="6" style="padding:0">' +
+      '<div class="call-detail-inner">' +
+      '<div class="detail-grid">' +
+        '<div class="detail-item"><span class="detail-label">Caller</span><span class="detail-val">'+ (c.callerFull || c.caller || '—') +'</span></div>' +
+        '<div class="detail-item"><span class="detail-label">Duration</span><span class="detail-val">'+ (c.duration||'—') +'</span></div>' +
+        '<div class="detail-item"><span class="detail-label">Outcome</span><span class="detail-val">'+ (c.outcome||'—') +'</span></div>' +
+        '<div class="detail-item"><span class="detail-label">Call Type</span><span class="detail-val '+callTypeCls+'">'+ callType +'</span></div>' +
+        '<div class="detail-item"><span class="detail-label">Sentiment</span><span class="detail-val '+sentimentCls+'">'+ sentiment +'</span></div>' +
+        '<div class="detail-item"><span class="detail-label">How It Ended</span><span class="detail-val muted">'+ endReason +'</span></div>' +
+      '</div>' +
+      summaryHtml +
+      transcriptHtml +
+      '</div></td></tr>';
+
+    return mainRow + detailRow;
   }).join('');
+}
+
+function toggleCallDetail(id) {
+  var detail = document.getElementById(id);
+  var row = document.querySelector('[data-target="'+id+'"]');
+  if (!detail) return;
+  var isOpen = detail.classList.contains('open');
+  document.querySelectorAll('.call-detail.open').forEach(function(el){ el.classList.remove('open'); });
+  document.querySelectorAll('.call-row.expanded').forEach(function(el){ el.classList.remove('expanded'); });
+  if (!isOpen) {
+    detail.classList.add('open');
+    if (row) row.classList.add('expanded');
+  }
+}
+
+function escHtml(s) {
+  if (!s) return '';
+  return s.replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;');
 }
 
 // ──── HELPERS ────
@@ -681,26 +773,26 @@ function getDemoData() {
       minutesOnPhone: 78
     },
     callLog: [
-      {date:'May 28',time:'9:47 PM', duration:'2m 14s',outcome:'Booked',   notes:'AC tune-up, Thu 2pm',                  afterHours:true, caller:'···7821'},
-      {date:'May 28',time:'2:13 PM', duration:'1m 38s',outcome:'Inquiry',  notes:'Asked about AC unit replacement cost',  afterHours:false,caller:'···4429'},
-      {date:'May 27',time:'11:32 PM',duration:'3m 02s',outcome:'Booked',   notes:'Emergency — system not cooling',        afterHours:true, caller:'···9103'},
-      {date:'May 27',time:'3:45 PM', duration:'0m 42s',outcome:'Callback', notes:'Requested call back tomorrow 10am',     afterHours:false,caller:'···6654'},
-      {date:'May 26',time:'7:18 PM', duration:'2m 55s',outcome:'Booked',   notes:'Furnace inspection, Fri morning',       afterHours:true, caller:'···2210'},
-      {date:'May 26',time:'10:22 AM',duration:'1m 11s',outcome:'Inquiry',  notes:'Pricing for full system install',       afterHours:false,caller:'···8847'},
-      {date:'May 25',time:'6:58 PM', duration:'2m 33s',outcome:'Booked',   notes:'Annual maintenance plan signup',        afterHours:true, caller:'···3391'},
-      {date:'May 24',time:'8:44 AM', duration:'1m 02s',outcome:'Inquiry',  notes:'Asked about filter replacement',        afterHours:false,caller:'···7760'},
-      {date:'May 23',time:'9:15 PM', duration:'1m 48s',outcome:'Booked',   notes:'AC not working, urgent Fri appt',       afterHours:true, caller:'···5532'},
-      {date:'May 23',time:'4:30 PM', duration:'0m 28s',outcome:'Hang-up',  notes:'—',                                    afterHours:false,caller:'···1124'},
-      {date:'May 22',time:'2:02 PM', duration:'3m 14s',outcome:'Booked',   notes:'New construction HVAC consult',         afterHours:false,caller:'···9983'},
-      {date:'May 21',time:'8:12 PM', duration:'2m 01s',outcome:'Booked',   notes:'Same-day repair, house at 85°',         afterHours:true, caller:'···4417'},
-      {date:'May 20',time:'1:45 PM', duration:'1m 22s',outcome:'Callback', notes:'Call back 3–5pm Tuesday',              afterHours:false,caller:'···6629'},
-      {date:'May 19',time:'10:47 PM',duration:'2m 44s',outcome:'Booked',   notes:'Emergency — elderly parent, no AC',     afterHours:true, caller:'···8801'},
-      {date:'May 18',time:'11:05 AM',duration:'1m 30s',outcome:'Inquiry',  notes:'Asked if you cover Longview area',      afterHours:false,caller:'···3348'},
-      {date:'May 17',time:'7:03 PM', duration:'2m 20s',outcome:'Booked',   notes:'AC not running, scheduling Mon',        afterHours:true, caller:'···2291'},
-      {date:'May 16',time:'3:11 PM', duration:'0m 55s',outcome:'Inquiry',  notes:'Duct cleaning — does team do that?',    afterHours:false,caller:'···9012'},
-      {date:'May 15',time:'8:47 PM', duration:'1m 59s',outcome:'Booked',   notes:'Mini-split install consult',            afterHours:true, caller:'···6647'},
-      {date:'May 14',time:'9:30 AM', duration:'1m 08s',outcome:'Inquiry',  notes:'Asked about service area',              afterHours:false,caller:'···4438'},
-      {date:'May 13',time:'5:22 PM', duration:'2m 48s',outcome:'Booked',   notes:'Biannual tune-up, flexible schedule',   afterHours:false,caller:'···7723'},
+      {date:'May 28',time:'9:47 PM', duration:'2m 14s',outcome:'Booked',   notes:'AC tune-up, Thu 2pm',                  afterHours:true, caller:'···7821',callerFull:'(903) ···-7821',sentiment:'Positive',endReason:'Caller hung up',summary:'Caller requested an AC tune-up before summer heat hits. Appointment booked for Thursday at 2pm. Caller was friendly and confirmed address on file.',transcript:[{role:'agent',content:'Thank you for calling East Texas HVAC. How can I help you today?'},{role:'user',content:'Hey, I need to get my AC looked at before it gets too hot. Can I get a tune-up scheduled?'},{role:'agent',content:'Absolutely! I can get you set up for an AC tune-up. Let me check availability. How does Thursday at 2pm work for you?'},{role:'user',content:'Thursday at 2 works perfect.'},{role:'agent',content:'Great, I have you down for Thursday at 2pm for an AC tune-up. We have your address on file as 412 Oak Street — is that still correct?'},{role:'user',content:'Yep that\'s right.'},{role:'agent',content:'Perfect. You\'re all set. You\'ll get a confirmation text shortly. Is there anything else I can help with?'},{role:'user',content:'Nope, that\'s it. Thanks!'},{role:'agent',content:'Thank you! Have a great evening.'}]},
+      {date:'May 28',time:'2:13 PM', duration:'1m 38s',outcome:'Inquiry',  notes:'Asked about AC unit replacement cost',  afterHours:false,caller:'···4429',callerFull:'(903) ···-4429',sentiment:'Neutral',endReason:'Caller hung up',summary:'Caller wanted a ballpark price on replacing their 15-year-old AC unit. Informed them a tech would need to assess the unit first and offered to schedule an estimate.',transcript:[{role:'agent',content:'Thank you for calling East Texas HVAC. How can I help you today?'},{role:'user',content:'Hi, I\'m wondering how much it would cost to replace my AC unit. It\'s about 15 years old.'},{role:'agent',content:'Great question. The cost depends on the size of your home and the type of unit. Typically a full replacement runs between $4,000 and $8,000. We\'d need to send a technician out for a free estimate to give you an exact number. Would you like to schedule that?'},{role:'user',content:'Let me think about it. I\'ll call back.'},{role:'agent',content:'No problem at all. We\'re here whenever you\'re ready. Have a great day!'}]},
+      {date:'May 27',time:'11:32 PM',duration:'3m 02s',outcome:'Booked',   notes:'Emergency — system not cooling',        afterHours:true, caller:'···9103',callerFull:'(903) ···-9103',sentiment:'Urgent',endReason:'Caller hung up',summary:'Emergency call — caller\'s AC stopped cooling with kids in the house. Booked first available morning slot. Caller was stressed but relieved to reach someone this late.',transcript:[{role:'agent',content:'Thank you for calling East Texas HVAC. How can I help you tonight?'},{role:'user',content:'My AC just stopped working. It\'s blowing hot air and I have two little kids in the house. I need someone out here.'},{role:'agent',content:'I\'m sorry to hear that. I understand the urgency, especially with kids. Let me get you on the schedule for first thing tomorrow morning. Can I get your name and address?'},{role:'user',content:'It\'s Sarah Mitchell, 2204 Pine Ridge Drive.'},{role:'agent',content:'Got it, Sarah. I have you down for first thing tomorrow morning at 2204 Pine Ridge Drive. A technician will call you before they head out. In the meantime, try setting your fan to "on" instead of "auto" to keep air circulating.'},{role:'user',content:'Oh that\'s a good idea. Thank you so much for answering this late.'},{role:'agent',content:'That\'s what we\'re here for. Hang tight and we\'ll get you taken care of first thing. Have a good night.'}]},
+      {date:'May 27',time:'3:45 PM', duration:'0m 42s',outcome:'Callback', notes:'Requested call back tomorrow 10am',     afterHours:false,caller:'···6654',callerFull:'(903) ···-6654',sentiment:'Neutral',endReason:'Caller hung up',summary:'Quick call — caller was busy and just wanted a callback tomorrow at 10am to discuss a quote they received.',transcript:[{role:'agent',content:'Thank you for calling East Texas HVAC. How can I help you?'},{role:'user',content:'Hey I got a quote from y\'all last week and I have some questions but I\'m at work right now. Can someone call me back tomorrow around 10?'},{role:'agent',content:'Of course! I\'ll have someone give you a call tomorrow at 10am. Is this the best number to reach you?'},{role:'user',content:'Yep. Thanks.'},{role:'agent',content:'You got it. Talk to you tomorrow!'}]},
+      {date:'May 26',time:'7:18 PM', duration:'2m 55s',outcome:'Booked',   notes:'Furnace inspection, Fri morning',       afterHours:true, caller:'···2210',callerFull:'(903) ···-2210',sentiment:'Positive',endReason:'Caller hung up',summary:'Caller wants furnace inspected before winter prep. Booked for Friday morning. Mentioned they were referred by a neighbor.',transcript:[{role:'agent',content:'Thank you for calling East Texas HVAC. How can I help you this evening?'},{role:'user',content:'Hi, my neighbor uses y\'all and recommended I get my furnace checked out before it gets cold again. Can I get an inspection?'},{role:'agent',content:'Glad to hear the recommendation! We\'d be happy to schedule a furnace inspection. How does Friday morning work for you?'},{role:'user',content:'Friday morning is great. Before noon if possible.'},{role:'agent',content:'I have a 9am slot open on Friday. I\'ll put you down for that. Can I get your name and address?'},{role:'user',content:'Tom Baker, 805 Elm Street.'},{role:'agent',content:'Perfect, Tom. Friday at 9am, 805 Elm Street for a furnace inspection. You\'ll get a confirmation text shortly. Anything else?'},{role:'user',content:'That\'s all. Appreciate it.'},{role:'agent',content:'Thank you, Tom. Have a great evening!'}]},
+      {date:'May 26',time:'10:22 AM',duration:'1m 11s',outcome:'Inquiry',  notes:'Pricing for full system install',       afterHours:false,caller:'···8847',callerFull:'(903) ···-8847',sentiment:'Neutral',endReason:'Caller hung up',summary:'Caller building a new house and wants pricing on a full HVAC system. Offered to schedule a site visit for an estimate.'},
+      {date:'May 25',time:'6:58 PM', duration:'2m 33s',outcome:'Booked',   notes:'Annual maintenance plan signup',        afterHours:true, caller:'···3391',callerFull:'(903) ···-3391',sentiment:'Positive',endReason:'Caller hung up',summary:'Caller interested in annual maintenance plan after seeing an ad. Signed up and scheduled first visit for next week.'},
+      {date:'May 24',time:'8:44 AM', duration:'1m 02s',outcome:'Inquiry',  notes:'Asked about filter replacement',        afterHours:false,caller:'···7760',callerFull:'(903) ···-7760',sentiment:'Neutral',endReason:'Caller hung up',summary:'Quick question about what size filter their unit takes. Provided the info and offered to schedule a filter change service.'},
+      {date:'May 23',time:'9:15 PM', duration:'1m 48s',outcome:'Booked',   notes:'AC not working, urgent Fri appt',       afterHours:true, caller:'···5532',callerFull:'(903) ···-5532',sentiment:'Urgent',endReason:'Caller hung up',summary:'AC making loud noise then stopped. Booked urgent appointment for Friday. Advised caller to turn system off at breaker to prevent further damage.'},
+      {date:'May 23',time:'4:30 PM', duration:'0m 28s',outcome:'Hang-up',  notes:'—',                                    afterHours:false,caller:'···1124',callerFull:'(903) ···-1124',sentiment:'Unknown',endReason:'Caller hung up immediately',summary:'Caller hung up after greeting. Possible wrong number or accidental dial.'},
+      {date:'May 22',time:'2:02 PM', duration:'3m 14s',outcome:'Booked',   notes:'New construction HVAC consult',         afterHours:false,caller:'···9983',callerFull:'(903) ···-9983',sentiment:'Positive',endReason:'Caller hung up',summary:'General contractor building 4 homes in new subdivision, needs HVAC bids. Scheduled site walk-through for Monday. High-value potential.'},
+      {date:'May 21',time:'8:12 PM', duration:'2m 01s',outcome:'Booked',   notes:'Same-day repair, house at 85°',         afterHours:true, caller:'···4417',callerFull:'(903) ···-4417',sentiment:'Urgent',endReason:'Caller hung up',summary:'House temperature at 85 degrees, AC blowing warm. Booked for first thing next morning. Gave tips for staying cool overnight.'},
+      {date:'May 20',time:'1:45 PM', duration:'1m 22s',outcome:'Callback', notes:'Call back 3–5pm Tuesday',              afterHours:false,caller:'···6629',callerFull:'(903) ···-6629',sentiment:'Neutral',endReason:'Caller hung up',summary:'Wants to discuss a maintenance contract but was driving. Requested callback Tuesday between 3-5pm.'},
+      {date:'May 19',time:'10:47 PM',duration:'2m 44s',outcome:'Booked',   notes:'Emergency — elderly parent, no AC',     afterHours:true, caller:'···8801',callerFull:'(903) ···-8801',sentiment:'Urgent',endReason:'Caller hung up',summary:'Caller\'s elderly mother has no AC and it\'s 90+ degrees. Marked as emergency priority. Booked first slot next morning and advised on keeping her cool overnight.'},
+      {date:'May 18',time:'11:05 AM',duration:'1m 30s',outcome:'Inquiry',  notes:'Asked if you cover Longview area',      afterHours:false,caller:'···3348',callerFull:'(903) ···-3348',sentiment:'Neutral',endReason:'Caller hung up',summary:'Caller from Longview asking about service area. Confirmed we cover Longview and surrounding areas. Said they\'d call back when ready.'},
+      {date:'May 17',time:'7:03 PM', duration:'2m 20s',outcome:'Booked',   notes:'AC not running, scheduling Mon',        afterHours:true, caller:'···2291',callerFull:'(903) ···-2291',sentiment:'Concerned',endReason:'Caller hung up',summary:'AC unit not turning on at all. No emergency — caller has window units as backup. Booked Monday morning appointment.'},
+      {date:'May 16',time:'3:11 PM', duration:'0m 55s',outcome:'Inquiry',  notes:'Duct cleaning — does team do that?',    afterHours:false,caller:'···9012',callerFull:'(903) ···-9012',sentiment:'Neutral',endReason:'Caller hung up',summary:'Asked if we offer duct cleaning services. Confirmed we do and quoted approximate pricing. Caller said they\'d think about it.'},
+      {date:'May 15',time:'8:47 PM', duration:'1m 59s',outcome:'Booked',   notes:'Mini-split install consult',            afterHours:true, caller:'···6647',callerFull:'(903) ···-6647',sentiment:'Positive',endReason:'Caller hung up',summary:'Wants a ductless mini-split installed in garage workshop. Scheduled a consultation visit to assess the space and provide a quote.'},
+      {date:'May 14',time:'9:30 AM', duration:'1m 08s',outcome:'Inquiry',  notes:'Asked about service area',              afterHours:false,caller:'···4438',callerFull:'(903) ···-4438',sentiment:'Neutral',endReason:'Caller hung up',summary:'Caller from Marshall asking if we service their area. Confirmed and provided general pricing info.'},
+      {date:'May 13',time:'5:22 PM', duration:'2m 48s',outcome:'Booked',   notes:'Biannual tune-up, flexible schedule',   afterHours:false,caller:'···7723',callerFull:'(903) ···-7723',sentiment:'Positive',endReason:'Caller hung up',summary:'Regular customer calling for their biannual tune-up. Flexible on scheduling. Booked for the following week. Mentioned they love the service.'},
     ],
     timing: {businessHours:28, evenings:13, weekends:6, totalCalls:47},
     status: {active:true, uptimePercent:100, avgPickupSeconds:2}
@@ -732,6 +824,11 @@ function getDemoData() {
        - afterHours: true if hour < 8 or hour >= 18 or weekend
        - notes: first 80 chars of call_analysis.call_summary
        - caller: last 4 digits of from_number
+       - callerFull: masked number e.g. "(903) ···-7821"
+       - sentiment: from call_analysis.user_sentiment ("Positive"/"Neutral"/"Negative"/"Urgent")
+       - endReason: from disconnection_reason mapped to friendly text
+       - summary: call_analysis.call_summary (full text)
+       - transcript: array of {role: "agent"|"user", content: "..."} from transcript_object
     6. Aggregate this month vs last month counts from the calls
     7. Return full data object matching schema above
     8. Include fetchedAt: new Date().toISOString()
