@@ -1,15 +1,7 @@
 {
-  "generated": "2026-06-04T01:14:08.120280+00:00",
+  "generated": "2026-06-04T01:40:41.666509+00:00",
   "engine_state": "active",
   "signals": [
-    {
-      "type": "flood",
-      "area": "Aransas, TX; Refugio, TX; San Patricio, TX",
-      "niche": "plumbing",
-      "action": "Flood warnings in Aransas, TX; Refugio, TX; San Patricio, TX. Plumbers, restoration, mold companies will spike.",
-      "urgency": "today",
-      "pitch_hook": "Water damage calls are coming. Every one you miss is $500+ walking away."
-    },
     {
       "type": "flood",
       "area": "McMullen, TX",
@@ -68,22 +60,48 @@
     },
     {
       "type": "flood",
-      "area": "Grant, NM",
-      "niche": "plumbing",
-      "action": "Flood warnings in Grant, NM. Plumbers, restoration, mold companies will spike.",
-      "urgency": "today",
-      "pitch_hook": "Water damage calls are coming. Every one you miss is $500+ walking away."
-    },
-    {
-      "type": "flood",
       "area": "South Central Mountains",
       "niche": "plumbing",
       "action": "Flood warnings in South Central Mountains. Plumbers, restoration, mold companies will spike.",
       "urgency": "today",
       "pitch_hook": "Water damage calls are coming. Every one you miss is $500+ walking away."
+    },
+    {
+      "type": "flood",
+      "area": "Lafayette, LA; Vermilion, LA",
+      "niche": "plumbing",
+      "action": "Flood warnings in Lafayette, LA; Vermilion, LA. Plumbers, restoration, mold companies will spike.",
+      "urgency": "today",
+      "pitch_hook": "Water damage calls are coming. Every one you miss is $500+ walking away."
+    },
+    {
+      "type": "flood",
+      "area": "Coastal Jefferson; Lower Lafourche; Lower Terrebonne",
+      "niche": "plumbing",
+      "action": "Flood warnings in Coastal Jefferson; Lower Lafourche; Lower Terrebonne. Plumbers, restoration, mold companies will spike.",
+      "urgency": "today",
+      "pitch_hook": "Water damage calls are coming. Every one you miss is $500+ walking away."
     }
   ],
   "leads": [
+    {
+      "name": "plumbing",
+      "city": "OK",
+      "score": 78,
+      "tier": "SUPERNICHE",
+      "channel": "watchlist",
+      "sequence_status": "queued",
+      "trigger": "flood"
+    },
+    {
+      "name": "plumber",
+      "city": "NM",
+      "score": 72,
+      "tier": "SUPERNICHE",
+      "channel": "watchlist",
+      "sequence_status": "queued",
+      "trigger": "flood"
+    },
     {
       "name": "plumbing",
       "city": "MS",
@@ -101,6 +119,15 @@
       "channel": "watchlist",
       "sequence_status": "queued",
       "trigger": ""
+    },
+    {
+      "name": "plumbing",
+      "city": "OK",
+      "score": 63,
+      "tier": "SUPERNICHE",
+      "channel": "watchlist",
+      "sequence_status": "queued",
+      "trigger": "flood"
     },
     {
       "name": "plumber",
@@ -191,46 +218,19 @@
       "channel": "watchlist",
       "sequence_status": "queued",
       "trigger": ""
-    },
-    {
-      "name": "plumber",
-      "city": "NM",
-      "score": 45,
-      "tier": "HOT",
-      "channel": "watchlist",
-      "sequence_status": "queued",
-      "trigger": ""
-    },
-    {
-      "name": "plumber",
-      "city": "NM",
-      "score": 45,
-      "tier": "HOT",
-      "channel": "watchlist",
-      "sequence_status": "queued",
-      "trigger": ""
-    },
-    {
-      "name": "plumber",
-      "city": "OK",
-      "score": 45,
-      "tier": "HOT",
-      "channel": "watchlist",
-      "sequence_status": "queued",
-      "trigger": "economic"
     }
   ],
   "kpis": {
     "signals_firing": 10,
-    "leads_superniche": 4,
+    "leads_superniche": 7,
     "leads_hot": 20,
-    "leads_warm": 60,
-    "cost_per_qualified": 0.47,
-    "total_spend": 1.8880000000000015,
+    "leads_warm": 77,
+    "cost_per_qualified": 0.36,
+    "total_spend": 2.528000000000002,
     "spend_cap": 300.0
   },
   "channels": {
-    "emails_sent": 53,
+    "emails_sent": 55,
     "texts_sent": 8,
     "calls_made": 0,
     "meetings_set": 0,
@@ -239,63 +239,63 @@
   "feeds": [
     {
       "name": "NOAA",
-      "last_hit": "2026-06-04T01:05:57.848651+00:00",
+      "last_hit": "2026-06-04T01:32:10.029540+00:00",
       "status": "yellow",
       "data_points_today": 0
     },
     {
       "name": "REDDIT",
-      "last_hit": "2026-06-04T01:05:57.848651+00:00",
+      "last_hit": "2026-06-04T01:32:10.029540+00:00",
       "status": "green",
       "data_points_today": 801
     },
     {
       "name": "USGS",
-      "last_hit": "2026-06-04T01:05:57.848651+00:00",
+      "last_hit": "2026-06-04T01:32:10.029540+00:00",
       "status": "yellow",
       "data_points_today": 0
     },
     {
       "name": "HACKERNEWS",
-      "last_hit": "2026-06-04T01:05:57.848651+00:00",
+      "last_hit": "2026-06-04T01:32:10.029540+00:00",
       "status": "green",
       "data_points_today": 30
     },
     {
       "name": "FEMA",
-      "last_hit": "2026-06-04T01:05:57.848651+00:00",
+      "last_hit": "2026-06-04T01:32:10.029540+00:00",
       "status": "green",
       "data_points_today": 20
     },
     {
       "name": "COMMODITIES",
-      "last_hit": "2026-06-04T01:05:57.848651+00:00",
+      "last_hit": "2026-06-04T01:32:10.029540+00:00",
       "status": "green",
       "data_points_today": 7
     },
     {
       "name": "RSS",
-      "last_hit": "2026-06-04T01:05:57.848651+00:00",
+      "last_hit": "2026-06-04T01:32:10.029540+00:00",
       "status": "green",
       "data_points_today": 160
     },
     {
       "name": "FRED",
-      "last_hit": "2026-06-04T01:05:57.848651+00:00",
+      "last_hit": "2026-06-04T01:32:10.029540+00:00",
       "status": "yellow",
       "data_points_today": 0
     },
     {
       "name": "BLS",
-      "last_hit": "2026-06-04T01:05:57.848651+00:00",
+      "last_hit": "2026-06-04T01:32:10.029540+00:00",
       "status": "green",
       "data_points_today": 9
     }
   ],
   "conversion_funnel": {
     "signals": 10,
-    "leads": 84,
-    "contacted": 61,
+    "leads": 104,
+    "contacted": 63,
     "replied": 0,
     "meeting": 0,
     "close": 0
