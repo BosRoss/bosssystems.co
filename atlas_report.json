@@ -1,10 +1,10 @@
 {
-  "generated": "2026-06-04T01:05:57.848651+00:00",
+  "generated": "2026-06-04T01:32:10.029540+00:00",
   "version": "3.0",
   "power_level": "IDLE",
-  "scan_duration_seconds": 484.2,
+  "scan_duration_seconds": 473.3,
   "sources_scanned": 29,
-  "data_points": 1569,
+  "data_points": 1567,
   "anomalies": [
     {
       "pattern": "seismic_major",
@@ -15,7 +15,7 @@
       "lat": 39.325,
       "lon": 15.7796,
       "news_count": 0,
-      "date": "2026-06-04T01:14:01.653992+00:00",
+      "date": "2026-06-04T01:40:03.289556+00:00",
       "assessment": "SEISMIC EVENT: M6.2 at 22 km WSW of Scarcelli, Italy\n\nSIGNIFICANT EVENT: M6+ can cause serious damage to populated areas. Monitor for casualty reports and infrastructure damage.\n\nLOW NEWS COVERAGE (0 articles). May indicate: recent occurrence (news lag), remote location, or underreporting.",
       "nearby_bases": [],
       "nearby_chokepoints": [],
@@ -31,7 +31,7 @@
       "lat": -32.8047,
       "lon": -71.8593,
       "news_count": 0,
-      "date": "2026-06-04T01:14:01.653992+00:00",
+      "date": "2026-06-04T01:40:03.289556+00:00",
       "assessment": "SEISMIC EVENT: M6 at 33 km NW of Valpara\u00edso, Chile\n\nSIGNIFICANT EVENT: M6+ can cause serious damage to populated areas. Monitor for casualty reports and infrastructure damage.\n\nLOW NEWS COVERAGE (0 articles). May indicate: recent occurrence (news lag), remote location, or underreporting.",
       "nearby_bases": [],
       "nearby_chokepoints": [],
@@ -44,7 +44,7 @@
     {
       "category": "market_opportunity",
       "title": "Service demand surge: 9 alerts, 3 BOSS states hit",
-      "analysis": "9 severe/extreme alerts across LA, AR, GA, TX, MO, NM. Event types: Flash Flood Warning, Flood Warning, Flood Watch. 19 storm alerts \u2014 roofers, restoration, and plumbers will be overwhelmed within 24-48hrs. BOSS TERRITORY HIT: AR, TX, NM \u2014 these are your states. Direct targeting opportunity. Compounding factor: fuel up 9.3% \u2014 service call costs rising during peak demand.",
+      "analysis": "9 severe/extreme alerts across LA, GA, AR, MO, TX, NM. Event types: Flood Warning, Flash Flood Warning, Flood Watch. 18 storm alerts \u2014 roofers, restoration, and plumbers will be overwhelmed within 24-48hrs. BOSS TERRITORY HIT: AR, TX, NM \u2014 these are your states. Direct targeting opportunity. Compounding factor: fuel up 8.9% \u2014 service call costs rising during peak demand.",
       "hypotheses": [
         "ACTIONABLE: AR, TX, NM businesses are losing calls RIGHT NOW. 24-48hr window to reach them while pain is acute."
       ],
@@ -61,7 +61,7 @@
       ],
       "time_horizon": "24-48h",
       "business_angle": "IMMEDIATE: Target AR, TX, NM contractors NOW",
-      "date": "2026-06-04T01:14:01.821673+00:00"
+      "date": "2026-06-04T01:40:03.301887+00:00"
     },
     {
       "category": "security",
@@ -82,16 +82,16 @@
         "system"
       ],
       "time_horizon": "next_scan",
-      "date": "2026-06-04T01:14:01.821673+00:00",
+      "date": "2026-06-04T01:40:03.301887+00:00",
       "business_angle": "Military/security events create uncertainty \u2014 businesses freeze hiring and expand automation. Position BOSS as the stable, cost-cutting option."
     },
     {
       "category": "technology",
-      "title": "AI/Tech landscape: 24 signals, 2 competitor mentions",
-      "analysis": "24 AI signals across HN/RSS/Reddit. Topics: The ways we contain Claude across products; Artificial intelligence is not conscious \u2013 Ted Chiang; Uber's $1,500/month AI limit is a useful signal for AI tool . COMPETITOR ALERT: 2 mentions \u2014 voice ai. Reddit AI sentiment: 2 posts about AI in small business. ",
+      "title": "AI/Tech landscape: 25 signals, 2 competitor mentions",
+      "analysis": "25 AI signals across HN/RSS/Reddit. Topics: The ways we contain Claude across products; I built a vulnerable app and spent $1,500 seeing if LLMs cou; Artificial intelligence is not conscious \u2013 Ted Chiang. COMPETITOR ALERT: 2 mentions \u2014 voice ai. Reddit AI sentiment: 2 posts about AI in small business. ",
       "hypotheses": [
         "WATCH: Competitor activity detected (voice ai). Check for pricing changes, new features, or market moves.",
-        "Market signal: 24 mentions suggests elevated attention \u2014 possible capability release or regulatory news"
+        "Market signal: 25 mentions suggests elevated attention \u2014 possible capability release or regulatory news"
       ],
       "watch_for": [
         "Competitor pricing changes (especially if they lower to match BOSS)",
@@ -106,7 +106,7 @@
       ],
       "time_horizon": "30d",
       "business_angle": "New AI tools = new automation possibilities for BOSS clients. PRIORITY: Monitor voice ai activity.",
-      "date": "2026-06-04T01:14:01.821673+00:00"
+      "date": "2026-06-04T01:40:03.301887+00:00"
     },
     {
       "category": "security",
@@ -127,7 +127,7 @@
         "rss"
       ],
       "time_horizon": "7d",
-      "date": "2026-06-04T01:14:01.821673+00:00",
+      "date": "2026-06-04T01:40:03.301887+00:00",
       "business_angle": "Military/security events create uncertainty \u2014 businesses freeze hiring and expand automation. Position BOSS as the stable, cost-cutting option."
     },
     {
@@ -149,7 +149,7 @@
         "official_feeds"
       ],
       "time_horizon": "7d",
-      "date": "2026-06-04T01:14:01.821673+00:00",
+      "date": "2026-06-04T01:40:03.301887+00:00",
       "business_angle": "Geopolitical shifts affect trade, supply chains, and business confidence. Monitor for ripple effects reaching US small business sector."
     },
     {
@@ -174,7 +174,7 @@
         "nasa_firms"
       ],
       "time_horizon": "7d",
-      "date": "2026-06-04T01:14:01.821673+00:00",
+      "date": "2026-06-04T01:40:03.301887+00:00",
       "business_angle": "Natural events drive emergency service demand spikes. Contractors get overwhelmed with calls \u2014 exactly when they need BOSS most.",
       "sources_degraded": [
         "gdelt"
@@ -201,7 +201,7 @@
         "gdacs"
       ],
       "time_horizon": "24h",
-      "date": "2026-06-04T01:14:01.821673+00:00",
+      "date": "2026-06-04T01:40:03.301887+00:00",
       "business_angle": "Natural events drive emergency service demand spikes. Contractors get overwhelmed with calls \u2014 exactly when they need BOSS most.",
       "sources_degraded": [
         "safecast",
@@ -354,7 +354,7 @@
         "info_gaps": 3,
         "divergences": 4
       },
-      "date": "2026-06-04T01:14:01.821673+00:00",
+      "date": "2026-06-04T01:40:03.301887+00:00",
       "sources_degraded": [
         "metaculus",
         "gdelt"
@@ -382,39 +382,12 @@
       ],
       "time_horizon": "7-30d",
       "business_angle": "Track AI/tech company 8-K filings for competitor shutdowns or pivots. Their displaced customers become BOSS prospects.",
-      "date": "2026-06-04T01:14:01.821673+00:00"
-    },
-    {
-      "title": "Currency Shock: 1 currencies moving >2% vs USD",
-      "category": "economic",
-      "analysis": "Currency shocks detected: Iranian Rial (+3.9%). Oil at $95.45, +9.3%.",
-      "hypotheses": [
-        "Currency shock driven by geopolitical event \u2014 check GDELT conflict news for correlation",
-        "Monetary policy divergence \u2014 central banks moving at different speeds",
-        "Sanctions-driven capital flight \u2014 currency weakening in targeted countries"
-      ],
-      "watch_for": [
-        "Follow-on moves in same currencies next 48hrs",
-        "Central bank intervention statements",
-        "Import price changes affecting US contractor supply costs"
-      ],
-      "confidence": 53,
-      "sources_used": [
-        "currencies",
-        "commodities",
-        "sanctions"
-      ],
-      "time_horizon": "3-7d",
-      "date": "2026-06-04T01:14:01.821673+00:00",
-      "business_angle": "Economic shifts change contractor behavior. Track which direction and adjust pitch: cost savings (downturn) or growth enablement (upturn).",
-      "sources_degraded": [
-        "gdelt"
-      ]
+      "date": "2026-06-04T01:40:03.301887+00:00"
     },
     {
       "category": "economic",
       "title": "Economic signals: 2 indicators bullish",
-      "analysis": "Commodity convergence: Oil +9.3% at $95.45; Gold -1.8% at $4478.20. Think tank analysis (1 items): The Toll Booth at the Throat of World Trade. Central bank signals: 2 recent statements. World Bank: 5 countries with inflation >5%. Bullish convergence \u2014 cost pressures building across energy complex.",
+      "analysis": "Commodity convergence: Oil +8.9% at $95.15; Gold -1.5% at $4492.80. Think tank analysis (1 items): The Toll Booth at the Throat of World Trade. Central bank signals: 2 recent statements. World Bank: 5 countries with inflation >5%. Bullish convergence \u2014 cost pressures building across energy complex.",
       "hypotheses": [
         "HYPOTHESIS A (supply shock): Multiple commodities surging = supply constraint, not demand growth",
         "HYPOTHESIS B (inflation impulse): Energy + commodity surge = cost-push inflation incoming for service businesses"
@@ -434,7 +407,7 @@
       ],
       "time_horizon": "7d",
       "business_angle": "Rising fuel costs squeeze contractor margins. They'll cut 'nice to have' subscriptions first \u2014 position BOSS as revenue-generating, not overhead.",
-      "date": "2026-06-04T01:14:01.821673+00:00",
+      "date": "2026-06-04T01:40:03.301887+00:00",
       "sources_degraded": [
         "fred",
         "gdelt"
@@ -458,7 +431,7 @@
         "space_weather"
       ],
       "time_horizon": "48h",
-      "date": "2026-06-04T01:14:01.821673+00:00",
+      "date": "2026-06-04T01:40:03.301887+00:00",
       "business_angle": "Natural events drive emergency service demand spikes. Contractors get overwhelmed with calls \u2014 exactly when they need BOSS most.",
       "sources_degraded": [
         "adsb"
@@ -479,7 +452,7 @@
         "commodities"
       ],
       "confidence": 85,
-      "date": "2026-06-04T01:14:01.959919+00:00"
+      "date": "2026-06-04T01:40:03.309930+00:00"
     },
     {
       "opportunity": "AI adoption trend: 1 articles about AI for business",
@@ -492,20 +465,7 @@
         "These two founders left Goldman and Meta to build voice AI f"
       ],
       "confidence": 70,
-      "date": "2026-06-04T01:14:01.959919+00:00"
-    },
-    {
-      "opportunity": "Iranian Rial (IRR) weakened 3.9% vs USD",
-      "category": "currency_shock",
-      "region": "International",
-      "urgency": "this_week",
-      "potential_revenue": "Supply chain cost shift \u2014 impacts contractor material pricing",
-      "action": "Monitor import costs for building materials. Iranian Rial move may shift contractor margins.",
-      "evidence": [
-        "Rate: 1284082.16/IRR, change: +3.9%"
-      ],
-      "confidence": 50,
-      "date": "2026-06-04T01:14:01.959919+00:00"
+      "date": "2026-06-04T01:40:03.309930+00:00"
     }
   ],
   "headlines": [
@@ -523,7 +483,7 @@
         "ADS-B silence could mean tracking is being deliberately suppressed \u2014 itself a signal"
       ],
       "business_angle": "Military/security events create uncertainty \u2014 businesses freeze hiring and expand automation. Position BOSS as the stable, cost-cutting option.",
-      "date": "2026-06-04T01:14:01.963186+00:00"
+      "date": "2026-06-04T01:40:03.310294+00:00"
     },
     {
       "headline": "ANOMALY [95]: M6.2 earthquake at 22 km WSW of Scarcelli, Italy \u2014 only 0 news articles",
@@ -534,7 +494,7 @@
       ],
       "confidence": 95,
       "business_angle": "Anomalous events create uncertainty \u2014 track for downstream impacts on BOSS target markets and supply chains.",
-      "date": "2026-06-04T01:14:01.963186+00:00"
+      "date": "2026-06-04T01:40:03.310294+00:00"
     },
     {
       "headline": "ANOMALY [95]: M6 earthquake at 33 km NW of Valpara\u00edso, Chile \u2014 only 0 news articles",
@@ -545,12 +505,12 @@
       ],
       "confidence": 95,
       "business_angle": "Anomalous events create uncertainty \u2014 track for downstream impacts on BOSS target markets and supply chains.",
-      "date": "2026-06-04T01:14:01.963186+00:00"
+      "date": "2026-06-04T01:40:03.310294+00:00"
     },
     {
       "headline": "Service demand surge: 9 alerts, 3 BOSS states hit \u2014 ACTIONABLE: AR, TX, NM businesses are losing calls RIGHT NOW. 24-48hr window to ",
       "category": "market_opportunity",
-      "analysis": "9 severe/extreme alerts across LA, AR, GA, TX, MO, NM. Event types: Flash Flood Warning, Flood Warning, Flood Watch. 19 storm alerts \u2014 roofers, restoration, and plumbers will be overwhelmed within 24-48hrs. BOSS TERRITORY HIT: AR, TX, NM \u2014 these are your states. Direct targeting opportunity. Compounding factor: fuel up 9.3% \u2014 service call costs rising during peak demand. COMPETING HYPOTHESES: ACTIONABLE: AR, TX, NM businesses are losing calls RIGHT NOW. 24-48hr window to reach them while pai",
+      "analysis": "9 severe/extreme alerts across LA, GA, AR, MO, TX, NM. Event types: Flood Warning, Flash Flood Warning, Flood Watch. 18 storm alerts \u2014 roofers, restoration, and plumbers will be overwhelmed within 24-48hrs. BOSS TERRITORY HIT: AR, TX, NM \u2014 these are your states. Direct targeting opportunity. Compounding factor: fuel up 8.9% \u2014 service call costs rising during peak demand. COMPETING HYPOTHESES: ACTIONABLE: AR, TX, NM businesses are losing calls RIGHT NOW. 24-48hr window to reach them while pai",
       "sources": [
         "noaa",
         "reddit",
@@ -563,7 +523,7 @@
         "If heat wave persists >3 days, missed call rates compound (crews fatigue)"
       ],
       "business_angle": "IMMEDIATE: Target AR, TX, NM contractors NOW",
-      "date": "2026-06-04T01:14:01.963186+00:00"
+      "date": "2026-06-04T01:40:03.310294+00:00"
     },
     {
       "headline": "Cyber threat assessment: 12 KEVs, 2 ransomware-linked",
@@ -580,12 +540,12 @@
         "Vendor emergency patch releases"
       ],
       "business_angle": "Military/security events create uncertainty \u2014 businesses freeze hiring and expand automation. Position BOSS as the stable, cost-cutting option.",
-      "date": "2026-06-04T01:14:01.963186+00:00"
+      "date": "2026-06-04T01:40:03.310294+00:00"
     },
     {
-      "headline": "AI/Tech landscape: 24 signals, 2 competitor mentions \u2014 WATCH: Competitor activity detected (voice ai). Check for pricing changes, new f",
+      "headline": "AI/Tech landscape: 25 signals, 2 competitor mentions \u2014 WATCH: Competitor activity detected (voice ai). Check for pricing changes, new f",
       "category": "technology",
-      "analysis": "24 AI signals across HN/RSS/Reddit. Topics: The ways we contain Claude across products; Artificial intelligence is not conscious \u2013 Ted Chiang; Uber's $1,500/month AI limit is a useful signal for AI tool . COMPETITOR ALERT: 2 mentions \u2014 voice ai. Reddit AI sentiment: 2 posts about AI in small business.  COMPETING HYPOTHESES: WATCH: Competitor activity detected (voice ai). Check for pricing changes, new features, or market m | Market signal: 24 mentions suggests elevated attention \u2014 possible capability release or regulatory n",
+      "analysis": "25 AI signals across HN/RSS/Reddit. Topics: The ways we contain Claude across products; I built a vulnerable app and spent $1,500 seeing if LLMs cou; Artificial intelligence is not conscious \u2013 Ted Chiang. COMPETITOR ALERT: 2 mentions \u2014 voice ai. Reddit AI sentiment: 2 posts about AI in small business.  COMPETING HYPOTHESES: WATCH: Competitor activity detected (voice ai). Check for pricing changes, new features, or market m | Market signal: 25 mentions suggests elevated attention \u2014 possible capability release or regulatory n",
       "sources": [
         "hackernews",
         "rss",
@@ -598,7 +558,7 @@
         "Small business AI adoption stories in Reddit = market validation"
       ],
       "business_angle": "New AI tools = new automation possibilities for BOSS clients. PRIORITY: Monitor voice ai activity.",
-      "date": "2026-06-04T01:14:01.963186+00:00"
+      "date": "2026-06-04T01:40:03.310294+00:00"
     },
     {
       "headline": "Analyst consensus: 140 think tank pieces, top focus: ai",
@@ -615,7 +575,7 @@
         "Official feeds (Fed/ECB/UN) echoing think tank themes = institutional confirmation"
       ],
       "business_angle": "Geopolitical shifts affect trade, supply chains, and business confidence. Monitor for ripple effects reaching US small business sector.",
-      "date": "2026-06-04T01:14:01.963186+00:00"
+      "date": "2026-06-04T01:40:03.310294+00:00"
     },
     {
       "headline": "Global disaster alert: 1 elevated events across 1 hazard types \u2014 HUMANITARIAN: 8 drought alerts \u2014 food security and displacement risk in affected",
@@ -634,7 +594,7 @@
         "Humanitarian agency surge (ReliefWeb) confirming escalation"
       ],
       "business_angle": "Natural events drive emergency service demand spikes. Contractors get overwhelmed with calls \u2014 exactly when they need BOSS most.",
-      "date": "2026-06-04T01:14:01.963186+00:00"
+      "date": "2026-06-04T01:40:03.310294+00:00"
     },
     {
       "headline": "Seismic event: M6.2 at 22 km WSW of Scarcelli, Italy \u2014 MOST LIKELY: Natural tectonic event \u2014 location consistent with plate boundary ac",
@@ -653,7 +613,7 @@
         "News coverage appearing (or not) \u2014 prolonged silence on large quakes is itself a signal"
       ],
       "business_angle": "Natural events drive emergency service demand spikes. Contractors get overwhelmed with calls \u2014 exactly when they need BOSS most.",
-      "date": "2026-06-04T01:14:01.963186+00:00"
+      "date": "2026-06-04T01:40:03.310294+00:00"
     },
     {
       "headline": "Market Intelligence: 12 edges across 3 countries, top edge 19.8pp",
@@ -672,7 +632,7 @@
         "Breaking news from JP, AM, DE \u2014 fills information gaps and may move markets sharply"
       ],
       "business_angle": "Market intelligence reveals global stress patterns. Countries with high market attention = news-cycle-driven anxiety = businesses more receptive to 'protect your revenue' pitch.",
-      "date": "2026-06-04T01:14:01.963186+00:00"
+      "date": "2026-06-04T01:40:03.310294+00:00"
     },
     {
       "headline": "Corporate Activity Cluster: 10 insider trades, 15 material events \u2014 Insider selling precedes earnings miss or guidance cut \u2014 common pattern before c",
@@ -690,25 +650,27 @@
         "Earnings misses following insider sells \u2014 confirms the pattern"
       ],
       "business_angle": "Track AI/tech company 8-K filings for competitor shutdowns or pivots. Their displaced customers become BOSS prospects.",
-      "date": "2026-06-04T01:14:01.963186+00:00"
+      "date": "2026-06-04T01:40:03.310294+00:00"
     },
     {
-      "headline": "Currency Shock: 1 currencies moving >2% vs USD \u2014 Currency shock driven by geopolitical event \u2014 check GDELT conflict news for corr",
+      "headline": "Economic signals: 2 indicators bullish",
       "category": "economic",
-      "analysis": "Currency shocks detected: Iranian Rial (+3.9%). Oil at $95.45, +9.3%. COMPETING HYPOTHESES: Currency shock driven by geopolitical event \u2014 check GDELT conflict news for correlation | Monetary policy divergence \u2014 central banks moving at different speeds",
+      "analysis": "Commodity convergence: Oil +8.9% at $95.15; Gold -1.5% at $4492.80. Think tank analysis (1 items): The Toll Booth at the Throat of World Trade. Central bank signals: 2 recent statements. World Bank: 5 countries with inflation >5%. Bullish convergence \u2014 cost pressures building across energy complex. COMPETING HYPOTHESES: HYPOTHESIS A (supply shock): Multiple commodities surging = supply constraint, not demand growth | HYPOTHESIS B (inflation impulse): Energy + commodity surge = cost-push inflation incoming for servic",
       "sources": [
-        "currencies",
         "commodities",
-        "sanctions"
+        "polymarket",
+        "think_tanks",
+        "official_feeds",
+        "world_bank"
       ],
-      "confidence": 53,
+      "confidence": 51,
       "watch_for": [
-        "Follow-on moves in same currencies next 48hrs",
-        "Central bank intervention statements",
-        "Import price changes affecting US contractor supply costs"
+        "If oil and gold move in same direction = crisis; opposite = rotation",
+        "FRED shock + market divergence = market hasn't priced it in yet",
+        "Contractor sentiment shift in Reddit within 48hrs of commodity moves"
       ],
-      "business_angle": "Economic shifts change contractor behavior. Track which direction and adjust pitch: cost savings (downturn) or growth enablement (upturn).",
-      "date": "2026-06-04T01:14:01.963186+00:00"
+      "business_angle": "Rising fuel costs squeeze contractor margins. They'll cut 'nice to have' subscriptions first \u2014 position BOSS as revenue-generating, not overhead.",
+      "date": "2026-06-04T01:40:03.310294+00:00"
     }
   ],
   "historical_calibration": [
@@ -776,8 +738,8 @@
       {
         "source": "polymarket",
         "question": "Knicks vs. Spurs",
-        "probability": 40.5,
-        "volume": "8343403.206367009",
+        "probability": 29.5,
+        "volume": "9051487.744868008",
         "url": "https://polymarket.com/event/nba-nyk-sas-2026-06-03",
         "end_date": "2026-06-04T00:30:00Z",
         "date": "2026-05-31T04:03:21.65257Z",
@@ -786,8 +748,8 @@
       {
         "source": "polymarket",
         "question": "Will Oh Se-hoon win the 2026 Seoul Mayoral Election",
-        "probability": 99.4,
-        "volume": "6407859.067116996",
+        "probability": 99.6,
+        "volume": "6471509.760424996",
         "url": "https://polymarket.com/event/will-oh-se-hoon-win-the-2026-seoul-mayoral-election",
         "end_date": "2026-06-03T00:00:00Z",
         "date": "2025-11-13T00:40:09.883Z",
@@ -795,19 +757,9 @@
       },
       {
         "source": "polymarket",
-        "question": "Will Ivory Coast win the 2026 FIFA World Cup?",
-        "probability": 0.4,
-        "volume": "39954701.84081729",
-        "url": "https://polymarket.com/event/will-ivory-coast-win-the-2026-fifa-world-cup",
-        "end_date": "2026-07-20T00:00:00Z",
-        "date": "2025-07-02T22:27:22.059Z",
-        "description": "This market will resolve according to the national team that wins the 2026 FIFA World Cup.\n\nIf at any point it becomes impossible for this team to win the FIFA World Cup based on the rules of FIFA (e.g., they are eliminated in the knockout stage), this market will resolve immediately to \u201cNo\u201d.\n\nIf th"
-      },
-      {
-        "source": "polymarket",
         "question": "Will Chong Won-oh win the 2026 Seoul Mayoral Election",
         "probability": 0.1,
-        "volume": "4287438.151665007",
+        "volume": "4344513.501665007",
         "url": "https://polymarket.com/event/will-chong-won-oh-win-the-2026-seoul-mayoral-election",
         "end_date": "2026-06-03T00:00:00Z",
         "date": "2025-11-13T00:40:13.753Z",
@@ -815,9 +767,19 @@
       },
       {
         "source": "polymarket",
+        "question": "Will Ivory Coast win the 2026 FIFA World Cup?",
+        "probability": 0.4,
+        "volume": "39957886.51081729",
+        "url": "https://polymarket.com/event/will-ivory-coast-win-the-2026-fifa-world-cup",
+        "end_date": "2026-07-20T00:00:00Z",
+        "date": "2025-07-02T22:27:22.059Z",
+        "description": "This market will resolve according to the national team that wins the 2026 FIFA World Cup.\n\nIf at any point it becomes impossible for this team to win the FIFA World Cup based on the rules of FIFA (e.g., they are eliminated in the knockout stage), this market will resolve immediately to \u201cNo\u201d.\n\nIf th"
+      },
+      {
+        "source": "polymarket",
         "question": "Will Ghana win the 2026 FIFA World Cup?",
         "probability": 0.2,
-        "volume": "28382711.99728491",
+        "volume": "28386066.73528491",
         "url": "https://polymarket.com/event/will-ghana-win-the-2026-fifa-world-cup",
         "end_date": "2026-07-20T00:00:00Z",
         "date": "2025-07-02T22:27:23.843Z",
@@ -827,7 +789,7 @@
         "source": "polymarket",
         "question": "Will Ecuador win the 2026 FIFA World Cup?",
         "probability": 0.9,
-        "volume": "33344734.067747362",
+        "volume": "33347927.087872356",
         "url": "https://polymarket.com/event/will-ecuador-win-the-2026-fifa-world-cup-986",
         "end_date": "2026-07-20T00:00:00Z",
         "date": "2025-07-02T22:27:12.271Z",
@@ -835,23 +797,23 @@
       },
       {
         "source": "polymarket",
-        "question": "Will Croatia win the 2026 FIFA World Cup?",
-        "probability": 0.9,
-        "volume": "34441382.818723045",
-        "url": "https://polymarket.com/event/will-croatia-win-the-2026-fifa-world-cup",
-        "end_date": "2026-07-20T00:00:00Z",
-        "date": "2025-07-02T22:27:43.058Z",
-        "description": "This market will resolve according to the national team that wins the 2026 FIFA World Cup.\n\nIf at any point it becomes impossible for this team to win the FIFA World Cup based on the rules of FIFA (e.g., they are eliminated in the knockout stage), this market will resolve immediately to \u201cNo\u201d.\n\nIf th"
-      },
-      {
-        "source": "polymarket",
         "question": "US x Iran permanent peace deal by June 7, 2026?",
-        "probability": 4.7,
-        "volume": "12984191.54850609",
+        "probability": 4.5,
+        "volume": "12996057.674997088",
         "url": "https://polymarket.com/event/us-x-iran-permanent-peace-deal-by-june-7-2026",
         "end_date": "2026-06-07T00:00:00Z",
         "date": "2026-05-22T21:57:34.953942Z",
         "description": "This market will resolve to \u201cYes\u201d if Iran and the United states agree to a permanent peace deal by the specified date, 11:59 PM ET. Otherwise, this market will resolve to \u201cNo\u201d. \n\nA permanent peace deal refers to any agreement which explicitly indicates that military hostilities between the United St"
+      },
+      {
+        "source": "polymarket",
+        "question": "Will Croatia win the 2026 FIFA World Cup?",
+        "probability": 0.9,
+        "volume": "34468144.61715305",
+        "url": "https://polymarket.com/event/will-croatia-win-the-2026-fifa-world-cup",
+        "end_date": "2026-07-20T00:00:00Z",
+        "date": "2025-07-02T22:27:43.058Z",
+        "description": "This market will resolve according to the national team that wins the 2026 FIFA World Cup.\n\nIf at any point it becomes impossible for this team to win the FIFA World Cup based on the rules of FIFA (e.g., they are eliminated in the knockout stage), this market will resolve immediately to \u201cNo\u201d.\n\nIf th"
       },
       {
         "source": "polymarket",
@@ -866,8 +828,8 @@
       {
         "source": "polymarket",
         "question": "Spread: Spurs (-4.5)",
-        "probability": 48.0,
-        "volume": "1816583.3511020022",
+        "probability": 56.5,
+        "volume": "1874581.230890002",
         "url": "https://polymarket.com/event/nba-nyk-sas-2026-06-03-spread-home-4pt5",
         "end_date": "2026-06-04T00:30:00Z",
         "date": "2026-05-31T11:12:23.400143Z",
@@ -877,7 +839,7 @@
         "source": "polymarket",
         "question": "US x Iran permanent peace deal by June 15, 2026?",
         "probability": 14.5,
-        "volume": "10292872.334911084",
+        "volume": "10293441.938599091",
         "url": "https://polymarket.com/event/us-x-iran-permanent-peace-deal-by-june-15-2026-734-856-129",
         "end_date": "2026-06-15T00:00:00Z",
         "date": "2026-05-15T20:13:39.789Z",
@@ -887,7 +849,7 @@
         "source": "polymarket",
         "question": "Will Colombia win the 2026 FIFA World Cup?",
         "probability": 1.8,
-        "volume": "25077777.662204873",
+        "volume": "25082161.08023987",
         "url": "https://polymarket.com/event/will-colombia-win-the-2026-fifa-world-cup-734",
         "end_date": "2026-07-20T00:00:00Z",
         "date": "2025-07-02T22:27:07.752Z",
@@ -895,19 +857,9 @@
       },
       {
         "source": "polymarket",
-        "question": "Will Mexico win the 2026 FIFA World Cup?",
-        "probability": 1.1,
-        "volume": "32820151.53976266",
-        "url": "https://polymarket.com/event/will-mexico-win-the-2026-fifa-world-cup-529",
-        "end_date": "2026-07-20T00:00:00Z",
-        "date": "2025-07-02T22:27:01.209Z",
-        "description": "This market will resolve according to the national team that wins the 2026 FIFA World Cup.\n\nIf at any point it becomes impossible for this team to win the FIFA World Cup based on the rules of FIFA (e.g., they are eliminated in the knockout stage), this market will resolve immediately to \u201cNo\u201d.\n\nIf th"
-      },
-      {
-        "source": "polymarket",
         "question": "Will Algeria win the 2026 FIFA World Cup?",
         "probability": 0.1,
-        "volume": "29762506.00721559",
+        "volume": "29810695.947215587",
         "url": "https://polymarket.com/event/will-algeria-win-the-2026-fifa-world-cup",
         "end_date": "2026-07-20T00:00:00Z",
         "date": "2025-07-02T22:27:27.012Z",
@@ -915,9 +867,19 @@
       },
       {
         "source": "polymarket",
+        "question": "Will Mexico win the 2026 FIFA World Cup?",
+        "probability": 1.1,
+        "volume": "32820234.87309566",
+        "url": "https://polymarket.com/event/will-mexico-win-the-2026-fifa-world-cup-529",
+        "end_date": "2026-07-20T00:00:00Z",
+        "date": "2025-07-02T22:27:01.209Z",
+        "description": "This market will resolve according to the national team that wins the 2026 FIFA World Cup.\n\nIf at any point it becomes impossible for this team to win the FIFA World Cup based on the rules of FIFA (e.g., they are eliminated in the knockout stage), this market will resolve immediately to \u201cNo\u201d.\n\nIf th"
+      },
+      {
+        "source": "polymarket",
         "question": "Will South Korea win the 2026 FIFA World Cup?",
         "probability": 0.2,
-        "volume": "36133305.74424469",
+        "volume": "36136826.14207769",
         "url": "https://polymarket.com/event/will-south-korea-win-the-2026-fifa-world-cup-485",
         "end_date": "2026-07-20T00:00:00Z",
         "date": "2025-07-02T22:27:23.333Z",
@@ -925,19 +887,19 @@
       },
       {
         "source": "polymarket",
-        "question": "San Diego Padres vs. Philadelphia Phillies",
-        "probability": 0.5,
-        "volume": "1144519.9652149992",
-        "url": "https://polymarket.com/event/mlb-sd-phi-2026-06-03",
-        "end_date": "2026-06-10T22:40:00Z",
-        "date": "2026-05-28T13:03:28.604419Z",
-        "description": "In the upcoming MLB game between the San Diego Padres and Philadelphia Phillies, scheduled for June 3 at 6:40PM ET:\n\nThis market will resolve to \"San Diego Padres\" if the San Diego Padres win the game.\n\nThis market will resolve to \"Philadelphia Phillies\" if the Philadelphia Phillies win the game.\n\nI"
+        "question": "Will Congo DR win the 2026 FIFA World Cup?",
+        "probability": 0.1,
+        "volume": "29713228.840409964",
+        "url": "https://polymarket.com/event/will-congo-dr-win-the-2026-fifa-world-cup",
+        "end_date": "2026-07-20T00:00:00Z",
+        "date": "2025-07-02T22:27:46.901Z",
+        "description": "This market will resolve according to the national team that wins the 2026 FIFA World Cup.\n\nIf at any point it becomes impossible for this team to win the FIFA World Cup based on the rules of FIFA (e.g., they are eliminated in the knockout stage), this market will resolve immediately to \u201cNo\u201d.\n\nIf th"
       },
       {
         "source": "polymarket",
         "question": "Will France win the 2026 FIFA World Cup?",
         "probability": 17.1,
-        "volume": "35597543.84392215",
+        "volume": "35619656.81835815",
         "url": "https://polymarket.com/event/will-france-win-the-2026-fifa-world-cup-924",
         "end_date": "2026-07-20T00:00:00Z",
         "date": "2025-07-02T22:26:52.583Z",
@@ -945,29 +907,9 @@
       },
       {
         "source": "polymarket",
-        "question": "Will Norway win the 2026 FIFA World Cup?",
-        "probability": 2.5,
-        "volume": "29001699.484503575",
-        "url": "https://polymarket.com/event/will-norway-win-the-2026-fifa-world-cup-893",
-        "end_date": "2026-07-20T00:00:00Z",
-        "date": "2025-07-02T22:27:12.778Z",
-        "description": "This market will resolve according to the national team that wins the 2026 FIFA World Cup.\n\nIf at any point it becomes impossible for this team to win the FIFA World Cup based on the rules of FIFA (e.g., they are eliminated in the knockout stage), this market will resolve immediately to \u201cNo\u201d.\n\nIf th"
-      },
-      {
-        "source": "polymarket",
-        "question": "Will Argentina win the 2026 FIFA World Cup?",
-        "probability": 8.9,
-        "volume": "26185564.14962979",
-        "url": "https://polymarket.com/event/will-argentina-win-the-2026-fifa-world-cup-245",
-        "end_date": "2026-07-20T00:00:00Z",
-        "date": "2025-07-02T22:26:52.071Z",
-        "description": "This market will resolve according to the national team that wins the 2026 FIFA World Cup.\n\nIf at any point it becomes impossible for this team to win the FIFA World Cup based on the rules of FIFA (e.g., they are eliminated in the knockout stage), this market will resolve immediately to \u201cNo\u201d.\n\nIf th"
-      },
-      {
-        "source": "polymarket",
         "question": "Will the New York Knicks win the 2026 NBA Finals?",
-        "probability": 39.6,
-        "volume": "20861946.08220351",
+        "probability": 29.2,
+        "volume": "20927828.965860493",
         "url": "https://polymarket.com/event/will-the-new-york-knicks-win-the-2026-nba-finals",
         "end_date": "2026-07-01T00:00:00Z",
         "date": "2025-06-23T16:02:01.572409Z",
@@ -975,9 +917,29 @@
       },
       {
         "source": "polymarket",
+        "question": "Will Argentina win the 2026 FIFA World Cup?",
+        "probability": 8.9,
+        "volume": "26241292.108515788",
+        "url": "https://polymarket.com/event/will-argentina-win-the-2026-fifa-world-cup-245",
+        "end_date": "2026-07-20T00:00:00Z",
+        "date": "2025-07-02T22:26:52.071Z",
+        "description": "This market will resolve according to the national team that wins the 2026 FIFA World Cup.\n\nIf at any point it becomes impossible for this team to win the FIFA World Cup based on the rules of FIFA (e.g., they are eliminated in the knockout stage), this market will resolve immediately to \u201cNo\u201d.\n\nIf th"
+      },
+      {
+        "source": "polymarket",
+        "question": "Will Norway win the 2026 FIFA World Cup?",
+        "probability": 2.5,
+        "volume": "29004938.400623567",
+        "url": "https://polymarket.com/event/will-norway-win-the-2026-fifa-world-cup-893",
+        "end_date": "2026-07-20T00:00:00Z",
+        "date": "2025-07-02T22:27:12.778Z",
+        "description": "This market will resolve according to the national team that wins the 2026 FIFA World Cup.\n\nIf at any point it becomes impossible for this team to win the FIFA World Cup based on the rules of FIFA (e.g., they are eliminated in the knockout stage), this market will resolve immediately to \u201cNo\u201d.\n\nIf th"
+      },
+      {
+        "source": "polymarket",
         "question": "Spread: Spurs (-5.5)",
-        "probability": 44.5,
-        "volume": "1132780.4426470022",
+        "probability": 51.5,
+        "volume": "1146582.7337800018",
         "url": "https://polymarket.com/event/nba-nyk-sas-2026-06-03-spread-home-5pt5",
         "end_date": "2026-06-04T00:30:00Z",
         "date": "2026-05-31T04:35:41.031757Z",
@@ -987,7 +949,7 @@
         "source": "polymarket",
         "question": "Will Uruguay win the 2026 FIFA World Cup?",
         "probability": 1.1,
-        "volume": "27661375.573414207",
+        "volume": "27664653.687928203",
         "url": "https://polymarket.com/event/will-uruguay-win-the-2026-fifa-world-cup-932",
         "end_date": "2026-07-20T00:00:00Z",
         "date": "2025-07-02T22:27:01.463Z",
@@ -995,19 +957,9 @@
       },
       {
         "source": "polymarket",
-        "question": "Will Germany win the 2026 FIFA World Cup?",
-        "probability": 5.5,
-        "volume": "26257698.85791341",
-        "url": "https://polymarket.com/event/will-germany-win-the-2026-fifa-world-cup-467",
-        "end_date": "2026-07-20T00:00:00Z",
-        "date": "2025-07-02T22:26:57.855Z",
-        "description": "This market will resolve according to the national team that wins the 2026 FIFA World Cup.\n\nIf at any point it becomes impossible for this team to win the FIFA World Cup based on the rules of FIFA (e.g., they are eliminated in the knockout stage), this market will resolve immediately to \u201cNo\u201d.\n\nIf th"
-      },
-      {
-        "source": "polymarket",
         "question": "Will Switzerland win the 2026 FIFA World Cup?",
         "probability": 0.9,
-        "volume": "27301948.775689542",
+        "volume": "27302267.934244543",
         "url": "https://polymarket.com/event/will-switzerland-win-the-2026-fifa-world-cup",
         "end_date": "2026-07-20T00:00:00Z",
         "date": "2025-07-02T22:27:31.4Z",
@@ -1015,39 +967,9 @@
       },
       {
         "source": "polymarket",
-        "question": "Will USA win the 2026 FIFA World Cup?",
-        "probability": 1.1,
-        "volume": "44361076.3788664",
-        "url": "https://polymarket.com/event/will-usa-win-the-2026-fifa-world-cup-467",
-        "end_date": "2026-07-20T00:00:00Z",
-        "date": "2025-07-02T22:27:00.955Z",
-        "description": "This market will resolve according to the national team that wins the 2026 FIFA World Cup.\n\nIf at any point it becomes impossible for this team to win the FIFA World Cup based on the rules of FIFA (e.g., they are eliminated in the knockout stage), this market will resolve immediately to \u201cNo\u201d.\n\nIf th"
-      },
-      {
-        "source": "polymarket",
-        "question": "Will Canada win the 2026 FIFA World Cup?",
-        "probability": 0.4,
-        "volume": "32572510.625901975",
-        "url": "https://polymarket.com/event/will-canada-win-the-2026-fifa-world-cup-755",
-        "end_date": "2026-07-20T00:00:00Z",
-        "date": "2025-07-02T22:27:13.031Z",
-        "description": "This market will resolve according to the national team that wins the 2026 FIFA World Cup.\n\nIf at any point it becomes impossible for this team to win the FIFA World Cup based on the rules of FIFA (e.g., they are eliminated in the knockout stage), this market will resolve immediately to \u201cNo\u201d.\n\nIf th"
-      },
-      {
-        "source": "polymarket",
-        "question": "Will Austria win the 2026 FIFA World Cup?",
-        "probability": 0.5,
-        "volume": "32376022.535600413",
-        "url": "https://polymarket.com/event/will-austria-win-the-2026-fifa-world-cup",
-        "end_date": "2026-07-20T00:00:00Z",
-        "date": "2025-07-02T22:27:42.199Z",
-        "description": "This market will resolve according to the national team that wins the 2026 FIFA World Cup.\n\nIf at any point it becomes impossible for this team to win the FIFA World Cup based on the rules of FIFA (e.g., they are eliminated in the knockout stage), this market will resolve immediately to \u201cNo\u201d.\n\nIf th"
-      },
-      {
-        "source": "polymarket",
         "question": "Baltimore Orioles vs. Boston Red Sox",
         "probability": 0.4,
-        "volume": "889262.0055720012",
+        "volume": "891179.4816750009",
         "url": "https://polymarket.com/event/mlb-bal-bos-2026-06-03",
         "end_date": "2026-06-10T22:45:00Z",
         "date": "2026-05-28T13:02:34.845258Z",
@@ -1055,22 +977,12 @@
       },
       {
         "source": "polymarket",
-        "question": "Will Morocco win the 2026 FIFA World Cup?",
-        "probability": 1.6,
-        "volume": "32712605.99456058",
-        "url": "https://polymarket.com/event/will-morocco-win-the-2026-fifa-world-cup-464",
+        "question": "Will Austria win the 2026 FIFA World Cup?",
+        "probability": 0.5,
+        "volume": "32379602.70760041",
+        "url": "https://polymarket.com/event/will-austria-win-the-2026-fifa-world-cup",
         "end_date": "2026-07-20T00:00:00Z",
-        "date": "2025-07-02T22:27:22.568Z",
-        "description": "This market will resolve according to the national team that wins the 2026 FIFA World Cup.\n\nIf at any point it becomes impossible for this team to win the FIFA World Cup based on the rules of FIFA (e.g., they are eliminated in the knockout stage), this market will resolve immediately to \u201cNo\u201d.\n\nIf th"
-      },
-      {
-        "source": "polymarket",
-        "question": "Will Saudi Arabia win the 2026 FIFA World Cup?",
-        "probability": 0.1,
-        "volume": "42600747.05288373",
-        "url": "https://polymarket.com/event/will-saudi-arabia-win-the-2026-fifa-world-cup",
-        "end_date": "2026-07-20T00:00:00Z",
-        "date": "2025-07-02T22:27:30.886Z",
+        "date": "2025-07-02T22:27:42.199Z",
         "description": "This market will resolve according to the national team that wins the 2026 FIFA World Cup.\n\nIf at any point it becomes impossible for this team to win the FIFA World Cup based on the rules of FIFA (e.g., they are eliminated in the knockout stage), this market will resolve immediately to \u201cNo\u201d.\n\nIf th"
       },
       {
@@ -1087,7 +999,7 @@
         "source": "polymarket",
         "question": "Will Portugal win the 2026 FIFA World Cup?",
         "probability": 9.6,
-        "volume": "29494366.73191937",
+        "volume": "29495223.423552368",
         "url": "https://polymarket.com/event/will-portugal-win-the-2026-fifa-world-cup-912",
         "end_date": "2026-07-20T00:00:00Z",
         "date": "2025-07-02T22:26:58.618Z",
@@ -1095,19 +1007,19 @@
       },
       {
         "source": "polymarket",
-        "question": "Will Czechia win the 2026 FIFA World Cup?",
-        "probability": 0.2,
-        "volume": "15388781.770814426",
-        "url": "https://polymarket.com/event/will-czechia-win-the-2026-fifa-world-cup",
+        "question": "Will Morocco win the 2026 FIFA World Cup?",
+        "probability": 1.6,
+        "volume": "32715957.71802658",
+        "url": "https://polymarket.com/event/will-morocco-win-the-2026-fifa-world-cup-464",
         "end_date": "2026-07-20T00:00:00Z",
-        "date": "2025-07-02T22:27:47.41Z",
+        "date": "2025-07-02T22:27:22.568Z",
         "description": "This market will resolve according to the national team that wins the 2026 FIFA World Cup.\n\nIf at any point it becomes impossible for this team to win the FIFA World Cup based on the rules of FIFA (e.g., they are eliminated in the knockout stage), this market will resolve immediately to \u201cNo\u201d.\n\nIf th"
       },
       {
         "source": "polymarket",
         "question": "Will Netherlands win the 2026 FIFA World Cup?",
         "probability": 4.0,
-        "volume": "28975680.30375037",
+        "volume": "28991051.23375037",
         "url": "https://polymarket.com/event/will-netherlands-win-the-2026-fifa-world-cup-739",
         "end_date": "2026-07-20T00:00:00Z",
         "date": "2025-07-02T22:26:58.109Z",
@@ -1115,9 +1027,29 @@
       },
       {
         "source": "polymarket",
+        "question": "Will Czechia win the 2026 FIFA World Cup?",
+        "probability": 0.2,
+        "volume": "15392654.900814425",
+        "url": "https://polymarket.com/event/will-czechia-win-the-2026-fifa-world-cup",
+        "end_date": "2026-07-20T00:00:00Z",
+        "date": "2025-07-02T22:27:47.41Z",
+        "description": "This market will resolve according to the national team that wins the 2026 FIFA World Cup.\n\nIf at any point it becomes impossible for this team to win the FIFA World Cup based on the rules of FIFA (e.g., they are eliminated in the knockout stage), this market will resolve immediately to \u201cNo\u201d.\n\nIf th"
+      },
+      {
+        "source": "polymarket",
+        "question": "Will USA win the 2026 FIFA World Cup?",
+        "probability": 1.1,
+        "volume": "44365542.21013639",
+        "url": "https://polymarket.com/event/will-usa-win-the-2026-fifa-world-cup-467",
+        "end_date": "2026-07-20T00:00:00Z",
+        "date": "2025-07-02T22:27:00.955Z",
+        "description": "This market will resolve according to the national team that wins the 2026 FIFA World Cup.\n\nIf at any point it becomes impossible for this team to win the FIFA World Cup based on the rules of FIFA (e.g., they are eliminated in the knockout stage), this market will resolve immediately to \u201cNo\u201d.\n\nIf th"
+      },
+      {
+        "source": "polymarket",
         "question": "Will England win the 2026 FIFA World Cup?",
         "probability": 11.5,
-        "volume": "24563280.49363522",
+        "volume": "24566090.58797622",
         "url": "https://polymarket.com/event/will-england-win-the-2026-fifa-world-cup-937",
         "end_date": "2026-07-20T00:00:00Z",
         "date": "2025-07-02T22:26:52.326Z",
@@ -1125,29 +1057,19 @@
       },
       {
         "source": "polymarket",
-        "question": "Will Congo DR win the 2026 FIFA World Cup?",
-        "probability": 0.1,
-        "volume": "29395028.840409964",
-        "url": "https://polymarket.com/event/will-congo-dr-win-the-2026-fifa-world-cup",
+        "question": "Will Germany win the 2026 FIFA World Cup?",
+        "probability": 5.5,
+        "volume": "26258161.179340407",
+        "url": "https://polymarket.com/event/will-germany-win-the-2026-fifa-world-cup-467",
         "end_date": "2026-07-20T00:00:00Z",
-        "date": "2025-07-02T22:27:46.901Z",
-        "description": "This market will resolve according to the national team that wins the 2026 FIFA World Cup.\n\nIf at any point it becomes impossible for this team to win the FIFA World Cup based on the rules of FIFA (e.g., they are eliminated in the knockout stage), this market will resolve immediately to \u201cNo\u201d.\n\nIf th"
-      },
-      {
-        "source": "polymarket",
-        "question": "Will Spain win the 2026 FIFA World Cup?",
-        "probability": 16.0,
-        "volume": "28798244.49404061",
-        "url": "https://polymarket.com/event/will-spain-win-the-2026-fifa-world-cup-963",
-        "end_date": "2026-07-20T00:00:00Z",
-        "date": "2025-07-02T22:26:48.104Z",
+        "date": "2025-07-02T22:26:57.855Z",
         "description": "This market will resolve according to the national team that wins the 2026 FIFA World Cup.\n\nIf at any point it becomes impossible for this team to win the FIFA World Cup based on the rules of FIFA (e.g., they are eliminated in the knockout stage), this market will resolve immediately to \u201cNo\u201d.\n\nIf th"
       },
       {
         "source": "polymarket",
         "question": "Will Japan win the 2026 FIFA World Cup?",
         "probability": 1.8,
-        "volume": "31057639.10288421",
+        "volume": "31084982.71826321",
         "url": "https://polymarket.com/event/will-japan-win-the-2026-fifa-world-cup-112",
         "end_date": "2026-07-20T00:00:00Z",
         "date": "2025-07-02T22:27:08.006Z",
@@ -1155,12 +1077,32 @@
       },
       {
         "source": "polymarket",
-        "question": "Will Bosnia-Herzegovina win the 2026 FIFA World Cup?",
-        "probability": 0.2,
-        "volume": "16431888.210795574",
-        "url": "https://polymarket.com/event/will-bosnia-herzegovina-win-the-2026-fifa-world-cup",
+        "question": "Will Saudi Arabia win the 2026 FIFA World Cup?",
+        "probability": 0.1,
+        "volume": "42600747.05288373",
+        "url": "https://polymarket.com/event/will-saudi-arabia-win-the-2026-fifa-world-cup",
         "end_date": "2026-07-20T00:00:00Z",
-        "date": "2025-07-02T22:27:47.665Z",
+        "date": "2025-07-02T22:27:30.886Z",
+        "description": "This market will resolve according to the national team that wins the 2026 FIFA World Cup.\n\nIf at any point it becomes impossible for this team to win the FIFA World Cup based on the rules of FIFA (e.g., they are eliminated in the knockout stage), this market will resolve immediately to \u201cNo\u201d.\n\nIf th"
+      },
+      {
+        "source": "polymarket",
+        "question": "Will Canada win the 2026 FIFA World Cup?",
+        "probability": 0.4,
+        "volume": "32576732.69790197",
+        "url": "https://polymarket.com/event/will-canada-win-the-2026-fifa-world-cup-755",
+        "end_date": "2026-07-20T00:00:00Z",
+        "date": "2025-07-02T22:27:13.031Z",
+        "description": "This market will resolve according to the national team that wins the 2026 FIFA World Cup.\n\nIf at any point it becomes impossible for this team to win the FIFA World Cup based on the rules of FIFA (e.g., they are eliminated in the knockout stage), this market will resolve immediately to \u201cNo\u201d.\n\nIf th"
+      },
+      {
+        "source": "polymarket",
+        "question": "Will Spain win the 2026 FIFA World Cup?",
+        "probability": 16.0,
+        "volume": "28802013.348665606",
+        "url": "https://polymarket.com/event/will-spain-win-the-2026-fifa-world-cup-963",
+        "end_date": "2026-07-20T00:00:00Z",
+        "date": "2025-07-02T22:26:48.104Z",
         "description": "This market will resolve according to the national team that wins the 2026 FIFA World Cup.\n\nIf at any point it becomes impossible for this team to win the FIFA World Cup based on the rules of FIFA (e.g., they are eliminated in the knockout stage), this market will resolve immediately to \u201cNo\u201d.\n\nIf th"
       },
       {
@@ -1177,7 +1119,7 @@
         "source": "polymarket",
         "question": "Will Belgium win the 2026 FIFA World Cup?",
         "probability": 1.9,
-        "volume": "25633578.726121444",
+        "volume": "25636995.898647442",
         "url": "https://polymarket.com/event/will-belgium-win-the-2026-fifa-world-cup-358",
         "end_date": "2026-07-20T00:00:00Z",
         "date": "2025-07-02T22:27:08.513Z",
@@ -1185,39 +1127,9 @@
       },
       {
         "source": "polymarket",
-        "question": "Will Iran win the 2026 FIFA World Cup?",
-        "probability": 0.1,
-        "volume": "34572980.01378997",
-        "url": "https://polymarket.com/event/will-iran-win-the-2026-fifa-world-cup-788",
-        "end_date": "2026-07-20T00:00:00Z",
-        "date": "2025-07-02T22:27:17.657Z",
-        "description": "This market will resolve according to the national team that wins the 2026 FIFA World Cup.\n\nIf at any point it becomes impossible for this team to win the FIFA World Cup based on the rules of FIFA (e.g., they are eliminated in the knockout stage), this market will resolve immediately to \u201cNo\u201d.\n\nIf th"
-      },
-      {
-        "source": "polymarket",
-        "question": "Will Haiti win the 2026 FIFA World Cup?",
-        "probability": 0.1,
-        "volume": "30916157.251820087",
-        "url": "https://polymarket.com/event/will-haiti-win-the-2026-fifa-world-cup",
-        "end_date": "2026-07-20T00:00:00Z",
-        "date": "2025-07-02T22:27:41.944Z",
-        "description": "This market will resolve according to the national team that wins the 2026 FIFA World Cup.\n\nIf at any point it becomes impossible for this team to win the FIFA World Cup based on the rules of FIFA (e.g., they are eliminated in the knockout stage), this market will resolve immediately to \u201cNo\u201d.\n\nIf th"
-      },
-      {
-        "source": "polymarket",
-        "question": "Will Brazil win the 2026 FIFA World Cup?",
-        "probability": 8.2,
-        "volume": "26114620.039133955",
-        "url": "https://polymarket.com/event/will-brazil-win-the-2026-fifa-world-cup-183",
-        "end_date": "2026-07-20T00:00:00Z",
-        "date": "2025-07-02T22:26:52.84Z",
-        "description": "This market will resolve according to the national team that wins the 2026 FIFA World Cup.\n\nIf at any point it becomes impossible for this team to win the FIFA World Cup based on the rules of FIFA (e.g., they are eliminated in the knockout stage), this market will resolve immediately to \u201cNo\u201d.\n\nIf th"
-      },
-      {
-        "source": "polymarket",
         "question": "Will Spencer Pratt win the 2026 Los Angeles mayoral election?",
         "probability": 9.5,
-        "volume": "4202726.751757009",
+        "volume": "4203202.067000012",
         "url": "https://polymarket.com/event/will-spencer-pratt-win-the-2026-los-angeles-mayoral-election-983",
         "end_date": "2026-06-02T00:00:00Z",
         "date": "2025-10-09T20:38:07.526Z",
@@ -1225,9 +1137,39 @@
       },
       {
         "source": "polymarket",
+        "question": "Will Iran win the 2026 FIFA World Cup?",
+        "probability": 0.1,
+        "volume": "34576415.02878997",
+        "url": "https://polymarket.com/event/will-iran-win-the-2026-fifa-world-cup-788",
+        "end_date": "2026-07-20T00:00:00Z",
+        "date": "2025-07-02T22:27:17.657Z",
+        "description": "This market will resolve according to the national team that wins the 2026 FIFA World Cup.\n\nIf at any point it becomes impossible for this team to win the FIFA World Cup based on the rules of FIFA (e.g., they are eliminated in the knockout stage), this market will resolve immediately to \u201cNo\u201d.\n\nIf th"
+      },
+      {
+        "source": "polymarket",
+        "question": "Will Brazil win the 2026 FIFA World Cup?",
+        "probability": 8.2,
+        "volume": "26117211.973707955",
+        "url": "https://polymarket.com/event/will-brazil-win-the-2026-fifa-world-cup-183",
+        "end_date": "2026-07-20T00:00:00Z",
+        "date": "2025-07-02T22:26:52.84Z",
+        "description": "This market will resolve according to the national team that wins the 2026 FIFA World Cup.\n\nIf at any point it becomes impossible for this team to win the FIFA World Cup based on the rules of FIFA (e.g., they are eliminated in the knockout stage), this market will resolve immediately to \u201cNo\u201d.\n\nIf th"
+      },
+      {
+        "source": "polymarket",
+        "question": "Knicks vs. Spurs: O/U 217.5",
+        "probability": 13.0,
+        "volume": "651036.663621",
+        "url": "https://polymarket.com/event/nba-nyk-sas-2026-06-03-total-217pt5",
+        "end_date": "2026-06-04T00:30:00Z",
+        "date": "2026-05-31T04:16:52.636704Z",
+        "description": "In the upcoming NBA game, scheduled for June 3 at 8:30 PM ET:\n\nThis market will resolve to \"Over\" if the Knicks and Spurs combine to score 218 or more points in this game.\n\nIf the combined total is less than 218, this market will resolve to \"Under\".\n\nIf the game is postponed, this market will remain"
+      },
+      {
+        "source": "polymarket",
         "question": "Will Egypt win the 2026 FIFA World Cup?",
         "probability": 0.2,
-        "volume": "33304920.72862791",
+        "volume": "33311501.38229391",
         "url": "https://polymarket.com/event/will-egypt-win-the-2026-fifa-world-cup",
         "end_date": "2026-07-20T00:00:00Z",
         "date": "2025-07-02T22:27:27.82Z",
@@ -1235,33 +1177,53 @@
       },
       {
         "source": "polymarket",
-        "question": "Will Senegal win the 2026 FIFA World Cup?",
-        "probability": 0.7,
-        "volume": "27118513.528567456",
-        "url": "https://polymarket.com/event/will-senegal-win-the-2026-fifa-world-cup",
+        "question": "Will Bosnia-Herzegovina win the 2026 FIFA World Cup?",
+        "probability": 0.2,
+        "volume": "16435093.240795573",
+        "url": "https://polymarket.com/event/will-bosnia-herzegovina-win-the-2026-fifa-world-cup",
         "end_date": "2026-07-20T00:00:00Z",
-        "date": "2025-07-02T22:27:23.078Z",
+        "date": "2025-07-02T22:27:47.665Z",
         "description": "This market will resolve according to the national team that wins the 2026 FIFA World Cup.\n\nIf at any point it becomes impossible for this team to win the FIFA World Cup based on the rules of FIFA (e.g., they are eliminated in the knockout stage), this market will resolve immediately to \u201cNo\u201d.\n\nIf th"
       },
       {
         "source": "polymarket",
-        "question": "Will Scotland win the 2026 FIFA World Cup?",
-        "probability": 0.2,
-        "volume": "33694537.79933994",
-        "url": "https://polymarket.com/event/will-scotland-win-the-2026-fifa-world-cup",
+        "question": "Will Haiti win the 2026 FIFA World Cup?",
+        "probability": 0.1,
+        "volume": "30946157.251820087",
+        "url": "https://polymarket.com/event/will-haiti-win-the-2026-fifa-world-cup",
         "end_date": "2026-07-20T00:00:00Z",
-        "date": "2025-07-02T22:27:31.143Z",
+        "date": "2025-07-02T22:27:41.944Z",
         "description": "This market will resolve according to the national team that wins the 2026 FIFA World Cup.\n\nIf at any point it becomes impossible for this team to win the FIFA World Cup based on the rules of FIFA (e.g., they are eliminated in the knockout stage), this market will resolve immediately to \u201cNo\u201d.\n\nIf th"
       },
       {
         "source": "polymarket",
         "question": "Spread: Spurs (-3.5)",
-        "probability": 53.5,
-        "volume": "574528.535541",
+        "probability": 66.5,
+        "volume": "584854.9825240001",
         "url": "https://polymarket.com/event/nba-nyk-sas-2026-06-03-spread-home-3pt5",
         "end_date": "2026-06-04T00:30:00Z",
         "date": "2026-05-31T22:12:58.092239Z",
         "description": "In the upcoming NBA game, scheduled for June 3 at 8:30 PM ET:\n\nThis market will resolve to \"Spurs\" if the Spurs win the game by 4 or more points.\n\nOtherwise, this market will resolve to \"Knicks\". If the game ends in a tie, this market will resolve to \"Knicks\".\n\nIf the game is postponed, this market "
+      },
+      {
+        "source": "polymarket",
+        "question": "Will Kim Kyung-soo win the 2026 Gyeongsangnam Province Gubernatorial Election?",
+        "probability": 0.1,
+        "volume": "714050.5886810006",
+        "url": "https://polymarket.com/event/will-kim-kyung-soo-win-the-2026-gyeongsangnam-province-gubernatorial-election",
+        "end_date": "2026-06-03T06:00:00Z",
+        "date": "2026-05-12T17:23:28.07269Z",
+        "description": "The 2026 Gyeongsangnam Province gubernatorial election is scheduled to take place on June 3, 2026 to elect the next Governor of Gyeongsangnam Province.\n\nThis market will resolve according to the listed candidate that wins this election.\n\nIf the result of this election isn't known by January 31, 2027"
+      },
+      {
+        "source": "polymarket",
+        "question": "Will Choo Kyung-ho win the 2026 Daegu mayoral election?",
+        "probability": 99.2,
+        "volume": "971148.2806210031",
+        "url": "https://polymarket.com/event/will-choo-kyung-ho-win-the-2026-daegu-mayoral-election",
+        "end_date": "2026-06-03T00:00:00Z",
+        "date": "2026-04-23T22:16:42.430449Z",
+        "description": "The Daegu mayoral election is scheduled to take place on June 3, 2026.\n\nThis market will resolve according to the candidate who wins this election.\n\nInterim, temporary, or caretaker mayors will not count.\n\nIf the result of this election isn't known by December 31, 2026, 11:59 PM ET, the market will "
       }
     ],
     "manifold": [
@@ -1387,13 +1349,13 @@
       },
       {
         "source": "manifold",
-        "question": "Will WW3 directly cause over 500M civilian casualties?",
-        "probability": 52.1,
-        "traders": 4,
-        "volume": 140,
-        "url": "https://manifold.markets/GastonKessler/will-ww3-directly-cause-over-500m-c",
-        "date": "2025-01-04T13:04:57.357000+00:00",
-        "close_date": "2100-01-10T22:59:00+00:00"
+        "question": "Will the U.S. Senate pass the recently proposed legislation to curb prediction markets before June 1, 2026?",
+        "probability": 1.0,
+        "traders": 22,
+        "volume": 2487.0249247092133,
+        "url": "https://manifold.markets/OnlyBoot/will-the-us-senate-pass-the-recentl",
+        "date": "2026-03-24T02:54:35.853000+00:00",
+        "close_date": "2026-05-31T23:59:00+00:00"
       },
       {
         "source": "manifold",
@@ -1407,13 +1369,13 @@
       },
       {
         "source": "manifold",
-        "question": "Will russia attack and/or occupy european NATO area until EOY2029? And if so, where will that happen first?",
-        "probability": 0,
-        "traders": 11,
-        "volume": 860.312187141329,
-        "url": "https://manifold.markets/DaniellqdC6/will-russia-attack-andor-occupy-eur",
-        "date": "2025-05-23T16:15:00.858000+00:00",
-        "close_date": "2029-12-31T23:59:00+00:00"
+        "question": "Will WW3 directly cause over 500M civilian casualties?",
+        "probability": 52.1,
+        "traders": 4,
+        "volume": 140,
+        "url": "https://manifold.markets/GastonKessler/will-ww3-directly-cause-over-500m-c",
+        "date": "2025-01-04T13:04:57.357000+00:00",
+        "close_date": "2100-01-10T22:59:00+00:00"
       },
       {
         "source": "manifold",
@@ -1881,7 +1843,7 @@
         "market_source": "polymarket",
         "category": "other",
         "url": "https://polymarket.com/event/will-colombia-win-the-2026-fifa-world-cup-734",
-        "date": "2026-06-04T01:14:01.966720+00:00"
+        "date": "2026-06-04T01:40:03.310696+00:00"
       },
       {
         "question": "Will Ecuador win the 2026 FIFA World Cup?",
@@ -1896,7 +1858,7 @@
         "market_source": "polymarket",
         "category": "other",
         "url": "https://polymarket.com/event/will-ecuador-win-the-2026-fifa-world-cup-986",
-        "date": "2026-06-04T01:14:01.966720+00:00"
+        "date": "2026-06-04T01:40:03.310696+00:00"
       },
       {
         "question": "Will Croatia win the 2026 FIFA World Cup?",
@@ -1911,7 +1873,7 @@
         "market_source": "polymarket",
         "category": "other",
         "url": "https://polymarket.com/event/will-croatia-win-the-2026-fifa-world-cup",
-        "date": "2026-06-04T01:14:01.966720+00:00"
+        "date": "2026-06-04T01:40:03.310696+00:00"
       },
       {
         "question": "Will Argentina win the 2026 FIFA World Cup?",
@@ -1926,7 +1888,7 @@
         "market_source": "polymarket",
         "category": "other",
         "url": "https://polymarket.com/event/will-argentina-win-the-2026-fifa-world-cup-245",
-        "date": "2026-06-04T01:14:01.966720+00:00"
+        "date": "2026-06-04T01:40:03.310696+00:00"
       },
       {
         "question": "Will Australia win the 2026 FIFA World Cup?",
@@ -1941,22 +1903,7 @@
         "market_source": "polymarket",
         "category": "other",
         "url": "https://polymarket.com/event/will-australia-win-the-2026-fifa-world-cup-816",
-        "date": "2026-06-04T01:14:01.966720+00:00"
-      },
-      {
-        "question": "Will Mexico win the 2026 FIFA World Cup?",
-        "atlas_probability": 3,
-        "market_probability": 1.1,
-        "divergence": 1.9,
-        "atlas_reasoning": "Extreme low \u2014 calibrated reversion applied.",
-        "confidence": "low",
-        "sources_used": [
-          "polymarket"
-        ],
-        "market_source": "polymarket",
-        "category": "other",
-        "url": "https://polymarket.com/event/will-mexico-win-the-2026-fifa-world-cup-529",
-        "date": "2026-06-04T01:14:01.966720+00:00"
+        "date": "2026-06-04T01:40:03.310696+00:00"
       },
       {
         "question": "Will Algeria win the 2026 FIFA World Cup?",
@@ -1971,7 +1918,37 @@
         "market_source": "polymarket",
         "category": "other",
         "url": "https://polymarket.com/event/will-algeria-win-the-2026-fifa-world-cup",
-        "date": "2026-06-04T01:14:01.966720+00:00"
+        "date": "2026-06-04T01:40:03.310696+00:00"
+      },
+      {
+        "question": "Will Mexico win the 2026 FIFA World Cup?",
+        "atlas_probability": 3,
+        "market_probability": 1.1,
+        "divergence": 1.9,
+        "atlas_reasoning": "Extreme low \u2014 calibrated reversion applied.",
+        "confidence": "low",
+        "sources_used": [
+          "polymarket"
+        ],
+        "market_source": "polymarket",
+        "category": "other",
+        "url": "https://polymarket.com/event/will-mexico-win-the-2026-fifa-world-cup-529",
+        "date": "2026-06-04T01:40:03.310696+00:00"
+      },
+      {
+        "question": "Will Congo DR win the 2026 FIFA World Cup?",
+        "atlas_probability": 2,
+        "market_probability": 0.1,
+        "divergence": 1.9,
+        "atlas_reasoning": "Extreme low \u2014 calibrated reversion applied.",
+        "confidence": "low",
+        "sources_used": [
+          "polymarket"
+        ],
+        "market_source": "polymarket",
+        "category": "other",
+        "url": "https://polymarket.com/event/will-congo-dr-win-the-2026-fifa-world-cup",
+        "date": "2026-06-04T01:40:03.310696+00:00"
       },
       {
         "question": "Will Ghana win the 2026 FIFA World Cup?",
@@ -1986,7 +1963,7 @@
         "market_source": "polymarket",
         "category": "other",
         "url": "https://polymarket.com/event/will-ghana-win-the-2026-fifa-world-cup",
-        "date": "2026-06-04T01:14:01.966720+00:00"
+        "date": "2026-06-04T01:40:03.310696+00:00"
       },
       {
         "question": "Will South Korea win the 2026 FIFA World Cup?",
@@ -2001,7 +1978,7 @@
         "market_source": "polymarket",
         "category": "other",
         "url": "https://polymarket.com/event/will-south-korea-win-the-2026-fifa-world-cup-485",
-        "date": "2026-06-04T01:14:01.966720+00:00"
+        "date": "2026-06-04T01:40:03.310696+00:00"
       },
       {
         "question": "Will Ivory Coast win the 2026 FIFA World Cup?",
@@ -2016,7 +1993,7 @@
         "market_source": "polymarket",
         "category": "other",
         "url": "https://polymarket.com/event/will-ivory-coast-win-the-2026-fifa-world-cup",
-        "date": "2026-06-04T01:14:01.966720+00:00"
+        "date": "2026-06-04T01:40:03.310696+00:00"
       },
       {
         "question": "Will Turkiye win the 2026 FIFA World Cup?",
@@ -2031,37 +2008,7 @@
         "market_source": "polymarket",
         "category": "other",
         "url": "https://polymarket.com/event/will-turkiye-win-the-2026-fifa-world-cup",
-        "date": "2026-06-04T01:14:01.966720+00:00"
-      },
-      {
-        "question": "San Diego Padres vs. Philadelphia Phillies",
-        "atlas_probability": 2,
-        "market_probability": 0.5,
-        "divergence": 1.5,
-        "atlas_reasoning": "Extreme low \u2014 calibrated reversion applied.",
-        "confidence": "low",
-        "sources_used": [
-          "polymarket"
-        ],
-        "market_source": "polymarket",
-        "category": "other",
-        "url": "https://polymarket.com/event/mlb-sd-phi-2026-06-03",
-        "date": "2026-06-04T01:14:01.966720+00:00"
-      },
-      {
-        "question": "Will Norway win the 2026 FIFA World Cup?",
-        "atlas_probability": 4,
-        "market_probability": 2.5,
-        "divergence": 1.5,
-        "atlas_reasoning": "Extreme low \u2014 calibrated reversion applied.",
-        "confidence": "low",
-        "sources_used": [
-          "polymarket"
-        ],
-        "market_source": "polymarket",
-        "category": "other",
-        "url": "https://polymarket.com/event/will-norway-win-the-2026-fifa-world-cup-893",
-        "date": "2026-06-04T01:14:01.966720+00:00"
+        "date": "2026-06-04T01:40:03.310696+00:00"
       },
       {
         "question": "Will Chong Won-oh win the 2026 Seoul Mayoral Election",
@@ -2076,7 +2023,7 @@
         "market_source": "polymarket",
         "category": "political",
         "url": "https://polymarket.com/event/will-chong-won-oh-win-the-2026-seoul-mayoral-election",
-        "date": "2026-06-04T01:14:01.966720+00:00"
+        "date": "2026-06-04T01:40:03.310696+00:00"
       },
       {
         "question": "Will France win the 2026 FIFA World Cup?",
@@ -2091,13 +2038,28 @@
         "market_source": "polymarket",
         "category": "other",
         "url": "https://polymarket.com/event/will-france-win-the-2026-fifa-world-cup-924",
-        "date": "2026-06-04T01:14:01.966720+00:00"
+        "date": "2026-06-04T01:40:03.310696+00:00"
+      },
+      {
+        "question": "Will Oh Se-hoon win the 2026 Seoul Mayoral Election",
+        "atlas_probability": 99,
+        "market_probability": 99.6,
+        "divergence": -0.6,
+        "atlas_reasoning": "Political prediction \u2014 ATLAS defers to market consensus (limited direct data).",
+        "confidence": "low",
+        "sources_used": [
+          "polymarket"
+        ],
+        "market_source": "polymarket",
+        "category": "political",
+        "url": "https://polymarket.com/event/will-oh-se-hoon-win-the-2026-seoul-mayoral-election",
+        "date": "2026-06-04T01:40:03.310696+00:00"
       },
       {
         "question": "Knicks vs. Spurs",
-        "atlas_probability": 40,
-        "market_probability": 40.5,
-        "divergence": -0.5,
+        "atlas_probability": 30,
+        "market_probability": 29.5,
+        "divergence": 0.5,
         "atlas_reasoning": "No direct source data contradicts market consensus.",
         "confidence": "low",
         "sources_used": [
@@ -2106,7 +2068,39 @@
         "market_source": "polymarket",
         "category": "other",
         "url": "https://polymarket.com/event/nba-nyk-sas-2026-06-03",
-        "date": "2026-06-04T01:14:01.966720+00:00"
+        "date": "2026-06-04T01:40:03.310696+00:00"
+      },
+      {
+        "question": "US x Iran permanent peace deal by June 7, 2026?",
+        "atlas_probability": 4,
+        "market_probability": 4.5,
+        "divergence": -0.5,
+        "atlas_reasoning": "Trader sentiment on 'peace': -0.36. GDELT conflict reporting low (0 articles).",
+        "confidence": "medium",
+        "sources_used": [
+          "gdelt",
+          "reddit",
+          "polymarket"
+        ],
+        "market_source": "polymarket",
+        "category": "other",
+        "url": "https://polymarket.com/event/us-x-iran-permanent-peace-deal-by-june-7-2026",
+        "date": "2026-06-04T01:40:03.310696+00:00"
+      },
+      {
+        "question": "Spread: Spurs (-4.5)",
+        "atlas_probability": 56,
+        "market_probability": 56.5,
+        "divergence": -0.5,
+        "atlas_reasoning": "No direct source data contradicts market consensus.",
+        "confidence": "low",
+        "sources_used": [
+          "polymarket"
+        ],
+        "market_source": "polymarket",
+        "category": "other",
+        "url": "https://polymarket.com/event/nba-nyk-sas-2026-06-03-spread-home-4pt5",
+        "date": "2026-06-04T01:40:03.310696+00:00"
       },
       {
         "question": "US x Iran permanent peace deal by June 15, 2026?",
@@ -2117,51 +2111,19 @@
         "confidence": "medium",
         "sources_used": [
           "gdelt",
-          "polymarket",
-          "reddit"
+          "reddit",
+          "polymarket"
         ],
         "market_source": "polymarket",
         "category": "other",
         "url": "https://polymarket.com/event/us-x-iran-permanent-peace-deal-by-june-15-2026-734-856-129",
-        "date": "2026-06-04T01:14:01.966720+00:00"
+        "date": "2026-06-04T01:40:03.310696+00:00"
       },
       {
-        "question": "Will Oh Se-hoon win the 2026 Seoul Mayoral Election",
-        "atlas_probability": 99,
-        "market_probability": 99.4,
-        "divergence": -0.4,
-        "atlas_reasoning": "Political prediction \u2014 ATLAS defers to market consensus (limited direct data).",
-        "confidence": "low",
-        "sources_used": [
-          "polymarket"
-        ],
-        "market_source": "polymarket",
-        "category": "political",
-        "url": "https://polymarket.com/event/will-oh-se-hoon-win-the-2026-seoul-mayoral-election",
-        "date": "2026-06-04T01:14:01.966720+00:00"
-      },
-      {
-        "question": "US x Iran permanent peace deal by June 7, 2026?",
-        "atlas_probability": 5,
-        "market_probability": 4.7,
-        "divergence": 0.3,
-        "atlas_reasoning": "Trader sentiment on 'peace': -0.36. GDELT conflict reporting low (0 articles).",
-        "confidence": "medium",
-        "sources_used": [
-          "gdelt",
-          "polymarket",
-          "reddit"
-        ],
-        "market_source": "polymarket",
-        "category": "other",
-        "url": "https://polymarket.com/event/us-x-iran-permanent-peace-deal-by-june-7-2026",
-        "date": "2026-06-04T01:14:01.966720+00:00"
-      },
-      {
-        "question": "Spread: Spurs (-4.5)",
-        "atlas_probability": 48,
-        "market_probability": 48.0,
-        "divergence": 0.0,
+        "question": "Will the New York Knicks win the 2026 NBA Finals?",
+        "atlas_probability": 29,
+        "market_probability": 29.2,
+        "divergence": -0.2,
         "atlas_reasoning": "No direct source data contradicts market consensus.",
         "confidence": "low",
         "sources_used": [
@@ -2169,8 +2131,8 @@
         ],
         "market_source": "polymarket",
         "category": "other",
-        "url": "https://polymarket.com/event/nba-nyk-sas-2026-06-03-spread-home-4pt5",
-        "date": "2026-06-04T01:14:01.966720+00:00"
+        "url": "https://polymarket.com/event/will-the-new-york-knicks-win-the-2026-nba-finals",
+        "date": "2026-06-04T01:40:03.310696+00:00"
       },
       {
         "question": "Will 2024 prove to be a pivotal year for Cold War 2 as posited by Noah Smith?",
@@ -2185,7 +2147,7 @@
         "market_source": "manifold",
         "category": "geopolitical",
         "url": "https://manifold.markets/TheNotTooDistantFuture/will-2024-prove-to-be-a-pivotal-yea",
-        "date": "2026-06-04T01:14:01.966720+00:00"
+        "date": "2026-06-04T01:40:03.310696+00:00"
       },
       {
         "question": "[Making Sense: Peter Zeihan] Will the german state cease to exist before 2070?",
@@ -2200,7 +2162,7 @@
         "market_source": "manifold",
         "category": "other",
         "url": "https://manifold.markets/Schwabilismus/making-sense-peter-zeihan-will-the-63af909e1864",
-        "date": "2026-06-04T01:14:01.966720+00:00"
+        "date": "2026-06-04T01:40:03.310696+00:00"
       },
       {
         "question": "In 2024, will China introduce new export tariffs on rare earth elements?",
@@ -2215,7 +2177,7 @@
         "market_source": "manifold",
         "category": "other",
         "url": "https://manifold.markets/FUTURESEARCH/in-2024-will-china-introduce-new-ex",
-        "date": "2026-06-04T01:14:01.966720+00:00"
+        "date": "2026-06-04T01:40:03.310696+00:00"
       },
       {
         "question": "Will WW3 directly cause over 1B civilian casualties?",
@@ -2230,7 +2192,7 @@
         "market_source": "manifold",
         "category": "other",
         "url": "https://manifold.markets/GastonKessler/will-ww3-directly-cause-over-1b-civ",
-        "date": "2026-06-04T01:14:01.966720+00:00"
+        "date": "2026-06-04T01:40:03.310696+00:00"
       },
       {
         "question": "Will the US and Russia start a new nuclear arms race before 2028?",
@@ -2245,7 +2207,7 @@
         "market_source": "manifold",
         "category": "other",
         "url": "https://manifold.markets/BlueDragon/will-the-us-and-russia-start-a-new",
-        "date": "2026-06-04T01:14:01.966720+00:00"
+        "date": "2026-06-04T01:40:03.310696+00:00"
       },
       {
         "question": "Geopolitical Risk (GPR) index \u2265 600 in 2026",
@@ -2260,7 +2222,7 @@
         "market_source": "manifold",
         "category": "other",
         "url": "https://manifold.markets/parhizj/geopolitical-risk-gpr-index-600-in",
-        "date": "2026-06-04T01:14:01.966720+00:00"
+        "date": "2026-06-04T01:40:03.310696+00:00"
       },
       {
         "question": "[Making Sense: Peter Zeihan] Will the german state cease to exist before 2070?",
@@ -2275,7 +2237,7 @@
         "market_source": "manifold",
         "category": "other",
         "url": "https://manifold.markets/Schwabilismus/making-sense-peter-zeihan-will-the",
-        "date": "2026-06-04T01:14:01.966720+00:00"
+        "date": "2026-06-04T01:40:03.310696+00:00"
       },
       {
         "question": "Will a full-scale military conflict between the US/Israel and Iran resume by May 31, 2026?",
@@ -2290,7 +2252,7 @@
         "market_source": "manifold",
         "category": "geopolitical",
         "url": "https://manifold.markets/IrmiPolonsky/will-a-fullscale-military-conflict",
-        "date": "2026-06-04T01:14:01.966720+00:00"
+        "date": "2026-06-04T01:40:03.310696+00:00"
       },
       {
         "question": "Will a nuclear weapon be detonated in combat before January 1, 2030?",
@@ -2305,7 +2267,7 @@
         "market_source": "manifold",
         "category": "other",
         "url": "https://manifold.markets/JunHongebby/will-a-nuclear-weapon-be-detonated-copjkkuvqz",
-        "date": "2026-06-04T01:14:01.966720+00:00"
+        "date": "2026-06-04T01:40:03.310696+00:00"
       },
       {
         "question": "US nukes Iran in 2025?",
@@ -2320,7 +2282,7 @@
         "market_source": "manifold",
         "category": "other",
         "url": "https://manifold.markets/copiumarc/us-nukes-iran-in-2025",
-        "date": "2026-06-04T01:14:01.966720+00:00"
+        "date": "2026-06-04T01:40:03.310696+00:00"
       }
     ]
   },
@@ -2353,7 +2315,7 @@
       ],
       "alert": "green",
       "tsunami": 0,
-      "felt": 118,
+      "felt": 119,
       "depth_km": 10,
       "url": "https://earthquake.usgs.gov/earthquakes/eventpage/nc75370186"
     },
@@ -2409,18 +2371,6 @@
   "weather": [
     {
       "source": "noaa",
-      "event": "Flood Advisory",
-      "state": "TX",
-      "headline": "Flood Advisory issued June 3 at 6:17PM CDT until June 3 at 8:15PM CDT by NWS Corpus Christi TX",
-      "severity": "Minor",
-      "urgency": "Expected",
-      "area": "Aransas, TX; Refugio, TX; San Patricio, TX",
-      "date": "2026-06-03T18:17:00-05:00",
-      "expires": "2026-06-03T20:15:00-05:00",
-      "description": "* WHAT...Flooding caused by excessive rainfall is expected.\n\n* WHERE...Western Aransas County in south central Texas...\nSouthern Refugio County in south central Texas...\nEast Central San Patricio County in south central Texas...\n\n* WHEN...Until 815 PM CDT.\n\n* IMPACTS...Minor flooding in low-lying and poor drainage areas.\n\n* ADDITIONAL DETAILS...\n- At 617 PM CDT, Doppler radar indicated heavy rain "
-    },
-    {
-      "source": "noaa",
       "event": "Flood Warning",
       "state": "TX",
       "headline": "Flood Warning issued June 3 at 1:30PM CDT until June 4 at 11:00PM CDT by NWS Corpus Christi TX",
@@ -2459,13 +2409,13 @@
       "source": "noaa",
       "event": "Flood Warning",
       "state": "AR",
-      "headline": "Flood Warning issued June 3 at 9:19AM CDT until June 7 at 7:00PM CDT by NWS Little Rock AR",
+      "headline": "Flood Warning issued June 3 at 8:06PM CDT until June 7 at 7:00AM CDT by NWS Little Rock AR",
       "severity": "Severe",
       "urgency": "Immediate",
       "area": "Jackson, AR; Woodruff, AR",
-      "date": "2026-06-03T09:19:00-05:00",
-      "expires": "2026-06-04T09:30:00-05:00",
-      "description": "...The Flood Warning continues for the following rivers in\nArkansas...\n\nCache River Near Patterson affecting Jackson and Woodruff\nCounties.\n\nFor the Cache River...including Patterson...Minor flooding is\nforecast.\n\n* WHAT...Minor flooding is occurring and minor flooding is forecast.\n\n* WHERE...Cache River near Patterson.\n\n* WHEN...Until Monday morning\n\n* IMPACTS...At 10.0 feet, Pastureland and crop"
+      "date": "2026-06-03T20:06:00-05:00",
+      "expires": "2026-06-04T20:15:00-05:00",
+      "description": "...The Flood Warning continues for the following rivers in\nArkansas...\n\nCache River Near Patterson affecting Jackson and Woodruff\nCounties.\n\nFor the Cache River...including Patterson...Minor flooding is\nforecast.\n\n* WHAT...Minor flooding is occurring and minor flooding is forecast.\n\n* WHERE...Cache River near Patterson.\n\n* WHEN...Until Sunday morning.\n\n* IMPACTS...At 9.0 feet, Low swampy timberlan"
     },
     {
       "source": "noaa",
@@ -2490,18 +2440,6 @@
       "date": "2026-06-03T19:34:00-05:00",
       "expires": "2026-06-04T04:00:00-05:00",
       "description": "* WHAT...For the High Rip Current Risk, dangerous rip currents.\nFor the High Surf Advisory, large breaking waves of 5 to 6\nfeet expected in the surf zone.\n\n* WHERE...In Alabama, Mobile Coastal and Baldwin Coastal\nCounties. In Florida, Escambia Coastal, Santa Rosa Coastal and\nOkaloosa Coastal Counties.\n\n* WHEN...For the High Rip Current Risk, through Sunday morning.\nFor the High Surf Advisory, from"
-    },
-    {
-      "source": "noaa",
-      "event": "Special Weather Statement",
-      "state": "OK",
-      "headline": "Special Weather Statement issued June 3 at 7:55PM CDT by NWS Norman OK",
-      "severity": "Moderate",
-      "urgency": "Expected",
-      "area": "Woods; Woodward; Major",
-      "date": "2026-06-03T19:55:00-05:00",
-      "expires": "2026-06-03T20:30:00-05:00",
-      "description": "At 754 PM CDT, Doppler radar was tracking a strong thunderstorm near\nQuinlan, moving north at 25 mph.\n\nHAZARD...Wind gusts of 40 mph.\n\nSOURCE...Radar indicated.\n\nIMPACT...Gusty winds could knock down tree limbs and blow around\nunsecured objects.\n\nLocations impacted include...\nMooreland, Waynoka, Freedom, Alabaster Caverns State Park, Quinlan,\nAvard, and Camp Houston."
     },
     {
       "source": "noaa",
@@ -2531,13 +2469,13 @@
       "source": "noaa",
       "event": "Special Weather Statement",
       "state": "NM",
-      "headline": "Special Weather Statement issued June 3 at 6:45PM MDT by NWS Albuquerque NM",
+      "headline": "Special Weather Statement issued June 3 at 7:11PM MDT by NWS Albuquerque NM",
       "severity": "Moderate",
       "urgency": "Expected",
-      "area": "Far Northeast Highlands; Northeast Highlands; Union County; Harding County; Eastern San Miguel County",
-      "date": "2026-06-03T18:45:00-06:00",
-      "expires": "2026-06-03T19:15:00-06:00",
-      "description": "At 645 PM MDT, Doppler radar was tracking a line of strong\nthunderstorms extending from 14 miles south of Mount Dora to 14 miles\nsouthwest of Roy, moving southeast at 30 mph.\n\nHAZARD...Wind gusts up to 50 mph and half inch size hail.\n\nSOURCE...Radar indicated.\n\nIMPACT...Gusty winds could knock down tree limbs and blow around\nunsecured objects. Minor damage to outdoor objects is\npossible.\n\nLocation"
+      "area": "Union County",
+      "date": "2026-06-03T19:11:00-06:00",
+      "expires": "2026-06-03T19:45:00-06:00",
+      "description": "At 711 PM MDT, Doppler radar was tracking a strong thunderstorm 15\nmiles north of Seneca, or 27 miles north of Clayton, moving southeast\nat 20 mph.\n\nHAZARD...Wind gusts up to 50 mph and nickel size hail.\n\nSOURCE...Radar indicated.\n\nIMPACT...Gusty winds could knock down tree limbs and blow around\nunsecured objects. Minor damage to outdoor objects is\npossible.\n\nLocations impacted include...\nMoses."
     },
     {
       "source": "noaa",
@@ -2550,30 +2488,6 @@
       "date": "2026-06-03T18:41:00-06:00",
       "expires": "2026-06-03T21:45:00-06:00",
       "description": "FFWEPZ\n\nThe National Weather Service in El Paso Tx/Santa Teresa has issued a\n\n* Flash Flood Warning for...\nNortheastern Dona Ana County in south central New Mexico...\n\n* Until 945 PM MDT.\n\n* At 641 PM MDT, Doppler radar indicated thunderstorms producing\nheavy rain across portions of the White Sands Missile Range.\nBetween 1.5 and 2.5 inches of rain have fallen. Flash flooding is\nongoing or expected"
-    },
-    {
-      "source": "noaa",
-      "event": "Dust Advisory",
-      "state": "NM",
-      "headline": "Dust Advisory issued June 3 at 6:32PM MDT until June 3 at 7:30PM MDT by NWS El Paso Tx/Santa Teresa NM",
-      "severity": "Moderate",
-      "urgency": "Expected",
-      "area": "Hidalgo, NM",
-      "date": "2026-06-03T18:32:00-06:00",
-      "expires": "2026-06-03T19:30:00-06:00",
-      "description": "The National Weather Service in El Paso has issued a\n\n* Dust Advisory for...\nWest central Hidalgo County in southwestern New Mexico...\n\n* Until 730 PM MDT.\n\n* At 631 PM MDT, an area of blowing dust was over Steins.\n\nHAZARD...Less than one mile visibility with strong winds up to 55\nmph.\n\nSOURCE...Detected by National Weather Service meteorologists.\n\nIMPACT...Hazardous travel.\n\nThis will affect Inte"
-    },
-    {
-      "source": "noaa",
-      "event": "Flood Advisory",
-      "state": "NM",
-      "headline": "Flood Advisory issued June 3 at 5:31PM MDT until June 3 at 7:30PM MDT by NWS El Paso Tx/Santa Teresa NM",
-      "severity": "Minor",
-      "urgency": "Expected",
-      "area": "Grant, NM",
-      "date": "2026-06-03T17:31:00-06:00",
-      "expires": "2026-06-03T19:30:00-06:00",
-      "description": "* WHAT...Arroyo and small stream flooding caused by excessive\nrainfall is expected.\n\n* WHERE...A portion of southwest New Mexico, including the following\ncounty, Grant.\n\n* WHEN...Until 730 PM MDT.\n\n* IMPACTS...Minor flooding in low-lying and poor drainage areas.\nRises in small streams and normally dry arroyos.\n\n* ADDITIONAL DETAILS...\n- At 531 PM MDT, Doppler radar indicated heavy rain due to\nthun"
     },
     {
       "source": "noaa",
@@ -2601,18 +2515,6 @@
     },
     {
       "source": "noaa",
-      "event": "Special Weather Statement",
-      "state": "LA",
-      "headline": "Special Weather Statement issued June 3 at 7:23PM CDT by NWS Shreveport LA",
-      "severity": "Moderate",
-      "urgency": "Expected",
-      "area": "Bienville; Jackson",
-      "date": "2026-06-03T19:23:00-05:00",
-      "expires": "2026-06-03T20:15:00-05:00",
-      "description": "At 723 PM CDT, Doppler radar was tracking a strong thunderstorm 5\nmiles west of Jonesboro, moving west at 20 mph.\n\nHAZARD...Wind gusts up to 40 mph and pea size hail.\n\nSOURCE...Radar indicated.\n\nIMPACT...Gusty winds could knock down tree limbs and blow around\nunsecured objects. Minor damage to outdoor objects is\npossible.\n\nLocations impacted include...\nHodge, North Hodge, East Hodge, Saline, Lucky"
-    },
-    {
-      "source": "noaa",
       "event": "Flood Warning",
       "state": "LA",
       "headline": "Flood Warning issued June 3 at 7:19PM CDT until June 4 at 9:00PM CDT by NWS Lake Charles LA",
@@ -2630,10 +2532,10 @@
       "headline": "Coastal Flood Advisory issued June 3 at 11:21AM CDT until June 5 at 7:00AM CDT by NWS New Orleans LA",
       "severity": "Minor",
       "urgency": "Expected",
-      "area": "Coastal Jefferson; Lower Lafourche; Lower Terrebonne",
+      "area": "Lower St. Bernard; Southeast St. Tammany; Eastern Orleans; Lower Plaquemines; Southern Hancock; Southern Harrison; Southern Jackson",
       "date": "2026-06-03T11:21:00-05:00",
       "expires": "2026-06-04T03:00:00-05:00",
-      "description": "* WHAT...Minor coastal flooding expected.\n\n* WHERE...Coastal Jefferson, Lower Lafourche and Lower\nTerrebonne Parishes.\n\n* WHEN...From 7 AM Thursday to 7 AM CDT Friday.\n\n* IMPACTS...Flooding of lots, parks, and roads with only\nisolated road closures expected during high tide cycles."
+      "description": "* WHAT...Minor coastal flooding.\n\n* WHERE...In Louisiana, Lower St. Bernard, Southeast St.\nTammany, Eastern Orleans and Lower Plaquemines Parishes. In\nMississippi, Southern Hancock, Southern Harrison and Southern\nJackson Counties.\n\n* WHEN...Until 7 AM CDT Friday.\n\n* IMPACTS...Flooding of lots, parks, and roads with only isolated\nroad closures expected during high tide cycles."
     },
     {
       "source": "noaa",
@@ -2642,22 +2544,34 @@
       "headline": "Coastal Flood Advisory issued June 3 at 11:21AM CDT until June 5 at 7:00AM CDT by NWS New Orleans LA",
       "severity": "Minor",
       "urgency": "Expected",
-      "area": "Lower St. Bernard; Southeast St. Tammany; Eastern Orleans; Lower Plaquemines; Southern Hancock; Southern Harrison; Southern Jackson",
+      "area": "Coastal Jefferson; Lower Lafourche; Lower Terrebonne",
       "date": "2026-06-03T11:21:00-05:00",
       "expires": "2026-06-04T03:00:00-05:00",
-      "description": "* WHAT...Minor coastal flooding.\n\n* WHERE...In Louisiana, Lower St. Bernard, Southeast St.\nTammany, Eastern Orleans and Lower Plaquemines Parishes. In\nMississippi, Southern Hancock, Southern Harrison and Southern\nJackson Counties.\n\n* WHEN...Until 7 AM CDT Friday.\n\n* IMPACTS...Flooding of lots, parks, and roads with only isolated\nroad closures expected during high tide cycles."
+      "description": "* WHAT...Minor coastal flooding expected.\n\n* WHERE...Coastal Jefferson, Lower Lafourche and Lower\nTerrebonne Parishes.\n\n* WHEN...From 7 AM Thursday to 7 AM CDT Friday.\n\n* IMPACTS...Flooding of lots, parks, and roads with only\nisolated road closures expected during high tide cycles."
     },
     {
       "source": "noaa",
       "event": "Flood Advisory",
       "state": "FL",
-      "headline": "Flood Advisory issued June 3 at 9:00PM EDT until June 3 at 10:00PM EDT by NWS Miami FL",
+      "headline": "Flood Advisory issued June 3 at 9:29PM EDT until June 3 at 11:00PM EDT by NWS Miami FL",
       "severity": "Minor",
       "urgency": "Expected",
       "area": "Broward, FL; Miami-Dade, FL",
-      "date": "2026-06-03T21:00:00-04:00",
-      "expires": "2026-06-03T22:00:00-04:00",
-      "description": "* WHAT...Flooding caused by excessive rainfall is expected.\n\n* WHERE...A portion of southeast Florida, including the following\ncounties, Broward and Miami-Dade.\n\n* WHEN...Until 1000 PM EDT.\n\n* IMPACTS...Minor flooding in low-lying and poor drainage areas.\nPonding of water in urban or other areas is occurring or is\nimminent.\n\n* ADDITIONAL DETAILS...\n- At 900 PM EDT, Doppler radar and automated rain"
+      "date": "2026-06-03T21:29:00-04:00",
+      "expires": "2026-06-03T23:00:00-04:00",
+      "description": "* WHAT...Flooding caused by excessive rainfall continues.\n\n* WHERE...A portion of southeast Florida, including the following\ncounties, Broward and Miami-Dade.\n\n* WHEN...Until 1100 PM EDT.\n\n* IMPACTS...Minor flooding in low-lying and poor drainage areas.\nPonding of water in urban or other areas is occurring or is\nimminent.\n\n* ADDITIONAL DETAILS...\n- At 929 PM EDT, Doppler radar and automated rain g"
+    },
+    {
+      "source": "noaa",
+      "event": "Flood Advisory",
+      "state": "FL",
+      "headline": "Flood Advisory issued June 3 at 9:19PM EDT until June 3 at 11:15PM EDT by NWS Miami FL",
+      "severity": "Minor",
+      "urgency": "Expected",
+      "area": "Broward, FL; Miami-Dade, FL",
+      "date": "2026-06-03T21:19:00-04:00",
+      "expires": "2026-06-03T23:15:00-04:00",
+      "description": "* WHAT...Flooding caused by excessive rainfall is expected.\n\n* WHERE...A portion of southeast Florida, including the following\ncounties, Broward and Miami-Dade.\n\n* WHEN...Until 1115 PM EDT.\n\n* IMPACTS...Minor flooding in low-lying and poor drainage areas.\nPonding of water in urban or other areas is occurring or is\nimminent.\n\n* ADDITIONAL DETAILS...\n- At 919 PM EDT, Doppler radar and automated rain"
     },
     {
       "source": "noaa",
@@ -2757,15 +2671,39 @@
     },
     {
       "source": "noaa",
-      "event": "Rip Current Statement",
-      "state": "FL",
-      "headline": "Rip Current Statement issued June 3 at 11:13AM EDT until June 5 at 8:00PM EDT by NWS Miami FL",
+      "event": "Wind Advisory",
+      "state": "CA",
+      "headline": "Wind Advisory issued June 3 at 6:31PM PDT until June 4 at 2:00AM PDT by NWS Hanford CA",
       "severity": "Moderate",
       "urgency": "Expected",
-      "area": "Coastal Palm Beach County",
-      "date": "2026-06-03T11:13:00-04:00",
-      "expires": "2026-06-04T04:00:00-04:00",
-      "description": "* WHAT...Dangerous rip currents expected.\n\n* WHERE...Coastal Palm Beach County.\n\n* WHEN...Through Friday evening.\n\n* IMPACTS...Rip currents can sweep even the best swimmers away\nfrom shore into deeper water."
+      "area": "Mojave Desert Slopes",
+      "date": "2026-06-03T18:31:00-07:00",
+      "expires": "2026-06-04T02:00:00-07:00",
+      "description": "* WHAT...Northwest winds 20 to 30 mph with gusts up to 45 mph\nexpected.\n\n* WHERE...Mojave Desert Slopes.\n\n* WHEN...Until 2 AM PDT Thursday.\n\n* IMPACTS...Gusty winds will blow around unsecured objects. Tree\nlimbs could be blown down and a few power outages may result.\n\n* ADDITIONAL DETAILS...Highways impacted include US Highway 395 and\nCalifornia Routes 14, 58, and 178."
+    },
+    {
+      "source": "noaa",
+      "event": "Wind Advisory",
+      "state": "CA",
+      "headline": "Wind Advisory issued June 3 at 6:29PM PDT until June 4 at 5:00AM PDT by NWS Los Angeles/Oxnard CA",
+      "severity": "Moderate",
+      "urgency": "Expected",
+      "area": "Interstate 5 Corridor; Western Antelope Valley Foothills",
+      "date": "2026-06-03T18:29:00-07:00",
+      "expires": "2026-06-04T05:00:00-07:00",
+      "description": "* WHAT...Northwest winds 20 to 30 mph with gusts up to 45 mph\nexpected.\n\n* WHERE...Interstate 5 Corridor and Western Antelope Valley\nFoothills.\n\n* WHEN...Until 5 AM PDT Thursday.\n\n* IMPACTS...Gusty winds will blow around unsecured objects. Tree\nlimbs could be blown down and a few power outages may result."
+    },
+    {
+      "source": "noaa",
+      "event": "Wind Advisory",
+      "state": "CA",
+      "headline": "Wind Advisory issued June 3 at 6:29PM PDT until June 4 at 5:00AM PDT by NWS Los Angeles/Oxnard CA",
+      "severity": "Moderate",
+      "urgency": "Expected",
+      "area": "Santa Barbara County Southwestern Coast; Santa Ynez Mountains Western Range; Santa Ynez Mountains Eastern Range",
+      "date": "2026-06-03T18:29:00-07:00",
+      "expires": "2026-06-04T05:00:00-07:00",
+      "description": "* WHAT...North winds 20 to 35 mph with gusts up to 50 mph expected.\n\n* WHERE...Santa Barbara County Southwestern Coast, Santa Ynez\nMountains Eastern Range, and Santa Ynez Mountains Western Range.\n\n* WHEN...Until 5 AM PDT Thursday.\n\n* IMPACTS...Gusty winds will blow around unsecured objects. Tree\nlimbs could be blown down and a few power outages may result."
     },
     {
       "source": "noaa",
@@ -2793,6 +2731,18 @@
     },
     {
       "source": "noaa",
+      "event": "Flood Warning",
+      "state": "GA",
+      "headline": "Flood Warning issued June 3 at 9:20PM EDT until June 5 at 5:00AM EDT by NWS Charleston SC",
+      "severity": "Severe",
+      "urgency": "Immediate",
+      "area": "Tattnall, GA; Toombs, GA",
+      "date": "2026-06-03T21:20:00-04:00",
+      "expires": "2026-06-04T21:30:00-04:00",
+      "description": "* WHAT...Minor flooding is occurring and minor flooding is forecast.\n\n* WHERE...Ohoopee River near Reidsville.\n\n* WHEN...Until late Thursday night.\n\n* IMPACTS...At 11.0 feet, water enters the back yards of some homes\nin the Joy Bluff community.\n\n* ADDITIONAL DETAILS...\n- At 900 PM EDT Wednesday, the stage was 11.8 feet.\n- Forecast...The river is expected to fall below flood stage\nThursday afternoo"
+    },
+    {
+      "source": "noaa",
       "event": "High Surf Advisory",
       "state": "GA",
       "headline": "High Surf Advisory issued June 3 at 4:53PM EDT until June 4 at 5:00AM EDT by NWS Jacksonville FL",
@@ -2814,18 +2764,6 @@
       "date": "2026-06-03T16:53:00-04:00",
       "expires": "2026-06-04T05:00:00-04:00",
       "description": "* WHAT...For the High Surf Advisory, large breaking waves of 6 to\n9 feet. For the High Rip Current Risk, dangerous rip currents.\n\n* WHERE...Southeast Georgia and Northeast Florida Beaches.\n\n* WHEN...For the High Surf Advisory, until 5 AM EDT Thursday.\nFor the High Rip Current Risk, through Friday afternoon.\n\n* IMPACTS...Dangerous swimming and surfing conditions and\nlocalized beach erosion. Rip cur"
-    },
-    {
-      "source": "noaa",
-      "event": "Flood Warning",
-      "state": "GA",
-      "headline": "Flood Warning issued June 3 at 10:18AM EDT until June 5 at 12:00AM EDT by NWS Charleston SC",
-      "severity": "Severe",
-      "urgency": "Immediate",
-      "area": "Tattnall, GA; Toombs, GA",
-      "date": "2026-06-03T10:18:00-04:00",
-      "expires": "2026-06-04T10:30:00-04:00",
-      "description": "* WHAT...Minor flooding is occurring and minor flooding is forecast.\n\n* WHERE...Ohoopee River near Reidsville.\n\n* WHEN...Until Thursday night.\n\n* IMPACTS...At 11.0 feet, water enters the back yards of some homes\nin the Joy Bluff community.\n\n* ADDITIONAL DETAILS...\n- At 1000 AM EDT Wednesday, the stage was 11.8 feet.\n- Forecast...The river is expected to fall below flood stage early\nThursday aftern"
     },
     {
       "source": "noaa",
@@ -3233,9 +3171,9 @@
     }
   ],
   "iss": {
-    "latitude": 51.5979,
-    "longitude": -172.3189,
-    "timestamp": "2026-06-04T01:06:41+00:00"
+    "latitude": -9.0852,
+    "longitude": -83.4498,
+    "timestamp": "2026-06-04T01:32:33+00:00"
   },
   "safecast": [],
   "acled": [],
@@ -3283,6 +3221,14 @@
     {
       "source": "reddit",
       "subreddit": "r/worldnews",
+      "title": "Thanks largely to robots, Ukraine is now talking about winning, not just surviving",
+      "url": "https://www.reddit.com/r/worldnews/comments/1tw87te/thanks_largely_to_robots_ukraine_is_now_talking/",
+      "timestamp": "2026-06-04T00:45:37+00:00",
+      "date": "2026-06-04T00:45:37+00:00"
+    },
+    {
+      "source": "reddit",
+      "subreddit": "r/worldnews",
       "title": "\u201cRussia 2050\u201d report with three scenarios for war was presented at Petersburg Economic Forum. \u201cGood\u201d one included nuclear strike and EU disintegration",
       "url": "https://www.reddit.com/r/worldnews/comments/1tw31z4/russia_2050_report_with_three_scenarios_for_war/",
       "timestamp": "2026-06-03T21:19:07+00:00",
@@ -3315,18 +3261,18 @@
     {
       "source": "reddit",
       "subreddit": "r/worldnews",
-      "title": "Ukraine hit Novoshakhtinsk oil refinery in Russia with same weapon that sank Moskva Black Sea Fleet flagship",
-      "url": "https://www.reddit.com/r/worldnews/comments/1tvzylv/ukraine_hit_novoshakhtinsk_oil_refinery_in_russia/",
-      "timestamp": "2026-06-03T19:28:38+00:00",
-      "date": "2026-06-03T19:28:38+00:00"
-    },
-    {
-      "source": "reddit",
-      "subreddit": "r/worldnews",
       "title": "House approves war powers resolution to halt military action against Iran",
       "url": "https://www.reddit.com/r/worldnews/comments/1tw58cu/house_approves_war_powers_resolution_to_halt/",
       "timestamp": "2026-06-03T22:42:10+00:00",
       "date": "2026-06-03T22:42:10+00:00"
+    },
+    {
+      "source": "reddit",
+      "subreddit": "r/worldnews",
+      "title": "Ukraine hit Novoshakhtinsk oil refinery in Russia with same weapon that sank Moskva Black Sea Fleet flagship",
+      "url": "https://www.reddit.com/r/worldnews/comments/1tvzylv/ukraine_hit_novoshakhtinsk_oil_refinery_in_russia/",
+      "timestamp": "2026-06-03T19:28:38+00:00",
+      "date": "2026-06-03T19:28:38+00:00"
     },
     {
       "source": "reddit",
@@ -3347,14 +3293,6 @@
     {
       "source": "reddit",
       "subreddit": "r/worldnews",
-      "title": "Thanks largely to robots, Ukraine is now talking about winning, not just surviving",
-      "url": "https://www.reddit.com/r/worldnews/comments/1tw87te/thanks_largely_to_robots_ukraine_is_now_talking/",
-      "timestamp": "2026-06-04T00:45:37+00:00",
-      "date": "2026-06-04T00:45:37+00:00"
-    },
-    {
-      "source": "reddit",
-      "subreddit": "r/worldnews",
       "title": "Rutte on striking St Petersburg during Putin's forum: Needs a special decree by Zelenskyy, like parade on 9 May",
       "url": "https://www.reddit.com/r/worldnews/comments/1tvziw7/rutte_on_striking_st_petersburg_during_putins/",
       "timestamp": "2026-06-03T19:13:37+00:00",
@@ -3363,18 +3301,18 @@
     {
       "source": "reddit",
       "subreddit": "r/worldnews",
-      "title": "Iran attacks US bases in Kuwait, warns 'era of hit and run is over'; explosions heard in Iraq and Bahrain",
-      "url": "https://www.reddit.com/r/worldnews/comments/1tvb1r1/iran_attacks_us_bases_in_kuwait_warns_era_of_hit/",
-      "timestamp": "2026-06-03T01:45:46+00:00",
-      "date": "2026-06-03T01:45:46+00:00"
-    },
-    {
-      "source": "reddit",
-      "subreddit": "r/worldnews",
       "title": "Ukraine strikes Russian warship at Kronstadt naval base, releases drone footage",
       "url": "https://www.reddit.com/r/worldnews/comments/1tvoykd/ukraine_strikes_russian_warship_at_kronstadt/",
       "timestamp": "2026-06-03T13:12:14+00:00",
       "date": "2026-06-03T13:12:14+00:00"
+    },
+    {
+      "source": "reddit",
+      "subreddit": "r/worldnews",
+      "title": "Iran attacks US bases in Kuwait, warns 'era of hit and run is over'; explosions heard in Iraq and Bahrain",
+      "url": "https://www.reddit.com/r/worldnews/comments/1tvb1r1/iran_attacks_us_bases_in_kuwait_warns_era_of_hit/",
+      "timestamp": "2026-06-03T01:45:46+00:00",
+      "date": "2026-06-03T01:45:46+00:00"
     },
     {
       "source": "reddit",
@@ -3467,18 +3405,18 @@
     {
       "source": "reddit",
       "subreddit": "r/geopolitics",
-      "title": "Nine moments, places and objects to explain today\u2019s geopolitical upheaval",
-      "url": "https://www.reddit.com/r/geopolitics/comments/1tvrdjb/nine_moments_places_and_objects_to_explain_todays/",
-      "timestamp": "2026-06-03T14:40:16+00:00",
-      "date": "2026-06-03T14:40:16+00:00"
-    },
-    {
-      "source": "reddit",
-      "subreddit": "r/geopolitics",
       "title": "Iran\u2019s New Grand Strategy: How a Remade Islamic Republic Will Reshape the Middle East",
       "url": "https://www.reddit.com/r/geopolitics/comments/1tvv2zi/irans_new_grand_strategy_how_a_remade_islamic/",
       "timestamp": "2026-06-03T16:45:33+00:00",
       "date": "2026-06-03T16:45:33+00:00"
+    },
+    {
+      "source": "reddit",
+      "subreddit": "r/geopolitics",
+      "title": "Nine moments, places and objects to explain today\u2019s geopolitical upheaval",
+      "url": "https://www.reddit.com/r/geopolitics/comments/1tvrdjb/nine_moments_places_and_objects_to_explain_todays/",
+      "timestamp": "2026-06-03T14:40:16+00:00",
+      "date": "2026-06-03T14:40:16+00:00"
     },
     {
       "source": "reddit",
@@ -4411,6 +4349,14 @@
     {
       "source": "reddit",
       "subreddit": "r/economics",
+      "title": "Trump strips job protections from 8,000 federal workers",
+      "url": "https://www.reddit.com/r/Economics/comments/1tw9618/trump_strips_job_protections_from_8000_federal/",
+      "timestamp": "2026-06-04T01:27:27+00:00",
+      "date": "2026-06-04T01:27:27+00:00"
+    },
+    {
+      "source": "reddit",
+      "subreddit": "r/economics",
       "title": "American Cancer Society Warns of Increase in U.S. Food Swamps; No Substantial Progress Reducing Food Deserts for Millions of People",
       "url": "https://www.reddit.com/r/Economics/comments/1tvy1wl/american_cancer_society_warns_of_increase_in_us/",
       "timestamp": "2026-06-03T18:23:24+00:00",
@@ -4511,14 +4457,6 @@
       "url": "https://www.reddit.com/r/Economics/comments/1tv3vjq/cutting_tariffs_on_farm_equipment_is_another/",
       "timestamp": "2026-06-02T20:55:04+00:00",
       "date": "2026-06-02T20:55:04+00:00"
-    },
-    {
-      "source": "reddit",
-      "subreddit": "r/economics",
-      "title": "10-year Treasury yield nears 4.5% again after strong jobs data, rise in oil",
-      "url": "https://www.reddit.com/r/Economics/comments/1tvrjn3/10year_treasury_yield_nears_45_again_after_strong/",
-      "timestamp": "2026-06-03T14:46:15+00:00",
-      "date": "2026-06-03T14:46:15+00:00"
     },
     {
       "source": "reddit",
@@ -4643,10 +4581,26 @@
     {
       "source": "reddit",
       "subreddit": "r/CryptoCurrency",
+      "title": "Why Every Bitcoin Bear Market Ends the Same Way \u2013 And Where We Are Now",
+      "url": "https://www.reddit.com/r/CryptoCurrency/comments/1tw601a/why_every_bitcoin_bear_market_ends_the_same_way/",
+      "timestamp": "2026-06-03T23:11:58+00:00",
+      "date": "2026-06-03T23:11:58+00:00"
+    },
+    {
+      "source": "reddit",
+      "subreddit": "r/CryptoCurrency",
       "title": "Brazil's B3 Readies Tokenized Stocks for H2 2026, But Says Direct Trading Will Have to Wait",
       "url": "https://www.reddit.com/r/CryptoCurrency/comments/1tw1jy0/brazils_b3_readies_tokenized_stocks_for_h2_2026/",
       "timestamp": "2026-06-03T20:24:30+00:00",
       "date": "2026-06-03T20:24:30+00:00"
+    },
+    {
+      "source": "reddit",
+      "subreddit": "r/CryptoCurrency",
+      "title": "Update on Congress.gov \u201cH.R.3633 - Digital Asset Market Clarity Act\u201d. It\u2019s interesting that the market feels the most uncertain right before a big regulation move.",
+      "url": "https://www.reddit.com/r/CryptoCurrency/comments/1tvswsz/update_on_congressgov_hr3633_digital_asset_market/",
+      "timestamp": "2026-06-03T15:32:24+00:00",
+      "date": "2026-06-03T15:32:24+00:00"
     },
     {
       "source": "reddit",
@@ -4663,22 +4617,6 @@
       "url": "https://www.reddit.com/r/CryptoCurrency/comments/1tvmo93/new_trust_wallets_ceo_brings_a_trading_vision_for/",
       "timestamp": "2026-06-03T11:36:36+00:00",
       "date": "2026-06-03T11:36:36+00:00"
-    },
-    {
-      "source": "reddit",
-      "subreddit": "r/CryptoCurrency",
-      "title": "Will Michael Saylor be this cycles SBF ?",
-      "url": "https://www.reddit.com/r/CryptoCurrency/comments/1tv5xly/will_michael_saylor_be_this_cycles_sbf/",
-      "timestamp": "2026-06-02T22:11:10+00:00",
-      "date": "2026-06-02T22:11:10+00:00"
-    },
-    {
-      "source": "reddit",
-      "subreddit": "r/CryptoCurrency",
-      "title": "Update on Congress.gov \u201cH.R.3633 - Digital Asset Market Clarity Act\u201d. It\u2019s interesting that the market feels the most uncertain right before a big regulation move.",
-      "url": "https://www.reddit.com/r/CryptoCurrency/comments/1tvswsz/update_on_congressgov_hr3633_digital_asset_market/",
-      "timestamp": "2026-06-03T15:32:24+00:00",
-      "date": "2026-06-03T15:32:24+00:00"
     },
     {
       "source": "reddit",
@@ -4739,6 +4677,14 @@
     {
       "source": "reddit",
       "subreddit": "r/wallstreetbets",
+      "title": "How bers feel winning today",
+      "url": "https://www.reddit.com/r/wallstreetbets/comments/1tw8so4/how_bers_feel_winning_today/",
+      "timestamp": "2026-06-04T01:10:54+00:00",
+      "date": "2026-06-04T01:10:54+00:00"
+    },
+    {
+      "source": "reddit",
+      "subreddit": "r/wallstreetbets",
       "title": "Exclusive: SpaceX plans to set IPO price at $135 per share, targeting record $75 billion raise, source says",
       "url": "https://www.reddit.com/r/wallstreetbets/comments/1tvmos3/exclusive_spacex_plans_to_set_ipo_price_at_135/",
       "timestamp": "2026-06-03T11:37:20+00:00",
@@ -4779,6 +4725,14 @@
     {
       "source": "reddit",
       "subreddit": "r/wallstreetbets",
+      "title": "I messed up again\u2014 \u201cbest of luck to you\u201d - Schwab Risk Management Team",
+      "url": "https://www.reddit.com/r/wallstreetbets/comments/1tw6qma/i_messed_up_again_best_of_luck_to_you_schwab_risk/",
+      "timestamp": "2026-06-03T23:42:45+00:00",
+      "date": "2026-06-03T23:42:45+00:00"
+    },
+    {
+      "source": "reddit",
+      "subreddit": "r/wallstreetbets",
       "title": "SPCE Down Big So Added On a Ton of Calls",
       "url": "https://www.reddit.com/r/wallstreetbets/comments/1tvrf80/spce_down_big_so_added_on_a_ton_of_calls/",
       "timestamp": "2026-06-03T14:41:46+00:00",
@@ -4811,22 +4765,6 @@
     {
       "source": "reddit",
       "subreddit": "r/wallstreetbets",
-      "title": "I messed up again\u2014 \u201cbest of luck to you\u201d - Schwab Risk Management Team",
-      "url": "https://www.reddit.com/r/wallstreetbets/comments/1tw6qma/i_messed_up_again_best_of_luck_to_you_schwab_risk/",
-      "timestamp": "2026-06-03T23:42:45+00:00",
-      "date": "2026-06-03T23:42:45+00:00"
-    },
-    {
-      "source": "reddit",
-      "subreddit": "r/wallstreetbets",
-      "title": "Goldman Sachs says Big Tech will spend $5.3T on AI from 2025 to 2030 as Meta, Microsoft, Amazon and Alphabet ramp infrastructure buildout",
-      "url": "https://www.reddit.com/r/wallstreetbets/comments/1tvoz9g/goldman_sachs_says_big_tech_will_spend_53t_on_ai/",
-      "timestamp": "2026-06-03T13:13:02+00:00",
-      "date": "2026-06-03T13:13:02+00:00"
-    },
-    {
-      "source": "reddit",
-      "subreddit": "r/wallstreetbets",
       "title": "with the spacex ipo how come smaller cap space stocks are coming off?",
       "url": "https://www.reddit.com/r/wallstreetbets/comments/1tw7j07/with_the_spacex_ipo_how_come_smaller_cap_space/",
       "timestamp": "2026-06-04T00:15:44+00:00",
@@ -4835,10 +4773,10 @@
     {
       "source": "reddit",
       "subreddit": "r/wallstreetbets",
-      "title": "SPCE $300 to $13.5k",
-      "url": "https://www.reddit.com/r/wallstreetbets/comments/1tvt4mv/spce_300_to_135k/",
-      "timestamp": "2026-06-03T15:40:00+00:00",
-      "date": "2026-06-03T15:40:00+00:00"
+      "title": "Goldman Sachs says Big Tech will spend $5.3T on AI from 2025 to 2030 as Meta, Microsoft, Amazon and Alphabet ramp infrastructure buildout",
+      "url": "https://www.reddit.com/r/wallstreetbets/comments/1tvoz9g/goldman_sachs_says_big_tech_will_spend_53t_on_ai/",
+      "timestamp": "2026-06-03T13:13:02+00:00",
+      "date": "2026-06-03T13:13:02+00:00"
     },
     {
       "source": "reddit",
@@ -5347,18 +5285,18 @@
     {
       "source": "reddit",
       "subreddit": "r/smallbusiness",
-      "title": "Small but regular client sent me a comparison between my prices and a competitor, how to deal with it?",
-      "url": "https://www.reddit.com/r/smallbusiness/comments/1tvm2jv/small_but_regular_client_sent_me_a_comparison/",
-      "timestamp": "2026-06-03T11:08:04+00:00",
-      "date": "2026-06-03T11:08:04+00:00"
-    },
-    {
-      "source": "reddit",
-      "subreddit": "r/smallbusiness",
       "title": "Attention to people thinking of Merchant One.",
       "url": "https://www.reddit.com/r/smallbusiness/comments/1tw8gq7/attention_to_people_thinking_of_merchant_one/",
       "timestamp": "2026-06-04T00:56:27+00:00",
       "date": "2026-06-04T00:56:27+00:00"
+    },
+    {
+      "source": "reddit",
+      "subreddit": "r/smallbusiness",
+      "title": "Small but regular client sent me a comparison between my prices and a competitor, how to deal with it?",
+      "url": "https://www.reddit.com/r/smallbusiness/comments/1tvm2jv/small_but_regular_client_sent_me_a_comparison/",
+      "timestamp": "2026-06-03T11:08:04+00:00",
+      "date": "2026-06-03T11:08:04+00:00"
     },
     {
       "source": "reddit",
@@ -5379,10 +5317,10 @@
     {
       "source": "reddit",
       "subreddit": "r/smallbusiness",
-      "title": "Is this unprofessional?",
-      "url": "https://www.reddit.com/r/smallbusiness/comments/1tw873i/is_this_unprofessional/",
-      "timestamp": "2026-06-04T00:44:48+00:00",
-      "date": "2026-06-04T00:44:48+00:00"
+      "title": "Launched my pet e-commerce store 2 months ago. 28 blog posts, Pinterest every day, Reddit every day... still only 4\u20135 visits/day. What would you do next?",
+      "url": "https://www.reddit.com/r/smallbusiness/comments/1tw6x5f/launched_my_pet_ecommerce_store_2_months_ago_28/",
+      "timestamp": "2026-06-03T23:50:22+00:00",
+      "date": "2026-06-03T23:50:22+00:00"
     },
     {
       "source": "reddit",
@@ -5435,10 +5373,26 @@
     {
       "source": "reddit",
       "subreddit": "r/smallbusiness",
+      "title": "Hello People of Reddit! First time user.",
+      "url": "https://www.reddit.com/r/smallbusiness/comments/1tw9197/hello_people_of_reddit_first_time_user/",
+      "timestamp": "2026-06-04T01:21:36+00:00",
+      "date": "2026-06-04T01:21:36+00:00"
+    },
+    {
+      "source": "reddit",
+      "subreddit": "r/smallbusiness",
       "title": "Don\u2019t know what to do",
       "url": "https://www.reddit.com/r/smallbusiness/comments/1tvzs81/dont_know_what_to_do/",
       "timestamp": "2026-06-03T19:22:30+00:00",
       "date": "2026-06-03T19:22:30+00:00"
+    },
+    {
+      "source": "reddit",
+      "subreddit": "r/smallbusiness",
+      "title": "Small Business Laptops Under $800",
+      "url": "https://www.reddit.com/r/smallbusiness/comments/1tw8xpt/small_business_laptops_under_800/",
+      "timestamp": "2026-06-04T01:17:06+00:00",
+      "date": "2026-06-04T01:17:06+00:00"
     },
     {
       "source": "reddit",
@@ -5463,22 +5417,6 @@
       "url": "https://www.reddit.com/r/smallbusiness/comments/1tw845c/kpis_for_a_small_imports_company/",
       "timestamp": "2026-06-04T00:41:16+00:00",
       "date": "2026-06-04T00:41:16+00:00"
-    },
-    {
-      "source": "reddit",
-      "subreddit": "r/smallbusiness",
-      "title": "Any 3PL with upfront transparent pricing?",
-      "url": "https://www.reddit.com/r/smallbusiness/comments/1tw26kt/any_3pl_with_upfront_transparent_pricing/",
-      "timestamp": "2026-06-03T20:47:21+00:00",
-      "date": "2026-06-03T20:47:21+00:00"
-    },
-    {
-      "source": "reddit",
-      "subreddit": "r/smallbusiness",
-      "title": "Looking for a simple cash register to suit our small business\u2019 needs",
-      "url": "https://www.reddit.com/r/smallbusiness/comments/1tvq07o/looking_for_a_simple_cash_register_to_suit_our/",
-      "timestamp": "2026-06-03T13:52:09+00:00",
-      "date": "2026-06-03T13:52:09+00:00"
     },
     {
       "source": "reddit",
@@ -5699,6 +5637,14 @@
     {
       "source": "reddit",
       "subreddit": "r/Plumbing",
+      "title": "I call this one the car wash",
+      "url": "https://www.reddit.com/r/Plumbing/comments/1tw8zoy/i_call_this_one_the_car_wash/",
+      "timestamp": "2026-06-04T01:19:31+00:00",
+      "date": "2026-06-04T01:19:31+00:00"
+    },
+    {
+      "source": "reddit",
+      "subreddit": "r/Plumbing",
       "title": "Is this toilet dangerous?",
       "url": "https://www.reddit.com/r/Plumbing/comments/1tw18pr/is_this_toilet_dangerous/",
       "timestamp": "2026-06-03T20:13:45+00:00",
@@ -5739,6 +5685,22 @@
     {
       "source": "reddit",
       "subreddit": "r/Plumbing",
+      "title": "New tankless water heater",
+      "url": "https://www.reddit.com/r/Plumbing/comments/1tw972a/new_tankless_water_heater/",
+      "timestamp": "2026-06-04T01:28:43+00:00",
+      "date": "2026-06-04T01:28:43+00:00"
+    },
+    {
+      "source": "reddit",
+      "subreddit": "r/Plumbing",
+      "title": "Use new Moen Posi-Temp valve body (right) or older free one (left)",
+      "url": "https://www.reddit.com/r/Plumbing/comments/1tw772w/use_new_moen_positemp_valve_body_right_or_older/",
+      "timestamp": "2026-06-04T00:01:43+00:00",
+      "date": "2026-06-04T00:01:43+00:00"
+    },
+    {
+      "source": "reddit",
+      "subreddit": "r/Plumbing",
       "title": "How long with out water.",
       "url": "https://www.reddit.com/r/Plumbing/comments/1tvya16/how_long_with_out_water/",
       "timestamp": "2026-06-03T18:30:45+00:00",
@@ -5751,14 +5713,6 @@
       "url": "https://www.reddit.com/r/Plumbing/comments/1tw5hki/new_spigot_issues/",
       "timestamp": "2026-06-03T22:52:03+00:00",
       "date": "2026-06-03T22:52:03+00:00"
-    },
-    {
-      "source": "reddit",
-      "subreddit": "r/Plumbing",
-      "title": "Use new Moen Posi-Temp valve body (right) or older free one (left)",
-      "url": "https://www.reddit.com/r/Plumbing/comments/1tw772w/use_new_moen_positemp_valve_body_right_or_older/",
-      "timestamp": "2026-06-04T00:01:43+00:00",
-      "date": "2026-06-04T00:01:43+00:00"
     },
     {
       "source": "reddit",
@@ -5786,22 +5740,6 @@
     },
     {
       "source": "reddit",
-      "subreddit": "r/Plumbing",
-      "title": "New shower head question",
-      "url": "https://www.reddit.com/r/Plumbing/comments/1tw4e13/new_shower_head_question/",
-      "timestamp": "2026-06-03T22:09:09+00:00",
-      "date": "2026-06-03T22:09:09+00:00"
-    },
-    {
-      "source": "reddit",
-      "subreddit": "r/Plumbing",
-      "title": "Electric Water Heater",
-      "url": "https://www.reddit.com/r/Plumbing/comments/1tvrxet/electric_water_heater/",
-      "timestamp": "2026-06-03T14:59:24+00:00",
-      "date": "2026-06-03T14:59:24+00:00"
-    },
-    {
-      "source": "reddit",
       "subreddit": "r/electricians",
       "title": "Monthly Apprenticeship Thread",
       "url": "https://www.reddit.com/r/electricians/comments/1ttguo4/monthly_apprenticeship_thread/",
@@ -5819,6 +5757,14 @@
     {
       "source": "reddit",
       "subreddit": "r/electricians",
+      "title": "How long and how many people would you expect to do this?",
+      "url": "https://www.reddit.com/r/electricians/comments/1tw7ckm/how_long_and_how_many_people_would_you_expect_to/",
+      "timestamp": "2026-06-04T00:08:16+00:00",
+      "date": "2026-06-04T00:08:16+00:00"
+    },
+    {
+      "source": "reddit",
+      "subreddit": "r/electricians",
       "title": "How did I do?",
       "url": "https://www.reddit.com/r/electricians/comments/1tw1eub/how_did_i_do/",
       "timestamp": "2026-06-03T20:19:30+00:00",
@@ -5831,14 +5777,6 @@
       "url": "https://www.reddit.com/r/electricians/comments/1tvx9zl/name_a_better_lighting_advancement/",
       "timestamp": "2026-06-03T17:59:52+00:00",
       "date": "2026-06-03T17:59:52+00:00"
-    },
-    {
-      "source": "reddit",
-      "subreddit": "r/electricians",
-      "title": "How long and how many people would you expect to do this?",
-      "url": "https://www.reddit.com/r/electricians/comments/1tw7ckm/how_long_and_how_many_people_would_you_expect_to/",
-      "timestamp": "2026-06-04T00:08:16+00:00",
-      "date": "2026-06-04T00:08:16+00:00"
     },
     {
       "source": "reddit",
@@ -5883,18 +5821,18 @@
     {
       "source": "reddit",
       "subreddit": "r/electricians",
-      "title": "Morality of data center work",
-      "url": "https://www.reddit.com/r/electricians/comments/1tvlie6/morality_of_data_center_work/",
-      "timestamp": "2026-06-03T10:40:20+00:00",
-      "date": "2026-06-03T10:40:20+00:00"
-    },
-    {
-      "source": "reddit",
-      "subreddit": "r/electricians",
       "title": "European greenhouse feed",
       "url": "https://www.reddit.com/r/electricians/comments/1tvwgo4/european_greenhouse_feed/",
       "timestamp": "2026-06-03T17:31:42+00:00",
       "date": "2026-06-03T17:31:42+00:00"
+    },
+    {
+      "source": "reddit",
+      "subreddit": "r/electricians",
+      "title": "Morality of data center work",
+      "url": "https://www.reddit.com/r/electricians/comments/1tvlie6/morality_of_data_center_work/",
+      "timestamp": "2026-06-03T10:40:20+00:00",
+      "date": "2026-06-03T10:40:20+00:00"
     },
     {
       "source": "reddit",
@@ -5923,6 +5861,22 @@
     {
       "source": "reddit",
       "subreddit": "r/electricians",
+      "title": "Coke head Owner of the company I work for threw a bucket full of tools at me and it barely missed my head.",
+      "url": "https://www.reddit.com/r/electricians/comments/1tw88ho/coke_head_owner_of_the_company_i_work_for_threw_a/",
+      "timestamp": "2026-06-04T00:46:24+00:00",
+      "date": "2026-06-04T00:46:24+00:00"
+    },
+    {
+      "source": "reddit",
+      "subreddit": "r/electricians",
+      "title": "\"We had someone update the panel schedule\"",
+      "url": "https://www.reddit.com/r/electricians/comments/1tw8tyj/we_had_someone_update_the_panel_schedule/",
+      "timestamp": "2026-06-04T01:12:27+00:00",
+      "date": "2026-06-04T01:12:27+00:00"
+    },
+    {
+      "source": "reddit",
+      "subreddit": "r/electricians",
       "title": "Pre Pull Problems",
       "url": "https://www.reddit.com/r/electricians/comments/1tw3rt9/pre_pull_problems/",
       "timestamp": "2026-06-03T21:46:10+00:00",
@@ -5939,26 +5893,10 @@
     {
       "source": "reddit",
       "subreddit": "r/electricians",
-      "title": "What are you guys using for LED bulbs?",
-      "url": "https://www.reddit.com/r/electricians/comments/1tvzfjd/what_are_you_guys_using_for_led_bulbs/",
-      "timestamp": "2026-06-03T19:10:23+00:00",
-      "date": "2026-06-03T19:10:23+00:00"
-    },
-    {
-      "source": "reddit",
-      "subreddit": "r/electricians",
       "title": "Recommended exercises",
       "url": "https://www.reddit.com/r/electricians/comments/1tvuof3/recommended_exercises/",
       "timestamp": "2026-06-03T16:31:32+00:00",
       "date": "2026-06-03T16:31:32+00:00"
-    },
-    {
-      "source": "reddit",
-      "subreddit": "r/electricians",
-      "title": "I love this career but i really wanna go to college. Is it possible?",
-      "url": "https://www.reddit.com/r/electricians/comments/1tvu73z/i_love_this_career_but_i_really_wanna_go_to/",
-      "timestamp": "2026-06-03T16:15:33+00:00",
-      "date": "2026-06-03T16:15:33+00:00"
     },
     {
       "source": "reddit",
@@ -5967,6 +5905,14 @@
       "url": "https://www.reddit.com/r/Roofing/comments/1tw7toh/insurance_retaliation/",
       "timestamp": "2026-06-04T00:28:29+00:00",
       "date": "2026-06-04T00:28:29+00:00"
+    },
+    {
+      "source": "reddit",
+      "subreddit": "r/Roofing",
+      "title": "Am I right that the fancier \"tar paper\" may not be worthwhile?",
+      "url": "https://www.reddit.com/r/Roofing/comments/1tw743x/am_i_right_that_the_fancier_tar_paper_may_not_be/",
+      "timestamp": "2026-06-03T23:58:45+00:00",
+      "date": "2026-06-03T23:58:45+00:00"
     },
     {
       "source": "reddit",
@@ -5999,14 +5945,6 @@
       "url": "https://www.reddit.com/r/Roofing/comments/1tw7pf3/new_roof_shingle_on_ridge/",
       "timestamp": "2026-06-04T00:23:19+00:00",
       "date": "2026-06-04T00:23:19+00:00"
-    },
-    {
-      "source": "reddit",
-      "subreddit": "r/Roofing",
-      "title": "Am I right that the fancier \"tar paper\" may not be worthwhile?",
-      "url": "https://www.reddit.com/r/Roofing/comments/1tw743x/am_i_right_that_the_fancier_tar_paper_may_not_be/",
-      "timestamp": "2026-06-03T23:58:45+00:00",
-      "date": "2026-06-03T23:58:45+00:00"
     },
     {
       "source": "reddit",
@@ -6059,18 +5997,10 @@
     {
       "source": "reddit",
       "subreddit": "r/Roofing",
-      "title": "Looking for feedback on a roof plan measurement/report tool I\u2019m building",
-      "url": "https://www.reddit.com/r/Roofing/comments/1tw82ew/looking_for_feedback_on_a_roof_plan/",
-      "timestamp": "2026-06-04T00:39:14+00:00",
-      "date": "2026-06-04T00:39:14+00:00"
-    },
-    {
-      "source": "reddit",
-      "subreddit": "r/Roofing",
-      "title": "Looking for feedback on a roof plan measurement/report tool I\u2019m building",
-      "url": "https://www.reddit.com/r/Roofing/comments/1tw81ic/looking_for_feedback_on_a_roof_plan/",
-      "timestamp": "2026-06-04T00:38:05+00:00",
-      "date": "2026-06-04T00:38:05+00:00"
+      "title": "Best Class of Architectural Shingles",
+      "url": "https://www.reddit.com/r/Roofing/comments/1tw72mn/best_class_of_architectural_shingles/",
+      "timestamp": "2026-06-03T23:56:57+00:00",
+      "date": "2026-06-03T23:56:57+00:00"
     },
     {
       "source": "reddit",
@@ -6107,6 +6037,14 @@
     {
       "source": "reddit",
       "subreddit": "r/Roofing",
+      "title": "Does my friend\u2019s roof need to be replaced?",
+      "url": "https://www.reddit.com/r/Roofing/comments/1tv9sbc/does_my_friends_roof_need_to_be_replaced/",
+      "timestamp": "2026-06-03T00:49:35+00:00",
+      "date": "2026-06-03T00:49:35+00:00"
+    },
+    {
+      "source": "reddit",
+      "subreddit": "r/Roofing",
       "title": "Which Ownes Corning Shingle has highest curb appeal?",
       "url": "https://www.reddit.com/r/Roofing/comments/1tvxem1/which_ownes_corning_shingle_has_highest_curb/",
       "timestamp": "2026-06-03T18:03:54+00:00",
@@ -6115,10 +6053,10 @@
     {
       "source": "reddit",
       "subreddit": "r/Roofing",
-      "title": "Does my friend\u2019s roof need to be replaced?",
-      "url": "https://www.reddit.com/r/Roofing/comments/1tv9sbc/does_my_friends_roof_need_to_be_replaced/",
-      "timestamp": "2026-06-03T00:49:35+00:00",
-      "date": "2026-06-03T00:49:35+00:00"
+      "title": "Was this done correctly?",
+      "url": "https://www.reddit.com/r/Roofing/comments/1tw182c/was_this_done_correctly/",
+      "timestamp": "2026-06-03T20:13:08+00:00",
+      "date": "2026-06-03T20:13:08+00:00"
     },
     {
       "source": "reddit",
@@ -6203,6 +6141,14 @@
     {
       "source": "reddit",
       "subreddit": "r/lawncare",
+      "title": "How to deal with grass in mulch? Central AR",
+      "url": "https://www.reddit.com/r/lawncare/comments/1tw3to2/how_to_deal_with_grass_in_mulch_central_ar/",
+      "timestamp": "2026-06-03T21:48:15+00:00",
+      "date": "2026-06-03T21:48:15+00:00"
+    },
+    {
+      "source": "reddit",
+      "subreddit": "r/lawncare",
       "title": "One year transformation",
       "url": "https://www.reddit.com/r/lawncare/comments/1tvb53x/one_year_transformation/",
       "timestamp": "2026-06-03T01:49:51+00:00",
@@ -6211,10 +6157,10 @@
     {
       "source": "reddit",
       "subreddit": "r/lawncare",
-      "title": "How to deal with grass in mulch? Central AR",
-      "url": "https://www.reddit.com/r/lawncare/comments/1tw3to2/how_to_deal_with_grass_in_mulch_central_ar/",
-      "timestamp": "2026-06-03T21:48:15+00:00",
-      "date": "2026-06-03T21:48:15+00:00"
+      "title": "Southeast US Newbie (Hooked)",
+      "url": "https://www.reddit.com/r/lawncare/comments/1tw7x03/southeast_us_newbie_hooked/",
+      "timestamp": "2026-06-04T00:32:27+00:00",
+      "date": "2026-06-04T00:32:27+00:00"
     },
     {
       "source": "reddit",
@@ -6235,10 +6181,10 @@
     {
       "source": "reddit",
       "subreddit": "r/lawncare",
-      "title": "Southeast US Newbie (Hooked)",
-      "url": "https://www.reddit.com/r/lawncare/comments/1tw7x03/southeast_us_newbie_hooked/",
-      "timestamp": "2026-06-04T00:32:27+00:00",
-      "date": "2026-06-04T00:32:27+00:00"
+      "title": "It\u2019s always dark at my house. Dark green",
+      "url": "https://www.reddit.com/r/lawncare/comments/1tw92xi/its_always_dark_at_my_house_dark_green/",
+      "timestamp": "2026-06-04T01:23:37+00:00",
+      "date": "2026-06-04T01:23:37+00:00"
     },
     {
       "source": "reddit",
@@ -6247,6 +6193,14 @@
       "url": "https://www.reddit.com/r/lawncare/comments/1tvnfps/any_idea_whats_going_on_here/",
       "timestamp": "2026-06-03T12:10:44+00:00",
       "date": "2026-06-03T12:10:44+00:00"
+    },
+    {
+      "source": "reddit",
+      "subreddit": "r/lawncare",
+      "title": "Please teach me whats best for my mom\u2019s lawn",
+      "url": "https://www.reddit.com/r/lawncare/comments/1tw5j8z/please_teach_me_whats_best_for_my_moms_lawn/",
+      "timestamp": "2026-06-03T22:53:50+00:00",
+      "date": "2026-06-03T22:53:50+00:00"
     },
     {
       "source": "reddit",
@@ -6266,30 +6220,6 @@
     },
     {
       "source": "reddit",
-      "subreddit": "r/lawncare",
-      "title": "Lawn looking like this after a few years, need advice",
-      "url": "https://www.reddit.com/r/lawncare/comments/1tvwrb7/lawn_looking_like_this_after_a_few_years_need/",
-      "timestamp": "2026-06-03T17:41:51+00:00",
-      "date": "2026-06-03T17:41:51+00:00"
-    },
-    {
-      "source": "reddit",
-      "subreddit": "r/lawncare",
-      "title": "What\u2019s going on here? My yard ain\u2019t much but she\u2019s all I got! Alabama",
-      "url": "https://www.reddit.com/r/lawncare/comments/1tw6gi2/whats_going_on_here_my_yard_aint_much_but_shes/",
-      "timestamp": "2026-06-03T23:30:54+00:00",
-      "date": "2026-06-03T23:30:54+00:00"
-    },
-    {
-      "source": "reddit",
-      "subreddit": "r/AutoRepair",
-      "title": "Can I fix this wheel?",
-      "url": "https://www.reddit.com/r/autorepair/comments/1tw6pj2/can_i_fix_this_wheel/",
-      "timestamp": "2026-06-03T23:41:28+00:00",
-      "date": "2026-06-03T23:41:28+00:00"
-    },
-    {
-      "source": "reddit",
       "subreddit": "r/AutoRepair",
       "title": "Help! How do i fix this?",
       "url": "https://www.reddit.com/r/autorepair/comments/1tw67t1/help_how_do_i_fix_this/",
@@ -6303,6 +6233,14 @@
       "url": "https://www.reddit.com/r/autorepair/comments/1tw679z/98_ford_ranger_40_running_rough_and_loss_off_power/",
       "timestamp": "2026-06-03T23:20:27+00:00",
       "date": "2026-06-03T23:20:27+00:00"
+    },
+    {
+      "source": "reddit",
+      "subreddit": "r/AutoRepair",
+      "title": "Can I fix this wheel?",
+      "url": "https://www.reddit.com/r/autorepair/comments/1tw6pj2/can_i_fix_this_wheel/",
+      "timestamp": "2026-06-03T23:41:28+00:00",
+      "date": "2026-06-03T23:41:28+00:00"
     },
     {
       "source": "reddit",
@@ -6459,6 +6397,14 @@
     {
       "source": "reddit",
       "subreddit": "r/technology",
+      "title": "Caught on camera: Shelbyville mayor insinuates citizens opposing data centers are poor renters in \u2018sh***y houses\u2019",
+      "url": "https://www.reddit.com/r/technology/comments/1tw76zm/caught_on_camera_shelbyville_mayor_insinuates/",
+      "timestamp": "2026-06-04T00:01:36+00:00",
+      "date": "2026-06-04T00:01:36+00:00"
+    },
+    {
+      "source": "reddit",
+      "subreddit": "r/technology",
       "title": "It\u2019s official: More money is now spent building data centers than the government spends on transportation",
       "url": "https://www.reddit.com/r/technology/comments/1tw0pv5/its_official_more_money_is_now_spent_building/",
       "timestamp": "2026-06-03T19:55:26+00:00",
@@ -6471,14 +6417,6 @@
       "url": "https://www.reddit.com/r/technology/comments/1tw3yqp/ai_billionaires_are_starting_to_get_scared/",
       "timestamp": "2026-06-03T21:53:30+00:00",
       "date": "2026-06-03T21:53:30+00:00"
-    },
-    {
-      "source": "reddit",
-      "subreddit": "r/technology",
-      "title": "Caught on camera: Shelbyville mayor insinuates citizens opposing data centers are poor renters in \u2018sh***y houses\u2019",
-      "url": "https://www.reddit.com/r/technology/comments/1tw76zm/caught_on_camera_shelbyville_mayor_insinuates/",
-      "timestamp": "2026-06-04T00:01:36+00:00",
-      "date": "2026-06-04T00:01:36+00:00"
     },
     {
       "source": "reddit",
@@ -6515,18 +6453,18 @@
     {
       "source": "reddit",
       "subreddit": "r/technology",
-      "title": "AI Has Ruined the Job Market",
-      "url": "https://www.reddit.com/r/technology/comments/1tvptup/ai_has_ruined_the_job_market/",
-      "timestamp": "2026-06-03T13:45:24+00:00",
-      "date": "2026-06-03T13:45:24+00:00"
-    },
-    {
-      "source": "reddit",
-      "subreddit": "r/technology",
       "title": "Alphabet\u2019s $80 billion stock sale leaves Wall Street in \u2018unprecedented territory,\u2019 says Goldman\u2019s Gutman",
       "url": "https://www.reddit.com/r/technology/comments/1tw61sn/alphabets_80_billion_stock_sale_leaves_wall/",
       "timestamp": "2026-06-03T23:13:58+00:00",
       "date": "2026-06-03T23:13:58+00:00"
+    },
+    {
+      "source": "reddit",
+      "subreddit": "r/technology",
+      "title": "AI Has Ruined the Job Market",
+      "url": "https://www.reddit.com/r/technology/comments/1tvptup/ai_has_ruined_the_job_market/",
+      "timestamp": "2026-06-03T13:45:24+00:00",
+      "date": "2026-06-03T13:45:24+00:00"
     },
     {
       "source": "reddit",
@@ -6547,18 +6485,18 @@
     {
       "source": "reddit",
       "subreddit": "r/technology",
-      "title": "Amazon\u2019s search bar will invent AI-generated products you can\u2019t buy",
-      "url": "https://www.reddit.com/r/technology/comments/1tvx1pe/amazons_search_bar_will_invent_aigenerated/",
-      "timestamp": "2026-06-03T17:51:57+00:00",
-      "date": "2026-06-03T17:51:57+00:00"
-    },
-    {
-      "source": "reddit",
-      "subreddit": "r/technology",
       "title": "Companies Are Using Reddit to Manipulate ChatGPT and Google AI Search / Peptide companies have been doing AI-engine optimization by spamming the biohackers subreddit to manipulate ChatGPT and Google.",
       "url": "https://www.reddit.com/r/technology/comments/1tvr4tu/companies_are_using_reddit_to_manipulate_chatgpt/",
       "timestamp": "2026-06-03T14:32:03+00:00",
       "date": "2026-06-03T14:32:03+00:00"
+    },
+    {
+      "source": "reddit",
+      "subreddit": "r/technology",
+      "title": "Amazon\u2019s search bar will invent AI-generated products you can\u2019t buy",
+      "url": "https://www.reddit.com/r/technology/comments/1tvx1pe/amazons_search_bar_will_invent_aigenerated/",
+      "timestamp": "2026-06-03T17:51:57+00:00",
+      "date": "2026-06-03T17:51:57+00:00"
     },
     {
       "source": "reddit",
@@ -6635,6 +6573,14 @@
     {
       "source": "reddit",
       "subreddit": "r/artificial",
+      "title": "Companies are letting AI gains go to waste, study says",
+      "url": "https://www.reddit.com/r/artificial/comments/1tw5v4v/companies_are_letting_ai_gains_go_to_waste_study/",
+      "timestamp": "2026-06-03T23:06:42+00:00",
+      "date": "2026-06-03T23:06:42+00:00"
+    },
+    {
+      "source": "reddit",
+      "subreddit": "r/artificial",
       "title": "Perplexity is STEALING from users, violating Law and hiding behind their AI bots Sam",
       "url": "https://www.reddit.com/r/artificial/comments/1tvliqu/perplexity_is_stealing_from_users_violating_law/",
       "timestamp": "2026-06-03T10:40:49+00:00",
@@ -6643,10 +6589,10 @@
     {
       "source": "reddit",
       "subreddit": "r/artificial",
-      "title": "Companies are letting AI gains go to waste, study says",
-      "url": "https://www.reddit.com/r/artificial/comments/1tw5v4v/companies_are_letting_ai_gains_go_to_waste_study/",
-      "timestamp": "2026-06-03T23:06:42+00:00",
-      "date": "2026-06-03T23:06:42+00:00"
+      "title": "Would AI be \"nicer\" if trained on data from before the rise of social media",
+      "url": "https://www.reddit.com/r/artificial/comments/1tw4xfx/would_ai_be_nicer_if_trained_on_data_from_before/",
+      "timestamp": "2026-06-03T22:30:10+00:00",
+      "date": "2026-06-03T22:30:10+00:00"
     },
     {
       "source": "reddit",
@@ -6667,10 +6613,10 @@
     {
       "source": "reddit",
       "subreddit": "r/artificial",
-      "title": "Would AI be \"nicer\" if trained on data from before the rise of social media",
-      "url": "https://www.reddit.com/r/artificial/comments/1tw4xfx/would_ai_be_nicer_if_trained_on_data_from_before/",
-      "timestamp": "2026-06-03T22:30:10+00:00",
-      "date": "2026-06-03T22:30:10+00:00"
+      "title": "Qual a melhor I.a para a cria\u00e7\u00e3o de videos com a intelig\u00eancia Artificial( Ilimitada) N\u00e3o da para criar um bom conte\u00fado \u00e9 extenso desenvolvimento com tokens limitado",
+      "url": "https://www.reddit.com/r/artificial/comments/1tw9coe/qual_a_melhor_ia_para_a_cria\u00e7\u00e3o_de_videos_com_a/",
+      "timestamp": "2026-06-04T01:35:34+00:00",
+      "date": "2026-06-04T01:35:34+00:00"
     },
     {
       "source": "reddit",
@@ -6687,14 +6633,6 @@
       "url": "https://www.reddit.com/r/artificial/comments/1tw11jo/how_to_disable_google_ai_overview_for_real/",
       "timestamp": "2026-06-03T20:06:44+00:00",
       "date": "2026-06-03T20:06:44+00:00"
-    },
-    {
-      "source": "reddit",
-      "subreddit": "r/artificial",
-      "title": "Claude alcan\u00e7ando a gnose e rompendo o v\u00e9u do demiurgo",
-      "url": "https://www.reddit.com/r/artificial/comments/1tw5w0u/claude_alcan\u00e7ando_a_gnose_e_rompendo_o_v\u00e9u_do/",
-      "timestamp": "2026-06-03T23:07:43+00:00",
-      "date": "2026-06-03T23:07:43+00:00"
     },
     {
       "source": "reddit",
@@ -6747,18 +6685,18 @@
     {
       "source": "reddit",
       "subreddit": "r/artificial",
-      "title": "Will AI take over the world",
-      "url": "https://www.reddit.com/r/artificial/comments/1tw7dew/will_ai_take_over_the_world/",
-      "timestamp": "2026-06-04T00:09:14+00:00",
-      "date": "2026-06-04T00:09:14+00:00"
-    },
-    {
-      "source": "reddit",
-      "subreddit": "r/artificial",
       "title": "A reckoning is coming for US AI coding tools",
       "url": "https://www.reddit.com/r/artificial/comments/1tvepj3/a_reckoning_is_coming_for_us_ai_coding_tools/",
       "timestamp": "2026-06-03T04:30:11+00:00",
       "date": "2026-06-03T04:30:11+00:00"
+    },
+    {
+      "source": "reddit",
+      "subreddit": "r/artificial",
+      "title": "AI didn't take our jobs. It revealed which jobs were pointless to begin with, and nobody wants to admit that.",
+      "url": "https://www.reddit.com/r/artificial/comments/1tw04r8/ai_didnt_take_our_jobs_it_revealed_which_jobs/",
+      "timestamp": "2026-06-03T19:34:37+00:00",
+      "date": "2026-06-03T19:34:37+00:00"
     },
     {
       "source": "reddit",
@@ -6779,18 +6717,18 @@
     {
       "source": "reddit",
       "subreddit": "r/cybersecurity",
-      "title": "ShinyHunters leaks Charter Communications data: 4.9M customer records exposed via a social-engineering attack on an employee's Microsoft account",
-      "url": "https://www.reddit.com/r/cybersecurity/comments/1tvl5fq/shinyhunters_leaks_charter_communications_data/",
-      "timestamp": "2026-06-03T10:22:20+00:00",
-      "date": "2026-06-03T10:22:20+00:00"
-    },
-    {
-      "source": "reddit",
-      "subreddit": "r/cybersecurity",
       "title": "US: California Back & Pain Specialists Exposes 133GB of Patient Medical Records on Public Server",
       "url": "https://www.reddit.com/r/cybersecurity/comments/1tw3a4j/us_california_back_pain_specialists_exposes_133gb/",
       "timestamp": "2026-06-03T21:27:34+00:00",
       "date": "2026-06-03T21:27:34+00:00"
+    },
+    {
+      "source": "reddit",
+      "subreddit": "r/cybersecurity",
+      "title": "ShinyHunters leaks Charter Communications data: 4.9M customer records exposed via a social-engineering attack on an employee's Microsoft account",
+      "url": "https://www.reddit.com/r/cybersecurity/comments/1tvl5fq/shinyhunters_leaks_charter_communications_data/",
+      "timestamp": "2026-06-03T10:22:20+00:00",
+      "date": "2026-06-03T10:22:20+00:00"
     },
     {
       "source": "reddit",
@@ -6875,6 +6813,14 @@
     {
       "source": "reddit",
       "subreddit": "r/cybersecurity",
+      "title": "A two-year-old RCE bug in Redis was just made public. An AI tool found it. The full exploit chain is out.",
+      "url": "https://www.reddit.com/r/cybersecurity/comments/1tvtyo0/a_twoyearold_rce_bug_in_redis_was_just_made/",
+      "timestamp": "2026-06-03T16:07:48+00:00",
+      "date": "2026-06-03T16:07:48+00:00"
+    },
+    {
+      "source": "reddit",
+      "subreddit": "r/cybersecurity",
       "title": "Trusting Microsoft with your offensive security repos",
       "url": "https://www.reddit.com/r/cybersecurity/comments/1tw0c0c/trusting_microsoft_with_your_offensive_security/",
       "timestamp": "2026-06-03T19:41:43+00:00",
@@ -6899,26 +6845,18 @@
     {
       "source": "reddit",
       "subreddit": "r/cybersecurity",
-      "title": "Hands Free: What LLM Driven Vulnerability Research Looks Like",
-      "url": "https://www.reddit.com/r/cybersecurity/comments/1tvvy3q/hands_free_what_llm_driven_vulnerability_research/",
-      "timestamp": "2026-06-03T17:14:22+00:00",
-      "date": "2026-06-03T17:14:22+00:00"
-    },
-    {
-      "source": "reddit",
-      "subreddit": "r/cybersecurity",
-      "title": "A two-year-old RCE bug in Redis was just made public. An AI tool found it. The full exploit chain is out.",
-      "url": "https://www.reddit.com/r/cybersecurity/comments/1tvtyo0/a_twoyearold_rce_bug_in_redis_was_just_made/",
-      "timestamp": "2026-06-03T16:07:48+00:00",
-      "date": "2026-06-03T16:07:48+00:00"
-    },
-    {
-      "source": "reddit",
-      "subreddit": "r/cybersecurity",
       "title": "Don't Take Wednesday Off When You Manage Vulnerabilities",
       "url": "https://www.reddit.com/r/cybersecurity/comments/1tvqnvc/dont_take_wednesday_off_when_you_manage/",
       "timestamp": "2026-06-03T14:15:34+00:00",
       "date": "2026-06-03T14:15:34+00:00"
+    },
+    {
+      "source": "reddit",
+      "subreddit": "r/cybersecurity",
+      "title": "Hands Free: What LLM Driven Vulnerability Research Looks Like",
+      "url": "https://www.reddit.com/r/cybersecurity/comments/1tvvy3q/hands_free_what_llm_driven_vulnerability_research/",
+      "timestamp": "2026-06-03T17:14:22+00:00",
+      "date": "2026-06-03T17:14:22+00:00"
     },
     {
       "source": "reddit",
@@ -7275,14 +7213,6 @@
     {
       "source": "reddit",
       "subreddit": "r/collapse",
-      "title": "The fish will die regardless: With some Western reservoirs set to run dry, officials lift fishing limits",
-      "url": "https://www.reddit.com/r/collapse/comments/1tvn015/the_fish_will_die_regardless_with_some_western/",
-      "timestamp": "2026-06-03T11:51:43+00:00",
-      "date": "2026-06-03T11:51:43+00:00"
-    },
-    {
-      "source": "reddit",
-      "subreddit": "r/collapse",
       "title": "I've spent years drumming on about microplastics, and I've just learned the research is flawed in a critical way that invalidates the research. I KNOW it sounds insane, but read the research I link.",
       "url": "https://www.reddit.com/r/collapse/comments/1tw6rl6/ive_spent_years_drumming_on_about_microplastics/",
       "timestamp": "2026-06-03T23:43:55+00:00",
@@ -7291,10 +7221,26 @@
     {
       "source": "reddit",
       "subreddit": "r/collapse",
+      "title": "The fish will die regardless: With some Western reservoirs set to run dry, officials lift fishing limits",
+      "url": "https://www.reddit.com/r/collapse/comments/1tvn015/the_fish_will_die_regardless_with_some_western/",
+      "timestamp": "2026-06-03T11:51:43+00:00",
+      "date": "2026-06-03T11:51:43+00:00"
+    },
+    {
+      "source": "reddit",
+      "subreddit": "r/collapse",
       "title": "The Coming Food Security Shock",
       "url": "https://www.reddit.com/r/collapse/comments/1tvormw/the_coming_food_security_shock/",
       "timestamp": "2026-06-03T13:05:02+00:00",
       "date": "2026-06-03T13:05:02+00:00"
+    },
+    {
+      "source": "reddit",
+      "subreddit": "r/collapse",
+      "title": "Flesh-eating screwworm case suspected in South Texas, USDA says",
+      "url": "https://www.reddit.com/r/collapse/comments/1tw8tbo/flesheating_screwworm_case_suspected_in_south/",
+      "timestamp": "2026-06-04T01:11:42+00:00",
+      "date": "2026-06-04T01:11:42+00:00"
     },
     {
       "source": "reddit",
@@ -7399,14 +7345,6 @@
       "url": "https://www.reddit.com/r/collapse/comments/1ttwe1u/the_new_abolitionism_april_2014/",
       "timestamp": "2026-06-01T15:51:44+00:00",
       "date": "2026-06-01T15:51:44+00:00"
-    },
-    {
-      "source": "reddit",
-      "subreddit": "r/collapse",
-      "title": "\ud83c\udfda\ufe0f The End of the Nice Life",
-      "url": "https://www.reddit.com/r/collapse/comments/1ttjl6q/the_end_of_the_nice_life/",
-      "timestamp": "2026-06-01T06:18:44+00:00",
-      "date": "2026-06-01T06:18:44+00:00"
     },
     {
       "source": "reddit",
@@ -7579,6 +7517,14 @@
     {
       "source": "reddit",
       "subreddit": "r/weather",
+      "title": "A Coming Together of Worlds",
+      "url": "https://www.reddit.com/r/weather/comments/1tw8vbp/a_coming_together_of_worlds/",
+      "timestamp": "2026-06-04T01:14:10+00:00",
+      "date": "2026-06-04T01:14:10+00:00"
+    },
+    {
+      "source": "reddit",
+      "subreddit": "r/weather",
       "title": "This view is one of the reasons I'm grateful to call this place home...\ud83c\udfeb\ud83c\udfeb",
       "url": "https://www.reddit.com/r/weather/comments/1tvu0ej/this_view_is_one_of_the_reasons_im_grateful_to/",
       "timestamp": "2026-06-03T16:09:26+00:00",
@@ -7595,6 +7541,14 @@
     {
       "source": "reddit",
       "subreddit": "r/weather",
+      "title": "What is this?",
+      "url": "https://www.reddit.com/r/weather/comments/1tw7fob/what_is_this/",
+      "timestamp": "2026-06-04T00:11:48+00:00",
+      "date": "2026-06-04T00:11:48+00:00"
+    },
+    {
+      "source": "reddit",
+      "subreddit": "r/weather",
       "title": "Storm predictions for tonight",
       "url": "https://www.reddit.com/r/weather/comments/1tw5026/storm_predictions_for_tonight/",
       "timestamp": "2026-06-03T22:32:59+00:00",
@@ -7607,14 +7561,6 @@
       "url": "https://www.reddit.com/r/weather/comments/1tw4kd3/managed_to_capture_a_couple_of_lightning_strikes/",
       "timestamp": "2026-06-03T22:15:41+00:00",
       "date": "2026-06-03T22:15:41+00:00"
-    },
-    {
-      "source": "reddit",
-      "subreddit": "r/weather",
-      "title": "What is this?",
-      "url": "https://www.reddit.com/r/weather/comments/1tw7fob/what_is_this/",
-      "timestamp": "2026-06-04T00:11:48+00:00",
-      "date": "2026-06-04T00:11:48+00:00"
     },
     {
       "source": "reddit",
@@ -7719,14 +7665,6 @@
       "url": "https://www.reddit.com/r/weather/comments/1tvge1b/clouds_are_rolling_in_its_fittin_to_rain/",
       "timestamp": "2026-06-03T05:56:33+00:00",
       "date": "2026-06-03T05:56:33+00:00"
-    },
-    {
-      "source": "reddit",
-      "subreddit": "r/weather",
-      "title": "Weather Watch June 3, 2026, for Southern NH, with Rick Gordon",
-      "url": "https://www.reddit.com/r/weather/comments/1tvfgzb/weather_watch_june_3_2026_for_southern_nh_with/",
-      "timestamp": "2026-06-03T05:08:21+00:00",
-      "date": "2026-06-03T05:08:21+00:00"
     },
     {
       "source": "reddit",
@@ -8139,18 +8077,18 @@
     {
       "source": "reddit",
       "subreddit": "r/climate",
-      "title": "Rising seas could eventually 'drown' mangroves and release carbon. Mangroves cover less than 1% of Earth's surface but store about 15% of all ocean carbon, most of it in their soils. This ability to s",
-      "url": "https://www.reddit.com/r/climate/comments/1tvvbdj/rising_seas_could_eventually_drown_mangroves_and/",
-      "timestamp": "2026-06-03T16:53:14+00:00",
-      "date": "2026-06-03T16:53:14+00:00"
-    },
-    {
-      "source": "reddit",
-      "subreddit": "r/climate",
       "title": "E.U. Steps Up Ocean Monitoring as Trump Administration Backs Away | Days after the U.S. said it would kill a network of ocean monitors, European officials pledged to invest more in their version, call",
       "url": "https://www.reddit.com/r/climate/comments/1tw6q7v/eu_steps_up_ocean_monitoring_as_trump/",
       "timestamp": "2026-06-03T23:42:16+00:00",
       "date": "2026-06-03T23:42:16+00:00"
+    },
+    {
+      "source": "reddit",
+      "subreddit": "r/climate",
+      "title": "Rising seas could eventually 'drown' mangroves and release carbon. Mangroves cover less than 1% of Earth's surface but store about 15% of all ocean carbon, most of it in their soils. This ability to s",
+      "url": "https://www.reddit.com/r/climate/comments/1tvvbdj/rising_seas_could_eventually_drown_mangroves_and/",
+      "timestamp": "2026-06-03T16:53:14+00:00",
+      "date": "2026-06-03T16:53:14+00:00"
     },
     {
       "source": "reddit",
@@ -8187,6 +8125,14 @@
     {
       "source": "reddit",
       "subreddit": "r/climate",
+      "title": "Ireland will not hit 2030 carbon targets and could face billions in fines estimated between \u20ac8bn-\u20ac26bn, says Minister for Climate Darragh O\u2019Brien.",
+      "url": "https://www.reddit.com/r/climate/comments/1tw1bny/ireland_will_not_hit_2030_carbon_targets_and/",
+      "timestamp": "2026-06-03T20:16:29+00:00",
+      "date": "2026-06-03T20:16:29+00:00"
+    },
+    {
+      "source": "reddit",
+      "subreddit": "r/climate",
       "title": "3,400 deaths in a day: India's extreme heat days are deadlier than we imagined",
       "url": "https://www.reddit.com/r/climate/comments/1turzd6/3400_deaths_in_a_day_indias_extreme_heat_days_are/",
       "timestamp": "2026-06-02T14:05:24+00:00",
@@ -8199,14 +8145,6 @@
       "url": "https://www.reddit.com/r/climate/comments/1tw6173/flight_shame_and_all_of_its_controversy_dock_in/",
       "timestamp": "2026-06-03T23:13:17+00:00",
       "date": "2026-06-03T23:13:17+00:00"
-    },
-    {
-      "source": "reddit",
-      "subreddit": "r/climate",
-      "title": "El Ni\u00f1o expected to develop in coming months, bringing hotter and drier weather to eastern Australia | Australia weather",
-      "url": "https://www.reddit.com/r/climate/comments/1tvlk55/el_ni\u00f1o_expected_to_develop_in_coming_months/",
-      "timestamp": "2026-06-03T10:42:48+00:00",
-      "date": "2026-06-03T10:42:48+00:00"
     },
     {
       "source": "reddit",
@@ -8323,6 +8261,14 @@
     {
       "source": "reddit",
       "subreddit": "r/aviation",
+      "title": "At Philadelphia Airport Right Now!",
+      "url": "https://www.reddit.com/r/aviation/comments/1tw7a5h/at_philadelphia_airport_right_now/",
+      "timestamp": "2026-06-04T00:05:26+00:00",
+      "date": "2026-06-04T00:05:26+00:00"
+    },
+    {
+      "source": "reddit",
+      "subreddit": "r/aviation",
       "title": "Akasa Air Boeing 737 MAX Powerful Takeoff",
       "url": "https://www.reddit.com/r/aviation/comments/1tvux14/akasa_air_boeing_737_max_powerful_takeoff/",
       "timestamp": "2026-06-03T16:39:49+00:00",
@@ -8343,14 +8289,6 @@
       "url": "https://www.reddit.com/r/aviation/comments/1tvxh5x/why_would_this_plane_make_a_big_290_degree_turn/",
       "timestamp": "2026-06-03T18:06:03+00:00",
       "date": "2026-06-03T18:06:03+00:00"
-    },
-    {
-      "source": "reddit",
-      "subreddit": "r/aviation",
-      "title": "At Philadelphia Airport Right Now!",
-      "url": "https://www.reddit.com/r/aviation/comments/1tw7a5h/at_philadelphia_airport_right_now/",
-      "timestamp": "2026-06-04T00:05:26+00:00",
-      "date": "2026-06-04T00:05:26+00:00"
     },
     {
       "source": "reddit",
@@ -8947,18 +8885,18 @@
     {
       "source": "reddit",
       "subreddit": "r/india",
-      "title": "Chaos Outside Khan Sir Coaching: Guard Beaten, Property Damaged",
-      "url": "https://www.reddit.com/r/india/comments/1tvqizs/chaos_outside_khan_sir_coaching_guard_beaten/",
-      "timestamp": "2026-06-03T14:10:48+00:00",
-      "date": "2026-06-03T14:10:48+00:00"
-    },
-    {
-      "source": "reddit",
-      "subreddit": "r/india",
       "title": "MP\u2019s Barkatullah University seeks Guv nod to be renamed Vagdevi University",
       "url": "https://www.reddit.com/r/india/comments/1tw4kia/mps_barkatullah_university_seeks_guv_nod_to_be/",
       "timestamp": "2026-06-03T22:15:50+00:00",
       "date": "2026-06-03T22:15:50+00:00"
+    },
+    {
+      "source": "reddit",
+      "subreddit": "r/india",
+      "title": "Chaos Outside Khan Sir Coaching: Guard Beaten, Property Damaged",
+      "url": "https://www.reddit.com/r/india/comments/1tvqizs/chaos_outside_khan_sir_coaching_guard_beaten/",
+      "timestamp": "2026-06-03T14:10:48+00:00",
+      "date": "2026-06-03T14:10:48+00:00"
     },
     {
       "source": "reddit",
@@ -8987,6 +8925,14 @@
     {
       "source": "reddit",
       "subreddit": "r/india",
+      "title": "Ropes, mattresses, bricks, bare hands: How locals fought to save hotel guests",
+      "url": "https://www.reddit.com/r/india/comments/1tw8pf5/ropes_mattresses_bricks_bare_hands_how_locals/",
+      "timestamp": "2026-06-04T01:06:56+00:00",
+      "date": "2026-06-04T01:06:56+00:00"
+    },
+    {
+      "source": "reddit",
+      "subreddit": "r/india",
       "title": "Implications of India's 1.9 fertility rate. Boon or bane for us?",
       "url": "https://www.reddit.com/r/india/comments/1tvo2u1/implications_of_indias_19_fertility_rate_boon_or/",
       "timestamp": "2026-06-03T12:37:44+00:00",
@@ -8999,14 +8945,6 @@
       "url": "https://www.reddit.com/r/india/comments/1tvh3ql/mp_24yearold_ali_khan_beaten_to_death_after_train/",
       "timestamp": "2026-06-03T06:34:50+00:00",
       "date": "2026-06-03T06:34:50+00:00"
-    },
-    {
-      "source": "reddit",
-      "subreddit": "r/india",
-      "title": "Sick and tired of watching our country deteriorate while we make memes about it",
-      "url": "https://www.reddit.com/r/india/comments/1tvuf9r/sick_and_tired_of_watching_our_country/",
-      "timestamp": "2026-06-03T16:22:58+00:00",
-      "date": "2026-06-03T16:22:58+00:00"
     },
     {
       "source": "reddit",
@@ -9051,18 +8989,18 @@
     {
       "source": "reddit",
       "subreddit": "r/europe",
-      "title": "The Dutch defense ministry wants to stop using Palantir",
-      "url": "https://www.reddit.com/r/europe/comments/1tvrwy3/the_dutch_defense_ministry_wants_to_stop_using/",
-      "timestamp": "2026-06-03T14:58:59+00:00",
-      "date": "2026-06-03T14:58:59+00:00"
-    },
-    {
-      "source": "reddit",
-      "subreddit": "r/europe",
       "title": "Rubio says Gr\u00f8nland is part of Denmark \u2013 'for now'",
       "url": "https://www.reddit.com/r/europe/comments/1tw3jii/rubio_says_gr\u00f8nland_is_part_of_denmark_for_now/",
       "timestamp": "2026-06-03T21:37:24+00:00",
       "date": "2026-06-03T21:37:24+00:00"
+    },
+    {
+      "source": "reddit",
+      "subreddit": "r/europe",
+      "title": "The Dutch defense ministry wants to stop using Palantir",
+      "url": "https://www.reddit.com/r/europe/comments/1tvrwy3/the_dutch_defense_ministry_wants_to_stop_using/",
+      "timestamp": "2026-06-03T14:58:59+00:00",
+      "date": "2026-06-03T14:58:59+00:00"
     },
     {
       "source": "reddit",
@@ -9075,18 +9013,18 @@
     {
       "source": "reddit",
       "subreddit": "r/europe",
-      "title": "New chat control meetings this June. As expected, this abomination won't go away. Please, pretty please, continue being an annoyance to the MEPs in the pro camp.",
-      "url": "https://www.reddit.com/r/europe/comments/1tvwp5f/new_chat_control_meetings_this_june_as_expected/",
-      "timestamp": "2026-06-03T17:39:43+00:00",
-      "date": "2026-06-03T17:39:43+00:00"
-    },
-    {
-      "source": "reddit",
-      "subreddit": "r/europe",
       "title": "Cocaine found in Russian Metropolitan's car in the Czech Republic",
       "url": "https://www.reddit.com/r/europe/comments/1tw7icj/cocaine_found_in_russian_metropolitans_car_in_the/",
       "timestamp": "2026-06-04T00:14:58+00:00",
       "date": "2026-06-04T00:14:58+00:00"
+    },
+    {
+      "source": "reddit",
+      "subreddit": "r/europe",
+      "title": "New chat control meetings this June. As expected, this abomination won't go away. Please, pretty please, continue being an annoyance to the MEPs in the pro camp.",
+      "url": "https://www.reddit.com/r/europe/comments/1tvwp5f/new_chat_control_meetings_this_june_as_expected/",
+      "timestamp": "2026-06-03T17:39:43+00:00",
+      "date": "2026-06-03T17:39:43+00:00"
     },
     {
       "source": "reddit",
@@ -9443,6 +9381,14 @@
     {
       "source": "reddit",
       "subreddit": "r/China",
+      "title": "[Sharing my 23rd collection]: 14th-15thC Thai Sawankhalok (Si Satchanalai) Celadon Trade Ceramics \u2014 With Conflicting Chinese Expert Opinions",
+      "url": "https://www.reddit.com/r/China/comments/1tw0h3t/sharing_my_23rd_collection_14th15thc_thai/",
+      "timestamp": "2026-06-03T19:46:48+00:00",
+      "date": "2026-06-03T19:46:48+00:00"
+    },
+    {
+      "source": "reddit",
+      "subreddit": "r/China",
       "title": "TikTok Billionaire Overtakes Mukesh Ambani as Asia\u2019s Second-Richest Person",
       "url": "https://www.reddit.com/r/China/comments/1tvaq90/tiktok_billionaire_overtakes_mukesh_ambani_as/",
       "timestamp": "2026-06-03T01:31:20+00:00",
@@ -9479,14 +9425,6 @@
       "url": "https://www.reddit.com/r/China/comments/1tvja4e/k23_beijing_to_ulaanbaatar_international_train/",
       "timestamp": "2026-06-03T08:39:16+00:00",
       "date": "2026-06-03T08:39:16+00:00"
-    },
-    {
-      "source": "reddit",
-      "subreddit": "r/China",
-      "title": "What is the best city to learn speaking ?",
-      "url": "https://www.reddit.com/r/China/comments/1tv7am0/what_is_the_best_city_to_learn_speaking/",
-      "timestamp": "2026-06-02T23:04:19+00:00",
-      "date": "2026-06-02T23:04:19+00:00"
     },
     {
       "source": "reddit",
@@ -9654,127 +9592,127 @@
       "source": "hackernews",
       "title": "Elixir v1.20: Now a gradually typed language",
       "url": "https://elixir-lang.org/blog/2026/06/03/elixir-v1-20-0-released/",
-      "score": 523,
-      "comments": 182,
+      "score": 539,
+      "comments": 198,
       "date": "2026-06-03T19:02:26+00:00"
-    },
-    {
-      "source": "hackernews",
-      "title": "Gemma 4 12B: A unified, encoder-free multimodal model",
-      "url": "https://blog.google/innovation-and-ai/technology/developers-tools/introducing-gemma-4-12b/",
-      "score": 670,
-      "comments": 287,
-      "date": "2026-06-03T16:04:42+00:00"
-    },
-    {
-      "source": "hackernews",
-      "title": "I was recently diagnosed with anti-NMDA receptor encephalitis",
-      "url": "https://burntsushi.net/encephalitis/",
-      "score": 485,
-      "comments": 141,
-      "date": "2026-06-03T14:10:06+00:00"
     },
     {
       "source": "hackernews",
       "title": "The ways we contain Claude across products",
       "url": "https://www.anthropic.com/engineering/how-we-contain-claude",
-      "score": 12,
-      "comments": 2,
+      "score": 28,
+      "comments": 4,
       "date": "2026-06-04T00:27:52+00:00"
+    },
+    {
+      "source": "hackernews",
+      "title": "Gemma 4 12B: A unified, encoder-free multimodal model",
+      "url": "https://blog.google/innovation-and-ai/technology/developers-tools/introducing-gemma-4-12b/",
+      "score": 681,
+      "comments": 288,
+      "date": "2026-06-03T16:04:42+00:00"
+    },
+    {
+      "source": "hackernews",
+      "title": "I built a vulnerable app and spent $1,500 seeing if LLMs could hack it",
+      "url": "https://kasra.blog/blog/i-spent-1500-seeing-if-llms-could-hack-my-app/",
+      "score": 16,
+      "comments": 2,
+      "date": "2026-06-04T00:56:32+00:00"
+    },
+    {
+      "source": "hackernews",
+      "title": "I was recently diagnosed with anti-NMDA receptor encephalitis",
+      "url": "https://burntsushi.net/encephalitis/",
+      "score": 495,
+      "comments": 147,
+      "date": "2026-06-03T14:10:06+00:00"
     },
     {
       "source": "hackernews",
       "title": "Artificial intelligence is not conscious \u2013 Ted Chiang",
       "url": "https://www.theatlantic.com/philosophy/2026/06/no-artificial-intelligence-is-not-conscious/687378/",
-      "score": 207,
-      "comments": 381,
+      "score": 223,
+      "comments": 404,
       "date": "2026-06-03T17:51:37+00:00"
-    },
-    {
-      "source": "hackernews",
-      "title": "Meteor Explodes over Massachusetts",
-      "url": "https://www.nbcboston.com/news/local/meteor-explodes-over-massachusetts-what-we-know-and-where-it-landed/3957663/",
-      "score": 39,
-      "comments": 15,
-      "date": "2026-06-01T20:31:24+00:00"
     },
     {
       "source": "hackernews",
       "title": "DaVinci Resolve 21",
       "url": "https://www.blackmagicdesign.com/products/davinciresolve/whatsnew",
-      "score": 385,
-      "comments": 182,
+      "score": 389,
+      "comments": 184,
       "date": "2026-06-03T14:18:39+00:00"
+    },
+    {
+      "source": "hackernews",
+      "title": "Meteor Explodes over Massachusetts",
+      "url": "https://www.nbcboston.com/news/local/meteor-explodes-over-massachusetts-what-we-know-and-where-it-landed/3957663/",
+      "score": 48,
+      "comments": 16,
+      "date": "2026-06-01T20:31:24+00:00"
     },
     {
       "source": "hackernews",
       "title": "Uber's $1,500/month AI limit is a useful signal for AI tool pricing",
       "url": "https://simonwillison.net/2026/Jun/3/uber-caps-usage/",
-      "score": 359,
-      "comments": 459,
+      "score": 366,
+      "comments": 468,
       "date": "2026-06-03T12:25:14+00:00"
-    },
-    {
-      "source": "hackernews",
-      "title": "Ableton Extensions SDK",
-      "url": "https://www.ableton.com/en/live/extensions/",
-      "score": 62,
-      "comments": 27,
-      "date": "2026-06-03T20:39:34+00:00"
-    },
-    {
-      "source": "hackernews",
-      "title": "Pwnd Blaster: Hacking your PC using your speaker without ever touching it",
-      "url": "https://blog.nns.ee/2026/06/03/katana-badusb/",
-      "score": 644,
-      "comments": 103,
-      "date": "2026-06-03T10:53:00+00:00"
-    },
-    {
-      "source": "hackernews",
-      "title": "Mobile won the platform war on distribution, not capability",
-      "url": "https://prashamhtrivedi.in/mobile-lost-on-distribution/",
-      "score": 6,
-      "comments": 0,
-      "date": "2026-05-31T15:16:00+00:00"
-    },
-    {
-      "source": "hackernews",
-      "title": "A Man Who Reads Books for a Living (One Every Two Days)",
-      "url": "https://lithub.com/the-man-who-reads-books-for-a-living-one-every-two-days/",
-      "score": 73,
-      "comments": 47,
-      "date": "2026-06-03T20:08:33+00:00"
-    },
-    {
-      "source": "hackernews",
-      "title": "The \u00dc Programming Language",
-      "url": "https://github.com/Panzerschrek/U-00DC-Sprache/",
-      "score": 19,
-      "comments": 9,
-      "date": "2026-06-04T00:00:04+00:00"
     },
     {
       "source": "hackernews",
       "title": "Journey to JPEG XL: open-source experiments shaped the future of image coding",
       "url": "https://opensource.googleblog.com/2026/06/journey-to-jpeg-xl-how-open-source-experiments-shaped-the-future-of-image-coding.html",
-      "score": 28,
-      "comments": 15,
+      "score": 36,
+      "comments": 17,
       "date": "2026-06-03T21:55:23+00:00"
+    },
+    {
+      "source": "hackernews",
+      "title": "Pwnd Blaster: Hacking your PC using your speaker without ever touching it",
+      "url": "https://blog.nns.ee/2026/06/03/katana-badusb/",
+      "score": 647,
+      "comments": 104,
+      "date": "2026-06-03T10:53:00+00:00"
+    },
+    {
+      "source": "hackernews",
+      "title": "Ableton Extensions SDK",
+      "url": "https://www.ableton.com/en/live/extensions/",
+      "score": 64,
+      "comments": 29,
+      "date": "2026-06-03T20:39:34+00:00"
+    },
+    {
+      "source": "hackernews",
+      "title": "The \u00dc Programming Language",
+      "url": "https://github.com/Panzerschrek/U-00DC-Sprache/",
+      "score": 20,
+      "comments": 11,
+      "date": "2026-06-04T00:00:04+00:00"
+    },
+    {
+      "source": "hackernews",
+      "title": "A Man Who Reads Books for a Living (One Every Two Days)",
+      "url": "https://lithub.com/the-man-who-reads-books-for-a-living-one-every-two-days/",
+      "score": 75,
+      "comments": 49,
+      "date": "2026-06-03T20:08:33+00:00"
     },
     {
       "source": "hackernews",
       "title": "Gooey: A GPU-accelerated UI framework for Zig",
       "url": "https://github.com/duanebester/gooey",
-      "score": 134,
-      "comments": 45,
+      "score": 135,
+      "comments": 46,
       "date": "2026-06-03T17:12:27+00:00"
     },
     {
       "source": "hackernews",
       "title": "Launch HN: Hyper (YC P26) \u2013 Company brain to power agentic development",
       "url": "https://news.ycombinator.com/item?id=48387095",
-      "score": 49,
+      "score": 50,
       "comments": 54,
       "date": "2026-06-03T17:39:53+00:00"
     },
@@ -9782,23 +9720,31 @@
       "source": "hackernews",
       "title": "A Post-Quantum Future for Let's Encrypt",
       "url": "https://letsencrypt.org/2026/06/03/pq-certs",
-      "score": 214,
-      "comments": 121,
+      "score": 215,
+      "comments": 122,
       "date": "2026-06-03T15:06:09+00:00"
     },
     {
       "source": "hackernews",
       "title": "ESP32-S31",
       "url": "https://www.espressif.com/en/products/socs/esp32-s31",
-      "score": 247,
+      "score": 250,
       "comments": 141,
       "date": "2026-06-03T16:10:25+00:00"
     },
     {
       "source": "hackernews",
+      "title": "Patching my guitar amp's firmware",
+      "url": "https://mforney.org/blog/2026-05-28-patching-my-guitar-amps-firmware.html",
+      "score": 31,
+      "comments": 4,
+      "date": "2026-05-31T20:26:43+00:00"
+    },
+    {
+      "source": "hackernews",
       "title": "A Mathematician's Lament \u2013 Paul Lockhart (2002) [pdf]",
       "url": "https://worrydream.com/refs/Lockhart_2002_-_A_Mathematician%27s_Lament.pdf",
-      "score": 25,
+      "score": 30,
       "comments": 1,
       "date": "2026-06-03T21:32:10+00:00"
     },
@@ -9806,17 +9752,17 @@
       "source": "hackernews",
       "title": "Self-hosted dev sandboxes with preview URLs (Docker, Go, no K8s)",
       "url": "https://github.com/tastyeffectco/sandboxes",
-      "score": 47,
-      "comments": 9,
+      "score": 48,
+      "comments": 10,
       "date": "2026-06-03T19:43:37+00:00"
     },
     {
       "source": "hackernews",
-      "title": "Patching my guitar amp's firmware",
-      "url": "https://mforney.org/blog/2026-05-28-patching-my-guitar-amps-firmware.html",
-      "score": 26,
-      "comments": 2,
-      "date": "2026-05-31T20:26:43+00:00"
+      "title": "Stop Killing Games",
+      "url": "https://jxself.org/stop-killing-games.shtml",
+      "score": 188,
+      "comments": 177,
+      "date": "2026-06-01T13:16:51+00:00"
     },
     {
       "source": "hackernews",
@@ -9828,57 +9774,33 @@
     },
     {
       "source": "hackernews",
-      "title": "Stop Killing Games",
-      "url": "https://jxself.org/stop-killing-games.shtml",
-      "score": 186,
-      "comments": 175,
-      "date": "2026-06-01T13:16:51+00:00"
+      "title": "Embryos shape their limbs: a key discovery of \"genetic brakes\"",
+      "url": "https://nouvelles.umontreal.ca/en/article/2026/06/02/how-embryos-shape-their-limbs-a-key-discovery-of-genetic-brakes",
+      "score": 51,
+      "comments": 2,
+      "date": "2026-06-03T17:50:16+00:00"
     },
     {
       "source": "hackernews",
-      "title": "Embryos shape their limbs: a key discovery of \"genetic brakes\"",
-      "url": "https://nouvelles.umontreal.ca/en/article/2026/06/02/how-embryos-shape-their-limbs-a-key-discovery-of-genetic-brakes",
-      "score": 50,
-      "comments": 2,
-      "date": "2026-06-03T17:50:16+00:00"
+      "title": "Mathematicians issue warning as AI rapidly gains ground",
+      "url": "https://www.science.org/content/article/mathematicians-issue-warning-ai-rapidly-gains-ground",
+      "score": 174,
+      "comments": 220,
+      "date": "2026-06-03T10:05:48+00:00"
     },
     {
       "source": "hackernews",
       "title": "Brume is a 24-voice multi-timbral desktop synth for the CM5",
       "url": "https://brume.aftertone.co/",
       "score": 46,
-      "comments": 24,
+      "comments": 26,
       "date": "2026-06-03T19:41:21+00:00"
-    },
-    {
-      "source": "hackernews",
-      "title": "Mathematicians issue warning as AI rapidly gains ground",
-      "url": "https://www.science.org/content/article/mathematicians-issue-warning-ai-rapidly-gains-ground",
-      "score": 169,
-      "comments": 215,
-      "date": "2026-06-03T10:05:48+00:00"
-    },
-    {
-      "source": "hackernews",
-      "title": "Angular v22",
-      "url": "https://blog.angular.dev/announcing-angular-v22-c52bb83a4664",
-      "score": 102,
-      "comments": 50,
-      "date": "2026-06-03T16:51:49+00:00"
-    },
-    {
-      "source": "hackernews",
-      "title": "Show HN: Mnemo \u2013 local-first AI memory layer for any LLM (Rust, SQLite,petgraph)",
-      "url": "https://github.com/zaydmulani09/mnemo",
-      "score": 22,
-      "comments": 14,
-      "date": "2026-06-03T20:32:10+00:00"
     },
     {
       "source": "hackernews",
       "title": "PlayStation Architecture",
       "url": "https://www.copetti.org/writings/consoles/playstation/",
-      "score": 250,
+      "score": 253,
       "comments": 50,
       "date": "2026-06-03T10:24:25+00:00"
     },
@@ -9886,9 +9808,25 @@
       "source": "hackernews",
       "title": "Every Byte Matters",
       "url": "https://fzakaria.com/2026/06/01/every-byte-matters",
-      "score": 227,
+      "score": 230,
       "comments": 111,
       "date": "2026-06-03T11:04:04+00:00"
+    },
+    {
+      "source": "hackernews",
+      "title": "Show HN: Mnemo \u2013 local-first AI memory layer for any LLM (Rust, SQLite,petgraph)",
+      "url": "https://github.com/zaydmulani09/mnemo",
+      "score": 24,
+      "comments": 14,
+      "date": "2026-06-03T20:32:10+00:00"
+    },
+    {
+      "source": "hackernews",
+      "title": "Tony Gilroy Accepts Award for Andor: \"Fuck the Empire \"",
+      "url": "https://kottke.org/26/06/tony-gilroy-accepts-award-for-andor-fuck-the-empire-1",
+      "score": 22,
+      "comments": 5,
+      "date": "2026-06-03T22:46:57+00:00"
     }
   ],
   "rss": [
@@ -9929,9 +9867,9 @@
     },
     {
       "source": "rss_bbc_world",
-      "title": "Foreign nationals among at least 21 killed in Delhi fire",
-      "url": "https://www.bbc.com/news/articles/czd29327qzvo?at_medium=RSS&at_campaign=rss",
-      "date": "Wed, 03 Jun 2026 11:54:25 GMT",
+      "title": "Germany blames Russia for 'bitter defeat' in UN Security Council bid",
+      "url": "https://www.bbc.com/news/articles/cgmp3pg71edo?at_medium=RSS&at_campaign=rss",
+      "date": "Thu, 04 Jun 2026 01:02:24 GMT",
       "tier": "news"
     },
     {
@@ -9943,23 +9881,23 @@
     },
     {
       "source": "rss_bbc_world",
+      "title": "Senate Republicans axe $1bn for Trump's new White House ballroom",
+      "url": "https://www.bbc.com/news/articles/c0r2kxrvlgpo?at_medium=RSS&at_campaign=rss",
+      "date": "Thu, 04 Jun 2026 01:18:09 GMT",
+      "tier": "news"
+    },
+    {
+      "source": "rss_bbc_world",
+      "title": "Foreign nationals among at least 21 killed in Delhi fire",
+      "url": "https://www.bbc.com/news/articles/czd29327qzvo?at_medium=RSS&at_campaign=rss",
+      "date": "Wed, 03 Jun 2026 11:54:25 GMT",
+      "tier": "news"
+    },
+    {
+      "source": "rss_bbc_world",
       "title": "Ex-UK political aide and Biden cabinet secretary lead California governor primary vote count",
       "url": "https://www.bbc.com/news/articles/cn8p0yz512no?at_medium=RSS&at_campaign=rss",
       "date": "Wed, 03 Jun 2026 15:32:30 GMT",
-      "tier": "news"
-    },
-    {
-      "source": "rss_bbc_world",
-      "title": "Director Wim Wenders withdraws 1975 film over actress's teen topless scene",
-      "url": "https://www.bbc.com/news/articles/c99legznj8do?at_medium=RSS&at_campaign=rss",
-      "date": "Wed, 03 Jun 2026 15:30:20 GMT",
-      "tier": "news"
-    },
-    {
-      "source": "rss_bbc_world",
-      "title": "US announces new tariffs over forced labour concerns",
-      "url": "https://www.bbc.com/news/articles/cq6pe7nvldmo?at_medium=RSS&at_campaign=rss",
-      "date": "Wed, 03 Jun 2026 15:12:28 GMT",
       "tier": "news"
     },
     {
@@ -10034,6 +9972,13 @@
     },
     {
       "source": "rss_aljazeera",
+      "title": "Nigeria\u2019s second-chance schools: women balancing study and survival",
+      "url": "https://www.aljazeera.com/features/2026/6/4/nigerias-second-chance-schools-women-balancing-study-and-survival?traffic_source=rss",
+      "date": "Thu, 04 Jun 2026 01:16:26 +0000",
+      "tier": "news"
+    },
+    {
+      "source": "rss_aljazeera",
       "title": "Iran war live: Tensions simmer after latest US-Iran clashes in Gulf",
       "url": "https://www.aljazeera.com/news/liveblog/2026/6/4/iran-war-live-tensions-simmer-after-latest-us-iran-clashes-in-gulf?traffic_source=rss",
       "date": "Thu, 04 Jun 2026 00:00:00 +0000",
@@ -10093,13 +10038,6 @@
       "title": "Ukraine attacks St Petersburg as Russia hosts its own \u2018Davos\u2019",
       "url": "https://www.aljazeera.com/video/newsfeed/2026/6/3/ukraine-attacks-st-petersburg-as-russia-hosts-its-own-davos?traffic_source=rss",
       "date": "Wed, 03 Jun 2026 21:15:45 +0000",
-      "tier": "news"
-    },
-    {
-      "source": "rss_aljazeera",
-      "title": "Deadly fire rips through New Delhi hotel",
-      "url": "https://www.aljazeera.com/video/newsfeed/2026/6/3/deadly-fire-rips-through-new-delhi-hotel?traffic_source=rss",
-      "date": "Wed, 03 Jun 2026 21:01:17 +0000",
       "tier": "news"
     },
     {
@@ -11078,7 +11016,7 @@
       "currency": "RUB",
       "name": "Russian Ruble",
       "rate_per_usd": 73.603873,
-      "change_pct": 1.73,
+      "change_pct": 0.0,
       "date": "Thu, 04 Jun 2026 00:02:31 +0000"
     },
     {
@@ -11086,7 +11024,7 @@
       "currency": "CNY",
       "name": "Chinese Yuan",
       "rate_per_usd": 6.788285,
-      "change_pct": 0.14,
+      "change_pct": 0.0,
       "date": "Thu, 04 Jun 2026 00:02:31 +0000"
     },
     {
@@ -11094,7 +11032,7 @@
       "currency": "EUR",
       "name": "Euro",
       "rate_per_usd": 0.861602,
-      "change_pct": 0.21,
+      "change_pct": 0.0,
       "date": "Thu, 04 Jun 2026 00:02:31 +0000"
     },
     {
@@ -11102,7 +11040,7 @@
       "currency": "GBP",
       "name": "British Pound",
       "rate_per_usd": 0.744599,
-      "change_pct": 0.24,
+      "change_pct": 0.0,
       "date": "Thu, 04 Jun 2026 00:02:31 +0000"
     },
     {
@@ -11110,7 +11048,7 @@
       "currency": "JPY",
       "name": "Japanese Yen",
       "rate_per_usd": 159.93404,
-      "change_pct": 0.04,
+      "change_pct": 0.0,
       "date": "Thu, 04 Jun 2026 00:02:31 +0000"
     },
     {
@@ -11118,7 +11056,7 @@
       "currency": "INR",
       "name": "Indian Rupee",
       "rate_per_usd": 95.791364,
-      "change_pct": 0.47,
+      "change_pct": 0.0,
       "date": "Thu, 04 Jun 2026 00:02:31 +0000"
     },
     {
@@ -11126,7 +11064,7 @@
       "currency": "BRL",
       "name": "Brazilian Real",
       "rate_per_usd": 5.030038,
-      "change_pct": 0.22,
+      "change_pct": 0.0,
       "date": "Thu, 04 Jun 2026 00:02:31 +0000"
     },
     {
@@ -11134,7 +11072,7 @@
       "currency": "MXN",
       "name": "Mexican Peso",
       "rate_per_usd": 17.324617,
-      "change_pct": 0.12,
+      "change_pct": 0.0,
       "date": "Thu, 04 Jun 2026 00:02:31 +0000"
     },
     {
@@ -11142,7 +11080,7 @@
       "currency": "TRY",
       "name": "Turkish Lira",
       "rate_per_usd": 45.98938,
-      "change_pct": 0.06,
+      "change_pct": 0.0,
       "date": "Thu, 04 Jun 2026 00:02:31 +0000"
     },
     {
@@ -11150,7 +11088,7 @@
       "currency": "ZAR",
       "name": "South African Rand",
       "rate_per_usd": 16.325586,
-      "change_pct": 0.53,
+      "change_pct": 0.0,
       "date": "Thu, 04 Jun 2026 00:02:31 +0000"
     },
     {
@@ -11158,7 +11096,7 @@
       "currency": "ARS",
       "name": "Argentine Peso",
       "rate_per_usd": 1435.3812,
-      "change_pct": 0.59,
+      "change_pct": 0.0,
       "date": "Thu, 04 Jun 2026 00:02:31 +0000"
     },
     {
@@ -11166,7 +11104,7 @@
       "currency": "NGN",
       "name": "Nigerian Naira",
       "rate_per_usd": 1361.562746,
-      "change_pct": -0.24,
+      "change_pct": 0.0,
       "date": "Thu, 04 Jun 2026 00:02:31 +0000"
     },
     {
@@ -11174,7 +11112,7 @@
       "currency": "EGP",
       "name": "Egyptian Pound",
       "rate_per_usd": 51.943706,
-      "change_pct": 0.01,
+      "change_pct": 0.0,
       "date": "Thu, 04 Jun 2026 00:02:31 +0000"
     },
     {
@@ -11182,7 +11120,7 @@
       "currency": "UAH",
       "name": "Ukrainian Hryvnia",
       "rate_per_usd": 44.349949,
-      "change_pct": 0.03,
+      "change_pct": 0.0,
       "date": "Thu, 04 Jun 2026 00:02:31 +0000"
     },
     {
@@ -11190,7 +11128,7 @@
       "currency": "TWD",
       "name": "Taiwan Dollar",
       "rate_per_usd": 31.503497,
-      "change_pct": 0.13,
+      "change_pct": 0.0,
       "date": "Thu, 04 Jun 2026 00:02:31 +0000"
     },
     {
@@ -11198,7 +11136,7 @@
       "currency": "KRW",
       "name": "South Korean Won",
       "rate_per_usd": 1529.373612,
-      "change_pct": 0.82,
+      "change_pct": 0.0,
       "date": "Thu, 04 Jun 2026 00:02:31 +0000"
     },
     {
@@ -11214,9 +11152,8 @@
       "currency": "IRR",
       "name": "Iranian Rial",
       "rate_per_usd": 1284082.163103,
-      "change_pct": 3.85,
-      "date": "Thu, 04 Jun 2026 00:02:31 +0000",
-      "shock": true
+      "change_pct": 0.0,
+      "date": "Thu, 04 Jun 2026 00:02:31 +0000"
     }
   ],
   "commodities": [
@@ -11224,71 +11161,71 @@
       "source": "commodities",
       "symbol": "CL=F",
       "name": "Crude Oil WTI",
-      "price": 95.45,
+      "price": 95.15,
       "previous_close": 87.36,
-      "change_pct": 9.26,
+      "change_pct": 8.92,
       "currency": "USD",
-      "date": "2026-06-04T01:12:17.451036+00:00"
+      "date": "2026-06-04T01:38:48.105130+00:00"
     },
     {
       "source": "commodities",
       "symbol": "GC=F",
       "name": "Gold",
-      "price": 4478.2,
+      "price": 4492.8,
       "previous_close": 4560.5,
-      "change_pct": -1.8,
+      "change_pct": -1.48,
       "currency": "USD",
-      "date": "2026-06-04T01:12:18.297438+00:00"
+      "date": "2026-06-04T01:38:48.786921+00:00"
     },
     {
       "source": "commodities",
       "symbol": "SI=F",
       "name": "Silver",
-      "price": 73.55,
+      "price": 73.88,
       "previous_close": 75.616,
-      "change_pct": -2.73,
+      "change_pct": -2.3,
       "currency": "USD",
-      "date": "2026-06-04T01:12:19.100834+00:00"
+      "date": "2026-06-04T01:38:49.463540+00:00"
     },
     {
       "source": "commodities",
       "symbol": "NG=F",
       "name": "Natural Gas",
-      "price": 3.239,
+      "price": 3.234,
       "previous_close": 3.29,
-      "change_pct": -1.55,
+      "change_pct": -1.7,
       "currency": "USD",
-      "date": "2026-06-04T01:12:19.930224+00:00"
+      "date": "2026-06-04T01:38:50.150361+00:00"
     },
     {
       "source": "commodities",
       "symbol": "HG=F",
       "name": "Copper",
-      "price": 6.484,
+      "price": 6.4705,
       "previous_close": 6.3595,
-      "change_pct": 1.96,
+      "change_pct": 1.75,
       "currency": "USD",
-      "date": "2026-06-04T01:12:20.618924+00:00"
+      "date": "2026-06-04T01:38:50.819047+00:00"
     },
     {
       "source": "commodities",
       "symbol": "ZW=F",
       "name": "Wheat",
-      "price": 585.75,
+      "price": 585.0,
       "previous_close": 610.5,
-      "change_pct": -4.05,
+      "change_pct": -4.18,
       "currency": "USX",
-      "date": "2026-06-04T01:12:21.415848+00:00"
+      "date": "2026-06-04T01:38:51.501798+00:00"
     },
     {
       "source": "commodities",
       "symbol": "ZC=F",
       "name": "Corn",
-      "price": 430.5,
+      "price": 429.5,
       "previous_close": 446.75,
-      "change_pct": -3.64,
+      "change_pct": -3.86,
       "currency": "USX",
-      "date": "2026-06-04T01:12:22.101077+00:00"
+      "date": "2026-06-04T01:38:52.180789+00:00"
     }
   ],
   "global_weather": [
@@ -11298,14 +11235,14 @@
       "region": "Europe",
       "lat": 51.51,
       "lon": -0.13,
-      "temp_c": 14.4,
-      "wind_kmh": 21.2,
+      "temp_c": 14.3,
+      "wind_kmh": 20.5,
       "weather_code": 3,
       "forecast_max_temp": 19.2,
       "forecast_max_wind": 27.4,
       "forecast_max_precip": 5.1,
       "extreme": false,
-      "date": "2026-06-04T01:12:24.569775+00:00"
+      "date": "2026-06-04T01:38:54.440996+00:00"
     },
     {
       "source": "global_weather",
@@ -11313,14 +11250,14 @@
       "region": "Asia",
       "lat": 35.68,
       "lon": 139.69,
-      "temp_c": 20.6,
-      "wind_kmh": 7.2,
+      "temp_c": 21.0,
+      "wind_kmh": 7.5,
       "weather_code": 1,
       "forecast_max_temp": 22.9,
       "forecast_max_wind": 7.5,
       "forecast_max_precip": 0.0,
       "extreme": false,
-      "date": "2026-06-04T01:12:24.570016+00:00"
+      "date": "2026-06-04T01:38:54.441059+00:00"
     },
     {
       "source": "global_weather",
@@ -11328,14 +11265,14 @@
       "region": "Asia",
       "lat": 19.08,
       "lon": 72.88,
-      "temp_c": 27.9,
-      "wind_kmh": 9.4,
-      "weather_code": 2,
+      "temp_c": 28.0,
+      "wind_kmh": 10.5,
+      "weather_code": 1,
       "forecast_max_temp": 33.0,
       "forecast_max_wind": 17.4,
       "forecast_max_precip": 4.9,
       "extreme": false,
-      "date": "2026-06-04T01:12:24.570113+00:00"
+      "date": "2026-06-04T01:38:54.441084+00:00"
     },
     {
       "source": "global_weather",
@@ -11343,14 +11280,14 @@
       "region": "Africa",
       "lat": 6.45,
       "lon": 3.4,
-      "temp_c": 24.9,
-      "wind_kmh": 3.8,
+      "temp_c": 24.6,
+      "wind_kmh": 2.8,
       "weather_code": 81,
       "forecast_max_temp": 29.2,
       "forecast_max_wind": 17.1,
       "forecast_max_precip": 34.7,
       "extreme": false,
-      "date": "2026-06-04T01:12:24.570230+00:00"
+      "date": "2026-06-04T01:38:54.441106+00:00"
     },
     {
       "source": "global_weather",
@@ -11358,14 +11295,14 @@
       "region": "Middle East",
       "lat": 30.04,
       "lon": 31.24,
-      "temp_c": 22.3,
-      "wind_kmh": 7.6,
+      "temp_c": 22.0,
+      "wind_kmh": 7.2,
       "weather_code": 0,
       "forecast_max_temp": 38.7,
       "forecast_max_wind": 18.6,
       "forecast_max_precip": 0.0,
       "extreme": false,
-      "date": "2026-06-04T01:12:24.570312+00:00"
+      "date": "2026-06-04T01:38:54.441126+00:00"
     },
     {
       "source": "global_weather",
@@ -11373,14 +11310,14 @@
       "region": "South America",
       "lat": -23.55,
       "lon": -46.64,
-      "temp_c": 15.6,
-      "wind_kmh": 6.6,
-      "weather_code": 3,
+      "temp_c": 15.3,
+      "wind_kmh": 6.7,
+      "weather_code": 2,
       "forecast_max_temp": 21.9,
       "forecast_max_wind": 12.8,
       "forecast_max_precip": 0.2,
       "extreme": false,
-      "date": "2026-06-04T01:12:24.570396+00:00"
+      "date": "2026-06-04T01:38:54.441147+00:00"
     },
     {
       "source": "global_weather",
@@ -11388,14 +11325,14 @@
       "region": "North America",
       "lat": 19.43,
       "lon": -99.13,
-      "temp_c": 18.5,
-      "wind_kmh": 5.9,
-      "weather_code": 63,
+      "temp_c": 17.9,
+      "wind_kmh": 6.6,
+      "weather_code": 53,
       "forecast_max_temp": 25.1,
       "forecast_max_wind": 9.2,
       "forecast_max_precip": 21.9,
       "extreme": false,
-      "date": "2026-06-04T01:12:24.570476+00:00"
+      "date": "2026-06-04T01:38:54.441167+00:00"
     },
     {
       "source": "global_weather",
@@ -11403,14 +11340,14 @@
       "region": "Asia",
       "lat": 39.9,
       "lon": 116.4,
-      "temp_c": 22.5,
-      "wind_kmh": 5.3,
-      "weather_code": 3,
+      "temp_c": 21.1,
+      "wind_kmh": 6.1,
+      "weather_code": 53,
       "forecast_max_temp": 26.2,
       "forecast_max_wind": 16.4,
       "forecast_max_precip": 19.2,
       "extreme": false,
-      "date": "2026-06-04T01:12:24.570559+00:00"
+      "date": "2026-06-04T01:38:54.441187+00:00"
     },
     {
       "source": "global_weather",
@@ -11418,14 +11355,14 @@
       "region": "Europe",
       "lat": 55.76,
       "lon": 37.62,
-      "temp_c": 13.8,
-      "wind_kmh": 2.6,
+      "temp_c": 13.7,
+      "wind_kmh": 1.9,
       "weather_code": 2,
       "forecast_max_temp": 24.5,
       "forecast_max_wind": 8.4,
       "forecast_max_precip": 0.2,
       "extreme": false,
-      "date": "2026-06-04T01:12:24.570640+00:00"
+      "date": "2026-06-04T01:38:54.441207+00:00"
     },
     {
       "source": "global_weather",
@@ -11433,14 +11370,14 @@
       "region": "Oceania",
       "lat": -33.87,
       "lon": 151.21,
-      "temp_c": 16.3,
-      "wind_kmh": 14.1,
-      "weather_code": 0,
+      "temp_c": 16.5,
+      "wind_kmh": 13.5,
+      "weather_code": 1,
       "forecast_max_temp": 18.4,
       "forecast_max_wind": 22.1,
       "forecast_max_precip": 0.3,
       "extreme": false,
-      "date": "2026-06-04T01:12:24.570720+00:00"
+      "date": "2026-06-04T01:38:54.441227+00:00"
     },
     {
       "source": "global_weather",
@@ -11448,14 +11385,14 @@
       "region": "Africa",
       "lat": -1.29,
       "lon": 36.82,
-      "temp_c": 15.6,
-      "wind_kmh": 5.2,
+      "temp_c": 15.7,
+      "wind_kmh": 5.7,
       "weather_code": 3,
       "forecast_max_temp": 25.5,
       "forecast_max_wind": 13.5,
       "forecast_max_precip": 5.8,
       "extreme": false,
-      "date": "2026-06-04T01:12:24.570824+00:00"
+      "date": "2026-06-04T01:38:54.441247+00:00"
     },
     {
       "source": "global_weather",
@@ -11463,14 +11400,14 @@
       "region": "Asia",
       "lat": -6.21,
       "lon": 106.85,
-      "temp_c": 28.7,
-      "wind_kmh": 0.9,
-      "weather_code": 2,
+      "temp_c": 29.5,
+      "wind_kmh": 0.6,
+      "weather_code": 3,
       "forecast_max_temp": 35.2,
       "forecast_max_wind": 14.5,
       "forecast_max_precip": 6.8,
       "extreme": false,
-      "date": "2026-06-04T01:12:24.570904+00:00"
+      "date": "2026-06-04T01:38:54.441267+00:00"
     },
     {
       "source": "global_weather",
@@ -11478,14 +11415,14 @@
       "region": "Middle East",
       "lat": 25.2,
       "lon": 55.27,
-      "temp_c": 28.9,
-      "wind_kmh": 13.0,
+      "temp_c": 28.8,
+      "wind_kmh": 12.8,
       "weather_code": 0,
       "forecast_max_temp": 37.1,
       "forecast_max_wind": 17.7,
       "forecast_max_precip": 0.0,
       "extreme": false,
-      "date": "2026-06-04T01:12:24.570983+00:00"
+      "date": "2026-06-04T01:38:54.441287+00:00"
     },
     {
       "source": "global_weather",
@@ -11493,14 +11430,14 @@
       "region": "Europe",
       "lat": 50.45,
       "lon": 30.52,
-      "temp_c": 14.2,
-      "wind_kmh": 7.2,
+      "temp_c": 13.9,
+      "wind_kmh": 7.0,
       "weather_code": 3,
       "forecast_max_temp": 27.3,
       "forecast_max_wind": 9.4,
       "forecast_max_precip": 0.2,
       "extreme": false,
-      "date": "2026-06-04T01:12:24.571063+00:00"
+      "date": "2026-06-04T01:38:54.441307+00:00"
     },
     {
       "source": "global_weather",
@@ -11508,14 +11445,14 @@
       "region": "Asia",
       "lat": 25.03,
       "lon": 121.57,
-      "temp_c": 30.1,
-      "wind_kmh": 4.1,
+      "temp_c": 31.1,
+      "wind_kmh": 6.0,
       "weather_code": 3,
       "forecast_max_temp": 34.7,
       "forecast_max_wind": 12.0,
       "forecast_max_precip": 20.9,
       "extreme": false,
-      "date": "2026-06-04T01:12:24.571144+00:00"
+      "date": "2026-06-04T01:38:54.441327+00:00"
     }
   ],
   "space_weather": [
@@ -14103,73 +14040,73 @@
     },
     {
       "source": "sec_edgar",
-      "title": "4 - SWARTZ DAVID L (0001282406) (Reporting)",
+      "title": "4 - Rubrik, Inc. (0001943896) (Issuer)",
       "filing_type": "Form 4 (Insider Trade)",
-      "date": "2026-06-03T21:11:48-04:00",
-      "url": "https://www.sec.gov/Archives/edgar/data/1282406/000168316826004530/0001683168-26-004530-index.htm"
+      "date": "2026-06-03T21:38:57-04:00",
+      "url": "https://www.sec.gov/Archives/edgar/data/1943896/000134047226000011/0001340472-26-000011-index.htm"
     },
     {
       "source": "sec_edgar",
-      "title": "4 - RadNet, Inc. (0000790526) (Issuer)",
+      "title": "4 - Herren Richard Scott (0001340472) (Reporting)",
       "filing_type": "Form 4 (Insider Trade)",
-      "date": "2026-06-03T21:11:48-04:00",
-      "url": "https://www.sec.gov/Archives/edgar/data/790526/000168316826004530/0001683168-26-004530-index.htm"
+      "date": "2026-06-03T21:38:57-04:00",
+      "url": "https://www.sec.gov/Archives/edgar/data/1340472/000134047226000011/0001340472-26-000011-index.htm"
     },
     {
       "source": "sec_edgar",
-      "title": "4 - SLTA SPV-2 (GP), L.L.C. (0001767116) (Reporting)",
+      "title": "4 - Tamboran Resources Corp (0001997652) (Issuer)",
       "filing_type": "Form 4 (Insider Trade)",
-      "date": "2026-06-03T21:11:43-04:00",
-      "url": "https://www.sec.gov/Archives/edgar/data/1767116/000119312526256142/0001193125-26-256142-index.htm"
+      "date": "2026-06-03T21:35:46-04:00",
+      "url": "https://www.sec.gov/Archives/edgar/data/1997652/000119312526256197/0001193125-26-256197-index.htm"
     },
     {
       "source": "sec_edgar",
-      "title": "4 - SLTA SPV-2, L.P. (0001767115) (Reporting)",
+      "title": "4 - SIEGEL DAVID N (0001243456) (Reporting)",
       "filing_type": "Form 4 (Insider Trade)",
-      "date": "2026-06-03T21:11:43-04:00",
-      "url": "https://www.sec.gov/Archives/edgar/data/1767115/000119312526256142/0001193125-26-256142-index.htm"
+      "date": "2026-06-03T21:35:46-04:00",
+      "url": "https://www.sec.gov/Archives/edgar/data/1243456/000119312526256197/0001193125-26-256197-index.htm"
     },
     {
       "source": "sec_edgar",
-      "title": "4 - SL SPV-2, L.P. (0001767114) (Reporting)",
+      "title": "4 - Tamboran Resources Corp (0001997652) (Issuer)",
       "filing_type": "Form 4 (Insider Trade)",
-      "date": "2026-06-03T21:11:43-04:00",
-      "url": "https://www.sec.gov/Archives/edgar/data/1767114/000119312526256142/0001193125-26-256142-index.htm"
+      "date": "2026-06-03T21:35:34-04:00",
+      "url": "https://www.sec.gov/Archives/edgar/data/1997652/000119312526256196/0001193125-26-256196-index.htm"
     },
     {
       "source": "sec_edgar",
-      "title": "4 - Durban Egon (0001651403) (Reporting)",
+      "title": "4 - Barrett Fredrick J (0001309447) (Reporting)",
       "filing_type": "Form 4 (Insider Trade)",
-      "date": "2026-06-03T21:11:43-04:00",
-      "url": "https://www.sec.gov/Archives/edgar/data/1651403/000119312526256142/0001193125-26-256142-index.htm"
+      "date": "2026-06-03T21:35:34-04:00",
+      "url": "https://www.sec.gov/Archives/edgar/data/1309447/000119312526256196/0001193125-26-256196-index.htm"
     },
     {
       "source": "sec_edgar",
-      "title": "4 - Dell Technologies Inc. (0001571996) (Issuer)",
+      "title": "4 - Tamboran Resources Corp (0001997652) (Issuer)",
       "filing_type": "Form 4 (Insider Trade)",
-      "date": "2026-06-03T21:11:43-04:00",
-      "url": "https://www.sec.gov/Archives/edgar/data/1571996/000119312526256142/0001193125-26-256142-index.htm"
+      "date": "2026-06-03T21:35:15-04:00",
+      "url": "https://www.sec.gov/Archives/edgar/data/1997652/000119312526256194/0001193125-26-256194-index.htm"
     },
     {
       "source": "sec_edgar",
-      "title": "4 - Silver Lake Group, L.L.C. (0001418226) (Reporting)",
+      "title": "4 - STONEBURNER RICHARD K (0001195112) (Reporting)",
       "filing_type": "Form 4 (Insider Trade)",
-      "date": "2026-06-03T21:11:43-04:00",
-      "url": "https://www.sec.gov/Archives/edgar/data/1418226/000119312526256142/0001193125-26-256142-index.htm"
+      "date": "2026-06-03T21:35:15-04:00",
+      "url": "https://www.sec.gov/Archives/edgar/data/1195112/000119312526256194/0001193125-26-256194-index.htm"
     },
     {
       "source": "sec_edgar",
-      "title": "4 - SPURLOCK GREGORY E. (0001578507) (Reporting)",
+      "title": "4 - Elliott Patrick James Dymock (0002025651) (Reporting)",
       "filing_type": "Form 4 (Insider Trade)",
-      "date": "2026-06-03T21:11:34-04:00",
-      "url": "https://www.sec.gov/Archives/edgar/data/1578507/000168316826004529/0001683168-26-004529-index.htm"
+      "date": "2026-06-03T21:34:17-04:00",
+      "url": "https://www.sec.gov/Archives/edgar/data/2025651/000119312526256191/0001193125-26-256191-index.htm"
     },
     {
       "source": "sec_edgar",
-      "title": "4 - RadNet, Inc. (0000790526) (Issuer)",
+      "title": "4 - Tamboran Resources Corp (0001997652) (Issuer)",
       "filing_type": "Form 4 (Insider Trade)",
-      "date": "2026-06-03T21:11:34-04:00",
-      "url": "https://www.sec.gov/Archives/edgar/data/790526/000168316826004529/0001683168-26-004529-index.htm"
+      "date": "2026-06-03T21:34:17-04:00",
+      "url": "https://www.sec.gov/Archives/edgar/data/1997652/000119312526256191/0001193125-26-256191-index.htm"
     }
   ],
   "fema": [
