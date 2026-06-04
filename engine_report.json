@@ -1,20 +1,20 @@
 {
-  "generated": "2026-06-04T02:46:19.084887+00:00",
+  "generated": "2026-06-04T03:22:26.365562+00:00",
   "engine_state": "active",
   "signals": [
-    {
-      "type": "flood",
-      "area": "McMullen, TX",
-      "niche": "plumbing",
-      "action": "Flood warnings in McMullen, TX. Plumbers, restoration, mold companies will spike.",
-      "urgency": "today",
-      "pitch_hook": "Water damage calls are coming. Every one you miss is $500+ walking away."
-    },
     {
       "type": "flood",
       "area": "Guadalupe Mountains of Eddy County; Eddy County Plains; Northern Lea County; Central Lea County; Southern Lea County; Loving; Winkler; Ward; Pecos; Terrell; Guadalupe Mountains Above 7000 Feet; Guadal",
       "niche": "plumbing",
       "action": "Flood warnings in Guadalupe Mountains of Eddy County; Eddy County Plains; Northern Lea County; Central Lea County; Southern Lea County; Loving; Winkler; Ward; Pecos; Terrell; Guadalupe Mountains Above 7000 Feet; Guadal. Plumbers, restoration, mold companies will spike.",
+      "urgency": "today",
+      "pitch_hook": "Water damage calls are coming. Every one you miss is $500+ walking away."
+    },
+    {
+      "type": "flood",
+      "area": "McMullen, TX",
+      "niche": "plumbing",
+      "action": "Flood warnings in McMullen, TX. Plumbers, restoration, mold companies will spike.",
       "urgency": "today",
       "pitch_hook": "Water damage calls are coming. Every one you miss is $500+ walking away."
     },
@@ -31,14 +31,6 @@
       "area": "Jackson, AR; Woodruff, AR",
       "niche": "plumbing",
       "action": "Flood warnings in Jackson, AR; Woodruff, AR. Plumbers, restoration, mold companies will spike.",
-      "urgency": "today",
-      "pitch_hook": "Water damage calls are coming. Every one you miss is $500+ walking away."
-    },
-    {
-      "type": "flood",
-      "area": "Custer, OK; Dewey, OK; Roger Mills, OK",
-      "niche": "plumbing",
-      "action": "Flood warnings in Custer, OK; Dewey, OK; Roger Mills, OK. Plumbers, restoration, mold companies will spike.",
       "urgency": "today",
       "pitch_hook": "Water damage calls are coming. Every one you miss is $500+ walking away."
     },
@@ -79,6 +71,14 @@
       "area": "Tattnall, GA; Toombs, GA",
       "niche": "plumbing",
       "action": "Flood warnings in Tattnall, GA; Toombs, GA. Plumbers, restoration, mold companies will spike.",
+      "urgency": "today",
+      "pitch_hook": "Water damage calls are coming. Every one you miss is $500+ walking away."
+    },
+    {
+      "type": "flood",
+      "area": "St. Clair, MO; Vernon, MO",
+      "niche": "plumbing",
+      "action": "Flood warnings in St. Clair, MO; Vernon, MO. Plumbers, restoration, mold companies will spike.",
       "urgency": "today",
       "pitch_hook": "Water damage calls are coming. Every one you miss is $500+ walking away."
     }
@@ -224,13 +224,13 @@
     "signals_firing": 10,
     "leads_superniche": 7,
     "leads_hot": 22,
-    "leads_warm": 81,
-    "cost_per_qualified": 0.45,
-    "total_spend": 3.1680000000000024,
+    "leads_warm": 82,
+    "cost_per_qualified": 0.54,
+    "total_spend": 3.776000000000003,
     "spend_cap": 300.0
   },
   "channels": {
-    "emails_sent": 57,
+    "emails_sent": 58,
     "texts_sent": 8,
     "calls_made": 0,
     "meetings_set": 0,
@@ -239,63 +239,63 @@
   "feeds": [
     {
       "name": "NOAA",
-      "last_hit": "2026-06-04T02:36:12.156995+00:00",
+      "last_hit": "2026-06-04T02:55:19.036112+00:00",
       "status": "yellow",
       "data_points_today": 0
     },
     {
       "name": "REDDIT",
-      "last_hit": "2026-06-04T02:36:12.156995+00:00",
+      "last_hit": "2026-06-04T02:55:19.036112+00:00",
       "status": "green",
-      "data_points_today": 781
+      "data_points_today": 801
     },
     {
       "name": "USGS",
-      "last_hit": "2026-06-04T02:36:12.156995+00:00",
+      "last_hit": "2026-06-04T02:55:19.036112+00:00",
       "status": "yellow",
       "data_points_today": 0
     },
     {
       "name": "HACKERNEWS",
-      "last_hit": "2026-06-04T02:36:12.156995+00:00",
+      "last_hit": "2026-06-04T02:55:19.036112+00:00",
       "status": "green",
       "data_points_today": 30
     },
     {
       "name": "FEMA",
-      "last_hit": "2026-06-04T02:36:12.156995+00:00",
+      "last_hit": "2026-06-04T02:55:19.036112+00:00",
       "status": "green",
       "data_points_today": 20
     },
     {
       "name": "COMMODITIES",
-      "last_hit": "2026-06-04T02:36:12.156995+00:00",
+      "last_hit": "2026-06-04T02:55:19.036112+00:00",
       "status": "green",
       "data_points_today": 7
     },
     {
       "name": "RSS",
-      "last_hit": "2026-06-04T02:36:12.156995+00:00",
+      "last_hit": "2026-06-04T02:55:19.036112+00:00",
       "status": "green",
       "data_points_today": 160
     },
     {
       "name": "FRED",
-      "last_hit": "2026-06-04T02:36:12.156995+00:00",
+      "last_hit": "2026-06-04T02:55:19.036112+00:00",
       "status": "yellow",
       "data_points_today": 0
     },
     {
       "name": "BLS",
-      "last_hit": "2026-06-04T02:36:12.156995+00:00",
+      "last_hit": "2026-06-04T02:55:19.036112+00:00",
       "status": "green",
       "data_points_today": 9
     }
   ],
   "conversion_funnel": {
     "signals": 10,
-    "leads": 110,
-    "contacted": 65,
+    "leads": 111,
+    "contacted": 66,
     "replied": 0,
     "meeting": 0,
     "close": 0
