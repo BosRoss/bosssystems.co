@@ -1,30 +1,38 @@
 {
-  "generated": "2026-06-02T01:36:30.371031+00:00",
+  "generated": "2026-06-04T01:05:53.235845+00:00",
   "engine_state": "active",
   "signals": [
     {
       "type": "flood",
-      "area": "Hutchinson, TX",
+      "area": "Aransas, TX; Refugio, TX; San Patricio, TX",
       "niche": "plumbing",
-      "action": "Flood warnings in Hutchinson, TX. Plumbers, restoration, mold companies will spike.",
+      "action": "Flood warnings in Aransas, TX; Refugio, TX; San Patricio, TX. Plumbers, restoration, mold companies will spike.",
       "urgency": "today",
       "pitch_hook": "Water damage calls are coming. Every one you miss is $500+ walking away."
     },
     {
-      "type": "storm",
-      "area": "Pope, AR; Yell, AR",
-      "niche": "roofing",
-      "action": "Storm damage in Pope, AR; Yell, AR. Roofers and restoration companies about to get flooded.",
+      "type": "flood",
+      "area": "McMullen, TX",
+      "niche": "plumbing",
+      "action": "Flood warnings in McMullen, TX. Plumbers, restoration, mold companies will spike.",
       "urgency": "today",
-      "pitch_hook": "After a storm like that, you'll get 10x your normal call volume. Ready for it?"
+      "pitch_hook": "Water damage calls are coming. Every one you miss is $500+ walking away."
     },
     {
-      "type": "storm",
-      "area": "Lonoke, AR; Pulaski, AR; Saline, AR",
-      "niche": "roofing",
-      "action": "Storm damage in Lonoke, AR; Pulaski, AR; Saline, AR. Roofers and restoration companies about to get flooded.",
+      "type": "flood",
+      "area": "Guadalupe Mountains of Eddy County; Eddy County Plains; Northern Lea County; Central Lea County; Southern Lea County; Loving; Winkler; Ward; Pecos; Terrell; Guadalupe Mountains Above 7000 Feet; Guadal",
+      "niche": "plumbing",
+      "action": "Flood warnings in Guadalupe Mountains of Eddy County; Eddy County Plains; Northern Lea County; Central Lea County; Southern Lea County; Loving; Winkler; Ward; Pecos; Terrell; Guadalupe Mountains Above 7000 Feet; Guadal. Plumbers, restoration, mold companies will spike.",
       "urgency": "today",
-      "pitch_hook": "After a storm like that, you'll get 10x your normal call volume. Ready for it?"
+      "pitch_hook": "Water damage calls are coming. Every one you miss is $500+ walking away."
+    },
+    {
+      "type": "flood",
+      "area": "Lower St. Bernard; Southeast St. Tammany; Eastern Orleans; Lower Plaquemines; Southern Hancock; Southern Harrison; Southern Jackson",
+      "niche": "plumbing",
+      "action": "Flood warnings in Lower St. Bernard; Southeast St. Tammany; Eastern Orleans; Lower Plaquemines; Southern Hancock; Southern Harrison; Southern Jackson. Plumbers, restoration, mold companies will spike.",
+      "urgency": "today",
+      "pitch_hook": "Water damage calls are coming. Every one you miss is $500+ walking away."
     },
     {
       "type": "flood",
@@ -36,49 +44,41 @@
     },
     {
       "type": "storm",
-      "area": "Arkansas, AR; Cleburne, AR; Conway, AR; Faulkner, AR; Garland, AR; Independence, AR; Izard, AR; Jackson, AR; Jefferson, AR; Johnson, AR; Lawrence, AR; Logan, AR; Lonoke, AR; Monroe, AR; Newton, AR; Pe",
+      "area": "Major, OK; Woods, OK; Woodward, OK",
       "niche": "roofing",
-      "action": "Storm damage in Arkansas, AR; Cleburne, AR; Conway, AR; Faulkner, AR; Garland, AR; Independence, AR; Izard, AR; Jackson, AR; Jefferson, AR; Johnson, AR; Lawrence, AR; Logan, AR; Lonoke, AR; Monroe, AR; Newton, AR; Pe. Roofers and restoration companies about to get flooded.",
+      "action": "Storm damage in Major, OK; Woods, OK; Woodward, OK. Roofers and restoration companies about to get flooded.",
       "urgency": "today",
       "pitch_hook": "After a storm like that, you'll get 10x your normal call volume. Ready for it?"
     },
     {
       "type": "flood",
-      "area": "Polk, AR; Scott, AR",
+      "area": "Custer, OK; Dewey, OK; Roger Mills, OK",
       "niche": "plumbing",
-      "action": "Flood warnings in Polk, AR; Scott, AR. Plumbers, restoration, mold companies will spike.",
+      "action": "Flood warnings in Custer, OK; Dewey, OK; Roger Mills, OK. Plumbers, restoration, mold companies will spike.",
       "urgency": "today",
       "pitch_hook": "Water damage calls are coming. Every one you miss is $500+ walking away."
     },
     {
       "type": "flood",
-      "area": "Clarke, AL; Wilcox, AL",
+      "area": "Woodward, OK",
       "niche": "plumbing",
-      "action": "Flood warnings in Clarke, AL; Wilcox, AL. Plumbers, restoration, mold companies will spike.",
+      "action": "Flood warnings in Woodward, OK. Plumbers, restoration, mold companies will spike.",
       "urgency": "today",
       "pitch_hook": "Water damage calls are coming. Every one you miss is $500+ walking away."
     },
     {
-      "type": "storm",
-      "area": "Blaine, OK; Custer, OK; Dewey, OK",
-      "niche": "roofing",
-      "action": "Storm damage in Blaine, OK; Custer, OK; Dewey, OK. Roofers and restoration companies about to get flooded.",
+      "type": "flood",
+      "area": "Dona Ana, NM",
+      "niche": "plumbing",
+      "action": "Flood warnings in Dona Ana, NM. Plumbers, restoration, mold companies will spike.",
       "urgency": "today",
-      "pitch_hook": "After a storm like that, you'll get 10x your normal call volume. Ready for it?"
-    },
-    {
-      "type": "storm",
-      "area": "Chaves, NM",
-      "niche": "roofing",
-      "action": "Storm damage in Chaves, NM. Roofers and restoration companies about to get flooded.",
-      "urgency": "today",
-      "pitch_hook": "After a storm like that, you'll get 10x your normal call volume. Ready for it?"
+      "pitch_hook": "Water damage calls are coming. Every one you miss is $500+ walking away."
     },
     {
       "type": "flood",
-      "area": "South Central Mountains",
+      "area": "Grant, NM",
       "niche": "plumbing",
-      "action": "Flood warnings in South Central Mountains. Plumbers, restoration, mold companies will spike.",
+      "action": "Flood warnings in Grant, NM. Plumbers, restoration, mold companies will spike.",
       "urgency": "today",
       "pitch_hook": "Water damage calls are coming. Every one you miss is $500+ walking away."
     }
@@ -239,55 +239,55 @@
   "feeds": [
     {
       "name": "NOAA",
-      "last_hit": "2026-06-02T01:25:16.483616+00:00",
+      "last_hit": "2026-06-04T00:55:49.904876+00:00",
       "status": "yellow",
       "data_points_today": 0
     },
     {
       "name": "REDDIT",
-      "last_hit": "2026-06-02T01:25:16.483616+00:00",
+      "last_hit": "2026-06-04T00:55:49.904876+00:00",
       "status": "green",
       "data_points_today": 801
     },
     {
       "name": "USGS",
-      "last_hit": "2026-06-02T01:25:16.483616+00:00",
+      "last_hit": "2026-06-04T00:55:49.904876+00:00",
       "status": "yellow",
       "data_points_today": 0
     },
     {
       "name": "HACKERNEWS",
-      "last_hit": "2026-06-02T01:25:16.483616+00:00",
+      "last_hit": "2026-06-04T00:55:49.904876+00:00",
       "status": "green",
       "data_points_today": 30
     },
     {
       "name": "FEMA",
-      "last_hit": "2026-06-02T01:25:16.483616+00:00",
+      "last_hit": "2026-06-04T00:55:49.904876+00:00",
       "status": "green",
       "data_points_today": 20
     },
     {
       "name": "COMMODITIES",
-      "last_hit": "2026-06-02T01:25:16.483616+00:00",
+      "last_hit": "2026-06-04T00:55:49.904876+00:00",
       "status": "green",
       "data_points_today": 7
     },
     {
       "name": "RSS",
-      "last_hit": "2026-06-02T01:25:16.483616+00:00",
+      "last_hit": "2026-06-04T00:55:49.904876+00:00",
       "status": "green",
       "data_points_today": 160
     },
     {
       "name": "FRED",
-      "last_hit": "2026-06-02T01:25:16.483616+00:00",
+      "last_hit": "2026-06-04T00:55:49.904876+00:00",
       "status": "yellow",
       "data_points_today": 0
     },
     {
       "name": "BLS",
-      "last_hit": "2026-06-02T01:25:16.483616+00:00",
+      "last_hit": "2026-06-04T00:55:49.904876+00:00",
       "status": "green",
       "data_points_today": 9
     }
