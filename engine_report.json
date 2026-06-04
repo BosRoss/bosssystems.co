@@ -1,5 +1,5 @@
 {
-  "generated": "2026-06-04T01:40:41.666509+00:00",
+  "generated": "2026-06-04T02:24:44.219653+00:00",
   "engine_state": "active",
   "signals": [
     {
@@ -51,18 +51,18 @@
       "pitch_hook": "Water damage calls are coming. Every one you miss is $500+ walking away."
     },
     {
+      "type": "storm",
+      "area": "Dona Ana, NM",
+      "niche": "roofing",
+      "action": "Storm damage in Dona Ana, NM. Roofers and restoration companies about to get flooded.",
+      "urgency": "today",
+      "pitch_hook": "After a storm like that, you'll get 10x your normal call volume. Ready for it?"
+    },
+    {
       "type": "flood",
       "area": "Dona Ana, NM",
       "niche": "plumbing",
       "action": "Flood warnings in Dona Ana, NM. Plumbers, restoration, mold companies will spike.",
-      "urgency": "today",
-      "pitch_hook": "Water damage calls are coming. Every one you miss is $500+ walking away."
-    },
-    {
-      "type": "flood",
-      "area": "South Central Mountains",
-      "niche": "plumbing",
-      "action": "Flood warnings in South Central Mountains. Plumbers, restoration, mold companies will spike.",
       "urgency": "today",
       "pitch_hook": "Water damage calls are coming. Every one you miss is $500+ walking away."
     },
@@ -239,55 +239,55 @@
   "feeds": [
     {
       "name": "NOAA",
-      "last_hit": "2026-06-04T01:32:10.029540+00:00",
+      "last_hit": "2026-06-04T02:02:02.886050+00:00",
       "status": "yellow",
       "data_points_today": 0
     },
     {
       "name": "REDDIT",
-      "last_hit": "2026-06-04T01:32:10.029540+00:00",
+      "last_hit": "2026-06-04T02:02:02.886050+00:00",
       "status": "green",
       "data_points_today": 801
     },
     {
       "name": "USGS",
-      "last_hit": "2026-06-04T01:32:10.029540+00:00",
+      "last_hit": "2026-06-04T02:02:02.886050+00:00",
       "status": "yellow",
       "data_points_today": 0
     },
     {
       "name": "HACKERNEWS",
-      "last_hit": "2026-06-04T01:32:10.029540+00:00",
+      "last_hit": "2026-06-04T02:02:02.886050+00:00",
       "status": "green",
       "data_points_today": 30
     },
     {
       "name": "FEMA",
-      "last_hit": "2026-06-04T01:32:10.029540+00:00",
+      "last_hit": "2026-06-04T02:02:02.886050+00:00",
       "status": "green",
       "data_points_today": 20
     },
     {
       "name": "COMMODITIES",
-      "last_hit": "2026-06-04T01:32:10.029540+00:00",
+      "last_hit": "2026-06-04T02:02:02.886050+00:00",
       "status": "green",
       "data_points_today": 7
     },
     {
       "name": "RSS",
-      "last_hit": "2026-06-04T01:32:10.029540+00:00",
+      "last_hit": "2026-06-04T02:02:02.886050+00:00",
       "status": "green",
       "data_points_today": 160
     },
     {
       "name": "FRED",
-      "last_hit": "2026-06-04T01:32:10.029540+00:00",
+      "last_hit": "2026-06-04T02:02:02.886050+00:00",
       "status": "yellow",
       "data_points_today": 0
     },
     {
       "name": "BLS",
-      "last_hit": "2026-06-04T01:32:10.029540+00:00",
+      "last_hit": "2026-06-04T02:02:02.886050+00:00",
       "status": "green",
       "data_points_today": 9
     }
