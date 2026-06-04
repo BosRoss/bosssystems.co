@@ -1,5 +1,5 @@
 {
-  "generated": "2026-06-04T02:24:44.219653+00:00",
+  "generated": "2026-06-04T02:46:19.084887+00:00",
   "engine_state": "active",
   "signals": [
     {
@@ -44,22 +44,6 @@
     },
     {
       "type": "flood",
-      "area": "Woodward, OK",
-      "niche": "plumbing",
-      "action": "Flood warnings in Woodward, OK. Plumbers, restoration, mold companies will spike.",
-      "urgency": "today",
-      "pitch_hook": "Water damage calls are coming. Every one you miss is $500+ walking away."
-    },
-    {
-      "type": "storm",
-      "area": "Dona Ana, NM",
-      "niche": "roofing",
-      "action": "Storm damage in Dona Ana, NM. Roofers and restoration companies about to get flooded.",
-      "urgency": "today",
-      "pitch_hook": "After a storm like that, you'll get 10x your normal call volume. Ready for it?"
-    },
-    {
-      "type": "flood",
       "area": "Dona Ana, NM",
       "niche": "plumbing",
       "action": "Flood warnings in Dona Ana, NM. Plumbers, restoration, mold companies will spike.",
@@ -68,17 +52,33 @@
     },
     {
       "type": "flood",
-      "area": "Lafayette, LA; Vermilion, LA",
+      "area": "Coastal Jefferson; Lower Lafourche; Lower Terrebonne",
       "niche": "plumbing",
-      "action": "Flood warnings in Lafayette, LA; Vermilion, LA. Plumbers, restoration, mold companies will spike.",
+      "action": "Flood warnings in Coastal Jefferson; Lower Lafourche; Lower Terrebonne. Plumbers, restoration, mold companies will spike.",
       "urgency": "today",
       "pitch_hook": "Water damage calls are coming. Every one you miss is $500+ walking away."
     },
     {
       "type": "flood",
-      "area": "Coastal Jefferson; Lower Lafourche; Lower Terrebonne",
+      "area": "Miami-Dade, FL",
       "niche": "plumbing",
-      "action": "Flood warnings in Coastal Jefferson; Lower Lafourche; Lower Terrebonne. Plumbers, restoration, mold companies will spike.",
+      "action": "Flood warnings in Miami-Dade, FL. Plumbers, restoration, mold companies will spike.",
+      "urgency": "today",
+      "pitch_hook": "Water damage calls are coming. Every one you miss is $500+ walking away."
+    },
+    {
+      "type": "flood",
+      "area": "Broward, FL; Miami-Dade, FL",
+      "niche": "plumbing",
+      "action": "Flood warnings in Broward, FL; Miami-Dade, FL. Plumbers, restoration, mold companies will spike.",
+      "urgency": "today",
+      "pitch_hook": "Water damage calls are coming. Every one you miss is $500+ walking away."
+    },
+    {
+      "type": "flood",
+      "area": "Tattnall, GA; Toombs, GA",
+      "niche": "plumbing",
+      "action": "Flood warnings in Tattnall, GA; Toombs, GA. Plumbers, restoration, mold companies will spike.",
       "urgency": "today",
       "pitch_hook": "Water damage calls are coming. Every one you miss is $500+ walking away."
     }
@@ -166,6 +166,15 @@
       "trigger": ""
     },
     {
+      "name": "plumbing",
+      "city": "OK",
+      "score": 53,
+      "tier": "HOT",
+      "channel": "email",
+      "sequence_status": "queued",
+      "trigger": "flood"
+    },
+    {
       "name": "HVAC contractor",
       "city": "NM",
       "score": 48,
@@ -209,28 +218,19 @@
       "channel": "watchlist",
       "sequence_status": "queued",
       "trigger": ""
-    },
-    {
-      "name": "plumber",
-      "city": "NM",
-      "score": 45,
-      "tier": "HOT",
-      "channel": "watchlist",
-      "sequence_status": "queued",
-      "trigger": ""
     }
   ],
   "kpis": {
     "signals_firing": 10,
     "leads_superniche": 7,
-    "leads_hot": 20,
-    "leads_warm": 77,
-    "cost_per_qualified": 0.36,
-    "total_spend": 2.528000000000002,
+    "leads_hot": 22,
+    "leads_warm": 81,
+    "cost_per_qualified": 0.45,
+    "total_spend": 3.1680000000000024,
     "spend_cap": 300.0
   },
   "channels": {
-    "emails_sent": 55,
+    "emails_sent": 57,
     "texts_sent": 8,
     "calls_made": 0,
     "meetings_set": 0,
@@ -239,63 +239,63 @@
   "feeds": [
     {
       "name": "NOAA",
-      "last_hit": "2026-06-04T02:02:02.886050+00:00",
+      "last_hit": "2026-06-04T02:36:12.156995+00:00",
       "status": "yellow",
       "data_points_today": 0
     },
     {
       "name": "REDDIT",
-      "last_hit": "2026-06-04T02:02:02.886050+00:00",
+      "last_hit": "2026-06-04T02:36:12.156995+00:00",
       "status": "green",
-      "data_points_today": 801
+      "data_points_today": 781
     },
     {
       "name": "USGS",
-      "last_hit": "2026-06-04T02:02:02.886050+00:00",
+      "last_hit": "2026-06-04T02:36:12.156995+00:00",
       "status": "yellow",
       "data_points_today": 0
     },
     {
       "name": "HACKERNEWS",
-      "last_hit": "2026-06-04T02:02:02.886050+00:00",
+      "last_hit": "2026-06-04T02:36:12.156995+00:00",
       "status": "green",
       "data_points_today": 30
     },
     {
       "name": "FEMA",
-      "last_hit": "2026-06-04T02:02:02.886050+00:00",
+      "last_hit": "2026-06-04T02:36:12.156995+00:00",
       "status": "green",
       "data_points_today": 20
     },
     {
       "name": "COMMODITIES",
-      "last_hit": "2026-06-04T02:02:02.886050+00:00",
+      "last_hit": "2026-06-04T02:36:12.156995+00:00",
       "status": "green",
       "data_points_today": 7
     },
     {
       "name": "RSS",
-      "last_hit": "2026-06-04T02:02:02.886050+00:00",
+      "last_hit": "2026-06-04T02:36:12.156995+00:00",
       "status": "green",
       "data_points_today": 160
     },
     {
       "name": "FRED",
-      "last_hit": "2026-06-04T02:02:02.886050+00:00",
+      "last_hit": "2026-06-04T02:36:12.156995+00:00",
       "status": "yellow",
       "data_points_today": 0
     },
     {
       "name": "BLS",
-      "last_hit": "2026-06-04T02:02:02.886050+00:00",
+      "last_hit": "2026-06-04T02:36:12.156995+00:00",
       "status": "green",
       "data_points_today": 9
     }
   ],
   "conversion_funnel": {
     "signals": 10,
-    "leads": 104,
-    "contacted": 63,
+    "leads": 110,
+    "contacted": 65,
     "replied": 0,
     "meeting": 0,
     "close": 0
