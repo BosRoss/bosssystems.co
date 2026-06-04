@@ -1185,7 +1185,7 @@ html, body { height: 100%; overflow: hidden; background: var(--bg); color: var(-
       var level = btn.dataset.power;
       document.querySelectorAll('.pwr-btn').forEach(function(b) { b.classList.remove('active'); });
       btn.classList.add('active');
-      fetch('https://ntfy.hostux.net/bossai-agent-tasks', {
+      fetch('https://ntfy.sh/bossai-agent-tasks', {
         method: 'POST',
         body: JSON.stringify({task:'python3 scripts/atlas_power.py '+level+' && python3 scripts/atlas.py --scan-and-deploy', impact_dollars:0, irreversible:false, source:'atlas-dashboard'}),
         headers: {'Title':'ATLAS: Power > '+level, 'Priority':level==='SURGE'?'urgent':'default'}
@@ -1572,7 +1572,7 @@ html, body { height: 100%; overflow: hidden; background: var(--bg); color: var(-
   document.getElementById('scan-btn').addEventListener('click', async function() {
     var btn=this;if(btn.classList.contains('scanning'))return;btn.classList.add('scanning');btn.textContent='SCANNING...';
     var oldGen=data?data.generated:null;
-    try{await fetch('https://ntfy.hostux.net/atlas-scan-trigger',{method:'POST',body:'Manual scan'});btn.textContent='TRIGGERED';
+    try{await fetch('https://ntfy.sh/atlas-scan-trigger',{method:'POST',body:'Manual scan'});btn.textContent='TRIGGERED';
       var polls=0;var poller=setInterval(async function(){polls++;if(polls>9){clearInterval(poller);btn.classList.remove('scanning');btn.textContent='SCAN';return;}
         try{var r=await fetch(DATA_URL+'?t='+Date.now());if(r.ok){var fresh=await r.json();if(fresh.generated&&fresh.generated!==oldGen){data=fresh;render();clearInterval(poller);btn.classList.remove('scanning');btn.textContent='DONE';setTimeout(function(){btn.textContent='SCAN';},3000);}}}catch(e){}
       },20000);
