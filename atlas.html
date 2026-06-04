@@ -99,6 +99,8 @@ html, body { height: 100%; overflow: hidden; background: var(--bg); color: var(-
 #legend-source { font-size: 8px; color: var(--text-dim); margin-bottom: 6px; font-style: italic; }
 
 #layer-controls { background: rgba(8,9,12,0.94); border: 1px solid var(--border); border-radius: var(--radius); padding: 8px 12px; backdrop-filter: blur(8px); }
+#layer-controls .layer-body { max-height: 500px; overflow: hidden; transition: max-height 0.3s ease; }
+#layer-toggle-btn { display: none; }
 .layer-header { font-size: 8px; font-weight: 700; letter-spacing: 2px; color: var(--primary); margin-bottom: 6px; font-family: var(--font-data); }
 .layer-toggle { display: flex; align-items: center; gap: 5px; margin-bottom: 3px; font-size: 10px; color: var(--text-muted); cursor: pointer; }
 .layer-toggle input[type="checkbox"] { appearance: none; -webkit-appearance: none; width: 10px; height: 10px; border: 1px solid var(--text-dim); border-radius: 1px; cursor: pointer; position: relative; flex-shrink: 0; }
@@ -336,6 +338,12 @@ html, body { height: 100%; overflow: hidden; background: var(--bg); color: var(-
   #app.panel-expanded #panel-toggle .toggle-label::after { content: 'SHOW MAP'; }
   #app.panel-expanded #panel-toggle .toggle-label::before { content: none; }
   #app.panel-expanded #panel-toggle .toggle-arrow { transform: rotate(180deg); }
+  #layer-toggle-btn { display: flex; align-items: center; gap: 4px; width: 100%; background: none; border: none; padding: 0; cursor: pointer; }
+  #layer-controls .layer-body { max-height: 0; overflow: hidden; }
+  #layer-controls.layers-open .layer-body { max-height: 500px; }
+  #layer-toggle-btn .layer-arrow { font-size: 8px; color: var(--primary); transition: transform 0.2s; }
+  #layer-controls.layers-open #layer-toggle-btn .layer-arrow { transform: rotate(90deg); }
+  #legend { display: none; }
 }
 #panel-toggle { display: none; align-items: center; justify-content: center; gap: 8px; background: var(--surface); border-top: 1px solid var(--primary); border-bottom: 1px solid var(--border); padding: 6px 0; cursor: pointer; -webkit-tap-highlight-color: transparent; user-select: none; z-index: 10; }
 #panel-toggle:active { background: var(--surface-2); }
@@ -440,7 +448,8 @@ html, body { height: 100%; overflow: hidden; background: var(--bg); color: var(-
         <div id="legend-source"></div>
       </div>
       <div id="layer-controls">
-        <div class="layer-header">LAYERS</div>
+        <button id="layer-toggle-btn"><span class="layer-arrow">&#9654;</span><div class="layer-header" style="margin:0">LAYERS</div></button>
+        <div class="layer-body">
         <label class="layer-toggle"><input type="checkbox" data-layer="countries" checked><span class="layer-dot" style="background:#4B92DB"></span>Countries</label>
         <label class="layer-toggle"><input type="checkbox" data-layer="aircraft" checked><span class="layer-dot" style="background:#E8A840"></span>Aircraft</label>
         <label class="layer-toggle"><input type="checkbox" data-layer="quakes" checked><span class="layer-dot" style="background:#E04848"></span>Earthquakes</label>
@@ -457,6 +466,7 @@ html, body { height: 100%; overflow: hidden; background: var(--bg); color: var(-
         <label class="layer-toggle"><input type="radio" name="basemap" value="firebands"><span class="layer-dot" style="background:#FF4500"></span>MODIS Fire Bands</label>
         <label class="layer-toggle"><input type="radio" name="basemap" value="viirs"><span class="layer-dot" style="background:#00CED1"></span>VIIRS True Color</label>
         <label class="layer-toggle"><input type="radio" name="basemap" value="sentinel"><span class="layer-dot" style="background:#2E8B57"></span>Sentinel-2 Cloudless</label>
+        </div>
       </div>
     </div>
     <div id="coord-display">0.0000, 0.0000</div>
@@ -1041,6 +1051,11 @@ html, body { height: 100%; overflow: hidden; background: var(--bg); color: var(-
       activeBasemap.addTo(map);
       activeBasemap.bringToBack();
     });
+  });
+
+  // Mobile layer controls toggle
+  document.getElementById('layer-toggle-btn').addEventListener('click', function() {
+    document.getElementById('layer-controls').classList.toggle('layers-open');
   });
 
   function renderBriefTab(alpha2) {
