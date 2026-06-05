@@ -1,0 +1,253 @@
+{
+  "generated": "2026-06-05T17:36:08.280465+00:00",
+  "sections": {
+    "atlas": {
+      "power_level": "IDLE",
+      "last_scan": "2026-06-05T16:26:45.665086+00:00",
+      "scan_count": 57,
+      "heat_score": 100,
+      "recommendation": "HOT DAY. Weather-driven demand in St. John The Baptist; Western Orleans; Southwestern St. Tammany; Lower Tangipahoa; Southern Livingston; Upper Jefferson; Upper St. Charles, Monroe, FL, Doniphan, KS; Andrew, MO; Buchanan, MO. Call HVAC/roofers there NOW.",
+      "demand_signals": 10,
+      "pain_signals": 0,
+      "pitch_adjustments": 0,
+      "competitor_intel": 0,
+      "territory_alerts": 0,
+      "top_demands": [
+        {
+          "type": "flood",
+          "area": "Lower St. Bernard; Southeast St. Tammany; Eastern Orleans; L",
+          "niche": "plumbing"
+        },
+        {
+          "type": "flood",
+          "area": "South Central Mountains",
+          "niche": "plumbing"
+        },
+        {
+          "type": "flood",
+          "area": "St. John The Baptist; Western Orleans; Southwestern St. Tamm",
+          "niche": "plumbing"
+        },
+        {
+          "type": "flood",
+          "area": "Monroe, FL",
+          "niche": "plumbing"
+        },
+        {
+          "type": "flood",
+          "area": "Tattnall, GA; Toombs, GA",
+          "niche": "plumbing"
+        }
+      ],
+      "sources_online": 0
+    },
+    "lead_engine": {
+      "state": "ACTIVE",
+      "total_leads": 113,
+      "by_tier": {
+        "SUPERNICHE": 7,
+        "HOT": 22,
+        "WARM": 84
+      },
+      "by_route": {
+        "watchlist": 87,
+        "email": 26
+      },
+      "by_status": {
+        "queued": 113
+      },
+      "synced_to_pipeline": 0,
+      "api_spend": 4.42,
+      "api_budget": 300.0,
+      "api_percent": 1.5,
+      "outcomes_recorded": 0,
+      "by_outcome": {},
+      "learned_weights": false,
+      "suppression_count": 0,
+      "top_leads": [
+        {
+          "name": "Jeff's Plumbing",
+          "niche": "plumbing",
+          "state": "OK",
+          "tier": "SUPERNICHE",
+          "score": 78,
+          "route": "watchlist",
+          "status": "queued"
+        },
+        {
+          "name": "Andrew's Affordable Plumbing",
+          "niche": "plumber",
+          "state": "NM",
+          "tier": "SUPERNICHE",
+          "score": 72,
+          "route": "watchlist",
+          "status": "queued"
+        },
+        {
+          "name": "George Electric Plumbing & HVA",
+          "niche": "plumbing",
+          "state": "MS",
+          "tier": "SUPERNICHE",
+          "score": 63,
+          "route": "watchlist",
+          "status": "queued"
+        },
+        {
+          "name": "Pinner Plumbing & Heating Inc",
+          "niche": "plumbing",
+          "state": "AR",
+          "tier": "SUPERNICHE",
+          "score": 63,
+          "route": "watchlist",
+          "status": "queued"
+        },
+        {
+          "name": "Mcbee Plumbing",
+          "niche": "plumbing",
+          "state": "OK",
+          "tier": "SUPERNICHE",
+          "score": 63,
+          "route": "watchlist",
+          "status": "queued"
+        },
+        {
+          "name": "Charlie's Plumbing Services",
+          "niche": "plumber",
+          "state": "AL",
+          "tier": "SUPERNICHE",
+          "score": 62,
+          "route": "watchlist",
+          "status": "queued"
+        },
+        {
+          "name": "A & R Plumbing L.L.C",
+          "niche": "plumber",
+          "state": "OK",
+          "tier": "SUPERNICHE",
+          "score": 57,
+          "route": "email",
+          "status": "queued"
+        },
+        {
+          "name": "Beck's Plumbing",
+          "niche": "plumber",
+          "state": "AL",
+          "tier": "HOT",
+          "score": 54,
+          "route": "watchlist",
+          "status": "queued"
+        },
+        {
+          "name": "Glover Plumbing",
+          "niche": "plumber",
+          "state": "AL",
+          "tier": "HOT",
+          "score": 53,
+          "route": "email",
+          "status": "queued"
+        },
+        {
+          "name": "Cope Plumbing",
+          "niche": "plumbing",
+          "state": "OK",
+          "tier": "HOT",
+          "score": 53,
+          "route": "email",
+          "status": "queued"
+        }
+      ]
+    },
+    "n8n": {
+      "active_workflows": 83,
+      "inactive_workflows": 37,
+      "total_workflows": 120,
+      "recent_errors": 20,
+      "recent_crashes": 10,
+      "critical_workflows": [
+        {
+          "name": "Auto Caller",
+          "id": "UQGW8QuaSLb9Euyh",
+          "active": true
+        },
+        {
+          "name": "Morning Text",
+          "id": "wX6OyZ9UY0Xrbui1",
+          "active": false
+        },
+        {
+          "name": "ORACLE",
+          "id": "7wFm6CQB3VtoiRb6",
+          "active": true
+        },
+        {
+          "name": "Lead Hunter",
+          "id": "wMWL3U0JsdP6FO7F",
+          "active": true
+        },
+        {
+          "name": "Watchdog",
+          "id": "Ylf18KkrsZobVvfZ",
+          "active": true
+        },
+        {
+          "name": "Morning Brief",
+          "id": "TtbV6mhhRnLhQCv3",
+          "active": true
+        },
+        {
+          "name": "Superniche Targeter",
+          "id": "8jvr7e9CDZgggXzM",
+          "active": true
+        },
+        {
+          "name": "Hot Lead Handler",
+          "id": "kGJ7aDQmp3MgiPWI",
+          "active": true
+        }
+      ],
+      "recent_failures": [
+        {
+          "workflow": "Qikvz1N2lTubgqoS",
+          "started": "2026-06-05T17:00"
+        },
+        {
+          "workflow": "8jvr7e9CDZgggXzM",
+          "started": "2026-06-05T17:00"
+        },
+        {
+          "workflow": "dltJ3E9ieUzmvrxU",
+          "started": "2026-06-05T15:20"
+        },
+        {
+          "workflow": "EGyXul1WqnnshU96",
+          "started": "2026-06-05T15:01"
+        },
+        {
+          "workflow": "EGyXul1WqnnshU96",
+          "started": "2026-06-05T15:01"
+        }
+      ]
+    },
+    "retell": {
+      "total_agents": 0,
+      "agents": [],
+      "calls_24h": 0,
+      "outbound_24h": 0,
+      "inbound_24h": 0,
+      "avg_duration_sec": 0
+    },
+    "quant": {
+      "state": "ACTIVE",
+      "strategies": 0,
+      "survivors": 0
+    },
+    "health": {
+      "circuit_breakers_tripped": [],
+      "engine_paused": false,
+      "atlas_power": "IDLE",
+      "n8n_errors_24h": 20,
+      "retell_calls_24h": 0,
+      "api_spend_pct": 1.5
+    }
+  }
+}
