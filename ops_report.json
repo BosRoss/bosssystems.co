@@ -1,5 +1,5 @@
 {
-  "generated": "2026-06-05T19:53:38.381738+00:00",
+  "generated": "2026-06-05T19:54:24.982868+00:00",
   "sections": {
     "atlas": {
       "power_level": "IDLE",
@@ -232,8 +232,59 @@
       ]
     },
     "retell": {
-      "total_agents": 0,
-      "agents": [],
+      "total_agents": 14,
+      "agents": [
+        {
+          "name": "BOSS Follow-Up Caller",
+          "id": "agent_d1f1604b4cf25a35060e918fc9",
+          "last_modification": "1780689209"
+        },
+        {
+          "name": "BOSS Outbound Sales Caller",
+          "id": "agent_6c19e0315cf3dfd1ffa3db63a2",
+          "last_modification": "1780689209"
+        },
+        {
+          "name": "BOSS Junk Removal \u2014 Laurel MS",
+          "id": "agent_59905e10f9d2ab2b6a77f66a4a",
+          "last_modification": "1780314827"
+        },
+        {
+          "name": "BOSS Support",
+          "id": "agent_2ccbf93129f1b5d505c3669d41",
+          "last_modification": "1780073384"
+        },
+        {
+          "name": "Naive Customer \u2014 Karen",
+          "id": "agent_10b4c07b640ce5953695224cdb",
+          "last_modification": "1780062851"
+        },
+        {
+          "name": "BOSS Autonomous Agent",
+          "id": "agent_e8fabc128af8d19f663b8e43aa",
+          "last_modification": "1779645081"
+        },
+        {
+          "name": "BOSS Summer Sales Trainer",
+          "id": "agent_fc53b0ede05f872cad6872bb86",
+          "last_modification": "1779577310"
+        },
+        {
+          "name": "Legal Advisor \u2014 BOSS Systems",
+          "id": "agent_1009cb72ba155ed30a2de19eed",
+          "last_modification": "1779574951"
+        },
+        {
+          "name": "BOSS \u2014 Devil's Advocate Customer",
+          "id": "agent_23b664e7db4a0a89ece384ddcd",
+          "last_modification": "1779373596"
+        },
+        {
+          "name": "BOSS \u2014 Built by BOSS Sales Caller",
+          "id": "agent_10c6519858eebc75047ee7ab8f",
+          "last_modification": "1779333278"
+        }
+      ],
       "calls_24h": 50,
       "outbound_24h": 50,
       "inbound_24h": 0,
