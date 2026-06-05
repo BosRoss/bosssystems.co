@@ -1,5 +1,5 @@
 {
-  "generated": "2026-06-05T17:41:02.717095+00:00",
+  "generated": "2026-06-05T18:35:13.370712+00:00",
   "sections": {
     "atlas": {
       "power_level": "IDLE",
@@ -158,9 +158,9 @@
       ]
     },
     "n8n": {
-      "active_workflows": 83,
-      "inactive_workflows": 37,
-      "total_workflows": 120,
+      "active_workflows": 85,
+      "inactive_workflows": 36,
+      "total_workflows": 121,
       "recent_errors": 20,
       "recent_crashes": 10,
       "critical_workflows": [
