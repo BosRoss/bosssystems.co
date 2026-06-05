@@ -1,44 +1,60 @@
 {
-  "generated": "2026-06-05T18:43:06.674957+00:00",
+  "generated": "2026-06-05T21:08:46.836321+00:00",
   "engine_state": "active",
   "signals": [
     {
+      "type": "storm",
+      "area": "Bailey, TX; Cochran, TX; Hockley, TX; Lamb, TX",
+      "niche": "roofing",
+      "action": "Storm damage in Bailey, TX; Cochran, TX; Hockley, TX; Lamb, TX. Roofers and restoration companies about to get flooded.",
+      "urgency": "today",
+      "pitch_hook": "After a storm like that, you'll get 10x your normal call volume. Ready for it?"
+    },
+    {
       "type": "flood",
-      "area": "Burnet; Williamson; Hays; Travis; Bastrop; Lee; Bexar; Comal; Guadalupe; Caldwell; Fayette; Wilson; Karnes; Gonzales; De Witt; Lavaca",
+      "area": "Borden, TX",
       "niche": "plumbing",
-      "action": "Flood warnings in Burnet; Williamson; Hays; Travis; Bastrop; Lee; Bexar; Comal; Guadalupe; Caldwell; Fayette; Wilson; Karnes; Gonzales; De Witt; Lavaca. Plumbers, restoration, mold companies will spike.",
+      "action": "Flood warnings in Borden, TX. Plumbers, restoration, mold companies will spike.",
       "urgency": "today",
       "pitch_hook": "Water damage calls are coming. Every one you miss is $500+ walking away."
     },
     {
       "type": "flood",
-      "area": "Pecos, TX",
+      "area": "Bailey, TX; Cochran, TX",
       "niche": "plumbing",
-      "action": "Flood warnings in Pecos, TX. Plumbers, restoration, mold companies will spike.",
+      "action": "Flood warnings in Bailey, TX; Cochran, TX. Plumbers, restoration, mold companies will spike.",
       "urgency": "today",
       "pitch_hook": "Water damage calls are coming. Every one you miss is $500+ walking away."
     },
     {
       "type": "flood",
-      "area": "Brazos, TX; Burleson, TX",
+      "area": "Kent, TX; Stonewall, TX",
       "niche": "plumbing",
-      "action": "Flood warnings in Brazos, TX; Burleson, TX. Plumbers, restoration, mold companies will spike.",
+      "action": "Flood warnings in Kent, TX; Stonewall, TX. Plumbers, restoration, mold companies will spike.",
       "urgency": "today",
       "pitch_hook": "Water damage calls are coming. Every one you miss is $500+ walking away."
     },
     {
       "type": "flood",
-      "area": "Harris, TX",
+      "area": "Bell, TX; McLennan, TX",
       "niche": "plumbing",
-      "action": "Flood warnings in Harris, TX. Plumbers, restoration, mold companies will spike.",
+      "action": "Flood warnings in Bell, TX; McLennan, TX. Plumbers, restoration, mold companies will spike.",
       "urgency": "today",
       "pitch_hook": "Water damage calls are coming. Every one you miss is $500+ walking away."
     },
     {
       "type": "flood",
-      "area": "Harris, TX; Liberty, TX; Montgomery, TX",
+      "area": "Dawson, TX",
       "niche": "plumbing",
-      "action": "Flood warnings in Harris, TX; Liberty, TX; Montgomery, TX. Plumbers, restoration, mold companies will spike.",
+      "action": "Flood warnings in Dawson, TX. Plumbers, restoration, mold companies will spike.",
+      "urgency": "today",
+      "pitch_hook": "Water damage calls are coming. Every one you miss is $500+ walking away."
+    },
+    {
+      "type": "flood",
+      "area": "Briscoe, TX; Hall, TX",
+      "niche": "plumbing",
+      "action": "Flood warnings in Briscoe, TX; Hall, TX. Plumbers, restoration, mold companies will spike.",
       "urgency": "today",
       "pitch_hook": "Water damage calls are coming. Every one you miss is $500+ walking away."
     },
@@ -51,36 +67,20 @@
       "pitch_hook": "Water damage calls are coming. Every one you miss is $500+ walking away."
     },
     {
-      "type": "flood",
-      "area": "South Central Mountains",
-      "niche": "plumbing",
-      "action": "Flood warnings in South Central Mountains. Plumbers, restoration, mold companies will spike.",
+      "type": "storm",
+      "area": "Alfalfa, OK; Major, OK; Woods, OK",
+      "niche": "roofing",
+      "action": "Storm damage in Alfalfa, OK; Major, OK; Woods, OK. Roofers and restoration companies about to get flooded.",
       "urgency": "today",
-      "pitch_hook": "Water damage calls are coming. Every one you miss is $500+ walking away."
+      "pitch_hook": "After a storm like that, you'll get 10x your normal call volume. Ready for it?"
     },
     {
-      "type": "flood",
-      "area": "Monroe, FL",
-      "niche": "plumbing",
-      "action": "Flood warnings in Monroe, FL. Plumbers, restoration, mold companies will spike.",
+      "type": "storm",
+      "area": "Alfalfa, OK; Major, OK",
+      "niche": "roofing",
+      "action": "Storm damage in Alfalfa, OK; Major, OK. Roofers and restoration companies about to get flooded.",
       "urgency": "today",
-      "pitch_hook": "Water damage calls are coming. Every one you miss is $500+ walking away."
-    },
-    {
-      "type": "flood",
-      "area": "Platte, MO",
-      "niche": "plumbing",
-      "action": "Flood warnings in Platte, MO. Plumbers, restoration, mold companies will spike.",
-      "urgency": "today",
-      "pitch_hook": "Water damage calls are coming. Every one you miss is $500+ walking away."
-    },
-    {
-      "type": "flood",
-      "area": "Carroll, MO; Chariton, MO; Linn, MO; Livingston, MO",
-      "niche": "plumbing",
-      "action": "Flood warnings in Carroll, MO; Chariton, MO; Linn, MO; Livingston, MO. Plumbers, restoration, mold companies will spike.",
-      "urgency": "today",
-      "pitch_hook": "Water damage calls are coming. Every one you miss is $500+ walking away."
+      "pitch_hook": "After a storm like that, you'll get 10x your normal call volume. Ready for it?"
     }
   ],
   "leads": [
@@ -239,55 +239,55 @@
   "feeds": [
     {
       "name": "NOAA",
-      "last_hit": "2026-06-05T18:34:37.887997+00:00",
+      "last_hit": "2026-06-05T21:00:23.861470+00:00",
       "status": "yellow",
       "data_points_today": 0
     },
     {
       "name": "REDDIT",
-      "last_hit": "2026-06-05T18:34:37.887997+00:00",
+      "last_hit": "2026-06-05T21:00:23.861470+00:00",
       "status": "green",
       "data_points_today": 801
     },
     {
       "name": "USGS",
-      "last_hit": "2026-06-05T18:34:37.887997+00:00",
+      "last_hit": "2026-06-05T21:00:23.861470+00:00",
       "status": "yellow",
       "data_points_today": 0
     },
     {
       "name": "HACKERNEWS",
-      "last_hit": "2026-06-05T18:34:37.887997+00:00",
+      "last_hit": "2026-06-05T21:00:23.861470+00:00",
       "status": "green",
       "data_points_today": 30
     },
     {
       "name": "FEMA",
-      "last_hit": "2026-06-05T18:34:37.887997+00:00",
+      "last_hit": "2026-06-05T21:00:23.861470+00:00",
       "status": "green",
       "data_points_today": 20
     },
     {
       "name": "COMMODITIES",
-      "last_hit": "2026-06-05T18:34:37.887997+00:00",
+      "last_hit": "2026-06-05T21:00:23.861470+00:00",
       "status": "green",
       "data_points_today": 7
     },
     {
       "name": "RSS",
-      "last_hit": "2026-06-05T18:34:37.887997+00:00",
+      "last_hit": "2026-06-05T21:00:23.861470+00:00",
       "status": "green",
       "data_points_today": 170
     },
     {
       "name": "FRED",
-      "last_hit": "2026-06-05T18:34:37.887997+00:00",
+      "last_hit": "2026-06-05T21:00:23.861470+00:00",
       "status": "yellow",
       "data_points_today": 0
     },
     {
       "name": "BLS",
-      "last_hit": "2026-06-05T18:34:37.887997+00:00",
+      "last_hit": "2026-06-05T21:00:23.861470+00:00",
       "status": "green",
       "data_points_today": 9
     }
