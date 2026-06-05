@@ -1,5 +1,5 @@
 {
-  "generated": "2026-06-05T17:36:08.280465+00:00",
+  "generated": "2026-06-05T17:41:02.717095+00:00",
   "sections": {
     "atlas": {
       "power_level": "IDLE",
@@ -56,7 +56,7 @@
       "by_status": {
         "queued": 113
       },
-      "synced_to_pipeline": 0,
+      "synced_to_pipeline": 21,
       "api_spend": 4.42,
       "api_budget": 300.0,
       "api_percent": 1.5,
@@ -207,24 +207,24 @@
       ],
       "recent_failures": [
         {
-          "workflow": "Qikvz1N2lTubgqoS",
-          "started": "2026-06-05T17:00"
+          "workflow": "FV413faAXiMk1CiY",
+          "started": "2026-06-05T17:36"
         },
         {
-          "workflow": "8jvr7e9CDZgggXzM",
-          "started": "2026-06-05T17:00"
+          "workflow": "FV413faAXiMk1CiY",
+          "started": "2026-06-05T17:36"
         },
         {
-          "workflow": "dltJ3E9ieUzmvrxU",
-          "started": "2026-06-05T15:20"
+          "workflow": "FV413faAXiMk1CiY",
+          "started": "2026-06-05T17:36"
         },
         {
-          "workflow": "EGyXul1WqnnshU96",
-          "started": "2026-06-05T15:01"
+          "workflow": "FV413faAXiMk1CiY",
+          "started": "2026-06-05T17:36"
         },
         {
-          "workflow": "EGyXul1WqnnshU96",
-          "started": "2026-06-05T15:01"
+          "workflow": "FV413faAXiMk1CiY",
+          "started": "2026-06-05T17:36"
         }
       ]
     },
