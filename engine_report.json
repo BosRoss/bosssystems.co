@@ -1,12 +1,52 @@
 {
-  "generated": "2026-06-05T16:34:33.826282+00:00",
+  "generated": "2026-06-05T18:43:06.674957+00:00",
   "engine_state": "active",
   "signals": [
     {
       "type": "flood",
-      "area": "Lower St. Bernard; Southeast St. Tammany; Eastern Orleans; Lower Plaquemines; Coastal Jefferson; Lower Lafourche; Lower Terrebonne; Southern Hancock; Southern Harrison; Southern Jackson",
+      "area": "Burnet; Williamson; Hays; Travis; Bastrop; Lee; Bexar; Comal; Guadalupe; Caldwell; Fayette; Wilson; Karnes; Gonzales; De Witt; Lavaca",
       "niche": "plumbing",
-      "action": "Flood warnings in Lower St. Bernard; Southeast St. Tammany; Eastern Orleans; Lower Plaquemines; Coastal Jefferson; Lower Lafourche; Lower Terrebonne; Southern Hancock; Southern Harrison; Southern Jackson. Plumbers, restoration, mold companies will spike.",
+      "action": "Flood warnings in Burnet; Williamson; Hays; Travis; Bastrop; Lee; Bexar; Comal; Guadalupe; Caldwell; Fayette; Wilson; Karnes; Gonzales; De Witt; Lavaca. Plumbers, restoration, mold companies will spike.",
+      "urgency": "today",
+      "pitch_hook": "Water damage calls are coming. Every one you miss is $500+ walking away."
+    },
+    {
+      "type": "flood",
+      "area": "Pecos, TX",
+      "niche": "plumbing",
+      "action": "Flood warnings in Pecos, TX. Plumbers, restoration, mold companies will spike.",
+      "urgency": "today",
+      "pitch_hook": "Water damage calls are coming. Every one you miss is $500+ walking away."
+    },
+    {
+      "type": "flood",
+      "area": "Brazos, TX; Burleson, TX",
+      "niche": "plumbing",
+      "action": "Flood warnings in Brazos, TX; Burleson, TX. Plumbers, restoration, mold companies will spike.",
+      "urgency": "today",
+      "pitch_hook": "Water damage calls are coming. Every one you miss is $500+ walking away."
+    },
+    {
+      "type": "flood",
+      "area": "Harris, TX",
+      "niche": "plumbing",
+      "action": "Flood warnings in Harris, TX. Plumbers, restoration, mold companies will spike.",
+      "urgency": "today",
+      "pitch_hook": "Water damage calls are coming. Every one you miss is $500+ walking away."
+    },
+    {
+      "type": "flood",
+      "area": "Harris, TX; Liberty, TX; Montgomery, TX",
+      "niche": "plumbing",
+      "action": "Flood warnings in Harris, TX; Liberty, TX; Montgomery, TX. Plumbers, restoration, mold companies will spike.",
+      "urgency": "today",
+      "pitch_hook": "Water damage calls are coming. Every one you miss is $500+ walking away."
+    },
+    {
+      "type": "flood",
+      "area": "St. John The Baptist; Lower St. Bernard; Southeast St. Tammany; Western Orleans; Eastern Orleans; Southwestern St. Tammany; Lower Tangipahoa; Southern Livingston; Upper Jefferson; Lower Plaquemines; C",
+      "niche": "plumbing",
+      "action": "Flood warnings in St. John The Baptist; Lower St. Bernard; Southeast St. Tammany; Western Orleans; Eastern Orleans; Southwestern St. Tammany; Lower Tangipahoa; Southern Livingston; Upper Jefferson; Lower Plaquemines; C. Plumbers, restoration, mold companies will spike.",
       "urgency": "today",
       "pitch_hook": "Water damage calls are coming. Every one you miss is $500+ walking away."
     },
@@ -20,14 +60,6 @@
     },
     {
       "type": "flood",
-      "area": "St. John The Baptist; Western Orleans; Southwestern St. Tammany; Lower Tangipahoa; Southern Livingston; Upper Jefferson; Upper St. Charles",
-      "niche": "plumbing",
-      "action": "Flood warnings in St. John The Baptist; Western Orleans; Southwestern St. Tammany; Lower Tangipahoa; Southern Livingston; Upper Jefferson; Upper St. Charles. Plumbers, restoration, mold companies will spike.",
-      "urgency": "today",
-      "pitch_hook": "Water damage calls are coming. Every one you miss is $500+ walking away."
-    },
-    {
-      "type": "flood",
       "area": "Monroe, FL",
       "niche": "plumbing",
       "action": "Flood warnings in Monroe, FL. Plumbers, restoration, mold companies will spike.",
@@ -36,49 +68,17 @@
     },
     {
       "type": "flood",
-      "area": "Tattnall, GA; Toombs, GA",
+      "area": "Platte, MO",
       "niche": "plumbing",
-      "action": "Flood warnings in Tattnall, GA; Toombs, GA. Plumbers, restoration, mold companies will spike.",
+      "action": "Flood warnings in Platte, MO. Plumbers, restoration, mold companies will spike.",
       "urgency": "today",
       "pitch_hook": "Water damage calls are coming. Every one you miss is $500+ walking away."
     },
     {
       "type": "flood",
-      "area": "Holt, MO; Richardson, NE",
+      "area": "Carroll, MO; Chariton, MO; Linn, MO; Livingston, MO",
       "niche": "plumbing",
-      "action": "Flood warnings in Holt, MO; Richardson, NE. Plumbers, restoration, mold companies will spike.",
-      "urgency": "today",
-      "pitch_hook": "Water damage calls are coming. Every one you miss is $500+ walking away."
-    },
-    {
-      "type": "flood",
-      "area": "Jackson, MO; Lafayette, MO; Ray, MO",
-      "niche": "plumbing",
-      "action": "Flood warnings in Jackson, MO; Lafayette, MO; Ray, MO. Plumbers, restoration, mold companies will spike.",
-      "urgency": "today",
-      "pitch_hook": "Water damage calls are coming. Every one you miss is $500+ walking away."
-    },
-    {
-      "type": "flood",
-      "area": "Carroll, MO; Lafayette, MO; Saline, MO",
-      "niche": "plumbing",
-      "action": "Flood warnings in Carroll, MO; Lafayette, MO; Saline, MO. Plumbers, restoration, mold companies will spike.",
-      "urgency": "today",
-      "pitch_hook": "Water damage calls are coming. Every one you miss is $500+ walking away."
-    },
-    {
-      "type": "flood",
-      "area": "Carroll, MO; Chariton, MO; Saline, MO",
-      "niche": "plumbing",
-      "action": "Flood warnings in Carroll, MO; Chariton, MO; Saline, MO. Plumbers, restoration, mold companies will spike.",
-      "urgency": "today",
-      "pitch_hook": "Water damage calls are coming. Every one you miss is $500+ walking away."
-    },
-    {
-      "type": "flood",
-      "area": "Doniphan, KS; Andrew, MO; Buchanan, MO",
-      "niche": "plumbing",
-      "action": "Flood warnings in Doniphan, KS; Andrew, MO; Buchanan, MO. Plumbers, restoration, mold companies will spike.",
+      "action": "Flood warnings in Carroll, MO; Chariton, MO; Linn, MO; Livingston, MO. Plumbers, restoration, mold companies will spike.",
       "urgency": "today",
       "pitch_hook": "Water damage calls are coming. Every one you miss is $500+ walking away."
     }
@@ -239,55 +239,55 @@
   "feeds": [
     {
       "name": "NOAA",
-      "last_hit": "2026-06-05T16:26:45.665086+00:00",
+      "last_hit": "2026-06-05T18:34:37.887997+00:00",
       "status": "yellow",
       "data_points_today": 0
     },
     {
       "name": "REDDIT",
-      "last_hit": "2026-06-05T16:26:45.665086+00:00",
+      "last_hit": "2026-06-05T18:34:37.887997+00:00",
       "status": "green",
       "data_points_today": 801
     },
     {
       "name": "USGS",
-      "last_hit": "2026-06-05T16:26:45.665086+00:00",
+      "last_hit": "2026-06-05T18:34:37.887997+00:00",
       "status": "yellow",
       "data_points_today": 0
     },
     {
       "name": "HACKERNEWS",
-      "last_hit": "2026-06-05T16:26:45.665086+00:00",
+      "last_hit": "2026-06-05T18:34:37.887997+00:00",
       "status": "green",
       "data_points_today": 30
     },
     {
       "name": "FEMA",
-      "last_hit": "2026-06-05T16:26:45.665086+00:00",
+      "last_hit": "2026-06-05T18:34:37.887997+00:00",
       "status": "green",
       "data_points_today": 20
     },
     {
       "name": "COMMODITIES",
-      "last_hit": "2026-06-05T16:26:45.665086+00:00",
+      "last_hit": "2026-06-05T18:34:37.887997+00:00",
       "status": "green",
       "data_points_today": 7
     },
     {
       "name": "RSS",
-      "last_hit": "2026-06-05T16:26:45.665086+00:00",
+      "last_hit": "2026-06-05T18:34:37.887997+00:00",
       "status": "green",
       "data_points_today": 170
     },
     {
       "name": "FRED",
-      "last_hit": "2026-06-05T16:26:45.665086+00:00",
+      "last_hit": "2026-06-05T18:34:37.887997+00:00",
       "status": "yellow",
       "data_points_today": 0
     },
     {
       "name": "BLS",
-      "last_hit": "2026-06-05T16:26:45.665086+00:00",
+      "last_hit": "2026-06-05T18:34:37.887997+00:00",
       "status": "green",
       "data_points_today": 9
     }
