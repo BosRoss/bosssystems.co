@@ -18,12 +18,12 @@
   .hero{text-align:center;padding:5rem 2rem 3rem;max-width:700px;margin:0 auto}
   .hero h1{font-size:clamp(2rem,5vw,3.5rem);font-weight:900;line-height:1.1;margin-bottom:1rem}
   .hero h1 span{color:var(--gold)}
-  .hero p{color:#888;font-size:1.1rem;line-height:1.6;margin-bottom:2rem}
+  .hero p{color:#aaa;font-size:1.1rem;line-height:1.6;margin-bottom:2rem}
 
   .form-card{background:var(--gray);border:1px solid var(--border);padding:2.5rem;max-width:600px;margin:0 auto}
   .form-row{display:grid;grid-template-columns:1fr 1fr;gap:1rem}
   .form-group{margin-bottom:1.5rem}
-  label{display:block;font-size:.8rem;letter-spacing:2px;text-transform:uppercase;color:#888;margin-bottom:.5rem}
+  label{display:block;font-size:.8rem;letter-spacing:2px;text-transform:uppercase;color:#aaa;margin-bottom:.5rem}
   .label-hint{color:#aaa;font-size:.75rem;letter-spacing:0;text-transform:none;margin-left:.5rem}
   input,select{width:100%;background:#0a0a0a;border:1px solid var(--border);color:var(--text);padding:.9rem 1rem;font-size:1rem;outline:none;transition:.2s}
   input:focus,select:focus{border-color:var(--gold)}
@@ -37,7 +37,7 @@
   #results{display:none;max-width:720px;margin:3rem auto;padding:0 2rem 4rem}
   .result-header{border-left:3px solid var(--gold);padding-left:1.5rem;margin-bottom:2rem}
   .result-header h2{font-size:1.8rem;font-weight:900}
-  .result-header p{color:#888;margin-top:.3rem}
+  .result-header p{color:#aaa;margin-top:.3rem}
 
   .stats-row{display:grid;grid-template-columns:repeat(3,1fr);gap:1rem;margin-bottom:2rem}
   .stat{background:var(--gray);border:1px solid var(--border);padding:1.2rem;text-align:center}
@@ -63,7 +63,7 @@
   .auto-name{font-weight:700;margin-bottom:.2rem}
   .auto-desc{font-size:.85rem;color:#bbb;line-height:1.5}
   .auto-calc{font-size:.75rem;color:#aaa;margin-top:.4rem;border-top:1px solid #1e1e1e;padding-top:.4rem;line-height:1.4}
-  .auto-calc span{color:#888}
+  .auto-calc span{color:#aaa}
   .auto-value{text-align:right;min-width:90px}
   .auto-value .val{font-size:1.2rem;font-weight:900;color:var(--gold);white-space:nowrap}
   .auto-value .sub{font-size:.7rem;color:#aaa}
@@ -90,14 +90,14 @@
   /* Lead Gate */
   .gate-card{background:var(--gray);border:1px solid var(--gold);padding:2.5rem;max-width:520px;margin:3rem auto;text-align:center}
   .gate-card h2{font-size:1.5rem;font-weight:900;margin-bottom:.5rem}
-  .gate-card .gate-sub{color:#888;font-size:.95rem;line-height:1.5;margin-bottom:1.5rem}
+  .gate-card .gate-sub{color:#aaa;font-size:.95rem;line-height:1.5;margin-bottom:1.5rem}
   .gate-card .gate-teaser{color:var(--gold);font-size:1.8rem;font-weight:900;margin-bottom:1.5rem}
   .gate-card input[type="tel"]{width:100%;background:#0a0a0a;border:1px solid var(--border);color:var(--text);padding:1rem;font-size:1.1rem;text-align:center;margin-bottom:1rem;outline:none;transition:.2s}
   .gate-card input[type="tel"]:focus{border-color:var(--gold)}
   .gate-card .gate-btn{width:100%;background:var(--gold);color:var(--dark);border:none;padding:1.1rem;font-size:1.1rem;font-weight:900;letter-spacing:1px;cursor:pointer;transition:.1s}
   .gate-card .gate-btn:hover{opacity:.92}
   .gate-card .gate-alt{color:#aaa;font-size:.8rem;margin-top:1rem}
-  .gate-card .gate-alt a{color:#888;cursor:pointer;text-decoration:underline}
+  .gate-card .gate-alt a{color:#aaa;cursor:pointer;text-decoration:underline}
   .gate-card .gate-alt a:hover{color:var(--gold)}
   .gate-email-row{display:none;margin-top:1rem}
   .gate-email-row input[type="email"]{width:100%;background:#0a0a0a;border:1px solid var(--border);color:var(--text);padding:1rem;font-size:1.1rem;text-align:center;outline:none;transition:.2s}
@@ -499,7 +499,9 @@ function submitLeadGate() {
       email: payload.email || '',
       source: 'analyze_page'
     })
-  }).catch(() => {});
+  }).catch(() => {
+    localStorage.setItem('boss_analyze_lead_pending', JSON.stringify(payload));
+  });
 
   localStorage.setItem('boss_analyze_lead', JSON.stringify(payload));
 
