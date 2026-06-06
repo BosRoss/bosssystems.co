@@ -31,16 +31,30 @@ body{background:#080808;color:#ccc;font-family:-apple-system,BlinkMacSystemFont,
 .bandit-bar{flex:1;height:8px;background:#1a1a1a;border-radius:4px;overflow:hidden}
 .bandit-bar-fill{height:100%;background:linear-gradient(90deg,#C9A84C,#e8d48b);border-radius:4px}
 .bandit-pct{color:#f0ede8;font-size:.8rem;width:50px;text-align:right}
-.platform-icon{font-size:1.1rem;margin-right:6px}
 .recent-post{padding:10px;background:#0a0a0a;border-radius:6px;margin-bottom:8px;border-left:3px solid #C9A84C}
 .recent-post .meta{color:#666;font-size:.75rem;margin-bottom:4px}
-.recent-post .text{color:#bbb;font-size:.85rem;line-height:1.4}
+.recent-post .text{color:#bbb;font-size:.85rem;line-height:1.4;white-space:pre-wrap}
 .footer{text-align:center;padding:30px 20px;color:#444;font-size:.75rem}
 .refresh-btn{background:none;border:1px solid #333;color:#888;padding:6px 14px;border-radius:4px;cursor:pointer;font-size:.8rem;margin-top:8px}
 .refresh-btn:hover{border-color:#C9A84C;color:#C9A84C}
 .empty{color:#555;font-size:.85rem;text-align:center;padding:20px 0}
 .spend-meter{display:flex;align-items:center;gap:10px;margin-top:6px}
 .spend-label{font-size:.75rem;color:#666}
+.pending-post{padding:14px;background:#0a0a0a;border-radius:6px;margin-bottom:12px;border-left:3px solid #C9A84C}
+.pending-post .meta{color:#666;font-size:.75rem;margin-bottom:6px}
+.pending-post .text{color:#bbb;font-size:.85rem;line-height:1.5;white-space:pre-wrap;margin-bottom:10px}
+.pending-post .actions{display:flex;gap:8px}
+.btn-approve{background:#C9A84C;color:#080808;border:none;padding:6px 16px;border-radius:4px;cursor:pointer;font-size:.8rem;font-weight:600}
+.btn-approve:hover{background:#e8d48b}
+.btn-approve:disabled{opacity:.5;cursor:not-allowed}
+.btn-reject{background:none;border:1px solid #ef4444;color:#ef4444;padding:6px 16px;border-radius:4px;cursor:pointer;font-size:.8rem}
+.btn-reject:hover{background:#ef444422}
+.btn-approve-all{background:#C9A84C;color:#080808;border:none;padding:8px 20px;border-radius:4px;cursor:pointer;font-size:.85rem;font-weight:600;margin-bottom:14px}
+.btn-approve-all:hover{background:#e8d48b}
+.status-msg{font-size:.75rem;margin-left:8px}
+.status-msg.ok{color:#4ade80}
+.status-msg.err{color:#ef4444}
+.pending-count{background:#C9A84C;color:#080808;font-size:.7rem;font-weight:700;padding:1px 6px;border-radius:10px;margin-left:6px}
 @media(max-width:640px){.grid{grid-template-columns:1fr;padding:12px}.header h1{font-size:1.2rem}}
 </style>
 </head>
@@ -49,6 +63,13 @@ body{background:#080808;color:#ccc;font-family:-apple-system,BlinkMacSystemFont,
   <h1>SOCIAL MACHINE</h1>
   <div class="sub" id="lastUpdate">Loading...</div>
   <button class="refresh-btn" onclick="loadData()">Refresh</button>
+</div>
+
+<div class="grid" style="grid-template-columns:1fr">
+  <div class="card" id="pendingCard" style="display:none">
+    <h2>Pending Approval <span class="pending-count" id="pendingCount">0</span></h2>
+    <div id="pendingPosts"></div>
+  </div>
 </div>
 
 <div class="grid" id="dashboard">
@@ -70,7 +91,7 @@ body{background:#080808;color:#ccc;font-family:-apple-system,BlinkMacSystemFont,
   </div>
   <div class="card">
     <h2>Engagement Leaders</h2>
-    <div id="engagementCard"><div class="empty">No engagement data yet. Log metrics via CLI.</div></div>
+    <div id="engagementCard"><div class="empty">No engagement data yet.</div></div>
   </div>
   <div class="card">
     <h2>Engager Pipeline</h2>
@@ -92,6 +113,88 @@ body{background:#080808;color:#ccc;font-family:-apple-system,BlinkMacSystemFont,
 <script>
 const DATA_URL='https://raw.githubusercontent.com/BosRoss/bosssystems.co/main/social_report.json';
 const POST_URL='https://raw.githubusercontent.com/BosRoss/bosssystems.co/main/social_posts.json';
+const PENDING_URL='https://raw.githubusercontent.com/BosRoss/bosssystems.co/main/social_pending.json';
+const APPROVE_URL='https://jamross.app.n8n.cloud/webhook/social-approve';
+
+let pendingData=[];
+
+function esc(s){return s.replace(/\\/g,'\\\\').replace(/"/g,'\\"').replace(/\n/g,'\\n').replace(/\r/g,'\\r').replace(/\t/g,'\\t')}
+
+function buildMutation(p){
+  let meta='';
+  if(p.service==='facebook')meta=', metadata: { facebook: { type: post } }';
+  else if(p.service==='instagram')meta=', metadata: { instagram: { type: post, shouldShareToFeed: true } }';
+  let assets='';
+  if(p.image_url)assets=', assets: [{ image: { url: "'+esc(p.image_url)+'" } }]';
+  return 'mutation { createPost(input: { text: "'+esc(p.text)+'", channelId: "'+p.channel_id+'"'+meta+assets+', schedulingType: automatic, mode: addToQueue }) { ... on PostActionSuccess { post { id text dueAt } } ... on MutationError { message } } }';
+}
+
+async function approvePost(pid,btn){
+  const post=pendingData.find(p=>p.pending_id===pid);
+  if(!post)return;
+  btn.disabled=true;
+  btn.textContent='Sending...';
+  try{
+    const mutation=buildMutation(post);
+    const r=await fetch(APPROVE_URL,{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({query:mutation})});
+    const result=await r.json();
+    const inner=result.data?.createPost||result;
+    if(inner.post||inner.data?.createPost?.post){
+      btn.textContent='Approved';
+      btn.style.background='#4ade80';
+      const card=btn.closest('.pending-post');
+      if(card)card.style.borderLeftColor='#4ade80';
+      pendingData=pendingData.filter(p=>p.pending_id!==pid);
+      updatePendingCount();
+    }else{
+      const msg=inner.message||inner.errors?.[0]?.message||'Unknown error';
+      btn.textContent='Failed';
+      btn.style.background='#ef4444';
+      const span=document.createElement('span');
+      span.className='status-msg err';
+      span.textContent=msg;
+      btn.parentNode.appendChild(span);
+    }
+  }catch(e){
+    btn.textContent='Error';
+    btn.style.background='#ef4444';
+  }
+}
+
+async function approveAll(){
+  const btns=document.querySelectorAll('.btn-approve:not(:disabled)');
+  for(const btn of btns){
+    const pid=btn.dataset.pid;
+    if(pid)await approvePost(pid,btn);
+  }
+}
+
+function updatePendingCount(){
+  const count=pendingData.length;
+  document.getElementById('pendingCount').textContent=count;
+  document.getElementById('pendingCard').style.display=count>0?'block':'none';
+}
+
+function renderPending(posts){
+  pendingData=posts||[];
+  const el=document.getElementById('pendingPosts');
+  updatePendingCount();
+  if(!posts||!posts.length){el.innerHTML='';return}
+  const approveAllBtn=posts.length>1?'<button class="btn-approve-all" onclick="approveAll()">Approve All ('+posts.length+')</button>':'';
+  el.innerHTML=approveAllBtn+posts.map(p=>{
+    const svc=(p.service||'?').toUpperCase();
+    const aud=(p.audience||'?').toUpperCase();
+    const txt=(p.text||'').replace(/</g,'&lt;');
+    return`
+      <div class="pending-post">
+        <div class="meta">${svc} &middot; ${aud} &middot; ${p.pattern||'?'} &middot; ${(p.pending_id||'').slice(0,8)}</div>
+        <div class="text">${txt}</div>
+        <div class="actions">
+          <button class="btn-approve" data-pid="${p.pending_id}" onclick="approvePost('${p.pending_id}',this)">Approve</button>
+        </div>
+      </div>`;
+  }).join('');
+}
 
 function gateBadge(mode,kill){
   if(kill)return'<span class="badge killed">KILLED</span>';
@@ -101,9 +204,8 @@ function gateBadge(mode,kill){
 
 function renderStatus(d){
   const el=document.getElementById('statusCard');
-  const gateHTML=gateBadge(d.gate_mode,d.kill_switch);
   el.innerHTML=`
-    <div class="stat-row"><span class="stat-label">Gate Mode</span><span>${gateHTML}</span></div>
+    <div class="stat-row"><span class="stat-label">Gate Mode</span><span>${gateBadge(d.gate_mode,d.kill_switch)}</span></div>
     <div class="stat-row"><span class="stat-label">Clean Days</span><span class="stat-value">${d.gate_clean_days||0} / 7</span></div>
     <div class="stat-row"><span class="stat-label">Total Posts</span><span class="stat-value gold">${d.total_posts||0}</span></div>
     <div class="stat-row"><span class="stat-label">Approved</span><span class="stat-value green">${d.posts_approved||0}</span></div>
@@ -116,7 +218,6 @@ function renderPlatforms(d){
   const ps=d.platform_stats||{};
   const keys=Object.keys(ps);
   if(!keys.length){el.innerHTML='<div class="empty">No posts yet.</div>';return}
-  const icons={facebook:'F',instagram:'I',tiktok:'T'};
   const maxCount=Math.max(...keys.map(k=>ps[k].count||0),1);
   el.innerHTML=keys.map(k=>{
     const p=ps[k];
@@ -124,7 +225,7 @@ function renderPlatforms(d){
     return`
       <div style="margin-bottom:12px">
         <div style="display:flex;justify-content:space-between;align-items:center">
-          <span class="stat-label"><span class="platform-icon">${icons[k]||k[0].toUpperCase()}</span>${k}</span>
+          <span class="stat-label">${k}</span>
           <span class="stat-value">${p.count} posts</span>
         </div>
         <div class="bar"><div class="bar-fill" style="width:${pct}%"></div></div>
@@ -170,16 +271,11 @@ function renderEngagement(d){
   const keys=Object.keys(eng);
   if(!keys.length)return;
   const sorted=keys.sort((a,b)=>(eng[b].score||0)-(eng[a].score||0)).slice(0,5);
-  el.innerHTML=sorted.map(k=>{
-    const e=eng[k];
-    const m=e.metrics||{};
-    const sends=(m.sends||0)+(m.shares||0);
-    return`
-      <div class="stat-row">
-        <span class="stat-label">${k.slice(0,12)}</span>
-        <span class="stat-value gold">${(e.score||0).toFixed(1)}</span>
-      </div>`;
-  }).join('')||'<div class="empty">No engagement data yet.</div>';
+  el.innerHTML=sorted.map(k=>`
+    <div class="stat-row">
+      <span class="stat-label">${k.slice(0,12)}</span>
+      <span class="stat-value gold">${(eng[k].score||0).toFixed(1)}</span>
+    </div>`).join('')||'<div class="empty">No engagement data yet.</div>';
 }
 
 function renderEngagers(d){
@@ -197,25 +293,31 @@ function renderPosts(posts){
   el.innerHTML=recent.map(p=>`
     <div class="recent-post">
       <div class="meta">${p.date||'?'} &middot; ${(p.service||'?').toUpperCase()} &middot; ${(p.audience||'?').toUpperCase()} &middot; ${p.pattern||'?'}</div>
-      <div class="text">${(p.text||'').slice(0,200)}${(p.text||'').length>200?'...':''}</div>
+      <div class="text">${((p.text||'').replace(/</g,'&lt;')).slice(0,200)}${(p.text||'').length>200?'...':''}</div>
     </div>`).join('');
 }
 
 async function loadData(){
   try{
     const r=await fetch(DATA_URL+'?t='+Date.now());
-    if(!r.ok)throw new Error('Failed to fetch');
-    const d=await r.json();
-    document.getElementById('lastUpdate').textContent='Updated: '+(d.generated||'unknown').slice(0,19).replace('T',' ');
-    renderStatus(d);renderPlatforms(d);renderBandit(d);renderSpend(d);renderEngagement(d);renderEngagers(d);
+    if(r.ok){
+      const d=await r.json();
+      document.getElementById('lastUpdate').textContent='Updated: '+(d.generated||'unknown').slice(0,19).replace('T',' ');
+      renderStatus(d);renderPlatforms(d);renderBandit(d);renderSpend(d);renderEngagement(d);renderEngagers(d);
+    }
   }catch(e){
-    document.getElementById('lastUpdate').textContent='Error loading data. Run: python3 social_machine.py dashboard';
+    document.getElementById('lastUpdate').textContent='Error loading data.';
   }
   try{
     const r2=await fetch(POST_URL+'?t='+Date.now());
     if(r2.ok){const posts=await r2.json();renderPosts(posts.posts||posts);}
     else renderPosts([]);
   }catch(e){renderPosts([])}
+  try{
+    const r3=await fetch(PENDING_URL+'?t='+Date.now());
+    if(r3.ok){const d=await r3.json();renderPending(d.pending||[]);}
+    else renderPending([]);
+  }catch(e){renderPending([])}
 }
 
 loadData();
