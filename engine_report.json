@@ -1,7 +1,39 @@
 {
-  "generated": "2026-06-06T17:09:16.016600+00:00",
+  "generated": "2026-06-06T19:30:51.143293+00:00",
   "engine_state": "active",
   "signals": [
+    {
+      "type": "flood",
+      "area": "Throckmorton, TX",
+      "niche": "plumbing",
+      "action": "Flood warnings in Throckmorton, TX. Plumbers, restoration, mold companies will spike.",
+      "urgency": "today",
+      "pitch_hook": "Water damage calls are coming. Every one you miss is $500+ walking away."
+    },
+    {
+      "type": "flood",
+      "area": "Fort Bend, TX; Harris, TX",
+      "niche": "plumbing",
+      "action": "Flood warnings in Fort Bend, TX; Harris, TX. Plumbers, restoration, mold companies will spike.",
+      "urgency": "today",
+      "pitch_hook": "Water damage calls are coming. Every one you miss is $500+ walking away."
+    },
+    {
+      "type": "flood",
+      "area": "Major; Garfield; Noble; Dewey; Custer; Blaine; Kingfisher; Logan; Payne; Beckham; Washita; Caddo; Canadian; Oklahoma; Lincoln; Grady; McClain; Cleveland; Pottawatomie; Seminole; Hughes; Harmon; Greer;",
+      "niche": "plumbing",
+      "action": "Flood warnings in Major; Garfield; Noble; Dewey; Custer; Blaine; Kingfisher; Logan; Payne; Beckham; Washita; Caddo; Canadian; Oklahoma; Lincoln; Grady; McClain; Cleveland; Pottawatomie; Seminole; Hughes; Harmon; Greer;. Plumbers, restoration, mold companies will spike.",
+      "urgency": "today",
+      "pitch_hook": "Water damage calls are coming. Every one you miss is $500+ walking away."
+    },
+    {
+      "type": "flood",
+      "area": "Bell, TX; Falls, TX; Limestone, TX; Milam, TX; Robertson, TX",
+      "niche": "plumbing",
+      "action": "Flood warnings in Bell, TX; Falls, TX; Limestone, TX; Milam, TX; Robertson, TX. Plumbers, restoration, mold companies will spike.",
+      "urgency": "today",
+      "pitch_hook": "Water damage calls are coming. Every one you miss is $500+ walking away."
+    },
     {
       "type": "flood",
       "area": "Donley, TX; Gray, TX",
@@ -12,73 +44,41 @@
     },
     {
       "type": "flood",
-      "area": "Potter, TX; Randall, TX",
+      "area": "Shackelford, TX",
       "niche": "plumbing",
-      "action": "Flood warnings in Potter, TX; Randall, TX. Plumbers, restoration, mold companies will spike.",
+      "action": "Flood warnings in Shackelford, TX. Plumbers, restoration, mold companies will spike.",
       "urgency": "today",
       "pitch_hook": "Water damage calls are coming. Every one you miss is $500+ walking away."
     },
     {
       "type": "flood",
-      "area": "Armstrong, TX; Randall, TX",
+      "area": "Bell, TX",
       "niche": "plumbing",
-      "action": "Flood warnings in Armstrong, TX; Randall, TX. Plumbers, restoration, mold companies will spike.",
+      "action": "Flood warnings in Bell, TX. Plumbers, restoration, mold companies will spike.",
       "urgency": "today",
       "pitch_hook": "Water damage calls are coming. Every one you miss is $500+ walking away."
     },
     {
       "type": "flood",
-      "area": "Randall, TX",
+      "area": "St. Tammany, LA; Hancock, MS",
       "niche": "plumbing",
-      "action": "Flood warnings in Randall, TX. Plumbers, restoration, mold companies will spike.",
+      "action": "Flood warnings in St. Tammany, LA; Hancock, MS. Plumbers, restoration, mold companies will spike.",
       "urgency": "today",
       "pitch_hook": "Water damage calls are coming. Every one you miss is $500+ walking away."
     },
     {
       "type": "flood",
-      "area": "Fisher, TX",
+      "area": "St. Tammany, LA; Washington, LA; Hancock, MS; Pearl River, MS",
       "niche": "plumbing",
-      "action": "Flood warnings in Fisher, TX. Plumbers, restoration, mold companies will spike.",
+      "action": "Flood warnings in St. Tammany, LA; Washington, LA; Hancock, MS; Pearl River, MS. Plumbers, restoration, mold companies will spike.",
       "urgency": "today",
       "pitch_hook": "Water damage calls are coming. Every one you miss is $500+ walking away."
     },
     {
       "type": "flood",
-      "area": "Bell, TX; Falls, TX; Limestone, TX; McLennan, TX; Milam, TX; Robertson, TX",
+      "area": "Hancock, MS; Harrison, MS; Pearl River, MS",
       "niche": "plumbing",
-      "action": "Flood warnings in Bell, TX; Falls, TX; Limestone, TX; McLennan, TX; Milam, TX; Robertson, TX. Plumbers, restoration, mold companies will spike.",
-      "urgency": "today",
-      "pitch_hook": "Water damage calls are coming. Every one you miss is $500+ walking away."
-    },
-    {
-      "type": "flood",
-      "area": "Nolan, TX",
-      "niche": "plumbing",
-      "action": "Flood warnings in Nolan, TX. Plumbers, restoration, mold companies will spike.",
-      "urgency": "today",
-      "pitch_hook": "Water damage calls are coming. Every one you miss is $500+ walking away."
-    },
-    {
-      "type": "flood",
-      "area": "Haskell; Throckmorton; Jones; Shackelford; Taylor; Callahan; Coleman; Brown",
-      "niche": "plumbing",
-      "action": "Flood warnings in Haskell; Throckmorton; Jones; Shackelford; Taylor; Callahan; Coleman; Brown. Plumbers, restoration, mold companies will spike.",
-      "urgency": "today",
-      "pitch_hook": "Water damage calls are coming. Every one you miss is $500+ walking away."
-    },
-    {
-      "type": "flood",
-      "area": "Harrison, MS",
-      "niche": "plumbing",
-      "action": "Flood warnings in Harrison, MS. Plumbers, restoration, mold companies will spike.",
-      "urgency": "today",
-      "pitch_hook": "Water damage calls are coming. Every one you miss is $500+ walking away."
-    },
-    {
-      "type": "flood",
-      "area": "Creek, OK; Okmulgee, OK; Tulsa, OK; Wagoner, OK",
-      "niche": "plumbing",
-      "action": "Flood warnings in Creek, OK; Okmulgee, OK; Tulsa, OK; Wagoner, OK. Plumbers, restoration, mold companies will spike.",
+      "action": "Flood warnings in Hancock, MS; Harrison, MS; Pearl River, MS. Plumbers, restoration, mold companies will spike.",
       "urgency": "today",
       "pitch_hook": "Water damage calls are coming. Every one you miss is $500+ walking away."
     }
@@ -239,55 +239,55 @@
   "feeds": [
     {
       "name": "NOAA",
-      "last_hit": "2026-06-06T17:01:28.544846+00:00",
+      "last_hit": "2026-06-06T19:22:56.397578+00:00",
       "status": "yellow",
       "data_points_today": 0
     },
     {
       "name": "REDDIT",
-      "last_hit": "2026-06-06T17:01:28.544846+00:00",
+      "last_hit": "2026-06-06T19:22:56.397578+00:00",
       "status": "green",
       "data_points_today": 841
     },
     {
       "name": "USGS",
-      "last_hit": "2026-06-06T17:01:28.544846+00:00",
+      "last_hit": "2026-06-06T19:22:56.397578+00:00",
       "status": "yellow",
       "data_points_today": 0
     },
     {
       "name": "HACKERNEWS",
-      "last_hit": "2026-06-06T17:01:28.544846+00:00",
+      "last_hit": "2026-06-06T19:22:56.397578+00:00",
       "status": "green",
       "data_points_today": 30
     },
     {
       "name": "FEMA",
-      "last_hit": "2026-06-06T17:01:28.544846+00:00",
+      "last_hit": "2026-06-06T19:22:56.397578+00:00",
       "status": "green",
       "data_points_today": 20
     },
     {
       "name": "COMMODITIES",
-      "last_hit": "2026-06-06T17:01:28.544846+00:00",
+      "last_hit": "2026-06-06T19:22:56.397578+00:00",
       "status": "green",
       "data_points_today": 7
     },
     {
       "name": "RSS",
-      "last_hit": "2026-06-06T17:01:28.544846+00:00",
+      "last_hit": "2026-06-06T19:22:56.397578+00:00",
       "status": "green",
       "data_points_today": 170
     },
     {
       "name": "FRED",
-      "last_hit": "2026-06-06T17:01:28.544846+00:00",
+      "last_hit": "2026-06-06T19:22:56.397578+00:00",
       "status": "yellow",
       "data_points_today": 0
     },
     {
       "name": "BLS",
-      "last_hit": "2026-06-06T17:01:28.544846+00:00",
+      "last_hit": "2026-06-06T19:22:56.397578+00:00",
       "status": "green",
       "data_points_today": 9
     }
