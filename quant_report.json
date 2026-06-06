@@ -1,6 +1,6 @@
 {
   "_disclaimer": "PAPER/SIMULATION ONLY \u2014 NOT FINANCIAL ADVICE",
-  "_generated_at": "2026-06-01T02:23:10.951536+00:00",
+  "_generated_at": "2026-06-06T01:31:27.967376+00:00",
   "strategies": [
     {
       "id": "momentum_cross",
@@ -46,9 +46,9 @@
         }
       },
       "forward": {
-        "forward_days": 1,
-        "cumulative_return_pct": -0.105,
-        "last_scored": "2026-06-01"
+        "forward_days": 2,
+        "cumulative_return_pct": -0.21,
+        "last_scored": "2026-06-05"
       },
       "equity_curve_oos": [
         {
@@ -1349,9 +1349,9 @@
         }
       },
       "forward": {
-        "forward_days": 1,
-        "cumulative_return_pct": -0.075,
-        "last_scored": "2026-06-01"
+        "forward_days": 2,
+        "cumulative_return_pct": -0.15,
+        "last_scored": "2026-06-05"
       },
       "equity_curve_oos": [
         {
@@ -2651,9 +2651,9 @@
         }
       },
       "forward": {
-        "forward_days": 1,
-        "cumulative_return_pct": -0.075,
-        "last_scored": "2026-06-01"
+        "forward_days": 2,
+        "cumulative_return_pct": -0.15,
+        "last_scored": "2026-06-05"
       },
       "equity_curve_oos": [
         {
@@ -3952,9 +3952,9 @@
         }
       },
       "forward": {
-        "forward_days": 1,
-        "cumulative_return_pct": -0.075,
-        "last_scored": "2026-06-01"
+        "forward_days": 2,
+        "cumulative_return_pct": -0.15,
+        "last_scored": "2026-06-05"
       },
       "equity_curve_oos": [
         {
@@ -5211,6 +5211,6 @@
   ],
   "total_strategies_tested": 4,
   "survivors": 0,
-  "forward_predictions_total": 4,
+  "forward_predictions_total": 8,
   "journal_entries": 4
 }
