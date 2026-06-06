@@ -602,7 +602,7 @@ async function runAnalysis() {
         ${!googleData.hasWeekends ? ' · <span style="color:#e67e22">No weekend hours</span>' : ''}
         ${googleData.negativeReviews > 0 ? ` · <span style="color:#e74c3c">${googleData.negativeReviews} negative review${googleData.negativeReviews > 1 ? 's' : ''}</span>` : ''}
         ${googleData.phoneComplaints > 0 ? ` · <span style="color:#e74c3c">${googleData.phoneComplaints} phone complaint${googleData.phoneComplaints > 1 ? 's' : ''} in reviews</span>` : ''}
-        <br><span style="font-size:.75rem;color:#666">Data from Google Places API · ${googleData.reviewsChecked || 5} most recent reviews scanned</span>
+        <br><span style="font-size:.75rem;color:#999">Data from Google Places API · ${googleData.reviewsChecked || 5} most recent reviews scanned</span>
       </div>`;
   } else {
     verifiedHTML = `
@@ -685,7 +685,7 @@ async function runAnalysis() {
       <div class="stat"><div class="num">${verifiedCount}</div><div class="lbl">Verified Problems</div></div>
     </div>
 
-    <div style="font-size:.78rem;color:#666;margin:-1rem 0 2rem;line-height:1.5">
+    <div style="font-size:.78rem;color:#999;margin:-1rem 0 2rem;line-height:1.5">
       Total reflects a 25% overlap discount — automations share some of the same revenue pool, so we don't double-count.
       ${verifiedCount > 0 ? `<span style="color:#4CAF50">${verifiedCount} item${verifiedCount > 1 ? 's' : ''} verified</span> from your Google listing.` : ''}
       ${estimateCount > 0 ? `<span style="color:#e67e22">${estimateCount} item${estimateCount > 1 ? 's' : ''}</span> based on published industry data (sources cited inline).` : ''}
