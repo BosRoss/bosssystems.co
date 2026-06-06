@@ -1,68 +1,52 @@
 {
-  "generated": "2026-06-06T19:30:51.143293+00:00",
+  "generated": "2026-06-06T22:12:55.029664+00:00",
   "engine_state": "active",
   "signals": [
     {
+      "type": "storm",
+      "area": "Denton, TX",
+      "niche": "roofing",
+      "action": "Storm damage in Denton, TX. Roofers and restoration companies about to get flooded.",
+      "urgency": "today",
+      "pitch_hook": "After a storm like that, you'll get 10x your normal call volume. Ready for it?"
+    },
+    {
       "type": "flood",
-      "area": "Throckmorton, TX",
+      "area": "Hardin, TX; Jefferson, TX; Orange, TX",
       "niche": "plumbing",
-      "action": "Flood warnings in Throckmorton, TX. Plumbers, restoration, mold companies will spike.",
+      "action": "Flood warnings in Hardin, TX; Jefferson, TX; Orange, TX. Plumbers, restoration, mold companies will spike.",
       "urgency": "today",
       "pitch_hook": "Water damage calls are coming. Every one you miss is $500+ walking away."
     },
     {
       "type": "flood",
-      "area": "Fort Bend, TX; Harris, TX",
+      "area": "Wise, TX",
       "niche": "plumbing",
-      "action": "Flood warnings in Fort Bend, TX; Harris, TX. Plumbers, restoration, mold companies will spike.",
+      "action": "Flood warnings in Wise, TX. Plumbers, restoration, mold companies will spike.",
       "urgency": "today",
       "pitch_hook": "Water damage calls are coming. Every one you miss is $500+ walking away."
     },
     {
       "type": "flood",
-      "area": "Major; Garfield; Noble; Dewey; Custer; Blaine; Kingfisher; Logan; Payne; Beckham; Washita; Caddo; Canadian; Oklahoma; Lincoln; Grady; McClain; Cleveland; Pottawatomie; Seminole; Hughes; Harmon; Greer;",
+      "area": "Runnels, TX",
       "niche": "plumbing",
-      "action": "Flood warnings in Major; Garfield; Noble; Dewey; Custer; Blaine; Kingfisher; Logan; Payne; Beckham; Washita; Caddo; Canadian; Oklahoma; Lincoln; Grady; McClain; Cleveland; Pottawatomie; Seminole; Hughes; Harmon; Greer;. Plumbers, restoration, mold companies will spike.",
+      "action": "Flood warnings in Runnels, TX. Plumbers, restoration, mold companies will spike.",
       "urgency": "today",
       "pitch_hook": "Water damage calls are coming. Every one you miss is $500+ walking away."
     },
     {
       "type": "flood",
-      "area": "Bell, TX; Falls, TX; Limestone, TX; Milam, TX; Robertson, TX",
+      "area": "Brown, TX; Coleman, TX",
       "niche": "plumbing",
-      "action": "Flood warnings in Bell, TX; Falls, TX; Limestone, TX; Milam, TX; Robertson, TX. Plumbers, restoration, mold companies will spike.",
+      "action": "Flood warnings in Brown, TX; Coleman, TX. Plumbers, restoration, mold companies will spike.",
       "urgency": "today",
       "pitch_hook": "Water damage calls are coming. Every one you miss is $500+ walking away."
     },
     {
       "type": "flood",
-      "area": "Donley, TX; Gray, TX",
+      "area": "Brazoria, TX; Chambers, TX; Galveston, TX; Harris, TX; Liberty, TX",
       "niche": "plumbing",
-      "action": "Flood warnings in Donley, TX; Gray, TX. Plumbers, restoration, mold companies will spike.",
-      "urgency": "today",
-      "pitch_hook": "Water damage calls are coming. Every one you miss is $500+ walking away."
-    },
-    {
-      "type": "flood",
-      "area": "Shackelford, TX",
-      "niche": "plumbing",
-      "action": "Flood warnings in Shackelford, TX. Plumbers, restoration, mold companies will spike.",
-      "urgency": "today",
-      "pitch_hook": "Water damage calls are coming. Every one you miss is $500+ walking away."
-    },
-    {
-      "type": "flood",
-      "area": "Bell, TX",
-      "niche": "plumbing",
-      "action": "Flood warnings in Bell, TX. Plumbers, restoration, mold companies will spike.",
-      "urgency": "today",
-      "pitch_hook": "Water damage calls are coming. Every one you miss is $500+ walking away."
-    },
-    {
-      "type": "flood",
-      "area": "St. Tammany, LA; Hancock, MS",
-      "niche": "plumbing",
-      "action": "Flood warnings in St. Tammany, LA; Hancock, MS. Plumbers, restoration, mold companies will spike.",
+      "action": "Flood warnings in Brazoria, TX; Chambers, TX; Galveston, TX; Harris, TX; Liberty, TX. Plumbers, restoration, mold companies will spike.",
       "urgency": "today",
       "pitch_hook": "Water damage calls are coming. Every one you miss is $500+ walking away."
     },
@@ -76,9 +60,25 @@
     },
     {
       "type": "flood",
+      "area": "St. Tammany, LA; Hancock, MS",
+      "niche": "plumbing",
+      "action": "Flood warnings in St. Tammany, LA; Hancock, MS. Plumbers, restoration, mold companies will spike.",
+      "urgency": "today",
+      "pitch_hook": "Water damage calls are coming. Every one you miss is $500+ walking away."
+    },
+    {
+      "type": "flood",
       "area": "Hancock, MS; Harrison, MS; Pearl River, MS",
       "niche": "plumbing",
       "action": "Flood warnings in Hancock, MS; Harrison, MS; Pearl River, MS. Plumbers, restoration, mold companies will spike.",
+      "urgency": "today",
+      "pitch_hook": "Water damage calls are coming. Every one you miss is $500+ walking away."
+    },
+    {
+      "type": "flood",
+      "area": "Pearl River, MS",
+      "niche": "plumbing",
+      "action": "Flood warnings in Pearl River, MS. Plumbers, restoration, mold companies will spike.",
       "urgency": "today",
       "pitch_hook": "Water damage calls are coming. Every one you miss is $500+ walking away."
     }
@@ -239,55 +239,55 @@
   "feeds": [
     {
       "name": "NOAA",
-      "last_hit": "2026-06-06T19:22:56.397578+00:00",
+      "last_hit": "2026-06-06T22:05:03.240562+00:00",
       "status": "yellow",
       "data_points_today": 0
     },
     {
       "name": "REDDIT",
-      "last_hit": "2026-06-06T19:22:56.397578+00:00",
+      "last_hit": "2026-06-06T22:05:03.240562+00:00",
       "status": "green",
       "data_points_today": 841
     },
     {
       "name": "USGS",
-      "last_hit": "2026-06-06T19:22:56.397578+00:00",
+      "last_hit": "2026-06-06T22:05:03.240562+00:00",
       "status": "yellow",
       "data_points_today": 0
     },
     {
       "name": "HACKERNEWS",
-      "last_hit": "2026-06-06T19:22:56.397578+00:00",
+      "last_hit": "2026-06-06T22:05:03.240562+00:00",
       "status": "green",
       "data_points_today": 30
     },
     {
       "name": "FEMA",
-      "last_hit": "2026-06-06T19:22:56.397578+00:00",
+      "last_hit": "2026-06-06T22:05:03.240562+00:00",
       "status": "green",
       "data_points_today": 20
     },
     {
       "name": "COMMODITIES",
-      "last_hit": "2026-06-06T19:22:56.397578+00:00",
+      "last_hit": "2026-06-06T22:05:03.240562+00:00",
       "status": "green",
       "data_points_today": 7
     },
     {
       "name": "RSS",
-      "last_hit": "2026-06-06T19:22:56.397578+00:00",
+      "last_hit": "2026-06-06T22:05:03.240562+00:00",
       "status": "green",
       "data_points_today": 170
     },
     {
       "name": "FRED",
-      "last_hit": "2026-06-06T19:22:56.397578+00:00",
+      "last_hit": "2026-06-06T22:05:03.240562+00:00",
       "status": "yellow",
       "data_points_today": 0
     },
     {
       "name": "BLS",
-      "last_hit": "2026-06-06T19:22:56.397578+00:00",
+      "last_hit": "2026-06-06T22:05:03.240562+00:00",
       "status": "green",
       "data_points_today": 9
     }
