@@ -571,6 +571,14 @@ html, body { height: 100%; overflow: hidden; background: var(--bg); color: var(-
   function formatGDP(n) { if(n>=1e6) return '$'+(n/1e6).toFixed(2)+'T'; if(n>=1e3) return '$'+(n/1e3).toFixed(0)+'B'; return '$'+n+'M'; }
   function getFlag(code) { if(!code||code.length!==2) return ''; return String.fromCodePoint(...[...code.toUpperCase()].map(c=>0x1F1E6+c.charCodeAt(0)-65)); }
 
+  // 2-day display expiry — items older than 48h hide from dashboard (data preserved in archive/knowledge_base)
+  function isRecent(dateStr) {
+    if (!dateStr) return true; // show items with no date
+    var d = new Date(dateStr);
+    if (isNaN(d)) return true; // show items with unparseable dates
+    return (Date.now() - d.getTime()) < 172800000; // 48 hours in ms
+  }
+
   // Dismiss/hide system
   function simpleHash(str) { var hash=0; if(!str) return '0'; for(var i=0;i<str.length;i++){hash=((hash<<5)-hash)+str.charCodeAt(i);hash|=0;} return String(Math.abs(hash)); }
   function getDismissed(tab) { try{return JSON.parse(localStorage.getItem('atlas_dismissed_'+tab)||'[]');}catch(e){return[];} }
@@ -1212,7 +1220,7 @@ html, body { height: 100%; overflow: hidden; background: var(--bg); color: var(-
   function renderTopbar() {
     document.getElementById('stat-sources').textContent = data.sources_scanned || 0;
     document.getElementById('stat-points').textContent = data.data_points || 0;
-    var anomCount = (data.anomalies || []).length;
+    var anomCount = (data.anomalies || []).filter(function(item) { return isRecent(item.date || item.timestamp); }).length;
     document.getElementById('stat-anomalies').textContent = anomCount;
     var power = data.power_level || 'SLEEP';
     document.querySelectorAll('.pwr-btn').forEach(function(btn) { btn.classList.toggle('active', btn.dataset.power === power); });
@@ -1222,10 +1230,10 @@ html, body { height: 100%; overflow: hidden; background: var(--bg); color: var(-
     var flightCount = (data.adsb || []).length;
     var flightTab = document.querySelector('[data-tab="flights"]');
     if (flightCount > 0) flightTab.innerHTML = 'FLIGHTS<span class="tab-count" style="background:rgba(232,168,64,0.2);color:var(--warning)">' + flightCount + '</span>';
-    var assessCount = (data.assessments || []).length;
+    var assessCount = (data.assessments || []).filter(function(item) { return isRecent(item.date || item.timestamp); }).length;
     var assessTab = document.querySelector('[data-tab="assess"]');
     if (assessCount > 0) assessTab.innerHTML = 'INTEL<span class="tab-count" style="background:rgba(75,146,219,0.2);color:var(--primary)">' + assessCount + '</span>';
-    var oppsCount = (data.opportunities || []).length;
+    var oppsCount = (data.opportunities || []).filter(function(item) { return isRecent(item.date || item.timestamp); }).length;
     var oppsTab = document.querySelector('[data-tab="opps"]');
     if (oppsCount > 0) oppsTab.innerHTML = 'OPPS<span class="tab-count" style="background:rgba(0,204,102,0.2);color:var(--success)">' + oppsCount + '</span>';
     var predCount = ((data.predictions || {}).atlas_predictions || []).length;
@@ -1250,7 +1258,7 @@ html, body { height: 100%; overflow: hidden; background: var(--bg); color: var(-
 
   function renderHeadlines() {
     var ticker = document.getElementById('headlines-ticker');
-    var headlines = data.headlines || [];
+    var headlines = (data.headlines || []).filter(function(item) { return isRecent(item.date || item.timestamp); });
     if (!headlines.length) { ticker.innerHTML = ''; return; }
     var html = '';
     for (var i = 0; i < headlines.length; i++) {
@@ -1266,7 +1274,7 @@ html, body { height: 100%; overflow: hidden; background: var(--bg); color: var(-
 
   function renderAnomalyBanner() {
     var banner = document.getElementById('anomaly-banner');
-    var anomalies = data.anomalies || [];
+    var anomalies = (data.anomalies || []).filter(function(item) { return isRecent(item.date || item.timestamp); });
     if (anomalies.length && anomalies[0].score >= 40) {
       banner.style.display = 'block';
       var top = anomalies[0];
@@ -1290,7 +1298,7 @@ html, body { height: 100%; overflow: hidden; background: var(--bg); color: var(-
 
   function renderAnomalies() {
     var panel = document.getElementById('panel-anomalies');
-    var anomalies = data.anomalies || [];
+    var anomalies = (data.anomalies || []).filter(function(item) { return isRecent(item.date || item.timestamp); });
     if (!anomalies.length) {
       panel.innerHTML = '<div class="section-title">ANOMALY ENGINE</div><div class="empty-state">No anomalies detected.<br><br>Run at <b>ACTIVE</b> or <b>SURGE</b> for full cross-source analysis.<br><br><code style="font-size:10px;color:var(--text-dim)">python3 scripts/atlas.py --power ACTIVE</code></div>';
       return;
@@ -1359,7 +1367,7 @@ html, body { height: 100%; overflow: hidden; background: var(--bg); color: var(-
   }
 
   function renderClaims() {
-    var panel = document.getElementById('panel-claims'), claims = data.claims || [];
+    var panel = document.getElementById('panel-claims'), claims = (data.claims || []).filter(function(item) { return isRecent(item.date || item.timestamp); });
     if (!claims.length) { panel.innerHTML = '<div class="section-title">CLAIMS TRACKER</div><div class="empty-state">No claims with velocity detected.<br><br>Claims appear when 3+ sources report the same event.</div>'; return; }
     var dismissed = getDismissed('claims');
     var hiddenCount = 0;
@@ -1405,7 +1413,7 @@ html, body { height: 100%; overflow: hidden; background: var(--bg); color: var(-
   }
 
   function renderAssessments() {
-    var panel = document.getElementById('panel-assess'), assessments = data.assessments || [];
+    var panel = document.getElementById('panel-assess'), assessments = (data.assessments || []).filter(function(item) { return isRecent(item.date || item.timestamp); });
     if (!assessments.length) { panel.innerHTML = '<div class="section-title">ATLAS ASSESSMENTS</div><div class="empty-state">No assessments. Run at <b>ACTIVE</b> or <b>SURGE</b> for full analysis.</div>'; return; }
     var dismissed = getDismissed('assess');
     var hiddenCount = 0;
@@ -1434,7 +1442,7 @@ html, body { height: 100%; overflow: hidden; background: var(--bg); color: var(-
   }
 
   function renderOpportunities() {
-    var panel = document.getElementById('panel-opps'), opps = data.opportunities || [];
+    var panel = document.getElementById('panel-opps'), opps = (data.opportunities || []).filter(function(item) { return isRecent(item.date || item.timestamp); });
     if (!opps.length) { panel.innerHTML = '<div class="section-title">BUSINESS OPPORTUNITIES</div><div class="empty-state">No opportunities detected. Run at <b>ACTIVE</b> or <b>SURGE</b>.</div>'; return; }
     var urgencyOrder={immediate:0,this_week:1,this_month:2,emerging:3};
     var sorted=[...opps].sort(function(a,b){return(urgencyOrder[a.urgency]||4)-(urgencyOrder[b.urgency]||4);});
@@ -1520,7 +1528,7 @@ html, body { height: 100%; overflow: hidden; background: var(--bg); color: var(-
     var reddit=(data.reddit||[]).slice(0,10);
     var rss=(data.rss||[]).map(function(r){return Object.assign({},r,{tier:'NEWS'})}).slice(0,8);
     var hn=(data.hackernews||[]).slice(0,5);
-    var all=[...tt,...official,...gdacsItems,...gdelt,...cisa,...fires,...volcanoes,...reddit,...rss,...hn].slice(0,80);
+    var all=[...tt,...official,...gdacsItems,...gdelt,...cisa,...fires,...volcanoes,...reddit,...rss,...hn].filter(function(item) { return isRecent(item.date || item.timestamp); }).slice(0,80);
     if(!all.length){panel.innerHTML='<div class="section-title">INTELLIGENCE FEED</div><div class="empty-state">No feed data.</div>';return;}
     var dismissed = getDismissed('feed');
     var hiddenCount = 0;
