@@ -32,16 +32,16 @@ body{background:#080808;color:#ccc;font-family:-apple-system,BlinkMacSystemFont,
 .bandit-bar-fill{height:100%;background:linear-gradient(90deg,#C9A84C,#e8d48b);border-radius:4px}
 .bandit-pct{color:#f0ede8;font-size:.8rem;width:50px;text-align:right}
 .recent-post{padding:10px;background:#0a0a0a;border-radius:6px;margin-bottom:8px;border-left:3px solid #C9A84C}
-.recent-post .meta{color:#666;font-size:.75rem;margin-bottom:4px}
+.recent-post .meta{color:#999;font-size:.75rem;margin-bottom:4px}
 .recent-post .text{color:#bbb;font-size:.85rem;line-height:1.4;white-space:pre-wrap}
-.footer{text-align:center;padding:30px 20px;color:#444;font-size:.75rem}
+.footer{text-align:center;padding:30px 20px;color:#999;font-size:.75rem}
 .refresh-btn{background:none;border:1px solid #333;color:#888;padding:6px 14px;border-radius:4px;cursor:pointer;font-size:.8rem;margin-top:8px}
 .refresh-btn:hover{border-color:#C9A84C;color:#C9A84C}
-.empty{color:#555;font-size:.85rem;text-align:center;padding:20px 0}
+.empty{color:#999;font-size:.85rem;text-align:center;padding:20px 0}
 .spend-meter{display:flex;align-items:center;gap:10px;margin-top:6px}
-.spend-label{font-size:.75rem;color:#666}
+.spend-label{font-size:.75rem;color:#999}
 .pending-post{padding:14px;background:#0a0a0a;border-radius:6px;margin-bottom:12px;border-left:3px solid #C9A84C}
-.pending-post .meta{color:#666;font-size:.75rem;margin-bottom:6px}
+.pending-post .meta{color:#999;font-size:.75rem;margin-bottom:6px}
 .pending-post .text{color:#bbb;font-size:.85rem;line-height:1.5;white-space:pre-wrap;margin-bottom:10px}
 .pending-post .actions{display:flex;gap:8px}
 .btn-approve{background:#C9A84C;color:#080808;border:none;padding:6px 16px;border-radius:4px;cursor:pointer;font-size:.8rem;font-weight:600}
@@ -238,7 +238,7 @@ function renderPlatforms(d){
           <span class="stat-value">${p.count} posts</span>
         </div>
         <div class="bar"><div class="bar-fill" style="width:${pct}%"></div></div>
-        <div style="color:#555;font-size:.7rem;margin-top:2px">${p.active_days||0} active days</div>
+        <div style="color:#999;font-size:.7rem;margin-top:2px">${p.active_days||0} active days</div>
       </div>`;
   }).join('');
 }
