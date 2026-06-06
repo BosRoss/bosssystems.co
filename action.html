@@ -1,0 +1,808 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1.0">
+<title>BOSS — Lead Action Center</title>
+<style>
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+:root{--bg:#0a0a0f;--bg2:#101018;--card:#13131d;--gold:#c9a96e;--gold2:#dfc070;--text:#f0ede8;--muted:#bbb;--dim:#888;--border:rgba(201,169,110,.15);--green:#2ecc71;--red:#e74c3c;--blue:#4b92db;--font:'Inter',-apple-system,BlinkMacSystemFont,sans-serif}
+html{scroll-behavior:smooth}
+body{font-family:var(--font);background:var(--bg);color:var(--text);line-height:1.6;min-height:100vh}
+.wrap{max-width:900px;margin:0 auto;padding:20px 16px 80px}
+h1{font-size:20px;font-weight:800;letter-spacing:3px;text-transform:uppercase;color:var(--gold);margin-bottom:4px}
+.sub{font-size:12px;color:var(--dim);letter-spacing:1px;margin-bottom:24px}
+.stats{display:flex;gap:12px;margin-bottom:28px;flex-wrap:wrap}
+.stat{background:var(--card);border:1px solid var(--border);padding:14px 18px;flex:1;min-width:120px}
+.stat-val{font-size:22px;font-weight:700;color:var(--gold)}
+.stat-label{font-size:10px;letter-spacing:2px;text-transform:uppercase;color:var(--dim);margin-top:2px}
+.section{margin-bottom:32px}
+.section-hd{font-size:10px;letter-spacing:4px;text-transform:uppercase;color:var(--gold);padding-bottom:10px;border-bottom:1px solid var(--border);margin-bottom:16px;display:flex;justify-content:space-between;align-items:center}
+.badge{background:var(--gold);color:var(--bg);font-size:10px;font-weight:700;padding:2px 8px;letter-spacing:1px}
+.lead-card{background:var(--card);border:1px solid var(--border);padding:18px 20px;margin-bottom:10px;cursor:pointer;transition:border-color .2s}
+.lead-card:hover{border-color:var(--gold)}
+.lead-card.active{border-color:var(--gold);border-width:2px}
+.lead-top{display:flex;justify-content:space-between;align-items:flex-start;gap:12px}
+.lead-name{font-size:15px;font-weight:700}
+.lead-meta{font-size:12px;color:var(--muted);margin-top:3px}
+.lead-score{font-size:11px;font-weight:700;padding:3px 10px;letter-spacing:1px}
+.lead-score.hot{background:rgba(231,76,60,.15);color:#e74c3c;border:1px solid rgba(231,76,60,.3)}
+.lead-score.warm{background:rgba(201,169,110,.15);color:var(--gold);border:1px solid var(--border)}
+.lead-score.cool{background:rgba(75,146,219,.15);color:var(--blue);border:1px solid rgba(75,146,219,.3)}
+.lead-action{margin-top:12px;padding-top:12px;border-top:1px solid var(--border)}
+.lead-action-label{font-size:10px;letter-spacing:2px;text-transform:uppercase;color:var(--dim);margin-bottom:6px}
+.lead-action-text{font-size:13px;font-weight:600;color:var(--gold2)}
+.lead-btns{display:flex;gap:8px;margin-top:10px;flex-wrap:wrap}
+.btn{font-family:var(--font);font-size:11px;font-weight:700;letter-spacing:1px;text-transform:uppercase;padding:8px 16px;border:none;cursor:pointer;transition:all .2s}
+.btn-gold{background:var(--gold);color:var(--bg)}
+.btn-gold:hover{background:var(--gold2)}
+.btn-outline{background:transparent;border:1px solid var(--border);color:var(--muted)}
+.btn-outline:hover{border-color:var(--gold);color:var(--gold)}
+.btn-sm{padding:6px 12px;font-size:10px}
+.btn-red{background:rgba(231,76,60,.15);color:#e74c3c;border:1px solid rgba(231,76,60,.3)}
+.btn-green{background:rgba(46,204,113,.15);color:#2ecc71;border:1px solid rgba(46,204,113,.3)}
+.detail-panel{background:var(--bg2);border:1px solid var(--border);padding:20px;margin-top:10px;display:none}
+.detail-panel.open{display:block}
+.form-row{display:flex;gap:8px;margin-bottom:8px;flex-wrap:wrap}
+.form-row input,.form-row select,.form-row textarea{font-family:var(--font);font-size:13px;background:var(--card);border:1px solid var(--border);color:var(--text);padding:8px 12px;flex:1;min-width:0}
+.form-row textarea{min-height:60px;resize:vertical}
+.form-row select{min-width:120px}
+.form-row input:focus,.form-row select:focus,.form-row textarea:focus{outline:none;border-color:var(--gold)}
+.form-row input::placeholder{color:var(--dim)}
+.script-box{background:var(--bg);border:1px solid var(--border);padding:20px;margin:12px 0;position:relative;white-space:pre-wrap;font-size:13px;line-height:1.7;color:var(--text)}
+.script-box .script-label{font-size:9px;letter-spacing:3px;text-transform:uppercase;color:var(--dim);margin-bottom:10px;display:block}
+.copy-btn{position:absolute;top:10px;right:10px;background:var(--gold);color:var(--bg);font-size:10px;font-weight:700;padding:4px 10px;border:none;cursor:pointer;letter-spacing:1px}
+.copy-btn:hover{background:var(--gold2)}
+.tabs{display:flex;gap:0;margin-bottom:16px;flex-wrap:wrap}
+.tab{font-family:var(--font);font-size:11px;font-weight:700;letter-spacing:1px;text-transform:uppercase;padding:10px 18px;background:var(--card);border:1px solid var(--border);color:var(--dim);cursor:pointer;transition:all .2s}
+.tab:hover{color:var(--gold)}
+.tab.active{background:var(--gold);color:var(--bg);border-color:var(--gold)}
+.stage-dots{display:flex;gap:6px;margin-top:8px}
+.stage-dot{width:8px;height:8px;border-radius:50%;background:var(--border)}
+.stage-dot.done{background:var(--green)}
+.stage-dot.current{background:var(--gold)}
+.stage-dot.future{background:var(--border)}
+.history-item{font-size:12px;color:var(--muted);padding:4px 0;border-bottom:1px solid rgba(255,255,255,.03)}
+.history-item .date{color:var(--dim);font-size:11px}
+.mystery-form{margin-top:12px}
+.mystery-form label{font-size:11px;color:var(--muted);display:block;margin-bottom:4px;letter-spacing:1px;text-transform:uppercase}
+.radio-row{display:flex;gap:6px;margin-bottom:10px;flex-wrap:wrap}
+.radio-row label{font-size:12px;color:var(--muted);padding:6px 14px;background:var(--card);border:1px solid var(--border);cursor:pointer;text-transform:none;letter-spacing:0}
+.radio-row input{display:none}
+.radio-row input:checked+span{color:var(--gold);border-color:var(--gold)}
+.radio-row label:has(input:checked){border-color:var(--gold);color:var(--gold)}
+.supplies{font-size:13px;color:var(--muted);line-height:1.8}
+.supplies li{margin-bottom:4px}
+.supplies strong{color:var(--text)}
+.empty-msg{font-size:13px;color:var(--dim);padding:20px;text-align:center;border:1px dashed var(--border)}
+.import-area{margin-top:12px}
+.import-area textarea{width:100%;font-family:monospace;font-size:12px;background:var(--card);border:1px solid var(--border);color:var(--text);padding:10px;min-height:80px;resize:vertical}
+.addr-link{font-size:11px;color:var(--blue);text-decoration:none;margin-left:8px}
+.addr-link:hover{text-decoration:underline}
+@media(max-width:600px){.wrap{padding:16px 12px 60px}.stats{flex-direction:column}.form-row{flex-direction:column}.tabs{overflow-x:auto}}
+</style>
+</head>
+<body>
+<div class="wrap">
+
+<h1>Lead Action Center</h1>
+<p class="sub">Your outreach queue. Every script word-for-word. Just execute.</p>
+
+<div class="stats" id="statsBar"></div>
+
+<!-- DO NOW -->
+<div class="section">
+  <div class="section-hd"><span>DO NOW</span><span class="badge" id="doNowCount">0</span></div>
+  <div id="doNowList"></div>
+</div>
+
+<!-- ADD LEAD -->
+<div class="section">
+  <div class="section-hd"><span>Add Lead</span><button class="btn btn-sm btn-outline" onclick="toggleImport()">Bulk Import</button></div>
+  <div class="form-row">
+    <input id="addName" placeholder="Business name">
+    <select id="addType">
+      <option value="">Type</option>
+      <option value="hvac">HVAC</option>
+      <option value="plumbing">Plumber</option>
+      <option value="electrical">Electrician</option>
+      <option value="roofing">Roofer</option>
+      <option value="junk removal">Junk Removal</option>
+      <option value="lawn care">Lawn Care</option>
+      <option value="pest control">Pest Control</option>
+      <option value="pressure washing">Pressure Washing</option>
+      <option value="cleaning">Cleaning</option>
+      <option value="legal">Law Firm</option>
+      <option value="auto repair">Auto Repair</option>
+      <option value="dental">Dental</option>
+    </select>
+    <input id="addCity" placeholder="City ST">
+  </div>
+  <div class="form-row">
+    <input id="addPhone" placeholder="Phone">
+    <input id="addEmail" placeholder="Email (optional)">
+    <input id="addAddress" placeholder="Address (for postcards)">
+  </div>
+  <div class="form-row">
+    <button class="btn btn-gold" onclick="addLead()">+ Add Lead</button>
+  </div>
+  <div class="import-area" id="importArea" style="display:none">
+    <textarea id="importText" placeholder="One lead per line:&#10;Smith HVAC | hvac | Hattiesburg MS | 601-555-1234&#10;Delta Plumbing | plumbing | Tupelo MS | 662-555-5678"></textarea>
+    <button class="btn btn-sm btn-gold" style="margin-top:6px" onclick="bulkImport()">Import All</button>
+  </div>
+</div>
+
+<!-- SCRIPT LIBRARY -->
+<div class="section">
+  <div class="section-hd"><span>Script Library</span></div>
+  <div class="tabs" id="scriptTabs">
+    <div class="tab active" onclick="showScriptTab('postcards')">Postcards</div>
+    <div class="tab" onclick="showScriptTab('mystery')">Mystery Shop</div>
+    <div class="tab" onclick="showScriptTab('video')">Video Audit</div>
+    <div class="tab" onclick="showScriptTab('email')">Email</div>
+    <div class="tab" onclick="showScriptTab('report')">Shop Report</div>
+    <div class="tab" onclick="showScriptTab('supplies')">Supplies</div>
+  </div>
+  <div id="scriptContent"></div>
+</div>
+
+<!-- ALL LEADS -->
+<div class="section">
+  <div class="section-hd"><span>All Leads</span><span id="allCount" class="badge">0</span></div>
+  <div style="margin-bottom:12px">
+    <select id="filterStatus" onchange="renderAll()" style="font-family:var(--font);font-size:11px;background:var(--card);border:1px solid var(--border);color:var(--muted);padding:6px 10px">
+      <option value="all">All Stages</option>
+      <option value="recon">Recon</option>
+      <option value="postcard_1">Postcard Sent</option>
+      <option value="digital">Digital Follow-Up</option>
+      <option value="postcard_2">Second Postcard</option>
+      <option value="final">Final Follow-Up</option>
+      <option value="hot">HOT</option>
+      <option value="dead">Dead</option>
+    </select>
+  </div>
+  <div id="allLeadsList"></div>
+</div>
+
+</div>
+
+<script>
+// ── INDUSTRY DATA ──────────────────────────────────────────────────────────────
+var IND = {
+  hvac:              {job:800, service:'AC repair',         weekMiss:'3-5', missCost:680, label:'HVAC'},
+  plumbing:          {job:350, service:'plumbing repair',   weekMiss:'3-5', missCost:297, label:'Plumber'},
+  electrical:        {job:300, service:'electrical work',   weekMiss:'2-4', missCost:255, label:'Electrician'},
+  roofing:           {job:8000,service:'roof repair',       weekMiss:'2-3', missCost:6800,label:'Roofer'},
+  'junk removal':    {job:200, service:'junk removal',      weekMiss:'3-5', missCost:170, label:'Junk Removal'},
+  'lawn care':       {job:80,  service:'lawn care',         weekMiss:'2-4', missCost:68,  label:'Lawn Care'},
+  'pest control':    {job:200, service:'pest treatment',    weekMiss:'2-3', missCost:170, label:'Pest Control'},
+  'pressure washing':{job:275, service:'pressure washing',  weekMiss:'2-3', missCost:233, label:'Pressure Washing'},
+  cleaning:          {job:200, service:'cleaning',          weekMiss:'3-5', missCost:170, label:'Cleaning'},
+  legal:             {job:2500,service:'legal consultation', weekMiss:'2-4', missCost:2125,label:'Law Firm'},
+  'auto repair':     {job:450, service:'auto repair',       weekMiss:'3-5', missCost:382, label:'Auto Repair'},
+  dental:            {job:500, service:'dental appointment', weekMiss:'3-5', missCost:425, label:'Dental'}
+};
+
+// ── ACTION STAGES ──────────────────────────────────────────────────────────────
+var STAGES = [
+  {key:'recon',      label:'Recon',           action:'Call their number. Note what happens.',                    days:0},
+  {key:'postcard_1', label:'First Postcard',   action:'Write and mail a postcard with your finding.',            days:0},
+  {key:'digital',    label:'Digital Follow-Up', action:'Send video audit or mystery shop report via email.',      days:3},
+  {key:'postcard_2', label:'Second Postcard',  action:'Mail a second postcard with a different angle.',          days:10},
+  {key:'final',      label:'Final Follow-Up',  action:'Last outreach. If no response, mark dead.',              days:21}
+];
+
+// ── LEAD STORAGE ───────────────────────────────────────────────────────────────
+function getLeads(){ try{return JSON.parse(localStorage.getItem('boss_action_leads')||'[]');}catch(e){return [];} }
+function saveLeads(leads){ localStorage.setItem('boss_action_leads', JSON.stringify(leads)); }
+
+function addLead(){
+  var name = document.getElementById('addName').value.trim();
+  var type = document.getElementById('addType').value;
+  var city = document.getElementById('addCity').value.trim();
+  var phone = document.getElementById('addPhone').value.trim();
+  var email = document.getElementById('addEmail').value.trim();
+  var address = document.getElementById('addAddress').value.trim();
+  if(!name||!type||!city){return;}
+  var leads = getLeads();
+  leads.push({
+    id: Date.now().toString(36)+Math.random().toString(36).slice(2,6),
+    name:name, type:type, city:city, phone:phone, email:email, address:address,
+    stage:'recon', mystery:null, actions:[], notes:'',
+    addedAt:new Date().toISOString(), lastActionAt:null
+  });
+  saveLeads(leads);
+  document.getElementById('addName').value='';
+  document.getElementById('addPhone').value='';
+  document.getElementById('addEmail').value='';
+  document.getElementById('addAddress').value='';
+  renderAll();
+}
+
+function bulkImport(){
+  var text = document.getElementById('importText').value.trim();
+  if(!text) return;
+  var leads = getLeads();
+  text.split('\n').forEach(function(line){
+    var parts = line.split('|').map(function(s){return s.trim();});
+    if(parts.length<3) return;
+    leads.push({
+      id: Date.now().toString(36)+Math.random().toString(36).slice(2,6),
+      name:parts[0], type:(parts[1]||'').toLowerCase(), city:parts[2], phone:parts[3]||'', email:parts[4]||'', address:parts[5]||'',
+      stage:'recon', mystery:null, actions:[], notes:'',
+      addedAt:new Date().toISOString(), lastActionAt:null
+    });
+  });
+  saveLeads(leads);
+  document.getElementById('importText').value='';
+  document.getElementById('importArea').style.display='none';
+  renderAll();
+}
+
+function toggleImport(){
+  var el = document.getElementById('importArea');
+  el.style.display = el.style.display==='none'?'block':'none';
+}
+
+function updateLead(id, updates){
+  var leads = getLeads();
+  for(var i=0;i<leads.length;i++){
+    if(leads[i].id===id){ Object.assign(leads[i], updates); break; }
+  }
+  saveLeads(leads);
+  renderAll();
+}
+
+function addAction(id, type, detail){
+  var leads = getLeads();
+  for(var i=0;i<leads.length;i++){
+    if(leads[i].id===id){
+      leads[i].actions.push({type:type, detail:detail||'', date:new Date().toISOString()});
+      leads[i].lastActionAt = new Date().toISOString();
+      break;
+    }
+  }
+  saveLeads(leads);
+}
+
+function advanceStage(id){
+  var leads = getLeads();
+  for(var i=0;i<leads.length;i++){
+    if(leads[i].id!==id) continue;
+    var cur = STAGES.findIndex(function(s){return s.key===leads[i].stage;});
+    if(cur<STAGES.length-1){
+      leads[i].stage = STAGES[cur+1].key;
+      leads[i].lastActionAt = new Date().toISOString();
+    }
+    break;
+  }
+  saveLeads(leads);
+  renderAll();
+}
+
+function markHot(id){
+  addAction(id,'marked_hot','Lead responded or showed interest');
+  updateLead(id,{stage:'hot'});
+}
+function markDead(id){
+  addAction(id,'marked_dead','No response after full sequence');
+  updateLead(id,{stage:'dead'});
+}
+function deleteLead(id){
+  var leads = getLeads().filter(function(l){return l.id!==id;});
+  saveLeads(leads);
+  renderAll();
+}
+
+// ── MYSTERY SHOP LOGGING ───────────────────────────────────────────────────────
+function logMysteryShop(id){
+  var outcome = document.querySelector('input[name="ms_outcome_'+id+'"]:checked');
+  var rings = document.querySelector('input[name="ms_rings_'+id+'"]:checked');
+  var notes = document.getElementById('ms_notes_'+id);
+  if(!outcome) return;
+  var mystery = {
+    outcome: outcome.value,
+    rings: rings?rings.value:'?',
+    notes: notes?notes.value.trim():'',
+    date: new Date().toISOString()
+  };
+  addAction(id, 'mystery_shop', mystery.outcome+' — '+mystery.rings+' rings'+(mystery.notes?' — '+mystery.notes:''));
+  updateLead(id, {mystery:mystery, stage:'postcard_1'});
+}
+
+// ── POSTCARD SCRIPT GENERATION ─────────────────────────────────────────────────
+function postcardMysteryCall(lead){
+  var ind = IND[lead.type]||IND.hvac;
+  var ms = lead.mystery||{};
+  var finding = ms.outcome==='voicemail'?'Got voicemail after '+ms.rings+' rings. No callback option.'
+    :ms.outcome==='no_answer'?'Nobody answered. Rang '+ms.rings+' times and gave up.'
+    :ms.outcome==='busy'?'Got a busy signal.'
+    :ms.outcome==='robot'?'Got an automated menu. Pressed buttons for 2 minutes and gave up.'
+    :'Called and couldn\'t get through.';
+  return 'Hey '+lead.name+',\n\n'
+    +'I called your number'+(ms.date?' on '+new Date(ms.date).toLocaleDateString('en-US',{weekday:'long'}):'')+' — wanted to ask about '+ind.service+'. '+finding+'\n\n'
+    +'Not a complaint. Just thought you should know — most people who hit voicemail try the next name on Google. They don\'t leave a message.\n\n'
+    +'In '+ind.label.toLowerCase()+', that\'s usually a $'+ind.job+' job walking out the door.\n\n'
+    +'No pitch here. Just something worth knowing.\n\n'
+    +'— Boston\n903-714-6162';
+}
+
+function postcardAfterHours(lead){
+  var ind = IND[lead.type]||IND.hvac;
+  return 'Quick question for '+lead.name+':\n\n'
+    +'What happens when someone calls you at 7pm on a Tuesday?\n\n'
+    +'For '+ind.label.toLowerCase()+' businesses, about 40% of calls come in after hours. Most hit voicemail. Most of those people call someone else.\n\n'
+    +'That\'s roughly $'+ind.missCost+' per missed call in your industry.\n\n'
+    +'Just something I\'ve been researching. Thought it applied to you.\n\n'
+    +'— Boston\n903-714-6162';
+}
+
+function postcardDollarAmount(lead){
+  var ind = IND[lead.type]||IND.hvac;
+  var weeklyLoss = ind.missCost * 4;
+  return 'Hey '+lead.name+',\n\n'
+    +'Here\'s some quick math:\n\n'
+    +'Average '+ind.service+' job in '+lead.city+': $'+ind.job+'\n'
+    +'Calls that go unanswered per week (industry avg): '+ind.weekMiss+'\n'
+    +'People who call back after voicemail: 15%\n\n'
+    +'That\'s about $'+weeklyLoss+' in missed revenue per week.\n\n'
+    +'Not selling anything — just a number I thought was worth knowing.\n\n'
+    +'— Boston\n903-714-6162';
+}
+
+function postcardCompetitorTest(lead){
+  var ind = IND[lead.type]||IND.hvac;
+  var ms = lead.mystery||{};
+  var yourResult = ms.outcome==='voicemail'?'Voicemail after '+ms.rings+' rings'
+    :ms.outcome==='answered'?'Answered'
+    :ms.outcome==='no_answer'?'No answer'
+    :ms.outcome==='busy'?'Busy signal'
+    :'Couldn\'t get through';
+  return 'Hey '+lead.name+',\n\n'
+    +'I called 5 '+ind.label.toLowerCase()+' companies in '+lead.city+' this week as a customer.\n\n'
+    +'2 answered right away.\n'
+    +'2 went to voicemail.\n'
+    +'Yours: '+yourResult+'.\n\n'
+    +'The ones that answered got the "job." That\'s how it works — first to pick up wins.\n\n'
+    +'Thought you\'d find that interesting.\n\n'
+    +'— Boston\n903-714-6162';
+}
+
+function postcardReview(lead){
+  return 'Hey '+lead.name+',\n\n'
+    +'Saw your Google reviews — mostly solid. But I noticed a customer mentioned having trouble reaching you.\n\n'
+    +'That kind of thing shows up when people search for '+((IND[lead.type]||{}).label||lead.type)+' in '+lead.city+'. New customers see it before they call.\n\n'
+    +'Worth keeping an eye on.\n\n'
+    +'— Boston\n903-714-6162';
+}
+
+// ── RENDER ─────────────────────────────────────────────────────────────────────
+function renderAll(){
+  var leads = getLeads();
+  var active = leads.filter(function(l){return l.stage!=='dead'&&l.stage!=='hot';});
+  var today = new Date();
+
+  // Stats
+  var total = leads.length;
+  var actionNeeded = active.filter(function(l){return needsAction(l,today);}).length;
+  var postcardsSent = leads.reduce(function(n,l){return n+l.actions.filter(function(a){return a.type==='postcard_sent';}).length;},0);
+  var hotCount = leads.filter(function(l){return l.stage==='hot';}).length;
+  document.getElementById('statsBar').innerHTML =
+    statBox(actionNeeded,'Need Action Today')+statBox(total,'Total Leads')+statBox(postcardsSent,'Postcards Sent')+statBox(hotCount,'Hot Leads');
+
+  // Do Now
+  var doNow = active.filter(function(l){return needsAction(l,today);}).sort(function(a,b){return scoreWeight(b)-scoreWeight(a);});
+  document.getElementById('doNowCount').textContent = doNow.length;
+  var doNowHtml = '';
+  if(doNow.length===0) doNowHtml='<div class="empty-msg">No leads need action today. Add leads or wait for timers.</div>';
+  doNow.forEach(function(l){ doNowHtml+=renderLeadCard(l,true); });
+  document.getElementById('doNowList').innerHTML = doNowHtml;
+
+  // All leads
+  var filter = document.getElementById('filterStatus').value;
+  var filtered = filter==='all'?leads:leads.filter(function(l){return l.stage===filter;});
+  document.getElementById('allCount').textContent = filtered.length;
+  var allHtml = '';
+  if(filtered.length===0) allHtml='<div class="empty-msg">No leads match this filter.</div>';
+  filtered.forEach(function(l){ allHtml+=renderLeadCard(l,false); });
+  document.getElementById('allLeadsList').innerHTML = allHtml;
+
+  showScriptTab(currentTab);
+}
+
+function needsAction(lead, today){
+  if(lead.stage==='recon') return true;
+  if(!lead.lastActionAt) return true;
+  var stageObj = STAGES.find(function(s){return s.key===lead.stage;});
+  if(!stageObj) return false;
+  var daysSince = (today - new Date(lead.lastActionAt))/(1000*60*60*24);
+  return daysSince >= stageObj.days;
+}
+
+function scoreWeight(lead){
+  var ind = IND[lead.type]||IND.hvac;
+  var base = ind.missCost;
+  if(lead.stage==='recon') base+=500;
+  if(lead.mystery&&lead.mystery.outcome!=='answered') base+=300;
+  return base;
+}
+
+function statBox(val,label){return '<div class="stat"><div class="stat-val">'+val+'</div><div class="stat-label">'+label+'</div></div>';}
+
+function renderLeadCard(lead, showDetail){
+  var ind = IND[lead.type]||{label:lead.type,missCost:0};
+  var stageIdx = STAGES.findIndex(function(s){return s.key===lead.stage;});
+  var stageObj = STAGES[stageIdx]||{label:lead.stage,action:''};
+  var tier = ind.missCost>=400?'hot':ind.missCost>=200?'warm':'cool';
+  if(lead.stage==='hot') tier='hot';
+
+  var dots = STAGES.map(function(s,i){
+    var cls = i<stageIdx?'done':i===stageIdx?'current':'future';
+    return '<div class="stage-dot '+cls+'" title="'+s.label+'"></div>';
+  }).join('');
+
+  var googleLink = '<a class="addr-link" href="https://www.google.com/search?q='+encodeURIComponent(lead.name+' '+lead.city+' address')+'" target="_blank">Find address</a>';
+  var phoneDisplay = lead.phone?'<strong>'+lead.phone+'</strong>':'No phone';
+
+  var html = '<div class="lead-card" id="lc_'+lead.id+'">';
+  html+='<div class="lead-top">';
+  html+='<div><div class="lead-name">'+esc(lead.name)+'</div>';
+  html+='<div class="lead-meta">'+esc(ind.label)+' — '+esc(lead.city)+' — '+phoneDisplay+googleLink+'</div>';
+  html+='<div class="stage-dots">'+dots+'</div></div>';
+  html+='<div class="lead-score '+tier+'">$'+ind.missCost+'/miss</div>';
+  html+='</div>';
+
+  if(lead.stage!=='hot'&&lead.stage!=='dead'){
+    html+='<div class="lead-action">';
+    html+='<div class="lead-action-label">Next Action — '+stageObj.label+'</div>';
+    html+='<div class="lead-action-text">'+stageObj.action+'</div>';
+    html+='<div class="lead-btns">';
+
+    if(lead.stage==='recon'){
+      html+='<button class="btn btn-gold btn-sm" onclick="showMysteryForm(\''+lead.id+'\')">Log Mystery Shop Call</button>';
+      if(lead.phone) html+='<a class="btn btn-outline btn-sm" href="tel:'+lead.phone+'">Call Now</a>';
+    } else if(lead.stage==='postcard_1'||lead.stage==='postcard_2'){
+      html+='<button class="btn btn-gold btn-sm" onclick="showPostcardScripts(\''+lead.id+'\')">Show Postcard Scripts</button>';
+      html+='<button class="btn btn-green btn-sm" onclick="markPostcardSent(\''+lead.id+'\')">Postcard Mailed</button>';
+    } else if(lead.stage==='digital'){
+      html+='<button class="btn btn-gold btn-sm" onclick="showDigitalScripts(\''+lead.id+'\')">Show Email/Video Scripts</button>';
+      html+='<button class="btn btn-green btn-sm" onclick="markDigitalSent(\''+lead.id+'\')">Sent</button>';
+      html+='<button class="btn btn-outline btn-sm" onclick="advanceStage(\''+lead.id+'\')">Skip (no email)</button>';
+    } else if(lead.stage==='final'){
+      html+='<button class="btn btn-green btn-sm" onclick="markHot(\''+lead.id+'\')">They Responded!</button>';
+      html+='<button class="btn btn-red btn-sm" onclick="markDead(\''+lead.id+'\')">No Response — Dead</button>';
+    }
+    html+='</div></div>';
+  } else if(lead.stage==='hot'){
+    html+='<div class="lead-action"><div class="lead-action-text" style="color:var(--green)">HOT LEAD — Follow up personally. Call or text them.</div></div>';
+  }
+
+  // History
+  if(lead.actions.length>0){
+    html+='<div style="margin-top:10px;padding-top:10px;border-top:1px solid var(--border)">';
+    html+='<div style="font-size:10px;letter-spacing:2px;text-transform:uppercase;color:var(--dim);margin-bottom:6px">History</div>';
+    lead.actions.slice().reverse().forEach(function(a){
+      html+='<div class="history-item"><span class="date">'+new Date(a.date).toLocaleDateString()+'</span> — '+esc(a.type.replace(/_/g,' '))+': '+esc(a.detail)+'</div>';
+    });
+    html+='</div>';
+  }
+
+  // Expandable panels
+  html+='<div class="detail-panel" id="mystery_'+lead.id+'"></div>';
+  html+='<div class="detail-panel" id="scripts_'+lead.id+'"></div>';
+
+  html+='<div style="margin-top:10px;display:flex;gap:6px">';
+  html+='<button class="btn btn-outline btn-sm" onclick="deleteLead(\''+lead.id+'\')">Delete</button>';
+  if(lead.stage!=='hot'&&lead.stage!=='dead') html+='<button class="btn btn-outline btn-sm" onclick="markHot(\''+lead.id+'\')">Mark Hot</button>';
+  html+='</div>';
+
+  html+='</div>';
+  return html;
+}
+
+// ── INTERACTION HANDLERS ───────────────────────────────────────────────────────
+function showMysteryForm(id){
+  var el = document.getElementById('mystery_'+id);
+  if(el.classList.contains('open')){el.classList.remove('open');el.innerHTML='';return;}
+  var lead = getLeads().find(function(l){return l.id===id;});
+  if(!lead) return;
+  el.innerHTML = '<div class="mystery-form">'
+    +'<div style="font-size:14px;font-weight:700;color:var(--gold);margin-bottom:12px">Mystery Shop: '+esc(lead.name)+'</div>'
+    +(lead.phone?'<div style="font-size:20px;font-weight:700;margin-bottom:16px;letter-spacing:2px"><a href="tel:'+lead.phone+'" style="color:var(--text);text-decoration:none">'+lead.phone+'</a></div>':'')
+    +'<label>What happened?</label>'
+    +'<div class="radio-row">'
+    +radioBtn('ms_outcome_'+id,'voicemail','Voicemail')
+    +radioBtn('ms_outcome_'+id,'no_answer','No Answer')
+    +radioBtn('ms_outcome_'+id,'busy','Busy Signal')
+    +radioBtn('ms_outcome_'+id,'robot','Robot Menu')
+    +radioBtn('ms_outcome_'+id,'answered','Answered')
+    +'</div>'
+    +'<label>Rings before result?</label>'
+    +'<div class="radio-row">'
+    +radioBtn('ms_rings_'+id,'1-2','1-2')
+    +radioBtn('ms_rings_'+id,'3-4','3-4')
+    +radioBtn('ms_rings_'+id,'5-6','5-6')
+    +radioBtn('ms_rings_'+id,'7+','7+')
+    +'</div>'
+    +'<label>Notes</label>'
+    +'<textarea id="ms_notes_'+id+'" placeholder="Generic greeting? Long hold? Any details..." style="width:100%;font-family:var(--font);font-size:13px;background:var(--card);border:1px solid var(--border);color:var(--text);padding:8px;min-height:50px;resize:vertical"></textarea>'
+    +'<button class="btn btn-gold" style="margin-top:10px" onclick="logMysteryShop(\''+id+'\')">Save & Show Postcard Scripts</button>'
+    +'</div>';
+  el.classList.add('open');
+}
+
+function radioBtn(name,val,label){
+  return '<label><input type="radio" name="'+name+'" value="'+val+'"><span>'+label+'</span></label>';
+}
+
+function showPostcardScripts(id){
+  var el = document.getElementById('scripts_'+id);
+  if(el.classList.contains('open')){el.classList.remove('open');el.innerHTML='';return;}
+  var lead = getLeads().find(function(l){return l.id===id;});
+  if(!lead) return;
+
+  var scripts = [];
+  if(lead.mystery&&lead.mystery.outcome!=='answered'){
+    scripts.push({title:'The Mystery Call (Best — uses your finding)',text:postcardMysteryCall(lead)});
+    scripts.push({title:'The Competitor Test',text:postcardCompetitorTest(lead)});
+  }
+  scripts.push({title:'The Dollar Amount',text:postcardDollarAmount(lead)});
+  scripts.push({title:'The After-Hours Question',text:postcardAfterHours(lead)});
+  scripts.push({title:'The Google Review',text:postcardReview(lead)});
+
+  var html = '<div style="font-size:14px;font-weight:700;color:var(--gold);margin-bottom:4px">Postcard Scripts for '+esc(lead.name)+'</div>';
+  html+='<div style="font-size:12px;color:var(--dim);margin-bottom:16px">Copy word-for-word onto a 4x6 postcard. Handwrite it — that\'s the whole point.</div>';
+  if(lead.address) html+='<div style="font-size:12px;color:var(--muted);margin-bottom:12px">Mail to: <strong>'+esc(lead.address)+'</strong></div>';
+  else html+='<div style="font-size:12px;margin-bottom:12px"><a class="addr-link" href="https://www.google.com/search?q='+encodeURIComponent(lead.name+' '+lead.city+' address')+'" target="_blank" style="margin-left:0">Find their address on Google</a></div>';
+
+  scripts.forEach(function(s){
+    html+='<div class="script-box"><span class="script-label">'+s.title+'</span><button class="copy-btn" onclick="copyText(this)">Copy</button>'+esc(s.text)+'</div>';
+  });
+  el.innerHTML = html;
+  el.classList.add('open');
+}
+
+function showDigitalScripts(id){
+  var el = document.getElementById('scripts_'+id);
+  if(el.classList.contains('open')){el.classList.remove('open');el.innerHTML='';return;}
+  var lead = getLeads().find(function(l){return l.id===id;});
+  if(!lead) return;
+  var ind = IND[lead.type]||IND.hvac;
+
+  var emailSubject = lead.mystery?'Called your number this morning':'Quick thing about '+lead.name;
+  var emailBody = 'Hey'+(lead.name?',':'')
+    +'\n\nI called '+lead.name+(lead.mystery?' and '+(lead.mystery.outcome==='voicemail'?'got voicemail':'couldn\'t get through'):'')+'.'
+    +'\n\nIn '+ind.label.toLowerCase()+', the average missed call costs about $'+ind.missCost+' in lost work. Most people just call the next number on Google.'
+    +'\n\nNot trying to sell you anything. I research this stuff and thought it was worth a heads up.'
+    +'\n\nIf you want to chat about it: 903-714-6162'
+    +'\n\n— Boston';
+
+  var videoScript = '1. Open screen recorder (or phone camera pointing at your phone screen)\n'
+    +'2. Say: "Hey, this is Boston. I\'m calling '+lead.name+' right now as a customer to see what happens."\n'
+    +'3. Dial '+lead.phone+' on speaker\n'
+    +'4. Let it play out — record what happens\n'
+    +'5. Say: "So that\'s what your customers experience. [Describe what happened]. Just thought you should see it."\n'
+    +'6. Keep it under 60 seconds\n\n'
+    +'Send via email with subject: "60-second video about '+lead.name+'"';
+
+  var reportText = '═══════════════════════════════════\n'
+    +'CUSTOMER EXPERIENCE REPORT\n'
+    +lead.name+' — '+lead.city+'\n'
+    +'═══════════════════════════════════\n\n'
+    +'Date: '+(lead.mystery?new Date(lead.mystery.date).toLocaleDateString():'[date]')+'\n'
+    +'Number called: '+(lead.phone||'[phone]')+'\n\n'
+    +'WHAT HAPPENED:\n'
+    +'Called as a potential customer asking about '+ind.service+'.\n'
+    +(lead.mystery?'Phone rang '+lead.mystery.rings+' times. Result: '+lead.mystery.outcome+'. '+(lead.mystery.notes||''):'[Fill in what happened]')+'\n\n'
+    +'INDUSTRY CONTEXT:\n'
+    +'- 85% of callers who reach voicemail never call back\n'
+    +'- Average '+ind.label.toLowerCase()+' job: $'+ind.job+'\n'
+    +'- Estimated cost per unanswered call: $'+ind.missCost+'\n\n'
+    +'This report was prepared independently.\n'
+    +'No affiliation with any service provider.\n\n'
+    +'Boston Rossall\n903-714-6162\n'
+    +'═══════════════════════════════════';
+
+  var html = '<div style="font-size:14px;font-weight:700;color:var(--gold);margin-bottom:12px">Digital Follow-Up for '+esc(lead.name)+'</div>';
+  html+='<div class="script-box"><span class="script-label">Email — Subject: '+esc(emailSubject)+'</span><button class="copy-btn" onclick="copyText(this)">Copy</button>'+esc(emailBody)+'</div>';
+  html+='<div class="script-box"><span class="script-label">60-Second Video Audit Script</span><button class="copy-btn" onclick="copyText(this)">Copy</button>'+esc(videoScript)+'</div>';
+  html+='<div class="script-box"><span class="script-label">Mystery Shop Report (print and mail or email as PDF)</span><button class="copy-btn" onclick="copyText(this)">Copy</button>'+esc(reportText)+'</div>';
+
+  el.innerHTML = html;
+  el.classList.add('open');
+}
+
+function markPostcardSent(id){
+  addAction(id,'postcard_sent','Postcard written and mailed');
+  advanceStage(id);
+}
+function markDigitalSent(id){
+  addAction(id,'digital_sent','Video/email/report sent');
+  advanceStage(id);
+}
+
+// ── COPY TO CLIPBOARD ──────────────────────────────────────────────────────────
+function copyText(btn){
+  var box = btn.parentElement;
+  var text = box.textContent.replace(box.querySelector('.script-label').textContent,'').replace('Copy','').trim();
+  navigator.clipboard.writeText(text).then(function(){
+    btn.textContent='Copied!';
+    setTimeout(function(){btn.textContent='Copy';},1500);
+  });
+}
+
+function esc(s){return String(s||'').replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;');}
+
+// ── SCRIPT LIBRARY TAB CONTENT ─────────────────────────────────────────────────
+var currentTab = 'postcards';
+
+function showScriptTab(tab){
+  currentTab = tab;
+  document.querySelectorAll('.tab').forEach(function(t){t.classList.remove('active');});
+  document.querySelectorAll('.tab').forEach(function(t){if(t.textContent.toLowerCase().replace(/\s/g,'')===tab.replace(/\s/g,''))t.classList.add('active');});
+
+  var el = document.getElementById('scriptContent');
+  if(tab==='postcards') el.innerHTML = postcardLibrary();
+  else if(tab==='mystery') el.innerHTML = mysteryGuide();
+  else if(tab==='video') el.innerHTML = videoGuide();
+  else if(tab==='email') el.innerHTML = emailLibrary();
+  else if(tab==='report') el.innerHTML = reportTemplate();
+  else if(tab==='supplies') el.innerHTML = suppliesGuide();
+}
+
+function postcardLibrary(){
+  return '<div style="font-size:13px;color:var(--muted);margin-bottom:16px;line-height:1.7">'
+    +'<strong style="color:var(--text)">Why postcards work:</strong> Handwritten mail gets opened 99% of the time (USPS). Response rate: 4.25% vs 0.5% for printed mail. '
+    +'Every postcard you send is personal, specific, and delivers a real finding about their business. You are not selling anything. You are telling them something they don\'t know.</div>'
+    +'<div style="font-size:13px;color:var(--muted);margin-bottom:16px;line-height:1.7">'
+    +'<strong style="color:var(--text)">How to use:</strong> Add a lead above, do the mystery shop call, then click "Show Postcard Scripts" — the scripts auto-fill with their business details. Copy word-for-word onto a blank 4x6 postcard and mail it.</div>'
+    +scriptBox('Script 1: The Mystery Call','Use after you\'ve called their number and they didn\'t answer.',
+      'Hey [Business Name],\n\nI called your number [day] — wanted to ask about [service]. Got voicemail after [X] rings. No callback option.\n\nNot a complaint. Just thought you should know — most people who hit voicemail try the next name on Google. They don\'t leave a message.\n\nIn [business type], that\'s usually a $[amount] job walking out the door.\n\nNo pitch here. Just something worth knowing.\n\n— Boston\n903-714-6162')
+    +scriptBox('Script 2: The After-Hours Question','Works for any business. No recon needed.',
+      'Quick question for [Business Name]:\n\nWhat happens when someone calls you at 7pm on a Tuesday?\n\nFor [business type] businesses, about 40% of calls come in after hours. Most hit voicemail. Most of those people call someone else.\n\nThat\'s roughly $[missed cost] per missed call in your industry.\n\nJust something I\'ve been researching. Thought it applied to you.\n\n— Boston\n903-714-6162')
+    +scriptBox('Script 3: The Dollar Amount','Lead with math. Works great for expensive services (HVAC, legal, roofing).',
+      'Hey [Business Name],\n\nHere\'s some quick math:\n\nAverage [service] job in [city]: $[amount]\nCalls that go unanswered per week (industry avg): 3-5\nPeople who call back after voicemail: 15%\n\nThat\'s about $[weekly loss] in missed revenue per week.\n\nNot selling anything — just a number I thought was worth knowing.\n\n— Boston\n903-714-6162')
+    +scriptBox('Script 4: The Competitor Test','Use when you\'ve called multiple businesses in the same market.',
+      'Hey [Business Name],\n\nI called 5 [business type] companies in [city] this week as a customer.\n\n2 answered right away.\n2 went to voicemail.\nYours: [what happened].\n\nThe ones that answered got the "job." That\'s how it works — first to pick up wins.\n\nThought you\'d find that interesting.\n\n— Boston\n903-714-6162')
+    +scriptBox('Script 5: The Google Review','Use when you find a bad review about reachability.',
+      'Hey [Business Name],\n\nSaw your Google reviews — mostly solid. But I noticed a customer mentioned having trouble reaching you.\n\nThat kind of thing shows up when people search for [business type] in [city]. New customers see it before they call.\n\nWorth keeping an eye on.\n\n— Boston\n903-714-6162');
+}
+
+function mysteryGuide(){
+  return '<div style="font-size:13px;color:var(--muted);line-height:1.8">'
+    +'<strong style="color:var(--gold)">MYSTERY SHOP CALL — Step by Step</strong><br><br>'
+    +'<strong style="color:var(--text)">1. Before you call:</strong><br>'
+    +'- Have the lead\'s card open on this page<br>'
+    +'- Know their business type so you sound like a real customer<br>'
+    +'- Have a question ready: "Hey, I need [service] at my house. Do y\'all have availability this week?"<br><br>'
+    +'<strong style="color:var(--text)">2. Make the call:</strong><br>'
+    +'- Call from your personal phone (NOT a BOSS number)<br>'
+    +'- Count the rings<br>'
+    +'- Note exactly what happens: who answered, how long it took, voicemail greeting, hold music, robot menu<br>'
+    +'- If they answer: ask your question, be polite, hang up after getting a quote or availability<br>'
+    +'- If voicemail: hang up. Do NOT leave a message.<br><br>'
+    +'<strong style="color:var(--text)">3. Log it:</strong><br>'
+    +'- Click "Log Mystery Shop Call" on the lead<br>'
+    +'- Select what happened, how many rings, any notes<br>'
+    +'- System auto-advances to postcard stage and pre-fills scripts with your finding<br><br>'
+    +'<strong style="color:var(--text)">4. What you\'re looking for:</strong><br>'
+    +'- Voicemail = gold. This is your finding for the postcard.<br>'
+    +'- Robot menu that takes forever = gold. "I pressed buttons for 2 minutes."<br>'
+    +'- Answered but rude/rushed = still useful. "Your team answered but seemed overwhelmed."<br>'
+    +'- Answered perfectly = mark this lead lower priority. They might not need you (yet).<br><br>'
+    +'<strong style="color:var(--text)">Best times to call:</strong><br>'
+    +'- Lunch hour (11:30am-1pm) — most likely to hit voicemail<br>'
+    +'- After 5pm — catches after-hours handling<br>'
+    +'- Monday morning — busiest time, most overwhelmed<br>'
+    +'</div>';
+}
+
+function videoGuide(){
+  return '<div style="font-size:13px;color:var(--muted);line-height:1.8">'
+    +'<strong style="color:var(--gold)">60-SECOND VIDEO AUDIT</strong><br><br>'
+    +'<strong style="color:var(--text)">What it is:</strong> You record yourself calling their number as a customer. They see exactly what their customers experience. This is impossible to ignore.<br><br>'
+    +'<strong style="color:var(--text)">How to record:</strong><br>'
+    +'1. iPhone: Screen Record (swipe down from top right, tap record button)<br>'
+    +'2. Open Phone app, put on speaker<br>'
+    +'3. Or: use a second phone to film your phone screen<br><br>'
+    +'<strong style="color:var(--text)">Script while recording:</strong><br><br>'
+    +'"Hey — this is Boston. I\'m calling [Business Name] right now, just like one of their customers would."<br><br>'
+    +'[Dial their number on speaker. Let it ring. Record what happens.]<br><br>'
+    +'"So that\'s what happens when someone calls [Business Name] looking for [service]. [Describe what happened — voicemail, no answer, etc.] Most people just hang up and call the next name on Google."<br><br>'
+    +'"Not trying to sell anything. Just thought they should see this."<br><br>'
+    +'[End recording. Keep it under 60 seconds.]<br><br>'
+    +'<strong style="color:var(--text)">How to send:</strong><br>'
+    +'- Email: subject line "60-second video about [Business Name]"<br>'
+    +'- Body: "Made this quick video about your business. Thought you\'d want to see it." + attach<br>'
+    +'- If no email: upload to YouTube (unlisted) and mail the link on a postcard<br>'
+    +'</div>';
+}
+
+function emailLibrary(){
+  return '<div style="font-size:13px;color:var(--muted);line-height:1.7;margin-bottom:16px">'
+    +'<strong style="color:var(--text)">Email rules:</strong> Short. Specific. Not selling. Every email should deliver a finding or insight about THEIR business. No attachments on first email (spam filter). Plain text beats HTML.</div>'
+    +scriptBox('Email 1: After Mystery Shop','Send after you\'ve called and they didn\'t answer.',
+      'Subject: Called your number this morning\n\nHey,\n\nI called [Business Name] today around [time]. Got voicemail after [X] rings.\n\nNot selling anything. Just something I noticed — 85% of people who hit voicemail call the next business on Google instead of leaving a message.\n\nFor [business type], that\'s usually a $[amount] job.\n\nIf you want to chat about it, I\'m at 903-714-6162.\n\n— Boston')
+    +scriptBox('Email 2: Follow-Up (1 week after postcard)','Light touch. Reference the postcard.',
+      'Subject: Following up on that postcard\n\nHey,\n\nSent you a postcard last week about your phone setup. Just wanted to see if it landed and if you had any questions.\n\nNo pressure at all. Just genuinely curious if you knew that was happening.\n\n— Boston\n903-714-6162')
+    +scriptBox('Email 3: The Value Drop','Send to any lead. No recon needed.',
+      'Subject: Quick thing about [Business Name]\n\nHey,\n\nI\'ve been researching [business type] businesses in [city] and yours came up.\n\nOne thing I noticed: businesses in your category lose an average of $[monthly loss] per month to missed calls. The ones that answer every call — even after hours — close 3x more jobs.\n\nNot a pitch. Just thought it was an interesting number.\n\n— Boston\n903-714-6162');
+}
+
+function reportTemplate(){
+  return '<div style="font-size:13px;color:var(--muted);line-height:1.7;margin-bottom:16px">'
+    +'<strong style="color:var(--text)">Mystery Shop Report:</strong> A one-page document showing what happened when you called their business as a customer. Print it out and mail it, or email it as a PDF. This is premium outreach — only use for your highest-value leads.</div>'
+    +scriptBox('Mystery Shop Report Template','Print on plain white paper. Fold in thirds and mail in a business envelope.',
+      '═══════════════════════════════════════\n'
+      +'CUSTOMER EXPERIENCE REPORT\n'
+      +'[Business Name] — [City, State]\n'
+      +'═══════════════════════════════════════\n\n'
+      +'Date: [date]\n'
+      +'Time: [time]\n'
+      +'Number called: [phone]\n\n'
+      +'WHAT HAPPENED:\n'
+      +'Called as a potential customer asking about [service].\n'
+      +'[Phone rang X times, then went to a generic voicemail greeting.\n'
+      +'No business name mentioned. No option to leave a message or\n'
+      +'get a callback. I didn\'t leave a message.]\n\n'
+      +'FINDINGS:\n'
+      +'- Answer time: [didn\'t answer / X seconds]\n'
+      +'- Greeting: [professional / generic / none]\n'
+      +'- Call outcome: [voicemail / answered / busy]\n'
+      +'- Would I book as a customer? [Yes / No — reason]\n\n'
+      +'INDUSTRY CONTEXT:\n'
+      +'- 85% of callers who reach voicemail never call back\n'
+      +'- Average [business type] job value: $[amount]\n'
+      +'- Estimated missed revenue per call: $[missed cost]\n\n'
+      +'This report was prepared independently.\n'
+      +'No affiliation with any service provider.\n\n'
+      +'Boston Rossall\n'
+      +'903-714-6162\n'
+      +'═══════════════════════════════════════');
+}
+
+function suppliesGuide(){
+  return '<div style="font-size:13px;color:var(--muted);line-height:1.8">'
+    +'<strong style="color:var(--gold)">POSTCARD SUPPLIES</strong><br><br>'
+    +'<ul class="supplies">'
+    +'<li><strong>Blank 4x6 postcards</strong> — Amazon: ~$8 for 100. Or buy cardstock at Walmart and cut to size.</li>'
+    +'<li><strong>Stamps</strong> — USPS postcard rate: $0.56 each. Buy a book of stamps at the post office or Walmart.</li>'
+    +'<li><strong>Pen</strong> — Fine-tip Sharpie or any pen with personality. Blue ink feels more personal than black.</li>'
+    +'<li><strong>Total cost per postcard:</strong> ~$0.65</li>'
+    +'</ul><br>'
+    +'<strong style="color:var(--gold)">HOW TO WRITE A POSTCARD</strong><br><br>'
+    +'<ul class="supplies">'
+    +'<li><strong>Front:</strong> Leave blank or write one attention-grabbing line. Some people write "PERSONAL" in the top corner.</li>'
+    +'<li><strong>Back — left side:</strong> Your message (the script). Handwrite it. Messy is fine — that\'s what makes it real.</li>'
+    +'<li><strong>Back — right side:</strong> Their name and address. Stamp in top right corner.</li>'
+    +'<li><strong>Return address:</strong> Optional on postcards. Skip it to save space.</li>'
+    +'</ul><br>'
+    +'<strong style="color:var(--gold)">HOW TO FIND THEIR ADDRESS</strong><br><br>'
+    +'<ul class="supplies">'
+    +'<li>Google "[Business Name] [City]" — the address is on their Google Business Profile</li>'
+    +'<li>Or check their website footer / contact page</li>'
+    +'<li>Or check Yelp</li>'
+    +'<li>Every lead card has a "Find address" link that opens the Google search for you</li>'
+    +'</ul><br>'
+    +'<strong style="color:var(--gold)">TIMELINE</strong><br><br>'
+    +'<ul class="supplies">'
+    +'<li><strong>Day 0:</strong> Mystery shop call + write postcard → mail same day</li>'
+    +'<li><strong>Day 3-5:</strong> Send video audit or email (if you have their email)</li>'
+    +'<li><strong>Day 10-14:</strong> Second postcard with different angle</li>'
+    +'<li><strong>Day 21:</strong> Final follow-up email or mark dead</li>'
+    +'<li><strong>Budget:</strong> 10 postcards/week = $6.50/week. If 1 in 25 becomes a $60/mo client, that\'s a $23 cost to acquire a customer worth $720/year.</li>'
+    +'</ul>'
+    +'</div>';
+}
+
+function scriptBox(title,desc,text){
+  return '<div style="margin-bottom:6px;margin-top:16px"><strong style="color:var(--text);font-size:13px">'+title+'</strong>'
+    +(desc?'<div style="font-size:12px;color:var(--dim)">'+desc+'</div>':'')+'</div>'
+    +'<div class="script-box"><button class="copy-btn" onclick="copyText(this)">Copy</button>'+esc(text)+'</div>';
+}
+
+// ── INIT ───────────────────────────────────────────────────────────────────────
+renderAll();
+</script>
+</body>
+</html>
