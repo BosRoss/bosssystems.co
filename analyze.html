@@ -141,7 +141,8 @@
       <option value="auto_repair">Auto Repair</option>
       <option value="pest_control">Pest Control</option>
       <option value="law_firm">Law Firm / Attorney</option>
-      <option value="landscaping">Landscaping</option>
+      <option value="lawn_care">Lawn Care / Landscaping</option>
+      <option value="dental">Dental / Dentist</option>
       <option value="restaurant">Restaurant</option>
       <option value="real_estate">Real Estate</option>
       <option value="gym">Gym / Fitness</option>
@@ -181,7 +182,8 @@ const TYPE_DEFAULTS = {
   auto_repair: { job: 320,  label: 'Auto Repair' },
   pest_control:{ job: 185,  label: 'Pest Control' },
   law_firm:    { job: 2800, label: 'Law Firm' },
-  landscaping: { job: 240,  label: 'Landscaping' },
+  lawn_care:   { job: 80,   label: 'Lawn Care' },
+  dental:      { job: 350,  label: 'Dental' },
   restaurant:  { job: 42,   label: 'Restaurant' },
   real_estate: { job: 7500, label: 'Real Estate' },
   gym:         { job: 45,   label: 'Gym / Fitness' },
@@ -366,6 +368,49 @@ function buildAutomations(btype, jobValue, googleData) {
       value: 28000, cost: 80, hours: 6, diff: 3, applies: ['restaurant'],
       desc: 'AI handles reservation calls, manages waitlist, sends confirmations.',
       calc: `Restaurants miss 20-30% of reservation calls during service (Toast 2024). Filling 2.5 extra tables/night × $40 avg ticket × 300 nights = ~$28,000/yr. Automated confirmations also reduce no-shows. <em class="est">Industry estimate — depends on your volume.</em>`,
+    });
+  }
+  if (btype === 'dental') {
+    const recall_val = cap(15 * job * 12, 60000);
+    autos.push({
+      key: 'dental_recall', name: '6-Month Recall System', cat: 'Business-Specific',
+      value: recall_val, cost: 15, hours: 2, diff: 1, quickWin: true, applies: ['dental'],
+      desc: 'Automated 6-month recall texts bring patients back for cleanings and checkups.',
+      calc: `60% of dental revenue comes from existing patients (ADA). 5 months after last visit, patients get a text reminder. Recovering ~15 recalled patients/month at $${fmt_num(job)} avg = ${fmt(recall_val)}/yr. <em class="est">Industry estimate — depends on your patient base size.</em>`,
+    });
+    const noshow_val = cap(2 * job * 240, 48000);
+    autos.push({
+      key: 'dental_reminders', name: 'Appointment Reminder System', cat: 'Business-Specific',
+      value: noshow_val, cost: 15, hours: 2, diff: 1, quickWin: true, applies: ['dental'],
+      desc: '3-touch reminder sequence (7 day, 2 day, 2 hour) cuts no-shows from 15-20% to 5-8%.',
+      calc: `Dental no-shows average 15-20% (ADA Health Policy Institute). At $${fmt_num(job)} per appointment, recovering 2 no-shows/day × 240 working days = ~${fmt(noshow_val)}/yr. <em class="est">No-show rate is an industry average.</em>`,
+    });
+  }
+  if (btype === 'auto_repair') {
+    const remind_val = cap(3 * job * 12, 20000);
+    autos.push({
+      key: 'auto_service_reminders', name: 'Service Reminder System', cat: 'Business-Specific',
+      value: remind_val, cost: 15, hours: 2, diff: 1, quickWin: true, applies: ['auto_repair'],
+      desc: 'Automated texts when vehicles are due for oil changes, brake checks, and inspections.',
+      calc: `Service reminders generate 30-40% of repeat revenue for top shops (AAIA). At ~3 reminder-converted jobs/month × $${fmt_num(job)} avg = ${fmt(remind_val)}/yr. <em class="est">Industry estimate.</em>`,
+    });
+  }
+  if (btype === 'pest_control') {
+    const recurring_val = cap(0.15 * 200 * 50 * 12, 24000);
+    autos.push({
+      key: 'pest_recurring', name: 'Recurring Treatment Reminders', cat: 'Business-Specific',
+      value: recurring_val, cost: 12, hours: 1, diff: 1, quickWin: true, applies: ['pest_control'],
+      desc: 'Automated reminders 5 days before every quarterly/monthly treatment. One-tap confirm.',
+      calc: `Reducing churn on recurring accounts by 15% across 50 accounts at $200/quarter = ~${fmt(recurring_val)}/yr. Pest control is recurring revenue — protecting it is the highest-ROI move. <em class="est">Industry estimate.</em>`,
+    });
+  }
+  if (btype === 'lawn_care') {
+    const weather_val = cap(5 * 25 * job, 12000);
+    autos.push({
+      key: 'lawn_weather', name: 'Weather-Based Auto-Reschedule', cat: 'Business-Specific',
+      value: weather_val, cost: 12, hours: 2, diff: 2, applies: ['lawn_care'],
+      desc: 'Rain forecast? Customers get auto-rescheduled the night before. No phone calls needed.',
+      calc: `Weather rescheduling costs lawn care crews 5+ hours/week in phone time during rain season. Automating it saves ~5 hours/week × 25 rain-weeks × $${fmt_num(job)} opportunity cost = ~${fmt(weather_val)}/yr. <em class="est">Industry estimate.</em>`,
     });
   }
 
