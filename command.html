@@ -413,12 +413,32 @@ footer{text-align:center;padding:16px;font-family:'Share Tech Mono',monospace;fo
     <div class="partner-stats" id="partner-stats">
       <div class="stat"><div class="stat-value" style="color:var(--purple)" id="spp-total">0</div><div class="stat-label">Partners</div></div>
       <div class="stat"><div class="stat-value" style="color:var(--green)" id="spp-built">0</div><div class="stat-label">Built</div></div>
-      <div class="stat"><div class="stat-value" style="color:var(--text)" id="spp-revenue">$0</div><div class="stat-label">Revenue</div></div>
+      <div class="stat"><div class="stat-value" style="color:var(--text)" id="spp-revenue">$0</div><div class="stat-label">Total Revenue</div></div>
+    </div>
+
+    <!-- PARTNER ACTION QUEUE -->
+    <div class="sec-title">NEEDS YOUR ATTENTION</div>
+    <div id="partner-actions" style="margin-bottom:20px">
+      <div class="app-empty" style="font-size:11px">All clear</div>
     </div>
 
     <div class="sec-title">APPROVED PARTNERS</div>
     <div id="partner-list">
       <div class="app-empty">Loading partners...</div>
+    </div>
+
+    <!-- REVENUE LOG -->
+    <div class="sec-title" style="margin-top:28px">LOG WEEKLY REVENUE</div>
+    <div class="cost-card">
+      <div style="font-size:10px;color:var(--dim);margin-bottom:10px;letter-spacing:1px;font-family:'Share Tech Mono',monospace">Record partner's Sunday report</div>
+      <div style="display:flex;flex-direction:column;gap:8px">
+        <select id="rev-partner" style="background:var(--bg);border:1px solid var(--border);color:var(--text);padding:10px 12px;font-size:13px;font-family:'Rajdhani',sans-serif;outline:none">
+          <option value="">Select partner</option>
+        </select>
+        <input id="rev-amount" type="number" placeholder="Gross revenue ($)" style="background:var(--bg);border:1px solid var(--border);color:var(--text);padding:10px 12px;font-size:13px;font-family:'Rajdhani',sans-serif;outline:none">
+        <input id="rev-jobs" type="number" placeholder="# of jobs" style="background:var(--bg);border:1px solid var(--border);color:var(--text);padding:10px 12px;font-size:13px;font-family:'Rajdhani',sans-serif;outline:none">
+        <button class="build-btn" onclick="logRevenue()" id="rev-log-btn">LOG REVENUE</button>
+      </div>
     </div>
 
     <div class="sec-title" style="margin-top:28px">MANUAL BUILD</div>
@@ -613,6 +633,38 @@ function renderPartners(partners) {
   document.getElementById('spp-total').textContent = partners.length;
   document.getElementById('spp-built').textContent = partners.filter(function(p){return p.builtAgent}).length || '0';
 
+  // Populate revenue log dropdown
+  var revSelect = document.getElementById('rev-partner');
+  revSelect.innerHTML = '<option value="">Select partner</option>';
+  partners.forEach(function(a) {
+    var name = ((a.firstName||'')+ ' ' +(a.lastName||'')).trim();
+    revSelect.innerHTML += '<option value="'+esc(name)+'">'+esc(name)+'</option>';
+  });
+
+  // Load revenue data from localStorage
+  var revData = JSON.parse(localStorage.getItem('boss_spp_revenue') || '{}');
+  var totalRev = 0;
+  for (var k in revData) { totalRev += (revData[k].total || 0); }
+  document.getElementById('spp-revenue').textContent = '$' + totalRev.toLocaleString();
+
+  // Build action queue
+  var actions = [];
+  partners.forEach(function(a) {
+    var name = ((a.firstName||'')+ ' ' +(a.lastName||'')).trim();
+    var pData = JSON.parse(localStorage.getItem('boss_partner_mgmt_'+name) || '{}');
+    if (!pData.aiBuilt) actions.push({name:name, action:'BUILD AI STACK', type:'build'});
+    else if (!pData.packageSent) actions.push({name:name, action:'SEND LAUNCH PACKAGE', type:'package'});
+    else if (!pData.testCall) actions.push({name:name, action:'TEST CALL THEIR NUMBER', type:'test'});
+  });
+  var actEl = document.getElementById('partner-actions');
+  if (actions.length) {
+    actEl.innerHTML = actions.map(function(a) {
+      return '<div style="background:var(--bg2);border:1px solid var(--border);border-left:3px solid var(--gold);padding:10px 14px;margin-bottom:6px;display:flex;justify-content:space-between;align-items:center">' +
+        '<span style="font-size:13px"><strong style="color:var(--text)">' + esc(a.name) + '</strong> <span style="color:var(--dim);font-size:11px">' + a.action + '</span></span>' +
+        '</div>';
+    }).join('');
+  }
+
   if (!partners.length) {
     container.innerHTML = '<div class="app-empty">No approved partners yet</div>';
     return;
@@ -623,6 +675,15 @@ function renderPartners(partners) {
     var city = a.cityState || a.city || '?';
     var time = a.timestamp ? new Date(a.timestamp).toLocaleDateString('en-US', {month:'short',day:'numeric',year:'numeric'}) : '';
     var decided = a.decidedAt ? new Date(a.decidedAt).toLocaleDateString('en-US', {month:'short',day:'numeric'}) : '';
+    var pData = JSON.parse(localStorage.getItem('boss_partner_mgmt_'+name) || '{}');
+    var pRev = revData[name] || {total:0, weeks:0, lastReport:null};
+
+    var checkItem = function(key, label) {
+      var done = pData[key];
+      var cls = done ? 'color:var(--green)' : 'color:var(--dim)';
+      var icon = done ? '✓' : '○';
+      return '<span style="'+cls+';font-size:11px;cursor:pointer;margin-right:10px" onclick="togglePartnerCheck(\''+esc(name).replace(/'/g,"\\'")+'\',\''+key+'\')">' + icon + ' ' + label + '</span>';
+    };
 
     return '<div class="partner-card">' +
       '<div class="partner-header"><div>' +
@@ -637,23 +698,49 @@ function renderPartners(partners) {
         (a.experience ? 'Exp: <span>' + esc(a.experience) + '</span> &middot; ' : '') +
         (a.transportation ? esc(a.transportation) : '') +
       '</div>' +
-      (a.whyBusiness ? '<div class="app-note" style="margin-top:6px">"' + esc(a.whyBusiness).substring(0,200) + '"</div>' : '') +
+      '<div style="margin-top:10px;padding:10px 12px;background:var(--bg);border:1px solid var(--border)">' +
+        '<div style="font-size:9px;color:var(--dim);letter-spacing:2px;margin-bottom:6px">MANAGEMENT CHECKLIST</div>' +
+        checkItem('aiBuilt','AI Built') +
+        checkItem('packageSent','Package Sent') +
+        checkItem('testCall','Test Call') +
+        checkItem('gmailCreated','Gmail') +
+        checkItem('gbpCreated','Google Business') +
+        checkItem('fbCreated','Facebook Page') +
+        checkItem('firstPost','First Post') +
+        checkItem('firstJob','First Job') +
+      '</div>' +
+      '<div style="margin-top:8px;padding:8px 12px;background:var(--bg);border:1px solid var(--border);display:flex;gap:16px;font-size:12px">' +
+        '<span style="color:var(--dim)">Revenue: <span style="color:var(--green);font-weight:700">$' + pRev.total.toLocaleString() + '</span></span>' +
+        '<span style="color:var(--dim)">BOSS 20%: <span style="color:var(--gold);font-weight:700">$' + Math.round(pRev.total * 0.2).toLocaleString() + '</span></span>' +
+        '<span style="color:var(--dim)">Weeks: <span style="color:var(--text)">' + pRev.weeks + '</span></span>' +
+      '</div>' +
       '<div class="app-time" style="margin-top:8px">Applied: ' + esc(time) + (decided ? ' &middot; Approved: ' + esc(decided) : '') +
         ' &middot; AI Score: ' + (a.aiScore || '?') + '/10</div>' +
-      '<button class="build-btn" onclick="buildPartner(this,\'' + esc(name).replace(/'/g,"\\'") + '\',\'' + esc(biz).replace(/'/g,"\\'") + '\',\'' + esc(city).replace(/'/g,"\\'") + '\')">BUILD AI STACK</button>' +
+      '<div style="display:flex;gap:6px;margin-top:8px">' +
+        '<button class="build-btn" style="flex:1" onclick="buildPartner(this,\'' + esc(name).replace(/'/g,"\\'") + '\',\'' + esc(biz).replace(/'/g,"\\'") + '\',\'' + esc(city).replace(/'/g,"\\'") + '\')">BUILD AI STACK</button>' +
+        '<button class="build-btn" style="flex:1;background:var(--green);color:#000" onclick="sendPackage(\'' + esc(name).replace(/'/g,"\\'") + '\',\'' + esc(a.phone||'').replace(/'/g,"\\'") + '\')">SEND PACKAGE</button>' +
+      '</div>' +
     '</div>';
   }).join('');
 }
 
 function appDecision(idx, decision) {
+  var btn = event.target;
+  btn.disabled = true;
+  btn.textContent = decision === 'APPROVED' ? 'APPROVING...' : 'DECLINING...';
   fetch('https://jamross.app.n8n.cloud/webhook/partner-decision', {
     method: 'POST',
     headers: {'Content-Type': 'application/json'},
     body: JSON.stringify({index: idx, decision: decision})
   }).then(function() {
-    location.reload();
+    if (decision === 'APPROVED') {
+      btn.textContent = 'APPROVED — RELOADING...';
+      alert('Partner approved. After reload, click SEND PACKAGE on their card to text them everything they need.');
+    }
+    setTimeout(function(){ location.reload(); }, 1000);
   }).catch(function() {
-    alert('Failed. Try again.');
+    btn.textContent = 'FAILED — RETRY';
+    btn.disabled = false;
   });
 }
 
@@ -686,6 +773,54 @@ function manualBuild() {
   if (!name || !btype || !city) { alert('Fill in all three fields.'); return; }
   var btn = document.getElementById('manual-build-btn');
   buildPartner(btn, name, btype, city);
+}
+
+function togglePartnerCheck(name, key) {
+  var pData = JSON.parse(localStorage.getItem('boss_partner_mgmt_'+name) || '{}');
+  pData[key] = !pData[key];
+  localStorage.setItem('boss_partner_mgmt_'+name, JSON.stringify(pData));
+  location.reload();
+}
+
+function logRevenue() {
+  var partner = document.getElementById('rev-partner').value;
+  var amount = parseFloat(document.getElementById('rev-amount').value);
+  var jobs = parseInt(document.getElementById('rev-jobs').value) || 0;
+  if (!partner || isNaN(amount)) { alert('Select partner and enter amount.'); return; }
+  var revData = JSON.parse(localStorage.getItem('boss_spp_revenue') || '{}');
+  if (!revData[partner]) revData[partner] = {total:0, weeks:0, history:[]};
+  revData[partner].total += amount;
+  revData[partner].weeks += 1;
+  revData[partner].lastReport = new Date().toISOString();
+  revData[partner].history.push({date:new Date().toISOString(), gross:amount, jobs:jobs, bossCut:Math.round(amount*0.2)});
+  localStorage.setItem('boss_spp_revenue', JSON.stringify(revData));
+  document.getElementById('rev-amount').value = '';
+  document.getElementById('rev-jobs').value = '';
+  document.getElementById('rev-log-btn').textContent = 'LOGGED $' + amount;
+  setTimeout(function(){ document.getElementById('rev-log-btn').textContent = 'LOG REVENUE'; location.reload(); }, 1500);
+}
+
+function sendPackage(name, phone) {
+  var links = [
+    'Launch Guide: bosssystems.co/partner-start.html',
+    'Business Guides: bosssystems.co/partner-tools.html',
+    'Training Course: bosssystems.co/learn-business.html',
+    'Market Quiz: bosssystems.co/partner-quiz.html',
+    'Log Jobs: bosssystems.co/log-job.html'
+  ];
+  var msg = 'Hey ' + name.split(' ')[0] + '! You are officially in the BOSS Summer Partner Program. Here is everything you need:\n\n' +
+    links.join('\n') + '\n\n' +
+    'Start with the Launch Guide — it walks you through Gmail, Google Business, Facebook, and your first posts step by step.\n\n' +
+    'Your AI phone system is being built right now. I will text you your business number as soon as it is ready.\n\n' +
+    'Questions? Text me anytime. - Boston';
+
+  navigator.clipboard.writeText(msg).then(function() {
+    alert('Package message copied to clipboard. Paste it into a text to ' + (phone || name) + '.');
+    var pData = JSON.parse(localStorage.getItem('boss_partner_mgmt_'+name) || '{}');
+    pData.packageSent = true;
+    pData.packageSentAt = new Date().toISOString();
+    localStorage.setItem('boss_partner_mgmt_'+name, JSON.stringify(pData));
+  });
 }
 
 if ('serviceWorker' in navigator) {
