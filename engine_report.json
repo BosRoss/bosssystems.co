@@ -1,7 +1,39 @@
 {
-  "generated": "2026-06-06T00:36:25.035309+00:00",
+  "generated": "2026-06-06T02:44:22.949466+00:00",
   "engine_state": "active",
   "signals": [
+    {
+      "type": "flood",
+      "area": "Bexar, TX",
+      "niche": "plumbing",
+      "action": "Flood warnings in Bexar, TX. Plumbers, restoration, mold companies will spike.",
+      "urgency": "today",
+      "pitch_hook": "Water damage calls are coming. Every one you miss is $500+ walking away."
+    },
+    {
+      "type": "flood",
+      "area": "Foard, TX; Hardeman, TX",
+      "niche": "plumbing",
+      "action": "Flood warnings in Foard, TX; Hardeman, TX. Plumbers, restoration, mold companies will spike.",
+      "urgency": "today",
+      "pitch_hook": "Water damage calls are coming. Every one you miss is $500+ walking away."
+    },
+    {
+      "type": "flood",
+      "area": "Jackson, OK; Hardeman, TX",
+      "niche": "plumbing",
+      "action": "Flood warnings in Jackson, OK; Hardeman, TX. Plumbers, restoration, mold companies will spike.",
+      "urgency": "today",
+      "pitch_hook": "Water damage calls are coming. Every one you miss is $500+ walking away."
+    },
+    {
+      "type": "flood",
+      "area": "Travis, TX",
+      "niche": "plumbing",
+      "action": "Flood warnings in Travis, TX. Plumbers, restoration, mold companies will spike.",
+      "urgency": "today",
+      "pitch_hook": "Water damage calls are coming. Every one you miss is $500+ walking away."
+    },
     {
       "type": "flood",
       "area": "Burnet, TX; Williamson, TX",
@@ -12,25 +44,25 @@
     },
     {
       "type": "flood",
-      "area": "Duval, TX; Jim Wells, TX",
+      "area": "Reagan, TX",
       "niche": "plumbing",
-      "action": "Flood warnings in Duval, TX; Jim Wells, TX. Plumbers, restoration, mold companies will spike.",
+      "action": "Flood warnings in Reagan, TX. Plumbers, restoration, mold companies will spike.",
       "urgency": "today",
       "pitch_hook": "Water damage calls are coming. Every one you miss is $500+ walking away."
     },
     {
       "type": "flood",
-      "area": "Cochran, TX",
+      "area": "Hays, TX; Travis, TX",
       "niche": "plumbing",
-      "action": "Flood warnings in Cochran, TX. Plumbers, restoration, mold companies will spike.",
+      "action": "Flood warnings in Hays, TX; Travis, TX. Plumbers, restoration, mold companies will spike.",
       "urgency": "today",
       "pitch_hook": "Water damage calls are coming. Every one you miss is $500+ walking away."
     },
     {
       "type": "flood",
-      "area": "Jackson, OK; Wilbarger, TX",
+      "area": "Crockett, TX",
       "niche": "plumbing",
-      "action": "Flood warnings in Jackson, OK; Wilbarger, TX. Plumbers, restoration, mold companies will spike.",
+      "action": "Flood warnings in Crockett, TX. Plumbers, restoration, mold companies will spike.",
       "urgency": "today",
       "pitch_hook": "Water damage calls are coming. Every one you miss is $500+ walking away."
     },
@@ -44,41 +76,9 @@
     },
     {
       "type": "flood",
-      "area": "Greer, OK; Harmon, OK",
+      "area": "Kiowa, OK",
       "niche": "plumbing",
-      "action": "Flood warnings in Greer, OK; Harmon, OK. Plumbers, restoration, mold companies will spike.",
-      "urgency": "today",
-      "pitch_hook": "Water damage calls are coming. Every one you miss is $500+ walking away."
-    },
-    {
-      "type": "flood",
-      "area": "San Miguel, NM",
-      "niche": "plumbing",
-      "action": "Flood warnings in San Miguel, NM. Plumbers, restoration, mold companies will spike.",
-      "urgency": "today",
-      "pitch_hook": "Water damage calls are coming. Every one you miss is $500+ walking away."
-    },
-    {
-      "type": "flood",
-      "area": "Calcasieu, LA",
-      "niche": "plumbing",
-      "action": "Flood warnings in Calcasieu, LA. Plumbers, restoration, mold companies will spike.",
-      "urgency": "today",
-      "pitch_hook": "Water damage calls are coming. Every one you miss is $500+ walking away."
-    },
-    {
-      "type": "flood",
-      "area": "Daviess, MO; Gentry, MO; Grundy, MO; Harrison, MO; Worth, MO",
-      "niche": "plumbing",
-      "action": "Flood warnings in Daviess, MO; Gentry, MO; Grundy, MO; Harrison, MO; Worth, MO. Plumbers, restoration, mold companies will spike.",
-      "urgency": "today",
-      "pitch_hook": "Water damage calls are coming. Every one you miss is $500+ walking away."
-    },
-    {
-      "type": "flood",
-      "area": "Atchison, KS; Doniphan, KS; Andrew, MO; Buchanan, MO; Daviess, MO; DeKalb, MO; Gentry, MO; Holt, MO",
-      "niche": "plumbing",
-      "action": "Flood warnings in Atchison, KS; Doniphan, KS; Andrew, MO; Buchanan, MO; Daviess, MO; DeKalb, MO; Gentry, MO; Holt, MO. Plumbers, restoration, mold companies will spike.",
+      "action": "Flood warnings in Kiowa, OK. Plumbers, restoration, mold companies will spike.",
       "urgency": "today",
       "pitch_hook": "Water damage calls are coming. Every one you miss is $500+ walking away."
     }
@@ -239,55 +239,55 @@
   "feeds": [
     {
       "name": "NOAA",
-      "last_hit": "2026-06-06T00:28:32.367971+00:00",
+      "last_hit": "2026-06-06T02:36:29.460633+00:00",
       "status": "yellow",
       "data_points_today": 0
     },
     {
       "name": "REDDIT",
-      "last_hit": "2026-06-06T00:28:32.367971+00:00",
+      "last_hit": "2026-06-06T02:36:29.460633+00:00",
       "status": "green",
       "data_points_today": 801
     },
     {
       "name": "USGS",
-      "last_hit": "2026-06-06T00:28:32.367971+00:00",
+      "last_hit": "2026-06-06T02:36:29.460633+00:00",
       "status": "yellow",
       "data_points_today": 0
     },
     {
       "name": "HACKERNEWS",
-      "last_hit": "2026-06-06T00:28:32.367971+00:00",
+      "last_hit": "2026-06-06T02:36:29.460633+00:00",
       "status": "green",
       "data_points_today": 30
     },
     {
       "name": "FEMA",
-      "last_hit": "2026-06-06T00:28:32.367971+00:00",
+      "last_hit": "2026-06-06T02:36:29.460633+00:00",
       "status": "green",
       "data_points_today": 20
     },
     {
       "name": "COMMODITIES",
-      "last_hit": "2026-06-06T00:28:32.367971+00:00",
+      "last_hit": "2026-06-06T02:36:29.460633+00:00",
       "status": "green",
       "data_points_today": 7
     },
     {
       "name": "RSS",
-      "last_hit": "2026-06-06T00:28:32.367971+00:00",
+      "last_hit": "2026-06-06T02:36:29.460633+00:00",
       "status": "green",
       "data_points_today": 170
     },
     {
       "name": "FRED",
-      "last_hit": "2026-06-06T00:28:32.367971+00:00",
+      "last_hit": "2026-06-06T02:36:29.460633+00:00",
       "status": "yellow",
       "data_points_today": 0
     },
     {
       "name": "BLS",
-      "last_hit": "2026-06-06T00:28:32.367971+00:00",
+      "last_hit": "2026-06-06T02:36:29.460633+00:00",
       "status": "green",
       "data_points_today": 9
     }
