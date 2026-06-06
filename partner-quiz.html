@@ -1,0 +1,737 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Find Your Business — BOSS Summer Partner Program</title>
+<meta name="description" content="Take a 2-minute quiz to find out which business is right for you and where the market is wide open.">
+<style>
+*{margin:0;padding:0;box-sizing:border-box}
+:root{--gold:#C9A84C;--dark:#080808;--gray:#0f0f0f;--gray2:#111;--border:#1e1e1e;--text:#f0ede8;--muted:#aaa;--green:#4CAF50;--red:#e53935}
+html{scroll-behavior:smooth}
+body{background:var(--dark);color:var(--text);font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;font-size:16px;line-height:1.6;-webkit-font-smoothing:antialiased}
+a{color:inherit;text-decoration:none}
+
+nav{position:sticky;top:0;z-index:100;background:rgba(8,8,8,.97);border-bottom:1px solid var(--border);padding:0 24px;height:60px;display:flex;align-items:center;justify-content:space-between}
+.nav-logo{font-weight:900;font-size:13px;letter-spacing:4px;color:var(--gold)}
+.nav-links{display:flex;align-items:center;gap:24px}
+.nav-link{font-size:12px;color:var(--muted);letter-spacing:1px}
+.nav-cta{background:var(--gold);color:var(--dark);padding:8px 18px;font-weight:700;font-size:12px;letter-spacing:1px;text-transform:uppercase}
+
+.container{max-width:720px;margin:0 auto;padding:0 24px}
+
+/* QUIZ */
+.quiz-wrap{min-height:100vh;padding:60px 0 80px}
+.quiz-header{text-align:center;margin-bottom:48px}
+.quiz-label{font-size:10px;letter-spacing:4px;text-transform:uppercase;color:var(--gold);margin-bottom:12px}
+.quiz-title{font-size:clamp(1.6rem,4vw,2.4rem);font-weight:900;margin-bottom:12px}
+.quiz-sub{color:var(--muted);font-size:15px;max-width:480px;margin:0 auto}
+
+.progress-bar{height:4px;background:var(--border);border-radius:2px;margin-bottom:40px;overflow:hidden}
+.progress-fill{height:100%;background:var(--gold);border-radius:2px;transition:width .4s ease}
+
+.step{display:none}
+.step.active{display:block}
+.step-num{font-size:11px;letter-spacing:3px;text-transform:uppercase;color:var(--gold);margin-bottom:8px}
+.step-q{font-size:clamp(1.2rem,3vw,1.5rem);font-weight:800;margin-bottom:24px;line-height:1.3}
+.step-hint{font-size:13px;color:#888;margin-bottom:20px}
+
+.opt-grid{display:grid;gap:10px;margin-bottom:32px}
+.opt{background:var(--gray);border:2px solid var(--border);padding:16px 20px;cursor:pointer;transition:all .2s;display:flex;align-items:center;gap:14px}
+.opt:hover{border-color:#444}
+.opt.selected{border-color:var(--gold);background:rgba(201,168,76,.06)}
+.opt-icon{font-size:1.4rem;min-width:32px;text-align:center}
+.opt-label{font-weight:700;font-size:14px}
+.opt-desc{font-size:12px;color:var(--muted);margin-top:2px}
+.opt-multi .opt.selected::after{content:'✓';color:var(--gold);font-weight:900;margin-left:auto}
+
+.opt-2col{grid-template-columns:1fr 1fr}
+
+.input-group{margin-bottom:24px}
+.input-group label{font-size:12px;letter-spacing:2px;text-transform:uppercase;color:var(--muted);display:block;margin-bottom:8px}
+.input-group input,.input-group select{width:100%;background:var(--gray);border:2px solid var(--border);color:var(--text);padding:14px 16px;font-size:15px;font-family:inherit}
+.input-group input:focus,.input-group select:focus{outline:none;border-color:var(--gold)}
+.input-group select option{background:var(--dark);color:var(--text)}
+
+.btn-row{display:flex;gap:12px;justify-content:flex-end;margin-top:32px}
+.btn-next{background:var(--gold);color:var(--dark);padding:14px 32px;font-weight:900;font-size:13px;letter-spacing:1px;text-transform:uppercase;border:none;cursor:pointer}
+.btn-next:disabled{opacity:.4;cursor:not-allowed}
+.btn-back{background:transparent;border:1px solid #333;color:var(--muted);padding:13px 24px;font-size:13px;cursor:pointer}
+.btn-back:hover{border-color:var(--gold);color:var(--text)}
+
+/* RESULTS */
+#results{display:none}
+.results-header{text-align:center;margin-bottom:48px}
+.results-header h2{font-size:clamp(1.6rem,4vw,2.4rem);font-weight:900;margin-bottom:12px}
+
+.match-card{background:var(--gray);border:2px solid var(--border);padding:32px;margin-bottom:16px;position:relative}
+.match-card.top{border-color:var(--gold)}
+.match-rank{position:absolute;top:-1px;right:-1px;background:var(--gold);color:var(--dark);font-weight:900;font-size:11px;letter-spacing:2px;padding:6px 14px;text-transform:uppercase}
+.match-name{font-size:1.3rem;font-weight:900;margin-bottom:4px}
+.match-why{font-size:13px;color:var(--muted);margin-bottom:16px}
+.match-stats{display:grid;grid-template-columns:repeat(3,1fr);gap:12px;margin-bottom:16px}
+.match-stat{background:rgba(201,168,76,.06);padding:12px;text-align:center}
+.match-stat-val{font-size:1.1rem;font-weight:900;color:var(--gold)}
+.match-stat-label{font-size:10px;letter-spacing:1px;text-transform:uppercase;color:var(--muted);margin-top:2px}
+.match-needs{margin-top:16px}
+.match-needs-title{font-size:11px;letter-spacing:2px;text-transform:uppercase;color:var(--muted);margin-bottom:8px}
+.match-needs ul{list-style:none;display:flex;flex-wrap:wrap;gap:8px}
+.match-needs li{background:rgba(255,255,255,.05);padding:5px 12px;font-size:12px;color:#bbb}
+.match-needs li.have{background:rgba(76,175,80,.12);color:var(--green)}
+
+.market-section{margin-top:48px}
+.market-section h3{font-size:1rem;font-weight:800;letter-spacing:1px;text-transform:uppercase;margin-bottom:16px}
+.market-tips{background:var(--gray);border:1px solid var(--border);padding:24px}
+.market-tips li{font-size:14px;color:#bbb;margin-bottom:10px;padding-left:20px;position:relative}
+.market-tips li::before{content:'→';position:absolute;left:0;color:var(--gold)}
+
+.cta-section{text-align:center;margin-top:48px;padding:48px;background:var(--gray);border:1px solid var(--border)}
+.cta-section h3{font-size:1.3rem;font-weight:900;margin-bottom:8px}
+.cta-section p{color:var(--muted);font-size:14px;margin-bottom:24px}
+.btn-apply{background:var(--gold);color:var(--dark);padding:16px 40px;font-weight:900;font-size:14px;letter-spacing:1px;text-transform:uppercase;display:inline-block}
+
+.save-banner{background:rgba(76,175,80,.1);border:1px solid rgba(76,175,80,.3);padding:14px 20px;margin-bottom:24px;font-size:13px;color:var(--green);text-align:center;display:none}
+.save-banner.show{display:block}
+
+@media(max-width:600px){
+  .opt-2col{grid-template-columns:1fr}
+  .match-stats{grid-template-columns:1fr}
+  .btn-row{flex-direction:column-reverse}
+  .btn-next,.btn-back{width:100%;text-align:center}
+}
+</style>
+</head>
+<body>
+
+<nav>
+  <a href="/summer.html" class="nav-logo">BOSS SYSTEMS</a>
+  <div class="nav-links">
+    <a href="/summer.html" class="nav-link">PROGRAM</a>
+    <a href="/partner-info.html" class="nav-cta">APPLY</a>
+  </div>
+</nav>
+
+<div class="quiz-wrap">
+  <div class="container">
+    <div class="quiz-header">
+      <div class="quiz-label">Summer Partner Program</div>
+      <h1 class="quiz-title">Find Your Business</h1>
+      <p class="quiz-sub">Answer 6 questions. We'll tell you what business fits you and where the market is open.</p>
+    </div>
+
+    <div class="progress-bar"><div class="progress-fill" id="progress" style="width:0%"></div></div>
+
+    <div id="quiz">
+
+      <!-- STEP 1: Location -->
+      <div class="step active" data-step="1">
+        <div class="step-num">Step 1 of 6</div>
+        <div class="step-q">Where do you live?</div>
+        <div class="step-hint">We'll check if your area is open for business.</div>
+        <div class="input-group">
+          <label>City</label>
+          <input type="text" id="q-city" placeholder="McKinney" autocomplete="off">
+        </div>
+        <div class="input-group">
+          <label>State</label>
+          <select id="q-state">
+            <option value="">Select state</option>
+            <option value="TX">Texas</option>
+            <option value="AR">Arkansas</option>
+            <option value="OK">Oklahoma</option>
+            <option value="TN">Tennessee</option>
+            <option value="AL">Alabama</option>
+            <option value="MS">Mississippi</option>
+            <option value="NM">New Mexico</option>
+            <option value="LA">Louisiana</option>
+            <option value="GA">Georgia</option>
+            <option value="FL">Florida</option>
+            <option value="SC">South Carolina</option>
+            <option value="NC">North Carolina</option>
+            <option value="MO">Missouri</option>
+            <option value="KS">Kansas</option>
+            <option value="other">Other State</option>
+          </select>
+        </div>
+        <div class="btn-row">
+          <button class="btn-next" onclick="nextStep(1)" id="btn1">Next</button>
+        </div>
+      </div>
+
+      <!-- STEP 2: What you have -->
+      <div class="step" data-step="2">
+        <div class="step-num">Step 2 of 6</div>
+        <div class="step-q">What do you have access to?</div>
+        <div class="step-hint">Check all that apply. We'll match businesses to what you already have.</div>
+        <div class="opt-grid opt-multi">
+          <div class="opt" data-val="truck" onclick="toggleMulti(this)">
+            <div class="opt-icon">🚛</div>
+            <div><div class="opt-label">Truck or SUV with Trailer</div><div class="opt-desc">Pickup truck, van, or any vehicle that can haul</div></div>
+          </div>
+          <div class="opt" data-val="car" onclick="toggleMulti(this)">
+            <div class="opt-icon">🚗</div>
+            <div><div class="opt-label">Car (sedan, hatchback, etc.)</div><div class="opt-desc">Regular vehicle — no hauling needed for some businesses</div></div>
+          </div>
+          <div class="opt" data-val="mower" onclick="toggleMulti(this)">
+            <div class="opt-icon">🌿</div>
+            <div><div class="opt-label">Lawn Mower / Yard Tools</div><div class="opt-desc">Push mower, weed eater, blower, edger</div></div>
+          </div>
+          <div class="opt" data-val="washer" onclick="toggleMulti(this)">
+            <div class="opt-icon">💧</div>
+            <div><div class="opt-label">Pressure Washer</div><div class="opt-desc">Any PSI — even a cheap one works to start</div></div>
+          </div>
+          <div class="opt" data-val="camera" onclick="toggleMulti(this)">
+            <div class="opt-icon">📷</div>
+            <div><div class="opt-label">Good Camera or Phone</div><div class="opt-desc">iPhone/Android with a decent camera, DSLR, or mirrorless</div></div>
+          </div>
+          <div class="opt" data-val="laptop" onclick="toggleMulti(this)">
+            <div class="opt-icon">💻</div>
+            <div><div class="opt-label">Laptop / Computer</div><div class="opt-desc">For social media management, editing, scheduling</div></div>
+          </div>
+          <div class="opt" data-val="none" onclick="toggleMulti(this)">
+            <div class="opt-icon">✋</div>
+            <div><div class="opt-label">Just Me — No Equipment</div><div class="opt-desc">That's fine. Multiple businesses need nothing but you.</div></div>
+          </div>
+        </div>
+        <div class="btn-row">
+          <button class="btn-back" onclick="prevStep(2)">Back</button>
+          <button class="btn-next" onclick="nextStep(2)">Next</button>
+        </div>
+      </div>
+
+      <!-- STEP 3: Physical comfort -->
+      <div class="step" data-step="3">
+        <div class="step-num">Step 3 of 6</div>
+        <div class="step-q">What kind of work do you want?</div>
+        <div class="opt-grid">
+          <div class="opt" data-val="heavy" onclick="selectOne(this,3)">
+            <div class="opt-icon">💪</div>
+            <div><div class="opt-label">Heavy Physical Work</div><div class="opt-desc">Hauling, lifting, outdoor in the heat. Higher pay per job.</div></div>
+          </div>
+          <div class="opt" data-val="moderate" onclick="selectOne(this,3)">
+            <div class="opt-icon">🔧</div>
+            <div><div class="opt-label">Moderate Physical Work</div><div class="opt-desc">Active but not back-breaking. Cleaning, mowing, detailing.</div></div>
+          </div>
+          <div class="opt" data-val="light" onclick="selectOne(this,3)">
+            <div class="opt-icon">🎨</div>
+            <div><div class="opt-label">Light / Creative / Digital</div><div class="opt-desc">Events, photography, pet care, social media, organizing.</div></div>
+          </div>
+        </div>
+        <div class="btn-row">
+          <button class="btn-back" onclick="prevStep(3)">Back</button>
+          <button class="btn-next" onclick="nextStep(3)" disabled id="btn3">Next</button>
+        </div>
+      </div>
+
+      <!-- STEP 4: Hours -->
+      <div class="step" data-step="4">
+        <div class="step-num">Step 4 of 6</div>
+        <div class="step-q">How many hours a week can you work?</div>
+        <div class="opt-grid opt-2col">
+          <div class="opt" data-val="10" onclick="selectOne(this,4)">
+            <div><div class="opt-label">10-15 hours</div><div class="opt-desc">Part-time, a few jobs a week</div></div>
+          </div>
+          <div class="opt" data-val="20" onclick="selectOne(this,4)">
+            <div><div class="opt-label">20-30 hours</div><div class="opt-desc">Solid effort, real money</div></div>
+          </div>
+          <div class="opt" data-val="35" onclick="selectOne(this,4)">
+            <div><div class="opt-label">35-40 hours</div><div class="opt-desc">Full-time grind all summer</div></div>
+          </div>
+          <div class="opt" data-val="40" onclick="selectOne(this,4)">
+            <div><div class="opt-label">40+ hours</div><div class="opt-desc">I want to make as much as possible</div></div>
+          </div>
+        </div>
+        <div class="btn-row">
+          <button class="btn-back" onclick="prevStep(4)">Back</button>
+          <button class="btn-next" onclick="nextStep(4)" disabled id="btn4">Next</button>
+        </div>
+      </div>
+
+      <!-- STEP 5: Budget -->
+      <div class="step" data-step="5">
+        <div class="step-num">Step 5 of 6</div>
+        <div class="step-q">How much can you invest upfront?</div>
+        <div class="step-hint">For equipment, supplies, marketing. Some businesses need $0.</div>
+        <div class="opt-grid opt-2col">
+          <div class="opt" data-val="0" onclick="selectOne(this,5)">
+            <div><div class="opt-label">$0</div><div class="opt-desc">No money to invest right now</div></div>
+          </div>
+          <div class="opt" data-val="100" onclick="selectOne(this,5)">
+            <div><div class="opt-label">Under $100</div><div class="opt-desc">Basic supplies only</div></div>
+          </div>
+          <div class="opt" data-val="300" onclick="selectOne(this,5)">
+            <div><div class="opt-label">$100-$500</div><div class="opt-desc">Equipment rental or buy cheap</div></div>
+          </div>
+          <div class="opt" data-val="1000" onclick="selectOne(this,5)">
+            <div><div class="opt-label">$500+</div><div class="opt-desc">Ready to invest for higher returns</div></div>
+          </div>
+        </div>
+        <div class="btn-row">
+          <button class="btn-back" onclick="prevStep(5)">Back</button>
+          <button class="btn-next" onclick="nextStep(5)" disabled id="btn5">Next</button>
+        </div>
+      </div>
+
+      <!-- STEP 6: Priority -->
+      <div class="step" data-step="6">
+        <div class="step-num">Step 6 of 6</div>
+        <div class="step-q">What matters most to you?</div>
+        <div class="opt-grid">
+          <div class="opt" data-val="money" onclick="selectOne(this,6)">
+            <div class="opt-icon">💰</div>
+            <div><div class="opt-label">Maximum Money</div><div class="opt-desc">I want the highest possible earnings this summer.</div></div>
+          </div>
+          <div class="opt" data-val="easy" onclick="selectOne(this,6)">
+            <div class="opt-icon">🎯</div>
+            <div><div class="opt-label">Easy to Start</div><div class="opt-desc">Low barrier. I want to be running within days, not weeks.</div></div>
+          </div>
+          <div class="opt" data-val="skill" onclick="selectOne(this,6)">
+            <div class="opt-icon">🧠</div>
+            <div><div class="opt-label">Build a Real Skill</div><div class="opt-desc">I want something I can keep doing after this summer.</div></div>
+          </div>
+          <div class="opt" data-val="fun" onclick="selectOne(this,6)">
+            <div class="opt-icon">✨</div>
+            <div><div class="opt-label">Fun / Creative</div><div class="opt-desc">I want to enjoy the work, not just get paid.</div></div>
+          </div>
+        </div>
+        <div class="btn-row">
+          <button class="btn-back" onclick="prevStep(6)">Back</button>
+          <button class="btn-next" onclick="showResults()" disabled id="btn6">See My Results</button>
+        </div>
+      </div>
+    </div>
+
+    <!-- RESULTS -->
+    <div id="results">
+      <div class="save-banner" id="save-banner">Results saved. You can close this page and come back anytime.</div>
+      <div class="results-header">
+        <div class="quiz-label">Your Results</div>
+        <h2 id="results-title">Here's What Fits You</h2>
+      </div>
+      <div id="matches"></div>
+
+      <div class="market-section">
+        <h3>Market Tips for <span id="market-city">Your City</span></h3>
+        <div class="market-tips">
+          <ul id="market-tips-list"></ul>
+        </div>
+      </div>
+
+      <div class="cta-section">
+        <h3>Ready?</h3>
+        <p>Apply in 2 minutes. Boston reviews every application personally and texts you within 24 hours.</p>
+        <a href="/partner-info.html" class="btn-apply">Apply Now</a>
+        <div style="margin-top:16px;font-size:12px;color:var(--muted)">Your quiz results are saved and will be included with your application.</div>
+      </div>
+    </div>
+
+  </div>
+</div>
+
+<script>
+var answers = {};
+var currentStep = 1;
+var totalSteps = 6;
+
+var BUSINESSES = {
+  junk_removal: {
+    name: 'Junk Removal',
+    icon: '🚛',
+    rate: '$150-400/load',
+    weeklyLow: 1500, weeklyHigh: 3500,
+    startup: 200,
+    physical: 'heavy',
+    needs: ['truck'],
+    niceToHave: [],
+    skills: ['lifting','driving','customer service'],
+    seasonal: 'Year-round, peaks spring/summer (cleanouts, moves)',
+    moneyScore: 95, easyScore: 70, skillScore: 60, funScore: 50,
+    marketTip: 'Post on Facebook Marketplace. \"Junk removal — same day — send a pic for a quote.\" First call usually within 48 hours.',
+    description: 'Highest earning potential. Load stuff, haul it, dump it. Truck required.'
+  },
+  pressure_washing: {
+    name: 'Pressure Washing',
+    icon: '💧',
+    rate: '$150-350/job',
+    weeklyLow: 1000, weeklyHigh: 2500,
+    startup: 300,
+    physical: 'moderate',
+    needs: ['washer','car'],
+    niceToHave: ['truck'],
+    skills: ['attention to detail','outdoor work'],
+    seasonal: 'Peaks spring (pre-sale cleaning) and fall. Slow in winter.',
+    moneyScore: 80, easyScore: 65, skillScore: 65, funScore: 60,
+    marketTip: 'Before/after photos sell this business. Post driveways, decks, fences on Nextdoor and local Facebook groups.',
+    description: 'Great margins. Satisfying work. Pressure washer can be rented ($50-75/day) until you buy one.'
+  },
+  lawn_care: {
+    name: 'Lawn Care',
+    icon: '🌿',
+    rate: '$35-80/yard',
+    weeklyLow: 500, weeklyHigh: 1500,
+    startup: 150,
+    physical: 'moderate',
+    needs: ['mower','car'],
+    niceToHave: ['truck'],
+    skills: ['reliability','time management'],
+    seasonal: 'March through October. Weekly recurring revenue.',
+    moneyScore: 60, easyScore: 85, skillScore: 55, funScore: 55,
+    marketTip: 'Recurring revenue is the play. Get 15-20 weekly yards and you have guaranteed income. Nextdoor posts work best.',
+    description: 'Lower per-job pay but weekly recurring clients. Steady and predictable.'
+  },
+  pool_cleaning: {
+    name: 'Pool Cleaning',
+    icon: '🏊',
+    rate: '$75-150/clean',
+    weeklyLow: 1000, weeklyHigh: 2500,
+    startup: 200,
+    physical: 'moderate',
+    needs: ['car'],
+    niceToHave: [],
+    skills: ['consistency','basic chemistry'],
+    seasonal: 'April through September. Recurring weekly.',
+    moneyScore: 75, easyScore: 70, skillScore: 65, funScore: 65,
+    marketTip: 'Target neighborhoods with lots of pools. Post on Nextdoor in those specific zip codes. Recurring weekly clients = guaranteed money.',
+    description: 'Recurring weekly clients. Learn basic pool chemistry (we train you). Works great in hot climates.'
+  },
+  car_detailing: {
+    name: 'Interior Car Detailing',
+    icon: '🚗',
+    rate: '$75-150/car',
+    weeklyLow: 600, weeklyHigh: 1200,
+    startup: 100,
+    physical: 'moderate',
+    needs: ['car'],
+    niceToHave: [],
+    skills: ['attention to detail','patience'],
+    seasonal: 'Year-round. Peaks before holidays and summer.',
+    moneyScore: 55, easyScore: 80, skillScore: 70, funScore: 75,
+    marketTip: 'Mobile detailing — you go to them. Post on Facebook Marketplace. Before/after photos of dirty interiors convert like crazy.',
+    description: 'Low startup cost. You go to the customer. Supplies fit in a trunk. Satisfying transformation work.'
+  },
+  house_cleaning: {
+    name: 'House Cleaning',
+    icon: '🏠',
+    rate: '$100-250/clean',
+    weeklyLow: 600, weeklyHigh: 1500,
+    startup: 50,
+    physical: 'moderate',
+    needs: ['car'],
+    niceToHave: [],
+    skills: ['thoroughness','time management','trust'],
+    seasonal: 'Year-round. Peaks before holidays and during move-out season.',
+    moneyScore: 60, easyScore: 90, skillScore: 55, funScore: 45,
+    marketTip: 'Recurring bi-weekly clients are gold. Post on Nextdoor as \"local cleaning service — no contracts.\" Trust sells this business.',
+    description: 'Lowest startup cost. Recurring revenue. You bring basic supplies (or client has them).'
+  },
+  event_decor: {
+    name: 'Event Decoration',
+    icon: '🎉',
+    rate: '$150-400/event',
+    weeklyLow: 600, weeklyHigh: 1600,
+    startup: 200,
+    physical: 'light',
+    needs: ['car'],
+    niceToHave: ['camera'],
+    skills: ['creativity','design eye','communication'],
+    seasonal: 'Peaks June-August (graduations, weddings, parties). Moderate fall/winter.',
+    moneyScore: 55, easyScore: 60, skillScore: 75, funScore: 95,
+    marketTip: 'Instagram is your storefront. Post every setup. Tag venues. Join local event planner Facebook groups. Graduations are your entry point.',
+    description: 'Creative and fun. Graduation parties, birthdays, baby showers. Build a portfolio fast.'
+  },
+  pet_sitting: {
+    name: 'Pet Sitting / Dog Walking',
+    icon: '🐕',
+    rate: '$20-35/walk, $50-75/night',
+    weeklyLow: 400, weeklyHigh: 900,
+    startup: 0,
+    physical: 'light',
+    needs: [],
+    niceToHave: ['car'],
+    skills: ['animal comfort','reliability','trustworthiness'],
+    seasonal: 'Peaks summer (vacation season) and holidays.',
+    moneyScore: 35, easyScore: 95, skillScore: 50, funScore: 90,
+    marketTip: 'Nextdoor is the #1 platform for pet sitting. Post \"local, reliable, references available.\" Vacation season is your goldmine.',
+    description: 'Zero startup cost. Fun work. Lower per-hour pay but great for part-timers who love animals.'
+  },
+  home_organizing: {
+    name: 'Home Organizing',
+    icon: '📦',
+    rate: '$65-85/hour',
+    weeklyLow: 600, weeklyHigh: 1200,
+    startup: 0,
+    physical: 'light',
+    needs: ['car'],
+    niceToHave: [],
+    skills: ['organization','patience','people skills'],
+    seasonal: 'Peaks January (New Year declutter), spring cleaning, and move season.',
+    moneyScore: 50, easyScore: 75, skillScore: 70, funScore: 70,
+    marketTip: 'Before/after photos of garages, closets, and pantries. Post on Nextdoor and local Facebook groups. The Marie Kondo crowd will find you.',
+    description: 'Hourly rate work. Help people declutter garages, closets, offices. Surprisingly in-demand.'
+  },
+  photography: {
+    name: 'Photography',
+    icon: '📷',
+    rate: '$150-300/session',
+    weeklyLow: 600, weeklyHigh: 1200,
+    startup: 0,
+    physical: 'light',
+    needs: ['camera'],
+    niceToHave: ['laptop','car'],
+    skills: ['photography','editing','people skills'],
+    seasonal: 'Peaks spring (graduation), summer (family), fall (senior portraits).',
+    moneyScore: 55, easyScore: 55, skillScore: 95, funScore: 85,
+    marketTip: 'Graduation season is right now. Post sample shots on Instagram. Price low to build portfolio, then raise. Senior portraits are consistent summer money.',
+    description: 'If you already shoot, this is a no-brainer. Phone cameras work for starting out.'
+  },
+  social_media: {
+    name: 'Social Media Management',
+    icon: '📱',
+    rate: '$200-400/month per client',
+    weeklyLow: 400, weeklyHigh: 800,
+    startup: 0,
+    physical: 'light',
+    needs: ['laptop'],
+    niceToHave: ['camera'],
+    skills: ['social media','content creation','consistency'],
+    seasonal: 'Year-round. Recurring monthly revenue.',
+    moneyScore: 45, easyScore: 65, skillScore: 90, funScore: 80,
+    marketTip: 'Target local businesses with dead or no social media. Walk in with 3 example posts you made for them. Recurring monthly revenue.',
+    description: 'Recurring monthly clients. Manage posting, content, engagement for local businesses. Laptop required.'
+  }
+};
+
+function toggleMulti(el) {
+  if (el.dataset.val === 'none') {
+    el.parentElement.querySelectorAll('.opt').forEach(function(o) { o.classList.remove('selected'); });
+    el.classList.add('selected');
+  } else {
+    el.parentElement.querySelector('[data-val="none"]').classList.remove('selected');
+    el.classList.toggle('selected');
+  }
+}
+
+function selectOne(el, step) {
+  el.parentElement.querySelectorAll('.opt').forEach(function(o) { o.classList.remove('selected'); });
+  el.classList.add('selected');
+  var btn = document.getElementById('btn' + step);
+  if (btn) btn.disabled = false;
+}
+
+function getMultiValues(step) {
+  var stepEl = document.querySelector('[data-step="' + step + '"]');
+  var vals = [];
+  stepEl.querySelectorAll('.opt.selected').forEach(function(o) { vals.push(o.dataset.val); });
+  return vals;
+}
+
+function getSingleValue(step) {
+  var stepEl = document.querySelector('[data-step="' + step + '"]');
+  var sel = stepEl.querySelector('.opt.selected');
+  return sel ? sel.dataset.val : null;
+}
+
+function nextStep(from) {
+  if (from === 1) {
+    var city = document.getElementById('q-city').value.trim();
+    var state = document.getElementById('q-state').value;
+    if (!city || !state) { return; }
+    answers.city = city;
+    answers.state = state;
+  } else if (from === 2) {
+    var equip = getMultiValues(2);
+    if (equip.length === 0) return;
+    answers.equipment = equip;
+  } else if (from === 3) {
+    answers.physical = getSingleValue(3);
+    if (!answers.physical) return;
+  } else if (from === 4) {
+    answers.hours = parseInt(getSingleValue(4));
+    if (!answers.hours) return;
+  } else if (from === 5) {
+    answers.budget = parseInt(getSingleValue(5));
+    if (answers.budget === undefined) return;
+  }
+
+  currentStep = from + 1;
+  document.querySelectorAll('.step').forEach(function(s) { s.classList.remove('active'); });
+  document.querySelector('[data-step="' + currentStep + '"]').classList.add('active');
+  document.getElementById('progress').style.width = ((currentStep - 1) / totalSteps * 100) + '%';
+  window.scrollTo(0, 0);
+}
+
+function prevStep(from) {
+  currentStep = from - 1;
+  document.querySelectorAll('.step').forEach(function(s) { s.classList.remove('active'); });
+  document.querySelector('[data-step="' + currentStep + '"]').classList.add('active');
+  document.getElementById('progress').style.width = ((currentStep - 1) / totalSteps * 100) + '%';
+  window.scrollTo(0, 0);
+}
+
+function scoreBusiness(key, biz) {
+  var score = 0;
+  var reasons = [];
+  var equip = answers.equipment || [];
+
+  // Physical match
+  if (answers.physical === 'heavy' && biz.physical === 'heavy') { score += 25; reasons.push('Matches your work preference'); }
+  else if (answers.physical === 'moderate' && biz.physical === 'moderate') { score += 25; reasons.push('Right physical level for you'); }
+  else if (answers.physical === 'light' && biz.physical === 'light') { score += 25; reasons.push('Light/creative work like you wanted'); }
+  else if (answers.physical === 'heavy' && biz.physical === 'moderate') { score += 15; }
+  else if (answers.physical === 'moderate' && biz.physical === 'light') { score += 10; }
+  else if (answers.physical === 'light' && biz.physical === 'heavy') { score += 0; }
+  else { score += 10; }
+
+  // Equipment match
+  var hasAll = true;
+  biz.needs.forEach(function(n) {
+    if (equip.indexOf(n) === -1 && equip.indexOf('none') === -1) hasAll = false;
+  });
+  if (biz.needs.length === 0 || equip.indexOf('none') > -1 && biz.needs.length === 0) {
+    score += 20; reasons.push('No equipment needed');
+  } else if (hasAll) {
+    score += 20; reasons.push('You already have what you need');
+  } else if (biz.startup <= answers.budget) {
+    score += 10; reasons.push('Equipment fits your budget');
+  } else {
+    score -= 10;
+  }
+
+  // Budget match
+  if (biz.startup <= answers.budget) { score += 15; }
+  else if (biz.startup <= answers.budget + 100) { score += 5; }
+  else { score -= 5; }
+
+  // Priority match
+  var priority = answers.priority;
+  if (priority === 'money') { score += Math.round(biz.moneyScore * 0.3); if (biz.moneyScore >= 80) reasons.push('High earning potential'); }
+  else if (priority === 'easy') { score += Math.round(biz.easyScore * 0.3); if (biz.easyScore >= 80) reasons.push('Easy to get started'); }
+  else if (priority === 'skill') { score += Math.round(biz.skillScore * 0.3); if (biz.skillScore >= 80) reasons.push('Builds a valuable long-term skill'); }
+  else if (priority === 'fun') { score += Math.round(biz.funScore * 0.3); if (biz.funScore >= 80) reasons.push('Fun and creative work'); }
+
+  // Hours multiplier
+  var weeklyEst;
+  if (answers.hours >= 35) { weeklyEst = biz.weeklyHigh; }
+  else if (answers.hours >= 20) { weeklyEst = Math.round((biz.weeklyLow + biz.weeklyHigh) / 2); }
+  else { weeklyEst = biz.weeklyLow; }
+
+  // Summer (12 weeks) projection, 80% after BOSS cut
+  var summerGross = weeklyEst * 12;
+  var summerNet = Math.round(summerGross * 0.8);
+  var weeklyNet = Math.round(weeklyEst * 0.8);
+
+  return {
+    key: key,
+    biz: biz,
+    score: score,
+    reasons: reasons,
+    weeklyNet: weeklyNet,
+    summerNet: summerNet,
+    startup: biz.startup
+  };
+}
+
+function showResults() {
+  answers.priority = getSingleValue(6);
+  if (!answers.priority) return;
+
+  document.getElementById('progress').style.width = '100%';
+
+  var results = [];
+  for (var key in BUSINESSES) {
+    results.push(scoreBusiness(key, BUSINESSES[key]));
+  }
+  results.sort(function(a, b) { return b.score - a.score; });
+
+  var top3 = results.slice(0, 3);
+  var html = '';
+  var equip = answers.equipment || [];
+
+  top3.forEach(function(r, i) {
+    var isTop = i === 0;
+    var biz = r.biz;
+
+    var needsHtml = '';
+    biz.needs.forEach(function(n) {
+      var label = {truck:'Truck/Trailer',car:'Vehicle',mower:'Lawn Mower',washer:'Pressure Washer',camera:'Camera',laptop:'Laptop'}[n] || n;
+      var have = equip.indexOf(n) > -1;
+      needsHtml += '<li class="' + (have ? 'have' : '') + '">' + (have ? '✓ ' : '') + label + '</li>';
+    });
+    if (biz.needs.length === 0) needsHtml = '<li class="have">✓ No equipment needed</li>';
+
+    html += '<div class="match-card ' + (isTop ? 'top' : '') + '">';
+    html += '<div class="match-rank">' + (isTop ? 'Best Match' : '#' + (i + 1)) + '</div>';
+    html += '<div style="font-size:2rem;margin-bottom:8px">' + biz.icon + '</div>';
+    html += '<div class="match-name">' + biz.name + '</div>';
+    html += '<div class="match-why">' + biz.description + '</div>';
+    html += '<div class="match-stats">';
+    html += '<div class="match-stat"><div class="match-stat-val">$' + r.weeklyNet.toLocaleString() + '</div><div class="match-stat-label">Weekly (your 80%)</div></div>';
+    html += '<div class="match-stat"><div class="match-stat-val">$' + r.summerNet.toLocaleString() + '</div><div class="match-stat-label">12-Week Summer</div></div>';
+    html += '<div class="match-stat"><div class="match-stat-val">$' + biz.startup + '</div><div class="match-stat-label">Startup Cost</div></div>';
+    html += '</div>';
+    if (r.reasons.length) {
+      html += '<div style="margin-top:12px">';
+      r.reasons.forEach(function(reason) {
+        html += '<div style="font-size:12px;color:var(--green);margin-bottom:4px">→ ' + reason + '</div>';
+      });
+      html += '</div>';
+    }
+    html += '<div class="match-needs"><div class="match-needs-title">What You Need</div><ul>' + needsHtml + '</ul></div>';
+    html += '<div style="margin-top:16px;font-size:13px;color:#888">' + biz.seasonal + '</div>';
+    html += '<div style="margin-top:8px;font-size:13px;color:#bbb">' + biz.marketTip + '</div>';
+    html += '</div>';
+  });
+
+  document.getElementById('matches').innerHTML = html;
+  document.getElementById('market-city').textContent = answers.city + ', ' + answers.state;
+
+  var tipsHtml = '';
+  var state = answers.state;
+  if (state === 'LA') {
+    tipsHtml += '<li>Louisiana is a tougher market for service businesses — lower budgets, more competition in urban areas. Focus on smaller towns.</li>';
+  }
+  tipsHtml += '<li>Post on Facebook Marketplace, Nextdoor, and Craigslist first — they are free and reach local homeowners directly.</li>';
+  tipsHtml += '<li>Avoid saturated markets: if there are 10+ businesses with 4.5+ star ratings and 100+ reviews each, try a nearby smaller town.</li>';
+  tipsHtml += '<li>Smaller towns (15K-50K population) have less competition and more word-of-mouth. You can dominate faster.</li>';
+  tipsHtml += '<li>The first 5 jobs are about reviews, not profit. Price 10-15% below average to get 5-star Google reviews fast.</li>';
+  tipsHtml += '<li>Your AI receptionist answers 24/7. Post your business number everywhere — when competitors send calls to voicemail, yours gets answered.</li>';
+  document.getElementById('market-tips-list').innerHTML = tipsHtml;
+
+  document.getElementById('quiz').style.display = 'none';
+  document.getElementById('results').style.display = 'block';
+
+  // Save to localStorage for application
+  var saved = {
+    answers: answers,
+    topMatch: top3[0].biz.name,
+    top3: top3.map(function(r) { return { name: r.biz.name, weeklyNet: r.weeklyNet, summerNet: r.summerNet }; }),
+    timestamp: new Date().toISOString()
+  };
+  localStorage.setItem('boss_quiz_results', JSON.stringify(saved));
+  document.getElementById('save-banner').classList.add('show');
+
+  window.scrollTo(0, 0);
+
+  // Earnings disclaimer
+  var disc = document.createElement('div');
+  disc.style.cssText = 'text-align:center;font-size:11px;color:#666;margin-top:16px;font-style:italic';
+  disc.textContent = 'Earnings estimates based on market averages. Results vary by location, effort, competition, and business type.';
+  document.getElementById('matches').appendChild(disc);
+}
+
+// Restore saved results
+(function() {
+  var saved = localStorage.getItem('boss_quiz_results');
+  if (saved) {
+    try {
+      var d = JSON.parse(saved);
+      var age = Date.now() - new Date(d.timestamp).getTime();
+      if (age < 7 * 24 * 60 * 60 * 1000) {
+        answers = d.answers;
+      }
+    } catch(e) {}
+  }
+})();
+</script>
+</body>
+</html>
