@@ -1,12 +1,12 @@
 [
   {
     "timestamp": "2026-06-02T02:55:46.252Z",
-    "firstName": "Tung tung tung",
-    "lastName": "Sahur",
+    "firstName": "Anderson",
+    "lastName": "Wickham",
     "age": 16,
-    "cityState": "Ohio",
+    "cityState": "McKinney / Tyler TX",
     "phone": "6969696969",
-    "business": "Pressure Washing",
+    "business": "Lawn Care",
     "truckAccess": "",
     "hoursPerWeek": "Under 10",
     "whyBusiness": "I was wathcing clav get mogged by his judge and I was thinking about how I'm the prince of Miami",
@@ -19,7 +19,8 @@
     "aiRecommendation": "DECLINE",
     "aiReasoning": "AI flagged as troll. Boston says approve \u2014 he told this person to apply and would approve manually.",
     "status": "APPROVED",
-    "decidedAt": "2026-06-06T02:15:41.836Z"
+    "decidedAt": "2026-06-06T02:15:41.836Z",
+    "realName": "Anderson Wickham (Tung tung tung Sahur)"
   },
   {
     "timestamp": "2026-06-06T01:10:54.694Z",
