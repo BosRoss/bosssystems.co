@@ -1,26 +1,5 @@
 [
   {
-    "timestamp": "2026-06-01T20:30:38.747Z",
-    "firstName": "",
-    "lastName": "",
-    "age": "",
-    "cityState": "",
-    "phone": "",
-    "business": "",
-    "truckAccess": "",
-    "hoursPerWeek": "",
-    "whyBusiness": "",
-    "priorWork": "",
-    "hearAbout": "",
-    "socialHandle": "",
-    "mainGoal": "",
-    "aiScore": 0,
-    "aiRecommendation": "REVIEW",
-    "aiReasoning": "Empty test submission, no data provided.",
-    "status": "DECLINED",
-    "decidedAt": "2026-06-06T02:15:55.544Z"
-  },
-  {
     "timestamp": "2026-06-02T02:55:46.252Z",
     "firstName": "Tung tung tung",
     "lastName": "Sahur",
