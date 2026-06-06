@@ -128,6 +128,19 @@ main{padding:16px 12px 80px;max-width:600px;margin:0 auto}
 .app-status{display:inline-block;font-size:8px;font-family:'Share Tech Mono',monospace;letter-spacing:1px;padding:2px 6px;border-radius:2px;margin-left:8px}
 .app-status.new{background:rgba(255,107,53,0.08);color:var(--orange);border:1px solid rgba(255,107,53,0.18)}
 .app-status.reviewed{background:rgba(0,232,122,0.08);color:var(--green);border:1px solid rgba(0,232,122,0.18)}
+.app-status.approved{background:rgba(0,232,122,0.08);color:var(--green);border:1px solid rgba(0,232,122,0.18)}
+.app-status.declined{background:rgba(255,59,59,0.08);color:var(--red);border:1px solid rgba(255,59,59,0.18)}
+.app-ai{font-size:10px;color:var(--muted);margin-top:4px;line-height:1.5}
+.app-ai .score{color:var(--gold);font-weight:600;font-family:'Share Tech Mono',monospace}
+.app-ai .rec{font-weight:600}
+.app-ai .rec.approve{color:var(--green)}
+.app-ai .rec.review{color:var(--orange)}
+.app-ai .rec.decline{color:var(--red)}
+.app-actions{display:flex;gap:8px;margin-top:8px}
+.app-btn{font-size:9px;font-family:'Share Tech Mono',monospace;letter-spacing:1px;padding:4px 12px;border:1px solid var(--border);background:var(--bg3);color:var(--muted);cursor:pointer;text-transform:uppercase}
+.app-btn:active{opacity:.7}
+.app-btn.approve{border-color:rgba(0,232,122,0.3);color:var(--green)}
+.app-btn.decline{border-color:rgba(255,59,59,0.3);color:var(--red)}
 .app-empty{text-align:center;padding:20px;font-size:12px;color:var(--dim);letter-spacing:1px}
 
 /* FOOTER */
@@ -273,9 +286,9 @@ footer{text-align:center;padding:16px;font-family:'Share Tech Mono',monospace;fo
       <div class="quick-info"><div class="quick-name">Website</div><div class="quick-desc">bosssystems.co</div></div>
       <div class="quick-arrow">&#8250;</div>
     </a>
-    <a href="receptionist.html" class="quick-link">
-      <div class="quick-icon">&#9742;</div>
-      <div class="quick-info"><div class="quick-name">Sales Page</div><div class="quick-desc">AI phone answering</div></div>
+    <a href="analyze.html" class="quick-link">
+      <div class="quick-icon">&#9878;</div>
+      <div class="quick-info"><div class="quick-name">Free Analyzer</div><div class="quick-desc">What prospects see first</div></div>
       <div class="quick-arrow">&#8250;</div>
     </a>
     <a href="https://ntfy.sh/bossai-bostonrossall-alerts" class="quick-link">
@@ -446,20 +459,31 @@ document.getElementById('retell-list').innerHTML = RETELL.map(function(r) {
   .then(function(data) {
     var apps = Array.isArray(data) ? data : (data.applications || []);
     if (!apps.length) {
-      container.innerHTML = '<div class="app-empty">No pending applications</div>';
+      container.innerHTML = '<div class="app-empty">No applications yet</div>';
       return;
     }
-    container.innerHTML = apps.map(function(a) {
+    container.innerHTML = apps.map(function(a, idx) {
       var name = (a.firstName || '') + ' ' + (a.lastName || '');
-      var status = (a.status || 'new').toLowerCase();
-      var statusCls = status === 'reviewed' ? 'reviewed' : 'new';
-      var statusTxt = status === 'reviewed' ? 'REVIEWED' : 'NEW';
-      var time = a.submittedAt ? new Date(a.submittedAt).toLocaleDateString('en-US', {month:'short',day:'numeric',hour:'numeric',minute:'2-digit'}) : '';
+      var status = (a.status || 'pending').toUpperCase();
+      var statusCls = status === 'APPROVED' ? 'approved' : status === 'DECLINED' ? 'declined' : 'new';
+      var time = a.timestamp ? new Date(a.timestamp).toLocaleDateString('en-US', {month:'short',day:'numeric',hour:'numeric',minute:'2-digit'}) : '';
+      var recCls = (a.aiRecommendation || '').toLowerCase();
+      if (recCls === 'approve') recCls = 'approve';
+      else if (recCls === 'decline') recCls = 'decline';
+      else recCls = 'review';
+      var buttons = status === 'PENDING' ?
+        '<div class="app-actions">' +
+          '<button class="app-btn approve" onclick="appDecision('+idx+',\'APPROVED\')">Approve</button>' +
+          '<button class="app-btn decline" onclick="appDecision('+idx+',\'DECLINED\')">Decline</button>' +
+        '</div>' : '';
       return '<div class="app-card">' +
-        '<div class="app-name">' + esc(name.trim()) + '<span class="app-status ' + statusCls + '">' + statusTxt + '</span></div>' +
+        '<div class="app-name">' + esc(name.trim() || '(empty test)') + '<span class="app-status ' + statusCls + '">' + status + '</span></div>' +
         '<div class="app-meta"><span>' + esc(a.business || '?') + '</span> · ' + esc(a.cityState || '?') + ' · Age ' + (a.age || '?') + ' · ' + esc(a.hoursPerWeek || '?') + ' hrs/wk</div>' +
+        '<div class="app-ai">AI: <span class="score">' + (a.aiScore || 0) + '/10</span> · <span class="rec ' + recCls + '">' + (a.aiRecommendation || 'REVIEW') + '</span>' +
+          (a.aiReasoning ? ' · ' + esc(a.aiReasoning).substring(0,100) : '') + '</div>' +
         (a.whyBusiness ? '<div class="app-note">"' + esc(a.whyBusiness).substring(0,120) + (a.whyBusiness.length > 120 ? '...' : '') + '"</div>' : '') +
-        '<div class="app-time">' + esc(time) + (a.hearAbout ? ' · via ' + esc(a.hearAbout) : '') + (a.referredBy ? ' · ref: ' + esc(a.referredBy) : '') + '</div>' +
+        '<div class="app-time">' + esc(time) + (a.hearAbout ? ' · via ' + esc(a.hearAbout) : '') + (a.referredBy ? ' · ref: ' + esc(a.referredBy) : '') + (a.phone ? ' · ' + esc(a.phone) : '') + '</div>' +
+        buttons +
       '</div>';
     }).join('');
   })
@@ -469,6 +493,18 @@ document.getElementById('retell-list').innerHTML = RETELL.map(function(r) {
 
   function esc(s) { var d = document.createElement('div'); d.textContent = s || ''; return d.innerHTML; }
 })();
+
+function appDecision(idx, decision) {
+  fetch('https://jamross.app.n8n.cloud/webhook/partner-decision', {
+    method: 'POST',
+    headers: {'Content-Type': 'application/json'},
+    body: JSON.stringify({index: idx, decision: decision})
+  }).then(function() {
+    location.reload();
+  }).catch(function() {
+    alert('Failed to save decision. Try again.');
+  });
+}
 
 // SERVICE WORKER
 if ('serviceWorker' in navigator) {
