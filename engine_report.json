@@ -1,84 +1,84 @@
 {
-  "generated": "2026-06-06T04:52:20.116389+00:00",
+  "generated": "2026-06-06T14:56:03.803630+00:00",
   "engine_state": "active",
   "signals": [
     {
       "type": "flood",
-      "area": "Taylor, TX",
+      "area": "Armstrong, TX; Randall, TX",
       "niche": "plumbing",
-      "action": "Flood warnings in Taylor, TX. Plumbers, restoration, mold companies will spike.",
+      "action": "Flood warnings in Armstrong, TX; Randall, TX. Plumbers, restoration, mold companies will spike.",
       "urgency": "today",
       "pitch_hook": "Water damage calls are coming. Every one you miss is $500+ walking away."
     },
     {
       "type": "flood",
-      "area": "Archer, TX; Baylor, TX; Wichita, TX; Wilbarger, TX",
+      "area": "Bell, TX; Falls, TX; Limestone, TX; McLennan, TX; Milam, TX; Robertson, TX",
       "niche": "plumbing",
-      "action": "Flood warnings in Archer, TX; Baylor, TX; Wichita, TX; Wilbarger, TX. Plumbers, restoration, mold companies will spike.",
+      "action": "Flood warnings in Bell, TX; Falls, TX; Limestone, TX; McLennan, TX; Milam, TX; Robertson, TX. Plumbers, restoration, mold companies will spike.",
       "urgency": "today",
       "pitch_hook": "Water damage calls are coming. Every one you miss is $500+ walking away."
     },
     {
       "type": "flood",
-      "area": "Nolan, TX",
+      "area": "Haskell; Throckmorton; Jones; Shackelford; Taylor; Callahan; Coleman; Brown",
       "niche": "plumbing",
-      "action": "Flood warnings in Nolan, TX. Plumbers, restoration, mold companies will spike.",
+      "action": "Flood warnings in Haskell; Throckmorton; Jones; Shackelford; Taylor; Callahan; Coleman; Brown. Plumbers, restoration, mold companies will spike.",
       "urgency": "today",
       "pitch_hook": "Water damage calls are coming. Every one you miss is $500+ walking away."
     },
     {
       "type": "flood",
-      "area": "Glasscock, TX; Howard, TX",
+      "area": "Major; Garfield; Noble; Dewey; Custer; Blaine; Kingfisher; Logan; Payne; Beckham; Washita; Caddo; Canadian; Oklahoma; Lincoln; Grady; McClain; Cleveland; Pottawatomie; Seminole; Hughes; Harmon; Greer;",
       "niche": "plumbing",
-      "action": "Flood warnings in Glasscock, TX; Howard, TX. Plumbers, restoration, mold companies will spike.",
+      "action": "Flood warnings in Major; Garfield; Noble; Dewey; Custer; Blaine; Kingfisher; Logan; Payne; Beckham; Washita; Caddo; Canadian; Oklahoma; Lincoln; Grady; McClain; Cleveland; Pottawatomie; Seminole; Hughes; Harmon; Greer;. Plumbers, restoration, mold companies will spike.",
       "urgency": "today",
       "pitch_hook": "Water damage calls are coming. Every one you miss is $500+ walking away."
     },
     {
       "type": "flood",
-      "area": "Howard, TX; Mitchell, TX",
+      "area": "Montague; Cooke; Grayson; Fannin; Young; Jack; Wise; Denton; Collin; Stephens; Palo Pinto; Parker; Tarrant; Dallas; Eastland; Erath; Hood; Somervell; Johnson; Ellis; Comanche",
       "niche": "plumbing",
-      "action": "Flood warnings in Howard, TX; Mitchell, TX. Plumbers, restoration, mold companies will spike.",
+      "action": "Flood warnings in Montague; Cooke; Grayson; Fannin; Young; Jack; Wise; Denton; Collin; Stephens; Palo Pinto; Parker; Tarrant; Dallas; Eastland; Erath; Hood; Somervell; Johnson; Ellis; Comanche. Plumbers, restoration, mold companies will spike.",
       "urgency": "today",
       "pitch_hook": "Water damage calls are coming. Every one you miss is $500+ walking away."
     },
     {
       "type": "flood",
-      "area": "Fayette, TX",
+      "area": "Cotton, OK",
       "niche": "plumbing",
-      "action": "Flood warnings in Fayette, TX. Plumbers, restoration, mold companies will spike.",
+      "action": "Flood warnings in Cotton, OK. Plumbers, restoration, mold companies will spike.",
       "urgency": "today",
       "pitch_hook": "Water damage calls are coming. Every one you miss is $500+ walking away."
     },
     {
       "type": "flood",
-      "area": "Haskell, TX; Jones, TX; Shackelford, TX; Throckmorton, TX",
+      "area": "Atoka, OK; Coal, OK",
       "niche": "plumbing",
-      "action": "Flood warnings in Haskell, TX; Jones, TX; Shackelford, TX; Throckmorton, TX. Plumbers, restoration, mold companies will spike.",
+      "action": "Flood warnings in Atoka, OK; Coal, OK. Plumbers, restoration, mold companies will spike.",
       "urgency": "today",
       "pitch_hook": "Water damage calls are coming. Every one you miss is $500+ walking away."
     },
     {
       "type": "flood",
-      "area": "Travis, TX",
+      "area": "Creek, OK; Okmulgee, OK; Tulsa, OK; Wagoner, OK",
       "niche": "plumbing",
-      "action": "Flood warnings in Travis, TX. Plumbers, restoration, mold companies will spike.",
+      "action": "Flood warnings in Creek, OK; Okmulgee, OK; Tulsa, OK; Wagoner, OK. Plumbers, restoration, mold companies will spike.",
       "urgency": "today",
       "pitch_hook": "Water damage calls are coming. Every one you miss is $500+ walking away."
     },
     {
       "type": "flood",
-      "area": "Jackson, OK; Hardeman, TX; Wilbarger, TX",
+      "area": "Lincoln, OK",
       "niche": "plumbing",
-      "action": "Flood warnings in Jackson, OK; Hardeman, TX; Wilbarger, TX. Plumbers, restoration, mold companies will spike.",
+      "action": "Flood warnings in Lincoln, OK. Plumbers, restoration, mold companies will spike.",
       "urgency": "today",
       "pitch_hook": "Water damage calls are coming. Every one you miss is $500+ walking away."
     },
     {
       "type": "flood",
-      "area": "Greer, OK; Jackson, OK",
+      "area": "Caddo, OK; Comanche, OK; Kiowa, OK; Washita, OK",
       "niche": "plumbing",
-      "action": "Flood warnings in Greer, OK; Jackson, OK. Plumbers, restoration, mold companies will spike.",
+      "action": "Flood warnings in Caddo, OK; Comanche, OK; Kiowa, OK; Washita, OK. Plumbers, restoration, mold companies will spike.",
       "urgency": "today",
       "pitch_hook": "Water damage calls are coming. Every one you miss is $500+ walking away."
     }
@@ -225,8 +225,8 @@
     "leads_superniche": 7,
     "leads_hot": 22,
     "leads_warm": 84,
-    "cost_per_qualified": 0.63,
-    "total_spend": 4.416000000000003,
+    "cost_per_qualified": 0.64,
+    "total_spend": 4.480000000000003,
     "spend_cap": 300.0
   },
   "channels": {
@@ -239,55 +239,55 @@
   "feeds": [
     {
       "name": "NOAA",
-      "last_hit": "2026-06-06T04:44:27.637443+00:00",
+      "last_hit": "2026-06-06T14:48:43.835400+00:00",
       "status": "yellow",
       "data_points_today": 0
     },
     {
       "name": "REDDIT",
-      "last_hit": "2026-06-06T04:44:27.637443+00:00",
+      "last_hit": "2026-06-06T14:48:43.835400+00:00",
       "status": "green",
-      "data_points_today": 801
+      "data_points_today": 841
     },
     {
       "name": "USGS",
-      "last_hit": "2026-06-06T04:44:27.637443+00:00",
+      "last_hit": "2026-06-06T14:48:43.835400+00:00",
       "status": "yellow",
       "data_points_today": 0
     },
     {
       "name": "HACKERNEWS",
-      "last_hit": "2026-06-06T04:44:27.637443+00:00",
+      "last_hit": "2026-06-06T14:48:43.835400+00:00",
       "status": "green",
       "data_points_today": 30
     },
     {
       "name": "FEMA",
-      "last_hit": "2026-06-06T04:44:27.637443+00:00",
+      "last_hit": "2026-06-06T14:48:43.835400+00:00",
       "status": "green",
       "data_points_today": 20
     },
     {
       "name": "COMMODITIES",
-      "last_hit": "2026-06-06T04:44:27.637443+00:00",
+      "last_hit": "2026-06-06T14:48:43.835400+00:00",
       "status": "green",
       "data_points_today": 7
     },
     {
       "name": "RSS",
-      "last_hit": "2026-06-06T04:44:27.637443+00:00",
+      "last_hit": "2026-06-06T14:48:43.835400+00:00",
       "status": "green",
       "data_points_today": 170
     },
     {
       "name": "FRED",
-      "last_hit": "2026-06-06T04:44:27.637443+00:00",
+      "last_hit": "2026-06-06T14:48:43.835400+00:00",
       "status": "yellow",
       "data_points_today": 0
     },
     {
       "name": "BLS",
-      "last_hit": "2026-06-06T04:44:27.637443+00:00",
+      "last_hit": "2026-06-06T14:48:43.835400+00:00",
       "status": "green",
       "data_points_today": 9
     }
