@@ -1,0 +1,65 @@
+{
+  "generated": "2026-06-05T19:40:02.844149",
+  "gate_mode": "approval",
+  "kill_switch": false,
+  "gate_clean_days": 1,
+  "today_spend": 0.0112,
+  "total_posts": 3,
+  "platform_stats": {
+    "unknown": {
+      "count": 2,
+      "active_days": 1
+    },
+    "facebook": {
+      "count": 1,
+      "active_days": 1
+    }
+  },
+  "engagement": {},
+  "bandit": {
+    "story": {
+      "win_rate": 50.0,
+      "pulls": 0,
+      "rewards": 0
+    },
+    "stat_bomb": {
+      "win_rate": 50.0,
+      "pulls": 0,
+      "rewards": 0
+    },
+    "comparison": {
+      "win_rate": 50.0,
+      "pulls": 0,
+      "rewards": 0
+    },
+    "question": {
+      "win_rate": 50.0,
+      "pulls": 0,
+      "rewards": 0
+    },
+    "the_catch": {
+      "win_rate": 50.0,
+      "pulls": 0,
+      "rewards": 0
+    },
+    "math_breakdown": {
+      "win_rate": 50.0,
+      "pulls": 0,
+      "rewards": 0
+    },
+    "behind_scenes": {
+      "win_rate": 50.0,
+      "pulls": 0,
+      "rewards": 0
+    },
+    "social_proof": {
+      "win_rate": 50.0,
+      "pulls": 0,
+      "rewards": 0
+    }
+  },
+  "engagers_count": 0,
+  "hot_engagers": 0,
+  "posts_approved": 1,
+  "posts_rejected": 0
+}
