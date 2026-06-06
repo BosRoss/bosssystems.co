@@ -195,6 +195,7 @@ footer{text-align:center;padding:16px;font-family:'Share Tech Mono',monospace;fo
   <div class="tab-bar">
     <div class="tab active" id="tab-cmd" onclick="switchTab('cmd')">COMMAND</div>
     <div class="tab" id="tab-spp" onclick="switchTab('spp')">SPP PARTNERS <span class="tab-count" id="spp-count"></span></div>
+    <div class="tab" id="tab-engage" onclick="switchTab('engage')">ENGAGE <span class="tab-count" id="engage-count"></span></div>
   </div>
 
   <!-- ═══ COMMAND TAB ═══ -->
@@ -453,6 +454,59 @@ footer{text-align:center;padding:16px;font-family:'Share Tech Mono',monospace;fo
     </div>
 
   </div><!-- /content-spp -->
+
+  <!-- ═══ ENGAGE TAB — Ryan Walsh ═══ -->
+  <div class="tab-content" id="content-engage">
+
+    <div class="stats-bar" id="engage-stats">
+      <div class="stat"><div class="stat-value" style="color:var(--blue)" id="eng-queue">0</div><div class="stat-label">In Queue</div></div>
+      <div class="stat"><div class="stat-value" style="color:var(--green)" id="eng-replied">0</div><div class="stat-label">Replied</div></div>
+      <div class="stat"><div class="stat-value" style="color:var(--orange)" id="eng-drafts">0</div><div class="stat-label">Drafts Ready</div></div>
+    </div>
+
+    <!-- ACCOUNT STATUS -->
+    <div class="sec-title">ACCOUNT STATUS</div>
+    <div class="sys-list" id="engage-accounts">
+      <div class="sys-card">
+        <div class="sys-left"><div class="sys-name">Reddit</div><div class="sys-detail" id="reddit-status">Not created yet</div></div>
+        <span class="sys-status off" id="reddit-badge">SETUP</span>
+      </div>
+      <div class="sys-card">
+        <div class="sys-left"><div class="sys-name">Facebook</div><div class="sys-detail" id="fb-engage-status">Not created yet</div></div>
+        <span class="sys-status off" id="fb-engage-badge">SETUP</span>
+      </div>
+    </div>
+    <div class="cost-card" id="account-setup-box">
+      <div style="font-size:9px;color:var(--dim);letter-spacing:2px;margin-bottom:8px">SETUP ACCOUNTS</div>
+      <div style="font-size:12px;color:var(--muted);line-height:1.6">
+        <strong style="color:var(--text)">Reddit:</strong> Create account at reddit.com. Username like RyanWalsh_TX or similar. Post helpful comments in r/smallbusiness for 1-2 weeks to build karma before using for BOSS replies.<br><br>
+        <strong style="color:var(--text)">Facebook:</strong> Create profile at facebook.com. Join local business groups + contractor groups. Comment helpfully for a week before posting recommendations.
+      </div>
+      <div style="display:flex;gap:6px;margin-top:12px">
+        <button class="build-btn" style="flex:1" onclick="markAccount('reddit')">REDDIT CREATED</button>
+        <button class="build-btn" style="flex:1" onclick="markAccount('facebook')">FACEBOOK CREATED</button>
+      </div>
+    </div>
+
+    <!-- OPPORTUNITIES -->
+    <div class="sec-title">OPPORTUNITIES <span style="font-size:8px;color:var(--dim);margin-left:6px" id="engage-last-scan"></span></div>
+    <div id="engage-opps">
+      <div class="app-empty">Loading opportunities...</div>
+    </div>
+
+    <!-- HOW IT WORKS -->
+    <div class="sec-title" style="margin-top:28px">HOW RYAN WALSH WORKS</div>
+    <div class="cost-card" style="font-size:12px;color:var(--muted);line-height:1.6">
+      <strong style="color:var(--text)">1.</strong> Engine scans 16 subreddits every 12 hours for people asking about missed calls, getting clients, phone systems, etc.<br>
+      <strong style="color:var(--text)">2.</strong> AI scores relevance and cross-references with your existing leads.<br>
+      <strong style="color:var(--text)">3.</strong> Generates a helpful reply as "Ryan Walsh" — genuinely useful, not salesy. Mentions BOSS in ~1/3 of replies.<br>
+      <strong style="color:var(--text)">4.</strong> You copy the reply, paste it on Reddit/Facebook, mark as replied.<br><br>
+      <div style="font-size:10px;color:var(--dim);font-family:'Share Tech Mono',monospace">
+        CLI: boss_command.py engage scan | opportunities | reply &lt;id&gt; | replied &lt;id&gt; | stats
+      </div>
+    </div>
+
+  </div><!-- /content-engage -->
 
 </main>
 
@@ -820,6 +874,111 @@ function sendPackage(name, phone) {
     pData.packageSent = true;
     pData.packageSentAt = new Date().toISOString();
     localStorage.setItem('boss_partner_mgmt_'+name, JSON.stringify(pData));
+  });
+}
+
+/* ═══ ENGAGE TAB — Ryan Walsh ═══ */
+(function loadEngage() {
+  var ts = Date.now();
+  fetch('https://raw.githubusercontent.com/BosRoss/bosssystems.co/main/engage_report.json?t=' + ts)
+  .then(function(r){ return r.ok ? r.json() : null; })
+  .then(function(data) {
+    if (!data) { renderEngageEmpty(); return; }
+    var stats = data.stats || {};
+    var active = data.active || [];
+    var replied = data.replied || [];
+
+    document.getElementById('eng-queue').textContent = active.length;
+    document.getElementById('eng-replied').textContent = stats.replied || replied.length || 0;
+    document.getElementById('eng-drafts').textContent = active.filter(function(o){return o.status==='drafted'}).length;
+    document.getElementById('engage-count').textContent = active.length || '';
+    if (stats.last_scan) {
+      var scanDate = new Date(stats.last_scan);
+      document.getElementById('engage-last-scan').textContent = 'Last scan: ' + scanDate.toLocaleDateString('en-US',{month:'short',day:'numeric'}) + ' ' + scanDate.toLocaleTimeString('en-US',{hour:'numeric',minute:'2-digit'});
+    }
+
+    // Account status from localStorage
+    var accounts = JSON.parse(localStorage.getItem('boss_engage_accounts') || '{}');
+    if (accounts.reddit) {
+      document.getElementById('reddit-status').textContent = 'Created ' + new Date(accounts.reddit).toLocaleDateString('en-US',{month:'short',day:'numeric'});
+      document.getElementById('reddit-badge').textContent = 'LIVE';
+      document.getElementById('reddit-badge').className = 'sys-status on';
+    }
+    if (accounts.facebook) {
+      document.getElementById('fb-engage-status').textContent = 'Created ' + new Date(accounts.facebook).toLocaleDateString('en-US',{month:'short',day:'numeric'});
+      document.getElementById('fb-engage-badge').textContent = 'LIVE';
+      document.getElementById('fb-engage-badge').className = 'sys-status on';
+    }
+
+    var container = document.getElementById('engage-opps');
+    if (!active.length) {
+      container.innerHTML = '<div class="app-empty">No opportunities right now. Engine scans every 12 hours.</div>';
+      return;
+    }
+    container.innerHTML = active.slice(0, 15).map(function(o) {
+      var relColor = o.relevance >= 80 ? 'var(--green)' : o.relevance >= 40 ? 'var(--gold)' : 'var(--dim)';
+      var statusTag = o.status === 'drafted' ? '<span style="color:var(--orange);font-size:9px;font-family:\'Share Tech Mono\',monospace;margin-left:6px">DRAFT READY</span>' :
+                      o.status === 'new' ? '<span style="color:var(--blue);font-size:9px;font-family:\'Share Tech Mono\',monospace;margin-left:6px">NEW</span>' : '';
+      var leadTag = o.lead_matches ? '<span style="color:var(--purple);font-size:9px;font-family:\'Share Tech Mono\',monospace;margin-left:6px">LEAD MATCH</span>' : '';
+      var industry = o.industry ? ' &middot; ' + esc(o.industry) : '';
+      var age = o.found_at ? timeSince(o.found_at) : '';
+
+      return '<div style="background:var(--bg2);border:1px solid var(--border);padding:12px 14px;margin-bottom:6px">' +
+        '<div style="display:flex;justify-content:space-between;align-items:flex-start">' +
+          '<div style="flex:1">' +
+            '<div style="font-size:13px;font-weight:700;color:var(--text);line-height:1.3">' + esc(o.title).substring(0,70) + statusTag + leadTag + '</div>' +
+            '<div style="font-size:11px;color:var(--muted);margin-top:3px">r/' + esc(o.subreddit) + industry + (age ? ' &middot; ' + age : '') + '</div>' +
+          '</div>' +
+          '<div style="font-family:\'Share Tech Mono\',monospace;font-size:14px;font-weight:700;color:' + relColor + ';margin-left:10px;flex-shrink:0">' + o.relevance + '</div>' +
+        '</div>' +
+        (o.reply_draft ? '<div style="margin-top:8px;padding:8px 10px;background:var(--bg);border:1px solid var(--border);font-size:11px;color:var(--muted);line-height:1.4;max-height:80px;overflow:hidden">' + esc(o.reply_draft).substring(0,200) + '...</div>' : '') +
+        '<div style="display:flex;gap:6px;margin-top:8px">' +
+          '<a href="' + esc(o.url) + '" target="_blank" style="flex:1;text-align:center;padding:6px;background:var(--bg);border:1px solid var(--border);color:var(--blue);font-size:10px;font-family:\'Share Tech Mono\',monospace;letter-spacing:1px;text-decoration:none">VIEW POST</a>' +
+          (o.reply_draft ? '<button class="build-btn" style="flex:1;font-size:10px;padding:6px" onclick="copyReply(\'' + esc(o.post_id) + '\')">COPY REPLY</button>' : '') +
+        '</div>' +
+      '</div>';
+    }).join('');
+  })
+  .catch(function() { renderEngageEmpty(); });
+})();
+
+function renderEngageEmpty() {
+  document.getElementById('engage-opps').innerHTML = '<div class="app-empty">No data yet. Run: boss_command.py engage</div>';
+}
+
+function timeSince(dateStr) {
+  var ms = Date.now() - new Date(dateStr).getTime();
+  var hrs = Math.floor(ms / 3600000);
+  if (hrs < 1) return 'just now';
+  if (hrs < 24) return hrs + 'h ago';
+  return Math.floor(hrs / 24) + 'd ago';
+}
+
+function markAccount(platform) {
+  var accounts = JSON.parse(localStorage.getItem('boss_engage_accounts') || '{}');
+  if (accounts[platform]) {
+    if (!confirm(platform + ' already marked as created. Reset?')) return;
+    delete accounts[platform];
+  } else {
+    accounts[platform] = new Date().toISOString();
+  }
+  localStorage.setItem('boss_engage_accounts', JSON.stringify(accounts));
+  location.reload();
+}
+
+function copyReply(postId) {
+  fetch('https://raw.githubusercontent.com/BosRoss/bosssystems.co/main/engage_report.json?t=' + Date.now())
+  .then(function(r){ return r.json(); })
+  .then(function(data) {
+    var all = (data.active || []).concat(data.replied || []);
+    var opp = all.find(function(o){ return o.post_id === postId; });
+    if (opp && opp.reply_draft) {
+      navigator.clipboard.writeText(opp.reply_draft).then(function() {
+        alert('Reply copied. Paste it on the Reddit post, then run:\nboss_command.py engage replied ' + postId);
+      });
+    } else {
+      alert('No draft found. Generate one first:\nboss_command.py engage reply ' + postId);
+    }
   });
 }
 
