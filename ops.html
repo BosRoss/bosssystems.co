@@ -9,7 +9,7 @@
 body{background:#0a0a0a;color:#ccc;font-family:'SF Mono',Menlo,monospace;font-size:13px;min-height:100vh}
 .header{background:linear-gradient(135deg,#111 0%,#1a1a2e 100%);border-bottom:2px solid #00ff41;padding:20px 24px;display:flex;justify-content:space-between;align-items:center}
 .header h1{color:#00ff41;font-size:20px;letter-spacing:2px}
-.header .meta{color:#666;font-size:11px;text-align:right}
+.header .meta{color:#999;font-size:11px;text-align:right}
 .header .meta .live{color:#00ff41;animation:pulse 2s infinite}
 @keyframes pulse{0%,100%{opacity:1}50%{opacity:.4}}
 .grid{display:grid;grid-template-columns:1fr 1fr 1fr;gap:16px;padding:16px;max-width:1600px;margin:0 auto}
@@ -37,7 +37,7 @@ body{background:#0a0a0a;color:#ccc;font-family:'SF Mono',Menlo,monospace;font-si
 .big-number.red{color:#ff4444}
 .big-number.yellow{color:#ffaa00}
 .big-number.blue{color:#4B92DB}
-.big-label{text-align:center;color:#666;font-size:11px;text-transform:uppercase;letter-spacing:1px}
+.big-label{text-align:center;color:#999;font-size:11px;text-transform:uppercase;letter-spacing:1px}
 .meter{height:6px;background:#1a1a1a;border-radius:3px;margin:8px 0;overflow:hidden}
 .meter .fill{height:100%;border-radius:3px;transition:width .5s}
 .meter .fill.green{background:#00ff41}
@@ -65,7 +65,7 @@ body{background:#0a0a0a;color:#ccc;font-family:'SF Mono',Menlo,monospace;font-si
 .signal-list .type{color:#00ff41;font-weight:bold;margin-right:4px}
 .refresh-btn{position:fixed;bottom:20px;right:20px;background:#00ff4120;color:#00ff41;border:1px solid #00ff41;padding:8px 16px;border-radius:4px;cursor:pointer;font-family:inherit;font-size:12px}
 .refresh-btn:hover{background:#00ff4140}
-.loading{color:#666;text-align:center;padding:40px}
+.loading{color:#999;text-align:center;padding:40px}
 .four-grid{display:grid;grid-template-columns:1fr 1fr 1fr 1fr;gap:12px}
 @media(max-width:768px){.four-grid{grid-template-columns:1fr 1fr}}
 .mini-card{text-align:center;padding:12px;background:#0d0d0d;border-radius:6px;border:1px solid #1a1a1a}
@@ -211,7 +211,7 @@ function render(data) {
         <h2>CALL OUTCOMES ${badge(s.lead_engine.outcomes_recorded + ' total', hasOutcomes ? 'green' : 'yellow')}</h2>
         ${hasOutcomes ? Object.entries(outcomes).map(([k,v]) =>
             `<div class="stat-row"><span class="label">${k}</span><span class="value ${k === 'meeting_set' || k === 'closed' ? 'green' : k === 'not_interested' || k === 'opted_out' ? 'red' : ''}">${v}</span></div>`
-        ).join('') : '<div style="color:#666;text-align:center;padding:16px">No outcomes yet.<br>Sync will start automatically when calls match pipeline leads.</div>'}
+        ).join('') : '<div style="color:#999;text-align:center;padding:16px">No outcomes yet.<br>Sync will start automatically when calls match pipeline leads.</div>'}
     </div>`;
 
     // ── System Health ──
@@ -292,7 +292,7 @@ async function loadData() {
         document.getElementById('dashboard').innerHTML =
             `<div class="loading" style="grid-column:1/-1;color:#ff4444">
                 Failed to load: ${e.message}<br><br>
-                <span style="color:#666">Run: python3 scripts/ops_report.py</span>
+                <span style="color:#999">Run: python3 scripts/ops_report.py</span>
             </div>`;
     }
 }
