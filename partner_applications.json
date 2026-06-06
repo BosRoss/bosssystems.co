@@ -38,7 +38,7 @@
     "mainGoal": "Make as much money as possible",
     "aiScore": 1,
     "aiRecommendation": "DECLINE",
-    "aiReasoning": "AI flagged as troll. Boston says approve — he told this person to apply and would approve manually.",
+    "aiReasoning": "AI flagged as troll. Boston says approve \u2014 he told this person to apply and would approve manually.",
     "status": "APPROVED",
     "decidedAt": "2026-06-06T02:15:41.836Z"
   },
@@ -63,26 +63,5 @@
     "aiReasoning": "Test submission from Boston himself.",
     "status": "DECLINED",
     "decidedAt": "2026-06-06T02:15:50.438Z"
-  },
-  {
-    "timestamp": "2026-06-06T02:59:49.323Z",
-    "firstName": "Test",
-    "lastName": "DeleteMe",
-    "age": "18",
-    "cityState": "",
-    "phone": "0000000000",
-    "business": "",
-    "truckAccess": "",
-    "hoursPerWeek": "",
-    "whyBusiness": "",
-    "priorWork": "",
-    "hearAbout": "",
-    "socialHandle": "",
-    "mainGoal": "",
-    "aiScore": 1,
-    "aiRecommendation": "DECLINE",
-    "aiReasoning": "Application is essentially blank with no location, business idea, availability, motivation, or experience provided — nothing to evaluate.",
-    "status": "PENDING",
-    "bostonMessage": ""
   }
 ]
