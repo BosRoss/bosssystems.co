@@ -1,0 +1,41 @@
+{
+  "posts": [
+    {
+      "date": "2026-06-05",
+      "audience": "boss",
+      "content_hash": "f2466722",
+      "text": "If you run a local business and you're curious what AI could actually do for you \u2014 not the hype, the",
+      "channels": 3,
+      "buffer_ids": [
+        "6a236172556e567c77b9adba"
+      ],
+      "scheduled_at": "2026-06-05T23:53:22.241104+00:00"
+    },
+    {
+      "date": "2026-06-05",
+      "audience": "spp",
+      "content_hash": "9a832fd1",
+      "text": "Summer's already going. Every week you spend thinking about it is a week someone else is out there m",
+      "channels": 3,
+      "buffer_ids": [
+        "6a236172556e567c77b9adde"
+      ],
+      "scheduled_at": "2026-06-05T23:53:22.609577+00:00"
+    },
+    {
+      "date": "2026-06-05",
+      "audience": "boss",
+      "platform": "facebook",
+      "service": "facebook",
+      "pattern": "math_breakdown",
+      "content_hash": "51bde383",
+      "text": "Last week I talked to a plumber in Palestine who was losing about 12 calls a month because nobody wa",
+      "buffer_ids": [
+        "6a236be90eb6b20ad656c3ac"
+      ],
+      "image_url": null,
+      "scheduled_at": "2026-06-06T00:38:01.682006+00:00",
+      "due_at": "2026-06-07T15:55:00.000Z"
+    }
+  ]
+}
