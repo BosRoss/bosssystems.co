@@ -554,7 +554,13 @@ footer{border-top:1px solid var(--border);padding:32px 24px;display:flex;justify
       method:  'POST',
       headers: {'Content-Type': 'application/json'},
       body:    JSON.stringify(payload)
-    }).catch(function(){});
+    }).catch(function(){
+      try{
+        var pending = JSON.parse(localStorage.getItem('pending_partner_apps')||'[]');
+        pending.push(payload);
+        localStorage.setItem('pending_partner_apps', JSON.stringify(pending));
+      }catch(e){}
+    });
 
     // Always show confirmation immediately
     formWrap.style.display = 'none';
