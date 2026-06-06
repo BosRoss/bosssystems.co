@@ -1,0 +1,225 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Social Machine — BOSS Systems</title>
+<style>
+*{margin:0;padding:0;box-sizing:border-box}
+body{background:#080808;color:#ccc;font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;min-height:100vh}
+.header{text-align:center;padding:40px 20px 20px;border-bottom:1px solid #1a1a1a}
+.header h1{font-size:1.6rem;color:#C9A84C;letter-spacing:3px;font-weight:600}
+.header .sub{color:#888;font-size:.85rem;margin-top:6px}
+.grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(300px,1fr));gap:16px;padding:20px;max-width:1200px;margin:0 auto}
+.card{background:#111;border:1px solid #1a1a1a;border-radius:8px;padding:20px}
+.card h2{font-size:.9rem;color:#C9A84C;letter-spacing:1px;text-transform:uppercase;margin-bottom:14px}
+.stat-row{display:flex;justify-content:space-between;align-items:center;padding:8px 0;border-bottom:1px solid #1a1a1a}
+.stat-row:last-child{border:none}
+.stat-label{color:#999;font-size:.85rem}
+.stat-value{color:#f0ede8;font-size:1rem;font-weight:600}
+.stat-value.gold{color:#C9A84C}
+.stat-value.green{color:#4ade80}
+.stat-value.red{color:#ef4444}
+.bar{height:6px;background:#1a1a1a;border-radius:3px;margin-top:4px;overflow:hidden}
+.bar-fill{height:100%;background:#C9A84C;border-radius:3px;transition:width .3s}
+.badge{display:inline-block;padding:2px 8px;border-radius:4px;font-size:.75rem;font-weight:600;text-transform:uppercase}
+.badge.approval{background:#C9A84C22;color:#C9A84C;border:1px solid #C9A84C44}
+.badge.autonomous{background:#4ade8022;color:#4ade80;border:1px solid #4ade8044}
+.badge.killed{background:#ef444422;color:#ef4444;border:1px solid #ef444444}
+.bandit-row{display:flex;align-items:center;gap:10px;padding:6px 0}
+.bandit-name{color:#999;font-size:.8rem;width:120px;flex-shrink:0}
+.bandit-bar{flex:1;height:8px;background:#1a1a1a;border-radius:4px;overflow:hidden}
+.bandit-bar-fill{height:100%;background:linear-gradient(90deg,#C9A84C,#e8d48b);border-radius:4px}
+.bandit-pct{color:#f0ede8;font-size:.8rem;width:50px;text-align:right}
+.platform-icon{font-size:1.1rem;margin-right:6px}
+.recent-post{padding:10px;background:#0a0a0a;border-radius:6px;margin-bottom:8px;border-left:3px solid #C9A84C}
+.recent-post .meta{color:#666;font-size:.75rem;margin-bottom:4px}
+.recent-post .text{color:#bbb;font-size:.85rem;line-height:1.4}
+.footer{text-align:center;padding:30px 20px;color:#444;font-size:.75rem}
+.refresh-btn{background:none;border:1px solid #333;color:#888;padding:6px 14px;border-radius:4px;cursor:pointer;font-size:.8rem;margin-top:8px}
+.refresh-btn:hover{border-color:#C9A84C;color:#C9A84C}
+.empty{color:#555;font-size:.85rem;text-align:center;padding:20px 0}
+.spend-meter{display:flex;align-items:center;gap:10px;margin-top:6px}
+.spend-label{font-size:.75rem;color:#666}
+@media(max-width:640px){.grid{grid-template-columns:1fr;padding:12px}.header h1{font-size:1.2rem}}
+</style>
+</head>
+<body>
+<div class="header">
+  <h1>SOCIAL MACHINE</h1>
+  <div class="sub" id="lastUpdate">Loading...</div>
+  <button class="refresh-btn" onclick="loadData()">Refresh</button>
+</div>
+
+<div class="grid" id="dashboard">
+  <div class="card">
+    <h2>System Status</h2>
+    <div id="statusCard"><div class="empty">Loading...</div></div>
+  </div>
+  <div class="card">
+    <h2>Platform Breakdown</h2>
+    <div id="platformCard"><div class="empty">Loading...</div></div>
+  </div>
+  <div class="card">
+    <h2>Content Bandit</h2>
+    <div id="banditCard"><div class="empty">Loading...</div></div>
+  </div>
+  <div class="card">
+    <h2>Spend Tracker</h2>
+    <div id="spendCard"><div class="empty">Loading...</div></div>
+  </div>
+  <div class="card">
+    <h2>Engagement Leaders</h2>
+    <div id="engagementCard"><div class="empty">No engagement data yet. Log metrics via CLI.</div></div>
+  </div>
+  <div class="card">
+    <h2>Engager Pipeline</h2>
+    <div id="engagerCard"><div class="empty">Loading...</div></div>
+  </div>
+</div>
+
+<div class="grid" style="grid-template-columns:1fr">
+  <div class="card">
+    <h2>Recent Posts</h2>
+    <div id="recentPosts"><div class="empty">Loading...</div></div>
+  </div>
+</div>
+
+<div class="footer">
+  BOSS Systems Social Machine &middot; bosssystems.co
+</div>
+
+<script>
+const DATA_URL='https://raw.githubusercontent.com/BosRoss/bosssystems.co/main/social_report.json';
+const POST_URL='https://raw.githubusercontent.com/BosRoss/bosssystems.co/main/social_posts.json';
+
+function gateBadge(mode,kill){
+  if(kill)return'<span class="badge killed">KILLED</span>';
+  if(mode==='autonomous')return'<span class="badge autonomous">AUTONOMOUS</span>';
+  return'<span class="badge approval">APPROVAL</span>';
+}
+
+function renderStatus(d){
+  const el=document.getElementById('statusCard');
+  const gateHTML=gateBadge(d.gate_mode,d.kill_switch);
+  el.innerHTML=`
+    <div class="stat-row"><span class="stat-label">Gate Mode</span><span>${gateHTML}</span></div>
+    <div class="stat-row"><span class="stat-label">Clean Days</span><span class="stat-value">${d.gate_clean_days||0} / 7</span></div>
+    <div class="stat-row"><span class="stat-label">Total Posts</span><span class="stat-value gold">${d.total_posts||0}</span></div>
+    <div class="stat-row"><span class="stat-label">Approved</span><span class="stat-value green">${d.posts_approved||0}</span></div>
+    <div class="stat-row"><span class="stat-label">Rejected</span><span class="stat-value red">${d.posts_rejected||0}</span></div>
+  `;
+}
+
+function renderPlatforms(d){
+  const el=document.getElementById('platformCard');
+  const ps=d.platform_stats||{};
+  const keys=Object.keys(ps);
+  if(!keys.length){el.innerHTML='<div class="empty">No posts yet.</div>';return}
+  const icons={facebook:'F',instagram:'I',tiktok:'T'};
+  const maxCount=Math.max(...keys.map(k=>ps[k].count||0),1);
+  el.innerHTML=keys.map(k=>{
+    const p=ps[k];
+    const pct=Math.round((p.count/maxCount)*100);
+    return`
+      <div style="margin-bottom:12px">
+        <div style="display:flex;justify-content:space-between;align-items:center">
+          <span class="stat-label"><span class="platform-icon">${icons[k]||k[0].toUpperCase()}</span>${k}</span>
+          <span class="stat-value">${p.count} posts</span>
+        </div>
+        <div class="bar"><div class="bar-fill" style="width:${pct}%"></div></div>
+        <div style="color:#555;font-size:.7rem;margin-top:2px">${p.active_days||0} active days</div>
+      </div>`;
+  }).join('');
+}
+
+function renderBandit(d){
+  const el=document.getElementById('banditCard');
+  const b=d.bandit||{};
+  const keys=Object.keys(b);
+  if(!keys.length){el.innerHTML='<div class="empty">Bandit initializing...</div>';return}
+  const sorted=keys.sort((a,c)=>(b[c].win_rate||0)-(b[a].win_rate||0));
+  el.innerHTML=sorted.map(k=>{
+    const arm=b[k];
+    return`
+      <div class="bandit-row">
+        <span class="bandit-name">${k}</span>
+        <div class="bandit-bar"><div class="bandit-bar-fill" style="width:${arm.win_rate||50}%"></div></div>
+        <span class="bandit-pct">${(arm.win_rate||50).toFixed(0)}%</span>
+      </div>`;
+  }).join('');
+}
+
+function renderSpend(d){
+  const el=document.getElementById('spendCard');
+  const spend=d.today_spend||0;
+  const cap=2.00;
+  const pct=Math.min(Math.round((spend/cap)*100),100);
+  const color=pct>80?'#ef4444':pct>50?'#f59e0b':'#4ade80';
+  el.innerHTML=`
+    <div class="stat-row"><span class="stat-label">Today</span><span class="stat-value">$${spend.toFixed(4)}</span></div>
+    <div class="stat-row"><span class="stat-label">Daily Cap</span><span class="stat-value">$${cap.toFixed(2)}</span></div>
+    <div class="bar" style="margin-top:8px"><div class="bar-fill" style="width:${pct}%;background:${color}"></div></div>
+    <div class="spend-meter"><span class="spend-label">${pct}% of daily budget</span></div>
+  `;
+}
+
+function renderEngagement(d){
+  const el=document.getElementById('engagementCard');
+  const eng=d.engagement||{};
+  const keys=Object.keys(eng);
+  if(!keys.length)return;
+  const sorted=keys.sort((a,b)=>(eng[b].score||0)-(eng[a].score||0)).slice(0,5);
+  el.innerHTML=sorted.map(k=>{
+    const e=eng[k];
+    const m=e.metrics||{};
+    const sends=(m.sends||0)+(m.shares||0);
+    return`
+      <div class="stat-row">
+        <span class="stat-label">${k.slice(0,12)}</span>
+        <span class="stat-value gold">${(e.score||0).toFixed(1)}</span>
+      </div>`;
+  }).join('')||'<div class="empty">No engagement data yet.</div>';
+}
+
+function renderEngagers(d){
+  const el=document.getElementById('engagerCard');
+  el.innerHTML=`
+    <div class="stat-row"><span class="stat-label">Tracked</span><span class="stat-value">${d.engagers_count||0}</span></div>
+    <div class="stat-row"><span class="stat-label">Hot (score 3+)</span><span class="stat-value gold">${d.hot_engagers||0}</span></div>
+  `;
+}
+
+function renderPosts(posts){
+  const el=document.getElementById('recentPosts');
+  if(!posts||!posts.length){el.innerHTML='<div class="empty">No posts logged yet.</div>';return}
+  const recent=posts.slice(-8).reverse();
+  el.innerHTML=recent.map(p=>`
+    <div class="recent-post">
+      <div class="meta">${p.date||'?'} &middot; ${(p.service||'?').toUpperCase()} &middot; ${(p.audience||'?').toUpperCase()} &middot; ${p.pattern||'?'}</div>
+      <div class="text">${(p.text||'').slice(0,200)}${(p.text||'').length>200?'...':''}</div>
+    </div>`).join('');
+}
+
+async function loadData(){
+  try{
+    const r=await fetch(DATA_URL+'?t='+Date.now());
+    if(!r.ok)throw new Error('Failed to fetch');
+    const d=await r.json();
+    document.getElementById('lastUpdate').textContent='Updated: '+(d.generated||'unknown').slice(0,19).replace('T',' ');
+    renderStatus(d);renderPlatforms(d);renderBandit(d);renderSpend(d);renderEngagement(d);renderEngagers(d);
+  }catch(e){
+    document.getElementById('lastUpdate').textContent='Error loading data. Run: python3 social_machine.py dashboard';
+  }
+  try{
+    const r2=await fetch(POST_URL+'?t='+Date.now());
+    if(r2.ok){const posts=await r2.json();renderPosts(posts.posts||posts);}
+    else renderPosts([]);
+  }catch(e){renderPosts([])}
+}
+
+loadData();
+setInterval(loadData,300000);
+</script>
+</body>
+</html>
