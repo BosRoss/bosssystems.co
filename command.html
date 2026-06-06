@@ -156,6 +156,15 @@ main{padding:0 12px 80px;max-width:600px;margin:0 auto}
 .build-btn.done{border-color:var(--green);color:var(--green);background:rgba(0,232,122,0.06)}
 
 footer{text-align:center;padding:16px;font-family:'Share Tech Mono',monospace;font-size:9px;color:var(--dim);letter-spacing:2px;border-top:1px solid var(--border)}
+
+.coa-card{background:var(--bg2);border:1px solid var(--border);border-left:3px solid var(--gold);padding:16px 18px;margin-bottom:16px}
+.coa-list{list-style:none;counter-reset:coa}
+.coa-item{counter-increment:coa;padding:10px 0;border-bottom:1px solid var(--border);display:flex;gap:12px;align-items:flex-start}
+.coa-item:last-child{border-bottom:none}
+.coa-num{font-family:'Share Tech Mono',monospace;font-size:16px;font-weight:700;color:var(--gold);min-width:22px;line-height:1.2}
+.coa-text{flex:1}
+.coa-priority{font-size:13px;font-weight:700;color:var(--text);line-height:1.3}
+.coa-why{font-size:11px;color:var(--muted);margin-top:2px;line-height:1.4}
 </style>
 </head>
 <body>
@@ -197,6 +206,47 @@ footer{text-align:center;padding:16px;font-family:'Share Tech Mono',monospace;fo
       <div class="stat"><div class="stat-value" style="color:var(--text)">$0</div><div class="stat-label">MRR</div></div>
     </div>
 
+    <div class="sec-title">COURSE OF ACTION</div>
+    <div class="coa-card">
+      <ol class="coa-list">
+        <li class="coa-item">
+          <div class="coa-num">1</div>
+          <div class="coa-text">
+            <div class="coa-priority">Land first paying client ($5,997 Full Transformation)</div>
+            <div class="coa-why">Validates the entire model &mdash; nothing else matters until this happens</div>
+          </div>
+        </li>
+        <li class="coa-item">
+          <div class="coa-num">2</div>
+          <div class="coa-text">
+            <div class="coa-priority">Fix ATLAS coverage gaps</div>
+            <div class="coa-why">US Congress, deeper domestic intel &mdash; blind spots weaken every downstream decision</div>
+          </div>
+        </li>
+        <li class="coa-item">
+          <div class="coa-num">3</div>
+          <div class="coa-text">
+            <div class="coa-priority">Complete LLC formation</div>
+            <div class="coa-why">Unlocks Stripe, email marketing, legal compliance &mdash; can't scale without it</div>
+          </div>
+        </li>
+        <li class="coa-item">
+          <div class="coa-num">4</div>
+          <div class="coa-text">
+            <div class="coa-priority">Set up PO Box</div>
+            <div class="coa-why">Required for CAN-SPAM and business mail &mdash; blocks all outbound email campaigns</div>
+          </div>
+        </li>
+        <li class="coa-item">
+          <div class="coa-num">5</div>
+          <div class="coa-text">
+            <div class="coa-priority">Build email infrastructure</div>
+            <div class="coa-why">SPF/DKIM/DMARC for outbound campaigns &mdash; without it, emails land in spam</div>
+          </div>
+        </li>
+      </ol>
+    </div>
+
     <div class="sec-title">QUICK ACCESS</div>
     <div class="quick-list">
       <a href="index.html" class="quick-link">
@@ -207,6 +257,11 @@ footer{text-align:center;padding:16px;font-family:'Share Tech Mono',monospace;fo
       <a href="atlas.html" class="quick-link">
         <div class="quick-icon">&#9793;</div>
         <div class="quick-info"><div class="quick-name">ATLAS</div><div class="quick-desc">Global intelligence map</div></div>
+        <div class="quick-arrow">&#8250;</div>
+      </a>
+      <a href="almanac.html" class="quick-link">
+        <div class="quick-icon">&#128214;</div>
+        <div class="quick-info"><div class="quick-name">Almanac</div><div class="quick-desc">Historical intelligence archive</div></div>
         <div class="quick-arrow">&#8250;</div>
       </a>
       <a href="ops.html" class="quick-link">
