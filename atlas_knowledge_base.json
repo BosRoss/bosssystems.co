@@ -1,0 +1,655 @@
+{
+  "assessments": [
+    {
+      "category": "market_opportunity",
+      "title": "Service demand surge: 23 alerts, 2 BOSS states hit",
+      "analysis": "23 severe/extreme alerts across MO, KS, OK, LA, CA, TX. Event types: Flash Flood Warning, Red Flag Warning, Flood Warning, Flood Watch. 27 storm alerts \u2014 roofers, restoration, and plumbers will be overwhelmed within 24-48hrs. BOSS TERRITORY HIT: OK, TX \u2014 these are your states. Direct targeting opportunity.",
+      "hypotheses": [
+        "ACTIONABLE: OK, TX businesses are losing calls RIGHT NOW. 24-48hr window to reach them while pain is acute."
+      ],
+      "watch_for": [
+        "Storm path progression \u2014 get ahead of it, call businesses BEFORE they're overwhelmed",
+        "Reddit pain posts spiking in specific subreddits = niche confirmation",
+        "If heat wave persists >3 days, missed call rates compound (crews fatigue)"
+      ],
+      "confidence": 95,
+      "sources_used": [
+        "noaa",
+        "reddit",
+        "commodities"
+      ],
+      "time_horizon": "24-48h",
+      "business_angle": "IMMEDIATE: Target OK, TX contractors NOW",
+      "date": "2026-06-06T14:56:00.276454+00:00",
+      "kb_added": "2026-06-06T14:48:43.835400+00:00"
+    },
+    {
+      "category": "security",
+      "title": "Intelligence gaps: 6 blind spots active",
+      "analysis": "6 sources returned no data: metaculus, acled, ioda, fred, safecast, eia. IODA (internet outage) data unavailable \u2014 cannot detect blackouts that precede political crises. These gaps reduce confidence in all other assessments that would cross-reference these sources.",
+      "hypotheses": [
+        "FRED gap: No economic indicators = cannot confirm or deny recession/inflation signals from commodity moves."
+      ],
+      "watch_for": [
+        "If multiple sources fail simultaneously, check if it's network-wide (your connection) vs source-specific (their API)",
+        "Prolonged GDELT outage = check alternative news APIs",
+        "ADS-B silence could mean tracking is being deliberately suppressed \u2014 itself a signal"
+      ],
+      "confidence": 95,
+      "sources_used": [
+        "system"
+      ],
+      "time_horizon": "next_scan",
+      "date": "2026-06-06T14:56:00.276454+00:00",
+      "business_angle": "Military/security events create uncertainty \u2014 businesses freeze hiring and expand automation. Position BOSS as the stable, cost-cutting option.",
+      "kb_added": "2026-06-06T14:48:43.835400+00:00"
+    },
+    {
+      "category": "environmental",
+      "title": "Global disaster alert: 1 elevated events across 1 hazard types",
+      "analysis": "GDACS elevated alerts: 1 Orange/Red events \u2014 drought(1). Affected regions: Madagascar. Cross-ref: USGS reports 2 M5.0+ quakes; GDACS tracking 17 earthquake events. Active tropical cyclones: 1. NASA FIRMS: 30 high-confidence fire detections. GDELT: 47 disaster-related articles corroborate. ",
+      "hypotheses": [
+        "HUMANITARIAN: 1 drought alerts \u2014 food security and displacement risk in affected regions",
+        "INFRASTRUCTURE: Active cyclones threaten shipping lanes and port operations \u2014 monitor commodity supply chains",
+        "CASCADING RISK: 2 flood events \u2014 watch for infrastructure damage, disease outbreaks, displacement"
+      ],
+      "watch_for": [
+        "Alert level escalation from Orange to Red on any event",
+        "Multiple disaster types converging on same region (compound disaster)",
+        "Commodity price spikes correlated with disaster-affected supply chains",
+        "Humanitarian agency surge (ReliefWeb) confirming escalation"
+      ],
+      "confidence": 80,
+      "sources_used": [
+        "gdacs",
+        "usgs",
+        "nasa_firms",
+        "gdelt"
+      ],
+      "time_horizon": "7d",
+      "date": "2026-06-06T14:56:00.276454+00:00",
+      "business_angle": "Natural events drive emergency service demand spikes. Contractors get overwhelmed with calls \u2014 exactly when they need BOSS most.",
+      "kb_added": "2026-06-06T14:48:43.835400+00:00"
+    },
+    {
+      "category": "security",
+      "title": "Military posture assessment: 100 aircraft, 50 conflict reports, 7 dark zones",
+      "analysis": "100 military aircraft tracked across 23 regions. GDELT: 50 conflict articles \u2014 hotspots: United States(11), China(6), Russia(5). Think tank analysis (32 items): A deeper look at Trump\u2019s new\u00a0policy\u00a0toward the Western Balkans; A Budget for Global Turmoil: Peace, Conflict and the EU\u2019s Funding Plans; After the Invasion: China Considers the Problem of Ruling Taiwan. ANOMALY: 7 regions with concentrated military air and no corresponding news coverage \u2014 the silence is the signal. Markets pricing in escalation: Israel announces Lebanon ceasefire extension by June 7? at 100.0%. Note: 23 severe weather alerts active \u2014 if military activity persists through bad wx, less likely to be routine training.",
+      "hypotheses": [
+        "HYPOTHESIS A (covert positioning): 7 regions show military aircraft with zero corresponding news \u2014 unusual unless activity is deliberate and unpublicized"
+      ],
+      "watch_for": [
+        "Change in tanker-to-fighter ratio (more tankers = shifting from training to ops)",
+        "ISR platforms shifting to new regions = new collection target",
+        "Prediction markets moving >10 points in 24hrs on conflict questions",
+        "News coverage appearing for regions (40,-100, 30,-100, 30,-90) \u2014 would confirm something newsworthy is happening there"
+      ],
+      "confidence": 75,
+      "sources_used": [
+        "adsb",
+        "gdelt",
+        "polymarket",
+        "commodities",
+        "noaa",
+        "think_tanks"
+      ],
+      "time_horizon": "24h",
+      "date": "2026-06-06T14:56:00.276454+00:00",
+      "business_angle": "Military/security events create uncertainty \u2014 businesses freeze hiring and expand automation. Position BOSS as the stable, cost-cutting option.",
+      "kb_added": "2026-06-06T14:48:43.835400+00:00"
+    },
+    {
+      "category": "security",
+      "title": "Cyber threat assessment: 10 KEVs, 2 ransomware-linked",
+      "analysis": "10 new known exploited vulnerabilities in past 14 days. Top targets: SolarWinds(1), Mirasvit(1), Linux(1). 2 with confirmed ransomware use \u2014 active threat.",
+      "hypotheses": [
+        "HYPOTHESIS A (targeted): Specific vendor/product under coordinated attack campaign",
+        "HYPOTHESIS B (broad): General uptick in exploit activity across multiple vectors"
+      ],
+      "watch_for": [
+        "CISA emergency directive naming specific products",
+        "Ransomware gang claiming new victims in affected sectors",
+        "Vendor emergency patch releases"
+      ],
+      "confidence": 75,
+      "sources_used": [
+        "cisa_kev",
+        "rss"
+      ],
+      "time_horizon": "7d",
+      "date": "2026-06-06T14:56:00.276454+00:00",
+      "business_angle": "Military/security events create uncertainty \u2014 businesses freeze hiring and expand automation. Position BOSS as the stable, cost-cutting option.",
+      "kb_added": "2026-06-06T14:48:43.835400+00:00"
+    },
+    {
+      "category": "environmental",
+      "title": "Seismic event: M5.2 at 193 km SSE of Vilyuchinsk, Russia",
+      "analysis": "M5.2 at 193 km SSE of Vilyuchinsk, Russia. Total significant quakes (M5.0+): 2. Depth: 13.4km. Felt reports: None. GDACS tracking 17 earthquake events (all Green \u2014 low humanitarian impact). ",
+      "hypotheses": [
+        "MOST LIKELY: Natural tectonic event \u2014 location consistent with plate boundary activity"
+      ],
+      "watch_for": [
+        "Aftershock sequence (increasing aftershock magnitude = potential larger event coming)",
+        "Tsunami warnings issued/cancelled",
+        "Radiation readings change near nuclear facilities within 500km",
+        "News coverage appearing (or not) \u2014 prolonged silence on large quakes is itself a signal"
+      ],
+      "confidence": 73,
+      "sources_used": [
+        "usgs",
+        "gdelt",
+        "atlas_intel",
+        "gdacs"
+      ],
+      "time_horizon": "24h",
+      "date": "2026-06-06T14:56:00.276454+00:00",
+      "business_angle": "Natural events drive emergency service demand spikes. Contractors get overwhelmed with calls \u2014 exactly when they need BOSS most.",
+      "sources_degraded": [
+        "safecast"
+      ],
+      "kb_added": "2026-06-06T14:48:43.835400+00:00"
+    },
+    {
+      "title": "Market Intelligence: 19 edges across 4 countries, top edge 14.2pp",
+      "category": "market_intelligence",
+      "analysis": "Paper trader analyzed 366 markets, found 19 edges. Largest edge: 'US x Iran permanent peace deal by December 31, 2026?' \u2014 market 71.5% vs ATLAS 57.3% (14.2pp edge). Geopolitical hotspots by market attention: US, IR, RO, GB, IL. Negative Reddit sentiment on: peace, other, nuclear, election, conflict, maritime, humanitarian \u2014 public mood contra-bullish. Cross-platform divergence: 'Will the Fed increase interest rates by 50+ bps af' spread 8.0pp \u2014 information asymmetry signal. Iran: 1 conflict articles corroborate trader focus. Russia: 1 conflict articles corroborate trader focus. Information gaps identified: Will a team from LCK (South Korea) win M; Will New Zealand win? \u2014 ATLAS should prioritize these regions next scan.",
+      "hypotheses": [
+        "HYPOTHESIS A: Markets consistently overpricing peace/diplomacy outcomes \u2014 adversarial base rates suggest NO bets have structural edge",
+        "HYPOTHESIS C: Cross-platform price divergences indicate slow information propagation \u2014 exploitable window before convergence",
+        "HYPOTHESIS D: 2 markets have zero relevant news \u2014 these are either non-events or black holes where information isn't reaching open sources"
+      ],
+      "watch_for": [
+        "Edge convergence: if market moves toward ATLAS position, confirms our analysis",
+        "New prediction market listings on hotspot countries \u2014 fresh liquidity = fresh edge",
+        "Breaking news from NZ, KR \u2014 fills information gaps and may move markets sharply"
+      ],
+      "confidence": 73,
+      "sources_used": [
+        "paper_trader",
+        "polymarket",
+        "manifold",
+        "gdelt",
+        "reddit"
+      ],
+      "time_horizon": "1-7d",
+      "business_angle": "Market intelligence reveals global stress patterns. Countries with high market attention = news-cycle-driven anxiety = businesses more receptive to 'protect your revenue' pitch.",
+      "trader_data": {
+        "top_edges": [
+          {
+            "question": "US x Iran permanent peace deal by December 31, 2026?",
+            "market_prob": 71.5,
+            "atlas_prob": 57.3,
+            "edge": 14.2,
+            "confidence": "medium",
+            "topics": [
+              "peace"
+            ],
+            "countries": [
+              "IR"
+            ]
+          },
+          {
+            "question": "US announces new Iran agreement/ceasefire extension by July 31?",
+            "market_prob": 65.5,
+            "atlas_prob": 51.3,
+            "edge": 14.2,
+            "confidence": "medium",
+            "topics": [
+              "peace"
+            ],
+            "countries": [
+              "IR"
+            ]
+          },
+          {
+            "question": "Will a team from LCK (South Korea) win MSI 2026?",
+            "market_prob": 68.5,
+            "atlas_prob": 55.7,
+            "edge": 12.8,
+            "confidence": "low",
+            "topics": [
+              "other"
+            ],
+            "countries": [
+              "KR"
+            ]
+          },
+          {
+            "question": "US-Iran nuclear deal before 2027?",
+            "market_prob": 66.0,
+            "atlas_prob": 54.2,
+            "edge": 11.8,
+            "confidence": "medium",
+            "topics": [
+              "nuclear",
+              "peace"
+            ],
+            "countries": [
+              "IR"
+            ]
+          },
+          {
+            "question": "Russia x Ukraine ceasefire agreement by December 31, 2026?",
+            "market_prob": 50.0,
+            "atlas_prob": 38.8,
+            "edge": 11.2,
+            "confidence": "medium",
+            "topics": [
+              "peace"
+            ],
+            "countries": [
+              "RU",
+              "UA"
+            ]
+          }
+        ],
+        "hotspots": [
+          {
+            "country": "US",
+            "lat": 37.1,
+            "lon": -95.7,
+            "market_mentions": 46,
+            "avg_market_prob": 36.5
+          },
+          {
+            "country": "IR",
+            "lat": 32.4,
+            "lon": 53.7,
+            "market_mentions": 30,
+            "avg_market_prob": 23.9
+          },
+          {
+            "country": "RO",
+            "lat": 45.9,
+            "lon": 25.0,
+            "market_mentions": 18,
+            "avg_market_prob": 7.9
+          },
+          {
+            "country": "GB",
+            "lat": 55.4,
+            "lon": -3.4,
+            "market_mentions": 16,
+            "avg_market_prob": 9.8
+          },
+          {
+            "country": "IL",
+            "lat": 31.0,
+            "lon": 34.9,
+            "market_mentions": 13,
+            "avg_market_prob": 12.1
+          }
+        ],
+        "sentiment": {
+          "peace": -0.214,
+          "other": -0.3,
+          "nuclear": -0.464,
+          "election": -0.3,
+          "economic": 0.0,
+          "conflict": -0.182,
+          "technology": -0.028,
+          "maritime": -0.3,
+          "climate": 0.0,
+          "humanitarian": -0.219
+        },
+        "info_gaps": 2,
+        "divergences": 3
+      },
+      "date": "2026-06-06T14:56:00.276454+00:00",
+      "sources_degraded": [
+        "metaculus"
+      ],
+      "kb_added": "2026-06-06T14:48:43.835400+00:00"
+    },
+    {
+      "category": "environmental",
+      "title": "Space weather alert: 3 flare(s), Kp=6.33",
+      "analysis": "3 M/X-class flare(s) in past 7 days. Kp index reached 6.33 \u2014 moderate geomagnetic storm. Cross-ref: 100 aircraft tracked \u2014 GPS-dependent navigation could be affected.",
+      "hypotheses": [
+        "HYPOTHESIS A (transient): Solar activity subsides within 48h, no lasting impact",
+        "HYPOTHESIS B (cascade): CME impact causes GPS degradation + power grid stress in high-latitude regions"
+      ],
+      "watch_for": [
+        "NOAA SWPC upgrade to G3+ geomagnetic storm warning",
+        "Airline reroutes away from polar corridors",
+        "Power grid operator emergency actions in Scandinavia/Canada"
+      ],
+      "confidence": 70,
+      "sources_used": [
+        "space_weather",
+        "adsb"
+      ],
+      "time_horizon": "48h",
+      "date": "2026-06-06T14:56:00.276454+00:00",
+      "business_angle": "Natural events drive emergency service demand spikes. Contractors get overwhelmed with calls \u2014 exactly when they need BOSS most.",
+      "kb_added": "2026-06-06T14:48:43.835400+00:00"
+    },
+    {
+      "category": "geopolitical",
+      "title": "Analyst consensus: 150 think tank pieces, top focus: ai",
+      "analysis": "Think tank attention index: 150 analyses across 9 topics. Top focus: ai(33); china(12); iran(7); nuclear(7); russia(6). Dominant theme 'ai' \u2014 latest: Countering terrorist propaganda in the age of AI. Central banks publishing 3 statements simultaneously.",
+      "hypotheses": [
+        "HYPOTHESIS A (crisis developing): Heavy analyst attention on 'ai' indicates building crisis that mainstream news hasn't caught yet",
+        "HYPOTHESIS B (reaction): Analysts responding to events already in progress \u2014 this is assessment, not prediction"
+      ],
+      "watch_for": [
+        "Shift in think tank attention AWAY from ai to new topic = new crisis emerging",
+        "Multiple think tanks publishing simultaneously on same topic = coordinated concern",
+        "Official feeds (Fed/ECB/UN) echoing think tank themes = institutional confirmation"
+      ],
+      "confidence": 70,
+      "sources_used": [
+        "think_tanks",
+        "official_feeds"
+      ],
+      "time_horizon": "7d",
+      "date": "2026-06-06T14:56:00.276454+00:00",
+      "business_angle": "Geopolitical shifts affect trade, supply chains, and business confidence. Monitor for ripple effects reaching US small business sector.",
+      "kb_added": "2026-06-06T14:48:43.835400+00:00"
+    },
+    {
+      "category": "technology",
+      "title": "AI/Tech landscape: 22 signals",
+      "analysis": "22 AI signals across HN/RSS/Reddit. Topics: How LLMs work; S&P 500 rejects SpaceX, also blocking entry for OpenAI and A; Mbodi AI (YC P25) Is Hiring Founding Machine Learning Engine. Reddit AI sentiment: 2 posts about AI in small business. ",
+      "hypotheses": [
+        "Market signal: 22 mentions suggests elevated attention \u2014 possible capability release or regulatory news"
+      ],
+      "watch_for": [
+        "Competitor pricing changes (especially if they lower to match BOSS)",
+        "New AI voice agent announcements \u2014 potential threats or partnership targets",
+        "Small business AI adoption stories in Reddit = market validation"
+      ],
+      "confidence": 60,
+      "sources_used": [
+        "hackernews",
+        "rss",
+        "reddit"
+      ],
+      "time_horizon": "30d",
+      "business_angle": "New AI tools = new automation possibilities for BOSS clients",
+      "date": "2026-06-06T14:56:00.276454+00:00",
+      "kb_added": "2026-06-06T14:48:43.835400+00:00"
+    },
+    {
+      "category": "geopolitical",
+      "title": "Sanctions posture: 30 US + 0 EU targets tracked",
+      "analysis": "Sanctions landscape: 30 OFAC (US) + 0 EU sanctioned entities in latest data. Think tanks flagging 32 conflict-related analyses. GDELT: 50 conflict articles cross-referencing. Market: 'Israel announces Lebanon ceasefire extension by Ju' at 100.0%.",
+      "hypotheses": [
+        "HYPOTHESIS A (escalation): New sanctions rounds signal diplomatic deterioration \u2014 follow with trade restrictions",
+        "HYPOTHESIS B (status quo): Existing sanctions maintained, no new designations = stable geopolitical environment"
+      ],
+      "watch_for": [
+        "New OFAC SDN additions in energy/defense sectors",
+        "EU-US sanctions divergence on any country = policy split",
+        "Sanctions evasion reports in GDELT or think tank feeds"
+      ],
+      "confidence": 60,
+      "sources_used": [
+        "ofac_sdn",
+        "eu_sanctions",
+        "think_tanks",
+        "gdelt",
+        "polymarket"
+      ],
+      "time_horizon": "30d",
+      "date": "2026-06-06T14:56:00.276454+00:00",
+      "business_angle": "Geopolitical shifts affect trade, supply chains, and business confidence. Monitor for ripple effects reaching US small business sector.",
+      "kb_added": "2026-06-06T14:48:43.835400+00:00"
+    },
+    {
+      "title": "Corporate Activity Cluster: 10 insider trades, 15 material events",
+      "category": "economic",
+      "analysis": "SEC EDGAR shows 10 insider trades and 15 material event filings.",
+      "hypotheses": [
+        "Insider selling precedes earnings miss or guidance cut \u2014 common pattern before corrections",
+        "8-K cluster indicates M&A wave \u2014 consolidation creates displaced customers needing new vendors",
+        "Routine quarterly filing activity with no directional signal \u2014 noise, not signal"
+      ],
+      "watch_for": [
+        "Insider sells in AI/SaaS companies \u2014 direct BOSS competitor intelligence",
+        "8-K 'going concern' filings \u2014 business failures create orphaned customers",
+        "Earnings misses following insider sells \u2014 confirms the pattern"
+      ],
+      "confidence": 55,
+      "sources_used": [
+        "sec_edgar",
+        "alpha_vantage",
+        "treasury"
+      ],
+      "time_horizon": "7-30d",
+      "business_angle": "Track AI/tech company 8-K filings for competitor shutdowns or pivots. Their displaced customers become BOSS prospects.",
+      "date": "2026-06-06T14:56:00.276454+00:00",
+      "kb_added": "2026-06-06T14:48:43.835400+00:00"
+    }
+  ],
+  "opportunities": [],
+  "headlines": [
+    {
+      "headline": "Intelligence gaps: 6 blind spots active \u2014 FRED gap: No economic indicators = cannot confirm or deny recession/inflation si",
+      "category": "security",
+      "analysis": "6 sources returned no data: metaculus, acled, ioda, fred, safecast, eia. IODA (internet outage) data unavailable \u2014 cannot detect blackouts that precede political crises. These gaps reduce confidence in all other assessments that would cross-reference these sources. COMPETING HYPOTHESES: FRED gap: No economic indicators = cannot confirm or deny recession/inflation signals from commodity",
+      "sources": [
+        "system"
+      ],
+      "confidence": 95,
+      "watch_for": [
+        "If multiple sources fail simultaneously, check if it's network-wide (your connection) vs source-specific (their API)",
+        "Prolonged GDELT outage = check alternative news APIs",
+        "ADS-B silence could mean tracking is being deliberately suppressed \u2014 itself a signal"
+      ],
+      "business_angle": "Military/security events create uncertainty \u2014 businesses freeze hiring and expand automation. Position BOSS as the stable, cost-cutting option.",
+      "date": "2026-06-06T14:56:00.285032+00:00",
+      "kb_added": "2026-06-06T14:48:43.835400+00:00"
+    },
+    {
+      "headline": "ANOMALY [95]: 15 military aircraft near (40,-100) with minimal news coverage",
+      "category": "security",
+      "analysis": "Pattern: mil_air_no_news. NO MILITARY BASE within 300km \u2014 activity is in open area, increasing anomaly significance.\n\nBOTTOM LINE: Military activity detected without clear operational context. May indicate exercise, transit, o",
+      "sources": [
+        "anomaly_engine"
+      ],
+      "confidence": 95,
+      "business_angle": "Anomalous events create uncertainty \u2014 track for downstream impacts on BOSS target markets and supply chains.",
+      "date": "2026-06-06T14:56:00.285032+00:00",
+      "kb_added": "2026-06-06T14:48:43.835400+00:00"
+    },
+    {
+      "headline": "ANOMALY [95]: 11 military aircraft near (40,-90) with minimal news coverage",
+      "category": "security",
+      "analysis": "Pattern: mil_air_no_news. NO MILITARY BASE within 300km \u2014 activity is in open area, increasing anomaly significance.\n\nBOTTOM LINE: Military activity detected without clear operational context. May indicate exercise, transit, o",
+      "sources": [
+        "anomaly_engine"
+      ],
+      "confidence": 95,
+      "business_angle": "Anomalous events create uncertainty \u2014 track for downstream impacts on BOSS target markets and supply chains.",
+      "date": "2026-06-06T14:56:00.285032+00:00",
+      "kb_added": "2026-06-06T14:48:43.835400+00:00"
+    },
+    {
+      "headline": "ANOMALY [95]: 18 military aircraft near (40,-80) with minimal news coverage",
+      "category": "security",
+      "analysis": "Pattern: mil_air_no_news. NEAREST BASE: Joint Base Andrews (US, AF) \u2014 299.7km\n  Air Force One, presidential airlift\n\nBOTTOM LINE: Military activity detected without clear operational context. May indicate exercise, transit, or",
+      "sources": [
+        "anomaly_engine"
+      ],
+      "confidence": 95,
+      "business_angle": "Anomalous events create uncertainty \u2014 track for downstream impacts on BOSS target markets and supply chains.",
+      "date": "2026-06-06T14:56:00.285032+00:00",
+      "kb_added": "2026-06-06T14:48:43.835400+00:00"
+    },
+    {
+      "headline": "Service demand surge: 23 alerts, 2 BOSS states hit \u2014 ACTIONABLE: OK, TX businesses are losing calls RIGHT NOW. 24-48hr window to reac",
+      "category": "market_opportunity",
+      "analysis": "23 severe/extreme alerts across MO, KS, OK, LA, CA, TX. Event types: Flash Flood Warning, Red Flag Warning, Flood Warning, Flood Watch. 27 storm alerts \u2014 roofers, restoration, and plumbers will be overwhelmed within 24-48hrs. BOSS TERRITORY HIT: OK, TX \u2014 these are your states. Direct targeting opportunity. COMPETING HYPOTHESES: ACTIONABLE: OK, TX businesses are losing calls RIGHT NOW. 24-48hr window to reach them while pain is",
+      "sources": [
+        "noaa",
+        "reddit",
+        "commodities"
+      ],
+      "confidence": 95,
+      "watch_for": [
+        "Storm path progression \u2014 get ahead of it, call businesses BEFORE they're overwhelmed",
+        "Reddit pain posts spiking in specific subreddits = niche confirmation",
+        "If heat wave persists >3 days, missed call rates compound (crews fatigue)"
+      ],
+      "business_angle": "IMMEDIATE: Target OK, TX contractors NOW",
+      "date": "2026-06-06T14:56:00.285032+00:00",
+      "kb_added": "2026-06-06T14:48:43.835400+00:00"
+    },
+    {
+      "headline": "ANOMALY [90]: 10 military aircraft near (40,-70) with minimal news coverage",
+      "category": "security",
+      "analysis": "Pattern: mil_air_no_news. NO MILITARY BASE within 300km \u2014 activity is in open area, increasing anomaly significance.\n\nBOTTOM LINE: Military activity detected without clear operational context. May indicate exercise, transit, o",
+      "sources": [
+        "anomaly_engine"
+      ],
+      "confidence": 90,
+      "business_angle": "Anomalous events create uncertainty \u2014 track for downstream impacts on BOSS target markets and supply chains.",
+      "date": "2026-06-06T14:56:00.285032+00:00",
+      "kb_added": "2026-06-06T14:48:43.835400+00:00"
+    },
+    {
+      "headline": "Global disaster alert: 1 elevated events across 1 hazard types \u2014 HUMANITARIAN: 1 drought alerts \u2014 food security and displacement risk in affected",
+      "category": "environmental",
+      "analysis": "GDACS elevated alerts: 1 Orange/Red events \u2014 drought(1). Affected regions: Madagascar. Cross-ref: USGS reports 2 M5.0+ quakes; GDACS tracking 17 earthquake events. Active tropical cyclones: 1. NASA FIRMS: 30 high-confidence fire detections. GDELT: 47 disaster-related articles corroborate.  COMPETING HYPOTHESES: HUMANITARIAN: 1 drought alerts \u2014 food security and displacement risk in affected regions | INFRASTRUCTURE: Active cyclones threaten shipping lanes and port operations \u2014 monitor commodity supp",
+      "sources": [
+        "gdacs",
+        "usgs",
+        "nasa_firms",
+        "gdelt"
+      ],
+      "confidence": 80,
+      "watch_for": [
+        "Alert level escalation from Orange to Red on any event",
+        "Multiple disaster types converging on same region (compound disaster)",
+        "Commodity price spikes correlated with disaster-affected supply chains",
+        "Humanitarian agency surge (ReliefWeb) confirming escalation"
+      ],
+      "business_angle": "Natural events drive emergency service demand spikes. Contractors get overwhelmed with calls \u2014 exactly when they need BOSS most.",
+      "date": "2026-06-06T14:56:00.285032+00:00",
+      "kb_added": "2026-06-06T14:48:43.835400+00:00"
+    },
+    {
+      "headline": "Military posture assessment: 100 aircraft, 50 conflict reports, 7 dark zones",
+      "category": "security",
+      "analysis": "100 military aircraft tracked across 23 regions. GDELT: 50 conflict articles \u2014 hotspots: United States(11), China(6), Russia(5). Think tank analysis (32 items): A deeper look at Trump\u2019s new\u00a0policy\u00a0toward the Western Balkans; A Budget for Global Turmoil: Peace, Conflict and the EU\u2019s Funding Plans; After the Invasion: China Considers the Problem of Ruling Taiwan. ANOMALY: 7 regions with concentrated COMPETING HYPOTHESES: HYPOTHESIS A (covert positioning): 7 regions show military aircraft with zero corresponding news \u2014 u",
+      "sources": [
+        "adsb",
+        "gdelt",
+        "polymarket",
+        "commodities",
+        "noaa",
+        "think_tanks"
+      ],
+      "confidence": 75,
+      "watch_for": [
+        "Change in tanker-to-fighter ratio (more tankers = shifting from training to ops)",
+        "ISR platforms shifting to new regions = new collection target",
+        "Prediction markets moving >10 points in 24hrs on conflict questions",
+        "News coverage appearing for regions (40,-100, 30,-100, 30,-90) \u2014 would confirm something newsworthy is happening there"
+      ],
+      "business_angle": "Military/security events create uncertainty \u2014 businesses freeze hiring and expand automation. Position BOSS as the stable, cost-cutting option.",
+      "date": "2026-06-06T14:56:00.285032+00:00",
+      "kb_added": "2026-06-06T14:48:43.835400+00:00"
+    },
+    {
+      "headline": "Cyber threat assessment: 10 KEVs, 2 ransomware-linked",
+      "category": "security",
+      "analysis": "10 new known exploited vulnerabilities in past 14 days. Top targets: SolarWinds(1), Mirasvit(1), Linux(1). 2 with confirmed ransomware use \u2014 active threat. COMPETING HYPOTHESES: HYPOTHESIS A (targeted): Specific vendor/product under coordinated attack campaign | HYPOTHESIS B (broad): General uptick in exploit activity across multiple vectors",
+      "sources": [
+        "cisa_kev",
+        "rss"
+      ],
+      "confidence": 75,
+      "watch_for": [
+        "CISA emergency directive naming specific products",
+        "Ransomware gang claiming new victims in affected sectors",
+        "Vendor emergency patch releases"
+      ],
+      "business_angle": "Military/security events create uncertainty \u2014 businesses freeze hiring and expand automation. Position BOSS as the stable, cost-cutting option.",
+      "date": "2026-06-06T14:56:00.285032+00:00",
+      "kb_added": "2026-06-06T14:48:43.835400+00:00"
+    },
+    {
+      "headline": "ANOMALY [75]: 7 military aircraft near (30,-90) with minimal news coverage",
+      "category": "security",
+      "analysis": "Pattern: mil_air_no_news. NEAREST BASE: NAS Pensacola (US, Navy) \u2014 260.5km\n  Naval aviation training center\n\nBOTTOM LINE: Military activity detected without clear operational context. May indicate exercise, transit, or develop",
+      "sources": [
+        "anomaly_engine"
+      ],
+      "confidence": 75,
+      "business_angle": "Anomalous events create uncertainty \u2014 track for downstream impacts on BOSS target markets and supply chains.",
+      "date": "2026-06-06T14:56:00.285032+00:00",
+      "kb_added": "2026-06-06T14:48:43.835400+00:00"
+    },
+    {
+      "headline": "Seismic event: M5.2 at 193 km SSE of Vilyuchinsk, Russia \u2014 MOST LIKELY: Natural tectonic event \u2014 location consistent with plate boundary ac",
+      "category": "environmental",
+      "analysis": "M5.2 at 193 km SSE of Vilyuchinsk, Russia. Total significant quakes (M5.0+): 2. Depth: 13.4km. Felt reports: None. GDACS tracking 17 earthquake events (all Green \u2014 low humanitarian impact).  COMPETING HYPOTHESES: MOST LIKELY: Natural tectonic event \u2014 location consistent with plate boundary activity",
+      "sources": [
+        "usgs",
+        "gdelt",
+        "atlas_intel",
+        "gdacs"
+      ],
+      "confidence": 73,
+      "watch_for": [
+        "Aftershock sequence (increasing aftershock magnitude = potential larger event coming)",
+        "Tsunami warnings issued/cancelled",
+        "Radiation readings change near nuclear facilities within 500km",
+        "News coverage appearing (or not) \u2014 prolonged silence on large quakes is itself a signal"
+      ],
+      "business_angle": "Natural events drive emergency service demand spikes. Contractors get overwhelmed with calls \u2014 exactly when they need BOSS most.",
+      "date": "2026-06-06T14:56:00.285032+00:00",
+      "kb_added": "2026-06-06T14:48:43.835400+00:00"
+    },
+    {
+      "headline": "Market Intelligence: 19 edges across 4 countries, top edge 14.2pp",
+      "category": "market_intelligence",
+      "analysis": "Paper trader analyzed 366 markets, found 19 edges. Largest edge: 'US x Iran permanent peace deal by December 31, 2026?' \u2014 market 71.5% vs ATLAS 57.3% (14.2pp edge). Geopolitical hotspots by market attention: US, IR, RO, GB, IL. Negative Reddit sentiment on: peace, other, nuclear, election, conflict, maritime, humanitarian \u2014 public mood contra-bullish. Cross-platform divergence: 'Will the Fed incre COMPETING HYPOTHESES: HYPOTHESIS A: Markets consistently overpricing peace/diplomacy outcomes \u2014 adversarial base rates sug | HYPOTHESIS C: Cross-platform price divergences indicate slow information propagation \u2014 exploitable w",
+      "sources": [
+        "paper_trader",
+        "polymarket",
+        "manifold",
+        "gdelt",
+        "reddit"
+      ],
+      "confidence": 73,
+      "watch_for": [
+        "Edge convergence: if market moves toward ATLAS position, confirms our analysis",
+        "New prediction market listings on hotspot countries \u2014 fresh liquidity = fresh edge",
+        "Breaking news from NZ, KR \u2014 fills information gaps and may move markets sharply"
+      ],
+      "business_angle": "Market intelligence reveals global stress patterns. Countries with high market attention = news-cycle-driven anxiety = businesses more receptive to 'protect your revenue' pitch.",
+      "date": "2026-06-06T14:56:00.285032+00:00",
+      "kb_added": "2026-06-06T14:48:43.835400+00:00"
+    }
+  ],
+  "anomalies": [
+    {
+      "pattern": "mil_air_no_news",
+      "score": 95,
+      "description": "15 military aircraft near (40,-100) with minimal news coverage",
+      "aircraft_types": {
+        "BE20": 1,
+        "DG1T": 1,
+        "C172": 1,
+        "SR20": 10,
+        "H60": 1,
+        "P8": 1
+      },
+      "lat": 40,
+      "lon": -100,
+      "evidence_count": 15,
+      "news_count": 0,
+      "date": "2026-06-06T14:56:00.245648+00:00",
+      "assessment": "NO MILITARY BASE within 300km \u2014 activity is in open area, increasing anomaly significance.\n\nBOTTOM LINE: Military activity detected without clear operational context. May indicate exercise, transit, or developing situation.\n\nINFORMATION GAP: Zero news articles covering this area. This could mean: (1) classified exercise, (2) routine activity not considered newsworthy, (3) developing situation not yet reported, or (4) deliberate information suppression.",
+      "nearby_bases": [],
+      "nearby_chokepoints": [],
+      "nearby_conflicts": [],
+      "nearby_nuclear": [],
+      "kb_added": "2026-06-06T14:48:43.835400+00:00"
+    }
+  ],
+  "last_updated": "2026-06-06T14:48:43.835400+00:00"
+}
