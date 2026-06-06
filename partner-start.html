@@ -3,10 +3,10 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Getting Started — BOSS Systems Partner Program</title>
+<title>Complete Launch Guide — BOSS Systems Partner Program</title>
 <style>
 *{margin:0;padding:0;box-sizing:border-box}
-:root{--gold:#C9A84C;--dark:#080808;--gray:#0f0f0f;--gray2:#111;--border:#1e1e1e;--text:#f0ede8;--muted:#888;--green:#4caf50}
+:root{--gold:#C9A84C;--dark:#080808;--gray:#0f0f0f;--gray2:#111;--border:#1e1e1e;--text:#f0ede8;--muted:#aaa;--green:#4caf50;--red:#e53935}
 html{scroll-behavior:smooth}
 body{background:var(--dark);color:var(--text);font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;font-size:16px;line-height:1.7;-webkit-font-smoothing:antialiased}
 a{color:var(--gold);text-decoration:none}
@@ -21,13 +21,22 @@ nav{position:sticky;top:0;z-index:100;background:rgba(8,8,8,.97);border-bottom:1
 .hero{padding:72px 24px 56px;text-align:center;border-bottom:1px solid var(--border);background:linear-gradient(180deg,#0d0d00 0%,var(--dark) 100%)}
 .hero-label{font-size:10px;letter-spacing:4px;text-transform:uppercase;color:var(--gold);margin-bottom:20px}
 .hero h1{font-size:clamp(2rem,5vw,3.2rem);font-weight:900;line-height:1.1;margin-bottom:16px}
-.hero p{color:var(--muted);font-size:1.05rem;max-width:560px;margin:0 auto 32px;line-height:1.7}
+.hero p{color:var(--muted);font-size:1.05rem;max-width:580px;margin:0 auto 32px;line-height:1.7}
 .hero-note{display:inline-flex;align-items:center;gap:10px;border:1px solid #2a2a00;background:#111;padding:12px 20px;font-size:13px;color:var(--muted)}
 .hero-note strong{color:var(--text)}
 
 .wrap{max-width:800px;margin:0 auto;padding:0 24px}
 
-/* CHECKLIST STRIP */
+/* TOC */
+.toc{padding:40px 24px;border-bottom:1px solid var(--border)}
+.toc-inner{max-width:800px;margin:0 auto}
+.toc-title{font-size:10px;letter-spacing:3px;text-transform:uppercase;color:var(--gold);margin-bottom:16px}
+.toc-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(240px,1fr));gap:8px}
+.toc-item{background:var(--gray2);padding:12px 16px;font-size:13px;color:var(--muted);display:flex;gap:10px;align-items:center;cursor:pointer;border:1px solid var(--border);transition:border-color .2s}
+.toc-item:hover{border-color:var(--gold);color:var(--text);text-decoration:none}
+.toc-num{color:var(--gold);font-weight:900;min-width:20px}
+
+/* STRIP */
 .strip{background:var(--gray2);border-top:1px solid var(--border);border-bottom:1px solid var(--border);padding:32px 24px}
 .strip-inner{max-width:800px;margin:0 auto}
 .strip-title{font-size:10px;letter-spacing:3px;text-transform:uppercase;color:var(--gold);margin-bottom:20px}
@@ -51,6 +60,7 @@ nav{position:sticky;top:0;z-index:100;background:rgba(8,8,8,.97);border-bottom:1
 .step-title{font-size:14px;font-weight:700;margin-bottom:6px}
 .step-text{font-size:13px;color:var(--muted);line-height:1.7}
 .step-text strong{color:var(--text)}
+.step-text code{background:#1a1a1a;padding:2px 6px;font-size:12px;color:var(--gold)}
 
 /* AI SPLIT */
 .ai-split{display:grid;grid-template-columns:1fr 1fr;gap:1px;background:var(--border);margin-top:0}
@@ -59,72 +69,65 @@ nav{position:sticky;top:0;z-index:100;background:rgba(8,8,8,.97);border-bottom:1
 .ai-col-title.green{color:var(--green)}
 .ai-col-title.gold{color:var(--gold)}
 .ai-list{list-style:none}
-.ai-list li{font-size:13px;color:var(--muted);padding:8px 0;border-bottom:1px solid #151515;line-height:1.5;display:flex;gap:10px}
+.ai-list li{padding:6px 0;font-size:13px;color:var(--muted);border-bottom:1px solid var(--border)}
 .ai-list li:last-child{border:none}
-.ai-list li::before{content:"→";color:var(--gold);font-size:12px;flex-shrink:0;margin-top:2px}
-.ai-list.green li::before{content:"✓";color:var(--green)}
+.ai-list li::before{content:'→ ';color:var(--gold)}
 
-/* MONEY BOX */
-.money-box{background:var(--gray2);border:1px solid var(--border);padding:28px 32px}
-.money-row{display:flex;justify-content:space-between;align-items:center;padding:14px 0;border-bottom:1px solid var(--border);font-size:14px}
-.money-row:last-child{border:none}
-.money-label{color:var(--muted)}
-.money-val{font-weight:700;color:var(--text)}
-.money-val.gold{color:var(--gold);font-size:1.1rem}
-.money-example{background:#0a0a00;border:1px solid #2a2400;padding:20px 24px;margin-top:16px}
-.money-example-title{font-size:10px;letter-spacing:2px;text-transform:uppercase;color:var(--gold);margin-bottom:12px}
-.money-example p{font-size:13px;color:var(--muted);line-height:1.7}
-.money-example strong{color:var(--text)}
+/* COPY BOX */
+.copy-box{background:#0a0a00;border:1px solid #2a2400;padding:20px 24px;margin:16px 0;position:relative}
+.copy-box pre{font-size:13px;color:#ccc;white-space:pre-wrap;word-break:break-word;font-family:inherit;line-height:1.6}
+.copy-btn{position:absolute;top:8px;right:8px;background:var(--gold);color:var(--dark);border:none;padding:4px 12px;font-size:11px;font-weight:700;cursor:pointer;letter-spacing:1px}
 
-/* MARKETING */
-.platform-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(180px,1fr));gap:12px;margin-top:8px}
-.platform{background:var(--gray2);border:1px solid var(--border);padding:20px}
-.platform-name{font-size:13px;font-weight:700;margin-bottom:6px}
-.platform-note{font-size:12px;color:var(--muted);line-height:1.5}
+/* WARN BOX */
+.warn-box{background:#0a0000;border:1px solid #2a1010;padding:20px 24px;margin:16px 0}
+.warn-box-title{font-size:12px;font-weight:700;text-transform:uppercase;letter-spacing:2px;color:#e57373;margin-bottom:8px}
+.warn-box p{font-size:13px;color:#bbb;line-height:1.7}
 
-/* CALLOUT */
-.callout{border-left:3px solid var(--gold);padding:20px 24px;background:var(--gray2);margin:24px 0}
-.callout p{font-size:13px;color:var(--muted);line-height:1.7;margin:0}
-.callout p strong{color:var(--text)}
+/* TIP BOX */
+.tip-box{background:#000a00;border:1px solid #102a10;padding:20px 24px;margin:16px 0}
+.tip-box-title{font-size:12px;font-weight:700;text-transform:uppercase;letter-spacing:2px;color:var(--green);margin-bottom:8px}
+.tip-box p{font-size:13px;color:#bbb;line-height:1.7}
 
-/* RULES */
-.rules{display:flex;flex-direction:column;gap:12px}
-.rule{display:flex;gap:14px;padding:16px 20px;background:var(--gray2);border:1px solid var(--border)}
-.rule-icon{font-size:18px;flex-shrink:0}
-.rule-text{font-size:13px;color:var(--muted);line-height:1.6}
-.rule-text strong{color:var(--text)}
+/* CHECKLIST */
+.checklist{list-style:none;margin:16px 0}
+.checklist li{padding:10px 0;font-size:14px;color:var(--muted);border-bottom:1px solid var(--border);display:flex;gap:10px;align-items:flex-start}
+.checklist li::before{content:'☐';font-size:16px;color:var(--gold);flex-shrink:0}
+.checklist li strong{color:var(--text)}
 
-/* SCRIPT */
-.script-box{background:#050505;border:1px solid #1a1a1a;padding:20px 24px;font-family:monospace;font-size:13px;color:#aaa;line-height:1.8;border-left:3px solid var(--gold)}
-.script-label{font-size:10px;letter-spacing:2px;text-transform:uppercase;color:var(--gold);font-family:-apple-system,sans-serif;margin-bottom:12px}
+/* TRACKER */
+.tracker{background:var(--gray2);border:1px solid var(--border);padding:24px;margin:32px 0}
+.tracker-title{font-size:11px;letter-spacing:2px;text-transform:uppercase;color:var(--gold);margin-bottom:16px}
+.tracker-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(180px,1fr));gap:8px}
+.tracker-item{background:var(--dark);padding:12px 16px;font-size:13px;display:flex;justify-content:space-between;align-items:center}
+.tracker-item .label{color:var(--muted)}
+.tracker-item .status{font-size:11px;font-weight:700;letter-spacing:1px}
+.tracker-item .status.done{color:var(--green)}
+.tracker-item .status.pending{color:var(--gold)}
+.tracker-item .status.na{color:#555}
 
-/* BREAK BOX */
-.break-box{background:#0a0000;border:1px solid #2a1010;padding:24px 28px;margin:24px 0}
-.break-box-title{font-size:12px;font-weight:700;text-transform:uppercase;letter-spacing:2px;color:#e57373;margin-bottom:12px}
-.break-box p{font-size:13px;color:#aaa;line-height:1.7}
-
-/* BOTTOM CTA */
-.bottom-cta{text-align:center;padding:80px 24px;border-top:1px solid var(--border)}
-.bottom-cta h2{font-size:clamp(1.6rem,4vw,2.4rem);font-weight:900;margin-bottom:12px}
-.bottom-cta p{color:var(--muted);margin-bottom:32px}
 .btn-primary{background:var(--gold);color:var(--dark);padding:14px 32px;font-weight:900;font-size:14px;letter-spacing:1px;text-transform:uppercase;display:inline-block;border-radius:2px}
 .btn-outline{border:1px solid #333;color:var(--muted);padding:13px 28px;font-size:14px;display:inline-block;border-radius:2px;margin-left:12px}
 .btn-outline:hover{border-color:var(--gold);color:var(--text);text-decoration:none}
+
+.bottom-cta{text-align:center;padding:80px 24px;border-top:1px solid var(--border)}
+.bottom-cta h2{font-size:clamp(1.6rem,4vw,2.4rem);font-weight:900;margin-bottom:12px}
+.bottom-cta p{color:var(--muted);margin-bottom:32px}
 
 footer{border-top:1px solid var(--border);padding:28px 24px;display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:12px}
 .footer-logo{font-weight:900;font-size:11px;letter-spacing:4px;color:var(--gold)}
 .footer-links{display:flex;gap:20px;flex-wrap:wrap}
 .footer-links a{font-size:12px;color:#aaa}
-.footer-links a:hover{color:var(--gold);text-decoration:none}
 
 @media(max-width:640px){
   .ai-split{grid-template-columns:1fr}
   .checks{grid-template-columns:1fr}
+  .toc-grid{grid-template-columns:1fr}
+  .tracker-grid{grid-template-columns:1fr}
   .hero{padding:56px 16px 44px}
   .wrap{padding:0 16px}
   .strip{padding:28px 16px}
   .section{padding:48px 0}
-  .step{padding:18px 20px}
+  .step{padding:18px 20px;flex-direction:column;gap:12px}
   .btn-outline{margin-left:0;margin-top:8px}
 }
 </style>
@@ -134,370 +137,575 @@ footer{border-top:1px solid var(--border);padding:28px 24px;display:flex;justify
 <nav>
   <a href="/" class="nav-logo">BOSS SYSTEMS</a>
   <div class="nav-right">
-    <a href="/summer.html" class="nav-link">Program Overview</a>
-    <a href="/partner-tools.html" class="nav-link">Business Guides</a>
-    <a href="/lead-playbook.html" class="nav-link">Lead Playbook</a>
+    <a href="/summer.html" class="nav-link">PROGRAM</a>
+    <a href="/partner-tools.html" class="nav-link">GUIDES</a>
+    <a href="/learn-business.html" class="nav-link">TRAINING</a>
   </div>
 </nav>
 
 <div class="hero">
-  <div class="hero-label">Summer Partner Program — Onboarding</div>
-  <h1>You're In. Here's Everything.</h1>
-  <p>This page covers everything you need to start making money. Read it once, bookmark it, and come back when you have questions.</p>
-  <div class="hero-note"><strong>Boston's number:</strong>&nbsp; Text 903-714-6162 anytime something's unclear.</div>
+  <div class="hero-label">Your Complete Launch Guide</div>
+  <h1>Everything You Need. Nothing Left Out.</h1>
+  <p>Follow this guide top to bottom. By the end, you'll have a real business with a phone number, website, email, social media, and customers calling you.</p>
+  <div class="hero-note"><strong>Questions?</strong>&nbsp; Text Boston: 903-714-6162. Same-day response.</div>
 </div>
 
+<!-- PROGRESS TRACKER -->
 <div class="strip">
   <div class="strip-inner">
-    <div class="strip-title">What you're getting — the short version</div>
-    <div class="checks">
-      <div class="check"><div class="check-icon">📞</div><div><strong>An AI phone system</strong>Answers every call, quotes jobs, books appointments. 24/7.</div></div>
-      <div class="check"><div class="check-icon">💳</div><div><strong>Automatic payments</strong>Sends the payment link right after each job is done.</div></div>
-      <div class="check"><div class="check-icon">⭐</div><div><strong>Review requests</strong>Texts every customer for a Google review 2 hours after payment.</div></div>
-      <div class="check"><div class="check-icon">📅</div><div><strong>Booking confirmations</strong>Sends reminders automatically. Fewer no-shows.</div></div>
-      <div class="check"><div class="check-icon">📱</div><div><strong>A dedicated phone number</strong>Customers call this number. Your personal number stays private.</div></div>
-      <div class="check"><div class="check-icon">🤝</div><div><strong>Boston's support</strong>Same-day fixes if something breaks. Text 903-714-6162.</div></div>
+    <div class="strip-title">Your Setup Progress</div>
+    <div class="tracker-grid" id="tracker">
+      <div class="tracker-item"><span class="label">Phone Number</span><span class="status pending" id="t-phone">BOSTON</span></div>
+      <div class="tracker-item"><span class="label">AI Assistant</span><span class="status pending" id="t-ai">BOSTON</span></div>
+      <div class="tracker-item"><span class="label">Gmail</span><span class="status pending" id="t-gmail">YOU</span></div>
+      <div class="tracker-item"><span class="label">Google Business</span><span class="status pending" id="t-gbp">YOU</span></div>
+      <div class="tracker-item"><span class="label">Facebook Page</span><span class="status pending" id="t-fb">YOU</span></div>
+      <div class="tracker-item"><span class="label">First Post</span><span class="status pending" id="t-post">YOU</span></div>
+      <div class="tracker-item"><span class="label">Test Call</span><span class="status pending" id="t-call">YOU</span></div>
+      <div class="tracker-item"><span class="label">First Customer</span><span class="status pending" id="t-cust">GOAL</span></div>
+    </div>
+    <div style="margin-top:12px;font-size:11px;color:#666">BOSTON = Boston handles this for you. YOU = Follow the steps below. Click items to mark done.</div>
+  </div>
+</div>
+
+<!-- TABLE OF CONTENTS -->
+<div class="toc">
+  <div class="toc-inner">
+    <div class="toc-title">Jump to Section</div>
+    <div class="toc-grid">
+      <a href="#deal" class="toc-item"><span class="toc-num">01</span> Understand the Deal</a>
+      <a href="#gmail" class="toc-item"><span class="toc-num">02</span> Create Your Gmail</a>
+      <a href="#gbp" class="toc-item"><span class="toc-num">03</span> Google Business Profile</a>
+      <a href="#facebook" class="toc-item"><span class="toc-num">04</span> Facebook Business Page</a>
+      <a href="#phone" class="toc-item"><span class="toc-num">05</span> Your Phone System</a>
+      <a href="#first-post" class="toc-item"><span class="toc-num">06</span> Your First 5 Posts</a>
+      <a href="#running" class="toc-item"><span class="toc-num">07</span> Running a Job</a>
+      <a href="#money" class="toc-item"><span class="toc-num">08</span> Getting Paid</a>
+      <a href="#rules" class="toc-item"><span class="toc-num">09</span> The Non-Negotiables</a>
+      <a href="#training" class="toc-item"><span class="toc-num">10</span> Free Business Training</a>
+      <a href="#help" class="toc-item"><span class="toc-num">11</span> When Something Breaks</a>
+      <a href="#taxes" class="toc-item"><span class="toc-num">12</span> Taxes and Legal Stuff</a>
     </div>
   </div>
 </div>
 
 <div class="wrap">
 
-<!-- SECTION 1: UNDERSTAND THE DEAL -->
-<div class="section">
+<!-- 01 DEAL -->
+<div class="section" id="deal">
   <div class="section-num">Section 01</div>
-  <h2>Understand the Deal Before You Start</h2>
-  <p class="section-sub">This is not complicated, but you need to know exactly how it works before you take your first call.</p>
-
+  <h2>Understand the Deal</h2>
+  <p class="section-sub">This is not complicated, but you need to know exactly how it works before your first call.</p>
   <div class="steps">
-    <div class="step">
-      <div class="step-n">1</div>
-      <div class="step-body">
-        <div class="step-title">Boston builds your AI system. You run the business.</div>
-        <div class="step-text">Boston sets up the phone number, trains the AI on your specific business and prices, and builds all the automations. You don't touch any of that. <strong>Your job is to show up for every booked job and do great work.</strong></div>
-      </div>
-    </div>
-    <div class="step">
-      <div class="step-n">2</div>
-      <div class="step-body">
-        <div class="step-title">You keep 80%. Boston takes 20%.</div>
-        <div class="step-text">Of everything you collect from customers, you keep 80 cents on every dollar. Boston takes 20. That's it. <strong>No setup fee, no monthly fee, no surprises.</strong> Boston only gets paid when you get paid.</div>
-      </div>
-    </div>
-    <div class="step">
-      <div class="step-n">3</div>
-      <div class="step-body">
-        <div class="step-title">You report every Sunday. You pay every Monday.</div>
-        <div class="step-text">Every Sunday by 8pm, text Boston your total gross revenue for the week — meaning the total you collected from customers before any expenses. He takes 20% of that. You Venmo @BosRoss by Monday noon. <strong>Zero revenue that week? Text him to confirm zero. Nothing owed.</strong></div>
-      </div>
-    </div>
-    <div class="step">
-      <div class="step-n">4</div>
-      <div class="step-body">
-        <div class="step-title">The business name and customers are yours. Forever.</div>
-        <div class="step-text">Whatever business name you create, whatever Google reviews you earn, whatever customer relationships you build — that's yours. Boston has no claim on it. When the program ends September 1, you keep everything. <strong>The AI system deactivates, but the business keeps going.</strong></div>
-      </div>
-    </div>
+    <div class="step"><div class="step-n">1</div><div class="step-body">
+      <div class="step-title">Boston builds your AI system. You run the business.</div>
+      <div class="step-text">Boston sets up the phone number, trains the AI on your specific business and prices, and builds all the automations. You don't touch any of that. <strong>Your job: show up for every booked job and do great work.</strong></div>
+    </div></div>
+    <div class="step"><div class="step-n">2</div><div class="step-body">
+      <div class="step-title">You keep 80%. Boston takes 20%.</div>
+      <div class="step-text">Of everything you collect from customers, you keep 80 cents on every dollar. <strong>No setup fee, no monthly fee, no surprises.</strong> Boston only gets paid when you get paid.</div>
+    </div></div>
+    <div class="step"><div class="step-n">3</div><div class="step-body">
+      <div class="step-title">Report every Sunday. Pay every Monday.</div>
+      <div class="step-text">Every Sunday by 8pm, text Boston your total gross revenue for the week. 20% of that goes to Boston via Venmo @BosRoss by Monday noon. <strong>$0 revenue that week = $0 owed. Just text to confirm zero.</strong></div>
+    </div></div>
+    <div class="step"><div class="step-n">4</div><div class="step-body">
+      <div class="step-title">The business is yours. Forever.</div>
+      <div class="step-text">Whatever business name you create, whatever reviews you earn, whatever customers you build — that's yours permanently. When the program ends September 1, the AI deactivates but <strong>the business, name, reviews, and customers stay with you.</strong></div>
+    </div></div>
   </div>
-</div>
-
-<!-- SECTION 2: WHAT THE AI DOES VS WHAT YOU DO -->
-<div class="section">
-  <div class="section-num">Section 02</div>
-  <h2>What the AI Handles vs. What You Do</h2>
-  <p class="section-sub">The AI handles the business operations side. You handle the physical work and the customer relationships. This is how it splits.</p>
-
-  <div class="ai-split">
+  <div class="ai-split" style="margin-top:32px">
     <div class="ai-col">
-      <div class="ai-col-title green">AI handles automatically</div>
-      <ul class="ai-list green">
-        <li>Answers every inbound call — quotes the job, books the appointment</li>
-        <li>Sends booking confirmation and reminder texts</li>
-        <li>Sends payment link the moment you finish a job</li>
-        <li>Sends Google review request 2 hours after payment</li>
-        <li>Follows up if someone inquired but didn't book</li>
-        <li>Answers common questions ("Do you service my area?" "How much for a driveway?")</li>
-        <li>Logs every call and booking</li>
-      </ul>
-    </div>
-    <div class="ai-col">
-      <div class="ai-col-title gold">You handle manually</div>
+      <div class="ai-col-title green">The AI Handles</div>
       <ul class="ai-list">
-        <li>Show up for every booked job — on time, every time</li>
-        <li>Do the actual work (this is the physical service)</li>
-        <li>Confirm or adjust price if the job is bigger than expected</li>
-        <li>Build relationships with repeat customers</li>
-        <li>Post on social media and local groups to generate calls</li>
-        <li>Text Boston Sunday 8pm with your weekly gross</li>
-        <li>Report any system issues immediately</li>
+        <li>Answers every call 24/7</li>
+        <li>Gives price quotes</li>
+        <li>Books appointments</li>
+        <li>Sends booking confirmations</li>
+        <li>Sends payment link after jobs</li>
+        <li>Requests Google reviews</li>
+        <li>Handles reschedules and cancellations</li>
+      </ul>
+    </div>
+    <div class="ai-col">
+      <div class="ai-col-title gold">You Handle</div>
+      <ul class="ai-list">
+        <li>Show up on time for every job</li>
+        <li>Do quality work</li>
+        <li>Post on social media to get calls</li>
+        <li>Collect payment</li>
+        <li>Report revenue every Sunday</li>
+        <li>Be professional with customers</li>
       </ul>
     </div>
   </div>
+</div>
 
-  <div class="callout" style="margin-top:24px">
-    <p><strong>What the AI cannot do:</strong> The AI cannot show up for a job. It cannot adjust a quote based on something it sees in person. It cannot build a real relationship with a repeat customer. That part is you. The AI makes sure no call goes unanswered and no money gets left on the table — you make sure the work gets done right.</p>
+<!-- 02 GMAIL -->
+<div class="section" id="gmail">
+  <div class="section-num">Section 02</div>
+  <h2>Create Your Business Gmail</h2>
+  <p class="section-sub">Your business needs its own email address. Do not use your personal email. This takes 3 minutes.</p>
+  <div class="steps">
+    <div class="step"><div class="step-n">1</div><div class="step-body">
+      <div class="step-title">Pick your email address</div>
+      <div class="step-text">Use this format: <strong>yourbusinessname@gmail.com</strong><br>Examples: <code>wickhamlawncare@gmail.com</code> or <code>jakesjunkremoval@gmail.com</code><br>Keep it simple. No numbers if possible. All lowercase.</div>
+    </div></div>
+    <div class="step"><div class="step-n">2</div><div class="step-body">
+      <div class="step-title">Go to accounts.google.com and click "Create account"</div>
+      <div class="step-text">
+        <strong>First name:</strong> Your business name (e.g., "Wickham")<br>
+        <strong>Last name:</strong> The service (e.g., "Lawn Care")<br>
+        <strong>Username:</strong> yourbusinessname (all lowercase, no spaces)<br>
+        <strong>Password:</strong> Something strong. Write it down somewhere safe.<br>
+        <strong>Birthday:</strong> Use your real birthday. If you're under 13, ask a parent to create it.<br>
+        <strong>Phone:</strong> Use your personal phone for recovery.
+      </div>
+    </div></div>
+    <div class="step"><div class="step-n">3</div><div class="step-body">
+      <div class="step-title">Set up the profile</div>
+      <div class="step-text">
+        <strong>Profile picture:</strong> Upload your business logo or a photo of your work (a clean lawn, a loaded truck, a clean house — whatever fits).<br>
+        <strong>Signature:</strong> Go to Gmail Settings → General → Signature. Add:<br>
+      </div>
+      <div class="copy-box"><pre id="email-sig">— [Your Name]
+[Your Business Name]
+Call or text: [Your business phone number]
+Serving [Your City] and surrounding areas</pre><button class="copy-btn" onclick="copyText('email-sig')">COPY</button></div>
+    </div></div>
+    <div class="step"><div class="step-n">4</div><div class="step-body">
+      <div class="step-title">Text Boston your new email address</div>
+      <div class="step-text">Text <strong>903-714-6162</strong> with your business Gmail so he can set it up in your system. Example: "My business email is wickhamlawncare@gmail.com"</div>
+    </div></div>
+  </div>
+  <div class="tip-box">
+    <div class="tip-box-title">Why this matters</div>
+    <p>Your Google Business Profile, Facebook page, and customer communications all run through this email. It keeps your business professional and your personal inbox clean.</p>
   </div>
 </div>
 
-<!-- SECTION 3: WEEK 1 CHECKLIST -->
-<div class="section">
+<!-- 03 GOOGLE BUSINESS -->
+<div class="section" id="gbp">
   <div class="section-num">Section 03</div>
-  <h2>Week 1 — Getting Your First Job</h2>
-  <p class="section-sub">Your first week is about generating your first call. The system is ready. You need to make noise.</p>
-
+  <h2>Set Up Google Business Profile</h2>
+  <p class="section-sub">This is how you show up on Google Maps and Google Search. Free. Takes 10 minutes to set up, 5-7 days to verify.</p>
   <div class="steps">
-    <div class="step">
-      <div class="step-n">1</div>
-      <div class="step-body">
-        <div class="step-title">Confirm your AI is live</div>
-        <div class="step-text">Boston will send you your business phone number and confirm the AI is trained. <strong>Call your own number from a different phone.</strong> Make sure the AI answers and can quote a job correctly. If anything sounds wrong, text Boston immediately.</div>
+    <div class="step"><div class="step-n">1</div><div class="step-body">
+      <div class="step-title">Go to business.google.com</div>
+      <div class="step-text">Sign in with your <strong>new business Gmail</strong> (not your personal one). Click "Manage now" or "Add your business."</div>
+    </div></div>
+    <div class="step"><div class="step-n">2</div><div class="step-body">
+      <div class="step-title">Enter your business name</div>
+      <div class="step-text">Type your exact business name (e.g., "Wickham Lawn Care"). If Google suggests an existing business, click "Add your business to Google" to create a new one.</div>
+    </div></div>
+    <div class="step"><div class="step-n">3</div><div class="step-body">
+      <div class="step-title">Pick your category</div>
+      <div class="step-text">
+        Start typing your business type. Pick the closest match:<br>
+        <strong>Junk Removal:</strong> "Junk dealer" or "Waste management service"<br>
+        <strong>Lawn Care:</strong> "Lawn care service"<br>
+        <strong>Pressure Washing:</strong> "Pressure washing service"<br>
+        <strong>House Cleaning:</strong> "House cleaning service"<br>
+        <strong>Car Detailing:</strong> "Car detailing service"<br>
+        <strong>Pool Cleaning:</strong> "Swimming pool cleaning service"<br>
+        <strong>Event Decor:</strong> "Event planner" or "Party supply rental service"<br>
+        <strong>Pet Sitting:</strong> "Pet sitting service"<br>
+        <strong>Photography:</strong> "Photographer"<br>
+        <strong>Social Media:</strong> "Marketing agency"
       </div>
-    </div>
-    <div class="step">
-      <div class="step-n">2</div>
-      <div class="step-body">
-        <div class="step-title">Post on Facebook Marketplace the same day</div>
-        <div class="step-text">Go to Facebook Marketplace → choose "Service" → post your business. Include: what you do, your service area, your phone number, and 1-2 photos (even stock photos are fine to start). <strong>This is your #1 source of calls in week 1.</strong> Post it more than once — different descriptions, same number.</div>
+    </div></div>
+    <div class="step"><div class="step-n">4</div><div class="step-body">
+      <div class="step-title">Set your service area</div>
+      <div class="step-text">Choose "I deliver goods and services to my customers" (you go to them). Set your area to your city + surrounding towns (about 25 miles). <strong>Do not add a physical address unless you have a storefront.</strong></div>
+    </div></div>
+    <div class="step"><div class="step-n">5</div><div class="step-body">
+      <div class="step-title">Add your phone number and website</div>
+      <div class="step-text">
+        <strong>Phone:</strong> Your BOSS business number (the one Boston gave you — NOT your personal number).<br>
+        <strong>Website:</strong> Leave blank for now. Boston will set up your page.
       </div>
-    </div>
-    <div class="step">
-      <div class="step-n">3</div>
-      <div class="step-body">
-        <div class="step-title">Post on Nextdoor and local Facebook groups</div>
-        <div class="step-text">Search for neighborhood Facebook groups in your city. Post an intro: "Hey everyone, I'm starting a [business type] in [city]. First-time customers get a small discount. Here's my number: [your AI number]." <strong>Nextdoor is especially good for home services</strong> because it targets your exact neighborhood.</div>
+    </div></div>
+    <div class="step"><div class="step-n">6</div><div class="step-body">
+      <div class="step-title">Set your hours</div>
+      <div class="step-text">Your AI answers 24/7, but set your listed hours to when you actually do jobs. Example: <strong>Monday-Saturday, 7am-7pm</strong>. The AI will still take calls outside these hours and schedule for the next available day.</div>
+    </div></div>
+    <div class="step"><div class="step-n">7</div><div class="step-body">
+      <div class="step-title">Write your description</div>
+      <div class="step-text">Keep it short and local. Here's a template:</div>
+      <div class="copy-box"><pre id="gbp-desc">[Business Name] provides [service type] in [City] and surrounding areas. Locally owned and operated. We answer every call, provide upfront pricing, and show up when we say we will. Call or text for a free estimate.</pre><button class="copy-btn" onclick="copyText('gbp-desc')">COPY</button></div>
+    </div></div>
+    <div class="step"><div class="step-n">8</div><div class="step-body">
+      <div class="step-title">Upload 3-5 photos</div>
+      <div class="step-text">Google profiles with photos get 42% more direction requests. Upload:<br>
+        <strong>1.</strong> A cover photo (your truck, equipment, or you working)<br>
+        <strong>2.</strong> A before/after photo of a job<br>
+        <strong>3.</strong> You or your team (builds trust)<br>
+        Don't have job photos yet? Take photos of your equipment/vehicle for now. Replace with job photos after your first gig.
       </div>
-    </div>
-    <div class="step">
-      <div class="step-n">4</div>
-      <div class="step-body">
-        <div class="step-title">Post on Craigslist</div>
-        <div class="step-text">Go to Craigslist → Services → your category. Simple post: what you do, your area, your price range, your number. Takes 5 minutes. People still use Craigslist heavily for local services. Repost every few days to stay at the top.</div>
-      </div>
-    </div>
-    <div class="step">
-      <div class="step-n">5</div>
-      <div class="step-body">
-        <div class="step-title">Tell everyone you know</div>
-        <div class="step-text">Text your contacts. Post on your personal Instagram or Snapchat. Tell your parents to tell their friends. Your first 2-3 clients will almost always come from word of mouth. <strong>Don't be embarrassed about it</strong> — running a business at your age is impressive. Use it.</div>
-      </div>
-    </div>
+    </div></div>
+    <div class="step"><div class="step-n">9</div><div class="step-body">
+      <div class="step-title">Verify your business</div>
+      <div class="step-text">Google will send a postcard to your home address with a verification code. Takes 5-7 days. When it arrives, enter the code at business.google.com. <strong>Your profile won't show on Google Maps until verified.</strong> Some businesses can verify by phone or email — Google will offer it if available.</div>
+    </div></div>
   </div>
-
-  <div class="callout">
-    <p><strong>Also do this in Week 1: Set up your Google Business Profile.</strong> This is how you get Google reviews, which make people trust you enough to call. Go to <strong>business.google.com</strong>, click "Manage now," and create a free listing for your business. Use your AI phone number as the contact number. It takes about 10 minutes and Google will mail you a postcard to verify (takes 5–7 days). Start this on Day 1 so it's ready by the time you have reviews to collect.</p>
-    <p style="margin-top:12px"><strong>Realistic first week:</strong> Most partners get their first call within 3-5 days of posting. If you're not getting calls after a week, text Boston. The problem is almost always marketing, not the AI system. More posts = more calls.</p>
-    <p style="margin-top:12px"><a href="/lead-playbook.html" style="color:var(--gold);font-weight:700;letter-spacing:.5px">Lead Playbook: copy-paste post templates, platform guides, and the 7-day launch sequence →</a></p>
+  <div class="warn-box">
+    <div class="warn-box-title">Do not skip this</div>
+    <p>Google Business Profile is how customers find you when they search "[your service] near me." Without it, you're invisible on Google. It's free. Do it today.</p>
   </div>
 </div>
 
-<!-- SECTION 4: RUNNING YOUR FIRST JOB -->
-<div class="section">
+<!-- 04 FACEBOOK -->
+<div class="section" id="facebook">
   <div class="section-num">Section 04</div>
-  <h2>Running a Job Start to Finish</h2>
-  <p class="section-sub">The AI handles the booking. Here's exactly what you do when it's your turn.</p>
-
+  <h2>Create Your Facebook Business Page</h2>
+  <p class="section-sub">Facebook is where most of your first customers will come from. Marketplace posts + a business page = calls within 48 hours.</p>
   <div class="steps">
-    <div class="step">
-      <div class="step-n">1</div>
-      <div class="step-body">
-        <div class="step-title">You'll get a text or notification that a job was booked</div>
-        <div class="step-text">The AI will notify you when it books an appointment. You'll see the customer's name, address, what they want, and what it was quoted at. <strong>Review it and mark it confirmed.</strong> If the job sounds different from what the AI booked, call the customer to clarify.</div>
+    <div class="step"><div class="step-n">1</div><div class="step-body">
+      <div class="step-title">Go to facebook.com/pages/create</div>
+      <div class="step-text">Log into your personal Facebook account (or create one if you don't have it). Click "Create Page."<br>
+        <strong>Page name:</strong> Your business name exactly as it appears on Google Business<br>
+        <strong>Category:</strong> Search for your business type (same categories as Google)<br>
+        <strong>Bio:</strong> One sentence. Example: "Junk removal in McKinney TX. Same-day available. Call for a free quote."
       </div>
-    </div>
-    <div class="step">
-      <div class="step-n">2</div>
-      <div class="step-body">
-        <div class="step-title">Show up on time</div>
-        <div class="step-text">The AI sent a reminder to the customer. They're expecting you at a specific time. <strong>If you're going to be late, text the customer.</strong> Being late without notice is the fastest way to get a bad review. Five minutes early is perfect.</div>
+    </div></div>
+    <div class="step"><div class="step-n">2</div><div class="step-body">
+      <div class="step-title">Add your profile picture and cover photo</div>
+      <div class="step-text">
+        <strong>Profile picture:</strong> A logo, your truck/equipment, or you in work mode. Square format.<br>
+        <strong>Cover photo:</strong> A before/after shot, your vehicle, or a job in progress. Wide format (820x312).
       </div>
-    </div>
-    <div class="step">
-      <div class="step-n">3</div>
-      <div class="step-body">
-        <div class="step-title">Look at the job before you start</div>
-        <div class="step-text">Before you do anything, look at the full scope. If it's bigger than what was quoted, tell the customer: <em>"This is going to be a bit more than quoted because [reason]. Is that okay?"</em> Most people will agree if you're upfront before starting. <strong>Never do more work than agreed without confirming the new price first.</strong></div>
+    </div></div>
+    <div class="step"><div class="step-n">3</div><div class="step-body">
+      <div class="step-title">Fill out the About section</div>
+      <div class="step-text">
+        <strong>Phone:</strong> Your BOSS business phone number<br>
+        <strong>Email:</strong> Your business Gmail<br>
+        <strong>Hours:</strong> Same as Google Business Profile<br>
+        <strong>Location:</strong> Your city and state (service area, not home address)<br>
+        <strong>Website:</strong> Leave blank for now
       </div>
-    </div>
-    <div class="step">
-      <div class="step-n">4</div>
-      <div class="step-body">
-        <div class="step-title">Do the work. Do it well.</div>
-        <div class="step-text">Good work = good reviews = more calls = more money. The AI can only help you if there are people calling. People call when they see good reviews. <strong>Treat every job like it might be your best review.</strong> It often is.</div>
-      </div>
-    </div>
-    <div class="step">
-      <div class="step-n">5</div>
-      <div class="step-body">
-        <div class="step-title">Log the job — takes 30 seconds</div>
-        <div class="step-text">When the job is done, go to <a href="/log-job.html" style="color:var(--gold);font-weight:700">bosssystems.co/log-job.html</a> on your phone and fill it out: your phone number, client name, client phone, and the amount. <strong>Do this before you leave their driveway.</strong> It logs the job, calculates your split, and gives you a review request text to copy and send to the client right then. Customers pay and review faster when you ask while you're still there.</div>
-      </div>
-    </div>
-    <div class="step">
-      <div class="step-n">6</div>
-      <div class="step-body">
-        <div class="step-title">Wait for payment, then leave</div>
-        <div class="step-text">Most customers pay within a few minutes of getting the link. Wait until it goes through before you leave if you can. If they don't pay within 24 hours, the AI will follow up. <strong>You don't need to chase payment</strong> — the system handles that. If a customer still hasn't paid after 48 hours, text Boston.</div>
-      </div>
-    </div>
+    </div></div>
+    <div class="step"><div class="step-n">4</div><div class="step-body">
+      <div class="step-title">Set up your CTA button</div>
+      <div class="step-text">On your page, click "Add Action Button" → select "Call Now" → enter your BOSS business phone number. This puts a call button right on your page.</div>
+    </div></div>
+    <div class="step"><div class="step-n">5</div><div class="step-body">
+      <div class="step-title">Join local community groups</div>
+      <div class="step-text">Search Facebook for "[Your City] community" or "[Your City] marketplace." Join 3-5 groups. <strong>Do not spam them.</strong> Wait until Section 06 for posting strategy.</div>
+    </div></div>
+  </div>
+  <div class="tip-box">
+    <div class="tip-box-title">Optional but recommended</div>
+    <p><strong>Instagram:</strong> Same name as your Facebook page. Link them so posts go to both. Especially important for event decoration, photography, detailing, and cleaning (before/after photos perform well).<br><br>
+    <strong>Nextdoor:</strong> Create a business account at business.nextdoor.com. Nextdoor is gold for local services — homeowners actively look for recommendations there.</p>
   </div>
 </div>
 
-<!-- SECTION 5: GETTING PAID AND REPORTING -->
-<div class="section">
+<!-- 05 PHONE SYSTEM -->
+<div class="section" id="phone">
   <div class="section-num">Section 05</div>
-  <h2>Getting Paid and Reporting Revenue</h2>
-  <p class="section-sub">Simple system. Works the same every week.</p>
-
-  <div class="money-box">
-    <div class="money-row"><span class="money-label">Customers pay via</span><span class="money-val">Payment link (Square/Stripe) or cash</span></div>
-    <div class="money-row"><span class="money-label">Your cut</span><span class="money-val gold">80% of everything collected</span></div>
-    <div class="money-row"><span class="money-label">Boston's cut</span><span class="money-val">20% of your gross weekly revenue</span></div>
-    <div class="money-row"><span class="money-label">When to report</span><span class="money-val">Every Sunday by 8:00 PM CT</span></div>
-    <div class="money-row"><span class="money-label">What to text</span><span class="money-val">"Week of [date] — $[total]"</span></div>
-    <div class="money-row"><span class="money-label">When to pay</span><span class="money-val">Monday noon — Venmo @BosRoss</span></div>
-    <div class="money-row"><span class="money-label">Zero revenue week</span><span class="money-val">Text Boston to confirm zero. Nothing owed.</span></div>
+  <h2>Your Phone System</h2>
+  <p class="section-sub">Boston sets this up for you. Here's what you need to know about it.</p>
+  <div class="steps">
+    <div class="step"><div class="step-n">1</div><div class="step-body">
+      <div class="step-title">You get a dedicated business phone number</div>
+      <div class="step-text">This is a real phone number with a local area code. Customers call this number, and your AI assistant answers. <strong>Your personal phone number stays private.</strong> Boston will text you your number once your system is ready.</div>
+    </div></div>
+    <div class="step"><div class="step-n">2</div><div class="step-body">
+      <div class="step-title">The AI knows your business inside and out</div>
+      <div class="step-text">It knows your business name, your prices, your service area, your hours, and how to book appointments. It handles price objections, scheduling conflicts, angry callers, and wrong numbers. It sounds natural — not robotic.</div>
+    </div></div>
+    <div class="step"><div class="step-n">3</div><div class="step-body">
+      <div class="step-title">You get notifications for every booking</div>
+      <div class="step-text">When someone books a job through the AI, you get a notification with: customer name, phone number, address, date/time, and what they need. <strong>You just show up.</strong></div>
+    </div></div>
+    <div class="step"><div class="step-n">4</div><div class="step-body">
+      <div class="step-title">Test your phone system before going live</div>
+      <div class="step-text">Once Boston texts you your number, <strong>call it yourself</strong>. Pretend to be a customer. Try booking a job. Try asking about prices. Try being difficult. Make sure it handles everything correctly. <strong>If anything sounds wrong, text Boston immediately.</strong></div>
+    </div></div>
   </div>
-
-  <div class="money-example">
-    <div class="money-example-title">Example — real week</div>
-    <p>You complete 5 jobs: $275, $300, $200, $325, $150. Total: <strong>$1,250 gross</strong>.<br>
-    Sunday night you text Boston: <strong>"Week of May 24 — $1,250"</strong><br>
-    Monday noon you Venmo @BosRoss: <strong>$250</strong> (20%)<br>
-    You keep: <strong>$1,000</strong><br>
-    After your costs (fuel, supplies, etc.) your actual take-home is probably $700-850 for about 15-20 hours of work.</p>
-  </div>
-
-  <div class="callout" style="margin-top:24px">
-    <p><strong>Gross revenue means total collected from customers — before any of your expenses.</strong> If you collected $1,250 but spent $200 on gas and supplies, you report $1,250 and pay 20% of that ($250). Your expenses come out of your 80%, not before the split.</p>
+  <div class="warn-box">
+    <div class="warn-box-title">Important</div>
+    <p>If someone asks to speak to the owner or a real person, the AI will offer to take their info and have you call back. <strong>When you get that notification, call them back within 30 minutes.</strong> Speed matters — 78% of customers go with whoever responds first.</p>
   </div>
 </div>
 
-<!-- SECTION 6: MARKETING YOUR BUSINESS -->
-<div class="section">
+<!-- 06 FIRST POSTS -->
+<div class="section" id="first-post">
   <div class="section-num">Section 06</div>
-  <h2>Marketing — Where Your Calls Come From</h2>
-  <p class="section-sub">The AI can answer every call, but it can't make the phone ring. That's your job. Here's where to post.</p>
+  <h2>Your First 5 Posts (Get Your First Call)</h2>
+  <p class="section-sub">This is how you get customers calling. Most partners get their first call within 48-72 hours of posting. Copy these word for word.</p>
 
-  <div class="platform-grid">
-    <div class="platform">
-      <div class="platform-name">Facebook Marketplace</div>
-      <div class="platform-note">Best source for most businesses. Free. Post under "Services." Repost every 3-4 days.</div>
-    </div>
-    <div class="platform">
-      <div class="platform-name">Nextdoor</div>
-      <div class="platform-note">Highly local. Great for home services. Neighbors trust neighbors — introduce yourself as a local business.</div>
-    </div>
-    <div class="platform">
-      <div class="platform-name">Craigslist</div>
-      <div class="platform-note">Still effective for services. Simple listing with your number. Repost to stay visible.</div>
-    </div>
-    <div class="platform">
-      <div class="platform-name">Facebook Groups</div>
-      <div class="platform-note">Find "City Name community" or neighborhood groups. Introduce yourself. Be genuine, not spammy.</div>
-    </div>
-    <div class="platform">
-      <div class="platform-name">Instagram / TikTok</div>
-      <div class="platform-note">Before/after photos drive real bookings. One good video can blow up. Your age is a selling point — own it.</div>
-    </div>
-    <div class="platform">
-      <div class="platform-name">Word of Mouth</div>
-      <div class="platform-note">Never underestimate this. Tell your parents, friends, neighbors. Your first 3 clients probably come this way.</div>
-    </div>
-  </div>
+  <div class="step" style="margin-bottom:20px"><div class="step-n">1</div><div class="step-body">
+    <div class="step-title">Facebook Marketplace Post</div>
+    <div class="step-text">Go to Facebook Marketplace → Create New Listing → select "Service." This is your best first move.</div>
+    <div class="copy-box"><pre id="post-marketplace">[Your Service] in [Your City] — Same Day Available
 
-  <div class="callout" style="margin-top:24px">
-    <p><strong>What to say when posting:</strong> Keep it simple. Your business name, what you do, your area, your phone number, and one reason to pick you over anyone else (fast response, low price, locally owned). Don't overthink the copy — a clear, honest post beats a polished one every time.</p>
-  </div>
+Locally owned. Fair prices. We answer the phone every time (no voicemail, no runaround).
 
-  <div style="margin-top:24px">
-    <div class="script-label">Example post (Facebook Marketplace / Nextdoor)</div>
-    <div class="script-box">[Your Business Name] — [City, State]
+[List 3-4 services you offer with price ranges]
 
-Hey neighbors! I run a local [business type] and I'm taking new customers right now. I serve [city] and the surrounding area.
+Call or text [your business number] for a free estimate.
 
-Fast response, fair prices, and I actually show up when I say I will.
+Serving [your city] and surrounding areas.</pre><button class="copy-btn" onclick="copyText('post-marketplace')">COPY</button></div>
+  </div></div>
 
-Call or text: [Your AI Number]
+  <div class="step" style="margin-bottom:20px"><div class="step-n">2</div><div class="step-body">
+    <div class="step-title">Craigslist Post</div>
+    <div class="step-text">Go to craigslist.org → your city → services → post. Craigslist is free and still gets a lot of traffic for local services.</div>
+    <div class="copy-box"><pre id="post-craigslist">[Your Service] — [Your City] — Licensed & Insured
 
-[If applicable: Junk removal / lawn care / pressure washing / etc.]</div>
+We provide [list of services].
+
+Pricing:
+- [Service 1]: $[price range]
+- [Service 2]: $[price range]
+- [Service 3]: $[price range]
+
+Call [your business number] — we answer every call, day or night.
+
+Serving [list of cities in your area].</pre><button class="copy-btn" onclick="copyText('post-craigslist')">COPY</button></div>
+  </div></div>
+
+  <div class="step" style="margin-bottom:20px"><div class="step-n">3</div><div class="step-body">
+    <div class="step-title">Nextdoor Post</div>
+    <div class="step-text">Post in your neighborhood on Nextdoor. This is where homeowners look for local service recommendations.</div>
+    <div class="copy-box"><pre id="post-nextdoor">Hey neighbors — I just started a [service] business and I'm looking for my first few customers in [your neighborhood/city]. Happy to offer a discounted rate for the first 5 people who book this week.
+
+Call or text [your business number] for a quote. I answer every time.</pre><button class="copy-btn" onclick="copyText('post-nextdoor')">COPY</button></div>
+  </div></div>
+
+  <div class="step" style="margin-bottom:20px"><div class="step-n">4</div><div class="step-body">
+    <div class="step-title">Facebook Community Group Post</div>
+    <div class="step-text">Post in 2-3 local Facebook groups. Be helpful, not spammy.</div>
+    <div class="copy-box"><pre id="post-group">Does anyone know a good [service] around [your city]? I started my own business and I'm looking to build a reputation here. I'm running a deal this week — [describe deal, e.g., "$25 off any job over $150"]. Happy to answer any questions.
+
+[Your business number]</pre><button class="copy-btn" onclick="copyText('post-group')">COPY</button></div>
+  </div></div>
+
+  <div class="step" style="margin-bottom:20px"><div class="step-n">5</div><div class="step-body">
+    <div class="step-title">Tell 10 People You Know</div>
+    <div class="step-text">Text 10 friends, family members, or neighbors. Word of mouth is still the most powerful marketing for local businesses.</div>
+    <div class="copy-box"><pre id="post-personal">Hey — I started a [service] business this summer. If you know anyone who needs [service type], send them my number: [your business number]. I'd really appreciate it. Thanks!</pre><button class="copy-btn" onclick="copyText('post-personal')">COPY</button></div>
+  </div></div>
+
+  <div class="tip-box">
+    <div class="tip-box-title">The first 5 jobs strategy</div>
+    <p>Price 10-15% below your normal rate for the first 5 customers. The goal is Google reviews, not profit. 5 five-star reviews makes your Google Business Profile look established. After that, charge full price.</p>
   </div>
 </div>
 
-<!-- SECTION 7: RULES -->
-<div class="section">
+<!-- 07 RUNNING A JOB -->
+<div class="section" id="running">
   <div class="section-num">Section 07</div>
-  <h2>The Non-Negotiables</h2>
-  <p class="section-sub">These are the things that end the program early if they happen. Know them.</p>
-
-  <div class="rules">
-    <div class="rule">
-      <div class="rule-icon">🚫</div>
-      <div class="rule-text"><strong>Don't flake on booked jobs.</strong> The AI worked to book that appointment. The customer is expecting you. Three flakes in a week and the system gets shut down. If something comes up, call the customer and reschedule immediately — don't just no-show.</div>
-    </div>
-    <div class="rule">
-      <div class="rule-icon">📊</div>
-      <div class="rule-text"><strong>Report every Sunday, even if it's zero.</strong> Missing two weeks of reporting without communication = immediate shutdown. One text takes 10 seconds. There's no excuse to miss it.</div>
-    </div>
-    <div class="rule">
-      <div class="rule-icon">💰</div>
-      <div class="rule-text"><strong>Report accurately.</strong> Boston gets a booking log from the AI system. If your reported revenue is consistently way lower than what the AI booked, that's a problem. Report honestly and everything's fine. The 20% deal only works if both sides play straight.</div>
-    </div>
-    <div class="rule">
-      <div class="rule-icon">🔒</div>
-      <div class="rule-text"><strong>Don't try to copy or share the AI system.</strong> The phone number, the AI configuration, the automation workflows — those are Boston's. You can share the business name and customer contacts, not the system that runs it.</div>
-    </div>
+  <h2>Running a Job Start to Finish</h2>
+  <p class="section-sub">Every job follows this exact same flow.</p>
+  <div class="steps">
+    <div class="step"><div class="step-n">1</div><div class="step-body">
+      <div class="step-title">AI books the job. You get notified.</div>
+      <div class="step-text">When a customer calls your number, the AI gives them a price, picks a time, and books the appointment. You receive a notification with all the details. <strong>Confirm the job by showing up.</strong></div>
+    </div></div>
+    <div class="step"><div class="step-n">2</div><div class="step-body">
+      <div class="step-title">Show up on time. Introduce yourself.</div>
+      <div class="step-text">"Hey, I'm [name] from [business name]. I'm here for the [service]. Let me take a look." Walk the job with the customer, confirm what they need, and confirm the price before you start.</div>
+    </div></div>
+    <div class="step"><div class="step-n">3</div><div class="step-body">
+      <div class="step-title">Do the work. Do it well.</div>
+      <div class="step-text">Take a "before" photo. Do the job. Take an "after" photo. These photos become your marketing material — post them (with customer's permission).</div>
+    </div></div>
+    <div class="step"><div class="step-n">4</div><div class="step-body">
+      <div class="step-title">Collect payment.</div>
+      <div class="step-text">The AI sends a payment link after the job. If the customer wants to pay cash or Venmo directly, that works too. <strong>Collect before you leave.</strong> Don't "send an invoice later."</div>
+    </div></div>
+    <div class="step"><div class="step-n">5</div><div class="step-body">
+      <div class="step-title">Log the job.</div>
+      <div class="step-text">Go to <a href="/log-job.html">bosssystems.co/log-job.html</a> and log the job details: customer name, service, amount collected. This keeps your records straight for Sunday reporting.</div>
+    </div></div>
+    <div class="step"><div class="step-n">6</div><div class="step-body">
+      <div class="step-title">The AI handles the rest.</div>
+      <div class="step-text">After you log the job, the system automatically sends a payment confirmation and a Google review request to the customer. You don't need to do anything else.</div>
+    </div></div>
   </div>
 </div>
 
-<!-- SECTION 8: WHEN SOMETHING BREAKS -->
-<div class="section">
+<!-- 08 MONEY -->
+<div class="section" id="money">
   <div class="section-num">Section 08</div>
-  <h2>When Something Goes Wrong</h2>
-  <p class="section-sub">Stuff breaks sometimes. Here's what to do.</p>
-
-  <div class="break-box">
-    <div class="break-box-title">AI stops answering / sounds wrong / quotes wrong price</div>
-    <p>Text Boston immediately at 903-714-6162. Include your business name and city. He responds same day and fixes it. Don't let it sit for a day — every missed call is a missed job.</p>
+  <h2>Getting Paid and Reporting</h2>
+  <p class="section-sub">Simple. Every week, same routine.</p>
+  <div class="steps">
+    <div class="step"><div class="step-n">1</div><div class="step-body">
+      <div class="step-title">Every Sunday by 8pm: text your total revenue</div>
+      <div class="step-text">Text Boston at <strong>903-714-6162</strong> with your gross revenue for the week.<br><br>Example text:</div>
+      <div class="copy-box"><pre id="report-text">Week of [date]: $1,250 gross. 3 jobs completed.</pre><button class="copy-btn" onclick="copyText('report-text')">COPY</button></div>
+      <div class="step-text" style="margin-top:12px">Zero revenue? Just text: <code>Week of [date]: $0. No jobs.</code></div>
+    </div></div>
+    <div class="step"><div class="step-n">2</div><div class="step-body">
+      <div class="step-title">Every Monday by noon: Venmo 20%</div>
+      <div class="step-text">Venmo <strong>@BosRoss</strong> with 20% of your gross revenue. Example: if you collected $1,250, you send $250. Include the week dates in the Venmo note.</div>
+    </div></div>
   </div>
-
-  <div class="break-box" style="background:#000a0a;border-color:#0a2a2a">
-    <div class="break-box-title" style="color:#64b5f6">Payment link isn't working</div>
-    <p>Ask the customer to pay by another method (Venmo, cash) and text Boston. He'll track down the issue. Don't lose the job over a payment link — figure it out in the moment and fix the system after.</p>
-  </div>
-
-  <div class="break-box" style="background:#0a0a00;border-color:#2a2a00">
-    <div class="break-box-title" style="color:var(--gold)">Customer is unhappy with the work</div>
-    <p>Offer to fix it or give a partial refund. An unhappy customer who gets made right often leaves a better review than someone who had a perfect experience. How you handle a problem says more about your business than the problem itself.</p>
-  </div>
-
-  <div class="callout">
-    <p><strong>Boston's number: 903-714-6162.</strong> Text, don't call. He monitors that number constantly during business hours and responds same day for system issues. You are not on your own.</p>
+  <div class="warn-box">
+    <div class="warn-box-title">Gross revenue = everything you collected</div>
+    <p>Before gas, before dump fees, before supplies. If a customer paid you $400, your gross is $400. Boston's 20% is $80. You keep $320, and you pay your own expenses out of that.</p>
   </div>
 </div>
 
-</div><!-- end wrap -->
+<!-- 09 RULES -->
+<div class="section" id="rules">
+  <div class="section-num">Section 09</div>
+  <h2>The Non-Negotiables</h2>
+  <p class="section-sub">Break these and we end the partnership. No exceptions.</p>
+  <ul class="checklist">
+    <li><strong>Never flake on a booked job.</strong> If a customer is booked, you show up. Period. If you have a genuine emergency, text Boston AND the customer immediately.</li>
+    <li><strong>Report every Sunday.</strong> Even if it's $0. Skipping a report without explanation = 1 warning. Skip twice = partnership ended.</li>
+    <li><strong>Report accurately.</strong> The AI logs bookings as a cross-check. If your reported numbers consistently don't match what the AI logged, we have a problem.</li>
+    <li><strong>Don't copy, resell, or reverse-engineer the AI system.</strong> The tech is BOSS Systems' IP. Your business is yours. The tech is not.</li>
+    <li><strong>Be professional.</strong> You represent your own business. Don't show up late, don't show up messy, don't argue with customers. Handle complaints calmly.</li>
+    <li><strong>Safety first.</strong> If a job feels unsafe, walk away. No job is worth an injury. Especially for junk removal: wear gloves, closed-toe shoes, and watch for sharp objects. For lawn care: hydrate constantly in summer heat.</li>
+  </ul>
+</div>
+
+<!-- 10 TRAINING -->
+<div class="section" id="training">
+  <div class="section-num">Section 10</div>
+  <h2>Free Business Training</h2>
+  <p class="section-sub">These resources are built specifically for you. Use them.</p>
+  <div class="steps">
+    <div class="step"><div class="step-n">1</div><div class="step-body">
+      <div class="step-title"><a href="/learn-business.html">BOSS Learn — Business Training Course</a></div>
+      <div class="step-text">Free interactive business course. Takes a quiz about your business, then generates personalized lessons on pricing, operations, customer service, common mistakes, upselling, safety, insurance, and more. Includes Q&A with an AI business advisor. <strong>Do this before your first job.</strong></div>
+    </div></div>
+    <div class="step"><div class="step-n">2</div><div class="step-body">
+      <div class="step-title"><a href="/partner-tools.html">Business-Specific Guides</a></div>
+      <div class="step-text">Detailed guides for every business type: pricing tables, on-the-job scripts, week 1 checklists, common customer questions, and what the AI handles for you. Find your business and read the whole guide.</div>
+    </div></div>
+    <div class="step"><div class="step-n">3</div><div class="step-body">
+      <div class="step-title"><a href="/partner-quiz.html">Market Quiz</a></div>
+      <div class="step-text">Not sure which business to run? Take the 2-minute quiz to find out what fits your skills, equipment, and location. Shows estimated earnings and market tips.</div>
+    </div></div>
+  </div>
+</div>
+
+<!-- 11 HELP -->
+<div class="section" id="help">
+  <div class="section-num">Section 11</div>
+  <h2>When Something Breaks</h2>
+  <p class="section-sub">Things will break. Here's exactly what to do.</p>
+  <div class="steps">
+    <div class="step"><div class="step-n">1</div><div class="step-body">
+      <div class="step-title">AI says something wrong on a call</div>
+      <div class="step-text">Text Boston: "The AI told a customer [what it said]. It should say [what's correct]." Fixed same day.</div>
+    </div></div>
+    <div class="step"><div class="step-n">2</div><div class="step-body">
+      <div class="step-title">Phone number not working</div>
+      <div class="step-text">Text Boston: "My business number [number] is not working. Getting [error / voicemail / busy signal]." Fixed within hours.</div>
+    </div></div>
+    <div class="step"><div class="step-n">3</div><div class="step-body">
+      <div class="step-title">Customer complaint</div>
+      <div class="step-text">Handle it yourself first: apologize, offer to fix it or give a discount. If it escalates, text Boston with the details. <strong>Never argue with a customer.</strong></div>
+    </div></div>
+    <div class="step"><div class="step-n">4</div><div class="step-body">
+      <div class="step-title">You want to change your prices</div>
+      <div class="step-text">Text Boston with your new prices. He'll update the AI within 24 hours. Don't change prices without telling him — the AI will still quote the old ones.</div>
+    </div></div>
+    <div class="step"><div class="step-n">5</div><div class="step-body">
+      <div class="step-title">You want to quit</div>
+      <div class="step-text">3 days notice. Text Boston. No penalty, no hard feelings. Finish any booked jobs, report your final revenue, and you're done. The business name, reviews, and customers are still yours.</div>
+    </div></div>
+  </div>
+</div>
+
+<!-- 12 TAXES -->
+<div class="section" id="taxes">
+  <div class="section-num">Section 12</div>
+  <h2>Taxes and Legal</h2>
+  <p class="section-sub">This is not legal advice. Talk to a parent or tax professional. But here's what you should know.</p>
+  <div class="steps">
+    <div class="step"><div class="step-n">1</div><div class="step-body">
+      <div class="step-title">You're an independent contractor, not an employee</div>
+      <div class="step-text">BOSS Systems doesn't employ you. You run your own business. That means no taxes are withheld from your earnings. <strong>You are responsible for your own taxes.</strong></div>
+    </div></div>
+    <div class="step"><div class="step-n">2</div><div class="step-body">
+      <div class="step-title">Track every expense</div>
+      <div class="step-text">Gas, dump fees, supplies, equipment, phone bill — anything you spend on the business. Keep receipts or screenshots. These reduce your taxable income. Use a spreadsheet or a notes app — just keep track.</div>
+    </div></div>
+    <div class="step"><div class="step-n">3</div><div class="step-body">
+      <div class="step-title">If you earn over $600, you may receive a 1099</div>
+      <div class="step-text">If BOSS Systems pays you more than $600 in a year (through the 80/20 split), you may receive a 1099-NEC form. This is normal for independent contractors. You report this income on your tax return.</div>
+    </div></div>
+    <div class="step"><div class="step-n">4</div><div class="step-body">
+      <div class="step-title">Talk to a parent about insurance</div>
+      <div class="step-text">Some businesses benefit from liability insurance (especially junk removal, pressure washing, and lawn care). Your family's homeowner's insurance might already cover some small business activity. <strong>Ask a parent before your first job.</strong></div>
+    </div></div>
+  </div>
+  <div class="tip-box">
+    <div class="tip-box-title">Keep it simple</div>
+    <p>Most summer partners earn under $10K — which means a simple tax return. The key is tracking your expenses now so you're not scrambling in January. Take a photo of every receipt.</p>
+  </div>
+</div>
+
+</div><!-- /wrap -->
 
 <div class="bottom-cta">
-  <div class="wrap">
-    <h2>Ready to Go Deeper?</h2>
-    <p>The business-specific guides have everything about your exact business — pricing, scripts, day-in-the-life, and more.</p>
-    <a href="/partner-tools.html" class="btn-primary">Open Business Guides</a>
-    <a href="/summer.html" class="btn-outline">Program Overview</a>
-  </div>
+  <h2>You Have Everything You Need</h2>
+  <p>Follow this guide, do the work, and the money follows. Questions? Text 903-714-6162.</p>
+  <a href="/partner-tools.html" class="btn-primary">Business Guides</a>
+  <a href="/learn-business.html" class="btn-outline">Training Course</a>
 </div>
 
 <footer>
   <div class="footer-logo">BOSS SYSTEMS</div>
   <div class="footer-links">
-    <a href="/">bosssystems.co</a>
-    <a href="/summer.html">Summer Program</a>
-    <a href="/partner-tools.html">Business Guides</a>
-    <a href="/lead-playbook.html">Lead Playbook</a>
-    <a href="/compliance.html">Legal Guide</a>
-    <a href="/terms.html">Agreement</a>
-    <a href="tel:+19037146162">903-714-6162</a>
+    <a href="/summer.html">Program</a>
+    <a href="/partner-tools.html">Guides</a>
+    <a href="/terms.html">Terms</a>
+    <a href="/compliance.html">Legal</a>
+    <a href="/parents.html">Parents</a>
+    <a href="/privacy.html">Privacy</a>
   </div>
 </footer>
 
+<script>
+function copyText(id) {
+  var el = document.getElementById(id);
+  var text = el.textContent;
+  navigator.clipboard.writeText(text).then(function() {
+    var btn = el.parentElement.querySelector('.copy-btn');
+    btn.textContent = 'COPIED';
+    setTimeout(function() { btn.textContent = 'COPY'; }, 2000);
+  });
+}
+
+// Progress tracker with localStorage
+var trackerKeys = ['t-phone','t-ai','t-gmail','t-gbp','t-fb','t-post','t-call','t-cust'];
+var saved = JSON.parse(localStorage.getItem('boss_partner_tracker') || '{}');
+
+trackerKeys.forEach(function(key) {
+  var el = document.getElementById(key);
+  if (!el) return;
+  if (saved[key]) {
+    el.textContent = 'DONE';
+    el.className = 'status done';
+  }
+  el.parentElement.style.cursor = 'pointer';
+  el.parentElement.addEventListener('click', function() {
+    if (saved[key]) {
+      delete saved[key];
+      var defaults = {
+        't-phone':'BOSTON','t-ai':'BOSTON','t-gmail':'YOU','t-gbp':'YOU',
+        't-fb':'YOU','t-post':'YOU','t-call':'YOU','t-cust':'GOAL'
+      };
+      el.textContent = defaults[key] || 'PENDING';
+      el.className = 'status pending';
+    } else {
+      saved[key] = true;
+      el.textContent = 'DONE';
+      el.className = 'status done';
+    }
+    localStorage.setItem('boss_partner_tracker', JSON.stringify(saved));
+  });
+});
+</script>
 </body>
 </html>
