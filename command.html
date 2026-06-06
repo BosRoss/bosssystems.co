@@ -885,17 +885,35 @@ function sendPackage(name, phone) {
   .then(function(data) {
     if (!data) { renderEngageEmpty(); return; }
     var stats = data.stats || {};
+    var limits = data.limits || {};
     var active = data.active || [];
     var replied = data.replied || [];
 
-    document.getElementById('eng-queue').textContent = active.length;
+    var actionable = active.filter(function(o){return !o.sub_on_cooldown});
+    document.getElementById('eng-queue').textContent = actionable.length;
     document.getElementById('eng-replied').textContent = stats.replied || replied.length || 0;
     document.getElementById('eng-drafts').textContent = active.filter(function(o){return o.status==='drafted'}).length;
-    document.getElementById('engage-count').textContent = active.length || '';
+    document.getElementById('engage-count').textContent = actionable.length || '';
     if (stats.last_scan) {
       var scanDate = new Date(stats.last_scan);
       document.getElementById('engage-last-scan').textContent = 'Last scan: ' + scanDate.toLocaleDateString('en-US',{month:'short',day:'numeric'}) + ' ' + scanDate.toLocaleTimeString('en-US',{hour:'numeric',minute:'2-digit'});
     }
+
+    // Show limits bar
+    var limitsHtml = '<div style="background:var(--bg2);border:1px solid var(--border);padding:10px 14px;margin-bottom:12px;font-size:11px;display:flex;gap:16px;flex-wrap:wrap">';
+    limitsHtml += '<span style="color:var(--dim)">Today: <span style="color:'+(limits.today_used >= limits.daily_cap ? 'var(--red)' : 'var(--green)')+'">'+( limits.today_used||0)+'/'+( limits.daily_cap||2)+'</span> replies</span>';
+    var cooldownSubs = limits.subs_on_cooldown || {};
+    var cooldownCount = Object.keys(cooldownSubs).length;
+    limitsHtml += '<span style="color:var(--dim)">Cooldowns: <span style="color:var(--text)">'+cooldownCount+' subs</span></span>';
+    limitsHtml += '<span style="color:var(--dim)">BOSS mention: <span style="color:var(--text)">'+(limits.boss_mention_rate||'1 in 5')+'</span></span>';
+    limitsHtml += '</div>';
+    if (cooldownCount > 0) {
+      limitsHtml += '<div style="background:var(--bg2);border:1px solid var(--border);padding:8px 14px;margin-bottom:12px;font-size:10px;color:var(--muted)">';
+      limitsHtml += '<span style="color:var(--dim);letter-spacing:1px">ON COOLDOWN: </span>';
+      Object.entries(cooldownSubs).forEach(function(e){ limitsHtml += '<span style="margin-right:10px">r/'+esc(e[0])+' <span style="color:var(--orange)">'+e[1]+'d</span></span>'; });
+      limitsHtml += '</div>';
+    }
+    document.getElementById('engage-stats').insertAdjacentHTML('afterend', limitsHtml);
 
     // Account status from localStorage
     var accounts = JSON.parse(localStorage.getItem('boss_engage_accounts') || '{}');
@@ -915,15 +933,19 @@ function sendPackage(name, phone) {
       container.innerHTML = '<div class="app-empty">No opportunities right now. Engine scans every 12 hours.</div>';
       return;
     }
+    // Sort: actionable first, then cooldown
+    active.sort(function(a,b){ return (a.sub_on_cooldown?1:0)-(b.sub_on_cooldown?1:0) || b.relevance-a.relevance; });
     container.innerHTML = active.slice(0, 15).map(function(o) {
       var relColor = o.relevance >= 80 ? 'var(--green)' : o.relevance >= 40 ? 'var(--gold)' : 'var(--dim)';
-      var statusTag = o.status === 'drafted' ? '<span style="color:var(--orange);font-size:9px;font-family:\'Share Tech Mono\',monospace;margin-left:6px">DRAFT READY</span>' :
+      var statusTag = o.sub_on_cooldown ? '<span style="color:var(--red);font-size:9px;font-family:\'Share Tech Mono\',monospace;margin-left:6px">COOLDOWN</span>' :
+                      o.status === 'drafted' ? '<span style="color:var(--orange);font-size:9px;font-family:\'Share Tech Mono\',monospace;margin-left:6px">DRAFT READY</span>' :
                       o.status === 'new' ? '<span style="color:var(--blue);font-size:9px;font-family:\'Share Tech Mono\',monospace;margin-left:6px">NEW</span>' : '';
       var leadTag = o.lead_matches ? '<span style="color:var(--purple);font-size:9px;font-family:\'Share Tech Mono\',monospace;margin-left:6px">LEAD MATCH</span>' : '';
       var industry = o.industry ? ' &middot; ' + esc(o.industry) : '';
       var age = o.found_at ? timeSince(o.found_at) : '';
+      var dimStyle = o.sub_on_cooldown ? 'opacity:0.5' : '';
 
-      return '<div style="background:var(--bg2);border:1px solid var(--border);padding:12px 14px;margin-bottom:6px">' +
+      return '<div style="background:var(--bg2);border:1px solid var(--border);padding:12px 14px;margin-bottom:6px;'+dimStyle+'">' +
         '<div style="display:flex;justify-content:space-between;align-items:flex-start">' +
           '<div style="flex:1">' +
             '<div style="font-size:13px;font-weight:700;color:var(--text);line-height:1.3">' + esc(o.title).substring(0,70) + statusTag + leadTag + '</div>' +
