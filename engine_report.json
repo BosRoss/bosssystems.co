@@ -1,5 +1,5 @@
 {
-  "generated": "2026-06-08T19:53:13.305336+00:00",
+  "generated": "2026-06-08T20:35:36.617286+00:00",
   "engine_state": "active",
   "signals": [
     {
@@ -59,14 +59,6 @@
       "pitch_hook": "You're getting slammed with calls \u2014 how many went to voicemail today?"
     },
     {
-      "type": "flood",
-      "area": "Benton, AR; Carroll, AR; Madison, AR",
-      "niche": "plumbing",
-      "action": "Flood warnings in Benton, AR; Carroll, AR; Madison, AR. Plumbers, restoration, mold companies will spike.",
-      "urgency": "today",
-      "pitch_hook": "Water damage calls are coming. Every one you miss is $500+ walking away."
-    },
-    {
       "type": "heat_wave",
       "area": "North and Central Sebastian; Southern Crawford; Central and Southern Franklin; Washington; Nowata; Craig; Ottawa; Pawnee; Tulsa; Rogers; Mayes; Delaware; Wagoner; Western Osage; Northeast Osage; South",
       "niche": "hvac",
@@ -76,9 +68,17 @@
     },
     {
       "type": "flood",
-      "area": "Jackson, AL; Madison, AL; Marshall, AL",
+      "area": "Tuscaloosa, AL",
       "niche": "plumbing",
-      "action": "Flood warnings in Jackson, AL; Madison, AL; Marshall, AL. Plumbers, restoration, mold companies will spike.",
+      "action": "Flood warnings in Tuscaloosa, AL. Plumbers, restoration, mold companies will spike.",
+      "urgency": "today",
+      "pitch_hook": "Water damage calls are coming. Every one you miss is $500+ walking away."
+    },
+    {
+      "type": "flood",
+      "area": "Calhoun, AL; St. Clair, AL; Talladega, AL",
+      "niche": "plumbing",
+      "action": "Flood warnings in Calhoun, AL; St. Clair, AL; Talladega, AL. Plumbers, restoration, mold companies will spike.",
       "urgency": "today",
       "pitch_hook": "Water damage calls are coming. Every one you miss is $500+ walking away."
     }
@@ -239,55 +239,55 @@
   "feeds": [
     {
       "name": "NOAA",
-      "last_hit": "2026-06-08T19:45:15.508309+00:00",
+      "last_hit": "2026-06-08T20:27:46.403459+00:00",
       "status": "yellow",
       "data_points_today": 0
     },
     {
       "name": "REDDIT",
-      "last_hit": "2026-06-08T19:45:15.508309+00:00",
+      "last_hit": "2026-06-08T20:27:46.403459+00:00",
       "status": "green",
       "data_points_today": 841
     },
     {
       "name": "USGS",
-      "last_hit": "2026-06-08T19:45:15.508309+00:00",
+      "last_hit": "2026-06-08T20:27:46.403459+00:00",
       "status": "yellow",
       "data_points_today": 0
     },
     {
       "name": "HACKERNEWS",
-      "last_hit": "2026-06-08T19:45:15.508309+00:00",
+      "last_hit": "2026-06-08T20:27:46.403459+00:00",
       "status": "green",
       "data_points_today": 30
     },
     {
       "name": "FEMA",
-      "last_hit": "2026-06-08T19:45:15.508309+00:00",
+      "last_hit": "2026-06-08T20:27:46.403459+00:00",
       "status": "green",
       "data_points_today": 20
     },
     {
       "name": "COMMODITIES",
-      "last_hit": "2026-06-08T19:45:15.508309+00:00",
+      "last_hit": "2026-06-08T20:27:46.403459+00:00",
       "status": "green",
       "data_points_today": 7
     },
     {
       "name": "RSS",
-      "last_hit": "2026-06-08T19:45:15.508309+00:00",
+      "last_hit": "2026-06-08T20:27:46.403459+00:00",
       "status": "green",
       "data_points_today": 170
     },
     {
       "name": "FRED",
-      "last_hit": "2026-06-08T19:45:15.508309+00:00",
+      "last_hit": "2026-06-08T20:27:46.403459+00:00",
       "status": "yellow",
       "data_points_today": 0
     },
     {
       "name": "BLS",
-      "last_hit": "2026-06-08T19:45:15.508309+00:00",
+      "last_hit": "2026-06-08T20:27:46.403459+00:00",
       "status": "green",
       "data_points_today": 9
     }
