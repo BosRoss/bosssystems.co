@@ -705,9 +705,20 @@ async function runAnalysis() {
       <h3>What This Would Cost You</h3>
       <div class="rec-sub">Based on the ${fmt(totalValue)}/yr estimate (after overlap discount). These are projections — your real numbers depend on your market, call volume, and execution.</div>
 
+      <div class="price-rows" style="margin-bottom:0;border-bottom:none">
+        <div class="price-row" style="color:#666">
+          <span class="lhs">Full-time receptionist</span>
+          <span class="rhs" style="color:#666;font-weight:400">$4,288 - $5,808/mo</span>
+        </div>
+        <div class="price-row" style="color:#666">
+          <span class="lhs">Ruby Receptionist (per-minute billing)</span>
+          <span class="rhs" style="color:#666;font-weight:400">$245 - $1,725/mo</span>
+        </div>
+      </div>
+
       <div class="price-rows">
         <div class="price-row">
-          <span class="lhs">Build fee (one-time)</span>
+          <span class="lhs">Custom build fee (one-time)</span>
           <span class="rhs">${fmt(pricing.buildFee)}</span>
         </div>
         <div class="price-row">
