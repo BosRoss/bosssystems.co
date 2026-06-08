@@ -204,7 +204,7 @@ function buildAutomations(btype, jobValue, googleData) {
   const receptionist_val = cap(recoveredPerWeek * job * 52, 80000);
   autos.push({
     key: 'phone_receptionist', name: 'AI Phone Receptionist', cat: 'Customer Acquisition',
-    value: receptionist_val, cost: 60, hours: 2, diff: 1, quickWin: true, applies: ['all'],
+    value: receptionist_val, cost: 50, hours: 2, diff: 1, quickWin: true, applies: ['all'],
     desc: 'AI answers every call 24/7, qualifies leads, quotes jobs, books appointments.',
     calc: `Industry data: 27% of calls to service businesses go unanswered (BIA/Kelsey). Of unanswered callers, 85% never call back. Estimate: ~${missedPerWeek} missed/week × ${recoveredPerWeek} recovered at $${fmt_num(job)} avg = ${fmt(receptionist_val)}/yr. <em class="est">Missed call count is an industry estimate — your actual number may differ.</em>`,
   });
