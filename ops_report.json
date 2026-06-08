@@ -1,42 +1,42 @@
 {
-  "generated": "2026-06-07T03:48:59.680009+00:00",
+  "generated": "2026-06-08T20:30:02.674170+00:00",
   "sections": {
     "atlas": {
-      "power_level": "SURGE",
-      "last_scan": "2026-06-06T22:05:03.240562+00:00",
-      "scan_count": 66,
+      "power_level": "ACTIVE",
+      "last_scan": "2026-06-08T19:45:15.508309+00:00",
+      "scan_count": 68,
       "heat_score": 100,
-      "recommendation": "HOT DAY. Weather-driven demand in Denton, TX, Runnels, TX, St. Tammany, LA; Hancock, MS. Call HVAC/roofers there NOW.",
+      "recommendation": "HOT DAY. Weather-driven demand in Jackson, AL; Madison, AL; Marshall, AL, Harrison, MS, Hutchinson; Roberts; Hemphill; Palo Duro Canyon. Call HVAC/roofers there NOW.",
       "demand_signals": 10,
       "pain_signals": 0,
       "pitch_adjustments": 0,
       "competitor_intel": 0,
-      "territory_alerts": 0,
+      "territory_alerts": 15,
       "top_demands": [
         {
-          "type": "storm",
-          "area": "Denton, TX",
-          "niche": "roofing"
-        },
-        {
           "type": "flood",
-          "area": "Hardin, TX; Jefferson, TX; Orange, TX",
+          "area": "Henderson, TX; Navarro, TX",
           "niche": "plumbing"
         },
         {
           "type": "flood",
-          "area": "Wise, TX",
+          "area": "Hunt, TX; Rockwall, TX",
           "niche": "plumbing"
         },
         {
-          "type": "flood",
-          "area": "Runnels, TX",
-          "niche": "plumbing"
+          "type": "heat_wave",
+          "area": "Hutchinson; Roberts; Hemphill; Palo Duro Canyon",
+          "niche": "hvac"
         },
         {
           "type": "flood",
-          "area": "Brown, TX; Coleman, TX",
+          "area": "Hardin, TX; Jefferson, TX",
           "niche": "plumbing"
+        },
+        {
+          "type": "heat_wave",
+          "area": "Clay; Greene; Craighead; Poinsett; Mississippi; Cross; Critt",
+          "niche": "hvac"
         }
       ],
       "sources_online": 0
@@ -161,8 +161,8 @@
       ]
     },
     "n8n": {
-      "active_workflows": 91,
-      "inactive_workflows": 35,
+      "active_workflows": 89,
+      "inactive_workflows": 37,
       "total_workflows": 126,
       "recent_errors": 20,
       "recent_crashes": 10,
@@ -210,24 +210,24 @@
       ],
       "recent_failures": [
         {
-          "workflow": "wX6OyZ9UY0Xrbui1",
-          "started": "2026-06-06T19:57"
+          "workflow": "26IvNLLF6Pi1WEb5",
+          "started": "2026-06-08T19:58"
         },
         {
-          "workflow": "wX6OyZ9UY0Xrbui1",
-          "started": "2026-06-06T19:56"
+          "workflow": "26IvNLLF6Pi1WEb5",
+          "started": "2026-06-08T19:51"
         },
         {
-          "workflow": "wX6OyZ9UY0Xrbui1",
-          "started": "2026-06-06T19:55"
+          "workflow": "EGyXul1WqnnshU96",
+          "started": "2026-06-08T19:01"
         },
         {
-          "workflow": "ixfJvd20xa3ZjaSA",
-          "started": "2026-06-06T19:16"
+          "workflow": "EGyXul1WqnnshU96",
+          "started": "2026-06-08T19:01"
         },
         {
-          "workflow": "ixfJvd20xa3ZjaSA",
-          "started": "2026-06-06T19:16"
+          "workflow": "EGyXul1WqnnshU96",
+          "started": "2026-06-08T19:01"
         }
       ]
     },
@@ -235,19 +235,19 @@
       "total_agents": 15,
       "agents": [
         {
-          "name": "Wickham Lawn Care",
-          "id": "agent_6d02eab9ce7293fc7ef932b2cb",
-          "last_modification": "1780717642"
-        },
-        {
           "name": "BOSS Follow-Up Caller",
           "id": "agent_d1f1604b4cf25a35060e918fc9",
-          "last_modification": "1780689209"
+          "last_modification": "1780948543"
         },
         {
           "name": "BOSS Outbound Sales Caller",
           "id": "agent_6c19e0315cf3dfd1ffa3db63a2",
-          "last_modification": "1780689209"
+          "last_modification": "1780948543"
+        },
+        {
+          "name": "Wickham Lawn Care",
+          "id": "agent_6d02eab9ce7293fc7ef932b2cb",
+          "last_modification": "1780717642"
         },
         {
           "name": "BOSS Junk Removal \u2014 Laurel MS",
@@ -288,7 +288,7 @@
       "calls_24h": 50,
       "outbound_24h": 50,
       "inbound_24h": 0,
-      "avg_duration_sec": 16.4
+      "avg_duration_sec": 17.3
     },
     "quant": {
       "state": "ACTIVE",
@@ -298,7 +298,7 @@
     "health": {
       "circuit_breakers_tripped": [],
       "engine_paused": false,
-      "atlas_power": "SURGE",
+      "atlas_power": "ACTIVE",
       "n8n_errors_24h": 20,
       "retell_calls_24h": 50,
       "api_spend_pct": 1.5
