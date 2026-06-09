@@ -1,7 +1,15 @@
 {
-  "generated": "2026-06-09T05:07:35.751212+00:00",
+  "generated": "2026-06-09T07:15:22.532687+00:00",
   "engine_state": "active",
   "signals": [
+    {
+      "type": "heat_wave",
+      "area": "Palo Duro Canyon",
+      "niche": "hvac",
+      "action": "HVAC businesses in Palo Duro Canyon are drowning in calls right now. Perfect time to pitch.",
+      "urgency": "today",
+      "pitch_hook": "You're getting slammed with calls \u2014 how many went to voicemail today?"
+    },
     {
       "type": "heat_wave",
       "area": "Sevier; Howard; Little River; Hempstead; Miller; McCurtain; Red River; Bowie; Franklin; Titus; Morris; Cass",
@@ -9,14 +17,6 @@
       "action": "HVAC businesses in Sevier; Howard; Little River; Hempstead; Miller; McCurtain; Red River; Bowie; Franklin; Titus; Morris; Cass are drowning in calls right now. Perfect time to pitch.",
       "urgency": "today",
       "pitch_hook": "You're getting slammed with calls \u2014 how many went to voicemail today?"
-    },
-    {
-      "type": "flood",
-      "area": "Hockley, TX",
-      "niche": "plumbing",
-      "action": "Flood warnings in Hockley, TX. Plumbers, restoration, mold companies will spike.",
-      "urgency": "today",
-      "pitch_hook": "Water damage calls are coming. Every one you miss is $500+ walking away."
     },
     {
       "type": "flood",
@@ -239,55 +239,55 @@
   "feeds": [
     {
       "name": "NOAA",
-      "last_hit": "2026-06-09T04:59:49.010023+00:00",
+      "last_hit": "2026-06-09T07:07:40.740217+00:00",
       "status": "yellow",
       "data_points_today": 0
     },
     {
       "name": "REDDIT",
-      "last_hit": "2026-06-09T04:59:49.010023+00:00",
+      "last_hit": "2026-06-09T07:07:40.740217+00:00",
       "status": "green",
       "data_points_today": 841
     },
     {
       "name": "USGS",
-      "last_hit": "2026-06-09T04:59:49.010023+00:00",
+      "last_hit": "2026-06-09T07:07:40.740217+00:00",
       "status": "yellow",
       "data_points_today": 0
     },
     {
       "name": "HACKERNEWS",
-      "last_hit": "2026-06-09T04:59:49.010023+00:00",
+      "last_hit": "2026-06-09T07:07:40.740217+00:00",
       "status": "green",
       "data_points_today": 30
     },
     {
       "name": "FEMA",
-      "last_hit": "2026-06-09T04:59:49.010023+00:00",
+      "last_hit": "2026-06-09T07:07:40.740217+00:00",
       "status": "green",
       "data_points_today": 20
     },
     {
       "name": "COMMODITIES",
-      "last_hit": "2026-06-09T04:59:49.010023+00:00",
+      "last_hit": "2026-06-09T07:07:40.740217+00:00",
       "status": "green",
       "data_points_today": 7
     },
     {
       "name": "RSS",
-      "last_hit": "2026-06-09T04:59:49.010023+00:00",
+      "last_hit": "2026-06-09T07:07:40.740217+00:00",
       "status": "green",
       "data_points_today": 170
     },
     {
       "name": "FRED",
-      "last_hit": "2026-06-09T04:59:49.010023+00:00",
+      "last_hit": "2026-06-09T07:07:40.740217+00:00",
       "status": "yellow",
       "data_points_today": 0
     },
     {
       "name": "BLS",
-      "last_hit": "2026-06-09T04:59:49.010023+00:00",
+      "last_hit": "2026-06-09T07:07:40.740217+00:00",
       "status": "green",
       "data_points_today": 9
     }
