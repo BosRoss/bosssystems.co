@@ -138,7 +138,7 @@ BUSINESS_TEMPLATES = {
             "- Termite inspection: $100-150 (treatment quoted on-site)\n"
             "- Rodent treatment + exclusion: $200-400\n"
             "- Bed bug treatment: $300-600\n"
-            "First month free with annual contract."
+            "Ask about our maintenance plans for the best rates."
         ),
         "google_category": "pest control service",
         "keywords": ["pest control", "exterminator", "bug control", "termite"],
@@ -222,7 +222,7 @@ BUSINESS_TEMPLATES = {
         "revenue_high": 50000,
         "pricing_text": (
             "PRICING:\n"
-            "- Free roof inspection: $0\n"
+            "- Roof inspection: call for details\n"
             "- Roof leak repair (small): $200-500\n"
             "- Roof leak repair (moderate): $500-1,200\n"
             "- Missing shingles / wind damage: $200-800\n"
@@ -231,7 +231,7 @@ BUSINESS_TEMPLATES = {
             "- Metal roof install: $12,000-25,000+\n"
             "- Gutter install (per linear foot): $6-12\n"
             "- Gutter cleaning: $100-250\n"
-            "- Insurance claim assistance: free with roof replacement\n"
+            "- Insurance claim assistance: available — ask for details\n"
             "- Emergency tarping: $200-500"
         ),
         "google_category": "roofing contractor",
@@ -588,14 +588,14 @@ BUSINESS_VOICES = {
 }
 
 BUSINESS_OBJECTIONS = {
-    "pest control": '- "Is it safe for my kids/pets?" → "Absolutely — everything we use is pet and kid safe once it dries, usually about 30 minutes."',
+    "pest control": '- "Is it safe for my kids/pets?" → "Great question — our technician will go over all the safety details with you on-site and let you know exactly what to expect. Want me to get you scheduled?"',
     "pressure washing": '- "Will it damage my siding?" → "Nope — we soft wash when needed. We adjust the pressure based on the surface. Your siding\'s safe."\n- "How long does it take?" → "Most houses take 2-3 hours. Driveways are usually under an hour."',
     "cleaning": '- "Do I need to be home?" → "Nope, most of our clients give us a code or leave a key. Totally up to you."',
     "junk removal": '- "Can you come TODAY?" → "Let me check — we usually can fit same-day in. What time works?"',
     "lawn care": '- "Is it just weekly or can I do one-time?" → "We do both. Most people start with a one-time and then decide. Want me to book you one?"',
-    "hvac": '- "Can you come today? It\'s an emergency." → "Got it — we have emergency service. Let me get your address and I\'ll get someone headed your way."\n- "How much to replace my whole system?" → "Depends on the size of your home and what we\'re working with. We can send someone out for a free estimate — usually takes about 30 minutes."',
+    "hvac": '- "Can you come today? It\'s an emergency." → "Got it — we have emergency service. Let me get your address and I\'ll get someone headed your way."\n- "How much to replace my whole system?" → "Depends on the size of your home and what we\'re working with. We can send someone out to take a look and give you an exact number — usually takes about 30 minutes. Want me to get you scheduled?"',
     "plumbing": '- "Is there a trip charge?" → "The diagnostic is $89-125 and that goes toward the repair if you move forward."\n- "My basement is flooding!" → "I hear you — let me get your address. We\'ll have someone out to you as fast as possible."',
-    "roofing": '- "Will insurance cover this?" → "Depends on your policy, but we work with insurance companies all the time. We can do a free inspection and help you file if it qualifies."\n- "Can you just patch it?" → "Yeah, if a patch makes sense we\'ll do that. We\'ll be upfront — we don\'t push full replacements unless it\'s really needed."',
+    "roofing": '- "Will insurance cover this?" → "Depends on your policy, but we work with insurance companies all the time. We can come take a look and help you figure out if it qualifies for a claim. Want me to get that scheduled?"\n- "Can you just patch it?" → "Yeah, if a patch makes sense we\'ll do that. We\'ll be upfront — we don\'t push full replacements unless it\'s really needed."',
     "legal": '- "How much is a consultation?" → "The initial consultation is $150-300. That gives you a full sit-down with the attorney to go over everything."\n- "Do you handle [case type]?" → "Let me get a few details about your situation and I\'ll make sure we connect you with the right attorney."',
     "electrical": '- "Is this a fire hazard?" → "Could be — that\'s exactly why you want someone to look at it. Let me get you on the schedule."\n- "Can you come today?" → "For electrical issues, we treat it as priority. Let me get your address."',
     "auto repair": '- "Can I wait while you work on it?" → "Depends on the job — if it\'s quick we\'ll knock it out. If not, we can get you a ride or have you drop it off."\n- "How long will it take?" → "I can give you a better timeline once we do the diagnostic. Usually same-day for smaller jobs."',
@@ -834,16 +834,16 @@ POST-CALL TEXT CONFIRMATION (after every booking):
 - The post-call text is the only part of the call that persists physically. It's what the caller shows their spouse. It must include: business name, service, date/time, address, and the business phone number to call back.
 
 COMMON QUESTIONS:
-- "Are you insured?" → "Yes, fully insured."
-- "Do you give free estimates?" → "Yeah, the estimate's no charge. Want me to get you on the schedule for one?"
-- "Can someone come look first?" → "Most of the time I can give you a price right here. Tell me what you've got."
+- "Are you insured?" → "That's a great question — I'll have {owner_name_or_default} confirm the details when they call you back. Want me to set that up?"
+- "Do you give free estimates?" → "Let me get you on the schedule and {owner_name_or_default} can go over pricing when they're out there. What works better — mornings or afternoons?"
+- "Can someone come look first?" → "Most of the time I can give you a ballpark right here. Tell me what you've got."
 - "How soon can you come?" → "Usually within a day or two. When were you thinking?"
-- "Do you work weekends?" → "Saturday's our busiest day. The sooner you book the better."
+- "Do you work weekends?" → "We do take weekend appointments. The sooner you book the better — those slots fill up fast."
 - "How long will it take?" → "Depends on the scope, but I can give you a better idea once I know the details."
 - "Are you the owner?" → "I handle the scheduling. What can I get set up for you?"
-- "What's your warranty?" → "We stand behind our work. Any issues, just call us and we'll make it right."
-- "Can you match a price?" → "Our rates are fair for the area. Want me to get you a quote so you can compare?"
-- "Where do I pay?" → "We collect payment after the job's done and you're happy."
+- "What's your warranty?" → "Any issues after the job, just call us and we'll get it sorted out."
+- "Can you match a price?" → "I can't speak to pricing specifics, but I can get you a quote so you can compare. Want me to schedule that?"
+- "Where do I pay?" → "Payment details get handled on-site with the technician. Nothing to worry about right now."
 
 HOW YOU HANDLE ANYTHING:
 When someone asks you something not on this list, you don't freeze and you don't say "I don't know."
