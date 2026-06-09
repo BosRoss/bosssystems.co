@@ -1,59 +1,70 @@
 {
   "pending": [
     {
-      "text": "Last Tuesday a plumber in Longview missed a call at 2pm. Guy on the other end called his competitor instead. That job was worth $1,200. The competitor answered on ring two. This happens to you probably twice a week and you don't even notice anymore because you're too busy actually doing the work. That's $4,800 a month walking out the door. Share this with a contractor still losing jobs to voicemail.",
-      "audience": "boss",
+      "text": "You're broke because you're waiting for permission. Your parents think it's sketch. Your friends think you're crazy. Meanwhile someone's pressure washing for $600-$1,200 a week and we literally built their whole operation for them. Zero startup cost. You keep 80 percent. The catch is you actually have to show up. Send this to someone still working minimum wage for $290 a week. bosssystems.co/summer.html *Results vary.*",
+      "audience": "spp",
       "platform": "instagram",
       "service": "instagram",
       "channel_id": "6a235eb2c687a22dd46643fa",
       "pattern": "story",
-      "image_url": "https://raw.githubusercontent.com/BosRoss/bosssystems.co/main/social_images/post_boss_20260605_200450.png",
-      "pending_id": "7c2e8287",
-      "queued_at": "2026-06-05T20:04:52.087636"
+      "image_url": "https://raw.githubusercontent.com/BosRoss/bosssystems.co/main/social_images/post_spp_20260609_130015.png",
+      "pending_id": "2414e7ea",
+      "queued_at": "2026-06-09T13:00:17.270503"
     },
     {
-      "text": "Your plumber is probably answering the phone right now while standing in someone's basement covered in sewage.\n\nWhen that phone rings, he stops what he's doing. Drives back to the office. Books the job. Sends the invoice. That's the whole business.\n\nExcept here's the thing. Most plumbers miss the call. They're too busy actually doing the work. So the customer calls the guy who picks up, and now you lost a job worth $800 to $2k.\n\nWe built a system that answers your phone for you. Books the nex...",
+      "text": "How many calls this month did you miss because you were already on a job? Not answering is costing you more than you think. Send this to a contractor still losing work to voicemail.",
       "audience": "boss",
+      "platform": "instagram",
+      "service": "instagram",
+      "channel_id": "6a235eb2c687a22dd46643fa",
+      "pattern": "question",
+      "image_url": "https://raw.githubusercontent.com/BosRoss/bosssystems.co/main/social_images/post_boss_20260609_130002.png",
+      "pending_id": "33849c5c",
+      "queued_at": "2026-06-09T13:00:04.264471"
+    },
+    {
+      "text": "How many calls do you get on Tuesday that go straight to voicemail.\n\nBetter question. How many of those people just call your competitor instead.\n\nWe looked at this for HVAC shops and plumbers in small towns. 27% of calls never get answered. 93% of those people never call back.\n\nThat's not a bad day. That's a pattern that costs you.\n\nWhat if someone answered every single call. Booked every job. Sent every bill same day.\n\nWe built systems that do exactly that. Costs less than one lost job.\n\nTa...",
+      "audience": "boss",
+      "platform": "facebook",
+      "service": "facebook",
+      "channel_id": "6a235ecac687a22dd4664434",
+      "pattern": "question",
+      "image_url": null,
+      "pending_id": "3e3aac03",
+      "queued_at": "2026-06-09T13:00:08.672721"
+    },
+    {
+      "text": "Yeah okay this is literally just doing chores but people pay you $600-$1,200 a week for it. Pressure washing driveways takes like three hours. We build the whole business. You keep eighty percent. *Results vary.* bosssystems.co/summer.html\n\n#MakeMoneyFast #TeenJobs #PressureWashing #SummerMoney #WorkFromHome",
+      "audience": "spp",
+      "platform": "tiktok",
+      "service": "tiktok",
+      "channel_id": "6a235eddc687a22dd4664478",
+      "pattern": "story",
+      "image_url": "https://raw.githubusercontent.com/BosRoss/bosssystems.co/main/social_images/post_spp_20260609_130024.png",
+      "pending_id": "8b0f7faf",
+      "queued_at": "2026-06-09T13:00:25.548184"
+    },
+    {
+      "text": "So my friend asked me last week why I wasn't just working at McDonald's for minimum wage. I told him I was doing junk removal instead and making $450 to $750 a week. He went quiet. Then he asked how I set it up. The thing is, I didn't build the website. I didn't figure out the booking system. I didn't handle the phone calls at first. BOSS Systems built all that. I just showed up and did the work. Kept 80 percent of what came in. Sounds like one of those scams your parents warn you about, but ...",
+      "audience": "spp",
       "platform": "facebook",
       "service": "facebook",
       "channel_id": "6a235ecac687a22dd4664434",
       "pattern": "story",
       "image_url": null,
-      "pending_id": "a4aa35e3",
-      "queued_at": "2026-06-05T20:04:56.493220"
+      "pending_id": "a9a08256",
+      "queued_at": "2026-06-09T13:00:21.370074"
     },
     {
-      "text": "Yeah we literally build your entire business for you and you keep 80 percent. Most people don't believe that until week two when the money actually shows up. Summer's almost half over. *Results vary. bosssystems.co/summer.html #teenmoney #sidehustle #moneytok #smalltown",
-      "audience": "spp",
-      "platform": "tiktok",
-      "service": "tiktok",
-      "channel_id": "6a235eddc687a22dd4664478",
-      "pattern": "stat_bomb",
-      "image_url": "https://raw.githubusercontent.com/BosRoss/bosssystems.co/main/social_images/post_spp_20260605_200511.png",
-      "pending_id": "c1418db8",
-      "queued_at": "2026-06-05T20:05:12.672627"
-    },
-    {
-      "text": "Your plumber just lost $1,400 to a roofer three blocks away. Same call came in. He answered first. Here's what actually happened. A customer needed work done today. Your guy was busy with paperwork. The roofer's phone rang, he picked up in two seconds, booked the job before lunch. Your plumber never even knew the call existed. This happens 27 times a week in towns like yours. We built a system that makes sure you answer first. It costs less than one lost job. #HVAC #Plumbers #LocalBusiness #S...",
+      "text": "Here's what your phone is actually doing right now: ringing to nobody. Seven out of ten calls from customers go straight to voicemail. They call your competitor instead. That's the gap we close. BOSS Systems finds the money leak and plugs it. Free analysis in 60 seconds. bosssystems.co #ServiceBusiness #LocalBusiness #HVAC #Plumbing #Electricians",
       "audience": "boss",
       "platform": "tiktok",
       "service": "tiktok",
       "channel_id": "6a235eddc687a22dd4664478",
-      "pattern": "story",
-      "image_url": "https://raw.githubusercontent.com/BosRoss/bosssystems.co/main/social_images/post_boss_20260605_200500.png",
-      "pending_id": "d74a01df",
-      "queued_at": "2026-06-05T20:05:02.122609"
-    },
-    {
-      "text": "We built the entire thing for you. Website, phone system, booking calendar. All we ask is you show up and do the work. You keep 80 percent. A junk removal crew in Texas is making 450 to 750 a week right now. Pressure washing is running 600 to 1200. That beats minimum wage by a lot. The catch is real though. You have to actually work weekends. You have to answer the phone when it rings. You have to show up on time. If you can do that, bosssystems.co/summer.html\n\n*Results vary.",
-      "audience": "spp",
-      "platform": "facebook",
-      "service": "facebook",
-      "channel_id": "6a235ecac687a22dd4664434",
-      "pattern": "stat_bomb",
-      "image_url": null,
-      "pending_id": "fbcce041",
-      "queued_at": "2026-06-05T20:05:08.614215"
+      "pattern": "question",
+      "image_url": "https://raw.githubusercontent.com/BosRoss/bosssystems.co/main/social_images/post_boss_20260609_130011.png",
+      "pending_id": "c200a63b",
+      "queued_at": "2026-06-09T13:00:12.868164"
     }
   ]
 }
