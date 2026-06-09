@@ -1,18 +1,33 @@
 {
-  "generated": "2026-06-08T20:30:02.674170+00:00",
+  "generated": "2026-06-09T02:00:02.711639+00:00",
   "sections": {
     "atlas": {
       "power_level": "ACTIVE",
-      "last_scan": "2026-06-08T19:45:15.508309+00:00",
-      "scan_count": 68,
+      "last_scan": "2026-06-09T00:43:33.617238+00:00",
+      "scan_count": 71,
       "heat_score": 100,
-      "recommendation": "HOT DAY. Weather-driven demand in Jackson, AL; Madison, AL; Marshall, AL, Harrison, MS, Hutchinson; Roberts; Hemphill; Palo Duro Canyon. Call HVAC/roofers there NOW.",
+      "recommendation": "HOT DAY. Weather-driven demand in Armstrong, TX; Donley, TX; Gray, TX, Beaver, OK; Lipscomb, TX, Hunt, TX; Rockwall, TX. Call HVAC/roofers there NOW.",
       "demand_signals": 10,
       "pain_signals": 0,
       "pitch_adjustments": 0,
-      "competitor_intel": 0,
-      "territory_alerts": 15,
+      "competitor_intel": 1,
+      "territory_alerts": 7,
       "top_demands": [
+        {
+          "type": "flood",
+          "area": "Lipscomb, TX",
+          "niche": "plumbing"
+        },
+        {
+          "type": "flood",
+          "area": "Armstrong, TX; Donley, TX; Gray, TX",
+          "niche": "plumbing"
+        },
+        {
+          "type": "flood",
+          "area": "Beaver, OK; Lipscomb, TX",
+          "niche": "plumbing"
+        },
         {
           "type": "flood",
           "area": "Henderson, TX; Navarro, TX",
@@ -22,21 +37,6 @@
           "type": "flood",
           "area": "Hunt, TX; Rockwall, TX",
           "niche": "plumbing"
-        },
-        {
-          "type": "heat_wave",
-          "area": "Hutchinson; Roberts; Hemphill; Palo Duro Canyon",
-          "niche": "hvac"
-        },
-        {
-          "type": "flood",
-          "area": "Hardin, TX; Jefferson, TX",
-          "niche": "plumbing"
-        },
-        {
-          "type": "heat_wave",
-          "area": "Clay; Greene; Craighead; Poinsett; Mississippi; Cross; Critt",
-          "niche": "hvac"
         }
       ],
       "sources_online": 0
@@ -210,16 +210,16 @@
       ],
       "recent_failures": [
         {
+          "workflow": "VeofXawy3ISKcQY7",
+          "started": "2026-06-08T22:00"
+        },
+        {
           "workflow": "26IvNLLF6Pi1WEb5",
           "started": "2026-06-08T19:58"
         },
         {
           "workflow": "26IvNLLF6Pi1WEb5",
           "started": "2026-06-08T19:51"
-        },
-        {
-          "workflow": "EGyXul1WqnnshU96",
-          "started": "2026-06-08T19:01"
         },
         {
           "workflow": "EGyXul1WqnnshU96",
