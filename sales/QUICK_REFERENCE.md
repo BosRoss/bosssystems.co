@@ -167,11 +167,53 @@ Repeat their last 1-3 words as a question. "Miss some calls?" → they elaborate
 
 **"I answer all my calls"** → "What about at 9pm Saturday when someone's AC dies?"
 
-**"Send me something"** → "Sure — what's your email? I'll send the analysis link."
+**"Send me something"** → "I'd rather just show you. Call this number right now — 30 seconds." [demo]
 
 **"Is it really AI?"** → "Call (903) 522-4459 right now. You'll hear it."
 
 **"I need to think about it"** → "Totally fair. What specifically — the price or the tech?"
+
+---
+
+## WHAT THEY SAY vs WHAT THEY MEAN
+
+| They Say | They Mean | You Do |
+|----------|-----------|--------|
+| "Let me think about it" | Won't say no to your face | "What specifically — price or whether it works?" Force the real objection |
+| "Send me some info" | Wants to end the conversation | "I'd rather show you. Can I call your number right now? 30 seconds." |
+| "We're pretty busy" | Doesn't think he needs it | "That's exactly when you miss the most calls." |
+| "My wife handles that" | She makes these decisions OR using her as shield | "She'd be perfect to talk to. Can I give her a quick call?" |
+| "What's the catch?" | Been scammed before | "$50/mo. No contract. Cancel by text. I'm 17 from Tyler." |
+| "I'll call you back" | Will not call back | "When's good — Tuesday at lunch or Thursday after 5? I'll call you." |
+| "That sounds interesting" | Nowhere near buying | "Want to hear it? Call this number right now." Turn interest into experience. |
+| "How do I know it works?" | Needs proof not promises | "Call (903) 522-4459. Right now. You tell me." |
+| "I already have something" | Wife answers or voicemail | "What are you using? How's it working?" Let them admit the weakness. |
+| "I don't need that" | Doesn't understand the problem | "When you're on a job and a customer calls, what happens?" |
+| "That's too expensive" | At $50, means "I don't see value yet" | "One $400 job pays for 8 months." |
+
+---
+
+## 8 FEARS (ranked — defuse each one)
+
+| Fear | Defusal |
+|------|---------|
+| Being scammed (10/10) | "$50/mo. No contract. Cancel by text. I'm 17 from Tyler — not disappearing." |
+| Dependency (8/10) | "If BOSS vanished tomorrow, your phone goes back to ringing like before." |
+| Looking stupid (8/10) | "The 10-truck companies all have someone on phones. This gives you the same thing for $50." |
+| Spouse finding out (7/10) | "Can your wife be on the call? She should know about this." |
+| Commitment (6/10) | "$50/month, cancel anytime. One $400 job pays for 8 months." |
+| Change (6/10) | "You don't change anything. Your phone just gets answered now." |
+| Tech replacing them (5/10) | "AI can't sweat copper. It just answers your phone." |
+| Can't fix if breaks (5/10) | "If anything goes wrong, call me directly. I built it, I fix it." |
+
+---
+
+## AGE-GAP TACTICS (use every time)
+1. **Demo within 2 minutes.** "Call this number right now." Once they hear the AI, it shifts from "trust this kid?" to "how does this work?"
+2. **"Yes sir / no sir" always.** Non-negotiable in the South.
+3. **Ask about THEIR business first.** "How long you been doing HVAC?" They become the expert, trust flows.
+4. **Own the age.** "I'm 17. Been building AI phone systems since I was 15." Digital native = credibility for AI.
+5. **Show first, reveal second.** Demo → then mention age. Never reverse this. The pratfall effect only works if competence is established first.
 
 ---
 
