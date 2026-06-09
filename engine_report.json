@@ -1,5 +1,5 @@
 {
-  "generated": "2026-06-09T07:15:22.532687+00:00",
+  "generated": "2026-06-09T09:23:23.469547+00:00",
   "engine_state": "active",
   "signals": [
     {
@@ -44,17 +44,17 @@
     },
     {
       "type": "heat_wave",
-      "area": "North and Central Sebastian; Southern Crawford; Central and Southern Franklin; Washington; Nowata; Craig; Ottawa; Pawnee; Tulsa; Rogers; Mayes; Delaware; Wagoner; Western Osage; Northeast Osage; South",
+      "area": "Fulton; Sharp; Randolph; Izard; Independence; Lawrence; Cleburne; Jackson; Conway; Faulkner; White; Woodruff; Perry; Saline; Pulaski; Lonoke; Prairie; Monroe; Jefferson; Arkansas; Southern Johnson Cou",
       "niche": "hvac",
-      "action": "HVAC businesses in North and Central Sebastian; Southern Crawford; Central and Southern Franklin; Washington; Nowata; Craig; Ottawa; Pawnee; Tulsa; Rogers; Mayes; Delaware; Wagoner; Western Osage; Northeast Osage; South are drowning in calls right now. Perfect time to pitch.",
+      "action": "HVAC businesses in Fulton; Sharp; Randolph; Izard; Independence; Lawrence; Cleburne; Jackson; Conway; Faulkner; White; Woodruff; Perry; Saline; Pulaski; Lonoke; Prairie; Monroe; Jefferson; Arkansas; Southern Johnson Cou are drowning in calls right now. Perfect time to pitch.",
       "urgency": "today",
       "pitch_hook": "You're getting slammed with calls \u2014 how many went to voicemail today?"
     },
     {
       "type": "heat_wave",
-      "area": "Fulton; Sharp; Randolph; Izard; Independence; Lawrence; Cleburne; Jackson; Conway; Faulkner; White; Woodruff; Perry; Saline; Pulaski; Lonoke; Prairie; Monroe; Jefferson; Arkansas; Southern Johnson Cou",
+      "area": "North and Central Sebastian; Southern Crawford; Central and Southern Franklin; Washington; Nowata; Craig; Ottawa; Pawnee; Tulsa; Rogers; Mayes; Delaware; Wagoner; Western Osage; Northeast Osage; South",
       "niche": "hvac",
-      "action": "HVAC businesses in Fulton; Sharp; Randolph; Izard; Independence; Lawrence; Cleburne; Jackson; Conway; Faulkner; White; Woodruff; Perry; Saline; Pulaski; Lonoke; Prairie; Monroe; Jefferson; Arkansas; Southern Johnson Cou are drowning in calls right now. Perfect time to pitch.",
+      "action": "HVAC businesses in North and Central Sebastian; Southern Crawford; Central and Southern Franklin; Washington; Nowata; Craig; Ottawa; Pawnee; Tulsa; Rogers; Mayes; Delaware; Wagoner; Western Osage; Northeast Osage; South are drowning in calls right now. Perfect time to pitch.",
       "urgency": "today",
       "pitch_hook": "You're getting slammed with calls \u2014 how many went to voicemail today?"
     },
@@ -239,55 +239,55 @@
   "feeds": [
     {
       "name": "NOAA",
-      "last_hit": "2026-06-09T07:07:40.740217+00:00",
+      "last_hit": "2026-06-09T09:15:27.275834+00:00",
       "status": "yellow",
       "data_points_today": 0
     },
     {
       "name": "REDDIT",
-      "last_hit": "2026-06-09T07:07:40.740217+00:00",
+      "last_hit": "2026-06-09T09:15:27.275834+00:00",
       "status": "green",
       "data_points_today": 841
     },
     {
       "name": "USGS",
-      "last_hit": "2026-06-09T07:07:40.740217+00:00",
+      "last_hit": "2026-06-09T09:15:27.275834+00:00",
       "status": "yellow",
       "data_points_today": 0
     },
     {
       "name": "HACKERNEWS",
-      "last_hit": "2026-06-09T07:07:40.740217+00:00",
+      "last_hit": "2026-06-09T09:15:27.275834+00:00",
       "status": "green",
       "data_points_today": 30
     },
     {
       "name": "FEMA",
-      "last_hit": "2026-06-09T07:07:40.740217+00:00",
+      "last_hit": "2026-06-09T09:15:27.275834+00:00",
       "status": "green",
       "data_points_today": 20
     },
     {
       "name": "COMMODITIES",
-      "last_hit": "2026-06-09T07:07:40.740217+00:00",
+      "last_hit": "2026-06-09T09:15:27.275834+00:00",
       "status": "green",
       "data_points_today": 7
     },
     {
       "name": "RSS",
-      "last_hit": "2026-06-09T07:07:40.740217+00:00",
+      "last_hit": "2026-06-09T09:15:27.275834+00:00",
       "status": "green",
       "data_points_today": 170
     },
     {
       "name": "FRED",
-      "last_hit": "2026-06-09T07:07:40.740217+00:00",
+      "last_hit": "2026-06-09T09:15:27.275834+00:00",
       "status": "yellow",
       "data_points_today": 0
     },
     {
       "name": "BLS",
-      "last_hit": "2026-06-09T07:07:40.740217+00:00",
+      "last_hit": "2026-06-09T09:15:27.275834+00:00",
       "status": "green",
       "data_points_today": 9
     }
