@@ -1,14 +1,30 @@
 {
-  "generated": "2026-06-09T13:39:27.797173+00:00",
+  "generated": "2026-06-09T17:51:22.015189+00:00",
   "engine_state": "active",
   "signals": [
     {
-      "type": "flood",
-      "area": "Hardin, TX; Jefferson, TX",
-      "niche": "plumbing",
-      "action": "Flood warnings in Hardin, TX; Jefferson, TX. Plumbers, restoration, mold companies will spike.",
+      "type": "heat_wave",
+      "area": "Eastern/Central El Paso County; Rio Grande Valley of Eastern El Paso/Western Hudspeth Counties; Rio Grande Valley of Eastern Hudspeth County",
+      "niche": "hvac",
+      "action": "HVAC businesses in Eastern/Central El Paso County; Rio Grande Valley of Eastern El Paso/Western Hudspeth Counties; Rio Grande Valley of Eastern Hudspeth County are drowning in calls right now. Perfect time to pitch.",
       "urgency": "today",
-      "pitch_hook": "Water damage calls are coming. Every one you miss is $500+ walking away."
+      "pitch_hook": "You're getting slammed with calls \u2014 how many went to voicemail today?"
+    },
+    {
+      "type": "heat_wave",
+      "area": "Texas; Beaver; Sherman; Hansford; Ochiltree; Lipscomb; Moore; Hutchinson; Roberts; Hemphill; Potter; Carson; Gray; Wheeler; Randall; Armstrong; Donley; Collingsworth",
+      "niche": "hvac",
+      "action": "HVAC businesses in Texas; Beaver; Sherman; Hansford; Ochiltree; Lipscomb; Moore; Hutchinson; Roberts; Hemphill; Potter; Carson; Gray; Wheeler; Randall; Armstrong; Donley; Collingsworth are drowning in calls right now. Perfect time to pitch.",
+      "urgency": "today",
+      "pitch_hook": "You're getting slammed with calls \u2014 how many went to voicemail today?"
+    },
+    {
+      "type": "heat_wave",
+      "area": "Palo Duro Canyon",
+      "niche": "hvac",
+      "action": "HVAC businesses in Palo Duro Canyon are drowning in calls right now. Perfect time to pitch.",
+      "urgency": "today",
+      "pitch_hook": "You're getting slammed with calls \u2014 how many went to voicemail today?"
     },
     {
       "type": "flood",
@@ -19,12 +35,12 @@
       "pitch_hook": "Water damage calls are coming. Every one you miss is $500+ walking away."
     },
     {
-      "type": "heat_wave",
-      "area": "Palo Duro Canyon",
-      "niche": "hvac",
-      "action": "HVAC businesses in Palo Duro Canyon are drowning in calls right now. Perfect time to pitch.",
+      "type": "flood",
+      "area": "Hardin, TX; Jefferson, TX",
+      "niche": "plumbing",
+      "action": "Flood warnings in Hardin, TX; Jefferson, TX. Plumbers, restoration, mold companies will spike.",
       "urgency": "today",
-      "pitch_hook": "You're getting slammed with calls \u2014 how many went to voicemail today?"
+      "pitch_hook": "Water damage calls are coming. Every one you miss is $500+ walking away."
     },
     {
       "type": "heat_wave",
@@ -44,17 +60,17 @@
     },
     {
       "type": "heat_wave",
-      "area": "Fulton; Sharp; Randolph; Izard; Independence; Lawrence; Cleburne; Jackson; Conway; Faulkner; White; Woodruff; Perry; Saline; Pulaski; Lonoke; Prairie; Monroe; Jefferson; Arkansas; Southern Johnson Cou",
+      "area": "North and Central Sebastian; Southern Crawford; Central and Southern Franklin; Washington; Nowata; Craig; Ottawa; Pawnee; Tulsa; Rogers; Mayes; Delaware; Wagoner; Western Osage; Northeast Osage; South",
       "niche": "hvac",
-      "action": "HVAC businesses in Fulton; Sharp; Randolph; Izard; Independence; Lawrence; Cleburne; Jackson; Conway; Faulkner; White; Woodruff; Perry; Saline; Pulaski; Lonoke; Prairie; Monroe; Jefferson; Arkansas; Southern Johnson Cou are drowning in calls right now. Perfect time to pitch.",
+      "action": "HVAC businesses in North and Central Sebastian; Southern Crawford; Central and Southern Franklin; Washington; Nowata; Craig; Ottawa; Pawnee; Tulsa; Rogers; Mayes; Delaware; Wagoner; Western Osage; Northeast Osage; South are drowning in calls right now. Perfect time to pitch.",
       "urgency": "today",
       "pitch_hook": "You're getting slammed with calls \u2014 how many went to voicemail today?"
     },
     {
       "type": "heat_wave",
-      "area": "North and Central Sebastian; Southern Crawford; Central and Southern Franklin; Washington; Nowata; Craig; Ottawa; Pawnee; Tulsa; Rogers; Mayes; Delaware; Wagoner; Western Osage; Northeast Osage; South",
+      "area": "Fulton; Sharp; Randolph; Izard; Independence; Lawrence; Cleburne; Jackson; Conway; Faulkner; White; Woodruff; Perry; Saline; Pulaski; Lonoke; Prairie; Monroe; Jefferson; Arkansas; Southern Johnson Cou",
       "niche": "hvac",
-      "action": "HVAC businesses in North and Central Sebastian; Southern Crawford; Central and Southern Franklin; Washington; Nowata; Craig; Ottawa; Pawnee; Tulsa; Rogers; Mayes; Delaware; Wagoner; Western Osage; Northeast Osage; South are drowning in calls right now. Perfect time to pitch.",
+      "action": "HVAC businesses in Fulton; Sharp; Randolph; Izard; Independence; Lawrence; Cleburne; Jackson; Conway; Faulkner; White; Woodruff; Perry; Saline; Pulaski; Lonoke; Prairie; Monroe; Jefferson; Arkansas; Southern Johnson Cou are drowning in calls right now. Perfect time to pitch.",
       "urgency": "today",
       "pitch_hook": "You're getting slammed with calls \u2014 how many went to voicemail today?"
     },
@@ -67,20 +83,11 @@
       "pitch_hook": "Water damage calls are coming. Every one you miss is $500+ walking away."
     },
     {
-      "type": "flood",
-      "area": "Weakley; Henry; Carroll; Benton; Henderson; Decatur",
-      "niche": "plumbing",
-      "action": "Flood warnings in Weakley; Henry; Carroll; Benton; Henderson; Decatur. Plumbers, restoration, mold companies will spike.",
-      "urgency": "today",
-      "pitch_hook": "Water damage calls are coming. Every one you miss is $500+ walking away."
-    },
-    {
-      "type": "flood",
-      "area": "Stewart; Montgomery; Robertson; Sumner; Macon; Clay; Pickett; Houston; Humphreys; Dickson; Cheatham; Davidson; Wilson; Trousdale; Smith; Jackson; Putnam; Overton; Fentress; Perry; Hickman; Lewis; Will",
-      "niche": "plumbing",
-      "action": "Flood warnings in Stewart; Montgomery; Robertson; Sumner; Macon; Clay; Pickett; Houston; Humphreys; Dickson; Cheatham; Davidson; Wilson; Trousdale; Smith; Jackson; Putnam; Overton; Fentress; Perry; Hickman; Lewis; Will. Plumbers, restoration, mold companies will spike.",
-      "urgency": "today",
-      "pitch_hook": "Water damage calls are coming. Every one you miss is $500+ walking away."
+      "source": "r/smallbusiness",
+      "title": "Mobile trade business phone systems",
+      "url": "https://www.reddit.com/r/smallbusiness/comments/1u13xql/mobile_trade_business_phone_systems/",
+      "niche": "general",
+      "signal": "Active pain \u2014 business owner struggling with exactly what BOSS solves."
     }
   ],
   "leads": [
@@ -101,6 +108,15 @@
       "channel": "watchlist",
       "sequence_status": "queued",
       "trigger": "flood"
+    },
+    {
+      "name": "plumber",
+      "city": "AR",
+      "score": 68,
+      "tier": "SUPERNICHE",
+      "channel": "watchlist",
+      "sequence_status": "queued",
+      "trigger": "territory_alert"
     },
     {
       "name": "plumbing",
@@ -140,6 +156,33 @@
     },
     {
       "name": "plumber",
+      "city": "AR",
+      "score": 62,
+      "tier": "SUPERNICHE",
+      "channel": "watchlist",
+      "sequence_status": "queued",
+      "trigger": "territory_alert"
+    },
+    {
+      "name": "electrician",
+      "city": "AR",
+      "score": 62,
+      "tier": "SUPERNICHE",
+      "channel": "watchlist",
+      "sequence_status": "queued",
+      "trigger": "territory_alert"
+    },
+    {
+      "name": "HVAC contractor",
+      "city": "OK",
+      "score": 60,
+      "tier": "SUPERNICHE",
+      "channel": "watchlist",
+      "sequence_status": "queued",
+      "trigger": "flood"
+    },
+    {
+      "name": "plumber",
       "city": "OK",
       "score": 57,
       "tier": "SUPERNICHE",
@@ -176,61 +219,25 @@
     },
     {
       "name": "HVAC contractor",
-      "city": "NM",
-      "score": 48,
-      "tier": "HOT",
-      "channel": "watchlist",
-      "sequence_status": "queued",
-      "trigger": ""
-    },
-    {
-      "name": "HVAC contractor",
-      "city": "OK",
-      "score": 48,
-      "tier": "HOT",
-      "channel": "watchlist",
-      "sequence_status": "queued",
-      "trigger": "economic"
-    },
-    {
-      "name": "HVAC contractor",
-      "city": "OK",
-      "score": 48,
-      "tier": "HOT",
-      "channel": "watchlist",
-      "sequence_status": "queued",
-      "trigger": "economic"
-    },
-    {
-      "name": "HVAC contractor",
       "city": "AL",
-      "score": 47,
-      "tier": "HOT",
-      "channel": "email",
-      "sequence_status": "queued",
-      "trigger": ""
-    },
-    {
-      "name": "plumber",
-      "city": "NM",
-      "score": 45,
+      "score": 51,
       "tier": "HOT",
       "channel": "watchlist",
       "sequence_status": "queued",
-      "trigger": ""
+      "trigger": "territory_alert"
     }
   ],
   "kpis": {
-    "signals_firing": 10,
-    "leads_superniche": 7,
-    "leads_hot": 22,
-    "leads_warm": 84,
-    "cost_per_qualified": 0.64,
-    "total_spend": 4.480000000000003,
+    "signals_firing": 11,
+    "leads_superniche": 11,
+    "leads_hot": 30,
+    "leads_warm": 115,
+    "cost_per_qualified": 0.47,
+    "total_spend": 5.120000000000004,
     "spend_cap": 300.0
   },
   "channels": {
-    "emails_sent": 59,
+    "emails_sent": 64,
     "texts_sent": 8,
     "calls_made": 0,
     "meetings_set": 0,
@@ -239,63 +246,63 @@
   "feeds": [
     {
       "name": "NOAA",
-      "last_hit": "2026-06-09T13:31:29.784209+00:00",
+      "last_hit": "2026-06-09T17:43:15.742942+00:00",
       "status": "yellow",
       "data_points_today": 0
     },
     {
       "name": "REDDIT",
-      "last_hit": "2026-06-09T13:31:29.784209+00:00",
+      "last_hit": "2026-06-09T17:43:15.742942+00:00",
       "status": "green",
       "data_points_today": 841
     },
     {
       "name": "USGS",
-      "last_hit": "2026-06-09T13:31:29.784209+00:00",
+      "last_hit": "2026-06-09T17:43:15.742942+00:00",
       "status": "yellow",
       "data_points_today": 0
     },
     {
       "name": "HACKERNEWS",
-      "last_hit": "2026-06-09T13:31:29.784209+00:00",
+      "last_hit": "2026-06-09T17:43:15.742942+00:00",
       "status": "green",
       "data_points_today": 30
     },
     {
       "name": "FEMA",
-      "last_hit": "2026-06-09T13:31:29.784209+00:00",
+      "last_hit": "2026-06-09T17:43:15.742942+00:00",
       "status": "green",
       "data_points_today": 20
     },
     {
       "name": "COMMODITIES",
-      "last_hit": "2026-06-09T13:31:29.784209+00:00",
+      "last_hit": "2026-06-09T17:43:15.742942+00:00",
       "status": "green",
       "data_points_today": 7
     },
     {
       "name": "RSS",
-      "last_hit": "2026-06-09T13:31:29.784209+00:00",
+      "last_hit": "2026-06-09T17:43:15.742942+00:00",
       "status": "green",
       "data_points_today": 170
     },
     {
       "name": "FRED",
-      "last_hit": "2026-06-09T13:31:29.784209+00:00",
+      "last_hit": "2026-06-09T17:43:15.742942+00:00",
       "status": "yellow",
       "data_points_today": 0
     },
     {
       "name": "BLS",
-      "last_hit": "2026-06-09T13:31:29.784209+00:00",
+      "last_hit": "2026-06-09T17:43:15.742942+00:00",
       "status": "green",
       "data_points_today": 9
     }
   ],
   "conversion_funnel": {
-    "signals": 10,
-    "leads": 113,
-    "contacted": 67,
+    "signals": 11,
+    "leads": 156,
+    "contacted": 72,
     "replied": 0,
     "meeting": 0,
     "close": 0
