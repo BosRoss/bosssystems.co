@@ -21,8 +21,9 @@ Hi [Spouse name], this is Boston from BOSS Systems. I just set up the AI for [bu
 ```
 
 ### To the Office Manager (if they have one)
+*Position AI as HER tool, not her replacement. She controls what it says.*
 ```
-Hi [Name], this is Boston from BOSS Systems. I set up the AI for [business name]. It handles overflow and after-hours calls so everything that comes in while you're busy gets caught. You'll get a text every time it takes a message. Let me know if the AI needs to know anything — your schedule, services, anything like that. You're the expert on this business.
+Hi [Name], this is Boston from BOSS Systems. I set up the AI for [business name]. It handles overflow and after-hours calls so everything that comes in while you're busy gets caught. You'll get a text every time it takes a message. Here's the important part: you're the expert on this business, so if the AI needs to know anything — schedule changes, services, pricing — just text me and I'll update it same day. Think of it as your backup that you're in charge of.
 ```
 
 ---
@@ -64,6 +65,12 @@ Hey [Name] — that [service] job at [address] came through your AI. Customer co
 ## REFERRAL ASK (after 2+ weeks of good results)
 ```
 Hey [Name] — if any of your buddies are missing calls too, just give them my number. I'll set them up the same way. Or they can call [demo number] and hear it themselves.
+```
+
+## SUPPLY HOUSE REFERRAL (after first successful month)
+*The supply house counter is the #1 information channel. One mention from a peer in line > 500 cold calls.*
+```
+Hey [Name] — next time you're at [Johnstone/Ferguson/supply house], if anyone mentions missing calls or needing help with their phones, would you point them my way? They can call (903) 522-4459 and hear it themselves. Appreciate you.
 ```
 
 ---
