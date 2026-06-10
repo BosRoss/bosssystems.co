@@ -1,12 +1,12 @@
 {
-  "generated": "2026-06-10T07:34:43.189342+00:00",
+  "generated": "2026-06-10T16:46:00.875250+00:00",
   "engine_state": "active",
   "signals": [
     {
       "type": "heat_wave",
-      "area": "Texas; Sherman; Hansford; Ochiltree; Lipscomb; Moore; Hutchinson; Roberts; Hemphill; Potter; Carson; Gray; Wheeler; Randall; Armstrong; Donley; Collingsworth",
+      "area": "Texas; Beaver; Sherman; Hansford; Ochiltree; Lipscomb; Moore; Hutchinson; Roberts; Hemphill; Potter; Carson; Gray; Wheeler; Randall; Armstrong; Donley; Collingsworth",
       "niche": "hvac",
-      "action": "HVAC businesses in Texas; Sherman; Hansford; Ochiltree; Lipscomb; Moore; Hutchinson; Roberts; Hemphill; Potter; Carson; Gray; Wheeler; Randall; Armstrong; Donley; Collingsworth are drowning in calls right now. Perfect time to pitch.",
+      "action": "HVAC businesses in Texas; Beaver; Sherman; Hansford; Ochiltree; Lipscomb; Moore; Hutchinson; Roberts; Hemphill; Potter; Carson; Gray; Wheeler; Randall; Armstrong; Donley; Collingsworth are drowning in calls right now. Perfect time to pitch.",
       "urgency": "today",
       "pitch_hook": "You're getting slammed with calls \u2014 how many went to voicemail today?"
     },
@@ -19,12 +19,12 @@
       "pitch_hook": "You're getting slammed with calls \u2014 how many went to voicemail today?"
     },
     {
-      "type": "heat_wave",
-      "area": "Eastern/Central El Paso County; Rio Grande Valley of Eastern El Paso/Western Hudspeth Counties; Rio Grande Valley of Eastern Hudspeth County",
-      "niche": "hvac",
-      "action": "HVAC businesses in Eastern/Central El Paso County; Rio Grande Valley of Eastern El Paso/Western Hudspeth Counties; Rio Grande Valley of Eastern Hudspeth County are drowning in calls right now. Perfect time to pitch.",
+      "type": "flood",
+      "area": "Hardin, TX; Jefferson, TX",
+      "niche": "plumbing",
+      "action": "Flood warnings in Hardin, TX; Jefferson, TX. Plumbers, restoration, mold companies will spike.",
       "urgency": "today",
-      "pitch_hook": "You're getting slammed with calls \u2014 how many went to voicemail today?"
+      "pitch_hook": "Water damage calls are coming. Every one you miss is $500+ walking away."
     },
     {
       "type": "flood",
@@ -35,42 +35,10 @@
       "pitch_hook": "Water damage calls are coming. Every one you miss is $500+ walking away."
     },
     {
-      "type": "flood",
-      "area": "Hardin, TX; Jefferson, TX",
-      "niche": "plumbing",
-      "action": "Flood warnings in Hardin, TX; Jefferson, TX. Plumbers, restoration, mold companies will spike.",
-      "urgency": "today",
-      "pitch_hook": "Water damage calls are coming. Every one you miss is $500+ walking away."
-    },
-    {
-      "type": "flood",
-      "area": "Jackson, AL; Madison, AL; Marshall, AL",
-      "niche": "plumbing",
-      "action": "Flood warnings in Jackson, AL; Madison, AL; Marshall, AL. Plumbers, restoration, mold companies will spike.",
-      "urgency": "today",
-      "pitch_hook": "Water damage calls are coming. Every one you miss is $500+ walking away."
-    },
-    {
       "type": "heat_wave",
-      "area": "Beaver",
+      "area": "Eastern/Central El Paso County; Rio Grande Valley of Eastern El Paso/Western Hudspeth Counties; Rio Grande Valley of Eastern Hudspeth County",
       "niche": "hvac",
-      "action": "HVAC businesses in Beaver are drowning in calls right now. Perfect time to pitch.",
-      "urgency": "today",
-      "pitch_hook": "You're getting slammed with calls \u2014 how many went to voicemail today?"
-    },
-    {
-      "type": "heat_wave",
-      "area": "Woods; Alfalfa; Grant; Kay; Major; Garfield; Noble; Blaine; Kingfisher",
-      "niche": "hvac",
-      "action": "HVAC businesses in Woods; Alfalfa; Grant; Kay; Major; Garfield; Noble; Blaine; Kingfisher are drowning in calls right now. Perfect time to pitch.",
-      "urgency": "today",
-      "pitch_hook": "You're getting slammed with calls \u2014 how many went to voicemail today?"
-    },
-    {
-      "type": "heat_wave",
-      "area": "Harper; Ellis; Woodward; Roger Mills; Dewey",
-      "niche": "hvac",
-      "action": "HVAC businesses in Harper; Ellis; Woodward; Roger Mills; Dewey are drowning in calls right now. Perfect time to pitch.",
+      "action": "HVAC businesses in Eastern/Central El Paso County; Rio Grande Valley of Eastern El Paso/Western Hudspeth Counties; Rio Grande Valley of Eastern Hudspeth County are drowning in calls right now. Perfect time to pitch.",
       "urgency": "today",
       "pitch_hook": "You're getting slammed with calls \u2014 how many went to voicemail today?"
     },
@@ -83,11 +51,36 @@
       "pitch_hook": "Water damage calls are coming. Every one you miss is $500+ walking away."
     },
     {
-      "source": "r/smallbusiness",
-      "title": "I built a receptionist for solo tradespeople who are tired of missing calls while \"on the tools\"",
-      "url": "https://www.reddit.com/r/smallbusiness/comments/1u1ugqa/i_built_a_receptionist_for_solo_tradespeople_who/",
-      "niche": "general",
-      "signal": "Active pain \u2014 business owner struggling with exactly what BOSS solves."
+      "type": "heat_wave",
+      "area": "Logan; Payne",
+      "niche": "hvac",
+      "action": "HVAC businesses in Logan; Payne are drowning in calls right now. Perfect time to pitch.",
+      "urgency": "today",
+      "pitch_hook": "You're getting slammed with calls \u2014 how many went to voicemail today?"
+    },
+    {
+      "type": "heat_wave",
+      "area": "Harper; Woods; Alfalfa; Grant; Kay; Ellis; Woodward; Major; Garfield; Noble; Roger Mills; Dewey; Blaine; Kingfisher",
+      "niche": "hvac",
+      "action": "HVAC businesses in Harper; Woods; Alfalfa; Grant; Kay; Ellis; Woodward; Major; Garfield; Noble; Roger Mills; Dewey; Blaine; Kingfisher are drowning in calls right now. Perfect time to pitch.",
+      "urgency": "today",
+      "pitch_hook": "You're getting slammed with calls \u2014 how many went to voicemail today?"
+    },
+    {
+      "type": "flood",
+      "area": "Calcasieu, LA",
+      "niche": "plumbing",
+      "action": "Flood warnings in Calcasieu, LA. Plumbers, restoration, mold companies will spike.",
+      "urgency": "today",
+      "pitch_hook": "Water damage calls are coming. Every one you miss is $500+ walking away."
+    },
+    {
+      "type": "flood",
+      "area": "Duval, FL",
+      "niche": "plumbing",
+      "action": "Flood warnings in Duval, FL. Plumbers, restoration, mold companies will spike.",
+      "urgency": "today",
+      "pitch_hook": "Water damage calls are coming. Every one you miss is $500+ walking away."
     }
   ],
   "leads": [
@@ -228,7 +221,7 @@
     }
   ],
   "kpis": {
-    "signals_firing": 11,
+    "signals_firing": 10,
     "leads_superniche": 11,
     "leads_hot": 30,
     "leads_warm": 110,
@@ -246,61 +239,61 @@
   "feeds": [
     {
       "name": "NOAA",
-      "last_hit": "2026-06-10T07:26:55.051070+00:00",
+      "last_hit": "2026-06-10T16:38:04.936654+00:00",
       "status": "yellow",
       "data_points_today": 0
     },
     {
       "name": "REDDIT",
-      "last_hit": "2026-06-10T07:26:55.051070+00:00",
+      "last_hit": "2026-06-10T16:38:04.936654+00:00",
       "status": "green",
       "data_points_today": 841
     },
     {
       "name": "USGS",
-      "last_hit": "2026-06-10T07:26:55.051070+00:00",
+      "last_hit": "2026-06-10T16:38:04.936654+00:00",
       "status": "yellow",
       "data_points_today": 0
     },
     {
       "name": "HACKERNEWS",
-      "last_hit": "2026-06-10T07:26:55.051070+00:00",
+      "last_hit": "2026-06-10T16:38:04.936654+00:00",
       "status": "green",
       "data_points_today": 30
     },
     {
       "name": "FEMA",
-      "last_hit": "2026-06-10T07:26:55.051070+00:00",
+      "last_hit": "2026-06-10T16:38:04.936654+00:00",
       "status": "green",
       "data_points_today": 20
     },
     {
       "name": "COMMODITIES",
-      "last_hit": "2026-06-10T07:26:55.051070+00:00",
+      "last_hit": "2026-06-10T16:38:04.936654+00:00",
       "status": "green",
       "data_points_today": 7
     },
     {
       "name": "RSS",
-      "last_hit": "2026-06-10T07:26:55.051070+00:00",
+      "last_hit": "2026-06-10T16:38:04.936654+00:00",
       "status": "green",
       "data_points_today": 170
     },
     {
       "name": "FRED",
-      "last_hit": "2026-06-10T07:26:55.051070+00:00",
+      "last_hit": "2026-06-10T16:38:04.936654+00:00",
       "status": "yellow",
       "data_points_today": 0
     },
     {
       "name": "BLS",
-      "last_hit": "2026-06-10T07:26:55.051070+00:00",
+      "last_hit": "2026-06-10T16:38:04.936654+00:00",
       "status": "green",
       "data_points_today": 9
     }
   ],
   "conversion_funnel": {
-    "signals": 11,
+    "signals": 10,
     "leads": 151,
     "contacted": 72,
     "replied": 0,
