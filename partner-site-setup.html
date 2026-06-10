@@ -1,0 +1,506 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1.0">
+<meta name="robots" content="noindex,nofollow">
+<title>Build Your Website | BOSS Summer Partner Program</title>
+<meta name="description" content="Customize your business website. Pick your style, colors, and content.">
+<style>
+*{margin:0;padding:0;box-sizing:border-box}
+body{background:#080808;color:#ccc;font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;min-height:100vh;line-height:1.6}
+a{color:#C9A84C;text-decoration:none}
+
+.top-bar{padding:12px 20px;border-bottom:1px solid #1a1a1a;display:flex;align-items:center;justify-content:space-between}
+.top-bar .logo{font-size:11px;font-weight:800;letter-spacing:3px;color:#C9A84C}
+.top-bar a{font-size:11px;color:#888}
+
+.wrap{max-width:560px;margin:0 auto;padding:24px 16px 80px}
+
+h1{font-size:22px;font-weight:800;color:#fff;margin-bottom:4px}
+.subtitle{font-size:13px;color:#888;margin-bottom:32px}
+
+.steps-bar{display:flex;gap:4px;margin-bottom:32px}
+.step-dot{flex:1;height:3px;background:#1a1a1a;border-radius:2px;transition:background .3s}
+.step-dot.active{background:#C9A84C}
+.step-dot.done{background:#2a5a2a}
+
+.step-label{font-size:10px;color:#666;letter-spacing:2px;text-transform:uppercase;margin-bottom:16px}
+
+.form-step{display:none}
+.form-step.active{display:block}
+
+label{display:block;font-size:12px;color:#999;margin-bottom:6px;font-weight:600}
+input[type="text"],textarea,select{width:100%;background:#111;border:1px solid #222;color:#ddd;font-size:14px;padding:12px 14px;border-radius:6px;font-family:inherit;outline:none;transition:border .2s}
+input:focus,textarea:focus,select:focus{border-color:#C9A84C}
+textarea{resize:vertical;min-height:80px}
+select{appearance:none;background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='12' viewBox='0 0 12 12'%3E%3Cpath fill='%23666' d='M6 8L1 3h10z'/%3E%3C/svg%3E");background-repeat:no-repeat;background-position:right 12px center}
+select option{background:#111;color:#ddd}
+
+.field{margin-bottom:20px}
+.field-row{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+@media(max-width:500px){.field-row{grid-template-columns:1fr}}
+
+.hint{font-size:11px;color:#555;margin-top:4px}
+
+.services-grid{display:flex;flex-wrap:wrap;gap:8px;margin-top:8px}
+.svc-tag{background:#151515;border:1px solid #222;color:#aaa;font-size:12px;padding:6px 12px;border-radius:20px;cursor:pointer;transition:all .15s;user-select:none}
+.svc-tag.on{background:#1a1400;border-color:#3a3000;color:#C9A84C}
+.svc-tag:hover{border-color:#444}
+.add-svc{background:none;border:1px dashed #333;color:#666;font-size:12px;padding:6px 12px;border-radius:20px;cursor:pointer}
+.add-svc:hover{border-color:#666;color:#999}
+
+.palette-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:10px;margin-top:8px}
+@media(max-width:400px){.palette-grid{grid-template-columns:repeat(2,1fr)}}
+.palette-card{background:#111;border:2px solid #222;border-radius:8px;padding:10px;cursor:pointer;transition:all .15s;text-align:center}
+.palette-card:hover{border-color:#444}
+.palette-card.selected{border-color:#C9A84C;background:#0d0d0a}
+.palette-swatch{height:32px;border-radius:4px;margin-bottom:6px;display:flex;overflow:hidden}
+.palette-swatch div{flex:1}
+.palette-name{font-size:10px;color:#888;font-weight:600}
+.palette-card.selected .palette-name{color:#C9A84C}
+
+.layout-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:10px;margin-top:8px}
+.layout-card{background:#111;border:2px solid #222;border-radius:8px;padding:12px;cursor:pointer;transition:all .15s}
+.layout-card:hover{border-color:#444}
+.layout-card.selected{border-color:#C9A84C;background:#0d0d0a}
+.layout-preview{height:80px;margin-bottom:8px;position:relative;overflow:hidden;border-radius:4px}
+.layout-name{font-size:11px;color:#888;font-weight:700;text-align:center}
+.layout-card.selected .layout-name{color:#C9A84C}
+
+.lp-hero{position:absolute;top:0;left:0;right:0;height:30px}
+.lp-nav{position:absolute;top:0;left:0;right:0;height:6px;background:rgba(255,255,255,.08)}
+.lp-text{position:absolute;background:rgba(255,255,255,.15);border-radius:2px}
+.lp-cards{position:absolute;display:flex;gap:3px}
+.lp-card{background:rgba(255,255,255,.08);border-radius:2px}
+.lp-btn{position:absolute;border-radius:2px}
+.lp-wave{position:absolute;left:0;right:0}
+
+.review-section{background:#0d0d0d;border:1px solid #1a1a1a;border-radius:8px;padding:20px;margin-bottom:16px}
+.review-label{font-size:10px;color:#666;text-transform:uppercase;letter-spacing:1px;margin-bottom:4px}
+.review-value{font-size:14px;color:#ddd;margin-bottom:12px}
+.review-value:last-child{margin-bottom:0}
+.review-colors{display:flex;gap:6px;align-items:center;margin-top:4px}
+.review-dot{width:16px;height:16px;border-radius:50%}
+
+.btn-row{display:flex;gap:10px;margin-top:32px}
+.btn{padding:14px 28px;font-size:13px;font-weight:700;border:none;border-radius:6px;cursor:pointer;font-family:inherit;transition:all .15s;letter-spacing:.5px}
+.btn:active{transform:scale(.97)}
+.btn-back{background:#1a1a1a;color:#888;border:1px solid #222}
+.btn-back:hover{background:#222;color:#bbb}
+.btn-next{background:#C9A84C;color:#000;flex:1}
+.btn-next:hover{background:#d4b355}
+.btn-submit{background:#16a34a;color:#fff;flex:1}
+.btn-submit:hover{background:#15803d}
+
+.done-screen{display:none;text-align:center;padding:40px 0}
+.done-icon{font-size:48px;margin-bottom:16px}
+.done-title{font-size:20px;font-weight:800;color:#fff;margin-bottom:8px}
+.done-text{font-size:13px;color:#888;max-width:360px;margin:0 auto 24px}
+.done-json{background:#111;border:1px solid #222;border-radius:6px;padding:12px;font-family:monospace;font-size:10px;color:#888;text-align:left;max-height:200px;overflow-y:auto;margin-bottom:16px;word-break:break-all}
+.btn-copy{background:#1a1a1a;color:#C9A84C;border:1px solid #2a2400;padding:10px 20px;border-radius:6px;font-size:12px;font-weight:700;cursor:pointer}
+</style>
+</head>
+<body>
+
+<div class="top-bar">
+  <div class="logo">BOSS SYSTEMS</div>
+  <a href="partner-start.html">&larr; Back to Guide</a>
+</div>
+
+<div class="wrap">
+  <h1>Build Your Website</h1>
+  <div class="subtitle">Your business gets its own site. Customize it here, we build it.</div>
+
+  <div class="steps-bar">
+    <div class="step-dot active" data-step="0"></div>
+    <div class="step-dot" data-step="1"></div>
+    <div class="step-dot" data-step="2"></div>
+    <div class="step-dot" data-step="3"></div>
+  </div>
+
+  <!-- STEP 1: BUSINESS INFO -->
+  <div class="form-step active" data-step="0">
+    <div class="step-label">Step 1 of 4 &mdash; Your Business</div>
+    <div class="field">
+      <label>Business Name *</label>
+      <input type="text" id="biz_name" placeholder="Jake's Lawn Care">
+    </div>
+    <div class="field">
+      <label>What kind of business? *</label>
+      <select id="biz_type">
+        <option value="">Pick one</option>
+        <option value="junk_removal">Junk Removal</option>
+        <option value="lawn_care">Lawn Care</option>
+        <option value="pressure_washing">Pressure Washing</option>
+        <option value="pet_sitting">Pet Sitting & Dog Walking</option>
+        <option value="event_decor">Event Decorating</option>
+        <option value="photography">Photography</option>
+        <option value="social_media">Social Media Management</option>
+        <option value="organizing">Home Organizing</option>
+        <option value="tutoring">Tutoring</option>
+        <option value="car_detailing">Car Detailing</option>
+        <option value="pool_cleaning">Pool Cleaning</option>
+      </select>
+    </div>
+    <div class="field-row">
+      <div class="field">
+        <label>City *</label>
+        <input type="text" id="biz_city" placeholder="Tyler">
+      </div>
+      <div class="field">
+        <label>State *</label>
+        <input type="text" id="biz_state" placeholder="TX" maxlength="2" style="text-transform:uppercase">
+      </div>
+    </div>
+    <div class="field">
+      <label>Service Area</label>
+      <input type="text" id="biz_area" placeholder="Tyler and surrounding areas within 20 miles">
+      <div class="hint">Where will you actually go to do jobs?</div>
+    </div>
+    <div class="field">
+      <label>Hours</label>
+      <input type="text" id="biz_hours" placeholder="Mon-Sat 8am-6pm">
+    </div>
+    <div class="btn-row">
+      <button class="btn btn-next" onclick="nextStep()">Next</button>
+    </div>
+  </div>
+
+  <!-- STEP 2: YOUR STORY -->
+  <div class="form-step" data-step="1">
+    <div class="step-label">Step 2 of 4 &mdash; Tell Customers About You</div>
+    <div class="field">
+      <label>Tagline</label>
+      <input type="text" id="biz_tagline" placeholder="Will auto-fill based on your business type">
+      <div class="hint">One short line that says what you do. Leave blank and we'll suggest one.</div>
+    </div>
+    <div class="field">
+      <label>About Your Business</label>
+      <textarea id="biz_about" rows="4" placeholder="Tell customers who you are and why they should call you. Keep it real, write like you talk."></textarea>
+      <div class="hint">2-4 sentences. Customers want to know who's showing up.</div>
+    </div>
+    <div class="field">
+      <label>Services You Offer</label>
+      <div class="hint" style="margin-bottom:8px">Tap to toggle. Add your own if something's missing.</div>
+      <div class="services-grid" id="services-grid"></div>
+      <button class="add-svc" onclick="addCustomService()" style="margin-top:8px">+ Add Service</button>
+    </div>
+    <div class="btn-row">
+      <button class="btn btn-back" onclick="prevStep()">Back</button>
+      <button class="btn btn-next" onclick="nextStep()">Next</button>
+    </div>
+  </div>
+
+  <!-- STEP 3: STYLE -->
+  <div class="form-step" data-step="2">
+    <div class="step-label">Step 3 of 4 &mdash; Pick Your Style</div>
+    <div class="field">
+      <label>Color Palette *</label>
+      <div class="hint" style="margin-bottom:4px">Pick the vibe that fits your business.</div>
+      <div class="palette-grid" id="palette-grid"></div>
+    </div>
+    <div class="field" style="margin-top:24px">
+      <label>Layout Style *</label>
+      <div class="hint" style="margin-bottom:4px">These look very different on the real site. Pick the structure you like.</div>
+      <div class="layout-grid" id="layout-grid"></div>
+    </div>
+    <div class="btn-row">
+      <button class="btn btn-back" onclick="prevStep()">Back</button>
+      <button class="btn btn-next" onclick="nextStep()">Next</button>
+    </div>
+  </div>
+
+  <!-- STEP 4: REVIEW -->
+  <div class="form-step" data-step="3">
+    <div class="step-label">Step 4 of 4 &mdash; Review Everything</div>
+    <div id="review-content"></div>
+    <div class="btn-row">
+      <button class="btn btn-back" onclick="prevStep()">Back</button>
+      <button class="btn btn-submit" onclick="submitForm()">Submit</button>
+    </div>
+  </div>
+
+  <!-- DONE SCREEN -->
+  <div class="done-screen" id="done-screen">
+    <div class="done-icon">&#10003;</div>
+    <div class="done-title">You're all set</div>
+    <div class="done-text">Boston will build your website and send you the link. This usually takes less than 24 hours.</div>
+    <div class="done-json" id="done-json"></div>
+    <button class="btn-copy" onclick="copyJson()">Copy Data</button>
+    <div style="margin-top:24px">
+      <a href="partner-start.html" style="font-size:13px;color:#C9A84C">&larr; Back to Getting Started Guide</a>
+    </div>
+  </div>
+</div>
+
+<script>
+const PALETTES = {
+  midnight: {name:"Midnight Gold", colors:["#0a0a0a","#C9A84C","#1a1a1a","#b08d3e"]},
+  ocean:    {name:"Classic Blue", colors:["#1e3a5f","#2563eb","#f0f4f8","#ffffff"]},
+  forest:   {name:"Natural Green", colors:["#0f2b1a","#16a34a","#f0f4ed","#fafdf7"]},
+  sunset:   {name:"Warm Sunset", colors:["#3d1a00","#ea580c","#fff0e5","#fffaf5"]},
+  royal:    {name:"Royal Purple", colors:["#1a0a3d","#7c3aed","#f3e8ff","#faf5ff"]},
+  slate:    {name:"Modern Slate", colors:["#0f172a","#475569","#f1f5f9","#f8fafc"]}
+};
+
+const LAYOUTS = {
+  clean:    {name:"Clean Modern"},
+  bold:     {name:"Bold"},
+  friendly: {name:"Friendly"},
+  pro:      {name:"Professional"}
+};
+
+const SERVICE_DEFAULTS = {
+  junk_removal:     ["Junk hauling","Garage cleanouts","Furniture removal","Yard debris","Appliance removal","Construction debris"],
+  lawn_care:        ["Weekly mowing","Edging & trimming","Leaf cleanup","Mulching","Bush trimming","Yard maintenance"],
+  pressure_washing: ["Driveway cleaning","Deck & patio washing","House siding","Fence cleaning","Walkways","Gutter brightening"],
+  pet_sitting:      ["Dog walking","In-home pet sitting","Feeding visits","Overnight stays","Puppy care","Cat sitting"],
+  event_decor:      ["Birthday parties","Baby showers","Graduation parties","Holiday decorations","Wedding decor","Setup & teardown"],
+  photography:      ["Portraits","Event photography","Product photos","Real estate","Senior photos","Family sessions"],
+  social_media:     ["Content creation","Daily posting","Engagement management","Analytics reports","Brand strategy","Ad management"],
+  organizing:       ["Home organizing","Closet systems","Garage organization","Moving help","Decluttering","Office organization"],
+  tutoring:         ["Math tutoring","Reading help","Homework assistance","Test prep","Study skills","Summer learning"],
+  car_detailing:    ["Interior detailing","Exterior wash & wax","Ceramic coating","Paint correction","Engine cleaning","Headlight restoration"],
+  pool_cleaning:    ["Weekly cleaning","Chemical balancing","Filter maintenance","Pool opening","Pool closing","Equipment checks"]
+};
+
+const TAGLINE_DEFAULTS = {
+  junk_removal:"Fast, friendly junk removal", lawn_care:"Your lawn, our pride",
+  pressure_washing:"We make it look brand new", pet_sitting:"Love and care while you're away",
+  event_decor:"Making your events unforgettable", photography:"Capturing your best moments",
+  social_media:"Growing your online presence", organizing:"Less mess, more life",
+  tutoring:"Helping students succeed", car_detailing:"Your car deserves the best",
+  pool_cleaning:"Crystal clear, worry free"
+};
+
+let currentStep = 0;
+let selectedPalette = '';
+let selectedLayout = '';
+let selectedServices = new Set();
+
+function initPalettes() {
+  const grid = document.getElementById('palette-grid');
+  Object.entries(PALETTES).forEach(([key, p]) => {
+    const card = document.createElement('div');
+    card.className = 'palette-card';
+    card.dataset.key = key;
+    card.innerHTML = `<div class="palette-swatch">${p.colors.map(c => `<div style="background:${c}"></div>`).join('')}</div><div class="palette-name">${p.name}</div>`;
+    card.onclick = () => {
+      grid.querySelectorAll('.palette-card').forEach(c => c.classList.remove('selected'));
+      card.classList.add('selected');
+      selectedPalette = key;
+    };
+    grid.appendChild(card);
+  });
+}
+
+function drawLayout(canvas, type) {
+  const w = canvas.offsetWidth || 120, h = 80;
+  canvas.style.background = '#1a1a1a';
+  let html = '<div class="lp-nav"></div>';
+  if (type === 'clean') {
+    html += '<div class="lp-hero" style="background:linear-gradient(135deg,#2a2a3a,#1a1a2a);height:35px"></div>';
+    html += '<div class="lp-text" style="top:14px;left:50%;transform:translateX(-50%);width:50px;height:5px"></div>';
+    html += '<div class="lp-text" style="top:22px;left:50%;transform:translateX(-50%);width:30px;height:3px;opacity:.5"></div>';
+    html += '<div class="lp-cards" style="top:42px;left:10px;right:10px"><div class="lp-card" style="width:30%;height:28px;border-radius:4px"></div><div class="lp-card" style="width:30%;height:28px;border-radius:4px"></div><div class="lp-card" style="width:30%;height:28px;border-radius:4px"></div></div>';
+  } else if (type === 'bold') {
+    html += '<div class="lp-hero" style="background:#1a1a2a;height:30px"></div>';
+    html += '<div class="lp-text" style="top:10px;left:8px;width:40px;height:5px"></div>';
+    html += '<div class="lp-text" style="top:18px;left:8px;width:25px;height:3px;opacity:.5"></div>';
+    html += '<div style="position:absolute;top:34px;left:0;right:0;bottom:0;background:#252530"></div>';
+    html += '<div class="lp-text" style="top:38px;left:8px;width:60px;height:4px;border-left:2px solid rgba(200,160,80,.5)"></div>';
+    html += '<div class="lp-text" style="top:48px;left:8px;width:55px;height:4px;border-left:2px solid rgba(200,160,80,.5)"></div>';
+    html += '<div class="lp-text" style="top:58px;left:8px;width:50px;height:4px;border-left:2px solid rgba(200,160,80,.5)"></div>';
+  } else if (type === 'friendly') {
+    html += '<div class="lp-hero" style="background:linear-gradient(160deg,#2a3a2a,#1a2a2a);height:32px;border-radius:0 0 30px 30px"></div>';
+    html += '<div class="lp-text" style="top:10px;left:50%;transform:translateX(-50%);width:45px;height:5px;border-radius:3px"></div>';
+    html += '<div class="lp-text" style="top:42px;left:15px;width:8px;height:8px;border-radius:50%;background:rgba(100,200,100,.2)"></div>';
+    html += '<div class="lp-text" style="top:42px;left:28px;width:50px;height:3px;border-radius:2px"></div>';
+    html += '<div class="lp-text" style="top:55px;left:15px;width:8px;height:8px;border-radius:50%;background:rgba(100,200,100,.2)"></div>';
+    html += '<div class="lp-text" style="top:55px;left:28px;width:45px;height:3px;border-radius:2px"></div>';
+    html += '<div class="lp-btn" style="bottom:6px;left:50%;transform:translateX(-50%);width:40px;height:8px;background:rgba(100,200,100,.15);border-radius:10px"></div>';
+  } else if (type === 'pro') {
+    html += '<div class="lp-hero" style="background:#181820;height:24px"></div>';
+    html += '<div class="lp-text" style="top:8px;left:8px;width:35px;height:4px"></div>';
+    html += '<div style="position:absolute;top:28px;left:8px;display:flex;gap:4px"><div style="background:rgba(255,255,255,.06);width:24px;height:16px;border:1px solid rgba(255,255,255,.08);text-align:center;font-size:6px;color:rgba(255,255,255,.3);line-height:16px">5yr</div><div style="background:rgba(255,255,255,.06);width:24px;height:16px;border:1px solid rgba(255,255,255,.08);text-align:center;font-size:6px;color:rgba(255,255,255,.3);line-height:16px">4.9</div><div style="background:rgba(255,255,255,.06);width:24px;height:16px;border:1px solid rgba(255,255,255,.08);text-align:center;font-size:6px;color:rgba(255,255,255,.3);line-height:16px">500+</div></div>';
+    html += '<div style="position:absolute;top:50px;left:8px;right:8px;display:grid;grid-template-columns:1fr 1fr;gap:3px"><div class="lp-card" style="height:12px"></div><div class="lp-card" style="height:12px"></div><div class="lp-card" style="height:12px"></div><div class="lp-card" style="height:12px"></div></div>';
+  }
+  canvas.innerHTML = html;
+}
+
+function initLayouts() {
+  const grid = document.getElementById('layout-grid');
+  Object.entries(LAYOUTS).forEach(([key, l]) => {
+    const card = document.createElement('div');
+    card.className = 'layout-card';
+    card.dataset.key = key;
+    card.innerHTML = `<div class="layout-preview" id="lp-${key}"></div><div class="layout-name">${l.name}</div>`;
+    card.onclick = () => {
+      grid.querySelectorAll('.layout-card').forEach(c => c.classList.remove('selected'));
+      card.classList.add('selected');
+      selectedLayout = key;
+    };
+    grid.appendChild(card);
+    setTimeout(() => drawLayout(document.getElementById(`lp-${key}`), key), 10);
+  });
+}
+
+function loadServices() {
+  const type = document.getElementById('biz_type').value;
+  const grid = document.getElementById('services-grid');
+  const svcs = SERVICE_DEFAULTS[type] || [];
+  grid.innerHTML = '';
+  selectedServices.clear();
+  svcs.forEach(s => {
+    selectedServices.add(s);
+    const tag = document.createElement('div');
+    tag.className = 'svc-tag on';
+    tag.textContent = s;
+    tag.onclick = () => {
+      tag.classList.toggle('on');
+      if (tag.classList.contains('on')) selectedServices.add(s);
+      else selectedServices.delete(s);
+    };
+    grid.appendChild(tag);
+  });
+}
+
+function addCustomService() {
+  const name = prompt('Service name:');
+  if (!name || name.length > 50) return;
+  const clean = name.trim();
+  if (!clean) return;
+  selectedServices.add(clean);
+  const grid = document.getElementById('services-grid');
+  const tag = document.createElement('div');
+  tag.className = 'svc-tag on';
+  tag.textContent = clean;
+  tag.onclick = () => {
+    tag.classList.toggle('on');
+    if (tag.classList.contains('on')) selectedServices.add(clean);
+    else selectedServices.delete(clean);
+  };
+  grid.appendChild(tag);
+}
+
+document.getElementById('biz_type').addEventListener('change', () => {
+  loadServices();
+  const type = document.getElementById('biz_type').value;
+  const tagline = document.getElementById('biz_tagline');
+  if (!tagline.value && TAGLINE_DEFAULTS[type]) tagline.placeholder = TAGLINE_DEFAULTS[type];
+});
+
+function validate(step) {
+  if (step === 0) {
+    if (!document.getElementById('biz_name').value.trim()) { alert('Business name is required.'); return false; }
+    if (!document.getElementById('biz_type').value) { alert('Pick your business type.'); return false; }
+    if (!document.getElementById('biz_city').value.trim()) { alert('City is required.'); return false; }
+    if (!document.getElementById('biz_state').value.trim()) { alert('State is required.'); return false; }
+    return true;
+  }
+  if (step === 1) {
+    if (selectedServices.size === 0) { alert('Select at least one service.'); return false; }
+    return true;
+  }
+  if (step === 2) {
+    if (!selectedPalette) { alert('Pick a color palette.'); return false; }
+    if (!selectedLayout) { alert('Pick a layout style.'); return false; }
+    return true;
+  }
+  return true;
+}
+
+function getData() {
+  const type = document.getElementById('biz_type').value;
+  return {
+    business_name: document.getElementById('biz_name').value.trim(),
+    business_type: type,
+    city: document.getElementById('biz_city').value.trim(),
+    state: document.getElementById('biz_state').value.trim().toUpperCase(),
+    service_area: document.getElementById('biz_area').value.trim(),
+    hours: document.getElementById('biz_hours').value.trim() || 'Mon-Sat 8am-6pm',
+    tagline: document.getElementById('biz_tagline').value.trim() || TAGLINE_DEFAULTS[type] || '',
+    about: document.getElementById('biz_about').value.trim(),
+    services: Array.from(selectedServices),
+    palette: selectedPalette,
+    layout: selectedLayout,
+    submitted: new Date().toISOString()
+  };
+}
+
+function buildReview() {
+  const d = getData();
+  const paletteInfo = PALETTES[d.palette] || {};
+  const layoutInfo = LAYOUTS[d.layout] || {};
+  let html = '';
+  html += `<div class="review-section"><div class="review-label">Business</div><div class="review-value" style="font-weight:700;font-size:16px;color:#fff">${esc(d.business_name)}</div>`;
+  html += `<div class="review-label">Type</div><div class="review-value">${esc(d.business_type.replace(/_/g,' '))}</div>`;
+  html += `<div class="review-label">Location</div><div class="review-value">${esc(d.city)}, ${esc(d.state)}${d.service_area ? ' &mdash; serving '+esc(d.service_area) : ''}</div>`;
+  html += `<div class="review-label">Hours</div><div class="review-value">${esc(d.hours)}</div></div>`;
+  html += `<div class="review-section"><div class="review-label">Tagline</div><div class="review-value">${esc(d.tagline) || '<span style="color:#555">None set</span>'}</div>`;
+  if (d.about) html += `<div class="review-label">About</div><div class="review-value">${esc(d.about)}</div>`;
+  html += `<div class="review-label">Services</div><div class="review-value">${d.services.map(s => esc(s)).join(' &bull; ')}</div></div>`;
+  html += `<div class="review-section"><div class="review-label">Color Palette</div><div class="review-value">${esc(paletteInfo.name || d.palette)}<div class="review-colors">${(paletteInfo.colors||[]).map(c=>`<div class="review-dot" style="background:${c}"></div>`).join('')}</div></div>`;
+  html += `<div class="review-label">Layout</div><div class="review-value">${esc(layoutInfo.name || d.layout)}</div></div>`;
+  document.getElementById('review-content').innerHTML = html;
+}
+
+function esc(s) { const d = document.createElement('div'); d.textContent = s; return d.innerHTML; }
+
+function nextStep() {
+  if (!validate(currentStep)) return;
+  if (currentStep === 0 && selectedServices.size === 0) loadServices();
+  currentStep++;
+  if (currentStep === 3) buildReview();
+  showStep();
+}
+
+function prevStep() {
+  currentStep--;
+  showStep();
+}
+
+function showStep() {
+  document.querySelectorAll('.form-step').forEach(s => s.classList.remove('active'));
+  document.querySelector(`.form-step[data-step="${currentStep}"]`).classList.add('active');
+  document.querySelectorAll('.step-dot').forEach((d, i) => {
+    d.classList.remove('active', 'done');
+    if (i < currentStep) d.classList.add('done');
+    if (i === currentStep) d.classList.add('active');
+  });
+}
+
+async function submitForm() {
+  const data = getData();
+  const json = JSON.stringify(data, null, 2);
+
+  try {
+    await fetch('https://ntfy.sh/bossai-bostonrossall-alerts', {
+      method: 'POST',
+      headers: {'Title': 'New Partner Site Request', 'Tags': 'globe_with_meridians'},
+      body: `${data.business_name} (${data.business_type.replace(/_/g,' ')}) in ${data.city}, ${data.state}\nPalette: ${data.palette}, Layout: ${data.layout}\n${data.services.length} services selected`
+    });
+  } catch(e) {}
+
+  document.querySelectorAll('.form-step,.steps-bar,.subtitle,h1').forEach(el => el.style.display = 'none');
+  document.getElementById('done-json').textContent = json;
+  document.getElementById('done-screen').style.display = 'block';
+
+  try { localStorage.setItem('site_setup_' + Date.now(), json); } catch(e) {}
+}
+
+function copyJson() {
+  const text = document.getElementById('done-json').textContent;
+  navigator.clipboard.writeText(text).then(() => {
+    const btn = document.querySelector('.btn-copy');
+    btn.textContent = 'Copied';
+    setTimeout(() => btn.textContent = 'Copy Data', 2000);
+  });
+}
+
+initPalettes();
+initLayouts();
+</script>
+</body>
+</html>
