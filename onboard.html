@@ -1,0 +1,513 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Get Started — BOSS Systems</title>
+<style>
+*{margin:0;padding:0;box-sizing:border-box}
+body{background:#080808;color:#e0e0e0;font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,sans-serif;min-height:100vh;display:flex;flex-direction:column;align-items:center}
+.container{max-width:640px;width:100%;padding:40px 24px;margin:0 auto}
+.logo{text-align:center;margin-bottom:40px}
+.logo h1{font-size:28px;color:#C9A84C;letter-spacing:2px}
+.logo p{color:#999;font-size:14px;margin-top:6px}
+.progress{display:flex;gap:6px;margin-bottom:40px}
+.progress .dot{flex:1;height:4px;border-radius:2px;background:#222;transition:background 0.3s}
+.progress .dot.active{background:#C9A84C}
+.progress .dot.done{background:#6b8f3c}
+.step{display:none;animation:fadeIn 0.3s ease}
+.step.active{display:block}
+@keyframes fadeIn{from{opacity:0;transform:translateY(10px)}to{opacity:1;transform:translateY(0)}}
+.step-header{margin-bottom:28px}
+.step-header h2{font-size:22px;color:#fff;margin-bottom:8px}
+.step-header p{color:#aaa;font-size:15px;line-height:1.5}
+.field{margin-bottom:20px}
+.field label{display:block;font-size:13px;color:#bbb;margin-bottom:6px;font-weight:500}
+.field input,.field select,.field textarea{width:100%;padding:12px 14px;background:#111;border:1px solid #333;border-radius:8px;color:#e0e0e0;font-size:15px;font-family:inherit;transition:border-color 0.2s}
+.field input:focus,.field select:focus,.field textarea:focus{outline:none;border-color:#C9A84C}
+.field textarea{min-height:100px;resize:vertical}
+.field .hint{font-size:12px;color:#777;margin-top:4px}
+.field select{appearance:none;background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='8'%3E%3Cpath d='M1 1l5 5 5-5' stroke='%23999' fill='none' stroke-width='1.5'/%3E%3C/svg%3E");background-repeat:no-repeat;background-position:right 14px center}
+.tone-grid{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-bottom:20px}
+.tone-option{padding:14px;background:#111;border:2px solid #222;border-radius:10px;cursor:pointer;text-align:center;transition:all 0.2s}
+.tone-option:hover{border-color:#555}
+.tone-option.selected{border-color:#C9A84C;background:#1a1708}
+.tone-option .icon{font-size:24px;margin-bottom:6px}
+.tone-option .name{font-size:14px;color:#ddd;font-weight:500}
+.tone-option .desc{font-size:11px;color:#888;margin-top:3px}
+.qa-pair{background:#111;border:1px solid #222;border-radius:10px;padding:16px;margin-bottom:12px}
+.qa-pair label{font-size:12px;color:#888;margin-bottom:4px;display:block}
+.qa-pair input,.qa-pair textarea{background:#0a0a0a;border:1px solid #2a2a2a;margin-bottom:8px}
+.qa-pair textarea{min-height:60px}
+.add-qa{background:none;border:1px dashed #444;color:#aaa;padding:12px;width:100%;border-radius:10px;cursor:pointer;font-size:14px;transition:all 0.2s}
+.add-qa:hover{border-color:#C9A84C;color:#C9A84C}
+.hours-row{display:grid;grid-template-columns:1fr 80px 80px;gap:10px;align-items:center;margin-bottom:8px}
+.hours-row .day{font-size:14px;color:#bbb}
+.hours-row input{padding:8px;font-size:13px;text-align:center}
+.nav{display:flex;gap:12px;margin-top:32px}
+.btn{flex:1;padding:14px;border-radius:10px;font-size:15px;font-weight:600;cursor:pointer;border:none;transition:all 0.2s}
+.btn-back{background:#1a1a1a;color:#aaa;border:1px solid #333}
+.btn-back:hover{background:#222}
+.btn-next{background:#C9A84C;color:#080808}
+.btn-next:hover{background:#d4b65e}
+.btn-next:disabled{opacity:0.4;cursor:not-allowed}
+.btn-submit{background:#C9A84C;color:#080808;font-size:16px}
+.btn-submit:hover{background:#d4b65e}
+.check-row{display:flex;align-items:flex-start;gap:10px;margin-bottom:12px;padding:10px;background:#111;border-radius:8px;cursor:pointer}
+.check-row input[type="checkbox"]{margin-top:2px;accent-color:#C9A84C}
+.check-row .check-label{font-size:14px;color:#ccc}
+.check-row .check-desc{font-size:12px;color:#777;margin-top:2px}
+.success{text-align:center;padding:60px 20px}
+.success .icon{font-size:48px;margin-bottom:20px}
+.success h2{color:#C9A84C;font-size:24px;margin-bottom:12px}
+.success p{color:#aaa;font-size:15px;line-height:1.6;max-width:400px;margin:0 auto}
+.required::after{content:" *";color:#C9A84C}
+@media(max-width:480px){.container{padding:24px 16px}.tone-grid{grid-template-columns:1fr}.hours-row{grid-template-columns:1fr 70px 70px}}
+</style>
+</head>
+<body>
+<div class="container">
+  <div class="logo">
+    <h1>BOSS SYSTEMS</h1>
+    <p>Let's build your AI — exactly how you want it</p>
+  </div>
+
+  <div class="progress" id="progress">
+    <div class="dot active"></div>
+    <div class="dot"></div>
+    <div class="dot"></div>
+    <div class="dot"></div>
+    <div class="dot"></div>
+    <div class="dot"></div>
+  </div>
+
+  <!-- STEP 1: Business Basics -->
+  <div class="step active" id="step1">
+    <div class="step-header">
+      <h2>Tell us about your business</h2>
+      <p>This helps us build something that sounds like YOUR business — not a generic robot.</p>
+    </div>
+    <div class="field">
+      <label class="required">Business Name</label>
+      <input type="text" id="bizName" placeholder="e.g. Johnson's HVAC">
+    </div>
+    <div class="field">
+      <label class="required">What kind of business?</label>
+      <select id="bizType">
+        <option value="">Select one...</option>
+        <option value="hvac">HVAC / Air Conditioning</option>
+        <option value="plumber">Plumbing</option>
+        <option value="electrician">Electrical</option>
+        <option value="roofing">Roofing</option>
+        <option value="auto_repair">Auto Repair</option>
+        <option value="lawn_care">Lawn Care / Landscaping</option>
+        <option value="pest_control">Pest Control</option>
+        <option value="cleaning">Cleaning Service</option>
+        <option value="junk_removal">Junk Removal</option>
+        <option value="law_firm">Law Firm / Legal</option>
+        <option value="dental">Dental / Medical Office</option>
+        <option value="other">Other</option>
+      </select>
+    </div>
+    <div class="field" id="otherTypeField" style="display:none">
+      <label>What type of business?</label>
+      <input type="text" id="bizTypeOther" placeholder="Describe your business">
+    </div>
+    <div class="field">
+      <label class="required">Your Name</label>
+      <input type="text" id="ownerName" placeholder="First and last name">
+    </div>
+    <div class="field">
+      <label class="required">Business Phone Number</label>
+      <input type="tel" id="bizPhone" placeholder="(555) 123-4567">
+    </div>
+    <div class="field">
+      <label class="required">Your Email</label>
+      <input type="email" id="ownerEmail" placeholder="you@yourbusiness.com">
+    </div>
+    <div class="field">
+      <label>City & State</label>
+      <input type="text" id="bizLocation" placeholder="e.g. Tyler, TX">
+    </div>
+    <div class="nav">
+      <button class="btn btn-next" onclick="nextStep(1)">Next</button>
+    </div>
+  </div>
+
+  <!-- STEP 2: Voice & Personality -->
+  <div class="step" id="step2">
+    <div class="step-header">
+      <h2>How should your AI sound?</h2>
+      <p>Pick the personality that matches your business. Your customers should feel like they're talking to someone from your team.</p>
+    </div>
+    <div class="tone-grid" id="toneGrid">
+      <div class="tone-option" data-tone="friendly" onclick="selectTone(this)">
+        <div class="name">Friendly & Warm</div>
+        <div class="desc">"Hey! Thanks for calling — how can I help you today?"</div>
+      </div>
+      <div class="tone-option" data-tone="professional" onclick="selectTone(this)">
+        <div class="name">Professional</div>
+        <div class="desc">"Good afternoon, thanks for calling. How may I assist you?"</div>
+      </div>
+      <div class="tone-option" data-tone="southern" onclick="selectTone(this)">
+        <div class="name">Southern & Casual</div>
+        <div class="desc">"Hey there! Y'all reached us — what can we do for ya?"</div>
+      </div>
+      <div class="tone-option" data-tone="direct" onclick="selectTone(this)">
+        <div class="name">Short & Direct</div>
+        <div class="desc">"This is [Business]. How can I help?"</div>
+      </div>
+    </div>
+    <div class="field">
+      <label>Custom greeting (optional)</label>
+      <textarea id="customGreeting" placeholder="If you have a specific way you want the phone answered, type it here exactly how you'd say it. Leave blank to use the tone above."></textarea>
+      <div class="hint">Write it the way you'd want YOUR best employee to say it.</div>
+    </div>
+    <div class="field">
+      <label>Voice preference</label>
+      <select id="voicePref">
+        <option value="female">Female voice</option>
+        <option value="male">Male voice</option>
+        <option value="either">No preference</option>
+      </select>
+    </div>
+    <div class="nav">
+      <button class="btn btn-back" onclick="prevStep(2)">Back</button>
+      <button class="btn btn-next" onclick="nextStep(2)">Next</button>
+    </div>
+  </div>
+
+  <!-- STEP 3: Hours & Services -->
+  <div class="step" id="step3">
+    <div class="step-header">
+      <h2>Your hours & services</h2>
+      <p>So the AI knows when you're open and what you offer — no guessing.</p>
+    </div>
+    <div class="field">
+      <label>Business Hours</label>
+      <div id="hoursGrid">
+        <div class="hours-row"><span class="day">Monday</span><input type="text" class="hour-open" placeholder="8:00 AM"><input type="text" class="hour-close" placeholder="5:00 PM"></div>
+        <div class="hours-row"><span class="day">Tuesday</span><input type="text" class="hour-open" placeholder="8:00 AM"><input type="text" class="hour-close" placeholder="5:00 PM"></div>
+        <div class="hours-row"><span class="day">Wednesday</span><input type="text" class="hour-open" placeholder="8:00 AM"><input type="text" class="hour-close" placeholder="5:00 PM"></div>
+        <div class="hours-row"><span class="day">Thursday</span><input type="text" class="hour-open" placeholder="8:00 AM"><input type="text" class="hour-close" placeholder="5:00 PM"></div>
+        <div class="hours-row"><span class="day">Friday</span><input type="text" class="hour-open" placeholder="8:00 AM"><input type="text" class="hour-close" placeholder="5:00 PM"></div>
+        <div class="hours-row"><span class="day">Saturday</span><input type="text" class="hour-open" placeholder="Closed"><input type="text" class="hour-close" placeholder=""></div>
+        <div class="hours-row"><span class="day">Sunday</span><input type="text" class="hour-open" placeholder="Closed"><input type="text" class="hour-close" placeholder=""></div>
+      </div>
+    </div>
+    <div class="field">
+      <label>After-hours handling</label>
+      <select id="afterHours">
+        <option value="message">Take a message, tell them we'll call back next business day</option>
+        <option value="emergency">Take a message, but offer emergency contact for urgent calls</option>
+        <option value="schedule">Let them schedule a callback for the next available time</option>
+        <option value="custom">Custom (describe below)</option>
+      </select>
+    </div>
+    <div class="field" id="afterHoursCustom" style="display:none">
+      <label>Describe your after-hours policy</label>
+      <textarea id="afterHoursText" placeholder="e.g. 'For emergencies, have them text my personal cell. Everything else waits til morning.'"></textarea>
+    </div>
+    <div class="field">
+      <label>Services you offer</label>
+      <textarea id="services" placeholder="List your main services, one per line. Be specific — this is what the AI will tell callers you do.&#10;&#10;Example:&#10;AC repair and installation&#10;Heating system maintenance&#10;Duct cleaning&#10;24/7 emergency service"></textarea>
+      <div class="hint">The more specific, the better. Include anything you specialize in.</div>
+    </div>
+    <div class="field">
+      <label>Service area</label>
+      <input type="text" id="serviceArea" placeholder="e.g. Tyler and surrounding areas within 30 miles">
+    </div>
+    <div class="nav">
+      <button class="btn btn-back" onclick="prevStep(3)">Back</button>
+      <button class="btn btn-next" onclick="nextStep(3)">Next</button>
+    </div>
+  </div>
+
+  <!-- STEP 4: Common Questions -->
+  <div class="step" id="step4">
+    <div class="step-header">
+      <h2>What do customers usually ask?</h2>
+      <p>Give us the real answers — the way you'd actually say them. No corporate fluff. The AI will use YOUR words, not ours.</p>
+    </div>
+    <div id="qaList">
+      <div class="qa-pair">
+        <label>Question customers ask</label>
+        <input type="text" class="qa-question" placeholder="e.g. How much does a service call cost?">
+        <label>Your answer (in your own words)</label>
+        <textarea class="qa-answer" placeholder="e.g. Diagnostic is $89, and that goes toward the repair if you move forward. I can get you on the schedule and we'll give you an exact number on-site."></textarea>
+      </div>
+      <div class="qa-pair">
+        <label>Question customers ask</label>
+        <input type="text" class="qa-question" placeholder="e.g. Do you give free estimates?">
+        <label>Your answer</label>
+        <textarea class="qa-answer" placeholder="How would YOU answer this? Write it exactly how you'd say it."></textarea>
+      </div>
+      <div class="qa-pair">
+        <label>Question customers ask</label>
+        <input type="text" class="qa-question" placeholder="e.g. Are you licensed and insured?">
+        <label>Your answer</label>
+        <textarea class="qa-answer" placeholder="Your exact answer — we'll never make something up on your behalf."></textarea>
+      </div>
+    </div>
+    <button class="add-qa" onclick="addQA()">+ Add another question</button>
+    <div class="field" style="margin-top:20px">
+      <label>Anything the AI should NEVER say?</label>
+      <textarea id="neverSay" placeholder="e.g. Never quote prices over the phone. Never promise same-day service. Never say we're the cheapest."></textarea>
+      <div class="hint">This is important. If there's something that would make you cringe hearing from a receptionist, tell us now.</div>
+    </div>
+    <div class="nav">
+      <button class="btn btn-back" onclick="prevStep(4)">Back</button>
+      <button class="btn btn-next" onclick="nextStep(4)">Next</button>
+    </div>
+  </div>
+
+  <!-- STEP 5: Scheduling & Preferences -->
+  <div class="step" id="step5">
+    <div class="step-header">
+      <h2>How should we handle scheduling?</h2>
+      <p>Every business is different. Tell us exactly how you want calls and appointments handled.</p>
+    </div>
+    <div class="field">
+      <label>How do you currently schedule appointments?</label>
+      <select id="scheduling">
+        <option value="callback">I call them back and schedule myself</option>
+        <option value="text">I prefer if they text me to schedule</option>
+        <option value="calendar">I use an online calendar (Calendly, Google Calendar, etc.)</option>
+        <option value="staff">My office staff handles scheduling</option>
+        <option value="custom">Other (describe below)</option>
+      </select>
+    </div>
+    <div class="field" id="calendarField" style="display:none">
+      <label>Calendar link</label>
+      <input type="url" id="calendarLink" placeholder="https://calendly.com/yourbusiness">
+    </div>
+    <div class="field" id="schedulingCustom" style="display:none">
+      <label>How should the AI handle scheduling?</label>
+      <textarea id="schedulingText" placeholder="Describe your preferred process"></textarea>
+    </div>
+    <div class="field">
+      <label>Where should the AI send messages/leads?</label>
+      <select id="leadDelivery">
+        <option value="text">Text them to my phone</option>
+        <option value="email">Email them to me</option>
+        <option value="both">Both text and email</option>
+      </select>
+    </div>
+    <div class="field">
+      <label>Anything else we should know?</label>
+      <textarea id="specialNotes" placeholder="Any quirks about your business, special situations, things that make you unique. The more we know, the better the AI represents you.&#10;&#10;e.g. 'We're a husband-wife team. If someone asks for Maria, that's my wife — she handles the billing side.'"></textarea>
+    </div>
+    <div class="nav">
+      <button class="btn btn-back" onclick="prevStep(5)">Back</button>
+      <button class="btn btn-next" onclick="nextStep(5)">Next</button>
+    </div>
+  </div>
+
+  <!-- STEP 6: Review & Submit -->
+  <div class="step" id="step6">
+    <div class="step-header">
+      <h2>Review & get started</h2>
+      <p>Everything look right? We'll build your AI in the next 72 hours, customized exactly to what you told us. You'll get a call to test it before it goes live.</p>
+    </div>
+    <div id="reviewSummary" style="background:#111;border:1px solid #222;border-radius:10px;padding:20px;margin-bottom:24px;font-size:14px;line-height:1.8;color:#bbb"></div>
+    <div class="field">
+      <label>How would you like to proceed?</label>
+      <select id="proceedOption">
+        <option value="self">Set it up for me — I'll review it when it's ready</option>
+        <option value="guided">I'd like someone to walk me through it first</option>
+      </select>
+    </div>
+    <div class="nav">
+      <button class="btn btn-back" onclick="prevStep(6)">Back</button>
+      <button class="btn btn-submit" onclick="submitForm()">Build My AI</button>
+    </div>
+  </div>
+
+  <!-- SUCCESS -->
+  <div class="step" id="stepSuccess">
+    <div class="success">
+      <div class="icon">&#10003;</div>
+      <h2>We're on it.</h2>
+      <p id="successMsg">Your custom AI is being built right now. You'll hear from us within 72 hours to test it out before anything goes live. Nothing changes on your end until you say go.</p>
+    </div>
+  </div>
+</div>
+
+<script>
+let currentStep = 1;
+const totalSteps = 6;
+
+function updateProgress() {
+  document.querySelectorAll('.progress .dot').forEach((d, i) => {
+    d.classList.remove('active', 'done');
+    if (i + 1 === currentStep) d.classList.add('active');
+    else if (i + 1 < currentStep) d.classList.add('done');
+  });
+}
+
+function showStep(n) {
+  document.querySelectorAll('.step').forEach(s => s.classList.remove('active'));
+  const el = document.getElementById('step' + n);
+  if (el) el.classList.add('active');
+  currentStep = n;
+  updateProgress();
+  window.scrollTo({ top: 0, behavior: 'smooth' });
+}
+
+function nextStep(from) {
+  if (from === 1) {
+    const name = document.getElementById('bizName').value.trim();
+    const type = document.getElementById('bizType').value;
+    const owner = document.getElementById('ownerName').value.trim();
+    const phone = document.getElementById('bizPhone').value.trim();
+    const email = document.getElementById('ownerEmail').value.trim();
+    if (!name || !type || !owner || !phone || !email) {
+      alert('Please fill in all required fields.');
+      return;
+    }
+  }
+  if (from === 6) { submitForm(); return; }
+  if (from === 5) buildReview();
+  showStep(from + 1);
+}
+
+function prevStep(from) { showStep(from - 1); }
+
+function selectTone(el) {
+  document.querySelectorAll('.tone-option').forEach(t => t.classList.remove('selected'));
+  el.classList.add('selected');
+}
+
+document.getElementById('bizType').addEventListener('change', function() {
+  document.getElementById('otherTypeField').style.display = this.value === 'other' ? 'block' : 'none';
+});
+
+document.getElementById('afterHours').addEventListener('change', function() {
+  document.getElementById('afterHoursCustom').style.display = this.value === 'custom' ? 'block' : 'none';
+});
+
+document.getElementById('scheduling').addEventListener('change', function() {
+  document.getElementById('calendarField').style.display = this.value === 'calendar' ? 'block' : 'none';
+  document.getElementById('schedulingCustom').style.display = this.value === 'custom' ? 'block' : 'none';
+});
+
+function addQA() {
+  const list = document.getElementById('qaList');
+  const pair = document.createElement('div');
+  pair.className = 'qa-pair';
+  pair.innerHTML = '<label>Question customers ask</label><input type="text" class="qa-question" placeholder="Another common question"><label>Your answer</label><textarea class="qa-answer" placeholder="Your exact words"></textarea>';
+  list.appendChild(pair);
+}
+
+function collectData() {
+  const selectedTone = document.querySelector('.tone-option.selected');
+  const qaPairs = [];
+  document.querySelectorAll('.qa-pair').forEach(p => {
+    const q = p.querySelector('.qa-question').value.trim();
+    const a = p.querySelector('.qa-answer').value.trim();
+    if (q && a) qaPairs.push({ question: q, answer: a });
+  });
+
+  const hours = {};
+  const days = ['Monday','Tuesday','Wednesday','Thursday','Friday','Saturday','Sunday'];
+  document.querySelectorAll('.hours-row').forEach((row, i) => {
+    const open = row.querySelector('.hour-open').value.trim();
+    const close = row.querySelector('.hour-close').value.trim();
+    if (open && open.toLowerCase() !== 'closed') hours[days[i]] = open + ' - ' + close;
+    else hours[days[i]] = 'Closed';
+  });
+
+  return {
+    business_name: document.getElementById('bizName').value.trim(),
+    business_type: document.getElementById('bizType').value === 'other'
+      ? document.getElementById('bizTypeOther').value.trim()
+      : document.getElementById('bizType').value,
+    owner_name: document.getElementById('ownerName').value.trim(),
+    phone: document.getElementById('bizPhone').value.trim(),
+    email: document.getElementById('ownerEmail').value.trim(),
+    location: document.getElementById('bizLocation').value.trim(),
+    tone: selectedTone ? selectedTone.dataset.tone : 'friendly',
+    custom_greeting: document.getElementById('customGreeting').value.trim(),
+    voice_preference: document.getElementById('voicePref').value,
+    hours: hours,
+    after_hours: document.getElementById('afterHours').value === 'custom'
+      ? document.getElementById('afterHoursText').value.trim()
+      : document.getElementById('afterHours').value,
+    services: document.getElementById('services').value.trim(),
+    service_area: document.getElementById('serviceArea').value.trim(),
+    qa_pairs: qaPairs,
+    never_say: document.getElementById('neverSay').value.trim(),
+    scheduling: document.getElementById('scheduling').value === 'calendar'
+      ? 'calendar:' + (document.getElementById('calendarLink').value.trim() || '')
+      : document.getElementById('scheduling').value === 'custom'
+        ? document.getElementById('schedulingText').value.trim()
+        : document.getElementById('scheduling').value,
+    lead_delivery: document.getElementById('leadDelivery').value,
+    special_notes: document.getElementById('specialNotes').value.trim(),
+    proceed: document.getElementById('proceedOption').value,
+    submitted_at: new Date().toISOString()
+  };
+}
+
+function buildReview() {
+  const d = collectData();
+  const toneLabels = { friendly: 'Friendly & Warm', professional: 'Professional', southern: 'Southern & Casual', direct: 'Short & Direct' };
+  let html = '<strong style="color:#C9A84C">' + esc(d.business_name) + '</strong><br>';
+  html += 'Type: ' + esc(d.business_type) + '<br>';
+  html += 'Owner: ' + esc(d.owner_name) + '<br>';
+  html += 'Phone: ' + esc(d.phone) + '<br>';
+  html += 'Email: ' + esc(d.email) + '<br>';
+  if (d.location) html += 'Location: ' + esc(d.location) + '<br>';
+  html += '<br><strong style="color:#ddd">Voice & Tone:</strong> ' + esc(toneLabels[d.tone] || d.tone) + ' (' + esc(d.voice_preference) + ' voice)<br>';
+  if (d.custom_greeting) html += 'Custom greeting: "' + esc(d.custom_greeting) + '"<br>';
+  if (d.services) html += '<br><strong style="color:#ddd">Services:</strong><br>' + esc(d.services).replace(/\n/g, '<br>') + '<br>';
+  if (d.qa_pairs.length > 0) {
+    html += '<br><strong style="color:#ddd">Custom Q&A:</strong> ' + d.qa_pairs.length + ' question(s) provided<br>';
+  }
+  if (d.never_say) html += '<br><strong style="color:#c44">Never say:</strong> ' + esc(d.never_say) + '<br>';
+  document.getElementById('reviewSummary').innerHTML = html;
+}
+
+function esc(s) {
+  const d = document.createElement('div');
+  d.textContent = s || '';
+  return d.innerHTML;
+}
+
+async function submitForm() {
+  const data = collectData();
+  const btn = document.querySelector('.btn-submit');
+  btn.disabled = true;
+  btn.textContent = 'Sending...';
+
+  try {
+    await fetch('https://jamross.app.n8n.cloud/webhook/client-onboard', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify(data)
+    });
+  } catch (e) {
+    // Webhook may not be set up yet — still show success
+  }
+
+  // Also send ntfy alert
+  try {
+    await fetch('https://ntfy.sh/bossai-bostonrossall-alerts', {
+      method: 'POST',
+      headers: { 'Title': 'NEW CLIENT ONBOARD: ' + data.business_name, 'Priority': '5', 'Tags': 'money_with_wings' },
+      body: data.owner_name + ' (' + data.business_type + ') in ' + data.location + '\nPhone: ' + data.phone + '\nEmail: ' + data.email + '\nProceeds: ' + data.proceed
+    });
+  } catch (e) {}
+
+  const msg = data.proceed === 'guided'
+    ? "We'll reach out within 24 hours to walk you through everything and answer any questions. Your custom AI will be ready within 72 hours of that call."
+    : "Your custom AI is being built right now. You'll hear from us within 72 hours to test it out before anything goes live. Nothing changes on your end until you say go.";
+  document.getElementById('successMsg').textContent = msg;
+
+  document.querySelectorAll('.step').forEach(s => s.classList.remove('active'));
+  document.getElementById('stepSuccess').classList.add('active');
+  document.querySelector('.progress').style.display = 'none';
+}
+</script>
+</body>
+</html>
