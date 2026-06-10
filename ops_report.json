@@ -1,32 +1,22 @@
 {
-  "generated": "2026-06-10T02:36:58.677004+00:00",
+  "generated": "2026-06-10T04:24:13.142915+00:00",
   "sections": {
     "atlas": {
       "power_level": "ACTIVE",
-      "last_scan": "2026-06-10T00:18:08.631291+00:00",
-      "scan_count": 82,
+      "last_scan": "2026-06-10T03:10:55.773534+00:00",
+      "scan_count": 83,
       "heat_score": 100,
-      "recommendation": "HOT DAY. Weather-driven demand in Hartley, TX, Hardin, TX; Jefferson, TX, Texas; Beaver; Sherman; Hansford; Ochiltree; Lipscomb; Moore; Hutchinson; Roberts; Hemphill; Potter; Carson; Gray; Wheeler; Randall; Armstrong; Donley; Collingsworth. Call HVAC/roofers there NOW.",
+      "recommendation": "HOT DAY. Weather-driven demand in Ottawa, OK, Texas; Beaver; Sherman; Hansford; Ochiltree; Lipscomb; Moore; Hutchinson; Roberts; Hemphill; Potter; Carson; Gray; Wheeler; Randall; Armstrong; Donley; Collingsworth, Eastern/Central El Paso County; Rio Grande Valley of Eastern El Paso/Western Hudspeth Counties; Rio Grande Valley of Eastern Hudspeth County. Call HVAC/roofers there NOW.",
       "demand_signals": 10,
       "pain_signals": 0,
       "pitch_adjustments": 0,
       "competitor_intel": 0,
-      "territory_alerts": 20,
+      "territory_alerts": 9,
       "top_demands": [
         {
           "type": "storm",
-          "area": "Cimarron, OK; Texas, OK; Dallam, TX; Hansford, TX; Sherman, ",
+          "area": "Deaf Smith, TX; Oldham, TX",
           "niche": "roofing"
-        },
-        {
-          "type": "storm",
-          "area": "Hartley, TX",
-          "niche": "roofing"
-        },
-        {
-          "type": "heat_wave",
-          "area": "Eastern/Central El Paso County; Rio Grande Valley of Eastern",
-          "niche": "hvac"
         },
         {
           "type": "heat_wave",
@@ -37,24 +27,34 @@
           "type": "heat_wave",
           "area": "Palo Duro Canyon",
           "niche": "hvac"
+        },
+        {
+          "type": "heat_wave",
+          "area": "Eastern/Central El Paso County; Rio Grande Valley of Eastern",
+          "niche": "hvac"
+        },
+        {
+          "type": "flood",
+          "area": "Henderson, TX; Navarro, TX",
+          "niche": "plumbing"
         }
       ],
       "sources_online": 0
     },
     "lead_engine": {
       "state": "ACTIVE",
-      "total_leads": 156,
+      "total_leads": 151,
       "by_tier": {
         "SUPERNICHE": 11,
         "HOT": 30,
-        "WARM": 115
+        "WARM": 110
       },
       "by_route": {
-        "watchlist": 125,
-        "email": 31
+        "watchlist": 121,
+        "email": 30
       },
       "by_status": {
-        "queued": 156
+        "queued": 151
       },
       "synced_to_pipeline": 21,
       "api_spend": 5.12,
@@ -161,21 +161,21 @@
       ]
     },
     "n8n": {
-      "active_workflows": 89,
-      "inactive_workflows": 37,
-      "total_workflows": 126,
+      "active_workflows": 84,
+      "inactive_workflows": 43,
+      "total_workflows": 127,
       "recent_errors": 20,
       "recent_crashes": 10,
       "critical_workflows": [
         {
           "name": "Auto Caller",
           "id": "UQGW8QuaSLb9Euyh",
-          "active": true
+          "active": false
         },
         {
           "name": "Morning Text",
           "id": "wX6OyZ9UY0Xrbui1",
-          "active": true
+          "active": false
         },
         {
           "name": "ORACLE",
@@ -210,24 +210,24 @@
       ],
       "recent_failures": [
         {
-          "workflow": "VeofXawy3ISKcQY7",
-          "started": "2026-06-09T22:00"
+          "workflow": "jFLbL76enmJodPmB",
+          "started": "2026-06-10T04:14"
         },
         {
-          "workflow": "UQGW8QuaSLb9Euyh",
-          "started": "2026-06-09T19:00"
+          "workflow": "jFLbL76enmJodPmB",
+          "started": "2026-06-10T04:13"
         },
         {
-          "workflow": "8jvr7e9CDZgggXzM",
-          "started": "2026-06-09T17:00"
+          "workflow": "jFLbL76enmJodPmB",
+          "started": "2026-06-10T04:11"
         },
         {
-          "workflow": "UQGW8QuaSLb9Euyh",
-          "started": "2026-06-09T15:00"
+          "workflow": "jFLbL76enmJodPmB",
+          "started": "2026-06-10T04:05"
         },
         {
-          "workflow": "wX6OyZ9UY0Xrbui1",
-          "started": "2026-06-09T12:00"
+          "workflow": "jFLbL76enmJodPmB",
+          "started": "2026-06-10T04:03"
         }
       ]
     },
@@ -235,60 +235,60 @@
       "total_agents": 15,
       "agents": [
         {
-          "name": "BOSS \u2014 Built by BOSS Sales Caller",
-          "id": "agent_10c6519858eebc75047ee7ab8f",
-          "last_modification": "1781035314"
-        },
-        {
-          "name": "BOSS Follow-Up Caller",
-          "id": "agent_d1f1604b4cf25a35060e918fc9",
-          "last_modification": "1781035312"
-        },
-        {
           "name": "BOSS Support",
           "id": "agent_2ccbf93129f1b5d505c3669d41",
-          "last_modification": "1781035275"
-        },
-        {
-          "name": "Wickham Lawn Care",
-          "id": "agent_6d02eab9ce7293fc7ef932b2cb",
-          "last_modification": "1780972354"
-        },
-        {
-          "name": "BOSS Outbound Sales Caller",
-          "id": "agent_6c19e0315cf3dfd1ffa3db63a2",
-          "last_modification": "1780972353"
+          "last_modification": "1781063490"
         },
         {
           "name": "BOSS Junk Removal \u2014 Laurel MS",
           "id": "agent_59905e10f9d2ab2b6a77f66a4a",
-          "last_modification": "1780314827"
-        },
-        {
-          "name": "Naive Customer \u2014 Karen",
-          "id": "agent_10b4c07b640ce5953695224cdb",
-          "last_modification": "1780062851"
-        },
-        {
-          "name": "BOSS Autonomous Agent",
-          "id": "agent_e8fabc128af8d19f663b8e43aa",
-          "last_modification": "1779645081"
-        },
-        {
-          "name": "BOSS Summer Sales Trainer",
-          "id": "agent_fc53b0ede05f872cad6872bb86",
-          "last_modification": "1779577310"
+          "last_modification": "1781062573"
         },
         {
           "name": "Legal Advisor \u2014 BOSS Systems",
           "id": "agent_1009cb72ba155ed30a2de19eed",
-          "last_modification": "1779574951"
+          "last_modification": "1781062572"
+        },
+        {
+          "name": "BOSS Summer Sales Trainer",
+          "id": "agent_fc53b0ede05f872cad6872bb86",
+          "last_modification": "1781062572"
+        },
+        {
+          "name": "Wickham Lawn Care",
+          "id": "agent_6d02eab9ce7293fc7ef932b2cb",
+          "last_modification": "1781060830"
+        },
+        {
+          "name": "BOSS Autonomous Agent",
+          "id": "agent_e8fabc128af8d19f663b8e43aa",
+          "last_modification": "1781060829"
+        },
+        {
+          "name": "BOSS Deal Coach",
+          "id": "agent_b5e6182bee7aa111c201197a58",
+          "last_modification": "1781060828"
+        },
+        {
+          "name": "BOSS Pipeline Agent",
+          "id": "agent_8e070633763cb961bcc35d6668",
+          "last_modification": "1781060827"
+        },
+        {
+          "name": "BOSS Claude Advisor",
+          "id": "agent_c2003a57424906726c5ef52131",
+          "last_modification": "1781060827"
+        },
+        {
+          "name": "BOSS \u2014 Built by BOSS Sales Caller",
+          "id": "agent_10c6519858eebc75047ee7ab8f",
+          "last_modification": "1781060826"
         }
       ],
       "calls_24h": 50,
       "outbound_24h": 49,
       "inbound_24h": 1,
-      "avg_duration_sec": 14.0
+      "avg_duration_sec": 14.3
     },
     "quant": {
       "state": "ACTIVE",
