@@ -236,19 +236,33 @@ select option{background:#111;color:#ddd}
 
 <script>
 const PALETTES = {
-  midnight: {name:"Midnight Gold", colors:["#0a0a0a","#C9A84C","#1a1a1a","#b08d3e"]},
-  ocean:    {name:"Classic Blue", colors:["#1e3a5f","#2563eb","#f0f4f8","#ffffff"]},
-  forest:   {name:"Natural Green", colors:["#0f2b1a","#16a34a","#f0f4ed","#fafdf7"]},
-  sunset:   {name:"Warm Sunset", colors:["#3d1a00","#ea580c","#fff0e5","#fffaf5"]},
-  royal:    {name:"Royal Purple", colors:["#1a0a3d","#7c3aed","#f3e8ff","#faf5ff"]},
-  slate:    {name:"Modern Slate", colors:["#0f172a","#475569","#f1f5f9","#f8fafc"]}
+  bold_dark:      {name:"Bold & Dark", colors:["#0a0a0a","#e8450e","#1a1020","#ffffff"]},
+  clean_blue:     {name:"Clean & Blue", colors:["#0f172a","#2563eb","#f8fafc","#ffffff"]},
+  fresh_green:    {name:"Fresh & Green", colors:["#0a1f10","#16a34a","#f0faf0","#ffffff"]},
+  warm_friendly:  {name:"Warm & Inviting", colors:["#2a1505","#e87020","#fff8f2","#ffffff"]},
+  elegant:        {name:"Elegant & Minimal", colors:["#1a1814","#8b6f4e","#f8f6f2","#ffffff"]},
+  vibrant:        {name:"Vibrant & Fun", colors:["#12082a","#8b5cf6","#faf5ff","#ffffff"]}
 };
 
 const LAYOUTS = {
-  clean:    {name:"Clean Modern"},
-  bold:     {name:"Bold"},
-  friendly: {name:"Friendly"},
-  pro:      {name:"Professional"}
+  impact:    {name:"Impact"},
+  trust:     {name:"Trust Builder"},
+  portfolio: {name:"Portfolio"},
+  starter:   {name:"Modern"}
+};
+
+const SUGGESTED = {
+  junk_removal:{palette:"bold_dark",layout:"impact"},
+  lawn_care:{palette:"fresh_green",layout:"trust"},
+  pressure_washing:{palette:"clean_blue",layout:"impact"},
+  car_detailing:{palette:"bold_dark",layout:"impact"},
+  pool_cleaning:{palette:"clean_blue",layout:"trust"},
+  pet_sitting:{palette:"warm_friendly",layout:"starter"},
+  event_decor:{palette:"elegant",layout:"portfolio"},
+  photography:{palette:"elegant",layout:"portfolio"},
+  social_media:{palette:"vibrant",layout:"starter"},
+  organizing:{palette:"fresh_green",layout:"portfolio"},
+  tutoring:{palette:"clean_blue",layout:"trust"}
 };
 
 const SERVICE_DEFAULTS = {
@@ -389,6 +403,18 @@ document.getElementById('biz_type').addEventListener('change', () => {
   const type = document.getElementById('biz_type').value;
   const tagline = document.getElementById('biz_tagline');
   if (!tagline.value && TAGLINE_DEFAULTS[type]) tagline.placeholder = TAGLINE_DEFAULTS[type];
+  if (SUGGESTED[type]) {
+    const sp = SUGGESTED[type].palette;
+    const sl = SUGGESTED[type].layout;
+    document.querySelectorAll('#palette-grid .palette-card').forEach(c => {
+      c.classList.toggle('selected', c.dataset.key === sp);
+    });
+    selectedPalette = sp;
+    document.querySelectorAll('#layout-grid .layout-card').forEach(c => {
+      c.classList.toggle('selected', c.dataset.key === sl);
+    });
+    selectedLayout = sl;
+  }
 });
 
 function validate(step) {
