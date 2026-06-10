@@ -547,7 +547,7 @@ function renderGuide() {
     var cnHtml = '<span class="section-label">Coming Next</span><h2>Available Upgrades</h2>';
     guideData.coming_next.forEach(function(c) {
       cnHtml += '<div class="coming-card"><div class="coming-title">' + esc(c.title) + '</div><div class="coming-desc">' + esc(c.description) + '</div>';
-      cnHtml += '<a href="sms:9037146162" class="coming-cta" style="display:inline-block;padding:6px 0;font-size:12px">' + esc(c.cta || 'Text Boston to add this') + '</a></div>';
+      cnHtml += '<a href="sms:9035224459" class="coming-cta" style="display:inline-block;padding:6px 0;font-size:12px">' + esc(c.cta || 'Text us to add this') + '</a></div>';
     });
     document.getElementById('guide-coming').innerHTML = cnHtml;
   }
@@ -604,7 +604,7 @@ function selectOpt(el, group) {
 function buildCourse() {
   if (!courseData || !courseData.lessons) {
     var container = document.getElementById('lessons-container');
-    container.innerHTML = '<div class="info-box"><p>Course data not available yet. Text Boston to get yours set up.</p></div>';
+    container.innerHTML = '<div class="info-box"><p>Course data not available yet. Text us at 903-522-4459 to get yours set up.</p></div>';
     document.getElementById('learn-quiz').style.display = 'none';
     document.getElementById('learn-course').style.display = 'block';
     return;
