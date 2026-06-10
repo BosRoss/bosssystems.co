@@ -34,32 +34,32 @@ CLIENTS_DIR       = BOSS_HQ / "clients"
 BUSINESS_TYPE_META = {
     "hvac": {
         "google_category": "hvac contractor",
-        "avg_job_value": 650,
-        "annual_revenue_solo": 180000,
+        "avg_job_value": 480,
+        "avg_job_source": "ServiceTitan 2024 HVAC benchmark",
         "keywords": ["hvac", "heating", "cooling", "air conditioning", "ac repair", "furnace"],
         "pain_signals": ["missed calls during peak season", "seasonal overload (May-Aug)", "no-shows", "billing delays"],
         "specific_automations": ["hvac_filter_reminders", "hvac_seasonal_maintenance", "hvac_warranty_tracker"],
     },
     "plumber": {
         "google_category": "plumber",
-        "avg_job_value": 425,
-        "annual_revenue_solo": 140000,
+        "avg_job_value": 380,
+        "avg_job_source": "HomeAdvisor 2024 plumbing service average",
         "keywords": ["plumber", "plumbing", "pipe repair", "drain cleaning", "water heater"],
         "pain_signals": ["emergency calls missed after hours", "permit tracking is manual", "quote delays lose jobs"],
         "specific_automations": ["plumber_emergency_routing", "plumber_permit_tracker"],
     },
     "electrician": {
         "google_category": "electrician",
-        "avg_job_value": 380,
-        "annual_revenue_solo": 130000,
+        "avg_job_value": 420,
+        "avg_job_source": "HomeAdvisor 2024 electrical service average",
         "keywords": ["electrician", "electrical", "wiring", "panel upgrade"],
         "pain_signals": ["quote turnaround too slow", "permit tracking is manual", "missed after-hours calls"],
-        "specific_automations": [],
+        "specific_automations": ["electrician_emergency_routing", "electrician_permit_tracker"],
     },
     "roofer": {
         "google_category": "roofing contractor",
-        "avg_job_value": 8500,
-        "annual_revenue_solo": 250000,
+        "avg_job_value": 6500,
+        "avg_job_source": "Angi 2024 roof repair/replacement average",
         "keywords": ["roofing", "roof repair", "roof replacement", "gutters"],
         "pain_signals": ["slow storm-chasing speed", "insurance confusion loses deals", "seasonal demand spikes"],
         "specific_automations": ["roofing_storm_lead_gen", "roofing_insurance_automation"],
@@ -67,31 +67,27 @@ BUSINESS_TYPE_META = {
     "junk_removal": {
         "google_category": "junk removal",
         "avg_job_value": 310,
-        "annual_revenue_solo": 90000,
         "keywords": ["junk removal", "haul away", "debris removal", "cleanout"],
         "pain_signals": ["call volume spikes go unanswered", "pricing inconsistency", "same-day scheduling chaos"],
-        "specific_automations": [],
+        "specific_automations": ["dispatch_automation"],
     },
     "cleaning": {
         "google_category": "house cleaning service",
         "avg_job_value": 175,
-        "annual_revenue_solo": 75000,
         "keywords": ["cleaning", "maid service", "house cleaning", "janitorial"],
         "pain_signals": ["repeat booking management is manual", "crew scheduling overhead", "review generation neglected"],
-        "specific_automations": [],
+        "specific_automations": ["dispatch_automation"],
     },
     "auto_repair": {
         "google_category": "auto repair shop",
-        "avg_job_value": 450,
-        "annual_revenue_solo": 160000,
+        "avg_job_value": 300,
         "keywords": ["auto repair", "mechanic", "oil change", "brake repair"],
         "pain_signals": ["appointment scheduling is phone-only", "parts availability causes delays", "customer follow-up dropped"],
-        "specific_automations": [],
+        "specific_automations": ["auto_repair_service_reminders", "auto_repair_parts_tracker"],
     },
     "law_firm": {
         "google_category": "law firm",
-        "avg_job_value": 3500,
-        "annual_revenue_solo": 350000,
+        "avg_job_value": 3000,
         "keywords": ["attorney", "lawyer", "law firm", "legal"],
         "pain_signals": ["intake overwhelm", "document collection is manual and slow", "missed consultation calls"],
         "specific_automations": ["law_firm_intake", "law_firm_document_requests"],
@@ -99,23 +95,20 @@ BUSINESS_TYPE_META = {
     "pest_control": {
         "google_category": "pest control service",
         "avg_job_value": 200,
-        "annual_revenue_solo": 95000,
         "keywords": ["pest control", "exterminator", "termite", "bug control"],
         "pain_signals": ["recurring appointment management is manual", "seasonal demand spikes", "upsell opportunities missed"],
-        "specific_automations": [],
+        "specific_automations": ["pest_control_recurring_reminders", "pest_control_seasonal_campaigns"],
     },
     "lawn_care": {
         "google_category": "lawn care service",
         "avg_job_value": 80,
-        "annual_revenue_solo": 65000,
         "keywords": ["lawn care", "landscaping", "grass cutting", "yard service"],
         "pain_signals": ["route optimization wasted daily", "recurring billing is manual", "weather rescheduling chaos"],
-        "specific_automations": [],
+        "specific_automations": ["lawn_care_route_optimizer", "lawn_care_weather_reschedule"],
     },
     "restaurant": {
         "google_category": "restaurant",
         "avg_job_value": 45,
-        "annual_revenue_solo": 600000,
         "keywords": ["restaurant", "dining", "food", "cafe"],
         "pain_signals": ["reservation management is phone-only", "no-shows waste tables", "review response is neglected"],
         "specific_automations": ["restaurant_reservations", "restaurant_review_response"],
@@ -123,7 +116,6 @@ BUSINESS_TYPE_META = {
     "gym": {
         "google_category": "gym",
         "avg_job_value": 60,
-        "annual_revenue_solo": 180000,
         "keywords": ["gym", "fitness", "crossfit", "personal training"],
         "pain_signals": ["class booking is phone/walk-in only", "membership churn is high", "no-shows fill slots"],
         "specific_automations": ["gym_class_booking", "gym_membership_renewal"],
@@ -131,7 +123,6 @@ BUSINESS_TYPE_META = {
     "real_estate": {
         "google_category": "real estate agency",
         "avg_job_value": 8000,
-        "annual_revenue_solo": 120000,
         "keywords": ["real estate", "realtor", "homes for sale", "property"],
         "pain_signals": ["follow-up inconsistency loses deals", "showing coordination is chaotic", "lead nurture falls apart"],
         "specific_automations": ["real_estate_listing_updates"],
@@ -139,14 +130,27 @@ BUSINESS_TYPE_META = {
     "retail": {
         "google_category": "retail store",
         "avg_job_value": 85,
-        "annual_revenue_solo": 400000,
         "keywords": ["retail", "store", "shop", "boutique"],
         "pain_signals": ["inventory tracking is manual", "customer loyalty is informal", "seasonal promotions are inconsistent"],
         "specific_automations": ["retail_inventory_reorder", "retail_loyalty_program"],
     },
+    "dental": {
+        "google_category": "dentist",
+        "avg_job_value": 350,
+        "keywords": ["dentist", "dental", "teeth cleaning", "orthodontist", "dental office"],
+        "pain_signals": ["15-20% no-show rate burns chair time", "recall patients lost to competitors", "new patient intake is slow and paper-heavy"],
+        "specific_automations": ["dental_appointment_reminders", "dental_recall_system", "dental_new_patient_onboarding"],
+    },
+    "pressure_washing": {
+        "google_category": "pressure washing service",
+        "avg_job_value": 275,
+        "keywords": ["pressure washing", "power washing", "soft wash", "exterior cleaning"],
+        "pain_signals": ["seasonal demand swings", "pricing inconsistency loses jobs", "no follow-up on completed jobs"],
+        "specific_automations": ["seasonal_campaigns", "re_engagement_campaign"],
+    },
 }
 
-PACKAGE_TIERS = {
+PACKAGE_TIERS_BASE = {
     "Starter": {
         "price_setup": 1497,
         "price_monthly": 97,
@@ -173,6 +177,25 @@ PACKAGE_TIERS = {
         "description": "Complete AI business transformation. Every process automated. Owner focuses on growth.",
     },
 }
+
+
+def get_package_tiers(business_type):
+    """Return package tiers with business-specific automations injected into Growth and Full."""
+    meta = BUSINESS_TYPE_META.get(business_type, {})
+    specific = meta.get("specific_automations", [])
+    tiers = {}
+    for name, base in PACKAGE_TIERS_BASE.items():
+        tier = dict(base)
+        tier["automations"] = list(base["automations"])
+        if name == "Growth" and specific:
+            tier["automations"].extend(s for s in specific[:1] if s not in tier["automations"])
+        elif name == "Full Transformation" and specific:
+            tier["automations"].extend(s for s in specific if s not in tier["automations"])
+        tiers[name] = tier
+    return tiers
+
+
+PACKAGE_TIERS = PACKAGE_TIERS_BASE
 
 
 # ──────────────────────────────────────────────────────────────────────────────
@@ -372,7 +395,7 @@ def research_business(business_name, city_full, business_type):
             for p in local_competitors[:8]
         ],
         "avg_job_value": meta.get("avg_job_value", 300),
-        "annual_revenue_solo": meta.get("annual_revenue_solo", 100000),
+        "avg_job_source": meta.get("avg_job_source", "industry average"),
         "specific_automations": meta.get("specific_automations", []),
     }
 
@@ -405,8 +428,8 @@ BUSINESS PROFILE:
 - Location: {research['city_full']}
 - Google Rating: {research.get('target_rating', 'Not found')} ({research.get('target_reviews', 0)} reviews) [VERIFIED from Google Places]
 - Has Website: {research.get('has_website', False)} [VERIFIED from Google Places]
-- Avg Job Value: ${research.get('avg_job_value', 300)} [INDUSTRY AVERAGE — not verified for this specific business]
-- Est. Annual Revenue: ${research.get('annual_revenue_solo', 100000):,} [INDUSTRY AVERAGE for solo {research['business_type']} operators — not verified]
+- Avg Job Value: ${research.get('avg_job_value', 300)} [SOURCE: {research.get('avg_job_source', 'industry average')} — NOT verified for this specific business]
+- Annual Revenue: UNKNOWN — we do not have this data and should NOT guess it
 
 MARKET CONTEXT:
 - Competitors in area: {research.get('competitor_count', 0)}
@@ -422,16 +445,21 @@ SAMPLE REVIEWS:
 AUTOMATION CATALOG (key | name | annual_value | monthly_cost | difficulty):
 {catalog_lines}
 
-Based on this specific business profile, identify the TOP 10 most impactful automations.
-Consider: which pain signals map to which automations, highest ROI for this business type, business-specific relevance.
+Based on this specific business profile, identify the TOP automations ranked by impact.
+Consider: which pain signals map to which automations, highest ROI for this business type, business-specific automations that only apply to this industry.
+Return between 8-12 automations — include ALL that are genuinely relevant. Don't pad to 10 if fewer apply. Don't cut at 10 if more are strong fits.
 
-IMPORTANT RULES:
+CRITICAL HONESTY RULES:
 - Only reference problems you can VERIFY from the Google data (rating, reviews, website, pain signals)
-- For revenue estimates, clearly note which are from verified data vs industry averages
+- We do NOT know this business's revenue, call volume, miss rate, or employee count. Do not guess.
+- For estimated_annual_value: use CONSERVATIVE numbers based only on the avg job value and reasonable assumptions. Cite what assumption you're making.
+- If there's not enough data to estimate a value, say "insufficient data" in why_this_business and set estimated_annual_value to 0
 - Do NOT claim phone problems exist unless pain signals from reviews confirm it
-- Be conservative on estimated_annual_value — use the lower end of reasonable
+- Better to say "we can't estimate this without more data" than to give a fake number
+- ALWAYS include business-specific automations from the catalog that match this type — they exist for a reason
+- Every why_this_business must state whether the claim is VERIFIED (from Google data) or ESTIMATED (from industry data)
 
-Return a JSON array of exactly 10 objects. Each must have:
+Return a JSON array of objects. Each must have:
 - "key": the exact automation key from the catalog
 - "name": automation name
 - "why_this_business": 1-2 sentence specific reason this matters for THIS business. Only claim verified facts (from Google data). Label estimates as estimates.
@@ -554,7 +582,8 @@ def build_transformation_plan(research, claude_recs, automation_catalog):
     else:
         recommended_package = "Starter"
 
-    pkg = PACKAGE_TIERS[recommended_package]
+    tiers = get_package_tiers(business_type)
+    pkg = tiers[recommended_package]
 
     return {
         "generated_at": datetime.now().isoformat(),
@@ -663,13 +692,15 @@ def print_report(plan):
     total_val  = plan["total_annual_value_unlocked"]
     total_cost = plan["total_monthly_cost"]
     net_gain   = total_val - (total_cost * 12)
-    row("Est. Annual Value:", f"${total_val:,} (after 25% overlap discount)", GREEN)
+    row("Est. Annual Opportunity:", f"${total_val:,} (after 25% overlap discount)", GREEN)
     row("Total Monthly Cost:", f"${total_cost}/month")
     row("Annual Cost:", f"${total_cost * 12:,}/year")
     row("Est. Net Annual Gain:", f"${net_gain:,}", GREEN if net_gain > 0 else RED)
-    row("Est. ROI Ratio:", f"{plan['roi_ratio']}x (industry estimates — your results may vary)", GREEN)
-    print(f"\n  {DIM}Note: Values use industry averages where business-specific data is unavailable.{RESET}")
-    print(f"  {DIM}Overlap discount applied — automations share some of the same revenue pool.{RESET}")
+    row("Est. ROI Ratio:", f"{plan['roi_ratio']}x", GREEN)
+    print(f"\n  {RED}IMPORTANT: These are estimates, not promises.{RESET}")
+    print(f"  {DIM}Values use industry averages where business-specific data is unavailable.{RESET}")
+    print(f"  {DIM}Your actual results depend on call volume, market, pricing, and execution.{RESET}")
+    print(f"  {DIM}We'd rather under-promise and over-deliver.{RESET}")
 
     sec("RECOMMENDED PACKAGE")
     pkg      = plan["recommended_package"]
