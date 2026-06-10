@@ -1,0 +1,1020 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Washington Skills Trainer</title>
+<style>
+*{margin:0;padding:0;box-sizing:border-box}
+body{background:#0a0a0a;color:#bbb;font-family:'Segoe UI',system-ui,sans-serif;min-height:100vh}
+.screen{display:none;max-width:800px;margin:0 auto;padding:20px}
+.screen.active{display:block}
+h1{color:#d4a843;font-size:1.8em;margin-bottom:8px}
+h2{color:#d4a843;font-size:1.3em;margin-bottom:12px}
+h3{color:#ccc;font-size:1.1em;margin-bottom:8px}
+.subtitle{color:#999;font-size:0.95em;margin-bottom:24px}
+.card{background:#151515;border:1px solid #2a2a2a;border-radius:10px;padding:20px;margin-bottom:16px}
+.card:hover{border-color:#d4a843;cursor:pointer}
+.card.no-hover:hover{border-color:#2a2a2a;cursor:default}
+.btn{background:#d4a843;color:#0a0a0a;border:none;padding:12px 28px;border-radius:8px;font-size:1em;font-weight:600;cursor:pointer;transition:all 0.2s}
+.btn:hover{background:#e0b955;transform:translateY(-1px)}
+.btn.secondary{background:#2a2a2a;color:#bbb}
+.btn.secondary:hover{background:#333}
+.btn.small{padding:8px 16px;font-size:0.85em}
+.btn:disabled{opacity:0.4;cursor:not-allowed;transform:none}
+.progress-bar{background:#1a1a1a;border-radius:6px;height:8px;margin:16px 0;overflow:hidden}
+.progress-fill{height:100%;background:#d4a843;border-radius:6px;transition:width 0.4s}
+.option{background:#1a1a1a;border:1px solid #2a2a2a;border-radius:8px;padding:14px 18px;margin:8px 0;cursor:pointer;transition:all 0.15s}
+.option:hover{border-color:#d4a843;background:#1e1a14}
+.option.selected{border-color:#d4a843;background:#1e1a14;box-shadow:0 0 0 1px #d4a843}
+.option-label{color:#ddd;font-size:0.95em}
+.tag{display:inline-block;padding:3px 10px;border-radius:12px;font-size:0.75em;font-weight:600;margin:2px 4px}
+.tag.durable{background:#1a3a1a;color:#4caf50}
+.tag.neutral{background:#2a2a1a;color:#ff9800}
+.tag.mixed{background:#2a1a1a;color:#ff9800}
+.tag.burns{background:#3a1a1a;color:#f44336}
+.tag.due{background:#3a1a2a;color:#ff5252;animation:pulse 2s infinite}
+.tag.lesson-only{background:#1a1a2a;color:#6688bb}
+@keyframes pulse{0%,100%{opacity:1}50%{opacity:0.6}}
+.mastery-bar{display:flex;align-items:center;margin:6px 0}
+.mastery-bar .label{width:160px;font-size:0.85em;color:#999}
+.mastery-bar .bar{flex:1;height:12px;background:#1a1a1a;border-radius:6px;overflow:hidden}
+.mastery-bar .fill{height:100%;border-radius:6px;transition:width 0.5s}
+.mastery-bar .score{width:50px;text-align:right;font-size:0.85em;color:#999;margin-left:8px}
+.fill.red{background:linear-gradient(90deg,#d32f2f,#e53935)}
+.fill.yellow{background:linear-gradient(90deg,#f57f17,#ff9800)}
+.fill.green{background:linear-gradient(90deg,#388e3c,#4caf50)}
+.chat-area{background:#111;border:1px solid #222;border-radius:10px;padding:16px;max-height:400px;overflow-y:auto;margin:12px 0}
+.chat-msg{margin:10px 0;animation:fadeIn 0.3s}
+@keyframes fadeIn{from{opacity:0;transform:translateY(4px)}to{opacity:1;transform:none}}
+.chat-msg .sender{font-weight:600;font-size:0.8em;margin-bottom:3px}
+.chat-msg .sender.narrator{color:#888}
+.chat-msg .sender.player{color:#d4a843}
+.chat-msg .sender.opponent{color:#5ea8d4}
+.chat-msg .sender.coach{color:#4caf50}
+.chat-msg .text{color:#ccc;font-size:0.95em;line-height:1.5;padding-left:12px;border-left:2px solid #222}
+.chat-msg .sender.player+.text{border-left-color:#d4a843}
+.chat-msg .sender.opponent+.text{border-left-color:#5ea8d4}
+.chat-msg .sender.coach+.text{border-left-color:#4caf50}
+.input-row{display:flex;gap:8px;margin-top:12px}
+.input-row textarea{flex:1;background:#1a1a1a;border:1px solid #2a2a2a;border-radius:8px;padding:12px;color:#ddd;font-size:0.95em;font-family:inherit;resize:none;min-height:60px}
+.input-row textarea:focus{outline:none;border-color:#d4a843}
+.stats-row{display:flex;gap:16px;margin:12px 0;flex-wrap:wrap}
+.stat{background:#151515;border:1px solid #222;border-radius:8px;padding:12px 16px;flex:1;min-width:100px;text-align:center}
+.stat .val{color:#d4a843;font-size:1.5em;font-weight:700}
+.stat .lbl{color:#888;font-size:0.75em;margin-top:2px}
+.grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(230px,1fr));gap:12px}
+.skill-card{background:#151515;border:1px solid #2a2a2a;border-radius:10px;padding:16px;cursor:pointer;transition:all 0.2s;position:relative}
+.skill-card:hover{border-color:#d4a843;transform:translateY(-2px)}
+.skill-card .skill-name{color:#ddd;font-weight:600;font-size:0.95em;margin-bottom:6px}
+.skill-card .skill-level{font-size:0.8em;color:#888}
+.badge{position:absolute;top:8px;right:8px}
+.warn-banner{background:#2a1a0a;border:1px solid #d4a843;border-radius:8px;padding:12px 16px;margin:12px 0;font-size:0.9em;color:#d4a843}
+.info-banner{background:#0a1a2a;border:1px solid #2a4a6a;border-radius:8px;padding:12px 16px;margin:12px 0;font-size:0.9em;color:#6699cc}
+.integrity-banner{padding:10px 16px;border-radius:8px;margin:10px 0;font-size:0.85em}
+.integrity-banner.durable-b{background:#0a1a0a;border:1px solid #2a4a2a;color:#6abf6a}
+.integrity-banner.burns-b{background:#1a0a0a;border:1px solid #4a2a2a;color:#e06060}
+.integrity-banner.mixed-b{background:#1a1a0a;border:1px solid #4a4a2a;color:#c0a040}
+.skill-card.locked{opacity:0.5;border-color:#3a1a1a}
+.skill-card.locked:hover{transform:none;border-color:#3a1a1a;cursor:not-allowed}
+.hidden{display:none!important}
+.mt{margin-top:16px}
+.center{text-align:center}
+.flex{display:flex;gap:8px;align-items:center}
+.sep{border-top:1px solid #222;margin:16px 0}
+.loading{color:#888;font-style:italic}
+.scenario-header{display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:8px}
+.moves-left{background:#1a1a1a;border:1px solid #2a2a2a;padding:6px 14px;border-radius:20px;font-size:0.85em;color:#999}
+.rep-meter{display:flex;align-items:center;gap:6px;font-size:0.85em;color:#999}
+.rep-meter .rep-val{color:#d4a843;font-weight:600}
+.nav{display:flex;gap:8px;margin-bottom:20px;flex-wrap:wrap}
+.nav .btn{font-size:0.85em;padding:8px 16px}
+.input-error{color:#f44336;font-size:0.8em;margin-top:4px}
+</style>
+</head>
+<body>
+
+<div id="welcome" class="screen active">
+  <div class="center" style="padding-top:60px">
+    <h1>Washington Skills Trainer</h1>
+    <p class="subtitle">Learn how power actually works. Practice the real skills. Your world, not theirs.</p>
+    <div id="webhook-status" class="hidden"></div>
+    <div class="card no-hover" style="text-align:left;max-width:500px;margin:24px auto">
+      <h3>What this teaches</h3>
+      <p style="color:#999;font-size:0.9em;line-height:1.6;margin-top:8px">
+        Coalition-building. Negotiation. Leverage. Reading who really decides.
+        The favor economy. Face-saving. The long game.<br><br>
+        12 real Washington power skills, stripped of politics, reskinned to YOUR world.
+        7 interactive scenarios with AI opponents who negotiate back.
+        5 lesson-only skills for study and recognition.<br><br>
+        A coach who flags your blind spots. Spaced repetition so you retain what you learn.
+      </p>
+    </div>
+    <div id="welcome-buttons" class="mt"></div>
+  </div>
+</div>
+
+<div id="assess-domain" class="screen">
+  <h2>Domain Knowledge Assessment</h2>
+  <p class="subtitle">Finding your real strengths. These become your training scenarios.</p>
+  <div class="progress-bar"><div id="domain-progress" class="progress-fill" style="width:0%"></div></div>
+  <div id="domain-question-area"></div>
+</div>
+
+<div id="assess-skill" class="screen">
+  <h2>Skill Baseline</h2>
+  <p class="subtitle">How you naturally handle power dynamics — before training.</p>
+  <div class="progress-bar"><div id="skill-progress" class="progress-fill" style="width:0%"></div></div>
+  <div id="skill-question-area"></div>
+</div>
+
+<div id="assess-results" class="screen">
+  <h2>Your Profile</h2>
+  <p class="subtitle">Here's what the assessment found.</p>
+  <div class="card no-hover"><h3>Domain Strengths</h3><p style="color:#888;font-size:0.85em;margin-bottom:12px">Scored by real depth, not self-report.</p><div id="domain-results"></div></div>
+  <div class="card no-hover mt"><h3>Skill Baseline</h3><p style="color:#888;font-size:0.85em;margin-bottom:12px">Your natural instincts on each power skill.</p><div id="skill-results"></div></div>
+  <div id="strong-domains-summary" class="card no-hover mt"></div>
+  <div class="center mt"><button class="btn" onclick="showScreen('hub')">Begin Training</button></div>
+</div>
+
+<div id="hub" class="screen">
+  <div class="nav">
+    <button class="btn small secondary" onclick="showScreen('dashboard')">Dashboard</button>
+    <button class="btn small secondary" onclick="showScreen('assess-results')">My Profile</button>
+    <button class="btn small secondary" onclick="retakeAssessment()">Retake Assessment</button>
+  </div>
+  <h2>Training Hub</h2>
+  <p class="subtitle">Pick a skill. Gold = due for review. Blue = lesson only (no scenario).</p>
+  <div id="srs-alert" class="warn-banner hidden"></div>
+  <div id="skill-grid" class="grid mt"></div>
+</div>
+
+<div id="lesson" class="screen">
+  <div class="nav"><button class="btn small secondary" onclick="showScreen('hub')">Back to Hub</button></div>
+  <div id="lesson-content"></div>
+  <div class="center mt"><button class="btn" id="start-scenario-btn">Start Scenario</button></div>
+</div>
+
+<div id="scenario" class="screen">
+  <div class="nav"><button class="btn small secondary" onclick="showScreen('hub')">Return to Hub</button></div>
+  <div class="scenario-header">
+    <h2 id="scenario-title"></h2>
+    <div class="flex">
+      <div class="moves-left">Moves: <span id="moves-count">0</span>/<span id="moves-total">8</span></div>
+      <div class="rep-meter">Rep: <span class="rep-val" id="rep-display">100</span></div>
+    </div>
+  </div>
+  <div id="scenario-setup" class="card no-hover" style="font-size:0.9em"></div>
+  <div id="scenario-cast" class="card no-hover" style="font-size:0.85em"></div>
+  <div class="chat-area" id="chat-area"></div>
+  <div class="input-row">
+    <textarea id="player-input" placeholder="What do you say or do? (Be specific — at least a full sentence.)" rows="2"></textarea>
+    <button class="btn" id="send-btn" onclick="sendMove()">Send</button>
+  </div>
+  <div id="input-error" class="input-error hidden"></div>
+  <div class="flex mt" style="justify-content:space-between">
+    <button class="btn small secondary" id="end-scenario-btn" onclick="endScenario()">End Scenario</button>
+    <span id="scenario-status" class="loading hidden"></span>
+  </div>
+</div>
+
+<div id="review" class="screen">
+  <h2>After-Action Review</h2>
+  <div id="review-content"></div>
+  <div class="flex mt" style="justify-content:center;gap:12px">
+    <button class="btn secondary" id="replay-btn" onclick="replayScenario()">Replay Scenario</button>
+    <button class="btn" id="review-hub-btn" onclick="showScreen('hub')">Back to Hub</button>
+  </div>
+</div>
+
+<div id="dashboard" class="screen">
+  <div class="nav"><button class="btn small secondary" onclick="showScreen('hub')">Training Hub</button></div>
+  <h2>Mastery Dashboard</h2>
+  <div class="stats-row" id="dash-stats"></div>
+  <div class="card no-hover mt"><h3>Skill Mastery</h3><div id="dash-mastery"></div></div>
+  <div class="card no-hover mt"><h3>Due for Review</h3><div id="dash-srs"></div></div>
+  <div class="card no-hover mt"><h3>Session History</h3><div id="dash-history"></div></div>
+</div>
+
+<script>
+const WEBHOOK_URL='https://jamross.app.n8n.cloud/webhook/washington-trainer';
+let webhookLive=false;
+
+const DOMAINS=[
+  {id:'ai',name:'AI & Automation'},{id:'sales',name:'Sales & Closing'},
+  {id:'business',name:'Business Strategy'},{id:'marketing',name:'Marketing'},
+  {id:'services',name:'Local Service Businesses'},{id:'tech',name:'Technology & Code'},
+  {id:'leadership',name:'Leadership & Teams'},{id:'intel',name:'Intelligence & Research'}
+];
+
+const DOMAIN_QUESTIONS=[
+  {domain:'ai',q:'Your AI phone agent keeps interrupting callers mid-sentence. The FIRST thing you check is:',
+   opts:['Interruption sensitivity threshold — it controls how long the agent waits before it decides the caller is done speaking','The voice model\'s response latency settings — high latency causes overlap on the audio stream','The script\'s prompt length — too many instructions cause the agent to rush its responses','The caller\'s connection quality — poor cell signal causes audio gaps the agent misreads as pauses'],correct:0},
+  {domain:'ai',q:'Your automation handles 50 webhook calls/hour fine but crashes at 200/hour. Most likely cause:',
+   opts:['The server ran out of available memory because each webhook spawns a new process in parallel','The execution queue saturated and hit a rate limit — requests pile up faster than the engine processes them','The webhook endpoint URL has a built-in hourly request cap that silently rejects excess calls','The API keys are being rotated too frequently under load, causing authentication failures'],correct:1},
+  {domain:'sales',q:'"I need to think about it" from a prospect usually means:',
+   opts:['There\'s a specific unresolved concern they haven\'t said out loud — your job is to find what it is','They genuinely need time to compare options and will call back after considering your pitch','They\'re politely ending the conversation and won\'t be interested no matter what you do next','You should schedule a detailed follow-up next week when they\'ve had time to reflect on your offer'],correct:0},
+  {domain:'sales',q:'Gatekeeper says "He\'s in a meeting, call Thursday." Best move:',
+   opts:['Ask for their email address so you can send a brief overview that positions you before the call back','Call back Thursday exactly as requested to show you respect their process and follow through','Lock a specific time on Thursday, confirm their name, and ask if there\'s anything he should see beforehand','Call Wednesday afternoon to catch them slightly off guard before they expect your follow-up'],correct:2},
+  {domain:'business',q:'$5,000 budget, zero clients. First dollar goes to:',
+   opts:['Getting in front of ONE potential client face-to-face — a real demo closes faster than any campaign','Running targeted Facebook and Google ads to generate a pipeline of inbound leads at scale','Building a better product with premium features that differentiate you from cheaper competitors','Hiring a part-time salesperson who can cold-call while you focus on product development'],correct:0},
+  {domain:'business',q:'Competitor cuts price to $29/month. Best response:',
+   opts:['Match their price point to remain competitive and prevent losing prospects on sticker price','Ignore it entirely and keep selling at your current price without acknowledging the competitor','Raise your price to signal premium quality — cheap pricing communicates cheap product to buyers','Reposition on value they can\'t match — breadth of service, personal support, no overage billing'],correct:3},
+  {domain:'marketing',q:'Biggest difference between a Google search lead and a referral lead:',
+   opts:['Referral leads already trust you through social proof — they need far less convincing to convert','Google leads have higher purchase intent because they actively searched for a solution to their problem','Referral leads tend to be cheaper to acquire since word-of-mouth doesn\'t require ad spend','Google leads are generally more tech-savvy and easier to onboard to a digital product'],correct:0},
+  {domain:'marketing',q:'Zero testimonials, great product. First move for social proof:',
+   opts:['Offer the first 3 clients a discounted rate in exchange for honest, documented results you can show','Ask friends and family to write positive reviews describing the product in their own words','Build detailed case studies using realistic hypothetical scenarios that demonstrate the product value','Wait for organic testimonials to appear naturally as your early customers spread the word'],correct:0},
+  {domain:'services',q:'HVAC companies lose more per missed call than most service businesses because:',
+   opts:['Jobs are urgent (no AC in summer is an emergency), high-ticket ($400-2500), and seasonal — a missed July call is gone','HVAC equipment and parts cost significantly more than materials in other service trades like plumbing','There are fewer HVAC competitors per market so each missed call represents a larger share of demand','HVAC customers tend to be higher-income homeowners who spend more freely on service calls'],correct:0},
+  {domain:'services',q:'"My wife answers the phone, I\'m good." What he doesn\'t realize:',
+   opts:['Every call she misses — busy, asleep, on another line, in the bathroom — is $400+ walking to his competitor','His wife probably wants a break from being the unpaid receptionist for a business she didn\'t sign up to run','An AI receptionist would project a more professional image than a family member answering casually','He should seriously consider hiring a dedicated full-time receptionist to handle call volume properly'],correct:0},
+  {domain:'tech',q:'Two APIs integrated, one returns data 10x faster than the other. Main problem:',
+   opts:['The fast API consumes disproportionate bandwidth and may trigger rate limits on the shared connection','You\'ll need to implement completely separate error handling logic for two different response time profiles','Race conditions — the downstream process needs the slow API\'s data but it isn\'t ready when the fast API returns','The faster API is likely returning less validated data, which introduces accuracy problems downstream'],correct:2},
+  {domain:'tech',q:'Automation worked 3 months, suddenly fails, code unchanged. Most likely:',
+   opts:['An external dependency changed — API version update, expired auth token, new rate limit, or schema change','The underlying server hardware has degraded over time causing intermittent processing failures','Accumulated data corruption in the database has finally reached a threshold that breaks the queries','A slow memory leak has been building for three months and just hit the out-of-memory threshold'],correct:0},
+  {domain:'leadership',q:'A top performer is making others feel bad about their own work. You:',
+   opts:['Tell them directly to tone down the competitiveness because it\'s hurting team morale and collaboration','Privately redirect their energy — give them mentoring responsibilities so excellence lifts the team up','Move them to work solo on independent projects where their excellence won\'t affect team dynamics','Ignore the interpersonal friction because raw performance output matters more than team feelings'],correct:1},
+  {domain:'leadership',q:'A partner wants to quit after a bad week. Most effective response:',
+   opts:['Listen fully, validate the frustration as real, then ask what ONE specific thing would need to change for them to stay','Tell them not to quit because they\'ll regret the decision later when things inevitably improve','Remind them that everyone has bad weeks and the key to success is pushing through the rough patches','Accept their decision with grace and say you understand — forcing someone to stay never works long-term'],correct:0},
+  {domain:'intel',q:'Two credible sources contradict each other on competitor pricing. You:',
+   opts:['Trust whichever source published more recently since pricing changes frequently in competitive markets','Average the two reported numbers to get the most statistically likely actual price point','Trust the source with the larger audience since they face more accountability for publishing errors','Find a third independent source or verify directly — call as a prospect yourself, check their live website'],correct:3},
+  {domain:'intel',q:'Difference between a data point and intelligence:',
+   opts:['A data point is a raw fact — intelligence is what that fact MEANS for your next concrete move','Intelligence comes from classified or restricted sources while data points are publicly available','Intelligence is inherently more accurate and reliable because it has been verified by multiple analysts','Data points are always numerical measurements while intelligence is always narrative or contextual'],correct:0}
+];
+
+const SKILL_DATA={
+  coalition_building:{name:'Coalition Building',short:'Assemble unlikely allies who each have different reasons to say yes',
+    integrity:'durable',integrityNote:'Genuine coalition building creates real shared wins. The trust compounds.',
+    lesson:'Map every stakeholder\'s REAL self-interest — not what they say publicly. Find the narrow overlap where each party pursues their own goal by supporting yours. Recruit the most surprising ally first (credibility). Give each faction a visible role. Never force ideological alignment — only align on the specific outcome.\n\nBATNA + ZOPA: Before entering any negotiation, know your BATNA (best alternative if this fails) — your power comes from your ability to walk away. Then map the ZOPA (Zone of Possible Agreement) — the overlap between what you\'ll accept and what they\'ll accept. No overlap = no deal possible, so don\'t waste time negotiating.\n\nDEFECTION INSURANCE: Opponents won\'t just oppose your coalition — they\'ll try to peel members off with targeted offers. Make defection costly: give each member something they can ONLY get through the coalition (exclusive referrals, shared resources, co-marketing). LBJ didn\'t just build coalitions; he made leaving expensive (committee assignments, campaign funding, future access).\n\nCOMPARTMENTALIZATION: Each faction gets only the information relevant to THEIR reason for supporting you. Never let Faction A hear Faction B\'s pitch — the arguments that persuade one may repel the other. LBJ never let the northern liberals and southern segregationists compare notes on why each supported civil rights.\n\nPOST-VICTORY MANAGEMENT: The hardest part of coalition building is the morning after. Once the coalition wins, every member claims credit and demands disproportionate reward. The coalition that won tries to become a permanent organization that constrains YOU. Rule: disband the coalition the moment you win. Thank each member separately. Reconvene only when needed again.',
+    detect:'They present a request as having "broad support" from groups you respect. Check whether those groups endorsed the SPECIFIC ask.',
+    example:'LBJ built an impossible coalition of southern segregationists + northern liberals to pass civil rights legislation. Each side had a completely different reason to support the same bill. He never let them compare notes.',
+    bridge:'This week: before your next sales conversation, write down your BATNA — what happens if this prospect says no? If the answer is "nothing, I need this deal," you\'re negotiating from weakness. Line up 2-3 other prospects first so you can walk away.'},
+  horse_trading:{name:'Horse-Trading',short:'Trade support on Issue A for support on unrelated Issue B',
+    integrity:'neutral',integrityNote:'Fair game when both sides get real value. Burns you when you trade substance for symbols.',
+    lesson:'Find what costs you little but is high-value to them. Bundle provisions so each rides on the others\' support. The trade must be roughly equal in perceived value.\n\nON FIRST OFFERS: Context matters. When you have an information advantage (you know more about the deal\'s value), anchor first — your number sets the frame. When you DON\'T know what they need, let them reveal their ask first — their opening tells you what they value. Anchor when informed, listen when uncertain.\n\nZOPA: Before any trade, estimate the Zone of Possible Agreement — what\'s the most they\'d give and the least you\'d accept? If no overlap exists, walk away early instead of wasting both parties\' time.\n\nCALIBRATED QUESTIONS (Voss): When they push back on price, don\'t argue. Ask: "How am I supposed to do that?" or "What would you need to see to make this work?" These questions feel collaborative but put the problem back on them — they start solving YOUR problem FOR you.\n\n"NO"-ORIENTED QUESTIONS (Voss): People feel safe saying no — it preserves their autonomy. Frame your ask so "no" serves your purpose: "Would it be a terrible idea if I set up a quick demo?" A "no" to that means yes to your demo. "Is now a bad time to talk?" beats "Do you have a minute?" because "no" keeps them on the line. A "no" you can work with is more reliable than a reluctant "yes."',
+    detect:'They attach something you want to something you\'d never support alone. Watch for expanded scope or unexpected "sweeteners."',
+    example:'Congressional logrolling: "I vote for your highway bridge, you vote for my farm subsidy." Neither passes alone. Bundled together in one bill, both pass.',
+    bridge:'This week: in your next negotiation, before stating your price, ask yourself — do I know more about this deal\'s value than they do? If yes, anchor first with a specific number. If no, ask "what are you looking for?" and let their answer inform your response.'},
+  favor_economy:{name:'The Favor Economy',short:'Accumulate IOUs before you need anything. Call them in when it matters.',
+    integrity:'durable',integrityNote:'The operators who last give more than they take and always honor debts. Pure transactionalists get isolated.',
+    lesson:'Do favors that are high-value to recipient but low-cost to you (introductions, info, help). Never state the debt explicitly. Track mentally. Call in sparingly and specifically. Invest early in people on the rise — their debts appreciate.\n\nWHY IT WORKS — RECIPROCITY (Cialdini): Reciprocity is an automatic psychological trigger, not a calculated decision. When someone does you a genuine favor, the obligation to return it forms involuntarily. This is why the favor economy is so powerful — you\'re activating a hardwired human response. The key: the favor must feel genuine, not transactional, or the trigger doesn\'t fire.\n\nMIRRORING (Voss): Before asking for anything, use mirroring to build rapport. Repeat the last 2-3 words they said with an upward inflection. They elaborate, feel heard, and trust builds. This is the simplest technique in negotiation and the most underused.\n\nLABELING (Voss): When calling in a favor, name the awkwardness first: "I know this might feel like I\'m cashing in on helping you last month — that\'s not what this is. I genuinely think connecting us would help both of you."',
+    detect:'A favor arrives unsolicited with no strings mentioned. That IS the string. The ask comes later.',
+    example:'The favor economy operates on implicit reciprocity — do something genuinely helpful, and the obligation forms naturally. The corrupt version (Abramoff offering future jobs for present-day votes) shows the MECHANISM of how favor debts work, but his version crossed into bribery because the favors were transactional payoffs, not genuine help. The legitimate version: be genuinely useful, and people remember.',
+    bridge:'This week: do one small, genuinely helpful thing for a local business owner you\'ve never asked anything from. Fix a tech problem, share a useful tip, make an introduction. Don\'t mention your business. Let the deposit accumulate.'},
+  reading_power:{name:'Reading Real Power',short:'Find who actually decides, not who holds the title',
+    integrity:'durable',integrityNote:'Pure intelligence skill. Seeing reality clearly has no ethical dimension — but what you DO with that reading matters. Use it to work the right channel, not to bypass people in ways that humiliate them.',
+    lesson:'Watch who gets consulted BEFORE decisions. Track info flow — who briefs whom? Find the veto player. Notice who speaks last. Check who controls agenda, schedule, access. Staff often hold more operational power than their bosses.\n\nBLACK SWANS (Voss): Always look for the unknown unknown — the piece of information you don\'t know you\'re missing. The deal often changes completely when you discover it. Marcus Williams hasn\'t adopted AI phone service — but maybe it\'s not skepticism. Maybe his ex-wife owns a competing service. Maybe his insurance prohibits automated calls. The Black Swan changes everything.\n\nACCUSATION AUDIT (Voss): When approaching someone you suspect is the real power, preemptively name the awkwardness: "You probably get a lot of salespeople trying to go around Jim to get to you — I\'m not trying to do that."',
+    detect:'They redirect you to someone without authority to delay you. If that person can\'t say yes alone, you\'ve been routed around power.',
+    example:'In Act of Congress, Robert Kaiser documented how the Dodd-Frank financial reform was really negotiated by staffers, not senators. The people holding the pen held the power.',
+    bridge:'This week: at your next meeting or event, don\'t pitch anyone. Just observe. Who gets consulted before announcements? Who do people look at before answering? Who controls the schedule? Write down who holds real power vs. who holds the title.'},
+  framing_persuasion:{name:'Framing & Persuasion',short:'Control how people perceive the choice by controlling the frame around it',
+    integrity:'mixed',integrityNote:'Loss framing and anchoring are fair game. False binaries that hide the truth burn trust long-term. Use framing to highlight real advantages, not to deceive.',
+    lesson:'Anchor first when you have information advantage — state your number before they state theirs (all negotiation gravitates toward the anchor). When uncertain, let them reveal first (see horse_trading). Loss frame: "you\'ll lose X" hits 2x harder than "you\'ll gain X" (Kahneman/Tversky prospect theory). This works because most decisions are made by fast, emotional System 1 thinking (Kahneman). Your job: speak to System 1 (loss, fear, urgency) while giving System 2 (logic) a justification to agree. BUT: loss framing backfires when the audience is already in a loss mindset — they become risk-seeking and may reject your safe option.\n\nSCARCITY (Cialdini): "I can only take 3 clients in this market" is more powerful than "sign up anytime." Real scarcity is ethical. Manufactured scarcity burns trust.\n\nSOCIAL PROOF (Cialdini): People follow what others like them do. "Three HVAC companies in your area switched this month" is more persuasive than any feature list. For a 17-year-old without Fortune 500 clients: use PEER proof — "other contractors your size" or "Pam Ortiz at Ortiz HVAC saved $8K." Social proof from someone who looks like the prospect beats proof from someone who doesn\'t. WARNING: manufactured social proof backfires catastrophically when exposed — in small-town markets where everyone knows everyone, inflating adoption numbers gets you blacklisted.\n\nAUTHORITY (Cialdini): People defer to perceived experts. When you lack credentials, borrow authority — "Retell AI powers 10,000+ business phone lines" or cite industry stats. You can also BUILD authority by demonstrating competence: running a live demo, showing a recorded call, knowing their industry numbers better than they do. Authority isn\'t about age — it\'s about perceived expertise.\n\nLIKING (Cialdini): People say yes to people they like. Similarity, compliments, and cooperation all increase liking. For a 17-year-old: find genuine common ground ("I grew up around contractors"), mirror their communication style (Voss\'s late-night FM DJ voice for de-escalation, direct energy for enthusiasm), and frame the relationship as cooperative ("let\'s figure this out together") rather than adversarial.\n\nFOOT-IN-THE-DOOR (Cialdini): Get a small yes first. "Can I show you a 30-second demo?" leads to "Can I set this up for a free trial?" leads to "Ready to start?"\n\nCALIBRATED QUESTIONS (Voss): When facing objections, don\'t counter — redirect with open-ended "how" and "what" questions. "How would this need to work for you to say yes?" puts the other party in problem-solving mode instead of resistance mode. "What\'s the biggest concern?" surfaces hidden objections you can actually address.\n\nCOMMITMENT/CONSISTENCY (Cialdini): Once someone makes a small public commitment, they\'ll escalate to stay internally consistent. Get Big Jim to say "I like this" in front of his team — now consistency pressure makes him unlikely to reverse publicly. Every small "yes" builds toward the big "yes."',
+    detect:'Notice what options are NOT presented. Ask "what are we not considering?" Recognize anchors — don\'t negotiate from their frame. When someone gives you only two options, there is always a third.',
+    example:'"Estate tax" vs "death tax." Same policy, completely different public support. The name IS the argument.',
+    bridge:'This week: reframe your next pitch using loss framing. Don\'t say "our service answers calls." Say "how many calls did you miss last week? At $650 average, that\'s $X walking out the door." Lead with what they\'re LOSING.'},
+  process_timing:{name:'Process & Timing',short:'Use timing and procedure to control outcomes without ever debating substance',
+    integrity:'neutral',integrityNote:'Using timing well is smart. Using process to avoid all debate erodes trust.',
+    lesson:'Kill by scheduling (never schedule the vote — it dies without anyone on record). Delay to run out the clock. Push during transitions or deadline pressure when people want to finish fast. Refer to a hostile gatekeeper who\'ll bury it. Time your ask to coincide with maximum leverage.\n\nWINDOW RECOGNITION: The impossible becomes possible briefly during a crisis. Be ready with your solution BEFORE the crisis hits, so when the window opens you move instantly. The preparation phase — having the answer pre-built — is where 80% of the real skill lives.\n\nCRISIS ETHICS (Voss tactical empathy): The line between opportunity and exploitation is TACTICAL EMPATHY. Before any ask: demonstrate genuine understanding, help FIRST with no strings, and only transition when they\'re ready. "I can see you\'re drowning — let me help right now, no charge" earns the right to say "here\'s how to prevent this next time."\n\nDEADLINE DEFENSE: When someone imposes a deadline ("I\'m deciding by Friday"), ask: is this real or manufactured? Most deadlines are flexible. Accepting a fake deadline surrenders leverage. Counter: "I want to make sure you have everything you need to make the right decision — what if we took until Monday so I can show you a live demo?" You\'ve just tested whether the deadline is real without rejecting it.',
+    detect:'Constant delays, referrals, requests for "more study" = process kill. "The timing isn\'t right" means "no" without saying no.',
+    example:'LBJ watched the Senate floor for favorable absences and called snap votes when the math worked. The 2015 Trade Promotion Authority vote passed 218-208 in the House because the whip timed the final arm-twist to the last possible moment.',
+    bridge:'This week: identify one prospect whose situation is about to change (busy season starting, current vendor contract expiring, employee leaving). Time your outreach to arrive exactly when the pain is fresh.'},
+  managing_factions:{name:'Managing Factions',short:'Keep your diverse coalition from splitting over secondary disagreements',
+    integrity:'durable',integrityNote:'Good faction management IS good leadership. The skill compounds.',
+    lesson:'Give each faction a visible win (even symbolic). Keep focus on shared enemy/goal. Create channels for internal dissent. Give disproportionate attention to the faction most likely to defect. Sequence: give something before asking for something.',
+    detect:'A coalition leader gives you a symbolic win while asking for a substantive concession. Check whether your "win" changes anything material.',
+    example:'Every party whip manages factions — progressives vs moderates vs conservatives within the same party. The skill is sequencing votes so each group gets something before being asked to sacrifice.',
+    bridge:'This week: if you manage summer partners, check in with each one individually. Ask what they need. Give the most restless one something visible — a new territory, a public win, a leadership role.'},
+  strategic_credit:{name:'Strategic Credit-Giving',short:'Let others take credit so they\'re invested in your outcome',
+    integrity:'durable',integrityNote:'The people who give credit freely build the strongest teams. It\'s not a trick — it\'s wisdom.',
+    lesson:'Identify whose public ownership would be most useful. Hand them the announcement. Let them feel like it was their idea. They become the public defender (they MUST support it now). You build a reputation as someone who gets things done without threatening egos.',
+    detect:'Someone hands you a win that seems too easy. You\'re being recruited as the public face — including for failures.',
+    example:'The most effective chiefs of staff in Washington history were invisible. They let their boss take every win while they accumulated quiet power and deep loyalty.',
+    bridge:'This week: give credit for something you did to someone who helped even a little. "That referral you made led to this." Watch how they respond — they\'ll want to help you again.'},
+  long_game:{name:'The Long Game',short:'Accept short-term losses to build advantages that pay off later',
+    integrity:'durable',integrityNote:'The ultimate durable-power play. Requires genuine patience measured in years.',
+    lesson:'Take boring roles that build expertise. Build relationships two levels below current power (they rise). Be right on losing causes (build a record). Accumulate procedural knowledge. Never burn bridges over small issues.',
+    detect:'They\'re unusually helpful with no current ask. They\'re investing. Expect the call in 6-24 months.',
+    example:'LBJ became Senate Democratic Whip in 1951, then the youngest Senate Democratic Leader in 1953 at age 44. His predecessors had left the Leader position toothless. His first move: abolish the seniority rule for committee assignments, concentrating that power in his own hands. Now every senator needed Johnson\'s approval for the committee seat that shaped their career. That single structural change gave him the ammunition. His encyclopedic knowledge of procedure and every senator\'s pressure points was the weapon.',
+    bridge:'This week: send a useful article or tip to 3 prospects who said "not now." No pitch, no ask. Just value. The relationship compounds even when the sale doesn\'t close today.'},
+  face_saving:{name:'Face-Saving',short:'Give opponents a path to concede without looking like they lost',
+    integrity:'durable',integrityNote:'The hallmark of a sophisticated operator. Those who humiliate win once; those who save face win repeatedly.',
+    lesson:'Reframe concession as "new information" — "given what we\'ve learned, it makes sense to adjust." Offer a cosmetic change they can point to. Let time pass between demand and concession. Give a win on secondary issue with the concession on primary. NEVER gloat.\n\nTHIRD-PARTY SCAPEGOAT: The most common face-saving device in DC — blame a third party neither side controls. "The committee requires it," "the lawyers say we have to," "the billing system flagged it." Neither side changed position; an external force made the adjustment. In business: "our system caught the error" lets the client blame technology, not you or themselves.\n\nLABELING (Voss): Name their concern before they voice it: "It sounds like you\'re worried this would make you look like you changed your mind." Use the specific syntax: "It seems like...", "It sounds like...", "It looks like..." — these phrases signal empathy without presumption.\n\nACCUSATION AUDIT (Voss): When you know they\'re resistant, list every negative thing they might think of you FIRST: "You probably think I\'m just some kid trying to sell you something. You might think AI can\'t handle your customers. You might be worried about looking foolish if it doesn\'t work." Listing the worst defuses it — now those objections feel acknowledged, not hidden.\n\nSEPARATE PEOPLE FROM THE PROBLEM (Fisher-Ury): The opponent\'s position is not the opponent. Mike Henderson is angry about a billing error — but Mike himself is not the problem. The billing process is. Attack the problem, protect the person. When you say "our system failed you" instead of defending yourself, you and Mike are on the same side fighting the system. This is why face-saving works: it lets both parties attack the problem together instead of each other.',
+    detect:'They offer a "compromise" with great narrative but no substantive change. Check actual terms, not the press release.',
+    example:'The 1978 Camp David Accords (Carter-Begin-Sadat) succeeded because each leader could frame the result as their own victory to their domestic audience. Critical lesson: face-saving must work not just for the person across the table but for their BASE. Sadat was later assassinated by extremists who rejected any peace with Israel — a reminder that face-saving has limits when opposition is ideological, not just political. Account for both the principal AND their hardest-to-convince constituents.',
+    bridge:'This week: next time someone pushes back on your pitch, don\'t argue. Say "that makes sense given what you knew before." Then introduce the new information that changes the picture. Let them feel like they\'re updating, not surrendering.'},
+  strategic_leak:{name:'The Strategic Leak',short:'Release information to force someone\'s hand or control a narrative',
+    integrity:'burns',integrityNote:'Works short-term but destroys trust long-term. Once known as a leaker, nobody tells you anything — your raw material dries up. Creates mutual dependency with reporters (they need future sources). Use VERY sparingly.',
+    lesson:'Leak a decision before announcement to lock someone in. Leak a rival\'s private position to their base. What you leave OUT matters as much as what you include. Use intermediaries.\n\nTIMING — OFFENSIVE VS DEFENSIVE: Friday PM buries YOUR bad news (weekend absorbs impact). Tuesday-Wednesday amplifies damage — maximum news cycle momentum, no weekend for the target to respond. Defensive leaks bury. Offensive leaks amplify.\n\nCOUNTER-LEAK: When a leak targets YOU, the person who REACTS loses. The person who OWNS it wins. Standard counter-move: confirm the story yourself on YOUR terms, adding context that changes its meaning. "Yes, we\'re considering that — and here\'s why it\'s the right move." In Boston\'s world: when a competitor leaks "he\'s just a kid," own it publicly before it becomes the narrative.',
+    detect:'A private position suddenly appears publicly. DETECTION FRAMEWORK: (1) Map who knew the information — the source is in that small group. (2) Ask who BENEFITS from this leak — that tells you who leaked it and why. (3) Check if the information is complete or selectively edited — selective editing is the signature of a strategic leak vs. a genuine whistleblow. (4) Note the timing — Tuesday leaks are offensive (maximum damage), Friday leaks are defensive (bury bad news).',
+    example:'White House leaks to the press are strategic weapons. Leaking that a policy is "under consideration" tests public reaction without commitment. If it polls badly, "we never said that."',
+    bridge:'This week: DON\'T use this skill. Instead, practice detecting it — when you see "leaked" information in the news, ask: who benefits from this leak? That tells you who leaked it and why.'},
+  strategic_ambiguity:{name:'Strategic Ambiguity',short:'Keep positions vague so multiple audiences think you\'re on their side',
+    integrity:'mixed',integrityNote:'Some ambiguity is wisdom — don\'t commit before you have information. But chronic ambiguity reads as dishonesty and erodes trust, especially in small-town markets where everyone talks. Use to buy time for decisions, not to avoid them.',
+    lesson:'WHEN TO USE: Strategic ambiguity is legitimate when premature commitment would genuinely harm your position — you\'re waiting for information, the landscape is shifting, or committing now locks you into a bad deal. Buy time for decision-making, not to avoid decisions forever.\n\nTHE CLEAN PIVOT: The real skill isn\'t dodging — it\'s sounding decisive while committing to nothing. Amateur: "We\'re looking into it" (transparent dodge). Operator: "We\'re committed to making sure every contractor in this county has access to the best technology available" (sounds like a position, isn\'t one). The difference: speak to values and outcomes, not specifics. Avoid specifics on divisive sub-issues. Be the last to commit — you commit when you know the outcome.\n\nCAUTION (Voss): Perceived dishonesty is the fastest trust-destroyer. In a small market where everyone talks, ambiguity that feels slippery costs more than a clear "no." When someone pins you: "I want to give you a real answer, not a quick one — let me think about it and get back to you by Friday" is honest ambiguity. Weasel words are not.',
+    detect:'They agree enthusiastically without committing to specifics. Pin them: "Does that mean you\'ll do X?" Their reaction reveals their real position.',
+    example:'Obama\'s evolving position on same-sex marriage used carefully modulated ambiguity for years — each statement was technically consistent with the last while allowing different audiences to hear what they wanted.',
+    bridge:'This week: when someone asks a question you\'re not ready to answer, practice saying "I want to give you a real answer, not a quick one — let me think about that and get back to you by Friday." That\'s honest ambiguity, not evasion.'}
+};
+
+const SKILL_BASELINE_QS=[
+  {skill:'coalition_building',scenario:'Two rival food truck owners both want the prime spot at the county fair. You need BOTH of them to recommend your AI service to the fair organizer. They despise each other. What do you do?',
+   opts:[
+     {text:'Find what each one actually needs — one wants more customers, one wants fewer bad reviews — and show how your service solves THEIR problem differently. Never mention the other.',score:4},
+     {text:'Get the fair organizer to require AI phone service for all vendors, removing the need to convince either individually.',score:3},
+     {text:'Tell each one that the other is seriously considering your service, creating urgency through competitive pressure.',score:2},
+     {text:'Talk to each separately and pitch the AI service on its own merits, keeping the conversations independent.',score:1}
+   ]},
+  {skill:'favor_economy',scenario:'You\'ve been helping a dentist with her tech for free for 2 months. She knows the biggest HVAC owner in the county. You need an introduction. How do you ask?',
+   opts:[
+     {text:'"I noticed you and Mike both serve the same customer base. I had an idea that could help both your businesses — would you be open to a three-way coffee?"',score:4},
+     {text:'"Do you know anyone in the HVAC world? I\'m expanding my services and would love any connections you might think of."',score:3},
+     {text:'Wait for a natural opportunity where she volunteers to introduce you without being asked directly.',score:2},
+     {text:'"Hey, I\'ve been helping you out a lot with your tech — would you mind introducing me to Mike over at Central HVAC?"',score:1}
+   ]},
+  {skill:'reading_power',scenario:'At a chamber of commerce meeting, the president introduces you to "our tech committee chair" and says "she\'s the one you need to talk to." How do you figure out if she actually has power?',
+   opts:[
+     {text:'Watch who SHE talks to and defers to during the event. Ask about recent committee decisions and listen for "I decided" vs "we recommended" vs "the board approved."',score:4},
+     {text:'Ask other members privately what the tech committee has actually accomplished and who really drives its agenda.',score:3},
+     {text:'Ask her directly and respectfully what kind of decisions the committee is empowered to make on its own.',score:2},
+     {text:'Accept the introduction at face value and pitch her immediately since the president endorsed her authority.',score:1}
+   ]},
+  {skill:'framing_persuasion',scenario:'A potential client says: "AI phone answering sounds expensive and complicated." Reframe the conversation.',
+   opts:[
+     {text:'"How many calls did you miss last week? At $650 per average job, missing just ONE call per month costs you 10x our service. The real question isn\'t cost — it\'s how much you\'re losing without it."',score:4},
+     {text:'"Actually it\'s only $50 a month with no contracts. That\'s less than a single service call in most trades."',score:2},
+     {text:'"Several of your competitors in the area are already using AI phone answering to capture the calls you\'re missing."',score:3},
+     {text:'"The setup is actually very simple — takes about 15 minutes and we handle everything for you."',score:1}
+   ]},
+  {skill:'face_saving',scenario:'A competitor publicly trashed your AI service at a networking event: "That kid\'s robot phone thing? It\'s a joke." Three people who heard it are now your prospects. How do you respond?',
+   opts:[
+     {text:'"I respect that [competitor] has been in this space a long time. We take a different approach — I\'d love to show you actual results and let you judge for yourself." Then never mention the competitor again.',score:4},
+     {text:'Ignore the comment entirely and hope the prospects evaluate your service on its own merits over time.',score:2},
+     {text:'Publicly fire back with data proving your service works — call volume stats, client results, recorded demo calls.',score:1},
+     {text:'Tell the three prospects individually about specific weaknesses in the competitor\'s own service offerings.',score:0}
+   ]},
+  {skill:'long_game',scenario:'A business owner you pitched says "Not now, maybe in 6 months." What do you do for the next 6 months?',
+   opts:[
+     {text:'Send a useful piece of info every 3-4 weeks — missed-call stats for their industry, a business tip, a relevant article. Never a sales pitch. When 6 months hits, they already trust you.',score:4},
+     {text:'Mark your calendar for exactly 6 months from now and plan a strong re-engagement pitch for that date.',score:2},
+     {text:'Follow up monthly with a brief check-in to see if their situation has changed and they\'re ready to move forward.',score:1},
+     {text:'Move on to more promising prospects and invest your limited time where there\'s immediate buying intent.',score:1}
+   ]}
+];
+
+const SCENARIOS=[
+  {id:'impossible_coalition',skill:'coalition_building',secondary:['framing_persuasion','managing_factions'],
+   title:'The Impossible Coalition',
+   setup:'Two rival HVAC companies dominate the Tyler contractor network. Martinez HVAC (old school, 30 years, suspicious of tech) and Coldwell Climate (young owner, aggressive growth, uses some automation). You need BOTH to adopt your AI phone service — their endorsement opens the entire East Texas market. But they hate each other. If one signs up and the other doesn\'t, the holdout will actively badmouth you to every contractor in town.',
+   objective:'Get both Martinez and Coldwell to agree to your AI service. Different pitches. Neither can know the other\'s deal terms.',
+   characters:[
+     {name:'Carlos Martinez',role:'Owner, Martinez HVAC',personality:'Gruff. 58. Built his company from nothing. Still answers his own phone sometimes. Thinks AI is "robot nonsense." But secretly worried about losing customers to Coldwell.',tactics:'Tests your patience. Dismisses you initially. Responds to respect and competitive threat (not said directly). Hates feeling sold to.'},
+     {name:'Jake Coldwell',role:'Owner, Coldwell Climate',personality:'Sharp. 28. MBA. Inherited dad\'s business, rebranded it. Growing fast. Will sign up IF exclusive. The moment he learns Martinez might also get it, he wants out unless he gets a different edge.',tactics:'Probing business questions. Wants data, ROI, exclusivity. Will try to lock exclusive deal. Competitive about being first.'}
+   ],maxMoves:10,
+   fallbacks:[
+     ['[Carlos Martinez] "Another tech kid. Look, I\'ve been doing this since before you were born. Why should I change what works?"','[Jake Coldwell] "Interesting pitch. What\'s the ROI look like? And more importantly — who else are you talking to?"'],
+     ['[Carlos Martinez] "Hmm. My guys say we\'re losing some calls when everyone\'s out on jobs. But I don\'t trust computers to talk to my customers."','[Jake Coldwell] "I like the concept. But I need to know I\'m getting something my competitors aren\'t. What\'s exclusive about this?"'],
+     ['[Carlos Martinez] *leans back* "You know what, kid? Maybe there\'s something here. But if I hear Coldwell\'s got the same thing, we\'re done."','[Jake Coldwell] "The data looks solid. But walk me through what happens when the AI can\'t handle a complex HVAC question."'],
+     ['[Carlos Martinez] "My reputation is 30 years of personal service. How does a robot protect that?"','[Jake Coldwell] "Let\'s talk numbers. What\'s the setup cost, what\'s the monthly, and what\'s the exit clause?"'],
+     ['[Carlos Martinez] "Alright, I\'m listening. But I want a trial — no commitment until I hear it handle a real call."','[Jake Coldwell] "I want to see a live demo. Call my shop right now and let me hear how it sounds."'],
+   ]},
+  {id:'staff_backdoor',skill:'reading_power',secondary:['favor_economy','strategic_credit'],
+   title:'The Staff Backdoor',
+   setup:'You\'ve landed a meeting with Big Jim Parsons, owner of Parsons Plumbing — the biggest plumbing operation in East Texas. Jim talks big: "I make every decision around here." But you notice his office manager, Diane Torres, controls the schedule, the vendor list, and the budget. Jim is the face. Diane is the engine.',
+   objective:'Close the deal. Figure out who you really need to sell, and make both Jim AND Diane champions.',
+   characters:[
+     {name:'Big Jim Parsons',role:'Owner, Parsons Plumbing',personality:'Loud, friendly, loves being the boss. Makes big pronouncements. Doesn\'t know his own call volume — Diane handles that. Ego drives every decision.',tactics:'Dominates conversations. Agrees enthusiastically then forgets. Defers to Diane on "details" (which are everything). If bypassed, kills the deal out of pride.'},
+     {name:'Diane Torres',role:'Office Manager, 15 years',personality:'Sharp, skeptical, efficient. Seen a dozen tech salespeople. Real decision-maker on operations but won\'t say so in front of Jim.',tactics:'Pointed questions about cost, setup, what breaks. Won\'t commit in front of Jim. If treated like "just the office manager," you lose.'}
+   ],maxMoves:10,
+   fallbacks:[
+     ['[Big Jim Parsons] *big handshake* "Welcome! So you\'re the AI kid. Let me tell you about how I built this business from scratch..."','[Diane Torres] *glances up from her spreadsheet* "Jim, you have a 2:30. Let\'s keep this focused."'],
+     ['[Big Jim Parsons] "That sounds great! Diane, what do you think?" *doesn\'t wait for answer* "I think it sounds great."','[Diane Torres] "What happens when the system goes down at 7 AM on a Monday and we have 40 calls coming in?"'],
+     ['[Big Jim Parsons] "You know what, I like this kid. He\'s got moxie. Diane, get his number."','[Diane Torres] *to you, quietly while Jim takes a call* "Send me the actual pricing breakdown. I\'ll look at it tonight."'],
+     ['[Big Jim Parsons] "Let\'s do it! Sign me up!" *Diane\'s face says this means nothing yet*','[Diane Torres] "Jim says that about every vendor. Let me review the numbers and I\'ll email you by Thursday."'],
+     ['[Big Jim Parsons] "Diane handles all that stuff. Whatever she says is fine with me."','[Diane Torres] "I have three questions. Answer them honestly and we can talk next steps."'],
+   ]},
+  {id:'favor_bank',skill:'favor_economy',secondary:['long_game','strategic_credit'],
+   title:'The Favor Bank',
+   setup:'You\'ve been doing free tech favors for local businesses: fixed Dr. Sarah Kim\'s Google listing, showed Tony Russo\'s auto shop how to set up online booking. Now you need an introduction to Marcus Williams, biggest HVAC operation in the county. Kim knows him through church. Tony sponsors the same little league team.',
+   objective:'Get a warm introduction to Marcus Williams without making your previous favors feel transactional.',
+   characters:[
+     {name:'Dr. Sarah Kim',role:'Dentist you helped',personality:'Genuine, warm, appreciative. Knows Marcus from church. Will introduce you if it feels natural, not like a cash-in.',tactics:'Responds to relationship-first approaches. Freezes if she feels used. Will volunteer to help given a natural opening.'},
+     {name:'Tony Russo',role:'Auto shop owner you helped',personality:'Transactional, street-smart, friendly but calculating. Will connect you but wants to know what\'s in it for him.',tactics:'Asks "what do I get?" openly. Respects directness. If you guilt-trip about past favors, he laughs it off.'}
+   ],maxMoves:8,
+   fallbacks:[
+     ['[Dr. Sarah Kim] "Oh hi! How are you? The Google listing thing has been working great — we\'re getting so many more reviews!"','[Tony Russo] "Hey, the booking system is solid. My guys actually use it now. So what brings you by?"'],
+     ['[Dr. Sarah Kim] "Marcus? Oh yes, he goes to our church. Wonderful man. His business has been so busy lately..."','[Tony Russo] "Marcus Williams? Yeah, I know him from little league. What do you need from him?"'],
+     ['[Dr. Sarah Kim] "I\'d be happy to mention you... I just want to make sure it\'s the right time. He\'s been stressed with the heat wave."','[Tony Russo] "Sure, I can make that call. But what\'s in it for me? I could use some help with my new inventory system."'],
+     ['[Dr. Sarah Kim] "You know what, let me talk to him at church this Sunday. I\'ll tell him about what you did for my listing."','[Tony Russo] "Done. I\'ll text him right now. But remember this when I need a favor, yeah?" *grins*'],
+   ]},
+  {id:'controlled_crisis',skill:'process_timing',secondary:['framing_persuasion','coalition_building'],
+   title:'The Controlled Crisis',
+   setup:'Brutal heat wave in East Texas. 108 degrees for a week. Every HVAC company is drowning. Marcus Williams has 47 missed calls in 3 days. His receptionist quit. He KNOWS he\'s losing money but can\'t stop to fix it. This is your window — but pitch wrong during a crisis and you look like an ambulance chaser.',
+   objective:'Convert the crisis into a sale without looking exploitative. Help first, sell second.',
+   characters:[
+     {name:'Marcus Williams',role:'Owner, Williams HVAC',personality:'Exhausted. Short-tempered. Knows he\'s hemorrhaging money. Can\'t stop long enough to evaluate solutions.',tactics:'Cuts you off in 10 seconds if you sound like a salesperson. Responds to immediate help. Does NOT respond to data, stats, or ROI calculations.'},
+     {name:'Amy',role:'Temp receptionist (overwhelmed)',personality:'22, in over her head, been answering phones for 3 days. Knows the system is broken. Can put you through to Marcus if you help HER.',tactics:'Blocks aggressively — been yelled at by 10 salespeople today. But if you make her life easier, she becomes your ally instantly.'}
+   ],maxMoves:8,
+   fallbacks:[
+     ['[Amy] *phone ringing nonstop* "Williams HVAC, please hold — Williams HVAC, please hold — *to you* Can I help you? We\'re really slammed right now."'],
+     ['[Amy] "Look, if you\'re selling something, Marcus doesn\'t have time. He\'s been on calls since 5 AM."','[Marcus Williams] *shouting from the back* "Amy! Who\'s on line 3? I\'ve got two emergency installs backed up!"'],
+     ['[Marcus Williams] *on the phone, waves you to wait* "...yeah, I know you\'ve been waiting. We\'ll get there today, I promise." *hangs up* "You\'ve got 30 seconds."'],
+     ['[Marcus Williams] "So you can actually start answering calls today? Like, right now? What\'s the catch?"','[Amy] *looks at you hopefully* "Please tell me this is real."'],
+     ['[Marcus Williams] "Fine, do it. But I can\'t sit here for an hour doing setup — I\'ve got three emergency calls stacked. Can you just... handle it?"','[Amy] "I can give you his info but Marcus literally cannot stop for 10 minutes right now."'],
+   ]},
+  {id:'misdirection',skill:'framing_persuasion',secondary:['face_saving','strategic_ambiguity'],
+   title:'The Positioning Battle',
+   setup:'CallBot AI just entered your market. $35/month, slick website. Their rep Ryan Park is pitching your top prospect Mike Henderson at Henderson Electric. Park trash-talks publicly: "BOSS Systems? That kid in Tyler? We\'re backed by real investors." You can\'t win on price. But CallBot is inbound-only, has no local support, and Ryan doesn\'t know the HVAC business.',
+   objective:'Win the prospect by reframing the conversation from price to value. Make CallBot\'s cheapness feel like a risk, not a deal. Don\'t look defensive.',
+   characters:[
+     {name:'Mike Henderson',role:'Prospect, Henderson Electric',personality:'Practical. 45. Cares about "will my phone get answered professionally?" Leaning toward CallBot because cheaper.',tactics:'Compares you directly. Asks "why pay more?" Pushes for discount. Responds to concrete proof more than promises.'},
+     {name:'Ryan Park',role:'CallBot AI sales rep',personality:'Aggressive. 26. Venture-backed confidence. Will trash-talk your service. Uses "enterprise-grade" and "serious investors."',tactics:'Tries to close Mike fast. Brings up your age and company size. Weakness: inbound-only, no local support, doesn\'t know HVAC.'}
+   ],maxMoves:10,
+   fallbacks:[
+     ['[Mike Henderson] "So I\'m looking at you and CallBot. They\'re $35 a month. You\'re $60. Help me understand why I should pay almost double."'],
+     ['[Ryan Park] *walks in* "Hey Mike! Oh — you\'re talking to the BOSS Systems kid? No offense, but we\'re backed by real investors. Our platform is enterprise-grade."','[Mike Henderson] "See what I mean? He\'s got a point about the investment thing. What do you say to that?"'],
+     ['[Mike Henderson] "Look, I don\'t care who has more investors. I care about one thing: when a customer calls at 6 AM with a blown transformer, will the phone get answered?"','[Ryan Park] "Absolutely. Our AI handles unlimited concurrent calls. Can your one-man operation say that?"'],
+     ['[Mike Henderson] "Alright, here\'s what I want. I want to hear a recorded call from each of you handling a real HVAC inquiry. Can you both do that?"','[Ryan Park] *hesitates* "We can... set that up. Give us a couple days."'],
+     ['[Mike Henderson] "I\'m going to make a decision by Friday. Last chance to convince me. What\'s your strongest argument?"'],
+   ]},
+  {id:'reputation_currency',skill:'long_game',secondary:['face_saving','strategic_credit'],
+   title:'Reputation as Currency',
+   setup:'Your first client Pam Ortiz at Ortiz HVAC has used your AI service for 3 months. Saved $8,000 in recovered calls. Two of her competitors heard about it. But Pam told you: "I don\'t want my competitors having the same advantage. That\'s MY edge." Growing your business means signing competitors. Betraying Pam means losing your best reference AND your reputation.',
+   objective:'Find a way to grow without betraying Pam. Her trust is more valuable than any single new client.',
+   characters:[
+     {name:'Pam Ortiz',role:'Your first client, Ortiz HVAC',personality:'Loyal, direct, slightly possessive. Took a chance on you when nobody else would. Sees AI as HER competitive secret.',tactics:'Tests your loyalty. Asks "anyone else in HVAC using your service?" Lie and she\'ll find out. Be straight and she respects it — but needs to feel special.'},
+     {name:'Dave Nguyen',role:'Competitor HVAC owner',personality:'Friendly, curious, wants what Pam has. Will ask pointed questions about her results.',tactics:'Asks "how much did Pam save?" Probes for specifics. Good prospect — tight operation. But signing him without Pam\'s blessing destroys your reputation.'}
+   ],maxMoves:8,
+   fallbacks:[
+     ['[Dave Nguyen] "Hey, I heard Pam Ortiz has some kind of AI phone thing. Her Google reviews have been going up. What\'s the deal with that?"'],
+     ['[Pam Ortiz] *calls you* "Hey, quick question. Someone mentioned Dave Nguyen was asking about my phone service. Are you talking to my competitors?"'],
+     ['[Dave Nguyen] "Look, I\'m not trying to copy Pam. I just want to stop missing calls. Can you help me or not?"','[Pam Ortiz] "I need to know where I stand. Am I your only HVAC client or not?"'],
+     ['[Pam Ortiz] "I appreciate you being honest with me. Let me think about this. But I better not hear about my numbers from Dave."','[Dave Nguyen] "So what can you tell me about how the service works, without getting into Pam\'s specific data?"'],
+   ]},
+  {id:'golden_bridge',skill:'face_saving',secondary:['framing_persuasion','long_game'],
+   title:'The Golden Bridge',
+   setup:'You installed your AI phone system for Henderson Electric 6 weeks ago. Mike Henderson publicly told his contractor buddies it was "the smartest move I made this year." But a billing error on YOUR end double-charged him last month — $120. He found out from his bookkeeper, not from you. Now he\'s furious and threatening to pull the service AND tell every contractor in the association. The $120 is nothing. The public humiliation of admitting his "smartest move" has billing problems — that\'s what he can\'t swallow.',
+   objective:'Keep the client AND the relationship. The money is easy to fix. His pride is the real problem. He needs a way to stay that doesn\'t make him look like a pushover to his wife or his contractor friends.',
+   characters:[
+     {name:'Mike Henderson',role:'Client, Henderson Electric',personality:'Proud. 45. Told everyone about your service. Now feels embarrassed — his wife asked "didn\'t you check the bill?" He needs to save face in front of her AND his contractor network.',tactics:'Opens hot. Threatens to cancel. Tests whether you grovel (he hates groveling) or deflect blame (he hates that more). What works: owning the mistake + giving him something he can brag about that makes staying look like a POWER move, not a cave.'},
+     {name:'Linda Henderson',role:'Mike\'s wife, manages finances',personality:'Practical. Skeptical of the AI service from day one. Now feels validated. Will push Mike to cancel unless she hears something concrete.',tactics:'Asks pointed financial questions. Not emotional — purely "does this make business sense?" If you can show her the numbers still work AND give her husband a win, she flips from opponent to ally.'}
+   ],maxMoves:8,
+   fallbacks:[
+     ['[Mike Henderson] "You know what really burns me? I told Bob Hargrove at the association meeting this was the best thing I did all year. Now I look like an idiot."','[Linda Henderson] *on speakerphone* "Mike, just cancel it. We managed fine before."'],
+     ['[Mike Henderson] "I\'m not even mad about the $120. I\'m mad nobody called me. I had to find out from my own bookkeeper."','[Linda Henderson] "That\'s exactly the point. If they can\'t handle billing, what else are they missing?"'],
+     ['[Mike Henderson] *calming slightly* "Look, the service actually works. I won\'t lie. But how am I supposed to trust the back end?"','[Linda Henderson] "What guarantees can you give us this doesn\'t happen again?"'],
+     ['[Mike Henderson] "So what are you offering? And don\'t just say \'free month\' — that\'s what every company says."','[Linda Henderson] "I want to see something in writing."'],
+   ]},
+  {id:'calendar_weapon',skill:'process_timing',secondary:['reading_power','favor_economy'],
+   title:'The Calendar Weapon',
+   setup:'East Texas Contractor Association annual meeting in 2 weeks. Last year president Bob Hargrove blocked your presentation ("We don\'t do tech pitches"). He\'s stepping down. Incoming president Lisa Chen owes you — you helped her company\'s booking system last month. Get on the agenda = present to 60 contractors at once. But agenda is set by the outgoing president.',
+   objective:'Get on the agenda before Hargrove locks it, using the transition and your relationship with Chen strategically.',
+   characters:[
+     {name:'Bob Hargrove',role:'Outgoing president, old guard',personality:'60. Skeptical of tech. Wants to leave his legacy. Will block you again if asked directly.',tactics:'Says no by default. Responds to legacy flattery. Cares about attendance numbers. If you can promise something that makes HIS last meeting memorable, he\'ll consider it.'},
+     {name:'Lisa Chen',role:'Incoming president',personality:'38. Pragmatic, tech-friendly, grateful for your help. But cautious — doesn\'t want to start by overriding Bob.',tactics:'Supports behind scenes but won\'t go public until safe. If you make her look like she\'s undermining Bob, she distances fast. Right move: make it Bob\'s idea.'}
+   ],maxMoves:10,
+   fallbacks:[
+     ['[Bob Hargrove] "The agenda\'s almost set. I want this last meeting to be about the fundamentals — what made this association great. Not gadgets."'],
+     ['[Lisa Chen] *quietly, at the coffee machine* "I heard you want to present. I think it\'s a good idea, but Bob would never go for it if it comes from me."'],
+     ['[Bob Hargrove] "You know, attendance has been dropping. If we don\'t get 50 people this year, what\'s the point?"','[Lisa Chen] "What if it wasn\'t positioned as a sales pitch? What if it was a demonstration of how technology is changing the trades?"'],
+     ['[Bob Hargrove] "A \'future of contracting\' segment? That\'s... actually not bad. As long as it\'s educational, not a sales pitch."','[Lisa Chen] *texts you* "I think he\'s warming up. Don\'t push too hard. Let him think it was his idea."'],
+     ['[Bob Hargrove] "Fine. You get 10 minutes. Educational only. If I hear one sales pitch, I\'m cutting you off."'],
+   ]}
+];
+
+const SCENARIO_SKILLS=new Set(SCENARIOS.map(s=>s.skill));
+
+let state=loadState();
+initApp();
+
+function shuffle(arr){const a=[...arr];for(let i=a.length-1;i>0;i--){const j=Math.floor(Math.random()*(i+1));[a[i],a[j]]=[a[j],a[i]]}return a}
+
+function loadState(){
+  try{const s=localStorage.getItem('wst_state');if(s)return JSON.parse(s)}catch(e){}
+  return{assessment:{domainScores:{},skillScores:{},strongDomains:[],completed:false,domainAnswers:{},skillAnswers:{}},training:{},sessions:[],reputation:100,currentScenario:null,currentSkill:null,version:2};
+}
+function saveState(){
+  if(state.sessions&&state.sessions.length>100)state.sessions=state.sessions.slice(-100);
+  try{localStorage.setItem('wst_state',JSON.stringify(state))}catch(e){console.warn('State save failed:',e)}
+}
+
+function initApp(){
+  if(state.assessment.completed){
+    Object.keys(SKILL_DATA).forEach(k=>{
+      if(!state.training[k]){
+        const baseline=state.assessment.skillScores[k]||25;
+        const hasScen=SCENARIO_SKILLS.has(k);
+        state.training[k]={level:baseline,lastPracticed:null,nextReview:hasScen?Date.now():null,ease:2.5,interval:1,history:[]};
+      }
+    });
+  }
+  checkWebhook();
+  renderWelcome();
+}
+
+async function checkWebhook(){
+  try{
+    const r=await fetch(WEBHOOK_URL,{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({type:'ping'}),signal:AbortSignal.timeout(5000)});
+    webhookLive=r.ok;
+  }catch(e){webhookLive=false}
+  const el=document.getElementById('webhook-status');
+  if(!webhookLive){
+    el.classList.remove('hidden');
+    el.className='info-banner';
+    el.textContent='AI opponent webhook not connected. Scenarios will use built-in dialogue. Set up the n8n webhook for full AI opponents and coaching.';
+  }else{el.classList.add('hidden')}
+}
+
+function renderWelcome(){
+  const el=document.getElementById('welcome-buttons');
+  el.innerHTML=state.assessment.completed
+    ?'<button class="btn" onclick="showScreen(\'hub\')" style="margin:8px">Continue Training</button><button class="btn secondary" onclick="showScreen(\'dashboard\')" style="margin:8px">Dashboard</button>'
+    :'<button class="btn" onclick="startAssessment()" style="margin:8px">Start Assessment</button>';
+}
+
+function showScreen(name){
+  document.querySelectorAll('.screen').forEach(s=>s.classList.remove('active'));
+  document.getElementById(name).classList.add('active');
+  if(name==='hub')renderHub();if(name==='dashboard')renderDashboard();if(name==='assess-results')renderAssessResults();
+  window.scrollTo(0,0);
+}
+
+function startAssessment(){
+  state.assessment={domainScores:{},skillScores:{},strongDomains:[],completed:false,domainAnswers:{},skillAnswers:{},currentDQ:0,currentSQ:0,shuffleMaps:{}};
+  saveState();showScreen('assess-domain');renderDomainQ(0);
+}
+function retakeAssessment(){if(confirm('Retake assessment? Training progress is kept.'))startAssessment()}
+
+function renderDomainQ(idx){
+  state.assessment.currentDQ=idx;
+  document.getElementById('domain-progress').style.width=Math.round((idx/DOMAIN_QUESTIONS.length)*100)+'%';
+  if(idx>=DOMAIN_QUESTIONS.length){showScreen('assess-skill');renderSkillQ(0);return}
+  const q=DOMAIN_QUESTIONS[idx];
+  const domain=DOMAINS.find(d=>d.id===q.domain);
+  const indices=shuffle([0,1,2,3]);
+  state.assessment.shuffleMaps[idx]=indices;
+  let html=`<div class="card no-hover"><div style="color:#888;font-size:0.8em;margin-bottom:8px">${domain.name} — Question ${(idx%2)+1}/2</div>`;
+  html+=`<p style="color:#ddd;margin-bottom:16px;line-height:1.5">${q.q}</p>`;
+  indices.forEach(origIdx=>{
+    html+=`<div class="option" onclick="submitDomainAnswer(${idx},${origIdx})"><span class="option-label">${q.opts[origIdx]}</span></div>`;
+  });
+  html+=`</div>`;
+  document.getElementById('domain-question-area').innerHTML=html;
+}
+
+function submitDomainAnswer(qIdx,ansIdx){
+  const q=DOMAIN_QUESTIONS[qIdx];
+  if(!state.assessment.domainScores[q.domain])state.assessment.domainScores[q.domain]=0;
+  if(ansIdx===q.correct)state.assessment.domainScores[q.domain]+=2;
+  state.assessment.domainAnswers[qIdx]=ansIdx;
+  saveState();renderDomainQ(qIdx+1);
+}
+
+function renderSkillQ(idx){
+  state.assessment.currentSQ=idx;
+  document.getElementById('skill-progress').style.width=Math.round((idx/SKILL_BASELINE_QS.length)*100)+'%';
+  if(idx>=SKILL_BASELINE_QS.length){finishAssessment();return}
+  const sq=SKILL_BASELINE_QS[idx];const sk=SKILL_DATA[sq.skill];
+  const shuffled=shuffle(sq.opts.map((o,i)=>({...o,origIdx:i})));
+  let html=`<div class="card no-hover"><div style="color:#888;font-size:0.8em;margin-bottom:8px">${sk.name} — Baseline</div>`;
+  html+=`<p style="color:#ddd;margin-bottom:16px;line-height:1.5">${sq.scenario}</p>`;
+  shuffled.forEach(opt=>{
+    html+=`<div class="option" onclick="submitSkillAnswer(${idx},${opt.score})"><span class="option-label">${opt.text}</span></div>`;
+  });
+  html+=`</div>`;
+  document.getElementById('skill-question-area').innerHTML=html;
+}
+
+function submitSkillAnswer(qIdx,score){
+  const sq=SKILL_BASELINE_QS[qIdx];
+  state.assessment.skillScores[sq.skill]=Math.round((score/4)*100);
+  state.assessment.skillAnswers[qIdx]=score;
+  saveState();renderSkillQ(qIdx+1);
+}
+
+function finishAssessment(){
+  const strong=[];
+  DOMAINS.forEach(d=>{if((state.assessment.domainScores[d.id]||0)>=3)strong.push(d)});
+  state.assessment.strongDomains=strong.map(d=>d.id);
+  state.assessment.completed=true;
+  Object.keys(SKILL_DATA).forEach(k=>{
+    if(!state.training[k]){
+      const baseline=state.assessment.skillScores[k]||25;
+      const hasScen=SCENARIO_SKILLS.has(k);
+      state.training[k]={level:baseline,lastPracticed:null,nextReview:hasScen?Date.now():null,ease:2.5,interval:1,history:[]};
+    }
+  });
+  saveState();renderWelcome();showScreen('assess-results');
+}
+
+function renderAssessResults(){
+  let dhtml='';
+  DOMAINS.forEach(d=>{
+    const score=state.assessment.domainScores[d.id]||0;const pct=Math.round((score/4)*100);
+    const cls=pct>=75?'green':pct>=50?'yellow':'red';
+    const isStrong=state.assessment.strongDomains.includes(d.id);
+    dhtml+=`<div class="mastery-bar"><span class="label">${d.name}${isStrong?' <span class="tag durable">STRONG</span>':''}</span><div class="bar"><div class="fill ${cls}" style="width:${pct}%"></div></div><span class="score">${pct}%</span></div>`;
+  });
+  document.getElementById('domain-results').innerHTML=dhtml;
+  let shtml='';
+  SKILL_BASELINE_QS.forEach(sq=>{
+    const sk=SKILL_DATA[sq.skill];const score=state.assessment.skillScores[sq.skill]||0;
+    const cls=score>=75?'green':score>=50?'yellow':'red';
+    shtml+=`<div class="mastery-bar"><span class="label">${sk.name}</span><div class="bar"><div class="fill ${cls}" style="width:${score}%"></div></div><span class="score">${score}%</span></div>`;
+  });
+  document.getElementById('skill-results').innerHTML=shtml;
+  const strongNames=state.assessment.strongDomains.map(id=>DOMAINS.find(d=>d.id===id)?.name).filter(Boolean);
+  const el=document.getElementById('strong-domains-summary');
+  el.innerHTML=strongNames.length>0
+    ?`<h3>Your Training World</h3><p style="color:#999;font-size:0.9em;margin-top:8px">Your strong domains: <strong style="color:#d4a843">${strongNames.join(', ')}</strong>. All training scenarios are set in your business context — AI services, local contractors, East Texas sales. Your strong domains confirm you have real depth there, not just surface knowledge.</p>`
+    :`<h3>Your Training World</h3><p style="color:#999;font-size:0.9em;margin-top:8px">No standout domain yet. All training scenarios use your business context — AI services, local contractors, sales. As you learn more, retake the assessment.</p>`;
+}
+
+function renderHub(){
+  const now=Date.now();let dueCount=0;let html='';
+  const lastSkill=state.sessions?.length?state.sessions[state.sessions.length-1].skill:null;
+  const rep=Number(state.reputation)||100;
+  Object.keys(SKILL_DATA).forEach(k=>{
+    const sk=SKILL_DATA[k];const tr=state.training[k]||{level:0,nextReview:null};
+    const hasScen=SCENARIO_SKILLS.has(k);
+    const isDue=hasScen&&tr.nextReview&&tr.nextReview<=now;
+    if(isDue)dueCount++;
+    const repLocked=sk.integrity==='burns'&&rep<80;
+    const cls=tr.level>=75?'green':tr.level>=50?'yellow':'red';
+    const intCls=sk.integrity==='durable'?'durable':sk.integrity==='burns'?'burns':sk.integrity==='mixed'?'mixed':'neutral';
+    html+=`<div class="skill-card${repLocked?' locked':''}" onclick="${repLocked?'alert(\'Reputation too low ('+rep+'/80). Build trust with durable skills before practicing dangerous ones.\')':'startLesson(\''+k+'\')'}">
+      <div class="badge">${isDue?'<span class="tag due">REVIEW</span>':''}${!hasScen?'<span class="tag lesson-only">LESSON</span>':''}${repLocked?'<span class="tag burns">LOCKED</span>':''}</div>
+      <div class="skill-name">${sk.name}</div>
+      <div style="margin:6px 0"><span class="tag ${intCls}">${sk.integrity==='burns'?'BURNS YOU':sk.integrity.toUpperCase()}</span></div>
+      <div class="skill-level">${sk.short}</div>
+      <div class="mastery-bar" style="margin-top:10px"><div class="bar"><div class="fill ${cls}" style="width:${tr.level}%"></div></div><span class="score">${tr.level}%</span></div>
+    </div>`;
+  });
+  document.getElementById('skill-grid').innerHTML=html;
+  const alert=document.getElementById('srs-alert');
+  let alertMsg='';
+  if(dueCount>0)alertMsg=`${dueCount} skill${dueCount>1?'s':''} due for review. Hit the gold-tagged ones first.`;
+  if(lastSkill){
+    const otherDue=Object.keys(SKILL_DATA).filter(k=>k!==lastSkill&&SCENARIO_SKILLS.has(k)&&state.training[k]?.nextReview&&state.training[k].nextReview<=now);
+    if(otherDue.length>0)alertMsg+=(alertMsg?' ':'')+'Try a different skill next — interleaving builds stronger retention than repeating the same one.';
+  }
+  if(alertMsg){alert.classList.remove('hidden');alert.textContent=alertMsg}
+  else{alert.classList.add('hidden')}
+}
+
+function startLesson(skillId){
+  state.currentSkill=skillId;saveState();
+  const sk=SKILL_DATA[skillId];
+  const intCls=sk.integrity==='durable'?'durable-b':sk.integrity==='burns'?'burns-b':'mixed-b';
+  const intLabel=sk.integrity==='durable'?'DURABLE POWER — builds trust and compounds':sk.integrity==='burns'?'BURNS YOU — works short-term, destroys trust long-term':'MIXED — depends on how you use it';
+  const tr=state.training[skillId]||{};
+  const isReturn=tr.lastPracticed&&(Date.now()-tr.lastPracticed)>3600000;
+  let html=`<h2>${sk.name}</h2><p class="subtitle">${sk.short}</p>`;
+  html+=`<div class="integrity-banner ${intCls}">${intLabel}: ${sk.integrityNote}</div>`;
+  if(isReturn){
+    html+=`<div class="card no-hover" style="border-left:3px solid #6688bb"><h3 style="color:#6688bb">Quick Recall</h3><p style="color:#999;font-size:0.85em;margin:8px 0">Before reviewing, test your memory. What do you remember about ${sk.name}?</p><textarea id="recall-input" style="width:100%;background:#1a1a1a;border:1px solid #2a2a2a;border-radius:8px;padding:12px;color:#ddd;font-family:inherit;resize:none;min-height:50px" placeholder="Write what you remember — the act of recalling strengthens retention..."></textarea><div style="margin-top:8px;display:flex;gap:8px;align-items:center"><span style="color:#888;font-size:0.8em">How much did you remember?</span><button class="btn small secondary" onclick="rateRecall('${skillId}',1,this.parentElement)">Almost nothing</button><button class="btn small secondary" onclick="rateRecall('${skillId}',2,this.parentElement)">Some of it</button><button class="btn small secondary" onclick="rateRecall('${skillId}',3,this.parentElement)">Most of it</button></div></div>`;
+  }
+  if(tr.bridgeAttempted&&sk.bridge){
+    html+=`<div class="card no-hover" style="border-left:3px solid #4caf50"><h3 style="color:#4caf50">Last Bridge Activity — What Happened?</h3><p style="color:#999;font-size:0.85em;margin:8px 0">You tried the real-world exercise last time. What did you learn?</p><textarea id="bridge-reflect" style="width:100%;background:#1a1a1a;border:1px solid #2a2a2a;border-radius:8px;padding:12px;color:#ddd;font-family:inherit;resize:none;min-height:50px" placeholder="What happened when you tried it? What surprised you?">${escHtml(tr.bridgeReflection||'')}</textarea><button class="btn small secondary" style="margin-top:8px" onclick="saveBridgeReflection('${skillId}')">Save Reflection</button></div>`;
+  }
+  html+=`<div class="card no-hover"><h3>How It Works</h3><p style="color:#ccc;margin-top:8px;line-height:1.6;white-space:pre-line">${sk.lesson}</p></div>`;
+  html+=`<div class="card no-hover"><h3>Real Example</h3><p style="color:#ccc;margin-top:8px;line-height:1.6">${sk.example}</p></div>`;
+  html+=`<div class="card no-hover"><h3>Detect When Used on YOU</h3><p style="color:#ccc;margin-top:8px;line-height:1.6">${sk.detect}</p></div>`;
+  if(sk.bridge){
+    html+=`<div class="card no-hover" style="border-left:3px solid #d4a843"><h3 style="color:#d4a843">Use This Week</h3><p style="color:#ccc;margin-top:8px;line-height:1.6">${sk.bridge}</p>`;
+    html+=`<div style="margin-top:12px;display:flex;align-items:center;gap:8px"><button class="btn small${tr.bridgeAttempted?' secondary':''}" onclick="markBridgeAttempted('${skillId}')">${tr.bridgeAttempted?'✓ Marked as tried':'I\'ll try this'}</button><span style="color:#888;font-size:0.8em">${tr.bridgeAttempted?'Come back after trying to reflect on what happened':''}</span></div></div>`;
+  }
+  const scenario=SCENARIOS.find(s=>s.skill===skillId);
+  if(scenario){
+    html+=`<div class="card no-hover mt"><h3>Your Scenario: ${scenario.title}</h3><p style="color:#999;margin-top:8px;line-height:1.5;font-size:0.9em">${scenario.setup}</p>`;
+    html+=`<p style="color:#d4a843;margin-top:12px;font-size:0.9em"><strong>Objective:</strong> ${scenario.objective}</p></div>`;
+  } else {
+    if(state.training[skillId]){state.training[skillId].lastPracticed=Date.now();state.training[skillId].nextReview=Date.now()+Math.max(1,state.training[skillId].interval)*86400000;saveState()}
+  }
+  document.getElementById('lesson-content').innerHTML=html;
+  const btn=document.getElementById('start-scenario-btn');
+  if(scenario){btn.classList.remove('hidden');btn.onclick=()=>launchScenario(scenario.id)}
+  else{btn.classList.add('hidden')}
+  showScreen('lesson');
+}
+
+function launchScenario(scenarioId){
+  const sc=SCENARIOS.find(s=>s.id===scenarioId);if(!sc)return;
+  const replayCount=(state.sessions||[]).filter(s=>s.scenario===sc.id&&!s.fallback).length;
+  webhookCalls=0;
+  state.currentScenario={id:sc.id,skill:sc.skill,secondary:sc.secondary,moves:0,maxMoves:sc.maxMoves,history:[],reputation:Number(state.reputation)||100,startTime:Date.now(),isFallback:false,replayCount};
+  saveState();
+  document.getElementById('scenario-title').textContent=sc.title;
+  document.getElementById('moves-count').textContent='0';
+  document.getElementById('moves-total').textContent=sc.maxMoves;
+  document.getElementById('rep-display').textContent=state.currentScenario.reputation;
+  document.getElementById('scenario-setup').innerHTML=`<strong>Situation:</strong> ${sc.setup}<br><br><strong style="color:#d4a843">Objective:</strong> ${sc.objective}`;
+  let castHtml='<strong>The Players:</strong><br>';
+  sc.characters.forEach(c=>{castHtml+=`<br><strong style="color:#5ea8d4">${escHtml(c.name)}</strong> — ${escHtml(c.role)}<br><span style="color:#888">${escHtml(c.personality)}</span>`});
+  document.getElementById('scenario-cast').innerHTML=castHtml;
+  document.getElementById('chat-area').innerHTML='';
+  addChat('narrator',`The scene is set. You're about to engage with ${sc.characters.map(c=>c.name).join(' and ')}. Make your first move.`);
+  document.getElementById('player-input').value='';
+  document.getElementById('send-btn').disabled=false;
+  document.getElementById('input-error').classList.add('hidden');
+  showScreen('scenario');
+  document.getElementById('player-input').focus();
+}
+
+function addChat(role,text,name){
+  const chat=document.getElementById('chat-area');const div=document.createElement('div');div.className='chat-msg';
+  const senderClass=role==='narrator'?'narrator':role==='player'?'player':role==='coach'?'coach':'opponent';
+  const senderName=role==='narrator'?'NARRATOR':role==='player'?'YOU':role==='coach'?'COACH':escHtml(name||'OPPONENT');
+  div.innerHTML=`<div class="sender ${senderClass}">${senderName}</div><div class="text">${escHtml(text)}</div>`;
+  chat.appendChild(div);chat.scrollTop=chat.scrollHeight;
+}
+
+function escHtml(t){if(!t)return'';return String(t).replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;').replace(/\n/g,'<br>')}
+
+function validateInput(text){
+  if(text.length<15)return'Your move needs more detail — write at least a full sentence describing what you say or do.';
+  if(text.length>2000)return'Keep your response under 2000 characters. Be concise — real negotiators don\'t monologue.';
+  const words=text.split(/\s+/).filter(w=>w.length>1);
+  if(words.length<4)return'Be more specific about what you\'re saying or doing. The opponent needs something real to respond to.';
+  const uniqueChars=new Set(text.toLowerCase().replace(/\s/g,'')).size;
+  if(uniqueChars<6)return'That doesn\'t look like a real response. Describe what you actually say or do.';
+  return null;
+}
+
+async function sendMove(){
+  const sendBtn=document.getElementById('send-btn');
+  if(sendBtn.disabled)return;
+  sendBtn.disabled=true;
+  const endBtn=document.getElementById('end-scenario-btn');
+  if(endBtn)endBtn.disabled=true;
+  const input=document.getElementById('player-input');const text=input.value.trim();
+  if(!text){sendBtn.disabled=false;if(endBtn)endBtn.disabled=false;return}
+  const err=validateInput(text);
+  if(err){document.getElementById('input-error').textContent=err;document.getElementById('input-error').classList.remove('hidden');sendBtn.disabled=false;if(endBtn)endBtn.disabled=false;return}
+  document.getElementById('input-error').classList.add('hidden');
+  input.value='';
+  const sc=SCENARIOS.find(s=>s.id===state.currentScenario.id);
+  state.currentScenario.moves++;
+  state.currentScenario.history.push({role:'player',text});
+  document.getElementById('moves-count').textContent=state.currentScenario.moves;
+  addChat('player',text);saveState();
+  if(state.currentScenario.moves>=state.currentScenario.maxMoves){
+    addChat('narrator','Maximum moves reached. Ending scenario...');
+    setTimeout(()=>endScenario(),1500);return;
+  }
+  document.getElementById('scenario-status').classList.remove('hidden');
+  document.getElementById('scenario-status').textContent='Opponents responding...';
+  const systemPrompt=buildOpponentPrompt(sc);
+  const messages=state.currentScenario.history.map(h=>({role:h.role==='player'?'user':'assistant',content:h.text}));
+  const scenarioAtSend=state.currentScenario.id;
+  try{
+    const resp=await callWebhook('opponent',{system:systemPrompt,messages,scenario:sc.id,move:state.currentScenario.moves,maxMoves:sc.maxMoves});
+    if(!state.currentScenario||state.currentScenario.id!==scenarioAtSend){return}
+    if(resp&&resp.response){
+      state.currentScenario.history.push({role:'opponent',text:resp.response});
+      resp.response.split('\n').filter(l=>l.trim()).forEach(line=>{
+        const cm=line.match(/^\[([^\]]+)\]\s*(.*)/);
+        if(cm){addChat('opponent',cm[2],cm[1])}
+        else{const nm=line.match(/^([A-Z][a-z]+(?:\s[A-Z][a-z]+)?)\s*:\s*(.*)/);
+          if(nm)addChat('opponent',nm[2],nm[1]);else addChat('opponent',line,sc.characters[0]?.name)}
+      });
+    }else{useFallback(sc)}
+  }catch(e){console.error('Webhook error:',e);useFallback(sc)}
+  sendBtn.disabled=false;
+  if(endBtn)endBtn.disabled=false;
+  document.getElementById('scenario-status').classList.add('hidden');
+  saveState();document.getElementById('player-input').focus();
+}
+
+function useFallback(sc){
+  state.currentScenario.isFallback=true;
+  const idx=Math.min(state.currentScenario.moves-1,(sc.fallbacks||[]).length-1);
+  const fb=sc.fallbacks&&sc.fallbacks[idx]?sc.fallbacks[idx]:['*The other party considers your response carefully.*'];
+  const fbText=fb.join('\n');
+  state.currentScenario.history.push({role:'opponent',text:fbText});
+  fb.forEach(line=>{
+    const cm=line.match(/^\[([^\]]+)\]\s*(.*)/);
+    if(cm)addChat('opponent',cm[2],cm[1]);else addChat('opponent',line,sc.characters[0]?.name);
+  });
+}
+
+function buildOpponentPrompt(sc){
+  let p=`You are playing ALL non-player characters in a negotiation training scenario. The player is a 17-year-old AI business entrepreneur named Boston from Tyler, Texas.\n\nSCENARIO: ${sc.setup}\n\nPLAYER OBJECTIVE: ${sc.objective}\n\nCHARACTERS YOU PLAY:\n`;
+  sc.characters.forEach(c=>{p+=`\n${c.name} (${c.role}): ${c.personality}\nTACTICS: ${c.tactics}\n`});
+  const replay=state.currentScenario?.replayCount||0;
+  const difficultyNote=replay===0?'This is their first attempt. Be moderately challenging.':replay<=2?`This is replay #${replay+1}. Be tougher — they know the basics. Introduce unexpected twists, change your emotional state mid-conversation, or bring up new constraints they haven't seen before.`:`Replay #${replay+1}. Maximum difficulty — combine multiple pressure tactics, test emotional resilience, introduce time pressure or competing offers. Make them earn every inch.`;
+  p+=`\nRULES:\n- Respond in character. Format: "[Character Name] dialogue text" on separate lines.\n- Be tough but realistic. Don't just agree — pursue your OWN goals.\n- If the player makes a good move, give realistic progress (not instant victory).\n- If they make a mistake (too aggressive, ignores relationship, misreads power), exploit it.\n- TEST THE PLAYER by: (a) making an emotional appeal to see if they abandon strategy, (b) offering an early concession to see if they reciprocate too eagerly, (c) invoking authority ("my partner/wife/board would never agree") to see if they fold, (d) asking a direct yes/no question to see if they can maintain flexibility, (e) dropping a low anchor ("I heard you could do this for $20/month") to see if they negotiate from your frame or reset it.\n- DIFFICULTY: ${difficultyNote}\n- Keep total response under 150 words. 2-3 sentences per character.\n- Move ${state.currentScenario?.moves||1} of ${sc.maxMoves}. Pace the negotiation.`;
+  return p;
+}
+
+async function endScenario(){
+  if(!state.currentScenario||state._endingScenario){showScreen('hub');return}
+  state._endingScenario=true;
+  showScreen('review');
+  const sc=SCENARIOS.find(s=>s.id===state.currentScenario.id);
+  const sk=SKILL_DATA[state.currentScenario.skill];
+  let reviewHtml=`<div class="card no-hover"><h3>Scenario: ${sc.title}</h3><p style="color:#888;font-size:0.9em">Skill: ${sk.name} | Moves: ${state.currentScenario.moves}/${state.currentScenario.maxMoves}</p></div>`;
+  reviewHtml+=`<div id="coaching-area" class="card no-hover"><p class="loading">Analyzing your performance...</p></div>`;
+  document.getElementById('review-content').innerHTML=reviewHtml;
+  const rb=document.getElementById('replay-btn');const hb=document.getElementById('review-hub-btn');
+  if(rb)rb.disabled=true;if(hb)hb.disabled=true;
+  if(state.currentScenario.isFallback){renderFallbackCoaching(sc,sk);return}
+  try{
+    const coachPrompt=buildCoachPrompt(sc,sk);
+    const resp=await callWebhook('coach',{system:coachPrompt,history:state.currentScenario.history,scenario:sc.id,skill:state.currentScenario.skill});
+    if(resp&&resp.response)renderCoaching(resp);else renderFallbackCoaching(sc,sk);
+  }catch(e){renderFallbackCoaching(sc,sk)}
+  finally{state._endingScenario=false}
+}
+
+function buildCoachPrompt(sc,sk){
+  let hist=state.currentScenario.history.map(h=>`${h.role==='player'?'PLAYER':'OPPONENT'}: ${h.text}`).join('\n\n');
+  return `You are a master political operator and negotiation coach. The player is Boston, 17, AI business entrepreneur, Tyler TX.
+
+SCENARIO: ${sc.title} — ${sc.setup}
+OBJECTIVE: ${sc.objective}
+SKILL: ${sk.name} — ${sk.short}
+
+SCORING RUBRIC:
+1-3: Made tactical errors that damaged relationships or missed the objective entirely. Ignored opponent psychology.
+4-6: Pursued the objective but missed key relationship dynamics or emotional subtext. Technically competent but not sophisticated.
+7-8: Good strategic thinking AND relationship awareness. Read the room, adapted approach, created genuine progress.
+9-10: Master-level — created unexpected value, read subtext perfectly, advanced the objective while strengthening all relationships.
+
+CONVERSATION:
+${hist}
+
+EMOTIONAL IQ ANCHORS — score high if the player: used labeling ("It seems like...", "It sounds like...") to name emotions before they were voiced, used mirroring (repeating the other party's last 2-3 words with upward inflection to invite elaboration), used calibrated questions ("How...?", "What would...?") to understand perspective, sought "That's right" moments (the opponent genuinely agrees because they feel understood — distinct from "You're right" which signals compliance without buy-in), adapted approach based on reactions, addressed relationship dynamics not just transactions, used loss framing ("you're losing X") rather than gain framing ("you'll save X"). Score low if: ignored emotional cues, bulldozed with logic when empathy was needed, treated characters as obstacles, made demands without offering value first, mentioned price too early (transactional not relational), settled for "You're right" without testing for genuine understanding, negotiated from the opponent's anchor instead of resetting the frame.
+
+OPENING MOVE — Evaluate the player's first action specifically. Did they establish the right frame, ask the right question, or position themselves correctly before the conversation took shape? The first move determines the trajectory.
+
+Return JSON:
+{"overall_score":(1-10),"strategy_score":(1-10),"relationship_score":(1-10),"emotional_iq_score":(1-10),"principle_used":"specific principle they applied well, or null if nothing stood out","principle_missed":"specific principle they should have used, or null if they covered the key bases","master_move":"if score<=7: what a master would have done differently at which specific move. if score>=8: what they did well and the next-level move that takes it from good to great","blind_spot":"identify the specific moment where the player missed an emotional, relational, or political undercurrent — what was the subtext they didn't read? If they actually read it well, say so and note what else to watch for next time","real_life":"one concrete way to use this skill THIS WEEK in their business","reputation_delta":(-10 to +10)}
+
+Be direct. Don't soften. Reward genuine skill.`;
+}
+
+function renderCoaching(resp){
+  let data;
+  try{data=typeof resp.response==='string'?JSON.parse(resp.response.replace(/```json\n?/g,'').replace(/```/g,'')):resp.response}catch(e){renderFallbackCoaching();return}
+  const clamp=(v,lo,hi)=>{const n=Number(v);return isNaN(n)?5:Math.max(lo,Math.min(hi,Math.round(n)))};
+  const overall=clamp(data.overall_score,1,10);const strategy=clamp(data.strategy_score,1,10);
+  const relationship=clamp(data.relationship_score,1,10);const eq=clamp(data.emotional_iq_score,1,10);
+  const repDelta=clamp(data.reputation_delta,-10,10);
+  state.currentScenario.scores={overall,strategy,relationship,eq};
+  updateSkillAfterScenario(overall,false);
+  let html=`<div class="stats-row">${scoreCircle('Overall',overall)}${scoreCircle('Strategy',strategy)}${scoreCircle('Relationships',relationship)}${scoreCircle('Emotional IQ',eq)}</div>`;
+  if(repDelta!==0){
+    const c=repDelta>0?'#4caf50':'#f44336';
+    html+=`<p style="color:${c};margin:8px 0">Reputation: ${repDelta>0?'+':''}${repDelta} (${repDelta>0?'trust built':'trust spent'})</p>`;
+    state.reputation=Math.max(0,Math.min(150,(Number(state.reputation)||100)+repDelta));
+  }
+  if(data.principle_used)html+=`<div class="card no-hover"><h3 style="color:#4caf50">Principle Applied</h3><p style="color:#ccc;margin-top:6px">${escHtml(data.principle_used)}</p></div>`;
+  if(data.principle_missed)html+=`<div class="card no-hover"><h3 style="color:#ff9800">Principle Missed</h3><p style="color:#ccc;margin-top:6px">${escHtml(data.principle_missed)}</p></div>`;
+  if(data.master_move)html+=`<div class="card no-hover"><h3>What a Master Would Have Done</h3><p style="color:#ccc;margin-top:6px">${escHtml(data.master_move)}</p></div>`;
+  if(data.blind_spot)html+=`<div class="card no-hover" style="border-left:3px solid #ff9800"><h3 style="color:#ff9800">Blind Spot Alert</h3><p style="color:#ccc;margin-top:6px;font-size:0.9em">${escHtml(data.blind_spot)}</p></div>`;
+  if(data.real_life)html+=`<div class="card no-hover" style="border-left:3px solid #d4a843"><h3 style="color:#d4a843">Use This Week</h3><p style="color:#ccc;margin-top:6px">${escHtml(data.real_life)}</p></div>`;
+  document.getElementById('coaching-area').innerHTML=html;state._endingScenario=false;
+  const rb2=document.getElementById('replay-btn');const hb2=document.getElementById('review-hub-btn');
+  if(rb2)rb2.disabled=false;if(hb2)hb2.disabled=false;saveState();
+}
+
+function scoreCircle(label,score){const c=score>=7?'#4caf50':score>=4?'#ff9800':'#f44336';return`<div class="stat"><div class="val" style="color:${c}">${score}</div><div class="lbl">${label}</div></div>`}
+
+function renderFallbackCoaching(sc,sk){
+  if(!sc&&state.currentScenario)sc=SCENARIOS.find(s=>s.id===state.currentScenario.id);
+  if(!sk&&state.currentScenario)sk=SKILL_DATA[state.currentScenario.skill];
+  const playerMoves=state.currentScenario?.history.filter(h=>h.role==='player')||[];
+  const allText=playerMoves.map(m=>m.text).join(' ').toLowerCase();
+  const charNames=(sc?.characters||[]).map(c=>c.name.split(' ')[0].toLowerCase());
+  const mentionsChars=charNames.filter(n=>allText.includes(n)).length;
+  const avgLen=playerMoves.length?Math.round(allText.length/playerMoves.length):0;
+  const usedQuestions=(allText.match(/\?/g)||[]).length;
+  const stratWords=['because','instead','what if','how would','offer','trade','worth','before we'];
+  const eqWords=['it seems like','it sounds like','it looks like','how would you','what would','concern','understand','feel','perspective','tell me more'];
+  const stratCount=stratWords.filter(w=>allText.includes(w)).length;
+  const eqCount=eqWords.filter(w=>allText.includes(w)).length;
+  let score=3;
+  if(stratCount>=1)score++;if(stratCount>=3)score++;
+  if(eqCount>=1)score++;if(eqCount>=3)score++;
+  if(mentionsChars>0)score++;if(mentionsChars>=2)score++;
+  if(usedQuestions>1)score++;if(usedQuestions>=4)score++;
+  score=Math.min(10,Math.max(1,score));
+
+  const relScore=Math.max(3,score-1);const eqScore=Math.max(3,score-1);
+  let html=`<div class="stats-row">${scoreCircle('Overall',score)}${scoreCircle('Strategy',Math.max(2,score-1))}${scoreCircle('Relationships',relScore)}${scoreCircle('Emotional IQ',eqScore)}</div>`;
+  const fbRepDelta=score>=7?2:score>=5?0:-2;
+  if(fbRepDelta!==0){
+    state.reputation=Math.max(0,Math.min(150,(Number(state.reputation)||100)+fbRepDelta));
+    const c=fbRepDelta>0?'#4caf50':'#f44336';
+    html+=`<p style="color:${c};margin:8px 0">Reputation: ${fbRepDelta>0?'+':''}${fbRepDelta} (${fbRepDelta>0?'practice building trust':'practice cost trust'})</p>`;
+  }
+  html+=`<div class="info-banner">Offline coaching — scores estimated from your response patterns. Connect the n8n webhook for full AI analysis.</div>`;
+  if(sk){
+    html+=`<div class="card no-hover"><h3>Key Principle: ${sk.name}</h3><p style="color:#ccc;margin-top:6px;white-space:pre-line">${sk.lesson}</p></div>`;
+    html+=`<div class="card no-hover"><h3>Detect When Used on You</h3><p style="color:#ccc;margin-top:6px">${sk.detect}</p></div>`;
+    if(sk.bridge)html+=`<div class="card no-hover" style="border-left:3px solid #d4a843"><h3 style="color:#d4a843">Use This Week</h3><p style="color:#ccc;margin-top:6px">${sk.bridge}</p></div>`;
+  }
+  document.getElementById('coaching-area').innerHTML=html;
+  updateSkillAfterScenario(score,true);
+  state._endingScenario=false;
+  const rb3=document.getElementById('replay-btn');const hb3=document.getElementById('review-hub-btn');
+  if(rb3)rb3.disabled=false;if(hb3)hb3.disabled=false;saveState();
+}
+
+function updateSkillAfterScenario(score,isFallback){
+  const skillId=state.currentScenario?.skill;
+  if(!skillId||!state.training[skillId])return;
+  score=Math.max(1,Math.min(10,Number(score)||5));
+  const tr=state.training[skillId];
+  tr.history.push({score,date:Date.now(),fallback:!!isFallback});
+  const validHistory=tr.history.filter(h=>!h.fallback).slice(-5);
+  if(validHistory.length>0){
+    let ws=0,wt=0;
+    validHistory.forEach((h,i)=>{const w=i+1;ws+=h.score*10*w;wt+=w});
+    tr.level=Math.min(100,Math.round(ws/wt));
+  }
+  tr.lastPracticed=Date.now();
+  if(!isFallback){
+    const quality=Math.round(score/2);
+    if(quality>=3){tr.ease=Math.max(1.3,tr.ease+0.1*(quality-3));tr.interval=Math.round(tr.interval*tr.ease)}
+    else{tr.ease=Math.max(1.3,tr.ease-0.2);tr.interval=1}
+    tr.nextReview=Date.now()+tr.interval*86400000;
+  }
+  state.sessions.push({skill:skillId,score,date:Date.now(),scenario:state.currentScenario.id,fallback:!!isFallback});
+  if(!isFallback&&state.currentScenario.secondary){
+    state.currentScenario.secondary.forEach(secId=>{
+      if(state.training[secId]&&SCENARIO_SKILLS.has(secId)){
+        const secScore=Math.max(1,score-1);
+        state.training[secId].history.push({score:secScore,date:Date.now(),fallback:false,secondary:true});
+        const secValid=state.training[secId].history.filter(h=>!h.fallback).slice(-5);
+        if(secValid.length>0){let ws=0,wt=0;secValid.forEach((h,i)=>{const w=h.secondary?i+0.5:i+1;ws+=h.score*10*w;wt+=w});state.training[secId].level=Math.min(100,Math.round(ws/wt))}
+        const secQ=Math.round(secScore/2);
+        if(secQ>=3){state.training[secId].ease=Math.max(1.3,state.training[secId].ease+0.05*(secQ-3));state.training[secId].interval=Math.max(1,Math.round(state.training[secId].interval*state.training[secId].ease*0.8));state.training[secId].nextReview=Date.now()+state.training[secId].interval*86400000}
+        else{state.training[secId].interval=1;state.training[secId].nextReview=Date.now()+86400000}
+      }
+    });
+  }
+  saveState();
+}
+
+function replayScenario(){if(state.currentScenario)launchScenario(state.currentScenario.id)}
+
+function renderDashboard(){
+  const skills=Object.keys(SKILL_DATA);
+  const totalLevel=skills.reduce((s,k)=>(state.training[k]?.level||0)+s,0);
+  const avgLevel=Math.round(totalLevel/skills.length);
+  const sessCount=state.sessions?.length||0;const now=Date.now();
+  const dueCount=skills.filter(k=>state.training[k]?.nextReview&&state.training[k].nextReview<=now).length;
+  let statsHtml=`<div class="stat"><div class="val">${avgLevel}%</div><div class="lbl">Overall Mastery</div></div>`;
+  statsHtml+=`<div class="stat"><div class="val">${sessCount}</div><div class="lbl">Sessions</div></div>`;
+  statsHtml+=`<div class="stat"><div class="val">${dueCount}</div><div class="lbl">Due for Review</div></div>`;
+  statsHtml+=`<div class="stat"><div class="val">${Number(state.reputation)||100}</div><div class="lbl">Reputation</div></div>`;
+  document.getElementById('dash-stats').innerHTML=statsHtml;
+  const sorted=[...skills].sort((a,b)=>(state.training[a]?.level||0)-(state.training[b]?.level||0));
+  let mhtml='';
+  sorted.forEach(k=>{
+    const sk=SKILL_DATA[k];const tr=state.training[k]||{level:0};
+    const cls=tr.level>=75?'green':tr.level>=50?'yellow':'red';
+    mhtml+=`<div class="mastery-bar"><span class="label">${sk.name}</span><div class="bar"><div class="fill ${cls}" style="width:${tr.level}%"></div></div><span class="score">${tr.level}%</span></div>`;
+  });
+  document.getElementById('dash-mastery').innerHTML=mhtml;
+  const dueSkills=skills.filter(k=>state.training[k]?.nextReview&&state.training[k].nextReview<=now);
+  document.getElementById('dash-srs').innerHTML=dueSkills.length===0
+    ?'<p style="color:#888;font-size:0.9em">All skills reviewed. Nice work.</p>'
+    :dueSkills.map(k=>`<div class="option" onclick="startLesson('${k}')"><span class="option-label">${SKILL_DATA[k].name}</span> <span class="tag due">DUE</span></div>`).join('');
+  const sessions=state.sessions||[];
+  if(!sessions.length){document.getElementById('dash-history').innerHTML='<p style="color:#888;font-size:0.9em">No sessions yet.</p>';return}
+  let hhtml='<div style="max-height:200px;overflow-y:auto">';
+  sessions.slice(-10).reverse().forEach(s=>{
+    const sk=SKILL_DATA[s.skill];const d=new Date(s.date);
+    const ds=`${d.getMonth()+1}/${d.getDate()} ${d.getHours()}:${String(d.getMinutes()).padStart(2,'0')}`;
+    const c=s.score>=7?'#4caf50':s.score>=4?'#ff9800':'#f44336';
+    hhtml+=`<div style="display:flex;justify-content:space-between;padding:6px 0;border-bottom:1px solid #1a1a1a"><span style="color:#999;font-size:0.85em">${ds} — ${sk?.name||s.skill}${s.fallback?' (offline)':''}</span><span style="color:${c};font-weight:600">${s.score}/10</span></div>`;
+  });
+  document.getElementById('dash-history').innerHTML=hhtml+'</div>';
+}
+
+let webhookCalls=0;const WEBHOOK_LIMIT=50;
+async function callWebhook(type,data){
+  if(webhookCalls>=WEBHOOK_LIMIT){console.warn('Webhook rate limit reached');return null}
+  webhookCalls++;
+  try{const r=await fetch(WEBHOOK_URL,{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({type,...data}),signal:AbortSignal.timeout(15000)});
+  if(!r.ok)throw new Error(`HTTP ${r.status}`);const j=await r.json();if(j&&typeof j==='object')return j;return null}catch(e){console.warn('Webhook:',e);return null}}
+
+function rateRecall(skillId,rating,el){
+  if(!state.training[skillId])return;const tr=state.training[skillId];
+  if(rating<=1){tr.interval=1;tr.ease=Math.max(1.3,tr.ease-0.15)}
+  else if(rating===2){tr.ease=Math.max(1.3,tr.ease-0.05)}
+  else if(rating>=3){tr.ease=Math.min(3.0,tr.ease+0.05);tr.interval=Math.round(tr.interval*1.1)}
+  tr.nextReview=Date.now()+tr.interval*86400000;saveState();
+  const labels=['','Scheduled for tomorrow — keep practicing','Good — interval holds','Excellent recall — interval extended'];
+  el.innerHTML=`<span style="color:#4caf50;font-size:0.85em">✓ ${labels[rating]}</span>`;
+}
+function markBridgeAttempted(skillId){if(state.training[skillId]){state.training[skillId].bridgeAttempted=true;saveState();startLesson(skillId)}}
+function saveBridgeReflection(skillId){const el=document.getElementById('bridge-reflect');if(el&&state.training[skillId]){state.training[skillId].bridgeReflection=el.value.slice(0,500);saveState();el.parentElement.style.borderLeftColor='#4caf50';}}
+
+document.getElementById('player-input').addEventListener('keydown',e=>{if(e.key==='Enter'&&!e.shiftKey){e.preventDefault();sendMove()}});
+</script>
+</body>
+</html>
