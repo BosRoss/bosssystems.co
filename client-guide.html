@@ -193,7 +193,7 @@ footer{border-top:1px solid var(--border);padding:24px;text-align:center;font-si
     <br>
     <button id="login-btn" class="login-btn" onclick="doLogin()">Open My Guide</button>
     <div id="login-error" class="login-error" role="alert"></div>
-    <div class="login-help">Your code was texted to you at setup. Can't find it? Text Boston: 903-714-6162</div>
+    <div class="login-help">Your code was texted to you at setup. Can't find it? Text us: 903-522-4459</div>
   </div>
 </div>
 
@@ -240,9 +240,9 @@ footer{border-top:1px solid var(--border);padding:24px;text-align:center;font-si
 
       <div class="contact-strip">
         <div class="contact-copy">
-          <p><strong>Need anything changed?</strong> Text Boston — same-day updates.</p>
+          <p><strong>Need anything changed?</strong> Text us — same-day updates.</p>
         </div>
-        <a href="tel:9037146162" class="contact-link">Text 903-714-6162</a>
+        <a href="tel:9035224459" class="contact-link">Text 903-522-4459</a>
       </div>
     </div>
 
@@ -856,7 +856,7 @@ function askQuestion(source) {
   })
   .catch(function(err) {
     var answer = document.getElementById(answerId);
-    answer.textContent = err && err.name === 'AbortError' ? 'Request timed out. Try again.' : 'Could not reach the server. Text 903-714-6162 if this keeps happening.';
+    answer.textContent = err && err.name === 'AbortError' ? 'Request timed out. Try again.' : 'Could not reach the server. Text 903-522-4459 if this keeps happening.';
     answer.style.display = 'block';
   })
   .finally(function() {
