@@ -4,55 +4,66 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width,initial-scale=1.0">
 <meta name="robots" content="noindex,nofollow">
-<meta name="description" content="BOSS Systems full system overview showing operator and customer views side by side">
-<title>System Overview</title>
+<meta name="description" content="BOSS Systems full system map. Click any part to see how it works.">
+<title>System Map</title>
 <style>
 *{margin:0;padding:0;box-sizing:border-box}
-body{background:#080808;color:#bbb;font-family:'SF Mono',Menlo,monospace;font-size:12px;min-height:100vh}
-nav{display:flex;align-items:center;gap:12px;padding:6px 16px;background:#060606;border-bottom:1px solid #1a1a1a;font-size:11px;overflow-x:auto;white-space:nowrap}
+body{background:#080808;color:#bbb;font-family:'SF Mono',Menlo,monospace;font-size:12px;min-height:100vh;display:flex;flex-direction:column}
+nav{display:flex;align-items:center;gap:12px;padding:6px 16px;background:#060606;border-bottom:1px solid #1a1a1a;font-size:11px;overflow-x:auto;white-space:nowrap;flex-shrink:0}
 nav a{color:#888;text-decoration:none}
-.header{padding:16px 20px;border-bottom:1px solid #1a1a1a}
-.header h1{color:#C9A84C;font-size:16px;font-weight:600;letter-spacing:1px}
-.header p{color:#888;font-size:11px;margin-top:4px}
 
-.tabs{display:flex;gap:0;border-bottom:1px solid #1a1a1a;padding:0 16px;overflow-x:auto}
-.tab{padding:8px 16px;color:#888;cursor:pointer;border-bottom:2px solid transparent;font-size:11px;white-space:nowrap}
-.tab.active{color:#C9A84C;border-bottom-color:#C9A84C}
-.tab:hover{color:#ddd}
+.main{display:flex;flex:1;overflow:hidden}
+@media(max-width:700px){.main{flex-direction:column}}
 
-.panel{display:none;padding:16px 20px}
-.panel.active{display:block}
+.sidebar{width:260px;min-width:260px;border-right:1px solid #1a1a1a;overflow-y:auto;background:#0a0a0a;flex-shrink:0}
+@media(max-width:700px){.sidebar{width:100%;min-width:100%;max-height:40vh;border-right:none;border-bottom:1px solid #1a1a1a}}
 
-.split{display:grid;grid-template-columns:1fr 1fr;gap:16px;margin-bottom:20px}
-@media(max-width:800px){.split{grid-template-columns:1fr}}
+.content{flex:1;overflow-y:auto;padding:20px}
+
+.cat{border-bottom:1px solid #111}
+.cat-head{padding:10px 14px;color:#C9A84C;font-size:11px;font-weight:600;letter-spacing:.5px;cursor:pointer;display:flex;justify-content:space-between;align-items:center}
+.cat-head:hover{background:#111}
+.cat-head .arrow{transition:transform .2s;font-size:10px;color:#666}
+.cat.open .arrow{transform:rotate(90deg)}
+.cat-items{display:none;padding-bottom:4px}
+.cat.open .cat-items{display:block}
+.item{padding:6px 14px 6px 24px;color:#999;font-size:11px;cursor:pointer;border-left:2px solid transparent}
+.item:hover{background:#111;color:#ddd}
+.item.active{color:#C9A84C;border-left-color:#C9A84C;background:#0d0d0a}
+
+.detail{max-width:800px}
+.detail h2{color:#C9A84C;font-size:15px;font-weight:600;margin-bottom:4px}
+.detail .subtitle{color:#888;font-size:11px;margin-bottom:16px}
+
+.split{display:grid;grid-template-columns:1fr 1fr;gap:16px;margin-bottom:16px}
+@media(max-width:900px){.split{grid-template-columns:1fr}}
 .col{background:#0d0d0d;border:1px solid #1a1a1a;border-radius:6px;padding:14px}
-.col-label{font-size:10px;text-transform:uppercase;letter-spacing:1px;margin-bottom:10px;font-weight:600}
+.col-label{font-size:10px;text-transform:uppercase;letter-spacing:1px;margin-bottom:8px;font-weight:600}
 .col-label.you{color:#C9A84C}
-.col-label.customer{color:#4B92DB}
+.col-label.them{color:#4B92DB}
 
-.row{padding:6px 0;border-bottom:1px solid #111}
-.row:last-child{border-bottom:none}
-.row-title{color:#ddd;font-weight:600;font-size:11px;margin-bottom:2px}
-.row-detail{color:#999;font-size:10px;line-height:1.5}
-.row-status{display:inline-block;padding:1px 6px;border-radius:3px;font-size:9px;font-weight:600;letter-spacing:.5px}
-.row-status.live{background:#0a2a0a;color:#00cc66;border:1px solid #0a3a0a}
-.row-status.off{background:#2a0a0a;color:#ff4444;border:1px solid #3a0a0a}
-.row-status.local{background:#1a1a0a;color:#C9A84C;border:1px solid #2a2a0a}
-.row-status.pending{background:#0a1a2a;color:#4B92DB;border:1px solid #0a2a3a}
+.entry{padding:6px 0;border-bottom:1px solid #111}
+.entry:last-child{border-bottom:none}
+.entry-title{color:#ddd;font-weight:600;font-size:11px;margin-bottom:2px}
+.entry-text{color:#999;font-size:10px;line-height:1.6}
 
-.section-title{color:#C9A84C;font-size:13px;font-weight:600;margin:20px 0 10px;padding-bottom:6px;border-bottom:1px solid #1a1a1a}
-.section-title:first-child{margin-top:0}
+.badge{display:inline-block;padding:1px 6px;border-radius:3px;font-size:9px;font-weight:600;letter-spacing:.5px}
+.badge.live{background:#0a2a0a;color:#00cc66;border:1px solid #0a3a0a}
+.badge.off{background:#2a0a0a;color:#ff4444;border:1px solid #3a0a0a}
+.badge.local{background:#1a1a0a;color:#C9A84C;border:1px solid #2a2a0a}
+.badge.planned{background:#0a1a2a;color:#4B92DB;border:1px solid #0a2a3a}
 
-.note{background:#111;border-left:3px solid #C9A84C;padding:8px 12px;margin:10px 0;font-size:11px;color:#999;line-height:1.5}
+.flow{display:flex;align-items:center;gap:6px;flex-wrap:wrap;margin:10px 0;padding:10px;background:#0a0a0a;border:1px solid #1a1a1a;border-radius:6px}
+.step{background:#111;border:1px solid #222;border-radius:4px;padding:4px 10px;font-size:10px;color:#aaa}
+.arr{color:#555;font-size:12px}
+
+.note{background:#111;border-left:3px solid #C9A84C;padding:8px 12px;margin:12px 0;font-size:11px;color:#999;line-height:1.5}
 .note.warn{border-left-color:#ff4444}
 .note.info{border-left-color:#4B92DB}
 
-.flow{display:flex;align-items:center;gap:8px;flex-wrap:wrap;margin:8px 0}
-.flow-step{background:#111;border:1px solid #222;border-radius:4px;padding:4px 10px;font-size:10px;color:#aaa}
-.flow-arrow{color:#555;font-size:14px}
-
-.phone-num{color:#C9A84C;font-weight:600}
-.url{color:#4B92DB;font-weight:600}
+.phone{color:#C9A84C;font-weight:600}
+.welcome{text-align:center;padding:60px 20px;color:#666}
+.welcome h2{color:#C9A84C;font-size:16px;margin-bottom:8px}
 </style>
 </head>
 <body>
@@ -64,640 +75,432 @@ nav a{color:#888;text-decoration:none}
   <a href="social.html">Social</a>
   <a href="quant.html">Quant</a>
   <a href="washington_trainer/trainer.html">Skills</a>
-  <span style="color:#C9A84C;font-weight:600;margin-left:auto">Overview</span>
+  <span style="color:#C9A84C;font-weight:600;margin-left:auto">Map</span>
 </nav>
 
-<div class="header">
-  <h1>SYSTEM OVERVIEW</h1>
-  <p>Every system, both sides. Your view on the left, customer view on the right.</p>
+<div class="main">
+<div class="sidebar" id="sidebar"></div>
+<div class="content" id="content">
+  <div class="welcome"><h2>BOSS SYSTEMS MAP</h2>Click anything on the left to see how it works right now.</div>
 </div>
-
-<div class="tabs">
-  <div class="tab active" onclick="showTab('calls')">Phone System</div>
-  <div class="tab" onclick="showTab('website')">Website</div>
-  <div class="tab" onclick="showTab('pipeline')">Lead Pipeline</div>
-  <div class="tab" onclick="showTab('automation')">Automation</div>
-  <div class="tab" onclick="showTab('monitoring')">Monitoring</div>
-  <div class="tab" onclick="showTab('intel')">ATLAS Intel</div>
-  <div class="tab" onclick="showTab('training')">Training Tools</div>
-  <div class="tab" onclick="showTab('gaps')">Known Gaps</div>
-</div>
-
-<!-- PHONE SYSTEM -->
-<div class="panel active" id="calls">
-  <div class="section-title">Inbound Calls</div>
-  <div class="split">
-    <div class="col">
-      <div class="col-label you">Your side</div>
-      <div class="row">
-        <div class="row-title">BOSS Support <span class="phone-num">(903) 522-4459</span></div>
-        <div class="row-detail">
-          24/7 business line. All website CTAs point here. Handles questions, routes to onboarding.<br>
-          Agent ID: agent_2ccbf93129f1b5d505c3669d41<br>
-          <span class="row-status live">LIVE</span>
-        </div>
-      </div>
-      <div class="row">
-        <div class="row-title">Wickham Lawn Care <span class="phone-num">(972) 314-5057</span></div>
-        <div class="row-detail">
-          Partner agent. Anderson Wickham, McKinney TX. $50/mo paying client.<br>
-          <span class="row-status live">LIVE</span>
-        </div>
-      </div>
-    </div>
-    <div class="col">
-      <div class="col-label customer">Customer sees</div>
-      <div class="row">
-        <div class="row-title">Calling (903) 522-4459</div>
-        <div class="row-detail">
-          AI answers in 1 ring. Professional greeting, answers questions about BOSS Systems, takes messages, routes to onboarding form if interested. Sounds natural with eleven_v3 voice.
-        </div>
-      </div>
-      <div class="row">
-        <div class="row-title">Calling Wickham (972) 314-5057</div>
-        <div class="row-detail">
-          AI answers as Wickham Lawn Care receptionist. Schedules estimates, answers service questions, takes messages for Anderson.
-        </div>
-      </div>
-    </div>
-  </div>
-
-  <div class="section-title">Outbound Calls</div>
-  <div class="split">
-    <div class="col">
-      <div class="col-label you">Your side</div>
-      <div class="row">
-        <div class="row-title">Cold Caller <span class="phone-num">(903) 483-0168</span></div>
-        <div class="row-detail">
-          Outbound only. Never on any website page. Runs via local auto-caller at 10am and 2pm CT weekdays. 15 per batch, 50/day cap. Leads come from the lead engine scoring system.<br>
-          Script: scripts/local_auto_caller.py<br>
-          <span class="row-status local">LOCAL</span>
-        </div>
-      </div>
-      <div class="row">
-        <div class="row-title">Follow-Up Caller <span class="phone-num">(903) 560-2317</span></div>
-        <div class="row-detail">Warm lead follow-up. Calls people who showed interest but did not convert. <span class="row-status live">LIVE</span></div>
-      </div>
-      <div class="row">
-        <div class="row-title">Built by BOSS Sales <span class="phone-num">(903) 492-0198</span></div>
-        <div class="row-detail">Sells prebuilt AI business packages ($997-$3,497). <span class="row-status live">LIVE</span></div>
-      </div>
-      <div class="row">
-        <div class="row-title">Mystery Caller <span class="phone-num">(903) 601-8008</span></div>
-        <div class="row-detail">Lead magnet. Mystery shops their phone system, sends report. <span class="row-status live">LIVE</span></div>
-      </div>
-    </div>
-    <div class="col">
-      <div class="col-label customer">Prospect hears</div>
-      <div class="row">
-        <div class="row-title">Cold call experience</div>
-        <div class="row-detail">
-          "Hi, this is an AI calling on behalf of BOSS Systems." Opens with question about their business, not a pitch. Two paths if interested: self-service (text them the analysis link) or guided (schedule team call at 522-4459). Never tries to close on the call.
-        </div>
-      </div>
-      <div class="row">
-        <div class="row-title">Follow-up call</div>
-        <div class="row-detail">
-          References their previous interest. Checks if they had questions. Same two close paths. Warmer tone since they already showed interest.
-        </div>
-      </div>
-      <div class="row">
-        <div class="row-title">Mystery shop experience</div>
-        <div class="row-detail">
-          Calls their business pretending to be a customer. Tests hold time, greeting quality, booking process. Sends free report showing what they found. Lead magnet that demonstrates the problem BOSS solves.
-        </div>
-      </div>
-    </div>
-  </div>
-
-  <div class="section-title">Personal and Training Numbers</div>
-  <div class="split">
-    <div class="col">
-      <div class="col-label you">Your side</div>
-      <div class="row">
-        <div class="row-title">Claude Advisor <span class="phone-num">(903) 568-8943</span></div>
-        <div class="row-detail">Boston's personal AI assistant. Not customer-facing. <span class="row-status local">PERSONAL</span></div>
-      </div>
-      <div class="row">
-        <div class="row-title">Pipeline Agent <span class="phone-num">(903) 206-1932</span></div>
-        <div class="row-detail">Boston calls for pipeline advice. Internal only. <span class="row-status local">INTERNAL</span></div>
-      </div>
-      <div class="row">
-        <div class="row-title">Deal Coach <span class="phone-num">(903) 326-7285</span></div>
-        <div class="row-detail">Boston calls for deal strategy. Internal only. <span class="row-status local">INTERNAL</span></div>
-      </div>
-      <div class="row">
-        <div class="row-title">Devil's Advocate <span class="phone-num">(903) 716-5297</span></div>
-        <div class="row-detail">Practice caller. Simulates skeptical customer. Training tool. <span class="row-status local">TRAINING</span></div>
-      </div>
-      <div class="row">
-        <div class="row-title">Karen <span class="phone-num">(903) 418-3148</span></div>
-        <div class="row-detail">Naive customer simulation and mystery caller practice. <span class="row-status local">TRAINING</span></div>
-      </div>
-      <div class="row">
-        <div class="row-title">Autonomous Agent <span class="phone-num">(903) 636-1024</span></div>
-        <div class="row-detail">Daemon-driven agent for automated tasks. <span class="row-status local">SYSTEM</span></div>
-      </div>
-    </div>
-    <div class="col">
-      <div class="col-label customer">Customer sees</div>
-      <div class="row">
-        <div class="row-title">None of these are customer-facing</div>
-        <div class="row-detail">
-          These numbers never appear on the website, in any CTA, or in any outbound communication. Customers only ever interact with 522-4459 (support line), the cold caller (483-0168 outbound only), or their partner agent number.
-        </div>
-      </div>
-    </div>
-  </div>
-
-  <div class="note warn">
-    Rule: 483-0168 is outbound only. 522-4459 is the only number for website demos and customer CTAs. Previous mistake put the cold caller number as the demo line.
-  </div>
-</div>
-
-<!-- WEBSITE -->
-<div class="panel" id="website">
-  <div class="section-title">Customer-Facing Pages</div>
-  <div class="split">
-    <div class="col">
-      <div class="col-label you">Your side (source files)</div>
-      <div class="row"><div class="row-title">index.html</div><div class="row-detail">Main landing page. Three product cards (Analyze/Build/Own). <span class="row-status live">LIVE</span></div></div>
-      <div class="row"><div class="row-title">analyze.html</div><div class="row-detail">Free 60-second AI business analysis. Leads to onboard form. <span class="row-status live">LIVE</span></div></div>
-      <div class="row"><div class="row-title">onboard.html</div><div class="row-detail">6-step client onboarding form. Feeds business_builder.py. <span class="row-status live">LIVE</span></div></div>
-      <div class="row"><div class="row-title">hear-it.html</div><div class="row-detail">Call and hear the AI live. Points to 522-4459. <span class="row-status live">LIVE</span></div></div>
-      <div class="row"><div class="row-title">calculator.html</div><div class="row-detail">ROI calculator showing missed call revenue loss. <span class="row-status live">LIVE</span></div></div>
-      <div class="row"><div class="row-title">guarantee.html</div><div class="row-detail">30-day money back guarantee page. <span class="row-status live">LIVE</span></div></div>
-      <div class="row"><div class="row-title">pay.html</div><div class="row-detail">Payment page. Venmo @BosRoss, Zelle bosssystemsai@gmail.com. <span class="row-status live">LIVE</span></div></div>
-      <div class="row"><div class="row-title">receptionist.html</div><div class="row-detail">AI receptionist product page. <span class="row-status live">LIVE</span></div></div>
-      <div class="row"><div class="row-title">demo.html</div><div class="row-detail">Demo landing page. <span class="row-status live">LIVE</span></div></div>
-      <div class="row"><div class="row-title">compliance.html</div><div class="row-detail">TCPA/FTC compliance information. <span class="row-status live">LIVE</span></div></div>
-      <div class="row"><div class="row-title">privacy.html</div><div class="row-detail">Privacy policy. <span class="row-status live">LIVE</span></div></div>
-      <div class="row"><div class="row-title">terms.html</div><div class="row-detail">Terms of service. <span class="row-status live">LIVE</span></div></div>
-    </div>
-    <div class="col">
-      <div class="col-label customer">Customer experience</div>
-      <div class="row">
-        <div class="row-title">Landing flow</div>
-        <div class="row-detail">
-          Customer lands on bosssystems.co. Sees three products: Analyze (free), Build ($1,497-$5,997), Own (revenue share). Clicks "Free Analysis" which goes to analyze.html. Gets a 60-second AI breakdown of their business showing where they are losing money. If interested, clicks "Get Started" which goes to onboard.html.
-        </div>
-      </div>
-      <div class="row">
-        <div class="row-title">Onboarding flow</div>
-        <div class="row-detail">
-          6-step form collects their tone preference, Q&A answers (in their own words), business hours, services, never-say rules, and special notes. On submit, Boston gets an ntfy alert with all the data. Business builder uses this to create a personalized AI agent.
-        </div>
-      </div>
-      <div class="row">
-        <div class="row-title">Call demo flow</div>
-        <div class="row-detail">
-          Customer calls (903) 522-4459. AI answers, demonstrates what their business would sound like with an AI receptionist. Available 24/7.
-        </div>
-      </div>
-      <div class="row">
-        <div class="row-title">Payment flow</div>
-        <div class="row-detail">
-          Customer goes to pay.html. Sends payment via Venmo (@BosRoss) or Zelle (bosssystemsai@gmail.com). No Stripe because Boston is under 18. No contracts, cancel anytime.
-        </div>
-      </div>
-    </div>
-  </div>
-
-  <div class="section-title">Summer Partner Program Pages</div>
-  <div class="split">
-    <div class="col">
-      <div class="col-label you">Your side</div>
-      <div class="row"><div class="row-title">summer.html</div><div class="row-detail">SPP landing page. <span class="row-status live">LIVE</span></div></div>
-      <div class="row"><div class="row-title">partner-start.html</div><div class="row-detail">Partner application. <span class="row-status live">LIVE</span></div></div>
-      <div class="row"><div class="row-title">partner-quiz.html</div><div class="row-detail">Business matching quiz. <span class="row-status live">LIVE</span></div></div>
-      <div class="row"><div class="row-title">partner-info.html</div><div class="row-detail">Program details. <span class="row-status live">LIVE</span></div></div>
-      <div class="row"><div class="row-title">partner-tools.html</div><div class="row-detail">Partner resource hub. <span class="row-status live">LIVE</span></div></div>
-      <div class="row"><div class="row-title">parents.html</div><div class="row-detail">Parent information page. <span class="row-status live">LIVE</span></div></div>
-      <div class="row"><div class="row-title">learn-business.html</div><div class="row-detail">Free business training tool. 11 businesses, Q&A webhook. <span class="row-status live">LIVE</span></div></div>
-    </div>
-    <div class="col">
-      <div class="col-label customer">Partner/teen sees</div>
-      <div class="row">
-        <div class="row-title">Partner application flow</div>
-        <div class="row-detail">
-          Teen finds summer.html. Takes quiz to match with a business type. Applies via partner-start.html. If accepted, gets access to partner-tools.html and learn-business.html for training. Parent approval required for under 18.
-        </div>
-      </div>
-    </div>
-  </div>
-
-  <div class="section-title">Client Portal Pages</div>
-  <div class="split">
-    <div class="col">
-      <div class="col-label you">Your side</div>
-      <div class="row"><div class="row-title">client-dashboard.html</div><div class="row-detail">Code login, shows call data via n8n webhook. <span class="row-status live">LIVE</span></div></div>
-      <div class="row"><div class="row-title">client-guide.html</div><div class="row-detail">New client training guide. <span class="row-status live">LIVE</span></div></div>
-      <div class="row"><div class="row-title">referral-sheet.html</div><div class="row-detail">Referral tracking sheet. <span class="row-status live">LIVE</span></div></div>
-    </div>
-    <div class="col">
-      <div class="col-label customer">Client sees</div>
-      <div class="row">
-        <div class="row-title">Client dashboard</div>
-        <div class="row-detail">
-          Client enters their access code. Sees their call history, message transcripts, and call outcomes. Simple table view. Contact support at 522-4459.
-        </div>
-      </div>
-    </div>
-  </div>
-</div>
-
-<!-- LEAD PIPELINE -->
-<div class="panel" id="pipeline">
-  <div class="section-title">Lead Discovery to Call</div>
-  <div class="flow">
-    <div class="flow-step">ATLAS signals</div>
-    <div class="flow-arrow">&rarr;</div>
-    <div class="flow-step">lead_engine.py scores</div>
-    <div class="flow-arrow">&rarr;</div>
-    <div class="flow-step">Pipeline Sheet</div>
-    <div class="flow-arrow">&rarr;</div>
-    <div class="flow-step">local_auto_caller.py</div>
-    <div class="flow-arrow">&rarr;</div>
-    <div class="flow-step">Retell call</div>
-    <div class="flow-arrow">&rarr;</div>
-    <div class="flow-step">Outcome logged</div>
-  </div>
-  <div class="split">
-    <div class="col">
-      <div class="col-label you">Your side</div>
-      <div class="row">
-        <div class="row-title">Lead Engine</div>
-        <div class="row-detail">
-          Scores prospects on 15+ pain signals. Superniche targets get called first. Google Places API ($300 credit, $4/day cap). Spend tracked in atlas_data/spend_tracker.json.<br>
-          <span class="row-status live">LIVE</span>
-        </div>
-      </div>
-      <div class="row">
-        <div class="row-title">Auto Caller (local)</div>
-        <div class="row-detail">
-          Runs on Mac via LaunchAgent at 10am/2pm CT weekdays. 15 per batch, 50/day cap. 7 safety layers (area code blocks, dedup, suppression, business hours, rate limiting).<br>
-          <span class="row-status local">LOCAL</span>
-        </div>
-      </div>
-      <div class="row">
-        <div class="row-title">Pipeline Sync</div>
-        <div class="row-detail">
-          n8n webhook (FV413faAXiMk1CiY) receives scored leads from lead_engine.py, writes to Pipeline Google Sheet.<br>
-          <span class="row-status live">LIVE</span>
-        </div>
-      </div>
-      <div class="row">
-        <div class="row-title">DNC Handler</div>
-        <div class="row-detail">
-          Adds numbers to suppression list when requested. Never calls the same business twice.<br>
-          <span class="row-status live">LIVE</span>
-        </div>
-      </div>
-    </div>
-    <div class="col">
-      <div class="col-label customer">Prospect experience</div>
-      <div class="row">
-        <div class="row-title">Being called</div>
-        <div class="row-detail">
-          Gets a call from (903) 483-0168 between 9am-6pm CT on a weekday. AI identifies itself immediately as an AI calling on behalf of BOSS Systems. Asks about their business, does not pitch. If interested, texts them the analysis link or offers to schedule a team call. If not interested, thanks them and hangs up. Never calls them again.
-        </div>
-      </div>
-      <div class="row">
-        <div class="row-title">After the call</div>
-        <div class="row-detail">
-          If interested: receives text with bosssystems.co/analyze link. Can do free analysis on their own time. If very interested: gets connected to 522-4459 for guided onboarding. If not interested: number added to suppression, never contacted again.
-        </div>
-      </div>
-    </div>
-  </div>
-
-  <div class="section-title">Lead Nurture Workflows</div>
-  <div class="split">
-    <div class="col">
-      <div class="col-label you">Your side</div>
-      <div class="row"><div class="row-title">Hot Lead Handler (kGJ7aDQmp3MgiPWI)</div><div class="row-detail">Webhook triggered when a lead scores hot. Alerts Boston via ntfy. <span class="row-status live">LIVE</span></div></div>
-      <div class="row"><div class="row-title">Hot Lead Nurture (DjP6dUbaiM8NEJAH)</div><div class="row-detail">Follow-up sequence for hot leads. <span class="row-status live">LIVE</span></div></div>
-      <div class="row"><div class="row-title">Warm Lead Follow-Up (VZWvyPVLdB5akBom)</div><div class="row-detail">11am CT Mon-Fri check-ins on warm leads. <span class="row-status live">LIVE</span></div></div>
-      <div class="row"><div class="row-title">Close Follow-Up (3EAOpiB49bt4mo2J)</div><div class="row-detail">Final push for leads near close. <span class="row-status live">LIVE</span></div></div>
-    </div>
-    <div class="col">
-      <div class="col-label customer">Prospect experience</div>
-      <div class="row">
-        <div class="row-title">Getting nurtured</div>
-        <div class="row-detail">
-          If they showed interest but did not commit, they may get a follow-up call from the Follow-Up Caller (903) 560-2317. References their previous conversation. Checks if they had questions. Non-pushy, two close paths same as cold call.
-        </div>
-      </div>
-    </div>
-  </div>
-</div>
-
-<!-- AUTOMATION -->
-<div class="panel" id="automation">
-  <div class="section-title">Client Onboarding Automation</div>
-  <div class="flow">
-    <div class="flow-step">Client fills onboard.html</div>
-    <div class="flow-arrow">&rarr;</div>
-    <div class="flow-step">n8n webhook (jFLbL76enmJodPmB)</div>
-    <div class="flow-arrow">&rarr;</div>
-    <div class="flow-step">ntfy alert to Boston</div>
-    <div class="flow-arrow">&rarr;</div>
-    <div class="flow-step">business_builder.py --onboard</div>
-    <div class="flow-arrow">&rarr;</div>
-    <div class="flow-step">Retell agent created</div>
-    <div class="flow-arrow">&rarr;</div>
-    <div class="flow-step">Phone number assigned</div>
-  </div>
-  <div class="split">
-    <div class="col">
-      <div class="col-label you">Your side</div>
-      <div class="row">
-        <div class="row-title">business_builder.py</div>
-        <div class="row-detail">
-          Creates Retell agent + LLM from onboarding data. Sets eleven_v3 voice, backchannel, dynamic speed. Assigns phone number. Uses general_prompt (not system_prompt).<br>
-          <span class="row-status local">LOCAL</span>
-        </div>
-      </div>
-      <div class="row">
-        <div class="row-title">Auto-Builder (VIJXn2fKDANAsiDX)</div>
-        <div class="row-detail">n8n webhook triggered when client pays. Creates agent automatically. <span class="row-status live">LIVE</span></div>
-      </div>
-      <div class="row">
-        <div class="row-title">Onboarding Drip (dOgHMx9jqpl6irc0)</div>
-        <div class="row-detail">Text drip sequence for new clients. Guides them through first week. <span class="row-status live">LIVE</span></div>
-      </div>
-    </div>
-    <div class="col">
-      <div class="col-label customer">Client experience</div>
-      <div class="row">
-        <div class="row-title">After paying</div>
-        <div class="row-detail">
-          Client fills out onboarding form with their business details, tone preference, Q&A answers, hours, and never-say rules. Within 72 hours, their custom AI receptionist is live with a dedicated phone number. They get a text drip walking them through how it works, how to check their dashboard, and who to call with questions (522-4459).
-        </div>
-      </div>
-    </div>
-  </div>
-
-  <div class="section-title">Social Media Automation</div>
-  <div class="split">
-    <div class="col">
-      <div class="col-label you">Your side</div>
-      <div class="row">
-        <div class="row-title">Social Machine</div>
-        <div class="row-detail">
-          8-layer engine. AI content generation, Thompson sampling bandit, brand safety gate. Two audiences (BOSS and SPP). Three platforms (FB, IG, TikTok). $2/day cap. Runs via LaunchAgent.<br>
-          <span class="row-status local">LOCAL</span>
-        </div>
-      </div>
-      <div class="row">
-        <div class="row-title">Ryan Walsh Engagement</div>
-        <div class="row-detail">
-          Reddit scanning for engagement opportunities. AI reply drafts. Runs 8:30am/5pm CT.<br>
-          <span class="row-status local">LOCAL</span>
-        </div>
-      </div>
-    </div>
-    <div class="col">
-      <div class="col-label customer">What they see</div>
-      <div class="row">
-        <div class="row-title">Social content</div>
-        <div class="row-detail">
-          AI-generated posts on Facebook, Instagram, and TikTok. Platform-native content (no cross-posting). No banned words (AI, automate, workflow, etc). Income disclaimers on SPP content. Brand safety gate approves first 7 days of content before autonomous mode.
-        </div>
-      </div>
-    </div>
-  </div>
-</div>
-
-<!-- MONITORING -->
-<div class="panel" id="monitoring">
-  <div class="section-title">System Supervisor</div>
-  <div class="split">
-    <div class="col">
-      <div class="col-label you">Your side</div>
-      <div class="row">
-        <div class="row-title">Supervisor (local)</div>
-        <div class="row-detail">
-          Runs every 30 min via LaunchAgent. Checks 11 critical n8n workflows, 7 LaunchAgents, quant sandbox, and ATLAS. State tracked in supervisor_state.json for dedup. Only notifies on NEW issues and RESOLVED issues. Fixes what it can automatically before alerting.<br>
-          <span class="row-status local">LOCAL</span>
-        </div>
-      </div>
-      <div class="row">
-        <div class="row-title">n8n Watchdog</div>
-        <div class="row-detail">
-          DEACTIVATED June 10. Was running every 15 min with no state tracking, causing 40+ repeat notifications per day. All monitoring consolidated into local supervisor.<br>
-          <span class="row-status off">DEAD</span>
-        </div>
-      </div>
-      <div class="row">
-        <div class="row-title">Health Monitor (jcjx0bGhzmaJrI7q)</div>
-        <div class="row-detail">n8n workflow, every 2 hours. Auto-retries on failure. <span class="row-status live">LIVE</span></div>
-      </div>
-    </div>
-    <div class="col">
-      <div class="col-label customer">Customer impact</div>
-      <div class="row">
-        <div class="row-title">Monitoring is invisible to customers</div>
-        <div class="row-detail">
-          All monitoring happens behind the scenes. If a partner agent goes down, the supervisor detects it within 30 minutes, tries to fix it automatically, and alerts Boston if it cannot. Customer never knows there was a problem unless the agent is down for more than 30 minutes.
-        </div>
-      </div>
-    </div>
-  </div>
-
-  <div class="section-title">Notification System</div>
-  <div class="split">
-    <div class="col">
-      <div class="col-label you">Your side</div>
-      <div class="row">
-        <div class="row-title">Morning Text</div>
-        <div class="row-detail">
-          7am CT weekdays. Pipeline summary, health status, ATLAS recommendation, Ryan Walsh opportunities. Local script, not n8n.<br>
-          <span class="row-status local">LOCAL</span>
-        </div>
-      </div>
-      <div class="row">
-        <div class="row-title">ATLAS Alerts</div>
-        <div class="row-detail">
-          Triggered by scans when something new is found. Dedup against 48h state file. Plain English summaries, not headline dumps. Only sends what is genuinely new.<br>
-          <span class="row-status live">LIVE</span>
-        </div>
-      </div>
-      <div class="row">
-        <div class="row-title">Hot Lead Alerts</div>
-        <div class="row-detail">
-          Immediate ntfy when a lead scores hot or a prospect shows strong interest.<br>
-          <span class="row-status live">LIVE</span>
-        </div>
-      </div>
-      <div class="row">
-        <div class="row-title">Onboard Form Alerts</div>
-        <div class="row-detail">
-          Immediate ntfy when someone submits the onboarding form with all their data.<br>
-          <span class="row-status live">LIVE</span>
-        </div>
-      </div>
-    </div>
-    <div class="col">
-      <div class="col-label customer">Customer impact</div>
-      <div class="row">
-        <div class="row-title">Notifications are internal only</div>
-        <div class="row-detail">
-          Customers never receive notifications from these systems. All alerts go to Boston via ntfy.sh. The only customer-facing communication is the onboarding drip text sequence after they pay.
-        </div>
-      </div>
-    </div>
-  </div>
-</div>
-
-<!-- ATLAS INTEL -->
-<div class="panel" id="intel">
-  <div class="section-title">Intelligence Gathering</div>
-  <div class="split">
-    <div class="col">
-      <div class="col-label you">Your side</div>
-      <div class="row">
-        <div class="row-title">ATLAS Engine</div>
-        <div class="row-detail">
-          40+ data sources. USGS, NOAA, NASA, Polymarket, Reddit, GDELT, Congress.gov, Telegram OSINT, financial futures, satellite fire detection. Runs every 2 hours (ACTIVE) with SURGE at 6am/6pm CT.<br>
-          <span class="row-status local">LOCAL</span>
-        </div>
-      </div>
-      <div class="row">
-        <div class="row-title">Dashboard</div>
-        <div class="row-detail">
-          bosssystems.co/atlas.html. Interactive Leaflet map, anomaly markers, intel panels, prediction markets, AI chatbot. Data from GitHub-hosted atlas_report.json.<br>
-          <span class="row-status live">LIVE</span>
-        </div>
-      </div>
-      <div class="row">
-        <div class="row-title">Quant Sandbox</div>
-        <div class="row-detail">
-          Paper-only research tool. 4 strategies tested, 0 survivors (correct). Deflated Sharpe + Monte Carlo gates.<br>
-          <span class="row-status local">LOCAL</span>
-        </div>
-      </div>
-    </div>
-    <div class="col">
-      <div class="col-label customer">Customer sees</div>
-      <div class="row">
-        <div class="row-title">ATLAS is internal</div>
-        <div class="row-detail">
-          Customers do not see or interact with ATLAS. It feeds the lead engine (weather events cause missed calls, ATLAS detects the weather, lead engine targets affected businesses). The intelligence is used to find better prospects, not shared with them.
-        </div>
-      </div>
-      <div class="row">
-        <div class="row-title">Business opportunity detection</div>
-        <div class="row-detail">
-          When ATLAS detects a heat wave in a BOSS territory state, it knows HVAC businesses will be overwhelmed and missing calls. The lead engine targets those specific businesses in that specific area within 24-48 hours of the event.
-        </div>
-      </div>
-    </div>
-  </div>
-</div>
-
-<!-- TRAINING TOOLS -->
-<div class="panel" id="training">
-  <div class="section-title">Boston's Training Tools</div>
-  <div class="split">
-    <div class="col">
-      <div class="col-label you">Your side</div>
-      <div class="row">
-        <div class="row-title">Washington Skills Trainer</div>
-        <div class="row-detail">
-          12 power skills (coalition building, horse-trading, framing, reading power, etc). 16 domain questions, 8 live scenarios with AI opponents, SM-2 spaced repetition, 4-axis coaching.<br>
-          <a href="washington_trainer/trainer.html" style="color:#4B92DB">Open trainer</a><br>
-          <span class="row-status live">LIVE</span>
-        </div>
-      </div>
-      <div class="row">
-        <div class="row-title">Devil's Advocate</div>
-        <div class="row-detail">
-          Call (903) 716-5297 to practice sales. Randomly picks a skeptical persona. Post-call analysis sent via ntfy with score and fix suggestions.<br>
-          <span class="row-status live">LIVE</span>
-        </div>
-      </div>
-      <div class="row">
-        <div class="row-title">Karen Practice</div>
-        <div class="row-detail">
-          Call (903) 418-3148 for naive customer simulation.<br>
-          <span class="row-status live">LIVE</span>
-        </div>
-      </div>
-    </div>
-    <div class="col">
-      <div class="col-label customer">Partner training tools</div>
-      <div class="row">
-        <div class="row-title">BOSS Learn</div>
-        <div class="row-detail">
-          Free business training for Summer Partner Program members. 11 business types, 4 learning styles, 3 depth levels. Pre-generated courses on pricing, equipment, seasons, common mistakes, and upsells. Q&A with 10/day cap. At learn-business.html.<br>
-          <span class="row-status live">LIVE</span>
-        </div>
-      </div>
-    </div>
-  </div>
-</div>
-
-<!-- KNOWN GAPS -->
-<div class="panel" id="gaps">
-  <div class="section-title">Things that are not working or not finished</div>
-  <div class="split">
-    <div class="col">
-      <div class="col-label you">Business gaps</div>
-      <div class="row">
-        <div class="row-title">0 paying BOSS Systems clients</div>
-        <div class="row-detail">Wickham is the only paying client ($50/mo). No Full Transformation ($5,997) clients yet. All infrastructure is built but not validated by real paying customers.</div>
-      </div>
-      <div class="row">
-        <div class="row-title">No LLC</div>
-        <div class="row-detail">Boston is 17. Cannot form LLC, get business bank account, or use Stripe. All payments through Venmo/Zelle personal accounts.</div>
-      </div>
-      <div class="row">
-        <div class="row-title">No email infrastructure</div>
-        <div class="row-detail">Cold Email Outreach workflow uses Gmail node which hangs indefinitely. Needs SMTP migration. Currently deactivated.</div>
-      </div>
-      <div class="row">
-        <div class="row-title">No PO Box</div>
-        <div class="row-detail">CAN-SPAM requires physical address. Marketing emails blocked until PO Box is set up.</div>
-      </div>
-    </div>
-    <div class="col">
-      <div class="col-label customer">Technical gaps</div>
-      <div class="row">
-        <div class="row-title">Superniche Targeter schedule errors</div>
-        <div class="row-detail">n8n Cloud platform-level crashes on the schedule trigger. Workflow config is correct but the platform intermittently fails to fire it. Cannot fix from code side.</div>
-      </div>
-      <div class="row">
-        <div class="row-title">Post-Call Handler deactivated</div>
-        <div class="row-detail">Caused retry storms that burned 222 executions. Needs responseMode fix and careful reactivation. Retell post-call webhooks not processing.</div>
-      </div>
-      <div class="row">
-        <div class="row-title">Social media analytics manual</div>
-        <div class="row-detail">Buffer API is posting-only. Meta Graph API needed for automated engagement tracking. Currently logging metrics manually via CLI.</div>
-      </div>
-      <div class="row">
-        <div class="row-title">TikTok needs real video</div>
-        <div class="row-detail">Images work but get buried in TikTok algorithm. Real growth needs Boston recording short clips. Image-only gets about 10% of video reach.</div>
-      </div>
-      <div class="row">
-        <div class="row-title">Retell backup key expired</div>
-        <div class="row-detail">RETELL_BACKUP_KEY returns 401. Backup system for agents is non-functional until Boston gets a new key.</div>
-      </div>
-    </div>
-  </div>
-
-  <div class="note info">
-    This is everything built as of June 10, 2026. The infrastructure is comprehensive but the business has not yet validated product-market fit. First priority is landing a Full Transformation client to prove the model works.
-  </div>
 </div>
 
 <script>
-function showTab(id) {
-  document.querySelectorAll('.panel').forEach(p => p.classList.remove('active'));
-  document.querySelectorAll('.tab').forEach(t => t.classList.remove('active'));
-  document.getElementById(id).classList.add('active');
-  event.target.classList.add('active');
+var MAP = {
+  "BOSS Systems": {
+    "Three Products": {
+      title: "BOSS Analyze / Build / Own",
+      subtitle: "The three products that make up BOSS Systems",
+      you: [
+        {t:"BOSS Analyze (free)", d:"bosssystems.co/analyze.html. 60-second AI business analysis showing where they lose money and what to automate. Leads to onboard form. <span class='badge live'>LIVE</span>"},
+        {t:"BOSS Build ($1,497-$5,997 + $97-497/mo)", d:"We build their full AI stack. Custom agent, phone number, dashboard, onboarding drip. business_builder.py does the heavy lifting. <span class='badge live'>LIVE</span>"},
+        {t:"BOSS Own ($0 setup + 15% revenue share)", d:"We build and operate everything. Client does the physical work. We handle phones, scheduling, follow-up, everything. <span class='badge planned'>NO CLIENTS YET</span>"},
+      ],
+      them: [
+        {t:"What a prospect sees", d:"Lands on bosssystems.co. Three clear options. Most will start with the free analysis because there is no commitment. Analysis shows them real numbers about what they are losing. If they want to move forward, they fill out the onboard form or call (903) 522-4459."},
+        {t:"Pricing they see", d:"Analyze is free. Build starts at $1,497 setup + $97/mo. Own is zero upfront but 15% of the revenue the AI generates. No contracts on any tier, cancel anytime. Payment via Venmo or Zelle."},
+      ]
+    },
+    "Inbound Phone Lines": {
+      title: "Inbound Phone Numbers",
+      subtitle: "Numbers that customers and prospects call",
+      you: [
+        {t:"BOSS Support <span class='phone'>(903) 522-4459</span>", d:"24/7 business line. All website CTAs point here. Handles questions, takes messages, routes interested callers to the onboard form. Agent answers in 2-3 rings so it feels natural, not instant-robotic. <span class='badge live'>LIVE</span>"},
+        {t:"Wickham Lawn Care <span class='phone'>(972) 314-5057</span>", d:"Partner agent. Anderson Wickham, McKinney TX. $50/mo paying client. Built on your Retell account, number assigned to his agent. <span class='badge live'>LIVE</span>"},
+      ],
+      them: [
+        {t:"Calling 522-4459", d:"Phone rings 2-3 times, then AI answers with a natural greeting. Sounds human thanks to eleven_v3 voice model. Answers questions about BOSS Systems, explains products, can text them the analysis link. Does not hard sell. Available 24/7."},
+        {t:"Calling Wickham", d:"Rings 2-3 times, AI answers as Wickham Lawn Care. Schedules estimates, answers service area questions, takes messages for Anderson. Caller does not know it is AI unless they ask."},
+      ]
+    },
+    "Outbound Callers": {
+      title: "Outbound Phone Numbers",
+      subtitle: "Numbers that call prospects. Never on any website page.",
+      you: [
+        {t:"Cold Caller <span class='phone'>(903) 483-0168</span>", d:"Outbound only. Never on any website. Runs via local auto-caller at 10am and 2pm CT weekdays. 15 per batch, 50/day cap. 7 safety layers. FTC requires AI disclosure on outbound sales calls. <span class='badge local'>LOCAL</span>"},
+        {t:"Follow-Up Caller <span class='phone'>(903) 560-2317</span>", d:"Warm lead follow-up. Only calls people who already showed interest on a previous call. <span class='badge live'>LIVE</span>"},
+        {t:"Built by BOSS Sales <span class='phone'>(903) 492-0198</span>", d:"Sells prebuilt AI business packages ($997-$3,497). <span class='badge live'>LIVE</span>"},
+      ],
+      them: [
+        {t:"Cold call experience", d:"Phone rings. AI says it is calling on behalf of BOSS Systems (FTC requires this on outbound). Opens with a question about their business, not a pitch. If interested, two paths: self-service (texts them the analysis link) or guided (schedule call at 522-4459). Never closes on the call. Never calls them again if not interested."},
+        {t:"Follow-up call", d:"Only happens if they showed interest before. References their previous conversation. Checks if they had questions. Same non-pushy approach."},
+      ]
+    },
+    "Mystery Caller": {
+      title: "Mystery Caller System",
+      subtitle: "Free lead magnet that demonstrates the problem BOSS solves",
+      you: [
+        {t:"Mystery Caller <span class='phone'>(903) 601-8008</span>", d:"Calls a business pretending to be a real customer. Tests hold time, greeting quality, booking process. Generates a report. <span class='badge live'>LIVE</span>"},
+        {t:"Rules", d:"Mystery calls that just collect data are fine without the business knowing. Never try to sell BOSS during a mystery call. The only time you can mystery call AND sell is when the business specifically requested a mystery call (like from a postcard). Data collection first, sales pitch separate."},
+        {t:"Postcard flow (planned)", d:"Send postcard offering a free mystery shop of their phone system. Business calls in or visits the link. We mystery call them as requested. Send the report. Then follow up with a BOSS pitch since they invited us. This is the warm path. <span class='badge planned'>PLANNED</span>"},
+      ],
+      them: [
+        {t:"Unrequested mystery call", d:"They get a call from what sounds like a real customer asking about service. AI tests their phone handling. They never know it happened. Report is internal only, used to build a case for when we do reach out separately."},
+        {t:"Requested mystery call (from postcard)", d:"Business got a postcard saying 'we will mystery shop your phones for free.' They opted in. We call, test everything, send them a detailed report. Then follow up with how BOSS can fix what we found. This is fair game because they asked for it."},
+      ]
+    },
+    "Internal Numbers": {
+      title: "Internal and Training Numbers",
+      subtitle: "These never appear on any customer-facing page",
+      you: [
+        {t:"Claude Advisor <span class='phone'>(903) 568-8943</span>", d:"Your personal AI assistant. Not a demo. <span class='badge local'>PERSONAL</span>"},
+        {t:"Pipeline Agent <span class='phone'>(903) 206-1932</span>", d:"Call for pipeline advice. Internal. <span class='badge local'>INTERNAL</span>"},
+        {t:"Deal Coach <span class='phone'>(903) 326-7285</span>", d:"Call for deal strategy. Internal. <span class='badge local'>INTERNAL</span>"},
+        {t:"Devil's Advocate <span class='phone'>(903) 716-5297</span>", d:"Practice caller. Simulates skeptical customer personas. <span class='badge local'>TRAINING</span>"},
+        {t:"Karen <span class='phone'>(903) 418-3148</span>", d:"Naive customer simulation. <span class='badge local'>TRAINING</span>"},
+        {t:"Autonomous Agent <span class='phone'>(903) 636-1024</span>", d:"Daemon-driven agent for automated tasks. <span class='badge local'>SYSTEM</span>"},
+      ],
+      them: [
+        {t:"Invisible to customers", d:"None of these numbers appear anywhere a customer or prospect would see them. The only numbers customers interact with are 522-4459 (inbound support) and their own partner agent number."},
+      ]
+    },
+    "Website Pages": {
+      title: "Customer-Facing Website",
+      subtitle: "Everything at bosssystems.co that a prospect or client sees",
+      you: [
+        {t:"index.html", d:"Main landing page. Three product cards. CTA to analyze. Contact goes to 522-4459 (not your personal cell). <span class='badge live'>LIVE</span>"},
+        {t:"analyze.html", d:"Free 60-second analysis. Leads to onboard form. <span class='badge live'>LIVE</span>"},
+        {t:"onboard.html", d:"6-step form (tone, Q&A, hours, never-say, services). Submits to n8n webhook, you get ntfy alert. <span class='badge live'>LIVE</span>"},
+        {t:"hear-it.html", d:"Call and hear the AI. Points to 522-4459. <span class='badge live'>LIVE</span>"},
+        {t:"calculator.html", d:"ROI calculator. Shows missed call revenue loss. <span class='badge live'>LIVE</span>"},
+        {t:"pay.html", d:"Venmo @BosRoss, Zelle bosssystemsai@gmail.com. <span class='badge live'>LIVE</span>"},
+        {t:"guarantee.html / receptionist.html / demo.html", d:"Product and guarantee pages. <span class='badge live'>LIVE</span>"},
+        {t:"compliance.html / privacy.html / terms.html", d:"Legal pages. <span class='badge live'>LIVE</span>"},
+      ],
+      them: [
+        {t:"Prospect journey", d:"Land on index.html. See three products. Click free analysis. Get a real breakdown of their business. If interested, fill the onboard form or call 522-4459. Can check the calculator to see how much missed calls cost them. Hear a live demo. Pay when ready."},
+        {t:"Contact experience", d:"Main page contact goes to 522-4459 (the AI business line), not your personal number. Real potential clients can reach you through 522-4459 where the AI can qualify them and route appropriately. Random browsers just get the support AI."},
+      ]
+    },
+    "Client Portal": {
+      title: "Client Portal and Accounts",
+      subtitle: "What paying clients get access to",
+      you: [
+        {t:"client-dashboard.html", d:"Code-based login. Shows their call data via n8n webhook (ZDSPwybv85D4cDcX). Each client gets a unique access code. <span class='badge live'>LIVE</span>"},
+        {t:"client-guide.html", d:"Training guide for new clients. How the AI works, what to expect, how to check their dashboard. <span class='badge live'>LIVE</span>"},
+        {t:"referral-sheet.html", d:"Referral tracking for client referral program. <span class='badge live'>LIVE</span>"},
+      ],
+      them: [
+        {t:"What a client gets", d:"Their own AI phone agent with a dedicated number. A dashboard to see their call history and transcripts. A guide explaining how everything works. Support at 522-4459 anytime. Everything is built on your Retell account but they get their own agent, their own number, and their own dashboard view. They do not need to create any accounts anywhere."},
+        {t:"Account architecture", d:"All agents live on your Retell account. Each client gets a separate agent with its own LLM, its own phone number, and its own prompt built from their onboard form answers. The client dashboard reads their specific call data. They never touch Retell, n8n, or anything technical. You manage everything behind the scenes."},
+      ]
+    },
+  },
+  "Sales & Outreach": {
+    "Lead Pipeline": {
+      title: "Lead Discovery to Call",
+      subtitle: "How prospects get found and contacted",
+      flow: ["ATLAS signals","lead_engine.py scores","Pipeline Sheet","local_auto_caller.py","Retell dials","Outcome logged"],
+      you: [
+        {t:"Lead Engine", d:"Scores prospects on 15+ pain signals. Superniche targets get called first. Google Places API ($300 credit, $4/day cap). <span class='badge live'>LIVE</span>"},
+        {t:"Auto Caller (local)", d:"Mac LaunchAgent, 10am/2pm CT weekdays. 15 per batch, 50/day cap. 7 safety layers (area codes, dedup, suppression, hours, rate limit). <span class='badge local'>LOCAL</span>"},
+        {t:"Pipeline Sync", d:"n8n webhook (FV413faAXiMk1CiY) writes scored leads to Pipeline Google Sheet. <span class='badge live'>LIVE</span>"},
+        {t:"DNC Handler", d:"Suppression list. Never calls the same business twice. <span class='badge live'>LIVE</span>"},
+      ],
+      them: [
+        {t:"Being found", d:"Their Google Places listing gets scored by the lead engine based on pain signals (bad reviews about response time, no website, few reviews, high-value trade). They do not know they have been scored."},
+        {t:"Being called", d:"Get a call between 9am-6pm CT on a weekday. AI identifies itself as AI calling on behalf of BOSS Systems. Never pushy. If not interested, never contacted again."},
+      ]
+    },
+    "Nurture Workflows": {
+      title: "Lead Nurture After First Contact",
+      subtitle: "How warm and hot leads get followed up",
+      you: [
+        {t:"Hot Lead Handler (kGJ7aDQmp3MgiPWI)", d:"Webhook fires when a lead scores hot. You get an ntfy alert immediately. <span class='badge live'>LIVE</span>"},
+        {t:"Hot Lead Nurture (DjP6dUbaiM8NEJAH)", d:"Automated follow-up sequence for hot leads. <span class='badge live'>LIVE</span>"},
+        {t:"Warm Lead Follow-Up (VZWvyPVLdB5akBom)", d:"11am CT Mon-Fri check-ins. <span class='badge live'>LIVE</span>"},
+        {t:"Close Follow-Up (3EAOpiB49bt4mo2J)", d:"Final push for leads near close. <span class='badge live'>LIVE</span>"},
+      ],
+      them: [
+        {t:"What they experience", d:"If they showed interest, they may get a follow-up call from the Follow-Up Caller (903) 560-2317. References their previous conversation. Checks if they had questions. Same two close paths (self-service or guided)."},
+      ]
+    },
+    "Postcard Strategy": {
+      title: "Postcards and Direct Mail",
+      subtitle: "Physical mail as a warm-up channel before any calls",
+      you: [
+        {t:"Mystery shop postcard (planned)", d:"Send postcard to contractor offering a free mystery shop of their phone system. They opt in by calling a number or visiting a link. We mystery call them, send report, then follow up with BOSS pitch. This makes the mystery call AND the sales follow-up fully warm since they requested it. <span class='badge planned'>PLANNED</span>"},
+        {t:"Lead Action Center", d:"action.html has word-for-word postcard scripts, mystery shop logging, and bulk import tools. <span class='badge live'>LIVE</span>"},
+      ],
+      them: [
+        {t:"What they receive", d:"A simple postcard in the mail. Something like 'We will call your business pretending to be a customer and tell you exactly what happened. Free. No strings.' They call in or visit the link, we do the mystery shop they asked for, then follow up with how we can fix what we found."},
+      ]
+    },
+    "Client Onboarding": {
+      title: "New Client Onboarding",
+      subtitle: "From payment to live AI agent",
+      flow: ["Client pays","Fills onboard.html","n8n webhook fires","Boston gets ntfy","business_builder.py runs","Agent + number live","Drip texts begin"],
+      you: [
+        {t:"business_builder.py", d:"Creates Retell agent + LLM from onboard data. Sets eleven_v3 voice, backchannel, dynamic speed. Assigns phone number. Uses general_prompt. <span class='badge local'>LOCAL</span>"},
+        {t:"Auto-Builder (VIJXn2fKDANAsiDX)", d:"n8n webhook for automated builds when triggered. <span class='badge live'>LIVE</span>"},
+        {t:"Onboarding Drip (dOgHMx9jqpl6irc0)", d:"Text sequence guiding them through first week. <span class='badge live'>LIVE</span>"},
+      ],
+      them: [
+        {t:"Their experience", d:"Pay via Venmo or Zelle. Fill out the 6-step onboard form with their business details in their own words. Within 72 hours their custom AI receptionist is live on a dedicated number. They get a drip of texts walking them through how to check their dashboard, test the agent, and call 522-4459 with questions."},
+      ]
+    },
+  },
+  "Summer Partner Program": {
+    "SPP Application": {
+      title: "Partner Application Flow",
+      subtitle: "How teens find and join the program",
+      you: [
+        {t:"summer.html", d:"Landing page. Explains the program, 80/20 split, what Boston builds vs what partner does. <span class='badge live'>LIVE</span>"},
+        {t:"partner-quiz.html", d:"Business matching quiz. 11 business types. Matches them to the right fit. <span class='badge live'>LIVE</span>"},
+        {t:"partner-start.html", d:"Application form. <span class='badge live'>LIVE</span>"},
+        {t:"parents.html", d:"Parent information page. Required for under-18 applicants. <span class='badge live'>LIVE</span>"},
+      ],
+      them: [
+        {t:"Teen applicant experience", d:"Find summer.html (from social media, word of mouth, or school). Take the quiz to find their business match. Fill out the application. If under 18, parents must approve via parents.html. If accepted, get access to partner tools and training."},
+        {t:"Parent experience", d:"See parents.html explaining what the program is, how the money works, what their kid will be doing, safety/insurance information. Must give approval before any partner under 18 can start."},
+      ]
+    },
+    "SPP Training": {
+      title: "Partner Training and Tools",
+      subtitle: "Everything a partner needs to learn their business",
+      you: [
+        {t:"learn-business.html (BOSS Learn)", d:"Free training tool. 11 business types, 4 learning styles, 3 depth levels. Pre-generated courses on pricing, equipment, seasons, common mistakes, upsells. Q&A webhook with 10/day cap. <span class='badge live'>LIVE</span>"},
+        {t:"partner-tools.html", d:"Resource hub. Links to all tools, guides, and training materials. <span class='badge live'>LIVE</span>"},
+        {t:"partner-info.html", d:"Detailed program information. <span class='badge live'>LIVE</span>"},
+      ],
+      them: [
+        {t:"Learning experience", d:"Partner accesses learn-business.html. Takes a quiz to customize the course to their business type, learning style, depth, and pace. Gets structured lessons on pricing, equipment, what to expect by season, common mistakes, and how to upsell. Can ask questions via AI Q&A (10/day). Progress saved in browser."},
+      ]
+    },
+    "SPP Operations": {
+      title: "Running a Partner Business",
+      subtitle: "What happens after a partner is accepted and trained",
+      you: [
+        {t:"Boston builds the AI stack", d:"business_builder.py creates their agent with a phone number, prompt, and Q&A specific to their business type. Agent lives on your Retell account. <span class='badge live'>LIVE</span>"},
+        {t:"Revenue split", d:"80% to partner, 20% to BOSS Systems. Partner does the physical work. BOSS handles phones, scheduling, follow-up. Payment tracking via boss_command.py partners. <span class='badge live'>LIVE</span>"},
+      ],
+      them: [
+        {t:"Partner experience", d:"They get trained, then BOSS builds their entire AI stack. Their business has a phone number, an AI receptionist, and a way to track calls. They focus on doing the actual work (mowing lawns, hauling junk, pet sitting, etc). BOSS handles everything on the phone and scheduling side. 80/20 split on revenue."},
+        {t:"Partner accounts", d:"All AI infrastructure lives on your accounts. Partners do not need Retell, n8n, or any tech accounts. They just need their phone to check in and do the work. You manage everything technical."},
+      ]
+    },
+    "SPP Custom Items": {
+      title: "Custom Business Materials",
+      subtitle: "Yard signs, banners, cards, magnets, shirts for partner businesses. NOT DEPLOYED YET.",
+      you: [
+        {t:"Yard signs (coroplast + H-stake)", d:"For lawn care, junk removal, pressure washing partners. Put in yards after jobs. Estimated $8-15 each for small runs. <span class='badge planned'>RESEARCHING</span>"},
+        {t:"Banners (vinyl)", d:"For events, truck sides, job sites. Estimated $25-60 each. <span class='badge planned'>RESEARCHING</span>"},
+        {t:"Business cards", d:"Professional cards with partner name + AI phone number. Estimated $0.03-0.10 each in batches. <span class='badge planned'>RESEARCHING</span>"},
+        {t:"Vehicle magnets", d:"Removable truck/car magnets. Estimated $15-30 each. <span class='badge planned'>RESEARCHING</span>"},
+        {t:"T-shirts", d:"Branded work shirts. Estimated $8-20 each. <span class='badge planned'>RESEARCHING</span>"},
+        {t:"Door hangers", d:"Leave-behind marketing for neighborhoods. Estimated $0.10-0.30 each. <span class='badge planned'>RESEARCHING</span>"},
+      ],
+      them: [
+        {t:"What partners would get", d:"Custom-printed materials with their business name, phone number, and branding. Ordered through BOSS, charged at cost plus a small markup to cover handling. Partners pay for what they order. This is an add-on, not required."},
+        {t:"Pricing model", d:"BOSS orders at wholesale, charges partner at cost + handling fee. Not a profit center, just a service that makes partners look professional from day one. Supplier research in progress."},
+      ]
+    },
+  },
+  "Marketing": {
+    "Social Machine": {
+      title: "Social Media Automation",
+      subtitle: "8-layer AI content engine across 3 platforms",
+      you: [
+        {t:"Social Machine", d:"AI content generation with Thompson sampling bandit for pattern optimization. Brand safety gate. Two audiences (BOSS + SPP). Three platforms (FB, IG, TikTok). $2/day cap. Dashboard at social.html. <span class='badge local'>LOCAL</span>"},
+        {t:"Limitations", d:"TikTok needs real video for serious reach (images get 10% of video engagement). Analytics are manual (Buffer API is posting-only, need Meta Graph API for auto-pull)."},
+      ],
+      them: [
+        {t:"What people see", d:"Native-looking posts on each platform. No banned words (AI, automate, workflow, etc). SPP content includes income disclaimers. Content goes through brand safety gate before posting. First 7 days manually approved, then autonomous with 10% spot checks."},
+      ]
+    },
+    "Ryan Walsh Reddit": {
+      title: "Reddit Engagement Engine",
+      subtitle: "Fake persona for organic engagement on Reddit",
+      you: [
+        {t:"Ryan Walsh persona", d:"Full identity with PFP, burner Gmail, Reddit account. Scans subreddits for engagement opportunities. AI drafts replies. Runs 8:30am/5pm CT via LaunchAgent. <span class='badge local'>LOCAL</span>"},
+        {t:"ENGAGE tab in dashboard", d:"Shows opportunities, draft replies, karma tracking. <span class='badge live'>LIVE</span>"},
+      ],
+      them: [
+        {t:"What Redditors see", d:"A helpful user named Ryan Walsh commenting on business-related threads. Never directly promotes BOSS. Builds karma and credibility over time. Anti-detection rules (no links in first posts, natural commenting pattern, cool-down between subreddits)."},
+      ]
+    },
+  },
+  "Intelligence": {
+    "ATLAS Engine": {
+      title: "ATLAS Intelligence System",
+      subtitle: "40+ source global intelligence for business opportunity detection",
+      you: [
+        {t:"Engine", d:"atlas.py. USGS, NOAA, NASA, Polymarket, Reddit (45+ subs), GDELT, Congress.gov, Telegram OSINT, financial futures, satellite fire detection, ADS-B aircraft. Runs every 2hrs (ACTIVE), SURGE at 6am/6pm CT. <span class='badge local'>LOCAL</span>"},
+        {t:"Dashboard", d:"bosssystems.co/atlas.html. Interactive Leaflet map with anomaly markers, intel panels, prediction markets, AI chatbot. <span class='badge live'>LIVE</span>"},
+        {t:"Alerts", d:"ntfy when something genuinely new is found. Dedup against 48h state file so no repeats. Plain English summaries. Items expire off dashboard after 48 hours."},
+      ],
+      them: [
+        {t:"Invisible to customers", d:"ATLAS is entirely internal. It feeds the lead engine. When ATLAS detects a heat wave, the lead engine knows HVAC businesses in that area will be overwhelmed and missing calls. We target those specific businesses within 24-48 hours of the event."},
+      ]
+    },
+    "Lead Engine": {
+      title: "Lead Scoring Engine",
+      subtitle: "Signal-based prospect scoring",
+      you: [
+        {t:"Engine", d:"lead_engine.py. Scores on 15+ pain signals. ATLAS-fed. TCPA/CAN-SPAM compliant. $0.07 cost per lead. Google Places $4/day cap. <span class='badge live'>LIVE</span>"},
+        {t:"Dashboard", d:"bosssystems.co/engine.html. Shows scored leads, tiers, spend. <span class='badge live'>LIVE</span>"},
+        {t:"Kill switch", d:"python3 boss_command.py engine pause/resume."},
+      ],
+      them: [
+        {t:"How prospects get scored", d:"Lead engine looks at Google Places data: reviews mentioning missed calls, response time complaints, no website, few reviews, high-value trade (HVAC, plumber, electrician). Higher pain signals = higher priority for outreach."},
+      ]
+    },
+    "Quant Sandbox": {
+      title: "Quant Research Sandbox",
+      subtitle: "Paper-only. Simulation only. No real money ever.",
+      you: [
+        {t:"Engine", d:"quant_sandbox.py. 4 strategies tested, 0 survivors (correct). Deflated Sharpe ratio + Monte Carlo percentile gates. <span class='badge local'>LOCAL</span>"},
+        {t:"Dashboard", d:"bosssystems.co/quant.html. <span class='badge live'>LIVE</span>"},
+      ],
+      them: [
+        {t:"Internal only", d:"No customer interaction. Research tool for Boston."},
+      ]
+    },
+  },
+  "Monitoring": {
+    "System Supervisor": {
+      title: "System Supervisor",
+      subtitle: "Auto-monitoring daemon, checks everything every 30 minutes",
+      you: [
+        {t:"Supervisor (local)", d:"Checks 11 critical n8n workflows, 7 LaunchAgents, quant sandbox, ATLAS. State tracked in supervisor_state.json for dedup. Only notifies on new issues and resolved issues. Fixes automatically before alerting. <span class='badge local'>LOCAL</span>"},
+        {t:"n8n Watchdog", d:"DEACTIVATED June 10. Was sending 40+ repeat notifications per day with no state tracking. All monitoring now in the local supervisor. <span class='badge off'>DEAD</span>"},
+        {t:"Health Monitor", d:"n8n workflow (jcjx0bGhzmaJrI7q), every 2 hours. <span class='badge live'>LIVE</span>"},
+      ],
+      them: [
+        {t:"Invisible to everyone", d:"If a partner agent goes down, the supervisor catches it within 30 minutes, tries to fix it automatically, and alerts you if it cannot."},
+      ]
+    },
+    "Notifications": {
+      title: "Notification System",
+      subtitle: "Everything that sends you an ntfy alert",
+      you: [
+        {t:"Morning Text (7am CT weekdays)", d:"Pipeline summary, health status, ATLAS, Ryan Walsh opportunities. Local script. <span class='badge local'>LOCAL</span>"},
+        {t:"ATLAS Alerts", d:"When something genuinely new is found. Dedup via 48h state file. Plain English summaries. <span class='badge live'>LIVE</span>"},
+        {t:"Hot Lead Alerts", d:"Immediate when a lead scores hot. <span class='badge live'>LIVE</span>"},
+        {t:"Onboard Form Alerts", d:"Immediate when someone submits the onboard form. <span class='badge live'>LIVE</span>"},
+        {t:"Supervisor Alerts", d:"Only on new issues or resolved issues. Never repeats. <span class='badge local'>LOCAL</span>"},
+      ],
+      them: [
+        {t:"Customers never see these", d:"All notifications go to you via ntfy.sh. The only customer-facing communication is the onboarding drip texts after they pay."},
+      ]
+    },
+  },
+  "Training": {
+    "Washington Skills": {
+      title: "Washington Power Skills Trainer",
+      subtitle: "12 DC power skills reskinned for AI business and contractor sales",
+      you: [
+        {t:"Trainer", d:"washington_trainer/trainer.html. 12 skills, 16 domain questions, 8 live scenarios with AI opponents, SM-2 spaced repetition, 4-axis coaching. Voss/Cialdini/Kahneman integration. <span class='badge live'>LIVE</span>"},
+      ],
+      them: [
+        {t:"Personal training tool", d:"Not customer-facing. This is for Boston's skill development."},
+      ]
+    },
+    "Sales Practice": {
+      title: "Sales Practice Callers",
+      subtitle: "AI opponents for practicing sales calls",
+      you: [
+        {t:"Devil's Advocate <span class='phone'>(903) 716-5297</span>", d:"Randomly picks a skeptical persona (Busy Bobby, Skeptical Sharon, Defensive Dale, Price-First Pete, Almost-Interested Annie). Post-call analysis via ntfy with score. <span class='badge live'>LIVE</span>"},
+        {t:"Karen <span class='phone'>(903) 418-3148</span>", d:"Naive customer simulation for practice. <span class='badge live'>LIVE</span>"},
+      ],
+      them: [
+        {t:"Training only", d:"Not customer-facing."},
+      ]
+    },
+  },
+  "Known Gaps": {
+    "Business Gaps": {
+      title: "Business-Level Gaps",
+      subtitle: "Things that need to happen outside of code",
+      you: [
+        {t:"0 BOSS Systems clients", d:"Wickham is the only paying client ($50/mo). No Full Transformation ($5,997) clients yet."},
+        {t:"No LLC", d:"Boston is 17. Cannot form LLC, get business bank, or use Stripe. Payments through Venmo/Zelle."},
+        {t:"No email infrastructure", d:"Gmail node hangs. Need SMTP migration. Cold Email Outreach deactivated."},
+        {t:"No PO Box", d:"CAN-SPAM requires physical address for marketing emails."},
+        {t:"Retell backup key expired", d:"RETELL_BACKUP_KEY returns 401. Backup system non-functional."},
+      ],
+      them: []
+    },
+    "Technical Gaps": {
+      title: "Technical Gaps",
+      subtitle: "Things that are broken or limited in the code",
+      you: [
+        {t:"Superniche Targeter schedule errors", d:"n8n Cloud platform crashes on schedule trigger. Cannot fix from code."},
+        {t:"Post-Call Handler deactivated", d:"Caused retry storms (222 executions burned). Needs careful reactivation."},
+        {t:"Social analytics manual", d:"Buffer API is posting-only. Need Meta Graph API for auto-pull."},
+        {t:"TikTok needs real video", d:"Images get 10% of video reach. Need Boston recording clips."},
+        {t:"No inbound screening", d:"522-4459 is the only inbound line. Could use a second number or smarter routing to separate serious prospects from browsers."},
+      ],
+      them: []
+    },
+  },
+};
+
+function buildSidebar() {
+  var sb = document.getElementById('sidebar');
+  var html = '';
+  var first = true;
+  for (var cat in MAP) {
+    html += '<div class="cat' + (first ? ' open' : '') + '">';
+    html += '<div class="cat-head" onclick="toggleCat(this)">' + cat + '<span class="arrow">&#9654;</span></div>';
+    html += '<div class="cat-items">';
+    for (var item in MAP[cat]) {
+      html += '<div class="item" onclick="showItem(\'' + cat.replace(/'/g,"\\'") + '\',\'' + item.replace(/'/g,"\\'") + '\',this)">' + item + '</div>';
+    }
+    html += '</div></div>';
+    first = false;
+  }
+  sb.innerHTML = html;
 }
+
+function toggleCat(el) {
+  el.parentElement.classList.toggle('open');
+}
+
+function showItem(cat, item, el) {
+  document.querySelectorAll('.item').forEach(function(i){i.classList.remove('active')});
+  if(el) el.classList.add('active');
+  var d = MAP[cat][item];
+  var html = '<div class="detail">';
+  html += '<h2>' + d.title + '</h2>';
+  html += '<div class="subtitle">' + d.subtitle + '</div>';
+
+  if (d.flow) {
+    html += '<div class="flow">';
+    for (var i = 0; i < d.flow.length; i++) {
+      if (i > 0) html += '<span class="arr">&rarr;</span>';
+      html += '<span class="step">' + d.flow[i] + '</span>';
+    }
+    html += '</div>';
+  }
+
+  var hasYou = d.you && d.you.length > 0;
+  var hasThem = d.them && d.them.length > 0;
+
+  if (hasYou || hasThem) {
+    html += '<div class="split">';
+    if (hasYou) {
+      html += '<div class="col"><div class="col-label you">Your side</div>';
+      for (var j = 0; j < d.you.length; j++) {
+        html += '<div class="entry"><div class="entry-title">' + d.you[j].t + '</div><div class="entry-text">' + d.you[j].d + '</div></div>';
+      }
+      html += '</div>';
+    }
+    if (hasThem) {
+      html += '<div class="col"><div class="col-label them">Their side</div>';
+      for (var k = 0; k < d.them.length; k++) {
+        html += '<div class="entry"><div class="entry-title">' + d.them[k].t + '</div><div class="entry-text">' + d.them[k].d + '</div></div>';
+      }
+      html += '</div>';
+    }
+    html += '</div>';
+  }
+
+  html += '</div>';
+  document.getElementById('content').innerHTML = html;
+}
+
+buildSidebar();
 </script>
 </body>
 </html>
