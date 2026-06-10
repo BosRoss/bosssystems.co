@@ -1,7 +1,15 @@
 {
-  "generated": "2026-06-10T16:46:00.875250+00:00",
+  "generated": "2026-06-10T18:54:24.294802+00:00",
   "engine_state": "active",
   "signals": [
+    {
+      "type": "flood",
+      "area": "Henderson, TX; Navarro, TX",
+      "niche": "plumbing",
+      "action": "Flood warnings in Henderson, TX; Navarro, TX. Plumbers, restoration, mold companies will spike.",
+      "urgency": "today",
+      "pitch_hook": "Water damage calls are coming. Every one you miss is $500+ walking away."
+    },
     {
       "type": "heat_wave",
       "area": "Texas; Beaver; Sherman; Hansford; Ochiltree; Lipscomb; Moore; Hutchinson; Roberts; Hemphill; Potter; Carson; Gray; Wheeler; Randall; Armstrong; Donley; Collingsworth",
@@ -27,18 +35,18 @@
       "pitch_hook": "Water damage calls are coming. Every one you miss is $500+ walking away."
     },
     {
-      "type": "flood",
-      "area": "Henderson, TX; Navarro, TX",
-      "niche": "plumbing",
-      "action": "Flood warnings in Henderson, TX; Navarro, TX. Plumbers, restoration, mold companies will spike.",
-      "urgency": "today",
-      "pitch_hook": "Water damage calls are coming. Every one you miss is $500+ walking away."
-    },
-    {
       "type": "heat_wave",
       "area": "Eastern/Central El Paso County; Rio Grande Valley of Eastern El Paso/Western Hudspeth Counties; Rio Grande Valley of Eastern Hudspeth County",
       "niche": "hvac",
       "action": "HVAC businesses in Eastern/Central El Paso County; Rio Grande Valley of Eastern El Paso/Western Hudspeth Counties; Rio Grande Valley of Eastern Hudspeth County are drowning in calls right now. Perfect time to pitch.",
+      "urgency": "today",
+      "pitch_hook": "You're getting slammed with calls \u2014 how many went to voicemail today?"
+    },
+    {
+      "type": "heat_wave",
+      "area": "Chicot; East Carroll; Madison; Catahoula; Tensas; Concordia; Bolivar; Sunflower; Leflore; Washington; Humphreys; Issaquena; Sharkey; Yazoo; Madison; Warren; Hinds; Rankin; Claiborne; Copiah; Simpson; ",
+      "niche": "hvac",
+      "action": "HVAC businesses in Chicot; East Carroll; Madison; Catahoula; Tensas; Concordia; Bolivar; Sunflower; Leflore; Washington; Humphreys; Issaquena; Sharkey; Yazoo; Madison; Warren; Hinds; Rankin; Claiborne; Copiah; Simpson;  are drowning in calls right now. Perfect time to pitch.",
       "urgency": "today",
       "pitch_hook": "You're getting slammed with calls \u2014 how many went to voicemail today?"
     },
@@ -52,17 +60,17 @@
     },
     {
       "type": "heat_wave",
-      "area": "Logan; Payne",
+      "area": "Harper; Woods; Alfalfa; Grant; Kay; Ellis; Woodward; Major; Garfield; Noble; Roger Mills; Dewey; Blaine; Kingfisher",
       "niche": "hvac",
-      "action": "HVAC businesses in Logan; Payne are drowning in calls right now. Perfect time to pitch.",
+      "action": "HVAC businesses in Harper; Woods; Alfalfa; Grant; Kay; Ellis; Woodward; Major; Garfield; Noble; Roger Mills; Dewey; Blaine; Kingfisher are drowning in calls right now. Perfect time to pitch.",
       "urgency": "today",
       "pitch_hook": "You're getting slammed with calls \u2014 how many went to voicemail today?"
     },
     {
       "type": "heat_wave",
-      "area": "Harper; Woods; Alfalfa; Grant; Kay; Ellis; Woodward; Major; Garfield; Noble; Roger Mills; Dewey; Blaine; Kingfisher",
+      "area": "Logan; Payne",
       "niche": "hvac",
-      "action": "HVAC businesses in Harper; Woods; Alfalfa; Grant; Kay; Ellis; Woodward; Major; Garfield; Noble; Roger Mills; Dewey; Blaine; Kingfisher are drowning in calls right now. Perfect time to pitch.",
+      "action": "HVAC businesses in Logan; Payne are drowning in calls right now. Perfect time to pitch.",
       "urgency": "today",
       "pitch_hook": "You're getting slammed with calls \u2014 how many went to voicemail today?"
     },
@@ -71,14 +79,6 @@
       "area": "Calcasieu, LA",
       "niche": "plumbing",
       "action": "Flood warnings in Calcasieu, LA. Plumbers, restoration, mold companies will spike.",
-      "urgency": "today",
-      "pitch_hook": "Water damage calls are coming. Every one you miss is $500+ walking away."
-    },
-    {
-      "type": "flood",
-      "area": "Duval, FL",
-      "niche": "plumbing",
-      "action": "Flood warnings in Duval, FL. Plumbers, restoration, mold companies will spike.",
       "urgency": "today",
       "pitch_hook": "Water damage calls are coming. Every one you miss is $500+ walking away."
     }
@@ -239,55 +239,55 @@
   "feeds": [
     {
       "name": "NOAA",
-      "last_hit": "2026-06-10T16:38:04.936654+00:00",
+      "last_hit": "2026-06-10T18:46:07.357277+00:00",
       "status": "yellow",
       "data_points_today": 0
     },
     {
       "name": "REDDIT",
-      "last_hit": "2026-06-10T16:38:04.936654+00:00",
+      "last_hit": "2026-06-10T18:46:07.357277+00:00",
       "status": "green",
       "data_points_today": 841
     },
     {
       "name": "USGS",
-      "last_hit": "2026-06-10T16:38:04.936654+00:00",
+      "last_hit": "2026-06-10T18:46:07.357277+00:00",
       "status": "yellow",
       "data_points_today": 0
     },
     {
       "name": "HACKERNEWS",
-      "last_hit": "2026-06-10T16:38:04.936654+00:00",
+      "last_hit": "2026-06-10T18:46:07.357277+00:00",
       "status": "green",
       "data_points_today": 30
     },
     {
       "name": "FEMA",
-      "last_hit": "2026-06-10T16:38:04.936654+00:00",
+      "last_hit": "2026-06-10T18:46:07.357277+00:00",
       "status": "green",
       "data_points_today": 20
     },
     {
       "name": "COMMODITIES",
-      "last_hit": "2026-06-10T16:38:04.936654+00:00",
+      "last_hit": "2026-06-10T18:46:07.357277+00:00",
       "status": "green",
       "data_points_today": 7
     },
     {
       "name": "RSS",
-      "last_hit": "2026-06-10T16:38:04.936654+00:00",
+      "last_hit": "2026-06-10T18:46:07.357277+00:00",
       "status": "green",
       "data_points_today": 170
     },
     {
       "name": "FRED",
-      "last_hit": "2026-06-10T16:38:04.936654+00:00",
+      "last_hit": "2026-06-10T18:46:07.357277+00:00",
       "status": "yellow",
       "data_points_today": 0
     },
     {
       "name": "BLS",
-      "last_hit": "2026-06-10T16:38:04.936654+00:00",
+      "last_hit": "2026-06-10T18:46:07.357277+00:00",
       "status": "green",
       "data_points_today": 9
     }
