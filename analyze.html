@@ -198,25 +198,27 @@ function buildAutomations(btype, jobValue, googleData) {
 
   const autos = [];
 
-  // --- VERIFIED: Phone Receptionist (always applies — 27% of calls go unanswered industry-wide) ---
+  // --- Phone Receptionist (industry data: 27% unanswered, 85% never call back) ---
+  const userProvidedJob = !!jobValue;
   const missedPerWeek = 3;
   const recoveredPerWeek = 1.2;
   const receptionist_val = cap(recoveredPerWeek * job * 52, 80000);
+  const jobSource = userProvidedJob ? 'your number' : d.label + ' industry average';
   autos.push({
     key: 'phone_receptionist', name: 'AI Phone Receptionist', cat: 'Customer Acquisition',
     value: receptionist_val, cost: 50, hours: 2, diff: 1, quickWin: true, applies: ['all'],
     desc: 'AI answers every call 24/7, qualifies leads, quotes jobs, books appointments.',
-    calc: `Industry data: 27% of calls to service businesses go unanswered (BIA/Kelsey). Of unanswered callers, 85% never call back. Estimate: ~${missedPerWeek} missed/week × ${recoveredPerWeek} recovered at $${fmt_num(job)} avg = ${fmt(receptionist_val)}/yr. <em class="est">Missed call count is an industry estimate — your actual number may differ.</em>`,
+    calc: `Industry data: 27% of calls to service businesses go unanswered (BIA/Kelsey 2023). Of those, 85% never call back (Invoca 2022). Using ~${missedPerWeek} missed/week and assuming ${recoveredPerWeek} recovered at $${fmt_num(job)} avg (${jobSource}) = ${fmt(receptionist_val)}/yr. <em class="est">We don't know your actual call volume or miss rate — this uses published industry averages. Your real number could be higher or lower.</em>`,
   });
 
-  // --- VERIFIED: Missed Call Text-Back ---
+  // --- Missed Call Text-Back ---
   const textback_recovered = 0.4;
   const textback_val = cap(textback_recovered * job * 52, 24000);
   autos.push({
     key: 'missed_call_textback', name: 'Missed Call Text-Back', cat: 'Customer Acquisition',
     value: textback_val, cost: 15, hours: 1, diff: 1, quickWin: true, applies: ['all'],
     desc: 'When any call is missed, customer gets a text within 60 seconds.',
-    calc: `1 in 3 missed-call texts re-engages. ~${textback_recovered} extra jobs/week at $${fmt_num(job)} avg × 52 weeks. Supplements the receptionist — catches calls that go to voicemail before AI picks up. <em class="est">Industry estimate.</em>`,
+    calc: `Published data: 1 in 3 missed-call texts re-engages the customer (Hatch 2023). ~${textback_recovered} extra jobs/week at $${fmt_num(job)} avg (${jobSource}) × 52 weeks. <em class="est">Depends on your actual missed call volume — we don't have that number.</em>`,
   });
 
   // --- CONDITIONAL: Review improvement (only if rating < 4.5 or reviews < 50) ---
@@ -680,15 +682,16 @@ async function runAnalysis() {
     ${verifiedHTML}
 
     <div class="stats-row">
-      <div class="stat"><div class="num">${fmt(totalValue)}</div><div class="lbl">Est. Annual Value</div></div>
+      <div class="stat"><div class="num">${fmt(totalValue)}</div><div class="lbl">Estimated Annual Opportunity</div></div>
       <div class="stat"><div class="num">$${totalCost}/mo</div><div class="lbl">Cost to Run It All</div></div>
-      <div class="stat"><div class="num">${verifiedCount}</div><div class="lbl">Verified Problems</div></div>
+      <div class="stat"><div class="num">${verifiedCount}/${top.length}</div><div class="lbl">Backed by Your Data</div></div>
     </div>
 
     <div style="font-size:.78rem;color:#999;margin:-1rem 0 2rem;line-height:1.5">
-      Total reflects a 25% overlap discount — automations share some of the same revenue pool, so we don't double-count.
-      ${verifiedCount > 0 ? `<span style="color:#4CAF50">${verifiedCount} item${verifiedCount > 1 ? 's' : ''} verified</span> from your Google listing.` : ''}
-      ${estimateCount > 0 ? `<span style="color:#e67e22">${estimateCount} item${estimateCount > 1 ? 's' : ''}</span> based on published industry data (sources cited inline).` : ''}
+      <strong>How to read this number:</strong> ${fmt(totalValue)} is the estimated total across all automations with a 25% overlap discount (automations share revenue pools).
+      ${verifiedCount > 0 ? `<span style="color:#4CAF50">${verifiedCount} item${verifiedCount > 1 ? 's are' : ' is'} backed by real data</span> from your Google listing.` : ''}
+      ${estimateCount > 0 ? `<span style="color:#e67e22">${estimateCount} item${estimateCount > 1 ? 's use' : ' uses'} published industry data</span> (sources cited inline) — not verified for your specific business.` : ''}
+      ${!jobValue ? '<br><span style="color:#e67e22">You didn\'t enter your avg job value, so we used the ' + d.label + ' industry average ($' + fmt_num(d.job) + '). Enter yours above for a more accurate number.</span>' : ''}
     </div>
 
     <div class="breakdown-box">
@@ -703,7 +706,7 @@ async function runAnalysis() {
 
     <div class="package-rec">
       <h3>What This Would Cost You</h3>
-      <div class="rec-sub">Based on the ${fmt(totalValue)}/yr estimate (after overlap discount). These are projections — your real numbers depend on your market, call volume, and execution.</div>
+      <div class="rec-sub">Based on the ${fmt(totalValue)}/yr estimate. <strong>These are projections, not promises.</strong> Your real numbers depend on your call volume, market, pricing, and execution. We'd rather under-promise and over-deliver.</div>
 
       <div class="price-rows" style="margin-bottom:0;border-bottom:none">
         <div class="price-row" style="color:#666">
