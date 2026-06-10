@@ -1,21 +1,26 @@
 {
-  "generated": "2026-06-09T20:30:00.109867+00:00",
+  "generated": "2026-06-10T02:36:58.677004+00:00",
   "sections": {
     "atlas": {
       "power_level": "ACTIVE",
-      "last_scan": "2026-06-09T20:01:54.469424+00:00",
-      "scan_count": 80,
+      "last_scan": "2026-06-10T00:18:08.631291+00:00",
+      "scan_count": 82,
       "heat_score": 100,
-      "recommendation": "HOT DAY. Weather-driven demand in Eastern/Central El Paso County; Rio Grande Valley of Eastern El Paso/Western Hudspeth Counties; Rio Grande Valley of Eastern Hudspeth County, Fulton; Sharp; Randolph; Izard; Independence; Lawrence; Cleburne; Jackson; Conway; Faulkner; White; Woodruff; Perry; Saline; Pulaski; Lonoke; Prairie; Monroe; Jefferson; Arkansas; Southern Johnson Cou, Sevier; Howard; Little River; Hempstead; Miller; McCurtain; Red River; Bowie; Franklin; Titus; Morris; Cass. Call HVAC/roofers there NOW.",
+      "recommendation": "HOT DAY. Weather-driven demand in Hartley, TX, Hardin, TX; Jefferson, TX, Texas; Beaver; Sherman; Hansford; Ochiltree; Lipscomb; Moore; Hutchinson; Roberts; Hemphill; Potter; Carson; Gray; Wheeler; Randall; Armstrong; Donley; Collingsworth. Call HVAC/roofers there NOW.",
       "demand_signals": 10,
-      "pain_signals": 1,
+      "pain_signals": 0,
       "pitch_adjustments": 0,
       "competitor_intel": 0,
-      "territory_alerts": 23,
+      "territory_alerts": 20,
       "top_demands": [
         {
           "type": "storm",
           "area": "Cimarron, OK; Texas, OK; Dallam, TX; Hansford, TX; Sherman, ",
+          "niche": "roofing"
+        },
+        {
+          "type": "storm",
+          "area": "Hartley, TX",
           "niche": "roofing"
         },
         {
@@ -25,18 +30,13 @@
         },
         {
           "type": "heat_wave",
-          "area": "Palo Duro Canyon",
-          "niche": "hvac"
-        },
-        {
-          "type": "heat_wave",
           "area": "Texas; Beaver; Sherman; Hansford; Ochiltree; Lipscomb; Moore",
           "niche": "hvac"
         },
         {
-          "type": "flood",
-          "area": "Henderson, TX; Navarro, TX",
-          "niche": "plumbing"
+          "type": "heat_wave",
+          "area": "Palo Duro Canyon",
+          "niche": "hvac"
         }
       ],
       "sources_online": 0
@@ -210,6 +210,10 @@
       ],
       "recent_failures": [
         {
+          "workflow": "VeofXawy3ISKcQY7",
+          "started": "2026-06-09T22:00"
+        },
+        {
           "workflow": "UQGW8QuaSLb9Euyh",
           "started": "2026-06-09T19:00"
         },
@@ -224,10 +228,6 @@
         {
           "workflow": "wX6OyZ9UY0Xrbui1",
           "started": "2026-06-09T12:00"
-        },
-        {
-          "workflow": "8lxiHdzEAmHOWclo",
-          "started": "2026-06-09T08:00"
         }
       ]
     },
