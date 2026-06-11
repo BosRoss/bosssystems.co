@@ -1,31 +1,7 @@
 {
-  "generated": "2026-06-11T00:12:57.447285+00:00",
+  "generated": "2026-06-11T03:02:24.541635+00:00",
   "engine_state": "active",
   "signals": [
-    {
-      "type": "storm",
-      "area": "Presidio, TX",
-      "niche": "roofing",
-      "action": "Storm damage in Presidio, TX. Roofers and restoration companies about to get flooded.",
-      "urgency": "today",
-      "pitch_hook": "After a storm like that, you'll get 10x your normal call volume. Ready for it?"
-    },
-    {
-      "type": "flood",
-      "area": "Jeff Davis, TX",
-      "niche": "plumbing",
-      "action": "Flood warnings in Jeff Davis, TX. Plumbers, restoration, mold companies will spike.",
-      "urgency": "today",
-      "pitch_hook": "Water damage calls are coming. Every one you miss is $500+ walking away."
-    },
-    {
-      "type": "flood",
-      "area": "Jeff Davis, TX; Reeves, TX",
-      "niche": "plumbing",
-      "action": "Flood warnings in Jeff Davis, TX; Reeves, TX. Plumbers, restoration, mold companies will spike.",
-      "urgency": "today",
-      "pitch_hook": "Water damage calls are coming. Every one you miss is $500+ walking away."
-    },
     {
       "type": "heat_wave",
       "area": "Eastern/Central El Paso County; Rio Grande Valley of Eastern El Paso/Western Hudspeth Counties; Rio Grande Valley of Eastern Hudspeth County",
@@ -41,22 +17,6 @@
       "action": "Flood warnings in Henderson, TX; Navarro, TX. Plumbers, restoration, mold companies will spike.",
       "urgency": "today",
       "pitch_hook": "Water damage calls are coming. Every one you miss is $500+ walking away."
-    },
-    {
-      "type": "heat_wave",
-      "area": "Texas; Beaver; Sherman; Hansford; Ochiltree; Lipscomb; Moore; Hutchinson; Roberts; Hemphill; Potter; Carson; Gray; Wheeler; Randall; Armstrong; Donley; Collingsworth",
-      "niche": "hvac",
-      "action": "HVAC businesses in Texas; Beaver; Sherman; Hansford; Ochiltree; Lipscomb; Moore; Hutchinson; Roberts; Hemphill; Potter; Carson; Gray; Wheeler; Randall; Armstrong; Donley; Collingsworth are drowning in calls right now. Perfect time to pitch.",
-      "urgency": "today",
-      "pitch_hook": "You're getting slammed with calls \u2014 how many went to voicemail today?"
-    },
-    {
-      "type": "heat_wave",
-      "area": "Palo Duro Canyon",
-      "niche": "hvac",
-      "action": "HVAC businesses in Palo Duro Canyon are drowning in calls right now. Perfect time to pitch.",
-      "urgency": "today",
-      "pitch_hook": "You're getting slammed with calls \u2014 how many went to voicemail today?"
     },
     {
       "type": "flood",
@@ -81,6 +41,46 @@
       "action": "Flood warnings in Ottawa, OK. Plumbers, restoration, mold companies will spike.",
       "urgency": "today",
       "pitch_hook": "Water damage calls are coming. Every one you miss is $500+ walking away."
+    },
+    {
+      "type": "heat_wave",
+      "area": "Tulsa",
+      "niche": "hvac",
+      "action": "HVAC businesses in Tulsa are drowning in calls right now. Perfect time to pitch.",
+      "urgency": "today",
+      "pitch_hook": "You're getting slammed with calls \u2014 how many went to voicemail today?"
+    },
+    {
+      "type": "flood",
+      "area": "Calcasieu, LA",
+      "niche": "plumbing",
+      "action": "Flood warnings in Calcasieu, LA. Plumbers, restoration, mold companies will spike.",
+      "urgency": "today",
+      "pitch_hook": "Water damage calls are coming. Every one you miss is $500+ walking away."
+    },
+    {
+      "type": "flood",
+      "area": "Marion, FL",
+      "niche": "plumbing",
+      "action": "Flood warnings in Marion, FL. Plumbers, restoration, mold companies will spike.",
+      "urgency": "today",
+      "pitch_hook": "Water damage calls are coming. Every one you miss is $500+ walking away."
+    },
+    {
+      "type": "heat_wave",
+      "area": "West Side Mountains north of 198; Los Banos - Dos Palos; Merced - Madera - Mendota; Planada - Le Grand - Snelling; Coalinga - Avenal; West Side of Fresno and Kings Counties; Caruthers - San Joaquin - ",
+      "niche": "hvac",
+      "action": "HVAC businesses in West Side Mountains north of 198; Los Banos - Dos Palos; Merced - Madera - Mendota; Planada - Le Grand - Snelling; Coalinga - Avenal; West Side of Fresno and Kings Counties; Caruthers - San Joaquin -  are drowning in calls right now. Perfect time to pitch.",
+      "urgency": "today",
+      "pitch_hook": "You're getting slammed with calls \u2014 how many went to voicemail today?"
+    },
+    {
+      "type": "heat_wave",
+      "area": "Southeastern Interior Mendocino; Northern Lake; Western Lake; Southwestern Lake; Eastern Lake",
+      "niche": "hvac",
+      "action": "HVAC businesses in Southeastern Interior Mendocino; Northern Lake; Western Lake; Southwestern Lake; Eastern Lake are drowning in calls right now. Perfect time to pitch.",
+      "urgency": "today",
+      "pitch_hook": "You're getting slammed with calls \u2014 how many went to voicemail today?"
     }
   ],
   "leads": [
@@ -239,55 +239,55 @@
   "feeds": [
     {
       "name": "NOAA",
-      "last_hit": "2026-06-11T00:02:03.007515+00:00",
+      "last_hit": "2026-06-11T02:13:02.422851+00:00",
       "status": "yellow",
       "data_points_today": 0
     },
     {
       "name": "REDDIT",
-      "last_hit": "2026-06-11T00:02:03.007515+00:00",
+      "last_hit": "2026-06-11T02:13:02.422851+00:00",
       "status": "green",
       "data_points_today": 841
     },
     {
       "name": "USGS",
-      "last_hit": "2026-06-11T00:02:03.007515+00:00",
+      "last_hit": "2026-06-11T02:13:02.422851+00:00",
       "status": "yellow",
       "data_points_today": 0
     },
     {
       "name": "HACKERNEWS",
-      "last_hit": "2026-06-11T00:02:03.007515+00:00",
+      "last_hit": "2026-06-11T02:13:02.422851+00:00",
       "status": "green",
       "data_points_today": 30
     },
     {
       "name": "FEMA",
-      "last_hit": "2026-06-11T00:02:03.007515+00:00",
+      "last_hit": "2026-06-11T02:13:02.422851+00:00",
       "status": "green",
       "data_points_today": 20
     },
     {
       "name": "COMMODITIES",
-      "last_hit": "2026-06-11T00:02:03.007515+00:00",
+      "last_hit": "2026-06-11T02:13:02.422851+00:00",
       "status": "green",
-      "data_points_today": 5
+      "data_points_today": 7
     },
     {
       "name": "RSS",
-      "last_hit": "2026-06-11T00:02:03.007515+00:00",
+      "last_hit": "2026-06-11T02:13:02.422851+00:00",
       "status": "green",
       "data_points_today": 170
     },
     {
       "name": "FRED",
-      "last_hit": "2026-06-11T00:02:03.007515+00:00",
+      "last_hit": "2026-06-11T02:13:02.422851+00:00",
       "status": "yellow",
       "data_points_today": 0
     },
     {
       "name": "BLS",
-      "last_hit": "2026-06-11T00:02:03.007515+00:00",
+      "last_hit": "2026-06-11T02:13:02.422851+00:00",
       "status": "green",
       "data_points_today": 9
     }
