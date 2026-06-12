@@ -1,0 +1,346 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1.0">
+<meta name="robots" content="noindex,nofollow">
+<title>JT — System Map</title>
+<style>
+*{margin:0;padding:0;box-sizing:border-box}
+body{background:#080808;color:#bbb;font-family:'SF Mono',Menlo,monospace;font-size:12px;min-height:100vh;display:flex;flex-direction:column}
+nav{display:flex;align-items:center;gap:12px;padding:6px 16px;background:#060606;border-bottom:1px solid #1a1a1a;font-size:11px;overflow-x:auto;white-space:nowrap;flex-shrink:0}
+nav a{color:#888;text-decoration:none}
+
+.main{display:flex;flex:1;overflow:hidden}
+@media(max-width:700px){.main{flex-direction:column}}
+
+.sidebar{width:260px;min-width:260px;border-right:1px solid #1a1a1a;overflow-y:auto;background:#0a0a0a;flex-shrink:0}
+@media(max-width:700px){.sidebar{width:100%;min-width:100%;max-height:40vh;border-right:none;border-bottom:1px solid #1a1a1a}}
+
+.content{flex:1;overflow-y:auto;padding:20px}
+
+.cat{border-bottom:1px solid #111}
+.cat-head{padding:10px 14px;color:#C9A84C;font-size:11px;font-weight:600;letter-spacing:.5px;cursor:pointer;display:flex;justify-content:space-between;align-items:center}
+.cat-head:hover{background:#111}
+.cat-head .arrow{transition:transform .2s;font-size:10px;color:#666}
+.cat.open .arrow{transform:rotate(90deg)}
+.cat-items{display:none;padding-bottom:4px}
+.cat.open .cat-items{display:block}
+.item{padding:6px 14px 6px 24px;color:#999;font-size:11px;cursor:pointer;border-left:2px solid transparent}
+.item:hover{background:#111;color:#ddd}
+.item.active{color:#C9A84C;border-left-color:#C9A84C;background:#0d0d0a}
+
+.detail{max-width:800px}
+.detail h2{color:#C9A84C;font-size:15px;font-weight:600;margin-bottom:4px}
+.detail .subtitle{color:#888;font-size:11px;margin-bottom:16px}
+
+.split{display:grid;grid-template-columns:1fr 1fr;gap:16px;margin-bottom:16px}
+@media(max-width:900px){.split{grid-template-columns:1fr}}
+.col{background:#0d0d0d;border:1px solid #1a1a1a;border-radius:6px;padding:14px}
+.col-label{font-size:10px;text-transform:uppercase;letter-spacing:1px;margin-bottom:8px;font-weight:600}
+.col-label.you{color:#C9A84C}
+.col-label.them{color:#4B92DB}
+
+.entry{padding:6px 0;border-bottom:1px solid #111}
+.entry:last-child{border-bottom:none}
+.entry-title{color:#ddd;font-weight:600;font-size:11px;margin-bottom:2px}
+.entry-text{color:#999;font-size:10px;line-height:1.6}
+
+.badge{display:inline-block;padding:1px 6px;border-radius:3px;font-size:9px;font-weight:600;letter-spacing:.5px}
+.badge.live{background:#0a2a0a;color:#00cc66;border:1px solid #0a3a0a}
+.badge.off{background:#2a0a0a;color:#ff4444;border:1px solid #3a0a0a}
+.badge.local{background:#1a1a0a;color:#C9A84C;border:1px solid #2a2a0a}
+.badge.planned{background:#0a1a2a;color:#4B92DB;border:1px solid #0a2a3a}
+
+.flow{display:flex;align-items:center;gap:6px;flex-wrap:wrap;margin:10px 0;padding:10px;background:#0a0a0a;border:1px solid #1a1a1a;border-radius:6px}
+.step{background:#111;border:1px solid #222;border-radius:4px;padding:4px 10px;font-size:10px;color:#aaa}
+.arr{color:#555;font-size:12px}
+
+.note{background:#111;border-left:3px solid #C9A84C;padding:8px 12px;margin:12px 0;font-size:11px;color:#999;line-height:1.5}
+.note.warn{border-left-color:#ff4444}
+.note.info{border-left-color:#4B92DB}
+
+.phone{color:#C9A84C;font-weight:600}
+.welcome{text-align:center;padding:60px 20px;color:#666}
+.welcome h2{color:#C9A84C;font-size:16px;margin-bottom:8px}
+</style>
+</head>
+<body>
+<nav>
+  <a href="jt.html">Dashboard</a>
+  <a href="jt-onboard.html">Training</a>
+  <a href="jt-agreement.html">Agreement</a>
+  <span style="color:#C9A84C;font-weight:600;margin-left:auto">Map</span>
+</nav>
+
+<div class="main">
+<div class="sidebar" id="sidebar"></div>
+<div class="content" id="content">
+  <div class="welcome"><h2>BOSS SYSTEMS MAP</h2>Click anything on the left to see how it works.</div>
+</div>
+</div>
+
+<script>
+var MAP = {
+  "What You Sell": {
+    "Three Products": {
+      title: "BOSS Analyze / Build / Own",
+      subtitle: "The three products you can sell. Lead with Analyze — it's free and does the selling for you.",
+      you: [
+        {t:"BOSS Analyze (FREE)", d:"bosssystems.co/analyze.html — 60-second business analysis showing where they're losing money. This is your opener. No commitment, no pitch. Just their numbers. Run it WITH the prospect live."},
+        {t:"Receptionist ($250 setup + $50/mo)", d:"Automated receptionist answers every call 24/7. Quotes jobs, books appointments, takes messages. No overages, cancel anytime. Your commission: $50 setup + $10/mo recurring."},
+        {t:"BOSS Build ($1,497-$5,997 + $97-497/mo)", d:"Full automated system for their business. Phone answering, follow-ups, reviews, scheduling, lead capture. Deployed in 72 hours. Your commission: $299-$1,199 setup + $19-$99/mo recurring."},
+        {t:"BOSS Own ($0 setup + 15% revenue share)", d:"We build and operate everything. Client does the physical work. We take 15% of system-generated revenue. Best for skeptical owners or tight budgets. Your commission: 20% of BOSS's 15% share."},
+      ],
+      them: [
+        {t:"What a prospect sees", d:"Lands on bosssystems.co. Three clear options. Most start with the free analysis because there's no commitment. Analysis shows them real numbers about what they're losing. If they want to move forward, they fill out the onboard form or call (903) 522-4459."},
+        {t:"Pricing they see", d:"Analyze is free. Receptionist is $250 + $50/mo. Build starts at $1,497 setup + $97/mo. Own is zero upfront but 15% of the revenue the system generates. No contracts on any tier, cancel anytime. Payment via Venmo @BosRoss."},
+      ]
+    },
+    "Competitor Pricing": {
+      title: "What Competitors Charge",
+      subtitle: "Know these cold — it's how you close",
+      you: [
+        {t:"BOSS Systems: $50/mo flat", d:"No overages. No contracts. No surprise bills. This is your biggest advantage."},
+        {t:"Goodcall: $79-$249/mo", d:"Per unique caller pricing. Costs 2-5x more at real volume."},
+        {t:"Dialzara: $29 base → $1,530+ real", d:"$29 bait price, per-minute overages destroy them at volume."},
+        {t:"Smith.ai: $2,400+/mo", d:"Per-call pricing. Enterprise-tier cost."},
+        {t:"Ruby Receptionist: $8,625+/mo", d:"Per-minute billing. #1 reason people cancel: spouse sees the bill. This is your best line."},
+        {t:"Avoca: $1K-$3K/mo", d:"Only serves operators with $3M+ revenue. They ignore 99% of the market. That 99% is our market."},
+      ],
+      them: [
+        {t:"What they're comparing", d:"Most prospects have either (a) never heard of automated phone answering, or (b) looked at Ruby/Smith.ai and decided it was too expensive. Either way, $50/mo flat is a shock."},
+        {t:"The spouse angle", d:"60%+ of small contractor purchases — the spouse has veto power. #1 reason people cancel Ruby: bill shock. The spouse sees $720 and kills it. BOSS is $50. No surprises."},
+      ]
+    },
+  },
+  "How It Works": {
+    "Demo Line": {
+      title: "Demo & Support Line",
+      subtitle: "The number you show every prospect",
+      you: [
+        {t:"BOSS Support <span class='phone'>(903) 522-4459</span>", d:"24/7 business line. All website CTAs point here. Answers questions, takes messages, routes interested callers. Your secret weapon: have prospects call this during your pitch. It sells itself."},
+        {t:"How to use it", d:"When someone is skeptical: 'Call this number right now. Talk to it like you're a customer. If it doesn't impress you, I'll leave you alone.' Then hand them your phone or tell them the number. Let the product sell itself."},
+      ],
+      them: [
+        {t:"Calling 522-4459", d:"Phone rings 2-3 times, then a natural-sounding voice answers. Sounds human. Answers questions about BOSS Systems, explains products, can text them the analysis link. Available 24/7. This is exactly what their business would get."},
+      ]
+    },
+    "Website Pages": {
+      title: "Pages You Send Prospects",
+      subtitle: "Every link you might need during a sale",
+      you: [
+        {t:"bosssystems.co/analyze.html", d:"Free 60-second analysis. YOUR MAIN TOOL. Run this with every prospect. Shows them their own numbers."},
+        {t:"bosssystems.co", d:"Main landing page. Three product cards. Good to text prospects who want to browse."},
+        {t:"bosssystems.co/onboard.html", d:"Client fills this out after they pay. 6-step form: tone, hours, services, Q&A. Boston builds their system from these answers."},
+        {t:"bosssystems.co/hear-it.html", d:"'Call and hear it yourself.' Points to 522-4459."},
+        {t:"bosssystems.co/calculator.html", d:"ROI calculator showing missed call revenue loss by trade."},
+        {t:"bosssystems.co/pay.html", d:"Payment page. Venmo @BosRoss."},
+        {t:"bosssystems.co/guarantee.html", d:"The 95% promise. Doesn't hit 95% answer rate in 30 days = first month free."},
+      ],
+      them: [
+        {t:"Prospect journey", d:"See the analysis → get shocked by their numbers → hear the demo line → see the pricing → fill the onboard form or call 522-4459. The whole flow is designed so the product sells itself. Your job is to get them to the analysis."},
+      ]
+    },
+    "After The Sale": {
+      title: "What Happens After You Close",
+      subtitle: "Your job ends at the close. Here's what happens next.",
+      flow: ["You close the deal","Client pays via Venmo @BosRoss","Client fills onboard.html","Boston gets alert","System built in 72 hours","Client gets test call","System goes live"],
+      you: [
+        {t:"Your part", d:"Close the deal. Make sure client pays via Venmo @BosRoss. Text Boston: client name, business type, phone, email, what they need. That's it."},
+        {t:"Boston's part", d:"Builds their custom system using their onboard form answers. Dedicated phone number, custom voice, their hours/services/pricing/personality. Live within 72 hours."},
+        {t:"Client gets", d:"Their own automated receptionist on a dedicated number. A dashboard to see call history. A guide explaining how everything works. Support at 522-4459 anytime. They don't create any accounts or touch anything technical."},
+      ],
+      them: [
+        {t:"Their experience", d:"Pay via Venmo. Fill out the onboard form with their business details in their own words. Within 72 hours their system is live on a dedicated number. They get texts walking them through how to test it and check their dashboard."},
+      ]
+    },
+    "Mystery Caller": {
+      title: "Mystery Caller System",
+      subtitle: "A tool that demonstrates the exact problem BOSS solves",
+      you: [
+        {t:"Mystery Caller <span class='phone'>(903) 601-8008</span>", d:"Calls a business pretending to be a real customer. Tests hold time, greeting quality, booking process. Generates a report showing exactly what went wrong."},
+        {t:"How you use it", d:"If you're struggling to get a prospect's attention, offer to mystery-shop their phones for free. The report shows them their own failures. Then you pitch BOSS as the fix. Powerful because it's THEIR data, not a stat from the internet."},
+        {t:"Rules", d:"Mystery calls that just collect data are fine. Never try to sell during a mystery call. The pitch comes AFTER, separately."},
+      ],
+      them: [
+        {t:"What they experience", d:"They get a call from what sounds like a real customer. We test their phone handling. They never know it happened. If they opted in (from a postcard or your offer), we send them the report and follow up."},
+      ]
+    },
+  },
+  "Summer Partner Program": {
+    "How SPP Works": {
+      title: "Summer Partner Program Overview",
+      subtitle: "Teens 14-22 run a business. Boston builds the system. 80/20 split.",
+      you: [
+        {t:"The deal", d:"Teen picks a business from 11 options. Boston builds the entire automated system for free — phone number, receptionist, website, booking, payment, reviews. Partner does the physical work, keeps 80%. Boston takes 20%. Program ends September 1, 2026."},
+        {t:"Your referral bonus", d:"$20 per partner you refer who makes their first profit. They must put YOUR name in the referral box on the application."},
+        {t:"11 businesses", d:"Junk removal, pressure washing, lawn care, pool cleaning, car detailing, house cleaning, event decorating, pet sitting, organizing, photography, social media management."},
+      ],
+      them: [
+        {t:"Teen experience", d:"Find the program through social media or word of mouth. Take the quiz to find their match. Apply. If under 18, parent approves. If accepted, Boston builds everything within 24 hours. They just do the work."},
+        {t:"Parent experience", d:"See bosssystems.co/parents.html explaining the program. Must approve before anything activates for anyone under 18."},
+      ]
+    },
+    "SPP Links": {
+      title: "Links You Share",
+      subtitle: "Every SPP URL you might need",
+      you: [
+        {t:"bosssystems.co/summer.html", d:"Main pitch page. All 11 businesses, earnings, how it works. Send this first."},
+        {t:"bosssystems.co/partner-quiz.html", d:"2-minute quiz matching them to their best business. Great conversation starter."},
+        {t:"bosssystems.co/partner-info.html", d:"Application form. They fill this out to apply. Boston texts back within 24 hours."},
+        {t:"bosssystems.co/parents.html", d:"Parent info page. Send to parents of anyone under 18."},
+        {t:"bosssystems.co/partner-start.html", d:"Getting started guide. 13-step launch checklist for accepted partners."},
+        {t:"bosssystems.co/partner-tools.html", d:"Business-specific pricing, scripts, safety tips, upsells for all 11 types."},
+        {t:"bosssystems.co/learn-business.html", d:"Free training tool. Quiz-customized courses on pricing, equipment, seasons, mistakes, upsells."},
+      ],
+      them: [
+        {t:"Referral flow", d:"1. Send them summer.html or partner-quiz.html. 2. They apply at partner-info.html. 3. They put YOUR name in referral box. 4. Boston texts them within 24 hours. 5. Under 18? Parent reads parents.html and approves. 6. When they make first profit, you get $20."},
+      ]
+    },
+    "SPP Revenue": {
+      title: "The 80/20 Split",
+      subtitle: "How money works for partners",
+      you: [
+        {t:"Weekly cycle", d:"Partner collects payment from customers. Every Sunday by 8pm, texts Boston their weekly total. Monday by noon, Venmos 20% to @BosRoss. $0 week = text '$0', owe nothing."},
+        {t:"Example math", d:"Junk removal: 3 loads at $300 = $900 gross. Minus $200 dump/gas. Minus $140 (20% of $700 net). Partner take-home: $560/week. 12-week summer: ~$6,720."},
+        {t:"What partners earn", d:"Junk removal $450-750/wk. Pressure washing $500-1,000/wk. Lawn care $400-1,000/wk. Pool cleaning $600-1,600/wk. Car detailing $400-900/wk. House cleaning $400-1,000/wk. All post-cost, post-split."},
+      ],
+      them: [
+        {t:"What partners keep", d:"80% of revenue after expenses. No franchise fees. No royalties. No startup costs. If they quit (3 days notice), they keep the business — just lose access to the automated system."},
+      ]
+    },
+    "SPP Rules": {
+      title: "Non-Negotiables",
+      subtitle: "Rules you need to know when pitching SPP",
+      you: [
+        {t:"Under 18", d:"Parent approval REQUIRED before anything activates. No exceptions. Junk removal and pressure washing not recommended for minors (heavy equipment)."},
+        {t:"Revenue reporting", d:"Honest numbers every Sunday by 8pm. The system logs bookings as a cross-check."},
+        {t:"Quit anytime", d:"3 days notice, no penalty. They keep the business name and customer relationships. They lose access to the automated phone/booking system."},
+        {t:"Income disclaimer", d:"Always say 'earnings vary' when pitching. Never guarantee specific income. All numbers are estimates."},
+        {t:"End date", d:"September 1, 2026. After that, partners can keep the system running at standard BOSS pricing, or it shuts off."},
+      ],
+      them: []
+    },
+    "SPP Custom Items": {
+      title: "Custom Business Materials",
+      subtitle: "Yard signs, banners, cards, magnets, shirts for partner businesses",
+      you: [
+        {t:"Yard signs", d:"For lawn care, junk removal, pressure washing. Put in yards after jobs. ~$8-15 each. <span class='badge planned'>NOT YET</span>"},
+        {t:"Business cards", d:"Partner name + business phone number. ~$0.03-0.10 each. <span class='badge planned'>NOT YET</span>"},
+        {t:"Vehicle magnets", d:"Removable truck/car magnets. ~$15-30 each. <span class='badge planned'>NOT YET</span>"},
+        {t:"T-shirts", d:"Branded work shirts. ~$8-20 each. <span class='badge planned'>NOT YET</span>"},
+      ],
+      them: [
+        {t:"What partners would get", d:"Custom-printed materials with their business name and phone number. Ordered through BOSS at cost + handling. Not required, just makes them look professional from day one."},
+      ]
+    },
+  },
+  "Your Tools": {
+    "Practice Callers": {
+      title: "Sales Practice Tools",
+      subtitle: "Get reps before real calls",
+      you: [
+        {t:"Devil's Advocate <span class='phone'>(903) 716-5297</span>", d:"Call anytime. Randomly picks a skeptical persona: Busy Bobby, Skeptical Sharon, Defensive Dale, Price-First Pete, or Almost-Interested Annie. You pitch, they push back. Get scored after."},
+        {t:"Deal Coach <span class='phone'>(903) 326-7285</span>", d:"Call when you're stuck on an objection or need strategy help mid-deal. Real-time advice."},
+        {t:"Daily warmup", d:"Before your first real call: 1. Call Devil's Advocate once to get sharp. 2. Review your Quick Reference on your dashboard. 3. Go."},
+      ],
+      them: [
+        {t:"Not customer-facing", d:"These numbers are for your training only. Never give these to prospects."},
+      ]
+    },
+    "Payment & Commission": {
+      title: "How You Get Paid",
+      subtitle: "Commission structure and payment flow",
+      you: [
+        {t:"Setup commission (20%)", d:"Receptionist: $50. BUILD Standard: $299. BUILD Premium: $599. Full Transformation: $1,199. Paid within 7 days of Boston receiving payment."},
+        {t:"Monthly recurring (20%)", d:"Receptionist: $10/mo. BUILD Standard: $19.40/mo. BUILD Premium: $39.40/mo. Full Transformation: $99.40/mo. Paid on the 15th for prior month. Lasts as long as client stays active and you're in good standing."},
+        {t:"SPP referral bonus", d:"$20 per partner who makes their first profit, if they listed your name on the application."},
+        {t:"Clawback rule", d:"If a client refunds within 30 days, commission is deducted from next payment."},
+      ],
+      them: [
+        {t:"Payment flow", d:"Client pays via Venmo @BosRoss (never to your account). You text Boston the client info. Boston pays your commission within 7 days for setup, 15th of month for recurring."},
+      ]
+    },
+    "Territory Rules": {
+      title: "Where You Can Sell",
+      subtitle: "Markets and restrictions",
+      you: [
+        {t:"Open markets", d:"MS, AR, AL, TN, OK, NM — small towns 15K-80K population. Best niches: HVAC, plumbers, electricians, roofers, law firms, auto repair."},
+        {t:"East Texas (903, 430)", d:"Boston's in-person territory. DO NOT call these area codes."},
+        {t:"Louisiana (985, 318, 504, 337, 225)", d:"Banned market. Low budget, bad conversion. DO NOT sell here."},
+        {t:"Skip", d:"Franchises (corporate controls systems), salons, barbershops, pet groomers (low ticket, low urgency)."},
+      ],
+      them: []
+    },
+  },
+};
+
+function buildSidebar() {
+  var sb = document.getElementById('sidebar');
+  var html = '';
+  var first = true;
+  for (var cat in MAP) {
+    html += '<div class="cat' + (first ? ' open' : '') + '">';
+    html += '<div class="cat-head" onclick="toggleCat(this)">' + cat + '<span class="arrow">&#9654;</span></div>';
+    html += '<div class="cat-items">';
+    for (var item in MAP[cat]) {
+      html += '<div class="item" onclick="showItem(\'' + cat.replace(/'/g,"\\'") + '\',\'' + item.replace(/'/g,"\\'") + '\',this)">' + item + '</div>';
+    }
+    html += '</div></div>';
+    first = false;
+  }
+  sb.innerHTML = html;
+}
+
+function toggleCat(el) {
+  el.parentElement.classList.toggle('open');
+}
+
+function showItem(cat, item, el) {
+  document.querySelectorAll('.item').forEach(function(i){i.classList.remove('active')});
+  if(el) el.classList.add('active');
+  var d = MAP[cat][item];
+  var html = '<div class="detail">';
+  html += '<h2>' + d.title + '</h2>';
+  html += '<div class="subtitle">' + d.subtitle + '</div>';
+
+  if (d.flow) {
+    html += '<div class="flow">';
+    for (var i = 0; i < d.flow.length; i++) {
+      if (i > 0) html += '<span class="arr">&rarr;</span>';
+      html += '<span class="step">' + d.flow[i] + '</span>';
+    }
+    html += '</div>';
+  }
+
+  var hasYou = d.you && d.you.length > 0;
+  var hasThem = d.them && d.them.length > 0;
+
+  if (hasYou || hasThem) {
+    html += '<div class="split">';
+    if (hasYou) {
+      html += '<div class="col"><div class="col-label you">What you need to know</div>';
+      for (var j = 0; j < d.you.length; j++) {
+        html += '<div class="entry"><div class="entry-title">' + d.you[j].t + '</div><div class="entry-text">' + d.you[j].d + '</div></div>';
+      }
+      html += '</div>';
+    }
+    if (hasThem) {
+      html += '<div class="col"><div class="col-label them">What the customer sees</div>';
+      for (var k = 0; k < d.them.length; k++) {
+        html += '<div class="entry"><div class="entry-title">' + d.them[k].t + '</div><div class="entry-text">' + d.them[k].d + '</div></div>';
+      }
+      html += '</div>';
+    }
+    html += '</div>';
+  }
+
+  html += '</div>';
+  document.getElementById('content').innerHTML = html;
+}
+
+buildSidebar();
+</script>
+</body>
+</html>
