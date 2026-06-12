@@ -1,0 +1,701 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1.0">
+<meta name="robots" content="noindex,nofollow">
+<title>JT — Sales Training | BOSS Systems</title>
+<link href="https://fonts.googleapis.com/css2?family=Share+Tech+Mono&family=Rajdhani:wght@400;600;700&display=swap" rel="stylesheet">
+<style>
+:root{--bg:#050608;--bg2:#0c0d12;--bg3:#12141a;--gold:#C9A84C;--gold-dim:#7a6530;--text:#e8e8f0;--dim:#4a4a6a;--muted:#6a6a8a;--green:#00e87a;--red:#ff3b3b;--blue:#4A9EE8;--border:#1a1c28}
+*{margin:0;padding:0;box-sizing:border-box}
+body{background:var(--bg);color:var(--text);font-family:'Rajdhani',sans-serif;min-height:100vh;line-height:1.5}
+a{color:var(--gold);text-decoration:none}
+
+header{background:linear-gradient(180deg,#09090f,var(--bg));border-bottom:1px solid var(--gold-dim);padding:14px 16px;display:flex;align-items:center;justify-content:space-between;position:sticky;top:0;z-index:100}
+.logo{font-size:14px;font-weight:700;color:var(--gold);letter-spacing:3px;font-family:'Share Tech Mono',monospace}
+header a{font-size:11px;color:var(--dim)}
+
+main{max-width:620px;margin:0 auto;padding:16px 16px 80px}
+
+.progress-bar{display:flex;gap:3px;margin-bottom:24px}
+.prog-dot{flex:1;height:4px;background:var(--border);border-radius:2px;transition:.3s}
+.prog-dot.done{background:var(--green)}
+.prog-dot.active{background:var(--gold)}
+
+h1{font-size:22px;font-weight:700;margin-bottom:4px}
+.sub{font-size:13px;color:var(--muted);margin-bottom:24px}
+
+.section{display:none}
+.section.active{display:block}
+
+.quiz-q{background:var(--bg2);border:1px solid var(--border);padding:20px;margin-bottom:12px;border-radius:4px}
+.quiz-q h3{font-size:15px;margin-bottom:12px;color:var(--text)}
+.quiz-opts{display:flex;flex-direction:column;gap:8px}
+.quiz-opt{background:var(--bg3);border:1px solid var(--border);padding:12px 16px;border-radius:4px;cursor:pointer;font-size:13px;color:var(--muted);transition:.15s}
+.quiz-opt:hover{border-color:#333;color:var(--text)}
+.quiz-opt.selected{border-color:var(--gold);color:var(--gold);background:#0d0d0a}
+
+.result-card{background:var(--bg2);border:1px solid var(--gold-dim);padding:24px;border-radius:4px;margin-bottom:24px;text-align:center}
+.result-type{font-size:24px;font-weight:700;color:var(--gold);font-family:'Share Tech Mono',monospace;letter-spacing:2px;margin-bottom:4px}
+.result-desc{font-size:13px;color:var(--muted)}
+
+.module{background:var(--bg2);border:1px solid var(--border);margin-bottom:8px;border-radius:4px;overflow:hidden}
+.mod-header{padding:16px;display:flex;align-items:center;gap:12px;cursor:pointer}
+.mod-num{font-size:11px;font-family:'Share Tech Mono',monospace;color:var(--gold);width:24px;height:24px;border:1px solid var(--gold-dim);border-radius:50%;display:flex;align-items:center;justify-content:center;flex-shrink:0}
+.mod-num.done{background:var(--green);border-color:var(--green);color:#000}
+.mod-title{font-size:14px;font-weight:700;flex:1}
+.mod-time{font-size:10px;color:var(--dim);font-family:'Share Tech Mono',monospace}
+.mod-body{display:none;padding:0 16px 16px;font-size:13px;color:#bbb;line-height:1.7}
+.mod-body.open{display:block}
+
+.mod-body h4{font-size:13px;color:var(--gold);margin:16px 0 8px;font-family:'Share Tech Mono',monospace;letter-spacing:1px}
+.mod-body table{width:100%;border-collapse:collapse;margin:8px 0 16px;font-size:12px}
+.mod-body th{text-align:left;color:var(--gold);font-size:10px;letter-spacing:1px;padding:8px 6px;border-bottom:1px solid var(--border)}
+.mod-body td{padding:8px 6px;border-bottom:1px solid var(--border);color:#bbb}
+.mod-body td:first-child{color:var(--text);font-weight:600}
+.mod-body .highlight{background:rgba(201,168,76,.06);border-left:3px solid var(--gold);padding:10px 14px;margin:8px 0;font-size:12px;color:var(--text)}
+.mod-body .warn{background:rgba(255,59,59,.06);border-left:3px solid var(--red);padding:10px 14px;margin:8px 0;font-size:12px;color:#ccc}
+.mod-body .try-it{background:rgba(0,232,122,.06);border-left:3px solid var(--green);padding:10px 14px;margin:8px 0;font-size:12px;color:#ccc}
+.mod-body ul{margin:4px 0 12px 16px}
+.mod-body li{margin-bottom:4px}
+.mark-done{background:var(--bg3);border:1px solid var(--border);color:var(--muted);font-size:11px;padding:8px 16px;border-radius:4px;cursor:pointer;margin-top:12px;font-family:'Rajdhani',sans-serif;font-weight:600}
+.mark-done:hover{border-color:var(--green);color:var(--green)}
+.mark-done.completed{background:rgba(0,232,122,.08);border-color:rgba(0,232,122,.3);color:var(--green)}
+
+.btn{padding:14px 28px;font-size:14px;font-weight:700;border:none;border-radius:4px;cursor:pointer;font-family:'Rajdhani',sans-serif;letter-spacing:1px;transition:.15s}
+.btn:active{transform:scale(.97)}
+.btn-gold{background:var(--gold);color:#000}
+.btn-gold:hover{background:#d4b355}
+.btn-green{background:var(--green);color:#000}
+.btn-row{display:flex;gap:10px;margin-top:24px}
+
+.phone-card{display:flex;align-items:center;gap:12px;background:var(--bg2);border:1px solid var(--border);padding:14px 16px;border-radius:4px;margin:8px 0}
+.phone-card .icon{font-size:20px}
+.phone-card .info{flex:1}
+.phone-card .name{font-size:13px;font-weight:700;color:var(--text)}
+.phone-card .num{font-size:16px;color:var(--gold);font-family:'Share Tech Mono',monospace;letter-spacing:1px}
+.phone-card .note{font-size:10px;color:var(--dim)}
+</style>
+</head>
+<body>
+
+<header>
+  <div class="logo">BOSS SALES TRAINING</div>
+  <a href="jt.html">Dashboard &rarr;</a>
+</header>
+
+<main>
+  <div class="progress-bar" id="progress"></div>
+
+  <!-- SECTION 0: QUIZ -->
+  <div class="section active" id="sec-quiz">
+    <h1>Welcome, JT</h1>
+    <div class="sub">Quick quiz — 5 questions — so we can teach you the way that sticks best.</div>
+
+    <div class="quiz-q" data-q="0">
+      <h3>1. When learning something new, what works best?</h3>
+      <div class="quiz-opts">
+        <div class="quiz-opt" data-v="reading">Read a guide or manual</div>
+        <div class="quiz-opt" data-v="visual">Watch someone do it, then try</div>
+        <div class="quiz-opt" data-v="handson">Jump in and figure it out</div>
+        <div class="quiz-opt" data-v="audio">Have someone talk me through it</div>
+      </div>
+    </div>
+
+    <div class="quiz-q" data-q="1">
+      <h3>2. Before a sales call, you'd rather:</h3>
+      <div class="quiz-opts">
+        <div class="quiz-opt" data-v="reading">Review your script and notes</div>
+        <div class="quiz-opt" data-v="visual">Look at a quick cheat sheet or chart</div>
+        <div class="quiz-opt" data-v="handson">Do a practice call first</div>
+        <div class="quiz-opt" data-v="audio">Listen to a recorded great call</div>
+      </div>
+    </div>
+
+    <div class="quiz-q" data-q="2">
+      <h3>3. You remember info best when you:</h3>
+      <div class="quiz-opts">
+        <div class="quiz-opt" data-v="reading">Write it down or read it multiple times</div>
+        <div class="quiz-opt" data-v="visual">See it in a chart or table</div>
+        <div class="quiz-opt" data-v="handson">Apply it in a real situation</div>
+        <div class="quiz-opt" data-v="audio">Hear it explained or discuss it out loud</div>
+      </div>
+    </div>
+
+    <div class="quiz-q" data-q="3">
+      <h3>4. When handling a new objection, you'd:</h3>
+      <div class="quiz-opts">
+        <div class="quiz-opt" data-v="reading">Look up the answer in a reference guide</div>
+        <div class="quiz-opt" data-v="visual">Check a quick decision flowchart</div>
+        <div class="quiz-opt" data-v="handson">Wing it and adjust based on reaction</div>
+        <div class="quiz-opt" data-v="audio">Ask your coach how to handle it</div>
+      </div>
+    </div>
+
+    <div class="quiz-q" data-q="4">
+      <h3>5. The best way to get better at sales:</h3>
+      <div class="quiz-opts">
+        <div class="quiz-opt" data-v="reading">Study the playbook until you know it cold</div>
+        <div class="quiz-opt" data-v="visual">Watch top performers and copy their approach</div>
+        <div class="quiz-opt" data-v="handson">Make as many calls as possible</div>
+        <div class="quiz-opt" data-v="audio">Get feedback after every call</div>
+      </div>
+    </div>
+
+    <div class="btn-row">
+      <button class="btn btn-gold" style="flex:1" onclick="submitQuiz()">See My Results</button>
+    </div>
+  </div>
+
+  <!-- SECTION 1: QUIZ RESULTS + TRAINING -->
+  <div class="section" id="sec-train">
+    <div class="result-card">
+      <div style="font-size:10px;color:var(--dim);letter-spacing:2px;margin-bottom:4px">YOUR LEARNING STYLE</div>
+      <div class="result-type" id="result-type"></div>
+      <div class="result-desc" id="result-desc"></div>
+    </div>
+
+    <h1 style="font-size:16px;margin-bottom:4px">Your Training Path</h1>
+    <div class="sub">Work through these in order. Each one builds on the last.</div>
+
+    <div id="modules-list"></div>
+
+    <div class="btn-row" style="margin-top:32px">
+      <a href="jt.html" class="btn btn-green" style="flex:1;text-align:center;text-decoration:none">Go to Your Dashboard &rarr;</a>
+    </div>
+  </div>
+</main>
+
+<script>
+const answers = [null,null,null,null,null];
+
+const STYLE_INFO = {
+  handson: {name:"HANDS-ON LEARNER", desc:"You learn by doing. We'll get you on practice calls fast, then fill in the details after."},
+  reading: {name:"DEEP READER", desc:"You absorb through reading. We'll give you the full playbook first, then practice."},
+  visual:  {name:"VISUAL LEARNER", desc:"Charts and tables stick. We'll lead with numbers and comparisons, then layer in scripts."},
+  audio:   {name:"VERBAL LEARNER", desc:"You learn through conversation. We'll point you to coaching calls and talk-throughs first."}
+};
+
+const MODULE_ORDER = {
+  handson: [6,3,4,7,0,1,2,5],
+  reading: [0,1,2,3,4,7,5,6],
+  visual:  [1,0,2,3,4,7,5,6],
+  audio:   [6,3,4,7,0,1,2,5]
+};
+
+const MODULES = [
+  {
+    title: "What Is BOSS Systems",
+    time: "5 min",
+    body: `
+<h4>THE COMPANY</h4>
+<p>BOSS Systems is an AI company based in Tyler, Texas. We figure out where a business is losing money and build AI to fix it. Deployed in 72 hours.</p>
+<p>We are NOT a call center. NOT an answering service. We build intelligent AI systems that handle the parts of a business that cost money when done wrong — phone answering, follow-ups, scheduling, lead capture, review requests.</p>
+
+<h4>THE THREE PRODUCTS</h4>
+<table>
+<tr><th>Product</th><th>Setup</th><th>Monthly</th><th>Best For</th></tr>
+<tr><td>BOSS ANALYZE</td><td>Free</td><td>—</td><td>Door opener. Shows them their numbers.</td></tr>
+<tr><td>AI Receptionist</td><td>$250</td><td>$50/mo</td><td>Small shops, price-sensitive, entry point.</td></tr>
+<tr><td>BOSS BUILD Standard</td><td>$1,497</td><td>$97/mo</td><td>Phone + CRM basics.</td></tr>
+<tr><td>BOSS BUILD Premium</td><td>$2,997</td><td>$197/mo</td><td>Phone + follow-ups + reviews.</td></tr>
+<tr><td>Full Transformation</td><td>$5,997</td><td>$497/mo</td><td>Complete AI stack. 5+ employees, $500K+ rev.</td></tr>
+<tr><td>BOSS OWN</td><td>$0</td><td>15% share</td><td>We build + operate. They do the work.</td></tr>
+</table>
+
+<div class="highlight">No overages. No contracts. Cancel anytime. Month to month. $50/mo is $50/mo — no surprise bills.</div>
+
+<h4>WHY WE WIN</h4>
+<p>The biggest AI receptionist company (Avoca) has a $1B valuation, raised $125M, and charges $1,000-$3,000/month. They only serve operators with $3M+ revenue on ServiceTitan.</p>
+<p>We serve the 99% they ignore — at 1/20th the price. That gap is our entire opportunity.</p>
+
+<h4>THE $250 IS A "CUSTOM BUILD FEE"</h4>
+<p>Not a "setup fee." We custom-build their AI for their specific business — their hours, services, pricing, personality. Contractors understand that custom work costs money.</p>
+<p>Say: "We custom-build your AI for your specific business — that's the $250 build fee. After that, it's $50/month."</p>
+`
+  },
+  {
+    title: "The Numbers That Close Deals",
+    time: "5 min",
+    body: `
+<h4>MEMORIZE THESE — USE THEM EVERY CALL</h4>
+<table>
+<tr><th>Stat</th><th>Number</th></tr>
+<tr><td>Calls that go unanswered</td><td>27%</td></tr>
+<tr><td>Callers who never call back after voicemail</td><td>85-93%</td></tr>
+<tr><td>Customers who buy from the first to respond</td><td>78%</td></tr>
+<tr><td>Revenue lift from AI answering, year 1</td><td>18% average</td></tr>
+<tr><td>5-min response vs 30-min response</td><td>21x more likely to convert</td></tr>
+<tr><td>After 30 minutes</td><td>79% already called a competitor</td></tr>
+</table>
+
+<h4>LOSS BY TRADE — ANNUAL REVENUE LOST TO MISSED CALLS</h4>
+<table>
+<tr><th>Trade</th><th>Avg Ticket</th><th>Monthly Loss</th><th>Annual Loss</th><th>ROI vs $50/mo</th></tr>
+<tr><td>HVAC</td><td>$800</td><td>$30,600</td><td>$367K</td><td>612:1</td></tr>
+<tr><td>Plumber</td><td>$350</td><td>$10,700</td><td>$129K</td><td>214:1</td></tr>
+<tr><td>Electrician</td><td>$450</td><td>$9,500</td><td>$115K</td><td>191:1</td></tr>
+<tr><td>Roofer</td><td>$5,000+</td><td>$102,000</td><td>$1.2M</td><td>2,040:1</td></tr>
+<tr><td>Law Firm</td><td>$3,000+</td><td>$45,900</td><td>$551K</td><td>918:1</td></tr>
+<tr><td>Auto Repair</td><td>$300</td><td>$7,650</td><td>$92K</td><td>153:1</td></tr>
+</table>
+
+<div class="highlight">"For every dollar you spend on BOSS, you get back at minimum $150. Name me another business expense with that return."</div>
+
+<h4>COMPETITOR PRICING (AT 50 CALLS/DAY)</h4>
+<table>
+<tr><th>Competitor</th><th>Monthly Cost</th><th>Why They Lose</th></tr>
+<tr><td style="color:var(--gold)">BOSS Systems</td><td style="color:var(--gold)">$50 flat</td><td style="color:var(--gold)">No overages. Cancel anytime.</td></tr>
+<tr><td>Goodcall</td><td>$79-$249</td><td>Per unique caller. 2-5x more.</td></tr>
+<tr><td>Rosie AI</td><td>$299</td><td>2,000 min cap.</td></tr>
+<tr><td>Dialzara</td><td>$1,530+</td><td>$29 bait, per-minute overages.</td></tr>
+<tr><td>My AI Front Desk</td><td>$653+</td><td>$149 base + overages.</td></tr>
+<tr><td>Smith.ai (AI)</td><td>$2,400+</td><td>Per-call pricing.</td></tr>
+<tr><td>Ruby (human)</td><td>$8,625+</td><td>Per-minute. Spouse sees bill → cancelled.</td></tr>
+<tr><td>Avoca AI</td><td>$1K-$3K</td><td>$3M+ revenue required.</td></tr>
+</table>
+
+<div class="highlight">"Our competitors charge by the minute. Ruby will hit you with a $720 bill and your wife will cancel it before you get home. We charge $50. That's it."</div>
+`
+  },
+  {
+    title: "Who Buys — Targets & Decision Makers",
+    time: "8 min",
+    body: `
+<h4>BEST TARGETS (ranked)</h4>
+<ol>
+<li><strong>HVAC</strong> — Highest value, peak season May-Aug, $1,500/missed call</li>
+<li><strong>Plumbers</strong> — Emergency calls, can't answer from under a sink</li>
+<li><strong>Electricians</strong> — Hands in a panel, same story</li>
+<li><strong>Roofers</strong> — Storm season volume, $5K+ tickets</li>
+<li><strong>Law firms</strong> — Every missed call is a lost case</li>
+<li><strong>Auto repair</strong> — High call volume, low answer rate</li>
+</ol>
+
+<div class="warn">
+<strong>DO NOT SELL TO:</strong><br>
+- Franchises (Roto-Rooter, Servpro) — corporate controls systems<br>
+- Louisiana (985, 318, 504, 337, 225 area codes) — bad market<br>
+- Salons, barbershops, pet groomers — low ticket, low urgency<br>
+- East Texas (903, 430) — that's Boston's in-person territory
+</div>
+
+<h4>THE 5 DECISION MAKERS (know who you're really selling to)</h4>
+<table>
+<tr><th>Who</th><th>Their Role</th><th>How to Handle</th></tr>
+<tr><td>The Owner</td><td>Final say, but rarely alone</td><td>Get the yes, but know it's not final until the wife signs off</td></tr>
+<tr><td>The Spouse</td><td>Has veto power on monthly bills</td><td>"$50 flat, no surprises. She won't see a $700 bill."</td></tr>
+<tr><td>Office Manager</td><td>Controls the phone, can champion or kill</td><td>Position AI as HER backup, not her replacement</td></tr>
+<tr><td>One Trusted Peer</td><td>Fellow contractor validation</td><td>One peer referral > 1,000 cold calls</td></tr>
+<tr><td>Supply House Guy</td><td>The barbershop of the trades</td><td>Plant seeds at 6:30 AM, don't hard sell</td></tr>
+</table>
+
+<h4>WHEN THEY DECIDE</h4>
+<table>
+<tr><th>Decision Size</th><th>Best Time</th><th>Why</th></tr>
+<tr><td>Simple ($50/mo)</td><td>4-5 PM</td><td>Brain tired, gut decisions, simple close works</td></tr>
+<tr><td>Complex ($1,500+)</td><td>8-9 AM</td><td>Brain fresh, can process ROI and numbers</td></tr>
+<tr><td>Walk-ins</td><td>6:30-7:30 AM or 4-5 PM</td><td>Before first job or end of day</td></tr>
+<tr><td>Supply house seeds</td><td>6:30-7 AM</td><td>Relaxed, killing time, open to chat</td></tr>
+<tr><td>Kitchen table (with spouse)</td><td>7-9 PM</td><td>Follow-up only, not cold outreach</td></tr>
+</table>
+
+<div class="highlight"><strong>The other 8+ hours they are UNREACHABLE</strong> — under a house, in an attic, on a roof, hands full. That IS the value proposition: you're selling them back the calls they literally cannot take.</div>
+
+<h4>THE SPOUSE ANGLE</h4>
+<p>60%+ of small contractor purchases — the spouse has veto power. #1 reason people cancel Ruby/Smith.ai: bill shock. The spouse sees $720 and kills it.</p>
+<ul>
+<li>If spouse answers the phone: "You're doing $4,000/month worth of work for free. This does it for $50."</li>
+<li>If owner says "let me talk to my wife": "Tell her it's $50/month flat, no surprises, cancel anytime."</li>
+<li>If spouse is present: Address them directly about the flat billing.</li>
+</ul>
+`
+  },
+  {
+    title: "The Sales Process — Step by Step",
+    time: "10 min",
+    body: `
+<h4>STEP 1: THE OPENER</h4>
+<p>You're not selling AI. You're solving a problem they already have.</p>
+<div class="highlight">
+<strong>In person:</strong> "Hey — I work with [their trade] companies around here. Quick question: when you're out on a job and a call comes in, what happens to it?"<br><br>
+<strong>On the phone:</strong> "Hey, is this [business name]? This is JT with BOSS Systems. Quick one for you — when you're out on a job and someone calls, what happens to that call?"<br><br>
+<strong>Networking:</strong> "What kind of business are you in? ... Can I ask you something? When you're out doing the actual work, who answers your phone?"
+</div>
+<p>Then SHUT UP. Let them talk. They'll tell you the problem.</p>
+
+<h4>STEP 2: DIAGNOSE THE PAIN</h4>
+<p>After they answer, follow up:</p>
+<ol>
+<li>"How do you follow up with customers after a job's done?"</li>
+<li>"What's the one thing that eats the most time but doesn't make you money?"</li>
+</ol>
+
+<h4>STEP 3: PAINT THE PICTURE</h4>
+<p>Make them SEE the loss, not just hear a stat:</p>
+<ul>
+<li><strong>HVAC:</strong> "July, 102 degrees, you're on a roof. Phone rings. Voicemail. $1,500 AC job — gone."</li>
+<li><strong>Plumber:</strong> "Tuesday night, 9 PM, pipe bursts. They call you. Voicemail. Emergency markup, $400-$800 minimum. Gone."</li>
+<li><strong>Electrician:</strong> "You're in a panel, both hands full. Phone buzzes. Hour later — missed call, no voicemail. $450 gone."</li>
+<li><strong>Roofer:</strong> "Storm Saturday night. 7 AM Sunday, 15 homeowners calling roofers. First to answer books all 15. That's $75K-$225K."</li>
+<li><strong>Law firm:</strong> "Car accident. Hospital, googling lawyers. Calls three firms. Two go to voicemail. One answers. $10K-$50K case."</li>
+</ul>
+
+<h4>STEP 4: THE NUMBER</h4>
+<div class="highlight">"For an HVAC company, that's about $30,000 a month — $367,000 a year — lost to missed calls. Even if we only catch 10% of those, that's $36,000 back for $600 in annual cost."</div>
+
+<h4>STEP 5: OFFER THE FREE ANALYSIS</h4>
+<p>"We have a no-cost business analysis. Takes about a minute. Shows you exactly where you're leaving money on the table. No pitch. You just see your numbers."</p>
+<p>Link: bosssystems.co/analyze.html</p>
+
+<h4>STEP 6: CLOSE</h4>
+<div class="highlight">
+<strong>Close with "which," not "whether":</strong><br>
+Wrong: "Would you like to get started?"<br>
+Right: "I have two build slots this week — Wednesday or Friday. Which works better?"<br><br>
+<strong>The status quo reframe:</strong><br>
+Wrong: "Would you like to try AI phone answering?"<br>
+Right: "Right now every call that hits voicemail costs you money. You're paying $7,333 a month to NOT answer your phone."
+</div>
+
+<h4>THE DEMO — YOUR SECRET WEAPON</h4>
+<p>When someone is skeptical:</p>
+<div class="highlight">"Call this number right now: (903) 522-4459. That's our AI. Talk to it like you're a customer. If it doesn't blow your mind, I'll leave you alone."</div>
+<p>This closes more deals than any pitch. Let the product sell itself.</p>
+
+<h4>THE 95% PROMISE</h4>
+<p>"If our AI doesn't answer at least 95% of your calls in the first 30 days, your first month is free. We'll fix it until we hit that number."</p>
+`
+  },
+  {
+    title: "Objection Handling",
+    time: "10 min",
+    body: `
+<h4>WHAT THEY SAY vs WHAT THEY MEAN vs WHAT YOU SAY</h4>
+<table>
+<tr><th>They Say</th><th>They Mean</th><th>Your Response</th></tr>
+<tr><td>"How much?"</td><td>Price is first filter</td><td>"A receptionist costs $4-5K/mo. Ruby charges $250-720. We do the same thing for $50/mo flat. But first — the analysis is free and shows your numbers."</td></tr>
+<tr><td>"Let me think about it"</td><td>Hidden objection they won't say</td><td>Mirror: "Think about it?" Then: "Is it the price, the tech, or something else?"</td></tr>
+<tr><td>"I'm too busy"</td><td>Overwhelmed, can't process</td><td>"That's the whole point — you're too busy to answer calls, so you're losing them."</td></tr>
+<tr><td>"My wife handles that"</td><td>Wife is the real decision-maker</td><td>"Can I include her? She probably has the best picture of how many calls come in."</td></tr>
+<tr><td>"Send me something"</td><td>Wants you to go away politely</td><td>"Best email? I'll send the 60-second analysis. Just shows your numbers."</td></tr>
+<tr><td>"What's the catch?"</td><td>Been burned before</td><td>"No contract, cancel anytime, $50 flat. The catch is we're small and hungry."</td></tr>
+<tr><td>"Too expensive"</td><td>Doesn't see the ROI yet</td><td>"$50/mo is less than one missed service call. Ruby charges $720 for the same thing."</td></tr>
+<tr><td>"Is it real AI?"</td><td>Skeptical about the tech</td><td>"Call the demo right now: (903) 522-4459. Talk to it like a customer."</td></tr>
+<tr><td>"Sounds too good to be true"</td><td>Needs proof</td><td>"Call the demo. 30 seconds. If it's not what you expected, no hard feelings."</td></tr>
+<tr><td>"What if it doesn't work?"</td><td>Afraid of commitment</td><td>"95% Promise: doesn't hit 95% in 30 days, first month free. Cancel anytime."</td></tr>
+<tr><td>"We don't miss many calls"</td><td>No idea how many they miss</td><td>"That's what every owner says until they see the data. Can I run a quick test?"</td></tr>
+<tr><td>"I'm not a tech person"</td><td>Afraid of looking stupid</td><td>"You don't touch any tech. We build it, run it, fix it. You just do your work."</td></tr>
+<tr><td>"I'll call you back"</td><td>Won't call back</td><td>"What day works for a quick follow-up? Tuesday or Thursday?"</td></tr>
+<tr><td>"We're good"</td><td>Not aware of the problem yet</td><td>"Quick question — when you're on a job at 2 PM and a call comes in, what happens?"</td></tr>
+</table>
+
+<h4>FEAR LANDSCAPE — WHAT THEY'RE ACTUALLY AFRAID OF</h4>
+<table>
+<tr><th>Fear</th><th>Intensity</th><th>One-Line Defusal</th></tr>
+<tr><td>Being scammed</td><td>10/10</td><td>"Call our demo right now. Website is bosssystems.co. We're not going anywhere."</td></tr>
+<tr><td>Depending on something they can't fix</td><td>8/10</td><td>"If we disappeared, your phone goes back to how it was. No lock-in."</td></tr>
+<tr><td>Looking stupid to peers</td><td>8/10</td><td>"The 10-truck companies all have someone answering. This gives you the same thing for $50."</td></tr>
+<tr><td>Spouse finding out about another bill</td><td>7/10</td><td>"Can she be on the call? She should know about this. It's $50 flat."</td></tr>
+<tr><td>Commitment to monthly bill</td><td>6/10</td><td>"Cancel with a text. If it doesn't catch one call worth $50 in the first month, cancel."</td></tr>
+<tr><td>Change itself</td><td>6/10</td><td>"Nothing changes. Same number, same business. Voicemail becomes a real voice."</td></tr>
+</table>
+
+<h4>VOSS TECHNIQUES — USE THESE LIVE</h4>
+<ul>
+<li><strong>Accusation Audit:</strong> "I know what you're thinking — here's some guy trying to sell you something. You probably think AI can't handle real calls. And $50 sounds too cheap. I get it." → Then silence.</li>
+<li><strong>Mirroring:</strong> Repeat their last 1-3 words as a question. "We're getting by." → "Getting by?"</li>
+<li><strong>Labeling:</strong> "It seems like..." or "It sounds like..." — name what they're feeling.</li>
+<li><strong>Calibrated Questions:</strong> "What's held you back from solving the phone problem?" "How would your week look if every call got answered?"</li>
+<li><strong>No-Oriented Questions:</strong> "Would it be ridiculous to try this for a month?" "Have you given up on fixing the phone problem?"</li>
+</ul>
+`
+  },
+  {
+    title: "After The Sale — Handoff & Retention",
+    time: "5 min",
+    body: `
+<h4>YOUR JOB ENDS AT THE CLOSE</h4>
+<ol>
+<li>Close the deal and collect payment (Venmo @BosRoss)</li>
+<li>Send Boston the client info: name, business, phone, email, what they need</li>
+<li>Boston's team builds and deploys within 72 hours</li>
+<li>Client gets a welcome call and their AI is live</li>
+<li>You get your commission</li>
+</ol>
+
+<h4>YOUR COMMISSION</h4>
+<table>
+<tr><th>Product</th><th>Your Setup Cut (20%)</th><th>Your Monthly Cut (20%)</th></tr>
+<tr><td>AI Receptionist</td><td>$50</td><td>$10/mo forever</td></tr>
+<tr><td>BUILD Standard</td><td>$299</td><td>$19.40/mo forever</td></tr>
+<tr><td>BUILD Premium</td><td>$599</td><td>$39.40/mo forever</td></tr>
+<tr><td>Full Transformation</td><td>$1,199</td><td>$99.40/mo forever</td></tr>
+<tr><td>BOSS OWN</td><td>—</td><td>20% of BOSS's 15% share</td></tr>
+</table>
+<div class="highlight">The monthly commission is <strong>lifelong</strong> — as long as the client stays active, you get paid every month. 10 receptionist clients = $100/mo passive income. 10 BUILD clients = $194-$994/mo.</div>
+
+<h4>TEXT TEMPLATES (copy-paste after the sale)</h4>
+<p><strong>Payment received:</strong></p>
+<div class="highlight">Got it — thank you. I'm passing your info to Boston right now. You'll have a test call to listen to within 72 hours. Here's the BOSS support line if you need anything: (903) 522-4459</div>
+
+<p><strong>Day 3 check-in:</strong></p>
+<div class="highlight">Hey [Name] — just checking in. Your AI's been live 3 days. Any calls come through? If you haven't tested it, call [their number] and pretend you need [their service].</div>
+
+<p><strong>Referral ask (after 2+ weeks):</strong></p>
+<div class="highlight">Hey [Name] — if any of your buddies are missing calls too, just give them my number. Or they can call (903) 522-4459 and hear it themselves.</div>
+
+<p><strong>After a "no":</strong></p>
+<div class="highlight">No worries. If you ever want to hear what the AI sounds like, call (903) 522-4459 anytime. It's live 24/7. Have a good one.</div>
+
+<h4>THE THREE REASONS THEY CANCEL</h4>
+<ol>
+<li><strong>They forget they have it</strong> → Weekly summaries solve this (automated)</li>
+<li><strong>They don't see ROI</strong> → Quantify everything: "12 calls, 3 would've been missed, $900 saved vs $50 paid"</li>
+<li><strong>Something breaks, nobody fixes it</strong> → Tell Boston immediately. Fix within 24 hours.</li>
+</ol>
+`
+  },
+  {
+    title: "Practice — Get Reps In",
+    time: "Ongoing",
+    body: `
+<h4>YOUR PRACTICE TOOLS</h4>
+
+<div class="phone-card">
+  <div class="icon">&#128081;</div>
+  <div class="info">
+    <div class="name">Devil's Advocate</div>
+    <div class="num">(903) 716-5297</div>
+    <div class="note">AI simulates a skeptical business owner. Random persona each call — Busy Bobby, Skeptical Sharon, Price-First Pete. Get scored after.</div>
+  </div>
+</div>
+
+<div class="phone-card">
+  <div class="icon">&#127942;</div>
+  <div class="info">
+    <div class="name">Deal Coach</div>
+    <div class="num">(903) 326-7285</div>
+    <div class="note">Call when you need strategy help. Stuck on an objection? Text or call the coach for real-time advice.</div>
+  </div>
+</div>
+
+<div class="phone-card">
+  <div class="icon">&#128222;</div>
+  <div class="info">
+    <div class="name">Live Demo (show prospects this)</div>
+    <div class="num">(903) 522-4459</div>
+    <div class="note">Our live AI receptionist. Have every prospect call this. It sells itself.</div>
+  </div>
+</div>
+
+<h4>PRACTICE ROUTINE</h4>
+<div class="try-it">
+<strong>Before your first real call:</strong><br>
+1. Call the Demo line — hear what you're selling<br>
+2. Call Devil's Advocate 3 times — get comfortable with objections<br>
+3. Call Deal Coach — ask about anything you're unsure about<br>
+4. Then go make real calls
+</div>
+
+<div class="try-it">
+<strong>Daily warmup (5 min):</strong><br>
+1. Review today's hit list<br>
+2. One Devil's Advocate call to get sharp<br>
+3. Open your Quick Reference on your phone<br>
+4. Go
+</div>
+
+<h4>PEAK SEASON PITCH (15 seconds — memorize this)</h4>
+<div class="highlight">"I called your business today as a customer and got voicemail. I know you're slammed right now — that's exactly why those calls are going to your competitor. We fix that for fifty bucks a month. Can I set it up this week so you stop bleeding calls?"</div>
+
+<h4>THE ONE-LINER (memorize this)</h4>
+<div class="highlight">"We figure out where your business is losing money and build AI to fix it. The analysis is free."</div>
+`
+  }
+  ,{
+    title: "Summer Partner Program (SPP)",
+    time: "8 min",
+    body: `
+<h4>WHAT IS SPP?</h4>
+<p>The Summer Partner Program lets teens (14-22) pick a service business, and Boston builds the entire AI stack for free — phone number, AI receptionist, website, booking, payment system, review requests. The partner does the physical work and keeps 80% of revenue. Boston takes 20%.</p>
+<p>Program runs through September 1, 2026. Partners keep the business after summer.</p>
+
+<div class="highlight"><strong>Your job:</strong> Refer teens and parents. When a partner you referred makes their first profit, you get a $20 bonus.</div>
+
+<h4>THE 80/20 SPLIT — HOW THE MONEY WORKS</h4>
+<table>
+<tr><th>Step</th><th>What Happens</th></tr>
+<tr><td>Customer pays</td><td>Partner collects the gross revenue</td></tr>
+<tr><td>Sunday 8pm</td><td>Partner texts Boston their weekly total</td></tr>
+<tr><td>Monday noon</td><td>Partner Venmos 20% to @BosRoss</td></tr>
+<tr><td>$0 week?</td><td>Text "$0" — owe nothing</td></tr>
+</table>
+
+<div class="highlight">
+<strong>Example:</strong> Junk removal, 3 loads at $300 = $900 gross.<br>
+Minus dump/gas: -$200. Minus 20% fee: -$180.<br>
+Partner take-home: <strong>$520/week</strong>. 12-week summer: <strong>~$6,240</strong>.
+</div>
+
+<h4>ALL 11 BUSINESSES</h4>
+<table>
+<tr><th>Business</th><th>Rate</th><th>Weekly Take-Home</th></tr>
+<tr><td>Junk Removal</td><td>$150-400/load</td><td>$450-750</td></tr>
+<tr><td>Pressure Washing</td><td>$150-350/job</td><td>$500-1,000</td></tr>
+<tr><td>Lawn Care</td><td>$35-80/yard</td><td>$400-1,000</td></tr>
+<tr><td>Pool Cleaning</td><td>$75-150/clean</td><td>$600-1,600</td></tr>
+<tr><td>Car Detailing</td><td>$75-150/car</td><td>$400-900</td></tr>
+<tr><td>House Cleaning</td><td>$100-250/clean</td><td>$400-1,000</td></tr>
+<tr><td>Event Decorating</td><td>$150-400/event</td><td>$300-1,000</td></tr>
+<tr><td>Pet Sitting</td><td>$20-35/walk, $50-75/night</td><td>$300-700</td></tr>
+<tr><td>Organizing</td><td>$65-85/hr</td><td>$400-800</td></tr>
+<tr><td>Photography</td><td>$150-300/session</td><td>$400-900</td></tr>
+<tr><td>Social Media Mgmt</td><td>$200-400/mo per client</td><td>$300-600</td></tr>
+</table>
+<p style="font-size:11px;color:var(--dim);margin-top:4px">All earnings are post-cost, post-split estimates. Results vary.</p>
+
+<h4>WHAT BOSTON BUILDS FOR EVERY PARTNER (FREE)</h4>
+<ul>
+<li>Local phone number with AI receptionist (answers 24/7, quotes jobs, books appointments)</li>
+<li>Custom website with business info and phone number</li>
+<li>Auto-payment links sent after every job</li>
+<li>Automatic review requests to customers</li>
+<li>Scheduling, reminders, and job tracking</li>
+</ul>
+<p>All built within 24 hours of acceptance. Partner pays $0.</p>
+
+<h4>HOW TO PITCH TO TEENS</h4>
+<div class="highlight">
+"I know this guy Boston who sets up businesses for teens. Zero cost to start. You pick a business, he builds the whole phone system and booking — you just do the work. You keep 80% of everything you make."<br><br>
+"Most people make $400-750 a week. Way better than Chick-fil-A. You own the business — keep it after summer."
+</div>
+
+<h4>HOW TO PITCH TO PARENTS</h4>
+<div class="highlight">
+"It costs zero to start — Boston builds everything for free. Your kid keeps 80%. Parent approval required before anything activates."<br><br>
+"It's not a job, not a course, not MLM. Your kid runs a real business, builds real skills, and has something great for college apps."
+</div>
+<p>Always send parents to <strong>bosssystems.co/parents.html</strong>.</p>
+
+<h4>YOUR REFERRAL FLOW</h4>
+<ol>
+<li>Send them <strong>bosssystems.co/summer.html</strong> (the main pitch page)</li>
+<li>Or have them take the quiz: <strong>bosssystems.co/partner-quiz.html</strong></li>
+<li>They apply at <strong>bosssystems.co/partner-info.html</strong></li>
+<li>They put YOUR name in the referral box</li>
+<li>Boston texts them back within 24 hours</li>
+<li>Under 18? Parent reads bosssystems.co/parents.html and approves</li>
+<li>When they make their first profit → you get $20</li>
+</ol>
+
+<h4>NON-NEGOTIABLES</h4>
+<div class="warn">
+<strong>Under 18:</strong> Parent approval required before anything activates — no exceptions.<br>
+<strong>Under 18:</strong> Junk removal and pressure washing not recommended (heavy equipment).<br>
+<strong>Revenue:</strong> Honest numbers every Sunday by 8pm. No fudging.<br>
+<strong>Quit anytime:</strong> 3 days notice, no penalty, they keep the business.<br>
+<strong>Income disclaimer:</strong> Always say "earnings vary" — never guarantee income.
+</div>
+
+<div class="try-it">
+<strong>Practice:</strong> Right now, think of 3 people between 14-22 who might want to start a business this summer. Text them the link: bosssystems.co/summer.html
+</div>
+`
+  }
+];
+
+document.querySelectorAll('.quiz-opt').forEach(opt => {
+  opt.onclick = () => {
+    const q = opt.closest('.quiz-q');
+    q.querySelectorAll('.quiz-opt').forEach(o => o.classList.remove('selected'));
+    opt.classList.add('selected');
+    answers[parseInt(q.dataset.q)] = opt.dataset.v;
+  };
+});
+
+function submitQuiz() {
+  if (answers.includes(null)) { alert('Answer all 5 questions.'); return; }
+  const counts = {handson:0, reading:0, visual:0, audio:0};
+  answers.forEach(a => counts[a]++);
+  let style = 'handson';
+  let max = 0;
+  Object.entries(counts).forEach(([k,v]) => { if (v > max) { max = v; style = k; } });
+
+  localStorage.setItem('jt_style', style);
+  localStorage.setItem('jt_quiz_done', '1');
+
+  document.getElementById('result-type').textContent = STYLE_INFO[style].name;
+  document.getElementById('result-desc').textContent = STYLE_INFO[style].desc;
+
+  const order = MODULE_ORDER[style];
+  const list = document.getElementById('modules-list');
+  list.innerHTML = '';
+
+  const completed = JSON.parse(localStorage.getItem('jt_modules') || '{}');
+
+  order.forEach((idx, pos) => {
+    const m = MODULES[idx];
+    const done = completed[idx];
+    const div = document.createElement('div');
+    div.className = 'module';
+    div.innerHTML = `
+      <div class="mod-header" onclick="this.nextElementSibling.classList.toggle('open')">
+        <div class="mod-num ${done ? 'done' : ''}">${pos + 1}</div>
+        <div class="mod-title">${m.title}</div>
+        <div class="mod-time">${m.time}</div>
+      </div>
+      <div class="mod-body">
+        ${m.body}
+        <button class="mark-done ${done ? 'completed' : ''}" onclick="markDone(${idx}, this)">
+          ${done ? 'Completed' : 'Mark Complete'}
+        </button>
+      </div>
+    `;
+    list.appendChild(div);
+  });
+
+  document.getElementById('sec-quiz').classList.remove('active');
+  document.getElementById('sec-train').classList.add('active');
+  updateProgress();
+}
+
+function markDone(idx, btn) {
+  const completed = JSON.parse(localStorage.getItem('jt_modules') || '{}');
+  completed[idx] = true;
+  localStorage.setItem('jt_modules', JSON.stringify(completed));
+  btn.classList.add('completed');
+  btn.textContent = 'Completed';
+  btn.closest('.module').querySelector('.mod-num').classList.add('done');
+  updateProgress();
+}
+
+function updateProgress() {
+  const completed = JSON.parse(localStorage.getItem('jt_modules') || '{}');
+  const total = MODULES.length;
+  const done = Object.keys(completed).length;
+  const bar = document.getElementById('progress');
+  bar.innerHTML = '';
+  for (let i = 0; i < total; i++) {
+    const dot = document.createElement('div');
+    dot.className = 'prog-dot' + (i < done ? ' done' : (i === done ? ' active' : ''));
+    bar.appendChild(dot);
+  }
+}
+
+// Auto-restore if quiz already done
+if (localStorage.getItem('jt_quiz_done')) {
+  submitQuiz.__auto = true;
+  const style = localStorage.getItem('jt_style') || 'handson';
+  const counts = {handson:0,reading:0,visual:0,audio:0};
+  counts[style] = 5;
+  // Restore answers to trigger submitQuiz properly
+  for (let i = 0; i < 5; i++) answers[i] = style;
+  submitQuiz();
+}
+
+updateProgress();
+</script>
+</body>
+</html>
