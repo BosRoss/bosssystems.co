@@ -1,41 +1,41 @@
 {
-  "generated": "2026-06-11T02:00:03.567408+00:00",
+  "generated": "2026-06-12T20:30:00.218157+00:00",
   "sections": {
     "atlas": {
       "power_level": "ACTIVE",
-      "last_scan": "2026-06-11T00:02:03.007515+00:00",
-      "scan_count": 90,
+      "last_scan": "2026-06-12T19:49:50.567732+00:00",
+      "scan_count": 94,
       "heat_score": 100,
-      "recommendation": "HOT DAY. Weather-driven demand in Eastern/Central El Paso County; Rio Grande Valley of Eastern El Paso/Western Hudspeth Counties; Rio Grande Valley of Eastern Hudspeth County, Presidio, TX, Jeff Davis, TX. Call HVAC/roofers there NOW.",
+      "recommendation": "HOT DAY. Weather-driven demand in Chicot; East Carroll; Madison; Catahoula; Tensas; Concordia; Bolivar; Sunflower; Leflore; Washington; Humphreys; Issaquena; Sharkey; Yazoo; Madison; Warren; Hinds; Rankin; Claiborne; Copiah; Simpson; , Alcorn, MS; Chickasaw, MS; Itawamba, MS; Lafayette, MS; Lee, MS; Pontotoc, MS; Prentiss, MS; Tippah, MS; Tishomingo, MS; Union, MS, Cooke, TX; Denton, TX; Wise, TX. Call HVAC/roofers there NOW.",
       "demand_signals": 10,
       "pain_signals": 0,
       "pitch_adjustments": 0,
-      "competitor_intel": 0,
-      "territory_alerts": 13,
+      "competitor_intel": 1,
+      "territory_alerts": 18,
       "top_demands": [
         {
-          "type": "storm",
-          "area": "Presidio, TX",
-          "niche": "roofing"
-        },
-        {
           "type": "flood",
-          "area": "Jeff Davis, TX",
+          "area": "Fannin, TX; Grayson, TX",
           "niche": "plumbing"
         },
         {
           "type": "flood",
-          "area": "Jeff Davis, TX; Reeves, TX",
+          "area": "Cooke, TX; Denton, TX; Wise, TX",
           "niche": "plumbing"
         },
         {
           "type": "heat_wave",
-          "area": "Eastern/Central El Paso County; Rio Grande Valley of Eastern",
+          "area": "Wise; Denton; Collin; Hunt; Parker; Tarrant; Dallas; Rockwal",
+          "niche": "hvac"
+        },
+        {
+          "type": "heat_wave",
+          "area": "Palo Duro Canyon",
           "niche": "hvac"
         },
         {
           "type": "flood",
-          "area": "Henderson, TX; Navarro, TX",
+          "area": "Alcorn, MS; Chickasaw, MS; Itawamba, MS; Lafayette, MS; Lee,",
           "niche": "plumbing"
         }
       ],
@@ -43,30 +43,30 @@
     },
     "lead_engine": {
       "state": "ACTIVE",
-      "total_leads": 151,
+      "total_leads": 169,
       "by_tier": {
         "SUPERNICHE": 11,
-        "HOT": 30,
-        "WARM": 110
+        "HOT": 38,
+        "WARM": 120
       },
       "by_route": {
-        "watchlist": 121,
-        "email": 30
+        "watchlist": 133,
+        "email": 36
       },
       "by_status": {
-        "queued": 132,
-        "called": 19
+        "queued": 116,
+        "called": 53
       },
       "synced_to_pipeline": 21,
-      "api_spend": 5.12,
+      "api_spend": 5.76,
       "api_budget": 300.0,
-      "api_percent": 1.7,
-      "outcomes_recorded": 38,
+      "api_percent": 1.9,
+      "outcomes_recorded": 83,
       "by_outcome": {
         "no_answer": 6,
         "hangup": 2,
-        "call_failed": 11,
-        "call_initiated": 19
+        "call_failed": 22,
+        "call_initiated": 53
       },
       "learned_weights": false,
       "suppression_count": 0,
@@ -213,24 +213,24 @@
       ],
       "recent_failures": [
         {
+          "workflow": "8jvr7e9CDZgggXzM",
+          "started": "2026-06-12T17:00"
+        },
+        {
+          "workflow": "Qikvz1N2lTubgqoS",
+          "started": "2026-06-12T17:00"
+        },
+        {
+          "workflow": "8lxiHdzEAmHOWclo",
+          "started": "2026-06-12T08:00"
+        },
+        {
           "workflow": "VeofXawy3ISKcQY7",
-          "started": "2026-06-10T22:00"
+          "started": "2026-06-11T22:00"
         },
         {
           "workflow": "JBEeMWjn59t5lhGx",
-          "started": "2026-06-10T22:00"
-        },
-        {
-          "workflow": "uR7it8ythev0eqqu",
-          "started": "2026-06-10T17:00"
-        },
-        {
-          "workflow": "8jvr7e9CDZgggXzM",
-          "started": "2026-06-10T17:00"
-        },
-        {
-          "workflow": "UQGW8QuaSLb9Euyh",
-          "started": "2026-06-10T15:00"
+          "started": "2026-06-11T22:00"
         }
       ]
     },
@@ -289,9 +289,9 @@
         }
       ],
       "calls_24h": 50,
-      "outbound_24h": 49,
-      "inbound_24h": 1,
-      "avg_duration_sec": 13.1
+      "outbound_24h": 48,
+      "inbound_24h": 2,
+      "avg_duration_sec": 15.8
     },
     "quant": {
       "state": "ACTIVE",
@@ -304,7 +304,7 @@
       "atlas_power": "ACTIVE",
       "n8n_errors_24h": 20,
       "retell_calls_24h": 50,
-      "api_spend_pct": 1.7
+      "api_spend_pct": 1.9
     }
   }
 }
