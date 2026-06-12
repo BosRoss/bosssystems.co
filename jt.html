@@ -1,0 +1,817 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1.0,viewport-fit=cover">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+<meta name="apple-mobile-web-app-title" content="JT Sales">
+<meta name="theme-color" content="#050608">
+<meta name="robots" content="noindex,nofollow">
+<title>JT — BOSS Sales Dashboard</title>
+<link href="https://fonts.googleapis.com/css2?family=Share+Tech+Mono&family=Rajdhani:wght@400;600;700&display=swap" rel="stylesheet">
+<style>
+:root{--bg:#050608;--bg2:#0c0d12;--bg3:#12141a;--gold:#C9A84C;--gold-dim:#7a6530;--text:#e8e8f0;--dim:#4a4a6a;--muted:#6a6a8a;--green:#00e87a;--red:#ff3b3b;--blue:#4A9EE8;--orange:#FF6B35;--border:#1a1c28}
+*{margin:0;padding:0;box-sizing:border-box}
+body{background:var(--bg);color:var(--text);font-family:'Rajdhani',sans-serif;min-height:100vh;overflow-x:hidden;-webkit-tap-highlight-color:transparent}
+a{color:var(--gold);text-decoration:none}
+
+header{background:linear-gradient(180deg,#09090f,var(--bg));border-bottom:1px solid var(--gold-dim);padding:0 16px;position:sticky;top:0;z-index:100}
+.h-inner{display:flex;align-items:center;justify-content:space-between;height:48px}
+.logo{font-size:15px;font-weight:700;color:var(--gold);letter-spacing:3px;font-family:'Share Tech Mono',monospace}
+.h-right{display:flex;align-items:center;gap:8px}
+.h-link{font-size:10px;color:var(--dim);font-family:'Share Tech Mono',monospace;letter-spacing:1px}
+
+main{max-width:600px;margin:0 auto;padding:0 12px 80px}
+
+.tab-bar{display:flex;border-bottom:1px solid var(--border);position:sticky;top:48px;background:var(--bg);z-index:90;padding-top:8px;overflow-x:auto;-webkit-overflow-scrolling:touch}
+.tab{padding:10px 14px;font-size:9px;font-family:'Share Tech Mono',monospace;letter-spacing:2px;color:var(--dim);cursor:pointer;border-bottom:2px solid transparent;text-transform:uppercase;transition:.15s;white-space:nowrap;flex-shrink:0}
+.tab.active{color:var(--gold);border-bottom-color:var(--gold)}
+.tab-content{display:none;padding-top:16px}
+.tab-content.active{display:block}
+
+.sec-title{font-size:9px;font-family:'Share Tech Mono',monospace;letter-spacing:3px;color:var(--dim);text-transform:uppercase;margin:20px 0 10px;padding-bottom:6px;border-bottom:1px solid var(--border)}
+
+.stats-bar{display:grid;grid-template-columns:repeat(3,1fr);gap:1px;background:var(--border);margin-bottom:16px;border:1px solid var(--border)}
+.stat{background:var(--bg2);padding:12px 8px;text-align:center}
+.stat-value{font-size:22px;font-weight:700;font-family:'Share Tech Mono',monospace;line-height:1;margin-bottom:2px}
+.stat-label{font-size:8px;color:var(--dim);letter-spacing:2px;text-transform:uppercase}
+
+.card{background:var(--bg2);border:1px solid var(--border);padding:16px;margin-bottom:10px;border-radius:4px}
+.card h3{font-size:13px;color:var(--gold);font-family:'Share Tech Mono',monospace;letter-spacing:1px;margin-bottom:8px}
+.card p{font-size:13px;color:#bbb;line-height:1.6}
+.card table{width:100%;border-collapse:collapse;font-size:12px;margin-top:8px}
+.card th{text-align:left;color:var(--gold);font-size:10px;letter-spacing:1px;padding:8px 6px;border-bottom:1px solid var(--border)}
+.card td{padding:8px 6px;border-bottom:1px solid var(--border);color:#bbb}
+.card td:first-child{color:var(--text);font-weight:600}
+.card ul{margin:4px 0 0 16px;font-size:13px;color:#bbb}
+.card li{margin-bottom:4px}
+
+.phone-btn{display:flex;align-items:center;gap:12px;background:var(--bg2);border:1px solid var(--border);padding:14px 16px;border-radius:4px;margin-bottom:8px;text-decoration:none;transition:.12s}
+.phone-btn:active{background:var(--bg3)}
+.phone-btn .icon{font-size:20px;width:28px;text-align:center}
+.phone-btn .info{flex:1}
+.phone-btn .name{font-size:13px;font-weight:700;color:var(--text)}
+.phone-btn .num{font-size:15px;color:var(--gold);font-family:'Share Tech Mono',monospace;letter-spacing:1px}
+.phone-btn .note{font-size:10px;color:var(--dim)}
+
+.alert-banner{background:rgba(201,168,76,.08);border:1px solid var(--gold-dim);padding:12px 16px;margin-bottom:16px;border-radius:4px;display:flex;align-items:center;gap:10px;font-size:13px}
+.alert-banner a{font-weight:700}
+
+.script-block{background:var(--bg3);border-left:3px solid var(--gold);padding:12px 14px;margin:8px 0;font-size:13px;color:var(--text);line-height:1.6;font-style:italic}
+.warn-block{background:rgba(255,59,59,.06);border-left:3px solid var(--red);padding:10px 14px;margin:8px 0;font-size:12px;color:#ccc}
+.tip-block{background:rgba(0,232,122,.06);border-left:3px solid var(--green);padding:10px 14px;margin:8px 0;font-size:12px;color:#ccc}
+
+.obj-card{background:var(--bg2);border:1px solid var(--border);margin-bottom:6px;border-radius:4px;overflow:hidden}
+.obj-header{padding:12px 14px;cursor:pointer;display:flex;align-items:center;gap:8px;font-size:13px}
+.obj-header .say{color:var(--text);font-weight:600;flex:1}
+.obj-header .arrow{color:var(--dim);font-size:10px;transition:.2s}
+.obj-body{display:none;padding:0 14px 14px;font-size:12px;line-height:1.6;color:#bbb}
+.obj-body.open{display:block}
+.obj-mean{color:var(--muted);margin-bottom:6px}
+.obj-resp{color:var(--green)}
+
+.copy-btn{background:var(--bg3);border:1px solid var(--border);color:var(--muted);font-size:10px;padding:4px 10px;border-radius:3px;cursor:pointer;font-family:'Rajdhani',sans-serif;margin-top:6px;float:right}
+.copy-btn:active{color:var(--gold);border-color:var(--gold)}
+
+.pipeline-row{display:flex;align-items:center;gap:10px;padding:10px 14px;background:var(--bg2);border:1px solid var(--border);margin-bottom:4px;border-radius:4px;font-size:13px}
+.pipeline-row .biz{flex:1;font-weight:600}
+.pipeline-row .stage{font-size:10px;font-family:'Share Tech Mono',monospace;padding:3px 8px;border-radius:2px}
+.pipeline-row .stage.prospect{background:rgba(74,158,232,.1);color:var(--blue);border:1px solid rgba(74,158,232,.2)}
+.pipeline-row .stage.pitched{background:rgba(201,168,76,.1);color:var(--gold);border:1px solid rgba(201,168,76,.2)}
+.pipeline-row .stage.closed{background:rgba(0,232,122,.1);color:var(--green);border:1px solid rgba(0,232,122,.2)}
+.pipeline-row .del{color:var(--dim);cursor:pointer;font-size:16px;padding:0 4px}
+
+.add-row{display:flex;gap:6px;margin-bottom:16px}
+.add-row input,.add-row select{background:var(--bg2);border:1px solid var(--border);color:var(--text);font-family:'Rajdhani',sans-serif;font-size:13px;padding:8px 10px;border-radius:4px;outline:none}
+.add-row input:focus,.add-row select:focus{border-color:var(--gold)}
+.add-row input{flex:1}
+.add-row select{width:100px}
+.add-row button{background:var(--gold);color:#000;border:none;padding:8px 14px;border-radius:4px;font-family:'Rajdhani',sans-serif;font-weight:700;font-size:13px;cursor:pointer}
+
+.text-template{background:var(--bg2);border:1px solid var(--border);padding:14px;margin-bottom:8px;border-radius:4px;position:relative}
+.text-template .label{font-size:10px;color:var(--gold);font-family:'Share Tech Mono',monospace;letter-spacing:1px;margin-bottom:6px}
+.text-template .body{font-size:13px;color:#bbb;line-height:1.6}
+
+.biz-grid{display:grid;grid-template-columns:1fr 1fr;gap:8px;margin-bottom:16px}
+@media(max-width:460px){.biz-grid{grid-template-columns:1fr}}
+.biz-card{background:var(--bg2);border:1px solid var(--border);padding:12px;border-radius:4px}
+.biz-card .biz-name{font-size:13px;font-weight:700;color:var(--text);margin-bottom:2px}
+.biz-card .biz-rate{font-size:12px;color:var(--gold);font-family:'Share Tech Mono',monospace}
+.biz-card .biz-earn{font-size:11px;color:var(--green)}
+.biz-card .biz-note{font-size:10px;color:var(--dim);margin-top:4px}
+.spp-link{display:block;background:var(--bg2);border:1px solid var(--border);padding:12px 16px;border-radius:4px;margin-bottom:6px;font-size:13px;color:var(--text)}
+.spp-link .url{color:var(--gold);font-family:'Share Tech Mono',monospace;font-size:12px}
+.spp-link .desc{font-size:10px;color:var(--dim);margin-top:2px}
+</style>
+</head>
+<body>
+
+<header>
+  <div class="h-inner">
+    <div class="logo">JT SALES</div>
+    <div class="h-right">
+      <a href="jt-onboard.html" class="h-link">TRAINING</a>
+    </div>
+  </div>
+</header>
+
+<main>
+  <div class="tab-bar">
+    <div class="tab active" data-tab="home">HOME</div>
+    <div class="tab" data-tab="playbook">PLAYBOOK</div>
+    <div class="tab" data-tab="objections">OBJECTIONS</div>
+    <div class="tab" data-tab="scripts">SCRIPTS</div>
+    <div class="tab" data-tab="spp">SPP</div>
+    <div class="tab" data-tab="pipeline">PIPELINE</div>
+    <div class="tab" data-tab="tools">TOOLS</div>
+  </div>
+
+  <!-- HOME -->
+  <div class="tab-content active" data-tab="home">
+    <div id="training-alert" class="alert-banner" style="display:none">
+      &#128218; Complete your sales training: <a href="jt-onboard.html">Start Training &rarr;</a>
+    </div>
+
+    <div class="stats-bar">
+      <div class="stat"><div class="stat-value" style="color:var(--gold)" id="stat-deals">0</div><div class="stat-label">DEALS CLOSED</div></div>
+      <div class="stat"><div class="stat-value" style="color:var(--green)" id="stat-commission">$0</div><div class="stat-label">COMMISSION</div></div>
+      <div class="stat"><div class="stat-value" style="color:var(--blue)" id="stat-pipeline">0</div><div class="stat-label">IN PIPELINE</div></div>
+    </div>
+
+    <div class="sec-title">QUICK ACTIONS</div>
+
+    <a href="tel:9035224459" class="phone-btn">
+      <div class="icon">&#128222;</div>
+      <div class="info">
+        <div class="name">Demo Line — Show Prospects This</div>
+        <div class="num">(903) 522-4459</div>
+        <div class="note">Live AI receptionist. Have them call it during your pitch.</div>
+      </div>
+    </a>
+
+    <a href="tel:9037165297" class="phone-btn">
+      <div class="icon">&#128081;</div>
+      <div class="info">
+        <div class="name">Devil's Advocate — Practice Call</div>
+        <div class="num">(903) 716-5297</div>
+        <div class="note">AI plays a skeptical business owner. Get scored after.</div>
+      </div>
+    </a>
+
+    <div class="sec-title">QUICK REFERENCE</div>
+
+    <div class="card">
+      <h3>THE ONE-LINER</h3>
+      <p style="font-size:15px;color:var(--text)">"We figure out where your business is losing money and build AI to fix it. The analysis is free."</p>
+    </div>
+
+    <div class="card">
+      <h3>THE OPENER</h3>
+      <p style="font-size:15px;color:var(--text)">"When you're out on a job and a call comes in — what happens to it?"</p>
+    </div>
+
+    <div class="card">
+      <h3>KEY NUMBERS</h3>
+      <table>
+        <tr><td>Calls unanswered</td><td>27%</td></tr>
+        <tr><td>Never call back after VM</td><td>85-93%</td></tr>
+        <tr><td>Buy from first to respond</td><td>78%</td></tr>
+        <tr><td>5-min vs 30-min response</td><td>21x conversion</td></tr>
+      </table>
+    </div>
+
+    <div class="card">
+      <h3>PRICING</h3>
+      <table>
+        <tr><th>Product</th><th>Setup</th><th>Monthly</th></tr>
+        <tr><td>Free Analysis</td><td>$0</td><td>—</td></tr>
+        <tr><td>AI Receptionist</td><td>$250</td><td>$50/mo</td></tr>
+        <tr><td>BUILD Standard</td><td>$1,497</td><td>$97/mo</td></tr>
+        <tr><td>BUILD Premium</td><td>$2,997</td><td>$197/mo</td></tr>
+        <tr><td>Full Transform</td><td>$5,997</td><td>$497/mo</td></tr>
+        <tr><td>Revenue Share</td><td>$0</td><td>15% share</td></tr>
+      </table>
+      <p style="margin-top:8px;font-size:11px;color:var(--dim)">No overages. No contracts. Cancel anytime.</p>
+    </div>
+  </div>
+
+  <!-- PLAYBOOK -->
+  <div class="tab-content" data-tab="playbook">
+    <div class="sec-title">PRODUCTS</div>
+
+    <div class="card">
+      <h3>BOSS ANALYZE — FREE</h3>
+      <p>60-second AI business analysis. Shows them where they're losing money. Zero risk. This is your door opener.</p>
+      <p style="margin-top:6px"><strong>Link:</strong> bosssystems.co/analyze.html</p>
+      <p><strong>Pitch:</strong> "No-cost analysis. Takes a minute. Shows you exactly where you're leaving money on the table."</p>
+    </div>
+
+    <div class="card">
+      <h3>AI RECEPTIONIST — $250 + $50/MO</h3>
+      <p>AI answers every call 24/7. Sounds like a real person. Takes messages, books appointments, answers questions. No overages.</p>
+      <p style="margin-top:6px"><strong>Pitch:</strong> "A receptionist costs $4-5K/mo. Ruby charges $250-720 with per-minute billing. We do the same thing for $50/mo flat."</p>
+      <p><strong>95% Promise:</strong> Doesn't hit 95% answer rate in 30 days = first month free.</p>
+    </div>
+
+    <div class="card">
+      <h3>BOSS BUILD — $1,497-$5,997 + MONTHLY</h3>
+      <p>Complete AI stack for their business. Phone agent + follow-ups + reviews + scheduling + lead capture. Deployed in 72 hours.</p>
+      <p style="margin-top:6px"><strong>Best for:</strong> 5+ employees, $500K+ revenue, multiple automation needs.</p>
+    </div>
+
+    <div class="card">
+      <h3>BOSS OWN — $0 + 15% REVENUE SHARE</h3>
+      <p>We build AND operate everything. They do the physical work. We take 15% of AI-generated revenue.</p>
+      <p style="margin-top:6px"><strong>Best for:</strong> Solo operators, tight budget, skeptical about AI.</p>
+    </div>
+
+    <div class="sec-title">COMPETITOR INTEL</div>
+    <div class="card">
+      <h3>AT 50 CALLS/DAY (BUSY SHOP)</h3>
+      <table>
+        <tr><th>Competitor</th><th>Monthly</th><th>Why They Lose</th></tr>
+        <tr><td style="color:var(--gold)">BOSS</td><td style="color:var(--gold)">$50</td><td style="color:var(--gold)">Flat. No overages.</td></tr>
+        <tr><td>Goodcall</td><td>$79-$249</td><td>Per caller pricing</td></tr>
+        <tr><td>Dialzara</td><td>$1,530+</td><td>$29 bait, per-min overages</td></tr>
+        <tr><td>Smith.ai AI</td><td>$2,400+</td><td>Per-call pricing</td></tr>
+        <tr><td>Ruby (human)</td><td>$8,625+</td><td>Per-minute, bill shock</td></tr>
+        <tr><td>Avoca AI</td><td>$1K-$3K</td><td>$3M+ revenue required</td></tr>
+      </table>
+      <div class="script-block" style="margin-top:12px">"Our competitors charge by the minute. Ruby will hit you with a $720 bill and your wife will cancel it before you get home. We charge $50. That's it."</div>
+    </div>
+
+    <div class="sec-title">LOSS BY TRADE</div>
+    <div class="card">
+      <table>
+        <tr><th>Trade</th><th>Avg Ticket</th><th>Annual Loss</th><th>ROI</th></tr>
+        <tr><td>HVAC</td><td>$800</td><td>$367K</td><td>612:1</td></tr>
+        <tr><td>Plumber</td><td>$350</td><td>$129K</td><td>214:1</td></tr>
+        <tr><td>Electrician</td><td>$450</td><td>$115K</td><td>191:1</td></tr>
+        <tr><td>Roofer</td><td>$5,000+</td><td>$1.2M</td><td>2,040:1</td></tr>
+        <tr><td>Law Firm</td><td>$3,000+</td><td>$551K</td><td>918:1</td></tr>
+        <tr><td>Auto Repair</td><td>$300</td><td>$92K</td><td>153:1</td></tr>
+      </table>
+    </div>
+
+    <div class="sec-title">BEST TIMES TO CALL</div>
+    <div class="card">
+      <table>
+        <tr><th>Decision</th><th>Time</th><th>Why</th></tr>
+        <tr><td>$50/mo (simple)</td><td>4-5 PM</td><td>Brain tired, gut decision</td></tr>
+        <tr><td>$1,500+ (complex)</td><td>8-9 AM</td><td>Brain fresh, can process ROI</td></tr>
+        <tr><td>Walk-ins</td><td>6:30-7:30 AM</td><td>Before first job</td></tr>
+        <tr><td>Supply houses</td><td>6:30-7 AM</td><td>Plant seeds, don't hard sell</td></tr>
+      </table>
+      <div class="warn-block">NEVER call before 9 AM or after 6 PM. Never cold call during evenings — follow-up only.</div>
+    </div>
+
+    <div class="sec-title">TERRITORY</div>
+    <div class="card">
+      <h3>WHERE TO SELL</h3>
+      <ul>
+        <li><strong>Remote markets:</strong> MS, AR, AL, TN, OK, NM — small towns 15K-80K pop</li>
+        <li><strong>East Texas (903, 430):</strong> Boston's in-person territory. Don't call these.</li>
+      </ul>
+      <div class="warn-block">
+        <strong>BANNED:</strong> Louisiana (985, 318, 504, 337, 225) — bad market, low conversion.<br>
+        <strong>SKIP:</strong> Franchises, salons, barbershops, pet groomers.
+      </div>
+    </div>
+  </div>
+
+  <!-- OBJECTIONS -->
+  <div class="tab-content" data-tab="objections">
+    <div class="sec-title">TAP TO EXPAND</div>
+    <div id="obj-list"></div>
+  </div>
+
+  <!-- SCRIPTS -->
+  <div class="tab-content" data-tab="scripts">
+    <div class="sec-title">THE SALES SEQUENCE</div>
+
+    <div class="card">
+      <h3>1. THE OPENER</h3>
+      <div class="script-block">"When you're out on a job and a call comes in — what happens to it?"</div>
+      <p>Then SHUT UP. Let them talk. They'll tell you the problem.</p>
+    </div>
+
+    <div class="card">
+      <h3>2. DIAGNOSE</h3>
+      <p>Follow up with:</p>
+      <ul>
+        <li>"How do you follow up with customers after a job's done?"</li>
+        <li>"What eats the most time but doesn't make you money?"</li>
+      </ul>
+    </div>
+
+    <div class="card">
+      <h3>3. PAINT THE PICTURE</h3>
+      <div class="script-block">HVAC: "July, 102 degrees, you're on a roof. Phone rings. Voicemail. $1,500 AC job — gone."</div>
+      <div class="script-block">Plumber: "Tuesday night, 9 PM, pipe bursts. Voicemail. Emergency markup $400-$800. Gone."</div>
+      <div class="script-block">Roofer: "Storm Saturday night. 7 AM Sunday, 15 homeowners calling. First to answer books all 15."</div>
+    </div>
+
+    <div class="card">
+      <h3>4. THE NUMBER</h3>
+      <div class="script-block">"That's about $30,000 a month lost to missed calls. Even if we only catch 10%, that's $36,000 back for $600 in annual cost."</div>
+    </div>
+
+    <div class="card">
+      <h3>5. FREE ANALYSIS</h3>
+      <div class="script-block">"We have a no-cost business analysis. Takes about a minute. Shows you exactly where you're leaving money on the table. No pitch. Just your numbers."</div>
+      <p style="margin-top:6px">Link: bosssystems.co/analyze.html</p>
+    </div>
+
+    <div class="card">
+      <h3>6. CLOSE</h3>
+      <div class="script-block">"I have two build slots this week — Wednesday or Friday. Which works better?"</div>
+      <div class="tip-block">Close with "which," not "whether." Assume the yes, offer a choice.</div>
+      <div class="script-block" style="border-color:var(--green)">"Right now every call that hits voicemail costs you money. You're paying $7,333 a month to NOT answer your phone."</div>
+    </div>
+
+    <div class="card">
+      <h3>7. THE DEMO CLOSE</h3>
+      <div class="script-block">"Call this number right now: (903) 522-4459. That's our AI. Talk to it like a customer. If it doesn't blow your mind, I'll leave you alone."</div>
+    </div>
+
+    <div class="sec-title">PEAK SEASON (JUNE-AUG) — 15 SECONDS</div>
+    <div class="card">
+      <div class="script-block">"I called your business today as a customer and got voicemail. I know you're slammed right now — that's exactly why those calls are going to your competitor. We fix that for fifty bucks a month. Can I set it up this week?"</div>
+    </div>
+
+    <div class="sec-title">VOSS TECHNIQUES</div>
+    <div class="card">
+      <h3>ACCUSATION AUDIT</h3>
+      <div class="script-block">"I know what you're thinking — here's some guy trying to sell you something. You probably think AI can't handle real calls. And $50 sounds too cheap to be real. I get it."</div>
+      <p>Then silence. 9/10 times: "Well, what is it exactly?"</p>
+    </div>
+    <div class="card">
+      <h3>MIRRORING</h3>
+      <p>Repeat their last 1-3 words as a question:</p>
+      <ul>
+        <li>"We're getting by." → "Getting by?"</li>
+        <li>"My wife handles it." → "Your wife handles it?"</li>
+      </ul>
+    </div>
+    <div class="card">
+      <h3>NO-ORIENTED QUESTIONS</h3>
+      <ul>
+        <li>"Would it be ridiculous to try this for a month?"</li>
+        <li>"Have you given up on fixing the phone problem?"</li>
+      </ul>
+    </div>
+
+    <div class="sec-title">TEXT TEMPLATES</div>
+
+    <div class="text-template">
+      <div class="label">PAYMENT RECEIVED</div>
+      <div class="body" id="txt-payment">Got it — thank you. I'm passing your info to the build team right now. You'll have a test call to listen to within 72 hours. Here's the BOSS support line if you need anything: (903) 522-4459</div>
+      <button class="copy-btn" onclick="copyText('txt-payment')">COPY</button>
+    </div>
+
+    <div class="text-template">
+      <div class="label">DAY 3 CHECK-IN</div>
+      <div class="body" id="txt-checkin">Hey [Name] — just checking in. Your AI's been live 3 days. Any calls come through? If you haven't tested it yet, call [their number] and pretend you need [their service]. Let me know how it sounds.</div>
+      <button class="copy-btn" onclick="copyText('txt-checkin')">COPY</button>
+    </div>
+
+    <div class="text-template">
+      <div class="label">REFERRAL ASK (after 2+ weeks)</div>
+      <div class="body" id="txt-referral">Hey [Name] — if any of your buddies are missing calls too, just give them my number. Or they can call (903) 522-4459 and hear it themselves.</div>
+      <button class="copy-btn" onclick="copyText('txt-referral')">COPY</button>
+    </div>
+
+    <div class="text-template">
+      <div class="label">AFTER A "NO"</div>
+      <div class="body" id="txt-no">No worries. If you ever want to hear what the AI sounds like, call (903) 522-4459 anytime. It's live 24/7. Have a good one.</div>
+      <button class="copy-btn" onclick="copyText('txt-no')">COPY</button>
+    </div>
+  </div>
+
+  <!-- SPP -->
+  <div class="tab-content" data-tab="spp">
+    <div class="card" style="border-color:var(--gold-dim)">
+      <h3>SUMMER PARTNER PROGRAM</h3>
+      <p style="font-size:15px;color:var(--text);margin-bottom:8px">Teens 14-22 pick a business, Boston builds the AI stack for free, they run it and keep 80%.</p>
+      <p>Zero startup cost. Quit anytime. They own the business after summer.</p>
+      <p style="margin-top:8px;color:var(--green)"><strong>Your referral bonus: $20 per partner who makes their first profit.</strong></p>
+    </div>
+
+    <div class="sec-title">LINKS TO SHARE</div>
+
+    <a href="https://bosssystems.co/summer.html" target="_blank" class="spp-link">
+      <strong>Main SPP Page</strong>
+      <div class="url">bosssystems.co/summer.html</div>
+      <div class="desc">The pitch page. All 11 businesses, earnings, how it works. Send this first.</div>
+    </a>
+    <a href="https://bosssystems.co/partner-quiz.html" target="_blank" class="spp-link">
+      <strong>Business Quiz</strong>
+      <div class="url">bosssystems.co/partner-quiz.html</div>
+      <div class="desc">2-minute quiz that matches them to their best business. Great conversation starter.</div>
+    </a>
+    <a href="https://bosssystems.co/partner-info.html" target="_blank" class="spp-link">
+      <strong>Application Form</strong>
+      <div class="url">bosssystems.co/partner-info.html</div>
+      <div class="desc">They fill this out to apply. Boston texts back within 24 hours.</div>
+    </a>
+    <a href="https://bosssystems.co/parents.html" target="_blank" class="spp-link">
+      <strong>Parent Info Page</strong>
+      <div class="url">bosssystems.co/parents.html</div>
+      <div class="desc">Send to parents of anyone under 18. Covers safety, approval, what-it-is/isn't.</div>
+    </a>
+    <a href="https://bosssystems.co/partner-start.html" target="_blank" class="spp-link">
+      <strong>Getting Started Guide</strong>
+      <div class="url">bosssystems.co/partner-start.html</div>
+      <div class="desc">13-step launch checklist. Partners read this after being accepted.</div>
+    </a>
+    <a href="https://bosssystems.co/partner-tools.html" target="_blank" class="spp-link">
+      <strong>Partner Tools & Guides</strong>
+      <div class="url">bosssystems.co/partner-tools.html</div>
+      <div class="desc">Business-specific pricing, scripts, safety tips, upsells for all 11 types.</div>
+    </a>
+
+    <div class="sec-title">THE 80/20 SPLIT</div>
+    <div class="card">
+      <h3>HOW THE MONEY WORKS</h3>
+      <table>
+        <tr><th>Step</th><th>What Happens</th></tr>
+        <tr><td>Customer pays</td><td>Partner collects the gross revenue</td></tr>
+        <tr><td>Sunday 8pm</td><td>Partner texts Boston their weekly total</td></tr>
+        <tr><td>Monday noon</td><td>Partner Venmos 20% to @BosRoss</td></tr>
+        <tr><td>$0 week?</td><td>Text "$0" — owe nothing</td></tr>
+      </table>
+      <div class="script-block" style="margin-top:12px">
+        <strong>Example:</strong> Junk removal, 3 loads at $300 each = $900 gross<br>
+        Minus dump/gas: -$200<br>
+        Minus 20% fee: -$180<br>
+        Partner take-home: <strong>$520/week</strong><br>
+        12-week summer: <strong>~$6,240</strong>
+      </div>
+    </div>
+
+    <div class="sec-title">ALL 11 BUSINESSES</div>
+    <div class="biz-grid">
+      <div class="biz-card">
+        <div class="biz-name">Junk Removal</div>
+        <div class="biz-rate">$150-400/load</div>
+        <div class="biz-earn">$450-750/wk take-home</div>
+        <div class="biz-note">Needs truck/trailer. Heavy lifting.</div>
+      </div>
+      <div class="biz-card">
+        <div class="biz-name">Pressure Washing</div>
+        <div class="biz-rate">$150-350/job</div>
+        <div class="biz-earn">$500-1,000/wk take-home</div>
+        <div class="biz-note">Washer rental ~$150. High margin.</div>
+      </div>
+      <div class="biz-card">
+        <div class="biz-name">Lawn Care</div>
+        <div class="biz-rate">$35-80/yard</div>
+        <div class="biz-earn">$400-1,000/wk take-home</div>
+        <div class="biz-note">Recurring weekly clients. Steady income.</div>
+      </div>
+      <div class="biz-card">
+        <div class="biz-name">Pool Cleaning</div>
+        <div class="biz-rate">$75-150/clean</div>
+        <div class="biz-earn">$600-1,600/wk take-home</div>
+        <div class="biz-note">Weekly contracts. Highest earner in TX heat.</div>
+      </div>
+      <div class="biz-card">
+        <div class="biz-name">Car Detailing</div>
+        <div class="biz-rate">$75-150/car</div>
+        <div class="biz-earn">$400-900/wk take-home</div>
+        <div class="biz-note">Low startup. Mobile — go to them.</div>
+      </div>
+      <div class="biz-card">
+        <div class="biz-name">House Cleaning</div>
+        <div class="biz-rate">$100-250/clean</div>
+        <div class="biz-earn">$400-1,000/wk take-home</div>
+        <div class="biz-note">Airbnb hosts pay premium. Recurring.</div>
+      </div>
+      <div class="biz-card">
+        <div class="biz-name">Event Decorating</div>
+        <div class="biz-rate">$150-400/event</div>
+        <div class="biz-earn">$300-1,000/wk take-home</div>
+        <div class="biz-note">Balloon kits ~$100. Graduations, birthdays.</div>
+      </div>
+      <div class="biz-card">
+        <div class="biz-name">Pet Sitting</div>
+        <div class="biz-rate">$20-35/walk, $50-75/night</div>
+        <div class="biz-earn">$300-700/wk take-home</div>
+        <div class="biz-note">$0 startup. Peaks vacation season.</div>
+      </div>
+      <div class="biz-card">
+        <div class="biz-name">Organizing</div>
+        <div class="biz-rate">$65-85/hr</div>
+        <div class="biz-earn">$400-800/wk take-home</div>
+        <div class="biz-note">$0 startup. Before/after photos sell it.</div>
+      </div>
+      <div class="biz-card">
+        <div class="biz-name">Photography</div>
+        <div class="biz-rate">$150-300/session</div>
+        <div class="biz-earn">$400-900/wk take-home</div>
+        <div class="biz-note">Phone camera works. Graduation season.</div>
+      </div>
+      <div class="biz-card">
+        <div class="biz-name">Social Media Mgmt</div>
+        <div class="biz-rate">$200-400/mo per client</div>
+        <div class="biz-earn">$300-600/wk take-home</div>
+        <div class="biz-note">Recurring monthly. $0 startup. Remote.</div>
+      </div>
+    </div>
+
+    <div class="sec-title">HOW TO PITCH SPP</div>
+
+    <div class="card">
+      <h3>TO TEENS</h3>
+      <div class="script-block">"I know this guy Boston who sets up businesses for teens. Zero cost to start. You pick a business, he builds the whole phone system and booking — you just do the work. You keep 80% of everything you make."</div>
+      <div class="script-block">"Most people make $400-750 a week. Way better than Chick-fil-A. You own the business — keep it after summer."</div>
+    </div>
+
+    <div class="card">
+      <h3>TO PARENTS</h3>
+      <div class="script-block">"It costs zero to start — Boston builds everything for free. Your kid keeps 80%. Parent approval required before anything activates. Direct line to Boston: 903-714-6162."</div>
+      <div class="script-block">"It's not a job, not a course, not MLM. Your kid runs a real business, builds real skills, and has something great for college applications."</div>
+      <p style="margin-top:8px;font-size:12px;color:var(--dim)">Send them bosssystems.co/parents.html</p>
+    </div>
+
+    <div class="card">
+      <h3>QUICK REFERRAL FLOW</h3>
+      <ul>
+        <li>1. Send them <strong>bosssystems.co/summer.html</strong></li>
+        <li>2. Or have them take the quiz: <strong>bosssystems.co/partner-quiz.html</strong></li>
+        <li>3. They apply at <strong>bosssystems.co/partner-info.html</strong></li>
+        <li>4. They put YOUR name in the referral box</li>
+        <li>5. Boston texts them back within 24 hours</li>
+        <li>6. Under 18? Parent reads <strong>bosssystems.co/parents.html</strong> and approves</li>
+        <li>7. When they make their first profit → you get $20</li>
+      </ul>
+    </div>
+
+    <div class="sec-title">RULES</div>
+    <div class="card">
+      <h3>NON-NEGOTIABLES</h3>
+      <ul>
+        <li><strong>Under 18:</strong> Parent approval required before anything activates</li>
+        <li><strong>Under 18:</strong> Junk removal & pressure washing not recommended (heavy equipment)</li>
+        <li><strong>Revenue reporting:</strong> Every Sunday by 8pm, honest numbers</li>
+        <li><strong>Quit anytime:</strong> 3 days notice, no penalty, they keep the business</li>
+        <li><strong>Summer 2026:</strong> Program ends September 1</li>
+        <li><strong>Income disclaimer:</strong> Earnings vary. Not guaranteed. Always mention this.</li>
+      </ul>
+    </div>
+
+    <div class="sec-title">WHAT BOSTON BUILDS (FREE)</div>
+    <div class="card">
+      <table>
+        <tr><th>What</th><th>Details</th></tr>
+        <tr><td>Phone number</td><td>Local area code, dedicated to their business</td></tr>
+        <tr><td>AI receptionist</td><td>Answers 24/7, quotes jobs, books appointments</td></tr>
+        <tr><td>Website</td><td>Custom domain, business info, phone number</td></tr>
+        <tr><td>Payment system</td><td>Auto-sends payment links after jobs</td></tr>
+        <tr><td>Review requests</td><td>Automatically asks customers for Google reviews</td></tr>
+        <tr><td>Booking system</td><td>Scheduling, reminders, job tracking</td></tr>
+      </table>
+      <p style="margin-top:8px;font-size:11px;color:var(--dim)">All built within 24 hours of acceptance. Partner pays $0 for any of this.</p>
+    </div>
+  </div>
+
+  <!-- PIPELINE -->
+  <div class="tab-content" data-tab="pipeline">
+    <div class="sec-title">YOUR PROSPECTS</div>
+
+    <div class="add-row">
+      <input type="text" id="add-name" placeholder="Business name">
+      <select id="add-stage">
+        <option value="prospect">Prospect</option>
+        <option value="pitched">Pitched</option>
+        <option value="closed">Closed</option>
+      </select>
+      <button onclick="addProspect()">Add</button>
+    </div>
+
+    <div id="pipeline-list"></div>
+
+    <div class="sec-title" style="margin-top:32px">COMMISSION CALCULATOR</div>
+    <div class="card">
+      <h3>YOUR 20% CUT</h3>
+      <table>
+        <tr><th>Product</th><th>Your Setup Cut</th><th>Your Monthly</th></tr>
+        <tr><td>Receptionist</td><td>$50</td><td>$10/mo</td></tr>
+        <tr><td>BUILD Standard</td><td>$299</td><td>$19.40/mo</td></tr>
+        <tr><td>BUILD Premium</td><td>$599</td><td>$39.40/mo</td></tr>
+        <tr><td>Full Transform</td><td>$1,199</td><td>$99.40/mo</td></tr>
+      </table>
+      <div class="tip-block" style="margin-top:12px">Monthly commission is <strong>lifelong</strong>. 10 receptionist clients = $100/mo passive. 5 BUILD Premium = $197/mo passive. It compounds.</div>
+    </div>
+
+    <div class="card">
+      <h3>YOUR TOTALS</h3>
+      <div style="display:flex;justify-content:space-between;padding:8px 0;border-bottom:1px solid var(--border)">
+        <span style="color:var(--muted)">Setup commissions earned</span>
+        <span style="color:var(--gold);font-family:'Share Tech Mono',monospace;font-weight:700" id="total-setup">$0</span>
+      </div>
+      <div style="display:flex;justify-content:space-between;padding:8px 0;border-bottom:1px solid var(--border)">
+        <span style="color:var(--muted)">Monthly recurring</span>
+        <span style="color:var(--green);font-family:'Share Tech Mono',monospace;font-weight:700" id="total-monthly">$0/mo</span>
+      </div>
+      <div style="display:flex;justify-content:space-between;padding:8px 0">
+        <span style="color:var(--muted)">Clients closed</span>
+        <span style="color:var(--text);font-family:'Share Tech Mono',monospace;font-weight:700" id="total-closed">0</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- TOOLS -->
+  <div class="tab-content" data-tab="tools">
+    <div class="sec-title">PHONE TOOLS</div>
+
+    <a href="tel:9035224459" class="phone-btn">
+      <div class="icon">&#128222;</div>
+      <div class="info">
+        <div class="name">Live Demo</div>
+        <div class="num">(903) 522-4459</div>
+        <div class="note">Show this to every prospect. It sells itself.</div>
+      </div>
+    </a>
+
+    <a href="tel:9037165297" class="phone-btn">
+      <div class="icon">&#128081;</div>
+      <div class="info">
+        <div class="name">Devil's Advocate</div>
+        <div class="num">(903) 716-5297</div>
+        <div class="note">Practice against Busy Bobby, Skeptical Sharon, Price-First Pete. Get scored.</div>
+      </div>
+    </a>
+
+    <a href="tel:9033267285" class="phone-btn">
+      <div class="icon">&#127942;</div>
+      <div class="info">
+        <div class="name">Deal Coach</div>
+        <div class="num">(903) 326-7285</div>
+        <div class="note">Call when you're stuck on an objection or need strategy help.</div>
+      </div>
+    </a>
+
+    <div class="sec-title">LINKS</div>
+
+    <a href="https://bosssystems.co/analyze.html" class="phone-btn" target="_blank">
+      <div class="icon">&#128200;</div>
+      <div class="info">
+        <div class="name">Free Business Analysis</div>
+        <div class="num">bosssystems.co/analyze.html</div>
+        <div class="note">Send prospects here or run it with them live.</div>
+      </div>
+    </a>
+
+    <a href="https://bosssystems.co" class="phone-btn" target="_blank">
+      <div class="icon">&#127760;</div>
+      <div class="info">
+        <div class="name">BOSS Website</div>
+        <div class="num">bosssystems.co</div>
+        <div class="note">Show prospects the full site.</div>
+      </div>
+    </a>
+
+    <div class="sec-title">CONTACT BOSTON (INTERNAL)</div>
+    <div class="card">
+      <p style="font-size:12px;color:var(--dim);margin-bottom:8px">For sending client info, questions, or deal help. Do NOT give this number to prospects.</p>
+      <p style="font-size:16px;color:var(--text);font-family:'Share Tech Mono',monospace">903-714-6162</p>
+      <p style="font-size:12px;color:var(--muted);margin-top:4px">Text is better than calling. Include: client name, business type, phone, what they need.</p>
+    </div>
+
+    <div class="sec-title">PAYMENT</div>
+    <div class="card">
+      <p>Clients pay via Venmo: <strong style="color:var(--gold)">@BosRoss</strong></p>
+      <p style="font-size:12px;color:var(--dim);margin-top:4px">Collect the setup fee, send to Boston's Venmo, then text Boston the client info.</p>
+    </div>
+  </div>
+</main>
+
+<script>
+const OBJECTIONS = [
+  {say:"How much?", mean:"Price is their first filter.", resp:"A receptionist costs $4-5K/mo. Ruby charges $250-720. We do the same thing for $50/mo flat. But the analysis is free — shows your numbers."},
+  {say:"Let me think about it", mean:"There's a hidden objection they won't say.", resp:"\"Think about it?\" (mirror) Then: \"Is it the price, the tech, or something else?\""},
+  {say:"I'm too busy right now", mean:"Overwhelmed, can't process new info.", resp:"\"That's the whole point — you're too busy to answer calls, so you're losing them. We handle that.\""},
+  {say:"My wife handles that", mean:"Wife is the actual decision-maker.", resp:"\"Can I include her? She probably has the best picture of how many calls come in.\""},
+  {say:"Send me something", mean:"Wants you to go away politely.", resp:"\"Best email? I'll send the 60-second analysis. Just shows your numbers.\""},
+  {say:"What's the catch?", mean:"They've been burned before.", resp:"\"No contract, cancel anytime, $50 flat. The catch is we're small and hungry.\""},
+  {say:"Too expensive", mean:"They don't see the ROI yet.", resp:"\"$50/mo is less than one missed service call. Ruby charges $720 for the same thing.\""},
+  {say:"Is it real AI?", mean:"Skeptical about the tech.", resp:"\"Call (903) 522-4459 right now. Talk to it like a customer. 30 seconds.\""},
+  {say:"Sounds too good to be true", mean:"Needs proof, not promises.", resp:"\"Call the demo. 30 seconds. If it's not what you expected, no hard feelings.\""},
+  {say:"What if it doesn't work?", mean:"Afraid of commitment.", resp:"\"95% Promise: doesn't hit 95% in 30 days, first month free. Cancel anytime.\""},
+  {say:"We don't miss many calls", mean:"No idea how many they actually miss.", resp:"\"That's what every owner says until they see the data. Can I run a quick test?\""},
+  {say:"I'm not a tech person", mean:"Afraid of looking stupid.", resp:"\"You don't touch any tech. We build it, run it, fix it. You just do your work.\""},
+  {say:"My guy already does that", mean:"Has a partial solution.", resp:"\"Who answers at 9pm Saturday when someone's AC dies? Whoever picks up first gets that job.\""},
+  {say:"I'll call you back", mean:"Won't call back.", resp:"\"What day works for a follow-up? Tuesday or Thursday?\""},
+  {say:"We're good", mean:"Not aware of the problem.", resp:"\"Quick question — when you're on a job at 2 PM and a call comes in, what happens?\""}
+];
+
+// Render objections
+const objList = document.getElementById('obj-list');
+OBJECTIONS.forEach(o => {
+  const div = document.createElement('div');
+  div.className = 'obj-card';
+  div.innerHTML = `
+    <div class="obj-header" onclick="this.nextElementSibling.classList.toggle('open');this.querySelector('.arrow').style.transform=this.nextElementSibling.classList.contains('open')?'rotate(90deg)':''">
+      <div class="say">"${o.say}"</div>
+      <div class="arrow">&#9654;</div>
+    </div>
+    <div class="obj-body">
+      <div class="obj-mean"><strong>They mean:</strong> ${o.mean}</div>
+      <div class="obj-resp"><strong>You say:</strong> ${o.resp}</div>
+    </div>
+  `;
+  objList.appendChild(div);
+});
+
+// Tabs
+document.querySelectorAll('.tab').forEach(tab => {
+  tab.onclick = () => {
+    document.querySelectorAll('.tab').forEach(t => t.classList.remove('active'));
+    document.querySelectorAll('.tab-content').forEach(c => c.classList.remove('active'));
+    tab.classList.add('active');
+    document.querySelector(`.tab-content[data-tab="${tab.dataset.tab}"]`).classList.add('active');
+  };
+});
+
+// Pipeline (localStorage)
+function getPipeline() { return JSON.parse(localStorage.getItem('jt_pipeline') || '[]'); }
+function savePipeline(p) { localStorage.setItem('jt_pipeline', JSON.stringify(p)); }
+
+function renderPipeline() {
+  const list = document.getElementById('pipeline-list');
+  const pipeline = getPipeline();
+  list.innerHTML = '';
+  pipeline.forEach((p, i) => {
+    const div = document.createElement('div');
+    div.className = 'pipeline-row';
+    div.innerHTML = `
+      <div class="biz">${esc(p.name)}</div>
+      <div class="stage ${p.stage}" onclick="cycleStage(${i})">${p.stage.toUpperCase()}</div>
+      <div class="del" onclick="delProspect(${i})">&times;</div>
+    `;
+    list.appendChild(div);
+  });
+  updateStats();
+}
+
+function addProspect() {
+  const name = document.getElementById('add-name').value.trim();
+  const stage = document.getElementById('add-stage').value;
+  if (!name) return;
+  const pipeline = getPipeline();
+  pipeline.unshift({name, stage});
+  savePipeline(pipeline);
+  document.getElementById('add-name').value = '';
+  renderPipeline();
+}
+
+function delProspect(i) {
+  const pipeline = getPipeline();
+  pipeline.splice(i, 1);
+  savePipeline(pipeline);
+  renderPipeline();
+}
+
+function cycleStage(i) {
+  const stages = ['prospect','pitched','closed'];
+  const pipeline = getPipeline();
+  const cur = stages.indexOf(pipeline[i].stage);
+  pipeline[i].stage = stages[(cur + 1) % stages.length];
+  savePipeline(pipeline);
+  renderPipeline();
+}
+
+function updateStats() {
+  const pipeline = getPipeline();
+  const closed = pipeline.filter(p => p.stage === 'closed').length;
+  const inPipeline = pipeline.filter(p => p.stage !== 'closed').length;
+  document.getElementById('stat-deals').textContent = closed;
+  document.getElementById('stat-pipeline').textContent = inPipeline;
+  document.getElementById('stat-commission').textContent = '$' + (closed * 50);
+  document.getElementById('total-setup').textContent = '$' + (closed * 50);
+  document.getElementById('total-monthly').textContent = '$' + (closed * 10) + '/mo';
+  document.getElementById('total-closed').textContent = closed;
+}
+
+function copyText(id) {
+  const text = document.getElementById(id).textContent;
+  navigator.clipboard.writeText(text).then(() => {
+    const btn = event.target;
+    btn.textContent = 'COPIED';
+    setTimeout(() => btn.textContent = 'COPY', 1500);
+  });
+}
+
+function esc(s) { const d = document.createElement('div'); d.textContent = s; return d.innerHTML; }
+
+// Training alert
+if (!localStorage.getItem('jt_quiz_done')) {
+  document.getElementById('training-alert').style.display = 'flex';
+}
+
+renderPipeline();
+</script>
+</body>
+</html>
