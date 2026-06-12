@@ -3,8 +3,8 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Free AI Business Analysis — BOSS Systems</title>
-<meta name="description" content="Find out exactly where your business is losing money to AI opportunities. Free 60-second analysis.">
+<title>Free Business Analysis — BOSS Systems</title>
+<meta name="description" content="Find out exactly where your business is losing money — and what it's worth. Free 60-second analysis.">
 <style>
   *{margin:0;padding:0;box-sizing:border-box}
   :root{--gold:#C9A84C;--dark:#0a0a0a;--gray:#141414;--border:#2a2a2a;--text:#f0ede8}
@@ -124,7 +124,7 @@
 
 <div class="hero">
   <h1>What's Your Business <span>Leaving Behind?</span></h1>
-  <p>We analyze your business in 60 seconds. No sales pitch until you see your numbers. Find out exactly what AI could be doing for you — and what it's worth.</p>
+  <p>We analyze your business in 60 seconds. No sales pitch until you see your numbers. Find out exactly where you're leaving money on the table — and what it's worth.</p>
 </div>
 
 <div class="form-card" id="form-section">
@@ -205,9 +205,9 @@ function buildAutomations(btype, jobValue, googleData) {
   const receptionist_val = cap(recoveredPerWeek * job * 52, 80000);
   const jobSource = userProvidedJob ? 'your number' : d.label + ' industry average';
   autos.push({
-    key: 'phone_receptionist', name: 'AI Phone Receptionist', cat: 'Customer Acquisition',
+    key: 'phone_receptionist', name: 'Automated Phone Receptionist', cat: 'Customer Acquisition',
     value: receptionist_val, cost: 50, hours: 2, diff: 1, quickWin: true, applies: ['all'],
-    desc: 'AI answers every call 24/7, qualifies leads, quotes jobs, books appointments.',
+    desc: 'Answers every call 24/7, qualifies leads, quotes jobs, books appointments.',
     calc: `Industry data: 27% of calls to service businesses go unanswered (BIA/Kelsey 2023). Of those, 85% never call back (Invoca 2022). Using ~${missedPerWeek} missed/week and assuming ${recoveredPerWeek} recovered at $${fmt_num(job)} avg (${jobSource}) = ${fmt(receptionist_val)}/yr. <em class="est">We don't know your actual call volume or miss rate — this uses published industry averages. Your real number could be higher or lower.</em>`,
   });
 
@@ -260,10 +260,10 @@ function buildAutomations(btype, jobValue, googleData) {
     else hoursDesc = 'on weekends';
     const hours_val = cap(1.5 * job * 52, 40000);
     autos.push({
-      key: 'after_hours', name: 'After-Hours AI Coverage', cat: 'Customer Acquisition',
+      key: 'after_hours', name: 'After-Hours Coverage', cat: 'Customer Acquisition',
       value: hours_val, cost: 60, hours: 2, diff: 1, quickWin: true, applies: ['all'],
-      desc: `AI answers calls ${hoursDesc} — books appointments, provides quotes, captures leads.`,
-      calc: `Your Google listing shows you're not available ${hoursDesc}. 40% of service calls come outside business hours (ServiceTitan). AI coverage captures ~1.5 jobs/week you're currently losing at $${fmt_num(job)} avg = ${fmt(hours_val)}/yr. <em class="verified">Verified: limited hours on Google listing.</em>`,
+      desc: `Answers calls ${hoursDesc} — books appointments, provides quotes, captures leads.`,
+      calc: `Your Google listing shows you're not available ${hoursDesc}. 40% of service calls come outside business hours (ServiceTitan). Automated coverage captures ~1.5 jobs/week you're currently losing at $${fmt_num(job)} avg = ${fmt(hours_val)}/yr. <em class="verified">Verified: limited hours on Google listing.</em>`,
     });
   }
 
@@ -308,7 +308,7 @@ function buildAutomations(btype, jobValue, googleData) {
   // --- ALWAYS: Re-engagement ---
   const reengage_val = cap(1.0 * job * 12, 25000);
   autos.push({
-    key: 're_engagement', name: 'Customer Re-Engagement AI', cat: 'Customer Retention',
+    key: 're_engagement', name: 'Customer Re-Engagement System', cat: 'Customer Retention',
     value: reengage_val, cost: 25, hours: 3, diff: 2, applies: ['all'],
     desc: '60-90 day lapsed customers get a personalized text. "Haven\'t seen you in a while..."',
     calc: `10-15% of lapsed customers respond to re-engagement texts (HubSpot). At ~1 reactivation/month at $${fmt_num(job)} avg = ${fmt(reengage_val)}/yr from customers who would have gone to a competitor. <em class="est">Industry estimate.</em>`,
@@ -328,16 +328,16 @@ function buildAutomations(btype, jobValue, googleData) {
     autos.push({
       key: 'storm_leads', name: 'Storm Damage Lead Generator', cat: 'Business-Specific',
       value: 45000, cost: 60, hours: 8, diff: 4, applies: ['roofer'],
-      desc: 'Monitors weather. After storms, AI contacts homeowners in affected zip codes.',
-      calc: `Storm events create concentrated demand. AI outreach to affected zip codes within hours captures jobs competitors don't reach yet. At 3-4 jobs/storm × $3,500 avg × 4 storms/year = ~$45,000/yr. <em class="est">Depends on your region's storm frequency and avg job size.</em>`,
+      desc: 'Monitors weather. After storms, automated outreach contacts homeowners in affected zip codes.',
+      calc: `Storm events create concentrated demand. Automated outreach to affected zip codes within hours captures jobs competitors don't reach yet. At 3-4 jobs/storm × $3,500 avg × 4 storms/year = ~$45,000/yr. <em class="est">Depends on your region's storm frequency and avg job size.</em>`,
     });
   }
   if (btype === 'law_firm') {
     autos.push({
-      key: 'law_intake', name: 'AI Legal Intake System', cat: 'Business-Specific',
+      key: 'law_intake', name: 'Automated Legal Intake System', cat: 'Business-Specific',
       value: 72000, cost: 150, hours: 8, diff: 4, applies: ['law_firm'],
-      desc: 'AI handles new client intake calls 24/7. Attorney joins only for qualified cases.',
-      calc: `Law firms miss 35-50% of intake calls after hours (Clio Legal Trends Report). AI captures and qualifies all of them. At 2 extra qualified cases/month × $3,000 avg retainer = ~$72,000/yr. <em class="est">Based on Clio report averages — your call volume may differ.</em>`,
+      desc: 'Handles new client intake calls 24/7. Attorney joins only for qualified cases.',
+      calc: `Law firms miss 35-50% of intake calls after hours (Clio Legal Trends Report). Automated intake captures and qualifies all of them. At 2 extra qualified cases/month × $3,000 avg retainer = ~$72,000/yr. <em class="est">Based on Clio report averages — your call volume may differ.</em>`,
     });
   }
   if (btype === 'plumber' || btype === 'electrician') {
@@ -350,7 +350,7 @@ function buildAutomations(btype, jobValue, googleData) {
   }
   if (btype === 'gym') {
     autos.push({
-      key: 'gym_retention', name: 'Member Retention AI', cat: 'Business-Specific',
+      key: 'gym_retention', name: 'Member Retention System', cat: 'Business-Specific',
       value: 36000, cost: 50, hours: 6, diff: 3, applies: ['gym'],
       desc: 'Tracks attendance. 10-day no-shows get a personal text. Renewal reminders at 30 days.',
       calc: `Average gym loses 5-8% of members/month (IHRSA). Reducing churn by 8 members/month × $40/mo × 12 months = ~$36,000/yr in retained recurring revenue. <em class="est">Based on IHRSA industry averages.</em>`,
@@ -360,15 +360,15 @@ function buildAutomations(btype, jobValue, googleData) {
     autos.push({
       key: 'real_estate_nurture', name: 'Real Estate Lead Nurture', cat: 'Business-Specific',
       value: 54000, cost: 100, hours: 8, diff: 4, applies: ['real_estate'],
-      desc: 'Every inquiry gets a 12-month AI follow-up sequence with market updates.',
-      calc: `Most real estate leads need 3-12 months to decide. AI stays in touch automatically. Closing 1.5 extra deals/year from long-term nurture × $36,000 avg commission = ~$54,000/yr. <em class="est">Depends on your market's avg commission and lead volume.</em>`,
+      desc: 'Every inquiry gets a 12-month automated follow-up sequence with market updates.',
+      calc: `Most real estate leads need 3-12 months to decide. The system stays in touch automatically. Closing 1.5 extra deals/year from long-term nurture × $36,000 avg commission = ~$54,000/yr. <em class="est">Depends on your market's avg commission and lead volume.</em>`,
     });
   }
   if (btype === 'restaurant') {
     autos.push({
-      key: 'restaurant_reservations', name: 'AI Reservation System', cat: 'Business-Specific',
+      key: 'restaurant_reservations', name: 'Automated Reservation System', cat: 'Business-Specific',
       value: 28000, cost: 80, hours: 6, diff: 3, applies: ['restaurant'],
-      desc: 'AI handles reservation calls, manages waitlist, sends confirmations.',
+      desc: 'Handles reservation calls, manages waitlist, sends confirmations.',
       calc: `Restaurants miss 20-30% of reservation calls during service (Toast 2024). Filling 2.5 extra tables/night × $40 avg ticket × 300 nights = ~$28,000/yr. Automated confirmations also reduce no-shows. <em class="est">Industry estimate — depends on your volume.</em>`,
     });
   }
