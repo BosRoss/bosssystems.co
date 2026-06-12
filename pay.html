@@ -1,223 +1,229 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta name="description" content="BOSS Systems — Send payment via Venmo, Zelle, or Cash App.">
-  <title>BOSS Systems — Payment</title>
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
-  <style>
-    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="description" content="BOSS Systems — Secure payment">
+<title>BOSS Systems — Payment</title>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+<style>
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+:root{--bg:#0a0a0f;--bg-card:#12121a;--bg-card2:#181822;--gold:#c9a96e;--gold-light:#dfc070;--text:#f0ede8;--text-muted:#bbb;--text-dim:#888;--border:rgba(201,169,110,.15);--green:#00d632;--blue:#3d95ce;--purple:#6d1ed4;--square:#000}
+html{scroll-behavior:smooth}
+body{font-family:'Inter',-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;background:var(--bg);color:var(--text);line-height:1.6;min-height:100vh;display:flex;flex-direction:column;align-items:center;padding:40px 20px}
+.container{max-width:580px;width:100%}
 
-    :root {
-      --bg: #0a0a0f;
-      --bg-card: #12121a;
-      --gold: #c9a96e;
-      --gold-light: #dfc070;
-      --text: #f0ede8;
-      --text-muted: #bbb;
-      --border: rgba(201, 169, 110, 0.15);
-      --venmo-blue: #3d95ce;
-      --zelle-purple: #6d1ed4;
-      --cashapp-green: #00d632;
-    }
+.header{text-align:center;margin-bottom:32px}
+.logo{font-size:.75rem;letter-spacing:4px;color:var(--text-dim);text-transform:uppercase;margin-bottom:8px}
+h1{font-size:1.8rem;font-weight:700;color:var(--text);margin-bottom:4px}
+.sub{color:var(--text-muted);font-size:.95rem}
 
-    html { scroll-behavior: smooth; }
+.order-box{background:var(--bg-card);border:1px solid var(--border);border-radius:12px;padding:24px;margin-bottom:24px}
+.order-product{font-size:1.1rem;font-weight:600;margin-bottom:4px}
+.order-desc{font-size:.85rem;color:var(--text-muted);margin-bottom:16px}
+.order-line{display:flex;justify-content:space-between;padding:8px 0;border-bottom:1px solid rgba(255,255,255,.05);font-size:.9rem;color:var(--text-muted)}
+.order-line:last-child{border-bottom:none}
+.order-line .label{color:var(--text-muted)}
+.order-line .value{color:var(--text);font-weight:600}
+.order-total{display:flex;justify-content:space-between;padding:12px 0 0;margin-top:8px;border-top:1px solid var(--border);font-size:1.15rem;font-weight:700}
+.order-total .value{color:var(--gold)}
 
-    body {
-      font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
-      background: var(--bg);
-      color: var(--text);
-      line-height: 1.6;
-      min-height: 100vh;
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      padding: 60px 20px 40px;
-    }
+.section-label{font-size:.7rem;letter-spacing:2px;color:var(--text-dim);text-transform:uppercase;margin:24px 0 12px}
 
-    .container {
-      max-width: 680px;
-      width: 100%;
-    }
+.pay-btn{display:block;width:100%;padding:16px;border:none;border-radius:10px;font-family:inherit;font-size:1rem;font-weight:600;cursor:pointer;text-align:center;text-decoration:none;transition:.15s;margin-bottom:10px}
+.pay-btn:active{transform:scale(.98)}
+.pay-primary{background:var(--gold);color:#000}
+.pay-primary:hover{background:var(--gold-light)}
 
-    h1 {
-      font-size: 2rem;
-      font-weight: 700;
-      color: var(--gold);
-      text-align: center;
-      margin-bottom: 8px;
-    }
+.pay-alt{display:flex;gap:10px;margin-bottom:10px}
+.pay-alt-btn{flex:1;display:flex;flex-direction:column;align-items:center;gap:4px;padding:14px 8px;background:var(--bg-card);border:1px solid var(--border);border-radius:10px;text-decoration:none;color:var(--text);font-size:.8rem;font-weight:500;transition:.15s}
+.pay-alt-btn:hover{border-color:rgba(255,255,255,.15)}
+.pay-alt-btn .alt-name{font-weight:600;font-size:.85rem}
+.pay-alt-btn .alt-handle{color:var(--text-dim);font-size:.75rem}
 
-    .subtext {
-      text-align: center;
-      color: var(--text-muted);
-      font-size: 1.05rem;
-      margin-bottom: 48px;
-    }
+.square-badge{display:inline-flex;align-items:center;gap:6px;background:var(--bg-card2);border:1px solid var(--border);border-radius:6px;padding:8px 14px;font-size:.75rem;color:var(--text-dim);margin:16px auto 0;width:fit-content}
+.square-badge::before{content:"";width:8px;height:8px;background:var(--green);border-radius:50%}
 
-    .payment-cards {
-      display: flex;
-      flex-direction: column;
-      gap: 20px;
-      margin-bottom: 48px;
-    }
+.info-box{background:var(--bg-card);border:1px solid var(--border);border-radius:10px;padding:20px;margin-top:20px;font-size:.85rem;color:var(--text-muted);line-height:1.7}
+.info-box strong{color:var(--text)}
 
-    .payment-card {
-      background: var(--bg-card);
-      border: 1px solid var(--border);
-      border-radius: 12px;
-      padding: 28px 32px;
-      transition: transform 0.2s ease, border-color 0.2s ease;
-    }
+.back{display:block;text-align:center;margin-top:24px;color:var(--text-dim);text-decoration:none;font-size:.85rem}
+.back:hover{color:var(--gold)}
 
-    .payment-card:hover {
-      transform: translateY(-2px);
-    }
+.product-select{display:none;margin-bottom:24px}
+.product-select.show{display:block}
+.product-select select{width:100%;padding:14px 16px;background:var(--bg-card);border:1px solid var(--border);border-radius:10px;color:var(--text);font-family:inherit;font-size:.95rem;appearance:none;cursor:pointer;outline:none}
+.product-select select:focus{border-color:var(--gold)}
 
-    .payment-card.venmo:hover { border-color: var(--venmo-blue); }
-    .payment-card.zelle:hover { border-color: var(--zelle-purple); }
-    .payment-card.cashapp:hover { border-color: var(--cashapp-green); }
+.guarantees{display:flex;gap:8px;margin-top:16px;flex-wrap:wrap}
+.guarantee{display:flex;align-items:center;gap:6px;font-size:.75rem;color:var(--text-dim)}
+.guarantee::before{content:"";width:6px;height:6px;background:var(--green);border-radius:50%}
 
-    .card-header {
-      display: flex;
-      align-items: center;
-      gap: 12px;
-      margin-bottom: 8px;
-    }
-
-    .card-dot {
-      width: 12px;
-      height: 12px;
-      border-radius: 50%;
-      flex-shrink: 0;
-    }
-
-    .venmo .card-dot { background: var(--venmo-blue); }
-    .zelle .card-dot { background: var(--zelle-purple); }
-    .cashapp .card-dot { background: var(--cashapp-green); }
-
-    .card-title {
-      font-size: 1.25rem;
-      font-weight: 600;
-    }
-
-    .card-handle {
-      font-size: 1.1rem;
-      color: var(--text-muted);
-      margin-bottom: 12px;
-      padding-left: 24px;
-    }
-
-    .card-link {
-      display: inline-block;
-      padding-left: 24px;
-      font-size: 0.95rem;
-      font-weight: 500;
-      text-decoration: none;
-      transition: opacity 0.2s ease;
-    }
-
-    .card-link:hover { opacity: 0.8; }
-
-    .venmo .card-link { color: var(--venmo-blue); }
-    .zelle .card-link { color: var(--zelle-purple); }
-    .cashapp .card-link { color: var(--cashapp-green); }
-
-    .info-section {
-      background: var(--bg-card);
-      border: 1px solid var(--border);
-      border-radius: 12px;
-      padding: 28px 32px;
-      margin-bottom: 20px;
-    }
-
-    .info-section p {
-      color: var(--text-muted);
-      font-size: 0.95rem;
-      line-height: 1.7;
-    }
-
-    .info-section p strong {
-      color: var(--text);
-    }
-
-    .note {
-      text-align: center;
-      color: var(--text-muted);
-      font-size: 0.88rem;
-      margin-bottom: 48px;
-      line-height: 1.6;
-    }
-
-    .footer-link {
-      text-align: center;
-      padding-top: 24px;
-      border-top: 1px solid var(--border);
-    }
-
-    .footer-link a {
-      color: var(--gold);
-      text-decoration: none;
-      font-size: 0.95rem;
-      font-weight: 500;
-      transition: opacity 0.2s ease;
-    }
-
-    .footer-link a:hover { opacity: 0.75; }
-
-    @media (max-width: 600px) {
-      body { padding: 40px 16px 32px; }
-      h1 { font-size: 1.6rem; }
-      .payment-card { padding: 22px 20px; }
-      .card-handle { padding-left: 0; }
-      .card-link { padding-left: 0; }
-    }
-  </style>
+@media(max-width:500px){
+  body{padding:24px 16px}
+  h1{font-size:1.5rem}
+  .pay-alt{flex-direction:column}
+}
+</style>
 </head>
 <body>
-  <div class="container">
-    <h1>BOSS Systems — Payment</h1>
-    <p class="subtext">Choose your preferred payment method</p>
+<div class="container">
+  <div class="header">
+    <div class="logo">BOSS Systems</div>
+    <h1 id="page-title">Payment</h1>
+    <div class="sub" id="page-sub">Secure payment for BOSS Systems services</div>
+  </div>
 
-    <div class="payment-cards">
-      <div class="payment-card venmo">
-        <div class="card-header">
-          <span class="card-dot"></span>
-          <span class="card-title">Venmo</span>
-        </div>
-        <p class="card-handle">@BosRoss</p>
-        <a href="venmo://paycharge?txn=pay&recipients=BosRoss" class="card-link">Tap to open Venmo &rarr;</a>
-      </div>
+  <div class="product-select" id="product-picker">
+    <select id="product-select" onchange="selectProduct(this.value)">
+      <option value="">Choose a product...</option>
+      <option value="receptionist">Automated Receptionist — $250 setup + $50/mo</option>
+      <option value="build_standard">BOSS Build Standard — $1,497 setup + $97/mo</option>
+      <option value="build_premium">BOSS Build Premium — $2,997 setup + $197/mo</option>
+      <option value="full">Full Transformation — $5,997 setup + $497/mo</option>
+      <option value="custom">Custom amount</option>
+    </select>
+  </div>
 
-      <div class="payment-card zelle">
-        <div class="card-header">
-          <span class="card-dot"></span>
-          <span class="card-title">Zelle</span>
-        </div>
-        <p class="card-handle">bosssystemsai@gmail.com</p>
-        <a href="#" class="card-link">Send via your banking app</a>
-      </div>
-
-      <div class="payment-card cashapp">
-        <div class="card-header">
-          <span class="card-dot"></span>
-          <span class="card-title">Cash App</span>
-        </div>
-        <p class="card-handle">$BosRoss</p>
-        <a href="https://cash.app/$BosRoss" class="card-link">Tap to open Cash App &rarr;</a>
-      </div>
-    </div>
-
-    <div class="info-section">
-      <p><strong>After payment,</strong> text <strong>903-522-4459</strong> with your receipt screenshot and we'll get started within 24 hours.</p>
-    </div>
-
-    <p class="note">All payments include a digital receipt via email. Need an invoice? Text us at 903-522-4459 and we'll send one.</p>
-
-    <div class="footer-link">
-      <a href="https://bosssystems.co">&larr; Back to bosssystems.co</a>
+  <div class="order-box" id="order-box" style="display:none">
+    <div class="order-product" id="order-product"></div>
+    <div class="order-desc" id="order-desc"></div>
+    <div class="order-line"><span class="label">Setup fee</span><span class="value" id="order-setup"></span></div>
+    <div class="order-line"><span class="label">Monthly (starts after build)</span><span class="value" id="order-monthly"></span></div>
+    <div class="order-total"><span>Due today</span><span class="value" id="order-due"></span></div>
+    <div class="guarantees">
+      <span class="guarantee">No contracts</span>
+      <span class="guarantee">Cancel anytime</span>
+      <span class="guarantee">No overages</span>
+      <span class="guarantee">Built in 72 hours</span>
     </div>
   </div>
+
+  <div id="pay-buttons">
+    <div class="section-label">Pay with card</div>
+    <a href="#" class="pay-btn pay-primary" id="square-btn" onclick="return handleSquare()">Pay with Card</a>
+
+    <div class="section-label">Or use</div>
+    <div class="pay-alt">
+      <a href="venmo://paycharge?txn=pay&recipients=BosRoss" class="pay-alt-btn" id="venmo-btn">
+        <span class="alt-name">Venmo</span>
+        <span class="alt-handle">@BosRoss</span>
+      </a>
+      <a href="#" class="pay-alt-btn" id="zelle-btn">
+        <span class="alt-name">Zelle</span>
+        <span class="alt-handle">bosssystemsai@gmail.com</span>
+      </a>
+      <a href="https://cash.app/$BosRoss" class="pay-alt-btn" id="cashapp-btn" target="_blank">
+        <span class="alt-name">Cash App</span>
+        <span class="alt-handle">$BosRoss</span>
+      </a>
+    </div>
+  </div>
+
+  <div class="info-box">
+    <strong>After payment:</strong> Text or call <strong>(903) 522-4459</strong> with your receipt. We'll start building your system within 24 hours. You'll get a test call before it goes live.
+  </div>
+
+  <div class="square-badge" id="secure-badge">Secure payment processing</div>
+
+  <a href="https://bosssystems.co" class="back">&larr; Back to bosssystems.co</a>
+</div>
+
+<script>
+var PRODUCTS = {
+  receptionist: {name:"Automated Receptionist", desc:"Answers every call 24/7. Quotes jobs, books appointments, takes messages. No overages.", setup:250, monthly:50},
+  build_standard: {name:"BOSS Build Standard", desc:"Phone system + CRM basics. Custom-built for your business. Deployed in 72 hours.", setup:1497, monthly:97},
+  build_premium: {name:"BOSS Build Premium", desc:"Phone + follow-ups + reviews. The full automated front office.", setup:2997, monthly:197},
+  full: {name:"Full Transformation", desc:"Complete automated system. Phone, follow-ups, reviews, scheduling, lead capture, marketing.", setup:5997, monthly:497},
+};
+
+var SQUARE_LINK = null; // Set when Square is configured: "https://square.link/u/XXXXX"
+var currentProduct = null;
+
+function init() {
+  var params = new URLSearchParams(window.location.search);
+  var product = params.get('product');
+  var amount = params.get('amount');
+  var squareUrl = params.get('square');
+
+  if (squareUrl) SQUARE_LINK = decodeURIComponent(squareUrl);
+
+  if (product && PRODUCTS[product]) {
+    showProduct(product);
+  } else if (amount) {
+    showCustomAmount(parseInt(amount), params.get('label') || 'BOSS Systems Service');
+  } else {
+    document.getElementById('product-picker').classList.add('show');
+  }
+}
+
+function selectProduct(val) {
+  if (!val) {
+    document.getElementById('order-box').style.display = 'none';
+    return;
+  }
+  if (val === 'custom') {
+    var amt = prompt('Enter amount ($):');
+    if (amt) showCustomAmount(parseInt(amt), 'BOSS Systems Service');
+    return;
+  }
+  showProduct(val);
+}
+
+function showProduct(key) {
+  var p = PRODUCTS[key];
+  if (!p) return;
+  currentProduct = p;
+  document.getElementById('order-product').textContent = p.name;
+  document.getElementById('order-desc').textContent = p.desc;
+  document.getElementById('order-setup').textContent = '$' + p.setup.toLocaleString();
+  document.getElementById('order-monthly').textContent = '$' + p.monthly + '/mo';
+  document.getElementById('order-due').textContent = '$' + p.setup.toLocaleString();
+  document.getElementById('order-box').style.display = 'block';
+  document.getElementById('page-title').textContent = 'Payment';
+  document.getElementById('page-sub').textContent = p.name + ' — due today: $' + p.setup.toLocaleString();
+
+  updateVenmoLink(p.setup, p.name);
+  updateSquareBtn(p.setup);
+
+  var picker = document.getElementById('product-select');
+  if (picker) picker.value = key;
+}
+
+function showCustomAmount(amt, label) {
+  currentProduct = {name: label, desc: '', setup: amt, monthly: 0};
+  document.getElementById('order-product').textContent = label;
+  document.getElementById('order-desc').textContent = '';
+  document.getElementById('order-setup').textContent = '$' + amt.toLocaleString();
+  document.getElementById('order-monthly').textContent = 'TBD';
+  document.getElementById('order-due').textContent = '$' + amt.toLocaleString();
+  document.getElementById('order-box').style.display = 'block';
+
+  updateVenmoLink(amt, label);
+  updateSquareBtn(amt);
+}
+
+function updateVenmoLink(amount, note) {
+  var venmo = document.getElementById('venmo-btn');
+  venmo.href = 'venmo://paycharge?txn=pay&recipients=BosRoss&amount=' + amount + '&note=' + encodeURIComponent(note + ' - BOSS Systems');
+}
+
+function updateSquareBtn(amount) {
+  var btn = document.getElementById('square-btn');
+  btn.textContent = 'Pay $' + amount.toLocaleString() + ' with Card';
+  if (SQUARE_LINK) {
+    btn.href = SQUARE_LINK;
+    btn.target = '_blank';
+  }
+}
+
+function handleSquare() {
+  if (SQUARE_LINK) return true;
+  alert('Card payments coming soon. Please use Venmo, Zelle, or Cash App for now.');
+  return false;
+}
+
+init();
+</script>
 </body>
 </html>
