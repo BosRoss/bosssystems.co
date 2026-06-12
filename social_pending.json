@@ -12,39 +12,6 @@
       "queued_at": "2026-06-10T13:00:09.696443"
     },
     {
-      "text": "You're broke because you're waiting for permission. Your parents think it's sketch. Your friends think you're crazy. Meanwhile someone's pressure washing for $600-$1,200 a week and we literally built their whole operation for them. Zero startup cost. You keep 80 percent. The catch is you actually have to show up. Send this to someone still working minimum wage for $290 a week. bosssystems.co/summer.html *Results vary.*",
-      "audience": "spp",
-      "platform": "instagram",
-      "service": "instagram",
-      "channel_id": "6a235eb2c687a22dd46643fa",
-      "pattern": "story",
-      "image_url": "https://raw.githubusercontent.com/BosRoss/bosssystems.co/main/social_images/post_spp_20260609_130015.png",
-      "pending_id": "2414e7ea",
-      "queued_at": "2026-06-09T13:00:17.270503"
-    },
-    {
-      "text": "How many calls this month did you miss because you were already on a job? Not answering is costing you more than you think. Send this to a contractor still losing work to voicemail.",
-      "audience": "boss",
-      "platform": "instagram",
-      "service": "instagram",
-      "channel_id": "6a235eb2c687a22dd46643fa",
-      "pattern": "question",
-      "image_url": "https://raw.githubusercontent.com/BosRoss/bosssystems.co/main/social_images/post_boss_20260609_130002.png",
-      "pending_id": "33849c5c",
-      "queued_at": "2026-06-09T13:00:04.264471"
-    },
-    {
-      "text": "How many calls do you get on Tuesday that go straight to voicemail.\n\nBetter question. How many of those people just call your competitor instead.\n\nWe looked at this for HVAC shops and plumbers in small towns. 27% of calls never get answered. 93% of those people never call back.\n\nThat's not a bad day. That's a pattern that costs you.\n\nWhat if someone answered every single call. Booked every job. Sent every bill same day.\n\nWe built systems that do exactly that. Costs less than one lost job.\n\nTa...",
-      "audience": "boss",
-      "platform": "facebook",
-      "service": "facebook",
-      "channel_id": "6a235ecac687a22dd4664434",
-      "pattern": "question",
-      "image_url": null,
-      "pending_id": "3e3aac03",
-      "queued_at": "2026-06-09T13:00:08.672721"
-    },
-    {
       "text": "Yeah okay so we literally build your entire business for you and you keep 80 percent of what you make. The catch is you actually have to show up and do the work. Junk removal pays $450-$750 a week. Pressure washing $600-$1,200. Pet sitting $560-$1,680. *Results vary.* bosssystems.co/summer.html\n\n#MakeMoneyFast #TeenJobs #SummerMoney #SideHustle #WorkFromHome",
       "audience": "spp",
       "platform": "tiktok",
@@ -67,37 +34,59 @@
       "queued_at": "2026-06-10T13:00:23.178879"
     },
     {
-      "text": "Yeah okay this is literally just doing chores but people pay you $600-$1,200 a week for it. Pressure washing driveways takes like three hours. We build the whole business. You keep eighty percent. *Results vary.* bosssystems.co/summer.html\n\n#MakeMoneyFast #TeenJobs #PressureWashing #SummerMoney #WorkFromHome",
+      "text": "Your dispatcher quit last month. Business kept running. Phones still rang. Jobs still got booked.\n\nHere's the catch: you were probably losing calls the whole time and never noticed.\n\nMost service owners don't. Twenty seven percent of incoming calls go straight to voicemail. Ninety three percent of those people never call back. They just hire whoever picks up first.\n\nThat's not a system problem. That's a money problem.\n\nWe built something that answers your phone, books the job, and sends the i...",
+      "audience": "boss",
+      "platform": "facebook",
+      "service": "facebook",
+      "channel_id": "6a235ecac687a22dd4664434",
+      "pattern": "the_catch",
+      "image_url": null,
+      "pending_id": "768fb96b",
+      "queued_at": "2026-06-12T13:00:09.232176"
+    },
+    {
+      "text": "Behind the scenes at BOSS, we literally build the whole operation so you just show up and do the work. Website, phone system, booking calendar, everything. Then you keep 80% of what comes in. Pet sitting runs $560-$1,680 a week. Junk removal hits $450-$750. Pressure washing goes $600-$1,200. *Results vary.* \n\nSend this to that person still doing odd jobs for cash under the table.\n\nbosssystems.co/summer.html",
+      "audience": "spp",
+      "platform": "instagram",
+      "service": "instagram",
+      "channel_id": "6a235eb2c687a22dd46643fa",
+      "pattern": "behind_scenes",
+      "image_url": "https://raw.githubusercontent.com/BosRoss/bosssystems.co/main/social_images/post_spp_20260612_130015.png",
+      "pending_id": "96caecee",
+      "queued_at": "2026-06-12T13:00:17.111045"
+    },
+    {
+      "text": "You're probably losing jobs to voicemail right now. Someone calls, you're with another customer, they hang up. They call your competitor instead. That's 93% of the time they never call back. Send this to the contractor still wondering where all the jobs went.",
+      "audience": "boss",
+      "platform": "instagram",
+      "service": "instagram",
+      "channel_id": "6a235eb2c687a22dd46643fa",
+      "pattern": "the_catch",
+      "image_url": "https://raw.githubusercontent.com/BosRoss/bosssystems.co/main/social_images/post_boss_20260612_130003.png",
+      "pending_id": "a5807a98",
+      "queued_at": "2026-06-12T13:00:05.439088"
+    },
+    {
+      "text": "We literally built the entire website, phone line, and booking system so you just show up and work. Not a pitch. Just facts. Pressure washing runs $600-$1,200 weekly. Junk removal hits $450-$750. You keep 80%. *Results vary.* bosssystems.co/summer.html #MakeMoneyFast #SummerJobs #TeenMoney #SideHustle #WorkFromHome",
       "audience": "spp",
       "platform": "tiktok",
       "service": "tiktok",
       "channel_id": "6a235eddc687a22dd4664478",
-      "pattern": "story",
-      "image_url": "https://raw.githubusercontent.com/BosRoss/bosssystems.co/main/social_images/post_spp_20260609_130024.png",
-      "pending_id": "8b0f7faf",
-      "queued_at": "2026-06-09T13:00:25.548184"
+      "pattern": "behind_scenes",
+      "image_url": "https://raw.githubusercontent.com/BosRoss/bosssystems.co/main/social_images/post_spp_20260612_130025.png",
+      "pending_id": "af4739e8",
+      "queued_at": "2026-06-12T13:00:26.406461"
     },
     {
-      "text": "So my friend asked me last week why I wasn't just working at McDonald's for minimum wage. I told him I was doing junk removal instead and making $450 to $750 a week. He went quiet. Then he asked how I set it up. The thing is, I didn't build the website. I didn't figure out the booking system. I didn't handle the phone calls at first. BOSS Systems built all that. I just showed up and did the work. Kept 80 percent of what came in. Sounds like one of those scams your parents warn you about, but ...",
+      "text": "We built the entire website, booking system, and phone line. Boston just shows up and does the work. He's keeping $600-$1,200 a week pressure washing. We handle the rest. That's the actual catch nobody talks about. Most of these programs make you do everything yourself. We do the business part. You do the work part. You keep 80%. We're running this for 11 different service types this summer. Pet sitting is running $560-$1,680 a week right now. Junk removal is $450-$750. This sounds like every...",
       "audience": "spp",
       "platform": "facebook",
       "service": "facebook",
       "channel_id": "6a235ecac687a22dd4664434",
-      "pattern": "story",
+      "pattern": "behind_scenes",
       "image_url": null,
-      "pending_id": "a9a08256",
-      "queued_at": "2026-06-09T13:00:21.370074"
-    },
-    {
-      "text": "Here's what your phone is actually doing right now: ringing to nobody. Seven out of ten calls from customers go straight to voicemail. They call your competitor instead. That's the gap we close. BOSS Systems finds the money leak and plugs it. Free analysis in 60 seconds. bosssystems.co #ServiceBusiness #LocalBusiness #HVAC #Plumbing #Electricians",
-      "audience": "boss",
-      "platform": "tiktok",
-      "service": "tiktok",
-      "channel_id": "6a235eddc687a22dd4664478",
-      "pattern": "question",
-      "image_url": "https://raw.githubusercontent.com/BosRoss/bosssystems.co/main/social_images/post_boss_20260609_130011.png",
-      "pending_id": "c200a63b",
-      "queued_at": "2026-06-09T13:00:12.868164"
+      "pending_id": "b44ec11b",
+      "queued_at": "2026-06-12T13:00:21.480899"
     },
     {
       "text": "You're probably losing two jobs a month to voicemail. That's not a guess, that's what happens when 27 percent of calls go unanswered. The guy who picks up first wins the job. Send this to a contractor still playing phone tag with customers.",
@@ -131,6 +120,17 @@
       "image_url": "https://raw.githubusercontent.com/BosRoss/bosssystems.co/main/social_images/post_spp_20260610_130017.png",
       "pending_id": "f156995c",
       "queued_at": "2026-06-10T13:00:19.401253"
+    },
+    {
+      "text": "Your competitor just answered a call you missed. First responder wins 78% of jobs. We built a system that never sleeps. #ServiceBusiness #HVAC #Plumber #LocalBusiness #MakeMoneyFast",
+      "audience": "boss",
+      "platform": "tiktok",
+      "service": "tiktok",
+      "channel_id": "6a235eddc687a22dd4664478",
+      "pattern": "the_catch",
+      "image_url": "https://raw.githubusercontent.com/BosRoss/bosssystems.co/main/social_images/post_boss_20260612_130011.png",
+      "pending_id": "ffa7a449",
+      "queued_at": "2026-06-12T13:00:13.117391"
     }
   ]
 }
