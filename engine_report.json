@@ -1,28 +1,12 @@
 {
-  "generated": "2026-06-12T22:05:16.383893+00:00",
+  "generated": "2026-06-13T00:12:45.343018+00:00",
   "engine_state": "active",
   "signals": [
     {
       "type": "flood",
-      "area": "Shackelford, TX; Throckmorton, TX",
+      "area": "Brewster, TX",
       "niche": "plumbing",
-      "action": "Flood warnings in Shackelford, TX; Throckmorton, TX. Plumbers, restoration, mold companies will spike.",
-      "urgency": "today",
-      "pitch_hook": "Water damage calls are coming. Every one you miss is $500+ walking away."
-    },
-    {
-      "type": "flood",
-      "area": "Hudspeth, TX",
-      "niche": "plumbing",
-      "action": "Flood warnings in Hudspeth, TX. Plumbers, restoration, mold companies will spike.",
-      "urgency": "today",
-      "pitch_hook": "Water damage calls are coming. Every one you miss is $500+ walking away."
-    },
-    {
-      "type": "flood",
-      "area": "Harris, TX",
-      "niche": "plumbing",
-      "action": "Flood warnings in Harris, TX. Plumbers, restoration, mold companies will spike.",
+      "action": "Flood warnings in Brewster, TX. Plumbers, restoration, mold companies will spike.",
       "urgency": "today",
       "pitch_hook": "Water damage calls are coming. Every one you miss is $500+ walking away."
     },
@@ -43,28 +27,28 @@
       "pitch_hook": "Water damage calls are coming. Every one you miss is $500+ walking away."
     },
     {
+      "type": "storm",
+      "area": "Beaver, OK; Cimarron, OK; Texas, OK; Dallam, TX; Hansford, TX; Hartley, TX; Hemphill, TX; Hutchinson, TX; Lipscomb, TX; Moore, TX; Ochiltree, TX; Roberts, TX; Sherman, TX",
+      "niche": "roofing",
+      "action": "Storm damage in Beaver, OK; Cimarron, OK; Texas, OK; Dallam, TX; Hansford, TX; Hartley, TX; Hemphill, TX; Hutchinson, TX; Lipscomb, TX; Moore, TX; Ochiltree, TX; Roberts, TX; Sherman, TX. Roofers and restoration companies about to get flooded.",
+      "urgency": "today",
+      "pitch_hook": "After a storm like that, you'll get 10x your normal call volume. Ready for it?"
+    },
+    {
       "type": "flood",
-      "area": "Bosque, TX; Somervell, TX",
+      "area": "Shackelford, TX; Throckmorton, TX",
       "niche": "plumbing",
-      "action": "Flood warnings in Bosque, TX; Somervell, TX. Plumbers, restoration, mold companies will spike.",
+      "action": "Flood warnings in Shackelford, TX; Throckmorton, TX. Plumbers, restoration, mold companies will spike.",
       "urgency": "today",
       "pitch_hook": "Water damage calls are coming. Every one you miss is $500+ walking away."
     },
     {
       "type": "heat_wave",
-      "area": "Wise; Denton; Collin; Hunt; Parker; Tarrant; Dallas; Rockwall; Kaufman; Hood; Somervell; Johnson; Ellis; Navarro",
+      "area": "Palo Duro Canyon",
       "niche": "hvac",
-      "action": "HVAC businesses in Wise; Denton; Collin; Hunt; Parker; Tarrant; Dallas; Rockwall; Kaufman; Hood; Somervell; Johnson; Ellis; Navarro are drowning in calls right now. Perfect time to pitch.",
+      "action": "HVAC businesses in Palo Duro Canyon are drowning in calls right now. Perfect time to pitch.",
       "urgency": "today",
       "pitch_hook": "You're getting slammed with calls \u2014 how many went to voicemail today?"
-    },
-    {
-      "type": "flood",
-      "area": "Lee, AR; Phillips, AR; Coahoma, MS; Tunica, MS",
-      "niche": "plumbing",
-      "action": "Flood warnings in Lee, AR; Phillips, AR; Coahoma, MS; Tunica, MS. Plumbers, restoration, mold companies will spike.",
-      "urgency": "today",
-      "pitch_hook": "Water damage calls are coming. Every one you miss is $500+ walking away."
     },
     {
       "type": "heat_wave",
@@ -79,6 +63,22 @@
       "area": "Benton; Washington; Nowata; Craig; Ottawa; Mayes; Delaware; Cherokee; Adair",
       "niche": "plumbing",
       "action": "Flood warnings in Benton; Washington; Nowata; Craig; Ottawa; Mayes; Delaware; Cherokee; Adair. Plumbers, restoration, mold companies will spike.",
+      "urgency": "today",
+      "pitch_hook": "Water damage calls are coming. Every one you miss is $500+ walking away."
+    },
+    {
+      "type": "storm",
+      "area": "Ellis, OK; Harper, OK; Woods, OK; Woodward, OK",
+      "niche": "roofing",
+      "action": "Storm damage in Ellis, OK; Harper, OK; Woods, OK; Woodward, OK. Roofers and restoration companies about to get flooded.",
+      "urgency": "today",
+      "pitch_hook": "After a storm like that, you'll get 10x your normal call volume. Ready for it?"
+    },
+    {
+      "type": "flood",
+      "area": "Ottawa, OK",
+      "niche": "plumbing",
+      "action": "Flood warnings in Ottawa, OK. Plumbers, restoration, mold companies will spike.",
       "urgency": "today",
       "pitch_hook": "Water damage calls are coming. Every one you miss is $500+ walking away."
     }
@@ -239,55 +239,55 @@
   "feeds": [
     {
       "name": "NOAA",
-      "last_hit": "2026-06-12T21:57:25.037603+00:00",
+      "last_hit": "2026-06-13T00:05:20.662857+00:00",
       "status": "yellow",
       "data_points_today": 0
     },
     {
       "name": "REDDIT",
-      "last_hit": "2026-06-12T21:57:25.037603+00:00",
+      "last_hit": "2026-06-13T00:05:20.662857+00:00",
       "status": "green",
-      "data_points_today": 20
+      "data_points_today": 40
     },
     {
       "name": "USGS",
-      "last_hit": "2026-06-12T21:57:25.037603+00:00",
+      "last_hit": "2026-06-13T00:05:20.662857+00:00",
       "status": "yellow",
       "data_points_today": 0
     },
     {
       "name": "HACKERNEWS",
-      "last_hit": "2026-06-12T21:57:25.037603+00:00",
+      "last_hit": "2026-06-13T00:05:20.662857+00:00",
       "status": "green",
       "data_points_today": 30
     },
     {
       "name": "FEMA",
-      "last_hit": "2026-06-12T21:57:25.037603+00:00",
+      "last_hit": "2026-06-13T00:05:20.662857+00:00",
       "status": "green",
       "data_points_today": 20
     },
     {
       "name": "COMMODITIES",
-      "last_hit": "2026-06-12T21:57:25.037603+00:00",
+      "last_hit": "2026-06-13T00:05:20.662857+00:00",
       "status": "green",
       "data_points_today": 7
     },
     {
       "name": "RSS",
-      "last_hit": "2026-06-12T21:57:25.037603+00:00",
+      "last_hit": "2026-06-13T00:05:20.662857+00:00",
       "status": "green",
       "data_points_today": 170
     },
     {
       "name": "FRED",
-      "last_hit": "2026-06-12T21:57:25.037603+00:00",
+      "last_hit": "2026-06-13T00:05:20.662857+00:00",
       "status": "yellow",
       "data_points_today": 0
     },
     {
       "name": "BLS",
-      "last_hit": "2026-06-12T21:57:25.037603+00:00",
+      "last_hit": "2026-06-13T00:05:20.662857+00:00",
       "status": "green",
       "data_points_today": 9
     }
