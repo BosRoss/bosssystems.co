@@ -1,41 +1,41 @@
 {
-  "generated": "2026-06-12T20:30:00.218157+00:00",
+  "generated": "2026-06-13T03:33:54.203038+00:00",
   "sections": {
     "atlas": {
       "power_level": "ACTIVE",
-      "last_scan": "2026-06-12T19:49:50.567732+00:00",
-      "scan_count": 94,
+      "last_scan": "2026-06-13T00:05:20.662857+00:00",
+      "scan_count": 96,
       "heat_score": 100,
-      "recommendation": "HOT DAY. Weather-driven demand in Chicot; East Carroll; Madison; Catahoula; Tensas; Concordia; Bolivar; Sunflower; Leflore; Washington; Humphreys; Issaquena; Sharkey; Yazoo; Madison; Warren; Hinds; Rankin; Claiborne; Copiah; Simpson; , Alcorn, MS; Chickasaw, MS; Itawamba, MS; Lafayette, MS; Lee, MS; Pontotoc, MS; Prentiss, MS; Tippah, MS; Tishomingo, MS; Union, MS, Cooke, TX; Denton, TX; Wise, TX. Call HVAC/roofers there NOW.",
+      "recommendation": "HOT DAY. Weather-driven demand in Brewster, TX, Benton; Washington; Nowata; Craig; Ottawa; Mayes; Delaware; Cherokee; Adair, Ottawa, OK. Call HVAC/roofers there NOW.",
       "demand_signals": 10,
       "pain_signals": 0,
       "pitch_adjustments": 0,
-      "competitor_intel": 1,
-      "territory_alerts": 18,
+      "competitor_intel": 0,
+      "territory_alerts": 8,
       "top_demands": [
         {
           "type": "flood",
-          "area": "Fannin, TX; Grayson, TX",
+          "area": "Brewster, TX",
           "niche": "plumbing"
         },
         {
           "type": "flood",
-          "area": "Cooke, TX; Denton, TX; Wise, TX",
+          "area": "Jeff Davis, TX",
           "niche": "plumbing"
         },
         {
-          "type": "heat_wave",
-          "area": "Wise; Denton; Collin; Hunt; Parker; Tarrant; Dallas; Rockwal",
-          "niche": "hvac"
+          "type": "flood",
+          "area": "Brewster, TX; Jeff Davis, TX; Pecos, TX",
+          "niche": "plumbing"
         },
         {
-          "type": "heat_wave",
-          "area": "Palo Duro Canyon",
-          "niche": "hvac"
+          "type": "storm",
+          "area": "Beaver, OK; Cimarron, OK; Texas, OK; Dallam, TX; Hansford, T",
+          "niche": "roofing"
         },
         {
           "type": "flood",
-          "area": "Alcorn, MS; Chickasaw, MS; Itawamba, MS; Lafayette, MS; Lee,",
+          "area": "Shackelford, TX; Throckmorton, TX",
           "niche": "plumbing"
         }
       ],
@@ -213,6 +213,14 @@
       ],
       "recent_failures": [
         {
+          "workflow": "VeofXawy3ISKcQY7",
+          "started": "2026-06-12T22:00"
+        },
+        {
+          "workflow": "JBEeMWjn59t5lhGx",
+          "started": "2026-06-12T22:00"
+        },
+        {
           "workflow": "8jvr7e9CDZgggXzM",
           "started": "2026-06-12T17:00"
         },
@@ -223,14 +231,6 @@
         {
           "workflow": "8lxiHdzEAmHOWclo",
           "started": "2026-06-12T08:00"
-        },
-        {
-          "workflow": "VeofXawy3ISKcQY7",
-          "started": "2026-06-11T22:00"
-        },
-        {
-          "workflow": "JBEeMWjn59t5lhGx",
-          "started": "2026-06-11T22:00"
         }
       ]
     },
