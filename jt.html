@@ -808,12 +808,75 @@ function copyText(id) {
 
 function esc(s) { const d = document.createElement('div'); d.textContent = s; return d.innerHTML; }
 
+// Activity log
+function getLog() { return JSON.parse(localStorage.getItem('jt_activity') || '[]'); }
+function logActivity(action, detail) {
+  var log = getLog();
+  log.unshift({action: action, detail: detail, ts: new Date().toISOString()});
+  if (log.length > 200) log = log.slice(0, 200);
+  localStorage.setItem('jt_activity', JSON.stringify(log));
+}
+
+// Sync to Boston's dashboard
+var _syncTimer = null;
+function syncToBoss() {
+  clearTimeout(_syncTimer);
+  _syncTimer = setTimeout(function() {
+    var pipeline = getPipeline();
+    var log = getLog();
+    var closed = pipeline.filter(function(p){return p.stage==='closed'}).length;
+    var pitched = pipeline.filter(function(p){return p.stage==='pitched'}).length;
+    var prospects = pipeline.filter(function(p){return p.stage==='prospect'}).length;
+    var data = {
+      pipeline: pipeline,
+      activity: log.slice(0, 50),
+      stats: {closed: closed, pitched: pitched, prospects: prospects, total: pipeline.length},
+      synced_at: new Date().toISOString()
+    };
+    fetch('https://jamross.app.n8n.cloud/webhook/jt-pipeline-sync', {
+      method: 'POST',
+      headers: {'Content-Type': 'application/json'},
+      body: JSON.stringify(data)
+    }).catch(function(){});
+  }, 2000);
+}
+
+// Wrap pipeline changes to log + sync
+var _origAdd = addProspect;
+addProspect = function() {
+  var name = document.getElementById('add-name').value.trim();
+  var stage = document.getElementById('add-stage').value;
+  if (!name) return;
+  _origAdd();
+  logActivity('added', name + ' as ' + stage);
+  syncToBoss();
+};
+var _origDel = delProspect;
+delProspect = function(i) {
+  var pipeline = getPipeline();
+  var name = pipeline[i] ? pipeline[i].name : '?';
+  _origDel(i);
+  logActivity('removed', name);
+  syncToBoss();
+};
+var _origCycle = cycleStage;
+cycleStage = function(i) {
+  var pipeline = getPipeline();
+  var name = pipeline[i] ? pipeline[i].name : '?';
+  _origCycle(i);
+  var updated = getPipeline();
+  var newStage = updated[i] ? updated[i].stage : '?';
+  logActivity('moved', name + ' to ' + newStage);
+  syncToBoss();
+};
+
 // Training alert
 if (!localStorage.getItem('jt_quiz_done')) {
   document.getElementById('training-alert').style.display = 'flex';
 }
 
 renderPipeline();
+syncToBoss();
 </script>
 </body>
 </html>
