@@ -64,6 +64,13 @@ nav a{color:#888;text-decoration:none}
 .phone{color:#C9A84C;font-weight:600}
 .welcome{text-align:center;padding:60px 20px;color:#999}
 .welcome h2{color:#C9A84C;font-size:16px;margin-bottom:8px}
+.cb{background:#0a0a0a;border:1px solid #222;border-radius:4px;padding:10px 12px;margin:8px 0 4px;white-space:pre-wrap;font-size:10px;color:#bbb;line-height:1.6;max-height:300px;overflow-y:auto}
+.cpb{display:inline-block;padding:3px 10px;background:#1a1a1a;border:1px solid #333;border-radius:3px;font-size:9px;color:#aaa;cursor:pointer;margin:2px 0 8px}
+.cpb:hover{background:#222;color:#ddd}
+.cpb.ok{background:#0a2a0a;color:#0c6;border-color:#0a3a0a}
+.todo-item{background:#0d0d0d;border:1px solid #1a1a1a;border-radius:6px;padding:12px;margin:8px 0}
+.todo-label{color:#C9A84C;font-size:10px;font-weight:600;letter-spacing:1px;text-transform:uppercase;margin-bottom:4px}
+.todo-desc{color:#999;font-size:10px;line-height:1.6}
 </style>
 </head>
 <body>
@@ -86,19 +93,22 @@ nav a{color:#888;text-decoration:none}
 </div>
 
 <script>
+var _cpn=0;
+function mkcp(text){var id='cp'+(_cpn++);return '<div class="cb" id="'+id+'">'+text.replace(/</g,'&lt;').replace(/>/g,'&gt;')+'</div><button class="cpb" onclick="cpb(\''+id+'\')">Copy</button>';}
+function cpb(id){var t=document.getElementById(id).textContent;navigator.clipboard.writeText(t).then(function(){var b=document.querySelector('[onclick*=\"'+id+'\"]');if(b){b.textContent='Copied';b.classList.add('ok');setTimeout(function(){b.textContent='Copy';b.classList.remove('ok');},1500);}});}
 var MAP = {
   "BOSS Systems": {
     "Three Products": {
-      title: "BOSS Analyze / Build / Own",
+      title: "BOSS Analyze / Build / Autopilot",
       subtitle: "The three products that make up BOSS Systems",
       you: [
         {t:"BOSS Analyze (free)", d:"bosssystems.co/analyze.html. 60-second AI business analysis showing where they lose money and what to automate. Leads to onboard form. <span class='badge live'>LIVE</span>"},
         {t:"BOSS Build ($1,497-$5,997 + $97-497/mo)", d:"We build their full AI stack. Custom agent, phone number, dashboard, onboarding drip. business_builder.py does the heavy lifting. <span class='badge live'>LIVE</span>"},
-        {t:"BOSS Own ($0 setup + 15% revenue share)", d:"We build and operate everything. Client does the physical work. We handle phones, scheduling, follow-up, everything. <span class='badge planned'>NO CLIENTS YET</span>"},
+        {t:"BOSS Autopilot ($0 setup + 80/20 revenue split)", d:"We build and operate everything. Client does the physical work. We handle phones, scheduling, follow-up, everything. Client keeps 80%, BOSS keeps 20%. <span class='badge planned'>NO CLIENTS YET</span>"},
       ],
       them: [
         {t:"What a prospect sees", d:"Lands on bosssystems.co. Three clear options. Most will start with the free analysis because there is no commitment. Analysis shows them real numbers about what they are losing. If they want to move forward, they fill out the onboard form or call (903) 522-4459."},
-        {t:"Pricing they see", d:"Analyze is free. Build starts at $1,497 setup + $97/mo. Own is zero upfront but 15% of the revenue the system generates. No contracts on any tier, cancel anytime. Payment via Venmo or Zelle."},
+        {t:"Pricing they see", d:"Analyze is free. Build starts at $1,497 setup + $97/mo. Autopilot is zero upfront with an 80/20 split — client keeps 80%, BOSS keeps 20%. No contracts on any tier, cancel anytime. Payment via Venmo or Zelle."},
       ]
     },
     "Inbound Phone Lines": {
@@ -296,6 +306,88 @@ var MAP = {
       ]
     },
   },
+  "Workbench": {
+    "Postcards (Hot Leads)": {
+      title: "Postcard Templates — For Any Hot or Super-Hot Lead",
+      subtitle: "Copy, handwrite on a 4x6 blank postcard, mail it. $0.65 each. 4.25% response rate.",
+      you: [
+        {t:"Script 1: The Mystery Call", d:"After calling their number and getting voicemail."+mkcp("Hey [Business Name],\n\nI called your number [day] — wanted to ask about [service]. Got voicemail after [X] rings. No callback option.\n\nNot a complaint. Just thought you should know — most people who hit voicemail try the next name on Google. They don't leave a message.\n\nIn [business type], that's usually a $[amount] job walking out the door.\n\nNo pitch here. Just something worth knowing.\n\n— Boston\n903-522-4459")},
+        {t:"Script 2: The After-Hours Question", d:"Works for any business. No recon needed."+mkcp("Quick question for [Business Name]:\n\nWhat happens when someone calls you at 7pm on a Tuesday?\n\nFor [business type] businesses, about 40% of calls come in after hours. Most hit voicemail. Most of those people call someone else.\n\nThat's roughly $[missed cost] per missed call in your industry.\n\nJust something I've been researching. Thought it applied to you.\n\n— Boston\n903-522-4459")},
+        {t:"Script 3: The Dollar Amount", d:"Lead with math. Best for expensive services (HVAC $800, legal $2,500, roofing $8,000)."+mkcp("Hey [Business Name],\n\nHere's some quick math:\n\nAverage [service] job in [city]: $[amount]\nCalls that go unanswered per week (industry avg): 3-5\nPeople who call back after voicemail: 15%\n\nThat's about $[weekly loss] in missed revenue per week.\n\nNot selling anything — just a number I thought was worth knowing.\n\n— Boston\n903-522-4459")},
+        {t:"Script 4: The Competitor Test", d:"Use when you've called multiple businesses in the same market."+mkcp("Hey [Business Name],\n\nI called 5 [business type] companies in [city] this week as a customer.\n\n2 answered right away.\n2 went to voicemail.\nYours: [what happened].\n\nThe ones that answered got the \"job.\" That's how it works — first to pick up wins.\n\nThought you'd find that interesting.\n\n— Boston\n903-522-4459")},
+        {t:"Script 5: The Google Review", d:"Use when you find a bad review about reachability."+mkcp("Hey [Business Name],\n\nSaw your Google reviews — mostly solid. But I noticed a customer mentioned having trouble reaching you.\n\nThat kind of thing shows up when people search for [business type] in [city]. New customers see it before they call.\n\nWorth keeping an eye on.\n\n— Boston\n903-522-4459")},
+        {t:"Supplies", d:"Blank 4x6 postcards: ~$8 for 100 on Amazon. Stamps: $0.65 each (USPS forever stamps). Fine-tip Sharpie or nice pen. Budget: 10 postcards/week = $6.50. If 1 in 25 becomes a $50/mo client, CAC = $16.25 for a customer worth $600/year."},
+      ],
+      them: []
+    },
+    "Social Posts (BOSS)": {
+      title: "Social Posts — BOSS Systems (Audience A: Business Owners)",
+      subtitle: "Copy and post. Works on Instagram, Facebook, TikTok captions.",
+      you: [
+        {t:"Post: The Blunt Stat", d:""+mkcp("62% of contractor calls go unanswered.\n85% of those callers never call back.\nThey call your competitor.\n\nAt 3 missed calls/week and $850 avg job value,\nthat's $88,400/year you never knew you lost.\n\nbosssystems.co — free analysis, no pitch.\n\n#SmallBusiness #HVAC #Plumber #MissedCalls")},
+        {t:"Post: The 2am Call", d:""+mkcp("I called a local HVAC company at 2am last week.\n\nVoicemail. Generic greeting. \"Leave a message.\"\n\nIf I had an AC out in July, I'm calling the next guy.\n\nThat company is probably leaving $10,000/month on the table because their phone doesn't answer after hours.\n\nWe fix that. bosssystems.co\n\n*Not a client. Just a test.*")},
+        {t:"Post: The Comparison", d:""+mkcp("Ruby Receptionist: $250-$720/month\nSmith.ai: $95-$270/month\nBOSS Systems: $50/month flat\n\nAll three answer your phone 24/7.\nTwo of them charge you extra when you get busy.\nOne doesn't.\n\nbosssystems.co — free demo, no pitch.")},
+        {t:"Post: The Question", d:""+mkcp("Honest question for any service business owner:\n\nWhat happens when someone calls you at 9pm on a Saturday?\n\nIf the answer is \"voicemail\" — that's money. Every single week.\n\nbosssystems.co/analyze — free, takes 60 seconds.")},
+      ],
+      them: []
+    },
+    "Social Posts (BPP)": {
+      title: "Social Posts — BPP (Audience B: Potential Partners)",
+      subtitle: "Copy and post. Income disclaimer required on all earnings posts.",
+      you: [
+        {t:"Post: The Blunt Pitch", d:""+mkcp("Minimum wage: $290/week\n\nBOSS Partnership Program (after all costs + 20% split):\n- Junk removal: $450-$750/week\n- Pressure washing: $600-$1,200/week\n- Pet sitting: $560-$1,680/week\n- Event decor: $400-$1,200/week\n\n$0 to start. You keep 80%.\nThe catch: you do the actual work.\n\nbosssystems.co/summer or DM me\n*Individual results vary.*")},
+        {t:"Post: The Self-Aware One", d:""+mkcp("\"This sounds like every other 'make money' thing you've seen on TikTok.\"\n\nYeah, I know.\n\nDifference: I'm 17. I'm in Tyler TX. I built the system. I'm not selling a course. I'm not charging you anything. You pick a business, I build the whole backend, you do the work, you keep 80%.\n\nIf it sounds too good to be true, here's the catch: you have to actually show up and work.\n\nbosssystems.co/summer or DM me")},
+        {t:"Post: The Comparison", d:""+mkcp("Starting a business normally: $10,000+\nStarting with BOSS: $0\n\nNormal business: you figure out everything yourself\nBOSS: phone system, website, booking, billing — built for you\n\nNormal business: 6-12 months to get going\nBOSS: running in 24 hours\n\nYou keep 80%. I keep 20%.\n11 businesses to choose from.\n\nbosssystems.co/summer or DM me")},
+        {t:"Post: The Time Post", d:""+mkcp("A month from now you'll wish you started today.\n\nThe question is whether you'll have $2,000-$5,000+ at the end of it or just another month gone.\n\n$0 to start. You keep 80%.\nbosssystems.co/summer or DM me")},
+      ],
+      them: []
+    },
+    "DM Scripts": {
+      title: "DM Scripts — Instagram",
+      subtitle: "Max 10 DMs/day. Only DM people who engaged first. Never DM the same person twice.",
+      you: [
+        {t:"BOSS DM: HVAC", d:""+mkcp("Saw your company on Google — looks like you're one of the busier HVAC crews in [city]. Quick question: when someone calls you at 11pm in July with no AC, what do they hear? Most of my clients had no idea until I showed them the recording.")},
+        {t:"BOSS DM: General Trade", d:""+mkcp("Hey — not trying to sell you anything. I build AI phone systems for [business type] companies. $50/month, answers every call 24/7. I'll call your number at 3am first to show you what your customers hear right now. If you're interested: bosssystems.co/analyze")},
+        {t:"BPP DM: Direct", d:""+mkcp("Hey — I run a program where I build the entire backend for a business (website, phone, booking) and you run it. You keep 80%, costs $0 to start. Multiple businesses to pick from. You do the physical work. If that sounds interesting, takes 2 minutes to apply: bosssystems.co/summer")},
+        {t:"BPP DM: Peer Frame", d:""+mkcp("I built a whole business system — looking for people in [city/area] who want to run their own business. Junk removal, pressure washing, pet sitting, whatever fits. I build the tech, you do the work, you keep 80%. $0 to start. Serious question: what would you do with an extra $500-$1,500/week?")},
+      ],
+      them: []
+    },
+    "Reel Scripts": {
+      title: "Reel Scripts — Film These",
+      subtitle: "5 highest-impact scripts. Hook in first 3 seconds. Cross-post to TikTok within 2 hours.",
+      you: [
+        {t:"Reel 1: The 2am Call", d:"<strong>Hook:</strong> \"I called a local HVAC company at 2am. Here's what happened.\"<br><br>Film yourself calling a business after hours on speaker. Show the voicemail. Then explain: \"That's a $1,500 job walking out the door because their phone doesn't answer.\"<br><br>Post time: 7:30pm CT"+mkcp("I called a local HVAC company at 2am. Here's what happened.\n\n[Call on speaker — show voicemail]\n\nVoicemail. Generic greeting. \"Leave a message.\"\n\nIf I had an AC out in July, I'm calling the next guy.\n\nThis company is probably leaving $10,000 a month on the table because their phone doesn't answer after hours.\n\nWe build AI systems that pick up every call, 24/7. I'm 17 and I set these up in a week.\n\nFree audit at the link in bio.")},
+        {t:"Reel 2: The Midnight Job", d:"<strong>Hook:</strong> \"An AI closed a $4,000 job at midnight while the owner was asleep.\"<br><br>Tell the story of the AI booking a job after hours. Keep it conversational. Post time: 7:30pm CT"+mkcp("An AI closed a $4,000 job at midnight while the owner was asleep.\n\nTrue story. HVAC company, East Texas. Midnight Saturday. Woman's AC is out, baby in the house, July heat.\n\nOld situation? Voicemail. She calls 3 more companies.\nNew situation? Our AI picks up. Gets her info. Books 7am service call. Sends confirmation text.\n\nOwner wakes up. $4,000 job in his calendar. He didn't do anything.\n\nThat's what we build. bosssystems.co — free demo, no pitch.")},
+        {t:"Reel 3: What AI Sounds Like", d:"<strong>Hook:</strong> \"This is what an AI answering your business phone actually sounds like.\"<br><br>Play a real clip of the Retell AI demo call. Let people hear it. This is the closer. Post time: 7:30pm CT"+mkcp("This is what an AI answering your business phone actually sounds like. No robot voice.\n\n[Play 20-30 second clip of actual AI call]\n\nThat's it. Picked up on the second ring, got caller info, booked the appointment.\n\nThe caller had no idea. And honestly — it doesn't matter. The call got answered, the job got booked.\n\nSetup takes about a week. Costs less than one missed job per month.\n\nLink in bio. Free demo.")},
+        {t:"Reel 4: The Math", d:"<strong>Hook:</strong> \"Your phone is costing your business six figures a year. Here's the math.\"<br><br>Write on a whiteboard or use on-screen text. Show the calculation. Post time: 7:30pm CT"+mkcp("Your phone is costing your business six figures a year.\n\nAverage HVAC job: $1,500-$4,000\nMissed calls after hours/week: 5 (conservative)\nWould-be bookings: 40% = 2 jobs/week\nAt $3,000 average = $6,000/week = $312,000/year\n\nEven if I'm off by 75% — that's still $78,000/year walking out the door because your phone goes to voicemail.\n\nbosssystems.co — free audit, we'll show you the exact number for YOUR business.")},
+        {t:"Reel 5: I'm 17", d:"<strong>Hook:</strong> \"I'm 17. I just automated an entire HVAC company's phones.\"<br><br>Lead with the age. Be direct. Show confidence. This is the personal brand play. Post time: 7:30pm CT"+mkcp("I'm 17. I live in Tyler, Texas. Last month I built an AI phone system for an HVAC company that now answers every call, 24/7, books appointments, sends confirmation texts — all without the owner touching it.\n\nI didn't go to college. I didn't get a certification. I figured out that the right AI setup equals a system that actually works.\n\nThe owner was skeptical. Then an AI booked a $2,800 job at 11pm on a Tuesday. He called me the next morning.\n\nFree demo at the link in bio. I'll call your business at 2am to show you what your customers experience right now.")},
+      ],
+      them: []
+    },
+    "Email Templates": {
+      title: "Email Templates — BOSS Systems",
+      subtitle: "Plain text. Short. Specific to THEIR business. No attachments on first email.",
+      you: [
+        {t:"Email 1: After Mystery Shop", d:"Send after you've called and they didn't answer."+mkcp("Subject: Called your number this morning\n\nHey,\n\nI called [Business Name] today around [time]. Got voicemail after [X] rings.\n\nNot selling anything. Just something I noticed — 85% of people who hit voicemail call the next business on Google instead of leaving a message.\n\nFor [business type], that's usually a $[amount] job.\n\nIf you want to chat about it, I'm at 903-522-4459.\n\n— Boston")},
+        {t:"Email 2: Follow-Up (1 week after postcard)", d:"Light touch. Reference the postcard."+mkcp("Subject: Following up on that postcard\n\nHey,\n\nSent you a postcard last week about your phone setup. Just wanted to see if it landed and if you had any questions.\n\nNo pressure at all. Just genuinely curious if you knew that was happening.\n\n— Boston\n903-522-4459")},
+        {t:"Email 3: The Value Drop", d:"Send to any lead. No recon needed."+mkcp("Subject: Quick thing about [Business Name]\n\nHey,\n\nI've been researching [business type] businesses in [city] and yours came up.\n\nOne thing I noticed: businesses in your category lose an average of $[monthly loss] per month to missed calls. The ones that answer every call — even after hours — close 3x more jobs.\n\nNot a pitch. Just thought it was an interesting number.\n\n— Boston\n903-522-4459")},
+      ],
+      them: []
+    },
+    "BPP Welcome Package": {
+      title: "BPP Welcome Package — Auto-Sent ~24hrs After Approval",
+      subtitle: "This text gets sent automatically when you approve a partner. You just tap the ntfy notification to send.",
+      you: [
+        {t:"Welcome Text (auto-sent)", d:"Sent via ntfy tap-to-send ~24 hours after you approve in command.html."+mkcp("Hey [Name]! You are officially in the BOSS Partnership Program. Here is everything you need:\n\nLaunch Guide: bosssystems.co/partner-start.html\nBusiness Guides: bosssystems.co/partner-tools.html\nTraining Course: bosssystems.co/learn-business.html\nMarket Quiz: bosssystems.co/partner-quiz.html\nLog Jobs: bosssystems.co/log-job.html\n\nStart with the Launch Guide — it walks you through Gmail, Google Business, Facebook, and your first posts step by step.\n\nYour AI phone system is being built right now. I will text you your business number as soon as it is ready.\n\nQuestions? Text me anytime. - Boston")},
+        {t:"What the partner-start.html covers", d:"12 sections: The Deal (80/20 explained), Gmail Setup, Google Business Profile, Facebook Page, Phone System (how AI works), First 5 Posts (templates), Running a Job (step-by-step), Getting Paid (Venmo/Zelle), Non-Negotiables (weekly revenue report), Training Resources, Troubleshooting, Taxes and Legal basics."},
+        {t:"What learn-business.html covers", d:"Quiz customizes course to their business type + learning style. Topics per business: pricing strategy, equipment needed, seasonal demand, common mistakes, upsell opportunities. 10 general lessons: safety, insurance, customer service, first job prep, growing from 1 to 10 clients. AI Q&A with 10/day cap."},
+        {t:"Activation Nudge (send 48hrs after system built)", d:""+mkcp("[Name] — your [business] system is built and ready whenever you are. Your first job is usually the hardest to get — I'll walk you through exactly how to land it. Want help getting started?")},
+        {t:"First-Job Debrief (send after first job logged)", d:""+mkcp("[Name] — nice. $[amount] on your first job. That's [X]x what minimum wage would have paid for the same hours. How'd it feel?")},
+      ],
+      them: []
+    },
+  },
   "Marketing": {
     "Marketing Overview": {
       title: "Marketing Operations Overview",
@@ -489,6 +581,85 @@ var MAP = {
       them: [
         {t:"Training only", d:"Not customer-facing."},
       ]
+    },
+  },
+  "Manual Actions": {
+    "Instagram Account": {
+      title: "Create BOSS Systems Instagram — 10 minutes",
+      subtitle: "Everything is pre-filled. You just create the account and paste.",
+      you: [
+        {t:"Step 1: Create account", d:"Open Instagram → Sign Up → Use bosssystemsai@gmail.com → Username: bosssystems.ai (or bosssystems_ if taken) → Set password → Skip 'find friends'"},
+        {t:"Step 2: Switch to Business", d:"Settings → Account → Switch to Professional Account → Business → Category: 'Technology Company' or 'Business Service' → Connect to Facebook page (or skip)"},
+        {t:"Step 3: Paste bio", d:"Go to Edit Profile → paste this bio:"+mkcp("AI answers your business calls 24/7. Never miss a job again. Tyler, TX | Book a free demo below")},
+        {t:"Step 4: Set profile link", d:"Edit Profile → Website → paste: bosssystems.co"},
+        {t:"Step 5: Profile picture", d:"Use the BOSS Systems logo or a clean headshot of you. Dark background works best with the gold brand."},
+        {t:"Step 6: Create 5 Highlights", d:"Even if empty — makes profile look established:<br>1. <strong>DEMO CALLS</strong> — clips of AI answering<br>2. <strong>CLIENT WINS</strong> — screenshots, results<br>3. <strong>HOW IT WORKS</strong> — step-by-step slides<br>4. <strong>PRICING</strong> — transparent pricing slide<br>5. <strong>FREE AUDIT</strong> — 'We call your business at 3am'"},
+        {t:"Step 7: First post", d:"Go to Workbench → Reel Scripts → film Reel 1 ('I called a local HVAC company at 2am'). Or if no time to film, post the first static from Workbench → Social Posts (BOSS)."},
+      ],
+      them: []
+    },
+    "Ryan Walsh Reddit": {
+      title: "Create Ryan Walsh Reddit Account — 5 minutes",
+      subtitle: "Scanner already finds 17+ opportunities/day. Account creation is the only blocker.",
+      you: [
+        {t:"Step 1: Burner Gmail", d:"Create ryanwalsh.work@gmail.com (or rwalshbiz@gmail.com). Birthday: Jan 15, 1994. Use phone cellular data, NOT home WiFi."},
+        {t:"Step 2: Create Reddit", d:"Go to reddit.com → Sign up with the burner Gmail → Pick username:"+mkcp("walsh_ry")+"Alternatives if taken: ryanww90, rwalsh__"},
+        {t:"Step 3: Paste bio", d:""+mkcp("Grew up around trades — family's in HVAC and plumbing. I help friends figure out their business stuff sometimes. Not an expert, just been around it.")},
+        {t:"Step 4: Join subreddits", d:"Join these (click each one):<br>r/smallbusiness, r/Entrepreneur, r/sweatystartup, r/HVAC, r/Plumbing, r/HomeImprovement, r/personalfinance, r/sidehustle, r/freelance, r/AskReddit, r/sports, r/todayilearned, r/mildlyinteresting"},
+        {t:"Step 5: Profile pic", d:"Upload ryan_walsh_pfp.png from atlas_data/engage/ folder. Same photo for Reddit and Facebook later."},
+        {t:"Step 6: 10-day karma build", d:"Days 1-10: comment normally on r/AskReddit, r/sports, r/todayilearned. 2-3 comments/day. No BOSS mentions. Build karma to 50+ before anything business-related."},
+        {t:"Step 7: Start daily workflow", d:"After 10 days: Dashboard → ENGAGE tab → see AI-drafted replies → open Ryan Walsh browser → paste → post. Max 2 replies/day, BOSS mention max 1-in-5 posts."},
+      ],
+      them: []
+    },
+    "Buffer Setup": {
+      title: "Connect Buffer to Social Machine — 5 minutes",
+      subtitle: "Unlocks automated posting to Instagram + Facebook. Social machine is built and waiting.",
+      you: [
+        {t:"Step 1: Sign up", d:"Go to buffer.com → Start free plan (3 channels free) → Sign up with bosssystemsai@gmail.com"},
+        {t:"Step 2: Connect Instagram", d:"Buffer dashboard → Channels → Connect → Instagram Business → authorize. (Requires Instagram Business account from step above)"},
+        {t:"Step 3: Connect Facebook", d:"Buffer dashboard → Channels → Connect → Facebook Page → authorize."},
+        {t:"Step 4: Get API token", d:"Buffer Settings → Account → API Token (or Apps page). Copy the token."},
+        {t:"Step 5: Add to config", d:"Open Terminal and run:"+mkcp("echo 'export BUFFER_API_KEY=\"your-token-here\"' >> ~/Desktop/BOSS_HQ/scripts/config.sh")},
+        {t:"Step 6: Test", d:"Run: python3 boss_command.py social profiles — should show your connected channels. Then: python3 boss_command.py social preview — generates a test post without sending."},
+        {t:"Step 7: First auto-post", d:"Run: python3 boss_command.py social — generates + gates first post. You approve for 7 days (brand safety), then it goes autonomous with 10% spot checks."},
+      ],
+      them: []
+    },
+    "First 10 Postcards": {
+      title: "Print and Mail First 10 Postcards — 20 minutes + Amazon order",
+      subtitle: "Highest-converting warm channel. $0.65 each. Scripts are in Workbench.",
+      you: [
+        {t:"Step 1: Order supplies (if you haven't)", d:"Amazon: blank 4x6 postcards (~$8/100) + USPS forever stamps ($0.65 each). Fine-tip Sharpie or nice pen. Total: ~$15 for first batch."},
+        {t:"Step 2: Pick 10 targets", d:"Go to Command → Pipeline or run: python3 boss_command.py targets. Pick 10 businesses from your East Texas list. Prioritize:<br>1. Businesses you mystery-called (use Script 1)<br>2. HVAC businesses (highest missed-call value)<br>3. Anyone with a bad Google review about reachability (use Script 5)"},
+        {t:"Step 3: Write postcards", d:"Go to Workbench → Postcards (Hot Leads). Pick the right script per lead. Handwrite — NOT printed. Fill in [brackets] with real info. Sign as Boston with 903-522-4459."},
+        {t:"Step 4: Mail them", d:"Drop in any USPS mailbox. First-class with stamp, no return address needed (keeps it personal). They arrive in 2-3 business days."},
+        {t:"Step 5: Log it", d:"After mailing, log each one in action.html (Lead Action Center) so follow-up emails can reference 'the postcard I sent last week.'"},
+      ],
+      them: []
+    },
+    "Film First 3 Reels": {
+      title: "Film 3 Reels — 30 minutes total",
+      subtitle: "Scripts are written. You just need your phone and a quiet room.",
+      you: [
+        {t:"Reel 1: The 2am Call (highest impact)", d:"<strong>What you need:</strong> Your phone + another phone to call from.<br><strong>Hook:</strong> 'I called a local HVAC company at 2am. Here is what happened.'<br><strong>Film:</strong> Show yourself calling a business on speaker. Show the voicemail. Then explain: 'That is a $1,500 job walking out the door.'<br><strong>Post at:</strong> 7:30pm CT<br>Full script in Workbench → Reel Scripts → Reel 1."},
+        {t:"Reel 2: The Midnight Job", d:"<strong>What you need:</strong> Just your phone, talk to camera.<br><strong>Hook:</strong> 'An AI closed a $4,000 job at midnight while the owner was asleep.'<br><strong>Film:</strong> Tell the story conversationally. Look at the camera. Keep under 60 seconds.<br><strong>Post at:</strong> 7:30pm CT next day<br>Full script in Workbench → Reel Scripts → Reel 2."},
+        {t:"Reel 3: What AI Sounds Like", d:"<strong>What you need:</strong> Screen recording of an actual demo call.<br><strong>Hook:</strong> 'This is what an AI answering your business phone actually sounds like.'<br><strong>Film:</strong> Call (903) 522-4459, screen record the AI answering. Play 20-30 seconds of the call. Add text overlay.<br><strong>Post at:</strong> 7:30pm CT next day<br>Full script in Workbench → Reel Scripts → Reel 3."},
+        {t:"Cross-post", d:"After each reel: download from Instagram → upload to TikTok within 2 hours → upload to YouTube Shorts next morning. Same video, three platforms."},
+      ],
+      them: []
+    },
+    "Facebook Ryan Walsh": {
+      title: "Create Ryan Walsh Facebook — 10 minutes",
+      subtitle: "Second platform for the engagement persona. Do this after Reddit is running.",
+      you: [
+        {t:"Step 1: Create account", d:"Use the same burner Gmail (ryanwalsh.work@gmail.com). Use phone cellular data. Upload same PFP from atlas_data/engage/ryan_walsh_pfp.png."},
+        {t:"Step 2: Fill profile", d:""+mkcp("Name: Ryan Walsh\nLocation: Columbus, OH\nWork: Self-employed\nBio: Grew up in a trades family. Spend most of my time helping small businesses figure things out.")},
+        {t:"Step 3: Join groups", d:"Search and join: small business owner groups, HVAC contractor groups, plumber groups, general contractor groups. Do NOT join any Texas-specific groups."},
+        {t:"Step 4: 7-day warmup", d:"Days 1-3: Like posts in groups. Days 4-5: Comment on posts (helpful, short). Days 6-7: Ask a question in a group. No BOSS mentions for 7 days."},
+        {t:"Step 5: Start helpful posts", d:"After warmup: answer questions about missed calls, phone systems, running a small business. Natural language. BOSS mention max 1-in-5 posts. If called out — delete and move on."},
+      ],
+      them: []
     },
   },
   "Known Gaps": {
