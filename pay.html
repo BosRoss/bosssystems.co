@@ -94,7 +94,6 @@ h1{font-size:1.8rem;font-weight:700;color:var(--text);margin-bottom:4px}
   <div class="product-select" id="product-picker">
     <select id="product-select" onchange="selectProduct(this.value)">
       <option value="">Choose a product...</option>
-      <option value="receptionist">Automated Receptionist — $250 setup + $50/mo</option>
       <option value="build_standard">BOSS Build Standard — $1,497 setup + $97/mo</option>
       <option value="build_premium">BOSS Build Premium — $2,997 setup + $197/mo</option>
       <option value="full">Full Transformation — $5,997 setup + $497/mo</option>
@@ -155,10 +154,9 @@ h1{font-size:1.8rem;font-weight:700;color:var(--text);margin-bottom:4px}
 
 <script>
 var PRODUCTS = {
-  receptionist: {name:"Automated Receptionist", desc:"Answers every call 24/7. Quotes jobs, books appointments, takes messages. No overages.", setup:250, monthly:50},
-  build_standard: {name:"BOSS Build Standard", desc:"Phone system + CRM basics. Custom-built for your business. Deployed in 72 hours.", setup:1497, monthly:97},
+  build_standard: {name:"BOSS Build Standard", desc:"AI phone system + CRM basics. Custom-built for your business. Deployed in 72 hours.", setup:1497, monthly:97},
   build_premium: {name:"BOSS Build Premium", desc:"Phone + follow-ups + reviews. The full automated front office.", setup:2997, monthly:197},
-  full: {name:"Full Transformation", desc:"Complete automated system. Phone, follow-ups, reviews, scheduling, lead capture, marketing.", setup:5997, monthly:497},
+  full: {name:"Full Transformation", desc:"Complete AI system. Phone, follow-ups, reviews, scheduling, lead capture, marketing.", setup:5997, monthly:497},
 };
 
 var SQUARE_LINK = null;
@@ -344,13 +342,15 @@ function handleSquare() {
     return false;
   }
 
-  // BOSS product mode — no link generated yet
+  // BOSS product mode — direct to text for card payment setup
   var amt = currentProduct ? currentProduct.setup : 0;
   if (!amt) {
     alert('Please select a product first.');
     return false;
   }
-  alert('Card payment for $' + amt + '. Contact (903) 522-4459 to complete this payment by card, or use Venmo, Zelle, or Cash App below.');
+  var productName = currentProduct ? currentProduct.name : 'BOSS Systems';
+  var smsBody = encodeURIComponent('Hi, I want to pay $' + amt.toLocaleString() + ' for ' + productName + ' by card.');
+  window.location.href = 'sms:+19035224459&body=' + smsBody;
   return false;
 }
 
