@@ -59,6 +59,18 @@ h1{font-size:1.8rem;font-weight:700;color:var(--text);margin-bottom:4px}
 .guarantee{display:flex;align-items:center;gap:6px;font-size:.75rem;color:var(--text-dim)}
 .guarantee::before{content:"";width:6px;height:6px;background:var(--green);border-radius:50%}
 
+.partner-badge{background:var(--bg-card2);border:1px solid var(--border);border-radius:8px;padding:12px 16px;margin-bottom:20px;display:flex;align-items:center;gap:10px;font-size:.9rem}
+.partner-badge .pb-dot{width:10px;height:10px;background:var(--green);border-radius:50%;flex-shrink:0}
+.partner-badge .pb-text{color:var(--text-muted)}
+.partner-badge .pb-name{color:var(--text);font-weight:600}
+
+.amount-input{display:none;margin-bottom:20px}
+.amount-input.show{display:block}
+.amount-input label{display:block;font-size:.85rem;color:var(--text-muted);margin-bottom:8px}
+.amount-input input{width:100%;padding:14px 16px;background:var(--bg-card);border:1px solid var(--border);border-radius:10px;color:var(--text);font-family:inherit;font-size:1.2rem;font-weight:700;outline:none;text-align:center}
+.amount-input input:focus{border-color:var(--gold)}
+.amount-input input::placeholder{color:var(--text-dim);font-weight:400}
+
 @media(max-width:500px){
   body{padding:24px 16px}
   h1{font-size:1.5rem}
@@ -74,6 +86,11 @@ h1{font-size:1.8rem;font-weight:700;color:var(--text);margin-bottom:4px}
     <div class="sub" id="page-sub">Secure payment for BOSS Systems services</div>
   </div>
 
+  <div class="partner-badge" id="partner-badge" style="display:none">
+    <div class="pb-dot"></div>
+    <div><span class="pb-text">Paying </span><span class="pb-name" id="partner-name"></span></div>
+  </div>
+
   <div class="product-select" id="product-picker">
     <select id="product-select" onchange="selectProduct(this.value)">
       <option value="">Choose a product...</option>
@@ -85,13 +102,20 @@ h1{font-size:1.8rem;font-weight:700;color:var(--text);margin-bottom:4px}
     </select>
   </div>
 
+  <div class="amount-input" id="amount-input">
+    <label>Enter payment amount</label>
+    <input type="number" id="custom-amount" placeholder="$0.00" min="1" step="1" oninput="updatePartnerAmount(this.value)">
+  </div>
+
   <div class="order-box" id="order-box" style="display:none">
     <div class="order-product" id="order-product"></div>
     <div class="order-desc" id="order-desc"></div>
-    <div class="order-line"><span class="label">Setup fee</span><span class="value" id="order-setup"></span></div>
-    <div class="order-line"><span class="label">Monthly (starts after build)</span><span class="value" id="order-monthly"></span></div>
+    <div id="order-lines">
+      <div class="order-line" id="setup-line"><span class="label">Setup fee</span><span class="value" id="order-setup"></span></div>
+      <div class="order-line" id="monthly-line"><span class="label">Monthly (starts after build)</span><span class="value" id="order-monthly"></span></div>
+    </div>
     <div class="order-total"><span>Due today</span><span class="value" id="order-due"></span></div>
-    <div class="guarantees">
+    <div class="guarantees" id="guarantees">
       <span class="guarantee">No contracts</span>
       <span class="guarantee">Cancel anytime</span>
       <span class="guarantee">No overages</span>
@@ -120,13 +144,13 @@ h1{font-size:1.8rem;font-weight:700;color:var(--text);margin-bottom:4px}
     </div>
   </div>
 
-  <div class="info-box">
+  <div class="info-box" id="info-box">
     <strong>After payment:</strong> Text or call <strong>(903) 522-4459</strong> with your receipt. We'll start building your system within 24 hours. You'll get a test call before it goes live.
   </div>
 
-  <div class="square-badge" id="secure-badge">Secure payment processing</div>
+  <div class="square-badge" id="secure-badge">Secure payment via Square</div>
 
-  <a href="https://bosssystems.co" class="back">&larr; Back to bosssystems.co</a>
+  <a href="https://bosssystems.co" class="back" id="back-link">&larr; Back to bosssystems.co</a>
 </div>
 
 <script>
@@ -137,24 +161,85 @@ var PRODUCTS = {
   full: {name:"Full Transformation", desc:"Complete automated system. Phone, follow-ups, reviews, scheduling, lead capture, marketing.", setup:5997, monthly:497},
 };
 
-var SQUARE_LINK = null; // Set when Square is configured: "https://square.link/u/XXXXX"
+var SQUARE_LINK = null;
 var currentProduct = null;
+var partnerSlug = null;
+var partnerName = null;
 
 function init() {
   var params = new URLSearchParams(window.location.search);
   var product = params.get('product');
   var amount = params.get('amount');
   var squareUrl = params.get('square');
+  var partner = params.get('partner');
+  var pname = params.get('name');
+  var label = params.get('label');
 
   if (squareUrl) SQUARE_LINK = decodeURIComponent(squareUrl);
 
+  // Partner payment mode
+  if (partner) {
+    partnerSlug = partner;
+    partnerName = pname || partner.replace(/-/g, ' ').replace(/\b\w/g, function(l){return l.toUpperCase()});
+    setupPartnerMode(partnerName, parseInt(amount) || 0, label || '');
+    return;
+  }
+
+  // BOSS product mode
   if (product && PRODUCTS[product]) {
     showProduct(product);
   } else if (amount) {
-    showCustomAmount(parseInt(amount), params.get('label') || 'BOSS Systems Service');
+    showCustomAmount(parseInt(amount), label || 'BOSS Systems Service');
   } else {
     document.getElementById('product-picker').classList.add('show');
   }
+}
+
+function setupPartnerMode(name, amount, label) {
+  document.getElementById('partner-badge').style.display = 'flex';
+  document.getElementById('partner-name').textContent = name;
+  document.getElementById('page-title').textContent = 'Payment';
+  document.getElementById('page-sub').textContent = 'Pay for services from ' + name;
+  document.getElementById('guarantees').style.display = 'none';
+
+  // Update info box for partner payments
+  document.getElementById('info-box').innerHTML = '<strong>Payment goes to:</strong> ' + name + ' via BOSS Systems. You\'ll receive a receipt from Square.';
+
+  // Update back link
+  var backLink = document.getElementById('back-link');
+  backLink.textContent = '← Back to ' + name;
+  var siteUrl = 'https://bosssystems.co/p/' + partnerSlug + '.html';
+  backLink.href = siteUrl;
+
+  if (amount > 0) {
+    showPartnerAmount(amount, label || name);
+  } else {
+    // Show amount input for variable pricing
+    document.getElementById('amount-input').classList.add('show');
+    document.getElementById('order-box').style.display = 'none';
+    updateSquareBtn(0);
+  }
+}
+
+function updatePartnerAmount(val) {
+  var amt = parseInt(val) || 0;
+  if (amt > 0) {
+    showPartnerAmount(amt, partnerName);
+  }
+}
+
+function showPartnerAmount(amt, label) {
+  currentProduct = {name: label, desc: '', setup: amt, monthly: 0};
+  document.getElementById('order-product').textContent = label;
+  document.getElementById('order-desc').textContent = '';
+  document.getElementById('setup-line').style.display = 'none';
+  document.getElementById('monthly-line').style.display = 'none';
+  document.getElementById('order-due').textContent = '$' + amt.toLocaleString();
+  document.getElementById('order-box').style.display = 'block';
+
+  var note = label + (partnerSlug ? ' [partner:' + partnerSlug + ']' : '');
+  updateVenmoLink(amt, note);
+  updateSquareBtn(amt);
 }
 
 function selectProduct(val) {
@@ -176,6 +261,8 @@ function showProduct(key) {
   currentProduct = p;
   document.getElementById('order-product').textContent = p.name;
   document.getElementById('order-desc').textContent = p.desc;
+  document.getElementById('setup-line').style.display = 'flex';
+  document.getElementById('monthly-line').style.display = 'flex';
   document.getElementById('order-setup').textContent = '$' + p.setup.toLocaleString();
   document.getElementById('order-monthly').textContent = '$' + p.monthly + '/mo';
   document.getElementById('order-due').textContent = '$' + p.setup.toLocaleString();
@@ -194,6 +281,8 @@ function showCustomAmount(amt, label) {
   currentProduct = {name: label, desc: '', setup: amt, monthly: 0};
   document.getElementById('order-product').textContent = label;
   document.getElementById('order-desc').textContent = '';
+  document.getElementById('setup-line').style.display = 'flex';
+  document.getElementById('monthly-line').style.display = 'flex';
   document.getElementById('order-setup').textContent = '$' + amt.toLocaleString();
   document.getElementById('order-monthly').textContent = 'TBD';
   document.getElementById('order-due').textContent = '$' + amt.toLocaleString();
@@ -210,7 +299,11 @@ function updateVenmoLink(amount, note) {
 
 function updateSquareBtn(amount) {
   var btn = document.getElementById('square-btn');
-  btn.textContent = 'Pay $' + amount.toLocaleString() + ' with Card';
+  if (amount > 0) {
+    btn.textContent = 'Pay $' + amount.toLocaleString() + ' with Card';
+  } else {
+    btn.textContent = 'Pay with Card';
+  }
   if (SQUARE_LINK) {
     btn.href = SQUARE_LINK;
     btn.target = '_blank';
@@ -219,7 +312,19 @@ function updateSquareBtn(amount) {
 
 function handleSquare() {
   if (SQUARE_LINK) return true;
-  alert('Card payments coming soon. Please use Venmo, Zelle, or Cash App for now.');
+
+  // No pre-set Square link — try to generate one via partner amount
+  var amt = currentProduct ? currentProduct.setup : 0;
+  if (!amt && partnerSlug) {
+    var input = document.getElementById('custom-amount');
+    amt = parseInt(input ? input.value : 0) || 0;
+  }
+  if (!amt) {
+    alert('Please enter an amount first.');
+    return false;
+  }
+
+  alert('Card payment for $' + amt + '. Contact (903) 522-4459 to complete this payment by card, or use Venmo, Zelle, or Cash App below.');
   return false;
 }
 
