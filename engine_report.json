@@ -1,7 +1,31 @@
 {
-  "generated": "2026-06-14T18:28:43.388278+00:00",
+  "generated": "2026-06-14T20:35:41.383651+00:00",
   "engine_state": "active",
   "signals": [
+    {
+      "type": "flood",
+      "area": "Culberson, TX",
+      "niche": "plumbing",
+      "action": "Flood warnings in Culberson, TX. Plumbers, restoration, mold companies will spike.",
+      "urgency": "today",
+      "pitch_hook": "Water damage calls are coming. Every one you miss is $500+ walking away."
+    },
+    {
+      "type": "flood",
+      "area": "Calhoun, TX",
+      "niche": "plumbing",
+      "action": "Flood warnings in Calhoun, TX. Plumbers, restoration, mold companies will spike.",
+      "urgency": "today",
+      "pitch_hook": "Water damage calls are coming. Every one you miss is $500+ walking away."
+    },
+    {
+      "type": "flood",
+      "area": "De Soto, LA; Sabine, LA; Sabine, TX; San Augustine, TX; Shelby, TX",
+      "niche": "plumbing",
+      "action": "Flood warnings in De Soto, LA; Sabine, LA; Sabine, TX; San Augustine, TX; Shelby, TX. Plumbers, restoration, mold companies will spike.",
+      "urgency": "today",
+      "pitch_hook": "Water damage calls are coming. Every one you miss is $500+ walking away."
+    },
     {
       "type": "flood",
       "area": "Zapata; Jim Hogg; Brooks; Inland Kenedy; Starr; Southern Hidalgo; Inland Willacy; Inland Cameron; Coastal Kenedy; Northern Hidalgo; Coastal Willacy; Coastal Cameron; Kenedy Island; Willacy Island; Cam",
@@ -20,38 +44,6 @@
     },
     {
       "type": "flood",
-      "area": "Houston; Trinity; Madison; Walker; San Jacinto; Polk; Burleson; Brazos; Washington; Grimes; Montgomery; Northern Liberty; Colorado; Austin; Waller; Inland Harris; Chambers; Wharton; Fort Bend; Inland ",
-      "niche": "plumbing",
-      "action": "Flood warnings in Houston; Trinity; Madison; Walker; San Jacinto; Polk; Burleson; Brazos; Washington; Grimes; Montgomery; Northern Liberty; Colorado; Austin; Waller; Inland Harris; Chambers; Wharton; Fort Bend; Inland . Plumbers, restoration, mold companies will spike.",
-      "urgency": "today",
-      "pitch_hook": "Water damage calls are coming. Every one you miss is $500+ walking away."
-    },
-    {
-      "type": "flood",
-      "area": "La Salle; McMullen; Live Oak; Bee; Goliad; Victoria; Webb; Duval; Jim Wells; Inland Kleberg; Inland Nueces; Inland San Patricio; Coastal Aransas; Inland Refugio; Inland Calhoun; Coastal Kleberg; Coast",
-      "niche": "plumbing",
-      "action": "Flood warnings in La Salle; McMullen; Live Oak; Bee; Goliad; Victoria; Webb; Duval; Jim Wells; Inland Kleberg; Inland Nueces; Inland San Patricio; Coastal Aransas; Inland Refugio; Inland Calhoun; Coastal Kleberg; Coast. Plumbers, restoration, mold companies will spike.",
-      "urgency": "today",
-      "pitch_hook": "Water damage calls are coming. Every one you miss is $500+ walking away."
-    },
-    {
-      "type": "flood",
-      "area": "Irion; Tom Green; Concho; Crockett; Schleicher; Sutton; McCulloch; San Saba; Menard; Kimble; Mason",
-      "niche": "plumbing",
-      "action": "Flood warnings in Irion; Tom Green; Concho; Crockett; Schleicher; Sutton; McCulloch; San Saba; Menard; Kimble; Mason. Plumbers, restoration, mold companies will spike.",
-      "urgency": "today",
-      "pitch_hook": "Water damage calls are coming. Every one you miss is $500+ walking away."
-    },
-    {
-      "type": "flood",
-      "area": "Llano; Burnet; Williamson; Val Verde; Edwards; Real; Kerr; Bandera; Gillespie; Kendall; Blanco; Hays; Travis; Bastrop; Lee; Kinney; Uvalde; Medina; Bexar; Comal; Guadalupe; Caldwell; Fayette; Maverick",
-      "niche": "plumbing",
-      "action": "Flood warnings in Llano; Burnet; Williamson; Val Verde; Edwards; Real; Kerr; Bandera; Gillespie; Kendall; Blanco; Hays; Travis; Bastrop; Lee; Kinney; Uvalde; Medina; Bexar; Comal; Guadalupe; Caldwell; Fayette; Maverick. Plumbers, restoration, mold companies will spike.",
-      "urgency": "today",
-      "pitch_hook": "Water damage calls are coming. Every one you miss is $500+ walking away."
-    },
-    {
-      "type": "flood",
       "area": "White, AR; Woodruff, AR",
       "niche": "plumbing",
       "action": "Flood warnings in White, AR; Woodruff, AR. Plumbers, restoration, mold companies will spike.",
@@ -59,26 +51,34 @@
       "pitch_hook": "Water damage calls are coming. Every one you miss is $500+ walking away."
     },
     {
+      "type": "storm",
+      "area": "Franklin, TN; Lincoln, TN; Moore, TN",
+      "niche": "roofing",
+      "action": "Storm damage in Franklin, TN; Lincoln, TN; Moore, TN. Roofers and restoration companies about to get flooded.",
+      "urgency": "today",
+      "pitch_hook": "After a storm like that, you'll get 10x your normal call volume. Ready for it?"
+    },
+    {
       "type": "flood",
-      "area": "Cherokee, OK; Delaware, OK",
+      "area": "Bedford, TN; Coffee, TN; Grundy, TN",
       "niche": "plumbing",
-      "action": "Flood warnings in Cherokee, OK; Delaware, OK. Plumbers, restoration, mold companies will spike.",
+      "action": "Flood warnings in Bedford, TN; Coffee, TN; Grundy, TN. Plumbers, restoration, mold companies will spike.",
       "urgency": "today",
       "pitch_hook": "Water damage calls are coming. Every one you miss is $500+ walking away."
     },
     {
       "type": "flood",
-      "area": "Ottawa, OK",
+      "area": "Bedford, TN; Giles, TN; Marshall, TN",
       "niche": "plumbing",
-      "action": "Flood warnings in Ottawa, OK. Plumbers, restoration, mold companies will spike.",
+      "action": "Flood warnings in Bedford, TN; Giles, TN; Marshall, TN. Plumbers, restoration, mold companies will spike.",
       "urgency": "today",
       "pitch_hook": "Water damage calls are coming. Every one you miss is $500+ walking away."
     },
     {
       "type": "flood",
-      "area": "Adair, OK; Delaware, OK",
+      "area": "Le Flore, OK",
       "niche": "plumbing",
-      "action": "Flood warnings in Adair, OK; Delaware, OK. Plumbers, restoration, mold companies will spike.",
+      "action": "Flood warnings in Le Flore, OK. Plumbers, restoration, mold companies will spike.",
       "urgency": "today",
       "pitch_hook": "Water damage calls are coming. Every one you miss is $500+ walking away."
     }
@@ -239,55 +239,55 @@
   "feeds": [
     {
       "name": "NOAA",
-      "last_hit": "2026-06-14T18:21:50.867552+00:00",
+      "last_hit": "2026-06-14T20:28:47.153007+00:00",
       "status": "yellow",
       "data_points_today": 0
     },
     {
       "name": "REDDIT",
-      "last_hit": "2026-06-14T18:21:50.867552+00:00",
+      "last_hit": "2026-06-14T20:28:47.153007+00:00",
       "status": "green",
       "data_points_today": 40
     },
     {
       "name": "USGS",
-      "last_hit": "2026-06-14T18:21:50.867552+00:00",
+      "last_hit": "2026-06-14T20:28:47.153007+00:00",
       "status": "yellow",
       "data_points_today": 0
     },
     {
       "name": "HACKERNEWS",
-      "last_hit": "2026-06-14T18:21:50.867552+00:00",
+      "last_hit": "2026-06-14T20:28:47.153007+00:00",
       "status": "green",
       "data_points_today": 30
     },
     {
       "name": "FEMA",
-      "last_hit": "2026-06-14T18:21:50.867552+00:00",
+      "last_hit": "2026-06-14T20:28:47.153007+00:00",
       "status": "green",
       "data_points_today": 20
     },
     {
       "name": "COMMODITIES",
-      "last_hit": "2026-06-14T18:21:50.867552+00:00",
+      "last_hit": "2026-06-14T20:28:47.153007+00:00",
       "status": "green",
       "data_points_today": 7
     },
     {
       "name": "RSS",
-      "last_hit": "2026-06-14T18:21:50.867552+00:00",
+      "last_hit": "2026-06-14T20:28:47.153007+00:00",
       "status": "green",
       "data_points_today": 170
     },
     {
       "name": "FRED",
-      "last_hit": "2026-06-14T18:21:50.867552+00:00",
+      "last_hit": "2026-06-14T20:28:47.153007+00:00",
       "status": "yellow",
       "data_points_today": 0
     },
     {
       "name": "BLS",
-      "last_hit": "2026-06-14T18:21:50.867552+00:00",
+      "last_hit": "2026-06-14T20:28:47.153007+00:00",
       "status": "green",
       "data_points_today": 9
     }
