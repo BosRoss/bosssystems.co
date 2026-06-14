@@ -1,6 +1,21 @@
 {
-  "pipeline": [],
-  "activity": [],
-  "stats": {},
-  "synced_at": "2026-06-14T21:50:16.046Z"
+  "pipeline": [
+    {
+      "name": "Acme Plumbing",
+      "stage": "prospect",
+      "added": "2026-06-14"
+    }
+  ],
+  "activity": [
+    {
+      "action": "added",
+      "detail": "Acme Plumbing as prospect",
+      "ts": "2026-06-14T22:15:00Z"
+    }
+  ],
+  "stats": {
+    "total": 1,
+    "prospect": 1
+  },
+  "synced_at": "2026-06-14T22:15:00Z"
 }
