@@ -1,0 +1,210 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1.0">
+<meta name="robots" content="noindex,nofollow">
+<title>BOSS Partners — Dashboard</title>
+<style>
+*{margin:0;padding:0;box-sizing:border-box}
+body{background:#0a0a0a;color:#ccc;font-family:'SF Mono',Menlo,monospace;font-size:13px;min-height:100vh}
+.header{background:linear-gradient(135deg,#111 0%,#1a1a2e 100%);border-bottom:2px solid #C9A84C;padding:20px 24px;display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:8px}
+.header h1{color:#C9A84C;font-size:20px;letter-spacing:2px}
+.header .meta{color:#999;font-size:11px;text-align:right}
+.header .live{color:#00ff41;animation:pulse 2s infinite}
+@keyframes pulse{0%,100%{opacity:1}50%{opacity:.4}}
+nav{display:flex;gap:12px;padding:6px 16px;background:#060606;border-bottom:1px solid #1a1a1a;font-size:11px;overflow-x:auto;white-space:nowrap}
+nav a{color:#888;text-decoration:none}
+nav a:hover{color:#ccc}
+nav .active{color:#C9A84C;font-weight:600}
+
+.totals{display:grid;grid-template-columns:repeat(auto-fit,minmax(140px,1fr));gap:12px;padding:16px 16px 0;max-width:1200px;margin:0 auto}
+.total-card{background:#111;border:1px solid #222;border-radius:8px;padding:16px;text-align:center}
+.total-card .val{font-size:24px;font-weight:700;color:#C9A84C;margin-bottom:4px}
+.total-card .val.green{color:#00ff41}
+.total-card .val.red{color:#ff4444}
+.total-card .label{font-size:10px;color:#888;text-transform:uppercase;letter-spacing:1px}
+
+.grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(360px,1fr));gap:16px;padding:16px;max-width:1200px;margin:0 auto}
+@media(max-width:768px){.grid{grid-template-columns:1fr}}
+
+.card{background:#111;border:1px solid #222;border-radius:8px;padding:16px;position:relative}
+.card h3{color:#C9A84C;font-size:14px;margin-bottom:2px}
+.card .subtitle{color:#888;font-size:11px;margin-bottom:12px}
+.card .status{position:absolute;top:16px;right:16px;font-size:10px;padding:2px 8px;border-radius:10px;font-weight:600}
+.status.active{background:#00ff4120;color:#00ff41;border:1px solid #00ff4140}
+.status.inactive{background:#ff000020;color:#ff4444;border:1px solid #ff000040}
+.status.new{background:#4B92DB20;color:#4B92DB;border:1px solid #4B92DB40}
+
+.row{display:flex;justify-content:space-between;padding:5px 0;border-bottom:1px solid #1a1a1a;font-size:12px}
+.row:last-child{border:none}
+.row .k{color:#888}
+.row .v{color:#ddd;font-weight:600}
+.row .v.gold{color:#C9A84C}
+.row .v.green{color:#00ff41}
+.row .v.red{color:#ff4444}
+
+.bar-wrap{margin-top:10px}
+.bar-label{display:flex;justify-content:space-between;font-size:10px;color:#888;margin-bottom:4px}
+.bar{height:8px;background:#1a1a1a;border-radius:4px;overflow:hidden}
+.bar-fill{height:100%;border-radius:4px;transition:width .3s}
+.bar-fill.gold{background:#C9A84C}
+.bar-fill.green{background:#00ff41}
+
+.payments{margin-top:12px}
+.payments h4{font-size:11px;color:#888;margin-bottom:6px;text-transform:uppercase;letter-spacing:.5px}
+.pay-row{display:flex;justify-content:space-between;padding:3px 0;font-size:11px;border-bottom:1px solid #111}
+.pay-row .date{color:#666}
+.pay-row .amt{color:#ccc}
+.pay-row .paidout{color:#00ff41;font-size:9px}
+.pay-row .unpaid{color:#ff4444;font-size:9px}
+
+.empty{text-align:center;padding:60px 20px;color:#666;max-width:500px;margin:0 auto}
+.empty h2{color:#C9A84C;font-size:16px;margin-bottom:12px}
+.empty p{line-height:1.8}
+.empty code{background:#1a1a1a;padding:2px 6px;border-radius:3px;font-size:12px;color:#C9A84C}
+
+.loading{text-align:center;padding:40px;color:#888}
+</style>
+</head>
+<body>
+<nav>
+  <a href="command.html">Command</a>
+  <a href="ops.html">Ops</a>
+  <a href="atlas.html">ATLAS</a>
+  <a href="engine.html">Leads</a>
+  <a href="social.html">Social</a>
+  <a href="quant.html">Quant</a>
+  <a href="overview.html">Map</a>
+  <a href="partners.html" class="active">Partners</a>
+</nav>
+
+<div class="header">
+  <h1>PARTNER HQ</h1>
+  <div class="meta">
+    <div><span class="live">LIVE</span> 80/20 Revenue Split</div>
+    <div id="last-update">Loading...</div>
+  </div>
+</div>
+
+<div class="totals" id="totals"></div>
+<div class="grid" id="grid">
+  <div class="loading">Loading partner data...</div>
+</div>
+
+<script>
+var DATA_URL = 'https://raw.githubusercontent.com/BosRoss/bosssystems.co/main/partner_report.json';
+
+function load() {
+  fetch(DATA_URL + '?t=' + Date.now())
+    .then(function(r) { return r.json(); })
+    .then(render)
+    .catch(function() { renderEmpty(); });
+}
+
+function render(data) {
+  var t = data.totals || {};
+  var partners = data.partners || [];
+
+  document.getElementById('last-update').textContent = 'Updated ' + (data.generated || '').slice(0, 16).replace('T', ' ');
+
+  var totalsEl = document.getElementById('totals');
+  totalsEl.innerHTML = ''
+    + totalCard(t.total_partners || 0, 'Partners', '')
+    + totalCard('$' + fmt(t.total_revenue || 0), 'Total Revenue', '')
+    + totalCard('$' + fmt(t.boss_share || 0), 'Your 20%', 'green')
+    + totalCard('$' + fmt(t.partner_owed || 0), 'Owed to Partners', t.partner_owed > 0 ? 'red' : '')
+    + totalCard(t.total_payments || 0, 'Payments', '')
+    + totalCard(t.total_calls || 0, 'Total Calls', '');
+
+  var grid = document.getElementById('grid');
+  if (!partners.length) {
+    renderEmpty();
+    return;
+  }
+
+  grid.innerHTML = '';
+  partners.forEach(function(p) {
+    grid.innerHTML += partnerCard(p);
+  });
+}
+
+function totalCard(val, label, cls) {
+  return '<div class="total-card"><div class="val ' + cls + '">' + val + '</div><div class="label">' + label + '</div></div>';
+}
+
+function partnerCard(p) {
+  var statusCls = p.payment_count > 0 ? 'active' : 'new';
+  var statusLabel = p.payment_count > 0 ? 'ACTIVE' : 'NEW';
+  var paidPct = p.partner_share > 0 ? Math.round((p.partner_paid / p.partner_share) * 100) : 0;
+
+  var html = '<div class="card">'
+    + '<h3>' + esc(p.name) + '</h3>'
+    + '<div class="subtitle">' + (p.type ? p.type.replace(/_/g, ' ') + ' · ' : '') + (p.city || '') + '</div>'
+    + '<span class="status ' + statusCls + '">' + statusLabel + '</span>';
+
+  html += '<div class="row"><span class="k">Revenue</span><span class="v gold">$' + fmt(p.revenue) + '</span></div>';
+  html += '<div class="row"><span class="k">Your 20%</span><span class="v green">$' + fmt(p.boss_share) + '</span></div>';
+  html += '<div class="row"><span class="k">Their 80%</span><span class="v">$' + fmt(p.partner_share) + '</span></div>';
+
+  if (p.outstanding > 0) {
+    html += '<div class="row"><span class="k">You owe them</span><span class="v red">$' + fmt(p.outstanding) + '</span></div>';
+  }
+
+  html += '<div class="row"><span class="k">Payments</span><span class="v">' + p.payment_count + '</span></div>';
+  if (p.last_payment) {
+    html += '<div class="row"><span class="k">Last payment</span><span class="v">' + p.last_payment + '</span></div>';
+  }
+
+  var c = p.calls || {};
+  if (c.total > 0) {
+    html += '<div class="row"><span class="k">Calls</span><span class="v">' + c.total + ' (' + c.answered + ' answered)</span></div>';
+    if (c.avg_duration) {
+      html += '<div class="row"><span class="k">Avg call</span><span class="v">' + c.avg_duration + 's</span></div>';
+    }
+  }
+
+  if (p.partner_share > 0) {
+    html += '<div class="bar-wrap">'
+      + '<div class="bar-label"><span>Payout progress</span><span>' + paidPct + '%</span></div>'
+      + '<div class="bar"><div class="bar-fill green" style="width:' + paidPct + '%"></div></div>'
+      + '</div>';
+  }
+
+  if (p.payments && p.payments.length) {
+    html += '<div class="payments"><h4>Recent Payments</h4>';
+    p.payments.slice(-5).reverse().forEach(function(pay) {
+      var tag = pay.paid_out ? '<span class="paidout">PAID OUT</span>' : '<span class="unpaid">UNPAID</span>';
+      html += '<div class="pay-row"><span class="date">' + (pay.date || '') + '</span><span class="amt">$' + fmt(pay.amount) + '</span>' + tag + '</div>';
+    });
+    html += '</div>';
+  }
+
+  html += '</div>';
+  return html;
+}
+
+function renderEmpty() {
+  document.getElementById('totals').innerHTML = '';
+  document.getElementById('grid').innerHTML = '<div class="empty">'
+    + '<h2>No Partner Data Yet</h2>'
+    + '<p>Partner data will appear here once payments start flowing through the system.</p>'
+    + '<p style="margin-top:16px">Generate report: <code>python3 boss_command.py partner-report</code></p>'
+    + '<p>View raw data: <code>python3 boss_command.py partners</code></p>'
+    + '</div>';
+}
+
+function fmt(n) {
+  return (n || 0).toLocaleString(undefined, {minimumFractionDigits: 0, maximumFractionDigits: 0});
+}
+
+function esc(s) {
+  var d = document.createElement('div');
+  d.textContent = s;
+  return d.innerHTML;
+}
+
+load();
+</script>
+</body>
+</html>
