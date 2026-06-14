@@ -4,7 +4,7 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Free Business Analysis — BOSS Systems</title>
-<meta name="description" content="Find out exactly where your business is losing money — and what it's worth. Free 60-second analysis.">
+<meta name="description" content="Find out exactly where your business is losing money — and what it's worth. Free 60-second analysis backed by real data.">
 <style>
   *{margin:0;padding:0;box-sizing:border-box}
   :root{--gold:#C9A84C;--dark:#0a0a0a;--gray:#141414;--border:#2a2a2a;--text:#f0ede8}
@@ -33,8 +33,7 @@
   .btn:disabled{opacity:.5;cursor:not-allowed}
   .note{text-align:center;color:#aaa;font-size:.8rem;margin-top:1rem}
 
-  /* Results */
-  #results{display:none;max-width:720px;margin:3rem auto;padding:0 2rem 4rem}
+  #results{display:none;max-width:760px;margin:3rem auto;padding:0 2rem 4rem}
   .result-header{border-left:3px solid var(--gold);padding-left:1.5rem;margin-bottom:2rem}
   .result-header h2{font-size:1.8rem;font-weight:900}
   .result-header p{color:#aaa;margin-top:.3rem}
@@ -44,33 +43,70 @@
   .stat .num{font-size:1.8rem;font-weight:900;color:var(--gold)}
   .stat .lbl{font-size:.7rem;letter-spacing:2px;color:#bbb;text-transform:uppercase;margin-top:.3rem}
 
-  /* Loss breakdown bar chart */
-  .breakdown-box{background:var(--gray);border:1px solid var(--border);padding:1.5rem;margin-bottom:2rem}
-  .breakdown-title{font-size:.7rem;letter-spacing:3px;text-transform:uppercase;color:var(--gold);margin-bottom:1.2rem}
-  .breakdown-item{margin-bottom:.9rem}
-  .breakdown-header{display:flex;justify-content:space-between;align-items:baseline;margin-bottom:.3rem}
-  .breakdown-name{font-size:.85rem;font-weight:700}
-  .breakdown-val{font-size:.85rem;color:var(--gold);font-weight:900}
-  .bar-track{background:#1e1e1e;height:6px;border-radius:3px;overflow:hidden}
-  .bar-fill{height:100%;background:var(--gold);border-radius:3px;transition:width .6s ease}
-  .breakdown-math{font-size:.75rem;color:#aaa;margin-top:.25rem;line-height:1.4}
-
   .section-title{font-size:.7rem;letter-spacing:3px;text-transform:uppercase;color:var(--gold);margin:2rem 0 1rem}
 
-  .automation-item{border:1px solid var(--border);padding:1.2rem;margin-bottom:.75rem}
-  .automation-item.quick{border-color:#2a3a2a}
-  .auto-top{display:grid;grid-template-columns:1fr auto;gap:1rem;align-items:start}
-  .auto-name{font-weight:700;margin-bottom:.2rem}
-  .auto-desc{font-size:.85rem;color:#bbb;line-height:1.5}
-  .auto-calc{font-size:.75rem;color:#aaa;margin-top:.4rem;border-top:1px solid #1e1e1e;padding-top:.4rem;line-height:1.4}
-  .auto-calc span{color:#aaa}
-  .auto-value{text-align:right;min-width:90px}
-  .auto-value .val{font-size:1.2rem;font-weight:900;color:var(--gold);white-space:nowrap}
-  .auto-value .sub{font-size:.7rem;color:#aaa}
+  /* Expandable automation cards */
+  .auto-card{border:1px solid var(--border);margin-bottom:.75rem;background:var(--gray);transition:border-color .2s}
+  .auto-card.selected{border-color:var(--gold)}
+  .auto-card.verified{border-left:3px solid #4CAF50}
 
+  .auto-summary{display:grid;grid-template-columns:auto 1fr auto auto;gap:1rem;align-items:center;padding:1rem 1.2rem;cursor:pointer;user-select:none}
+  .auto-check{width:22px;height:22px;border:2px solid var(--border);border-radius:4px;display:flex;align-items:center;justify-content:center;flex-shrink:0;transition:.2s}
+  .auto-card.selected .auto-check{background:var(--gold);border-color:var(--gold)}
+  .auto-check svg{display:none;width:14px;height:14px}
+  .auto-card.selected .auto-check svg{display:block}
+
+  .auto-info{min-width:0}
+  .auto-name{font-weight:700;font-size:.9rem;margin-bottom:.15rem}
+  .auto-desc-short{font-size:.8rem;color:#aaa;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+
+  .auto-value{text-align:right;min-width:100px}
+  .auto-value .range{font-size:1rem;font-weight:900;color:var(--gold);white-space:nowrap}
+  .auto-value .price{font-size:.72rem;color:#aaa;margin-top:2px}
+
+  .auto-expand-btn{color:#666;font-size:1.2rem;width:28px;text-align:center;transition:.2s}
+  .auto-card.open .auto-expand-btn{transform:rotate(180deg)}
+
+  .auto-detail{display:none;padding:0 1.2rem 1.2rem;border-top:1px solid #1e1e1e;margin-top:0}
+  .auto-card.open .auto-detail{display:block;padding-top:1rem}
+
+  .detail-section{margin-bottom:1rem}
+  .detail-label{font-size:.7rem;letter-spacing:1.5px;text-transform:uppercase;color:var(--gold);margin-bottom:.4rem}
+  .detail-text{font-size:.82rem;color:#bbb;line-height:1.6}
+  .detail-text strong{color:#ddd}
+
+  .math-box{background:#0a0a0a;border:1px solid #1e1e1e;padding:.8rem 1rem;font-size:.78rem;color:#aaa;line-height:1.7;font-family:'SF Mono',Menlo,monospace}
+  .math-box .line{display:flex;justify-content:space-between;padding:2px 0}
+  .math-box .line.total{border-top:1px solid #2a2a2a;margin-top:4px;padding-top:6px;color:var(--gold);font-weight:700}
+  .math-box .note{font-style:italic;color:#888;margin-top:6px;font-family:-apple-system,sans-serif}
+
+  .source-tag{display:inline-block;font-size:.7rem;padding:2px 8px;border-radius:3px;margin-top:.5rem;margin-right:4px}
+  .source-tag.verified{background:#0a1a0a;color:#4CAF50;border:1px solid #1a3a1a}
+  .source-tag.industry{background:#1a1500;color:#b08930;border:1px solid #3a3000}
+  .source-tag.estimate{background:#1a0a0a;color:#cc6666;border:1px solid #3a1a1a}
+
+  .breakeven{font-size:.78rem;color:#aaa;margin-top:.5rem}
+  .breakeven strong{color:#ddd}
+
+  .disclaimer-box{font-size:.75rem;color:#999;background:#0a0a0a;border-left:2px solid #333;padding:.6rem .8rem;margin-top:.8rem;line-height:1.5}
+
+  /* Cart */
+  .cart{position:sticky;bottom:0;background:linear-gradient(0deg,#0a0a0a 80%,transparent);padding:1.5rem 0 0;z-index:10}
+  .cart-inner{background:var(--gray);border:1px solid var(--gold);padding:1.2rem 1.5rem;display:grid;grid-template-columns:1fr auto;gap:1rem;align-items:center}
+  .cart-summary{font-size:.85rem}
+  .cart-summary .cart-count{color:var(--gold);font-weight:700}
+  .cart-summary .cart-total{font-size:1.1rem;font-weight:900;color:var(--text);margin-top:.2rem}
+  .cart-summary .cart-monthly{font-size:.78rem;color:#aaa}
+  .cart-summary .cart-bundle{font-size:.75rem;color:#4CAF50;margin-top:2px}
+  .cart-btn{background:var(--gold);color:var(--dark);border:none;padding:.9rem 2rem;font-weight:900;font-size:.95rem;cursor:pointer;white-space:nowrap;letter-spacing:.5px}
+  .cart-btn:hover{opacity:.92}
+  .cart-btn:disabled{opacity:.4;cursor:not-allowed}
+  .cart.empty .cart-btn{opacity:.4;cursor:not-allowed}
+
+  /* Package section */
   .package-rec{background:linear-gradient(135deg,#1a1500,#0a0a0a);border:1px solid var(--gold);padding:2rem;margin-top:2rem}
   .package-rec h3{font-size:1.4rem;font-weight:900;color:var(--gold);margin-bottom:.3rem}
-  .package-rec .rec-sub{color:#bbb;font-size:.85rem;margin-bottom:1.5rem}
+  .package-rec .rec-sub{color:#bbb;font-size:.85rem;margin-bottom:1.5rem;line-height:1.6}
   .price-rows{border:1px solid #222;margin:1.25rem 0}
   .price-row{display:flex;justify-content:space-between;align-items:center;padding:.9rem 1.1rem;border-bottom:1px solid #1a1a1a;font-size:.9rem;color:#aaa}
   .price-row:last-child{border-bottom:none}
@@ -87,7 +123,6 @@
   .spinner{width:40px;height:40px;border:2px solid var(--border);border-top-color:var(--gold);border-radius:50%;animation:spin 1s linear infinite;margin:0 auto 1rem}
   @keyframes spin{to{transform:rotate(360deg)}}
 
-  /* Lead Gate */
   .gate-card{background:var(--gray);border:1px solid var(--gold);padding:2.5rem;max-width:520px;margin:3rem auto;text-align:center}
   .gate-card h2{font-size:1.5rem;font-weight:900;margin-bottom:.5rem}
   .gate-card .gate-sub{color:#aaa;font-size:.95rem;line-height:1.5;margin-bottom:1.5rem}
@@ -104,14 +139,14 @@
   .gate-email-row input[type="email"]:focus{border-color:var(--gold)}
   .gate-privacy{color:#aaa;font-size:.72rem;margin-top:.75rem}
 
-  em.est{font-style:normal;display:block;margin-top:.3rem;padding:3px 6px;background:#1a1500;border-left:2px solid #e67e22;color:#b08930;font-size:.72rem}
-  em.verified{font-style:normal;display:block;margin-top:.3rem;padding:3px 6px;background:#0a1a0a;border-left:2px solid #4CAF50;color:#4CAF50;font-size:.72rem}
-
   @media(max-width:600px){
     .stats-row{grid-template-columns:1fr 1fr}
-    .auto-top{grid-template-columns:1fr;gap:.5rem}
-    .auto-value{text-align:left}
+    .auto-summary{grid-template-columns:auto 1fr auto;gap:.6rem}
+    .auto-expand-btn{display:none}
+    .auto-value .range{font-size:.85rem}
     .form-row{grid-template-columns:1fr}
+    .cart-inner{grid-template-columns:1fr;text-align:center}
+    .cart-btn{width:100%}
   }
 </style>
 </head>
@@ -119,12 +154,12 @@
 
 <header>
   <div class="logo">BOSS SYSTEMS</div>
-  <a href="/" class="back">← Back to Home</a>
+  <a href="/" class="back">&larr; Back to Home</a>
 </header>
 
 <div class="hero">
-  <h1>What's Your Business <span>Leaving Behind?</span></h1>
-  <p>We analyze your business in 60 seconds. No sales pitch until you see your numbers. Find out exactly where you're leaving money on the table — and what it's worth.</p>
+  <h1>Find Out Where Your Business Is <span>Losing Money</span></h1>
+  <p>We find the gaps in your business — missed calls, lost customers, broken follow-up — and build systems to close them. Takes 60 seconds. No sales call unless you want one.</p>
 </div>
 
 <div class="form-card" id="form-section">
@@ -155,16 +190,16 @@
       <input type="text" id="city" placeholder="e.g. Corinth MS" />
     </div>
     <div class="form-group">
-      <label>Avg Job Value <span class="label-hint">(what you typically charge per job — optional)</span></label>
+      <label>Avg Job Value <span class="label-hint">(what you typically charge — optional)</span></label>
       <input type="number" id="jobval" placeholder="e.g. 450" min="1" />
     </div>
   </div>
   <div class="form-group">
-    <label>Business Name <span class="label-hint">(optional)</span></label>
+    <label>Business Name <span class="label-hint">(optional — we'll look you up on Google)</span></label>
     <input type="text" id="bname" placeholder="e.g. Dale's HVAC" />
   </div>
   <button class="btn" id="analyze-btn" onclick="runAnalysis()">RUN MY FREE ANALYSIS</button>
-  <p class="note">No email required. Your numbers appear on this page in seconds — no sales call, no follow-up unless you want one.</p>
+  <p class="note">No email required. Results appear on this page in seconds.</p>
 </div>
 
 <div id="results">
@@ -172,7 +207,7 @@
 </div>
 
 <script>
-const TYPE_DEFAULTS = {
+var TYPE_DEFAULTS = {
   hvac:        { job: 480,  label: 'HVAC' },
   plumber:     { job: 380,  label: 'Plumbing' },
   electrician: { job: 420,  label: 'Electrical' },
@@ -190,229 +225,625 @@ const TYPE_DEFAULTS = {
   general:     { job: 320,  label: 'Service Business' },
 };
 
+var selectedItems = {};
+
 function buildAutomations(btype, jobValue, googleData) {
-  const d = TYPE_DEFAULTS[btype] || TYPE_DEFAULTS.general;
-  const job = jobValue || d.job;
-  const g = googleData || {};
-  const cap = (n, max) => Math.min(Math.round(n / 100) * 100, max);
+  var d = TYPE_DEFAULTS[btype] || TYPE_DEFAULTS.general;
+  var job = jobValue || d.job;
+  var g = googleData || {};
+  var userProvidedJob = !!jobValue;
+  var jobSource = userProvidedJob ? 'your number' : d.label + ' industry average';
 
-  const autos = [];
+  var autos = [];
 
-  // --- Phone Receptionist (industry data: 27% unanswered, 85% never call back) ---
-  const userProvidedJob = !!jobValue;
-  const missedPerWeek = 3;
-  const recoveredPerWeek = 1.2;
-  const receptionist_val = cap(recoveredPerWeek * job * 52, 80000);
-  const jobSource = userProvidedJob ? 'your number' : d.label + ' industry average';
+  // --- Phone Receptionist ---
+  // Conservative: 62% miss rate (411 Locals 2022), but not all are unique customers.
+  // Assume ~2 genuinely missed customer calls/week (not robocalls, not existing clients).
+  // Recovery rate 25-35% — most won't answer a callback from unknown number.
+  var missedPerWeek = 2;
+  var recoveryLow = 0.25;
+  var recoveryHigh = 0.35;
+  var phoneLow = Math.round(missedPerWeek * recoveryLow * job * 52);
+  var phoneHigh = Math.round(missedPerWeek * recoveryHigh * job * 52);
   autos.push({
-    key: 'phone_receptionist', name: 'Automated Phone Receptionist', cat: 'Customer Acquisition',
-    value: receptionist_val, cost: 50, hours: 2, diff: 1, quickWin: true, applies: ['all'],
-    desc: 'Answers every call 24/7, qualifies leads, quotes jobs, books appointments.',
-    calc: `Industry data: 27% of calls to service businesses go unanswered (BIA/Kelsey 2023). Of those, 85% never call back (Invoca 2022). Using ~${missedPerWeek} missed/week and assuming ${recoveredPerWeek} recovered at $${fmt_num(job)} avg (${jobSource}) = ${fmt(receptionist_val)}/yr. <em class="est">We don't know your actual call volume or miss rate — this uses published industry averages. Your real number could be higher or lower.</em>`,
+    key: 'phone_receptionist',
+    name: 'Phone Answering System',
+    shortDesc: 'Every call answered, qualified, and booked — 24/7.',
+    cat: 'Customer Acquisition',
+    low: phoneLow,
+    high: phoneHigh,
+    setup: 250,
+    monthly: 97,
+    selected: true,
+    verified: false,
+    desc: 'Answers every call on the first ring, day or night. Qualifies the caller, gives quotes based on your pricing, and books appointments directly into your schedule. Customers never hit voicemail.',
+    math: [
+      { label: 'Missed calls/week (conservative)', value: missedPerWeek },
+      { label: 'Recovery rate', value: (recoveryLow*100) + '-' + (recoveryHigh*100) + '%' },
+      { label: 'Avg job value (' + jobSource + ')', value: '$' + fmtN(job) },
+      { label: 'Weeks/year', value: '52' },
+    ],
+    mathFormula: missedPerWeek + ' missed × ' + (recoveryLow*100) + '-' + (recoveryHigh*100) + '% recovered × $' + fmtN(job) + ' × 52 weeks',
+    sources: [
+      { text: '62% of calls to small businesses go unanswered — 411 Locals (2022)', type: 'industry' },
+      { text: '80-85% of callers who reach voicemail never call back — Invoca (2020)', type: 'industry' },
+      { text: '78% buy from the first company that responds — Lead Connect (2020)', type: 'industry' },
+    ],
+    disclaimer: 'We estimate 2 genuinely missed customer calls per week — not all unanswered calls are real prospects (robocalls, existing clients, etc.). Your actual miss rate depends on your call volume.',
+    breakeven: function() { return Math.round(this.monthly / (job * recoveryLow)); },
   });
 
   // --- Missed Call Text-Back ---
-  const textback_recovered = 0.4;
-  const textback_val = cap(textback_recovered * job * 52, 24000);
+  var textRecoverLow = 0.15;
+  var textRecoverHigh = 0.25;
+  var textLow = Math.round(missedPerWeek * textRecoverLow * job * 52);
+  var textHigh = Math.round(missedPerWeek * textRecoverHigh * job * 52);
   autos.push({
-    key: 'missed_call_textback', name: 'Missed Call Text-Back', cat: 'Customer Acquisition',
-    value: textback_val, cost: 15, hours: 1, diff: 1, quickWin: true, applies: ['all'],
-    desc: 'When any call is missed, customer gets a text within 60 seconds.',
-    calc: `Published data: 1 in 3 missed-call texts re-engages the customer (Hatch 2023). ~${textback_recovered} extra jobs/week at $${fmt_num(job)} avg (${jobSource}) × 52 weeks. <em class="est">Depends on your actual missed call volume — we don't have that number.</em>`,
+    key: 'missed_call_textback',
+    name: 'Missed Call Text-Back',
+    shortDesc: 'Missed call? Customer gets a text in 60 seconds.',
+    cat: 'Customer Acquisition',
+    low: textLow,
+    high: textHigh,
+    setup: 50,
+    monthly: 29,
+    selected: false,
+    verified: false,
+    desc: 'When a call is missed (you\'re on a job, phone is off, after hours), the caller receives an automatic text within 60 seconds: "Hey, sorry I missed your call — what can I help with?" Keeps the conversation alive.',
+    math: [
+      { label: 'Missed calls/week', value: missedPerWeek },
+      { label: 'Text re-engagement rate', value: (textRecoverLow*100) + '-' + (textRecoverHigh*100) + '%' },
+      { label: 'Avg job value', value: '$' + fmtN(job) },
+    ],
+    mathFormula: missedPerWeek + ' missed × ' + (textRecoverLow*100) + '-' + (textRecoverHigh*100) + '% re-engage × $' + fmtN(job) + ' × 52 weeks',
+    sources: [
+      { text: 'Speed-to-lead: responding within 5 min = 21x more likely to qualify — MIT/InsideSales.com (2007)', type: 'industry' },
+    ],
+    disclaimer: 'Re-engagement rate varies. Works best for service businesses where the caller needs help now. Less effective for price-shopping calls.',
+    breakeven: function() { return Math.round(this.monthly / (job * textRecoverLow)); },
   });
 
-  // --- CONDITIONAL: Review improvement (only if rating < 4.5 or reviews < 50) ---
+  // --- CONDITIONAL: Review improvement ---
   if (g.found && (g.rating < 4.5 || g.reviewCount < 50)) {
-    let reviewCalc = '';
-    let review_val = 0;
+    var reviewLow, reviewHigh, reviewDesc;
     if (g.rating < 4.5) {
-      const targetRating = Math.min(g.rating + 0.5, 4.8);
-      review_val = cap(2.0 * job * 12, 20000);
-      reviewCalc = `Your Google rating is ${g.rating}★ with ${fmt_num(g.reviewCount)} reviews. Moving to ${targetRating.toFixed(1)}★ drives measurably more inbound calls — Google ranks higher-rated businesses first. Automated post-job review requests typically add 8-15 reviews/month. At ~2 extra jobs/month from improved visibility at $${fmt_num(job)} avg = ${fmt(review_val)}/yr. <em class="est">Revenue impact estimated from industry benchmarks.</em>`;
+      var targetRating = Math.min(g.rating + 0.3, 4.8);
+      // Harvard study: 1 star = 5-9% revenue increase. 0.3 stars = ~2-3% lift.
+      // For a small business doing ~30 jobs/month, 2-3% = 0.6-0.9 extra jobs/month
+      reviewLow = Math.round(0.5 * job * 12);
+      reviewHigh = Math.round(1.0 * job * 12);
+      reviewDesc = 'Your rating is ' + g.rating + '★ with ' + fmtN(g.reviewCount) + ' reviews. Research shows a 1-star increase drives 5-9% more revenue for independent businesses. Moving from ' + g.rating + ' to ' + targetRating.toFixed(1) + ' could mean 0.5-1 extra jobs per month from improved Google visibility.';
     } else {
-      review_val = cap(1.0 * job * 12, 12000);
-      reviewCalc = `Your rating is strong at ${g.rating}★, but with only ${fmt_num(g.reviewCount)} reviews you're vulnerable to a single bad review moving your average. Automated review requests build a buffer and keep you ranking above competitors. ~1 extra job/month from sustained visibility = ${fmt(review_val)}/yr. <em class="est">Industry estimate.</em>`;
+      reviewLow = Math.round(0.25 * job * 12);
+      reviewHigh = Math.round(0.5 * job * 12);
+      reviewDesc = 'Your rating is solid at ' + g.rating + '★, but with only ' + fmtN(g.reviewCount) + ' reviews, one bad review can visibly drop your average. Automated review requests build a cushion and keep you visible in local search.';
     }
     autos.push({
-      key: 'review_request', name: 'Automated Review Requests', cat: 'Customer Acquisition',
-      value: review_val, cost: 10, hours: 1, diff: 1, quickWin: true, applies: ['all'],
-      desc: '2 hours after every job, customer gets a text asking for a Google review.',
-      calc: reviewCalc,
-    });
-  }
-
-  // --- CONDITIONAL: No website found ---
-  if (g.found && !g.hasWebsite) {
-    const web_val = cap(2.0 * job * 12, 18000);
-    autos.push({
-      key: 'website_presence', name: 'Web Presence Setup', cat: 'Customer Acquisition',
-      value: web_val, cost: 30, hours: 4, diff: 2, applies: ['all'],
-      desc: 'Professional landing page with online booking, reviews display, and SEO basics.',
-      calc: `We checked — your business has no website listed on Google. 97% of consumers search online before hiring local services (BrightLocal 2024). You're invisible to anyone who doesn't already know your name. A basic landing page with booking captures ~2 extra jobs/month at $${fmt_num(job)} avg = ${fmt(web_val)}/yr. <em class="verified">Verified: no website found on Google.</em>`,
-    });
-  }
-
-  // --- CONDITIONAL: Limited hours ---
-  if (g.found && (!g.hasAfterHours || !g.hasWeekends)) {
-    let hoursDesc = '';
-    if (!g.hasAfterHours && !g.hasWeekends) hoursDesc = 'after hours or on weekends';
-    else if (!g.hasAfterHours) hoursDesc = 'after hours';
-    else hoursDesc = 'on weekends';
-    const hours_val = cap(1.5 * job * 52, 40000);
-    autos.push({
-      key: 'after_hours', name: 'After-Hours Coverage', cat: 'Customer Acquisition',
-      value: hours_val, cost: 60, hours: 2, diff: 1, quickWin: true, applies: ['all'],
-      desc: `Answers calls ${hoursDesc} — books appointments, provides quotes, captures leads.`,
-      calc: `Your Google listing shows you're not available ${hoursDesc}. 40% of service calls come outside business hours (ServiceTitan). Automated coverage captures ~1.5 jobs/week you're currently losing at $${fmt_num(job)} avg = ${fmt(hours_val)}/yr. <em class="verified">Verified: limited hours on Google listing.</em>`,
+      key: 'review_system',
+      name: 'Automated Review Requests',
+      shortDesc: 'After every job, customer gets a review request.',
+      cat: 'Reputation',
+      low: reviewLow,
+      high: reviewHigh,
+      setup: 50,
+      monthly: 29,
+      selected: false,
+      verified: true,
+      desc: reviewDesc,
+      math: [
+        { label: 'Current rating', value: g.rating + '★ (' + g.reviewCount + ' reviews)' },
+        { label: 'Extra jobs/month from improved visibility', value: g.rating < 4.5 ? '0.5 - 1.0' : '0.25 - 0.5' },
+        { label: 'Avg job value', value: '$' + fmtN(job) },
+      ],
+      mathFormula: (g.rating < 4.5 ? '0.5-1.0' : '0.25-0.5') + ' extra jobs/mo × $' + fmtN(job) + ' × 12 months',
+      sources: [
+        { text: '1-star increase = 5-9% revenue lift for independent businesses — Harvard Business School, Michael Luca (2016)', type: 'verified' },
+        { text: 'Rating verified from your Google listing', type: 'verified' },
+      ],
+      disclaimer: 'Revenue impact assumes your market has enough search volume for improved rankings to convert. Very small towns may see less effect.',
+      breakeven: function() { return 1; },
     });
   }
 
   // --- CONDITIONAL: Negative reviews found ---
   if (g.found && g.negativeReviews > 0) {
-    const recovery_val = cap(1.5 * job * 12, 15000);
+    // Conservative: each prevented bad review saves ~1-3 jobs that would have gone elsewhere
+    // But we can only prevent reviews from YOUR customers, not random 1-stars
+    var preventPerYear = Math.min(g.negativeReviews * 2, 6); // assume system catches ~half, 2-6/yr
+    var recoveryLow2 = Math.round(preventPerYear * job * 0.5);
+    var recoveryHigh2 = Math.round(preventPerYear * job * 1.5);
     autos.push({
-      key: 'review_recovery', name: 'Review Recovery System', cat: 'Customer Retention',
-      value: recovery_val, cost: 15, hours: 2, diff: 1, quickWin: true, applies: ['all'],
-      desc: 'Detects unhappy customers before they leave a bad review. Sends a private feedback request first.',
-      calc: `We found ${g.negativeReviews} negative review${g.negativeReviews > 1 ? 's' : ''} in your recent Google reviews${g.phoneComplaints > 0 ? ` (${g.phoneComplaints} mentioning phone/response issues)` : ''}. An automated post-job satisfaction check intercepts complaints privately before they become public 1-star reviews. Preventing ~1.5 bad reviews/month protects the jobs those reviews would have cost at $${fmt_num(job)} avg = ${fmt(recovery_val)}/yr. <em class="verified">Verified: negative reviews found on Google.</em>`,
+      key: 'review_recovery',
+      name: 'Review Recovery System',
+      shortDesc: 'Catches unhappy customers before they post a bad review.',
+      cat: 'Reputation',
+      low: recoveryLow2,
+      high: recoveryHigh2,
+      setup: 50,
+      monthly: 29,
+      selected: false,
+      verified: true,
+      desc: 'After every job, the customer gets a private satisfaction check before the public review request. If they\'re unhappy, you get alerted immediately — a chance to make it right before it becomes a 1-star review.',
+      math: [
+        { label: 'Negative reviews found', value: g.negativeReviews },
+        { label: 'Bad reviews prevented/year (est.)', value: preventPerYear },
+        { label: 'Jobs saved per prevented review', value: '0.5 - 1.5' },
+        { label: 'Avg job value', value: '$' + fmtN(job) },
+      ],
+      mathFormula: preventPerYear + ' prevented reviews × (0.5-1.5 jobs saved) × $' + fmtN(job),
+      sources: [
+        { text: g.negativeReviews + ' negative review' + (g.negativeReviews > 1 ? 's' : '') + ' found on your Google listing', type: 'verified' },
+        { text: '1-star increase = 5-9% revenue lift — Harvard Business School (2016)', type: 'industry' },
+      ],
+      disclaimer: 'Not every bad review is preventable — some come from non-customers or unreasonable expectations. This system works on your actual customers who had a fixable bad experience.',
+      breakeven: function() { return 1; },
     });
   }
 
-  // --- ALWAYS: Payment Collection (industry-wide problem) ---
-  const payment_val = cap(0.03 * Math.max(job, 200) * 30 * 12, 12000);
+  // --- CONDITIONAL: No website ---
+  if (g.found && !g.hasWebsite) {
+    var webLow = Math.round(1.0 * job * 12);
+    var webHigh = Math.round(2.0 * job * 12);
+    autos.push({
+      key: 'website_presence',
+      name: 'Web Presence Setup',
+      shortDesc: 'You have no website — you\'re invisible to searchers.',
+      cat: 'Customer Acquisition',
+      low: webLow,
+      high: webHigh,
+      setup: 200,
+      monthly: 29,
+      selected: false,
+      verified: true,
+      desc: 'We checked — your business has no website listed on Google. Anyone searching for your service type in your area won\'t find you unless they already know your name. A basic landing page with your services, reviews, and a booking button changes that.',
+      math: [
+        { label: 'Extra jobs/month from web presence', value: '1 - 2' },
+        { label: 'Avg job value', value: '$' + fmtN(job) },
+      ],
+      mathFormula: '1-2 new jobs/mo × $' + fmtN(job) + ' × 12 months',
+      sources: [
+        { text: 'No website found on your Google listing', type: 'verified' },
+      ],
+      disclaimer: 'A website doesn\'t guarantee traffic. These numbers assume basic SEO and that people in your area are searching for your service. Smaller towns may see fewer online searches.',
+      breakeven: function() { return 1; },
+    });
+  }
+
+  // --- CONDITIONAL: No after-hours/weekends ---
+  if (g.found && (!g.hasAfterHours || !g.hasWeekends)) {
+    var hoursDesc = '';
+    if (!g.hasAfterHours && !g.hasWeekends) hoursDesc = 'after hours or on weekends';
+    else if (!g.hasAfterHours) hoursDesc = 'after hours';
+    else hoursDesc = 'on weekends';
+    // 35-43% of calls come outside business hours (CallRail 2024)
+    // But only a fraction are convertible — many are existing clients, non-urgent
+    var afterLow = Math.round(0.5 * job * 52);
+    var afterHigh = Math.round(1.0 * job * 52);
+    autos.push({
+      key: 'after_hours',
+      name: 'After-Hours Coverage',
+      shortDesc: 'Answers calls ' + hoursDesc + '.',
+      cat: 'Customer Acquisition',
+      low: afterLow,
+      high: afterHigh,
+      setup: 0,
+      monthly: 0,
+      selected: false,
+      verified: true,
+      includedWith: 'phone_receptionist',
+      desc: 'Your Google listing shows you\'re not available ' + hoursDesc + '. Calls that come in during those times currently go unanswered. With a phone system, those calls get answered, qualified, and booked — even at 2 AM.',
+      math: [
+        { label: 'After-hours calls/week (est.)', value: '2 - 4' },
+        { label: 'Convertible fraction', value: '25 - 50%' },
+        { label: 'Avg job value', value: '$' + fmtN(job) },
+      ],
+      mathFormula: '0.5-1.0 recovered jobs/week × $' + fmtN(job) + ' × 52 weeks',
+      sources: [
+        { text: '35-43% of home service calls come outside business hours — CallRail SMB Report (2024)', type: 'industry' },
+        { text: 'Limited hours verified on your Google listing', type: 'verified' },
+      ],
+      disclaimer: 'This value overlaps with the Phone Answering System — it\'s included at no extra cost if you get the phone system. Shown separately so you can see what the after-hours gap specifically costs you.',
+      breakeven: function() { return 0; },
+    });
+  }
+
+  // --- Appointment Reminders ---
+  // 29-38% no-show reduction (PLOS ONE 2020 systematic review)
+  // Conservative: assume 10% no-show rate, recover half
+  var noshowsPerMonth = Math.round(30 * 0.10 * 0.5); // 30 jobs, 10% no-show, recover 50%
+  var apptLow = Math.round(noshowsPerMonth * 0.7 * job * 12);
+  var apptHigh = Math.round(noshowsPerMonth * job * 12);
+  if (apptLow > 0) {
+    autos.push({
+      key: 'appointment_reminders',
+      name: 'Appointment Reminders',
+      shortDesc: 'Confirmation + reminder texts cut no-shows by 29%.',
+      cat: 'Operations',
+      low: apptLow,
+      high: apptHigh,
+      setup: 50,
+      monthly: 29,
+      selected: false,
+      verified: false,
+      desc: 'Booking confirmation, 24-hour reminder, and day-of ETA text — all automatic. Customers can confirm or reschedule with one tap.',
+      math: [
+        { label: 'Jobs/month (est.)', value: '30' },
+        { label: 'Industry no-show rate', value: '10-15%' },
+        { label: 'Reduction from reminders', value: '29-38%' },
+        { label: 'Recovered no-shows/month', value: noshowsPerMonth },
+      ],
+      mathFormula: noshowsPerMonth + ' recovered no-shows/mo × $' + fmtN(job) + ' × 12 months',
+      sources: [
+        { text: 'Text reminders reduce no-shows by 29-38% — PLOS ONE systematic review (2020), 28 of 29 studies confirmed', type: 'verified' },
+      ],
+      disclaimer: 'Assumes ~30 jobs/month and a 10% no-show rate. If your no-show rate is lower (common for emergency services), the savings will be smaller.',
+      breakeven: function() { return Math.ceil(this.monthly / job); },
+    });
+  }
+
+  // --- Payment Collection ---
+  // Fundbox: 64% of SMBs are paid late, avg $84K outstanding
+  // Conservative: assume 2-3% of revenue recovered faster (not "new" money, just faster collection)
+  var monthlyJobs = 30;
+  var paymentLow = Math.round(monthlyJobs * job * 0.02 * 12);
+  var paymentHigh = Math.round(monthlyJobs * job * 0.04 * 12);
   autos.push({
-    key: 'payment_collection', name: 'Automated Payment Collection', cat: 'Operations',
-    value: payment_val, cost: 15, hours: 2, diff: 1, quickWin: true, applies: ['all'],
-    desc: 'Job complete → payment link sent instantly. Automatic follow-up if unpaid.',
-    calc: `Service businesses lose 3-5% of revenue to slow or unpaid invoices (Fundbox 2023). Automated invoicing at job completion reduces that gap. At ~30 jobs/month, collecting 3% more = ${fmt(payment_val)}/yr. <em class="est">Industry average — your collections rate may be better or worse.</em>`,
+    key: 'payment_collection',
+    name: 'Automated Invoicing',
+    shortDesc: 'Job done = payment link sent instantly. Auto follow-up.',
+    cat: 'Operations',
+    low: paymentLow,
+    high: paymentHigh,
+    setup: 50,
+    monthly: 29,
+    selected: false,
+    verified: false,
+    desc: 'The moment a job is marked complete, the customer gets a payment link via text. If they don\'t pay within 24 hours, they get a reminder. No more chasing invoices.',
+    math: [
+      { label: 'Est. monthly jobs', value: monthlyJobs },
+      { label: 'Revenue recovered from faster collection', value: '2-4%' },
+      { label: 'Avg job value', value: '$' + fmtN(job) },
+    ],
+    mathFormula: monthlyJobs + ' jobs × $' + fmtN(job) + ' × 2-4% × 12 months',
+    sources: [
+      { text: '64% of SMBs are paid late. Average SMB is owed $84,000 — Fundbox (2017), 39M invoices analyzed', type: 'industry' },
+    ],
+    disclaimer: 'This isn\'t new revenue — it\'s money you\'re already owed, collected faster. The real benefit is cash flow and fewer hours spent chasing payments.',
+    breakeven: function() { return Math.ceil(this.monthly / (job * 0.02)); },
   });
 
-  // --- ALWAYS: Appointment system ---
-  const booking_val = cap(1.5 * job * 12, 15000);
+  // --- Customer Re-engagement ---
+  var reengageLow = Math.round(0.5 * job * 12);
+  var reengageHigh = Math.round(1.0 * job * 12);
   autos.push({
-    key: 'appointment_booking', name: 'Automated Appointment System', cat: 'Operations',
-    value: booking_val, cost: 20, hours: 2, diff: 1, quickWin: true, applies: ['all'],
-    desc: 'Booking confirmation, 24hr reminder, and day-of ETA text — all automatic.',
-    calc: `Automated reminders reduce no-shows by 29% (Journal of Medical Internet Research, applicable across industries). Recovering ~1.5 no-shows/month at $${fmt_num(job)} avg = ${fmt(booking_val)}/yr. <em class="est">No-show rate is an industry estimate.</em>`,
+    key: 're_engagement',
+    name: 'Customer Re-Engagement',
+    shortDesc: 'Lapsed customers get a "haven\'t seen you in a while" text.',
+    cat: 'Customer Retention',
+    low: reengageLow,
+    high: reengageHigh,
+    setup: 50,
+    monthly: 29,
+    selected: false,
+    verified: false,
+    desc: '60-90 days after a customer\'s last job, they get a personalized text. "Hey [name], it\'s been a while since we worked on your [last service]. Need anything?" Simple, personal, effective.',
+    math: [
+      { label: 'Reactivated customers/month', value: '0.5 - 1.0' },
+      { label: 'Avg job value', value: '$' + fmtN(job) },
+    ],
+    mathFormula: '0.5-1.0 reactivations/mo × $' + fmtN(job) + ' × 12 months',
+    sources: [
+      { text: '10-15% of lapsed customers respond to re-engagement messages — HubSpot', type: 'industry' },
+    ],
+    disclaimer: 'Works best for recurring services (HVAC maintenance, lawn care, cleaning). Less effective for one-time jobs (roofing, junk removal).',
+    breakeven: function() { return Math.ceil(this.monthly / (job * 0.5 / 30)); },
   });
 
-  // --- ALWAYS: Referral Program ---
-  const referral_val = cap(1.5 * job * 12, 40000);
+  // --- Referral Program ---
+  var referralLow = Math.round(0.5 * job * 12);
+  var referralHigh = Math.round(1.0 * job * 12);
   autos.push({
-    key: 'referral_program', name: 'Automated Referral Program', cat: 'Customer Retention',
-    value: referral_val, cost: 20, hours: 4, diff: 2, applies: ['all'],
-    desc: 'After every completed job, customer gets a referral ask with a unique credit link.',
-    calc: `Without a system, ~5% of customers refer. Automated post-job referral asks push that to 15-20% (Texas A&M referral study). At ~1.5 extra referral jobs/month at $${fmt_num(job)} avg = ${fmt(referral_val)}/yr. <em class="est">Referral conversion rate is an industry estimate.</em>`,
+    key: 'referral_program',
+    name: 'Automated Referral Asks',
+    shortDesc: 'After every good job, customer gets a referral request.',
+    cat: 'Customer Retention',
+    low: referralLow,
+    high: referralHigh,
+    setup: 50,
+    monthly: 29,
+    selected: false,
+    verified: false,
+    desc: 'After a completed job (and a positive satisfaction check), the customer gets a text: "Know anyone who needs [service]? Send them our way and you\'ll get $X off your next service." Includes a unique referral link for tracking.',
+    math: [
+      { label: 'Extra referral jobs/month', value: '0.5 - 1.0' },
+      { label: 'Avg job value', value: '$' + fmtN(job) },
+    ],
+    mathFormula: '0.5-1.0 referral jobs/mo × $' + fmtN(job) + ' × 12 months',
+    sources: [
+      { text: '83% of satisfied customers say they\'d refer, but only 29% actually do — the gap is the ask — Texas Tech / Advisor Impact (2011)', type: 'industry' },
+    ],
+    disclaimer: 'No controlled study proves automated asks specifically produce these numbers. The 83/29 gap is real, but how much an automated system closes it depends on your customer relationships and service quality.',
+    breakeven: function() { return Math.ceil(this.monthly * 2 / job); },
   });
 
-  // --- ALWAYS: Re-engagement ---
-  const reengage_val = cap(1.0 * job * 12, 25000);
-  autos.push({
-    key: 're_engagement', name: 'Customer Re-Engagement System', cat: 'Customer Retention',
-    value: reengage_val, cost: 25, hours: 3, diff: 2, applies: ['all'],
-    desc: '60-90 day lapsed customers get a personalized text. "Haven\'t seen you in a while..."',
-    calc: `10-15% of lapsed customers respond to re-engagement texts (HubSpot). At ~1 reactivation/month at $${fmt_num(job)} avg = ${fmt(reengage_val)}/yr from customers who would have gone to a competitor. <em class="est">Industry estimate.</em>`,
-  });
-
-  // --- BUSINESS-SPECIFIC (conditional on type) ---
+  // --- BUSINESS-SPECIFIC ---
   if (btype === 'hvac') {
-    const maint_val = cap(10 * 175 * 12, 28000);
+    var maintLow = Math.round(5 * 175 * 12);
+    var maintHigh = Math.round(10 * 175 * 12);
     autos.push({
-      key: 'hvac_reminders', name: 'HVAC Maintenance Reminders', cat: 'Business-Specific',
-      value: maint_val, cost: 25, hours: 4, diff: 2, applies: ['hvac'],
-      desc: 'Schedules filter change reminders and annual tune-up calls for your installed base.',
-      calc: `Your past installs are a recurring revenue source. At 10 tune-ups/month × $175 avg = $1,750/mo. 1 in 8 tune-ups finds a needed repair at $800-$4,000. = ~${fmt(maint_val)}/yr. <em class="est">Tune-up volume depends on your installed base size.</em>`,
+      key: 'hvac_reminders',
+      name: 'HVAC Maintenance Reminders',
+      shortDesc: 'Automatic tune-up and filter reminders to past customers.',
+      cat: 'Business-Specific',
+      low: maintLow, high: maintHigh,
+      setup: 50, monthly: 29,
+      selected: false, verified: false,
+      desc: 'Every install and service call goes into your customer database. When it\'s time for a filter change or annual tune-up, they get a text automatically. Your past installs become a recurring revenue source.',
+      math: [
+        { label: 'Tune-ups booked/month', value: '5 - 10' },
+        { label: 'Avg tune-up value', value: '$175' },
+      ],
+      mathFormula: '5-10 tune-ups/mo × $175 × 12 months',
+      sources: [
+        { text: 'Based on typical HVAC maintenance cycle (6-month filter, annual tune-up)', type: 'industry' },
+      ],
+      disclaimer: 'Depends entirely on the size of your existing customer base. New businesses with few past installs will see lower numbers.',
+      breakeven: function() { return 1; },
     });
   }
-  if (btype === 'roofer') {
-    autos.push({
-      key: 'storm_leads', name: 'Storm Damage Lead Generator', cat: 'Business-Specific',
-      value: 45000, cost: 60, hours: 8, diff: 4, applies: ['roofer'],
-      desc: 'Monitors weather. After storms, automated outreach contacts homeowners in affected zip codes.',
-      calc: `Storm events create concentrated demand. Automated outreach to affected zip codes within hours captures jobs competitors don't reach yet. At 3-4 jobs/storm × $3,500 avg × 4 storms/year = ~$45,000/yr. <em class="est">Depends on your region's storm frequency and avg job size.</em>`,
-    });
-  }
-  if (btype === 'law_firm') {
-    autos.push({
-      key: 'law_intake', name: 'Automated Legal Intake System', cat: 'Business-Specific',
-      value: 72000, cost: 150, hours: 8, diff: 4, applies: ['law_firm'],
-      desc: 'Handles new client intake calls 24/7. Attorney joins only for qualified cases.',
-      calc: `Law firms miss 35-50% of intake calls after hours (Clio Legal Trends Report). Automated intake captures and qualifies all of them. At 2 extra qualified cases/month × $3,000 avg retainer = ~$72,000/yr. <em class="est">Based on Clio report averages — your call volume may differ.</em>`,
-    });
-  }
-  if (btype === 'plumber' || btype === 'electrician') {
-    autos.push({
-      key: 'emergency_routing', name: 'Emergency Call Routing', cat: 'Business-Specific',
-      value: 24000, cost: 30, hours: 5, diff: 3, applies: ['plumber','electrician'],
-      desc: 'Emergency calls flagged, routed to on-call tech, ETA text sent. Under 5 min response.',
-      calc: `Emergency calls go to whoever answers first and carry a premium ($500-$800 avg). Capturing 4 emergency calls/month you'd have missed × $500 avg = ~$24,000/yr. <em class="est">Volume estimate — depends on your market.</em>`,
-    });
-  }
-  if (btype === 'gym') {
-    autos.push({
-      key: 'gym_retention', name: 'Member Retention System', cat: 'Business-Specific',
-      value: 36000, cost: 50, hours: 6, diff: 3, applies: ['gym'],
-      desc: 'Tracks attendance. 10-day no-shows get a personal text. Renewal reminders at 30 days.',
-      calc: `Average gym loses 5-8% of members/month (IHRSA). Reducing churn by 8 members/month × $40/mo × 12 months = ~$36,000/yr in retained recurring revenue. <em class="est">Based on IHRSA industry averages.</em>`,
-    });
-  }
-  if (btype === 'real_estate') {
-    autos.push({
-      key: 'real_estate_nurture', name: 'Real Estate Lead Nurture', cat: 'Business-Specific',
-      value: 54000, cost: 100, hours: 8, diff: 4, applies: ['real_estate'],
-      desc: 'Every inquiry gets a 12-month automated follow-up sequence with market updates.',
-      calc: `Most real estate leads need 3-12 months to decide. The system stays in touch automatically. Closing 1.5 extra deals/year from long-term nurture × $36,000 avg commission = ~$54,000/yr. <em class="est">Depends on your market's avg commission and lead volume.</em>`,
-    });
-  }
-  if (btype === 'restaurant') {
-    autos.push({
-      key: 'restaurant_reservations', name: 'Automated Reservation System', cat: 'Business-Specific',
-      value: 28000, cost: 80, hours: 6, diff: 3, applies: ['restaurant'],
-      desc: 'Handles reservation calls, manages waitlist, sends confirmations.',
-      calc: `Restaurants miss 20-30% of reservation calls during service (Toast 2024). Filling 2.5 extra tables/night × $40 avg ticket × 300 nights = ~$28,000/yr. Automated confirmations also reduce no-shows. <em class="est">Industry estimate — depends on your volume.</em>`,
-    });
-  }
+
   if (btype === 'dental') {
-    const recall_val = cap(15 * job * 12, 60000);
+    var recallLow = Math.round(8 * job * 12);
+    var recallHigh = Math.round(15 * job * 12);
     autos.push({
-      key: 'dental_recall', name: '6-Month Recall System', cat: 'Business-Specific',
-      value: recall_val, cost: 15, hours: 2, diff: 1, quickWin: true, applies: ['dental'],
-      desc: 'Automated 6-month recall texts bring patients back for cleanings and checkups.',
-      calc: `60% of dental revenue comes from existing patients (ADA). 5 months after last visit, patients get a text reminder. Recovering ~15 recalled patients/month at $${fmt_num(job)} avg = ${fmt(recall_val)}/yr. <em class="est">Industry estimate — depends on your patient base size.</em>`,
-    });
-    const noshow_val = cap(2 * job * 240, 48000);
-    autos.push({
-      key: 'dental_reminders', name: 'Appointment Reminder System', cat: 'Business-Specific',
-      value: noshow_val, cost: 15, hours: 2, diff: 1, quickWin: true, applies: ['dental'],
-      desc: '3-touch reminder sequence (7 day, 2 day, 2 hour) cuts no-shows from 15-20% to 5-8%.',
-      calc: `Dental no-shows average 15-20% (ADA Health Policy Institute). At $${fmt_num(job)} per appointment, recovering 2 no-shows/day × 240 working days = ~${fmt(noshow_val)}/yr. <em class="est">No-show rate is an industry average.</em>`,
-    });
-  }
-  if (btype === 'auto_repair') {
-    const remind_val = cap(3 * job * 12, 20000);
-    autos.push({
-      key: 'auto_service_reminders', name: 'Service Reminder System', cat: 'Business-Specific',
-      value: remind_val, cost: 15, hours: 2, diff: 1, quickWin: true, applies: ['auto_repair'],
-      desc: 'Automated texts when vehicles are due for oil changes, brake checks, and inspections.',
-      calc: `Service reminders generate 30-40% of repeat revenue for top shops (AAIA). At ~3 reminder-converted jobs/month × $${fmt_num(job)} avg = ${fmt(remind_val)}/yr. <em class="est">Industry estimate.</em>`,
-    });
-  }
-  if (btype === 'pest_control') {
-    const recurring_val = cap(0.15 * 200 * 50 * 12, 24000);
-    autos.push({
-      key: 'pest_recurring', name: 'Recurring Treatment Reminders', cat: 'Business-Specific',
-      value: recurring_val, cost: 12, hours: 1, diff: 1, quickWin: true, applies: ['pest_control'],
-      desc: 'Automated reminders 5 days before every quarterly/monthly treatment. One-tap confirm.',
-      calc: `Reducing churn on recurring accounts by 15% across 50 accounts at $200/quarter = ~${fmt(recurring_val)}/yr. Pest control is recurring revenue — protecting it is the highest-ROI move. <em class="est">Industry estimate.</em>`,
+      key: 'dental_recall',
+      name: '6-Month Recall System',
+      shortDesc: 'Automated recall texts bring patients back for cleanings.',
+      cat: 'Business-Specific',
+      low: recallLow, high: recallHigh,
+      setup: 50, monthly: 29,
+      selected: false, verified: false,
+      desc: '5 months after their last visit, patients get a text reminder to schedule their next cleaning. One-tap booking link included.',
+      math: [
+        { label: 'Recalled patients/month', value: '8 - 15' },
+        { label: 'Avg visit value', value: '$' + fmtN(job) },
+      ],
+      mathFormula: '8-15 recalls/mo × $' + fmtN(job) + ' × 12 months',
+      sources: [
+        { text: '60% of dental revenue comes from existing patients — ADA', type: 'industry' },
+      ],
+      disclaimer: 'Depends on the size of your patient base. Practices with fewer than 500 active patients will see the lower end.',
+      breakeven: function() { return 1; },
     });
   }
+
   if (btype === 'lawn_care') {
-    const weather_val = cap(5 * 25 * job, 12000);
+    var weatherLow = Math.round(2 * 20 * job);
+    var weatherHigh = Math.round(4 * 25 * job);
     autos.push({
-      key: 'lawn_weather', name: 'Weather-Based Auto-Reschedule', cat: 'Business-Specific',
-      value: weather_val, cost: 12, hours: 2, diff: 2, applies: ['lawn_care'],
-      desc: 'Rain forecast? Customers get auto-rescheduled the night before. No phone calls needed.',
-      calc: `Weather rescheduling costs lawn care crews 5+ hours/week in phone time during rain season. Automating it saves ~5 hours/week × 25 rain-weeks × $${fmt_num(job)} opportunity cost = ~${fmt(weather_val)}/yr. <em class="est">Industry estimate.</em>`,
+      key: 'lawn_weather',
+      name: 'Weather Auto-Reschedule',
+      shortDesc: 'Rain? Customers get rescheduled automatically.',
+      cat: 'Business-Specific',
+      low: weatherLow, high: weatherHigh,
+      setup: 50, monthly: 29,
+      selected: false, verified: false,
+      desc: 'Checks the forecast the night before. If rain is likely, affected customers get an automatic reschedule text. No phone calls, no confusion.',
+      math: [
+        { label: 'Hours saved/week on rain-season rescheduling', value: '2 - 4' },
+        { label: 'Rain weeks/year', value: '20 - 25' },
+        { label: 'Value per hour saved (opportunity cost)', value: '$' + fmtN(job) },
+      ],
+      mathFormula: '2-4 hrs/week × 20-25 rain weeks × $' + fmtN(job) + ' opportunity cost',
+      sources: [
+        { text: 'Industry estimate based on lawn care operator surveys', type: 'estimate' },
+      ],
+      disclaimer: 'This is mostly a time savings, not direct new revenue. The dollar value represents what you could be earning during the hours you\'d otherwise spend on the phone rescheduling.',
+      breakeven: function() { return 1; },
+    });
+  }
+
+  if (btype === 'auto_repair') {
+    var svcLow = Math.round(2 * job * 12);
+    var svcHigh = Math.round(4 * job * 12);
+    autos.push({
+      key: 'auto_service_reminders',
+      name: 'Service Reminder System',
+      shortDesc: 'Oil change and inspection reminders to past customers.',
+      cat: 'Business-Specific',
+      low: svcLow, high: svcHigh,
+      setup: 50, monthly: 29,
+      selected: false, verified: false,
+      desc: 'Based on mileage and last service date, customers get automated texts when they\'re due for oil changes, brake checks, and inspections.',
+      math: [
+        { label: 'Reminder-converted jobs/month', value: '2 - 4' },
+        { label: 'Avg job value', value: '$' + fmtN(job) },
+      ],
+      mathFormula: '2-4 jobs/mo × $' + fmtN(job) + ' × 12 months',
+      sources: [
+        { text: 'Service reminders generate 30-40% of repeat revenue for top shops — AAIA', type: 'industry' },
+      ],
+      disclaimer: 'Works best with a large existing customer database. New shops will see lower numbers initially.',
+      breakeven: function() { return 1; },
+    });
+  }
+
+  if (btype === 'pest_control') {
+    var recurLow = Math.round(0.10 * 200 * 40 * 4);
+    var recurHigh = Math.round(0.15 * 200 * 50 * 4);
+    autos.push({
+      key: 'pest_recurring',
+      name: 'Recurring Treatment Reminders',
+      shortDesc: 'Automated reminders before every quarterly treatment.',
+      cat: 'Business-Specific',
+      low: recurLow, high: recurHigh,
+      setup: 50, monthly: 29,
+      selected: false, verified: false,
+      desc: 'Five days before every scheduled treatment, customers get a text reminder with one-tap confirm. Reduces cancellations and keeps recurring revenue locked in.',
+      math: [
+        { label: 'Recurring accounts protected', value: '40 - 50' },
+        { label: 'Churn reduction', value: '10-15%' },
+        { label: 'Avg quarterly value', value: '$200' },
+      ],
+      mathFormula: '10-15% churn reduction × 40-50 accounts × $200/quarter × 4 quarters',
+      sources: [
+        { text: 'Industry estimate — pest control has high quarterly churn without reminders', type: 'estimate' },
+      ],
+      disclaimer: 'Depends on your current account count and churn rate. If you already have low churn, the improvement will be smaller.',
+      breakeven: function() { return 1; },
+    });
+  }
+
+  if (btype === 'restaurant') {
+    var resLow = Math.round(1.5 * job * 300);
+    var resHigh = Math.round(2.5 * job * 300);
+    autos.push({
+      key: 'restaurant_reservations',
+      name: 'Phone Reservation Handler',
+      shortDesc: 'Handles reservation calls and waitlist during service.',
+      cat: 'Business-Specific',
+      low: resLow, high: resHigh,
+      setup: 250, monthly: 97,
+      selected: false, verified: false,
+      desc: 'During service when staff can\'t answer, the system handles reservation calls, manages your waitlist, and sends confirmations. Reduces no-shows with day-of reminders.',
+      math: [
+        { label: 'Extra tables filled/night', value: '1.5 - 2.5' },
+        { label: 'Avg ticket', value: '$' + fmtN(job) },
+        { label: 'Operating nights/year', value: '300' },
+      ],
+      mathFormula: '1.5-2.5 tables/night × $' + fmtN(job) + ' × 300 nights',
+      sources: [
+        { text: 'Restaurants miss 20-30% of calls during service — Toast (2024)', type: 'industry' },
+      ],
+      disclaimer: 'Only applies to restaurants that take phone reservations. If you\'re walk-in only or use an existing reservation system, this won\'t add value.',
+      breakeven: function() { return 1; },
+    });
+  }
+
+  if (btype === 'gym') {
+    var gymLow = Math.round(5 * 45 * 12);
+    var gymHigh = Math.round(10 * 45 * 12);
+    autos.push({
+      key: 'gym_retention',
+      name: 'Member Retention System',
+      shortDesc: 'Tracks attendance. No-shows get a personal check-in.',
+      cat: 'Business-Specific',
+      low: gymLow, high: gymHigh,
+      setup: 50, monthly: 29,
+      selected: false, verified: false,
+      desc: 'Tracks member check-ins. After 10 days with no visit, they get a personal text. Renewal reminders go out 30 days before expiration.',
+      math: [
+        { label: 'Members retained/month', value: '5 - 10' },
+        { label: 'Monthly membership value', value: '$45' },
+      ],
+      mathFormula: '5-10 retained members/mo × $45/mo × 12 months',
+      sources: [
+        { text: 'Average gym loses 5-8% of members per month — IHRSA', type: 'industry' },
+      ],
+      disclaimer: 'Retention depends heavily on your gym culture and offerings. A text won\'t save a member who hates the facility.',
+      breakeven: function() { return 1; },
+    });
+  }
+
+  if (btype === 'law_firm') {
+    var lawLow = Math.round(1 * job * 12);
+    var lawHigh = Math.round(2 * job * 12);
+    autos.push({
+      key: 'law_intake',
+      name: 'After-Hours Intake System',
+      shortDesc: 'Handles new client calls 24/7, qualifies cases.',
+      cat: 'Business-Specific',
+      low: lawLow, high: lawHigh,
+      setup: 250, monthly: 97,
+      selected: false, verified: false,
+      desc: 'New client inquiry calls are handled 24/7 — collects case details, contact info, urgency level. Attorney only reviews qualified cases.',
+      math: [
+        { label: 'Extra qualified cases/month', value: '1 - 2' },
+        { label: 'Avg retainer/case value', value: '$' + fmtN(job) },
+      ],
+      mathFormula: '1-2 cases/mo × $' + fmtN(job) + ' × 12 months',
+      sources: [
+        { text: 'Law firms miss 35-50% of intake calls after hours — Clio Legal Trends Report', type: 'industry' },
+      ],
+      disclaimer: 'Qualified case conversion depends on your practice area. Personal injury and family law convert differently than corporate or real estate.',
+      breakeven: function() { return 1; },
+    });
+  }
+
+  if (btype === 'plumber' || btype === 'electrician') {
+    var emLow = Math.round(2 * 500 * 12);
+    var emHigh = Math.round(4 * 600 * 12);
+    autos.push({
+      key: 'emergency_routing',
+      name: 'Emergency Call Priority Routing',
+      shortDesc: 'Emergency calls flagged and routed instantly.',
+      cat: 'Business-Specific',
+      low: emLow, high: emHigh,
+      setup: 0, monthly: 0,
+      selected: false, verified: false,
+      includedWith: 'phone_receptionist',
+      desc: 'When a caller describes an emergency (burst pipe, electrical fire, flooding), the system flags it as urgent, routes to on-call tech immediately, and sends the customer an ETA text.',
+      math: [
+        { label: 'Emergency calls captured/month', value: '2 - 4' },
+        { label: 'Avg emergency job value', value: '$500 - $600' },
+      ],
+      mathFormula: '2-4 emergencies/mo × $500-600 × 12 months',
+      sources: [
+        { text: 'Emergency calls go to whoever answers first and carry a premium — industry observation', type: 'estimate' },
+      ],
+      disclaimer: 'Included with the Phone Answering System at no extra cost. Shown separately so you can see the emergency-specific value.',
+      breakeven: function() { return 0; },
+    });
+  }
+
+  if (btype === 'real_estate') {
+    var nurtureLow = Math.round(0.5 * job * 12);
+    var nurtureHigh = Math.round(1.5 * job * 12);
+    autos.push({
+      key: 'real_estate_nurture',
+      name: 'Lead Nurture Sequence',
+      shortDesc: '12-month automated follow-up with market updates.',
+      cat: 'Business-Specific',
+      low: nurtureLow, high: nurtureHigh,
+      setup: 200, monthly: 49,
+      selected: false, verified: false,
+      desc: 'Every inquiry goes into a 12-month automated sequence — market updates, new listings in their price range, check-ins. Stays in touch so you\'re top of mind when they\'re ready.',
+      math: [
+        { label: 'Extra closings/year from long-term nurture', value: '0.5 - 1.5' },
+        { label: 'Avg commission', value: '$' + fmtN(job) },
+      ],
+      mathFormula: '0.5-1.5 extra closings × $' + fmtN(job),
+      sources: [
+        { text: 'Most real estate leads need 3-12 months to decide — NAR buyer survey', type: 'industry' },
+      ],
+      disclaimer: 'Highly dependent on your market and lead volume. Agents with fewer than 20 active leads may not see measurable impact.',
+      breakeven: function() { return 1; },
+    });
+  }
+
+  if (btype === 'roofer') {
+    var stormLow = Math.round(2 * job * 3);
+    var stormHigh = Math.round(4 * job * 4);
+    autos.push({
+      key: 'storm_leads',
+      name: 'Storm Damage Outreach',
+      shortDesc: 'After storms, automated outreach to affected areas.',
+      cat: 'Business-Specific',
+      low: stormLow, high: stormHigh,
+      setup: 200, monthly: 49,
+      selected: false, verified: false,
+      desc: 'Monitors weather in your service area. After a significant storm, automated outreach contacts homeowners in affected zip codes — before your competitors do.',
+      math: [
+        { label: 'Jobs captured per storm event', value: '2 - 4' },
+        { label: 'Storm events/year (region dependent)', value: '3 - 4' },
+        { label: 'Avg roofing job', value: '$' + fmtN(job) },
+      ],
+      mathFormula: '2-4 jobs/storm × 3-4 storms/yr × $' + fmtN(job),
+      sources: [
+        { text: 'Storm frequency varies dramatically by region — this is a rough estimate', type: 'estimate' },
+      ],
+      disclaimer: 'Storm frequency is the biggest variable. Gulf Coast and Tornado Alley see 6+ events/year. Pacific Northwest might see 1-2. Your region determines the real number.',
+      breakeven: function() { return 1; },
     });
   }
 
@@ -420,55 +851,109 @@ function buildAutomations(btype, jobValue, googleData) {
 }
 
 function fmt(n) { return '$' + Math.round(n).toLocaleString(); }
-function fmt_num(n) { return Math.round(n).toLocaleString(); }
-function esc(s) { const d = document.createElement('div'); d.textContent = s; return d.innerHTML; }
+function fmtN(n) { return Math.round(n).toLocaleString(); }
+function esc(s) { var d = document.createElement('div'); d.textContent = s; return d.innerHTML; }
 
-function calcPricing(annualValue) {
-  let buildFee = Math.round(annualValue * 0.09 / 100) * 100;
-  buildFee = Math.max(997, Math.min(14997, buildFee));
-  let monthly = Math.round(annualValue * 0.003 / 10) * 10;
-  monthly = Math.max(97, Math.min(497, monthly));
-  const yearOneCost = buildFee + monthly * 12;
-  const roi = (annualValue / yearOneCost).toFixed(1);
-  const paybackDays = Math.round((buildFee / (annualValue / 365)));
-  const keepPct = Math.round((1 - yearOneCost / annualValue) * 100);
-  return { buildFee, monthly, yearOneCost, roi, paybackDays, keepPct };
+function toggleCard(key) {
+  var card = document.getElementById('card-' + key);
+  if (!card) return;
+  card.classList.toggle('open');
 }
 
-function getRecommendations(btype, jobValue, googleData) {
-  const automations = buildAutomations(btype, jobValue, googleData);
-  return automations
-    .filter(a => a.applies.includes('all') || a.applies.includes(btype))
-    .map(a => ({ ...a, priority: (a.value / Math.max(a.cost, 1)) / Math.max(a.diff, 1) }))
-    .sort((a, b) => b.priority - a.priority);
+function toggleSelect(key, ev) {
+  ev.stopPropagation();
+  var card = document.getElementById('card-' + key);
+  if (!card) return;
+  var auto = window._currentAutos.find(function(a) { return a.key === key; });
+  if (!auto) return;
+
+  if (auto.includedWith) return; // can't individually select included items
+
+  if (selectedItems[key]) {
+    delete selectedItems[key];
+    card.classList.remove('selected');
+  } else {
+    selectedItems[key] = auto;
+    card.classList.add('selected');
+  }
+  updateCart();
+}
+
+function updateCart() {
+  var items = Object.values(selectedItems);
+  var count = items.length;
+  var setupTotal = 0;
+  var monthlyTotal = 0;
+  var valueLow = 0;
+  var valueHigh = 0;
+
+  items.forEach(function(a) {
+    setupTotal += a.setup;
+    monthlyTotal += a.monthly;
+    valueLow += a.low;
+    valueHigh += a.high;
+  });
+
+  // Bundle discount: 10% off monthly for 3+ items
+  var bundleDiscount = count >= 3 ? 0.10 : 0;
+  var discountedMonthly = Math.round(monthlyTotal * (1 - bundleDiscount));
+
+  var cartEl = document.getElementById('cart');
+  var countEl = document.getElementById('cart-count');
+  var totalEl = document.getElementById('cart-total');
+  var monthlyEl = document.getElementById('cart-monthly');
+  var bundleEl = document.getElementById('cart-bundle');
+  var btnEl = document.getElementById('cart-btn');
+
+  if (count === 0) {
+    cartEl.className = 'cart empty';
+    countEl.textContent = 'No systems selected';
+    totalEl.textContent = 'Select items above to build your package';
+    monthlyEl.textContent = '';
+    bundleEl.textContent = '';
+    btnEl.disabled = true;
+  } else {
+    cartEl.className = 'cart';
+    countEl.textContent = count + ' system' + (count > 1 ? 's' : '') + ' selected';
+    totalEl.textContent = fmt(setupTotal) + ' setup + ' + fmt(discountedMonthly) + '/mo';
+    monthlyEl.textContent = 'Estimated value: ' + fmt(valueLow) + ' - ' + fmt(valueHigh) + '/yr';
+    bundleEl.textContent = bundleDiscount > 0 ? '10% bundle discount applied!' : (count === 2 ? 'Add 1 more for 10% bundle discount' : '');
+    btnEl.disabled = false;
+  }
+}
+
+function goToOnboard() {
+  var items = Object.keys(selectedItems);
+  if (items.length === 0) return;
+  var params = '?systems=' + items.join(',');
+  window.location.href = '/onboard.html' + params;
 }
 
 function showLeadGate(businessType, city, estimatedLoss) {
-  return new Promise(resolve => {
-    const gateHTML = `
-      <div class="gate-card">
-        <div class="gate-teaser">${fmt(estimatedLoss)}/yr</div>
-        <h2>Your analysis is ready.</h2>
-        <p class="gate-sub">Enter your phone number to unlock your full ROI breakdown, automation recommendations, and custom pricing.</p>
-        <input type="tel" id="gate-phone" placeholder="(555) 123-4567" autocomplete="tel" />
-        <button class="gate-btn" id="gate-submit-btn" onclick="submitLeadGate()">UNLOCK MY FULL RESULTS</button>
-        <div class="gate-email-row" id="gate-email-row">
-          <input type="email" id="gate-email" placeholder="you@email.com" autocomplete="email" />
-          <button class="gate-btn" style="margin-top:.75rem" onclick="submitLeadGate()">UNLOCK MY FULL RESULTS</button>
-        </div>
-        <p class="gate-alt"><a onclick="document.getElementById('gate-email-row').style.display='block';this.parentElement.style.display='none'">Use email instead</a></p>
-        <p class="gate-privacy">No spam. We just want to send you a copy of your results.</p>
-      </div>
-    `;
+  return new Promise(function(resolve) {
+    var gateHTML = ''
+      + '<div class="gate-card">'
+      + '<div class="gate-teaser">' + fmt(estimatedLoss) + '/yr</div>'
+      + '<h2>Your analysis is ready.</h2>'
+      + '<p class="gate-sub">Enter your phone number to see your full breakdown with research, math, and individual pricing for each system.</p>'
+      + '<input type="tel" id="gate-phone" placeholder="(555) 123-4567" autocomplete="tel" />'
+      + '<button class="gate-btn" id="gate-submit-btn" onclick="submitLeadGate()">SEE MY FULL RESULTS</button>'
+      + '<div class="gate-email-row" id="gate-email-row">'
+      + '<input type="email" id="gate-email" placeholder="you@email.com" autocomplete="email" />'
+      + '<button class="gate-btn" style="margin-top:.75rem" onclick="submitLeadGate()">SEE MY FULL RESULTS</button>'
+      + '</div>'
+      + '<p class="gate-alt"><a onclick="document.getElementById(\'gate-email-row\').style.display=\'block\';this.parentElement.style.display=\'none\'">Use email instead</a></p>'
+      + '<p class="gate-privacy">No spam. We just want to send you a copy of your results.</p>'
+      + '</div>';
     document.getElementById('results-content').innerHTML = gateHTML;
     window._gateResolve = resolve;
-    window._gateData = { businessType, city, estimatedLoss };
+    window._gateData = { businessType: businessType, city: city, estimatedLoss: estimatedLoss };
   });
 }
 
 function submitLeadGate() {
-  const phone = (document.getElementById('gate-phone').value || '').trim();
-  const email = (document.getElementById('gate-email').value || '').trim();
+  var phone = (document.getElementById('gate-phone').value || '').trim();
+  var email = (document.getElementById('gate-email').value || '').trim();
 
   if (!phone && !email) {
     document.getElementById('gate-phone').style.borderColor = '#c0392b';
@@ -476,11 +961,11 @@ function submitLeadGate() {
     return;
   }
 
-  const btns = document.querySelectorAll('.gate-btn');
-  btns.forEach(b => { b.disabled = true; b.textContent = 'Unlocking...'; });
+  var btns = document.querySelectorAll('.gate-btn');
+  btns.forEach(function(b) { b.disabled = true; b.textContent = 'Unlocking...'; });
 
-  const data = window._gateData;
-  const payload = {
+  var data = window._gateData;
+  var payload = {
     phone: phone || null,
     email: email || null,
     businessType: data.businessType,
@@ -501,7 +986,7 @@ function submitLeadGate() {
       email: payload.email || '',
       source: 'analyze_page'
     })
-  }).catch(() => {
+  }).catch(function() {
     localStorage.setItem('boss_analyze_lead_pending', JSON.stringify(payload));
   });
 
@@ -514,257 +999,245 @@ function submitLeadGate() {
 }
 
 async function runAnalysis() {
-  const btype = document.getElementById('btype').value;
-  const city  = document.getElementById('city').value.trim();
-  const bname = document.getElementById('bname').value.trim();
-  const jobInput = parseFloat(document.getElementById('jobval').value);
-  const jobValue = (!isNaN(jobInput) && jobInput > 0) ? jobInput : null;
+  var btype = document.getElementById('btype').value;
+  var city  = document.getElementById('city').value.trim();
+  var bname = document.getElementById('bname').value.trim();
+  var jobInput = parseFloat(document.getElementById('jobval').value);
+  var jobValue = (!isNaN(jobInput) && jobInput > 0) ? jobInput : null;
 
   if (!btype || !city) {
     alert('Please select your business type and enter your city.');
     return;
   }
 
-  const btn = document.getElementById('analyze-btn');
+  var btn = document.getElementById('analyze-btn');
   btn.disabled = true;
   btn.textContent = 'Analyzing...';
 
-  const d = TYPE_DEFAULTS[btype] || TYPE_DEFAULTS.general;
-  const job = jobValue || d.job;
+  var d = TYPE_DEFAULTS[btype] || TYPE_DEFAULTS.general;
+  var job = jobValue || d.job;
 
   document.getElementById('form-section').style.display = 'none';
   document.getElementById('results').style.display = 'block';
 
-  // --- REAL LOOKUP: call Google Places via our proxy ---
-  let googleData = { found: false };
-  const query = bname ? (bname + ' ' + city) : (d.label + ' ' + city);
+  var googleData = { found: false };
+  var query = bname ? (bname + ' ' + city) : (d.label + ' ' + city);
 
-  document.getElementById('results-content').innerHTML = `
-    <div class="loading">
-      <div class="spinner"></div>
-      <p>Looking up ${esc(bname || d.label)} in ${esc(city)} on Google...</p>
-      <p style="margin-top:.5rem;font-size:.85rem;color:#aaa">Checking real ratings, reviews, hours, and website...</p>
-    </div>
-  `;
+  document.getElementById('results-content').innerHTML = ''
+    + '<div class="loading">'
+    + '<div class="spinner"></div>'
+    + '<p>Looking up ' + esc(bname || d.label) + ' in ' + esc(city) + ' on Google...</p>'
+    + '<p style="margin-top:.5rem;font-size:.85rem;color:#aaa">Checking real ratings, reviews, hours, and website...</p>'
+    + '</div>';
 
   try {
-    const resp = await fetch('https://jamross.app.n8n.cloud/webhook/analyze-business', {
+    var resp = await fetch('https://jamross.app.n8n.cloud/webhook/analyze-business', {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify({ query }),
+      body: JSON.stringify({ query: query }),
     });
     if (resp.ok) {
       googleData = await resp.json();
     }
-  } catch (e) {
-    // If lookup fails, we still show the analysis with estimates only
-  }
+  } catch (e) {}
 
-  document.getElementById('results-content').innerHTML = `
-    <div class="loading">
-      <div class="spinner"></div>
-      <p>Building your automation roadmap...</p>
-      <p style="margin-top:.5rem;font-size:.85rem;color:#aaa">Matching ${googleData.found ? 'verified data' : 'industry estimates'} to automation opportunities...</p>
-    </div>
-  `;
+  document.getElementById('results-content').innerHTML = ''
+    + '<div class="loading">'
+    + '<div class="spinner"></div>'
+    + '<p>Building your report...</p>'
+    + '<p style="margin-top:.5rem;font-size:.85rem;color:#aaa">Matching ' + (googleData.found ? 'your real data' : 'industry estimates') + ' to automation opportunities...</p>'
+    + '</div>';
 
-  await new Promise(r => setTimeout(r, 800));
+  await new Promise(function(r) { setTimeout(r, 800); });
 
-  const recs = getRecommendations(btype, jobValue, googleData);
-  const top = recs.slice(0, 10);
-  const quickWins = recs.filter(r => r.quickWin).slice(0, 4);
+  var autos = buildAutomations(btype, jobValue, googleData);
+  window._currentAutos = autos;
+  selectedItems = {};
 
-  // Apply overlap discount — automations share some of the same revenue pool
-  const rawTotal = top.reduce((s, r) => s + r.value, 0);
-  const overlapDiscount = 0.75;
-  const totalValue = Math.round(rawTotal * overlapDiscount / 100) * 100;
-  const totalCost  = top.reduce((s, r) => s + r.cost, 0);
-  const roi = Math.round(totalValue / Math.max(totalCost * 12, 1));
+  // Auto-select the phone receptionist
+  autos.forEach(function(a) {
+    if (a.selected) selectedItems[a.key] = a;
+  });
+
+  // Calculate totals using midpoints, with overlap discount
+  var rawLow = 0, rawHigh = 0;
+  autos.forEach(function(a) {
+    if (!a.includedWith) { rawLow += a.low; rawHigh += a.high; }
+  });
+  var overlapDiscount = 0.70; // 30% discount for shared revenue pools
+  var totalLow = Math.round(rawLow * overlapDiscount / 100) * 100;
+  var totalHigh = Math.round(rawHigh * overlapDiscount / 100) * 100;
+  var totalMid = Math.round((totalLow + totalHigh) / 2 / 100) * 100;
 
   // Lead gate
-  const alreadyCaptured = localStorage.getItem('boss_analyze_lead');
+  var alreadyCaptured = localStorage.getItem('boss_analyze_lead');
   if (!alreadyCaptured) {
-    await showLeadGate(btype, city, totalValue);
+    await showLeadGate(btype, city, totalMid);
   }
 
-  const bizLabel = googleData.found ? esc(googleData.name) : esc(bname || (d.label + ' in ' + city));
-  const jobLabel = jobValue ? `$${fmt_num(jobValue)} (your number)` : `$${fmt_num(job)} (${d.label} average)`;
-  const pricing = calcPricing(totalValue);
+  var bizLabel = googleData.found ? esc(googleData.name) : esc(bname || (d.label + ' in ' + city));
+  var jobLabel = jobValue ? '$' + fmtN(jobValue) + ' (your number)' : '$' + fmtN(job) + ' (' + d.label + ' average)';
 
-  // --- Google verification badge ---
-  let verifiedHTML = '';
+  // Google verification badge
+  var verifiedHTML = '';
   if (googleData.found) {
-    verifiedHTML = `
-      <div style="background:#0a1a0a;border:1px solid #1a3a1a;padding:1rem 1.2rem;margin-bottom:2rem;font-size:.85rem;color:#bbb;line-height:1.6">
-        <span style="color:#4CAF50;font-weight:700">✓ VERIFIED ON GOOGLE</span><br>
-        <strong style="color:var(--text)">${esc(googleData.name)}</strong> — ${esc(googleData.address || '')}<br>
-        Rating: <strong style="color:var(--gold)">${googleData.rating}★</strong> (${fmt_num(googleData.reviewCount)} reviews)
-        ${googleData.hasWebsite ? ' · Has website' : ' · <span style="color:#e74c3c">No website found</span>'}
-        ${!googleData.hasAfterHours ? ' · <span style="color:#e67e22">No after-hours coverage</span>' : ''}
-        ${!googleData.hasWeekends ? ' · <span style="color:#e67e22">No weekend hours</span>' : ''}
-        ${googleData.negativeReviews > 0 ? ` · <span style="color:#e74c3c">${googleData.negativeReviews} negative review${googleData.negativeReviews > 1 ? 's' : ''}</span>` : ''}
-        ${googleData.phoneComplaints > 0 ? ` · <span style="color:#e74c3c">${googleData.phoneComplaints} phone complaint${googleData.phoneComplaints > 1 ? 's' : ''} in reviews</span>` : ''}
-        <br><span style="font-size:.75rem;color:#999">Data from Google Places API · ${googleData.reviewsChecked || 5} most recent reviews scanned</span>
-      </div>`;
+    verifiedHTML = ''
+      + '<div style="background:#0a1a0a;border:1px solid #1a3a1a;padding:1rem 1.2rem;margin-bottom:2rem;font-size:.85rem;color:#bbb;line-height:1.6">'
+      + '<span style="color:#4CAF50;font-weight:700">VERIFIED ON GOOGLE</span><br>'
+      + '<strong style="color:var(--text)">' + esc(googleData.name) + '</strong> — ' + esc(googleData.address || '') + '<br>'
+      + 'Rating: <strong style="color:var(--gold)">' + googleData.rating + '★</strong> (' + fmtN(googleData.reviewCount) + ' reviews)'
+      + (googleData.hasWebsite ? ' · Has website' : ' · <span style="color:#e74c3c">No website found</span>')
+      + (!googleData.hasAfterHours ? ' · <span style="color:#e67e22">No after-hours coverage</span>' : '')
+      + (!googleData.hasWeekends ? ' · <span style="color:#e67e22">No weekend hours</span>' : '')
+      + (googleData.negativeReviews > 0 ? ' · <span style="color:#e74c3c">' + googleData.negativeReviews + ' negative review' + (googleData.negativeReviews > 1 ? 's' : '') + '</span>' : '')
+      + '<br><span style="font-size:.75rem;color:#999">Data from Google Places API · ' + (googleData.reviewsChecked || 5) + ' most recent reviews scanned</span>'
+      + '</div>';
   } else {
-    verifiedHTML = `
-      <div style="background:#1a1500;border:1px solid #3a3000;padding:1rem 1.2rem;margin-bottom:2rem;font-size:.85rem;color:#bbb;line-height:1.6">
-        <span style="color:#e67e22;font-weight:700">⚠ COULD NOT VERIFY</span><br>
-        We couldn't find "${esc(bname || d.label)}" on Google for ${esc(city)}. The analysis below uses <strong>industry estimates only</strong> — no verified data. Enter your exact business name above for a more accurate report.
-      </div>`;
+    verifiedHTML = ''
+      + '<div style="background:#1a1500;border:1px solid #3a3000;padding:1rem 1.2rem;margin-bottom:2rem;font-size:.85rem;color:#bbb;line-height:1.6">'
+      + '<span style="color:#e67e22;font-weight:700">COULD NOT VERIFY</span><br>'
+      + 'We couldn\'t find "' + esc(bname || d.label) + '" on Google for ' + esc(city) + '. The analysis below uses <strong>industry estimates only</strong> — no verified data.'
+      + '</div>';
   }
 
-  // Build breakdown
-  const maxVal = Math.max(...top.map(a => a.value));
-  let breakdownHTML = '';
-  for (const a of top) {
-    const pct = Math.round((a.value / maxVal) * 100);
-    breakdownHTML += `
-      <div class="breakdown-item">
-        <div class="breakdown-header">
-          <span class="breakdown-name">${a.name}</span>
-          <span class="breakdown-val">${fmt(a.value)}/yr</span>
-        </div>
-        <div class="bar-track"><div class="bar-fill" style="width:${pct}%"></div></div>
-        <div class="breakdown-math">${a.calc}</div>
-      </div>
-    `;
-  }
+  // Count verified
+  var verifiedCount = autos.filter(function(a) { return a.verified; }).length;
 
-  let quickHTML = '';
-  for (const a of quickWins) {
-    quickHTML += `
-      <div class="automation-item quick">
-        <div class="auto-top">
-          <div>
-            <div class="auto-name">${a.name}</div>
-            <div class="auto-desc">${a.desc}</div>
-            <div class="auto-calc"><span>How: </span>${a.calc}</div>
-          </div>
-          <div class="auto-value">
-            <div class="val">${fmt(a.value)}/yr</div>
-            <div class="sub">$${a.cost}/mo to run</div>
-          </div>
-        </div>
-      </div>
-    `;
-  }
+  // Stats row
+  var statsHTML = ''
+    + '<div class="stats-row">'
+    + '<div class="stat"><div class="num">' + fmt(totalLow) + ' - ' + fmt(totalHigh) + '</div><div class="lbl">Estimated Annual Opportunity</div></div>'
+    + '<div class="stat"><div class="num">' + autos.length + '</div><div class="lbl">Automations Found</div></div>'
+    + '<div class="stat"><div class="num">' + verifiedCount + '/' + autos.length + '</div><div class="lbl">Backed by Your Data</div></div>'
+    + '</div>';
 
-  let topHTML = '';
-  for (const a of top) {
-    topHTML += `
-      <div class="automation-item">
-        <div class="auto-top">
-          <div>
-            <div class="auto-name">${a.name}</div>
-            <div class="auto-desc">${a.cat} · ${a.hours}hr build · Difficulty ${a.diff}/5</div>
-            <div class="auto-calc"><span>How: </span>${a.calc}</div>
-          </div>
-          <div class="auto-value">
-            <div class="val">${fmt(a.value)}/yr</div>
-            <div class="sub">$${a.cost}/mo</div>
-          </div>
-        </div>
-      </div>
-    `;
-  }
+  // Explanation
+  var explainHTML = ''
+    + '<div style="font-size:.78rem;color:#999;margin:-1rem 0 2rem;line-height:1.5">'
+    + '<strong>How to read these numbers:</strong> The range (' + fmt(totalLow) + ' - ' + fmt(totalHigh) + ') is the estimated total opportunity across all systems, with a 30% overlap discount (some systems compete for the same revenue).'
+    + (verifiedCount > 0 ? ' <span style="color:#4CAF50">' + verifiedCount + ' item' + (verifiedCount > 1 ? 's are' : ' is') + ' backed by real data</span> from your Google listing.' : '')
+    + ' Every number shows a range — the low end is conservative, the high end is optimistic. Click any item to see the full math and sources.'
+    + (!jobValue ? '<br><span style="color:#e67e22">You didn\'t enter your avg job value, so we used the ' + d.label + ' industry average ($' + fmtN(d.job) + '). Enter yours for more accurate numbers.</span>' : '')
+    + '</div>';
 
-  // Count verified vs estimated items
-  const verifiedCount = top.filter(a => a.calc.includes('class="verified"')).length;
-  const estimateCount = top.filter(a => a.calc.includes('class="est"')).length;
+  // Build automation cards
+  var cardsHTML = '<div class="section-title">Your Opportunities — Click to Expand, Check to Select</div>';
 
-  const html = `
-    <div class="result-header">
-      <h2>${bizLabel}</h2>
-      <p>${d.label} · ${esc(city)} · Avg job value used: ${jobLabel}</p>
-    </div>
+  autos.forEach(function(a) {
+    var isSelected = !!selectedItems[a.key];
+    var isIncluded = !!a.includedWith;
+    var cls = 'auto-card' + (isSelected ? ' selected' : '') + (a.verified ? ' verified' : '');
 
-    ${verifiedHTML}
+    cardsHTML += '<div class="' + cls + '" id="card-' + a.key + '">';
 
-    <div class="stats-row">
-      <div class="stat"><div class="num">${fmt(totalValue)}</div><div class="lbl">Estimated Annual Opportunity</div></div>
-      <div class="stat"><div class="num">$${totalCost}/mo</div><div class="lbl">Cost to Run It All</div></div>
-      <div class="stat"><div class="num">${verifiedCount}/${top.length}</div><div class="lbl">Backed by Your Data</div></div>
-    </div>
+    // Summary row
+    cardsHTML += '<div class="auto-summary" onclick="toggleCard(\'' + a.key + '\')">';
 
-    <div style="font-size:.78rem;color:#999;margin:-1rem 0 2rem;line-height:1.5">
-      <strong>How to read this number:</strong> ${fmt(totalValue)} is the estimated total across all automations with a 25% overlap discount (automations share revenue pools).
-      ${verifiedCount > 0 ? `<span style="color:#4CAF50">${verifiedCount} item${verifiedCount > 1 ? 's are' : ' is'} backed by real data</span> from your Google listing.` : ''}
-      ${estimateCount > 0 ? `<span style="color:#e67e22">${estimateCount} item${estimateCount > 1 ? 's use' : ' uses'} published industry data</span> (sources cited inline) — not verified for your specific business.` : ''}
-      ${!jobValue ? '<br><span style="color:#e67e22">You didn\'t enter your avg job value, so we used the ' + d.label + ' industry average ($' + fmt_num(d.job) + '). Enter yours above for a more accurate number.</span>' : ''}
-    </div>
+    // Checkbox
+    if (isIncluded) {
+      cardsHTML += '<div class="auto-check" style="opacity:.3;border-style:dashed" title="Included with Phone Answering System"><svg viewBox="0 0 24 24" fill="none" stroke="#0a0a0a" stroke-width="3"><path d="M20 6L9 17l-5-5"/></svg></div>';
+    } else {
+      cardsHTML += '<div class="auto-check" onclick="toggleSelect(\'' + a.key + '\', event)"><svg viewBox="0 0 24 24" fill="none" stroke="#0a0a0a" stroke-width="3"><path d="M20 6L9 17l-5-5"/></svg></div>';
+    }
 
-    <div class="breakdown-box">
-      <div class="breakdown-title">Where the ${fmt(totalValue)} comes from — line by line</div>
-      ${breakdownHTML}
-    </div>
+    cardsHTML += '<div class="auto-info">';
+    cardsHTML += '<div class="auto-name">' + a.name + '</div>';
+    cardsHTML += '<div class="auto-desc-short">' + a.shortDesc + '</div>';
+    cardsHTML += '</div>';
 
-    ${quickWins.length > 0 ? `<div class="section-title">Quick Wins — Build in Under 1 Day</div>${quickHTML}` : ''}
+    cardsHTML += '<div class="auto-value">';
+    cardsHTML += '<div class="range">' + fmt(a.low) + ' - ' + fmt(a.high) + '</div>';
+    if (isIncluded) {
+      cardsHTML += '<div class="price" style="color:#4CAF50">Included</div>';
+    } else if (a.monthly > 0) {
+      cardsHTML += '<div class="price">' + fmt(a.setup) + ' setup + $' + a.monthly + '/mo</div>';
+    } else {
+      cardsHTML += '<div class="price">' + fmt(a.setup) + ' one-time</div>';
+    }
+    cardsHTML += '</div>';
 
-    <div class="section-title">Full Breakdown — All Automations</div>
-    ${topHTML}
+    cardsHTML += '<div class="auto-expand-btn">▼</div>';
+    cardsHTML += '</div>'; // end summary
 
-    <div class="package-rec">
-      <h3>What This Would Cost You</h3>
-      <div class="rec-sub">Based on the ${fmt(totalValue)}/yr estimate. <strong>These are projections, not promises.</strong> Your real numbers depend on your call volume, market, pricing, and execution. We'd rather under-promise and over-deliver.</div>
+    // Detail section
+    cardsHTML += '<div class="auto-detail">';
 
-      <div class="price-rows" style="margin-bottom:0;border-bottom:none">
-        <div class="price-row" style="color:#999">
-          <span class="lhs">Full-time receptionist</span>
-          <span class="rhs" style="color:#999;font-weight:400">$4,288 - $5,808/mo</span>
-        </div>
-        <div class="price-row" style="color:#999">
-          <span class="lhs">Ruby Receptionist (per-minute billing)</span>
-          <span class="rhs" style="color:#999;font-weight:400">$245 - $1,725/mo</span>
-        </div>
-      </div>
+    // What it does
+    cardsHTML += '<div class="detail-section">';
+    cardsHTML += '<div class="detail-label">What It Does</div>';
+    cardsHTML += '<div class="detail-text">' + a.desc + '</div>';
+    cardsHTML += '</div>';
 
-      <div class="price-rows">
-        <div class="price-row">
-          <span class="lhs">Custom build fee (one-time)</span>
-          <span class="rhs">${fmt(pricing.buildFee)}</span>
-        </div>
-        <div class="price-row">
-          <span class="lhs">Monthly fee</span>
-          <span class="rhs">${fmt(pricing.monthly)}/mo</span>
-        </div>
-        <div class="price-row total">
-          <span class="lhs">Year 1 total</span>
-          <span class="rhs">${fmt(pricing.yearOneCost)}</span>
-        </div>
-        <div class="price-row roi">
-          <span class="lhs">Estimated return per $1 spent</span>
-          <span class="rhs">${pricing.roi}×</span>
-        </div>
-        <div class="price-row">
-          <span class="lhs">Build fee paid back in</span>
-          <span class="rhs">~${pricing.paybackDays} days</span>
-        </div>
-      </div>
+    // The math
+    cardsHTML += '<div class="detail-section">';
+    cardsHTML += '<div class="detail-label">The Math</div>';
+    cardsHTML += '<div class="math-box">';
+    a.math.forEach(function(m) {
+      cardsHTML += '<div class="line"><span>' + m.label + '</span><span>' + m.value + '</span></div>';
+    });
+    cardsHTML += '<div class="line total"><span>Annual estimate</span><span>' + fmt(a.low) + ' - ' + fmt(a.high) + '</span></div>';
+    cardsHTML += '<div class="note">' + a.mathFormula + '</div>';
+    cardsHTML += '</div>'; // end math-box
+    cardsHTML += '</div>';
 
-      <div class="price-math">
-        How we got there: 9% of ${fmt(totalValue)} annual estimate = ${fmt(pricing.buildFee)} build fee.
-        0.3%/month = ${fmt(pricing.monthly)}/mo.
-        If your real numbers come in higher, price stays the same. If lower, we'll adjust.
-      </div>
+    // Sources
+    cardsHTML += '<div class="detail-section">';
+    cardsHTML += '<div class="detail-label">Sources</div>';
+    a.sources.forEach(function(s) {
+      cardsHTML += '<span class="source-tag ' + s.type + '">' + s.text + '</span><br>';
+    });
+    cardsHTML += '</div>';
 
-      <a class="cta-btn" href="/onboard.html">
-        GET STARTED &rarr;
-      </a>
-      <p class="cta-text">Takes 5 minutes. We build your AI exactly how you want it — your voice, your rules, your answers. Nothing generic.</p>
-      <p class="cta-text" style="margin-top:12px;font-size:13px;opacity:.7">Want to talk to someone first? <a href="tel:+19035224459" style="color:var(--gold)">Call us: 903-522-4459</a></p>
-    </div>
-  `;
+    // Break-even (only if has a monthly cost)
+    if (a.monthly > 0) {
+      var beJobs = a.breakeven();
+      cardsHTML += '<div class="breakeven">Break-even: <strong>' + beJobs + ' extra job' + (beJobs > 1 ? 's' : '') + '/month</strong> pays for this system.</div>';
+    }
+
+    // Disclaimer
+    cardsHTML += '<div class="disclaimer-box">' + a.disclaimer + '</div>';
+
+    cardsHTML += '</div>'; // end detail
+    cardsHTML += '</div>'; // end card
+  });
+
+  // Cart
+  var cartHTML = ''
+    + '<div class="cart empty" id="cart">'
+    + '<div class="cart-inner">'
+    + '<div class="cart-summary">'
+    + '<div class="cart-count" id="cart-count">No systems selected</div>'
+    + '<div class="cart-total" id="cart-total">Select items above to build your package</div>'
+    + '<div class="cart-monthly" id="cart-monthly"></div>'
+    + '<div class="cart-bundle" id="cart-bundle"></div>'
+    + '</div>'
+    + '<button class="cart-btn" id="cart-btn" disabled onclick="goToOnboard()">GET STARTED →</button>'
+    + '</div>'
+    + '</div>';
+
+  // Or-call section
+  var callHTML = ''
+    + '<div style="text-align:center;padding:2rem 0;color:#aaa;font-size:.85rem;line-height:1.6">'
+    + '<p>Not sure which systems you need? <a href="tel:+19035224459" style="color:var(--gold);text-decoration:none;font-weight:700">Call us: 903-522-4459</a></p>'
+    + '<p style="font-size:.78rem;margin-top:.5rem">We\'ll walk through your numbers together. No pressure, no pitch.</p>'
+    + '</div>';
+
+  var html = ''
+    + '<div class="result-header">'
+    + '<h2>' + bizLabel + '</h2>'
+    + '<p>' + d.label + ' · ' + esc(city) + ' · Avg job value used: ' + jobLabel + '</p>'
+    + '</div>'
+    + verifiedHTML
+    + statsHTML
+    + explainHTML
+    + cardsHTML
+    + cartHTML
+    + callHTML;
 
   document.getElementById('results-content').innerHTML = html;
 
-  setTimeout(() => {
-    document.querySelectorAll('.bar-fill').forEach(bar => {
-      const w = bar.style.width;
-      bar.style.width = '0';
-      setTimeout(() => { bar.style.width = w; }, 50);
-    });
-  }, 100);
+  // Initialize cart state
+  updateCart();
 }
 </script>
 
