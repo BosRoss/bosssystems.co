@@ -1,7 +1,39 @@
 {
-  "generated": "2026-06-14T16:16:07.987369+00:00",
+  "generated": "2026-06-14T18:28:43.388278+00:00",
   "engine_state": "active",
   "signals": [
+    {
+      "type": "flood",
+      "area": "Zapata; Jim Hogg; Brooks; Inland Kenedy; Starr; Southern Hidalgo; Inland Willacy; Inland Cameron; Coastal Kenedy; Northern Hidalgo; Coastal Willacy; Coastal Cameron; Kenedy Island; Willacy Island; Cam",
+      "niche": "plumbing",
+      "action": "Flood warnings in Zapata; Jim Hogg; Brooks; Inland Kenedy; Starr; Southern Hidalgo; Inland Willacy; Inland Cameron; Coastal Kenedy; Northern Hidalgo; Coastal Willacy; Coastal Cameron; Kenedy Island; Willacy Island; Cam. Plumbers, restoration, mold companies will spike.",
+      "urgency": "today",
+      "pitch_hook": "Water damage calls are coming. Every one you miss is $500+ walking away."
+    },
+    {
+      "type": "flood",
+      "area": "Lampasas; Coryell; Bell; Falls; Leon; Milam; Robertson",
+      "niche": "plumbing",
+      "action": "Flood warnings in Lampasas; Coryell; Bell; Falls; Leon; Milam; Robertson. Plumbers, restoration, mold companies will spike.",
+      "urgency": "today",
+      "pitch_hook": "Water damage calls are coming. Every one you miss is $500+ walking away."
+    },
+    {
+      "type": "flood",
+      "area": "Houston; Trinity; Madison; Walker; San Jacinto; Polk; Burleson; Brazos; Washington; Grimes; Montgomery; Northern Liberty; Colorado; Austin; Waller; Inland Harris; Chambers; Wharton; Fort Bend; Inland ",
+      "niche": "plumbing",
+      "action": "Flood warnings in Houston; Trinity; Madison; Walker; San Jacinto; Polk; Burleson; Brazos; Washington; Grimes; Montgomery; Northern Liberty; Colorado; Austin; Waller; Inland Harris; Chambers; Wharton; Fort Bend; Inland . Plumbers, restoration, mold companies will spike.",
+      "urgency": "today",
+      "pitch_hook": "Water damage calls are coming. Every one you miss is $500+ walking away."
+    },
+    {
+      "type": "flood",
+      "area": "La Salle; McMullen; Live Oak; Bee; Goliad; Victoria; Webb; Duval; Jim Wells; Inland Kleberg; Inland Nueces; Inland San Patricio; Coastal Aransas; Inland Refugio; Inland Calhoun; Coastal Kleberg; Coast",
+      "niche": "plumbing",
+      "action": "Flood warnings in La Salle; McMullen; Live Oak; Bee; Goliad; Victoria; Webb; Duval; Jim Wells; Inland Kleberg; Inland Nueces; Inland San Patricio; Coastal Aransas; Inland Refugio; Inland Calhoun; Coastal Kleberg; Coast. Plumbers, restoration, mold companies will spike.",
+      "urgency": "today",
+      "pitch_hook": "Water damage calls are coming. Every one you miss is $500+ walking away."
+    },
     {
       "type": "flood",
       "area": "Irion; Tom Green; Concho; Crockett; Schleicher; Sutton; McCulloch; San Saba; Menard; Kimble; Mason",
@@ -15,30 +47,6 @@
       "area": "Llano; Burnet; Williamson; Val Verde; Edwards; Real; Kerr; Bandera; Gillespie; Kendall; Blanco; Hays; Travis; Bastrop; Lee; Kinney; Uvalde; Medina; Bexar; Comal; Guadalupe; Caldwell; Fayette; Maverick",
       "niche": "plumbing",
       "action": "Flood warnings in Llano; Burnet; Williamson; Val Verde; Edwards; Real; Kerr; Bandera; Gillespie; Kendall; Blanco; Hays; Travis; Bastrop; Lee; Kinney; Uvalde; Medina; Bexar; Comal; Guadalupe; Caldwell; Fayette; Maverick. Plumbers, restoration, mold companies will spike.",
-      "urgency": "today",
-      "pitch_hook": "Water damage calls are coming. Every one you miss is $500+ walking away."
-    },
-    {
-      "type": "flood",
-      "area": "Aransas Islands; Kleberg Islands; Nueces Islands; Calhoun Islands",
-      "niche": "plumbing",
-      "action": "Flood warnings in Aransas Islands; Kleberg Islands; Nueces Islands; Calhoun Islands. Plumbers, restoration, mold companies will spike.",
-      "urgency": "today",
-      "pitch_hook": "Water damage calls are coming. Every one you miss is $500+ walking away."
-    },
-    {
-      "type": "flood",
-      "area": "Kenedy Island; Willacy Island; Cameron Island",
-      "niche": "plumbing",
-      "action": "Flood warnings in Kenedy Island; Willacy Island; Cameron Island. Plumbers, restoration, mold companies will spike.",
-      "urgency": "today",
-      "pitch_hook": "Water damage calls are coming. Every one you miss is $500+ walking away."
-    },
-    {
-      "type": "flood",
-      "area": "Matagorda Islands; Brazoria Islands; Galveston Island; Bolivar Peninsula",
-      "niche": "plumbing",
-      "action": "Flood warnings in Matagorda Islands; Brazoria Islands; Galveston Island; Bolivar Peninsula. Plumbers, restoration, mold companies will spike.",
       "urgency": "today",
       "pitch_hook": "Water damage calls are coming. Every one you miss is $500+ walking away."
     },
@@ -71,14 +79,6 @@
       "area": "Adair, OK; Delaware, OK",
       "niche": "plumbing",
       "action": "Flood warnings in Adair, OK; Delaware, OK. Plumbers, restoration, mold companies will spike.",
-      "urgency": "today",
-      "pitch_hook": "Water damage calls are coming. Every one you miss is $500+ walking away."
-    },
-    {
-      "type": "flood",
-      "area": "Cherokee, OK",
-      "niche": "plumbing",
-      "action": "Flood warnings in Cherokee, OK. Plumbers, restoration, mold companies will spike.",
       "urgency": "today",
       "pitch_hook": "Water damage calls are coming. Every one you miss is $500+ walking away."
     }
@@ -239,55 +239,55 @@
   "feeds": [
     {
       "name": "NOAA",
-      "last_hit": "2026-06-14T16:08:50.075199+00:00",
+      "last_hit": "2026-06-14T18:21:50.867552+00:00",
       "status": "yellow",
       "data_points_today": 0
     },
     {
       "name": "REDDIT",
-      "last_hit": "2026-06-14T16:08:50.075199+00:00",
+      "last_hit": "2026-06-14T18:21:50.867552+00:00",
       "status": "green",
       "data_points_today": 40
     },
     {
       "name": "USGS",
-      "last_hit": "2026-06-14T16:08:50.075199+00:00",
+      "last_hit": "2026-06-14T18:21:50.867552+00:00",
       "status": "yellow",
       "data_points_today": 0
     },
     {
       "name": "HACKERNEWS",
-      "last_hit": "2026-06-14T16:08:50.075199+00:00",
+      "last_hit": "2026-06-14T18:21:50.867552+00:00",
       "status": "green",
       "data_points_today": 30
     },
     {
       "name": "FEMA",
-      "last_hit": "2026-06-14T16:08:50.075199+00:00",
+      "last_hit": "2026-06-14T18:21:50.867552+00:00",
       "status": "green",
       "data_points_today": 20
     },
     {
       "name": "COMMODITIES",
-      "last_hit": "2026-06-14T16:08:50.075199+00:00",
+      "last_hit": "2026-06-14T18:21:50.867552+00:00",
       "status": "green",
       "data_points_today": 7
     },
     {
       "name": "RSS",
-      "last_hit": "2026-06-14T16:08:50.075199+00:00",
+      "last_hit": "2026-06-14T18:21:50.867552+00:00",
       "status": "green",
       "data_points_today": 170
     },
     {
       "name": "FRED",
-      "last_hit": "2026-06-14T16:08:50.075199+00:00",
+      "last_hit": "2026-06-14T18:21:50.867552+00:00",
       "status": "yellow",
       "data_points_today": 0
     },
     {
       "name": "BLS",
-      "last_hit": "2026-06-14T16:08:50.075199+00:00",
+      "last_hit": "2026-06-14T18:21:50.867552+00:00",
       "status": "green",
       "data_points_today": 9
     }
