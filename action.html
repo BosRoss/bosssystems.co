@@ -325,7 +325,7 @@ function postcardMysteryCall(lead){
     +'Not a complaint. Just thought you should know — most people who hit voicemail try the next name on Google. They don\'t leave a message.\n\n'
     +'In '+ind.label.toLowerCase()+', that\'s usually a $'+ind.job+' job walking out the door.\n\n'
     +'No pitch here. Just something worth knowing.\n\n'
-    +'— Boston\n903-714-6162';
+    +'— Boston\n903-522-4459';
 }
 
 function postcardAfterHours(lead){
@@ -335,7 +335,7 @@ function postcardAfterHours(lead){
     +'For '+ind.label.toLowerCase()+' businesses, about 40% of calls come in after hours. Most hit voicemail. Most of those people call someone else.\n\n'
     +'That\'s roughly $'+ind.missCost+' per missed call in your industry.\n\n'
     +'Just something I\'ve been researching. Thought it applied to you.\n\n'
-    +'— Boston\n903-714-6162';
+    +'— Boston\n903-522-4459';
 }
 
 function postcardDollarAmount(lead){
@@ -348,7 +348,7 @@ function postcardDollarAmount(lead){
     +'People who call back after voicemail: 15%\n\n'
     +'That\'s about $'+weeklyLoss+' in missed revenue per week.\n\n'
     +'Not selling anything — just a number I thought was worth knowing.\n\n'
-    +'— Boston\n903-714-6162';
+    +'— Boston\n903-522-4459';
 }
 
 function postcardCompetitorTest(lead){
@@ -366,7 +366,7 @@ function postcardCompetitorTest(lead){
     +'Yours: '+yourResult+'.\n\n'
     +'The ones that answered got the "job." That\'s how it works — first to pick up wins.\n\n'
     +'Thought you\'d find that interesting.\n\n'
-    +'— Boston\n903-714-6162';
+    +'— Boston\n903-522-4459';
 }
 
 function postcardReview(lead){
@@ -374,7 +374,7 @@ function postcardReview(lead){
     +'Saw your Google reviews — mostly solid. But I noticed a customer mentioned having trouble reaching you.\n\n'
     +'That kind of thing shows up when people search for '+((IND[lead.type]||{}).label||lead.type)+' in '+lead.city+'. New customers see it before they call.\n\n'
     +'Worth keeping an eye on.\n\n'
-    +'— Boston\n903-714-6162';
+    +'— Boston\n903-522-4459';
 }
 
 // ── RENDER ─────────────────────────────────────────────────────────────────────
@@ -575,7 +575,7 @@ function showDigitalScripts(id){
     +'\n\nI called '+lead.name+(lead.mystery?' and '+(lead.mystery.outcome==='voicemail'?'got voicemail':'couldn\'t get through'):'')+'.'
     +'\n\nIn '+ind.label.toLowerCase()+', the average missed call costs about $'+ind.missCost+' in lost work. Most people just call the next number on Google.'
     +'\n\nNot trying to sell you anything. I research this stuff and thought it was worth a heads up.'
-    +'\n\nIf you want to chat about it: 903-714-6162'
+    +'\n\nIf you want to chat about it: 903-522-4459'
     +'\n\n— Boston';
 
   var videoScript = '1. Open screen recorder (or phone camera pointing at your phone screen)\n'
@@ -601,7 +601,7 @@ function showDigitalScripts(id){
     +'- Estimated cost per unanswered call: $'+ind.missCost+'\n\n'
     +'This report was prepared independently.\n'
     +'No affiliation with any service provider.\n\n'
-    +'Boston Rossall\n903-714-6162\n'
+    +'Boston Rossall\n903-522-4459\n'
     +'═══════════════════════════════════';
 
   var html = '<div style="font-size:14px;font-weight:700;color:var(--gold);margin-bottom:12px">Digital Follow-Up for '+esc(lead.name)+'</div>';
@@ -658,15 +658,15 @@ function postcardLibrary(){
     +'<div style="font-size:13px;color:var(--muted);margin-bottom:16px;line-height:1.7">'
     +'<strong style="color:var(--text)">How to use:</strong> Add a lead above, do the mystery shop call, then click "Show Postcard Scripts" — the scripts auto-fill with their business details. Copy word-for-word onto a blank 4x6 postcard and mail it.</div>'
     +scriptBox('Script 1: The Mystery Call','Use after you\'ve called their number and they didn\'t answer.',
-      'Hey [Business Name],\n\nI called your number [day] — wanted to ask about [service]. Got voicemail after [X] rings. No callback option.\n\nNot a complaint. Just thought you should know — most people who hit voicemail try the next name on Google. They don\'t leave a message.\n\nIn [business type], that\'s usually a $[amount] job walking out the door.\n\nNo pitch here. Just something worth knowing.\n\n— Boston\n903-714-6162')
+      'Hey [Business Name],\n\nI called your number [day] — wanted to ask about [service]. Got voicemail after [X] rings. No callback option.\n\nNot a complaint. Just thought you should know — most people who hit voicemail try the next name on Google. They don\'t leave a message.\n\nIn [business type], that\'s usually a $[amount] job walking out the door.\n\nNo pitch here. Just something worth knowing.\n\n— Boston\n903-522-4459')
     +scriptBox('Script 2: The After-Hours Question','Works for any business. No recon needed.',
-      'Quick question for [Business Name]:\n\nWhat happens when someone calls you at 7pm on a Tuesday?\n\nFor [business type] businesses, about 40% of calls come in after hours. Most hit voicemail. Most of those people call someone else.\n\nThat\'s roughly $[missed cost] per missed call in your industry.\n\nJust something I\'ve been researching. Thought it applied to you.\n\n— Boston\n903-714-6162')
+      'Quick question for [Business Name]:\n\nWhat happens when someone calls you at 7pm on a Tuesday?\n\nFor [business type] businesses, about 40% of calls come in after hours. Most hit voicemail. Most of those people call someone else.\n\nThat\'s roughly $[missed cost] per missed call in your industry.\n\nJust something I\'ve been researching. Thought it applied to you.\n\n— Boston\n903-522-4459')
     +scriptBox('Script 3: The Dollar Amount','Lead with math. Works great for expensive services (HVAC, legal, roofing).',
-      'Hey [Business Name],\n\nHere\'s some quick math:\n\nAverage [service] job in [city]: $[amount]\nCalls that go unanswered per week (industry avg): 3-5\nPeople who call back after voicemail: 15%\n\nThat\'s about $[weekly loss] in missed revenue per week.\n\nNot selling anything — just a number I thought was worth knowing.\n\n— Boston\n903-714-6162')
+      'Hey [Business Name],\n\nHere\'s some quick math:\n\nAverage [service] job in [city]: $[amount]\nCalls that go unanswered per week (industry avg): 3-5\nPeople who call back after voicemail: 15%\n\nThat\'s about $[weekly loss] in missed revenue per week.\n\nNot selling anything — just a number I thought was worth knowing.\n\n— Boston\n903-522-4459')
     +scriptBox('Script 4: The Competitor Test','Use when you\'ve called multiple businesses in the same market.',
-      'Hey [Business Name],\n\nI called 5 [business type] companies in [city] this week as a customer.\n\n2 answered right away.\n2 went to voicemail.\nYours: [what happened].\n\nThe ones that answered got the "job." That\'s how it works — first to pick up wins.\n\nThought you\'d find that interesting.\n\n— Boston\n903-714-6162')
+      'Hey [Business Name],\n\nI called 5 [business type] companies in [city] this week as a customer.\n\n2 answered right away.\n2 went to voicemail.\nYours: [what happened].\n\nThe ones that answered got the "job." That\'s how it works — first to pick up wins.\n\nThought you\'d find that interesting.\n\n— Boston\n903-522-4459')
     +scriptBox('Script 5: The Google Review','Use when you find a bad review about reachability.',
-      'Hey [Business Name],\n\nSaw your Google reviews — mostly solid. But I noticed a customer mentioned having trouble reaching you.\n\nThat kind of thing shows up when people search for [business type] in [city]. New customers see it before they call.\n\nWorth keeping an eye on.\n\n— Boston\n903-714-6162');
+      'Hey [Business Name],\n\nSaw your Google reviews — mostly solid. But I noticed a customer mentioned having trouble reaching you.\n\nThat kind of thing shows up when people search for [business type] in [city]. New customers see it before they call.\n\nWorth keeping an eye on.\n\n— Boston\n903-522-4459');
 }
 
 function mysteryGuide(){
@@ -723,11 +723,11 @@ function emailLibrary(){
   return '<div style="font-size:13px;color:var(--muted);line-height:1.7;margin-bottom:16px">'
     +'<strong style="color:var(--text)">Email rules:</strong> Short. Specific. Not selling. Every email should deliver a finding or insight about THEIR business. No attachments on first email (spam filter). Plain text beats HTML.</div>'
     +scriptBox('Email 1: After Mystery Shop','Send after you\'ve called and they didn\'t answer.',
-      'Subject: Called your number this morning\n\nHey,\n\nI called [Business Name] today around [time]. Got voicemail after [X] rings.\n\nNot selling anything. Just something I noticed — 85% of people who hit voicemail call the next business on Google instead of leaving a message.\n\nFor [business type], that\'s usually a $[amount] job.\n\nIf you want to chat about it, I\'m at 903-714-6162.\n\n— Boston')
+      'Subject: Called your number this morning\n\nHey,\n\nI called [Business Name] today around [time]. Got voicemail after [X] rings.\n\nNot selling anything. Just something I noticed — 85% of people who hit voicemail call the next business on Google instead of leaving a message.\n\nFor [business type], that\'s usually a $[amount] job.\n\nIf you want to chat about it, I\'m at 903-522-4459.\n\n— Boston')
     +scriptBox('Email 2: Follow-Up (1 week after postcard)','Light touch. Reference the postcard.',
-      'Subject: Following up on that postcard\n\nHey,\n\nSent you a postcard last week about your phone setup. Just wanted to see if it landed and if you had any questions.\n\nNo pressure at all. Just genuinely curious if you knew that was happening.\n\n— Boston\n903-714-6162')
+      'Subject: Following up on that postcard\n\nHey,\n\nSent you a postcard last week about your phone setup. Just wanted to see if it landed and if you had any questions.\n\nNo pressure at all. Just genuinely curious if you knew that was happening.\n\n— Boston\n903-522-4459')
     +scriptBox('Email 3: The Value Drop','Send to any lead. No recon needed.',
-      'Subject: Quick thing about [Business Name]\n\nHey,\n\nI\'ve been researching [business type] businesses in [city] and yours came up.\n\nOne thing I noticed: businesses in your category lose an average of $[monthly loss] per month to missed calls. The ones that answer every call — even after hours — close 3x more jobs.\n\nNot a pitch. Just thought it was an interesting number.\n\n— Boston\n903-714-6162');
+      'Subject: Quick thing about [Business Name]\n\nHey,\n\nI\'ve been researching [business type] businesses in [city] and yours came up.\n\nOne thing I noticed: businesses in your category lose an average of $[monthly loss] per month to missed calls. The ones that answer every call — even after hours — close 3x more jobs.\n\nNot a pitch. Just thought it was an interesting number.\n\n— Boston\n903-522-4459');
 }
 
 function reportTemplate(){
@@ -758,7 +758,7 @@ function reportTemplate(){
       +'This report was prepared independently.\n'
       +'No affiliation with any service provider.\n\n'
       +'Boston Rossall\n'
-      +'903-714-6162\n'
+      +'903-522-4459\n'
       +'═══════════════════════════════════════');
 }
 
