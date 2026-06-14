@@ -4,7 +4,7 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width,initial-scale=1.0">
 <meta name="robots" content="noindex,nofollow">
-<title>Build Your Website | BOSS Summer Partner Program</title>
+<title>Build Your Website | BOSS Partnership Program</title>
 <meta name="description" content="Customize your business website. Pick your style, colors, and content.">
 <style>
 *{margin:0;padding:0;box-sizing:border-box}
@@ -47,6 +47,13 @@ select option{background:#111;color:#ddd}
 .svc-tag{background:#151515;border:1px solid #222;color:#aaa;font-size:12px;padding:6px 12px;border-radius:20px;cursor:pointer;transition:all .15s;user-select:none}
 .svc-tag.on{background:#1a1400;border-color:#3a3000;color:#C9A84C}
 .svc-tag:hover{border-color:#444}
+.svc-tag.locked{opacity:.35;cursor:not-allowed;border-style:dashed}
+.svc-note{font-size:10px;color:#555}
+.equip-list{margin-top:8px}
+.equip-item{display:flex;align-items:flex-start;gap:10px;padding:10px 0;border-bottom:1px solid #1a1a1a}
+.equip-item:last-child{border-bottom:none}
+.equip-item input[type="checkbox"]{accent-color:#C9A84C;width:16px;height:16px;margin-top:2px;flex-shrink:0}
+.equip-item label{font-size:13px;color:#bbb;font-weight:400;margin:0;cursor:pointer;line-height:1.4}
 .add-svc{background:none;border:1px dashed #333;color:#666;font-size:12px;padding:6px 12px;border-radius:20px;cursor:pointer}
 .add-svc:hover{border-color:#666;color:#999}
 
@@ -180,9 +187,14 @@ select option{background:#111;color:#ddd}
       <textarea id="biz_about" rows="4" placeholder="Tell customers who you are and why they should call you. Keep it real, write like you talk."></textarea>
       <div class="hint">2-4 sentences. Customers want to know who's showing up.</div>
     </div>
+    <div class="field" id="equip-section" style="display:none">
+      <label>What Do You Have?</label>
+      <div class="hint" style="margin-bottom:4px">Be honest. This determines which services you can offer.</div>
+      <div class="equip-list" id="equip-list"></div>
+    </div>
     <div class="field">
-      <label>Services You Offer</label>
-      <div class="hint" style="margin-bottom:8px">Tap to toggle. Add your own if something's missing.</div>
+      <label>Services You Can Offer</label>
+      <div class="hint" style="margin-bottom:8px">Only turn ON what you can do right now. Dashed items need equipment you haven't checked above.</div>
       <div class="services-grid" id="services-grid"></div>
       <button class="add-svc" onclick="addCustomService()" style="margin-top:8px">+ Add Service</button>
     </div>
@@ -265,18 +277,168 @@ const SUGGESTED = {
   tutoring:{palette:"clean_blue",layout:"trust"}
 };
 
-const SERVICE_DEFAULTS = {
-  junk_removal:     ["Junk hauling","Garage cleanouts","Furniture removal","Yard debris","Appliance removal","Construction debris"],
-  lawn_care:        ["Weekly mowing","Edging & trimming","Leaf cleanup","Mulching","Bush trimming","Yard maintenance"],
-  pressure_washing: ["Driveway cleaning","Deck & patio washing","House siding","Fence cleaning","Walkways","Gutter brightening"],
-  pet_sitting:      ["Dog walking","In-home pet sitting","Feeding visits","Overnight stays","Puppy care","Cat sitting"],
-  event_decor:      ["Birthday parties","Baby showers","Graduation parties","Holiday decorations","Wedding decor","Setup & teardown"],
-  photography:      ["Portraits","Event photography","Product photos","Real estate","Senior photos","Family sessions"],
-  social_media:     ["Content creation","Daily posting","Engagement management","Analytics reports","Brand strategy","Ad management"],
-  organizing:       ["Home organizing","Closet systems","Garage organization","Moving help","Decluttering","Office organization"],
-  tutoring:         ["Math tutoring","Reading help","Homework assistance","Test prep","Study skills","Summer learning"],
-  car_detailing:    ["Interior detailing","Exterior wash & wax","Ceramic coating","Paint correction","Engine cleaning","Headlight restoration"],
-  pool_cleaning:    ["Weekly cleaning","Chemical balancing","Filter maintenance","Pool opening","Pool closing","Equipment checks"]
+const SERVICE_OPTIONS = {
+  junk_removal: [
+    {name:"Junk hauling", note:"Requires truck or trailer", needs:"truck"},
+    {name:"Garage cleanouts", note:"Full day jobs, need truck", needs:"truck"},
+    {name:"Furniture removal", note:"Heavy lifting, need a helper", needs:"helper"},
+    {name:"Yard debris", note:"Branches, brush piles, leaves", needs:"truck"},
+    {name:"Appliance removal", note:"Fridges, washers, heavy items", needs:"helper"},
+    {name:"Construction debris", note:"Drywall, lumber, nails. Needs dump access", needs:"truck"},
+    {name:"Donation runs", note:"Pick up and deliver to Goodwill, Salvation Army", needs:"truck"},
+    {name:"Storage unit cleanouts", note:"Same as garage, different location", needs:"truck"}
+  ],
+  lawn_care: [
+    {name:"Weekly mowing", note:"Need your own mower", needs:"mower"},
+    {name:"Edging & trimming", note:"Need a string trimmer/edger", needs:"trimmer"},
+    {name:"Leaf cleanup", note:"Rake or blower", needs:"basic"},
+    {name:"Mulching", note:"Need truck to haul mulch bags", needs:"truck"},
+    {name:"Bush & hedge trimming", note:"Need hedge trimmers", needs:"trimmer"},
+    {name:"Weed pulling", note:"Manual work, no equipment needed", needs:"none"},
+    {name:"Yard cleanups", note:"One-time deep clean, basic tools", needs:"basic"},
+    {name:"Garden bed maintenance", note:"Weeding, edging, planting", needs:"basic"}
+  ],
+  pressure_washing: [
+    {name:"Driveway cleaning", note:"Flat concrete, easiest surface", needs:"washer"},
+    {name:"Deck & patio washing", note:"Wood needs lower pressure", needs:"washer"},
+    {name:"House siding", note:"Vinyl or brick, careful around windows", needs:"washer"},
+    {name:"Fence cleaning", note:"Wood or vinyl fences", needs:"washer"},
+    {name:"Walkways & steps", note:"Concrete paths and stairs", needs:"washer"},
+    {name:"Gutter brightening", note:"Exterior gutter face, not inside", needs:"washer"},
+    {name:"Garage floors", note:"Oil stains need degreaser", needs:"washer"}
+  ],
+  pet_sitting: [
+    {name:"Dog walking", note:"30 or 60 minute walks", needs:"none"},
+    {name:"Drop-in feeding visits", note:"Quick 15-20 min visits", needs:"none"},
+    {name:"In-home pet sitting", note:"Stay at their house for hours", needs:"transport"},
+    {name:"Overnight stays", note:"Sleep at the client's home", needs:"transport"},
+    {name:"Cat sitting", note:"Feeding, litter, playtime", needs:"none"},
+    {name:"Puppy care", note:"Extra visits, puppies need more attention", needs:"none"},
+    {name:"Multiple pet households", note:"Can you handle 2+ animals?", needs:"experience"},
+    {name:"Medication administration", note:"Only if comfortable giving pills/drops", needs:"experience"}
+  ],
+  event_decor: [
+    {name:"Birthday parties", note:"Balloons, banners, table setups", needs:"supplies"},
+    {name:"Baby showers", note:"Themed decor, centerpieces", needs:"supplies"},
+    {name:"Graduation parties", note:"School colors, photo displays", needs:"supplies"},
+    {name:"Holiday decorating", note:"Indoor and outdoor seasonal setups", needs:"supplies"},
+    {name:"Setup & teardown only", note:"Client provides decor, you arrange it", needs:"none"},
+    {name:"Balloon arches & garlands", note:"Need balloon pump and practice", needs:"balloon_kit"},
+    {name:"Table settings & centerpieces", note:"Linens, plates, floral arrangements", needs:"supplies"}
+  ],
+  photography: [
+    {name:"Portraits", note:"Need camera, natural light works", needs:"camera"},
+    {name:"Event photography", note:"Parties, gatherings, fast-paced", needs:"camera"},
+    {name:"Senior photos", note:"Outdoor sessions, popular with teens", needs:"camera"},
+    {name:"Family sessions", note:"Groups, kids, patience required", needs:"camera"},
+    {name:"Product photography", note:"Small items, good lighting needed", needs:"camera"},
+    {name:"Real estate photos", note:"Wide-angle lens helps", needs:"camera"},
+    {name:"Pet photography", note:"Animals are unpredictable, outdoor works best", needs:"camera"}
+  ],
+  social_media: [
+    {name:"Content creation", note:"Making posts, graphics, captions", needs:"phone"},
+    {name:"Daily posting", note:"Scheduling and publishing content", needs:"phone"},
+    {name:"Engagement management", note:"Replying to comments and DMs", needs:"phone"},
+    {name:"Photo & video content", note:"Shooting content for their business", needs:"phone"},
+    {name:"Analytics reports", note:"Monthly summary of what's working", needs:"phone"},
+    {name:"Ad setup", note:"Basic Facebook/Instagram ad creation", needs:"experience"}
+  ],
+  organizing: [
+    {name:"Closet organizing", note:"Sorting clothes, shelving, bins", needs:"none"},
+    {name:"Garage organization", note:"Heavy items, shelving, tools", needs:"transport"},
+    {name:"Kitchen & pantry", note:"Food sorting, container systems", needs:"none"},
+    {name:"Decluttering help", note:"Help decide what stays and goes", needs:"none"},
+    {name:"Moving unpacking", note:"Unpack boxes, set up new space", needs:"transport"},
+    {name:"Office organization", note:"Desk, files, supplies", needs:"none"},
+    {name:"Kids room / playroom", note:"Toy sorting, labeling, bins", needs:"none"}
+  ],
+  tutoring: [
+    {name:"Math", note:"What grade levels can you teach?", needs:"none"},
+    {name:"Reading & writing", note:"Phonics, comprehension, essays", needs:"none"},
+    {name:"Science", note:"Biology, chemistry, general science", needs:"none"},
+    {name:"Homework help", note:"All subjects, working through assignments", needs:"none"},
+    {name:"Test prep (SAT/ACT)", note:"Need to know the test format well", needs:"experience"},
+    {name:"Study skills & organization", note:"Note-taking, time management", needs:"none"},
+    {name:"Summer learning", note:"Prevent summer slide, keep skills sharp", needs:"none"},
+    {name:"ESL / English learners", note:"Only if you speak another language", needs:"experience"}
+  ],
+  car_detailing: [
+    {name:"Interior cleaning", note:"Vacuum, wipe, glass. Basic supplies.", needs:"basic"},
+    {name:"Exterior hand wash", note:"Buckets, mitts, soap, drying towels", needs:"basic"},
+    {name:"Wax & polish", note:"Need polishing compound and applicators", needs:"supplies"},
+    {name:"Ceramic coating", note:"Expensive product, need training", needs:"advanced"},
+    {name:"Engine bay cleaning", note:"Degreaser and careful technique", needs:"supplies"},
+    {name:"Headlight restoration", note:"Sanding kit and UV sealant", needs:"supplies"},
+    {name:"Carpet & upholstery shampoo", note:"Need a carpet extractor or steamer", needs:"equipment"},
+    {name:"Paint correction", note:"Machine polisher required, risk of damage", needs:"advanced"}
+  ],
+  pool_cleaning: [
+    {name:"Weekly skimming & vacuuming", note:"Net, vacuum, brush. Basic pool tools.", needs:"tools"},
+    {name:"Chemical testing & balancing", note:"Test kit and chemicals. Need to learn ratios.", needs:"chemicals"},
+    {name:"Filter cleaning", note:"Backwash or cartridge cleaning", needs:"tools"},
+    {name:"Pool opening (spring)", note:"Full startup after winter", needs:"tools"},
+    {name:"Pool closing (fall)", note:"Winterizing, cover installation", needs:"tools"},
+    {name:"Tile & waterline scrubbing", note:"Manual scrubbing, special cleaner", needs:"tools"}
+  ]
+};
+
+const EQUIPMENT_QUESTIONS = {
+  junk_removal: [
+    {id:"truck", q:"Do you have access to a truck or trailer?"},
+    {id:"helper", q:"Do you have someone who can help with heavy lifting?"},
+    {id:"dump", q:"Do you know where the nearest dump or transfer station is?"}
+  ],
+  lawn_care: [
+    {id:"mower", q:"Do you have your own lawn mower?"},
+    {id:"trimmer", q:"Do you have a string trimmer or edger?"},
+    {id:"truck", q:"Do you have a way to transport equipment?"},
+    {id:"blower", q:"Do you have a leaf blower?"}
+  ],
+  pressure_washing: [
+    {id:"washer", q:"Do you own or have access to a pressure washer?"},
+    {id:"hose", q:"Do you have long hoses and water hookup adapters?"},
+    {id:"chems", q:"Do you have cleaning solutions (degreaser, soft wash soap)?"}
+  ],
+  pet_sitting: [
+    {id:"transport", q:"Can you drive or get rides to client homes?"},
+    {id:"experience", q:"Have you cared for pets other than your own?"},
+    {id:"cpr", q:"Do you know pet first aid basics?"}
+  ],
+  event_decor: [
+    {id:"supplies", q:"Do you have basic decor supplies (tablecloths, vases, etc)?"},
+    {id:"balloon_kit", q:"Do you have a balloon pump and balloon supplies?"},
+    {id:"transport", q:"Can you transport decor to event locations?"}
+  ],
+  photography: [
+    {id:"camera", q:"Do you have a camera? (Phone cameras count if high quality)"},
+    {id:"editing", q:"Can you edit photos? (Lightroom, Snapseed, etc)"},
+    {id:"transport", q:"Can you travel to shoot locations?"}
+  ],
+  social_media: [
+    {id:"phone", q:"Do you have a phone with a good camera?"},
+    {id:"tools", q:"Do you use any design tools? (Canva, CapCut, etc)"},
+    {id:"experience", q:"Have you grown any social media accounts before?"}
+  ],
+  organizing: [
+    {id:"transport", q:"Can you get to client homes?"},
+    {id:"supplies", q:"Do you have bins, labels, and basic organizing supplies?"}
+  ],
+  tutoring: [
+    {id:"subjects", q:"What subjects are you strong in? (Check the ones you can teach)"},
+    {id:"experience", q:"Have you tutored or helped classmates before?"},
+    {id:"location", q:"Can you tutor at the student's home, or only online?"}
+  ],
+  car_detailing: [
+    {id:"basic", q:"Do you have wash buckets, mitts, microfiber towels, and soap?"},
+    {id:"supplies", q:"Do you have wax, polish, or specialty products?"},
+    {id:"equipment", q:"Do you have a carpet extractor or steamer?"},
+    {id:"advanced", q:"Do you have a machine polisher and know how to use it?"}
+  ],
+  pool_cleaning: [
+    {id:"tools", q:"Do you have pool cleaning tools (net, vacuum, brush)?"},
+    {id:"chemicals", q:"Do you have a test kit and pool chemicals?"},
+    {id:"training", q:"Have you been trained on pool chemistry (pH, chlorine, alkalinity)?"}
+  ]
 };
 
 const TAGLINE_DEFAULTS = {
@@ -292,6 +454,7 @@ let currentStep = 0;
 let selectedPalette = '';
 let selectedLayout = '';
 let selectedServices = new Set();
+let equipmentAnswers = {};
 
 function initPalettes() {
   const grid = document.getElementById('palette-grid');
@@ -313,12 +476,12 @@ function drawLayout(canvas, type) {
   const w = canvas.offsetWidth || 120, h = 80;
   canvas.style.background = '#1a1a1a';
   let html = '<div class="lp-nav"></div>';
-  if (type === 'clean') {
+  if (type === 'trust') {
     html += '<div class="lp-hero" style="background:linear-gradient(135deg,#2a2a3a,#1a1a2a);height:35px"></div>';
     html += '<div class="lp-text" style="top:14px;left:50%;transform:translateX(-50%);width:50px;height:5px"></div>';
     html += '<div class="lp-text" style="top:22px;left:50%;transform:translateX(-50%);width:30px;height:3px;opacity:.5"></div>';
     html += '<div class="lp-cards" style="top:42px;left:10px;right:10px"><div class="lp-card" style="width:30%;height:28px;border-radius:4px"></div><div class="lp-card" style="width:30%;height:28px;border-radius:4px"></div><div class="lp-card" style="width:30%;height:28px;border-radius:4px"></div></div>';
-  } else if (type === 'bold') {
+  } else if (type === 'impact') {
     html += '<div class="lp-hero" style="background:#1a1a2a;height:30px"></div>';
     html += '<div class="lp-text" style="top:10px;left:8px;width:40px;height:5px"></div>';
     html += '<div class="lp-text" style="top:18px;left:8px;width:25px;height:3px;opacity:.5"></div>';
@@ -326,7 +489,7 @@ function drawLayout(canvas, type) {
     html += '<div class="lp-text" style="top:38px;left:8px;width:60px;height:4px;border-left:2px solid rgba(200,160,80,.5)"></div>';
     html += '<div class="lp-text" style="top:48px;left:8px;width:55px;height:4px;border-left:2px solid rgba(200,160,80,.5)"></div>';
     html += '<div class="lp-text" style="top:58px;left:8px;width:50px;height:4px;border-left:2px solid rgba(200,160,80,.5)"></div>';
-  } else if (type === 'friendly') {
+  } else if (type === 'starter') {
     html += '<div class="lp-hero" style="background:linear-gradient(160deg,#2a3a2a,#1a2a2a);height:32px;border-radius:0 0 30px 30px"></div>';
     html += '<div class="lp-text" style="top:10px;left:50%;transform:translateX(-50%);width:45px;height:5px;border-radius:3px"></div>';
     html += '<div class="lp-text" style="top:42px;left:15px;width:8px;height:8px;border-radius:50%;background:rgba(100,200,100,.2)"></div>';
@@ -334,7 +497,7 @@ function drawLayout(canvas, type) {
     html += '<div class="lp-text" style="top:55px;left:15px;width:8px;height:8px;border-radius:50%;background:rgba(100,200,100,.2)"></div>';
     html += '<div class="lp-text" style="top:55px;left:28px;width:45px;height:3px;border-radius:2px"></div>';
     html += '<div class="lp-btn" style="bottom:6px;left:50%;transform:translateX(-50%);width:40px;height:8px;background:rgba(100,200,100,.15);border-radius:10px"></div>';
-  } else if (type === 'pro') {
+  } else if (type === 'portfolio') {
     html += '<div class="lp-hero" style="background:#181820;height:24px"></div>';
     html += '<div class="lp-text" style="top:8px;left:8px;width:35px;height:4px"></div>';
     html += '<div style="position:absolute;top:28px;left:8px;display:flex;gap:4px"><div style="background:rgba(255,255,255,.06);width:24px;height:16px;border:1px solid rgba(255,255,255,.08);text-align:center;font-size:6px;color:rgba(255,255,255,.3);line-height:16px">5yr</div><div style="background:rgba(255,255,255,.06);width:24px;height:16px;border:1px solid rgba(255,255,255,.08);text-align:center;font-size:6px;color:rgba(255,255,255,.3);line-height:16px">4.9</div><div style="background:rgba(255,255,255,.06);width:24px;height:16px;border:1px solid rgba(255,255,255,.08);text-align:center;font-size:6px;color:rgba(255,255,255,.3);line-height:16px">500+</div></div>';
@@ -360,24 +523,77 @@ function initLayouts() {
   });
 }
 
+function loadEquipment() {
+  const type = document.getElementById('biz_type').value;
+  const section = document.getElementById('equip-section');
+  const list = document.getElementById('equip-list');
+  const questions = EQUIPMENT_QUESTIONS[type] || [];
+  equipmentAnswers = {};
+  if (!questions.length) { section.style.display = 'none'; return; }
+  section.style.display = 'block';
+  list.innerHTML = '';
+  questions.forEach(eq => {
+    equipmentAnswers[eq.id] = false;
+    const item = document.createElement('div');
+    item.className = 'equip-item';
+    const cb = document.createElement('input');
+    cb.type = 'checkbox';
+    cb.id = 'eq_' + eq.id;
+    cb.onchange = () => { equipmentAnswers[eq.id] = cb.checked; refreshServiceStates(); };
+    const lbl = document.createElement('label');
+    lbl.htmlFor = 'eq_' + eq.id;
+    lbl.textContent = eq.q;
+    item.appendChild(cb);
+    item.appendChild(lbl);
+    list.appendChild(item);
+  });
+}
+
+function refreshServiceStates() {
+  document.querySelectorAll('#services-grid .svc-tag').forEach(tag => {
+    const needs = tag.dataset.needs;
+    if (!needs || needs === 'none') return;
+    if (equipmentAnswers[needs]) {
+      tag.classList.remove('locked');
+    } else {
+      tag.classList.add('locked');
+      if (tag.classList.contains('on')) {
+        tag.classList.remove('on');
+        selectedServices.delete(tag.dataset.name);
+      }
+    }
+  });
+}
+
 function loadServices() {
   const type = document.getElementById('biz_type').value;
   const grid = document.getElementById('services-grid');
-  const svcs = SERVICE_DEFAULTS[type] || [];
+  const svcs = SERVICE_OPTIONS[type] || [];
   grid.innerHTML = '';
   selectedServices.clear();
-  svcs.forEach(s => {
-    selectedServices.add(s);
+  svcs.forEach(svc => {
     const tag = document.createElement('div');
-    tag.className = 'svc-tag on';
-    tag.textContent = s;
+    tag.className = 'svc-tag';
+    tag.dataset.needs = svc.needs || 'none';
+    tag.dataset.name = svc.name;
+    const nameSpan = document.createElement('span');
+    nameSpan.textContent = svc.name;
+    tag.appendChild(nameSpan);
+    if (svc.note) {
+      const noteSpan = document.createElement('span');
+      noteSpan.className = 'svc-note';
+      noteSpan.textContent = ' — ' + svc.note;
+      tag.appendChild(noteSpan);
+    }
     tag.onclick = () => {
+      if (tag.classList.contains('locked')) return;
       tag.classList.toggle('on');
-      if (tag.classList.contains('on')) selectedServices.add(s);
-      else selectedServices.delete(s);
+      if (tag.classList.contains('on')) selectedServices.add(svc.name);
+      else selectedServices.delete(svc.name);
     };
     grid.appendChild(tag);
   });
+  refreshServiceStates();
 }
 
 function addCustomService() {
@@ -399,6 +615,7 @@ function addCustomService() {
 }
 
 document.getElementById('biz_type').addEventListener('change', () => {
+  loadEquipment();
   loadServices();
   const type = document.getElementById('biz_type').value;
   const tagline = document.getElementById('biz_tagline');
@@ -448,6 +665,7 @@ function getData() {
     hours: document.getElementById('biz_hours').value.trim() || 'Mon-Sat 8am-6pm',
     tagline: document.getElementById('biz_tagline').value.trim() || TAGLINE_DEFAULTS[type] || '',
     about: document.getElementById('biz_about').value.trim(),
+    equipment: Object.assign({}, equipmentAnswers),
     services: Array.from(selectedServices),
     palette: selectedPalette,
     layout: selectedLayout,
@@ -466,7 +684,10 @@ function buildReview() {
   html += `<div class="review-label">Hours</div><div class="review-value">${esc(d.hours)}</div></div>`;
   html += `<div class="review-section"><div class="review-label">Tagline</div><div class="review-value">${esc(d.tagline) || '<span style="color:#555">None set</span>'}</div>`;
   if (d.about) html += `<div class="review-label">About</div><div class="review-value">${esc(d.about)}</div>`;
-  html += `<div class="review-label">Services</div><div class="review-value">${d.services.map(s => esc(s)).join(' &bull; ')}</div></div>`;
+  const eqKeys = Object.keys(d.equipment).filter(k => d.equipment[k]);
+  const eqLabels = (EQUIPMENT_QUESTIONS[d.business_type]||[]).filter(e => d.equipment[e.id]).map(e => e.q.replace(/^Do you (have|own|know)\s*/i,'').replace(/\?$/,''));
+  if (eqLabels.length) html += `<div class="review-label">Equipment</div><div class="review-value" style="color:#16a34a">${eqLabels.map(l => '&#10003; ' + esc(l)).join('<br>')}</div>`;
+  html += `<div class="review-label">Services (${d.services.length})</div><div class="review-value">${d.services.length ? d.services.map(s => esc(s)).join(' &bull; ') : '<span style="color:#555">None selected</span>'}</div></div>`;
   html += `<div class="review-section"><div class="review-label">Color Palette</div><div class="review-value">${esc(paletteInfo.name || d.palette)}<div class="review-colors">${(paletteInfo.colors||[]).map(c=>`<div class="review-dot" style="background:${c}"></div>`).join('')}</div></div>`;
   html += `<div class="review-label">Layout</div><div class="review-value">${esc(layoutInfo.name || d.layout)}</div></div>`;
   document.getElementById('review-content').innerHTML = html;
@@ -476,7 +697,7 @@ function esc(s) { const d = document.createElement('div'); d.textContent = s; re
 
 function nextStep() {
   if (!validate(currentStep)) return;
-  if (currentStep === 0 && selectedServices.size === 0) loadServices();
+  if (currentStep === 0 && selectedServices.size === 0) { loadEquipment(); loadServices(); }
   currentStep++;
   if (currentStep === 3) buildReview();
   showStep();
@@ -505,7 +726,7 @@ async function submitForm() {
     await fetch('https://ntfy.sh/bossai-bostonrossall-alerts', {
       method: 'POST',
       headers: {'Title': 'New Partner Site Request', 'Tags': 'globe_with_meridians'},
-      body: `${data.business_name} (${data.business_type.replace(/_/g,' ')}) in ${data.city}, ${data.state}\nPalette: ${data.palette}, Layout: ${data.layout}\n${data.services.length} services selected`
+      body: `${data.business_name} (${data.business_type.replace(/_/g,' ')}) in ${data.city}, ${data.state}\nPalette: ${data.palette}, Layout: ${data.layout}\n${data.services.length} services selected\nEquipment: ${Object.entries(data.equipment).filter(([k,v])=>v).map(([k])=>k).join(', ')||'none checked'}`
     });
   } catch(e) {}
 
