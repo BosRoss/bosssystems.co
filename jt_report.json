@@ -1,21 +1,11 @@
 {
-  "pipeline": [
-    {
-      "name": "Acme Plumbing",
-      "stage": "prospect",
-      "added": "2026-06-14"
-    }
-  ],
-  "activity": [
-    {
-      "action": "added",
-      "detail": "Acme Plumbing as prospect",
-      "ts": "2026-06-14T22:15:00Z"
-    }
-  ],
+  "pipeline": [],
+  "activity": [],
   "stats": {
-    "total": 1,
-    "prospect": 1
+    "total": 0,
+    "prospect": 0,
+    "pitched": 0,
+    "closed": 0
   },
-  "synced_at": "2026-06-14T22:15:00Z"
+  "synced_at": "2026-06-14T22:20:00Z"
 }
