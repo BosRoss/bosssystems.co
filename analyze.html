@@ -49,6 +49,7 @@
   .auto-card{border:1px solid var(--border);margin-bottom:.75rem;background:var(--gray);transition:border-color .2s}
   .auto-card.selected{border-color:var(--gold)}
   .auto-card.verified{border-left:3px solid #4CAF50}
+  .auto-card.calculated{border-left:3px solid #4B92DB}
 
   .auto-summary{display:grid;grid-template-columns:auto 1fr auto auto;gap:1rem;align-items:center;padding:1rem 1.2rem;cursor:pointer;user-select:none}
   .auto-check{width:22px;height:22px;border:2px solid var(--border);border-radius:4px;display:flex;align-items:center;justify-content:center;flex-shrink:0;transition:.2s}
@@ -82,6 +83,7 @@
 
   .source-tag{display:inline-block;font-size:.7rem;padding:2px 8px;border-radius:3px;margin-top:.5rem;margin-right:4px}
   .source-tag.verified{background:#0a1a0a;color:#4CAF50;border:1px solid #1a3a1a}
+  .source-tag.calculated{background:#0a0f1a;color:#4B92DB;border:1px solid #1a2a3a}
   .source-tag.industry{background:#1a1500;color:#b08930;border:1px solid #3a3000}
   .source-tag.estimate{background:#1a0a0a;color:#cc6666;border:1px solid #3a1a1a}
 
@@ -227,6 +229,16 @@ var TYPE_DEFAULTS = {
 
 var selectedItems = {};
 
+// Estimate monthly job volume from Google review count
+// BrightLocal (2023): ~7% of customers leave a Google review unprompted
+// Assumes reviews accumulated over ~3 years (typical listing age)
+function estimateMonthlyJobs(reviewCount) {
+  if (!reviewCount || reviewCount < 1) return null;
+  var totalCustomers = reviewCount / 0.07;
+  var monthlyJobs = Math.round(totalCustomers / 36); // 36 months = 3 years
+  return Math.max(8, Math.min(80, monthlyJobs)); // clamp 8-80
+}
+
 function buildAutomations(btype, jobValue, googleData) {
   var d = TYPE_DEFAULTS[btype] || TYPE_DEFAULTS.general;
   var job = jobValue || d.job;
@@ -234,73 +246,89 @@ function buildAutomations(btype, jobValue, googleData) {
   var userProvidedJob = !!jobValue;
   var jobSource = userProvidedJob ? 'your number' : d.label + ' industry average';
 
+  // Derive monthly job volume from their review data if we found them
+  var estJobs = g.found ? estimateMonthlyJobs(g.reviewCount) : null;
+  var monthlyJobs = estJobs || 25; // fallback to 25 if no data
+  var jobsSource = estJobs ? 'calculated from your ' + g.reviewCount + ' Google reviews' : 'industry estimate';
+  var hasPhoneEvidence = g.found && g.phoneComplaints > 0;
+
+  // Weekly call estimate: service businesses receive ~3-5 calls per job
+  // (ServiceTitan data). Missed rate 62% (411 Locals). But many are robocalls/dupes.
+  var estWeeklyCalls = Math.round(monthlyJobs * 3.5 / 4.33);
+  var estMissedPerWeek = Math.max(1, Math.round(estWeeklyCalls * 0.30)); // conservative 30% miss
+
   var autos = [];
 
   // --- Phone Receptionist ---
-  // Conservative: 62% miss rate (411 Locals 2022), but not all are unique customers.
-  // Assume ~2 genuinely missed customer calls/week (not robocalls, not existing clients).
-  // Recovery rate 25-35% — most won't answer a callback from unknown number.
-  var missedPerWeek = 2;
   var recoveryLow = 0.25;
   var recoveryHigh = 0.35;
-  var phoneLow = Math.round(missedPerWeek * recoveryLow * job * 52);
-  var phoneHigh = Math.round(missedPerWeek * recoveryHigh * job * 52);
+  var phoneLow = Math.round(estMissedPerWeek * recoveryLow * job * 52);
+  var phoneHigh = Math.round(estMissedPerWeek * recoveryHigh * job * 52);
+  var phoneDataLevel = g.found ? (hasPhoneEvidence ? 'verified' : 'calculated') : 'estimate';
+  var phoneSources = [
+    { text: '62% of calls to small businesses go unanswered — 411 Locals (2022)', type: 'industry' },
+    { text: '80-85% who reach voicemail never call back — Invoca (2020)', type: 'industry' },
+    { text: '78% buy from the first company that responds — Lead Connect (2020)', type: 'industry' },
+  ];
+  if (g.found && estJobs) {
+    phoneSources.unshift({ text: 'Est. ' + monthlyJobs + ' jobs/month calculated from your ' + g.reviewCount + ' Google reviews (7% review rate, ~3yr accumulation — BrightLocal 2023)', type: 'calculated' });
+  }
+  if (hasPhoneEvidence) {
+    phoneSources.unshift({ text: g.phoneComplaints + ' customer review' + (g.phoneComplaints > 1 ? 's' : '') + ' mentioning phone/response issues found on your Google listing', type: 'verified' });
+  }
   autos.push({
     key: 'phone_receptionist',
     name: 'Phone Answering System',
-    shortDesc: 'Every call answered, qualified, and booked — 24/7.',
+    shortDesc: 'Every call answered, qualified, and booked — 24/7.' + (hasPhoneEvidence ? ' Customers already complaining about your phones.' : ''),
     cat: 'Customer Acquisition',
-    low: phoneLow,
-    high: phoneHigh,
-    setup: 250,
-    monthly: 97,
+    low: phoneLow, high: phoneHigh,
+    setup: 250, monthly: 97,
     selected: true,
-    verified: false,
-    desc: 'Answers every call on the first ring, day or night. Qualifies the caller, gives quotes based on your pricing, and books appointments directly into your schedule. Customers never hit voicemail.',
+    dataLevel: phoneDataLevel,
+    desc: 'Answers every call on the first ring, day or night. Qualifies the caller, gives quotes based on your pricing, and books appointments directly into your schedule. Customers never hit voicemail.' + (hasPhoneEvidence ? ' We found ' + g.phoneComplaints + ' review' + (g.phoneComplaints > 1 ? 's' : '') + ' from your actual customers complaining about phone or response issues — this is already costing you.' : ''),
     math: [
-      { label: 'Missed calls/week (conservative)', value: missedPerWeek },
+      { label: 'Est. monthly jobs (' + jobsSource + ')', value: monthlyJobs },
+      { label: 'Est. weekly calls (3.5 calls/job)', value: estWeeklyCalls },
+      { label: 'Est. missed calls/week (30% miss rate)', value: estMissedPerWeek },
       { label: 'Recovery rate', value: (recoveryLow*100) + '-' + (recoveryHigh*100) + '%' },
       { label: 'Avg job value (' + jobSource + ')', value: '$' + fmtN(job) },
-      { label: 'Weeks/year', value: '52' },
     ],
-    mathFormula: missedPerWeek + ' missed × ' + (recoveryLow*100) + '-' + (recoveryHigh*100) + '% recovered × $' + fmtN(job) + ' × 52 weeks',
-    sources: [
-      { text: '62% of calls to small businesses go unanswered — 411 Locals (2022)', type: 'industry' },
-      { text: '80-85% of callers who reach voicemail never call back — Invoca (2020)', type: 'industry' },
-      { text: '78% buy from the first company that responds — Lead Connect (2020)', type: 'industry' },
-    ],
-    disclaimer: 'We estimate 2 genuinely missed customer calls per week — not all unanswered calls are real prospects (robocalls, existing clients, etc.). Your actual miss rate depends on your call volume.',
-    breakeven: function() { return Math.round(this.monthly / (job * recoveryLow)); },
+    mathFormula: estMissedPerWeek + ' missed/week × ' + (recoveryLow*100) + '-' + (recoveryHigh*100) + '% recovered × $' + fmtN(job) + ' × 52 weeks',
+    sources: phoneSources,
+    disclaimer: 'Missed call estimate is derived from your estimated job volume and published miss rates. We use 30% instead of the 62% industry average because not all unanswered calls are real customers (robocalls, existing clients, etc.).',
+    breakeven: function() { return Math.max(1, Math.round(this.monthly / (job * recoveryLow))); },
   });
 
   // --- Missed Call Text-Back ---
   var textRecoverLow = 0.15;
   var textRecoverHigh = 0.25;
-  var textLow = Math.round(missedPerWeek * textRecoverLow * job * 52);
-  var textHigh = Math.round(missedPerWeek * textRecoverHigh * job * 52);
+  var textLow = Math.round(estMissedPerWeek * textRecoverLow * job * 52);
+  var textHigh = Math.round(estMissedPerWeek * textRecoverHigh * job * 52);
+  var textSources = [
+    { text: 'Responding within 5 min = 21x more likely to qualify — MIT/InsideSales.com (2007), 100K+ leads analyzed', type: 'industry' },
+  ];
+  if (g.found && estJobs) {
+    textSources.unshift({ text: 'Missed call volume calculated from your estimated ' + monthlyJobs + ' jobs/month', type: 'calculated' });
+  }
   autos.push({
     key: 'missed_call_textback',
     name: 'Missed Call Text-Back',
     shortDesc: 'Missed call? Customer gets a text in 60 seconds.',
     cat: 'Customer Acquisition',
-    low: textLow,
-    high: textHigh,
-    setup: 50,
-    monthly: 29,
+    low: textLow, high: textHigh,
+    setup: 50, monthly: 29,
     selected: false,
-    verified: false,
+    dataLevel: g.found ? 'calculated' : 'estimate',
     desc: 'When a call is missed (you\'re on a job, phone is off, after hours), the caller receives an automatic text within 60 seconds: "Hey, sorry I missed your call — what can I help with?" Keeps the conversation alive.',
     math: [
-      { label: 'Missed calls/week', value: missedPerWeek },
+      { label: 'Est. missed calls/week', value: estMissedPerWeek },
       { label: 'Text re-engagement rate', value: (textRecoverLow*100) + '-' + (textRecoverHigh*100) + '%' },
-      { label: 'Avg job value', value: '$' + fmtN(job) },
+      { label: 'Avg job value (' + jobSource + ')', value: '$' + fmtN(job) },
     ],
-    mathFormula: missedPerWeek + ' missed × ' + (textRecoverLow*100) + '-' + (textRecoverHigh*100) + '% re-engage × $' + fmtN(job) + ' × 52 weeks',
-    sources: [
-      { text: 'Speed-to-lead: responding within 5 min = 21x more likely to qualify — MIT/InsideSales.com (2007)', type: 'industry' },
-    ],
+    mathFormula: estMissedPerWeek + ' missed × ' + (textRecoverLow*100) + '-' + (textRecoverHigh*100) + '% re-engage × $' + fmtN(job) + ' × 52 weeks',
+    sources: textSources,
     disclaimer: 'Re-engagement rate varies. Works best for service businesses where the caller needs help now. Less effective for price-shopping calls.',
-    breakeven: function() { return Math.round(this.monthly / (job * textRecoverLow)); },
+    breakeven: function() { return Math.max(1, Math.round(this.monthly / (job * textRecoverLow))); },
   });
 
   // --- CONDITIONAL: Review improvement ---
@@ -308,11 +336,10 @@ function buildAutomations(btype, jobValue, googleData) {
     var reviewLow, reviewHigh, reviewDesc;
     if (g.rating < 4.5) {
       var targetRating = Math.min(g.rating + 0.3, 4.8);
-      // Harvard study: 1 star = 5-9% revenue increase. 0.3 stars = ~2-3% lift.
-      // For a small business doing ~30 jobs/month, 2-3% = 0.6-0.9 extra jobs/month
-      reviewLow = Math.round(0.5 * job * 12);
-      reviewHigh = Math.round(1.0 * job * 12);
-      reviewDesc = 'Your rating is ' + g.rating + '★ with ' + fmtN(g.reviewCount) + ' reviews. Research shows a 1-star increase drives 5-9% more revenue for independent businesses. Moving from ' + g.rating + ' to ' + targetRating.toFixed(1) + ' could mean 0.5-1 extra jobs per month from improved Google visibility.';
+      var revLift = monthlyJobs * 0.03; // 3% lift from ~0.3 star increase (Harvard: 5-9% per full star)
+      reviewLow = Math.round(Math.max(0.5, revLift * 0.5) * job * 12);
+      reviewHigh = Math.round(Math.max(1, revLift) * job * 12);
+      reviewDesc = 'Your rating is ' + g.rating + '★ with ' + fmtN(g.reviewCount) + ' reviews. Research shows a 1-star increase drives 5-9% more revenue. Moving from ' + g.rating + ' to ' + targetRating.toFixed(1) + ' could drive a ~3% lift — about ' + Math.round(Math.max(0.5, revLift * 0.5)) + '-' + Math.round(Math.max(1, revLift)) + ' extra jobs per month from improved Google visibility.';
     } else {
       reviewLow = Math.round(0.25 * job * 12);
       reviewHigh = Math.round(0.5 * job * 12);
@@ -323,22 +350,21 @@ function buildAutomations(btype, jobValue, googleData) {
       name: 'Automated Review Requests',
       shortDesc: 'After every job, customer gets a review request.',
       cat: 'Reputation',
-      low: reviewLow,
-      high: reviewHigh,
-      setup: 50,
-      monthly: 29,
+      low: reviewLow, high: reviewHigh,
+      setup: 50, monthly: 29,
       selected: false,
-      verified: true,
+      dataLevel: 'verified',
       desc: reviewDesc,
       math: [
         { label: 'Current rating', value: g.rating + '★ (' + g.reviewCount + ' reviews)' },
-        { label: 'Extra jobs/month from improved visibility', value: g.rating < 4.5 ? '0.5 - 1.0' : '0.25 - 0.5' },
+        { label: 'Est. monthly jobs', value: monthlyJobs + ' (' + jobsSource + ')' },
+        { label: 'Expected lift from +0.3 stars', value: '~3% (Harvard: 5-9% per full star)' },
         { label: 'Avg job value', value: '$' + fmtN(job) },
       ],
-      mathFormula: (g.rating < 4.5 ? '0.5-1.0' : '0.25-0.5') + ' extra jobs/mo × $' + fmtN(job) + ' × 12 months',
+      mathFormula: (g.rating < 4.5 ? Math.round(Math.max(0.5, revLift * 0.5)) + '-' + Math.round(Math.max(1, revLift)) : '0.25-0.5') + ' extra jobs/mo × $' + fmtN(job) + ' × 12 months',
       sources: [
-        { text: '1-star increase = 5-9% revenue lift for independent businesses — Harvard Business School, Michael Luca (2016)', type: 'verified' },
-        { text: 'Rating verified from your Google listing', type: 'verified' },
+        { text: 'Your rating (' + g.rating + '★) and review count (' + g.reviewCount + ') verified from Google', type: 'verified' },
+        { text: '1-star increase = 5-9% revenue lift — Harvard Business School, Michael Luca (2016), peer-reviewed', type: 'industry' },
       ],
       disclaimer: 'Revenue impact assumes your market has enough search volume for improved rankings to convert. Very small towns may see less effect.',
       breakeven: function() { return 1; },
@@ -347,9 +373,7 @@ function buildAutomations(btype, jobValue, googleData) {
 
   // --- CONDITIONAL: Negative reviews found ---
   if (g.found && g.negativeReviews > 0) {
-    // Conservative: each prevented bad review saves ~1-3 jobs that would have gone elsewhere
-    // But we can only prevent reviews from YOUR customers, not random 1-stars
-    var preventPerYear = Math.min(g.negativeReviews * 2, 6); // assume system catches ~half, 2-6/yr
+    var preventPerYear = Math.min(g.negativeReviews * 2, 6);
     var recoveryLow2 = Math.round(preventPerYear * job * 0.5);
     var recoveryHigh2 = Math.round(preventPerYear * job * 1.5);
     autos.push({
@@ -357,15 +381,13 @@ function buildAutomations(btype, jobValue, googleData) {
       name: 'Review Recovery System',
       shortDesc: 'Catches unhappy customers before they post a bad review.',
       cat: 'Reputation',
-      low: recoveryLow2,
-      high: recoveryHigh2,
-      setup: 50,
-      monthly: 29,
+      low: recoveryLow2, high: recoveryHigh2,
+      setup: 50, monthly: 29,
       selected: false,
-      verified: true,
+      dataLevel: 'verified',
       desc: 'After every job, the customer gets a private satisfaction check before the public review request. If they\'re unhappy, you get alerted immediately — a chance to make it right before it becomes a 1-star review.',
       math: [
-        { label: 'Negative reviews found', value: g.negativeReviews },
+        { label: 'Negative reviews found on Google', value: g.negativeReviews },
         { label: 'Bad reviews prevented/year (est.)', value: preventPerYear },
         { label: 'Jobs saved per prevented review', value: '0.5 - 1.5' },
         { label: 'Avg job value', value: '$' + fmtN(job) },
@@ -382,29 +404,32 @@ function buildAutomations(btype, jobValue, googleData) {
 
   // --- CONDITIONAL: No website ---
   if (g.found && !g.hasWebsite) {
-    var webLow = Math.round(1.0 * job * 12);
-    var webHigh = Math.round(2.0 * job * 12);
+    var webJobsLow = Math.max(1, Math.round(monthlyJobs * 0.05));
+    var webJobsHigh = Math.max(2, Math.round(monthlyJobs * 0.10));
+    var webLow = Math.round(webJobsLow * job * 12);
+    var webHigh = Math.round(webJobsHigh * job * 12);
     autos.push({
       key: 'website_presence',
       name: 'Web Presence Setup',
       shortDesc: 'You have no website — you\'re invisible to searchers.',
       cat: 'Customer Acquisition',
-      low: webLow,
-      high: webHigh,
-      setup: 200,
-      monthly: 29,
+      low: webLow, high: webHigh,
+      setup: 200, monthly: 29,
       selected: false,
-      verified: true,
+      dataLevel: 'verified',
       desc: 'We checked — your business has no website listed on Google. Anyone searching for your service type in your area won\'t find you unless they already know your name. A basic landing page with your services, reviews, and a booking button changes that.',
       math: [
-        { label: 'Extra jobs/month from web presence', value: '1 - 2' },
+        { label: 'Current monthly jobs (no website)', value: monthlyJobs },
+        { label: 'Expected lift from web presence', value: '5-10% of current volume' },
+        { label: 'Extra jobs/month', value: webJobsLow + ' - ' + webJobsHigh },
         { label: 'Avg job value', value: '$' + fmtN(job) },
       ],
-      mathFormula: '1-2 new jobs/mo × $' + fmtN(job) + ' × 12 months',
+      mathFormula: webJobsLow + '-' + webJobsHigh + ' new jobs/mo × $' + fmtN(job) + ' × 12 months',
       sources: [
         { text: 'No website found on your Google listing', type: 'verified' },
+        { text: 'Job volume estimate: ' + monthlyJobs + '/month from your review data', type: 'calculated' },
       ],
-      disclaimer: 'A website doesn\'t guarantee traffic. These numbers assume basic SEO and that people in your area are searching for your service. Smaller towns may see fewer online searches.',
+      disclaimer: 'A website doesn\'t guarantee traffic. These numbers assume basic SEO and that people in your area are searching for your service.',
       breakeven: function() { return 1; },
     });
   }
@@ -415,161 +440,180 @@ function buildAutomations(btype, jobValue, googleData) {
     if (!g.hasAfterHours && !g.hasWeekends) hoursDesc = 'after hours or on weekends';
     else if (!g.hasAfterHours) hoursDesc = 'after hours';
     else hoursDesc = 'on weekends';
-    // 35-43% of calls come outside business hours (CallRail 2024)
-    // But only a fraction are convertible — many are existing clients, non-urgent
-    var afterLow = Math.round(0.5 * job * 52);
-    var afterHigh = Math.round(1.0 * job * 52);
+    var afterHoursCallsPct = 0.38; // 35-43% range midpoint (CallRail 2024)
+    var afterMissedPerWeek = Math.max(1, Math.round(estWeeklyCalls * afterHoursCallsPct * 0.5));
+    var afterLow = Math.round(afterMissedPerWeek * 0.25 * job * 52);
+    var afterHigh = Math.round(afterMissedPerWeek * 0.40 * job * 52);
     autos.push({
       key: 'after_hours',
       name: 'After-Hours Coverage',
       shortDesc: 'Answers calls ' + hoursDesc + '.',
       cat: 'Customer Acquisition',
-      low: afterLow,
-      high: afterHigh,
-      setup: 0,
-      monthly: 0,
+      low: afterLow, high: afterHigh,
+      setup: 0, monthly: 0,
       selected: false,
-      verified: true,
+      dataLevel: 'verified',
       includedWith: 'phone_receptionist',
       desc: 'Your Google listing shows you\'re not available ' + hoursDesc + '. Calls that come in during those times currently go unanswered. With a phone system, those calls get answered, qualified, and booked — even at 2 AM.',
       math: [
-        { label: 'After-hours calls/week (est.)', value: '2 - 4' },
-        { label: 'Convertible fraction', value: '25 - 50%' },
-        { label: 'Avg job value', value: '$' + fmtN(job) },
+        { label: 'Est. weekly calls (from your job volume)', value: estWeeklyCalls },
+        { label: 'After-hours call share', value: '35-43% (CallRail 2024)' },
+        { label: 'Convertible after-hours calls/week', value: afterMissedPerWeek },
+        { label: 'Booking rate', value: '25-40%' },
       ],
-      mathFormula: '0.5-1.0 recovered jobs/week × $' + fmtN(job) + ' × 52 weeks',
+      mathFormula: afterMissedPerWeek + ' after-hours calls/week × 25-40% booked × $' + fmtN(job) + ' × 52 weeks',
       sources: [
-        { text: '35-43% of home service calls come outside business hours — CallRail SMB Report (2024)', type: 'industry' },
         { text: 'Limited hours verified on your Google listing', type: 'verified' },
+        { text: '35-43% of home service calls come outside business hours — CallRail SMB Report (2024)', type: 'industry' },
+        { text: 'Call volume calculated from your estimated ' + monthlyJobs + ' jobs/month', type: 'calculated' },
       ],
-      disclaimer: 'This value overlaps with the Phone Answering System — it\'s included at no extra cost if you get the phone system. Shown separately so you can see what the after-hours gap specifically costs you.',
+      disclaimer: 'This value overlaps with the Phone Answering System — it\'s included at no extra cost. Shown separately so you can see what the after-hours gap specifically costs you.',
       breakeven: function() { return 0; },
     });
   }
 
   // --- Appointment Reminders ---
-  // 29-38% no-show reduction (PLOS ONE 2020 systematic review)
-  // Conservative: assume 10% no-show rate, recover half
-  var noshowsPerMonth = Math.round(30 * 0.10 * 0.5); // 30 jobs, 10% no-show, recover 50%
+  var noshowRate = 0.10;
+  var noshowReduction = 0.30; // conservative end of 29-38%
+  var noshowsPerMonth = Math.max(1, Math.round(monthlyJobs * noshowRate * noshowReduction));
   var apptLow = Math.round(noshowsPerMonth * 0.7 * job * 12);
   var apptHigh = Math.round(noshowsPerMonth * job * 12);
+  var apptSources = [
+    { text: 'Text reminders reduce no-shows by 29-38% — PLOS ONE systematic review (2020), 28 of 29 studies confirmed', type: 'industry' },
+  ];
+  if (g.found && estJobs) {
+    apptSources.unshift({ text: monthlyJobs + ' jobs/month calculated from your ' + g.reviewCount + ' Google reviews', type: 'calculated' });
+  }
   if (apptLow > 0) {
     autos.push({
       key: 'appointment_reminders',
       name: 'Appointment Reminders',
       shortDesc: 'Confirmation + reminder texts cut no-shows by 29%.',
       cat: 'Operations',
-      low: apptLow,
-      high: apptHigh,
-      setup: 50,
-      monthly: 29,
+      low: apptLow, high: apptHigh,
+      setup: 50, monthly: 29,
       selected: false,
-      verified: false,
+      dataLevel: g.found ? 'calculated' : 'estimate',
       desc: 'Booking confirmation, 24-hour reminder, and day-of ETA text — all automatic. Customers can confirm or reschedule with one tap.',
       math: [
-        { label: 'Jobs/month (est.)', value: '30' },
+        { label: 'Jobs/month (' + jobsSource + ')', value: monthlyJobs },
         { label: 'Industry no-show rate', value: '10-15%' },
-        { label: 'Reduction from reminders', value: '29-38%' },
+        { label: 'Reduction from reminders (PLOS ONE)', value: '29-38%' },
         { label: 'Recovered no-shows/month', value: noshowsPerMonth },
       ],
-      mathFormula: noshowsPerMonth + ' recovered no-shows/mo × $' + fmtN(job) + ' × 12 months',
-      sources: [
-        { text: 'Text reminders reduce no-shows by 29-38% — PLOS ONE systematic review (2020), 28 of 29 studies confirmed', type: 'verified' },
-      ],
-      disclaimer: 'Assumes ~30 jobs/month and a 10% no-show rate. If your no-show rate is lower (common for emergency services), the savings will be smaller.',
-      breakeven: function() { return Math.ceil(this.monthly / job); },
+      mathFormula: monthlyJobs + ' jobs × 10% no-show × 30% recovered = ' + noshowsPerMonth + '/mo × $' + fmtN(job) + ' × 12',
+      sources: apptSources,
+      disclaimer: 'Uses your estimated job volume and a 10% no-show rate. If your no-show rate is lower (common for emergency services), the savings will be smaller.',
+      breakeven: function() { return Math.max(1, Math.ceil(this.monthly / job)); },
     });
   }
 
   // --- Payment Collection ---
-  // Fundbox: 64% of SMBs are paid late, avg $84K outstanding
-  // Conservative: assume 2-3% of revenue recovered faster (not "new" money, just faster collection)
-  var monthlyJobs = 30;
   var paymentLow = Math.round(monthlyJobs * job * 0.02 * 12);
   var paymentHigh = Math.round(monthlyJobs * job * 0.04 * 12);
+  var paySources = [
+    { text: '64% of SMBs are paid late. Average SMB owed $84,000 — Fundbox (2017), 39M invoices analyzed', type: 'industry' },
+  ];
+  if (g.found && estJobs) {
+    paySources.unshift({ text: monthlyJobs + ' jobs/month × $' + fmtN(job) + '/job = $' + fmtN(monthlyJobs * job) + '/mo revenue calculated from your data', type: 'calculated' });
+  }
   autos.push({
     key: 'payment_collection',
     name: 'Automated Invoicing',
     shortDesc: 'Job done = payment link sent instantly. Auto follow-up.',
     cat: 'Operations',
-    low: paymentLow,
-    high: paymentHigh,
-    setup: 50,
-    monthly: 29,
+    low: paymentLow, high: paymentHigh,
+    setup: 50, monthly: 29,
     selected: false,
-    verified: false,
+    dataLevel: g.found ? 'calculated' : 'estimate',
     desc: 'The moment a job is marked complete, the customer gets a payment link via text. If they don\'t pay within 24 hours, they get a reminder. No more chasing invoices.',
     math: [
-      { label: 'Est. monthly jobs', value: monthlyJobs },
+      { label: 'Monthly jobs (' + jobsSource + ')', value: monthlyJobs },
+      { label: 'Monthly revenue', value: '$' + fmtN(monthlyJobs * job) },
       { label: 'Revenue recovered from faster collection', value: '2-4%' },
-      { label: 'Avg job value', value: '$' + fmtN(job) },
     ],
-    mathFormula: monthlyJobs + ' jobs × $' + fmtN(job) + ' × 2-4% × 12 months',
-    sources: [
-      { text: '64% of SMBs are paid late. Average SMB is owed $84,000 — Fundbox (2017), 39M invoices analyzed', type: 'industry' },
-    ],
+    mathFormula: '$' + fmtN(monthlyJobs * job) + '/mo × 2-4% recovered × 12 months',
+    sources: paySources,
     disclaimer: 'This isn\'t new revenue — it\'s money you\'re already owed, collected faster. The real benefit is cash flow and fewer hours spent chasing payments.',
-    breakeven: function() { return Math.ceil(this.monthly / (job * 0.02)); },
+    breakeven: function() { return Math.max(1, Math.ceil(this.monthly / (job * 0.02))); },
   });
 
   // --- Customer Re-engagement ---
-  var reengageLow = Math.round(0.5 * job * 12);
-  var reengageHigh = Math.round(1.0 * job * 12);
+  // 10-15% of lapsed customers respond. Estimate lapsed = 15% of total customer base per quarter.
+  var estCustomerBase = g.found ? Math.round((g.reviewCount || 20) / 0.07) : 300;
+  var lapsedPerMonth = Math.max(2, Math.round(estCustomerBase * 0.05 / 12));
+  var reengageConvertLow = Math.round(lapsedPerMonth * 0.10);
+  var reengageConvertHigh = Math.round(lapsedPerMonth * 0.15);
+  var reengageLow = Math.round(Math.max(0.5, reengageConvertLow) * job * 12);
+  var reengageHigh = Math.round(Math.max(1, reengageConvertHigh) * job * 12);
+  var reengageSources = [
+    { text: '10-15% of lapsed customers respond to re-engagement messages — HubSpot', type: 'industry' },
+  ];
+  if (g.found) {
+    reengageSources.unshift({ text: 'Est. customer base: ~' + fmtN(estCustomerBase) + ' total customers (from ' + g.reviewCount + ' reviews at 7% review rate)', type: 'calculated' });
+  }
   autos.push({
     key: 're_engagement',
     name: 'Customer Re-Engagement',
     shortDesc: 'Lapsed customers get a "haven\'t seen you in a while" text.',
     cat: 'Customer Retention',
-    low: reengageLow,
-    high: reengageHigh,
-    setup: 50,
-    monthly: 29,
+    low: reengageLow, high: reengageHigh,
+    setup: 50, monthly: 29,
     selected: false,
-    verified: false,
+    dataLevel: g.found ? 'calculated' : 'estimate',
     desc: '60-90 days after a customer\'s last job, they get a personalized text. "Hey [name], it\'s been a while since we worked on your [last service]. Need anything?" Simple, personal, effective.',
     math: [
-      { label: 'Reactivated customers/month', value: '0.5 - 1.0' },
-      { label: 'Avg job value', value: '$' + fmtN(job) },
+      { label: 'Est. total customer base', value: fmtN(estCustomerBase) + ' (' + (g.found ? 'from your reviews' : 'industry est.') + ')' },
+      { label: 'Lapsed customers/month (5% churn)', value: lapsedPerMonth },
+      { label: 'Re-engagement rate (HubSpot)', value: '10-15%' },
+      { label: 'Reactivations/month', value: Math.max(0.5, reengageConvertLow) + ' - ' + Math.max(1, reengageConvertHigh) },
     ],
-    mathFormula: '0.5-1.0 reactivations/mo × $' + fmtN(job) + ' × 12 months',
-    sources: [
-      { text: '10-15% of lapsed customers respond to re-engagement messages — HubSpot', type: 'industry' },
-    ],
+    mathFormula: Math.max(0.5, reengageConvertLow) + '-' + Math.max(1, reengageConvertHigh) + ' reactivations/mo × $' + fmtN(job) + ' × 12 months',
+    sources: reengageSources,
     disclaimer: 'Works best for recurring services (HVAC maintenance, lawn care, cleaning). Less effective for one-time jobs (roofing, junk removal).',
-    breakeven: function() { return Math.ceil(this.monthly / (job * 0.5 / 30)); },
+    breakeven: function() { return Math.max(1, Math.ceil(this.monthly / (job * 0.5 / 30))); },
   });
 
   // --- Referral Program ---
-  var referralLow = Math.round(0.5 * job * 12);
-  var referralHigh = Math.round(1.0 * job * 12);
+  // 83% would refer, 29% do. If we increase actual referral rate by even 5%, that's real jobs.
+  var referralBaseRate = 0.29;
+  var referralBoostedRate = 0.38; // conservative boost
+  var extraReferrals = Math.max(0.5, Math.round(monthlyJobs * (referralBoostedRate - referralBaseRate) * 10) / 10);
+  var referralLow = Math.round(extraReferrals * 0.5 * job * 12);
+  var referralHigh = Math.round(extraReferrals * job * 12);
+  var referralSources = [
+    { text: '83% of satisfied customers would refer, but only 29% do — Texas Tech / Advisor Impact (2011)', type: 'industry' },
+  ];
+  if (g.found && estJobs) {
+    referralSources.unshift({ text: 'Based on your ' + monthlyJobs + ' jobs/month — a 9% referral rate increase = ' + extraReferrals + ' extra referrals/mo', type: 'calculated' });
+  }
   autos.push({
     key: 'referral_program',
     name: 'Automated Referral Asks',
     shortDesc: 'After every good job, customer gets a referral request.',
     cat: 'Customer Retention',
-    low: referralLow,
-    high: referralHigh,
-    setup: 50,
-    monthly: 29,
+    low: referralLow, high: referralHigh,
+    setup: 50, monthly: 29,
     selected: false,
-    verified: false,
+    dataLevel: g.found ? 'calculated' : 'estimate',
     desc: 'After a completed job (and a positive satisfaction check), the customer gets a text: "Know anyone who needs [service]? Send them our way and you\'ll get $X off your next service." Includes a unique referral link for tracking.',
     math: [
-      { label: 'Extra referral jobs/month', value: '0.5 - 1.0' },
-      { label: 'Avg job value', value: '$' + fmtN(job) },
+      { label: 'Monthly jobs (' + jobsSource + ')', value: monthlyJobs },
+      { label: 'Current referral rate (industry avg)', value: '29%' },
+      { label: 'Boosted rate with automated asks', value: '38% (conservative)' },
+      { label: 'Extra referral jobs/month', value: extraReferrals },
     ],
-    mathFormula: '0.5-1.0 referral jobs/mo × $' + fmtN(job) + ' × 12 months',
-    sources: [
-      { text: '83% of satisfied customers say they\'d refer, but only 29% actually do — the gap is the ask — Texas Tech / Advisor Impact (2011)', type: 'industry' },
-    ],
-    disclaimer: 'No controlled study proves automated asks specifically produce these numbers. The 83/29 gap is real, but how much an automated system closes it depends on your customer relationships and service quality.',
-    breakeven: function() { return Math.ceil(this.monthly * 2 / job); },
+    mathFormula: monthlyJobs + ' jobs × 9% referral lift = ' + extraReferrals + ' extra/mo × $' + fmtN(job) + ' × 12',
+    sources: referralSources,
+    disclaimer: 'The 83/29 referral gap is real, but how much an automated system closes it depends on your customer relationships and service quality.',
+    breakeven: function() { return Math.max(1, Math.ceil(this.monthly * 2 / job)); },
   });
 
   // --- BUSINESS-SPECIFIC ---
   if (btype === 'hvac') {
-    var maintLow = Math.round(5 * 175 * 12);
-    var maintHigh = Math.round(10 * 175 * 12);
+    var maintBase = g.found ? Math.round(estCustomerBase * 0.08) : 7;
+    var maintLow = Math.round(Math.max(3, maintBase * 0.6) * 175 * 12);
+    var maintHigh = Math.round(Math.max(8, maintBase) * 175 * 12);
     autos.push({
       key: 'hvac_reminders',
       name: 'HVAC Maintenance Reminders',
@@ -577,14 +621,20 @@ function buildAutomations(btype, jobValue, googleData) {
       cat: 'Business-Specific',
       low: maintLow, high: maintHigh,
       setup: 50, monthly: 29,
-      selected: false, verified: false,
-      desc: 'Every install and service call goes into your customer database. When it\'s time for a filter change or annual tune-up, they get a text automatically. Your past installs become a recurring revenue source.',
+      selected: false,
+      dataLevel: g.found ? 'calculated' : 'estimate',
+      desc: 'Every install and service call goes into your customer database. When it\'s time for a filter change or annual tune-up, they get a text automatically.' + (g.found ? ' With ~' + fmtN(estCustomerBase) + ' estimated past customers, about 8% will book a tune-up each month.' : ''),
       math: [
-        { label: 'Tune-ups booked/month', value: '5 - 10' },
+        { label: g.found ? 'Est. customer base (from reviews)' : 'Est. customer base', value: fmtN(estCustomerBase) },
+        { label: 'Monthly tune-up conversion', value: '~8% of base' },
+        { label: 'Tune-ups/month', value: Math.max(3, Math.round(maintBase * 0.6)) + ' - ' + Math.max(8, maintBase) },
         { label: 'Avg tune-up value', value: '$175' },
       ],
-      mathFormula: '5-10 tune-ups/mo × $175 × 12 months',
-      sources: [
+      mathFormula: Math.max(3, Math.round(maintBase * 0.6)) + '-' + Math.max(8, maintBase) + ' tune-ups/mo × $175 × 12',
+      sources: g.found ? [
+        { text: 'Customer base estimated from your ' + g.reviewCount + ' Google reviews', type: 'calculated' },
+        { text: 'HVAC maintenance cycle: 6-month filter, annual tune-up', type: 'industry' },
+      ] : [
         { text: 'Based on typical HVAC maintenance cycle (6-month filter, annual tune-up)', type: 'industry' },
       ],
       disclaimer: 'Depends entirely on the size of your existing customer base. New businesses with few past installs will see lower numbers.',
@@ -593,8 +643,9 @@ function buildAutomations(btype, jobValue, googleData) {
   }
 
   if (btype === 'dental') {
-    var recallLow = Math.round(8 * job * 12);
-    var recallHigh = Math.round(15 * job * 12);
+    var recallBase = g.found ? Math.round(estCustomerBase * 0.04) : 10;
+    var recallLow = Math.round(Math.max(5, recallBase * 0.6) * job * 12);
+    var recallHigh = Math.round(Math.max(12, recallBase) * job * 12);
     autos.push({
       key: 'dental_recall',
       name: '6-Month Recall System',
@@ -602,14 +653,19 @@ function buildAutomations(btype, jobValue, googleData) {
       cat: 'Business-Specific',
       low: recallLow, high: recallHigh,
       setup: 50, monthly: 29,
-      selected: false, verified: false,
+      selected: false,
+      dataLevel: g.found ? 'calculated' : 'estimate',
       desc: '5 months after their last visit, patients get a text reminder to schedule their next cleaning. One-tap booking link included.',
       math: [
-        { label: 'Recalled patients/month', value: '8 - 15' },
+        { label: g.found ? 'Est. patient base (from reviews)' : 'Est. patient base', value: fmtN(estCustomerBase) },
+        { label: 'Recalled patients/month', value: Math.max(5, Math.round(recallBase * 0.6)) + ' - ' + Math.max(12, recallBase) },
         { label: 'Avg visit value', value: '$' + fmtN(job) },
       ],
-      mathFormula: '8-15 recalls/mo × $' + fmtN(job) + ' × 12 months',
-      sources: [
+      mathFormula: Math.max(5, Math.round(recallBase * 0.6)) + '-' + Math.max(12, recallBase) + ' recalls/mo × $' + fmtN(job) + ' × 12',
+      sources: g.found ? [
+        { text: 'Patient base estimated from your ' + g.reviewCount + ' Google reviews', type: 'calculated' },
+        { text: '60% of dental revenue comes from existing patients — ADA', type: 'industry' },
+      ] : [
         { text: '60% of dental revenue comes from existing patients — ADA', type: 'industry' },
       ],
       disclaimer: 'Depends on the size of your patient base. Practices with fewer than 500 active patients will see the lower end.',
@@ -627,7 +683,8 @@ function buildAutomations(btype, jobValue, googleData) {
       cat: 'Business-Specific',
       low: weatherLow, high: weatherHigh,
       setup: 50, monthly: 29,
-      selected: false, verified: false,
+      selected: false,
+      dataLevel: 'estimate',
       desc: 'Checks the forecast the night before. If rain is likely, affected customers get an automatic reschedule text. No phone calls, no confusion.',
       math: [
         { label: 'Hours saved/week on rain-season rescheduling', value: '2 - 4' },
@@ -638,14 +695,15 @@ function buildAutomations(btype, jobValue, googleData) {
       sources: [
         { text: 'Industry estimate based on lawn care operator surveys', type: 'estimate' },
       ],
-      disclaimer: 'This is mostly a time savings, not direct new revenue. The dollar value represents what you could be earning during the hours you\'d otherwise spend on the phone rescheduling.',
+      disclaimer: 'This is mostly time savings, not direct new revenue. The dollar value represents what you could earn during hours otherwise spent rescheduling.',
       breakeven: function() { return 1; },
     });
   }
 
   if (btype === 'auto_repair') {
-    var svcLow = Math.round(2 * job * 12);
-    var svcHigh = Math.round(4 * job * 12);
+    var svcBase = g.found ? Math.round(estCustomerBase * 0.03) : 3;
+    var svcLow = Math.round(Math.max(2, svcBase * 0.6) * job * 12);
+    var svcHigh = Math.round(Math.max(4, svcBase) * job * 12);
     autos.push({
       key: 'auto_service_reminders',
       name: 'Service Reminder System',
@@ -653,14 +711,19 @@ function buildAutomations(btype, jobValue, googleData) {
       cat: 'Business-Specific',
       low: svcLow, high: svcHigh,
       setup: 50, monthly: 29,
-      selected: false, verified: false,
+      selected: false,
+      dataLevel: g.found ? 'calculated' : 'estimate',
       desc: 'Based on mileage and last service date, customers get automated texts when they\'re due for oil changes, brake checks, and inspections.',
       math: [
-        { label: 'Reminder-converted jobs/month', value: '2 - 4' },
+        { label: g.found ? 'Est. customer base (from reviews)' : 'Est. customer base', value: fmtN(estCustomerBase) },
+        { label: 'Reminder-converted jobs/month', value: Math.max(2, Math.round(svcBase * 0.6)) + ' - ' + Math.max(4, svcBase) },
         { label: 'Avg job value', value: '$' + fmtN(job) },
       ],
-      mathFormula: '2-4 jobs/mo × $' + fmtN(job) + ' × 12 months',
-      sources: [
+      mathFormula: Math.max(2, Math.round(svcBase * 0.6)) + '-' + Math.max(4, svcBase) + ' jobs/mo × $' + fmtN(job) + ' × 12',
+      sources: g.found ? [
+        { text: 'Customer base estimated from your ' + g.reviewCount + ' reviews', type: 'calculated' },
+        { text: 'Service reminders generate 30-40% of repeat revenue for top shops — AAIA', type: 'industry' },
+      ] : [
         { text: 'Service reminders generate 30-40% of repeat revenue for top shops — AAIA', type: 'industry' },
       ],
       disclaimer: 'Works best with a large existing customer database. New shops will see lower numbers initially.',
@@ -669,8 +732,9 @@ function buildAutomations(btype, jobValue, googleData) {
   }
 
   if (btype === 'pest_control') {
-    var recurLow = Math.round(0.10 * 200 * 40 * 4);
-    var recurHigh = Math.round(0.15 * 200 * 50 * 4);
+    var pestAccounts = g.found ? Math.min(80, Math.round(estCustomerBase * 0.3)) : 40;
+    var recurLow = Math.round(0.10 * 200 * pestAccounts * 4);
+    var recurHigh = Math.round(0.15 * 200 * pestAccounts * 4);
     autos.push({
       key: 'pest_recurring',
       name: 'Recurring Treatment Reminders',
@@ -678,15 +742,18 @@ function buildAutomations(btype, jobValue, googleData) {
       cat: 'Business-Specific',
       low: recurLow, high: recurHigh,
       setup: 50, monthly: 29,
-      selected: false, verified: false,
+      selected: false,
+      dataLevel: g.found ? 'calculated' : 'estimate',
       desc: 'Five days before every scheduled treatment, customers get a text reminder with one-tap confirm. Reduces cancellations and keeps recurring revenue locked in.',
       math: [
-        { label: 'Recurring accounts protected', value: '40 - 50' },
+        { label: 'Est. recurring accounts', value: pestAccounts + (g.found ? ' (from your reviews)' : '') },
         { label: 'Churn reduction', value: '10-15%' },
         { label: 'Avg quarterly value', value: '$200' },
       ],
-      mathFormula: '10-15% churn reduction × 40-50 accounts × $200/quarter × 4 quarters',
-      sources: [
+      mathFormula: '10-15% churn reduction × ' + pestAccounts + ' accounts × $200/quarter × 4 quarters',
+      sources: g.found ? [
+        { text: 'Account count estimated from your ' + g.reviewCount + ' reviews', type: 'calculated' },
+      ] : [
         { text: 'Industry estimate — pest control has high quarterly churn without reminders', type: 'estimate' },
       ],
       disclaimer: 'Depends on your current account count and churn rate. If you already have low churn, the improvement will be smaller.',
@@ -704,7 +771,8 @@ function buildAutomations(btype, jobValue, googleData) {
       cat: 'Business-Specific',
       low: resLow, high: resHigh,
       setup: 250, monthly: 97,
-      selected: false, verified: false,
+      selected: false,
+      dataLevel: g.found ? 'calculated' : 'estimate',
       desc: 'During service when staff can\'t answer, the system handles reservation calls, manages your waitlist, and sends confirmations. Reduces no-shows with day-of reminders.',
       math: [
         { label: 'Extra tables filled/night', value: '1.5 - 2.5' },
@@ -721,23 +789,29 @@ function buildAutomations(btype, jobValue, googleData) {
   }
 
   if (btype === 'gym') {
-    var gymLow = Math.round(5 * 45 * 12);
-    var gymHigh = Math.round(10 * 45 * 12);
+    var gymMembers = g.found ? Math.min(300, Math.round(estCustomerBase * 0.4)) : 150;
+    var gymRetainLow = Math.max(3, Math.round(gymMembers * 0.03));
+    var gymRetainHigh = Math.max(8, Math.round(gymMembers * 0.06));
     autos.push({
       key: 'gym_retention',
       name: 'Member Retention System',
       shortDesc: 'Tracks attendance. No-shows get a personal check-in.',
       cat: 'Business-Specific',
-      low: gymLow, high: gymHigh,
+      low: Math.round(gymRetainLow * 45 * 12), high: Math.round(gymRetainHigh * 45 * 12),
       setup: 50, monthly: 29,
-      selected: false, verified: false,
+      selected: false,
+      dataLevel: g.found ? 'calculated' : 'estimate',
       desc: 'Tracks member check-ins. After 10 days with no visit, they get a personal text. Renewal reminders go out 30 days before expiration.',
       math: [
-        { label: 'Members retained/month', value: '5 - 10' },
+        { label: 'Est. active members', value: gymMembers + (g.found ? ' (from your reviews)' : '') },
+        { label: 'Members retained/month', value: gymRetainLow + ' - ' + gymRetainHigh },
         { label: 'Monthly membership value', value: '$45' },
       ],
-      mathFormula: '5-10 retained members/mo × $45/mo × 12 months',
-      sources: [
+      mathFormula: gymRetainLow + '-' + gymRetainHigh + ' retained/mo × $45 × 12',
+      sources: g.found ? [
+        { text: 'Member count estimated from your ' + g.reviewCount + ' reviews', type: 'calculated' },
+        { text: 'Average gym loses 5-8% of members/month — IHRSA', type: 'industry' },
+      ] : [
         { text: 'Average gym loses 5-8% of members per month — IHRSA', type: 'industry' },
       ],
       disclaimer: 'Retention depends heavily on your gym culture and offerings. A text won\'t save a member who hates the facility.',
@@ -755,7 +829,8 @@ function buildAutomations(btype, jobValue, googleData) {
       cat: 'Business-Specific',
       low: lawLow, high: lawHigh,
       setup: 250, monthly: 97,
-      selected: false, verified: false,
+      selected: false,
+      dataLevel: g.found ? 'calculated' : 'estimate',
       desc: 'New client inquiry calls are handled 24/7 — collects case details, contact info, urgency level. Attorney only reviews qualified cases.',
       math: [
         { label: 'Extra qualified cases/month', value: '1 - 2' },
@@ -765,14 +840,15 @@ function buildAutomations(btype, jobValue, googleData) {
       sources: [
         { text: 'Law firms miss 35-50% of intake calls after hours — Clio Legal Trends Report', type: 'industry' },
       ],
-      disclaimer: 'Qualified case conversion depends on your practice area. Personal injury and family law convert differently than corporate or real estate.',
+      disclaimer: 'Qualified case conversion depends on your practice area.',
       breakeven: function() { return 1; },
     });
   }
 
   if (btype === 'plumber' || btype === 'electrician') {
-    var emLow = Math.round(2 * 500 * 12);
-    var emHigh = Math.round(4 * 600 * 12);
+    var emPerMonth = g.found ? Math.max(2, Math.round(monthlyJobs * 0.08)) : 3;
+    var emLow = Math.round(emPerMonth * 0.7 * 550 * 12);
+    var emHigh = Math.round(emPerMonth * 600 * 12);
     autos.push({
       key: 'emergency_routing',
       name: 'Emergency Call Priority Routing',
@@ -780,15 +856,19 @@ function buildAutomations(btype, jobValue, googleData) {
       cat: 'Business-Specific',
       low: emLow, high: emHigh,
       setup: 0, monthly: 0,
-      selected: false, verified: false,
+      selected: false,
+      dataLevel: g.found ? 'calculated' : 'estimate',
       includedWith: 'phone_receptionist',
       desc: 'When a caller describes an emergency (burst pipe, electrical fire, flooding), the system flags it as urgent, routes to on-call tech immediately, and sends the customer an ETA text.',
       math: [
-        { label: 'Emergency calls captured/month', value: '2 - 4' },
-        { label: 'Avg emergency job value', value: '$500 - $600' },
+        { label: 'Monthly jobs', value: monthlyJobs + ' (' + jobsSource + ')' },
+        { label: 'Emergency call share (~8%)', value: emPerMonth + '/month' },
+        { label: 'Avg emergency job value', value: '$550 - $600' },
       ],
-      mathFormula: '2-4 emergencies/mo × $500-600 × 12 months',
-      sources: [
+      mathFormula: emPerMonth + ' emergencies/mo × $550-600 × 12 months',
+      sources: g.found ? [
+        { text: 'Emergency volume estimated from your ' + monthlyJobs + ' monthly jobs', type: 'calculated' },
+      ] : [
         { text: 'Emergency calls go to whoever answers first and carry a premium — industry observation', type: 'estimate' },
       ],
       disclaimer: 'Included with the Phone Answering System at no extra cost. Shown separately so you can see the emergency-specific value.',
@@ -806,17 +886,18 @@ function buildAutomations(btype, jobValue, googleData) {
       cat: 'Business-Specific',
       low: nurtureLow, high: nurtureHigh,
       setup: 200, monthly: 49,
-      selected: false, verified: false,
-      desc: 'Every inquiry goes into a 12-month automated sequence — market updates, new listings in their price range, check-ins. Stays in touch so you\'re top of mind when they\'re ready.',
+      selected: false,
+      dataLevel: g.found ? 'calculated' : 'estimate',
+      desc: 'Every inquiry goes into a 12-month automated sequence — market updates, new listings in their price range, check-ins.',
       math: [
-        { label: 'Extra closings/year from long-term nurture', value: '0.5 - 1.5' },
+        { label: 'Extra closings/year from nurture', value: '0.5 - 1.5' },
         { label: 'Avg commission', value: '$' + fmtN(job) },
       ],
       mathFormula: '0.5-1.5 extra closings × $' + fmtN(job),
       sources: [
         { text: 'Most real estate leads need 3-12 months to decide — NAR buyer survey', type: 'industry' },
       ],
-      disclaimer: 'Highly dependent on your market and lead volume. Agents with fewer than 20 active leads may not see measurable impact.',
+      disclaimer: 'Highly dependent on your market and lead volume.',
       breakeven: function() { return 1; },
     });
   }
@@ -831,8 +912,9 @@ function buildAutomations(btype, jobValue, googleData) {
       cat: 'Business-Specific',
       low: stormLow, high: stormHigh,
       setup: 200, monthly: 49,
-      selected: false, verified: false,
-      desc: 'Monitors weather in your service area. After a significant storm, automated outreach contacts homeowners in affected zip codes — before your competitors do.',
+      selected: false,
+      dataLevel: 'estimate',
+      desc: 'Monitors weather in your service area. After a significant storm, automated outreach contacts homeowners in affected zip codes.',
       math: [
         { label: 'Jobs captured per storm event', value: '2 - 4' },
         { label: 'Storm events/year (region dependent)', value: '3 - 4' },
@@ -840,9 +922,9 @@ function buildAutomations(btype, jobValue, googleData) {
       ],
       mathFormula: '2-4 jobs/storm × 3-4 storms/yr × $' + fmtN(job),
       sources: [
-        { text: 'Storm frequency varies dramatically by region — this is a rough estimate', type: 'estimate' },
+        { text: 'Storm frequency varies dramatically by region — rough estimate', type: 'estimate' },
       ],
-      disclaimer: 'Storm frequency is the biggest variable. Gulf Coast and Tornado Alley see 6+ events/year. Pacific Northwest might see 1-2. Your region determines the real number.',
+      disclaimer: 'Storm frequency is the biggest variable. Gulf Coast sees 6+ events/year. Pacific Northwest might see 1-2.',
       breakeven: function() { return 1; },
     });
   }
@@ -1100,23 +1182,31 @@ async function runAnalysis() {
       + '</div>';
   }
 
-  // Count verified
-  var verifiedCount = autos.filter(function(a) { return a.verified; }).length;
+  // Count data-backed items (verified from Google + calculated from Google data)
+  var verifiedCount = autos.filter(function(a) { return a.dataLevel === 'verified'; }).length;
+  var calculatedCount = autos.filter(function(a) { return a.dataLevel === 'calculated'; }).length;
+  var dataBackedCount = verifiedCount + calculatedCount;
+  var estimateCount = autos.length - dataBackedCount;
 
   // Stats row
   var statsHTML = ''
     + '<div class="stats-row">'
     + '<div class="stat"><div class="num">' + fmt(totalLow) + ' - ' + fmt(totalHigh) + '</div><div class="lbl">Estimated Annual Opportunity</div></div>'
     + '<div class="stat"><div class="num">' + autos.length + '</div><div class="lbl">Automations Found</div></div>'
-    + '<div class="stat"><div class="num">' + verifiedCount + '/' + autos.length + '</div><div class="lbl">Backed by Your Data</div></div>'
+    + '<div class="stat"><div class="num">' + dataBackedCount + '/' + autos.length + '</div><div class="lbl">Backed by Your Data</div></div>'
     + '</div>';
 
   // Explanation
+  var dataExplain = '';
+  if (verifiedCount > 0) dataExplain += ' <span style="color:#4CAF50">' + verifiedCount + ' verified</span> directly from your Google listing.';
+  if (calculatedCount > 0) dataExplain += ' <span style="color:#4B92DB">' + calculatedCount + ' calculated</span> from your review data + published research.';
+  if (estimateCount > 0) dataExplain += ' <span style="color:#b08930">' + estimateCount + ' use industry data only</span> (sources cited).';
+
   var explainHTML = ''
     + '<div style="font-size:.78rem;color:#999;margin:-1rem 0 2rem;line-height:1.5">'
-    + '<strong>How to read these numbers:</strong> The range (' + fmt(totalLow) + ' - ' + fmt(totalHigh) + ') is the estimated total opportunity across all systems, with a 30% overlap discount (some systems compete for the same revenue).'
-    + (verifiedCount > 0 ? ' <span style="color:#4CAF50">' + verifiedCount + ' item' + (verifiedCount > 1 ? 's are' : ' is') + ' backed by real data</span> from your Google listing.' : '')
-    + ' Every number shows a range — the low end is conservative, the high end is optimistic. Click any item to see the full math and sources.'
+    + '<strong>How to read these numbers:</strong> The range (' + fmt(totalLow) + ' - ' + fmt(totalHigh) + ') is the estimated total with a 30% overlap discount (some systems compete for the same revenue).'
+    + dataExplain
+    + ' Click any item to see the full math and sources.'
     + (!jobValue ? '<br><span style="color:#e67e22">You didn\'t enter your avg job value, so we used the ' + d.label + ' industry average ($' + fmtN(d.job) + '). Enter yours for more accurate numbers.</span>' : '')
     + '</div>';
 
@@ -1126,7 +1216,7 @@ async function runAnalysis() {
   autos.forEach(function(a) {
     var isSelected = !!selectedItems[a.key];
     var isIncluded = !!a.includedWith;
-    var cls = 'auto-card' + (isSelected ? ' selected' : '') + (a.verified ? ' verified' : '');
+    var cls = 'auto-card' + (isSelected ? ' selected' : '') + (a.dataLevel === 'verified' ? ' verified' : '') + (a.dataLevel === 'calculated' ? ' calculated' : '');
 
     cardsHTML += '<div class="' + cls + '" id="card-' + a.key + '">';
 
