@@ -1,22 +1,6 @@
 {
-  "pipeline": [
-    {
-      "name": "Test HVAC Co",
-      "stage": "prospect"
-    }
-  ],
-  "activity": [
-    {
-      "action": "added",
-      "detail": "Test HVAC Co as prospect",
-      "ts": "2026-06-14T21:55:00.000Z"
-    }
-  ],
-  "stats": {
-    "closed": 0,
-    "pitched": 0,
-    "prospects": 1,
-    "total": 1
-  },
-  "synced_at": "2026-06-14T21:55:00.000Z"
+  "pipeline": [],
+  "activity": [],
+  "stats": {},
+  "synced_at": "2026-06-14T21:48:54.702Z"
 }
