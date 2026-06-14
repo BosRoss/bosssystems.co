@@ -1141,14 +1141,13 @@ async function runAnalysis() {
     if (a.selected) selectedItems[a.key] = a;
   });
 
-  // Calculate totals using midpoints, with overlap discount
-  var rawLow = 0, rawHigh = 0;
+  // Calculate totals — sum of individual items (excludes "included" items to avoid double-counting)
+  var totalLow = 0, totalHigh = 0;
   autos.forEach(function(a) {
-    if (!a.includedWith) { rawLow += a.low; rawHigh += a.high; }
+    if (!a.includedWith) { totalLow += a.low; totalHigh += a.high; }
   });
-  var overlapDiscount = 0.70; // 30% discount for shared revenue pools
-  var totalLow = Math.round(rawLow * overlapDiscount / 100) * 100;
-  var totalHigh = Math.round(rawHigh * overlapDiscount / 100) * 100;
+  totalLow = Math.round(totalLow / 100) * 100;
+  totalHigh = Math.round(totalHigh / 100) * 100;
   var totalMid = Math.round((totalLow + totalHigh) / 2 / 100) * 100;
 
   // Lead gate
@@ -1204,7 +1203,7 @@ async function runAnalysis() {
 
   var explainHTML = ''
     + '<div style="font-size:.78rem;color:#999;margin:-1rem 0 2rem;line-height:1.5">'
-    + '<strong>How to read these numbers:</strong> The range (' + fmt(totalLow) + ' - ' + fmt(totalHigh) + ') is the estimated total with a 30% overlap discount (some systems compete for the same revenue).'
+    + '<strong>How to read these numbers:</strong> The range (' + fmt(totalLow) + ' - ' + fmt(totalHigh) + ') is the sum of all individual systems below. Each estimate is already conservative — low end is cautious, high end is optimistic.'
     + dataExplain
     + ' Click any item to see the full math and sources.'
     + (!jobValue ? '<br><span style="color:#e67e22">You didn\'t enter your avg job value, so we used the ' + d.label + ' industry average ($' + fmtN(d.job) + '). Enter yours for more accurate numbers.</span>' : '')
