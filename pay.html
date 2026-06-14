@@ -202,44 +202,34 @@ function setupPartnerMode(name, amount, label) {
   document.getElementById('page-sub').textContent = 'Pay for services from ' + name;
   document.getElementById('guarantees').style.display = 'none';
 
-  // Update info box for partner payments
   document.getElementById('info-box').innerHTML = '<strong>Payment goes to:</strong> ' + name + ' via BOSS Systems. You\'ll receive a receipt from Square.';
 
-  // Update back link
   var backLink = document.getElementById('back-link');
   backLink.textContent = '← Back to ' + name;
-  var siteUrl = 'https://bosssystems.co/p/' + partnerSlug + '.html';
-  backLink.href = siteUrl;
+  backLink.href = 'https://bosssystems.co/p/' + partnerSlug + '.html';
+
+  // Always show amount input in partner mode
+  document.getElementById('amount-input').classList.add('show');
+  document.getElementById('order-box').style.display = 'none';
 
   if (amount > 0) {
-    showPartnerAmount(amount, label || name);
+    document.getElementById('custom-amount').value = amount;
+    updatePartnerAmount(amount);
   } else {
-    // Show amount input for variable pricing
-    document.getElementById('amount-input').classList.add('show');
-    document.getElementById('order-box').style.display = 'none';
     updateSquareBtn(0);
   }
 }
 
 function updatePartnerAmount(val) {
   var amt = parseInt(val) || 0;
+  var btn = document.getElementById('square-btn');
   if (amt > 0) {
-    showPartnerAmount(amt, partnerName);
+    btn.textContent = 'Pay $' + amt + ' with Card';
+    var note = partnerName + ' [partner:' + partnerSlug + ']';
+    updateVenmoLink(amt, note);
+  } else {
+    btn.textContent = 'Enter amount above';
   }
-}
-
-function showPartnerAmount(amt, label) {
-  currentProduct = {name: label, desc: '', setup: amt, monthly: 0};
-  document.getElementById('order-product').textContent = label;
-  document.getElementById('order-desc').textContent = '';
-  document.getElementById('setup-line').style.display = 'none';
-  document.getElementById('monthly-line').style.display = 'none';
-  document.getElementById('order-due').textContent = '$' + amt.toLocaleString();
-  document.getElementById('order-box').style.display = 'block';
-
-  var note = label + (partnerSlug ? ' [partner:' + partnerSlug + ']' : '');
-  updateVenmoLink(amt, note);
-  updateSquareBtn(amt);
 }
 
 function selectProduct(val) {
@@ -313,17 +303,53 @@ function updateSquareBtn(amount) {
 function handleSquare() {
   if (SQUARE_LINK) return true;
 
-  // No pre-set Square link — try to generate one via partner amount
-  var amt = currentProduct ? currentProduct.setup : 0;
-  if (!amt && partnerSlug) {
+  // Partner mode — create checkout link via webhook
+  if (partnerSlug) {
     var input = document.getElementById('custom-amount');
-    amt = parseInt(input ? input.value : 0) || 0;
-  }
-  if (!amt) {
-    alert('Please enter an amount first.');
+    var amt = parseInt(input ? input.value : 0) || 0;
+    if (!amt) {
+      alert('Please enter an amount first.');
+      return false;
+    }
+    var btn = document.getElementById('square-btn');
+    btn.textContent = 'Processing...';
+    btn.style.pointerEvents = 'none';
+    btn.style.opacity = '0.6';
+
+    var x = new XMLHttpRequest();
+    x.open('POST', 'https://jamross.app.n8n.cloud/webhook/partner-pay');
+    x.setRequestHeader('Content-Type', 'application/json');
+    x.onload = function() {
+      try {
+        var d = JSON.parse(x.responseText);
+        if (d.url) {
+          window.location.href = d.url;
+        } else {
+          btn.textContent = 'Error - try Venmo below';
+          btn.style.pointerEvents = 'auto';
+          btn.style.opacity = '1';
+        }
+      } catch(e) {
+        btn.textContent = 'Error - try Venmo below';
+        btn.style.pointerEvents = 'auto';
+        btn.style.opacity = '1';
+      }
+    };
+    x.onerror = function() {
+      btn.textContent = 'Error - try Venmo below';
+      btn.style.pointerEvents = 'auto';
+      btn.style.opacity = '1';
+    };
+    x.send(JSON.stringify({partner: partnerSlug, amount: amt, name: partnerName}));
     return false;
   }
 
+  // BOSS product mode — no link generated yet
+  var amt = currentProduct ? currentProduct.setup : 0;
+  if (!amt) {
+    alert('Please select a product first.');
+    return false;
+  }
   alert('Card payment for $' + amt + '. Contact (903) 522-4459 to complete this payment by card, or use Venmo, Zelle, or Cash App below.');
   return false;
 }
