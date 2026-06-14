@@ -648,6 +648,7 @@ document.getElementById('retell-list').innerHTML = RETELL.map(function(r) {
   .then(function(r){ return r.json(); })
   .then(function(data) {
     var apps = Array.isArray(data) ? data : (data.applications || []);
+    window._allApps = apps;
     apps.forEach(function(a, i){ a._origIdx = i; });
     var pending = apps.filter(function(a){ var s = (a.status||'').toLowerCase(); return !s || s === 'pending'; });
     var approved = apps.filter(function(a){ return (a.status||'').toLowerCase() === 'approved'; });
@@ -800,7 +801,15 @@ function appDecision(idx, decision) {
   }).then(function() {
     if (decision === 'APPROVED') {
       btn.textContent = 'APPROVED — RELOADING...';
-      alert('Partner approved. After reload, click SEND PACKAGE on their card to text them everything they need.');
+      var app = window._allApps ? window._allApps[idx] : null;
+      if (app) {
+        var pName = ((app.firstName || '') + ' ' + (app.lastName || '')).trim();
+        fetch('https://jamross.app.n8n.cloud/webhook/partner-auto-onboard', {
+          method: 'POST',
+          headers: {'Content-Type': 'application/json'},
+          body: JSON.stringify({name: pName, phone: app.phone || '', businessType: app.business || '', city: app.cityState || ''})
+        }).catch(function(){});
+      }
     }
     setTimeout(function(){ location.reload(); }, 1000);
   }).catch(function() {
