@@ -23,7 +23,7 @@ nav a{color:#888;text-decoration:none}
 .cat{border-bottom:1px solid #111}
 .cat-head{padding:10px 14px;color:#C9A84C;font-size:11px;font-weight:600;letter-spacing:.5px;cursor:pointer;display:flex;justify-content:space-between;align-items:center}
 .cat-head:hover{background:#111}
-.cat-head .arrow{transition:transform .2s;font-size:10px;color:#666}
+.cat-head .arrow{transition:transform .2s;font-size:10px;color:#999}
 .cat.open .arrow{transform:rotate(90deg)}
 .cat-items{display:none;padding-bottom:4px}
 .cat.open .cat-items{display:block}
@@ -55,14 +55,14 @@ nav a{color:#888;text-decoration:none}
 
 .flow{display:flex;align-items:center;gap:6px;flex-wrap:wrap;margin:10px 0;padding:10px;background:#0a0a0a;border:1px solid #1a1a1a;border-radius:6px}
 .step{background:#111;border:1px solid #222;border-radius:4px;padding:4px 10px;font-size:10px;color:#aaa}
-.arr{color:#555;font-size:12px}
+.arr{color:#999;font-size:12px}
 
 .note{background:#111;border-left:3px solid #C9A84C;padding:8px 12px;margin:12px 0;font-size:11px;color:#999;line-height:1.5}
 .note.warn{border-left-color:#ff4444}
 .note.info{border-left-color:#4B92DB}
 
 .phone{color:#C9A84C;font-weight:600}
-.welcome{text-align:center;padding:60px 20px;color:#666}
+.welcome{text-align:center;padding:60px 20px;color:#999}
 .welcome h2{color:#C9A84C;font-size:16px;margin-bottom:8px}
 </style>
 </head>
@@ -243,7 +243,7 @@ var MAP = {
   "BOSS Partnership Program": {
     "BPP Application": {
       title: "Partner Application Flow",
-      subtitle: "How teens find and join the program",
+      subtitle: "How people find and join the program",
       you: [
         {t:"summer.html", d:"Landing page. Explains the program, 80/20 split, what Boston builds vs what partner does. <span class='badge live'>LIVE</span>"},
         {t:"partner-quiz.html", d:"Business matching quiz. 11 business types. Matches them to the right fit. <span class='badge live'>LIVE</span>"},
@@ -251,7 +251,7 @@ var MAP = {
         {t:"parents.html", d:"Parent information page. Required for under-18 applicants. <span class='badge live'>LIVE</span>"},
       ],
       them: [
-        {t:"Teen applicant experience", d:"Find summer.html (from social media, word of mouth, or school). Take the quiz to find their business match. Fill out the application. If under 18, parents must approve via parents.html. If accepted, get access to partner tools and training."},
+        {t:"Applicant experience", d:"Find summer.html (from social media, word of mouth, or referral). Take the quiz to find their business match. Fill out the application. If under 18, parents must approve via parents.html. If accepted, get access to partner tools and training."},
         {t:"Parent experience", d:"See parents.html explaining what the program is, how the money works, what their kid will be doing, safety/insurance information. Must give approval before any partner under 18 can start."},
       ]
     },
@@ -297,27 +297,110 @@ var MAP = {
     },
   },
   "Marketing": {
-    "Social Machine": {
-      title: "Social Media Automation",
-      subtitle: "8-layer AI content engine across 3 platforms",
+    "Marketing Overview": {
+      title: "Marketing Operations Overview",
+      subtitle: "Two audiences, full channel map, what is running vs what is not",
       you: [
-        {t:"Social Machine", d:"AI content generation with Thompson sampling bandit for pattern optimization. Brand safety gate. Two audiences (BOSS + BPP). Three platforms (FB, IG, TikTok). $2/day cap. Dashboard at social.html. <span class='badge local'>LOCAL</span>"},
-        {t:"Limitations", d:"TikTok needs real video for serious reach (images get 10% of video engagement). Analytics are manual (Buffer API is posting-only, need Meta Graph API for auto-pull)."},
+        {t:"Audience A: BOSS Systems", d:"Local service businesses (HVAC, plumber, electrician, roofer, law firm). Goal: get them to bosssystems.co/analyze, then onboard. Messaging in marketing/messaging_boss.md, channels in marketing/channel_sequence_boss.md."},
+        {t:"Audience B: BPP Partners", d:"Anyone wanting to start a service business. Goal: get them to bosssystems.co/summer, then apply. Messaging in marketing/messaging_bpp.md, channels in marketing/channel_sequence_bpp.md."},
+        {t:"Marketing Engine", d:"scripts/marketing_engine.py. Content generation for both audiences, referral tracking, A/B testing with z-test, attribution logging. CLI: python3 boss_command.py marketing status/pause/resume. <span class='badge live'>LIVE</span>"},
+        {t:"Marketing Files", d:"marketing/ directory: messaging_boss.md, messaging_bpp.md, channel_sequence_boss.md, channel_sequence_bpp.md, dm_scripts.md, reels_scripts.md, content_calendar.md, instagram_setup.md, demo_playbook.md."},
+      ],
+      them: []
+    },
+    "Channel Status BOSS": {
+      title: "BOSS Channels — Status Map",
+      subtitle: "Every channel for Audience A (service businesses) and whether it is running",
+      you: [
+        {t:"AI Cold Calling", d:"Local auto-caller, 10am/2pm CT weekdays, 15/batch, 50/day cap. 7 safety layers. FTC AI disclosure on every call. <span class='badge live'>ACTIVE</span>"},
+        {t:"Mystery Calling", d:"Agent (903) 601-8008 calls businesses as a fake customer, tests phone handling, generates report. Postcard flow planned but not deployed. <span class='badge live'>ACTIVE</span>"},
+        {t:"In-Person Demos (East Texas)", d:"903/430 area codes reserved for Boston walking into shops with demo phones. demo_playbook.md has the playbook. <span class='badge planned'>MANUAL</span>"},
+        {t:"Instagram (BOSS)", d:"Content calendar and reel scripts ready (30 days planned). Account not yet set up or posting. <span class='badge off'>NOT STARTED</span>"},
+        {t:"TikTok (BOSS)", d:"Reel scripts exist but TikTok needs real video from Boston. Images get 10% of video reach. <span class='badge off'>NOT STARTED</span>"},
+        {t:"Facebook (BOSS)", d:"Ready for auto-posting via social machine. No posts yet (0 in social_report). <span class='badge off'>NOT STARTED</span>"},
+        {t:"Cold DMs (Instagram)", d:"Scripts ready in marketing/dm_scripts.md for HVAC, plumber, electrician, roofer, law firm. Max 10/day (shadowban prevention). Requires Instagram account. <span class='badge off'>NOT STARTED</span>"},
+        {t:"Cold Email", d:"Cold Email Outreach workflow (WY9QQU8gSSaKO9kD) deactivated. Uses Gmail node which hangs. Needs SMTP migration + PO Box for CAN-SPAM. <span class='badge off'>BLOCKED</span>"},
+        {t:"Postcards/Direct Mail", d:"Scripts and templates in action.html (Lead Action Center). Print and mail manually. <span class='badge planned'>MANUAL</span>"},
+        {t:"Referral Program", d:"Marketing engine tracks referrals (marketing_engine.py referral add/convert/status). No active referrers yet. <span class='badge planned'>READY</span>"},
+      ],
+      them: []
+    },
+    "Channel Status BPP": {
+      title: "BPP Channels — Status Map",
+      subtitle: "Every channel for Audience B (potential partners) and whether it is running",
+      you: [
+        {t:"Instagram (BPP)", d:"Post templates in messaging_bpp.md. Weekly rotation: Mon=earnings, Tue=first week, Wed=partner spotlight, Thu=comparison, Fri=the catch, Sat=behind-scenes, Sun=opportunity cost. <span class='badge off'>NOT STARTED</span>"},
+        {t:"TikTok (BPP)", d:"Short-form scripts ready. 'The catch', earnings breakdowns, self-aware humor. Needs Boston filming. <span class='badge off'>NOT STARTED</span>"},
+        {t:"Instagram DMs (BPP)", d:"3 DM scripts in messaging_bpp.md. Max 10/day. Only DM people who engaged first. <span class='badge off'>NOT STARTED</span>"},
+        {t:"Partner Referrals", d:"Referral ask script + $100 referral bonus text in messaging_bpp.md. This is the #1 growth channel once partners exist. <span class='badge planned'>READY WHEN PARTNERS EXIST</span>"},
+        {t:"Word of Mouth", d:"Existing partners tell friends. Organic. The most powerful channel. Requires active partners first. <span class='badge planned'>DEPENDS ON PARTNERS</span>"},
+        {t:"Parent Messaging", d:"Auto-text for under-18 applicants. Parent info text, 48hr follow-up, FAQ. In messaging_bpp.md and channel_sequence_bpp.md. <span class='badge live'>READY</span>"},
+      ],
+      them: []
+    },
+    "Social Machine": {
+      title: "Social Media Automation Engine",
+      subtitle: "8-layer AI content engine — built but not actively posting",
+      you: [
+        {t:"Social Machine", d:"scripts/social_machine.py. AI generates platform-native content per audience. Thompson sampling bandit optimizes patterns. Brand safety gate (7 clean days then autonomous, 10% spot checks). $2/day spend cap. Dashboard at social.html. <span class='badge local'>BUILT</span>"},
+        {t:"Current Status", d:"0 posts generated. 0 bandit patterns learned. Gate not started. Machine is built and functional but has never been activated for real posting.  <span class='badge off'>INACTIVE</span>"},
+        {t:"What It Needs", d:"Buffer API key configured for posting. Instagram and TikTok business accounts created. First 7 days of manual approval before autonomous mode kicks in."},
+        {t:"Commands", d:"python3 boss_command.py social (generate), social preview, social status, social queue, social approve/reject, social gate on/off/kill, social dashboard."},
       ],
       them: [
-        {t:"What people see", d:"Native-looking posts on each platform. No banned words (AI, automate, workflow, etc). BPP content includes income disclaimers. Content goes through brand safety gate before posting. First 7 days manually approved, then autonomous with 10% spot checks."},
+        {t:"What people would see", d:"Native-looking posts. No banned words. BPP posts include income disclaimers. BOSS posts never say AI/automate/workflow. Posts optimized over time by Thompson sampling (which patterns get saves/shares/comments)."},
       ]
+    },
+    "Content Calendar": {
+      title: "30-Day Instagram Content Calendar",
+      subtitle: "Planned but not started. Full scripts and schedules in marketing/content_calendar.md",
+      you: [
+        {t:"Week 1 — Launch Week", d:"Day 1: Reel 'I called a Tyler TX HVAC business at 2am' (7:30pm CT). Day 2: Carousel 'What your business sounds like at midnight' (6:30am CT). Day 3: Demo reel (7:30pm). Day 4: Educational carousel (12pm). Day 5: Personal brand reel (7:30pm). Day 6-7: Stories only."},
+        {t:"Weekly Rhythm", d:"Mon/Wed/Fri = Reels at 7:30pm CT. Tue/Thu = Carousels/statics at 6:30am/12pm. Sat = Reel or story at 9am. Sun = Stories only. Cross-post to TikTok within 2hrs, YouTube Shorts next morning."},
+        {t:"Reel Scripts", d:"12 full scripts in marketing/reels_scripts.md. Hook lines, shot-by-shot, captions, hashtags, sound recommendations. All BOSS audience focused."},
+        {t:"Status", d:"Calendar written, scripts written, nothing filmed or posted. <span class='badge off'>NOT STARTED</span>"},
+      ],
+      them: []
     },
     "Ryan Walsh Reddit": {
       title: "Reddit Engagement Engine",
-      subtitle: "Fake persona for organic engagement on Reddit",
+      subtitle: "Persona for organic engagement. Scans subreddits, drafts helpful replies.",
       you: [
-        {t:"Ryan Walsh persona", d:"Full identity with PFP, burner Gmail, Reddit account. Scans subreddits for engagement opportunities. AI drafts replies. Runs 8:30am/5pm CT via LaunchAgent. <span class='badge local'>LOCAL</span>"},
-        {t:"ENGAGE tab in dashboard", d:"Shows opportunities, draft replies, karma tracking. <span class='badge live'>LIVE</span>"},
+        {t:"Ryan Walsh persona", d:"Full identity: PFP at engage/ryan_walsh_pfp.png, burner Gmail, Reddit setup steps. Anti-detection: no links in first posts, natural commenting, subreddit cool-downs. <span class='badge local'>BUILT</span>"},
+        {t:"Scanner", d:"Runs 8:30am/5pm CT via LaunchAgent. Scans r/smallbusiness, r/freelance, r/entrepreneur, r/HVAC, r/Plumbing and 40+ other subs. AI drafts replies. ENGAGE tab in command.html. <span class='badge live'>SCANNING</span>"},
+        {t:"Posting Status", d:"Scanner finds opportunities daily (17 in last report). Reddit account needs manual creation. No replies posted yet. <span class='badge off'>ACCOUNT NOT CREATED</span>"},
       ],
       them: [
-        {t:"What Redditors see", d:"A helpful user named Ryan Walsh commenting on business-related threads. Never directly promotes BOSS. Builds karma and credibility over time. Anti-detection rules (no links in first posts, natural commenting pattern, cool-down between subreddits)."},
+        {t:"What Redditors would see", d:"A helpful user answering business questions. Never directly promotes BOSS. Builds karma and credibility over months. Eventually can reference BOSS Systems naturally in relevant threads."},
       ]
+    },
+    "Marketing Blockers": {
+      title: "Marketing Blockers",
+      subtitle: "Things preventing marketing channels from activating",
+      you: [
+        {t:"No Instagram Account", d:"BOSS Systems needs a business Instagram account. Content calendar and 12 reel scripts are ready. This is the single highest-impact blocker — Instagram + TikTok are the main channels for both audiences. <span class='badge off'>BLOCKER</span>"},
+        {t:"No TikTok Videos", d:"Images get 10% of video reach on TikTok. Boston needs to film short clips. Reel scripts are ready. <span class='badge off'>BLOCKER</span>"},
+        {t:"No Email Infrastructure", d:"Need SMTP provider (not Gmail). Cold Email Outreach workflow is dead until this is fixed. Also need PO Box for CAN-SPAM physical address requirement. <span class='badge off'>BLOCKER</span>"},
+        {t:"No Buffer API Key", d:"Social machine cannot auto-post without Buffer connected. <span class='badge off'>BLOCKER</span>"},
+        {t:"No Reddit Account (Ryan Walsh)", d:"Scanner works, drafts ready, but the Reddit account needs manual creation with the burner Gmail. <span class='badge off'>BLOCKER</span>"},
+        {t:"0 Partners for BPP Content", d:"Partner spotlight posts (Wednesday), peer proof texts, and referral asks all need at least one active partner producing real results. Without real proof, BPP marketing is theoretical. <span class='badge planned'>WAITING</span>"},
+        {t:"0 Clients for BOSS Content", d:"Case studies, before/after demos, real ROI numbers — all need at least one client. Wickham ($50/mo) is too small for compelling content. Need a $1,497+ Build client. <span class='badge planned'>WAITING</span>"},
+      ],
+      them: []
+    },
+    "What To Do Next": {
+      title: "Marketing Action Items — Priority Order",
+      subtitle: "What Boston needs to do, in order of impact",
+      you: [
+        {t:"1. Create Instagram business account", d:"Follow setup guide in marketing/instagram_setup.md. Bio, profile pic, highlights. Then start posting the content calendar Day 1. This unblocks both audiences on Instagram."},
+        {t:"2. Film first 3 reels", d:"Scripts are in marketing/reels_scripts.md. Film Reel #1 ('I called a Tyler TX HVAC business at 2am'), #2 ('What your business sounds like at midnight'), #3 (demo call). Cross-post to TikTok. This activates both primary content channels."},
+        {t:"3. Create Ryan Walsh Reddit account", d:"Follow steps in memory file ryan_walsh_setup.md. Burner Gmail, PFP ready. Start with karma-building comments for 2 weeks before any BOSS-adjacent content. Free, zero risk."},
+        {t:"4. Connect Buffer to social machine", d:"Get Buffer API key. Link Instagram + Facebook. Run python3 boss_command.py social to start AI-generated posts alongside manual reels."},
+        {t:"5. Send first postcards", d:"Use action.html templates. Print 20 postcards for East Texas HVAC/plumber businesses. Mystery call them first, then send postcards offering free phone audit. This is the highest-converting warm lead path."},
+        {t:"6. Land first real client", d:"Everything above feeds this. One paying Build client ($1,497+) unlocks case study content, real ROI numbers, and proof for both audiences. In-person demos in East Texas are the fastest path."},
+        {t:"7. Get first BPP partner active", d:"One partner doing real jobs unlocks partner spotlight content, peer proof, and referral asks. The first 3 partners ARE the marketing for partners 4-50."},
+      ],
+      them: []
     },
   },
   "Intelligence": {
@@ -413,10 +496,12 @@ var MAP = {
       title: "Business-Level Gaps",
       subtitle: "Things that need to happen outside of code",
       you: [
-        {t:"0 BOSS Systems clients", d:"Wickham is the only paying client ($50/mo). No Full Transformation ($5,997) clients yet."},
-        {t:"No LLC", d:"Boston is 17. Cannot form LLC, get business bank, or use Stripe. Payments through Venmo/Zelle."},
-        {t:"No email infrastructure", d:"Gmail node hangs. Need SMTP migration. Cold Email Outreach deactivated."},
-        {t:"No PO Box", d:"CAN-SPAM requires physical address for marketing emails."},
+        {t:"0 BOSS Systems clients (besides Wickham)", d:"Wickham is the only paying client ($50/mo lawn care). No Build ($1,497+) or Full Transformation ($5,997) clients yet. This is the #1 priority."},
+        {t:"0 active BPP partners", d:"Program is built and ready. No one has applied and started working yet. First 3 partners are the marketing for the next 50."},
+        {t:"No LLC", d:"Boston is 17. Cannot form LLC, get business bank, or use Stripe. Payments through Venmo/Zelle only."},
+        {t:"No email infrastructure", d:"Gmail node banned from all workflows. Need SMTP provider migration. Cold Email Outreach deactivated until fixed."},
+        {t:"No PO Box", d:"CAN-SPAM requires physical address for marketing emails. Blocks all email outreach."},
+        {t:"No Instagram/TikTok accounts", d:"Content calendar, scripts, and social machine are all ready. No accounts created yet. This blocks the primary marketing channels."},
         {t:"Retell backup key expired", d:"RETELL_BACKUP_KEY returns 401. Backup system non-functional."},
       ],
       them: []
@@ -425,11 +510,11 @@ var MAP = {
       title: "Technical Gaps",
       subtitle: "Things that are broken or limited in the code",
       you: [
-        {t:"Superniche Targeter schedule errors", d:"n8n Cloud platform crashes on schedule trigger. Cannot fix from code."},
-        {t:"Post-Call Handler deactivated", d:"Caused retry storms (222 executions burned). Needs careful reactivation."},
-        {t:"Social analytics manual", d:"Buffer API is posting-only. Need Meta Graph API for auto-pull."},
-        {t:"TikTok needs real video", d:"Images get 10% of video reach. Need Boston recording clips."},
-        {t:"No inbound screening", d:"522-4459 is the only inbound line. Could use a second number or smarter routing to separate serious prospects from browsers."},
+        {t:"Post-Call Handler inactive", d:"EGyXul1WqnnshU96 is currently OFF. Gmail nodes were replaced with ntfy but workflow was never reactivated. Sales callers have no post-call logging. Risk: reactivating could burn quota again."},
+        {t:"Social machine never activated", d:"0 posts, 0 bandit data. Needs Buffer API key. Built June 5, never used."},
+        {t:"Social analytics manual", d:"Buffer API is posting-only. Need Meta Graph API for automated engagement data pull."},
+        {t:"Morning text DNS failures", d:"LaunchAgent exits with code 1 when Mac has no internet at 7am. Not a code bug — network issue. Works when connected."},
+        {t:"Ryan Walsh Reddit account", d:"Scanner and drafts work. Account needs manual creation (burner Gmail, PFP ready, setup steps documented)."},
       ],
       them: []
     },
