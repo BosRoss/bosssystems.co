@@ -1,50 +1,22 @@
 {
-  "headers": {
-    "host": "jamross.app.n8n.cloud",
-    "user-agent": "curl/8.1.2",
-    "content-length": "255",
-    "accept": "*/*",
-    "accept-encoding": "gzip, br",
-    "cdn-loop": "cloudflare; loops=1; subreqs=1",
-    "cf-connecting-ip": "173.16.145.188",
-    "cf-ew-via": "15",
-    "cf-ipcountry": "US",
-    "cf-ray": "a0bc8445e970b025-ATL",
-    "cf-visitor": "{\"scheme\":\"https\"}",
-    "cf-worker": "n8n.cloud",
-    "content-type": "application/json",
-    "x-forwarded-for": "173.16.145.188, 172.71.22.61",
-    "x-forwarded-host": "jamross.app.n8n.cloud",
-    "x-forwarded-port": "443",
-    "x-forwarded-proto": "https",
-    "x-forwarded-server": "traefik-prod-users-gwc-96-786656fcc6-z25pb",
-    "x-is-trusted": "yes",
-    "x-real-ip": "173.16.145.188"
+  "pipeline": [
+    {
+      "name": "Test HVAC Co",
+      "stage": "prospect"
+    }
+  ],
+  "activity": [
+    {
+      "action": "added",
+      "detail": "Test HVAC Co as prospect",
+      "ts": "2026-06-14T21:55:00.000Z"
+    }
+  ],
+  "stats": {
+    "closed": 0,
+    "pitched": 0,
+    "prospects": 1,
+    "total": 1
   },
-  "params": {},
-  "query": {},
-  "body": {
-    "pipeline": [
-      {
-        "name": "Test Business",
-        "stage": "prospect"
-      }
-    ],
-    "activity": [
-      {
-        "action": "added",
-        "detail": "Test Business as prospect",
-        "ts": "2026-06-14T21:50:00.000Z"
-      }
-    ],
-    "stats": {
-      "closed": 0,
-      "pitched": 0,
-      "prospects": 1,
-      "total": 1
-    },
-    "synced_at": "2026-06-14T21:50:00.000Z"
-  },
-  "webhookUrl": "https://jamross.app.n8n.cloud/webhook/jt-pipeline-sync",
-  "executionMode": "production"
+  "synced_at": "2026-06-14T21:55:00.000Z"
 }
