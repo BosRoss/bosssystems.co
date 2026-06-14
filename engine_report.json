@@ -1,84 +1,84 @@
 {
-  "generated": "2026-06-13T00:12:45.343018+00:00",
+  "generated": "2026-06-14T15:57:04.702962+00:00",
   "engine_state": "active",
   "signals": [
     {
       "type": "flood",
-      "area": "Brewster, TX",
+      "area": "Irion; Tom Green; Concho; Crockett; Schleicher; Sutton; McCulloch; San Saba; Menard; Kimble; Mason",
       "niche": "plumbing",
-      "action": "Flood warnings in Brewster, TX. Plumbers, restoration, mold companies will spike.",
+      "action": "Flood warnings in Irion; Tom Green; Concho; Crockett; Schleicher; Sutton; McCulloch; San Saba; Menard; Kimble; Mason. Plumbers, restoration, mold companies will spike.",
       "urgency": "today",
       "pitch_hook": "Water damage calls are coming. Every one you miss is $500+ walking away."
     },
     {
       "type": "flood",
-      "area": "Jeff Davis, TX",
+      "area": "Llano; Burnet; Williamson; Val Verde; Edwards; Real; Kerr; Bandera; Gillespie; Kendall; Blanco; Hays; Travis; Bastrop; Lee; Kinney; Uvalde; Medina; Bexar; Comal; Guadalupe; Caldwell; Fayette; Maverick",
       "niche": "plumbing",
-      "action": "Flood warnings in Jeff Davis, TX. Plumbers, restoration, mold companies will spike.",
+      "action": "Flood warnings in Llano; Burnet; Williamson; Val Verde; Edwards; Real; Kerr; Bandera; Gillespie; Kendall; Blanco; Hays; Travis; Bastrop; Lee; Kinney; Uvalde; Medina; Bexar; Comal; Guadalupe; Caldwell; Fayette; Maverick. Plumbers, restoration, mold companies will spike.",
       "urgency": "today",
       "pitch_hook": "Water damage calls are coming. Every one you miss is $500+ walking away."
     },
     {
       "type": "flood",
-      "area": "Brewster, TX; Jeff Davis, TX; Pecos, TX",
+      "area": "Aransas Islands; Kleberg Islands; Nueces Islands; Calhoun Islands",
       "niche": "plumbing",
-      "action": "Flood warnings in Brewster, TX; Jeff Davis, TX; Pecos, TX. Plumbers, restoration, mold companies will spike.",
+      "action": "Flood warnings in Aransas Islands; Kleberg Islands; Nueces Islands; Calhoun Islands. Plumbers, restoration, mold companies will spike.",
       "urgency": "today",
       "pitch_hook": "Water damage calls are coming. Every one you miss is $500+ walking away."
-    },
-    {
-      "type": "storm",
-      "area": "Beaver, OK; Cimarron, OK; Texas, OK; Dallam, TX; Hansford, TX; Hartley, TX; Hemphill, TX; Hutchinson, TX; Lipscomb, TX; Moore, TX; Ochiltree, TX; Roberts, TX; Sherman, TX",
-      "niche": "roofing",
-      "action": "Storm damage in Beaver, OK; Cimarron, OK; Texas, OK; Dallam, TX; Hansford, TX; Hartley, TX; Hemphill, TX; Hutchinson, TX; Lipscomb, TX; Moore, TX; Ochiltree, TX; Roberts, TX; Sherman, TX. Roofers and restoration companies about to get flooded.",
-      "urgency": "today",
-      "pitch_hook": "After a storm like that, you'll get 10x your normal call volume. Ready for it?"
     },
     {
       "type": "flood",
-      "area": "Shackelford, TX; Throckmorton, TX",
+      "area": "Kenedy Island; Willacy Island; Cameron Island",
       "niche": "plumbing",
-      "action": "Flood warnings in Shackelford, TX; Throckmorton, TX. Plumbers, restoration, mold companies will spike.",
+      "action": "Flood warnings in Kenedy Island; Willacy Island; Cameron Island. Plumbers, restoration, mold companies will spike.",
       "urgency": "today",
       "pitch_hook": "Water damage calls are coming. Every one you miss is $500+ walking away."
-    },
-    {
-      "type": "heat_wave",
-      "area": "Palo Duro Canyon",
-      "niche": "hvac",
-      "action": "HVAC businesses in Palo Duro Canyon are drowning in calls right now. Perfect time to pitch.",
-      "urgency": "today",
-      "pitch_hook": "You're getting slammed with calls \u2014 how many went to voicemail today?"
-    },
-    {
-      "type": "heat_wave",
-      "area": "Chicot; East Carroll; Madison; Catahoula; Tensas; Concordia; Bolivar; Sunflower; Leflore; Washington; Humphreys; Issaquena; Sharkey; Yazoo; Madison; Warren; Hinds; Rankin; Claiborne; Copiah; Simpson; ",
-      "niche": "hvac",
-      "action": "HVAC businesses in Chicot; East Carroll; Madison; Catahoula; Tensas; Concordia; Bolivar; Sunflower; Leflore; Washington; Humphreys; Issaquena; Sharkey; Yazoo; Madison; Warren; Hinds; Rankin; Claiborne; Copiah; Simpson;  are drowning in calls right now. Perfect time to pitch.",
-      "urgency": "today",
-      "pitch_hook": "You're getting slammed with calls \u2014 how many went to voicemail today?"
     },
     {
       "type": "flood",
-      "area": "Benton; Washington; Nowata; Craig; Ottawa; Mayes; Delaware; Cherokee; Adair",
+      "area": "Matagorda Islands; Brazoria Islands; Galveston Island; Bolivar Peninsula",
       "niche": "plumbing",
-      "action": "Flood warnings in Benton; Washington; Nowata; Craig; Ottawa; Mayes; Delaware; Cherokee; Adair. Plumbers, restoration, mold companies will spike.",
+      "action": "Flood warnings in Matagorda Islands; Brazoria Islands; Galveston Island; Bolivar Peninsula. Plumbers, restoration, mold companies will spike.",
       "urgency": "today",
       "pitch_hook": "Water damage calls are coming. Every one you miss is $500+ walking away."
     },
     {
-      "type": "storm",
-      "area": "Ellis, OK; Harper, OK; Woods, OK; Woodward, OK",
-      "niche": "roofing",
-      "action": "Storm damage in Ellis, OK; Harper, OK; Woods, OK; Woodward, OK. Roofers and restoration companies about to get flooded.",
+      "type": "flood",
+      "area": "White, AR; Woodruff, AR",
+      "niche": "plumbing",
+      "action": "Flood warnings in White, AR; Woodruff, AR. Plumbers, restoration, mold companies will spike.",
       "urgency": "today",
-      "pitch_hook": "After a storm like that, you'll get 10x your normal call volume. Ready for it?"
+      "pitch_hook": "Water damage calls are coming. Every one you miss is $500+ walking away."
+    },
+    {
+      "type": "flood",
+      "area": "Cherokee, OK; Delaware, OK",
+      "niche": "plumbing",
+      "action": "Flood warnings in Cherokee, OK; Delaware, OK. Plumbers, restoration, mold companies will spike.",
+      "urgency": "today",
+      "pitch_hook": "Water damage calls are coming. Every one you miss is $500+ walking away."
     },
     {
       "type": "flood",
       "area": "Ottawa, OK",
       "niche": "plumbing",
       "action": "Flood warnings in Ottawa, OK. Plumbers, restoration, mold companies will spike.",
+      "urgency": "today",
+      "pitch_hook": "Water damage calls are coming. Every one you miss is $500+ walking away."
+    },
+    {
+      "type": "flood",
+      "area": "Adair, OK; Delaware, OK",
+      "niche": "plumbing",
+      "action": "Flood warnings in Adair, OK; Delaware, OK. Plumbers, restoration, mold companies will spike.",
+      "urgency": "today",
+      "pitch_hook": "Water damage calls are coming. Every one you miss is $500+ walking away."
+    },
+    {
+      "type": "flood",
+      "area": "Cherokee, OK",
+      "niche": "plumbing",
+      "action": "Flood warnings in Cherokee, OK. Plumbers, restoration, mold companies will spike.",
       "urgency": "today",
       "pitch_hook": "Water damage calls are coming. Every one you miss is $500+ walking away."
     }
@@ -239,55 +239,55 @@
   "feeds": [
     {
       "name": "NOAA",
-      "last_hit": "2026-06-13T00:05:20.662857+00:00",
+      "last_hit": "2026-06-14T15:49:52.573956+00:00",
       "status": "yellow",
       "data_points_today": 0
     },
     {
       "name": "REDDIT",
-      "last_hit": "2026-06-13T00:05:20.662857+00:00",
+      "last_hit": "2026-06-14T15:49:52.573956+00:00",
       "status": "green",
       "data_points_today": 40
     },
     {
       "name": "USGS",
-      "last_hit": "2026-06-13T00:05:20.662857+00:00",
+      "last_hit": "2026-06-14T15:49:52.573956+00:00",
       "status": "yellow",
       "data_points_today": 0
     },
     {
       "name": "HACKERNEWS",
-      "last_hit": "2026-06-13T00:05:20.662857+00:00",
+      "last_hit": "2026-06-14T15:49:52.573956+00:00",
       "status": "green",
       "data_points_today": 30
     },
     {
       "name": "FEMA",
-      "last_hit": "2026-06-13T00:05:20.662857+00:00",
+      "last_hit": "2026-06-14T15:49:52.573956+00:00",
       "status": "green",
       "data_points_today": 20
     },
     {
       "name": "COMMODITIES",
-      "last_hit": "2026-06-13T00:05:20.662857+00:00",
+      "last_hit": "2026-06-14T15:49:52.573956+00:00",
       "status": "green",
       "data_points_today": 7
     },
     {
       "name": "RSS",
-      "last_hit": "2026-06-13T00:05:20.662857+00:00",
+      "last_hit": "2026-06-14T15:49:52.573956+00:00",
       "status": "green",
       "data_points_today": 170
     },
     {
       "name": "FRED",
-      "last_hit": "2026-06-13T00:05:20.662857+00:00",
+      "last_hit": "2026-06-14T15:49:52.573956+00:00",
       "status": "yellow",
       "data_points_today": 0
     },
     {
       "name": "BLS",
-      "last_hit": "2026-06-13T00:05:20.662857+00:00",
+      "last_hit": "2026-06-14T15:49:52.573956+00:00",
       "status": "green",
       "data_points_today": 9
     }
