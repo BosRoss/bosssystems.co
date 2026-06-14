@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Find Your Business — BOSS Summer Partner Program</title>
+<title>Find Your Business — BOSS Partnership Program</title>
 <meta name="description" content="Take a 2-minute quiz to find out which business is right for you and where the market is wide open.">
 <style>
 *{margin:0;padding:0;box-sizing:border-box}
@@ -114,7 +114,7 @@ nav{position:sticky;top:0;z-index:100;background:rgba(8,8,8,.97);border-bottom:1
 <div class="quiz-wrap">
   <div class="container">
     <div class="quiz-header">
-      <div class="quiz-label">Summer Partner Program</div>
+      <div class="quiz-label">BOSS Partnership Program</div>
       <h1 class="quiz-title">Find Your Business</h1>
       <p class="quiz-sub">Answer 6 questions. We'll tell you what business fits you and where the market is open.</p>
     </div>
@@ -235,7 +235,7 @@ nav{position:sticky;top:0;z-index:100;background:rgba(8,8,8,.97);border-bottom:1
             <div><div class="opt-label">20-30 hours</div><div class="opt-desc">Solid effort, real money</div></div>
           </div>
           <div class="opt" data-val="35" onclick="selectOne(this,4)">
-            <div><div class="opt-label">35-40 hours</div><div class="opt-desc">Full-time grind all summer</div></div>
+            <div><div class="opt-label">35-40 hours</div><div class="opt-desc">Full-time grind</div></div>
           </div>
           <div class="opt" data-val="40" onclick="selectOne(this,4)">
             <div><div class="opt-label">40+ hours</div><div class="opt-desc">I want to make as much as possible</div></div>
@@ -279,7 +279,7 @@ nav{position:sticky;top:0;z-index:100;background:rgba(8,8,8,.97);border-bottom:1
         <div class="opt-grid">
           <div class="opt" data-val="money" onclick="selectOne(this,6)">
             <div class="opt-icon">💰</div>
-            <div><div class="opt-label">Maximum Money</div><div class="opt-desc">I want the highest possible earnings this summer.</div></div>
+            <div><div class="opt-label">Maximum Money</div><div class="opt-desc">I want the highest possible earnings.</div></div>
           </div>
           <div class="opt" data-val="easy" onclick="selectOne(this,6)">
             <div class="opt-icon">🎯</div>
@@ -287,7 +287,7 @@ nav{position:sticky;top:0;z-index:100;background:rgba(8,8,8,.97);border-bottom:1
           </div>
           <div class="opt" data-val="skill" onclick="selectOne(this,6)">
             <div class="opt-icon">🧠</div>
-            <div><div class="opt-label">Build a Real Skill</div><div class="opt-desc">I want something I can keep doing after this summer.</div></div>
+            <div><div class="opt-label">Build a Real Skill</div><div class="opt-desc">I want something I can keep doing long-term.</div></div>
           </div>
           <div class="opt" data-val="fun" onclick="selectOne(this,6)">
             <div class="opt-icon">✨</div>
@@ -615,7 +615,7 @@ function scoreBusiness(key, biz) {
   else if (answers.hours >= 20) { weeklyEst = Math.round((biz.weeklyLow + biz.weeklyHigh) / 2); }
   else { weeklyEst = biz.weeklyLow; }
 
-  // Summer (12 weeks) projection, 80% after BOSS cut
+  // 12-week projection, 80% after BOSS cut
   var summerGross = weeklyEst * 12;
   var summerNet = Math.round(summerGross * 0.8);
   var weeklyNet = Math.round(weeklyEst * 0.8);
@@ -666,7 +666,7 @@ function showResults() {
     html += '<div class="match-why">' + biz.description + '</div>';
     html += '<div class="match-stats">';
     html += '<div class="match-stat"><div class="match-stat-val">$' + r.weeklyNet.toLocaleString() + '</div><div class="match-stat-label">Weekly (your 80%)</div></div>';
-    html += '<div class="match-stat"><div class="match-stat-val">$' + r.summerNet.toLocaleString() + '</div><div class="match-stat-label">12-Week Summer</div></div>';
+    html += '<div class="match-stat"><div class="match-stat-val">$' + r.summerNet.toLocaleString() + '</div><div class="match-stat-label">12-Week Total</div></div>';
     html += '<div class="match-stat"><div class="match-stat-val">$' + biz.startup + '</div><div class="match-stat-label">Startup Cost</div></div>';
     html += '</div>';
     if (r.reasons.length) {
