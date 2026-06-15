@@ -1,84 +1,84 @@
 {
-  "generated": "2026-06-15T12:46:27.290445+00:00",
+  "generated": "2026-06-15T13:23:31.055885+00:00",
   "engine_state": "active",
   "signals": [
     {
       "type": "flood",
-      "area": "Falls, TX",
+      "area": "Bexar, TX; Comal, TX; Guadalupe, TX; Hays, TX",
       "niche": "plumbing",
-      "action": "Flood warnings in Falls, TX. Plumbers, restoration, mold companies will spike.",
+      "action": "Flood warnings in Bexar, TX; Comal, TX; Guadalupe, TX; Hays, TX. Plumbers, restoration, mold companies will spike.",
       "urgency": "today",
       "pitch_hook": "Water damage calls are coming. Every one you miss is $500+ walking away."
     },
     {
       "type": "flood",
-      "area": "Burnet, TX",
+      "area": "Medina, TX; Uvalde, TX",
       "niche": "plumbing",
-      "action": "Flood warnings in Burnet, TX. Plumbers, restoration, mold companies will spike.",
+      "action": "Flood warnings in Medina, TX; Uvalde, TX. Plumbers, restoration, mold companies will spike.",
       "urgency": "today",
       "pitch_hook": "Water damage calls are coming. Every one you miss is $500+ walking away."
     },
     {
       "type": "flood",
-      "area": "Kimble, TX; Mason, TX",
+      "area": "Bastrop, TX; Lee, TX; Travis, TX; Williamson, TX",
       "niche": "plumbing",
-      "action": "Flood warnings in Kimble, TX; Mason, TX. Plumbers, restoration, mold companies will spike.",
+      "action": "Flood warnings in Bastrop, TX; Lee, TX; Travis, TX; Williamson, TX. Plumbers, restoration, mold companies will spike.",
       "urgency": "today",
       "pitch_hook": "Water damage calls are coming. Every one you miss is $500+ walking away."
     },
     {
       "type": "flood",
-      "area": "Edwards, TX; Val Verde, TX",
+      "area": "Milam, TX",
       "niche": "plumbing",
-      "action": "Flood warnings in Edwards, TX; Val Verde, TX. Plumbers, restoration, mold companies will spike.",
+      "action": "Flood warnings in Milam, TX. Plumbers, restoration, mold companies will spike.",
       "urgency": "today",
       "pitch_hook": "Water damage calls are coming. Every one you miss is $500+ walking away."
     },
     {
       "type": "flood",
-      "area": "McLennan, TX",
+      "area": "Maverick, TX",
       "niche": "plumbing",
-      "action": "Flood warnings in McLennan, TX. Plumbers, restoration, mold companies will spike.",
+      "action": "Flood warnings in Maverick, TX. Plumbers, restoration, mold companies will spike.",
       "urgency": "today",
       "pitch_hook": "Water damage calls are coming. Every one you miss is $500+ walking away."
     },
     {
       "type": "flood",
-      "area": "Bell, TX; Coryell, TX; Falls, TX; McLennan, TX",
+      "area": "Hidalgo, TX",
       "niche": "plumbing",
-      "action": "Flood warnings in Bell, TX; Coryell, TX; Falls, TX; McLennan, TX. Plumbers, restoration, mold companies will spike.",
+      "action": "Flood warnings in Hidalgo, TX. Plumbers, restoration, mold companies will spike.",
       "urgency": "today",
       "pitch_hook": "Water damage calls are coming. Every one you miss is $500+ walking away."
     },
     {
       "type": "flood",
-      "area": "Bell, TX; Falls, TX; Milam, TX",
+      "area": "Brazos, TX; Burleson, TX",
       "niche": "plumbing",
-      "action": "Flood warnings in Bell, TX; Falls, TX; Milam, TX. Plumbers, restoration, mold companies will spike.",
+      "action": "Flood warnings in Brazos, TX; Burleson, TX. Plumbers, restoration, mold companies will spike.",
       "urgency": "today",
       "pitch_hook": "Water damage calls are coming. Every one you miss is $500+ walking away."
     },
     {
       "type": "flood",
-      "area": "El Paso, TX",
+      "area": "Cameron, TX; Hidalgo, TX",
       "niche": "plumbing",
-      "action": "Flood warnings in El Paso, TX. Plumbers, restoration, mold companies will spike.",
+      "action": "Flood warnings in Cameron, TX; Hidalgo, TX. Plumbers, restoration, mold companies will spike.",
       "urgency": "today",
       "pitch_hook": "Water damage calls are coming. Every one you miss is $500+ walking away."
     },
     {
       "type": "flood",
-      "area": "Llano, TX",
+      "area": "Blanco, TX; Hays, TX; Travis, TX",
       "niche": "plumbing",
-      "action": "Flood warnings in Llano, TX. Plumbers, restoration, mold companies will spike.",
+      "action": "Flood warnings in Blanco, TX; Hays, TX; Travis, TX. Plumbers, restoration, mold companies will spike.",
       "urgency": "today",
       "pitch_hook": "Water damage calls are coming. Every one you miss is $500+ walking away."
     },
     {
       "type": "flood",
-      "area": "Dona Ana, NM; El Paso, TX",
+      "area": "Harrison, MS; Jackson, MS",
       "niche": "plumbing",
-      "action": "Flood warnings in Dona Ana, NM; El Paso, TX. Plumbers, restoration, mold companies will spike.",
+      "action": "Flood warnings in Harrison, MS; Jackson, MS. Plumbers, restoration, mold companies will spike.",
       "urgency": "today",
       "pitch_hook": "Water damage calls are coming. Every one you miss is $500+ walking away."
     }
@@ -239,55 +239,55 @@
   "feeds": [
     {
       "name": "NOAA",
-      "last_hit": "2026-06-15T03:04:39.364650+00:00",
+      "last_hit": "2026-06-15T13:16:21.437206+00:00",
       "status": "yellow",
       "data_points_today": 0
     },
     {
       "name": "REDDIT",
-      "last_hit": "2026-06-15T03:04:39.364650+00:00",
+      "last_hit": "2026-06-15T13:16:21.437206+00:00",
       "status": "green",
-      "data_points_today": 80
+      "data_points_today": 20
     },
     {
       "name": "USGS",
-      "last_hit": "2026-06-15T03:04:39.364650+00:00",
+      "last_hit": "2026-06-15T13:16:21.437206+00:00",
       "status": "yellow",
       "data_points_today": 0
     },
     {
       "name": "HACKERNEWS",
-      "last_hit": "2026-06-15T03:04:39.364650+00:00",
+      "last_hit": "2026-06-15T13:16:21.437206+00:00",
       "status": "green",
       "data_points_today": 30
     },
     {
       "name": "FEMA",
-      "last_hit": "2026-06-15T03:04:39.364650+00:00",
+      "last_hit": "2026-06-15T13:16:21.437206+00:00",
       "status": "green",
       "data_points_today": 20
     },
     {
       "name": "COMMODITIES",
-      "last_hit": "2026-06-15T03:04:39.364650+00:00",
+      "last_hit": "2026-06-15T13:16:21.437206+00:00",
       "status": "green",
       "data_points_today": 7
     },
     {
       "name": "RSS",
-      "last_hit": "2026-06-15T03:04:39.364650+00:00",
+      "last_hit": "2026-06-15T13:16:21.437206+00:00",
       "status": "green",
-      "data_points_today": 120
+      "data_points_today": 170
     },
     {
       "name": "FRED",
-      "last_hit": "2026-06-15T03:04:39.364650+00:00",
+      "last_hit": "2026-06-15T13:16:21.437206+00:00",
       "status": "yellow",
       "data_points_today": 0
     },
     {
       "name": "BLS",
-      "last_hit": "2026-06-15T03:04:39.364650+00:00",
+      "last_hit": "2026-06-15T13:16:21.437206+00:00",
       "status": "green",
       "data_points_today": 9
     }
