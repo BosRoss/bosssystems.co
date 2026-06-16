@@ -17,7 +17,7 @@
     "mainGoal": "Make as much money as possible",
     "aiScore": 1,
     "aiRecommendation": "DECLINE",
-    "aiReasoning": "AI flagged as troll. Boston says approve \u2014 he told this person to apply and would approve manually.",
+    "aiReasoning": "AI flagged as troll. Boston says approve — he told this person to apply and would approve manually.",
     "status": "APPROVED",
     "decidedAt": "2026-06-06T02:15:41.836Z",
     "realName": "Anderson Wickham (Tung tung tung Sahur)"
@@ -43,5 +43,26 @@
     "aiReasoning": "Test submission from Boston himself.",
     "status": "DECLINED",
     "decidedAt": "2026-06-06T02:15:50.438Z"
+  },
+  {
+    "timestamp": "2026-06-16T02:40:42.239Z",
+    "firstName": "D",
+    "lastName": "Green",
+    "age": 18,
+    "cityState": "Tyler Tx",
+    "phone": "9033122010",
+    "business": "Pressure Washing",
+    "truckAccess": "",
+    "hoursPerWeek": "30+",
+    "whyBusiness": "I like pressure washing and I can make a lot of money",
+    "priorWork": "Yes I worked in fast food",
+    "hearAbout": "Friend",
+    "socialHandle": "",
+    "mainGoal": "Make as much money as possible",
+    "aiScore": 6,
+    "aiRecommendation": "REVIEW",
+    "aiReasoning": "Has hustle experience, availability, and local fit, but no vehicle confirmed and 'make money' as the only motivation are red flags worth a quick call to clarify before approving.",
+    "status": "PENDING",
+    "bostonMessage": ""
   }
 ]
