@@ -1,72 +1,47 @@
 {
-  "generated": "2026-06-14T20:30:00.186066+00:00",
+  "generated": "2026-06-16T02:11:13.494241+00:00",
   "sections": {
     "atlas": {
       "power_level": "ACTIVE",
-      "last_scan": "2026-06-14T18:21:50.867552+00:00",
-      "scan_count": 99,
-      "heat_score": 100,
-      "recommendation": "HOT DAY. Weather-driven demand in Houston; Trinity; Madison; Walker; San Jacinto; Polk; Burleson; Brazos; Washington; Grimes; Montgomery; Northern Liberty; Colorado; Austin; Waller; Inland Harris; Chambers; Wharton; Fort Bend; Inland , La Salle; McMullen; Live Oak; Bee; Goliad; Victoria; Webb; Duval; Jim Wells; Inland Kleberg; Inland Nueces; Inland San Patricio; Coastal Aransas; Inland Refugio; Inland Calhoun; Coastal Kleberg; Coast, Irion; Tom Green; Concho; Crockett; Schleicher; Sutton; McCulloch; San Saba; Menard; Kimble; Mason. Call HVAC/roofers there NOW.",
-      "demand_signals": 10,
+      "last_scan": "2026-06-15T20:19:47.713238+00:00",
+      "scan_count": 104,
+      "heat_score": 0,
+      "recommendation": "QUIET. No actionable intel. Focus on product, content, or in-person visits.",
+      "demand_signals": 0,
       "pain_signals": 0,
       "pitch_adjustments": 0,
       "competitor_intel": 0,
-      "territory_alerts": 6,
-      "top_demands": [
-        {
-          "type": "flood",
-          "area": "Zapata; Jim Hogg; Brooks; Inland Kenedy; Starr; Southern Hid",
-          "niche": "plumbing"
-        },
-        {
-          "type": "flood",
-          "area": "Lampasas; Coryell; Bell; Falls; Leon; Milam; Robertson",
-          "niche": "plumbing"
-        },
-        {
-          "type": "flood",
-          "area": "Houston; Trinity; Madison; Walker; San Jacinto; Polk; Burles",
-          "niche": "plumbing"
-        },
-        {
-          "type": "flood",
-          "area": "La Salle; McMullen; Live Oak; Bee; Goliad; Victoria; Webb; D",
-          "niche": "plumbing"
-        },
-        {
-          "type": "flood",
-          "area": "Irion; Tom Green; Concho; Crockett; Schleicher; Sutton; McCu",
-          "niche": "plumbing"
-        }
-      ],
+      "territory_alerts": 0,
+      "top_demands": [],
       "sources_online": 0
     },
     "lead_engine": {
       "state": "ACTIVE",
-      "total_leads": 169,
+      "total_leads": 173,
       "by_tier": {
-        "SUPERNICHE": 11,
-        "HOT": 38,
-        "WARM": 120
+        "SUPERNICHE": 13,
+        "HOT": 39,
+        "WARM": 121
       },
       "by_route": {
-        "watchlist": 133,
+        "watchlist": 137,
         "email": 36
       },
       "by_status": {
-        "queued": 116,
-        "called": 53
+        "re_engaged": 84,
+        "queued": 66,
+        "called": 23
       },
       "synced_to_pipeline": 21,
-      "api_spend": 5.76,
+      "api_spend": 6.4,
       "api_budget": 300.0,
-      "api_percent": 1.9,
-      "outcomes_recorded": 83,
+      "api_percent": 2.1,
+      "outcomes_recorded": 113,
       "by_outcome": {
         "no_answer": 6,
         "hangup": 2,
-        "call_failed": 22,
-        "call_initiated": 53
+        "call_failed": 37,
+        "call_initiated": 68
       },
       "learned_weights": false,
       "suppression_count": 0,
@@ -90,6 +65,15 @@
           "status": "queued"
         },
         {
+          "name": "Anderson Plumbing LLC",
+          "niche": "plumbing",
+          "state": "MS",
+          "tier": "SUPERNICHE",
+          "score": 72,
+          "route": "watchlist",
+          "status": "queued"
+        },
+        {
           "name": "Jimmy's Plumbing",
           "niche": "plumber",
           "state": "AR",
@@ -105,7 +89,7 @@
           "tier": "SUPERNICHE",
           "score": 63,
           "route": "watchlist",
-          "status": "queued"
+          "status": "re_engaged"
         },
         {
           "name": "Pinner Plumbing & Heating Inc",
@@ -114,7 +98,7 @@
           "tier": "SUPERNICHE",
           "score": 63,
           "route": "watchlist",
-          "status": "queued"
+          "status": "re_engaged"
         },
         {
           "name": "Mcbee Plumbing",
@@ -132,7 +116,7 @@
           "tier": "SUPERNICHE",
           "score": 62,
           "route": "watchlist",
-          "status": "called"
+          "status": "re_engaged"
         },
         {
           "name": "Delcase Plumbing Co",
@@ -151,22 +135,13 @@
           "score": 62,
           "route": "watchlist",
           "status": "called"
-        },
-        {
-          "name": "Bolton Heat & Air",
-          "niche": "HVAC contractor",
-          "state": "OK",
-          "tier": "SUPERNICHE",
-          "score": 60,
-          "route": "watchlist",
-          "status": "queued"
         }
       ]
     },
     "n8n": {
-      "active_workflows": 84,
+      "active_workflows": 86,
       "inactive_workflows": 44,
-      "total_workflows": 128,
+      "total_workflows": 130,
       "recent_errors": 20,
       "recent_crashes": 10,
       "critical_workflows": [
@@ -213,24 +188,24 @@
       ],
       "recent_failures": [
         {
-          "workflow": "kGJ7aDQmp3MgiPWI",
-          "started": "2026-06-14T20:16"
+          "workflow": "VeofXawy3ISKcQY7",
+          "started": "2026-06-15T22:00"
         },
         {
-          "workflow": "kGJ7aDQmp3MgiPWI",
-          "started": "2026-06-14T20:15"
+          "workflow": "JBEeMWjn59t5lhGx",
+          "started": "2026-06-15T22:00"
         },
         {
-          "workflow": "vEFUb1JgV8SB8Rd6",
-          "started": "2026-06-14T20:10"
+          "workflow": "HWQP9Xg2D9T0yWQ1",
+          "started": "2026-06-15T18:00"
         },
         {
-          "workflow": "ZDSPwybv85D4cDcX",
-          "started": "2026-06-14T20:10"
+          "workflow": "koi5QT6XJvuoPuvL",
+          "started": "2026-06-15T18:00"
         },
         {
-          "workflow": "kGJ7aDQmp3MgiPWI",
-          "started": "2026-06-14T20:09"
+          "workflow": "8jvr7e9CDZgggXzM",
+          "started": "2026-06-15T17:00"
         }
       ]
     },
@@ -289,9 +264,9 @@
         }
       ],
       "calls_24h": 50,
-      "outbound_24h": 48,
-      "inbound_24h": 2,
-      "avg_duration_sec": 15.8
+      "outbound_24h": 47,
+      "inbound_24h": 3,
+      "avg_duration_sec": 16.2
     },
     "quant": {
       "state": "ACTIVE",
@@ -304,7 +279,7 @@
       "atlas_power": "ACTIVE",
       "n8n_errors_24h": 20,
       "retell_calls_24h": 50,
-      "api_spend_pct": 1.9
+      "api_spend_pct": 2.1
     }
   }
 }
