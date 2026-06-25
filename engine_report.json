@@ -1,5 +1,5 @@
 {
-  "generated": "2026-06-25T20:11:29.766532+00:00",
+  "generated": "2026-06-25T20:30:14.728655+00:00",
   "engine_state": "active",
   "signals": [
     {
@@ -94,6 +94,15 @@
       "trigger": "flood"
     },
     {
+      "name": "plumbing",
+      "city": "MS",
+      "score": 78,
+      "tier": "SUPERNICHE",
+      "channel": "watchlist",
+      "sequence_status": "queued",
+      "trigger": "flood"
+    },
+    {
       "name": "plumber",
       "city": "NM",
       "score": 72,
@@ -117,7 +126,16 @@
       "score": 68,
       "tier": "SUPERNICHE",
       "channel": "watchlist",
-      "sequence_status": "called",
+      "sequence_status": "re_engaged",
+      "trigger": "territory_alert"
+    },
+    {
+      "name": "plumber",
+      "city": "OK",
+      "score": 67,
+      "tier": "SUPERNICHE",
+      "channel": "email",
+      "sequence_status": "queued",
       "trigger": "territory_alert"
     },
     {
@@ -162,7 +180,7 @@
       "score": 62,
       "tier": "SUPERNICHE",
       "channel": "watchlist",
-      "sequence_status": "called",
+      "sequence_status": "re_engaged",
       "trigger": "territory_alert"
     },
     {
@@ -171,7 +189,7 @@
       "score": 62,
       "tier": "SUPERNICHE",
       "channel": "watchlist",
-      "sequence_status": "called",
+      "sequence_status": "re_engaged",
       "trigger": "territory_alert"
     },
     {
@@ -200,104 +218,86 @@
       "channel": "watchlist",
       "sequence_status": "queued",
       "trigger": "flood"
-    },
-    {
-      "name": "plumber",
-      "city": "AL",
-      "score": 54,
-      "tier": "HOT",
-      "channel": "watchlist",
-      "sequence_status": "re_engaged",
-      "trigger": ""
-    },
-    {
-      "name": "plumber",
-      "city": "AL",
-      "score": 53,
-      "tier": "HOT",
-      "channel": "email",
-      "sequence_status": "re_engaged",
-      "trigger": ""
     }
   ],
   "kpis": {
     "signals_firing": 10,
-    "leads_superniche": 13,
-    "leads_hot": 39,
-    "leads_warm": 121,
-    "cost_per_qualified": 0.49,
-    "total_spend": 6.400000000000005,
+    "leads_superniche": 15,
+    "leads_hot": 43,
+    "leads_warm": 142,
+    "cost_per_qualified": 0.47,
+    "total_spend": 7.040000000000005,
     "spend_cap": 300.0
   },
   "channels": {
-    "emails_sent": 70,
+    "emails_sent": 76,
     "texts_sent": 8,
     "calls_made": 0,
-    "meetings_set": 0,
+    "meetings_set": 2,
     "closes": 0
   },
   "feeds": [
     {
       "name": "NOAA",
-      "last_hit": "2026-06-25T20:04:58.112675+00:00",
+      "last_hit": "2026-06-25T20:23:43.433298+00:00",
       "status": "yellow",
       "data_points_today": 0
     },
     {
       "name": "REDDIT",
-      "last_hit": "2026-06-25T20:04:58.112675+00:00",
+      "last_hit": "2026-06-25T20:23:43.433298+00:00",
       "status": "green",
       "data_points_today": 40
     },
     {
       "name": "USGS",
-      "last_hit": "2026-06-25T20:04:58.112675+00:00",
+      "last_hit": "2026-06-25T20:23:43.433298+00:00",
       "status": "yellow",
       "data_points_today": 0
     },
     {
       "name": "HACKERNEWS",
-      "last_hit": "2026-06-25T20:04:58.112675+00:00",
+      "last_hit": "2026-06-25T20:23:43.433298+00:00",
       "status": "green",
       "data_points_today": 30
     },
     {
       "name": "FEMA",
-      "last_hit": "2026-06-25T20:04:58.112675+00:00",
+      "last_hit": "2026-06-25T20:23:43.433298+00:00",
       "status": "green",
       "data_points_today": 20
     },
     {
       "name": "COMMODITIES",
-      "last_hit": "2026-06-25T20:04:58.112675+00:00",
+      "last_hit": "2026-06-25T20:23:43.433298+00:00",
       "status": "green",
       "data_points_today": 7
     },
     {
       "name": "RSS",
-      "last_hit": "2026-06-25T20:04:58.112675+00:00",
+      "last_hit": "2026-06-25T20:23:43.433298+00:00",
       "status": "green",
       "data_points_today": 170
     },
     {
       "name": "FRED",
-      "last_hit": "2026-06-25T20:04:58.112675+00:00",
+      "last_hit": "2026-06-25T20:23:43.433298+00:00",
       "status": "yellow",
       "data_points_today": 0
     },
     {
       "name": "BLS",
-      "last_hit": "2026-06-25T20:04:58.112675+00:00",
+      "last_hit": "2026-06-25T20:23:43.433298+00:00",
       "status": "green",
       "data_points_today": 9
     }
   ],
   "conversion_funnel": {
     "signals": 10,
-    "leads": 173,
-    "contacted": 78,
-    "replied": 0,
-    "meeting": 0,
+    "leads": 200,
+    "contacted": 84,
+    "replied": 2,
+    "meeting": 2,
     "close": 0
   }
 }
