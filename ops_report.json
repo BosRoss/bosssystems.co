@@ -1,18 +1,44 @@
 {
-  "generated": "2026-06-16T02:11:13.494241+00:00",
+  "generated": "2026-06-25T20:24:38.865944+00:00",
   "sections": {
     "atlas": {
       "power_level": "ACTIVE",
-      "last_scan": "2026-06-15T20:19:47.713238+00:00",
-      "scan_count": 104,
-      "heat_score": 0,
-      "recommendation": "QUIET. No actionable intel. Focus on product, content, or in-person visits.",
-      "demand_signals": 0,
+      "last_scan": "2026-06-25T20:04:58.112675+00:00",
+      "scan_count": 106,
+      "heat_score": 100,
+      "recommendation": "HOT DAY. Weather-driven demand in Western El Paso County; Eastern/Central El Paso County; Rio Grande Valley of Eastern El Paso/Western Hudspeth Counties; Rio Grande Valley of Eastern Hudspeth County, Rankin, MS, Presidio Valley; Lower Brewster County. Call HVAC/roofers there NOW.",
+      "demand_signals": 10,
       "pain_signals": 0,
       "pitch_adjustments": 0,
       "competitor_intel": 0,
-      "territory_alerts": 0,
-      "top_demands": [],
+      "territory_alerts": 10,
+      "top_demands": [
+        {
+          "type": "storm",
+          "area": "Beaver, OK; Lipscomb, TX",
+          "niche": "roofing"
+        },
+        {
+          "type": "flood",
+          "area": "Beaver; Lipscomb",
+          "niche": "plumbing"
+        },
+        {
+          "type": "flood",
+          "area": "Brazos, TX; Grimes, TX; Madison, TX",
+          "niche": "plumbing"
+        },
+        {
+          "type": "heat_wave",
+          "area": "Palo Duro Canyon",
+          "niche": "hvac"
+        },
+        {
+          "type": "flood",
+          "area": "Angelina, TX; Polk, TX; Trinity, TX",
+          "niche": "plumbing"
+        }
+      ],
       "sources_online": 0
     },
     "lead_engine": {
@@ -29,19 +55,19 @@
       },
       "by_status": {
         "re_engaged": 84,
-        "queued": 66,
-        "called": 23
+        "called": 38,
+        "queued": 51
       },
       "synced_to_pipeline": 21,
       "api_spend": 6.4,
       "api_budget": 300.0,
       "api_percent": 2.1,
-      "outcomes_recorded": 113,
+      "outcomes_recorded": 128,
       "by_outcome": {
         "no_answer": 6,
         "hangup": 2,
         "call_failed": 37,
-        "call_initiated": 68
+        "call_initiated": 83
       },
       "learned_weights": false,
       "suppression_count": 0,
@@ -53,7 +79,7 @@
           "tier": "SUPERNICHE",
           "score": 78,
           "route": "watchlist",
-          "status": "queued"
+          "status": "called"
         },
         {
           "name": "Andrew's Affordable Plumbing",
@@ -62,7 +88,7 @@
           "tier": "SUPERNICHE",
           "score": 72,
           "route": "watchlist",
-          "status": "queued"
+          "status": "called"
         },
         {
           "name": "Anderson Plumbing LLC",
@@ -107,7 +133,7 @@
           "tier": "SUPERNICHE",
           "score": 63,
           "route": "watchlist",
-          "status": "queued"
+          "status": "called"
         },
         {
           "name": "Charlie's Plumbing Services",
@@ -139,8 +165,8 @@
       ]
     },
     "n8n": {
-      "active_workflows": 86,
-      "inactive_workflows": 44,
+      "active_workflows": 71,
+      "inactive_workflows": 59,
       "total_workflows": 130,
       "recent_errors": 20,
       "recent_crashes": 10,
@@ -173,12 +199,12 @@
         {
           "name": "Morning Brief",
           "id": "TtbV6mhhRnLhQCv3",
-          "active": true
+          "active": false
         },
         {
           "name": "Superniche Targeter",
           "id": "8jvr7e9CDZgggXzM",
-          "active": true
+          "active": false
         },
         {
           "name": "Hot Lead Handler",
@@ -188,24 +214,24 @@
       ],
       "recent_failures": [
         {
-          "workflow": "VeofXawy3ISKcQY7",
-          "started": "2026-06-15T22:00"
-        },
-        {
-          "workflow": "JBEeMWjn59t5lhGx",
-          "started": "2026-06-15T22:00"
+          "workflow": "7wFm6CQB3VtoiRb6",
+          "started": "2026-06-25T19:00"
         },
         {
           "workflow": "HWQP9Xg2D9T0yWQ1",
-          "started": "2026-06-15T18:00"
-        },
-        {
-          "workflow": "koi5QT6XJvuoPuvL",
-          "started": "2026-06-15T18:00"
+          "started": "2026-06-25T18:00"
         },
         {
           "workflow": "8jvr7e9CDZgggXzM",
-          "started": "2026-06-15T17:00"
+          "started": "2026-06-25T17:00"
+        },
+        {
+          "workflow": "TdpdYjgIL04aYw3e",
+          "started": "2026-06-25T13:00"
+        },
+        {
+          "workflow": "8lxiHdzEAmHOWclo",
+          "started": "2026-06-25T08:00"
         }
       ]
     },
@@ -264,9 +290,9 @@
         }
       ],
       "calls_24h": 50,
-      "outbound_24h": 47,
-      "inbound_24h": 3,
-      "avg_duration_sec": 16.2
+      "outbound_24h": 46,
+      "inbound_24h": 4,
+      "avg_duration_sec": 13.6
     },
     "quant": {
       "state": "ACTIVE",
