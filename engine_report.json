@@ -1,20 +1,28 @@
 {
-  "generated": "2026-06-25T19:39:37.650323+00:00",
+  "generated": "2026-06-25T20:11:29.766532+00:00",
   "engine_state": "active",
   "signals": [
     {
-      "type": "flood",
-      "area": "Brazos, TX; Grimes, TX; Madison, TX",
-      "niche": "plumbing",
-      "action": "Flood warnings in Brazos, TX; Grimes, TX; Madison, TX. Plumbers, restoration, mold companies will spike.",
+      "type": "storm",
+      "area": "Beaver, OK; Lipscomb, TX",
+      "niche": "roofing",
+      "action": "Storm damage in Beaver, OK; Lipscomb, TX. Roofers and restoration companies about to get flooded.",
       "urgency": "today",
-      "pitch_hook": "Water damage calls are coming. Every one you miss is $500+ walking away."
+      "pitch_hook": "After a storm like that, you'll get 10x your normal call volume. Ready for it?"
     },
     {
       "type": "flood",
       "area": "Beaver; Lipscomb",
       "niche": "plumbing",
       "action": "Flood warnings in Beaver; Lipscomb. Plumbers, restoration, mold companies will spike.",
+      "urgency": "today",
+      "pitch_hook": "Water damage calls are coming. Every one you miss is $500+ walking away."
+    },
+    {
+      "type": "flood",
+      "area": "Brazos, TX; Grimes, TX; Madison, TX",
+      "niche": "plumbing",
+      "action": "Flood warnings in Brazos, TX; Grimes, TX; Madison, TX. Plumbers, restoration, mold companies will spike.",
       "urgency": "today",
       "pitch_hook": "Water damage calls are coming. Every one you miss is $500+ walking away."
     },
@@ -51,6 +59,14 @@
       "pitch_hook": "You're getting slammed with calls \u2014 how many went to voicemail today?"
     },
     {
+      "type": "storm",
+      "area": "Rankin, MS",
+      "niche": "roofing",
+      "action": "Storm damage in Rankin, MS. Roofers and restoration companies about to get flooded.",
+      "urgency": "today",
+      "pitch_hook": "After a storm like that, you'll get 10x your normal call volume. Ready for it?"
+    },
+    {
       "type": "flood",
       "area": "Hinds, MS; Warren, MS",
       "niche": "plumbing",
@@ -63,22 +79,6 @@
       "area": "Lawrence, MS",
       "niche": "plumbing",
       "action": "Flood warnings in Lawrence, MS. Plumbers, restoration, mold companies will spike.",
-      "urgency": "today",
-      "pitch_hook": "Water damage calls are coming. Every one you miss is $500+ walking away."
-    },
-    {
-      "type": "flood",
-      "area": "Copiah, MS; Simpson, MS",
-      "niche": "plumbing",
-      "action": "Flood warnings in Copiah, MS; Simpson, MS. Plumbers, restoration, mold companies will spike.",
-      "urgency": "today",
-      "pitch_hook": "Water damage calls are coming. Every one you miss is $500+ walking away."
-    },
-    {
-      "type": "flood",
-      "area": "George, MS; Greene, MS",
-      "niche": "plumbing",
-      "action": "Flood warnings in George, MS; Greene, MS. Plumbers, restoration, mold companies will spike.",
       "urgency": "today",
       "pitch_hook": "Water damage calls are coming. Every one you miss is $500+ walking away."
     }
@@ -239,55 +239,55 @@
   "feeds": [
     {
       "name": "NOAA",
-      "last_hit": "2026-06-25T19:33:24.357470+00:00",
+      "last_hit": "2026-06-25T20:04:58.112675+00:00",
       "status": "yellow",
       "data_points_today": 0
     },
     {
       "name": "REDDIT",
-      "last_hit": "2026-06-25T19:33:24.357470+00:00",
+      "last_hit": "2026-06-25T20:04:58.112675+00:00",
       "status": "green",
       "data_points_today": 40
     },
     {
       "name": "USGS",
-      "last_hit": "2026-06-25T19:33:24.357470+00:00",
+      "last_hit": "2026-06-25T20:04:58.112675+00:00",
       "status": "yellow",
       "data_points_today": 0
     },
     {
       "name": "HACKERNEWS",
-      "last_hit": "2026-06-25T19:33:24.357470+00:00",
+      "last_hit": "2026-06-25T20:04:58.112675+00:00",
       "status": "green",
       "data_points_today": 30
     },
     {
       "name": "FEMA",
-      "last_hit": "2026-06-25T19:33:24.357470+00:00",
+      "last_hit": "2026-06-25T20:04:58.112675+00:00",
       "status": "green",
       "data_points_today": 20
     },
     {
       "name": "COMMODITIES",
-      "last_hit": "2026-06-25T19:33:24.357470+00:00",
+      "last_hit": "2026-06-25T20:04:58.112675+00:00",
       "status": "green",
       "data_points_today": 7
     },
     {
       "name": "RSS",
-      "last_hit": "2026-06-25T19:33:24.357470+00:00",
+      "last_hit": "2026-06-25T20:04:58.112675+00:00",
       "status": "green",
       "data_points_today": 170
     },
     {
       "name": "FRED",
-      "last_hit": "2026-06-25T19:33:24.357470+00:00",
+      "last_hit": "2026-06-25T20:04:58.112675+00:00",
       "status": "yellow",
       "data_points_today": 0
     },
     {
       "name": "BLS",
-      "last_hit": "2026-06-25T19:33:24.357470+00:00",
+      "last_hit": "2026-06-25T20:04:58.112675+00:00",
       "status": "green",
       "data_points_today": 9
     }
