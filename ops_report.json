@@ -1,5 +1,5 @@
 {
-  "generated": "2026-06-25T20:24:38.865944+00:00",
+  "generated": "2026-06-25T20:30:03.009962+00:00",
   "sections": {
     "atlas": {
       "power_level": "ACTIVE",
@@ -43,31 +43,33 @@
     },
     "lead_engine": {
       "state": "ACTIVE",
-      "total_leads": 173,
+      "total_leads": 200,
       "by_tier": {
-        "SUPERNICHE": 13,
-        "HOT": 39,
-        "WARM": 121
+        "SUPERNICHE": 15,
+        "HOT": 43,
+        "WARM": 142
       },
       "by_route": {
-        "watchlist": 137,
-        "email": 36
+        "watchlist": 160,
+        "email": 40
       },
       "by_status": {
-        "re_engaged": 84,
-        "called": 38,
-        "queued": 51
+        "re_engaged": 131,
+        "called": 21,
+        "queued": 48
       },
-      "synced_to_pipeline": 21,
-      "api_spend": 6.4,
+      "synced_to_pipeline": 39,
+      "api_spend": 7.04,
       "api_budget": 300.0,
-      "api_percent": 2.1,
-      "outcomes_recorded": 128,
+      "api_percent": 2.3,
+      "outcomes_recorded": 160,
       "by_outcome": {
-        "no_answer": 6,
-        "hangup": 2,
+        "no_answer": 22,
+        "hangup": 14,
         "call_failed": 37,
-        "call_initiated": 83
+        "call_initiated": 83,
+        "callback": 2,
+        "meeting_set": 2
       },
       "learned_weights": false,
       "suppression_count": 0,
@@ -80,6 +82,15 @@
           "score": 78,
           "route": "watchlist",
           "status": "called"
+        },
+        {
+          "name": "Stanley Graves Plumbing Co",
+          "niche": "plumbing",
+          "state": "MS",
+          "tier": "SUPERNICHE",
+          "score": 78,
+          "route": "watchlist",
+          "status": "queued"
         },
         {
           "name": "Andrew's Affordable Plumbing",
@@ -106,7 +117,16 @@
           "tier": "SUPERNICHE",
           "score": 68,
           "route": "watchlist",
-          "status": "called"
+          "status": "re_engaged"
+        },
+        {
+          "name": "Russell Branan Plumbing",
+          "niche": "plumber",
+          "state": "OK",
+          "tier": "SUPERNICHE",
+          "score": 67,
+          "route": "email",
+          "status": "queued"
         },
         {
           "name": "George Electric Plumbing & HVA",
@@ -143,30 +163,12 @@
           "score": 62,
           "route": "watchlist",
           "status": "re_engaged"
-        },
-        {
-          "name": "Delcase Plumbing Co",
-          "niche": "plumber",
-          "state": "AR",
-          "tier": "SUPERNICHE",
-          "score": 62,
-          "route": "watchlist",
-          "status": "called"
-        },
-        {
-          "name": "Edwards Electric",
-          "niche": "electrician",
-          "state": "AR",
-          "tier": "SUPERNICHE",
-          "score": 62,
-          "route": "watchlist",
-          "status": "called"
         }
       ]
     },
     "n8n": {
-      "active_workflows": 71,
-      "inactive_workflows": 59,
+      "active_workflows": 75,
+      "inactive_workflows": 55,
       "total_workflows": 130,
       "recent_errors": 20,
       "recent_crashes": 10,
@@ -214,24 +216,24 @@
       ],
       "recent_failures": [
         {
-          "workflow": "7wFm6CQB3VtoiRb6",
-          "started": "2026-06-25T19:00"
+          "workflow": "FV413faAXiMk1CiY",
+          "started": "2026-06-25T20:25"
         },
         {
-          "workflow": "HWQP9Xg2D9T0yWQ1",
-          "started": "2026-06-25T18:00"
+          "workflow": "FV413faAXiMk1CiY",
+          "started": "2026-06-25T20:25"
         },
         {
-          "workflow": "8jvr7e9CDZgggXzM",
-          "started": "2026-06-25T17:00"
+          "workflow": "FV413faAXiMk1CiY",
+          "started": "2026-06-25T20:25"
         },
         {
-          "workflow": "TdpdYjgIL04aYw3e",
-          "started": "2026-06-25T13:00"
+          "workflow": "FV413faAXiMk1CiY",
+          "started": "2026-06-25T20:25"
         },
         {
-          "workflow": "8lxiHdzEAmHOWclo",
-          "started": "2026-06-25T08:00"
+          "workflow": "FV413faAXiMk1CiY",
+          "started": "2026-06-25T20:25"
         }
       ]
     },
@@ -305,7 +307,7 @@
       "atlas_power": "ACTIVE",
       "n8n_errors_24h": 20,
       "retell_calls_24h": 50,
-      "api_spend_pct": 2.1
+      "api_spend_pct": 2.3
     }
   }
 }
