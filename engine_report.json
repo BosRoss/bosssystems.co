@@ -1,12 +1,36 @@
 {
-  "generated": "2026-06-25T20:30:14.728655+00:00",
+  "generated": "2026-06-25T21:22:02.096449+00:00",
   "engine_state": "active",
   "signals": [
+    {
+      "type": "storm",
+      "area": "Bailey, TX; Briscoe, TX; Castro, TX; Childress, TX; Cochran, TX; Cottle, TX; Crosby, TX; Dickens, TX; Floyd, TX; Garza, TX; Hale, TX; Hall, TX; Hockley, TX; Lamb, TX; Lubbock, TX; Lynn, TX; Motley, TX",
+      "niche": "roofing",
+      "action": "Storm damage in Bailey, TX; Briscoe, TX; Castro, TX; Childress, TX; Cochran, TX; Cottle, TX; Crosby, TX; Dickens, TX; Floyd, TX; Garza, TX; Hale, TX; Hall, TX; Hockley, TX; Lamb, TX; Lubbock, TX; Lynn, TX; Motley, TX. Roofers and restoration companies about to get flooded.",
+      "urgency": "today",
+      "pitch_hook": "After a storm like that, you'll get 10x your normal call volume. Ready for it?"
+    },
     {
       "type": "storm",
       "area": "Beaver, OK; Lipscomb, TX",
       "niche": "roofing",
       "action": "Storm damage in Beaver, OK; Lipscomb, TX. Roofers and restoration companies about to get flooded.",
+      "urgency": "today",
+      "pitch_hook": "After a storm like that, you'll get 10x your normal call volume. Ready for it?"
+    },
+    {
+      "type": "storm",
+      "area": "Beckham, OK; Caddo, OK; Custer, OK; Greer, OK; Harmon, OK; Jackson, OK; Kiowa, OK; Washita, OK; Hardeman, TX",
+      "niche": "roofing",
+      "action": "Storm damage in Beckham, OK; Caddo, OK; Custer, OK; Greer, OK; Harmon, OK; Jackson, OK; Kiowa, OK; Washita, OK; Hardeman, TX. Roofers and restoration companies about to get flooded.",
+      "urgency": "today",
+      "pitch_hook": "After a storm like that, you'll get 10x your normal call volume. Ready for it?"
+    },
+    {
+      "type": "storm",
+      "area": "Cimarron, OK; Texas, OK; Armstrong, TX; Carson, TX; Collingsworth, TX; Dallam, TX; Deaf Smith, TX; Donley, TX; Gray, TX; Hansford, TX; Hartley, TX; Hemphill, TX; Hutchinson, TX; Moore, TX; Ochiltree, ",
+      "niche": "roofing",
+      "action": "Storm damage in Cimarron, OK; Texas, OK; Armstrong, TX; Carson, TX; Collingsworth, TX; Dallam, TX; Deaf Smith, TX; Donley, TX; Gray, TX; Hansford, TX; Hartley, TX; Hemphill, TX; Hutchinson, TX; Moore, TX; Ochiltree, . Roofers and restoration companies about to get flooded.",
       "urgency": "today",
       "pitch_hook": "After a storm like that, you'll get 10x your normal call volume. Ready for it?"
     },
@@ -43,42 +67,18 @@
       "pitch_hook": "Water damage calls are coming. Every one you miss is $500+ walking away."
     },
     {
-      "type": "heat_wave",
-      "area": "Western El Paso County; Eastern/Central El Paso County; Rio Grande Valley of Eastern El Paso/Western Hudspeth Counties; Rio Grande Valley of Eastern Hudspeth County",
-      "niche": "hvac",
-      "action": "HVAC businesses in Western El Paso County; Eastern/Central El Paso County; Rio Grande Valley of Eastern El Paso/Western Hudspeth Counties; Rio Grande Valley of Eastern Hudspeth County are drowning in calls right now. Perfect time to pitch.",
-      "urgency": "today",
-      "pitch_hook": "You're getting slammed with calls \u2014 how many went to voicemail today?"
-    },
-    {
-      "type": "heat_wave",
-      "area": "Presidio Valley; Lower Brewster County",
-      "niche": "hvac",
-      "action": "HVAC businesses in Presidio Valley; Lower Brewster County are drowning in calls right now. Perfect time to pitch.",
-      "urgency": "today",
-      "pitch_hook": "You're getting slammed with calls \u2014 how many went to voicemail today?"
-    },
-    {
-      "type": "storm",
-      "area": "Rankin, MS",
-      "niche": "roofing",
-      "action": "Storm damage in Rankin, MS. Roofers and restoration companies about to get flooded.",
-      "urgency": "today",
-      "pitch_hook": "After a storm like that, you'll get 10x your normal call volume. Ready for it?"
-    },
-    {
       "type": "flood",
-      "area": "Hinds, MS; Warren, MS",
+      "area": "Boone, AR; Marion, AR",
       "niche": "plumbing",
-      "action": "Flood warnings in Hinds, MS; Warren, MS. Plumbers, restoration, mold companies will spike.",
+      "action": "Flood warnings in Boone, AR; Marion, AR. Plumbers, restoration, mold companies will spike.",
       "urgency": "today",
       "pitch_hook": "Water damage calls are coming. Every one you miss is $500+ walking away."
     },
     {
       "type": "flood",
-      "area": "Lawrence, MS",
+      "area": "Jackson, AR; Woodruff, AR",
       "niche": "plumbing",
-      "action": "Flood warnings in Lawrence, MS. Plumbers, restoration, mold companies will spike.",
+      "action": "Flood warnings in Jackson, AR; Woodruff, AR. Plumbers, restoration, mold companies will spike.",
       "urgency": "today",
       "pitch_hook": "Water damage calls are coming. Every one you miss is $500+ walking away."
     }
@@ -90,7 +90,7 @@
       "score": 78,
       "tier": "SUPERNICHE",
       "channel": "watchlist",
-      "sequence_status": "called",
+      "sequence_status": "re_engaged",
       "trigger": "flood"
     },
     {
@@ -100,15 +100,6 @@
       "tier": "SUPERNICHE",
       "channel": "watchlist",
       "sequence_status": "queued",
-      "trigger": "flood"
-    },
-    {
-      "name": "plumber",
-      "city": "NM",
-      "score": 72,
-      "tier": "SUPERNICHE",
-      "channel": "watchlist",
-      "sequence_status": "called",
       "trigger": "flood"
     },
     {
@@ -162,7 +153,7 @@
       "score": 63,
       "tier": "SUPERNICHE",
       "channel": "watchlist",
-      "sequence_status": "called",
+      "sequence_status": "re_engaged",
       "trigger": "flood"
     },
     {
@@ -198,7 +189,7 @@
       "score": 60,
       "tier": "SUPERNICHE",
       "channel": "watchlist",
-      "sequence_status": "called",
+      "sequence_status": "re_engaged",
       "trigger": "flood"
     },
     {
@@ -218,19 +209,28 @@
       "channel": "watchlist",
       "sequence_status": "queued",
       "trigger": "flood"
+    },
+    {
+      "name": "HVAC",
+      "city": "AL",
+      "score": 56,
+      "tier": "SUPERNICHE",
+      "channel": "watchlist",
+      "sequence_status": "queued",
+      "trigger": ""
     }
   ],
   "kpis": {
     "signals_firing": 10,
-    "leads_superniche": 15,
-    "leads_hot": 43,
-    "leads_warm": 142,
-    "cost_per_qualified": 0.47,
-    "total_spend": 7.040000000000005,
+    "leads_superniche": 16,
+    "leads_hot": 55,
+    "leads_warm": 208,
+    "cost_per_qualified": 0.48,
+    "total_spend": 7.680000000000006,
     "spend_cap": 300.0
   },
   "channels": {
-    "emails_sent": 76,
+    "emails_sent": 77,
     "texts_sent": 8,
     "calls_made": 0,
     "meetings_set": 2,
@@ -239,63 +239,63 @@
   "feeds": [
     {
       "name": "NOAA",
-      "last_hit": "2026-06-25T20:23:43.433298+00:00",
+      "last_hit": "2026-06-25T20:58:21.852569+00:00",
       "status": "yellow",
       "data_points_today": 0
     },
     {
       "name": "REDDIT",
-      "last_hit": "2026-06-25T20:23:43.433298+00:00",
+      "last_hit": "2026-06-25T20:58:21.852569+00:00",
       "status": "green",
-      "data_points_today": 40
+      "data_points_today": 20
     },
     {
       "name": "USGS",
-      "last_hit": "2026-06-25T20:23:43.433298+00:00",
+      "last_hit": "2026-06-25T20:58:21.852569+00:00",
       "status": "yellow",
       "data_points_today": 0
     },
     {
       "name": "HACKERNEWS",
-      "last_hit": "2026-06-25T20:23:43.433298+00:00",
+      "last_hit": "2026-06-25T20:58:21.852569+00:00",
       "status": "green",
       "data_points_today": 30
     },
     {
       "name": "FEMA",
-      "last_hit": "2026-06-25T20:23:43.433298+00:00",
+      "last_hit": "2026-06-25T20:58:21.852569+00:00",
       "status": "green",
       "data_points_today": 20
     },
     {
       "name": "COMMODITIES",
-      "last_hit": "2026-06-25T20:23:43.433298+00:00",
+      "last_hit": "2026-06-25T20:58:21.852569+00:00",
       "status": "green",
       "data_points_today": 7
     },
     {
       "name": "RSS",
-      "last_hit": "2026-06-25T20:23:43.433298+00:00",
+      "last_hit": "2026-06-25T20:58:21.852569+00:00",
       "status": "green",
       "data_points_today": 170
     },
     {
       "name": "FRED",
-      "last_hit": "2026-06-25T20:23:43.433298+00:00",
+      "last_hit": "2026-06-25T20:58:21.852569+00:00",
       "status": "yellow",
       "data_points_today": 0
     },
     {
       "name": "BLS",
-      "last_hit": "2026-06-25T20:23:43.433298+00:00",
+      "last_hit": "2026-06-25T20:58:21.852569+00:00",
       "status": "green",
       "data_points_today": 9
     }
   ],
   "conversion_funnel": {
     "signals": 10,
-    "leads": 200,
-    "contacted": 84,
+    "leads": 279,
+    "contacted": 85,
     "replied": 2,
     "meeting": 2,
     "close": 0
