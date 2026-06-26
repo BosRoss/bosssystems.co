@@ -1,5 +1,5 @@
 {
-  "generated": "2026-06-26T12:47:46.820913+00:00",
+  "generated": "2026-06-26T15:05:02.983807+00:00",
   "engine_state": "active",
   "signals": [
     {
@@ -28,17 +28,25 @@
     },
     {
       "type": "flood",
-      "area": "Jackson, MS",
+      "area": "George, MS; Greene, MS; Jackson, MS",
       "niche": "plumbing",
-      "action": "Flood warnings in Jackson, MS. Plumbers, restoration, mold companies will spike.",
+      "action": "Flood warnings in George, MS; Greene, MS; Jackson, MS. Plumbers, restoration, mold companies will spike.",
       "urgency": "today",
       "pitch_hook": "Water damage calls are coming. Every one you miss is $500+ walking away."
     },
     {
       "type": "flood",
-      "area": "Washington, LA; Pearl River, MS",
+      "area": "George, MS; Greene, MS; Perry, MS",
       "niche": "plumbing",
-      "action": "Flood warnings in Washington, LA; Pearl River, MS. Plumbers, restoration, mold companies will spike.",
+      "action": "Flood warnings in George, MS; Greene, MS; Perry, MS. Plumbers, restoration, mold companies will spike.",
+      "urgency": "today",
+      "pitch_hook": "Water damage calls are coming. Every one you miss is $500+ walking away."
+    },
+    {
+      "type": "flood",
+      "area": "George, MS; Greene, MS",
+      "niche": "plumbing",
+      "action": "Flood warnings in George, MS; Greene, MS. Plumbers, restoration, mold companies will spike.",
       "urgency": "today",
       "pitch_hook": "Water damage calls are coming. Every one you miss is $500+ walking away."
     },
@@ -52,33 +60,25 @@
     },
     {
       "type": "flood",
+      "area": "Washington, LA; Pearl River, MS",
+      "niche": "plumbing",
+      "action": "Flood warnings in Washington, LA; Pearl River, MS. Plumbers, restoration, mold companies will spike.",
+      "urgency": "today",
+      "pitch_hook": "Water damage calls are coming. Every one you miss is $500+ walking away."
+    },
+    {
+      "type": "flood",
+      "area": "Jackson, MS",
+      "niche": "plumbing",
+      "action": "Flood warnings in Jackson, MS. Plumbers, restoration, mold companies will spike.",
+      "urgency": "today",
+      "pitch_hook": "Water damage calls are coming. Every one you miss is $500+ walking away."
+    },
+    {
+      "type": "flood",
       "area": "Lawrence, MS",
       "niche": "plumbing",
       "action": "Flood warnings in Lawrence, MS. Plumbers, restoration, mold companies will spike.",
-      "urgency": "today",
-      "pitch_hook": "Water damage calls are coming. Every one you miss is $500+ walking away."
-    },
-    {
-      "type": "flood",
-      "area": "Copiah, MS; Simpson, MS",
-      "niche": "plumbing",
-      "action": "Flood warnings in Copiah, MS; Simpson, MS. Plumbers, restoration, mold companies will spike.",
-      "urgency": "today",
-      "pitch_hook": "Water damage calls are coming. Every one you miss is $500+ walking away."
-    },
-    {
-      "type": "flood",
-      "area": "George, MS; Greene, MS; Jackson, MS",
-      "niche": "plumbing",
-      "action": "Flood warnings in George, MS; Greene, MS; Jackson, MS. Plumbers, restoration, mold companies will spike.",
-      "urgency": "today",
-      "pitch_hook": "Water damage calls are coming. Every one you miss is $500+ walking away."
-    },
-    {
-      "type": "flood",
-      "area": "George, MS; Greene, MS; Perry, MS",
-      "niche": "plumbing",
-      "action": "Flood warnings in George, MS; Greene, MS; Perry, MS. Plumbers, restoration, mold companies will spike.",
       "urgency": "today",
       "pitch_hook": "Water damage calls are coming. Every one you miss is $500+ walking away."
     }
@@ -157,6 +157,15 @@
       "trigger": "flood"
     },
     {
+      "name": "plumbing",
+      "city": "MS",
+      "score": 63,
+      "tier": "SUPERNICHE",
+      "channel": "watchlist",
+      "sequence_status": "queued",
+      "trigger": "flood"
+    },
+    {
       "name": "plumber",
       "city": "AL",
       "score": 62,
@@ -184,6 +193,15 @@
       "trigger": "territory_alert"
     },
     {
+      "name": "plumbing",
+      "city": "MS",
+      "score": 62,
+      "tier": "SUPERNICHE",
+      "channel": "email",
+      "sequence_status": "queued",
+      "trigger": "flood"
+    },
+    {
       "name": "HVAC contractor",
       "city": "OK",
       "score": 60,
@@ -200,37 +218,19 @@
       "channel": "email",
       "sequence_status": "re_engaged",
       "trigger": "economic"
-    },
-    {
-      "name": "plumber",
-      "city": "OK",
-      "score": 57,
-      "tier": "SUPERNICHE",
-      "channel": "watchlist",
-      "sequence_status": "queued",
-      "trigger": "flood"
-    },
-    {
-      "name": "HVAC",
-      "city": "AL",
-      "score": 56,
-      "tier": "SUPERNICHE",
-      "channel": "watchlist",
-      "sequence_status": "queued",
-      "trigger": ""
     }
   ],
   "kpis": {
     "signals_firing": 10,
-    "leads_superniche": 16,
-    "leads_hot": 55,
-    "leads_warm": 208,
-    "cost_per_qualified": 0.48,
-    "total_spend": 7.680000000000006,
+    "leads_superniche": 18,
+    "leads_hot": 60,
+    "leads_warm": 132,
+    "cost_per_qualified": 0.46,
+    "total_spend": 8.320000000000006,
     "spend_cap": 300.0
   },
   "channels": {
-    "emails_sent": 77,
+    "emails_sent": 81,
     "texts_sent": 8,
     "calls_made": 0,
     "meetings_set": 2,
@@ -239,63 +239,63 @@
   "feeds": [
     {
       "name": "NOAA",
-      "last_hit": "2026-06-26T12:31:44.447036+00:00",
+      "last_hit": "2026-06-26T14:49:31.718100+00:00",
       "status": "yellow",
       "data_points_today": 0
     },
     {
       "name": "REDDIT",
-      "last_hit": "2026-06-26T12:31:44.447036+00:00",
+      "last_hit": "2026-06-26T14:49:31.718100+00:00",
       "status": "green",
       "data_points_today": 40
     },
     {
       "name": "USGS",
-      "last_hit": "2026-06-26T12:31:44.447036+00:00",
+      "last_hit": "2026-06-26T14:49:31.718100+00:00",
       "status": "yellow",
       "data_points_today": 0
     },
     {
       "name": "HACKERNEWS",
-      "last_hit": "2026-06-26T12:31:44.447036+00:00",
+      "last_hit": "2026-06-26T14:49:31.718100+00:00",
       "status": "green",
       "data_points_today": 30
     },
     {
       "name": "FEMA",
-      "last_hit": "2026-06-26T12:31:44.447036+00:00",
+      "last_hit": "2026-06-26T14:49:31.718100+00:00",
       "status": "green",
       "data_points_today": 20
     },
     {
       "name": "COMMODITIES",
-      "last_hit": "2026-06-26T12:31:44.447036+00:00",
+      "last_hit": "2026-06-26T14:49:31.718100+00:00",
       "status": "green",
       "data_points_today": 7
     },
     {
       "name": "RSS",
-      "last_hit": "2026-06-26T12:31:44.447036+00:00",
+      "last_hit": "2026-06-26T14:49:31.718100+00:00",
       "status": "green",
       "data_points_today": 170
     },
     {
       "name": "FRED",
-      "last_hit": "2026-06-26T12:31:44.447036+00:00",
+      "last_hit": "2026-06-26T14:49:31.718100+00:00",
       "status": "yellow",
       "data_points_today": 0
     },
     {
       "name": "BLS",
-      "last_hit": "2026-06-26T12:31:44.447036+00:00",
+      "last_hit": "2026-06-26T14:49:31.718100+00:00",
       "status": "green",
       "data_points_today": 9
     }
   ],
   "conversion_funnel": {
     "signals": 10,
-    "leads": 279,
-    "contacted": 85,
+    "leads": 210,
+    "contacted": 89,
     "replied": 2,
     "meeting": 2,
     "close": 0
