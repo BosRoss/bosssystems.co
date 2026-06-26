@@ -1,52 +1,36 @@
 {
-  "generated": "2026-06-26T01:35:21.595969+00:00",
+  "generated": "2026-06-26T06:05:07.242005+00:00",
   "engine_state": "active",
   "signals": [
     {
-      "type": "storm",
-      "area": "Wheeler, TX",
-      "niche": "roofing",
-      "action": "Storm damage in Wheeler, TX. Roofers and restoration companies about to get flooded.",
+      "type": "heat_wave",
+      "area": "Chinati Mountains; Marfa Plateau; Davis Mountains; Davis Mountains Foothills; Central Brewster County; Chisos Basin; Presidio Valley; Lower Brewster County",
+      "niche": "hvac",
+      "action": "HVAC businesses in Chinati Mountains; Marfa Plateau; Davis Mountains; Davis Mountains Foothills; Central Brewster County; Chisos Basin; Presidio Valley; Lower Brewster County are drowning in calls right now. Perfect time to pitch.",
       "urgency": "today",
-      "pitch_hook": "After a storm like that, you'll get 10x your normal call volume. Ready for it?"
-    },
-    {
-      "type": "storm",
-      "area": "Terry, TX",
-      "niche": "roofing",
-      "action": "Storm damage in Terry, TX. Roofers and restoration companies about to get flooded.",
-      "urgency": "today",
-      "pitch_hook": "After a storm like that, you'll get 10x your normal call volume. Ready for it?"
-    },
-    {
-      "type": "storm",
-      "area": "Dawson, TX; Gaines, TX",
-      "niche": "roofing",
-      "action": "Storm damage in Dawson, TX; Gaines, TX. Roofers and restoration companies about to get flooded.",
-      "urgency": "today",
-      "pitch_hook": "After a storm like that, you'll get 10x your normal call volume. Ready for it?"
-    },
-    {
-      "type": "storm",
-      "area": "Armstrong, TX; Carson, TX; Potter, TX; Randall, TX",
-      "niche": "roofing",
-      "action": "Storm damage in Armstrong, TX; Carson, TX; Potter, TX; Randall, TX. Roofers and restoration companies about to get flooded.",
-      "urgency": "today",
-      "pitch_hook": "After a storm like that, you'll get 10x your normal call volume. Ready for it?"
+      "pitch_hook": "You're getting slammed with calls \u2014 how many went to voicemail today?"
     },
     {
       "type": "flood",
-      "area": "Hemphill, TX; Wheeler, TX",
+      "area": "Gray, TX; Hemphill, TX; Roberts, TX; Wheeler, TX",
       "niche": "plumbing",
-      "action": "Flood warnings in Hemphill, TX; Wheeler, TX. Plumbers, restoration, mold companies will spike.",
+      "action": "Flood warnings in Gray, TX; Hemphill, TX; Roberts, TX; Wheeler, TX. Plumbers, restoration, mold companies will spike.",
       "urgency": "today",
       "pitch_hook": "Water damage calls are coming. Every one you miss is $500+ walking away."
     },
     {
       "type": "flood",
-      "area": "Hemphill, TX",
+      "area": "Wheeler, TX",
       "niche": "plumbing",
-      "action": "Flood warnings in Hemphill, TX. Plumbers, restoration, mold companies will spike.",
+      "action": "Flood warnings in Wheeler, TX. Plumbers, restoration, mold companies will spike.",
+      "urgency": "today",
+      "pitch_hook": "Water damage calls are coming. Every one you miss is $500+ walking away."
+    },
+    {
+      "type": "flood",
+      "area": "Brazos, TX; Grimes, TX; Madison, TX",
+      "niche": "plumbing",
+      "action": "Flood warnings in Brazos, TX; Grimes, TX; Madison, TX. Plumbers, restoration, mold companies will spike.",
       "urgency": "today",
       "pitch_hook": "Water damage calls are coming. Every one you miss is $500+ walking away."
     },
@@ -79,6 +63,22 @@
       "area": "Lawrence, MS",
       "niche": "plumbing",
       "action": "Flood warnings in Lawrence, MS. Plumbers, restoration, mold companies will spike.",
+      "urgency": "today",
+      "pitch_hook": "Water damage calls are coming. Every one you miss is $500+ walking away."
+    },
+    {
+      "type": "flood",
+      "area": "Copiah, MS; Simpson, MS",
+      "niche": "plumbing",
+      "action": "Flood warnings in Copiah, MS; Simpson, MS. Plumbers, restoration, mold companies will spike.",
+      "urgency": "today",
+      "pitch_hook": "Water damage calls are coming. Every one you miss is $500+ walking away."
+    },
+    {
+      "type": "flood",
+      "area": "George, MS; Greene, MS; Jackson, MS",
+      "niche": "plumbing",
+      "action": "Flood warnings in George, MS; Greene, MS; Jackson, MS. Plumbers, restoration, mold companies will spike.",
       "urgency": "today",
       "pitch_hook": "Water damage calls are coming. Every one you miss is $500+ walking away."
     }
@@ -239,55 +239,55 @@
   "feeds": [
     {
       "name": "NOAA",
-      "last_hit": "2026-06-26T01:28:48.478591+00:00",
+      "last_hit": "2026-06-26T05:58:18.764378+00:00",
       "status": "yellow",
       "data_points_today": 0
     },
     {
       "name": "REDDIT",
-      "last_hit": "2026-06-26T01:28:48.478591+00:00",
+      "last_hit": "2026-06-26T05:58:18.764378+00:00",
       "status": "green",
       "data_points_today": 40
     },
     {
       "name": "USGS",
-      "last_hit": "2026-06-26T01:28:48.478591+00:00",
+      "last_hit": "2026-06-26T05:58:18.764378+00:00",
       "status": "yellow",
       "data_points_today": 0
     },
     {
       "name": "HACKERNEWS",
-      "last_hit": "2026-06-26T01:28:48.478591+00:00",
+      "last_hit": "2026-06-26T05:58:18.764378+00:00",
       "status": "green",
       "data_points_today": 30
     },
     {
       "name": "FEMA",
-      "last_hit": "2026-06-26T01:28:48.478591+00:00",
+      "last_hit": "2026-06-26T05:58:18.764378+00:00",
       "status": "green",
       "data_points_today": 20
     },
     {
       "name": "COMMODITIES",
-      "last_hit": "2026-06-26T01:28:48.478591+00:00",
+      "last_hit": "2026-06-26T05:58:18.764378+00:00",
       "status": "green",
       "data_points_today": 7
     },
     {
       "name": "RSS",
-      "last_hit": "2026-06-26T01:28:48.478591+00:00",
+      "last_hit": "2026-06-26T05:58:18.764378+00:00",
       "status": "green",
       "data_points_today": 170
     },
     {
       "name": "FRED",
-      "last_hit": "2026-06-26T01:28:48.478591+00:00",
+      "last_hit": "2026-06-26T05:58:18.764378+00:00",
       "status": "yellow",
       "data_points_today": 0
     },
     {
       "name": "BLS",
-      "last_hit": "2026-06-26T01:28:48.478591+00:00",
+      "last_hit": "2026-06-26T05:58:18.764378+00:00",
       "status": "green",
       "data_points_today": 9
     }
