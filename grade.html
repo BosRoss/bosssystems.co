@@ -5,7 +5,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Phone Grade — Find Out How Your Business Sounds to Customers</title>
 <meta name="description" content="AI mystery shops your business phone in under 5 minutes. Get a detailed grade report showing exactly how customers experience your phone. $29 one-time.">
-<meta name="keywords" content="mystery shopping, phone audit, business phone grade, call quality test, AI mystery shopper, phone answering grade">
+<meta name="keywords" content="mystery shopping, phone audit, business phone grade, call quality test, AI mystery shopper, phone answering grade, phone answering service test">
 <meta property="og:title" content="Phone Grade — How Does Your Business Sound?">
 <meta property="og:description" content="AI calls your business as a real customer would. You get a detailed grade report in minutes. $29.">
 <meta property="og:type" content="website">
@@ -26,7 +26,8 @@ header{padding:1.2rem 2rem;border-bottom:1px solid var(--border);display:flex;ju
 .hero{text-align:center;padding:4rem 1.5rem 2rem;max-width:720px;margin:0 auto}
 .hero h1{font-size:clamp(1.8rem,5vw,2.8rem);font-weight:900;line-height:1.15;margin-bottom:1rem}
 .hero h1 em{font-style:normal;color:var(--gold)}
-.hero p{color:var(--dim);font-size:1.05rem;line-height:1.7;max-width:560px;margin:0 auto 2rem}
+.hero p{color:var(--dim);font-size:1.05rem;line-height:1.7;max-width:560px;margin:0 auto 1.2rem}
+.hero-sub{color:var(--muted);font-size:.9rem;margin:0 auto 2rem;max-width:460px;line-height:1.6}
 
 .proof-strip{display:grid;grid-template-columns:repeat(3,1fr);gap:1rem;max-width:640px;margin:0 auto 3rem;padding:0 1.5rem}
 .proof{background:var(--card);border:1px solid var(--border);padding:1.2rem;text-align:center}
@@ -46,6 +47,7 @@ header{padding:1.2rem 2rem;border-bottom:1px solid var(--border);display:flex;ju
 .price-line{display:flex;justify-content:space-between;align-items:center;padding:1rem 0;border-top:1px solid var(--border);margin-top:.5rem}
 .price-line .price-label{font-size:.9rem;color:var(--muted)}
 .price-line .price-amount{font-size:1.5rem;font-weight:900;color:var(--gold)}
+.price-line .price-was{text-decoration:line-through;color:var(--dim);font-size:.9rem;margin-right:.5rem}
 .form-btn{width:100%;background:var(--gold);color:var(--bg);border:none;padding:1rem;font-size:1rem;font-weight:800;letter-spacing:.5px;cursor:pointer;transition:opacity .15s;margin-top:.5rem}
 .form-btn:hover{opacity:.9}
 .form-btn:disabled{opacity:.4;cursor:not-allowed}
@@ -53,6 +55,17 @@ header{padding:1.2rem 2rem;border-bottom:1px solid var(--border);display:flex;ju
 .auth-check{display:flex;align-items:flex-start;gap:.6rem;margin-top:1rem;padding-top:1rem;border-top:1px solid var(--border)}
 .auth-check input[type=checkbox]{margin-top:3px;accent-color:var(--gold)}
 .auth-check label{font-size:.8rem;color:var(--dim);line-height:1.5;cursor:pointer}
+
+.trust-row{display:flex;justify-content:center;gap:2rem;max-width:520px;margin:-1.5rem auto 3rem;padding:0 1.5rem;flex-wrap:wrap}
+.trust-item{font-size:.75rem;color:var(--dim);letter-spacing:.5px;display:flex;align-items:center;gap:.4rem}
+.trust-item .ti{color:var(--green);font-weight:700}
+
+.scenario{max-width:620px;margin:0 auto 3rem;padding:0 1.5rem}
+.scenario h2{text-align:center;font-size:1.3rem;font-weight:800;margin-bottom:1.5rem}
+.scenario-card{background:var(--card);border:1px solid var(--border);padding:1.5rem;margin-bottom:.8rem}
+.scenario-card .sc-industry{font-size:.7rem;letter-spacing:1.5px;text-transform:uppercase;color:var(--gold);margin-bottom:.4rem}
+.scenario-card .sc-text{font-size:.9rem;color:var(--muted);line-height:1.6}
+.scenario-card .sc-cost{font-size:.85rem;color:var(--red);font-weight:700;margin-top:.5rem}
 
 .how{max-width:700px;margin:0 auto 3rem;padding:0 1.5rem}
 .how h2{text-align:center;font-size:1.3rem;font-weight:800;margin-bottom:2rem}
@@ -75,14 +88,29 @@ header{padding:1.2rem 2rem;border-bottom:1px solid var(--border);display:flex;ju
 .grade-item .gi-grade.f{color:var(--red);background:rgba(231,76,60,.1);border:1px solid rgba(231,76,60,.2)}
 .report-note{text-align:center;font-size:.8rem;color:var(--dim);margin-top:1rem;font-style:italic}
 
+.guarantee{max-width:520px;margin:0 auto 3rem;padding:1.5rem 2rem;background:var(--card);border:1px solid var(--green);text-align:center}
+.guarantee h3{font-size:1rem;font-weight:800;color:var(--green);margin-bottom:.5rem}
+.guarantee p{font-size:.85rem;color:var(--dim);line-height:1.6}
+
 .compare{max-width:600px;margin:0 auto 3rem;padding:0 1.5rem}
 .compare h2{text-align:center;font-size:1.3rem;font-weight:800;margin-bottom:1.5rem}
 .compare-table{width:100%;border-collapse:collapse}
 .compare-table th{font-size:.7rem;letter-spacing:1.5px;text-transform:uppercase;color:var(--dim);text-align:left;padding:.8rem;border-bottom:1px solid var(--border)}
+.compare-table th:nth-child(2){text-align:center}
 .compare-table th:last-child{text-align:right}
 .compare-table td{padding:.8rem;font-size:.85rem;color:var(--muted);border-bottom:1px solid #1a1a1a}
+.compare-table td:nth-child(2){text-align:center;font-size:.78rem;color:var(--dim)}
 .compare-table td:last-child{text-align:right;font-weight:700;color:var(--text)}
 .compare-table tr.hl td{color:var(--gold);font-weight:700}
+
+.faq{max-width:600px;margin:0 auto 3rem;padding:0 1.5rem}
+.faq h2{text-align:center;font-size:1.3rem;font-weight:800;margin-bottom:1.5rem}
+.faq-item{border-bottom:1px solid var(--border);padding:1rem 0}
+.faq-q{font-size:.9rem;font-weight:700;cursor:pointer;display:flex;justify-content:space-between;align-items:center}
+.faq-q::after{content:"+";color:var(--dim);font-size:1.2rem;transition:.2s}
+.faq-item.open .faq-q::after{content:"\2212"}
+.faq-a{display:none;font-size:.85rem;color:var(--dim);line-height:1.6;padding-top:.8rem}
+.faq-item.open .faq-a{display:block}
 
 .cta-bottom{max-width:580px;margin:0 auto 3rem;padding:2rem 1.5rem;background:linear-gradient(135deg,#1a1500,var(--bg));border:1px solid var(--gold);text-align:center}
 .cta-bottom h3{font-size:1.3rem;font-weight:900;margin-bottom:.5rem}
@@ -102,6 +130,8 @@ footer{border-top:1px solid var(--border);padding:2rem;text-align:center;color:v
   .grade-row{grid-template-columns:1fr}
   .field-row{grid-template-columns:1fr}
   .hero{padding:3rem 1.2rem 1.5rem}
+  .trust-row{gap:1rem}
+  .scenario-card{padding:1.2rem}
 }
 </style>
 </head>
@@ -118,6 +148,7 @@ footer{border-top:1px solid var(--border);padding:2rem;text-align:center;color:v
 <section class="hero">
   <h1>What grade does your business get when a <em>customer calls?</em></h1>
   <p>AI calls your business as a real customer would. You get a detailed grade report showing exactly what they experience. Results in minutes, not weeks.</p>
+  <div class="hero-sub">One call. Six grades. One page of honest feedback you can act on today.</div>
 </section>
 
 <div class="proof-strip">
@@ -128,7 +159,7 @@ footer{border-top:1px solid var(--border);padding:2rem;text-align:center;color:v
 
 <div class="form-card" id="order-form">
   <h2>Get Your Phone Grade</h2>
-  <div class="form-sub">We call once as a customer. You get a full report.</div>
+  <div class="form-sub">We call once as a customer. You get a full report with grades, transcript, and what to fix.</div>
 
   <div class="field">
     <label>Business name</label>
@@ -176,11 +207,18 @@ footer{border-top:1px solid var(--border);padding:2rem;text-align:center;color:v
 
   <div class="price-line">
     <span class="price-label">One mystery shop + full report</span>
-    <span class="price-amount">$29</span>
+    <span class="price-amount"><span class="price-was">$49</span> $29</span>
   </div>
 
   <button class="form-btn" id="order-btn" onclick="submitOrder()">Get My Phone Grade — $29</button>
-  <div class="form-note">Secure payment via Square. Report delivered to your email within 1 hour of your call.</div>
+  <div class="form-note">Secure payment via Square. Report delivered to your email within 1 hour.</div>
+</div>
+
+<div class="trust-row">
+  <div class="trust-item"><span class="ti">&#10003;</span> Money-back guarantee</div>
+  <div class="trust-item"><span class="ti">&#10003;</span> Report in under 1 hour</div>
+  <div class="trust-item"><span class="ti">&#10003;</span> No subscription</div>
+  <div class="trust-item"><span class="ti">&#10003;</span> Secure payment</div>
 </div>
 
 <div id="success">
@@ -189,6 +227,25 @@ footer{border-top:1px solid var(--border);padding:2rem;text-align:center;color:v
   <p>Your grade report will be emailed to <strong id="success-email"></strong>.</p>
   <p style="margin-top:1.5rem"><a href="#" id="pay-link" style="background:var(--gold);color:var(--bg);padding:.8rem 2rem;font-weight:800;display:inline-block">Pay $29 — Start My Phone Grade</a></p>
 </div>
+
+<section class="scenario">
+  <h2>What a Missed Call Actually Costs</h2>
+  <div class="scenario-card">
+    <div class="sc-industry">HVAC</div>
+    <div class="sc-text">It's 98 degrees. A homeowner's AC dies. They call 3 companies. Two go to voicemail. You pick up. That's a $1,500 install you won because you answered.</div>
+    <div class="sc-cost">Average missed HVAC call = $650 in lost revenue</div>
+  </div>
+  <div class="scenario-card">
+    <div class="sc-industry">PLUMBING</div>
+    <div class="sc-text">Burst pipe at 7am. The homeowner is panicking and calling down the list. First plumber who answers gets the $800 emergency call and a customer for life.</div>
+    <div class="sc-cost">3 missed calls/week at $400 avg = $62,400/year walking out the door</div>
+  </div>
+  <div class="scenario-card">
+    <div class="sc-industry">LAW FIRM</div>
+    <div class="sc-text">Someone just got rear-ended. They're searching "personal injury lawyer" and calling the top 5 results. Your receptionist puts them on hold for 4 minutes. They hang up and call the next one.</div>
+    <div class="sc-cost">One lost PI client = $3,000-$15,000 in fees</div>
+  </div>
+</section>
 
 <section class="how">
   <h2>How It Works</h2>
@@ -230,27 +287,64 @@ footer{border-top:1px solid var(--border);padding:2rem;text-align:center;color:v
     <div class="grade-item"><span class="gi-label">Booking / Close</span><span class="gi-grade d">D</span></div>
     <div class="grade-item"><span class="gi-label">Professionalism</span><span class="gi-grade a">A-</span></div>
   </div>
-  <div class="report-note">Sample report. Your actual grades are based on how your business handles the mystery call.</div>
+  <div class="report-note">Sample report. Your actual grades are based on how your business handles the mystery call. Full transcript included.</div>
+</section>
+
+<section class="guarantee">
+  <h3>100% Money-Back Guarantee</h3>
+  <p>If we can't complete the mystery shop for any reason, you get a full refund. No questions asked. If you're not satisfied with the report, email us and we'll refund you.</p>
 </section>
 
 <section class="compare">
   <h2>What Other Mystery Shops Cost</h2>
   <table class="compare-table">
-    <thead><tr><th>Provider</th><th>Price per shop</th></tr></thead>
+    <thead><tr><th>Provider</th><th>Setup fee</th><th>Per shop</th></tr></thead>
     <tbody>
-      <tr><td>Market Force CX Express</td><td>$59+</td></tr>
-      <tr><td>Reality Based Group</td><td>$70+</td></tr>
-      <tr><td>CustomerOptix</td><td>$45+</td></tr>
-      <tr><td>Traditional mystery shop firms</td><td>$100-$300</td></tr>
-      <tr class="hl"><td>Phone Grade by BOSS</td><td>$29</td></tr>
+      <tr><td>Market Force</td><td>$300+</td><td>$59+</td></tr>
+      <tr><td>Reality Based Group</td><td>$500+</td><td>$70+</td></tr>
+      <tr><td>T-ROC Global</td><td>Retainer</td><td>$40-$150</td></tr>
+      <tr><td>Traditional firms</td><td>$300-$500</td><td>$100-$300</td></tr>
+      <tr class="hl"><td>Phone Grade</td><td>$0</td><td>$29</td></tr>
     </tbody>
   </table>
+</section>
+
+<section class="faq">
+  <h2>Questions</h2>
+  <div class="faq-item">
+    <div class="faq-q" onclick="this.parentElement.classList.toggle('open')">What exactly happens during the mystery shop?</div>
+    <div class="faq-a">Our AI calls your business phone number posing as a real customer in your industry. It asks about services, pricing, and availability, just like a real customer would. We grade how your team handles the call across 6 categories and send you a detailed report with the full transcript.</div>
+  </div>
+  <div class="faq-item">
+    <div class="faq-q" onclick="this.parentElement.classList.toggle('open')">How fast do I get results?</div>
+    <div class="faq-a">Within 1 hour of payment. The call happens within minutes. Grading and report generation take a few more minutes. Your full report lands in your inbox typically within 30 minutes.</div>
+  </div>
+  <div class="faq-item">
+    <div class="faq-q" onclick="this.parentElement.classList.toggle('open')">Will my staff know it's a mystery shop?</div>
+    <div class="faq-a">No. The AI sounds like a real customer asking real questions about your services. Your staff won't know they're being evaluated, which means you get an honest picture of what your customers actually experience.</div>
+  </div>
+  <div class="faq-item">
+    <div class="faq-q" onclick="this.parentElement.classList.toggle('open')">What if nobody answers?</div>
+    <div class="faq-a">That's important data. If your business phone goes to voicemail, you'll get an F for Answer Speed and we'll note it in the report. 62% of service businesses miss calls. Better to find out from us for $29 than lose a $1,500 customer.</div>
+  </div>
+  <div class="faq-item">
+    <div class="faq-q" onclick="this.parentElement.classList.toggle('open')">Is this legal?</div>
+    <div class="faq-a">Yes. You're authorizing us to call your own business. This is a self-shop, which is standard practice in the mystery shopping industry. The authorization checkbox on the form documents your consent.</div>
+  </div>
+  <div class="faq-item">
+    <div class="faq-q" onclick="this.parentElement.classList.toggle('open')">Can I use this to shop a competitor?</div>
+    <div class="faq-a">Currently, Phone Grade is for your own business only. You must be the owner or an authorized manager of the business being called.</div>
+  </div>
+  <div class="faq-item">
+    <div class="faq-q" onclick="this.parentElement.classList.toggle('open')">What if I want regular mystery shops?</div>
+    <div class="faq-a">You can order as many Phone Grades as you want. Many business owners do a monthly shop to track improvement. Each shop is a separate $29 purchase.</div>
+  </div>
 </section>
 
 <section class="cta-bottom">
   <h3>Score below a B?</h3>
   <p>We can fix that. BOSS AI Receptionist answers every call perfectly, 24/7, for $50/month. No missed calls, no bad first impressions, no lost revenue.</p>
-  <a href="/receptionist" class="cta-btn">Learn about AI Receptionist</a>
+  <a href="/" class="cta-btn">Learn about AI Receptionist</a>
 </section>
 
 <footer>
