@@ -1,0 +1,422 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Law Firm Phone Grade — How Many Clients Are You Losing on the Phone?</title>
+<meta name="description" content="AI mystery shops your law firm's phone in under 5 minutes. See exactly how potential clients experience your intake process. Detailed grade report for $29.">
+<meta name="keywords" content="law firm mystery shop, legal intake audit, attorney phone grade, law office call quality, legal receptionist test, client intake evaluation, law firm phone answering">
+<meta property="og:title" content="Law Firm Phone Grade — How Many Clients Are You Losing?">
+<meta property="og:description" content="AI calls your law firm as a potential client would. You get a detailed grade report showing exactly what callers experience. $29 one-time.">
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://bosssystems.co/grade-legal">
+<style>
+*{margin:0;padding:0;box-sizing:border-box}
+:root{--bg:#080808;--card:#111;--card2:#161616;--border:#222;--gold:#C9A84C;--text:#f0ede8;--muted:#bbb;--dim:#999;--green:#2ecc71;--red:#e74c3c;--blue:#3d95ce;--font:-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif}
+body{font-family:var(--font);background:var(--bg);color:var(--text);min-height:100vh;-webkit-font-smoothing:antialiased}
+a{color:var(--gold);text-decoration:none}
+
+header{padding:1.2rem 2rem;border-bottom:1px solid var(--border);display:flex;justify-content:space-between;align-items:center}
+.logo{font-weight:900;font-size:1rem;letter-spacing:2px;color:var(--gold)}
+.logo span{color:var(--muted);font-weight:400;letter-spacing:0;font-size:.85rem;margin-left:.5rem}
+.nav-links{display:flex;gap:1.5rem;font-size:.85rem}
+.nav-links a{color:var(--muted)}
+.nav-links a:hover{color:var(--gold)}
+
+.hero{text-align:center;padding:4rem 1.5rem 2rem;max-width:720px;margin:0 auto}
+.hero h1{font-size:clamp(1.8rem,5vw,2.8rem);font-weight:900;line-height:1.15;margin-bottom:1rem}
+.hero h1 em{font-style:normal;color:var(--gold)}
+.hero p{color:var(--dim);font-size:1.05rem;line-height:1.7;max-width:560px;margin:0 auto 1.2rem}
+.hero-sub{color:var(--muted);font-size:.9rem;margin:0 auto 2rem;max-width:460px;line-height:1.6}
+
+.proof-strip{display:grid;grid-template-columns:repeat(3,1fr);gap:1rem;max-width:640px;margin:0 auto 3rem;padding:0 1.5rem}
+.proof{background:var(--card);border:1px solid var(--border);padding:1.2rem;text-align:center}
+.proof .n{font-size:1.6rem;font-weight:900;color:var(--gold)}
+.proof .l{font-size:.7rem;letter-spacing:1.5px;text-transform:uppercase;color:var(--dim);margin-top:.3rem;line-height:1.4}
+
+.form-card{background:var(--card);border:1px solid var(--border);padding:2rem;max-width:520px;margin:0 auto 3rem}
+.form-card h2{font-size:1.1rem;font-weight:700;margin-bottom:.3rem}
+.form-card .form-sub{color:var(--dim);font-size:.85rem;margin-bottom:1.5rem}
+.field{margin-bottom:1rem}
+.field label{display:block;font-size:.75rem;letter-spacing:1.5px;text-transform:uppercase;color:var(--dim);margin-bottom:.4rem}
+.field input,.field select{width:100%;background:var(--bg);border:1px solid var(--border);color:var(--text);padding:.8rem 1rem;font-size:.95rem;font-family:var(--font);outline:none;transition:border-color .2s}
+.field input:focus,.field select:focus{border-color:var(--gold)}
+.field select option{background:#1a1a1a}
+.field .hint{font-size:.75rem;color:var(--dim);margin-top:.3rem}
+.field-row{display:grid;grid-template-columns:1fr 1fr;gap:.8rem}
+.price-line{display:flex;justify-content:space-between;align-items:center;padding:1rem 0;border-top:1px solid var(--border);margin-top:.5rem}
+.price-line .price-label{font-size:.9rem;color:var(--muted)}
+.price-line .price-amount{font-size:1.5rem;font-weight:900;color:var(--gold)}
+.price-line .price-was{text-decoration:line-through;color:var(--dim);font-size:.9rem;margin-right:.5rem}
+.form-btn{width:100%;background:var(--gold);color:var(--bg);border:none;padding:1rem;font-size:1rem;font-weight:800;letter-spacing:.5px;cursor:pointer;transition:opacity .15s;margin-top:.5rem}
+.form-btn:hover{opacity:.9}
+.form-btn:disabled{opacity:.4;cursor:not-allowed}
+.form-note{text-align:center;font-size:.78rem;color:var(--dim);margin-top:.8rem;line-height:1.5}
+.auth-check{display:flex;align-items:flex-start;gap:.6rem;margin-top:1rem;padding-top:1rem;border-top:1px solid var(--border)}
+.auth-check input[type=checkbox]{margin-top:3px;accent-color:var(--gold)}
+.auth-check label{font-size:.8rem;color:var(--dim);line-height:1.5;cursor:pointer}
+
+.trust-row{display:flex;justify-content:center;gap:2rem;max-width:520px;margin:-1.5rem auto 3rem;padding:0 1.5rem;flex-wrap:wrap}
+.trust-item{font-size:.75rem;color:var(--dim);letter-spacing:.5px;display:flex;align-items:center;gap:.4rem}
+.trust-item .ti{color:var(--green);font-weight:700}
+
+.scenario{max-width:620px;margin:0 auto 3rem;padding:0 1.5rem}
+.scenario h2{text-align:center;font-size:1.3rem;font-weight:800;margin-bottom:1.5rem}
+.scenario-card{background:var(--card);border:1px solid var(--border);padding:1.5rem;margin-bottom:.8rem}
+.scenario-card .sc-industry{font-size:.7rem;letter-spacing:1.5px;text-transform:uppercase;color:var(--gold);margin-bottom:.4rem}
+.scenario-card .sc-text{font-size:.9rem;color:var(--muted);line-height:1.6}
+.scenario-card .sc-cost{font-size:.85rem;color:var(--red);font-weight:700;margin-top:.5rem}
+
+.how{max-width:700px;margin:0 auto 3rem;padding:0 1.5rem}
+.how h2{text-align:center;font-size:1.3rem;font-weight:800;margin-bottom:2rem}
+.how-steps{display:grid;grid-template-columns:repeat(4,1fr);gap:1rem}
+.how-step{text-align:center;padding:1.5rem .8rem;background:var(--card);border:1px solid var(--border)}
+.how-step .num{font-size:1.3rem;font-weight:900;color:var(--gold);margin-bottom:.4rem}
+.how-step h4{font-size:.85rem;font-weight:700;margin-bottom:.3rem}
+.how-step p{font-size:.78rem;color:var(--dim);line-height:1.5}
+
+.report-preview{max-width:580px;margin:0 auto 3rem;padding:0 1.5rem}
+.report-preview h2{text-align:center;font-size:1.3rem;font-weight:800;margin-bottom:1.5rem}
+.grade-row{display:grid;grid-template-columns:1fr 1fr;gap:.6rem;margin-bottom:.6rem}
+.grade-item{background:var(--card);border:1px solid var(--border);padding:1rem;display:flex;justify-content:space-between;align-items:center}
+.grade-item .gi-label{font-size:.85rem;color:var(--muted)}
+.grade-item .gi-grade{font-size:1.2rem;font-weight:900;padding:.2rem .6rem;border-radius:3px;min-width:36px;text-align:center}
+.grade-item .gi-grade.a{color:var(--green);background:rgba(46,204,113,.1);border:1px solid rgba(46,204,113,.2)}
+.grade-item .gi-grade.b{color:var(--blue);background:rgba(61,149,206,.1);border:1px solid rgba(61,149,206,.2)}
+.grade-item .gi-grade.c{color:#f1c40f;background:rgba(241,196,15,.1);border:1px solid rgba(241,196,15,.2)}
+.grade-item .gi-grade.d{color:#e67e22;background:rgba(230,126,34,.1);border:1px solid rgba(230,126,34,.2)}
+.grade-item .gi-grade.f{color:var(--red);background:rgba(231,76,60,.1);border:1px solid rgba(231,76,60,.2)}
+.report-note{text-align:center;font-size:.8rem;color:var(--dim);margin-top:1rem;font-style:italic}
+
+.guarantee{max-width:520px;margin:0 auto 3rem;padding:1.5rem 2rem;background:var(--card);border:1px solid var(--green);text-align:center}
+.guarantee h3{font-size:1rem;font-weight:800;color:var(--green);margin-bottom:.5rem}
+.guarantee p{font-size:.85rem;color:var(--dim);line-height:1.6}
+
+.compare{max-width:600px;margin:0 auto 3rem;padding:0 1.5rem}
+.compare h2{text-align:center;font-size:1.3rem;font-weight:800;margin-bottom:1.5rem}
+.compare-table{width:100%;border-collapse:collapse}
+.compare-table th{font-size:.7rem;letter-spacing:1.5px;text-transform:uppercase;color:var(--dim);text-align:left;padding:.8rem;border-bottom:1px solid var(--border)}
+.compare-table th:nth-child(2){text-align:center}
+.compare-table th:last-child{text-align:right}
+.compare-table td{padding:.8rem;font-size:.85rem;color:var(--muted);border-bottom:1px solid #1a1a1a}
+.compare-table td:nth-child(2){text-align:center;font-size:.78rem;color:var(--dim)}
+.compare-table td:last-child{text-align:right;font-weight:700;color:var(--text)}
+.compare-table tr.hl td{color:var(--gold);font-weight:700}
+
+.faq{max-width:600px;margin:0 auto 3rem;padding:0 1.5rem}
+.faq h2{text-align:center;font-size:1.3rem;font-weight:800;margin-bottom:1.5rem}
+.faq-item{border-bottom:1px solid var(--border);padding:1rem 0}
+.faq-q{font-size:.9rem;font-weight:700;cursor:pointer;display:flex;justify-content:space-between;align-items:center}
+.faq-q::after{content:"+";color:var(--dim);font-size:1.2rem;transition:.2s}
+.faq-item.open .faq-q::after{content:"\2212"}
+.faq-a{display:none;font-size:.85rem;color:var(--dim);line-height:1.6;padding-top:.8rem}
+.faq-item.open .faq-a{display:block}
+
+.cta-bottom{max-width:580px;margin:0 auto 3rem;padding:2rem 1.5rem;background:linear-gradient(135deg,#1a1500,var(--bg));border:1px solid var(--gold);text-align:center}
+.cta-bottom h3{font-size:1.3rem;font-weight:900;margin-bottom:.5rem}
+.cta-bottom p{color:var(--dim);font-size:.9rem;line-height:1.6;margin-bottom:1.2rem}
+.cta-bottom .cta-btn{display:inline-block;background:var(--gold);color:var(--bg);padding:.9rem 2.5rem;font-weight:800;font-size:1rem;cursor:pointer;border:none;transition:.15s}
+.cta-bottom .cta-btn:hover{opacity:.9}
+
+footer{border-top:1px solid var(--border);padding:2rem;text-align:center;color:var(--dim);font-size:.75rem}
+
+#success{display:none;max-width:520px;margin:0 auto;padding:2rem;text-align:center}
+#success h2{font-size:1.5rem;font-weight:900;color:var(--green);margin-bottom:1rem}
+#success p{color:var(--muted);font-size:.95rem;line-height:1.7;margin-bottom:.5rem}
+
+@media(max-width:600px){
+  .proof-strip{grid-template-columns:1fr}
+  .how-steps{grid-template-columns:1fr 1fr}
+  .grade-row{grid-template-columns:1fr}
+  .field-row{grid-template-columns:1fr}
+  .hero{padding:3rem 1.2rem 1.5rem}
+  .trust-row{gap:1rem}
+  .scenario-card{padding:1.2rem}
+}
+</style>
+</head>
+<body>
+
+<header>
+  <div class="logo">BOSS <span>tools</span></div>
+  <nav class="nav-links">
+    <a href="/">Home</a>
+    <a href="/grade">All Industries</a>
+    <a href="/hooks">Hook Generator</a>
+  </nav>
+</header>
+
+<section class="hero">
+  <h1>How many potential clients <em>hang up</em> before your firm ever knows they called?</h1>
+  <p>When someone calls a law firm, they are already in distress. They need to feel heard in the first 15 seconds or they move to the next name on Google. We call your office as a potential client and grade what they actually experience.</p>
+  <div class="hero-sub">One call. Six grades. An honest assessment of your intake process you can act on today.</div>
+</section>
+
+<div class="proof-strip">
+  <div class="proof"><div class="n">$3K-$15K</div><div class="l">average PI case fee lost per missed caller</div></div>
+  <div class="proof"><div class="n">67%</div><div class="l">of potential clients call 3+ firms before hiring</div></div>
+  <div class="proof"><div class="n">21x</div><div class="l">higher conversion with a 5-minute response</div></div>
+</div>
+
+<div class="form-card" id="order-form">
+  <h2>Get Your Law Firm Phone Grade</h2>
+  <div class="form-sub">We call your office once as a potential client. You get a full report with grades, transcript, and intake recommendations.</div>
+
+  <div class="field">
+    <label>Firm name</label>
+    <input type="text" id="biz-name" placeholder="e.g. Johnson & Associates, Smith Law Group" maxlength="80">
+  </div>
+  <div class="field">
+    <label>Main office phone number</label>
+    <input type="tel" id="biz-phone" placeholder="(555) 123-4567" maxlength="20">
+    <div class="hint">The number potential clients call. We will mystery shop this number.</div>
+  </div>
+  <div class="field">
+    <label>Your email</label>
+    <input type="email" id="email" placeholder="you@firm.com" maxlength="100">
+    <div class="hint">Your grade report will be sent here.</div>
+  </div>
+  <div class="field-row">
+    <div class="field">
+      <label>Practice area</label>
+      <select id="industry">
+        <option value="legal" selected>General Practice</option>
+        <option value="legal-pi">Personal Injury</option>
+        <option value="legal-family">Family Law</option>
+        <option value="legal-criminal">Criminal Defense</option>
+        <option value="legal-estate">Estate Planning</option>
+        <option value="legal-immigration">Immigration</option>
+        <option value="legal-bankruptcy">Bankruptcy</option>
+        <option value="legal-business">Business / Corporate</option>
+        <option value="legal-realestate">Real Estate</option>
+        <option value="legal-employment">Employment Law</option>
+        <option value="legal-other">Other</option>
+      </select>
+    </div>
+    <div class="field">
+      <label>Location</label>
+      <input type="text" id="location" placeholder="City, State" maxlength="60">
+    </div>
+  </div>
+
+  <div class="auth-check">
+    <input type="checkbox" id="auth-cb">
+    <label for="auth-cb">I authorize BOSS Systems to place one AI-powered quality assessment call to my firm's phone number listed above. I understand this is a mystery shop of my own office.</label>
+  </div>
+
+  <div class="price-line">
+    <span class="price-label">One mystery shop + full report</span>
+    <span class="price-amount"><span class="price-was">$49</span> $29</span>
+  </div>
+
+  <button class="form-btn" id="order-btn" onclick="submitOrder()">Get My Law Firm Phone Grade — $29</button>
+  <div class="form-note">Secure payment via Square. Report delivered to your email within 1 hour.</div>
+</div>
+
+<div class="trust-row">
+  <div class="trust-item"><span class="ti">&#10003;</span> Money-back guarantee</div>
+  <div class="trust-item"><span class="ti">&#10003;</span> Report in under 1 hour</div>
+  <div class="trust-item"><span class="ti">&#10003;</span> No subscription</div>
+  <div class="trust-item"><span class="ti">&#10003;</span> Secure payment</div>
+</div>
+
+<div id="success">
+  <h2>Almost there.</h2>
+  <p>Complete your $29 payment to start the mystery shop. After payment, we will call your firm within the hour.</p>
+  <p>Your grade report will be emailed to <strong id="success-email"></strong>.</p>
+  <p style="margin-top:1.5rem"><a href="#" id="pay-link" style="background:var(--gold);color:var(--bg);padding:.8rem 2rem;font-weight:800;display:inline-block">Pay $29 — Start My Phone Grade</a></p>
+</div>
+
+<section class="scenario">
+  <h2>What a Missed Legal Call Actually Costs</h2>
+  <div class="scenario-card">
+    <div class="sc-industry">PERSONAL INJURY</div>
+    <div class="sc-text">A driver was just rear-ended at an intersection. From the passenger seat, they search "personal injury lawyer near me" and call the first five results. Your receptionist puts them on hold for three minutes. They hang up and retain the firm that answered second.</div>
+    <div class="sc-cost">One lost PI client = $3,000-$15,000 in contingency fees</div>
+  </div>
+  <div class="scenario-card">
+    <div class="sc-industry">FAMILY LAW</div>
+    <div class="sc-text">A woman has decided to file for divorce. It took her weeks to work up the courage to call. She dials your office and gets a rushed, impersonal greeting. She does not feel safe. She calls the next attorney on her list, and that firm gets a $5,000 retainer.</div>
+    <div class="sc-cost">Family law clients choose based on the first 30 seconds of empathy</div>
+  </div>
+  <div class="scenario-card">
+    <div class="sc-industry">ESTATE PLANNING</div>
+    <div class="sc-text">A retired couple wants to update their will after a grandchild is born. They call your office during lunch. Nobody picks up. No callback for two days. They find another attorney who answered the phone and booked them that afternoon.</div>
+    <div class="sc-cost">Estate planning packages = $1,500-$4,000 walked out the door</div>
+  </div>
+  <div class="scenario-card">
+    <div class="sc-industry">CRIMINAL DEFENSE</div>
+    <div class="sc-text">It is 9pm on a Friday. A parent's college-age son was just arrested. They are panicking and calling every criminal defense attorney they can find. Your phone goes to a generic voicemail. The firm with 24/7 intake gets the $10,000 retainer.</div>
+    <div class="sc-cost">After-hours criminal defense calls = highest urgency, highest fees</div>
+  </div>
+</section>
+
+<section class="how">
+  <h2>How It Works</h2>
+  <div class="how-steps">
+    <div class="how-step">
+      <div class="num">1</div>
+      <h4>Enter your info</h4>
+      <p>Your firm name, phone number, and practice area.</p>
+    </div>
+    <div class="how-step">
+      <div class="num">2</div>
+      <h4>Pay $29</h4>
+      <p>One-time payment. No subscription, no retainer.</p>
+    </div>
+    <div class="how-step">
+      <div class="num">3</div>
+      <h4>We call your office</h4>
+      <p>AI calls as a potential client relevant to your practice area.</p>
+    </div>
+    <div class="how-step">
+      <div class="num">4</div>
+      <h4>Get your grade</h4>
+      <p>Detailed report with intake scores, transcript, and recommendations.</p>
+    </div>
+  </div>
+</section>
+
+<section class="report-preview">
+  <h2>What Your Report Looks Like</h2>
+  <div class="grade-row">
+    <div class="grade-item"><span class="gi-label">Overall Grade</span><span class="gi-grade c">C+</span></div>
+    <div class="grade-item"><span class="gi-label">Answer Speed</span><span class="gi-grade b">B</span></div>
+  </div>
+  <div class="grade-row">
+    <div class="grade-item"><span class="gi-label">Greeting / Tone</span><span class="gi-grade d">D+</span></div>
+    <div class="grade-item"><span class="gi-label">Empathy / Rapport</span><span class="gi-grade c">C</span></div>
+  </div>
+  <div class="grade-row">
+    <div class="grade-item"><span class="gi-label">Intake / Next Steps</span><span class="gi-grade f">F</span></div>
+    <div class="grade-item"><span class="gi-label">Professionalism</span><span class="gi-grade a">A-</span></div>
+  </div>
+  <div class="report-note">Sample report. Your actual grades are based on how your staff handles the mystery call. Full transcript included.</div>
+</section>
+
+<section class="guarantee">
+  <h3>100% Money-Back Guarantee</h3>
+  <p>If we cannot complete the mystery shop for any reason, you get a full refund. No questions asked. If you are not satisfied with the report, email us and we will refund you.</p>
+</section>
+
+<section class="compare">
+  <h2>What Other Legal Mystery Shops Cost</h2>
+  <table class="compare-table">
+    <thead><tr><th>Provider</th><th>Setup fee</th><th>Per shop</th></tr></thead>
+    <tbody>
+      <tr><td>Legitimate mystery shop firms</td><td>$300-$500</td><td>$100-$300</td></tr>
+      <tr><td>Legal intake consultants</td><td>$1,000+</td><td>$150-$500</td></tr>
+      <tr><td>Market Force / T-ROC</td><td>$300-$500</td><td>$59-$150</td></tr>
+      <tr><td>DIY (ask a friend)</td><td>$0</td><td>Biased results</td></tr>
+      <tr class="hl"><td>Phone Grade for Law Firms</td><td>$0</td><td>$29</td></tr>
+    </tbody>
+  </table>
+</section>
+
+<section class="faq">
+  <h2>Questions</h2>
+  <div class="faq-item">
+    <div class="faq-q" onclick="this.parentElement.classList.toggle('open')">What exactly happens during the mystery shop?</div>
+    <div class="faq-a">Our AI calls your office posing as a potential client with a scenario relevant to your practice area. For a personal injury firm, it might describe a recent car accident. For a family law firm, it might ask about filing for divorce. We grade how your staff handles the call across 6 categories and send you a detailed report with the full transcript.</div>
+  </div>
+  <div class="faq-item">
+    <div class="faq-q" onclick="this.parentElement.classList.toggle('open')">Is the call confidential?</div>
+    <div class="faq-a">Yes. The call data, transcript, and grade report are sent only to the email you provide. We do not share your results with anyone. We do not publish firm names or scores. This is a private assessment for your internal use.</div>
+  </div>
+  <div class="faq-item">
+    <div class="faq-q" onclick="this.parentElement.classList.toggle('open')">Will my receptionist or intake staff know it is a mystery shop?</div>
+    <div class="faq-a">No. The AI sounds like a real potential client asking realistic questions about your services. Your staff will not know they are being evaluated, which means you get an honest picture of what callers actually experience at your firm.</div>
+  </div>
+  <div class="faq-item">
+    <div class="faq-q" onclick="this.parentElement.classList.toggle('open')">How fast do I get results?</div>
+    <div class="faq-a">Within 1 hour of payment. The call happens within minutes. Grading and report generation take a few more minutes. Your full report typically lands in your inbox within 30 minutes.</div>
+  </div>
+  <div class="faq-item">
+    <div class="faq-q" onclick="this.parentElement.classList.toggle('open')">What if nobody answers or it goes to voicemail?</div>
+    <div class="faq-a">That is critical data in itself. If your main line goes to voicemail, you will receive an F for Answer Speed and a detailed note in the report. 67% of potential legal clients call multiple firms. If yours does not answer, the next firm gets that retainer.</div>
+  </div>
+  <div class="faq-item">
+    <div class="faq-q" onclick="this.parentElement.classList.toggle('open')">Does this evaluate my answering service or virtual receptionist?</div>
+    <div class="faq-a">Yes. We call whatever number your potential clients call. If that routes to an answering service, a virtual receptionist, or an in-house intake team, that is exactly what gets graded. You see what your callers see.</div>
+  </div>
+  <div class="faq-item">
+    <div class="faq-q" onclick="this.parentElement.classList.toggle('open')">Is this legal?</div>
+    <div class="faq-a">Yes. You are authorizing us to call your own firm. This is a self-shop, which is standard practice in the mystery shopping industry. The authorization checkbox on the form documents your consent. We are not recording attorney-client privileged communications since no real legal matter is discussed.</div>
+  </div>
+  <div class="faq-item">
+    <div class="faq-q" onclick="this.parentElement.classList.toggle('open')">Can I use this to evaluate a competitor's firm?</div>
+    <div class="faq-a">Currently, Phone Grade is for your own firm only. You must be a partner, managing attorney, or office administrator authorized to evaluate the firm being called.</div>
+  </div>
+  <div class="faq-item">
+    <div class="faq-q" onclick="this.parentElement.classList.toggle('open')">We already use an answering service. Why would I need this?</div>
+    <div class="faq-a">An answering service is only as good as its performance. Many firms assume their service is doing well because they never test it from the caller's perspective. A $29 mystery shop can reveal whether your investment is actually converting callers into consultations.</div>
+  </div>
+</section>
+
+<section class="cta-bottom">
+  <h3>Score below a B on intake?</h3>
+  <p>We can fix that. BOSS AI Receptionist handles every call with professionalism and empathy, 24/7, for a fraction of what a full-time receptionist costs. No missed calls. No lost retainers.</p>
+  <a href="/" class="cta-btn">Learn about AI Receptionist</a>
+</section>
+
+<footer>
+  <p>&copy; 2026 BOSS Systems &mdash; <a href="/privacy">Privacy</a> &middot; <a href="/terms">Terms</a></p>
+</footer>
+
+<script>
+var SQUARE_PAY_URL = 'https://square.link/u/qk7se7vt';
+var NTFY_URL = 'https://ntfy.sh/bossai-bostonrossall-alerts';
+
+function formatPhone(val) {
+  var d = val.replace(/\D/g, '');
+  if (d.length >= 10) {
+    if (d.length === 11 && d[0] === '1') d = d.slice(1);
+    return '(' + d.slice(0,3) + ') ' + d.slice(3,6) + '-' + d.slice(6,10);
+  }
+  return val;
+}
+
+document.getElementById('biz-phone').addEventListener('blur', function() {
+  this.value = formatPhone(this.value);
+});
+
+async function submitOrder() {
+  var name = document.getElementById('biz-name').value.trim();
+  var phone = document.getElementById('biz-phone').value.trim().replace(/\D/g, '');
+  var email = document.getElementById('email').value.trim();
+  var industry = document.getElementById('industry').value;
+  var location = document.getElementById('location').value.trim();
+  var auth = document.getElementById('auth-cb').checked;
+
+  if (!name) { alert('Enter your firm name.'); return; }
+  if (phone.length < 10) { alert('Enter a valid phone number.'); return; }
+  if (!email || !email.includes('@')) { alert('Enter a valid email address.'); return; }
+  if (!auth) { alert('Please check the authorization box to proceed.'); return; }
+
+  if (phone.length === 11 && phone[0] === '1') phone = phone.slice(1);
+
+  var btn = document.getElementById('order-btn');
+  btn.disabled = true;
+  btn.textContent = 'Processing...';
+
+  var fmtPhone = '(' + phone.slice(0,3) + ') ' + phone.slice(3,6) + '-' + phone.slice(6,10);
+  var msg = 'LAW FIRM Phone Grade order from ' + name + '. Phone ' + fmtPhone + '. Email ' + email + '. Practice area ' + industry + '. Location ' + (location || 'not given') + '. Awaiting payment.';
+
+  try {
+    await fetch(NTFY_URL, {
+      method: 'POST',
+      headers: {'Title': 'Law Firm Phone Grade Order', 'Priority': 'high', 'Tags': 'dollar,scales'},
+      body: msg
+    });
+  } catch(e) {}
+
+  document.getElementById('order-form').style.display = 'none';
+  document.getElementById('success').style.display = 'block';
+  document.getElementById('success-email').textContent = email;
+  document.getElementById('pay-link').href = SQUARE_PAY_URL;
+  document.getElementById('success').scrollIntoView({behavior: 'smooth'});
+}
+</script>
+
+</body>
+</html>
