@@ -1,0 +1,419 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>AI Hook Generator — Free Viral Hooks for TikTok, Reels & Shorts</title>
+<meta name="description" content="Generate scroll-stopping hooks for TikTok, Instagram Reels, and YouTube Shorts. Free. Powered by AI. Enter your niche, get 5 hooks instantly.">
+<meta name="keywords" content="AI hook generator, viral hooks, TikTok hooks, Instagram Reels hooks, YouTube Shorts hooks, content creator tools, free hook generator">
+<meta property="og:title" content="AI Hook Generator — Free Viral Hooks">
+<meta property="og:description" content="Stop staring at a blank screen. Get 5 viral hooks in 10 seconds. Free.">
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://bosssystems.co/hooks">
+<style>
+*{margin:0;padding:0;box-sizing:border-box}
+:root{--bg:#080808;--card:#111;--card2:#161616;--border:#222;--gold:#C9A84C;--gold-d:#a8883a;--text:#f0ede8;--muted:#bbb;--dim:#999;--green:#2ecc71;--blue:#3d95ce;--font:-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif}
+body{font-family:var(--font);background:var(--bg);color:var(--text);min-height:100vh;-webkit-font-smoothing:antialiased}
+a{color:var(--gold);text-decoration:none}
+a:hover{opacity:.85}
+
+header{padding:1.2rem 2rem;border-bottom:1px solid var(--border);display:flex;justify-content:space-between;align-items:center}
+.logo{font-weight:900;font-size:1rem;letter-spacing:2px;color:var(--gold)}
+.logo span{color:var(--muted);font-weight:400;letter-spacing:0;font-size:.85rem;margin-left:.5rem}
+.nav-links{display:flex;gap:1.5rem;font-size:.85rem}
+.nav-links a{color:var(--muted)}
+.nav-links a:hover{color:var(--gold)}
+
+.hero{text-align:center;padding:4rem 1.5rem 2rem;max-width:680px;margin:0 auto}
+.hero h1{font-size:clamp(1.8rem,5vw,3rem);font-weight:900;line-height:1.15;margin-bottom:1rem}
+.hero h1 em{font-style:normal;color:var(--gold)}
+.hero p{color:var(--dim);font-size:1.05rem;line-height:1.7;max-width:540px;margin:0 auto 2.5rem}
+
+.stats-strip{display:flex;justify-content:center;gap:2.5rem;margin-bottom:3rem;flex-wrap:wrap}
+.stats-strip .s{text-align:center}
+.stats-strip .s .n{font-size:1.4rem;font-weight:900;color:var(--gold)}
+.stats-strip .s .l{font-size:.7rem;letter-spacing:1.5px;text-transform:uppercase;color:var(--dim);margin-top:.2rem}
+
+.gen-card{background:var(--card);border:1px solid var(--border);padding:2rem;max-width:580px;margin:0 auto 3rem}
+.gen-card h2{font-size:1.1rem;font-weight:700;margin-bottom:1.2rem}
+.field{margin-bottom:1rem}
+.field label{display:block;font-size:.75rem;letter-spacing:1.5px;text-transform:uppercase;color:var(--dim);margin-bottom:.4rem}
+.field input,.field select,.field textarea{width:100%;background:var(--bg);border:1px solid var(--border);color:var(--text);padding:.8rem 1rem;font-size:.95rem;font-family:var(--font);outline:none;transition:border-color .2s}
+.field input:focus,.field select:focus,.field textarea:focus{border-color:var(--gold)}
+.field select option{background:#1a1a1a}
+.field textarea{resize:vertical;min-height:60px}
+.field-row{display:grid;grid-template-columns:1fr 1fr;gap:.8rem}
+.gen-btn{width:100%;background:var(--gold);color:var(--bg);border:none;padding:1rem;font-size:1rem;font-weight:800;letter-spacing:.5px;cursor:pointer;transition:opacity .15s;margin-top:.5rem}
+.gen-btn:hover{opacity:.9}
+.gen-btn:disabled{opacity:.4;cursor:not-allowed}
+.gen-note{text-align:center;color:var(--dim);font-size:.78rem;margin-top:.8rem}
+
+#results{display:none;max-width:580px;margin:0 auto 2rem;padding:0 1.5rem}
+.results-header{display:flex;justify-content:space-between;align-items:center;margin-bottom:1rem}
+.results-header h3{font-size:1rem;font-weight:700}
+.results-header .count{font-size:.8rem;color:var(--dim)}
+.hook-card{background:var(--card);border:1px solid var(--border);padding:1rem 1.2rem;margin-bottom:.6rem;position:relative;transition:border-color .2s}
+.hook-card:hover{border-color:#333}
+.hook-platform{font-size:.65rem;letter-spacing:1.5px;text-transform:uppercase;color:var(--gold);margin-bottom:.4rem;display:inline-block}
+.hook-text{font-size:.95rem;line-height:1.6;color:var(--text)}
+.hook-why{font-size:.8rem;color:var(--dim);margin-top:.5rem;line-height:1.5;font-style:italic}
+.hook-copy{position:absolute;top:.8rem;right:.8rem;background:var(--card2);border:1px solid var(--border);color:var(--muted);font-size:.7rem;padding:.3rem .6rem;cursor:pointer;letter-spacing:.5px;transition:.15s}
+.hook-copy:hover{border-color:var(--gold);color:var(--gold)}
+.hook-copy.copied{border-color:var(--green);color:var(--green)}
+
+.upgrade-card{background:linear-gradient(135deg,#1a1500,var(--bg));border:1px solid var(--gold);padding:2rem;max-width:580px;margin:0 auto 3rem;text-align:center;display:none}
+.upgrade-card h3{font-size:1.3rem;font-weight:900;margin-bottom:.5rem}
+.upgrade-card p{color:var(--dim);font-size:.9rem;margin-bottom:1.2rem;line-height:1.6}
+.upgrade-card .price{font-size:2rem;font-weight:900;color:var(--gold);margin-bottom:.3rem}
+.upgrade-card .price-sub{font-size:.8rem;color:var(--dim);margin-bottom:1.2rem}
+.upgrade-features{text-align:left;max-width:360px;margin:0 auto 1.5rem}
+.upgrade-features li{color:var(--muted);font-size:.85rem;margin-bottom:.5rem;list-style:none;padding-left:1.2rem;position:relative}
+.upgrade-features li::before{content:"\2713";position:absolute;left:0;color:var(--gold);font-weight:700}
+.upgrade-btn{display:inline-block;background:var(--gold);color:var(--bg);border:none;padding:.9rem 2.5rem;font-size:1rem;font-weight:800;cursor:pointer;letter-spacing:.5px;transition:.15s}
+.upgrade-btn:hover{opacity:.9}
+
+.how-it-works{max-width:700px;margin:0 auto 3rem;padding:0 1.5rem}
+.how-it-works h2{text-align:center;font-size:1.3rem;font-weight:800;margin-bottom:2rem}
+.steps{display:grid;grid-template-columns:repeat(3,1fr);gap:1.5rem}
+.step{text-align:center;padding:1.5rem 1rem;background:var(--card);border:1px solid var(--border)}
+.step-num{font-size:1.5rem;font-weight:900;color:var(--gold);margin-bottom:.5rem}
+.step h4{font-size:.9rem;font-weight:700;margin-bottom:.4rem}
+.step p{font-size:.8rem;color:var(--dim);line-height:1.5}
+
+.why-section{max-width:600px;margin:0 auto 3rem;padding:0 1.5rem}
+.why-section h2{text-align:center;font-size:1.3rem;font-weight:800;margin-bottom:1.5rem}
+.why-card{background:var(--card);border:1px solid var(--border);padding:1.2rem 1.5rem;margin-bottom:.6rem}
+.why-card h4{font-size:.9rem;font-weight:700;margin-bottom:.3rem}
+.why-card p{font-size:.82rem;color:var(--dim);line-height:1.5}
+
+.faq{max-width:600px;margin:0 auto 3rem;padding:0 1.5rem}
+.faq h2{text-align:center;font-size:1.3rem;font-weight:800;margin-bottom:1.5rem}
+.faq-item{border-bottom:1px solid var(--border);padding:1rem 0}
+.faq-q{font-size:.9rem;font-weight:700;cursor:pointer;display:flex;justify-content:space-between;align-items:center}
+.faq-q::after{content:"+";color:var(--dim);font-size:1.2rem;transition:.2s}
+.faq-item.open .faq-q::after{content:"\2212"}
+.faq-a{display:none;font-size:.85rem;color:var(--dim);line-height:1.6;padding-top:.8rem}
+.faq-item.open .faq-a{display:block}
+
+footer{border-top:1px solid var(--border);padding:2rem;text-align:center;color:var(--dim);font-size:.75rem}
+footer a{color:var(--dim)}
+
+@media(max-width:600px){
+  .steps{grid-template-columns:1fr}
+  .field-row{grid-template-columns:1fr}
+  .stats-strip{gap:1.5rem}
+  .hero{padding:3rem 1.2rem 1.5rem}
+  .gen-card{padding:1.5rem}
+}
+</style>
+</head>
+<body>
+
+<header>
+  <div class="logo">BOSS <span>tools</span></div>
+  <nav class="nav-links">
+    <a href="/">Home</a>
+    <a href="/grade">Phone Grade</a>
+  </nav>
+</header>
+
+<section class="hero">
+  <h1>Stop staring at a <em>blank screen.</em><br>Get viral hooks in 10 seconds.</h1>
+  <p>Enter your niche and topic. AI generates scroll-stopping hooks for TikTok, Reels, and Shorts. The first 5 are free.</p>
+</section>
+
+<div class="stats-strip">
+  <div class="s"><div class="n">47%</div><div class="l">Swipe in 0.3s</div></div>
+  <div class="s"><div class="n">3 sec</div><div class="l">To grab attention</div></div>
+  <div class="s"><div class="n">10x</div><div class="l">Hook = the video</div></div>
+</div>
+
+<div class="gen-card" id="generator">
+  <h2>Generate Your Hooks</h2>
+  <div class="field">
+    <label>Your niche</label>
+    <input type="text" id="niche" placeholder="e.g. fitness, cooking, personal finance, tech reviews" maxlength="80">
+  </div>
+  <div class="field">
+    <label>Topic or idea</label>
+    <input type="text" id="topic" placeholder="e.g. morning routines, budget meals, side hustles" maxlength="120">
+  </div>
+  <div class="field-row">
+    <div class="field">
+      <label>Platform</label>
+      <select id="platform">
+        <option value="all">All Platforms</option>
+        <option value="tiktok">TikTok</option>
+        <option value="reels">Instagram Reels</option>
+        <option value="shorts">YouTube Shorts</option>
+        <option value="twitter">Twitter / X</option>
+      </select>
+    </div>
+    <div class="field">
+      <label>Tone</label>
+      <select id="tone">
+        <option value="mixed">Mix it up</option>
+        <option value="bold">Bold / Controversial</option>
+        <option value="curious">Curiosity-driven</option>
+        <option value="story">Storytelling</option>
+        <option value="educational">Educational</option>
+        <option value="funny">Funny / Relatable</option>
+      </select>
+    </div>
+  </div>
+  <button class="gen-btn" id="gen-btn" onclick="generate()">Generate 5 Free Hooks</button>
+  <div class="gen-note" id="gen-note">No signup required. <span id="uses-left"></span></div>
+</div>
+
+<div id="results"></div>
+
+<div class="upgrade-card" id="upgrade">
+  <h3>Want the full pack?</h3>
+  <p>Get 25 hooks across every platform, with explanations of WHY each one works and when to use it.</p>
+  <div class="price">$4.99</div>
+  <div class="price-sub">one-time, instant delivery to your email</div>
+  <ul class="upgrade-features">
+    <li>25 hooks tailored to your exact niche</li>
+    <li>Optimized for TikTok, Reels, Shorts, and Twitter</li>
+    <li>Psychology breakdown for each hook</li>
+    <li>3 hook formulas you can reuse forever</li>
+    <li>Delivered to your inbox in 60 seconds</li>
+  </ul>
+  <button class="upgrade-btn" onclick="upgrade()">Get the Full Pack — $4.99</button>
+</div>
+
+<section class="how-it-works">
+  <h2>How It Works</h2>
+  <div class="steps">
+    <div class="step">
+      <div class="step-num">1</div>
+      <h4>Enter your niche</h4>
+      <p>Tell us what you create content about and what topic you want hooks for.</p>
+    </div>
+    <div class="step">
+      <div class="step-num">2</div>
+      <h4>AI generates hooks</h4>
+      <p>Our AI writes scroll-stopping openers using proven viral patterns.</p>
+    </div>
+    <div class="step">
+      <div class="step-num">3</div>
+      <h4>Copy and post</h4>
+      <p>Pick the hooks that fit your style. Paste into your next video script.</p>
+    </div>
+  </div>
+</section>
+
+<section class="why-section">
+  <h2>Why Your Hook Matters More Than Anything</h2>
+  <div class="why-card">
+    <h4>The algorithm only cares about the first 3 seconds</h4>
+    <p>TikTok, Reels, and Shorts all measure watch time. If people swipe in the first 3 seconds, the algorithm buries your video. A strong hook is the difference between 200 views and 200,000.</p>
+  </div>
+  <div class="why-card">
+    <h4>Your content is probably good. Your hooks probably aren't.</h4>
+    <p>Most creators spend hours editing and 10 seconds on the hook. Flip that ratio. The hook IS the video.</p>
+  </div>
+  <div class="why-card">
+    <h4>The top 1% of creators use the same patterns</h4>
+    <p>Curiosity gaps, pattern interrupts, false assumptions, open loops. These aren't tricks. They're how attention works. This tool uses every one of them.</p>
+  </div>
+</section>
+
+<section class="faq">
+  <h2>FAQ</h2>
+  <div class="faq-item">
+    <div class="faq-q" onclick="this.parentElement.classList.toggle('open')">Is this actually free?</div>
+    <div class="faq-a">Yes. You get 5 hooks per generation, up to 3 times per day. No signup, no credit card. The paid option gives you 25 hooks with deeper analysis.</div>
+  </div>
+  <div class="faq-item">
+    <div class="faq-q" onclick="this.parentElement.classList.toggle('open')">What makes these hooks better than ChatGPT?</div>
+    <div class="faq-a">Our prompt is built on analysis of viral content patterns across millions of short-form videos. It knows what works on each platform specifically, not just generic "attention-grabbing" advice.</div>
+  </div>
+  <div class="faq-item">
+    <div class="faq-q" onclick="this.parentElement.classList.toggle('open')">Can I use these hooks commercially?</div>
+    <div class="faq-a">Yes. Every hook generated is yours to use however you want. Post them, remix them, sell content using them.</div>
+  </div>
+  <div class="faq-item">
+    <div class="faq-q" onclick="this.parentElement.classList.toggle('open')">What niches work best?</div>
+    <div class="faq-a">Everything from fitness and cooking to finance, tech, gaming, beauty, entrepreneurship, comedy, education, and more. The AI adapts to your specific niche and audience.</div>
+  </div>
+</section>
+
+<footer>
+  <p>&copy; 2026 BOSS Systems &mdash; <a href="/privacy">Privacy</a> &middot; <a href="/terms">Terms</a></p>
+</footer>
+
+<script>
+var MAX_FREE = 3;
+var STORAGE_KEY = 'boss_hooks_uses';
+
+var PATTERNS = [
+  {t: "I tried [TOPIC] for 30 days and here's what nobody tells you", p: "tiktok", w: "Open loop + time commitment = credibility + curiosity"},
+  {t: "Stop doing [TOPIC] like this. Seriously.", p: "reels", w: "Pattern interrupt + direct command stops the scroll"},
+  {t: "The [TOPIC] mistake that's costing you followers", p: "tiktok", w: "Loss aversion — people fear losing more than gaining"},
+  {t: "POV: you finally figured out [TOPIC]", p: "reels", w: "Relatable moment + aspirational identity"},
+  {t: "Nobody in [NICHE] is talking about this", p: "tiktok", w: "Exclusivity + curiosity gap"},
+  {t: "I was today years old when I learned this about [TOPIC]", p: "shorts", w: "Relatability + implied revelation"},
+  {t: "The real reason your [TOPIC] isn't working", p: "tiktok", w: "Challenges existing beliefs — controversy drives engagement"},
+  {t: "3 [TOPIC] hacks I wish I knew sooner", p: "shorts", w: "Numbered list + regret framing = instant value promise"},
+  {t: "This [TOPIC] trick got me 10x results", p: "reels", w: "Specific multiplier + implied proof"},
+  {t: "Your [NICHE] teacher never taught you this", p: "tiktok", w: "Authority challenge + forbidden knowledge"},
+  {t: "If you're struggling with [TOPIC], watch this", p: "shorts", w: "Empathy hook — viewer feels seen"},
+  {t: "Delete this before [NICHE] gatekeepers see it", p: "tiktok", w: "Scarcity + anti-establishment energy"},
+  {t: "Hot take: most [TOPIC] advice is wrong", p: "twitter", w: "Contrarian position demands engagement"},
+  {t: "What nobody tells beginners about [TOPIC]", p: "shorts", w: "Insider knowledge appeal + targets huge audience"},
+  {t: "I asked 100 [NICHE] creators and they all said this", p: "reels", w: "Social proof + survey implies research"},
+  {t: "This one [TOPIC] change doubled my engagement", p: "tiktok", w: "Specific result + simplicity (one change)"},
+  {t: "The [TOPIC] strategy that actually works in 2026", p: "reels", w: "Timeliness + implies other strategies are outdated"},
+  {t: "Unpopular opinion: [TOPIC] is overrated", p: "twitter", w: "Controversy bait — people can't resist arguing"},
+  {t: "Day 1 of doing [TOPIC] until it goes viral", p: "tiktok", w: "Series hook + accountability = follow incentive"},
+  {t: "You're doing [TOPIC] wrong and I can prove it", p: "shorts", w: "Challenge + proof promise = must-watch"},
+  {t: "I replaced [TOPIC] with this and everything changed", p: "reels", w: "Before/after framing + transformation promise"},
+  {t: "Why I stopped [TOPIC] and what I do instead", p: "tiktok", w: "Anti-trend + alternative = curiosity"},
+  {t: "The [TOPIC] secret that took me 2 years to learn", p: "shorts", w: "Time investment = earned wisdom worth watching"},
+  {t: "This is your sign to start [TOPIC]", p: "reels", w: "Motivational + personal = shareable"},
+  {t: "What happens when a [NICHE] creator tries [TOPIC]", p: "tiktok", w: "Experiment format + niche crossover = novel"},
+  {t: "The algorithm loves this [TOPIC] format", p: "shorts", w: "Meta-content — creators want growth hacks"},
+  {t: "If [TOPIC] makes you nervous, you need to hear this", p: "reels", w: "Emotional targeting + reassurance promise"},
+  {t: "I spent $500 on [TOPIC] so you don't have to", p: "tiktok", w: "Sacrifice framing = perceived value"},
+  {t: "Tell me you're into [NICHE] without telling me", p: "tiktok", w: "Trend format + community identity = shares"},
+  {t: "Every [NICHE] creator needs to hear this right now", p: "twitter", w: "Urgency + community targeting = RT magnet"}
+];
+
+var TONE_MAP = {
+  bold: ["Stop doing","Hot take","Unpopular opinion","You're doing","wrong","Seriously","Delete this","I can prove"],
+  curious: ["Nobody","secret","what nobody","what happens","real reason","here's what"],
+  story: ["I tried","I spent","I was today","I asked","Day 1","I replaced","I stopped"],
+  educational: ["hacks","trick","strategy","mistake","change","secret","learn"],
+  funny: ["POV","Tell me","today years old","your sign","Delete this"]
+};
+
+function getUsesToday() {
+  try {
+    var d = JSON.parse(localStorage.getItem(STORAGE_KEY) || '{}');
+    var today = new Date().toISOString().slice(0, 10);
+    if (d.date !== today) return 0;
+    return d.count || 0;
+  } catch(e) { return 0; }
+}
+
+function recordUse() {
+  var today = new Date().toISOString().slice(0, 10);
+  var count = getUsesToday() + 1;
+  localStorage.setItem(STORAGE_KEY, JSON.stringify({date: today, count: count}));
+}
+
+function updateUsesDisplay() {
+  var left = MAX_FREE - getUsesToday();
+  var el = document.getElementById('uses-left');
+  if (left <= 0) {
+    el.textContent = 'Daily free limit reached.';
+    document.getElementById('gen-btn').textContent = 'Limit reached — upgrade for unlimited';
+  } else {
+    el.textContent = left + ' free generation' + (left === 1 ? '' : 's') + ' left today.';
+  }
+}
+
+function shuffle(arr) {
+  for (var i = arr.length - 1; i > 0; i--) {
+    var j = Math.floor(Math.random() * (i + 1));
+    var tmp = arr[i]; arr[i] = arr[j]; arr[j] = tmp;
+  }
+  return arr;
+}
+
+function generate() {
+  var niche = document.getElementById('niche').value.trim();
+  var topic = document.getElementById('topic').value.trim();
+  var platform = document.getElementById('platform').value;
+  var tone = document.getElementById('tone').value;
+
+  if (!niche || !topic) {
+    alert('Enter your niche and a topic to generate hooks.');
+    return;
+  }
+
+  if (getUsesToday() >= MAX_FREE) {
+    document.getElementById('upgrade').style.display = 'block';
+    document.getElementById('upgrade').scrollIntoView({behavior: 'smooth'});
+    return;
+  }
+
+  var btn = document.getElementById('gen-btn');
+  btn.disabled = true;
+  btn.textContent = 'Generating...';
+
+  var pool = PATTERNS.slice();
+
+  if (platform !== 'all') {
+    var platMap = {tiktok:'tiktok', reels:'reels', shorts:'shorts', twitter:'twitter'};
+    var target = platMap[platform];
+    var matched = pool.filter(function(h) { return h.p === target; });
+    if (matched.length >= 5) pool = matched;
+  }
+
+  if (tone !== 'mixed' && TONE_MAP[tone]) {
+    var keywords = TONE_MAP[tone];
+    var toneMatched = pool.filter(function(h) {
+      var lower = h.t.toLowerCase();
+      return keywords.some(function(k) { return lower.indexOf(k.toLowerCase()) !== -1; });
+    });
+    if (toneMatched.length >= 5) pool = toneMatched;
+  }
+
+  pool = shuffle(pool);
+  var hooks = pool.slice(0, 5).map(function(h) {
+    var text = h.t.replace(/\[NICHE\]/g, niche).replace(/\[TOPIC\]/g, topic);
+    return {text: text, platform: h.p, why: h.w};
+  });
+
+  setTimeout(function() {
+    recordUse();
+    renderHooks(hooks);
+    document.getElementById('results').style.display = 'block';
+    document.getElementById('upgrade').style.display = 'block';
+    document.getElementById('results').scrollIntoView({behavior: 'smooth', block: 'start'});
+    btn.disabled = false;
+    btn.textContent = 'Generate 5 Free Hooks';
+    updateUsesDisplay();
+  }, 800);
+}
+
+function renderHooks(hooks) {
+  var html = '<div class="results-header"><h3>Your Hooks</h3><div class="count">' + hooks.length + ' hooks</div></div>';
+  hooks.forEach(function(h, i) {
+    var platformLabel = h.platform || '';
+    html += '<div class="hook-card">';
+    if (platformLabel) html += '<div class="hook-platform">' + esc(platformLabel) + '</div>';
+    html += '<div class="hook-text">' + esc(h.text) + '</div>';
+    if (h.why) html += '<div class="hook-why">' + esc(h.why) + '</div>';
+    html += '<button class="hook-copy" onclick="copyHook(this, ' + i + ')">Copy</button>';
+    html += '</div>';
+  });
+  document.getElementById('results').innerHTML = html;
+}
+
+function esc(s) {
+  var d = document.createElement('div');
+  d.textContent = s;
+  return d.innerHTML;
+}
+
+function copyHook(btn, i) {
+  var text = btn.parentElement.querySelector('.hook-text').textContent;
+  navigator.clipboard.writeText(text).then(function() {
+    btn.textContent = 'Copied!';
+    btn.classList.add('copied');
+    setTimeout(function() { btn.textContent = 'Copy'; btn.classList.remove('copied'); }, 1500);
+  });
+}
+
+function upgrade() {
+  window.location.href = 'https://square.link/u/0FTyRcwe';
+}
+
+updateUsesDisplay();
+</script>
+
+</body>
+</html>
