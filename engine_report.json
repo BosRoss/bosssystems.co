@@ -1,23 +1,7 @@
 {
-  "generated": "2026-06-26T06:05:07.242005+00:00",
+  "generated": "2026-06-26T08:15:17.538025+00:00",
   "engine_state": "active",
   "signals": [
-    {
-      "type": "heat_wave",
-      "area": "Chinati Mountains; Marfa Plateau; Davis Mountains; Davis Mountains Foothills; Central Brewster County; Chisos Basin; Presidio Valley; Lower Brewster County",
-      "niche": "hvac",
-      "action": "HVAC businesses in Chinati Mountains; Marfa Plateau; Davis Mountains; Davis Mountains Foothills; Central Brewster County; Chisos Basin; Presidio Valley; Lower Brewster County are drowning in calls right now. Perfect time to pitch.",
-      "urgency": "today",
-      "pitch_hook": "You're getting slammed with calls \u2014 how many went to voicemail today?"
-    },
-    {
-      "type": "flood",
-      "area": "Gray, TX; Hemphill, TX; Roberts, TX; Wheeler, TX",
-      "niche": "plumbing",
-      "action": "Flood warnings in Gray, TX; Hemphill, TX; Roberts, TX; Wheeler, TX. Plumbers, restoration, mold companies will spike.",
-      "urgency": "today",
-      "pitch_hook": "Water damage calls are coming. Every one you miss is $500+ walking away."
-    },
     {
       "type": "flood",
       "area": "Wheeler, TX",
@@ -25,6 +9,14 @@
       "action": "Flood warnings in Wheeler, TX. Plumbers, restoration, mold companies will spike.",
       "urgency": "today",
       "pitch_hook": "Water damage calls are coming. Every one you miss is $500+ walking away."
+    },
+    {
+      "type": "heat_wave",
+      "area": "Chinati Mountains; Marfa Plateau; Davis Mountains; Davis Mountains Foothills; Central Brewster County; Chisos Basin; Presidio Valley; Lower Brewster County",
+      "niche": "hvac",
+      "action": "HVAC businesses in Chinati Mountains; Marfa Plateau; Davis Mountains; Davis Mountains Foothills; Central Brewster County; Chisos Basin; Presidio Valley; Lower Brewster County are drowning in calls right now. Perfect time to pitch.",
+      "urgency": "today",
+      "pitch_hook": "You're getting slammed with calls \u2014 how many went to voicemail today?"
     },
     {
       "type": "flood",
@@ -79,6 +71,14 @@
       "area": "George, MS; Greene, MS; Jackson, MS",
       "niche": "plumbing",
       "action": "Flood warnings in George, MS; Greene, MS; Jackson, MS. Plumbers, restoration, mold companies will spike.",
+      "urgency": "today",
+      "pitch_hook": "Water damage calls are coming. Every one you miss is $500+ walking away."
+    },
+    {
+      "type": "flood",
+      "area": "George, MS; Greene, MS; Perry, MS",
+      "niche": "plumbing",
+      "action": "Flood warnings in George, MS; Greene, MS; Perry, MS. Plumbers, restoration, mold companies will spike.",
       "urgency": "today",
       "pitch_hook": "Water damage calls are coming. Every one you miss is $500+ walking away."
     }
@@ -239,55 +239,55 @@
   "feeds": [
     {
       "name": "NOAA",
-      "last_hit": "2026-06-26T05:58:18.764378+00:00",
+      "last_hit": "2026-06-26T08:05:56.202535+00:00",
       "status": "yellow",
       "data_points_today": 0
     },
     {
       "name": "REDDIT",
-      "last_hit": "2026-06-26T05:58:18.764378+00:00",
+      "last_hit": "2026-06-26T08:05:56.202535+00:00",
       "status": "green",
       "data_points_today": 40
     },
     {
       "name": "USGS",
-      "last_hit": "2026-06-26T05:58:18.764378+00:00",
+      "last_hit": "2026-06-26T08:05:56.202535+00:00",
       "status": "yellow",
       "data_points_today": 0
     },
     {
       "name": "HACKERNEWS",
-      "last_hit": "2026-06-26T05:58:18.764378+00:00",
+      "last_hit": "2026-06-26T08:05:56.202535+00:00",
       "status": "green",
       "data_points_today": 30
     },
     {
       "name": "FEMA",
-      "last_hit": "2026-06-26T05:58:18.764378+00:00",
+      "last_hit": "2026-06-26T08:05:56.202535+00:00",
       "status": "green",
       "data_points_today": 20
     },
     {
       "name": "COMMODITIES",
-      "last_hit": "2026-06-26T05:58:18.764378+00:00",
+      "last_hit": "2026-06-26T08:05:56.202535+00:00",
       "status": "green",
       "data_points_today": 7
     },
     {
       "name": "RSS",
-      "last_hit": "2026-06-26T05:58:18.764378+00:00",
+      "last_hit": "2026-06-26T08:05:56.202535+00:00",
       "status": "green",
       "data_points_today": 170
     },
     {
       "name": "FRED",
-      "last_hit": "2026-06-26T05:58:18.764378+00:00",
+      "last_hit": "2026-06-26T08:05:56.202535+00:00",
       "status": "yellow",
       "data_points_today": 0
     },
     {
       "name": "BLS",
-      "last_hit": "2026-06-26T05:58:18.764378+00:00",
+      "last_hit": "2026-06-26T08:05:56.202535+00:00",
       "status": "green",
       "data_points_today": 9
     }
