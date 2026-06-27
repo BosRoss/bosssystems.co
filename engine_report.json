@@ -1,68 +1,68 @@
 {
-  "generated": "2026-06-27T02:43:25.341875+00:00",
+  "generated": "2026-06-27T17:15:13.243980+00:00",
   "engine_state": "active",
   "signals": [
     {
-      "type": "storm",
-      "area": "Cimarron, OK; Dallam, TX",
-      "niche": "roofing",
-      "action": "Storm damage in Cimarron, OK; Dallam, TX. Roofers and restoration companies about to get flooded.",
+      "type": "heat_wave",
+      "area": "Palo Duro Canyon",
+      "niche": "hvac",
+      "action": "HVAC businesses in Palo Duro Canyon are drowning in calls right now. Perfect time to pitch.",
       "urgency": "today",
-      "pitch_hook": "After a storm like that, you'll get 10x your normal call volume. Ready for it?"
+      "pitch_hook": "You're getting slammed with calls \u2014 how many went to voicemail today?"
     },
     {
-      "type": "storm",
-      "area": "Bailey, TX; Parmer, TX",
-      "niche": "roofing",
-      "action": "Storm damage in Bailey, TX; Parmer, TX. Roofers and restoration companies about to get flooded.",
+      "type": "heat_wave",
+      "area": "Central Brewster County; Chisos Basin; Lower Brewster County",
+      "niche": "hvac",
+      "action": "HVAC businesses in Central Brewster County; Chisos Basin; Lower Brewster County are drowning in calls right now. Perfect time to pitch.",
       "urgency": "today",
-      "pitch_hook": "After a storm like that, you'll get 10x your normal call volume. Ready for it?"
+      "pitch_hook": "You're getting slammed with calls \u2014 how many went to voicemail today?"
     },
     {
-      "type": "storm",
-      "area": "Dallam, TX; Hartley, TX",
-      "niche": "roofing",
-      "action": "Storm damage in Dallam, TX; Hartley, TX. Roofers and restoration companies about to get flooded.",
+      "type": "heat_wave",
+      "area": "Clay; Greene; Craighead; Poinsett; Mississippi; Cross; Crittenden; St. Francis; Lee; Phillips; Dunklin; Pemiscot; DeSoto; Marshall; Tunica; Tate; Coahoma; Quitman; Panola; Tallahatchie; Lake; Obion; W",
+      "niche": "hvac",
+      "action": "HVAC businesses in Clay; Greene; Craighead; Poinsett; Mississippi; Cross; Crittenden; St. Francis; Lee; Phillips; Dunklin; Pemiscot; DeSoto; Marshall; Tunica; Tate; Coahoma; Quitman; Panola; Tallahatchie; Lake; Obion; W are drowning in calls right now. Perfect time to pitch.",
       "urgency": "today",
-      "pitch_hook": "After a storm like that, you'll get 10x your normal call volume. Ready for it?"
+      "pitch_hook": "You're getting slammed with calls \u2014 how many went to voicemail today?"
     },
     {
-      "type": "storm",
-      "area": "Cimarron, OK; Texas, OK; Dallam, TX; Hansford, TX; Hartley, TX; Hutchinson, TX; Moore, TX; Sherman, TX",
-      "niche": "roofing",
-      "action": "Storm damage in Cimarron, OK; Texas, OK; Dallam, TX; Hansford, TX; Hartley, TX; Hutchinson, TX; Moore, TX; Sherman, TX. Roofers and restoration companies about to get flooded.",
+      "type": "heat_wave",
+      "area": "Benton; Tippah; Alcorn; Tishomingo; Prentiss; Lafayette; Union; Pontotoc; Lee; Itawamba; Yalobusha; Calhoun; Chickasaw; Monroe",
+      "niche": "hvac",
+      "action": "HVAC businesses in Benton; Tippah; Alcorn; Tishomingo; Prentiss; Lafayette; Union; Pontotoc; Lee; Itawamba; Yalobusha; Calhoun; Chickasaw; Monroe are drowning in calls right now. Perfect time to pitch.",
       "urgency": "today",
-      "pitch_hook": "After a storm like that, you'll get 10x your normal call volume. Ready for it?"
-    },
-    {
-      "type": "storm",
-      "area": "Beaver, OK; Hemphill, TX; Lipscomb, TX; Ochiltree, TX; Roberts, TX",
-      "niche": "roofing",
-      "action": "Storm damage in Beaver, OK; Hemphill, TX; Lipscomb, TX; Ochiltree, TX; Roberts, TX. Roofers and restoration companies about to get flooded.",
-      "urgency": "today",
-      "pitch_hook": "After a storm like that, you'll get 10x your normal call volume. Ready for it?"
-    },
-    {
-      "type": "storm",
-      "area": "Deaf Smith, TX; Hartley, TX; Moore, TX; Oldham, TX; Potter, TX; Randall, TX",
-      "niche": "roofing",
-      "action": "Storm damage in Deaf Smith, TX; Hartley, TX; Moore, TX; Oldham, TX; Potter, TX; Randall, TX. Roofers and restoration companies about to get flooded.",
-      "urgency": "today",
-      "pitch_hook": "After a storm like that, you'll get 10x your normal call volume. Ready for it?"
+      "pitch_hook": "You're getting slammed with calls \u2014 how many went to voicemail today?"
     },
     {
       "type": "flood",
-      "area": "Wheeler, TX",
+      "area": "George, MS; Greene, MS; Jackson, MS",
       "niche": "plumbing",
-      "action": "Flood warnings in Wheeler, TX. Plumbers, restoration, mold companies will spike.",
+      "action": "Flood warnings in George, MS; Greene, MS; Jackson, MS. Plumbers, restoration, mold companies will spike.",
       "urgency": "today",
       "pitch_hook": "Water damage calls are coming. Every one you miss is $500+ walking away."
     },
     {
       "type": "flood",
-      "area": "St. Tammany, LA; Hancock, MS; Pearl River, MS",
+      "area": "George, MS; Greene, MS; Perry, MS",
       "niche": "plumbing",
-      "action": "Flood warnings in St. Tammany, LA; Hancock, MS; Pearl River, MS. Plumbers, restoration, mold companies will spike.",
+      "action": "Flood warnings in George, MS; Greene, MS; Perry, MS. Plumbers, restoration, mold companies will spike.",
+      "urgency": "today",
+      "pitch_hook": "Water damage calls are coming. Every one you miss is $500+ walking away."
+    },
+    {
+      "type": "flood",
+      "area": "George, MS; Greene, MS",
+      "niche": "plumbing",
+      "action": "Flood warnings in George, MS; Greene, MS. Plumbers, restoration, mold companies will spike.",
+      "urgency": "today",
+      "pitch_hook": "Water damage calls are coming. Every one you miss is $500+ walking away."
+    },
+    {
+      "type": "flood",
+      "area": "Jackson, MS",
+      "niche": "plumbing",
+      "action": "Flood warnings in Jackson, MS. Plumbers, restoration, mold companies will spike.",
       "urgency": "today",
       "pitch_hook": "Water damage calls are coming. Every one you miss is $500+ walking away."
     },
@@ -76,9 +76,9 @@
     },
     {
       "type": "flood",
-      "area": "Jackson, MS",
+      "area": "St. Tammany, LA; Hancock, MS; Pearl River, MS",
       "niche": "plumbing",
-      "action": "Flood warnings in Jackson, MS. Plumbers, restoration, mold companies will spike.",
+      "action": "Flood warnings in St. Tammany, LA; Hancock, MS; Pearl River, MS. Plumbers, restoration, mold companies will spike.",
       "urgency": "today",
       "pitch_hook": "Water damage calls are coming. Every one you miss is $500+ walking away."
     }
@@ -97,6 +97,15 @@
       "name": "plumbing",
       "city": "MS",
       "score": 78,
+      "tier": "SUPERNICHE",
+      "channel": "watchlist",
+      "sequence_status": "queued",
+      "trigger": "flood"
+    },
+    {
+      "name": "HVAC contractor",
+      "city": "MS",
+      "score": 75,
       "tier": "SUPERNICHE",
       "channel": "watchlist",
       "sequence_status": "queued",
@@ -209,95 +218,86 @@
       "channel": "watchlist",
       "sequence_status": "re_engaged",
       "trigger": "flood"
-    },
-    {
-      "name": "plumber",
-      "city": "OK",
-      "score": 57,
-      "tier": "SUPERNICHE",
-      "channel": "email",
-      "sequence_status": "re_engaged",
-      "trigger": "economic"
     }
   ],
   "kpis": {
     "signals_firing": 10,
-    "leads_superniche": 18,
-    "leads_hot": 60,
-    "leads_warm": 132,
-    "cost_per_qualified": 0.46,
-    "total_spend": 8.320000000000006,
+    "leads_superniche": 19,
+    "leads_hot": 61,
+    "leads_warm": 120,
+    "cost_per_qualified": 0.47,
+    "total_spend": 8.960000000000006,
     "spend_cap": 300.0
   },
   "channels": {
-    "emails_sent": 81,
+    "emails_sent": 82,
     "texts_sent": 8,
     "calls_made": 0,
-    "meetings_set": 2,
+    "meetings_set": 7,
     "closes": 0
   },
   "feeds": [
     {
       "name": "NOAA",
-      "last_hit": "2026-06-27T02:37:01.113677+00:00",
+      "last_hit": "2026-06-27T17:08:38.455135+00:00",
       "status": "yellow",
       "data_points_today": 0
     },
     {
       "name": "REDDIT",
-      "last_hit": "2026-06-27T02:37:01.113677+00:00",
+      "last_hit": "2026-06-27T17:08:38.455135+00:00",
       "status": "green",
       "data_points_today": 40
     },
     {
       "name": "USGS",
-      "last_hit": "2026-06-27T02:37:01.113677+00:00",
+      "last_hit": "2026-06-27T17:08:38.455135+00:00",
       "status": "yellow",
       "data_points_today": 0
     },
     {
       "name": "HACKERNEWS",
-      "last_hit": "2026-06-27T02:37:01.113677+00:00",
+      "last_hit": "2026-06-27T17:08:38.455135+00:00",
       "status": "green",
       "data_points_today": 30
     },
     {
       "name": "FEMA",
-      "last_hit": "2026-06-27T02:37:01.113677+00:00",
+      "last_hit": "2026-06-27T17:08:38.455135+00:00",
       "status": "green",
       "data_points_today": 20
     },
     {
       "name": "COMMODITIES",
-      "last_hit": "2026-06-27T02:37:01.113677+00:00",
+      "last_hit": "2026-06-27T17:08:38.455135+00:00",
       "status": "green",
       "data_points_today": 7
     },
     {
       "name": "RSS",
-      "last_hit": "2026-06-27T02:37:01.113677+00:00",
+      "last_hit": "2026-06-27T17:08:38.455135+00:00",
       "status": "green",
       "data_points_today": 170
     },
     {
       "name": "FRED",
-      "last_hit": "2026-06-27T02:37:01.113677+00:00",
+      "last_hit": "2026-06-27T17:08:38.455135+00:00",
       "status": "yellow",
       "data_points_today": 0
     },
     {
       "name": "BLS",
-      "last_hit": "2026-06-27T02:37:01.113677+00:00",
+      "last_hit": "2026-06-27T17:08:38.455135+00:00",
       "status": "green",
       "data_points_today": 9
     }
   ],
   "conversion_funnel": {
     "signals": 10,
-    "leads": 210,
-    "contacted": 89,
-    "replied": 2,
-    "meeting": 2,
+    "leads": 200,
+    "contacted": 90,
+    "replied": 7,
+    "meeting": 7,
     "close": 0
   }
 }
