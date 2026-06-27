@@ -1,39 +1,7 @@
 {
-  "generated": "2026-06-26T22:30:14.120616+00:00",
+  "generated": "2026-06-27T00:36:56.517195+00:00",
   "engine_state": "active",
   "signals": [
-    {
-      "type": "storm",
-      "area": "Culberson, TX; Jeff Davis, TX; Reeves, TX",
-      "niche": "roofing",
-      "action": "Storm damage in Culberson, TX; Jeff Davis, TX; Reeves, TX. Roofers and restoration companies about to get flooded.",
-      "urgency": "today",
-      "pitch_hook": "After a storm like that, you'll get 10x your normal call volume. Ready for it?"
-    },
-    {
-      "type": "storm",
-      "area": "Hemphill, TX; Roberts, TX",
-      "niche": "roofing",
-      "action": "Storm damage in Hemphill, TX; Roberts, TX. Roofers and restoration companies about to get flooded.",
-      "urgency": "today",
-      "pitch_hook": "After a storm like that, you'll get 10x your normal call volume. Ready for it?"
-    },
-    {
-      "type": "flood",
-      "area": "Brewster, TX",
-      "niche": "plumbing",
-      "action": "Flood warnings in Brewster, TX. Plumbers, restoration, mold companies will spike.",
-      "urgency": "today",
-      "pitch_hook": "Water damage calls are coming. Every one you miss is $500+ walking away."
-    },
-    {
-      "type": "flood",
-      "area": "Jeff Davis, TX",
-      "niche": "plumbing",
-      "action": "Flood warnings in Jeff Davis, TX. Plumbers, restoration, mold companies will spike.",
-      "urgency": "today",
-      "pitch_hook": "Water damage calls are coming. Every one you miss is $500+ walking away."
-    },
     {
       "type": "flood",
       "area": "Wheeler, TX",
@@ -79,6 +47,38 @@
       "area": "George, MS; Greene, MS; Jackson, MS",
       "niche": "plumbing",
       "action": "Flood warnings in George, MS; Greene, MS; Jackson, MS. Plumbers, restoration, mold companies will spike.",
+      "urgency": "today",
+      "pitch_hook": "Water damage calls are coming. Every one you miss is $500+ walking away."
+    },
+    {
+      "type": "flood",
+      "area": "George, MS; Greene, MS; Perry, MS",
+      "niche": "plumbing",
+      "action": "Flood warnings in George, MS; Greene, MS; Perry, MS. Plumbers, restoration, mold companies will spike.",
+      "urgency": "today",
+      "pitch_hook": "Water damage calls are coming. Every one you miss is $500+ walking away."
+    },
+    {
+      "type": "flood",
+      "area": "George, MS; Greene, MS",
+      "niche": "plumbing",
+      "action": "Flood warnings in George, MS; Greene, MS. Plumbers, restoration, mold companies will spike.",
+      "urgency": "today",
+      "pitch_hook": "Water damage calls are coming. Every one you miss is $500+ walking away."
+    },
+    {
+      "type": "flood",
+      "area": "St. Tammany, LA; Hancock, MS; Pearl River, MS",
+      "niche": "plumbing",
+      "action": "Flood warnings in St. Tammany, LA; Hancock, MS; Pearl River, MS. Plumbers, restoration, mold companies will spike.",
+      "urgency": "today",
+      "pitch_hook": "Water damage calls are coming. Every one you miss is $500+ walking away."
+    },
+    {
+      "type": "flood",
+      "area": "Washington, LA; Pearl River, MS",
+      "niche": "plumbing",
+      "action": "Flood warnings in Washington, LA; Pearl River, MS. Plumbers, restoration, mold companies will spike.",
       "urgency": "today",
       "pitch_hook": "Water damage calls are coming. Every one you miss is $500+ walking away."
     }
@@ -239,55 +239,55 @@
   "feeds": [
     {
       "name": "NOAA",
-      "last_hit": "2026-06-26T22:22:52.981762+00:00",
+      "last_hit": "2026-06-27T00:30:20.706793+00:00",
       "status": "yellow",
       "data_points_today": 0
     },
     {
       "name": "REDDIT",
-      "last_hit": "2026-06-26T22:22:52.981762+00:00",
+      "last_hit": "2026-06-27T00:30:20.706793+00:00",
       "status": "green",
       "data_points_today": 40
     },
     {
       "name": "USGS",
-      "last_hit": "2026-06-26T22:22:52.981762+00:00",
+      "last_hit": "2026-06-27T00:30:20.706793+00:00",
       "status": "yellow",
       "data_points_today": 0
     },
     {
       "name": "HACKERNEWS",
-      "last_hit": "2026-06-26T22:22:52.981762+00:00",
+      "last_hit": "2026-06-27T00:30:20.706793+00:00",
       "status": "green",
       "data_points_today": 30
     },
     {
       "name": "FEMA",
-      "last_hit": "2026-06-26T22:22:52.981762+00:00",
+      "last_hit": "2026-06-27T00:30:20.706793+00:00",
       "status": "green",
       "data_points_today": 20
     },
     {
       "name": "COMMODITIES",
-      "last_hit": "2026-06-26T22:22:52.981762+00:00",
+      "last_hit": "2026-06-27T00:30:20.706793+00:00",
       "status": "green",
       "data_points_today": 7
     },
     {
       "name": "RSS",
-      "last_hit": "2026-06-26T22:22:52.981762+00:00",
+      "last_hit": "2026-06-27T00:30:20.706793+00:00",
       "status": "green",
       "data_points_today": 170
     },
     {
       "name": "FRED",
-      "last_hit": "2026-06-26T22:22:52.981762+00:00",
+      "last_hit": "2026-06-27T00:30:20.706793+00:00",
       "status": "yellow",
       "data_points_today": 0
     },
     {
       "name": "BLS",
-      "last_hit": "2026-06-26T22:22:52.981762+00:00",
+      "last_hit": "2026-06-27T00:30:20.706793+00:00",
       "status": "green",
       "data_points_today": 9
     }
