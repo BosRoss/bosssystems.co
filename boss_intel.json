@@ -1,78 +1,30 @@
 {
-  "generated": "2026-06-25T20:30:08.790486+00:00",
-  "atlas_scan_time": "2026-06-25T20:23:43.433298+00:00",
+  "generated": "2026-06-27T00:36:52.978414+00:00",
+  "atlas_scan_time": "2026-06-27T00:30:20.706793+00:00",
   "demand_signals": [
     {
+      "type": "flood",
+      "area": "Wheeler, TX",
+      "niche": "plumbing",
+      "action": "Flood warnings in Wheeler, TX. Plumbers, restoration, mold companies will spike.",
+      "urgency": "today",
+      "pitch_hook": "Water damage calls are coming. Every one you miss is $500+ walking away."
+    },
+    {
       "type": "storm",
-      "area": "Beaver, OK; Lipscomb, TX",
+      "area": "Cimarron, OK; Dallam, TX; Hartley, TX; Moore, TX; Sherman, TX",
       "niche": "roofing",
-      "action": "Storm damage in Beaver, OK; Lipscomb, TX. Roofers and restoration companies about to get flooded.",
+      "action": "Storm damage in Cimarron, OK; Dallam, TX; Hartley, TX; Moore, TX; Sherman, TX. Roofers and restoration companies about to get flooded.",
       "urgency": "today",
       "pitch_hook": "After a storm like that, you'll get 10x your normal call volume. Ready for it?"
     },
     {
-      "type": "flood",
-      "area": "Beaver; Lipscomb",
-      "niche": "plumbing",
-      "action": "Flood warnings in Beaver; Lipscomb. Plumbers, restoration, mold companies will spike.",
-      "urgency": "today",
-      "pitch_hook": "Water damage calls are coming. Every one you miss is $500+ walking away."
-    },
-    {
-      "type": "flood",
-      "area": "Brazos, TX; Grimes, TX; Madison, TX",
-      "niche": "plumbing",
-      "action": "Flood warnings in Brazos, TX; Grimes, TX; Madison, TX. Plumbers, restoration, mold companies will spike.",
-      "urgency": "today",
-      "pitch_hook": "Water damage calls are coming. Every one you miss is $500+ walking away."
-    },
-    {
       "type": "heat_wave",
-      "area": "Palo Duro Canyon",
+      "area": "Chinati Mountains; Marfa Plateau; Davis Mountains; Davis Mountains Foothills; Central Brewster County; Chisos Basin; Presidio Valley; Lower Brewster County",
       "niche": "hvac",
-      "action": "HVAC businesses in Palo Duro Canyon are drowning in calls right now. Perfect time to pitch.",
+      "action": "HVAC businesses in Chinati Mountains; Marfa Plateau; Davis Mountains; Davis Mountains Foothills; Central Brewster County; Chisos Basin; Presidio Valley; Lower Brewster County are drowning in calls right now. Perfect time to pitch.",
       "urgency": "today",
       "pitch_hook": "You're getting slammed with calls \u2014 how many went to voicemail today?"
-    },
-    {
-      "type": "flood",
-      "area": "Angelina, TX; Polk, TX; Trinity, TX",
-      "niche": "plumbing",
-      "action": "Flood warnings in Angelina, TX; Polk, TX; Trinity, TX. Plumbers, restoration, mold companies will spike.",
-      "urgency": "today",
-      "pitch_hook": "Water damage calls are coming. Every one you miss is $500+ walking away."
-    },
-    {
-      "type": "heat_wave",
-      "area": "Western El Paso County; Eastern/Central El Paso County; Rio Grande Valley of Eastern El Paso/Western Hudspeth Counties; Rio Grande Valley of Eastern Hudspeth County",
-      "niche": "hvac",
-      "action": "HVAC businesses in Western El Paso County; Eastern/Central El Paso County; Rio Grande Valley of Eastern El Paso/Western Hudspeth Counties; Rio Grande Valley of Eastern Hudspeth County are drowning in calls right now. Perfect time to pitch.",
-      "urgency": "today",
-      "pitch_hook": "You're getting slammed with calls \u2014 how many went to voicemail today?"
-    },
-    {
-      "type": "heat_wave",
-      "area": "Presidio Valley; Lower Brewster County",
-      "niche": "hvac",
-      "action": "HVAC businesses in Presidio Valley; Lower Brewster County are drowning in calls right now. Perfect time to pitch.",
-      "urgency": "today",
-      "pitch_hook": "You're getting slammed with calls \u2014 how many went to voicemail today?"
-    },
-    {
-      "type": "storm",
-      "area": "Rankin, MS",
-      "niche": "roofing",
-      "action": "Storm damage in Rankin, MS. Roofers and restoration companies about to get flooded.",
-      "urgency": "today",
-      "pitch_hook": "After a storm like that, you'll get 10x your normal call volume. Ready for it?"
-    },
-    {
-      "type": "flood",
-      "area": "Hinds, MS; Warren, MS",
-      "niche": "plumbing",
-      "action": "Flood warnings in Hinds, MS; Warren, MS. Plumbers, restoration, mold companies will spike.",
-      "urgency": "today",
-      "pitch_hook": "Water damage calls are coming. Every one you miss is $500+ walking away."
     },
     {
       "type": "flood",
@@ -81,92 +33,63 @@
       "action": "Flood warnings in Lawrence, MS. Plumbers, restoration, mold companies will spike.",
       "urgency": "today",
       "pitch_hook": "Water damage calls are coming. Every one you miss is $500+ walking away."
+    },
+    {
+      "type": "flood",
+      "area": "Copiah, MS; Simpson, MS",
+      "niche": "plumbing",
+      "action": "Flood warnings in Copiah, MS; Simpson, MS. Plumbers, restoration, mold companies will spike.",
+      "urgency": "today",
+      "pitch_hook": "Water damage calls are coming. Every one you miss is $500+ walking away."
+    },
+    {
+      "type": "flood",
+      "area": "George, MS; Greene, MS; Jackson, MS",
+      "niche": "plumbing",
+      "action": "Flood warnings in George, MS; Greene, MS; Jackson, MS. Plumbers, restoration, mold companies will spike.",
+      "urgency": "today",
+      "pitch_hook": "Water damage calls are coming. Every one you miss is $500+ walking away."
+    },
+    {
+      "type": "flood",
+      "area": "George, MS; Greene, MS; Perry, MS",
+      "niche": "plumbing",
+      "action": "Flood warnings in George, MS; Greene, MS; Perry, MS. Plumbers, restoration, mold companies will spike.",
+      "urgency": "today",
+      "pitch_hook": "Water damage calls are coming. Every one you miss is $500+ walking away."
+    },
+    {
+      "type": "flood",
+      "area": "George, MS; Greene, MS",
+      "niche": "plumbing",
+      "action": "Flood warnings in George, MS; Greene, MS. Plumbers, restoration, mold companies will spike.",
+      "urgency": "today",
+      "pitch_hook": "Water damage calls are coming. Every one you miss is $500+ walking away."
+    },
+    {
+      "type": "flood",
+      "area": "St. Tammany, LA; Hancock, MS; Pearl River, MS",
+      "niche": "plumbing",
+      "action": "Flood warnings in St. Tammany, LA; Hancock, MS; Pearl River, MS. Plumbers, restoration, mold companies will spike.",
+      "urgency": "today",
+      "pitch_hook": "Water damage calls are coming. Every one you miss is $500+ walking away."
+    },
+    {
+      "type": "flood",
+      "area": "Washington, LA; Pearl River, MS",
+      "niche": "plumbing",
+      "action": "Flood warnings in Washington, LA; Pearl River, MS. Plumbers, restoration, mold companies will spike.",
+      "urgency": "today",
+      "pitch_hook": "Water damage calls are coming. Every one you miss is $500+ walking away."
     }
   ],
   "territory_alerts": [
     {
-      "region": "Palo Duro Canyon",
-      "opportunity": "HVAC contractors overwhelmed in Palo Duro Canyon. Heat emergency",
-      "action": "Target HVAC businesses in Palo Duro Canyon with missed-call pitch. They're too busy to answer right now.",
+      "region": "Chinati Mountains; Marfa Plateau; Davis Mountains; Davis Mountains Foothills; Central Brewster County; Chisos Basin; Presidio Valley; Lower Brewster County",
+      "opportunity": "HVAC contractors overwhelmed in Chinati Mountains; Marfa Plateau; Davis Mountains; Davis Mountains Foothills; Central Brewster County; Chisos Basin; Presidio Valley; Lower Brewster County. Heat emergency",
+      "action": "Target HVAC businesses in Chinati Mountains; Marfa Plateau; Davis Mountains; Davis Mountains Foothills; Central Brewster County; Chisos Basin; Presidio Valley; Lower Brewster County with missed-call pitch. They're too busy to answer right now.",
       "urgency": "immediate",
       "confidence": 90
-    },
-    {
-      "region": "Western El Paso County; Eastern/Central El Paso County; Rio Grande Valley of Eastern El Paso/Western Hudspeth Counties; Rio Grande Valley of Eastern Hudspeth County",
-      "opportunity": "HVAC contractors overwhelmed in Western El Paso County; Eastern/Central El Paso County; Rio Grande Valley of Eastern El Paso/Western Hudspeth Counties; Rio Grande Valley of Eastern Hudspeth County. Heat emergency",
-      "action": "Target HVAC businesses in Western El Paso County; Eastern/Central El Paso County; Rio Grande Valley of Eastern El Paso/Western Hudspeth Counties; Rio Grande Valley of Eastern Hudspeth County with missed-call pitch. They're too busy to answer right now.",
-      "urgency": "immediate",
-      "confidence": 90
-    },
-    {
-      "region": "Presidio Valley; Lower Brewster County",
-      "opportunity": "HVAC contractors overwhelmed in Presidio Valley; Lower Brewster County. Heat emergency",
-      "action": "Target HVAC businesses in Presidio Valley; Lower Brewster County with missed-call pitch. They're too busy to answer right now.",
-      "urgency": "immediate",
-      "confidence": 90
-    },
-    {
-      "region": "Imperial County West; Imperial Valley",
-      "opportunity": "HVAC contractors overwhelmed in Imperial County West; Imperial Valley. Heat emergency",
-      "action": "Target HVAC businesses in Imperial County West; Imperial Valley with missed-call pitch. They're too busy to answer right now.",
-      "urgency": "immediate",
-      "confidence": 90
-    },
-    {
-      "region": "Parker Valley; Central La Paz; Palo Verde Valley",
-      "opportunity": "HVAC contractors overwhelmed in Parker Valley; Central La Paz; Palo Verde Valley. Heat emergency",
-      "action": "Target HVAC businesses in Parker Valley; Central La Paz; Palo Verde Valley with missed-call pitch. They're too busy to answer right now.",
-      "urgency": "immediate",
-      "confidence": 90
-    },
-    {
-      "region": "Imperial County Southwest",
-      "opportunity": "HVAC contractors overwhelmed in Imperial County Southwest. Heat emergency",
-      "action": "Target HVAC businesses in Imperial County Southwest with missed-call pitch. They're too busy to answer right now.",
-      "urgency": "immediate",
-      "confidence": 90
-    },
-    {
-      "region": "Beaver, OK; Lipscomb, TX",
-      "opportunity": "Storm damage creating roofer/restoration demand in Beaver, OK; Lipscomb, TX",
-      "action": "Contact roofers and restoration companies in Beaver, OK; Lipscomb, TX within 24 hours of storm.",
-      "urgency": "immediate",
-      "confidence": 85
-    },
-    {
-      "region": "Adair, OK; Cherokee, OK; Craig, OK; Creek, OK; Delaware, OK; Mayes, OK; Nowata, OK; Osage, OK; Ottawa, OK; Pawnee, OK; Rogers, OK; Tulsa, OK; Wagoner, OK; Washington, OK",
-      "opportunity": "Storm damage creating roofer/restoration demand in Adair, OK; Cherokee, OK; Craig, OK; Creek, OK; Delaware, OK; Mayes, OK; Nowata, OK; Osage, OK; Ottawa, OK; Pawnee, OK; Rogers, OK; Tulsa, OK; Wagoner, OK; Washington, OK",
-      "action": "Contact roofers and restoration companies in Adair, OK; Cherokee, OK; Craig, OK; Creek, OK; Delaware, OK; Mayes, OK; Nowata, OK; Osage, OK; Ottawa, OK; Pawnee, OK; Rogers, OK; Tulsa, OK; Wagoner, OK; Washington, OK within 24 hours of storm.",
-      "urgency": "immediate",
-      "confidence": 85
-    },
-    {
-      "region": "Beaver, OK; Lipscomb, TX",
-      "opportunity": "Storm damage creating roofer/restoration demand in Beaver, OK; Lipscomb, TX",
-      "action": "Contact roofers and restoration companies in Beaver, OK; Lipscomb, TX within 24 hours of storm.",
-      "urgency": "immediate",
-      "confidence": 85
-    },
-    {
-      "region": "Alfalfa, OK; Blaine, OK; Dewey, OK; Ellis, OK; Garfield, OK; Grant, OK; Harper, OK; Kay, OK; Kingfisher, OK; Logan, OK; Major, OK; Noble, OK; Payne, OK; Roger Mills, OK; Woods, OK; Woodward, OK",
-      "opportunity": "Storm damage creating roofer/restoration demand in Alfalfa, OK; Blaine, OK; Dewey, OK; Ellis, OK; Garfield, OK; Grant, OK; Harper, OK; Kay, OK; Kingfisher, OK; Logan, OK; Major, OK; Noble, OK; Payne, OK; Roger Mills, OK; Woods, OK; Woodward, OK",
-      "action": "Contact roofers and restoration companies in Alfalfa, OK; Blaine, OK; Dewey, OK; Ellis, OK; Garfield, OK; Grant, OK; Harper, OK; Kay, OK; Kingfisher, OK; Logan, OK; Major, OK; Noble, OK; Payne, OK; Roger Mills, OK; Woods, OK; Woodward, OK within 24 hours of storm.",
-      "urgency": "immediate",
-      "confidence": 85
-    },
-    {
-      "region": "Barber, KS; Clark, KS; Comanche, KS; Edwards, KS; Finney, KS; Ford, KS; Grant, KS; Gray, KS; Haskell, KS; Hodgeman, KS; Kearny, KS; Kiowa, KS; Meade, KS; Morton, KS; Pratt, KS; Seward, KS; Stanton, KS",
-      "opportunity": "Storm damage creating roofer/restoration demand in Barber, KS; Clark, KS; Comanche, KS; Edwards, KS; Finney, KS; Ford, KS; Grant, KS; Gray, KS; Haskell, KS; Hodgeman, KS; Kearny, KS; Kiowa, KS; Meade, KS; Morton, KS; Pratt, KS; Seward, KS; Stanton, KS",
-      "action": "Contact roofers and restoration companies in Barber, KS; Clark, KS; Comanche, KS; Edwards, KS; Finney, KS; Ford, KS; Grant, KS; Gray, KS; Haskell, KS; Hodgeman, KS; Kearny, KS; Kiowa, KS; Meade, KS; Morton, KS; Pratt, KS; Seward, KS; Stanton, KS within 24 hours of storm.",
-      "urgency": "immediate",
-      "confidence": 85
-    },
-    {
-      "region": "Harper, KS; Kingman, KS; Sumner, KS",
-      "opportunity": "Storm damage creating roofer/restoration demand in Harper, KS; Kingman, KS; Sumner, KS",
-      "action": "Contact roofers and restoration companies in Harper, KS; Kingman, KS; Sumner, KS within 24 hours of storm.",
-      "urgency": "immediate",
-      "confidence": 85
     }
   ],
   "economic_context": [
@@ -177,6 +100,6 @@
     }
   ],
   "boss_heat_score": 100,
-  "recommendation": "HOT DAY. Weather-driven demand in Beaver, OK; Lipscomb, TX, Beaver; Lipscomb, Western El Paso County; Eastern/Central El Paso County; Rio Grande Valley of Eastern El Paso/Western Hudspeth Counties; Rio Grande Valley of Eastern Hudspeth County. Call HVAC/roofers there NOW.",
-  "daily_briefing": "ATLAS BOSS Score: 100/100\nDEMAND: STORM in Beaver, OK; Lipscomb, TX \u2014 target roofing businesses\nHOT DAY. Weather-driven demand in Beaver, OK; Lipscomb, TX, Beaver; Lipscomb, Western El Paso County; Eastern/Central El Paso County; Rio Grande Valley of Eastern El Paso/Western Hudspeth Counties; Rio Grande Valley of Eastern Hudspeth County. Call HVAC/roofers there NOW."
+  "recommendation": "HOT DAY. Weather-driven demand in George, MS; Greene, MS; Jackson, MS, Lawrence, MS, Chinati Mountains; Marfa Plateau; Davis Mountains; Davis Mountains Foothills; Central Brewster County; Chisos Basin; Presidio Valley; Lower Brewster County. Call HVAC/roofers there NOW.",
+  "daily_briefing": "ATLAS BOSS Score: 100/100\nDEMAND: FLOOD in Wheeler, TX \u2014 target plumbing businesses\nHOT DAY. Weather-driven demand in George, MS; Greene, MS; Jackson, MS, Lawrence, MS, Chinati Mountains; Marfa Plateau; Davis Mountains; Davis Mountains Foothills; Central Brewster County; Chisos Basin; Presidio Valley; Lower Brewster County. Call HVAC/roofers there NOW."
 }
