@@ -118,6 +118,12 @@ header{padding:1.2rem 2rem;border-bottom:1px solid var(--border);display:flex;ju
 .cta-bottom .cta-btn{display:inline-block;background:var(--gold);color:var(--bg);padding:.9rem 2.5rem;font-weight:800;font-size:1rem;cursor:pointer;border:none;transition:.15s}
 .cta-bottom .cta-btn:hover{opacity:.9}
 
+.free-banner{max-width:580px;margin:0 auto 2.5rem;padding:1.2rem 1.5rem;background:var(--card);border:1px solid var(--blue);display:flex;align-items:center;justify-content:space-between;gap:1rem;flex-wrap:wrap}
+.free-banner .fb-text{font-size:.9rem;color:var(--muted);line-height:1.5}
+.free-banner .fb-text strong{color:var(--text);font-weight:700}
+.free-banner .fb-link{background:var(--blue);color:#fff;padding:.6rem 1.4rem;font-size:.85rem;font-weight:700;white-space:nowrap;flex-shrink:0}
+.free-banner .fb-link:hover{opacity:.9}
+
 footer{border-top:1px solid var(--border);padding:2rem;text-align:center;color:var(--dim);font-size:.75rem}
 
 #success{display:none;max-width:520px;margin:0 auto;padding:2rem;text-align:center}
@@ -141,6 +147,7 @@ footer{border-top:1px solid var(--border);padding:2rem;text-align:center;color:v
   <div class="logo">BOSS <span>tools</span></div>
   <nav class="nav-links">
     <a href="/">Home</a>
+    <a href="/grade-free">Free Estimator</a>
     <a href="/hooks">Hook Generator</a>
   </nav>
 </header>
@@ -150,6 +157,11 @@ footer{border-top:1px solid var(--border);padding:2rem;text-align:center;color:v
   <p>AI calls your business as a real customer would. You get a detailed grade report showing exactly what they experience. Results in minutes, not weeks.</p>
   <div class="hero-sub">One call. Six grades. One page of honest feedback you can act on today.</div>
 </section>
+
+<div class="free-banner">
+  <div class="fb-text"><strong>Not sure yet?</strong> Try the free 60-second Phone Grade Estimator. No sign-up, instant results.</div>
+  <a href="/grade-free" class="fb-link">Free Estimator</a>
+</div>
 
 <div class="proof-strip">
   <div class="proof"><div class="n">62%</div><div class="l">of service calls go unanswered</div></div>
@@ -345,6 +357,7 @@ footer{border-top:1px solid var(--border);padding:2rem;text-align:center;color:v
   <h3>Score below a B?</h3>
   <p>We can fix that. BOSS AI Receptionist answers every call perfectly, 24/7, for $50/month. No missed calls, no bad first impressions, no lost revenue.</p>
   <a href="/" class="cta-btn">Learn about AI Receptionist</a>
+  <div style="margin-top:1rem;font-size:.8rem;color:var(--dim)">Not ready for the full report? <a href="/grade-free" style="color:var(--blue)">Try the free estimator</a></div>
 </section>
 
 <footer>
