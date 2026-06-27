@@ -1,41 +1,41 @@
 {
-  "generated": "2026-06-25T20:34:10.594748+00:00",
+  "generated": "2026-06-27T02:00:05.285251+00:00",
   "sections": {
     "atlas": {
       "power_level": "ACTIVE",
-      "last_scan": "2026-06-25T20:23:43.433298+00:00",
-      "scan_count": 107,
+      "last_scan": "2026-06-27T00:30:20.706793+00:00",
+      "scan_count": 118,
       "heat_score": 100,
-      "recommendation": "HOT DAY. Weather-driven demand in Beaver, OK; Lipscomb, TX, Beaver; Lipscomb, Western El Paso County; Eastern/Central El Paso County; Rio Grande Valley of Eastern El Paso/Western Hudspeth Counties; Rio Grande Valley of Eastern Hudspeth County. Call HVAC/roofers there NOW.",
+      "recommendation": "HOT DAY. Weather-driven demand in George, MS; Greene, MS; Jackson, MS, Lawrence, MS, Chinati Mountains; Marfa Plateau; Davis Mountains; Davis Mountains Foothills; Central Brewster County; Chisos Basin; Presidio Valley; Lower Brewster County. Call HVAC/roofers there NOW.",
       "demand_signals": 10,
       "pain_signals": 0,
       "pitch_adjustments": 0,
       "competitor_intel": 0,
-      "territory_alerts": 12,
+      "territory_alerts": 1,
       "top_demands": [
         {
+          "type": "flood",
+          "area": "Wheeler, TX",
+          "niche": "plumbing"
+        },
+        {
           "type": "storm",
-          "area": "Beaver, OK; Lipscomb, TX",
+          "area": "Cimarron, OK; Dallam, TX; Hartley, TX; Moore, TX; Sherman, T",
           "niche": "roofing"
         },
         {
-          "type": "flood",
-          "area": "Beaver; Lipscomb",
-          "niche": "plumbing"
-        },
-        {
-          "type": "flood",
-          "area": "Brazos, TX; Grimes, TX; Madison, TX",
-          "niche": "plumbing"
-        },
-        {
           "type": "heat_wave",
-          "area": "Palo Duro Canyon",
+          "area": "Chinati Mountains; Marfa Plateau; Davis Mountains; Davis Mou",
           "niche": "hvac"
         },
         {
           "type": "flood",
-          "area": "Angelina, TX; Polk, TX; Trinity, TX",
+          "area": "Lawrence, MS",
+          "niche": "plumbing"
+        },
+        {
+          "type": "flood",
+          "area": "Copiah, MS; Simpson, MS",
           "niche": "plumbing"
         }
       ],
@@ -43,31 +43,32 @@
     },
     "lead_engine": {
       "state": "ACTIVE",
-      "total_leads": 200,
+      "total_leads": 210,
       "by_tier": {
-        "SUPERNICHE": 15,
-        "HOT": 43,
-        "WARM": 142
+        "SUPERNICHE": 18,
+        "HOT": 60,
+        "WARM": 132
       },
       "by_route": {
-        "watchlist": 160,
-        "email": 40
+        "watchlist": 156,
+        "email": 42,
+        "call_queue": 12
       },
       "by_status": {
-        "re_engaged": 131,
-        "called": 21,
-        "queued": 48
+        "re_engaged": 148,
+        "queued": 23,
+        "called": 39
       },
-      "synced_to_pipeline": 39,
-      "api_spend": 7.04,
+      "synced_to_pipeline": 41,
+      "api_spend": 8.32,
       "api_budget": 300.0,
-      "api_percent": 2.3,
-      "outcomes_recorded": 160,
+      "api_percent": 2.8,
+      "outcomes_recorded": 201,
       "by_outcome": {
-        "no_answer": 22,
+        "no_answer": 24,
         "hangup": 14,
         "call_failed": 37,
-        "call_initiated": 83,
+        "call_initiated": 122,
         "callback": 2,
         "meeting_set": 2
       },
@@ -81,7 +82,7 @@
           "tier": "SUPERNICHE",
           "score": 78,
           "route": "watchlist",
-          "status": "called"
+          "status": "re_engaged"
         },
         {
           "name": "Stanley Graves Plumbing Co",
@@ -91,15 +92,6 @@
           "score": 78,
           "route": "watchlist",
           "status": "queued"
-        },
-        {
-          "name": "Andrew's Affordable Plumbing",
-          "niche": "plumber",
-          "state": "NM",
-          "tier": "SUPERNICHE",
-          "score": 72,
-          "route": "watchlist",
-          "status": "called"
         },
         {
           "name": "Anderson Plumbing LLC",
@@ -153,7 +145,16 @@
           "tier": "SUPERNICHE",
           "score": 63,
           "route": "watchlist",
-          "status": "called"
+          "status": "re_engaged"
+        },
+        {
+          "name": "Pipkins Plumbing",
+          "niche": "plumbing",
+          "state": "MS",
+          "tier": "SUPERNICHE",
+          "score": 63,
+          "route": "watchlist",
+          "status": "queued"
         },
         {
           "name": "Charlie's Plumbing Services",
@@ -167,9 +168,9 @@
       ]
     },
     "n8n": {
-      "active_workflows": 75,
+      "active_workflows": 77,
       "inactive_workflows": 55,
-      "total_workflows": 130,
+      "total_workflows": 132,
       "recent_errors": 20,
       "recent_crashes": 10,
       "critical_workflows": [
@@ -216,24 +217,24 @@
       ],
       "recent_failures": [
         {
-          "workflow": "FV413faAXiMk1CiY",
-          "started": "2026-06-25T20:25"
+          "workflow": "nqlDzUaXTPJUvI9o",
+          "started": "2026-06-27T02:00"
         },
         {
-          "workflow": "FV413faAXiMk1CiY",
-          "started": "2026-06-25T20:25"
+          "workflow": "Zxy927WKWSKrdeWi",
+          "started": "2026-06-26T23:00"
         },
         {
-          "workflow": "FV413faAXiMk1CiY",
-          "started": "2026-06-25T20:25"
+          "workflow": "Zxy927WKWSKrdeWi",
+          "started": "2026-06-26T23:00"
         },
         {
-          "workflow": "FV413faAXiMk1CiY",
-          "started": "2026-06-25T20:25"
+          "workflow": "jcjx0bGhzmaJrI7q",
+          "started": "2026-06-26T23:00"
         },
         {
-          "workflow": "FV413faAXiMk1CiY",
-          "started": "2026-06-25T20:25"
+          "workflow": "lSc61uycIMIn6HEG",
+          "started": "2026-06-26T22:32"
         }
       ]
     },
@@ -292,9 +293,9 @@
         }
       ],
       "calls_24h": 50,
-      "outbound_24h": 46,
-      "inbound_24h": 4,
-      "avg_duration_sec": 13.6
+      "outbound_24h": 45,
+      "inbound_24h": 5,
+      "avg_duration_sec": 32.0
     },
     "quant": {
       "state": "ACTIVE",
@@ -307,7 +308,7 @@
       "atlas_power": "ACTIVE",
       "n8n_errors_24h": 20,
       "retell_calls_24h": 50,
-      "api_spend_pct": 2.3
+      "api_spend_pct": 2.8
     }
   }
 }
