@@ -5,1028 +5,595 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
 <meta name="apple-mobile-web-app-capable" content="yes">
 <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
-<meta name="apple-mobile-web-app-title" content="BOSS">
-<meta name="theme-color" content="#050608">
+<meta name="apple-mobile-web-app-title" content="BOSS HQ">
+<meta name="theme-color" content="#050508">
 <meta name="robots" content="noindex,nofollow">
-<title>BOSS — Command Center</title>
-<meta name="description" content="BOSS Systems command center. System status, controls, and operations overview.">
-<link rel="manifest" href="manifest-command.json">
-<link href="https://fonts.googleapis.com/css2?family=Share+Tech+Mono&family=Rajdhani:wght@400;600;700&display=swap" rel="stylesheet">
+<title>BOSS HQ — Command Center</title>
 <style>
-:root {
-  --bg:#050608;--bg2:#0c0d12;--bg3:#12141a;
-  --gold:#C9A84C;--gold-dim:#7a6530;
-  --text:#e8e8f0;--dim:#4a4a6a;--muted:#6a6a8a;
-  --green:#00e87a;--red:#ff3b3b;--blue:#4A9EE8;--orange:#FF6B35;
-  --purple:#a855f7;
-  --border:#1a1c28;
-}
 *{margin:0;padding:0;box-sizing:border-box}
-body{background:var(--bg);color:var(--text);font-family:'Rajdhani',sans-serif;min-height:100vh;min-height:100dvh;overflow-x:hidden;-webkit-tap-highlight-color:transparent}
-body::before{content:'';position:fixed;inset:0;background:repeating-linear-gradient(0deg,transparent,transparent 2px,rgba(0,0,0,0.04) 2px,rgba(0,0,0,0.04) 4px);pointer-events:none;z-index:999}
+:root{--bg:#050508;--card:#0c0c10;--card2:#111116;--border:#1a1a22;--gold:#C9A84C;--text:#e8e6e1;--muted:#aaa;--dim:#777;--green:#2ecc71;--red:#e74c3c;--blue:#3d95ce;--orange:#e67e22;--yellow:#f1c40f;--purple:#9b59b6;--font:'SF Mono',SFMono-Regular,Consolas,'Liberation Mono',Menlo,monospace}
+body{font-family:var(--font);background:var(--bg);color:var(--text);min-height:100vh;-webkit-font-smoothing:antialiased;font-size:12px}
 a{color:var(--gold);text-decoration:none}
+a:hover{text-decoration:underline}
 
-#pin-screen{position:fixed;inset:0;background:var(--bg);z-index:9999;display:flex;flex-direction:column;align-items:center;justify-content:center;padding:24px}
-#pin-screen.out{display:none}
-.pin-logo{font-size:11px;font-weight:900;letter-spacing:4px;color:var(--gold);margin-bottom:32px;font-family:'Share Tech Mono',monospace}
-.pin-title{font-size:20px;font-weight:700;letter-spacing:2px;margin-bottom:8px}
-.pin-sub{font-size:12px;color:var(--dim);margin-bottom:28px;letter-spacing:1px}
-.pin-input{width:200px;background:var(--bg2);border:1px solid var(--border);color:var(--gold);font-size:28px;padding:14px;font-family:'Share Tech Mono',monospace;text-align:center;letter-spacing:8px;outline:none;-webkit-text-security:disc}
-.pin-input:focus{border-color:var(--gold)}
-.pin-error{font-size:11px;color:var(--red);margin-top:12px;font-family:'Share Tech Mono',monospace;letter-spacing:1px;height:16px}
-.pin-hint{font-size:10px;color:var(--dim);margin-top:24px;font-family:'Share Tech Mono',monospace}
+.topbar{position:sticky;top:0;z-index:100;background:#08080cee;backdrop-filter:blur(8px);-webkit-backdrop-filter:blur(8px);border-bottom:1px solid var(--border);padding:8px 16px;display:flex;justify-content:space-between;align-items:center}
+.topbar-left{display:flex;align-items:center;gap:16px}
+.topbar-logo{font-weight:900;font-size:14px;letter-spacing:3px;color:var(--gold)}
+.topbar-status{display:flex;gap:6px;flex-wrap:wrap}
+.status-chip{padding:3px 8px;border-radius:2px;font-size:9px;letter-spacing:1px;text-transform:uppercase;font-weight:700}
+.status-chip.ok{background:rgba(46,204,113,.15);color:var(--green);border:1px solid rgba(46,204,113,.3)}
+.status-chip.warn{background:rgba(241,196,15,.15);color:var(--yellow);border:1px solid rgba(241,196,15,.3)}
+.status-chip.err{background:rgba(231,76,60,.15);color:var(--red);border:1px solid rgba(231,76,60,.3)}
+.topbar-right{display:flex;align-items:center;gap:12px;color:var(--dim);font-size:11px}
+.topbar-right .time{color:var(--muted);font-weight:700}
+#refresh-btn{background:none;border:1px solid var(--border);color:var(--muted);padding:4px 10px;font-family:var(--font);font-size:10px;cursor:pointer;letter-spacing:1px}
+#refresh-btn:hover{border-color:var(--gold);color:var(--gold)}
 
-header{background:linear-gradient(180deg,#09090f 0%,var(--bg) 100%);border-bottom:1px solid var(--gold-dim);padding:0 16px;position:sticky;top:0;z-index:100}
-.h-inner{display:flex;align-items:center;justify-content:space-between;height:52px;gap:8px}
-.logo-title{font-size:16px;font-weight:700;color:var(--gold);letter-spacing:3px}
-.h-right{display:flex;align-items:center;gap:10px;flex-shrink:0}
-.live-badge{display:flex;align-items:center;gap:5px;font-size:9px;color:var(--green);font-family:'Share Tech Mono',monospace;letter-spacing:1px}
-.live-dot{width:6px;height:6px;background:var(--green);border-radius:50%;animation:pulse 2s infinite}
-@keyframes pulse{0%,100%{opacity:1;box-shadow:0 0 0 0 rgba(0,232,122,0.4)}50%{opacity:.6;box-shadow:0 0 0 4px rgba(0,232,122,0)}}
-#clock{font-family:'Share Tech Mono',monospace;font-size:11px;color:var(--dim)}
+.grid{display:grid;grid-template-columns:repeat(4,1fr);gap:8px;padding:8px 12px;max-width:1600px;margin:0 auto}
+.card{background:var(--card);border:1px solid var(--border);padding:12px;min-height:100px;overflow:hidden}
+.card.span2{grid-column:span 2}
+.card.span3{grid-column:span 3}
+.card.span4{grid-column:span 4}
+.card-title{font-size:9px;letter-spacing:2px;text-transform:uppercase;color:var(--dim);margin-bottom:8px;display:flex;justify-content:space-between;align-items:center}
+.card-title .ct-dot{width:6px;height:6px;border-radius:50%;display:inline-block}
+.card-title .ct-dot.green{background:var(--green)}
+.card-title .ct-dot.red{background:var(--red)}
+.card-title .ct-dot.yellow{background:var(--yellow)}
+.card-title .ct-dot.blue{background:var(--blue)}
+.card-title .ct-dot.purple{background:var(--purple)}
+.card-title .ct-dot.dim{background:var(--dim)}
 
-main{padding:0 12px 80px;max-width:600px;margin:0 auto}
+.big-num{font-size:28px;font-weight:900;line-height:1}
+.big-label{font-size:10px;color:var(--dim);margin-top:2px;letter-spacing:.5px}
+.metric-row{display:flex;gap:16px;margin-top:8px;flex-wrap:wrap}
+.metric{text-align:center}
+.metric .mv{font-size:18px;font-weight:800}
+.metric .ml{font-size:9px;color:var(--dim);letter-spacing:.5px;margin-top:1px}
 
-/* TABS */
-.tab-bar{display:flex;border-bottom:1px solid var(--border);margin-bottom:0;position:sticky;top:52px;background:var(--bg);z-index:90;padding-top:8px}
-.tab{padding:10px 16px;font-size:10px;font-family:'Share Tech Mono',monospace;letter-spacing:2px;color:var(--dim);cursor:pointer;border-bottom:2px solid transparent;text-transform:uppercase;transition:color .15s}
-.tab:active{opacity:.7}
-.tab.active{color:var(--gold);border-bottom-color:var(--gold)}
-.tab-content{display:none}
-.tab-content.active{display:block;padding-top:16px}
-.tab .tab-count{font-size:9px;color:var(--purple);margin-left:4px}
+.mini-table{width:100%;border-collapse:collapse;margin-top:6px}
+.mini-table th{font-size:9px;color:var(--dim);text-align:left;padding:4px 6px;border-bottom:1px solid var(--border);letter-spacing:1px;text-transform:uppercase}
+.mini-table td{padding:4px 6px;font-size:11px;border-bottom:1px solid #0f0f14;color:var(--muted)}
+.mini-table tr:hover td{background:rgba(201,168,76,.03)}
+.mini-table td.num{text-align:right;font-weight:700;color:var(--text)}
 
-.stats-bar{display:grid;grid-template-columns:repeat(3,1fr);gap:1px;background:var(--border);margin-bottom:16px;border:1px solid var(--border)}
-.stat{background:var(--bg2);padding:14px 10px;text-align:center}
-.stat-value{font-size:24px;font-weight:700;font-family:'Share Tech Mono',monospace;line-height:1;margin-bottom:2px}
-.stat-label{font-size:8px;color:var(--dim);letter-spacing:2px;text-transform:uppercase}
+.tag{display:inline-block;padding:2px 6px;font-size:9px;font-weight:700;letter-spacing:.5px;border-radius:2px;margin:1px 2px}
+.tag.active{background:rgba(46,204,113,.12);color:var(--green);border:1px solid rgba(46,204,113,.2)}
+.tag.inactive{background:rgba(231,76,60,.12);color:var(--red);border:1px solid rgba(231,76,60,.2)}
 
-.sec-title{font-size:9px;font-family:'Share Tech Mono',monospace;letter-spacing:3px;color:var(--dim);text-transform:uppercase;margin:20px 0 10px;padding-bottom:6px;border-bottom:1px solid var(--border)}
+.wf-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(170px,1fr));gap:4px;margin-top:6px}
+.wf-item{display:flex;align-items:center;gap:6px;padding:4px 6px;background:var(--card2);border:1px solid var(--border);font-size:10px;color:var(--muted);overflow:hidden;white-space:nowrap;text-overflow:ellipsis}
+.wf-dot{width:5px;height:5px;border-radius:50%;flex-shrink:0}
 
-.sys-list{display:flex;flex-direction:column;gap:1px;background:var(--border);border:1px solid var(--border);margin-bottom:16px}
-.sys-card{background:var(--bg2);padding:14px 16px;display:flex;justify-content:space-between;align-items:center}
-.sys-left{flex:1}
-.sys-name{font-size:13px;font-weight:700;letter-spacing:1px;color:var(--gold)}
-.sys-detail{font-size:11px;color:var(--muted);margin-top:2px}
-.sys-detail span{color:var(--text);font-weight:600}
-.sys-status{font-size:8px;font-family:'Share Tech Mono',monospace;letter-spacing:1px;padding:3px 8px;border-radius:2px;flex-shrink:0}
-.sys-status.on{background:rgba(0,232,122,0.08);color:var(--green);border:1px solid rgba(0,232,122,0.18)}
-.sys-status.off{background:rgba(74,74,106,0.12);color:var(--dim);border:1px solid rgba(74,74,106,0.2)}
-.sys-status.warn{background:rgba(255,107,53,0.08);color:var(--orange);border:1px solid rgba(255,107,53,0.18)}
+.agent-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(145px,1fr));gap:4px;margin-top:6px}
+.agent-item{padding:5px 8px;background:var(--card2);border:1px solid var(--border);font-size:10px;color:var(--muted)}
+.agent-item .ai-name{font-weight:700;color:var(--text);font-size:11px}
+.agent-item .ai-num{color:var(--dim);font-size:9px;margin-top:1px}
 
-.quick-list{display:flex;flex-direction:column;gap:1px;background:var(--border);border:1px solid var(--border);margin-bottom:16px}
-.quick-link{background:var(--bg2);padding:14px 16px;display:flex;align-items:center;gap:12px;text-decoration:none;-webkit-tap-highlight-color:transparent;transition:background .12s}
-.quick-link:active{background:var(--bg3)}
-.quick-icon{font-size:18px;width:24px;text-align:center;flex-shrink:0}
-.quick-info{flex:1}
-.quick-name{font-size:14px;font-weight:700;color:var(--text)}
-.quick-desc{font-size:10px;color:var(--dim)}
-.quick-arrow{color:var(--dim);font-size:14px;flex-shrink:0}
+.signal-list{margin-top:6px;max-height:200px;overflow-y:auto}
+.signal-item{padding:6px;border-bottom:1px solid #0f0f14;font-size:11px;color:var(--muted);line-height:1.5}
+.signal-item .si-type{font-size:9px;font-weight:700;letter-spacing:1px;text-transform:uppercase;margin-bottom:2px}
+.signal-item .si-type.storm{color:var(--orange)}
+.signal-item .si-type.flood{color:var(--blue)}
+.signal-item .si-type.heat{color:var(--red)}
+.signal-item .si-type.quake{color:var(--yellow)}
 
-.cost-card{background:var(--bg2);border:1px solid var(--border);padding:16px;margin-bottom:16px}
-.cost-row{display:flex;justify-content:space-between;padding:7px 0;border-bottom:1px solid var(--border);font-size:13px}
-.cost-row:last-child{border-bottom:none}
-.cost-name{color:var(--muted)}
-.cost-val{font-family:'Share Tech Mono',monospace;color:var(--text);font-weight:600}
-.cost-val.gold{color:var(--gold)}
-.cost-val.red{color:var(--red)}
-.cost-val.green{color:var(--green)}
-.cost-total{display:flex;justify-content:space-between;margin-top:10px;padding-top:10px;border-top:1px solid var(--gold-dim);font-size:16px;font-weight:700;color:var(--gold);font-family:'Share Tech Mono',monospace}
+.link-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(120px,1fr));gap:4px;margin-top:6px}
+.link-item{display:block;padding:6px 8px;background:var(--card2);border:1px solid var(--border);color:var(--muted);font-size:10px;text-align:center;transition:.15s}
+.link-item:hover{border-color:var(--gold);color:var(--gold);text-decoration:none}
 
-.wf-division{background:var(--bg2);border:1px solid var(--border);margin-bottom:10px;border-radius:4px;overflow:hidden}
-.wf-header{padding:12px 14px;border-bottom:1px solid var(--border);display:flex;align-items:center;gap:8px;cursor:pointer;-webkit-tap-highlight-color:transparent}
-.wf-accent{width:3px;height:24px;border-radius:2px;flex-shrink:0}
-.wf-div-name{font-size:12px;font-weight:700;letter-spacing:2px;flex:1}
-.wf-count{font-size:10px;font-family:'Share Tech Mono',monospace;color:var(--dim)}
-.wf-toggle{font-size:12px;color:var(--dim);transition:transform .2s}
-.wf-header.open .wf-toggle{transform:rotate(90deg)}
-.wf-body{display:none}
-.wf-body.open{display:block}
-.wf-row{display:flex;align-items:center;gap:8px;padding:8px 14px;border-bottom:1px solid var(--border)}
-.wf-row:last-child{border-bottom:none}
-.wf-dot{width:6px;height:6px;border-radius:50%;flex-shrink:0}
-.wf-dot.on{background:var(--green)}
-.wf-dot.off{background:var(--dim)}
-.wf-name{font-size:12px;flex:1;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
-.wf-badge{font-size:7px;font-family:'Share Tech Mono',monospace;letter-spacing:1px;padding:2px 5px;border-radius:2px}
-.wf-badge.on{background:rgba(0,232,122,0.08);color:var(--green);border:1px solid rgba(0,232,122,0.18)}
-.wf-badge.off{background:rgba(74,74,106,0.12);color:var(--dim);border:1px solid rgba(74,74,106,0.2)}
+.section-label{grid-column:1/-1;font-size:10px;letter-spacing:2px;text-transform:uppercase;color:var(--dim);padding:8px 0 0;margin-top:4px;border-top:1px solid var(--border)}
 
-.retell-card{background:var(--bg2);border:1px solid var(--border);padding:12px 14px;margin-bottom:1px;display:flex;justify-content:space-between;align-items:center}
-.retell-name{font-size:13px;font-weight:600}
-.retell-num{font-size:11px;font-family:'Share Tech Mono',monospace;color:var(--gold);margin-top:2px}
-.retell-tag{font-size:8px;font-family:'Share Tech Mono',monospace;color:var(--purple);letter-spacing:1px;margin-left:6px}
+.empty-state{color:var(--dim);font-style:italic;font-size:11px;padding:12px 0}
 
-/* APPLICATIONS */
-.app-card{background:var(--bg2);border:1px solid var(--border);padding:14px 16px;margin-bottom:1px}
-.app-name{font-size:14px;font-weight:700;color:var(--text)}
-.app-meta{font-size:11px;color:var(--muted);margin-top:3px;line-height:1.6}
-.app-meta span{color:var(--gold);font-weight:600}
-.app-note{font-size:11px;color:var(--dim);margin-top:6px;font-style:italic;line-height:1.5}
-.app-time{font-size:9px;color:var(--dim);font-family:'Share Tech Mono',monospace;margin-top:6px;letter-spacing:1px}
-.app-status{display:inline-block;font-size:8px;font-family:'Share Tech Mono',monospace;letter-spacing:1px;padding:2px 6px;border-radius:2px;margin-left:8px}
-.app-status.new{background:rgba(255,107,53,0.08);color:var(--orange);border:1px solid rgba(255,107,53,0.18)}
-.app-status.approved{background:rgba(0,232,122,0.08);color:var(--green);border:1px solid rgba(0,232,122,0.18)}
-.app-status.declined{background:rgba(255,59,59,0.08);color:var(--red);border:1px solid rgba(255,59,59,0.18)}
-.app-ai{font-size:10px;color:var(--muted);margin-top:4px;line-height:1.5}
-.app-ai .score{color:var(--gold);font-weight:600;font-family:'Share Tech Mono',monospace}
-.app-ai .rec{font-weight:600}
-.app-ai .rec.approve{color:var(--green)}
-.app-ai .rec.review{color:var(--orange)}
-.app-ai .rec.decline{color:var(--red)}
-.app-actions{display:flex;gap:8px;margin-top:8px}
-.app-btn{font-size:9px;font-family:'Share Tech Mono',monospace;letter-spacing:1px;padding:4px 12px;border:1px solid var(--border);background:var(--bg3);color:var(--muted);cursor:pointer;text-transform:uppercase}
-.app-btn:active{opacity:.7}
-.app-btn.approve{border-color:rgba(0,232,122,0.3);color:var(--green)}
-.app-btn.decline{border-color:rgba(255,59,59,0.3);color:var(--red)}
-.app-empty{text-align:center;padding:20px;font-size:12px;color:var(--dim);letter-spacing:1px}
+.actions-row{display:flex;gap:6px;flex-wrap:wrap;margin-top:6px}
+.action-btn{display:inline-block;padding:5px 12px;background:var(--card2);border:1px solid var(--border);color:var(--muted);font-family:var(--font);font-size:10px;cursor:pointer;letter-spacing:.5px;transition:.15s}
+.action-btn:hover{border-color:var(--gold);color:var(--gold);text-decoration:none}
+.action-btn.primary{border-color:var(--gold);color:var(--gold)}
 
-/* BPP PARTNER CARDS */
-.partner-stats{display:grid;grid-template-columns:repeat(3,1fr);gap:1px;background:var(--border);margin-bottom:16px;border:1px solid var(--border)}
-.partner-card{background:var(--bg2);border:1px solid var(--border);padding:16px;margin-bottom:10px;border-left:3px solid var(--purple)}
-.partner-header{display:flex;justify-content:space-between;align-items:flex-start}
-.partner-name{font-size:16px;font-weight:700;color:var(--text)}
-.partner-biz{font-size:12px;color:var(--gold);margin-top:2px;font-weight:600}
-.partner-detail{font-size:11px;color:var(--muted);margin-top:6px;line-height:1.8}
-.partner-detail span{color:var(--text);font-weight:600}
-.partner-phone-box{margin-top:10px;padding:8px 12px;background:var(--bg);border:1px solid var(--border);font-family:'Share Tech Mono',monospace;font-size:13px;color:var(--green)}
-.partner-phone-box .label{font-size:9px;color:var(--dim);letter-spacing:2px;display:block;margin-bottom:2px}
-.build-btn{display:inline-block;margin-top:10px;padding:8px 20px;font-size:10px;font-family:'Share Tech Mono',monospace;letter-spacing:2px;border:1px solid var(--purple);background:rgba(168,85,247,0.08);color:var(--purple);cursor:pointer;text-transform:uppercase;transition:all .15s}
-.build-btn:active{opacity:.7}
-.build-btn:disabled{opacity:.5;cursor:default}
-.build-btn.done{border-color:var(--green);color:var(--green);background:rgba(0,232,122,0.06)}
+.scroll-list{max-height:180px;overflow-y:auto;scrollbar-width:thin;scrollbar-color:var(--border) transparent}
+.scroll-list::-webkit-scrollbar{width:4px}
+.scroll-list::-webkit-scrollbar-track{background:transparent}
+.scroll-list::-webkit-scrollbar-thumb{background:var(--border);border-radius:2px}
 
-footer{text-align:center;padding:16px;font-family:'Share Tech Mono',monospace;font-size:9px;color:var(--dim);letter-spacing:2px;border-top:1px solid var(--border)}
-
-.coa-card{background:var(--bg2);border:1px solid var(--border);border-left:3px solid var(--gold);padding:16px 18px;margin-bottom:16px}
-.coa-list{list-style:none;counter-reset:coa}
-.coa-item{counter-increment:coa;padding:10px 0;border-bottom:1px solid var(--border);display:flex;gap:12px;align-items:flex-start}
-.coa-item:last-child{border-bottom:none}
-.coa-num{font-family:'Share Tech Mono',monospace;font-size:16px;font-weight:700;color:var(--gold);min-width:22px;line-height:1.2}
-.coa-text{flex:1}
-.coa-priority{font-size:13px;font-weight:700;color:var(--text);line-height:1.3}
-.coa-why{font-size:11px;color:var(--muted);margin-top:2px;line-height:1.4}
+@media(max-width:1000px){
+  .grid{grid-template-columns:repeat(2,1fr)}
+  .card.span3,.card.span4{grid-column:span 2}
+}
+@media(max-width:600px){
+  .grid{grid-template-columns:1fr;padding:6px}
+  .card.span2,.card.span3,.card.span4{grid-column:span 1}
+  .topbar{flex-direction:column;gap:6px;padding:6px 12px}
+  .topbar-status{justify-content:center}
+  .wf-grid,.agent-grid{grid-template-columns:1fr}
+}
 </style>
 </head>
 <body>
 
-<div id="pin-screen">
-  <div class="pin-logo">BOSS SYSTEMS</div>
-  <div class="pin-title">Command Center</div>
-  <div class="pin-sub">Enter PIN to access</div>
-  <input class="pin-input" id="pin-input" type="tel" maxlength="4" inputmode="numeric" autocomplete="off" autofocus>
-  <div class="pin-error" id="pin-error"></div>
-  <div class="pin-hint">bosssystems.co/command</div>
+<div class="topbar">
+  <div class="topbar-left">
+    <div class="topbar-logo">BOSS HQ</div>
+    <div class="topbar-status" id="status-chips"></div>
+  </div>
+  <div class="topbar-right">
+    <span id="last-update" style="color:var(--dim)">Loading...</span>
+    <span class="time" id="clock"></span>
+    <button id="refresh-btn" onclick="loadAll()">REFRESH</button>
+  </div>
 </div>
 
-<div id="app" style="display:none">
+<div class="grid" id="dashboard">
 
-<header>
-  <div class="h-inner">
-    <span class="logo-title">BOSS</span>
-    <div class="h-right">
-      <div class="live-badge"><div class="live-dot"></div>LIVE</div>
-      <div id="clock"></div>
+  <!-- ROW 1: Revenue & Key Metrics -->
+  <div class="card" id="card-revenue">
+    <div class="card-title">Revenue <span class="ct-dot green"></span></div>
+    <div class="big-num" style="color:var(--green)" id="total-revenue">$50</div>
+    <div class="big-label">Total Revenue (All Time)</div>
+    <div class="metric-row">
+      <div class="metric"><div class="mv" style="color:var(--green)">$50</div><div class="ml">Wickham</div></div>
+      <div class="metric"><div class="mv" style="color:var(--dim)">$0</div><div class="ml">Phone Grade</div></div>
+      <div class="metric"><div class="mv" style="color:var(--dim)">$0</div><div class="ml">Hook Gen</div></div>
     </div>
   </div>
-</header>
 
-<main>
-
-  <div class="tab-bar">
-    <div class="tab active" id="tab-cmd" onclick="switchTab('cmd')">COMMAND</div>
-    <div class="tab" id="tab-bpp" onclick="switchTab('bpp')">BPP PARTNERS <span class="tab-count" id="bpp-count"></span></div>
-    <div class="tab" id="tab-engage" onclick="switchTab('engage')">ENGAGE <span class="tab-count" id="engage-count"></span></div>
+  <div class="card" id="card-phone-grade">
+    <div class="card-title">Phone Grade <span class="ct-dot green"></span></div>
+    <div class="big-num" style="color:var(--gold)" id="pg-orders">0</div>
+    <div class="big-label">Orders</div>
+    <div class="metric-row">
+      <div class="metric"><div class="mv" style="color:var(--green)">$27.44</div><div class="ml">Profit/shop</div></div>
+      <div class="metric"><div class="mv" style="color:var(--green)">94.6%</div><div class="ml">Margin</div></div>
+      <div class="metric"><div class="mv">11</div><div class="ml">Pages Live</div></div>
+    </div>
   </div>
 
-  <!-- ═══ COMMAND TAB ═══ -->
-  <div class="tab-content active" id="content-cmd">
-
-    <div class="stats-bar">
-      <div class="stat"><div class="stat-value" style="color:var(--orange)">0</div><div class="stat-label">Hot Leads</div></div>
-      <div class="stat"><div class="stat-value" style="color:var(--green)">0</div><div class="stat-label">Clients</div></div>
-      <div class="stat"><div class="stat-value" style="color:var(--text)">$0</div><div class="stat-label">MRR</div></div>
-    </div>
-
-    <div class="sec-title">COURSE OF ACTION</div>
-    <div class="coa-card">
-      <ol class="coa-list">
-        <li class="coa-item">
-          <div class="coa-num">1</div>
-          <div class="coa-text">
-            <div class="coa-priority">Land first paying client ($5,997 Full Transformation)</div>
-            <div class="coa-why">Validates the entire model &mdash; nothing else matters until this happens</div>
-          </div>
-        </li>
-        <li class="coa-item">
-          <div class="coa-num">2</div>
-          <div class="coa-text">
-            <div class="coa-priority">Fix ATLAS coverage gaps</div>
-            <div class="coa-why">US Congress, deeper domestic intel &mdash; blind spots weaken every downstream decision</div>
-          </div>
-        </li>
-        <li class="coa-item">
-          <div class="coa-num">3</div>
-          <div class="coa-text">
-            <div class="coa-priority">Complete LLC formation</div>
-            <div class="coa-why">Unlocks Stripe, email marketing, legal compliance &mdash; can't scale without it</div>
-          </div>
-        </li>
-        <li class="coa-item">
-          <div class="coa-num">4</div>
-          <div class="coa-text">
-            <div class="coa-priority">Set up PO Box</div>
-            <div class="coa-why">Required for CAN-SPAM and business mail &mdash; blocks all outbound email campaigns</div>
-          </div>
-        </li>
-        <li class="coa-item">
-          <div class="coa-num">5</div>
-          <div class="coa-text">
-            <div class="coa-priority">Build email infrastructure</div>
-            <div class="coa-why">SPF/DKIM/DMARC for outbound campaigns &mdash; without it, emails land in spam</div>
-          </div>
-        </li>
-      </ol>
-    </div>
-
-    <div class="sec-title">QUICK ACCESS</div>
-    <div class="quick-list">
-      <a href="overview.html" class="quick-link">
-        <div class="quick-icon">&#128506;</div>
-        <div class="quick-info"><div class="quick-name">System Map</div><div class="quick-desc">Click-through map of every BOSS system</div></div>
-        <div class="quick-arrow">&#8250;</div>
-      </a>
-      <a href="index.html" class="quick-link">
-        <div class="quick-icon">&#9776;</div>
-        <div class="quick-info"><div class="quick-name">Website</div><div class="quick-desc">bosssystems.co</div></div>
-        <div class="quick-arrow">&#8250;</div>
-      </a>
-      <a href="atlas.html" class="quick-link">
-        <div class="quick-icon">&#9793;</div>
-        <div class="quick-info"><div class="quick-name">ATLAS</div><div class="quick-desc">Global intelligence map</div></div>
-        <div class="quick-arrow">&#8250;</div>
-      </a>
-      <a href="almanac.html" class="quick-link">
-        <div class="quick-icon">&#128214;</div>
-        <div class="quick-info"><div class="quick-name">Almanac</div><div class="quick-desc">Historical intelligence archive</div></div>
-        <div class="quick-arrow">&#8250;</div>
-      </a>
-      <a href="ops.html" class="quick-link">
-        <div class="quick-icon">&#9881;</div>
-        <div class="quick-info"><div class="quick-name">Ops Dashboard</div><div class="quick-desc">Full system health</div></div>
-        <div class="quick-arrow">&#8250;</div>
-      </a>
-      <a href="analyze.html" class="quick-link">
-        <div class="quick-icon">&#9878;</div>
-        <div class="quick-info"><div class="quick-name">Free Analyzer</div><div class="quick-desc">60-second AI business analysis</div></div>
-        <div class="quick-arrow">&#8250;</div>
-      </a>
-      <a href="summer.html" class="quick-link">
-        <div class="quick-icon">&#9728;</div>
-        <div class="quick-info"><div class="quick-name">BOSS Partnership Program</div><div class="quick-desc">Student partner landing page</div></div>
-        <div class="quick-arrow">&#8250;</div>
-      </a>
-      <a href="social.html" class="quick-link">
-        <div class="quick-icon">&#10038;</div>
-        <div class="quick-info"><div class="quick-name">Social Machine</div><div class="quick-desc">Posts, bandit, approvals</div></div>
-        <div class="quick-arrow">&#8250;</div>
-      </a>
-      <a href="engine.html" class="quick-link">
-        <div class="quick-icon">&#9889;</div>
-        <div class="quick-info"><div class="quick-name">Leads</div><div class="quick-desc">Signal-scored lead engine</div></div>
-        <div class="quick-arrow">&#8250;</div>
-      </a>
-      <a href="quant.html" class="quick-link">
-        <div class="quick-icon">&#8721;</div>
-        <div class="quick-info"><div class="quick-name">Quantum Sandbox</div><div class="quick-desc">Paper-only quant research</div></div>
-        <div class="quick-arrow">&#8250;</div>
-      </a>
-      <a href="washington_trainer/trainer.html" class="quick-link">
-        <div class="quick-icon">&#9876;</div>
-        <div class="quick-info"><div class="quick-name">Power Skills</div><div class="quick-desc">12 Washington power skills trainer</div></div>
-        <div class="quick-arrow">&#8250;</div>
-      </a>
-      <a href="client-guide.html" class="quick-link">
-        <div class="quick-icon">&#9733;</div>
-        <div class="quick-info"><div class="quick-name">Client Guide</div><div class="quick-desc">New client training</div></div>
-        <div class="quick-arrow">&#8250;</div>
-      </a>
-      <a href="https://ntfy.sh/bossai-bostonrossall-alerts" class="quick-link">
-        <div class="quick-icon">&#9888;</div>
-        <div class="quick-info"><div class="quick-name">ntfy Alerts</div><div class="quick-desc">All system notifications</div></div>
-        <div class="quick-arrow">&#8250;</div>
-      </a>
-    </div>
-
-    <div class="sec-title">SYSTEMS</div>
-    <div class="sys-list">
-      <div class="sys-card">
-        <div class="sys-left">
-          <div class="sys-name">n8n Cloud</div>
-          <div class="sys-detail"><span>35+</span> workflows active</div>
-        </div>
-        <span class="sys-status on">ACTIVE</span>
-      </div>
-      <div class="sys-card">
-        <div class="sys-left">
-          <div class="sys-name">ATLAS</div>
-          <div class="sys-detail"><span>35+</span> sources &middot; IDLE (2hr scans)</div>
-        </div>
-        <span class="sys-status on">ACTIVE</span>
-      </div>
-      <div class="sys-card">
-        <div class="sys-left">
-          <div class="sys-name">Lead Engine</div>
-          <div class="sys-detail">Spend: <span>$4.42/$300</span> &middot; $4/day cap</div>
-        </div>
-        <span class="sys-status on">ACTIVE</span>
-      </div>
-      <div class="sys-card">
-        <div class="sys-left">
-          <div class="sys-name">Supervisor</div>
-          <div class="sys-detail">Auto-fix &middot; every <span>30 min</span></div>
-        </div>
-        <span class="sys-status on">ACTIVE</span>
-      </div>
-      <div class="sys-card">
-        <div class="sys-left">
-          <div class="sys-name">Retell AI</div>
-          <div class="sys-detail"><span>11</span> agents &middot; <span>12</span> numbers</div>
-        </div>
-        <span class="sys-status on">ACTIVE</span>
-      </div>
-      <div class="sys-card">
-        <div class="sys-left">
-          <div class="sys-name">Social Machine</div>
-          <div class="sys-detail">3 platforms &middot; Thompson bandit</div>
-        </div>
-        <span class="sys-status on">ACTIVE</span>
+  <div class="card" id="card-clients">
+    <div class="card-title">Active Clients <span class="ct-dot green"></span></div>
+    <div class="big-num">1</div>
+    <div class="big-label">Paying Client</div>
+    <div style="margin-top:8px;padding:6px;background:var(--card2);border:1px solid var(--border)">
+      <div style="display:flex;justify-content:space-between">
+        <div><span style="color:var(--green);font-weight:700;font-size:11px">Wickham Lawn Care</span><br><span style="color:var(--dim);font-size:9px">McKinney TX | (972) 314-5057</span></div>
+        <div style="text-align:right"><span style="color:var(--green);font-weight:700;font-size:13px">$50/mo</span></div>
       </div>
     </div>
+  </div>
 
-    <div class="sec-title">MONTHLY EXPENSES</div>
-    <div class="cost-card">
-      <div class="cost-row"><span class="cost-name">Claude Max</span><span class="cost-val">$100</span></div>
-      <div class="cost-row"><span class="cost-name">n8n Cloud (Starter)</span><span class="cost-val">$24</span></div>
-      <div class="cost-row"><span class="cost-name">Phone Numbers (12)</span><span class="cost-val">$24</span></div>
-      <div class="cost-row"><span class="cost-name">Retell AI (usage est.)</span><span class="cost-val">~$15</span></div>
-      <div class="cost-row"><span class="cost-name">Domain (bosssystems.co)</span><span class="cost-val">$1</span></div>
-      <div class="cost-row"><span class="cost-name">Buffer</span><span class="cost-val green">FREE</span></div>
-      <div class="cost-row"><span class="cost-name">GitHub Pages</span><span class="cost-val green">FREE</span></div>
-      <div class="cost-row"><span class="cost-name">ntfy.sh</span><span class="cost-val green">FREE</span></div>
-      <div class="cost-row"><span class="cost-name">Brevo SMTP</span><span class="cost-val green">FREE</span></div>
-      <div class="cost-total"><span>MONTHLY TOTAL</span><span>~$164</span></div>
+  <div class="card" id="card-mrr">
+    <div class="card-title">Monthly Recurring <span class="ct-dot green"></span></div>
+    <div class="big-num" style="color:var(--blue)">$50</div>
+    <div class="big-label">MRR</div>
+    <div class="metric-row">
+      <div class="metric"><div class="mv">$600</div><div class="ml">ARR</div></div>
+      <div class="metric"><div class="mv" style="color:var(--dim)">0</div><div class="ml">Churn</div></div>
+      <div class="metric"><div class="mv" style="color:var(--gold)">$5,997</div><div class="ml">Target: 1st Transform</div></div>
     </div>
-    <div class="cost-card">
-      <div class="cost-row"><span class="cost-name">Budget</span><span class="cost-val">$5,000</span></div>
-      <div class="cost-row"><span class="cost-name">Google Places Credit</span><span class="cost-val">$296 remaining</span></div>
-      <div class="cost-row"><span class="cost-name" style="color:var(--dim)">  &#8627; Expires</span><span class="cost-val" style="color:var(--dim)">Aug 7, 2026</span></div>
-      <div class="cost-row"><span class="cost-name">Clients</span><span class="cost-val gold">0</span></div>
-      <div class="cost-row"><span class="cost-name">MRR</span><span class="cost-val gold">$0</span></div>
+  </div>
+
+  <!-- ROW 2: Core Systems -->
+  <div class="section-label">CORE SYSTEMS</div>
+
+  <div class="card" id="card-atlas">
+    <div class="card-title">ATLAS Intelligence <span class="ct-dot" id="atlas-dot"></span></div>
+    <div style="display:flex;gap:12px;align-items:baseline">
+      <div><span class="big-num" id="atlas-sources">--</span><span class="big-label" style="margin-left:4px">sources</span></div>
+      <div><span style="font-size:16px;font-weight:800" id="atlas-points">--</span><span class="big-label" style="margin-left:4px">data pts</span></div>
     </div>
-    <div class="cost-card" style="border-color:rgba(255,107,53,0.2)">
-      <div style="font-size:9px;font-family:'Share Tech Mono',monospace;color:var(--orange);letter-spacing:2px;margin-bottom:8px">STILL NEEDED</div>
-      <div class="cost-row"><span class="cost-name">PO Box (Tyler TX)</span><span class="cost-val red">~$30/yr</span></div>
-      <div class="cost-row"><span class="cost-name">LLC Formation (TX)</span><span class="cost-val red">~$300 one-time</span></div>
-      <div class="cost-row"><span class="cost-name">SPF/DKIM (bosssystems.co)</span><span class="cost-val red">FREE — not configured</span></div>
+    <div class="metric-row" id="atlas-metrics"></div>
+  </div>
+
+  <div class="card" id="card-engine">
+    <div class="card-title">Lead Engine <span class="ct-dot" id="engine-dot"></span></div>
+    <div style="display:flex;gap:12px;align-items:baseline">
+      <div><span class="big-num" id="engine-leads">--</span><span class="big-label" style="margin-left:4px">leads</span></div>
+      <div><span style="font-size:16px;font-weight:800" id="engine-signals">--</span><span class="big-label" style="margin-left:4px">signals</span></div>
     </div>
+    <div class="metric-row" id="engine-metrics"></div>
+  </div>
 
-    <div class="sec-title">PENDING APPLICATIONS</div>
-    <div id="pending-list" style="margin-bottom:16px">
-      <div class="cost-card" style="text-align:center;padding:20px">
-        <div style="color:var(--dim);font-size:12px;letter-spacing:1px" id="pending-loading">LOADING...</div>
-      </div>
+  <div class="card" id="card-social">
+    <div class="card-title">Social Machine <span class="ct-dot" id="social-dot"></span></div>
+    <div style="display:flex;gap:12px;align-items:baseline">
+      <div><span class="big-num" id="social-posts">--</span><span class="big-label" style="margin-left:4px">posts</span></div>
+      <div><span style="font-size:16px;font-weight:800" id="social-gate">--</span><span class="big-label" style="margin-left:4px">gate</span></div>
     </div>
+    <div id="social-platforms" style="margin-top:6px"></div>
+  </div>
 
-    <div class="sec-title">N8N WORKFLOWS</div>
-    <div id="wf-list"></div>
-
-    <div class="sec-title">RETELL AGENTS</div>
-    <div id="retell-list" style="border:1px solid var(--border)"></div>
-
-    <div class="sec-title">BOSS COMMANDS</div>
-    <div class="cost-card" style="font-family:'Share Tech Mono',monospace;font-size:11px;line-height:2.2">
-      <div style="color:var(--green)">boss_command.py status</div>
-      <div style="color:var(--green)">boss_command.py hot "Name" phone "notes"</div>
-      <div style="color:var(--green)">boss_command.py paid "Name" type "City" plan</div>
-      <div style="color:var(--green)">boss_command.py targets</div>
-      <div style="color:var(--green)">boss_command.py analyze hvac "City ST"</div>
-      <div style="color:var(--green)">boss_command.py social</div>
-      <div style="color:var(--green)">boss_command.py engine status</div>
-      <div style="color:var(--green)">boss_command.py partners</div>
-      <div style="color:var(--green)">boss_command.py ops</div>
+  <div class="card" id="card-partners">
+    <div class="card-title">BPP Partners <span class="ct-dot" id="partner-dot"></span></div>
+    <div class="big-num" id="partner-count">0</div>
+    <div class="big-label">Active Partners</div>
+    <div class="metric-row">
+      <div class="metric"><div class="mv" style="color:var(--dim)">$0</div><div class="ml">Partner Rev</div></div>
+      <div class="metric"><div class="mv" style="color:var(--dim)">0</div><div class="ml">Applications</div></div>
     </div>
+  </div>
 
-  </div><!-- /content-cmd -->
+  <!-- ROW 3: Live Intel -->
+  <div class="section-label">LIVE INTELLIGENCE</div>
 
-  <!-- ═══ BPP PARTNERS TAB ═══ -->
-  <div class="tab-content" id="content-bpp">
+  <div class="card span2" id="card-signals">
+    <div class="card-title">Demand Signals <span class="ct-dot blue"></span></div>
+    <div class="signal-list scroll-list" id="signal-list"><div class="empty-state">Loading...</div></div>
+  </div>
 
-    <div class="partner-stats" id="partner-stats">
-      <div class="stat"><div class="stat-value" style="color:var(--purple)" id="bpp-total">0</div><div class="stat-label">Partners</div></div>
-      <div class="stat"><div class="stat-value" style="color:var(--green)" id="bpp-built">0</div><div class="stat-label">Built</div></div>
-      <div class="stat"><div class="stat-value" style="color:var(--text)" id="bpp-revenue">$0</div><div class="stat-label">Total Revenue</div></div>
+  <div class="card span2" id="card-anomalies">
+    <div class="card-title">ATLAS Anomalies & Assessments <span class="ct-dot" id="anomaly-dot"></span></div>
+    <div class="signal-list scroll-list" id="anomaly-list"><div class="empty-state">Loading...</div></div>
+  </div>
+
+  <!-- ROW 4: Infrastructure -->
+  <div class="section-label">INFRASTRUCTURE</div>
+
+  <div class="card span2" id="card-workflows">
+    <div class="card-title">n8n Workflows <span id="wf-summary" style="color:var(--muted);font-size:9px;letter-spacing:0;text-transform:none"></span></div>
+    <div class="wf-grid" id="wf-grid"></div>
+  </div>
+
+  <div class="card span2" id="card-agents">
+    <div class="card-title">Retell Voice Agents <span style="color:var(--muted);font-size:9px;letter-spacing:0;text-transform:none">15 agents</span></div>
+    <div class="agent-grid" id="agent-grid"></div>
+  </div>
+
+  <div class="card span2" id="card-actions">
+    <div class="card-title">GitHub Actions (boss-automation) <span class="ct-dot green"></span></div>
+    <div class="wf-grid" id="actions-grid"></div>
+  </div>
+
+  <div class="card span2" id="card-launch-agents">
+    <div class="card-title">macOS LaunchAgents <span class="ct-dot green"></span></div>
+    <div class="wf-grid" id="la-grid"></div>
+  </div>
+
+  <!-- ROW 5: Phone Grade Product -->
+  <div class="section-label">PHONE GRADE PRODUCT</div>
+
+  <div class="card span2" id="card-pg-pages">
+    <div class="card-title">Landing Pages (11 Live) <span class="ct-dot green"></span></div>
+    <div class="link-grid" id="pg-pages"></div>
+  </div>
+
+  <div class="card" id="card-pg-economics">
+    <div class="card-title">Unit Economics <span class="ct-dot green"></span></div>
+    <table class="mini-table">
+      <tr><td>Revenue per shop</td><td class="num">$29.00</td></tr>
+      <tr><td>Square fee</td><td class="num" style="color:var(--red)">-$1.14</td></tr>
+      <tr><td>Retell call</td><td class="num" style="color:var(--red)">-$0.40</td></tr>
+      <tr><td>Claude grading</td><td class="num" style="color:var(--red)">-$0.02</td></tr>
+      <tr><td style="color:var(--gold);font-weight:700;border-top:1px solid var(--gold)">Profit / shop</td><td class="num" style="color:var(--green);font-size:14px;border-top:1px solid var(--gold)">$27.44</td></tr>
+    </table>
+  </div>
+
+  <div class="card" id="card-email-sequence">
+    <div class="card-title">Follow-Up Sequence <span class="ct-dot green"></span></div>
+    <table class="mini-table">
+      <tr><td>Day 0</td><td>Report delivered</td><td class="num" style="color:var(--green)">Auto</td></tr>
+      <tr><td>Day 3</td><td>Cost of grade</td><td class="num" style="color:var(--green)">Auto</td></tr>
+      <tr><td>Day 7</td><td>How to fix it</td><td class="num" style="color:var(--yellow)">C/D/F</td></tr>
+      <tr><td>Day 14</td><td>Quick update</td><td class="num" style="color:var(--yellow)">No reply</td></tr>
+      <tr><td>Day 30</td><td>Free re-grade</td><td class="num" style="color:var(--green)">All</td></tr>
+    </table>
+  </div>
+
+  <!-- ROW 6: Marketing -->
+  <div class="section-label">MARKETING & DISTRIBUTION</div>
+
+  <div class="card span2" id="card-marketing-channels">
+    <div class="card-title">Launch Channels <span class="ct-dot blue"></span></div>
+    <div class="scroll-list" id="channel-list"></div>
+  </div>
+
+  <div class="card" id="card-directories">
+    <div class="card-title">Directory Submissions <span class="ct-dot blue"></span></div>
+    <div class="metric-row">
+      <div class="metric"><div class="mv" style="color:var(--gold)">30</div><div class="ml">Total</div></div>
+      <div class="metric"><div class="mv" style="color:var(--dim)">0</div><div class="ml">Submitted</div></div>
+      <div class="metric"><div class="mv" style="color:var(--dim)">0</div><div class="ml">Live</div></div>
     </div>
+    <div style="margin-top:8px;font-size:10px;color:var(--dim);line-height:1.6">AI tools (10) | Business tools (9) | Small biz (5) | Mystery shop (2) | Content (4)</div>
+  </div>
 
-    <!-- PARTNER ACTION QUEUE -->
-    <div class="sec-title">NEEDS YOUR ATTENTION</div>
-    <div id="partner-actions" style="margin-bottom:20px">
-      <div class="app-empty" style="font-size:11px">All clear</div>
+  <div class="card" id="card-seo">
+    <div class="card-title">SEO Coverage <span class="ct-dot green"></span></div>
+    <div class="metric-row" style="margin-bottom:8px">
+      <div class="metric"><div class="mv" style="color:var(--green)">9</div><div class="ml">Industry Pages</div></div>
+      <div class="metric"><div class="mv" style="color:var(--gold)">11</div><div class="ml">Total URLs</div></div>
     </div>
+    <div id="seo-tags"></div>
+  </div>
 
-    <div class="sec-title">APPROVED PARTNERS</div>
-    <div id="partner-list">
-      <div class="app-empty">Loading partners...</div>
+  <!-- ROW 7: Quick Actions -->
+  <div class="section-label">QUICK ACTIONS</div>
+
+  <div class="card span4" id="card-actions-panel">
+    <div class="card-title">Command Panel</div>
+    <div style="display:flex;flex-wrap:wrap;gap:4px">
+      <div style="font-size:9px;color:var(--dim);letter-spacing:1px;width:100%;margin-bottom:2px">TRIGGERS</div>
+      <a href="https://github.com/BosRoss/boss-automation/actions/workflows/phone-grade.yml" target="_blank" class="action-btn primary">Run Phone Grade</a>
+      <a href="https://github.com/BosRoss/boss-automation/actions/workflows/auto-caller.yml" target="_blank" class="action-btn">Auto Caller</a>
+      <a href="https://github.com/BosRoss/boss-automation/actions/workflows/morning-text.yml" target="_blank" class="action-btn">Morning Text</a>
+      <a href="https://github.com/BosRoss/boss-automation/actions/workflows/phone-grade-followup.yml" target="_blank" class="action-btn">Follow-Ups</a>
     </div>
-
-    <!-- REVENUE LOG -->
-    <div class="sec-title" style="margin-top:28px">LOG WEEKLY REVENUE</div>
-    <div class="cost-card">
-      <div style="font-size:10px;color:var(--dim);margin-bottom:10px;letter-spacing:1px;font-family:'Share Tech Mono',monospace">Record partner's Sunday report</div>
-      <div style="display:flex;flex-direction:column;gap:8px">
-        <select id="rev-partner" style="background:var(--bg);border:1px solid var(--border);color:var(--text);padding:10px 12px;font-size:13px;font-family:'Rajdhani',sans-serif;outline:none">
-          <option value="">Select partner</option>
-        </select>
-        <input id="rev-amount" type="number" placeholder="Gross revenue ($)" style="background:var(--bg);border:1px solid var(--border);color:var(--text);padding:10px 12px;font-size:13px;font-family:'Rajdhani',sans-serif;outline:none">
-        <input id="rev-jobs" type="number" placeholder="# of jobs" style="background:var(--bg);border:1px solid var(--border);color:var(--text);padding:10px 12px;font-size:13px;font-family:'Rajdhani',sans-serif;outline:none">
-        <button class="build-btn" onclick="logRevenue()" id="rev-log-btn">LOG REVENUE</button>
-      </div>
+    <div style="display:flex;flex-wrap:wrap;gap:4px;margin-top:8px">
+      <div style="font-size:9px;color:var(--dim);letter-spacing:1px;width:100%;margin-bottom:2px">EXTERNAL</div>
+      <a href="https://square.link/u/qk7se7vt" target="_blank" class="action-btn">Square Payment</a>
+      <a href="https://ntfy.sh/bossai-bostonrossall-alerts" target="_blank" class="action-btn">ntfy Alerts</a>
+      <a href="https://retellai.com" target="_blank" class="action-btn">Retell</a>
+      <a href="https://jamross.app.n8n.cloud" target="_blank" class="action-btn">n8n Cloud</a>
+      <a href="https://github.com/BosRoss/boss-automation" target="_blank" class="action-btn">GitHub Repo</a>
     </div>
-
-    <div class="sec-title" style="margin-top:28px">MANUAL BUILD</div>
-    <div class="cost-card">
-      <div style="font-size:10px;color:var(--dim);margin-bottom:10px;letter-spacing:1px;font-family:'Share Tech Mono',monospace">Trigger AI stack build for any business</div>
-      <div style="display:flex;flex-direction:column;gap:8px">
-        <input id="build-name" type="text" placeholder="Business Name" style="background:var(--bg);border:1px solid var(--border);color:var(--text);padding:10px 12px;font-size:13px;font-family:'Rajdhani',sans-serif;outline:none">
-        <input id="build-type" type="text" placeholder="Business Type (e.g. lawn care)" style="background:var(--bg);border:1px solid var(--border);color:var(--text);padding:10px 12px;font-size:13px;font-family:'Rajdhani',sans-serif;outline:none">
-        <input id="build-city" type="text" placeholder="City ST (e.g. McKinney TX)" style="background:var(--bg);border:1px solid var(--border);color:var(--text);padding:10px 12px;font-size:13px;font-family:'Rajdhani',sans-serif;outline:none">
-        <button class="build-btn" onclick="manualBuild()" id="manual-build-btn">BUILD AI STACK</button>
-      </div>
+    <div style="display:flex;flex-wrap:wrap;gap:4px;margin-top:8px">
+      <div style="font-size:9px;color:var(--dim);letter-spacing:1px;width:100%;margin-bottom:2px">PAGES</div>
+      <a href="/grade" class="action-btn">Phone Grade</a>
+      <a href="/grade-free" class="action-btn">Free Estimator</a>
+      <a href="/hooks" class="action-btn">Hook Generator</a>
+      <a href="/atlas" class="action-btn">ATLAS Map</a>
+      <a href="/ops" class="action-btn">Ops Dashboard</a>
+      <a href="/social" class="action-btn">Social</a>
+      <a href="/engine" class="action-btn">Lead Engine</a>
+      <a href="/learn-business" class="action-btn">BOSS Learn</a>
+      <a href="/onboard" class="action-btn">Client Onboard</a>
+      <a href="/analyze" class="action-btn">Analyzer</a>
+      <a href="/client-dashboard" class="action-btn">Client Dashboard</a>
+      <a href="/partner-dashboard" class="action-btn">Partner Dashboard</a>
+      <a href="/quant" class="action-btn">Quant Sandbox</a>
+      <a href="/almanac" class="action-btn">Almanac</a>
     </div>
-
-  </div><!-- /content-bpp -->
-
-  <!-- ═══ ENGAGE TAB — Ryan Walsh ═══ -->
-  <div class="tab-content" id="content-engage">
-
-    <div class="stats-bar" id="engage-stats">
-      <div class="stat"><div class="stat-value" style="color:var(--blue)" id="eng-queue">0</div><div class="stat-label">In Queue</div></div>
-      <div class="stat"><div class="stat-value" style="color:var(--green)" id="eng-replied">0</div><div class="stat-label">Replied</div></div>
-      <div class="stat"><div class="stat-value" style="color:var(--orange)" id="eng-drafts">0</div><div class="stat-label">Drafts Ready</div></div>
-    </div>
-
-    <!-- ACCOUNT STATUS -->
-    <div class="sec-title">ACCOUNT STATUS</div>
-    <div class="sys-list" id="engage-accounts">
-      <div class="sys-card">
-        <div class="sys-left"><div class="sys-name">Reddit</div><div class="sys-detail" id="reddit-status">Not created yet</div></div>
-        <span class="sys-status off" id="reddit-badge">SETUP</span>
-      </div>
-      <div class="sys-card">
-        <div class="sys-left"><div class="sys-name">Facebook</div><div class="sys-detail" id="fb-engage-status">Not created yet</div></div>
-        <span class="sys-status off" id="fb-engage-badge">SETUP</span>
-      </div>
-    </div>
-    <div class="cost-card" id="account-setup-box">
-      <div style="font-size:9px;color:var(--dim);letter-spacing:2px;margin-bottom:8px">SETUP ACCOUNTS</div>
-      <div style="font-size:12px;color:var(--muted);line-height:1.6">
-        <strong style="color:var(--text)">Reddit:</strong> Create account at reddit.com. Username like RyanWalsh_TX or similar. Post helpful comments in r/smallbusiness for 1-2 weeks to build karma before using for BOSS replies.<br><br>
-        <strong style="color:var(--text)">Facebook:</strong> Create profile at facebook.com. Join local business groups + contractor groups. Comment helpfully for a week before posting recommendations.
-      </div>
-      <div style="display:flex;gap:6px;margin-top:12px">
-        <button class="build-btn" style="flex:1" onclick="markAccount('reddit')">REDDIT CREATED</button>
-        <button class="build-btn" style="flex:1" onclick="markAccount('facebook')">FACEBOOK CREATED</button>
-      </div>
-    </div>
-
-    <!-- OPPORTUNITIES -->
-    <div class="sec-title">OPPORTUNITIES <span style="font-size:8px;color:var(--dim);margin-left:6px" id="engage-last-scan"></span></div>
-    <div id="engage-opps">
-      <div class="app-empty">Loading opportunities...</div>
-    </div>
-
-    <!-- HOW IT WORKS -->
-    <div class="sec-title" style="margin-top:28px">HOW RYAN WALSH WORKS</div>
-    <div class="cost-card" style="font-size:12px;color:var(--muted);line-height:1.6">
-      <strong style="color:var(--text)">1.</strong> Engine scans 16 subreddits every 12 hours for people asking about missed calls, getting clients, phone systems, etc.<br>
-      <strong style="color:var(--text)">2.</strong> AI scores relevance and cross-references with your existing leads.<br>
-      <strong style="color:var(--text)">3.</strong> Generates a helpful reply as "Ryan Walsh" — genuinely useful, not salesy. Mentions BOSS in ~1/3 of replies.<br>
-      <strong style="color:var(--text)">4.</strong> You copy the reply, paste it on Reddit/Facebook, mark as replied.<br><br>
-      <div style="font-size:10px;color:var(--dim);font-family:'Share Tech Mono',monospace">
-        CLI: boss_command.py engage scan | opportunities | reply &lt;id&gt; | replied &lt;id&gt; | stats
-      </div>
-    </div>
-
-  </div><!-- /content-engage -->
-
-</main>
-
-<footer>
-  BOSS SYSTEMS &middot; TYLER TX &middot; CLAUDE MAX &middot; <span id="today-date"></span>
-</footer>
+  </div>
 
 </div>
 
 <script>
-var PIN = '1003';
-var pinInput = document.getElementById('pin-input');
-var pinError = document.getElementById('pin-error');
+var BASE = 'https://raw.githubusercontent.com/BosRoss/bosssystems.co/main/';
+var R = {};
 
-if (sessionStorage.getItem('boss_cmd_auth') === 'true') { unlock(); }
-
-pinInput.addEventListener('input', function() {
-  pinError.textContent = '';
-  if (pinInput.value.length === 4) {
-    if (pinInput.value === PIN) {
-      sessionStorage.setItem('boss_cmd_auth', 'true');
-      unlock();
-    } else {
-      pinError.textContent = 'WRONG PIN';
-      pinInput.value = '';
-    }
-  }
-});
-
-function unlock() {
-  document.getElementById('pin-screen').classList.add('out');
-  document.getElementById('app').style.display = 'block';
+function fetchJSON(f) {
+  return fetch(BASE + f + '?t=' + Date.now()).then(function(r) { return r.ok ? r.json() : null }).catch(function() { return null });
 }
 
-function tick() {
-  var ct = new Intl.DateTimeFormat('en-US',{timeZone:'America/Chicago',hour:'2-digit',minute:'2-digit',second:'2-digit',hour12:false}).format(new Date());
-  document.getElementById('clock').textContent = ct + ' CT';
-}
-setInterval(tick, 1000); tick();
-document.getElementById('today-date').textContent = new Date().toLocaleDateString('en-US',{month:'short',day:'numeric',year:'numeric'});
-
-/* TABS */
-function switchTab(id) {
-  document.querySelectorAll('.tab').forEach(function(t){t.classList.remove('active')});
-  document.querySelectorAll('.tab-content').forEach(function(c){c.classList.remove('active')});
-  document.getElementById('tab-' + id).classList.add('active');
-  document.getElementById('content-' + id).classList.add('active');
-  sessionStorage.setItem('boss_tab', id);
-}
-var savedTab = sessionStorage.getItem('boss_tab');
-if (savedTab) switchTab(savedTab);
-
-/* WORKFLOWS */
-var DIVISIONS = {
-  'THE POSSE':{color:'#FF6B35',agents:[
-    {n:'Auto Caller',on:true},{n:'Hot Lead Nurture',on:true},{n:'Close Follow-Up',on:true},
-    {n:'Mystery Caller',on:true},{n:'Cold Email Outreach',on:false},{n:'Weekly Newsletter',on:true}
-  ]},
-  'THE WIRE':{color:'#4A9EE8',agents:[
-    {n:'ORACLE',on:true},{n:'Morning Text',on:true},{n:'Daily Task List',on:true},
-    {n:'Health Monitor',on:true},{n:'Sunday Optimizer',on:true},{n:'System Optimizer',on:false},
-    {n:'Client Dashboard API',on:true},{n:'ATLAS Chatbot',on:true},
-    {n:'Washington Trainer',on:true},{n:'BOSS Learn Q&A',on:true}
-  ]},
-  'THE IRON':{color:'#e8e8f0',agents:[
-    {n:'Post-Call Handler',on:true},{n:'DNC Handler',on:true},
-    {n:'Pipeline Cleaner',on:true},{n:'Pre-Deploy Test',on:true}
-  ]},
-  'THE FRONTIER':{color:'#00e87a',agents:[
-    {n:'Yelp Supplement',on:true},{n:'Job Monitor',on:true},
-    {n:'Review Mining',on:true},{n:'TDLR ET Leads',on:true}
-  ]},
-  'FIELD OPS':{color:'#C9A84C',agents:[
-    {n:'Demo Switch',on:true},{n:'Sales Route Planner',on:true},{n:'Advisor Post-Call',on:true}
-  ]},
-  'PIPELINE':{color:'#a855f7',agents:[
-    {n:'Morning Brief',on:true},{n:'Hot Lead Handler',on:true},{n:'Auto-Builder',on:true},
-    {n:'Warm Lead Follow-Up',on:true},{n:'Onboarding Drip',on:true},{n:'Pipeline Sync',on:true}
-  ]},
-  'PARTNER BIZ':{color:'#22d3ee',agents:[
-    {n:'Wickham Post-Call',on:true},{n:'Wickham Job Complete',on:true},{n:'Wickham Daily Brief',on:true}
-  ]}
-};
-
-var wfEl = document.getElementById('wf-list');
-wfEl.innerHTML = Object.entries(DIVISIONS).map(function(e) {
-  var name = e[0], div = e[1];
-  var onC = div.agents.filter(function(a){return a.on}).length;
-  var rows = div.agents.map(function(a) {
-    return '<div class="wf-row"><div class="wf-dot '+(a.on?'on':'off')+'"></div><div class="wf-name">'+a.n+'</div><div class="wf-badge '+(a.on?'on':'off')+'">'+(a.on?'ON':'OFF')+'</div></div>';
-  }).join('');
-  return '<div class="wf-division"><div class="wf-header" onclick="toggleWf(this)"><div class="wf-accent" style="background:'+div.color+'"></div><div class="wf-div-name" style="color:'+div.color+'">'+name+'</div><div class="wf-count">'+onC+'/'+div.agents.length+'</div><div class="wf-toggle">&#9654;</div></div><div class="wf-body">'+rows+'</div></div>';
-}).join('');
-
-function toggleWf(el) {
-  var body = el.nextElementSibling;
-  var wasOpen = el.classList.contains('open');
-  document.querySelectorAll('.wf-header.open').forEach(function(h){h.classList.remove('open');h.nextElementSibling.classList.remove('open')});
-  if (!wasOpen) { el.classList.add('open'); body.classList.add('open'); }
-}
-
-/* RETELL */
-var RETELL = [
-  {name:'Outbound Sales Caller',num:'(903) 483-0168',on:true},
-  {name:'THE BOSS (Advisor)',num:'(903) 568-8943',on:true},
-  {name:'Pipeline Agent',num:'(903) 206-1932',on:true},
-  {name:'Deal Coach',num:'(903) 326-7285',on:true},
-  {name:'Devil\'s Advocate',num:'(903) 716-5297',on:true},
-  {name:'Karen (Training)',num:'(903) 418-3148',on:true},
-  {name:'Boston Agent',num:'(903) 636-1024',on:true},
-  {name:'Follow-Up Caller',num:'(903) 560-2317',on:true},
-  {name:'Built by BOSS Sales',num:'(903) 492-0198',on:true},
-  {name:'Mystery Caller',num:'(903) 601-8008',on:true},
-  {name:'Wickham Lawn Care',num:'(972) 314-5057',on:true,partner:true}
-];
-
-document.getElementById('retell-list').innerHTML = RETELL.map(function(r) {
-  var tag = r.partner ? '<span class="retell-tag">PARTNER</span>' : '';
-  return '<div class="retell-card"><div><div class="retell-name">'+r.name+tag+'</div><div class="retell-num">'+r.num+'</div></div><span class="sys-status on">LIVE</span></div>';
-}).join('');
-
-/* LOAD APPLICATIONS — split into pending + approved */
-(function loadApps() {
-  var controller = new AbortController();
-  setTimeout(function(){ controller.abort(); }, 12000);
-
-  fetch('https://jamross.app.n8n.cloud/webhook/get-partner-applications', {signal: controller.signal})
-  .then(function(r){ return r.json(); })
-  .then(function(data) {
-    var apps = Array.isArray(data) ? data : (data.applications || []);
-    window._allApps = apps;
-    apps.forEach(function(a, i){ a._origIdx = i; });
-    var pending = apps.filter(function(a){ var s = (a.status||'').toLowerCase(); return !s || s === 'pending'; });
-    var approved = apps.filter(function(a){ return (a.status||'').toLowerCase() === 'approved'; });
-    var declined = apps.filter(function(a){ return (a.status||'').toLowerCase() === 'declined'; });
-
-    renderPending(pending);
-    renderPartners(approved);
-  })
-  .catch(function() {
-    document.getElementById('pending-list').innerHTML = '<div class="app-empty">Could not load applications</div>';
-    document.getElementById('partner-list').innerHTML = '<div class="app-empty">Could not load partners</div>';
+function loadAll() {
+  document.getElementById('refresh-btn').textContent = '...';
+  Promise.all([
+    fetchJSON('ops_report.json'),
+    fetchJSON('atlas_report.json'),
+    fetchJSON('social_report.json'),
+    fetchJSON('engine_report.json'),
+    fetchJSON('boss_intel.json'),
+    fetchJSON('partner_report.json'),
+  ]).then(function(res) {
+    R.ops = res[0]; R.atlas = res[1]; R.social = res[2]; R.engine = res[3]; R.intel = res[4]; R.partner = res[5];
+    render();
+    document.getElementById('refresh-btn').textContent = 'REFRESH';
+    document.getElementById('last-update').textContent = 'Updated ' + new Date().toLocaleTimeString();
   });
-})();
+}
 
-function esc(s) { var d = document.createElement('div'); d.textContent = s || ''; return d.innerHTML; }
+function ago(iso) {
+  if (!iso) return 'never';
+  var d = (Date.now() - new Date(iso).getTime()) / 1000;
+  if (d < 60) return Math.round(d) + 's';
+  if (d < 3600) return Math.round(d / 60) + 'm';
+  if (d < 86400) return Math.round(d / 3600) + 'h';
+  return Math.round(d / 86400) + 'd';
+}
 
-function renderPending(apps) {
-  var container = document.getElementById('pending-list');
-  if (!apps.length) {
-    container.innerHTML = '<div class="app-empty">No pending applications</div>';
-    return;
+function render() {
+  renderChips();
+  renderATLAS();
+  renderEngine();
+  renderSocial();
+  renderPartners();
+  renderSignals();
+  renderAnomalies();
+  renderWorkflows();
+  renderAgents();
+  renderActions();
+  renderLaunchAgents();
+  renderPages();
+  renderChannels();
+  renderSEO();
+}
+
+function renderChips() {
+  var c = [];
+  if (R.atlas) {
+    var h = (Date.now() - new Date(R.atlas.generated).getTime()) / 3600000;
+    c.push({ l: 'ATLAS', c: h < 4 ? 'ok' : h < 12 ? 'warn' : 'err' });
   }
-  container.innerHTML = apps.map(function(a, idx) {
-    var name = ((a.firstName || '') + ' ' + (a.lastName || '')).trim();
-    var recCls = (a.aiRecommendation || '').toLowerCase();
-    if (recCls === 'approve') recCls = 'approve';
-    else if (recCls === 'decline') recCls = 'decline';
-    else recCls = 'review';
-    var time = a.timestamp ? new Date(a.timestamp).toLocaleDateString('en-US', {month:'short',day:'numeric',hour:'numeric',minute:'2-digit'}) : '';
-    return '<div class="app-card">' +
-      '<div class="app-name">' + esc(name || '(unnamed)') + '<span class="app-status new">PENDING</span></div>' +
-      '<div class="app-meta"><span>' + esc(a.business || '?') + '</span> &middot; ' + esc(a.cityState || '?') + ' &middot; Age ' + (a.age || '?') + ' &middot; ' + esc(a.hoursPerWeek || '?') + ' hrs/wk</div>' +
-      '<div class="app-ai">AI: <span class="score">' + (a.aiScore || 0) + '/10</span> &middot; <span class="rec ' + recCls + '">' + (a.aiRecommendation || 'REVIEW') + '</span>' +
-        (a.aiReasoning ? ' &middot; ' + esc(a.aiReasoning).substring(0,100) : '') + '</div>' +
-      (a.whyBusiness ? '<div class="app-note">"' + esc(a.whyBusiness).substring(0,120) + '"</div>' : '') +
-      '<div class="app-time">' + esc(time) + (a.phone ? ' &middot; ' + esc(a.phone) : '') + (a.email ? ' &middot; ' + esc(a.email) : '') + '</div>' +
-      '<div class="app-actions">' +
-        '<button class="app-btn approve" onclick="appDecision('+a._origIdx+',\'APPROVED\')">Approve</button>' +
-        '<button class="app-btn decline" onclick="appDecision('+a._origIdx+',\'DECLINED\')">Decline</button>' +
-      '</div>' +
-    '</div>';
+  if (R.engine) c.push({ l: 'ENGINE', c: R.engine.engine_state === 'active' ? 'ok' : 'warn' });
+  if (R.social) c.push({ l: 'SOCIAL', c: R.social.kill_switch ? 'err' : 'ok' });
+  c.push({ l: 'PHONE GRADE', c: 'ok' });
+  c.push({ l: 'WICKHAM', c: 'ok' });
+  c.push({ l: 'ACTIONS', c: 'ok' });
+  document.getElementById('status-chips').innerHTML = c.map(function(x) {
+    return '<span class="status-chip ' + x.c + '">' + x.l + '</span>';
   }).join('');
 }
 
-function renderPartners(partners) {
-  var container = document.getElementById('partner-list');
-  document.getElementById('bpp-count').textContent = partners.length || '';
-  document.getElementById('bpp-total').textContent = partners.length;
-  document.getElementById('bpp-built').textContent = partners.filter(function(p){return p.builtAgent}).length || '0';
+function renderATLAS() {
+  var a = R.atlas;
+  if (!a) { document.getElementById('atlas-dot').className = 'ct-dot red'; return; }
+  var h = (Date.now() - new Date(a.generated).getTime()) / 3600000;
+  document.getElementById('atlas-dot').className = 'ct-dot ' + (h < 4 ? 'green' : h < 12 ? 'yellow' : 'red');
+  document.getElementById('atlas-sources').textContent = a.sources_scanned || '--';
+  document.getElementById('atlas-points').textContent = (a.data_points || 0).toLocaleString();
+  document.getElementById('atlas-metrics').innerHTML =
+    m('purple', (a.anomalies||[]).length, 'Anomalies') +
+    m('blue', (a.assessments||[]).length, 'Assess') +
+    m('green', (a.opportunities||[]).length, 'Opps') +
+    m('muted', a.power_level, 'Power') +
+    m('dim', ago(a.generated), 'Scan');
+}
 
-  // Populate revenue log dropdown
-  var revSelect = document.getElementById('rev-partner');
-  revSelect.innerHTML = '<option value="">Select partner</option>';
-  partners.forEach(function(a) {
-    var name = ((a.firstName||'')+ ' ' +(a.lastName||'')).trim();
-    revSelect.innerHTML += '<option value="'+esc(name)+'">'+esc(name)+'</option>';
-  });
+function renderEngine() {
+  var e = R.engine;
+  if (!e) { document.getElementById('engine-dot').className = 'ct-dot red'; return; }
+  document.getElementById('engine-dot').className = 'ct-dot ' + (e.engine_state === 'active' ? 'green' : 'yellow');
+  var sigs = Array.isArray(e.signals) ? e.signals : [];
+  var leads = e.leads || {};
+  document.getElementById('engine-signals').textContent = sigs.length;
+  document.getElementById('engine-leads').textContent = leads.total || leads.length || '--';
+  var k = e.kpis || {};
+  document.getElementById('engine-metrics').innerHTML =
+    m('green', e.engine_state || '--', 'State') +
+    m('text', k.total_calls || 0, 'Calls') +
+    m('text', k.hot_leads || 0, 'Hot') +
+    m('dim', ago(e.generated), 'Updated');
+}
 
-  // Load revenue data from localStorage
-  var revData = JSON.parse(localStorage.getItem('boss_spp_revenue') || '{}');
-  var totalRev = 0;
-  for (var k in revData) { totalRev += (revData[k].total || 0); }
-  document.getElementById('bpp-revenue').textContent = '$' + totalRev.toLocaleString();
-
-  // Build action queue
-  var actions = [];
-  partners.forEach(function(a) {
-    var name = ((a.firstName||'')+ ' ' +(a.lastName||'')).trim();
-    var pData = JSON.parse(localStorage.getItem('boss_partner_mgmt_'+name) || '{}');
-    if (!pData.aiBuilt) actions.push({name:name, action:'BUILD AI STACK', type:'build'});
-    else if (!pData.packageSent) actions.push({name:name, action:'SEND LAUNCH PACKAGE', type:'package'});
-    else if (!pData.testCall) actions.push({name:name, action:'TEST CALL THEIR NUMBER', type:'test'});
-  });
-  var actEl = document.getElementById('partner-actions');
-  if (actions.length) {
-    actEl.innerHTML = actions.map(function(a) {
-      return '<div style="background:var(--bg2);border:1px solid var(--border);border-left:3px solid var(--gold);padding:10px 14px;margin-bottom:6px;display:flex;justify-content:space-between;align-items:center">' +
-        '<span style="font-size:13px"><strong style="color:var(--text)">' + esc(a.name) + '</strong> <span style="color:var(--dim);font-size:11px">' + a.action + '</span></span>' +
-        '</div>';
-    }).join('');
+function renderSocial() {
+  var s = R.social;
+  if (!s) { document.getElementById('social-dot').className = 'ct-dot red'; return; }
+  document.getElementById('social-dot').className = 'ct-dot ' + (s.kill_switch ? 'red' : 'green');
+  document.getElementById('social-posts').textContent = s.total_posts || 0;
+  document.getElementById('social-gate').textContent = s.gate_mode || '--';
+  var p = s.platform_stats || {}, html = '';
+  for (var k in p) {
+    html += '<div style="display:flex;justify-content:space-between;padding:3px 0;border-bottom:1px solid #0f0f14">' +
+      '<span style="color:var(--muted)">' + k + '</span><span style="color:var(--text);font-weight:700">' + p[k].count + '</span></div>';
   }
+  document.getElementById('social-platforms').innerHTML = html || '<div class="empty-state">No posts</div>';
+}
 
-  if (!partners.length) {
-    container.innerHTML = '<div class="app-empty">No approved partners yet</div>';
-    return;
-  }
-  container.innerHTML = partners.map(function(a) {
-    var name = ((a.firstName || '') + ' ' + (a.lastName || '')).trim();
-    var biz = a.business || a.businessInterest || a.businessType || '?';
-    var city = a.cityState || a.city || '?';
-    var time = a.timestamp ? new Date(a.timestamp).toLocaleDateString('en-US', {month:'short',day:'numeric',year:'numeric'}) : '';
-    var decided = a.decidedAt ? new Date(a.decidedAt).toLocaleDateString('en-US', {month:'short',day:'numeric'}) : '';
-    var pData = JSON.parse(localStorage.getItem('boss_partner_mgmt_'+name) || '{}');
-    var pRev = revData[name] || {total:0, weeks:0, lastReport:null};
+function renderPartners() {
+  var p = R.partner;
+  if (!p) return;
+  var t = p.totals || {};
+  document.getElementById('partner-dot').className = 'ct-dot ' + (t.total_partners > 0 ? 'green' : 'dim');
+  document.getElementById('partner-count').textContent = t.total_partners || 0;
+}
 
-    var checkItem = function(key, label) {
-      var done = pData[key];
-      var cls = done ? 'color:var(--green)' : 'color:var(--dim)';
-      var icon = done ? '✓' : '○';
-      return '<span style="'+cls+';font-size:11px;cursor:pointer;margin-right:10px" onclick="togglePartnerCheck(\''+esc(name).replace(/'/g,"\\'")+'\',\''+key+'\')">' + icon + ' ' + label + '</span>';
-    };
-
-    return '<div class="partner-card">' +
-      '<div class="partner-header"><div>' +
-        '<div class="partner-name">' + esc(name) + '</div>' +
-        '<div class="partner-biz">' + esc(biz) + ' &mdash; ' + esc(city) + '</div>' +
-      '</div><span class="sys-status on">APPROVED</span></div>' +
-      '<div class="partner-detail">' +
-        (a.phone ? 'Phone: <span>' + esc(a.phone) + '</span><br>' : '') +
-        (a.email ? 'Email: <span>' + esc(a.email) + '</span><br>' : '') +
-        'Age: <span>' + (a.age || '?') + '</span> &middot; ' +
-        (a.hoursPerWeek ? esc(a.hoursPerWeek) + ' hrs/wk &middot; ' : '') +
-        (a.experience ? 'Exp: <span>' + esc(a.experience) + '</span> &middot; ' : '') +
-        (a.transportation ? esc(a.transportation) : '') +
-      '</div>' +
-      '<div style="margin-top:10px;padding:10px 12px;background:var(--bg);border:1px solid var(--border)">' +
-        '<div style="font-size:9px;color:var(--dim);letter-spacing:2px;margin-bottom:6px">MANAGEMENT CHECKLIST</div>' +
-        checkItem('aiBuilt','AI Built') +
-        checkItem('packageSent','Package Sent') +
-        checkItem('testCall','Test Call') +
-        checkItem('gmailCreated','Gmail') +
-        checkItem('gbpCreated','Google Business') +
-        checkItem('fbCreated','Facebook Page') +
-        checkItem('firstPost','First Post') +
-        checkItem('firstJob','First Job') +
-      '</div>' +
-      '<div style="margin-top:8px;padding:8px 12px;background:var(--bg);border:1px solid var(--border);display:flex;gap:16px;font-size:12px">' +
-        '<span style="color:var(--dim)">Revenue: <span style="color:var(--green);font-weight:700">$' + pRev.total.toLocaleString() + '</span></span>' +
-        '<span style="color:var(--dim)">BOSS 20%: <span style="color:var(--gold);font-weight:700">$' + Math.round(pRev.total * 0.2).toLocaleString() + '</span></span>' +
-        '<span style="color:var(--dim)">Weeks: <span style="color:var(--text)">' + pRev.weeks + '</span></span>' +
-      '</div>' +
-      '<div class="app-time" style="margin-top:8px">Applied: ' + esc(time) + (decided ? ' &middot; Approved: ' + esc(decided) : '') +
-        ' &middot; AI Score: ' + (a.aiScore || '?') + '/10</div>' +
-      '<div style="display:flex;gap:6px;margin-top:8px">' +
-        '<button class="build-btn" style="flex:1" onclick="buildPartner(this,\'' + esc(name).replace(/'/g,"\\'") + '\',\'' + esc(biz).replace(/'/g,"\\'") + '\',\'' + esc(city).replace(/'/g,"\\'") + '\')">BUILD AI STACK</button>' +
-        '<button class="build-btn" style="flex:1;background:var(--green);color:#000" onclick="sendPackage(\'' + esc(name).replace(/'/g,"\\'") + '\',\'' + esc(a.phone||'').replace(/'/g,"\\'") + '\')">SEND PACKAGE</button>' +
-      '</div>' +
-    '</div>';
+function renderSignals() {
+  var sigs = [];
+  if (R.engine && Array.isArray(R.engine.signals)) sigs = R.engine.signals;
+  else if (R.intel && Array.isArray(R.intel.demand_signals)) sigs = R.intel.demand_signals;
+  if (!sigs.length) { document.getElementById('signal-list').innerHTML = '<div class="empty-state">No active demand signals</div>'; return; }
+  document.getElementById('signal-list').innerHTML = sigs.slice(0, 15).map(function(s) {
+    var tc = (s.type || '').toLowerCase();
+    return '<div class="signal-item"><div class="si-type ' + tc + '">' + (s.type||'?') + ' — ' + (s.area||s.niche||'') + '</div><div>' + (s.action || s.pitch_hook || '') + '</div></div>';
   }).join('');
 }
 
-function appDecision(idx, decision) {
-  var btn = event.target;
-  btn.disabled = true;
-  btn.textContent = decision === 'APPROVED' ? 'APPROVING...' : 'DECLINING...';
-  fetch('https://jamross.app.n8n.cloud/webhook/partner-decision', {
-    method: 'POST',
-    headers: {'Content-Type': 'application/json'},
-    body: JSON.stringify({index: idx, decision: decision})
-  }).then(function() {
-    if (decision === 'APPROVED') {
-      btn.textContent = 'APPROVED — RELOADING...';
-      var app = window._allApps ? window._allApps[idx] : null;
-      if (app) {
-        var pName = ((app.firstName || '') + ' ' + (app.lastName || '')).trim();
-        fetch('https://jamross.app.n8n.cloud/webhook/partner-auto-onboard', {
-          method: 'POST',
-          headers: {'Content-Type': 'application/json'},
-          body: JSON.stringify({name: pName, phone: app.phone || '', businessType: app.business || '', city: app.cityState || ''})
-        }).catch(function(){});
-      }
-    }
-    setTimeout(function(){ location.reload(); }, 1000);
-  }).catch(function() {
-    btn.textContent = 'FAILED — RETRY';
-    btn.disabled = false;
-  });
+function renderAnomalies() {
+  var a = R.atlas;
+  if (!a) { document.getElementById('anomaly-dot').className = 'ct-dot dim'; return; }
+  var items = (a.anomalies||[]).concat(a.assessments||[]).concat(a.opportunities||[]);
+  document.getElementById('anomaly-dot').className = 'ct-dot ' + (items.length ? 'purple' : 'dim');
+  if (!items.length) { document.getElementById('anomaly-list').innerHTML = '<div class="empty-state">No anomalies</div>'; return; }
+  document.getElementById('anomaly-list').innerHTML = items.slice(0, 12).map(function(i) {
+    var sc = i.score || i.confidence || 0;
+    var co = sc > 80 ? 'var(--red)' : sc > 50 ? 'var(--orange)' : 'var(--blue)';
+    return '<div class="signal-item"><div class="si-type" style="color:'+co+'">' + (i.pattern||i.category||i.type||'INTEL') + ' [' + sc + ']</div><div>' + (i.description||i.assessment||i.opportunity||'') + '</div></div>';
+  }).join('');
 }
 
-function buildPartner(btn, name, biz, city) {
-  if (!confirm('Build full AI stack for ' + name + ' (' + biz + ', ' + city + ')?')) return;
-  btn.disabled = true;
-  btn.textContent = 'BUILDING...';
-  fetch('https://jamross.app.n8n.cloud/webhook/new-client-paid', {
-    method: 'POST',
-    headers: {'Content-Type': 'application/json'},
-    body: JSON.stringify({clientName: name, businessType: biz, city: city, plan: 'starter', source: 'dashboard'})
-  }).then(function(r) {
-    if (r.ok) {
-      btn.textContent = 'BUILD TRIGGERED';
-      btn.classList.add('done');
-    } else {
-      btn.textContent = 'FAILED — RETRY';
-      btn.disabled = false;
-    }
-  }).catch(function() {
-    btn.textContent = 'FAILED — RETRY';
-    btn.disabled = false;
-  });
-}
-
-function manualBuild() {
-  var name = document.getElementById('build-name').value.trim();
-  var btype = document.getElementById('build-type').value.trim();
-  var city = document.getElementById('build-city').value.trim();
-  if (!name || !btype || !city) { alert('Fill in all three fields.'); return; }
-  var btn = document.getElementById('manual-build-btn');
-  buildPartner(btn, name, btype, city);
-}
-
-function togglePartnerCheck(name, key) {
-  var pData = JSON.parse(localStorage.getItem('boss_partner_mgmt_'+name) || '{}');
-  pData[key] = !pData[key];
-  localStorage.setItem('boss_partner_mgmt_'+name, JSON.stringify(pData));
-  location.reload();
-}
-
-function logRevenue() {
-  var partner = document.getElementById('rev-partner').value;
-  var amount = parseFloat(document.getElementById('rev-amount').value);
-  var jobs = parseInt(document.getElementById('rev-jobs').value) || 0;
-  if (!partner || isNaN(amount)) { alert('Select partner and enter amount.'); return; }
-  var revData = JSON.parse(localStorage.getItem('boss_spp_revenue') || '{}');
-  if (!revData[partner]) revData[partner] = {total:0, weeks:0, history:[]};
-  revData[partner].total += amount;
-  revData[partner].weeks += 1;
-  revData[partner].lastReport = new Date().toISOString();
-  revData[partner].history.push({date:new Date().toISOString(), gross:amount, jobs:jobs, bossCut:Math.round(amount*0.2)});
-  localStorage.setItem('boss_spp_revenue', JSON.stringify(revData));
-  document.getElementById('rev-amount').value = '';
-  document.getElementById('rev-jobs').value = '';
-  document.getElementById('rev-log-btn').textContent = 'LOGGED $' + amount;
-  setTimeout(function(){ document.getElementById('rev-log-btn').textContent = 'LOG REVENUE'; location.reload(); }, 1500);
-}
-
-function sendPackage(name, phone) {
-  var links = [
-    'Launch Guide: bosssystems.co/partner-start.html',
-    'Business Guides: bosssystems.co/partner-tools.html',
-    'Training Course: bosssystems.co/learn-business.html',
-    'Market Quiz: bosssystems.co/partner-quiz.html',
-    'Log Jobs: bosssystems.co/log-job.html'
+function renderWorkflows() {
+  var wfs = [
+    ['ORACLE','active'],['Hot Lead Handler','active'],['Close Follow-Up','active'],
+    ['Mystery Caller','active'],['DNC Handler','active'],['Pipeline Cleaner','active'],
+    ['Pre-Deploy Tests','active'],['Daily Targeter','active'],['Weekly Learning','active'],
+    ['Review Miner','active'],['Devil\'s Advocate','active'],['Client Dashboard','active'],
+    ['Warm Follow-Up','active'],['Pipeline Sync','active'],['Lead Hunter','active'],
+    ['Yelp Supplement','active'],['Job Monitor','active'],['TDLR Leads','active'],
+    ['ATLAS Chatbot','active'],['Washington Trainer','active'],['BOSS Learn Q&A','active'],
+    ['Client Onboard','active'],['BPP Auto-Onboard','active'],['Post Generator','active'],
+    ['Weekly Newsletter','active'],['Hot Lead Nurture','active'],['Health Monitor','active'],
+    ['Sunday Optimizer','active'],['Daily Tasks','active'],['Morning Brief','active'],
+    ['Auto-Builder','active'],['Onboard Drip','active'],['Boston Agent','active'],
+    ['Nightly Patrol','active'],['JT Pipeline Sync','active'],
+    ['Post-Call Handler','dead'],['Auto Caller (n8n)','dead'],['Morning Text (n8n)','dead'],
+    ['Watchdog','dead'],['Cold Email','dead'],
   ];
-  var msg = 'Hey ' + name.split(' ')[0] + '! You are officially in the BOSS Partnership Program. Here is everything you need:\n\n' +
-    links.join('\n') + '\n\n' +
-    'Start with the Launch Guide — it walks you through Gmail, Google Business, Facebook, and your first posts step by step.\n\n' +
-    'Your AI phone system is being built right now. I will text you your business number as soon as it is ready.\n\n' +
-    'Questions? Text me anytime. - Boston';
-
-  navigator.clipboard.writeText(msg).then(function() {
-    alert('Package message copied to clipboard. Paste it into a text to ' + (phone || name) + '.');
-    var pData = JSON.parse(localStorage.getItem('boss_partner_mgmt_'+name) || '{}');
-    pData.packageSent = true;
-    pData.packageSentAt = new Date().toISOString();
-    localStorage.setItem('boss_partner_mgmt_'+name, JSON.stringify(pData));
-  });
+  var active = wfs.filter(function(w){return w[1]==='active'}).length;
+  document.getElementById('wf-summary').textContent = active + '/' + wfs.length + ' active';
+  document.getElementById('wf-grid').innerHTML = wfs.map(function(w) {
+    var c = w[1]==='active' ? 'var(--green)' : 'var(--red)';
+    return '<div class="wf-item"><div class="wf-dot" style="background:'+c+'"></div>' + w[0] + '</div>';
+  }).join('');
 }
 
-/* ═══ ENGAGE TAB — Ryan Walsh ═══ */
-(function loadEngage() {
-  var ts = Date.now();
-  fetch('https://raw.githubusercontent.com/BosRoss/bosssystems.co/main/engage_report.json?t=' + ts)
-  .then(function(r){ return r.ok ? r.json() : null; })
-  .then(function(data) {
-    if (!data) { renderEngageEmpty(); return; }
-    var stats = data.stats || {};
-    var limits = data.limits || {};
-    var active = data.active || [];
-    var replied = data.replied || [];
-
-    var actionable = active.filter(function(o){return !o.sub_on_cooldown});
-    document.getElementById('eng-queue').textContent = actionable.length;
-    document.getElementById('eng-replied').textContent = stats.replied || replied.length || 0;
-    document.getElementById('eng-drafts').textContent = active.filter(function(o){return o.status==='drafted'}).length;
-    document.getElementById('engage-count').textContent = actionable.length || '';
-    if (stats.last_scan) {
-      var scanDate = new Date(stats.last_scan);
-      document.getElementById('engage-last-scan').textContent = 'Last scan: ' + scanDate.toLocaleDateString('en-US',{month:'short',day:'numeric'}) + ' ' + scanDate.toLocaleTimeString('en-US',{hour:'numeric',minute:'2-digit'});
-    }
-
-    // Show limits bar
-    var limitsHtml = '<div style="background:var(--bg2);border:1px solid var(--border);padding:10px 14px;margin-bottom:12px;font-size:11px;display:flex;gap:16px;flex-wrap:wrap">';
-    limitsHtml += '<span style="color:var(--dim)">Today: <span style="color:'+(limits.today_used >= limits.daily_cap ? 'var(--red)' : 'var(--green)')+'">'+( limits.today_used||0)+'/'+( limits.daily_cap||2)+'</span> replies</span>';
-    var cooldownSubs = limits.subs_on_cooldown || {};
-    var cooldownCount = Object.keys(cooldownSubs).length;
-    limitsHtml += '<span style="color:var(--dim)">Cooldowns: <span style="color:var(--text)">'+cooldownCount+' subs</span></span>';
-    limitsHtml += '<span style="color:var(--dim)">BOSS mention: <span style="color:var(--text)">'+(limits.boss_mention_rate||'1 in 5')+'</span></span>';
-    limitsHtml += '</div>';
-    if (cooldownCount > 0) {
-      limitsHtml += '<div style="background:var(--bg2);border:1px solid var(--border);padding:8px 14px;margin-bottom:12px;font-size:10px;color:var(--muted)">';
-      limitsHtml += '<span style="color:var(--dim);letter-spacing:1px">ON COOLDOWN: </span>';
-      Object.entries(cooldownSubs).forEach(function(e){ limitsHtml += '<span style="margin-right:10px">r/'+esc(e[0])+' <span style="color:var(--orange)">'+e[1]+'d</span></span>'; });
-      limitsHtml += '</div>';
-    }
-    document.getElementById('engage-stats').insertAdjacentHTML('afterend', limitsHtml);
-
-    // Account status from localStorage
-    var accounts = JSON.parse(localStorage.getItem('boss_engage_accounts') || '{}');
-    if (accounts.reddit) {
-      document.getElementById('reddit-status').textContent = 'Created ' + new Date(accounts.reddit).toLocaleDateString('en-US',{month:'short',day:'numeric'});
-      document.getElementById('reddit-badge').textContent = 'LIVE';
-      document.getElementById('reddit-badge').className = 'sys-status on';
-    }
-    if (accounts.facebook) {
-      document.getElementById('fb-engage-status').textContent = 'Created ' + new Date(accounts.facebook).toLocaleDateString('en-US',{month:'short',day:'numeric'});
-      document.getElementById('fb-engage-badge').textContent = 'LIVE';
-      document.getElementById('fb-engage-badge').className = 'sys-status on';
-    }
-
-    var container = document.getElementById('engage-opps');
-    if (!active.length) {
-      container.innerHTML = '<div class="app-empty">No opportunities right now. Engine scans every 12 hours.</div>';
-      return;
-    }
-    // Sort: actionable first, then cooldown
-    active.sort(function(a,b){ return (a.sub_on_cooldown?1:0)-(b.sub_on_cooldown?1:0) || b.relevance-a.relevance; });
-    container.innerHTML = active.slice(0, 15).map(function(o) {
-      var relColor = o.relevance >= 80 ? 'var(--green)' : o.relevance >= 40 ? 'var(--gold)' : 'var(--dim)';
-      var statusTag = o.sub_on_cooldown ? '<span style="color:var(--red);font-size:9px;font-family:\'Share Tech Mono\',monospace;margin-left:6px">COOLDOWN</span>' :
-                      o.status === 'drafted' ? '<span style="color:var(--orange);font-size:9px;font-family:\'Share Tech Mono\',monospace;margin-left:6px">DRAFT READY</span>' :
-                      o.status === 'new' ? '<span style="color:var(--blue);font-size:9px;font-family:\'Share Tech Mono\',monospace;margin-left:6px">NEW</span>' : '';
-      var leadTag = o.lead_matches ? '<span style="color:var(--purple);font-size:9px;font-family:\'Share Tech Mono\',monospace;margin-left:6px">LEAD MATCH</span>' : '';
-      var industry = o.industry ? ' &middot; ' + esc(o.industry) : '';
-      var age = o.found_at ? timeSince(o.found_at) : '';
-      var dimStyle = o.sub_on_cooldown ? 'opacity:0.5' : '';
-
-      return '<div style="background:var(--bg2);border:1px solid var(--border);padding:12px 14px;margin-bottom:6px;'+dimStyle+'">' +
-        '<div style="display:flex;justify-content:space-between;align-items:flex-start">' +
-          '<div style="flex:1">' +
-            '<div style="font-size:13px;font-weight:700;color:var(--text);line-height:1.3">' + esc(o.title).substring(0,70) + statusTag + leadTag + '</div>' +
-            '<div style="font-size:11px;color:var(--muted);margin-top:3px">r/' + esc(o.subreddit) + industry + (age ? ' &middot; ' + age : '') + '</div>' +
-          '</div>' +
-          '<div style="font-family:\'Share Tech Mono\',monospace;font-size:14px;font-weight:700;color:' + relColor + ';margin-left:10px;flex-shrink:0">' + o.relevance + '</div>' +
-        '</div>' +
-        (o.reply_draft ? '<div style="margin-top:8px;padding:8px 10px;background:var(--bg);border:1px solid var(--border);font-size:11px;color:var(--muted);line-height:1.4;max-height:80px;overflow:hidden">' + esc(o.reply_draft).substring(0,200) + '...</div>' : '') +
-        '<div style="display:flex;gap:6px;margin-top:8px">' +
-          '<a href="' + esc(o.url) + '" target="_blank" style="flex:1;text-align:center;padding:6px;background:var(--bg);border:1px solid var(--border);color:var(--blue);font-size:10px;font-family:\'Share Tech Mono\',monospace;letter-spacing:1px;text-decoration:none">VIEW POST</a>' +
-          (o.reply_draft ? '<button class="build-btn" style="flex:1;font-size:10px;padding:6px" onclick="copyReply(\'' + esc(o.post_id) + '\')">COPY REPLY</button>' : '') +
-        '</div>' +
-      '</div>';
-    }).join('');
-  })
-  .catch(function() { renderEngageEmpty(); });
-})();
-
-function renderEngageEmpty() {
-  document.getElementById('engage-opps').innerHTML = '<div class="app-empty">No data yet. Run: boss_command.py engage</div>';
+function renderAgents() {
+  var agents = [
+    ['Outbound Sales','(903) 483-0168'],['THE BOSS','(903) 568-8943'],['Pipeline Agent','(903) 206-1932'],
+    ['Deal Coach','(903) 326-7285'],['Devil\'s Advocate','(903) 716-5297'],['Karen (Test)','(903) 418-3148'],
+    ['Boston Agent','(903) 636-1024'],['Follow-Up Caller','(903) 560-2317'],['Built by BOSS','(903) 492-0198'],
+    ['Mystery Caller','(903) 601-8008'],['Wickham Lawn','(972) 314-5057'],['BOSS Support','(903) 522-4459'],
+    ['Junk Demo','No #'],['Sales Trainer','No #'],['Legal Advisor','No #'],
+  ];
+  document.getElementById('agent-grid').innerHTML = agents.map(function(a) {
+    return '<div class="agent-item"><div class="ai-name">' + a[0] + '</div><div class="ai-num">' + a[1] + '</div></div>';
+  }).join('');
 }
 
-function timeSince(dateStr) {
-  var ms = Date.now() - new Date(dateStr).getTime();
-  var hrs = Math.floor(ms / 3600000);
-  if (hrs < 1) return 'just now';
-  if (hrs < 24) return hrs + 'h ago';
-  return Math.floor(hrs / 24) + 'd ago';
+function renderActions() {
+  var acts = [
+    ['Auto Caller','10am/2pm CT weekdays'],['Morning Text','8am CT weekdays'],
+    ['Phone Grade','Manual trigger'],['Follow-Up Emails','10am CT daily'],
+  ];
+  document.getElementById('actions-grid').innerHTML = acts.map(function(a) {
+    return '<div class="wf-item"><div class="wf-dot" style="background:var(--green)"></div><span style="flex:1">' + a[0] + '</span><span style="color:var(--dim);font-size:9px">' + a[1] + '</span></div>';
+  }).join('');
 }
 
-function markAccount(platform) {
-  var accounts = JSON.parse(localStorage.getItem('boss_engage_accounts') || '{}');
-  if (accounts[platform]) {
-    if (!confirm(platform + ' already marked as created. Reset?')) return;
-    delete accounts[platform];
-  } else {
-    accounts[platform] = new Date().toISOString();
-  }
-  localStorage.setItem('boss_engage_accounts', JSON.stringify(accounts));
-  location.reload();
+function renderLaunchAgents() {
+  var las = [
+    ['ATLAS Scanner','Every 2h'],['Supervisor','Every 30m'],['Social Poster','Daily'],
+    ['Quant Sandbox','Daily'],['Agent Daemon','24/7'],['Email Outreach','6am CT'],
+    ['Claude Keepalive','Always'],
+  ];
+  document.getElementById('la-grid').innerHTML = las.map(function(a) {
+    return '<div class="wf-item"><div class="wf-dot" style="background:var(--green)"></div><span style="flex:1">' + a[0] + '</span><span style="color:var(--dim);font-size:9px">' + a[1] + '</span></div>';
+  }).join('');
 }
 
-function copyReply(postId) {
-  fetch('https://raw.githubusercontent.com/BosRoss/bosssystems.co/main/engage_report.json?t=' + Date.now())
-  .then(function(r){ return r.json(); })
-  .then(function(data) {
-    var all = (data.active || []).concat(data.replied || []);
-    var opp = all.find(function(o){ return o.post_id === postId; });
-    if (opp && opp.reply_draft) {
-      navigator.clipboard.writeText(opp.reply_draft).then(function() {
-        alert('Reply copied. Paste it on the Reddit post, then run:\nboss_command.py engage replied ' + postId);
-      });
-    } else {
-      alert('No draft found. Generate one first:\nboss_command.py engage reply ' + postId);
-    }
-  });
+function renderPages() {
+  var pages = [
+    ['Phone Grade','/grade'],['Free Estimator','/grade-free'],
+    ['HVAC','/grade-hvac'],['Plumbing','/grade-plumbing'],['Law Firms','/grade-legal'],
+    ['Electrical','/grade-electrical'],['Dental','/grade-dental'],['Auto Repair','/grade-auto'],
+    ['Roofing','/grade-roofing'],['Pest Control','/grade-pest'],['Restaurants','/grade-restaurant'],
+  ];
+  document.getElementById('pg-pages').innerHTML = pages.map(function(p) {
+    return '<a href="' + p[1] + '" class="link-item" target="_blank">' + p[0] + '</a>';
+  }).join('');
 }
 
-if ('serviceWorker' in navigator) {
-  navigator.serviceWorker.register('sw-command.js').catch(function(){});
+function renderChannels() {
+  var ch = [
+    ['Product Hunt','ready','Playbook written'],['Hacker News','ready','Show HN draft'],
+    ['Reddit (6 subs)','ready','Post drafts ready'],['Facebook Groups','ready','14 groups ID\'d'],
+    ['Twitter/X','ready','6-tweet thread'],['Directories (30)','ready','Copy + list ready'],
+    ['Medium','ready','Article drafted'],['LinkedIn Pulse','ready','Adapted article'],
+    ['Indie Hackers','ready','Build story outline'],
+  ];
+  document.getElementById('channel-list').innerHTML = ch.map(function(c) {
+    return '<div style="display:flex;justify-content:space-between;padding:4px 0;border-bottom:1px solid #0f0f14"><div><span style="color:var(--blue);font-weight:700;font-size:11px">' + c[0] + '</span></div><div style="color:var(--dim);font-size:10px;text-align:right">' + c[2] + '</div></div>';
+  }).join('');
 }
+
+function renderSEO() {
+  var industries = ['HVAC','Plumbing','Law Firms','Electrical','Dental','Auto Repair','Roofing','Pest Control','Restaurants'];
+  document.getElementById('seo-tags').innerHTML = industries.map(function(i) {
+    return '<span class="tag active">' + i + '</span>';
+  }).join('');
+}
+
+function m(color, val, label) {
+  return '<div class="metric"><div class="mv" style="color:var(--'+color+')">' + val + '</div><div class="ml">' + label + '</div></div>';
+}
+
+function updateClock() {
+  var now = new Date();
+  var opts = { timeZone: 'America/Chicago', hour: 'numeric', minute: '2-digit', second: '2-digit', hour12: true };
+  document.getElementById('clock').textContent = now.toLocaleString('en-US', opts) + ' CT';
+}
+
+updateClock();
+setInterval(updateClock, 1000);
+loadAll();
+setInterval(loadAll, 300000);
 </script>
+
 </body>
 </html>
