@@ -1,52 +1,36 @@
 {
-  "generated": "2026-06-27T17:15:13.243980+00:00",
+  "generated": "2026-06-28T02:10:47.765990+00:00",
   "engine_state": "active",
   "signals": [
     {
-      "type": "heat_wave",
-      "area": "Palo Duro Canyon",
-      "niche": "hvac",
-      "action": "HVAC businesses in Palo Duro Canyon are drowning in calls right now. Perfect time to pitch.",
+      "type": "flood",
+      "area": "Angelina, TX; Polk, TX; Trinity, TX",
+      "niche": "plumbing",
+      "action": "Flood warnings in Angelina, TX; Polk, TX; Trinity, TX. Plumbers, restoration, mold companies will spike.",
       "urgency": "today",
-      "pitch_hook": "You're getting slammed with calls \u2014 how many went to voicemail today?"
+      "pitch_hook": "Water damage calls are coming. Every one you miss is $500+ walking away."
     },
     {
-      "type": "heat_wave",
-      "area": "Central Brewster County; Chisos Basin; Lower Brewster County",
-      "niche": "hvac",
-      "action": "HVAC businesses in Central Brewster County; Chisos Basin; Lower Brewster County are drowning in calls right now. Perfect time to pitch.",
+      "type": "flood",
+      "area": "Copiah, MS; Simpson, MS",
+      "niche": "plumbing",
+      "action": "Flood warnings in Copiah, MS; Simpson, MS. Plumbers, restoration, mold companies will spike.",
       "urgency": "today",
-      "pitch_hook": "You're getting slammed with calls \u2014 how many went to voicemail today?"
+      "pitch_hook": "Water damage calls are coming. Every one you miss is $500+ walking away."
     },
     {
-      "type": "heat_wave",
-      "area": "Clay; Greene; Craighead; Poinsett; Mississippi; Cross; Crittenden; St. Francis; Lee; Phillips; Dunklin; Pemiscot; DeSoto; Marshall; Tunica; Tate; Coahoma; Quitman; Panola; Tallahatchie; Lake; Obion; W",
-      "niche": "hvac",
-      "action": "HVAC businesses in Clay; Greene; Craighead; Poinsett; Mississippi; Cross; Crittenden; St. Francis; Lee; Phillips; Dunklin; Pemiscot; DeSoto; Marshall; Tunica; Tate; Coahoma; Quitman; Panola; Tallahatchie; Lake; Obion; W are drowning in calls right now. Perfect time to pitch.",
+      "type": "flood",
+      "area": "Lawrence, MS",
+      "niche": "plumbing",
+      "action": "Flood warnings in Lawrence, MS. Plumbers, restoration, mold companies will spike.",
       "urgency": "today",
-      "pitch_hook": "You're getting slammed with calls \u2014 how many went to voicemail today?"
-    },
-    {
-      "type": "heat_wave",
-      "area": "Benton; Tippah; Alcorn; Tishomingo; Prentiss; Lafayette; Union; Pontotoc; Lee; Itawamba; Yalobusha; Calhoun; Chickasaw; Monroe",
-      "niche": "hvac",
-      "action": "HVAC businesses in Benton; Tippah; Alcorn; Tishomingo; Prentiss; Lafayette; Union; Pontotoc; Lee; Itawamba; Yalobusha; Calhoun; Chickasaw; Monroe are drowning in calls right now. Perfect time to pitch.",
-      "urgency": "today",
-      "pitch_hook": "You're getting slammed with calls \u2014 how many went to voicemail today?"
+      "pitch_hook": "Water damage calls are coming. Every one you miss is $500+ walking away."
     },
     {
       "type": "flood",
       "area": "George, MS; Greene, MS; Jackson, MS",
       "niche": "plumbing",
       "action": "Flood warnings in George, MS; Greene, MS; Jackson, MS. Plumbers, restoration, mold companies will spike.",
-      "urgency": "today",
-      "pitch_hook": "Water damage calls are coming. Every one you miss is $500+ walking away."
-    },
-    {
-      "type": "flood",
-      "area": "George, MS; Greene, MS; Perry, MS",
-      "niche": "plumbing",
-      "action": "Flood warnings in George, MS; Greene, MS; Perry, MS. Plumbers, restoration, mold companies will spike.",
       "urgency": "today",
       "pitch_hook": "Water damage calls are coming. Every one you miss is $500+ walking away."
     },
@@ -81,6 +65,22 @@
       "action": "Flood warnings in St. Tammany, LA; Hancock, MS; Pearl River, MS. Plumbers, restoration, mold companies will spike.",
       "urgency": "today",
       "pitch_hook": "Water damage calls are coming. Every one you miss is $500+ walking away."
+    },
+    {
+      "type": "heat_wave",
+      "area": "Ashley; Chicot; Morehouse; West Carroll; East Carroll; Richland; Madison; Franklin; Catahoula; Tensas; Concordia; Bolivar; Sunflower; Leflore; Washington; Humphreys; Issaquena; Sharkey; Yazoo; Warren;",
+      "niche": "hvac",
+      "action": "HVAC businesses in Ashley; Chicot; Morehouse; West Carroll; East Carroll; Richland; Madison; Franklin; Catahoula; Tensas; Concordia; Bolivar; Sunflower; Leflore; Washington; Humphreys; Issaquena; Sharkey; Yazoo; Warren; are drowning in calls right now. Perfect time to pitch.",
+      "urgency": "today",
+      "pitch_hook": "You're getting slammed with calls \u2014 how many went to voicemail today?"
+    },
+    {
+      "type": "heat_wave",
+      "area": "Clay; Greene; Craighead; Poinsett; Mississippi; Cross; Crittenden; St. Francis; Lee; Phillips; Dunklin; Pemiscot; DeSoto; Marshall; Tunica; Tate; Coahoma; Quitman; Panola; Tallahatchie; Lake; Obion; W",
+      "niche": "hvac",
+      "action": "HVAC businesses in Clay; Greene; Craighead; Poinsett; Mississippi; Cross; Crittenden; St. Francis; Lee; Phillips; Dunklin; Pemiscot; DeSoto; Marshall; Tunica; Tate; Coahoma; Quitman; Panola; Tallahatchie; Lake; Obion; W are drowning in calls right now. Perfect time to pitch.",
+      "urgency": "today",
+      "pitch_hook": "You're getting slammed with calls \u2014 how many went to voicemail today?"
     }
   ],
   "leads": [
@@ -239,55 +239,55 @@
   "feeds": [
     {
       "name": "NOAA",
-      "last_hit": "2026-06-27T17:08:38.455135+00:00",
+      "last_hit": "2026-06-28T02:03:26.668934+00:00",
       "status": "yellow",
       "data_points_today": 0
     },
     {
       "name": "REDDIT",
-      "last_hit": "2026-06-27T17:08:38.455135+00:00",
+      "last_hit": "2026-06-28T02:03:26.668934+00:00",
       "status": "green",
-      "data_points_today": 40
+      "data_points_today": 20
     },
     {
       "name": "USGS",
-      "last_hit": "2026-06-27T17:08:38.455135+00:00",
+      "last_hit": "2026-06-28T02:03:26.668934+00:00",
       "status": "yellow",
       "data_points_today": 0
     },
     {
       "name": "HACKERNEWS",
-      "last_hit": "2026-06-27T17:08:38.455135+00:00",
+      "last_hit": "2026-06-28T02:03:26.668934+00:00",
       "status": "green",
       "data_points_today": 30
     },
     {
       "name": "FEMA",
-      "last_hit": "2026-06-27T17:08:38.455135+00:00",
+      "last_hit": "2026-06-28T02:03:26.668934+00:00",
       "status": "green",
-      "data_points_today": 20
+      "data_points_today": 7
     },
     {
       "name": "COMMODITIES",
-      "last_hit": "2026-06-27T17:08:38.455135+00:00",
+      "last_hit": "2026-06-28T02:03:26.668934+00:00",
       "status": "green",
       "data_points_today": 7
     },
     {
       "name": "RSS",
-      "last_hit": "2026-06-27T17:08:38.455135+00:00",
+      "last_hit": "2026-06-28T02:03:26.668934+00:00",
       "status": "green",
       "data_points_today": 170
     },
     {
       "name": "FRED",
-      "last_hit": "2026-06-27T17:08:38.455135+00:00",
+      "last_hit": "2026-06-28T02:03:26.668934+00:00",
       "status": "yellow",
       "data_points_today": 0
     },
     {
       "name": "BLS",
-      "last_hit": "2026-06-27T17:08:38.455135+00:00",
+      "last_hit": "2026-06-28T02:03:26.668934+00:00",
       "status": "green",
       "data_points_today": 9
     }
