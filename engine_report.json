@@ -1,54 +1,22 @@
 {
-  "generated": "2026-07-01T01:15:34.552401+00:00",
+  "generated": "2026-07-01T03:53:05.184057+00:00",
   "engine_state": "active",
   "signals": [
     {
-      "type": "storm",
-      "area": "Brewster, TX; Pecos, TX",
-      "niche": "roofing",
-      "action": "Storm damage in Brewster, TX; Pecos, TX. Roofers and restoration companies about to get flooded.",
-      "urgency": "today",
-      "pitch_hook": "After a storm like that, you'll get 10x your normal call volume. Ready for it?"
-    },
-    {
-      "type": "storm",
-      "area": "Beaver, OK; Texas, OK; Armstrong, TX; Carson, TX; Collingsworth, TX; Donley, TX; Gray, TX; Hansford, TX; Hemphill, TX; Hutchinson, TX; Lipscomb, TX; Ochiltree, TX; Randall, TX; Roberts, TX; Wheeler, T",
-      "niche": "roofing",
-      "action": "Storm damage in Beaver, OK; Texas, OK; Armstrong, TX; Carson, TX; Collingsworth, TX; Donley, TX; Gray, TX; Hansford, TX; Hemphill, TX; Hutchinson, TX; Lipscomb, TX; Ochiltree, TX; Randall, TX; Roberts, TX; Wheeler, T. Roofers and restoration companies about to get flooded.",
-      "urgency": "today",
-      "pitch_hook": "After a storm like that, you'll get 10x your normal call volume. Ready for it?"
-    },
-    {
-      "type": "storm",
-      "area": "Bailey, TX; Cochran, TX",
-      "niche": "roofing",
-      "action": "Storm damage in Bailey, TX; Cochran, TX. Roofers and restoration companies about to get flooded.",
-      "urgency": "today",
-      "pitch_hook": "After a storm like that, you'll get 10x your normal call volume. Ready for it?"
-    },
-    {
-      "type": "storm",
-      "area": "Brewster, TX",
-      "niche": "roofing",
-      "action": "Storm damage in Brewster, TX. Roofers and restoration companies about to get flooded.",
-      "urgency": "today",
-      "pitch_hook": "After a storm like that, you'll get 10x your normal call volume. Ready for it?"
-    },
-    {
       "type": "flood",
-      "area": "Hall, TX",
+      "area": "Lubbock, TX",
       "niche": "plumbing",
-      "action": "Flood warnings in Hall, TX. Plumbers, restoration, mold companies will spike.",
+      "action": "Flood warnings in Lubbock, TX. Plumbers, restoration, mold companies will spike.",
       "urgency": "today",
       "pitch_hook": "Water damage calls are coming. Every one you miss is $500+ walking away."
     },
     {
-      "type": "storm",
-      "area": "Armstrong, TX; Carson, TX; Donley, TX; Gray, TX",
-      "niche": "roofing",
-      "action": "Storm damage in Armstrong, TX; Carson, TX; Donley, TX; Gray, TX. Roofers and restoration companies about to get flooded.",
+      "type": "flood",
+      "area": "Armstrong, TX; Randall, TX",
+      "niche": "plumbing",
+      "action": "Flood warnings in Armstrong, TX; Randall, TX. Plumbers, restoration, mold companies will spike.",
       "urgency": "today",
-      "pitch_hook": "After a storm like that, you'll get 10x your normal call volume. Ready for it?"
+      "pitch_hook": "Water damage calls are coming. Every one you miss is $500+ walking away."
     },
     {
       "type": "flood",
@@ -67,12 +35,12 @@
       "pitch_hook": "Water damage calls are coming. Every one you miss is $500+ walking away."
     },
     {
-      "type": "storm",
-      "area": "Jackson, MS",
-      "niche": "roofing",
-      "action": "Storm damage in Jackson, MS. Roofers and restoration companies about to get flooded.",
+      "type": "heat_wave",
+      "area": "Wayne; Perry; Greene; Stone; George",
+      "niche": "hvac",
+      "action": "HVAC businesses in Wayne; Perry; Greene; Stone; George are drowning in calls right now. Perfect time to pitch.",
       "urgency": "today",
-      "pitch_hook": "After a storm like that, you'll get 10x your normal call volume. Ready for it?"
+      "pitch_hook": "You're getting slammed with calls \u2014 how many went to voicemail today?"
     },
     {
       "type": "flood",
@@ -81,6 +49,38 @@
       "action": "Flood warnings in George, MS; Greene, MS. Plumbers, restoration, mold companies will spike.",
       "urgency": "today",
       "pitch_hook": "Water damage calls are coming. Every one you miss is $500+ walking away."
+    },
+    {
+      "type": "flood",
+      "area": "Washington, LA; Pearl River, MS",
+      "niche": "plumbing",
+      "action": "Flood warnings in Washington, LA; Pearl River, MS. Plumbers, restoration, mold companies will spike.",
+      "urgency": "today",
+      "pitch_hook": "Water damage calls are coming. Every one you miss is $500+ walking away."
+    },
+    {
+      "type": "flood",
+      "area": "St. Tammany, LA; Hancock, MS; Pearl River, MS",
+      "niche": "plumbing",
+      "action": "Flood warnings in St. Tammany, LA; Hancock, MS; Pearl River, MS. Plumbers, restoration, mold companies will spike.",
+      "urgency": "today",
+      "pitch_hook": "Water damage calls are coming. Every one you miss is $500+ walking away."
+    },
+    {
+      "type": "heat_wave",
+      "area": "Chicot; East Carroll; Madison; Tensas; Bolivar; Sunflower; Leflore; Washington; Humphreys; Holmes; Issaquena; Sharkey; Yazoo; Madison; Warren; Hinds; Rankin; Claiborne; Copiah; Simpson; Jefferson",
+      "niche": "hvac",
+      "action": "HVAC businesses in Chicot; East Carroll; Madison; Tensas; Bolivar; Sunflower; Leflore; Washington; Humphreys; Holmes; Issaquena; Sharkey; Yazoo; Madison; Warren; Hinds; Rankin; Claiborne; Copiah; Simpson; Jefferson are drowning in calls right now. Perfect time to pitch.",
+      "urgency": "today",
+      "pitch_hook": "You're getting slammed with calls \u2014 how many went to voicemail today?"
+    },
+    {
+      "type": "heat_wave",
+      "area": "Ashley; Morehouse; West Carroll; Richland; Franklin; Catahoula; Concordia; Grenada; Carroll; Montgomery; Webster; Clay; Lowndes; Choctaw; Oktibbeha; Attala; Winston; Noxubee; Leake; Neshoba; Kemper; S",
+      "niche": "hvac",
+      "action": "HVAC businesses in Ashley; Morehouse; West Carroll; Richland; Franklin; Catahoula; Concordia; Grenada; Carroll; Montgomery; Webster; Clay; Lowndes; Choctaw; Oktibbeha; Attala; Winston; Noxubee; Leake; Neshoba; Kemper; S are drowning in calls right now. Perfect time to pitch.",
+      "urgency": "today",
+      "pitch_hook": "You're getting slammed with calls \u2014 how many went to voicemail today?"
     }
   ],
   "leads": [
@@ -239,55 +239,55 @@
   "feeds": [
     {
       "name": "NOAA",
-      "last_hit": "2026-07-01T01:07:49.812121+00:00",
+      "last_hit": "2026-07-01T03:44:24.977162+00:00",
       "status": "yellow",
       "data_points_today": 0
     },
     {
       "name": "REDDIT",
-      "last_hit": "2026-07-01T01:07:49.812121+00:00",
+      "last_hit": "2026-07-01T03:44:24.977162+00:00",
       "status": "green",
-      "data_points_today": 40
+      "data_points_today": 20
     },
     {
       "name": "USGS",
-      "last_hit": "2026-07-01T01:07:49.812121+00:00",
+      "last_hit": "2026-07-01T03:44:24.977162+00:00",
       "status": "yellow",
       "data_points_today": 0
     },
     {
       "name": "HACKERNEWS",
-      "last_hit": "2026-07-01T01:07:49.812121+00:00",
+      "last_hit": "2026-07-01T03:44:24.977162+00:00",
       "status": "green",
       "data_points_today": 30
     },
     {
       "name": "FEMA",
-      "last_hit": "2026-07-01T01:07:49.812121+00:00",
+      "last_hit": "2026-07-01T03:44:24.977162+00:00",
       "status": "green",
       "data_points_today": 11
     },
     {
       "name": "COMMODITIES",
-      "last_hit": "2026-07-01T01:07:49.812121+00:00",
+      "last_hit": "2026-07-01T03:44:24.977162+00:00",
       "status": "green",
       "data_points_today": 7
     },
     {
       "name": "RSS",
-      "last_hit": "2026-07-01T01:07:49.812121+00:00",
+      "last_hit": "2026-07-01T03:44:24.977162+00:00",
       "status": "green",
       "data_points_today": 170
     },
     {
       "name": "FRED",
-      "last_hit": "2026-07-01T01:07:49.812121+00:00",
+      "last_hit": "2026-07-01T03:44:24.977162+00:00",
       "status": "yellow",
       "data_points_today": 0
     },
     {
       "name": "BLS",
-      "last_hit": "2026-07-01T01:07:49.812121+00:00",
+      "last_hit": "2026-07-01T03:44:24.977162+00:00",
       "status": "green",
       "data_points_today": 9
     }
