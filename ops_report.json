@@ -1,18 +1,44 @@
 {
-  "generated": "2026-06-28T02:00:00.184627+00:00",
+  "generated": "2026-07-01T02:00:01.443003+00:00",
   "sections": {
     "atlas": {
-      "power_level": "SURGE",
-      "last_scan": "2026-06-27T23:16:38.605388+00:00",
-      "scan_count": 122,
-      "heat_score": 0,
-      "recommendation": "QUIET. No actionable intel. Focus on product, content, or in-person visits.",
-      "demand_signals": 0,
+      "power_level": "ACTIVE",
+      "last_scan": "2026-07-01T01:07:49.812121+00:00",
+      "scan_count": 125,
+      "heat_score": 100,
+      "recommendation": "HOT DAY. Weather-driven demand in Armstrong, TX; Carson, TX; Donley, TX; Gray, TX, Bailey, TX; Cochran, TX, Jeff Davis, TX; Reeves, TX. Call HVAC/roofers there NOW.",
+      "demand_signals": 10,
       "pain_signals": 0,
       "pitch_adjustments": 0,
       "competitor_intel": 0,
-      "territory_alerts": 0,
-      "top_demands": [],
+      "territory_alerts": 23,
+      "top_demands": [
+        {
+          "type": "storm",
+          "area": "Brewster, TX; Pecos, TX",
+          "niche": "roofing"
+        },
+        {
+          "type": "storm",
+          "area": "Beaver, OK; Texas, OK; Armstrong, TX; Carson, TX; Collingswo",
+          "niche": "roofing"
+        },
+        {
+          "type": "storm",
+          "area": "Bailey, TX; Cochran, TX",
+          "niche": "roofing"
+        },
+        {
+          "type": "storm",
+          "area": "Brewster, TX",
+          "niche": "roofing"
+        },
+        {
+          "type": "flood",
+          "area": "Hall, TX",
+          "niche": "plumbing"
+        }
+      ],
       "sources_online": 0
     },
     "lead_engine": {
@@ -20,8 +46,8 @@
       "total_leads": 200,
       "by_tier": {
         "SUPERNICHE": 19,
-        "HOT": 61,
-        "WARM": 120
+        "HOT": 62,
+        "WARM": 119
       },
       "by_route": {
         "watchlist": 157,
@@ -29,14 +55,14 @@
         "call_queue": 2
       },
       "by_status": {
-        "re_engaged": 148,
-        "queued": 24,
-        "called": 28
+        "re_engaged": 155,
+        "queued": 21,
+        "called": 24
       },
       "synced_to_pipeline": 41,
-      "api_spend": 8.96,
+      "api_spend": 9.6,
       "api_budget": 300.0,
-      "api_percent": 3.0,
+      "api_percent": 3.2,
       "outcomes_recorded": 226,
       "by_outcome": {
         "no_answer": 32,
@@ -192,23 +218,23 @@
       "recent_failures": [
         {
           "workflow": "jcjx0bGhzmaJrI7q",
-          "started": "2026-06-27T23:00"
+          "started": "2026-06-30T23:00"
+        },
+        {
+          "workflow": "VZWvyPVLdB5akBom",
+          "started": "2026-06-30T21:00"
         },
         {
           "workflow": "lSc61uycIMIn6HEG",
-          "started": "2026-06-27T20:16"
+          "started": "2026-06-30T20:50"
         },
         {
           "workflow": "lSc61uycIMIn6HEG",
-          "started": "2026-06-27T20:16"
+          "started": "2026-06-30T20:50"
         },
         {
           "workflow": "lSc61uycIMIn6HEG",
-          "started": "2026-06-27T20:15"
-        },
-        {
-          "workflow": "7wFm6CQB3VtoiRb6",
-          "started": "2026-06-27T19:00"
+          "started": "2026-06-30T20:50"
         }
       ]
     },
@@ -267,9 +293,9 @@
         }
       ],
       "calls_24h": 50,
-      "outbound_24h": 40,
-      "inbound_24h": 10,
-      "avg_duration_sec": 90.6
+      "outbound_24h": 46,
+      "inbound_24h": 4,
+      "avg_duration_sec": 17.8
     },
     "quant": {
       "state": "ACTIVE",
@@ -277,12 +303,14 @@
       "survivors": 0
     },
     "health": {
-      "circuit_breakers_tripped": [],
+      "circuit_breakers_tripped": [
+        "google_places"
+      ],
       "engine_paused": false,
-      "atlas_power": "SURGE",
+      "atlas_power": "ACTIVE",
       "n8n_errors_24h": 20,
       "retell_calls_24h": 50,
-      "api_spend_pct": 3.0
+      "api_spend_pct": 3.2
     }
   }
 }
