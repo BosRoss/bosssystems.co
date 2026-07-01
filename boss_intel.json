@@ -1,7 +1,259 @@
 {
-  "generated": "2026-06-28T00:03:25.604971+00:00",
-  "atlas_scan_time": "2026-06-27T23:16:38.605388+00:00",
-  "boss_heat_score": 0,
-  "recommendation": "QUIET. No actionable intel. Focus on product, content, or in-person visits.",
-  "daily_briefing": "ATLAS BOSS Score: 0/100\nQUIET. No actionable intel. Focus on product, content, or in-person visits."
+  "generated": "2026-07-01T01:15:31.649832+00:00",
+  "atlas_scan_time": "2026-07-01T01:07:49.812121+00:00",
+  "demand_signals": [
+    {
+      "type": "storm",
+      "area": "Brewster, TX; Pecos, TX",
+      "niche": "roofing",
+      "action": "Storm damage in Brewster, TX; Pecos, TX. Roofers and restoration companies about to get flooded.",
+      "urgency": "today",
+      "pitch_hook": "After a storm like that, you'll get 10x your normal call volume. Ready for it?"
+    },
+    {
+      "type": "storm",
+      "area": "Beaver, OK; Texas, OK; Armstrong, TX; Carson, TX; Collingsworth, TX; Donley, TX; Gray, TX; Hansford, TX; Hemphill, TX; Hutchinson, TX; Lipscomb, TX; Ochiltree, TX; Randall, TX; Roberts, TX; Wheeler, T",
+      "niche": "roofing",
+      "action": "Storm damage in Beaver, OK; Texas, OK; Armstrong, TX; Carson, TX; Collingsworth, TX; Donley, TX; Gray, TX; Hansford, TX; Hemphill, TX; Hutchinson, TX; Lipscomb, TX; Ochiltree, TX; Randall, TX; Roberts, TX; Wheeler, T. Roofers and restoration companies about to get flooded.",
+      "urgency": "today",
+      "pitch_hook": "After a storm like that, you'll get 10x your normal call volume. Ready for it?"
+    },
+    {
+      "type": "storm",
+      "area": "Bailey, TX; Cochran, TX",
+      "niche": "roofing",
+      "action": "Storm damage in Bailey, TX; Cochran, TX. Roofers and restoration companies about to get flooded.",
+      "urgency": "today",
+      "pitch_hook": "After a storm like that, you'll get 10x your normal call volume. Ready for it?"
+    },
+    {
+      "type": "storm",
+      "area": "Brewster, TX",
+      "niche": "roofing",
+      "action": "Storm damage in Brewster, TX. Roofers and restoration companies about to get flooded.",
+      "urgency": "today",
+      "pitch_hook": "After a storm like that, you'll get 10x your normal call volume. Ready for it?"
+    },
+    {
+      "type": "flood",
+      "area": "Hall, TX",
+      "niche": "plumbing",
+      "action": "Flood warnings in Hall, TX. Plumbers, restoration, mold companies will spike.",
+      "urgency": "today",
+      "pitch_hook": "Water damage calls are coming. Every one you miss is $500+ walking away."
+    },
+    {
+      "type": "storm",
+      "area": "Armstrong, TX; Carson, TX; Donley, TX; Gray, TX",
+      "niche": "roofing",
+      "action": "Storm damage in Armstrong, TX; Carson, TX; Donley, TX; Gray, TX. Roofers and restoration companies about to get flooded.",
+      "urgency": "today",
+      "pitch_hook": "After a storm like that, you'll get 10x your normal call volume. Ready for it?"
+    },
+    {
+      "type": "flood",
+      "area": "Jeff Davis, TX; Reeves, TX",
+      "niche": "plumbing",
+      "action": "Flood warnings in Jeff Davis, TX; Reeves, TX. Plumbers, restoration, mold companies will spike.",
+      "urgency": "today",
+      "pitch_hook": "Water damage calls are coming. Every one you miss is $500+ walking away."
+    },
+    {
+      "type": "flood",
+      "area": "Donley, TX",
+      "niche": "plumbing",
+      "action": "Flood warnings in Donley, TX. Plumbers, restoration, mold companies will spike.",
+      "urgency": "today",
+      "pitch_hook": "Water damage calls are coming. Every one you miss is $500+ walking away."
+    },
+    {
+      "type": "storm",
+      "area": "Jackson, MS",
+      "niche": "roofing",
+      "action": "Storm damage in Jackson, MS. Roofers and restoration companies about to get flooded.",
+      "urgency": "today",
+      "pitch_hook": "After a storm like that, you'll get 10x your normal call volume. Ready for it?"
+    },
+    {
+      "type": "flood",
+      "area": "George, MS; Greene, MS",
+      "niche": "plumbing",
+      "action": "Flood warnings in George, MS; Greene, MS. Plumbers, restoration, mold companies will spike.",
+      "urgency": "today",
+      "pitch_hook": "Water damage calls are coming. Every one you miss is $500+ walking away."
+    }
+  ],
+  "territory_alerts": [
+    {
+      "region": "Chicot; East Carroll; Madison; Tensas; Bolivar; Sunflower; Leflore; Washington; Humphreys; Holmes; Issaquena; Sharkey; Yazoo; Madison; Warren; Hinds; Rankin; Claiborne; Copiah; Simpson; Jefferson",
+      "opportunity": "HVAC contractors overwhelmed in Chicot; East Carroll; Madison; Tensas; Bolivar; Sunflower; Leflore; Washington; Humphreys; Holmes; Issaquena; Sharkey; Yazoo; Madison; Warren; Hinds; Rankin; Claiborne; Copiah; Simpson; Jefferson. Heat emergency",
+      "action": "Target HVAC businesses in Chicot; East Carroll; Madison; Tensas; Bolivar; Sunflower; Leflore; Washington; Humphreys; Holmes; Issaquena; Sharkey; Yazoo; Madison; Warren; Hinds; Rankin; Claiborne; Copiah; Simpson; Jefferson with missed-call pitch. They're too busy to answer right now.",
+      "urgency": "immediate",
+      "confidence": 90
+    },
+    {
+      "region": "Chicot; East Carroll; Madison; Tensas; Bolivar; Sunflower; Leflore; Washington; Humphreys; Holmes; Issaquena; Sharkey; Yazoo; Madison; Warren; Hinds; Rankin; Claiborne; Copiah; Simpson; Jefferson",
+      "opportunity": "HVAC contractors overwhelmed in Chicot; East Carroll; Madison; Tensas; Bolivar; Sunflower; Leflore; Washington; Humphreys; Holmes; Issaquena; Sharkey; Yazoo; Madison; Warren; Hinds; Rankin; Claiborne; Copiah; Simpson; Jefferson. Heat emergency",
+      "action": "Target HVAC businesses in Chicot; East Carroll; Madison; Tensas; Bolivar; Sunflower; Leflore; Washington; Humphreys; Holmes; Issaquena; Sharkey; Yazoo; Madison; Warren; Hinds; Rankin; Claiborne; Copiah; Simpson; Jefferson with missed-call pitch. They're too busy to answer right now.",
+      "urgency": "immediate",
+      "confidence": 90
+    },
+    {
+      "region": "Ashley; Morehouse; West Carroll; Richland; Franklin; Catahoula; Concordia; Grenada; Carroll; Montgomery; Webster; Clay; Lowndes; Choctaw; Oktibbeha; Attala; Winston; Noxubee; Leake; Neshoba; Kemper; S",
+      "opportunity": "HVAC contractors overwhelmed in Ashley; Morehouse; West Carroll; Richland; Franklin; Catahoula; Concordia; Grenada; Carroll; Montgomery; Webster; Clay; Lowndes; Choctaw; Oktibbeha; Attala; Winston; Noxubee; Leake; Neshoba; Kemper; S. Heat emergency",
+      "action": "Target HVAC businesses in Ashley; Morehouse; West Carroll; Richland; Franklin; Catahoula; Concordia; Grenada; Carroll; Montgomery; Webster; Clay; Lowndes; Choctaw; Oktibbeha; Attala; Winston; Noxubee; Leake; Neshoba; Kemper; S with missed-call pitch. They're too busy to answer right now.",
+      "urgency": "immediate",
+      "confidence": 90
+    },
+    {
+      "region": "Lafayette; Union; Pontotoc; Lee; Itawamba; Yalobusha; Calhoun; Chickasaw; Monroe",
+      "opportunity": "HVAC contractors overwhelmed in Lafayette; Union; Pontotoc; Lee; Itawamba; Yalobusha; Calhoun; Chickasaw; Monroe. Heat emergency",
+      "action": "Target HVAC businesses in Lafayette; Union; Pontotoc; Lee; Itawamba; Yalobusha; Calhoun; Chickasaw; Monroe with missed-call pitch. They're too busy to answer right now.",
+      "urgency": "immediate",
+      "confidence": 90
+    },
+    {
+      "region": "Clay; Greene; Craighead; Poinsett; Mississippi; Cross; Crittenden; St. Francis; Lee; Phillips; Dunklin; Pemiscot; DeSoto; Marshall; Benton; Tippah; Alcorn; Tishomingo; Tunica; Tate; Prentiss; Coahoma;",
+      "opportunity": "HVAC contractors overwhelmed in Clay; Greene; Craighead; Poinsett; Mississippi; Cross; Crittenden; St. Francis; Lee; Phillips; Dunklin; Pemiscot; DeSoto; Marshall; Benton; Tippah; Alcorn; Tishomingo; Tunica; Tate; Prentiss; Coahoma;. Heat emergency",
+      "action": "Target HVAC businesses in Clay; Greene; Craighead; Poinsett; Mississippi; Cross; Crittenden; St. Francis; Lee; Phillips; Dunklin; Pemiscot; DeSoto; Marshall; Benton; Tippah; Alcorn; Tishomingo; Tunica; Tate; Prentiss; Coahoma; with missed-call pitch. They're too busy to answer right now.",
+      "urgency": "immediate",
+      "confidence": 90
+    },
+    {
+      "region": "North and Central Sebastian; Southern Crawford; Central and Southern Franklin",
+      "opportunity": "HVAC contractors overwhelmed in North and Central Sebastian; Southern Crawford; Central and Southern Franklin. Heat emergency",
+      "action": "Target HVAC businesses in North and Central Sebastian; Southern Crawford; Central and Southern Franklin with missed-call pitch. They're too busy to answer right now.",
+      "urgency": "immediate",
+      "confidence": 90
+    },
+    {
+      "region": "Chicot; East Carroll; Madison; Tensas; Bolivar; Sunflower; Leflore; Washington; Humphreys; Holmes; Issaquena; Sharkey; Yazoo; Madison; Warren; Hinds; Rankin; Claiborne; Copiah; Simpson; Jefferson",
+      "opportunity": "HVAC contractors overwhelmed in Chicot; East Carroll; Madison; Tensas; Bolivar; Sunflower; Leflore; Washington; Humphreys; Holmes; Issaquena; Sharkey; Yazoo; Madison; Warren; Hinds; Rankin; Claiborne; Copiah; Simpson; Jefferson. Heat emergency",
+      "action": "Target HVAC businesses in Chicot; East Carroll; Madison; Tensas; Bolivar; Sunflower; Leflore; Washington; Humphreys; Holmes; Issaquena; Sharkey; Yazoo; Madison; Warren; Hinds; Rankin; Claiborne; Copiah; Simpson; Jefferson with missed-call pitch. They're too busy to answer right now.",
+      "urgency": "immediate",
+      "confidence": 90
+    },
+    {
+      "region": "Chicot; East Carroll; Madison; Tensas; Bolivar; Sunflower; Leflore; Washington; Humphreys; Holmes; Issaquena; Sharkey; Yazoo; Madison; Warren; Hinds; Rankin; Claiborne; Copiah; Simpson; Jefferson",
+      "opportunity": "HVAC contractors overwhelmed in Chicot; East Carroll; Madison; Tensas; Bolivar; Sunflower; Leflore; Washington; Humphreys; Holmes; Issaquena; Sharkey; Yazoo; Madison; Warren; Hinds; Rankin; Claiborne; Copiah; Simpson; Jefferson. Heat emergency",
+      "action": "Target HVAC businesses in Chicot; East Carroll; Madison; Tensas; Bolivar; Sunflower; Leflore; Washington; Humphreys; Holmes; Issaquena; Sharkey; Yazoo; Madison; Warren; Hinds; Rankin; Claiborne; Copiah; Simpson; Jefferson with missed-call pitch. They're too busy to answer right now.",
+      "urgency": "immediate",
+      "confidence": 90
+    },
+    {
+      "region": "Ashley; Morehouse; West Carroll; Richland; Franklin; Catahoula; Concordia; Grenada; Carroll; Montgomery; Webster; Clay; Lowndes; Choctaw; Oktibbeha; Attala; Winston; Noxubee; Leake; Neshoba; Kemper; S",
+      "opportunity": "HVAC contractors overwhelmed in Ashley; Morehouse; West Carroll; Richland; Franklin; Catahoula; Concordia; Grenada; Carroll; Montgomery; Webster; Clay; Lowndes; Choctaw; Oktibbeha; Attala; Winston; Noxubee; Leake; Neshoba; Kemper; S. Heat emergency",
+      "action": "Target HVAC businesses in Ashley; Morehouse; West Carroll; Richland; Franklin; Catahoula; Concordia; Grenada; Carroll; Montgomery; Webster; Clay; Lowndes; Choctaw; Oktibbeha; Attala; Winston; Noxubee; Leake; Neshoba; Kemper; S with missed-call pitch. They're too busy to answer right now.",
+      "urgency": "immediate",
+      "confidence": 90
+    },
+    {
+      "region": "Clay; Greene; Craighead; Poinsett; Mississippi; Cross; Crittenden; St. Francis; Lee; Phillips; Dunklin; Pemiscot; DeSoto; Marshall; Benton; Tippah; Alcorn; Tishomingo; Tunica; Tate; Prentiss; Coahoma;",
+      "opportunity": "HVAC contractors overwhelmed in Clay; Greene; Craighead; Poinsett; Mississippi; Cross; Crittenden; St. Francis; Lee; Phillips; Dunklin; Pemiscot; DeSoto; Marshall; Benton; Tippah; Alcorn; Tishomingo; Tunica; Tate; Prentiss; Coahoma;. Heat emergency",
+      "action": "Target HVAC businesses in Clay; Greene; Craighead; Poinsett; Mississippi; Cross; Crittenden; St. Francis; Lee; Phillips; Dunklin; Pemiscot; DeSoto; Marshall; Benton; Tippah; Alcorn; Tishomingo; Tunica; Tate; Prentiss; Coahoma; with missed-call pitch. They're too busy to answer right now.",
+      "urgency": "immediate",
+      "confidence": 90
+    },
+    {
+      "region": "Sharp; Randolph; Independence; Lawrence; Jackson; Conway; Perry; Saline; Pulaski; Lonoke; Prairie; Jefferson; Arkansas; Lincoln; Desha; Drew; Southern Johnson County; Southern Pope County; Western and",
+      "opportunity": "HVAC contractors overwhelmed in Sharp; Randolph; Independence; Lawrence; Jackson; Conway; Perry; Saline; Pulaski; Lonoke; Prairie; Jefferson; Arkansas; Lincoln; Desha; Drew; Southern Johnson County; Southern Pope County; Western and. Heat emergency",
+      "action": "Target HVAC businesses in Sharp; Randolph; Independence; Lawrence; Jackson; Conway; Perry; Saline; Pulaski; Lonoke; Prairie; Jefferson; Arkansas; Lincoln; Desha; Drew; Southern Johnson County; Southern Pope County; Western and with missed-call pitch. They're too busy to answer right now.",
+      "urgency": "immediate",
+      "confidence": 90
+    },
+    {
+      "region": "Lauderdale; Colbert; Franklin; Lawrence; Limestone; Madison; Morgan; Marshall; Jackson; DeKalb; Cullman; Moore; Lincoln; Franklin",
+      "opportunity": "HVAC contractors overwhelmed in Lauderdale; Colbert; Franklin; Lawrence; Limestone; Madison; Morgan; Marshall; Jackson; DeKalb; Cullman; Moore; Lincoln; Franklin. Heat emergency",
+      "action": "Target HVAC businesses in Lauderdale; Colbert; Franklin; Lawrence; Limestone; Madison; Morgan; Marshall; Jackson; DeKalb; Cullman; Moore; Lincoln; Franklin with missed-call pitch. They're too busy to answer right now.",
+      "urgency": "immediate",
+      "confidence": 90
+    },
+    {
+      "region": "Lauderdale; Colbert; Franklin; Lawrence; Limestone; Madison; Morgan; Marshall; Jackson; DeKalb; Cullman; Moore; Lincoln; Franklin",
+      "opportunity": "HVAC contractors overwhelmed in Lauderdale; Colbert; Franklin; Lawrence; Limestone; Madison; Morgan; Marshall; Jackson; DeKalb; Cullman; Moore; Lincoln; Franklin. Heat emergency",
+      "action": "Target HVAC businesses in Lauderdale; Colbert; Franklin; Lawrence; Limestone; Madison; Morgan; Marshall; Jackson; DeKalb; Cullman; Moore; Lincoln; Franklin with missed-call pitch. They're too busy to answer right now.",
+      "urgency": "immediate",
+      "confidence": 90
+    },
+    {
+      "region": "Calhoun; Cleburne; Talladega; Clay; Randolph; Coosa; Tallapoosa; Chambers; Marengo; Dallas; Autauga; Lowndes; Elmore; Montgomery; Macon; Bullock; Lee; Russell; Pike; Barbour",
+      "opportunity": "HVAC contractors overwhelmed in Calhoun; Cleburne; Talladega; Clay; Randolph; Coosa; Tallapoosa; Chambers; Marengo; Dallas; Autauga; Lowndes; Elmore; Montgomery; Macon; Bullock; Lee; Russell; Pike; Barbour. Heat emergency",
+      "action": "Target HVAC businesses in Calhoun; Cleburne; Talladega; Clay; Randolph; Coosa; Tallapoosa; Chambers; Marengo; Dallas; Autauga; Lowndes; Elmore; Montgomery; Macon; Bullock; Lee; Russell; Pike; Barbour with missed-call pitch. They're too busy to answer right now.",
+      "urgency": "immediate",
+      "confidence": 90
+    },
+    {
+      "region": "Marion; Lamar; Fayette; Winston; Walker; Blount; Etowah; Cherokee; Pickens; Tuscaloosa; Jefferson; Shelby; St. Clair; Sumter; Greene; Hale; Perry; Bibb; Chilton",
+      "opportunity": "HVAC contractors overwhelmed in Marion; Lamar; Fayette; Winston; Walker; Blount; Etowah; Cherokee; Pickens; Tuscaloosa; Jefferson; Shelby; St. Clair; Sumter; Greene; Hale; Perry; Bibb; Chilton. Heat emergency",
+      "action": "Target HVAC businesses in Marion; Lamar; Fayette; Winston; Walker; Blount; Etowah; Cherokee; Pickens; Tuscaloosa; Jefferson; Shelby; St. Clair; Sumter; Greene; Hale; Perry; Bibb; Chilton with missed-call pitch. They're too busy to answer right now.",
+      "urgency": "immediate",
+      "confidence": 90
+    },
+    {
+      "region": "Clay; Greene; Craighead; Poinsett; Mississippi; Cross; Crittenden; St. Francis; Lee; Phillips; Dunklin; Pemiscot; DeSoto; Marshall; Benton; Tippah; Alcorn; Tishomingo; Tunica; Tate; Prentiss; Coahoma;",
+      "opportunity": "HVAC contractors overwhelmed in Clay; Greene; Craighead; Poinsett; Mississippi; Cross; Crittenden; St. Francis; Lee; Phillips; Dunklin; Pemiscot; DeSoto; Marshall; Benton; Tippah; Alcorn; Tishomingo; Tunica; Tate; Prentiss; Coahoma;. Heat emergency",
+      "action": "Target HVAC businesses in Clay; Greene; Craighead; Poinsett; Mississippi; Cross; Crittenden; St. Francis; Lee; Phillips; Dunklin; Pemiscot; DeSoto; Marshall; Benton; Tippah; Alcorn; Tishomingo; Tunica; Tate; Prentiss; Coahoma; with missed-call pitch. They're too busy to answer right now.",
+      "urgency": "immediate",
+      "confidence": 90
+    },
+    {
+      "region": "Cherokee; Clay; Scott; Campbell; Claiborne; Hancock; Hawkins; Sullivan; Johnson; Morgan; Anderson; Union; Grainger; Hamblen; Northwest Cocke; Cocke Smoky Mountains; Northwest Greene; Southeast Greene;",
+      "opportunity": "HVAC contractors overwhelmed in Cherokee; Clay; Scott; Campbell; Claiborne; Hancock; Hawkins; Sullivan; Johnson; Morgan; Anderson; Union; Grainger; Hamblen; Northwest Cocke; Cocke Smoky Mountains; Northwest Greene; Southeast Greene;. Heat emergency",
+      "action": "Target HVAC businesses in Cherokee; Clay; Scott; Campbell; Claiborne; Hancock; Hawkins; Sullivan; Johnson; Morgan; Anderson; Union; Grainger; Hamblen; Northwest Cocke; Cocke Smoky Mountains; Northwest Greene; Southeast Greene; with missed-call pitch. They're too busy to answer right now.",
+      "urgency": "immediate",
+      "confidence": 90
+    },
+    {
+      "region": "Pickett; Overton; Fentress; White; Cumberland; Coffee; Warren; Grundy; Van Buren",
+      "opportunity": "HVAC contractors overwhelmed in Pickett; Overton; Fentress; White; Cumberland; Coffee; Warren; Grundy; Van Buren. Heat emergency",
+      "action": "Target HVAC businesses in Pickett; Overton; Fentress; White; Cumberland; Coffee; Warren; Grundy; Van Buren with missed-call pitch. They're too busy to answer right now.",
+      "urgency": "immediate",
+      "confidence": 90
+    },
+    {
+      "region": "Stewart; Montgomery; Robertson; Sumner; Macon; Clay; Houston; Humphreys; Dickson; Cheatham; Davidson; Wilson; Trousdale; Smith; Jackson; Putnam; Perry; Hickman; Lewis; Williamson; Maury; Marshall; Rut",
+      "opportunity": "HVAC contractors overwhelmed in Stewart; Montgomery; Robertson; Sumner; Macon; Clay; Houston; Humphreys; Dickson; Cheatham; Davidson; Wilson; Trousdale; Smith; Jackson; Putnam; Perry; Hickman; Lewis; Williamson; Maury; Marshall; Rut. Heat emergency",
+      "action": "Target HVAC businesses in Stewart; Montgomery; Robertson; Sumner; Macon; Clay; Houston; Humphreys; Dickson; Cheatham; Davidson; Wilson; Trousdale; Smith; Jackson; Putnam; Perry; Hickman; Lewis; Williamson; Maury; Marshall; Rut with missed-call pitch. They're too busy to answer right now.",
+      "urgency": "immediate",
+      "confidence": 90
+    },
+    {
+      "region": "Lauderdale; Colbert; Franklin; Lawrence; Limestone; Madison; Morgan; Marshall; Jackson; DeKalb; Cullman; Moore; Lincoln; Franklin",
+      "opportunity": "HVAC contractors overwhelmed in Lauderdale; Colbert; Franklin; Lawrence; Limestone; Madison; Morgan; Marshall; Jackson; DeKalb; Cullman; Moore; Lincoln; Franklin. Heat emergency",
+      "action": "Target HVAC businesses in Lauderdale; Colbert; Franklin; Lawrence; Limestone; Madison; Morgan; Marshall; Jackson; DeKalb; Cullman; Moore; Lincoln; Franklin with missed-call pitch. They're too busy to answer right now.",
+      "urgency": "immediate",
+      "confidence": 90
+    },
+    {
+      "region": "Lauderdale; Colbert; Franklin; Lawrence; Limestone; Madison; Morgan; Marshall; Jackson; DeKalb; Cullman; Moore; Lincoln; Franklin",
+      "opportunity": "HVAC contractors overwhelmed in Lauderdale; Colbert; Franklin; Lawrence; Limestone; Madison; Morgan; Marshall; Jackson; DeKalb; Cullman; Moore; Lincoln; Franklin. Heat emergency",
+      "action": "Target HVAC businesses in Lauderdale; Colbert; Franklin; Lawrence; Limestone; Madison; Morgan; Marshall; Jackson; DeKalb; Cullman; Moore; Lincoln; Franklin with missed-call pitch. They're too busy to answer right now.",
+      "urgency": "immediate",
+      "confidence": 90
+    },
+    {
+      "region": "Chicot; East Carroll; Madison; Tensas; Bolivar; Sunflower; Leflore; Washington; Humphreys; Holmes; Issaquena; Sharkey; Yazoo; Madison; Warren; Hinds; Rankin; Claiborne; Copiah; Simpson; Jefferson",
+      "opportunity": "HVAC contractors overwhelmed in Chicot; East Carroll; Madison; Tensas; Bolivar; Sunflower; Leflore; Washington; Humphreys; Holmes; Issaquena; Sharkey; Yazoo; Madison; Warren; Hinds; Rankin; Claiborne; Copiah; Simpson; Jefferson. Heat emergency",
+      "action": "Target HVAC businesses in Chicot; East Carroll; Madison; Tensas; Bolivar; Sunflower; Leflore; Washington; Humphreys; Holmes; Issaquena; Sharkey; Yazoo; Madison; Warren; Hinds; Rankin; Claiborne; Copiah; Simpson; Jefferson with missed-call pitch. They're too busy to answer right now.",
+      "urgency": "immediate",
+      "confidence": 90
+    },
+    {
+      "region": "Chicot; East Carroll; Madison; Tensas; Bolivar; Sunflower; Leflore; Washington; Humphreys; Holmes; Issaquena; Sharkey; Yazoo; Madison; Warren; Hinds; Rankin; Claiborne; Copiah; Simpson; Jefferson",
+      "opportunity": "HVAC contractors overwhelmed in Chicot; East Carroll; Madison; Tensas; Bolivar; Sunflower; Leflore; Washington; Humphreys; Holmes; Issaquena; Sharkey; Yazoo; Madison; Warren; Hinds; Rankin; Claiborne; Copiah; Simpson; Jefferson. Heat emergency",
+      "action": "Target HVAC businesses in Chicot; East Carroll; Madison; Tensas; Bolivar; Sunflower; Leflore; Washington; Humphreys; Holmes; Issaquena; Sharkey; Yazoo; Madison; Warren; Hinds; Rankin; Claiborne; Copiah; Simpson; Jefferson with missed-call pitch. They're too busy to answer right now.",
+      "urgency": "immediate",
+      "confidence": 90
+    }
+  ],
+  "economic_context": [
+    {
+      "source": "Treasury",
+      "data": {},
+      "relevance": "Interest rate environment affects small business expansion/contraction."
+    }
+  ],
+  "boss_heat_score": 100,
+  "recommendation": "HOT DAY. Weather-driven demand in Armstrong, TX; Carson, TX; Donley, TX; Gray, TX, Bailey, TX; Cochran, TX, Jeff Davis, TX; Reeves, TX. Call HVAC/roofers there NOW.",
+  "daily_briefing": "ATLAS BOSS Score: 100/100\nDEMAND: STORM in Brewster, TX; Pecos, TX \u2014 target roofing businesses\nHOT DAY. Weather-driven demand in Armstrong, TX; Carson, TX; Donley, TX; Gray, TX, Bailey, TX; Cochran, TX, Jeff Davis, TX; Reeves, TX. Call HVAC/roofers there NOW."
 }
