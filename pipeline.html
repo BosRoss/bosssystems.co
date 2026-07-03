@@ -1,0 +1,352 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>BOSS Pipeline</title>
+<style>
+*{margin:0;padding:0;box-sizing:border-box}
+body{background:#0a0a0a;color:#ccc;font-family:'SF Mono',Menlo,monospace;font-size:13px;min-height:100vh;padding-bottom:80px}
+nav{display:flex;align-items:center;gap:12px;padding:6px 16px;background:#060606;border-bottom:1px solid #1a1a1a;font-size:11px;overflow-x:auto;white-space:nowrap}
+nav a{color:#888;text-decoration:none}
+nav .active{color:#4B92DB;font-weight:600}
+.header{padding:16px;border-bottom:1px solid #1a1a1a}
+.header h1{color:#4B92DB;font-size:18px;letter-spacing:2px;margin-bottom:8px}
+
+.credits-bar{background:#111;border:1px solid #222;border-radius:8px;padding:12px 16px;margin:12px 16px}
+.credits-track{height:8px;background:#1a1a1a;border-radius:4px;overflow:hidden;margin:8px 0}
+.credits-fill{height:100%;border-radius:4px;transition:width .5s}
+.credits-meta{display:flex;justify-content:space-between;font-size:11px;color:#888}
+
+.templates-bar{background:#111;border:1px solid #222;border-radius:8px;padding:10px 16px;margin:0 16px 12px;display:flex;align-items:center;gap:8px;font-size:11px;overflow-x:auto}
+.tmpl-dot{width:8px;height:8px;border-radius:50%;display:inline-block}
+.tmpl-dot.ok{background:#00ff41}
+.tmpl-dot.missing{background:#ff4444}
+.tmpl-label{color:#888;white-space:nowrap}
+
+.section{padding:8px 16px}
+.section-title{font-size:11px;text-transform:uppercase;letter-spacing:2px;padding:8px 0;display:flex;align-items:center;gap:8px}
+.section-title .count{background:#222;color:#aaa;padding:1px 6px;border-radius:8px;font-size:10px}
+
+.card{background:#111;border:1px solid #222;border-radius:10px;padding:14px;margin-bottom:10px}
+.card-top{display:flex;justify-content:space-between;align-items:flex-start}
+.card-name{color:#eee;font-size:14px;font-weight:600}
+.card-badge{font-size:10px;padding:2px 8px;border-radius:10px;font-weight:normal}
+.badge-ready{background:#4B92DB20;color:#4B92DB;border:1px solid #4B92DB40}
+.badge-built{background:#00ff4120;color:#00ff41;border:1px solid #00ff4140}
+.badge-needs{background:#ffaa0020;color:#ffaa00;border:1px solid #ffaa0040}
+.badge-sold{background:#C9A84C20;color:#C9A84C;border:1px solid #C9A84C40}
+.badge-unsold{background:#ff8c0020;color:#ff8c00;border:1px solid #ff8c0040}
+.badge-building{background:#9b59b620;color:#9b59b6;border:1px solid #9b59b640}
+.card-meta{color:#888;font-size:11px;margin:4px 0 0}
+.card-meta span{margin-right:10px}
+
+.card-script{background:#0d0d0d;border:1px solid #1a1a1a;border-radius:6px;padding:10px;margin:10px 0 0;font-size:11px;color:#aaa;line-height:1.5;display:none}
+.card-script.open{display:block}
+.card-questions{margin:8px 0 0;font-size:11px}
+.card-questions li{color:#ffaa00;padding:2px 0;list-style:none}
+.card-questions li::before{content:"? ";color:#666}
+
+.actions{display:flex;gap:8px;margin-top:12px;flex-wrap:wrap}
+.btn{padding:10px 14px;border-radius:8px;font-size:12px;font-family:inherit;text-decoration:none;display:inline-flex;align-items:center;gap:5px;min-height:44px;cursor:pointer;border:1px solid;transition:opacity .15s;-webkit-tap-highlight-color:transparent}
+.btn:active{opacity:.6}
+.btn-call{background:#00ff4115;color:#00ff41;border-color:#00ff4130}
+.btn-build{background:#4B92DB15;color:#4B92DB;border-color:#4B92DB30}
+.btn-copy{background:#88888815;color:#aaa;border-color:#88888830}
+.btn-view{background:#C9A84C15;color:#C9A84C;border-color:#C9A84C30}
+.btn-sold{background:#00ff4115;color:#00ff41;border-color:#00ff4130}
+.btn-reject{background:#ff444415;color:#ff4444;border-color:#ff444430}
+.btn-script{background:#88888810;color:#888;border-color:#88888820;font-size:11px;min-height:36px;padding:6px 10px}
+.btn-recycle{background:#ff8c0015;color:#ff8c00;border-color:#ff8c0030}
+
+.toast{position:fixed;bottom:20px;left:50%;transform:translateX(-50%);background:#00ff41;color:#000;padding:10px 24px;border-radius:8px;font-size:13px;font-weight:600;opacity:0;transition:opacity .3s;pointer-events:none;z-index:100}
+.toast.show{opacity:1}
+
+.empty{color:#555;text-align:center;padding:20px;font-style:italic}
+</style>
+</head>
+<body>
+<nav>
+  <a href="command.html">Command</a>
+  <a href="ops.html">Ops</a>
+  <a href="atlas.html">ATLAS</a>
+  <a href="engine.html">Leads</a>
+  <a href="social.html">Social</a>
+  <span class="active">Pipeline</span>
+  <a href="index.html" style="margin-left:auto">Website</a>
+</nav>
+
+<div class="header">
+  <h1>WEBSITE PIPELINE</h1>
+  <div style="color:#888;font-size:11px">Lead > Build > Call > Close</div>
+</div>
+
+<div class="credits-bar" id="credits-bar">
+  <div style="display:flex;justify-content:space-between;align-items:baseline">
+    <span style="color:#aaa;font-size:12px">Lovable Credits</span>
+    <span style="font-size:16px;font-weight:600" id="credits-num">--/200</span>
+  </div>
+  <div class="credits-track"><div class="credits-fill" id="credits-fill" style="width:0%;background:#4B92DB"></div></div>
+  <div class="credits-meta">
+    <span id="credits-avg">-- avg/site</span>
+    <span id="credits-sites">-- sites tracked</span>
+  </div>
+</div>
+
+<div class="templates-bar" id="templates-bar"></div>
+
+<div id="pipeline"></div>
+
+<div class="toast" id="toast"></div>
+
+<script>
+const DATA_URL = 'https://raw.githubusercontent.com/BosRoss/bosssystems.co/main/lovable_builds.json';
+let _data = null;
+
+async function load() {
+  try {
+    const r = await fetch(DATA_URL + '?t=' + Date.now());
+    if (!r.ok) throw new Error('No data');
+    _data = await r.json();
+    render(_data);
+  } catch(e) {
+    document.getElementById('pipeline').innerHTML = '<div class="empty">No pipeline data yet. Run: boss pipeline export</div>';
+  }
+}
+
+function render(data) {
+  const cs = data.credit_stats || {};
+  const budget = data.credits_budget || 200;
+  const used = cs.total_credits || 0;
+  const pct = Math.min(100, Math.round(used / budget * 100));
+
+  document.getElementById('credits-num').textContent = used + '/' + budget;
+  document.getElementById('credits-fill').style.width = pct + '%';
+  document.getElementById('credits-fill').style.background = pct > 80 ? '#ff4444' : pct > 50 ? '#ffaa00' : '#4B92DB';
+  document.getElementById('credits-avg').textContent = (cs.avg_per_site || '--') + ' avg/site';
+  document.getElementById('credits-sites').textContent = (cs.sites_tracked || 0) + ' sites tracked';
+
+  // Templates bar
+  const templates = data.templates || {};
+  const niches = ['HVAC','Plumbing','Electrical','Roofing','Law'];
+  let thtml = '<span style="color:#aaa;font-size:11px;margin-right:4px">Templates:</span>';
+  niches.forEach(n => {
+    const ok = templates[n] && templates[n].url;
+    thtml += `<span class="tmpl-dot ${ok?'ok':'missing'}"></span><span class="tmpl-label">${n}</span>`;
+  });
+  const tCount = niches.filter(n => templates[n] && templates[n].url).length;
+  thtml += `<span style="color:#aaa;margin-left:auto">${tCount}/5</span>`;
+  document.getElementById('templates-bar').innerHTML = thtml;
+
+  // Group sites
+  const sites = data.sites || [];
+  const groups = {
+    building: sites.filter(s => s.status === 'building'),
+    ready: sites.filter(s => s.status === 'ready'),
+    needs_call: sites.filter(s => s.status === 'needs_call'),
+    built: sites.filter(s => s.status === 'built'),
+    sold: sites.filter(s => s.status === 'sold'),
+    unsold: sites.filter(s => s.status === 'unsold'),
+  };
+
+  let html = '';
+
+  // BUILDING
+  if (groups.building.length) {
+    html += section('Building', groups.building.length, '#9b59b6');
+    groups.building.forEach(s => { html += siteCard(s); });
+  }
+
+  // READY TO BUILD
+  if (groups.ready.length) {
+    html += section('Ready to Build', groups.ready.length, '#4B92DB');
+    groups.ready.forEach(s => { html += siteCard(s); });
+  }
+
+  // BUILT — need to sell
+  if (groups.built.length) {
+    html += section('Built — Call to Sell', groups.built.length, '#00ff41');
+    groups.built.forEach(s => { html += siteCard(s); });
+  }
+
+  // NEEDS CALL
+  if (groups.needs_call.length) {
+    html += section('Needs Info Call', groups.needs_call.length, '#ffaa00');
+    groups.needs_call.forEach(s => { html += siteCard(s); });
+  }
+
+  // SOLD
+  if (groups.sold.length) {
+    html += section('Sold', groups.sold.length, '#C9A84C');
+    groups.sold.forEach(s => { html += siteCard(s); });
+  }
+
+  // UNSOLD — recyclable
+  if (groups.unsold.length) {
+    html += section('Unsold — Recyclable', groups.unsold.length, '#ff8c00');
+    groups.unsold.forEach(s => { html += siteCard(s); });
+  }
+
+  if (!sites.length) {
+    html = '<div class="empty">No sites in pipeline yet.<br>Run: boss website "Business" "City ST" --save</div>';
+  }
+
+  document.getElementById('pipeline').innerHTML = html;
+}
+
+function section(title, count, color) {
+  return `<div class="section"><div class="section-title" style="color:${color}">${title} <span class="count">${count}</span></div></div>`;
+}
+
+function siteCard(s) {
+  const slug = s.slug || '';
+  const esc = str => (str||'').replace(/'/g, "\\'").replace(/"/g, '&quot;');
+  let badge = '';
+  if (s.status === 'ready') badge = '<span class="card-badge badge-ready">READY</span>';
+  else if (s.status === 'built') badge = '<span class="card-badge badge-built">BUILT</span>';
+  else if (s.status === 'needs_call') badge = '<span class="card-badge badge-needs">NEEDS INFO</span>';
+  else if (s.status === 'sold') badge = '<span class="card-badge badge-sold">SOLD</span>';
+  else if (s.status === 'unsold') badge = '<span class="card-badge badge-unsold">UNSOLD</span>';
+  else if (s.status === 'building') badge = '<span class="card-badge badge-building">BUILDING</span>';
+
+  let meta = '';
+  if (s.niche) meta += `<span>${s.niche}</span>`;
+  if (s.city) meta += `<span>${s.city}</span>`;
+  if (s.rating) meta += `<span>${s.rating}★ (${s.review_count || 0})</span>`;
+  if (s.credits_used != null) meta += `<span>${s.credits_used} credits</span>`;
+  if (s.score && s.status !== 'sold') meta += `<span>${s.score}%</span>`;
+
+  let actions = '<div class="actions">';
+  let scriptHtml = '';
+
+  if (s.status === 'ready') {
+    if (s.remix_prompt) {
+      const promptEsc = esc(s.remix_prompt);
+      actions += `<button class="btn btn-copy" onclick="copyText('${promptEsc}')">Copy Prompt</button>`;
+    }
+    if (s.remix_url) {
+      actions += `<a class="btn btn-build" href="${s.remix_url}" target="_blank">Remix in Lovable</a>`;
+    } else {
+      actions += `<span class="btn btn-build" style="opacity:.4;cursor:default">Template needed</span>`;
+    }
+    if (s.phone_digits) {
+      actions += `<a class="btn btn-call" href="tel:+1${s.phone_digits}">Call</a>`;
+    }
+  }
+
+  else if (s.status === 'building') {
+    if (s.remix_prompt) {
+      const promptEsc = esc(s.remix_prompt);
+      actions += `<button class="btn btn-copy" onclick="copyText('${promptEsc}')">Copy Prompt</button>`;
+    }
+    if (s.phone_digits) {
+      actions += `<a class="btn btn-call" href="tel:+1${s.phone_digits}">Call</a>`;
+    }
+  }
+
+  else if (s.status === 'built') {
+    if (s.phone_digits) {
+      actions += `<a class="btn btn-call" href="tel:+1${s.phone_digits}">Call to Sell</a>`;
+    }
+    if (s.url) {
+      actions += `<a class="btn btn-view" href="${s.url}" target="_blank">View Site</a>`;
+    }
+    actions += `<button class="btn btn-sold" onclick="markAction('${slug}','${esc(s.name)}','sold')">Sold</button>`;
+    actions += `<button class="btn btn-reject" onclick="markAction('${slug}','${esc(s.name)}','reject')">No Sale</button>`;
+  }
+
+  else if (s.status === 'needs_call') {
+    if (s.phone_digits) {
+      actions += `<a class="btn btn-call" href="tel:+1${s.phone_digits}">Call</a>`;
+    }
+  }
+
+  else if (s.status === 'sold') {
+    if (s.url) {
+      actions += `<a class="btn btn-view" href="${s.url}" target="_blank">View Site</a>`;
+    }
+  }
+
+  else if (s.status === 'unsold') {
+    if (s.phone_digits) {
+      actions += `<a class="btn btn-call" href="tel:+1${s.phone_digits}">Retry Call</a>`;
+    }
+    if (s.url) {
+      actions += `<a class="btn btn-view" href="${s.url}" target="_blank">View Site</a>`;
+    }
+  }
+
+  // Script toggle
+  if (s.call_script) {
+    actions += `<button class="btn btn-script" onclick="toggleScript('script-${slug}')">Script</button>`;
+    scriptHtml = `<div class="card-script" id="script-${slug}">${s.call_script}</div>`;
+  }
+
+  actions += '</div>';
+
+  // Questions for needs_call
+  let questionsHtml = '';
+  if (s.status === 'needs_call' && s.remaining_questions && s.remaining_questions.length) {
+    questionsHtml = '<ul class="card-questions">';
+    s.remaining_questions.forEach(q => { questionsHtml += `<li>${q}</li>`; });
+    questionsHtml += '</ul>';
+  }
+
+  return `<div class="section"><div class="card">
+    <div class="card-top"><span class="card-name">${s.name || '?'}</span>${badge}</div>
+    <div class="card-meta">${meta}</div>
+    ${questionsHtml}${scriptHtml}${actions}
+  </div></div>`;
+}
+
+function toggleScript(id) {
+  const el = document.getElementById(id);
+  if (el) el.classList.toggle('open');
+}
+
+async function copyText(text) {
+  try {
+    await navigator.clipboard.writeText(text);
+    showToast('Prompt copied');
+  } catch(e) {
+    const ta = document.createElement('textarea');
+    ta.value = text;
+    ta.style.cssText = 'position:fixed;left:-9999px';
+    document.body.appendChild(ta);
+    ta.select();
+    document.execCommand('copy');
+    document.body.removeChild(ta);
+    showToast('Prompt copied');
+  }
+}
+
+function markAction(slug, name, action) {
+  const title = action === 'sold' ? 'Pipeline: SOLD' : 'Pipeline: No Sale';
+  const cmd = action === 'sold'
+    ? `python3 ~/Desktop/BOSS_HQ/scripts/lovable_site_pipeline.py close ${slug}`
+    : `python3 ~/Desktop/BOSS_HQ/scripts/lovable_site_pipeline.py reject ${slug}`;
+  const body = `${action === 'sold' ? 'SOLD' : 'NO SALE'}: ${name}\nRun: ${cmd}`;
+  const tags = action === 'sold' ? 'money_with_wings' : 'recycle';
+
+  fetch('https://ntfy.sh/bossai-agent-tasks', {
+    method: 'POST',
+    body: body,
+    headers: {'Title': title, 'Tags': tags, 'Priority': action === 'sold' ? '4' : '3'}
+  }).then(() => {
+    showToast(action === 'sold' ? 'Marked SOLD' : 'Marked unsold');
+  }).catch(() => {
+    showToast('Sent to ntfy');
+  });
+}
+
+function showToast(msg) {
+  const t = document.getElementById('toast');
+  t.textContent = msg;
+  t.classList.add('show');
+  setTimeout(() => t.classList.remove('show'), 2000);
+}
+
+load();
+</script>
+</body>
+</html>
