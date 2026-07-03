@@ -197,6 +197,7 @@ footer{text-align:center;padding:16px;font-family:'Share Tech Mono',monospace;fo
     <div class="tab active" id="tab-cmd" onclick="switchTab('cmd')">COMMAND</div>
     <div class="tab" id="tab-bpp" onclick="switchTab('bpp')">BPP PARTNERS <span class="tab-count" id="bpp-count"></span></div>
     <div class="tab" id="tab-engage" onclick="switchTab('engage')">ENGAGE <span class="tab-count" id="engage-count"></span></div>
+    <div class="tab" id="tab-sites" onclick="switchTab('sites')">SITES <span class="tab-count" id="sites-count"></span></div>
   </div>
 
   <!-- ═══ COMMAND TAB ═══ -->
@@ -518,6 +519,38 @@ footer{text-align:center;padding:16px;font-family:'Share Tech Mono',monospace;fo
     </div>
 
   </div><!-- /content-engage -->
+
+  <!-- ═══ SITES TAB — Website Pipeline ═══ -->
+  <div class="tab-content" id="content-sites">
+
+    <div class="stats-bar" id="sites-stats">
+      <div class="stat"><div class="stat-value" style="color:var(--green)" id="sites-live">0</div><div class="stat-label">Live</div></div>
+      <div class="stat"><div class="stat-value" style="color:var(--blue)" id="sites-ready">0</div><div class="stat-label">Ready</div></div>
+      <div class="stat"><div class="stat-value" style="color:var(--text)" id="sites-avg">--</div><div class="stat-label">Avg Cr/Site</div></div>
+    </div>
+
+    <!-- Credits bar -->
+    <div style="background:var(--bg2);border:1px solid var(--border);padding:12px 16px;margin-bottom:12px">
+      <div style="display:flex;justify-content:space-between;font-size:12px;margin-bottom:6px">
+        <span style="color:var(--muted)">Lovable Credits</span>
+        <span style="font-family:'Share Tech Mono',monospace" id="cr-label">--/200</span>
+      </div>
+      <div style="height:6px;background:var(--bg);border-radius:3px;overflow:hidden">
+        <div id="cr-fill" style="height:100%;border-radius:3px;width:0%;background:var(--blue);transition:width .5s"></div>
+      </div>
+    </div>
+
+    <!-- Templates status -->
+    <div style="background:var(--bg2);border:1px solid var(--border);padding:10px 16px;margin-bottom:16px;display:flex;align-items:center;gap:6px;font-size:11px;overflow-x:auto" id="tmpl-bar"></div>
+
+    <!-- Site cards by stage -->
+    <div id="sites-pipeline"></div>
+
+    <div style="margin-top:20px;padding:12px;font-size:10px;color:var(--dim);font-family:'Share Tech Mono',monospace">
+      CLI: boss pipeline status | remix SLUG | close SLUG | reject SLUG | export
+    </div>
+
+  </div><!-- /content-sites -->
 
 </main>
 
@@ -1022,6 +1055,158 @@ function copyReply(postId) {
       alert('No draft found. Generate one first:\nboss_command.py engage reply ' + postId);
     }
   });
+}
+
+/* ═══ SITES PIPELINE ═══ */
+(function(){
+  var PIPE_URL = 'https://raw.githubusercontent.com/BosRoss/bosssystems.co/main/lovable_builds.json';
+  fetch(PIPE_URL + '?t=' + Date.now())
+  .then(function(r){ return r.json(); })
+  .then(function(data){
+    var sites = data.sites || [];
+    var cs = data.credit_stats || {};
+    var budget = data.credits_budget || 200;
+    var used = cs.total_credits || 0;
+    var pct = Math.min(100, Math.round(used / budget * 100));
+    var built = sites.filter(function(s){return s.status==='built'||s.status==='sold';});
+    var ready = sites.filter(function(s){return s.status==='ready';});
+    var needs = sites.filter(function(s){return s.status==='needs_call';});
+    var unsold = sites.filter(function(s){return s.status==='unsold';});
+    var building = sites.filter(function(s){return s.status==='building';});
+
+    document.getElementById('sites-count').textContent = sites.length;
+    document.getElementById('sites-live').textContent = built.length;
+    document.getElementById('sites-ready').textContent = ready.length + building.length;
+    document.getElementById('sites-avg').textContent = cs.avg_per_site || '--';
+    document.getElementById('cr-label').textContent = used + '/' + budget;
+    document.getElementById('cr-fill').style.width = pct + '%';
+    document.getElementById('cr-fill').style.background = pct > 80 ? 'var(--red)' : pct > 50 ? 'var(--orange)' : 'var(--blue)';
+
+    var niches = ['HVAC','Plumbing','Electrical','Roofing','Law'];
+    var templates = data.templates || {};
+    var thtml = '<span style="color:var(--muted);margin-right:4px">Templates:</span>';
+    niches.forEach(function(n){
+      var ok = templates[n] && templates[n].url;
+      thtml += '<span style="display:inline-block;width:7px;height:7px;border-radius:50%;background:'+(ok?'var(--green)':'var(--red)')+';margin:0 3px 0 6px"></span><span style="color:var(--dim)">'+n+'</span>';
+    });
+    document.getElementById('tmpl-bar').innerHTML = thtml;
+
+    var html = '';
+    function esc(s){return (s||'').replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;').replace(/'/g,'&#39;');}
+
+    function siteCard(s, stage){
+      var h = '<div style="background:var(--bg2);border:1px solid var(--border);padding:14px 16px;margin-bottom:6px">';
+      h += '<div style="display:flex;justify-content:space-between;align-items:flex-start">';
+      h += '<div style="flex:1"><div style="font-size:14px;font-weight:700;color:var(--text)">'+esc(s.name)+'</div>';
+      h += '<div style="font-size:11px;color:var(--muted);margin-top:2px">';
+      if(s.niche) h += s.niche+' ';
+      if(s.city) h += '&middot; '+esc(s.city)+' ';
+      if(s.rating) h += '&middot; '+s.rating+'&#9733; ('+( s.review_count||0)+')';
+      h += '</div></div>';
+      if(s.credits_used!=null) h += '<div style="font-family:\'Share Tech Mono\',monospace;font-size:12px;color:var(--muted)">'+s.credits_used+'cr</div>';
+      h += '</div>';
+
+      if(s.call_script){
+        var sid = 'script-'+esc(s.slug);
+        h += '<div id="'+sid+'" style="display:none;margin-top:8px;padding:8px 10px;background:var(--bg);border:1px solid var(--border);font-size:11px;color:var(--muted);line-height:1.5">'+esc(s.call_script)+'</div>';
+      }
+
+      if(s.remaining_questions && s.remaining_questions.length){
+        h += '<div style="margin-top:8px;font-size:11px">';
+        s.remaining_questions.forEach(function(q){h+='<div style="color:var(--orange);padding:2px 0">? '+esc(q)+'</div>';});
+        h += '</div>';
+      }
+
+      h += '<div style="display:flex;gap:6px;margin-top:10px;flex-wrap:wrap">';
+
+      if(stage==='ready'){
+        if(s.remix_prompt) h += '<button onclick="siteCopy(\''+esc(s.slug)+'\')" style="flex:1;padding:8px;background:var(--bg);border:1px solid var(--border);color:var(--blue);font-size:11px;font-family:\'Share Tech Mono\',monospace;cursor:pointer;min-height:44px" id="cp-'+esc(s.slug)+'">COPY PROMPT</button>';
+        if(s.remix_url) h += '<a href="'+esc(s.remix_url)+'" target="_blank" style="flex:1;text-align:center;padding:8px;background:var(--bg);border:1px solid var(--border);color:var(--purple);font-size:11px;font-family:\'Share Tech Mono\',monospace;text-decoration:none;min-height:44px;display:flex;align-items:center;justify-content:center">REMIX</a>';
+        else h += '<span style="flex:1;text-align:center;padding:8px;background:var(--bg);border:1px solid var(--border);color:var(--dim);font-size:11px;font-family:\'Share Tech Mono\',monospace;min-height:44px;display:flex;align-items:center;justify-content:center">NEED TEMPLATE</span>';
+      }
+
+      if(s.phone_digits){
+        var label = stage==='built' ? 'CALL TO SELL' : 'CALL';
+        h += '<a href="tel:+1'+s.phone_digits+'" style="flex:1;text-align:center;padding:8px;background:rgba(0,232,122,0.06);border:1px solid rgba(0,232,122,0.15);color:var(--green);font-size:11px;font-family:\'Share Tech Mono\',monospace;text-decoration:none;min-height:44px;display:flex;align-items:center;justify-content:center">'+label+'</a>';
+      }
+
+      if(s.call_script){
+        h += '<button onclick="document.getElementById(\'script-'+esc(s.slug)+'\').style.display=document.getElementById(\'script-'+esc(s.slug)+'\').style.display===\'none\'?\'block\':\'none\'" style="padding:8px 10px;background:var(--bg);border:1px solid var(--border);color:var(--dim);font-size:10px;font-family:\'Share Tech Mono\',monospace;cursor:pointer;min-height:44px">SCRIPT</button>';
+      }
+
+      if(stage==='built'){
+        if(s.url) h += '<a href="'+esc(s.url)+'" target="_blank" style="padding:8px 10px;background:var(--bg);border:1px solid var(--border);color:var(--gold);font-size:11px;font-family:\'Share Tech Mono\',monospace;text-decoration:none;min-height:44px;display:flex;align-items:center;justify-content:center">VIEW</a>';
+        h += '<button onclick="siteAction(\''+esc(s.slug)+'\',\''+esc(s.name)+'\',\'sold\')" style="padding:8px 10px;background:rgba(0,232,122,0.06);border:1px solid rgba(0,232,122,0.15);color:var(--green);font-size:11px;font-family:\'Share Tech Mono\',monospace;cursor:pointer;min-height:44px">SOLD</button>';
+        h += '<button onclick="siteAction(\''+esc(s.slug)+'\',\''+esc(s.name)+'\',\'reject\')" style="padding:8px 10px;background:rgba(255,59,59,0.06);border:1px solid rgba(255,59,59,0.15);color:var(--red);font-size:11px;font-family:\'Share Tech Mono\',monospace;cursor:pointer;min-height:44px">NO</button>';
+      }
+
+      if(stage==='sold' && s.url){
+        h += '<a href="'+esc(s.url)+'" target="_blank" style="flex:1;text-align:center;padding:8px;background:var(--bg);border:1px solid var(--border);color:var(--gold);font-size:11px;font-family:\'Share Tech Mono\',monospace;text-decoration:none;min-height:44px;display:flex;align-items:center;justify-content:center">VIEW SITE</a>';
+      }
+
+      if(stage==='unsold'){
+        if(s.url) h += '<a href="'+esc(s.url)+'" target="_blank" style="padding:8px 10px;background:var(--bg);border:1px solid var(--border);color:var(--gold);font-size:11px;font-family:\'Share Tech Mono\',monospace;text-decoration:none;min-height:44px;display:flex;align-items:center;justify-content:center">VIEW</a>';
+        if(s.phone_digits) h += '<a href="tel:+1'+s.phone_digits+'" style="flex:1;text-align:center;padding:8px;background:rgba(255,140,0,0.06);border:1px solid rgba(255,140,0,0.15);color:var(--orange);font-size:11px;font-family:\'Share Tech Mono\',monospace;text-decoration:none;min-height:44px;display:flex;align-items:center;justify-content:center">RETRY</a>';
+      }
+
+      h += '</div></div>';
+      return h;
+    }
+
+    function secHeader(title, count, color){
+      return '<div style="font-size:9px;font-family:\'Share Tech Mono\',monospace;letter-spacing:3px;color:'+color+';text-transform:uppercase;margin:16px 0 8px;padding-bottom:6px;border-bottom:1px solid var(--border)">'+title+' <span style="color:var(--dim)">('+count+')</span></div>';
+    }
+
+    if(building.length){html+=secHeader('BUILDING',building.length,'var(--purple)');building.forEach(function(s){html+=siteCard(s,'building');});}
+    if(ready.length){html+=secHeader('READY TO BUILD',ready.length,'var(--blue)');ready.forEach(function(s){html+=siteCard(s,'ready');});}
+    if(built.filter(function(s){return s.status==='built';}).length){var b=built.filter(function(s){return s.status==='built';});html+=secHeader('BUILT — CALL TO SELL',b.length,'var(--green)');b.forEach(function(s){html+=siteCard(s,'built');});}
+    if(needs.length){html+=secHeader('NEEDS INFO CALL',needs.length,'var(--orange)');needs.forEach(function(s){html+=siteCard(s,'needs_call');});}
+    if(built.filter(function(s){return s.status==='sold';}).length){var so=built.filter(function(s){return s.status==='sold';});html+=secHeader('SOLD',so.length,'var(--gold)');so.forEach(function(s){html+=siteCard(s,'sold');});}
+    if(unsold.length){html+=secHeader('UNSOLD — RECYCLABLE',unsold.length,'var(--orange)');unsold.forEach(function(s){html+=siteCard(s,'unsold');});}
+
+    if(!sites.length) html = '<div class="app-empty" style="font-size:11px">No sites yet. Run: boss website "Biz" "City ST" --save</div>';
+
+    document.getElementById('sites-pipeline').innerHTML = html;
+
+    window._pipelineSites = {};
+    sites.forEach(function(s){ if(s.remix_prompt) window._pipelineSites[s.slug] = s.remix_prompt; });
+  })
+  .catch(function(){
+    document.getElementById('sites-pipeline').innerHTML = '<div class="app-empty" style="font-size:11px">Pipeline data not loaded.</div>';
+  });
+})();
+
+function siteCopy(slug) {
+  var prompt = (window._pipelineSites || {})[slug];
+  if (!prompt) { alert('No prompt available'); return; }
+  navigator.clipboard.writeText(prompt).then(function(){
+    var btn = document.getElementById('cp-' + slug);
+    if(btn){btn.textContent='COPIED';btn.style.color='var(--green)';btn.style.borderColor='rgba(0,232,122,0.3)';setTimeout(function(){btn.textContent='COPY PROMPT';btn.style.color='var(--blue)';btn.style.borderColor='var(--border)';},2000);}
+  }).catch(function(){
+    var ta = document.createElement('textarea');
+    ta.value = prompt;
+    ta.style.cssText = 'position:fixed;left:-9999px';
+    document.body.appendChild(ta);
+    ta.select();
+    document.execCommand('copy');
+    document.body.removeChild(ta);
+    var btn = document.getElementById('cp-' + slug);
+    if(btn){btn.textContent='COPIED';btn.style.color='var(--green)';}
+  });
+}
+
+function siteAction(slug, name, action) {
+  var title = action === 'sold' ? 'Pipeline: SOLD' : 'Pipeline: No Sale';
+  var cmd = action === 'sold'
+    ? 'python3 ~/Desktop/BOSS_HQ/scripts/lovable_site_pipeline.py close ' + slug
+    : 'python3 ~/Desktop/BOSS_HQ/scripts/lovable_site_pipeline.py reject ' + slug;
+  var body = (action === 'sold' ? 'SOLD' : 'NO SALE') + ': ' + name + '\nRun: ' + cmd;
+  fetch('https://ntfy.sh/bossai-agent-tasks', {
+    method: 'POST',
+    body: body,
+    headers: {'Title': title, 'Tags': action==='sold'?'money_with_wings':'recycle', 'Priority': action==='sold'?'4':'3'}
+  }).then(function(){ alert(action==='sold' ? 'Marked SOLD. ntfy sent.' : 'Marked unsold. ntfy sent.'); })
+  .catch(function(){ alert('ntfy sent.'); });
 }
 
 if ('serviceWorker' in navigator) {
