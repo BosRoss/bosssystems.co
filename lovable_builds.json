@@ -37,7 +37,14 @@
   "counts": {
     "built": 0,
     "ready": 3,
-    "needs_call": 1
+    "needs_call": 1,
+    "unsold": 0,
+    "building": 0
   },
-  "updated": "2026-07-03 03:29 PM CT"
+  "updated": "2026-07-03 03:39 PM CT",
+  "credit_stats": {
+    "total_credits": 0,
+    "avg_per_site": 0,
+    "sites_tracked": 0
+  }
 }
