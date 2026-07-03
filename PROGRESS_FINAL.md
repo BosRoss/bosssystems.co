@@ -8,5 +8,5 @@
 | 3 | Lovable Pipeline Finalization | COMPLETE (MCP auth blocked — dry-run verified, builds wired to boss_state) |
 | 4 | Dashboard Tiles | COMPLETE |
 | 5 | Brand Voice Final Sweep | COMPLETE |
-| 6 | Doc Truth Lock | INCOMPLETE |
+| 6 | Doc Truth Lock | COMPLETE |
 | 7 | Completion Contract | INCOMPLETE |
