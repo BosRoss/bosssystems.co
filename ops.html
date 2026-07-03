@@ -105,6 +105,10 @@ body{background:#0a0a0a;color:#ccc;font-family:'SF Mono',Menlo,monospace;font-si
         <h2>SYSTEM HEALTH <span class="badge green">AUDIT</span></h2>
         <div class="card-body"><div style="color:#999;text-align:center;padding:12px">Loading...</div></div>
     </div>
+    <div class="card" id="sales-pulse">
+        <h2>SALES PULSE <span class="badge green">LIVE</span></h2>
+        <div class="card-body"><div style="color:#999;text-align:center;padding:12px">Loading...</div></div>
+    </div>
 </div>
 
 <button class="refresh-btn" onclick="loadData()">REFRESH</button>
@@ -301,28 +305,41 @@ async function loadLovable() {
     if (!el) return;
     try {
         const r = await fetch('https://raw.githubusercontent.com/BosRoss/bosssystems.co/main/lovable_builds.json?t=' + Date.now());
-        if (!r.ok) { el.querySelector('.card-body').innerHTML = '<div style="color:#999;text-align:center;padding:12px">No builds yet.</div>'; return; }
+        if (!r.ok) { el.querySelector('.card-body').innerHTML = '<div style="color:#999;text-align:center;padding:12px">No sites yet. Run: boss website</div>'; return; }
         const data = await r.json();
-        const builds = data.builds || [];
+        const built = (data.sites || []).filter(s => s.status === 'built');
+        const ready = (data.sites || []).filter(s => s.status === 'ready');
+        const needs = (data.sites || []).filter(s => s.status === 'needs_call');
+        const total = built.length + ready.length + needs.length;
         let html = `<div class="four-grid" style="margin-bottom:12px">
-            <div class="mini-card"><div class="big-number blue" style="font-size:24px">${builds.length}</div><div class="big-label">Built</div></div>
-            <div class="mini-card"><div class="big-number yellow" style="font-size:24px">${data.total_credits_spent || 0}</div><div class="big-label">Credits</div></div>
+            <div class="mini-card"><div class="big-number green" style="font-size:24px">${built.length}</div><div class="big-label">Built</div></div>
+            <div class="mini-card"><div class="big-number blue" style="font-size:24px">${ready.length}</div><div class="big-label">Ready</div></div>
+            <div class="mini-card"><div class="big-number yellow" style="font-size:24px">${needs.length}</div><div class="big-label">Need Call</div></div>
+            <div class="mini-card"><div class="big-number" style="font-size:24px;color:#ccc">${total}</div><div class="big-label">Total</div></div>
         </div>`;
-        if (builds.length > 0) {
-            html += '<div style="max-height:200px;overflow-y:auto">';
-            builds.slice(-10).reverse().forEach(b => {
-                html += `<div class="stat-row">
-                    <span class="label">${b.business_name || '?'}</span>
-                    <span class="value">${b.url ? '<a href="'+b.url+'" target="_blank" style="color:#4B92DB">Live</a>' : 'pending'} <span style="color:#666;font-size:10px">${(b.timestamp || '').slice(0,10)}</span></span>
-                </div>`;
+        if (built.length > 0) {
+            html += '<div style="font-size:10px;color:#00ff41;text-transform:uppercase;letter-spacing:1px;margin:8px 0 4px">Built</div>';
+            built.forEach(b => {
+                html += `<div class="stat-row"><span class="label">${b.name}</span><span class="value">${b.url ? '<a href="'+b.url+'" target="_blank" style="color:#4B92DB">Live</a>' : '<span style="color:#00ff41">Done</span>'}</span></div>`;
             });
-            html += '</div>';
-        } else {
-            html += '<div style="color:#999;text-align:center;padding:8px">No sites built yet. Run lovable_site_pipeline.py</div>';
         }
+        if (ready.length > 0) {
+            html += '<div style="font-size:10px;color:#4B92DB;text-transform:uppercase;letter-spacing:1px;margin:8px 0 4px">Ready to Build</div>';
+            ready.forEach(b => {
+                html += `<div class="stat-row"><span class="label">${b.name}</span><span class="value"><span style="color:#4B92DB">${b.score}%</span> <span style="color:#888;font-size:10px">${b.niche}</span></span></div>`;
+            });
+        }
+        if (needs.length > 0) {
+            html += '<div style="font-size:10px;color:#ffaa00;text-transform:uppercase;letter-spacing:1px;margin:8px 0 4px">Needs Call</div>';
+            needs.forEach(b => {
+                html += `<div class="stat-row"><span class="label">${b.name}</span><span class="value"><span style="color:#ffaa00">${b.remaining_required}q</span> ${b.phone ? '<a href="tel:'+b.phone+'" style="color:#999;font-size:10px">'+b.phone+'</a>' : ''}</span></div>`;
+            });
+        }
+        if (total === 0) html += '<div style="color:#999;text-align:center;padding:8px">No sites yet. Run: boss website</div>';
+        if (data.updated) html += `<div style="color:#555;font-size:10px;text-align:right;margin-top:8px">${data.updated}</div>`;
         el.querySelector('.card-body').innerHTML = html;
     } catch(e) {
-        el.querySelector('.card-body').innerHTML = '<div style="color:#999;text-align:center;padding:12px">No builds yet.</div>';
+        el.querySelector('.card-body').innerHTML = '<div style="color:#999;text-align:center;padding:12px">No sites yet.</div>';
     }
 }
 
@@ -351,6 +368,36 @@ async function loadHealth() {
     }
 }
 
+async function loadSalesPulse() {
+    const el = document.getElementById('sales-pulse');
+    if (!el) return;
+    try {
+        const r = await fetch(DATA_URL + '?t=' + Date.now());
+        if (!r.ok) throw new Error('No data');
+        const data = await r.json();
+        const s = data.sections || {};
+        const le = s.lead_engine || {};
+        const rt = s.retell || {};
+        const oc = le.by_outcome || {};
+        const meetings = (oc.meeting_set || 0) + (oc.closed || 0);
+        el.querySelector('.card-body').innerHTML = `
+            <div class="four-grid" style="margin-bottom:12px">
+                <div class="mini-card"><div class="big-number green" style="font-size:24px">$50</div><div class="big-label">MRR</div></div>
+                <div class="mini-card"><div class="big-number blue" style="font-size:24px">1</div><div class="big-label">Clients</div></div>
+                <div class="mini-card"><div class="big-number yellow" style="font-size:24px">${le.total_leads || 0}</div><div class="big-label">Pipeline</div></div>
+                <div class="mini-card"><div class="big-number" style="font-size:24px">${rt.calls_24h || 0}</div><div class="big-label">Calls 24h</div></div>
+            </div>
+            <div class="stat-row"><span class="label">Outbound (24h)</span><span class="value">${rt.outbound_24h || 0}</span></div>
+            <div class="stat-row"><span class="label">Inbound (24h)</span><span class="value">${rt.inbound_24h || 0}</span></div>
+            <div class="stat-row"><span class="label">Avg Call Duration</span><span class="value">${rt.avg_duration_sec || 0}s</span></div>
+            <div class="stat-row"><span class="label">Meetings Set</span><span class="value ${meetings > 0 ? 'green' : ''}">${meetings}</span></div>
+            <div class="stat-row"><span class="label">Suppressed</span><span class="value">${le.suppression_count || 0}</span></div>
+        `;
+    } catch(e) {
+        el.querySelector('.card-body').innerHTML = '<div style="color:#999;text-align:center;padding:12px">Run ops_report.py to generate.</div>';
+    }
+}
+
 async function loadData() {
     try {
         const r = await fetch(DATA_URL + '?t=' + Date.now());
@@ -369,9 +416,11 @@ async function loadData() {
 loadData();
 loadLovable();
 loadHealth();
+loadSalesPulse();
 setInterval(loadData, 120000);
 setInterval(loadLovable, 120000);
 setInterval(loadHealth, 120000);
+setInterval(loadSalesPulse, 120000);
 </script>
 </body>
 </html>
