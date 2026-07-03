@@ -1,0 +1,221 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="BOSS Systems services: free business analysis, full AI builds, and the BOSS Partnership Program. See all the ways we help service businesses grow.">
+  <title>All Services — BOSS Systems</title>
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    :root {
+      --bg: #080808; --bg-2: #0f0f0f; --bg-3: #141414; --bg-4: #1a1a1a;
+      --gold: #C9A84C; --gold-light: #dfc070; --gold-dark: #a8883a;
+      --text: #f0ede8; --text-muted: #bbb; --text-dim: #aaa;
+      --border: #222; --border-gold: rgba(201,168,76,0.25);
+      --font: -apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica, Arial, sans-serif;
+      --radius: 4px; --radius-lg: 8px;
+    }
+    html { scroll-behavior: smooth; }
+    body { background: var(--bg); color: var(--text); font-family: var(--font); font-size: 16px; line-height: 1.65; -webkit-font-smoothing: antialiased; overflow-x: hidden; }
+    a { color: inherit; text-decoration: none; }
+    .container { max-width: 1100px; margin: 0 auto; padding: 0 24px; }
+    section { padding: 96px 0; }
+    h1, h2, h3, h4 { font-weight: 700; line-height: 1.15; color: var(--text); }
+    h2 { font-size: clamp(28px, 4vw, 44px); }
+    p { color: var(--text-muted); }
+
+    .section-label { font-size: 11px; font-weight: 700; letter-spacing: 3px; text-transform: uppercase; color: var(--gold); margin-bottom: 16px; display: block; }
+    .gold-divider { width: 48px; height: 2px; background: var(--gold); margin: 24px auto 0; }
+    .btn { display: inline-flex; align-items: center; justify-content: center; padding: 14px 28px; font-size: 14px; font-weight: 700; letter-spacing: 0.5px; border-radius: var(--radius); cursor: pointer; transition: all 0.2s ease; border: 2px solid transparent; white-space: nowrap; }
+    .btn-gold { background: var(--gold); color: #080808; border-color: var(--gold); }
+    .btn-gold:hover { background: var(--gold-light); border-color: var(--gold-light); }
+    .btn-outline { background: transparent; color: var(--text); border-color: rgba(240,237,232,0.3); }
+    .btn-outline:hover { border-color: var(--gold); color: var(--gold); }
+    .btn-lg { padding: 18px 36px; font-size: 15px; }
+
+    nav { position: fixed; top: 0; left: 0; right: 0; z-index: 100; height: 64px; display: flex; align-items: center; background: rgba(8,8,8,0.92); backdrop-filter: blur(12px); -webkit-backdrop-filter: blur(12px); border-bottom: 1px solid var(--border); }
+    .nav-inner { max-width: 1100px; margin: 0 auto; padding: 0 24px; display: flex; align-items: center; justify-content: space-between; width: 100%; }
+    .nav-logo { font-size: 14px; font-weight: 800; letter-spacing: 4px; text-transform: uppercase; color: var(--gold); }
+
+    .product-card { background: var(--bg-3); border: 1px solid var(--border); border-radius: var(--radius-lg); padding: 36px; display: flex; flex-direction: column; transition: border-color 0.2s; position: relative; }
+    .product-card:hover { border-color: var(--border-gold); }
+    .product-badge { position: absolute; top: 20px; right: 20px; font-size: 10px; font-weight: 800; letter-spacing: 2px; text-transform: uppercase; padding: 4px 10px; border-radius: 2px; background: var(--gold); color: #080808; }
+    .product-name { font-size: 12px; font-weight: 800; letter-spacing: 3px; text-transform: uppercase; color: var(--gold); margin-bottom: 8px; }
+    .product-price { font-size: 26px; font-weight: 800; color: var(--text); margin-bottom: 20px; line-height: 1; }
+    .product-desc { font-size: 15px; line-height: 1.7; color: var(--text-muted); margin-bottom: 24px; flex-grow: 1; }
+    .product-best-for { font-size: 13px; color: var(--text-muted); margin-bottom: 20px; }
+    .product-best-for strong { color: var(--text); }
+    .product-cta { align-self: flex-start; }
+
+    footer { background: var(--bg-2); border-top: 1px solid var(--border); padding: 48px 0 40px; }
+    .footer-inner { max-width: 1100px; margin: 0 auto; padding: 0 24px; text-align: center; }
+    .footer-inner p { font-size: 13px; color: var(--text-dim); }
+    .footer-inner a { color: var(--gold); }
+
+    @media (max-width: 900px) {
+      section { padding: 72px 0; }
+      .products-grid { grid-template-columns: 1fr !important; }
+    }
+    @media (max-width: 600px) {
+      section { padding: 60px 0; }
+      .container { padding: 0 18px; }
+      .product-card { padding: 28px 24px; }
+    }
+  </style>
+</head>
+<body>
+
+  <nav>
+    <div class="nav-inner">
+      <a href="/" class="nav-logo">BOSS Systems</a>
+      <a href="/" class="btn btn-outline" style="padding:8px 16px;font-size:13px;">Back to Home</a>
+    </div>
+  </nav>
+
+  <section style="padding-top:120px;">
+    <div class="container">
+      <div style="text-align:center;margin-bottom:64px;">
+        <span class="section-label">All Services</span>
+        <h2>Everything BOSS Systems Can Build For You</h2>
+        <div class="gold-divider"></div>
+        <p style="font-size:16px;max-width:620px;margin:24px auto 0;line-height:1.7;">Beyond the AI receptionist, we offer full business analysis, custom AI builds, and a partnership program where we build the entire operation for free.</p>
+      </div>
+
+      <div class="products-grid" style="display:grid;grid-template-columns:repeat(2,1fr);gap:20px;margin-bottom:96px;">
+
+        <div class="product-card">
+          <div class="product-badge">Free</div>
+          <div class="product-name">BOSS Analyze</div>
+          <div class="product-price">Free</div>
+          <p class="product-desc">We research your business on Google, read your reviews, scan your competitors, and map every AI automation that would make you money. You get a complete plan with annual values, monthly costs, and ROI ratios. No sales pitch until you see your numbers.</p>
+          <a href="/analyze.html" class="btn btn-gold product-cta">Run My Analysis &rarr;</a>
+        </div>
+
+        <div class="product-card">
+          <div class="product-name">BOSS Partnership Program</div>
+          <div class="product-price">$0 Setup</div>
+          <p class="product-desc">Boston builds the full AI operation for free. You do the physical work. You keep 80%, Boston takes 20%. The business name and clients are yours to keep.</p>
+          <p class="product-best-for"><strong>Best for:</strong> Anyone who wants to start a real business with zero upfront cost</p>
+          <a href="/summer.html" class="btn btn-outline product-cta">See the Program &rarr;</a>
+        </div>
+
+        <div class="product-card">
+          <div class="product-badge">Free</div>
+          <div class="product-name">BOSS Scout</div>
+          <div class="product-price">Free</div>
+          <p class="product-desc">Not sure what business to start? Explore 18 service businesses we've built AI stacks for. See what the AI handles vs. what you still need to do, a real day in the life, the economics, and a revenue calculator.</p>
+          <a href="/learn.html" class="btn btn-gold product-cta">Explore Businesses &rarr;</a>
+        </div>
+
+        <div class="product-card">
+          <div class="product-name">BOSS Build</div>
+          <div class="product-price">Priced on your value</div>
+          <p class="product-desc">We build your complete AI system. Phone answering, outbound calling, payment collection, review automation, customer re-engagement, social media, competitor monitoring. Everything that applies to your specific business, deployed in 72 hours.</p>
+          <a href="/onboard.html" class="btn btn-outline product-cta">Get Started &rarr;</a>
+        </div>
+
+      </div>
+
+      <div style="text-align:center;margin-bottom:64px;">
+        <span class="section-label">BOSS Partnership Program</span>
+        <h2 style="font-size:28px;font-weight:800;letter-spacing:-.5px;margin-bottom:8px;">11 Businesses. $0 to Start. You Keep 80%.</h2>
+        <p style="color:var(--text-dim);max-width:600px;margin:0 auto 48px;font-size:15px;line-height:1.7;">Boston builds the full AI stack for free. You do the physical work. You keep 80% of everything you make.</p>
+      </div>
+
+      <div style="display:grid;grid-template-columns:repeat(auto-fill,minmax(290px,1fr));gap:0;margin-bottom:32px;">
+
+        <div style="background:var(--bg-3);padding:28px;border:1px solid var(--border);">
+          <div style="font-size:15px;font-weight:700;margin-bottom:6px;">Junk Removal</div>
+          <div style="font-size:1.3rem;font-weight:900;color:var(--gold);margin-bottom:4px;">$150-400 / load</div>
+          <div style="font-size:11px;text-transform:uppercase;letter-spacing:2px;color:#aaa;margin-bottom:12px;">$1,500-3,500 / week potential</div>
+          <div style="font-size:13px;color:var(--text-dim);line-height:1.6;">Haul furniture, appliances, yard debris. AI quotes every call and books the job.</div>
+        </div>
+
+        <div style="background:var(--bg-3);padding:28px;border:1px solid var(--border);">
+          <div style="font-size:15px;font-weight:700;margin-bottom:6px;">Pressure Washing</div>
+          <div style="font-size:1.3rem;font-weight:900;color:var(--gold);margin-bottom:4px;">$150-350 / job</div>
+          <div style="font-size:11px;text-transform:uppercase;letter-spacing:2px;color:#aaa;margin-bottom:12px;">$1,000-2,500 / week potential</div>
+          <div style="font-size:13px;color:var(--text-dim);line-height:1.6;">Driveways, houses, decks, patios. AI quotes by square footage and schedules your week.</div>
+        </div>
+
+        <div style="background:var(--bg-3);padding:28px;border:1px solid var(--border);">
+          <div style="font-size:15px;font-weight:700;margin-bottom:6px;">Lawn Care</div>
+          <div style="font-size:1.3rem;font-weight:900;color:var(--gold);margin-bottom:4px;">$35-80 / yard</div>
+          <div style="font-size:11px;text-transform:uppercase;letter-spacing:2px;color:#aaa;margin-bottom:12px;">$500-1,500 / week potential</div>
+          <div style="font-size:13px;color:var(--text-dim);line-height:1.6;">Mow, edge, blow. Ten recurring accounts means a guaranteed paycheck every week.</div>
+        </div>
+
+        <div style="background:var(--bg-3);padding:28px;border:1px solid var(--border);">
+          <div style="font-size:15px;font-weight:700;margin-bottom:6px;">Pool Cleaning</div>
+          <div style="font-size:1.3rem;font-weight:900;color:var(--gold);margin-bottom:4px;">$75-150 / clean</div>
+          <div style="font-size:11px;text-transform:uppercase;letter-spacing:2px;color:#aaa;margin-bottom:12px;">$1,000-2,500 / week potential</div>
+          <div style="font-size:13px;color:var(--text-dim);line-height:1.6;">Weekly pool maintenance. Every house with a pool needs this. AI routes and invoices everything.</div>
+        </div>
+
+        <div style="background:var(--bg-3);padding:28px;border:1px solid var(--border);">
+          <div style="font-size:15px;font-weight:700;margin-bottom:6px;">Interior Car Detailing</div>
+          <div style="font-size:1.3rem;font-weight:900;color:var(--gold);margin-bottom:4px;">$75-150 / car</div>
+          <div style="font-size:11px;text-transform:uppercase;letter-spacing:2px;color:#aaa;margin-bottom:12px;">$600-1,200 / week potential</div>
+          <div style="font-size:13px;color:var(--text-dim);line-height:1.6;">Interior only. About $100 to start. AI books by neighborhood to cut drive time.</div>
+        </div>
+
+        <div style="background:var(--bg-3);padding:28px;border:1px solid var(--border);">
+          <div style="font-size:15px;font-weight:700;margin-bottom:6px;">House Cleaning</div>
+          <div style="font-size:1.3rem;font-weight:900;color:var(--gold);margin-bottom:4px;">$100-250 / clean</div>
+          <div style="font-size:11px;text-transform:uppercase;letter-spacing:2px;color:#aaa;margin-bottom:12px;">$600-1,500 / week potential</div>
+          <div style="font-size:13px;color:var(--text-dim);line-height:1.6;">Deep cleans and recurring weekly cleans. Lock in 4-5 recurring clients for predictable income.</div>
+        </div>
+
+        <div style="background:var(--bg-3);padding:28px;border:1px solid var(--border);">
+          <div style="font-size:15px;font-weight:700;margin-bottom:6px;">Event Decoration Setup</div>
+          <div style="font-size:1.3rem;font-weight:900;color:var(--gold);margin-bottom:4px;">$150-400 / event</div>
+          <div style="font-size:11px;text-transform:uppercase;letter-spacing:2px;color:#aaa;margin-bottom:12px;">$600-1,600 / week potential</div>
+          <div style="font-size:13px;color:var(--text-dim);line-height:1.6;">Balloon garlands, tablescapes, backdrops. 2-3 hours per event.</div>
+        </div>
+
+        <div style="background:var(--bg-3);padding:28px;border:1px solid var(--border);">
+          <div style="font-size:15px;font-weight:700;margin-bottom:6px;">Pet Sitting &amp; Dog Walking</div>
+          <div style="font-size:1.3rem;font-weight:900;color:var(--gold);margin-bottom:4px;">$20-35 / walk</div>
+          <div style="font-size:11px;text-transform:uppercase;letter-spacing:2px;color:#aaa;margin-bottom:12px;">$400-900 / week potential</div>
+          <div style="font-size:13px;color:var(--text-dim);line-height:1.6;">Zero startup cost. Regular clients rebook constantly and refer everyone they know.</div>
+        </div>
+
+        <div style="background:var(--bg-3);padding:28px;border:1px solid var(--border);">
+          <div style="font-size:15px;font-weight:700;margin-bottom:6px;">Home Organizing</div>
+          <div style="font-size:1.3rem;font-weight:900;color:var(--gold);margin-bottom:4px;">$65-85 / hour</div>
+          <div style="font-size:11px;text-transform:uppercase;letter-spacing:2px;color:#aaa;margin-bottom:12px;">$600-1,200 / week potential</div>
+          <div style="font-size:13px;color:var(--text-dim);line-height:1.6;">Closets, pantries, garages. Before-and-after photos become your next five clients.</div>
+        </div>
+
+        <div style="background:var(--bg-3);padding:28px;border:1px solid var(--border);">
+          <div style="font-size:15px;font-weight:700;margin-bottom:6px;">Photography Sessions</div>
+          <div style="font-size:1.3rem;font-weight:900;color:var(--gold);margin-bottom:4px;">$150-300 / session</div>
+          <div style="font-size:11px;text-transform:uppercase;letter-spacing:2px;color:#aaa;margin-bottom:12px;">$600-1,200 / week potential</div>
+          <div style="font-size:13px;color:var(--text-dim);line-height:1.6;">Senior portraits, graduation photos, family sessions. Always in demand.</div>
+        </div>
+
+        <div style="background:var(--bg-3);padding:28px;border:1px solid var(--border);">
+          <div style="font-size:15px;font-weight:700;margin-bottom:6px;">Social Media Management</div>
+          <div style="font-size:1.3rem;font-weight:900;color:var(--gold);margin-bottom:4px;">$200-400 / month</div>
+          <div style="font-size:11px;text-transform:uppercase;letter-spacing:2px;color:#aaa;margin-bottom:12px;">$400-800 / week potential</div>
+          <div style="font-size:13px;color:var(--text-dim);line-height:1.6;">Post 3-5 times a week for local businesses. Canva free, your phone, fully digital.</div>
+        </div>
+
+      </div>
+
+      <div style="display:flex;gap:16px;flex-wrap:wrap;margin-bottom:48px;">
+        <a href="/partner-info.html" class="btn btn-gold">Fill Out the Info Sheet &rarr;</a>
+        <a href="/summer.html" class="btn btn-outline">See Full Program Details &rarr;</a>
+      </div>
+
+    </div>
+  </section>
+
+  <footer>
+    <div class="footer-inner">
+      <p>BOSS Systems &copy; 2026 &middot; Tyler, TX &middot; <a href="/">Home</a> &middot; <a href="tel:+19035224459">903-522-4459</a> &middot; <a href="mailto:bosssystemsai@gmail.com">bosssystemsai@gmail.com</a></p>
+    </div>
+  </footer>
+
+</body>
+</html>
