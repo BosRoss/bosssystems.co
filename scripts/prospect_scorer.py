@@ -5,10 +5,139 @@ Usage: python3 prospect_scorer.py "HVAC" "Corinth MS"
 Finds the most targetable businesses in any market and generates personalized openers.
 Always targeting: weak operators with phone problems in small markets.
 """
-import sys, requests, json, os
-from datetime import datetime
+import sys, requests, json, os, urllib.request
+from datetime import datetime, timezone, timedelta
+from pathlib import Path
 
 GKEY = os.environ.get("GOOGLE_PLACES_KEY", "")
+
+# ─── Spend tracking (shared with lead_engine.py) ───────────────────────────
+SPEND_FILE = Path.home() / "Desktop/BOSS_HQ/atlas_data/spend_tracker.json"
+TOTAL_CREDIT = 300.00
+DAILY_BUDGET = 4.00
+WEEKLY_BUDGET = 28.00
+HARD_STOP_PERCENT = 0.80
+COST_PER_SEARCH = 0.032
+NTFY_TOPIC = "https://ntfy.sh/bossai-bostonrossall-alerts"
+CREDIT_EXPIRY = datetime(2026, 8, 7, tzinfo=timezone.utc)
+
+
+def _ntfy(message: str, title: str = "Prospect Scorer", priority: str = "default"):
+    """Send notification via ntfy.sh."""
+    try:
+        data = message.encode("utf-8")
+        req = urllib.request.Request(NTFY_TOPIC, data=data, method="POST")
+        req.add_header("Title", title)
+        req.add_header("Priority", priority)
+        urllib.request.urlopen(req, timeout=5)
+    except Exception:
+        pass
+
+
+def _load_spend():
+    """Load spend tracker data from shared JSON file."""
+    if not SPEND_FILE.exists():
+        return {"total_spent": 0.0, "requests": []}
+    try:
+        return json.loads(SPEND_FILE.read_text())
+    except (json.JSONDecodeError, OSError):
+        return {"total_spent": 0.0, "requests": []}
+
+
+def _save_spend(data):
+    """Save spend tracker data back to shared JSON file."""
+    SPEND_FILE.parent.mkdir(parents=True, exist_ok=True)
+    tmp = SPEND_FILE.with_suffix(".tmp")
+    tmp.write_text(json.dumps(data, indent=2, default=str) + "\n")
+    tmp.replace(SPEND_FILE)
+
+
+def _spend_since(data, since: datetime) -> float:
+    """Calculate spend since a given timestamp."""
+    total = 0.0
+    for req in data.get("requests", []):
+        ts = req.get("timestamp", "")
+        try:
+            req_time = datetime.fromisoformat(ts)
+            if req_time >= since:
+                total += req.get("cost", 0.0)
+        except (ValueError, TypeError):
+            continue
+    return total
+
+
+def _check_budget() -> tuple:
+    """Check if we can afford a Google Places API call.
+    Returns (can_spend: bool, reason: str).
+    Reads the shared spend_tracker.json used by lead_engine.py."""
+    data = _load_spend()
+    total_spent = data.get("total_spent", 0.0)
+    now = datetime.now(timezone.utc)
+
+    # Hard stop at 80% total
+    if total_spent >= (TOTAL_CREDIT * HARD_STOP_PERCENT):
+        return False, f"HARD STOP: ${total_spent:.2f}/${TOTAL_CREDIT} spent (80% cap reached)"
+
+    # Daily cap
+    start_of_day = now.replace(hour=0, minute=0, second=0, microsecond=0)
+    daily_spent = _spend_since(data, start_of_day)
+    if daily_spent >= DAILY_BUDGET:
+        return False, f"Daily cap hit: ${daily_spent:.2f}/${DAILY_BUDGET} today"
+
+    # Weekly cap
+    start_of_week = now - timedelta(days=now.weekday())
+    start_of_week = start_of_week.replace(hour=0, minute=0, second=0, microsecond=0)
+    weekly_spent = _spend_since(data, start_of_week)
+    if weekly_spent >= WEEKLY_BUDGET:
+        return False, f"Weekly cap hit: ${weekly_spent:.2f}/${WEEKLY_BUDGET} this week"
+
+    return True, "OK"
+
+
+def _record_spend(endpoint: str = "text_search", cost: float = COST_PER_SEARCH):
+    """Record a Google Places API call in the shared spend tracker."""
+    data = _load_spend()
+    data["total_spent"] = data.get("total_spent", 0.0) + cost
+    data.setdefault("requests", []).append({
+        "endpoint": endpoint,
+        "cost": cost,
+        "timestamp": datetime.now(timezone.utc).isoformat(),
+    })
+    # Keep only last 500 requests
+    if len(data["requests"]) > 500:
+        data["requests"] = data["requests"][-500:]
+
+    # Check 80% hard stop
+    if data["total_spent"] >= (TOTAL_CREDIT * HARD_STOP_PERCENT) and not data.get("hard_stopped"):
+        data["hard_stopped"] = True
+        _ntfy(
+            f"HARD STOP: Google Places spend hit 80% (${data['total_spent']:.2f}/${TOTAL_CREDIT}). "
+            f"All API calls halted. Triggered by prospect_scorer.py.",
+            title="SPEND ALERT", priority="urgent"
+        )
+
+    # Check burnout projection
+    now = datetime.now(timezone.utc)
+    days_remaining = max((CREDIT_EXPIRY - now).days, 1)
+    credit_remaining = TOTAL_CREDIT - data["total_spent"]
+    week_ago = now - timedelta(days=7)
+    recent_spend = _spend_since(data, week_ago)
+    avg_daily = recent_spend / 7.0
+    if avg_daily > 0:
+        days_until_exhausted = credit_remaining / avg_daily
+        if days_until_exhausted < days_remaining and not data.get("burnout_alerted"):
+            projected_date = (now + timedelta(days=days_until_exhausted)).strftime("%b %d")
+            data["burnout_alerted"] = True
+            _ntfy(
+                f"Google Places credit projected to run out {projected_date} "
+                f"(before Aug 7 expiry). "
+                f"Avg daily spend ${avg_daily:.2f}/day, "
+                f"${credit_remaining:.2f} remaining. "
+                f"Triggered by prospect_scorer.py.",
+                title="SPEND BURNOUT WARNING", priority="high"
+            )
+
+    _save_spend(data)
 BANNED_AC = ['903','430','985','318','504','337','225']
 
 PAIN_KEYWORDS = [
@@ -122,11 +251,55 @@ def score_place(p, niche, city):
         score += 4
         signals.append('PLUMBER_WINTER')
 
+    # ATLAS demand signal boost — reads boss_state.json market_intelligence
+    try:
+        _bs = Path.home() / "Desktop/BOSS_HQ/atlas_data/boss_state.json"
+        if _bs.exists():
+            _mi = json.loads(_bs.read_text()).get("market_intelligence", {})
+            for ds in _mi.get("demand_signals", []):
+                ds_niche = (ds.get("niche") or ds.get("type") or "").lower()
+                ds_area = (ds.get("area") or "").lower()
+                if ds_niche and ds_niche in n and (not ds_area or ds_area in city.lower()):
+                    score += 6
+                    signals.append("ATLAS_DEMAND")
+                    break
+    except Exception:
+        pass
+
     tier = ('SUPERNICHE' if score >= 55 else
             'HOT' if score >= 40 else
             'WARM' if score >= 28 else None)
     if not tier:
         return None
+
+    ANNUAL_LOSS = {
+        'hvac': 367200, 'air condition': 367200, 'heat': 367200,
+        'plumb': 128520, 'electr': 114750, 'roof': 1224000,
+        'auto': 91800, 'law': 550800, 'clean': 50000, 'junk': 60000
+    }
+    est_loss = 126000
+    for k, v in ANNUAL_LOSS.items():
+        if k in n:
+            est_loss = v
+            break
+
+    best_method = "phone"
+    if any(s.startswith('PAIN:') for s in signals):
+        best_method = "walk-in (bring proof)"
+    elif not has_web:
+        best_method = "walk-in"
+
+    is_field_trade = any(t in n for t in ['hvac', 'plumb', 'electr', 'roof', 'junk', 'lawn', 'pest', 'pool'])
+    if is_field_trade:
+        best_time = "4:30-5:30 PM CT (driving home, 71% more effective than AM). Alt: 11:30-12:30 lunch, 6:15-6:45 AM morning drive"
+    elif any(t in n for t in ['law', 'legal', 'attorney']):
+        best_time = "8-9 AM CT (before court/clients). Alt: 12-1 PM lunch"
+    elif any(t in n for t in ['auto', 'mechanic', 'body']):
+        best_time = "7:30-8 AM CT (before bays fill). Alt: 5-6 PM after close"
+    elif any(t in n for t in ['dental', 'doctor', 'chiro']):
+        best_time = "12-1 PM CT (lunch break). Alt: after 5 PM"
+    else:
+        best_time = "4-5 PM CT"
 
     return {
         'name': p.get('displayName', {}).get('text', 'Unknown'),
@@ -137,10 +310,19 @@ def score_place(p, niche, city):
         'signals': signals, 'pain': pain,
         'opener': make_opener(pain, has_web, rating, niche, city),
         'address': p.get('formattedAddress', ''),
-        'niche': niche, 'city': city
+        'niche': niche, 'city': city,
+        'est_annual_loss': est_loss,
+        'best_contact_time': best_time,
+        'best_contact_method': best_method
     }
 
 def hunt(niche, city, verbose=True):
+    # Check budget before making API call
+    can_spend, reason = _check_budget()
+    if not can_spend:
+        print(f"  BLOCKED: {reason}")
+        return []
+
     h = {
         "X-Goog-Api-Key": GKEY,
         "X-Goog-FieldMask": "places.displayName,places.nationalPhoneNumber,places.rating,places.userRatingCount,places.websiteUri,places.reviews,places.formattedAddress",
@@ -152,6 +334,9 @@ def hunt(niche, city, verbose=True):
     if r.status_code != 200:
         print(f"API error: {r.status_code}")
         return []
+
+    # Record the spend in shared tracker
+    _record_spend("text_search", COST_PER_SEARCH)
 
     places = r.json().get('places', [])
     scored = [score_place(p, niche, city) for p in places]
@@ -171,6 +356,8 @@ def hunt(niche, city, verbose=True):
             print(f"\n  {icon} #{i+1} [{t['tier']}] Score:{t['score']}/100")
             print(f"     {t['name']}")
             print(f"     📞 {t['phone']}  ⭐{t['rating']} ({t['reviews']}rev)  {'🌐' if t['has_web'] else '❌ no site'}")
+            print(f"     💰 Est. annual loss to missed calls: ${t.get('est_annual_loss', 126000):,}")
+            print(f"     🕐 Best: {t.get('best_contact_method', 'phone')} @ {t.get('best_contact_time', '4-5 PM')}")
             if t['pain']: print(f"     ⚠️  PAIN: '{t['pain'][0]}'")
             print(f"     Tags: {' | '.join(t['signals'][:4])}")
             print(f"     Opener: \"{t['opener'][:85]}...\"")
@@ -224,6 +411,156 @@ def full_sweep(verbose=True):
         print(f"{'═'*66}\n")
 
     return all_results
+
+def score_website_ready(place, niche, city):
+    """Score a business for website-building readiness.
+    Returns (score, tier, signals) or None if not scoreable.
+    903/430 are INCLUDED (in-person website sales territory)."""
+    WEBSITE_BANNED_AC = ['985', '318', '504', '337', '225']
+    digits = ''.join(c for c in (place.get('nationalPhoneNumber') or '') if c.isdigit())
+    phone = digits[-10:] if len(digits) >= 10 else ''
+    if len(phone) != 10 or any(phone.startswith(ac) for ac in WEBSITE_BANNED_AC):
+        return None
+
+    rating = float(place.get('rating') or 0)
+    rev_count = int(place.get('userRatingCount') or 0)
+    has_web = not bool(place.get('websiteUri'))
+    reviews = place.get('reviews', [])
+
+    score = 0
+    signals = []
+
+    # NO_WEBSITE_CONFIRMED +15
+    if has_web:
+        score += 15
+        signals.append('NO_WEBSITE(+15)')
+
+    # REVIEW_COUNT 5-49 +8
+    if 5 <= rev_count <= 49:
+        score += 8
+        signals.append(f'REVIEWS_5-49({rev_count})(+8)')
+
+    # STAR_RATING 4.0+ +10
+    if rating >= 4.0:
+        score += 10
+        signals.append(f'RATING_4+({rating})(+10)')
+
+    # TIER1_NICHE +8
+    n = niche.lower()
+    if any(t in n for t in ['hvac', 'air condition', 'heat', 'plumb', 'electr', 'roof', 'law', 'legal', 'attorney']):
+        score += 8
+        signals.append('TIER1_NICHE(+8)')
+
+    # IN_PERSON_TERRITORY 903/430 +5
+    if phone[:3] in ('903', '430'):
+        score += 5
+        signals.append('IN_PERSON_903/430(+5)')
+
+    # TOO_NEW <6mo listing -10 (proxy: <3 reviews)
+    if rev_count < 3:
+        score -= 10
+        signals.append('TOO_NEW(<3rev)(-10)')
+
+    # ALREADY_HAS_MARKETING -8 (proxy: has website already)
+    if not has_web:
+        score -= 8
+        signals.append('HAS_WEBSITE(-8)')
+
+    # Extract review snippets for website use
+    snippets = []
+    for rv in (reviews or [])[:5]:
+        r = rv.get('rating', 0)
+        txt = rv.get('text', '')
+        if isinstance(txt, dict):
+            txt = txt.get('text', '')
+        if r >= 4 and len(txt) > 30:
+            snippets.append(txt[:200])
+        if len(snippets) >= 3:
+            break
+
+    tier = 'WEBSITE_READY' if score >= 45 else None
+
+    return {
+        'name': place.get('displayName', {}).get('text', 'Unknown'),
+        'phone': phone,
+        'rating': rating,
+        'reviews': rev_count,
+        'has_website': not has_web,
+        'website_ready_score': score,
+        'website_ready_tier': tier,
+        'signals': signals,
+        'address': place.get('formattedAddress', ''),
+        'niche': niche,
+        'city': city,
+        'review_snippets': snippets,
+        'services': [],
+    }
+
+
+def website_ready_scan(verbose=True):
+    """Scan markets for WEBSITE_READY leads. Cap 30 rows."""
+    MARKETS = [
+        ("HVAC contractor", "Tyler TX"),
+        ("plumber", "Tyler TX"),
+        ("electrician", "Longview TX"),
+        ("HVAC contractor", "Nacogdoches TX"),
+        ("roofing contractor", "Tyler TX"),
+        ("HVAC contractor", "Lufkin TX"),
+        ("HVAC contractor", "Corinth MS"),
+        ("plumber", "Corinth MS"),
+    ]
+
+    all_results = []
+    h = {
+        "X-Goog-Api-Key": GKEY,
+        "X-Goog-FieldMask": "places.displayName,places.nationalPhoneNumber,places.rating,places.userRatingCount,places.websiteUri,places.reviews,places.formattedAddress",
+        "Content-Type": "application/json"
+    }
+
+    for niche, city in MARKETS:
+        if len(all_results) >= 30:
+            break
+        # Check budget before each API call
+        can_spend, reason = _check_budget()
+        if not can_spend:
+            print(f"  BLOCKED: {reason}")
+            break
+        try:
+            r = requests.post("https://places.googleapis.com/v1/places:searchText",
+                headers=h, json={"textQuery": f"{niche} {city}", "maxResultCount": 20}, timeout=10)
+            if r.status_code != 200:
+                continue
+            # Record the spend in shared tracker
+            _record_spend("text_search", COST_PER_SEARCH)
+            places = r.json().get('places', [])
+            for p in places:
+                scored = score_website_ready(p, niche, city)
+                if scored and scored['website_ready_tier'] == 'WEBSITE_READY':
+                    # Dedup by phone
+                    if not any(x['phone'] == scored['phone'] for x in all_results):
+                        all_results.append(scored)
+                        if len(all_results) >= 30:
+                            break
+        except Exception as e:
+            print(f"  Error scanning {niche} {city}: {e}")
+
+    all_results.sort(key=lambda x: x['website_ready_score'], reverse=True)
+
+    if verbose:
+        print(f"\n{'='*60}")
+        print(f"  WEBSITE-READY SCAN — {len(all_results)} leads found")
+        print(f"{'='*60}")
+        for i, r in enumerate(all_results):
+            print(f"\n  #{i+1} Score:{r['website_ready_score']} — {r['name']} ({r['city']})")
+            print(f"     Phone: {r['phone']}  Rating: {r['rating']} ({r['reviews']}rev)")
+            print(f"     Has website: {r['has_website']}")
+            print(f"     Signals: {' | '.join(r['signals'])}")
+            if r['review_snippets']:
+                print(f"     Snippets: {len(r['review_snippets'])} positive reviews captured")
+        print(f"\n{'='*60}\n")
+
+    return all_results
+
 
 def write_targets_json(results):
     """Write scored targets to prospect_targets.json for lead_engine ingestion."""
@@ -280,6 +617,9 @@ if __name__ == '__main__':
     elif len(sys.argv) == 2 and sys.argv[1] == '--output-json':
         results = full_sweep(verbose=True)
         write_targets_json(results)
+    elif len(sys.argv) == 2 and sys.argv[1] == '--website-ready':
+        results = website_ready_scan(verbose=True)
+        print(f"WEBSITE_READY count: {len(results)}")
     elif len(sys.argv) >= 3:
         if '--output-json' in sys.argv:
             args = [a for a in sys.argv[1:] if a != '--output-json']
@@ -293,3 +633,4 @@ if __name__ == '__main__':
         print("  python3 prospect_scorer.py                        # Full sweep all markets")
         print("  python3 prospect_scorer.py 'HVAC' 'Corinth MS'    # Single market")
         print("  python3 prospect_scorer.py --output-json           # Sweep + write to prospect_targets.json")
+        print("  python3 prospect_scorer.py --website-ready         # Scan for WEBSITE_READY leads")
