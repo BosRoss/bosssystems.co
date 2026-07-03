@@ -96,6 +96,17 @@ body{background:#0a0a0a;color:#ccc;font-family:'SF Mono',Menlo,monospace;font-si
     <div class="loading" style="grid-column:1/-1">Loading operations data...</div>
 </div>
 
+<div class="grid" style="margin-top:0;padding-top:0">
+    <div class="card" id="lovable-sites">
+        <h2>LOVABLE SITES <span class="badge blue">NEW</span></h2>
+        <div class="card-body"><div style="color:#999;text-align:center;padding:12px">Loading...</div></div>
+    </div>
+    <div class="card" id="system-health">
+        <h2>SYSTEM HEALTH <span class="badge green">AUDIT</span></h2>
+        <div class="card-body"><div style="color:#999;text-align:center;padding:12px">Loading...</div></div>
+    </div>
+</div>
+
 <button class="refresh-btn" onclick="loadData()">REFRESH</button>
 
 <script>
@@ -285,6 +296,61 @@ function render(data) {
     el.innerHTML = html;
 }
 
+async function loadLovable() {
+    const el = document.getElementById('lovable-sites');
+    if (!el) return;
+    try {
+        const r = await fetch('https://raw.githubusercontent.com/BosRoss/bosssystems.co/main/lovable_builds.json?t=' + Date.now());
+        if (!r.ok) { el.querySelector('.card-body').innerHTML = '<div style="color:#999;text-align:center;padding:12px">No builds yet.</div>'; return; }
+        const data = await r.json();
+        const builds = data.builds || [];
+        let html = `<div class="four-grid" style="margin-bottom:12px">
+            <div class="mini-card"><div class="big-number blue" style="font-size:24px">${builds.length}</div><div class="big-label">Built</div></div>
+            <div class="mini-card"><div class="big-number yellow" style="font-size:24px">${data.total_credits_spent || 0}</div><div class="big-label">Credits</div></div>
+        </div>`;
+        if (builds.length > 0) {
+            html += '<div style="max-height:200px;overflow-y:auto">';
+            builds.slice(-10).reverse().forEach(b => {
+                html += `<div class="stat-row">
+                    <span class="label">${b.business_name || '?'}</span>
+                    <span class="value">${b.url ? '<a href="'+b.url+'" target="_blank" style="color:#4B92DB">Live</a>' : 'pending'} <span style="color:#666;font-size:10px">${(b.timestamp || '').slice(0,10)}</span></span>
+                </div>`;
+            });
+            html += '</div>';
+        } else {
+            html += '<div style="color:#999;text-align:center;padding:8px">No sites built yet. Run lovable_site_pipeline.py</div>';
+        }
+        el.querySelector('.card-body').innerHTML = html;
+    } catch(e) {
+        el.querySelector('.card-body').innerHTML = '<div style="color:#999;text-align:center;padding:12px">No builds yet.</div>';
+    }
+}
+
+async function loadHealth() {
+    const el = document.getElementById('system-health');
+    if (!el) return;
+    try {
+        const r = await fetch('https://raw.githubusercontent.com/BosRoss/bosssystems.co/main/system_health.json?t=' + Date.now());
+        if (!r.ok) throw new Error('No data');
+        const data = await r.json();
+        const a = data.alive || 0, d = data.dead || 0, b = data.broken || 0, s = data.stale || 0;
+        const allGood = d === 0 && b === 0;
+        el.querySelector('.card-body').innerHTML = `
+            <div style="display:flex;align-items:center;gap:8px;margin-bottom:10px">
+                <div style="width:10px;height:10px;border-radius:50%;background:${allGood ? '#00ff41' : '#ff4444'};animation:pulse 2s infinite"></div>
+                <span style="color:${allGood ? '#00ff41' : '#ff4444'};font-size:14px">${allGood ? 'ALL SYSTEMS GO' : b + d + ' ISSUES'}</span>
+            </div>
+            <div class="stat-row"><span class="label">Alive</span><span class="value green">${a}</span></div>
+            <div class="stat-row"><span class="label">Broken</span><span class="value ${b ? 'red' : ''}">${b}</span></div>
+            <div class="stat-row"><span class="label">Dead</span><span class="value ${d ? 'red' : ''}">${d}</span></div>
+            <div class="stat-row"><span class="label">Stale</span><span class="value ${s ? 'yellow' : ''}">${s}</span></div>
+            <div style="margin-top:8px;font-size:10px;color:#666">Last audit: ${data.timestamp || 'unknown'}</div>
+        `;
+    } catch(e) {
+        el.querySelector('.card-body').innerHTML = '<div style="color:#999;text-align:center;padding:12px">Run nuclear audit to generate.</div>';
+    }
+}
+
 async function loadData() {
     try {
         const r = await fetch(DATA_URL + '?t=' + Date.now());
@@ -301,7 +367,11 @@ async function loadData() {
 }
 
 loadData();
+loadLovable();
+loadHealth();
 setInterval(loadData, 120000);
+setInterval(loadLovable, 120000);
+setInterval(loadHealth, 120000);
 </script>
 </body>
 </html>

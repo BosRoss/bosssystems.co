@@ -1,0 +1,8 @@
+{
+  "alive": 39,
+  "broken": 4,
+  "dead": 2,
+  "stale": 8,
+  "timestamp": "2026-07-03T10:15:00-05:00",
+  "details": "See DEAD_SYSTEMS_REPORT.md for full breakdown"
+}
