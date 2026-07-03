@@ -12700,53 +12700,61 @@
     }
   ],
   "trader_intel": {
-    "generated": "2026-06-25T20:00:41.415368+00:00",
-    "markets_analyzed": 316,
-    "edges_found": 153,
+    "generated": "2026-07-03T15:05:21.690959+00:00",
+    "markets_analyzed": 311,
+    "edges_found": 151,
     "topics_with_edge": {
+      "economic": {
+        "count": 31,
+        "avg_edge": 4.5
+      },
+      "other": {
+        "count": 201,
+        "avg_edge": 3.4
+      },
       "maritime": {
-        "count": 14,
-        "avg_edge": 3.3
+        "count": 12,
+        "avg_edge": 2.2
+      },
+      "election": {
+        "count": 11,
+        "avg_edge": 3.4
+      },
+      "conflict": {
+        "count": 5,
+        "avg_edge": 5.2
       },
       "peace": {
         "count": 7,
-        "avg_edge": 3.6
-      },
-      "nuclear": {
-        "count": 9,
-        "avg_edge": 4.2
-      },
-      "financial": {
-        "count": 16,
-        "avg_edge": 3.2
-      },
-      "economic": {
-        "count": 38,
-        "avg_edge": 3.8
-      },
-      "other": {
-        "count": 194,
-        "avg_edge": 3.4
-      },
-      "election": {
-        "count": 12,
-        "avg_edge": 3.2
-      },
-      "energy": {
-        "count": 5,
-        "avg_edge": 4.2
-      },
-      "conflict": {
-        "count": 8,
-        "avg_edge": 6.3
-      },
-      "space": {
-        "count": 3,
-        "avg_edge": 2.7
+        "avg_edge": 6.2
       },
       "technology": {
         "count": 5,
-        "avg_edge": 4.7
+        "avg_edge": 4.0
+      },
+      "financial": {
+        "count": 16,
+        "avg_edge": 2.6
+      },
+      "energy": {
+        "count": 7,
+        "avg_edge": 3.3
+      },
+      "space": {
+        "count": 3,
+        "avg_edge": 0.0
+      },
+      "nuclear": {
+        "count": 5,
+        "avg_edge": 3.5
+      },
+      "humanitarian": {
+        "count": 1,
+        "avg_edge": 0.0
+      },
+      "coup": {
+        "count": 1,
+        "avg_edge": 3.8
       },
       "climate": {
         "count": 8,
@@ -12754,312 +12762,134 @@
       }
     },
     "countries_active": {
-      "IR": {
-        "mentions": 12,
-        "avg_market_prob": 14.2
-      },
       "US": {
-        "mentions": 29,
-        "avg_market_prob": 30.4
-      },
-      "IL": {
-        "mentions": 19,
-        "avg_market_prob": 13.5
-      },
-      "LB": {
-        "mentions": 2,
-        "avg_market_prob": 6.8
+        "mentions": 33,
+        "avg_market_prob": 29.1
       },
       "RU": {
-        "mentions": 9,
-        "avg_market_prob": 16.0
+        "mentions": 10,
+        "avg_market_prob": 21.0
+      },
+      "IR": {
+        "mentions": 14,
+        "avg_market_prob": 26.3
       },
       "TW": {
-        "mentions": 3,
-        "avg_market_prob": 5.4
+        "mentions": 1,
+        "avg_market_prob": 3.2
       },
       "CN": {
-        "mentions": 13,
-        "avg_market_prob": 10.1
-      },
-      "CU": {
-        "mentions": 3,
-        "avg_market_prob": 25.7
+        "mentions": 10,
+        "avg_market_prob": 17.5
       },
       "UA": {
-        "mentions": 2,
-        "avg_market_prob": 10.4
+        "mentions": 4,
+        "avg_market_prob": 11.1
       },
-      "PH": {
+      "TD": {
         "mentions": 1,
-        "avg_market_prob": 13.5
-      },
-      "YE": {
-        "mentions": 1,
-        "avg_market_prob": 6.2
-      },
-      "RO": {
-        "mentions": 20,
-        "avg_market_prob": 19.6
-      },
-      "GB": {
-        "mentions": 3,
-        "avg_market_prob": 22.1
+        "avg_market_prob": 26.0
       },
       "VE": {
+        "mentions": 2,
+        "avg_market_prob": 54.0
+      },
+      "IL": {
+        "mentions": 10,
+        "avg_market_prob": 15.8
+      },
+      "BE": {
+        "mentions": 3,
+        "avg_market_prob": 6.5
+      },
+      "CU": {
+        "mentions": 2,
+        "avg_market_prob": 26.5
+      },
+      "BR": {
         "mentions": 1,
-        "avg_market_prob": 8.8
+        "avg_market_prob": 79.5
+      },
+      "IN": {
+        "mentions": 2,
+        "avg_market_prob": 36.8
+      },
+      "KR": {
+        "mentions": 1,
+        "avg_market_prob": 70.5
+      },
+      "TR": {
+        "mentions": 1,
+        "avg_market_prob": 10.0
       },
       "KE": {
         "mentions": 1,
         "avg_market_prob": 5.2
       },
-      "IN": {
-        "mentions": 1,
-        "avg_market_prob": 66.5
+      "RO": {
+        "mentions": 17,
+        "avg_market_prob": 6.5
       }
     },
     "market_consensus": [
       {
-        "question": "Will Anthropic have the best AI model at the end of July 2026?",
-        "market_prob": 85.5,
-        "atlas_prob": 75.8,
-        "edge": 9.7,
+        "question": "US-Iran 60 day negotiation period extended?",
+        "market_prob": 62.5,
+        "atlas_prob": 48.4,
+        "edge": 14.1,
         "confidence": "medium",
         "topics": [
-          "technology"
+          "peace"
         ],
         "countries": [
-          "US"
+          "IR"
         ]
       },
       {
-        "question": "Will SpaceX's valuation hit (LOW) $1.35T by June 30?",
-        "market_prob": 7.8,
-        "atlas_prob": 16.5,
-        "edge": 8.7,
+        "question": "US-Iran Final Nuclear Deal by December 31, 2026?",
+        "market_prob": 47.5,
+        "atlas_prob": 36.9,
+        "edge": 10.6,
         "confidence": "medium",
         "topics": [
-          "other"
+          "nuclear",
+          "peace"
         ],
         "countries": [
-          "US"
-        ]
-      },
-      {
-        "question": "Will Lucian Croitoru be the next Prime Minister of Romania?",
-        "market_prob": 8.0,
-        "atlas_prob": 16.7,
-        "edge": 8.7,
-        "confidence": "medium",
-        "topics": [
-          "other"
-        ],
-        "countries": [
-          "US",
-          "RO"
-        ]
-      },
-      {
-        "question": "Will Lucian Isar be the next Prime Minister of Romania?",
-        "market_prob": 6.0,
-        "atlas_prob": 14.4,
-        "edge": 8.4,
-        "confidence": "medium",
-        "topics": [
-          "other"
-        ],
-        "countries": [
-          "US",
-          "RO"
-        ]
-      },
-      {
-        "question": "Will Crude Oil (CL) hit (LOW) $70 by end of June?",
-        "market_prob": 50.3,
-        "atlas_prob": 58.6,
-        "edge": 8.3,
-        "confidence": "medium",
-        "topics": [
-          "energy"
-        ],
-        "countries": []
-      },
-      {
-        "question": "Will SpaceX's valuation hit (LOW) $1.3T by June 30?",
-        "market_prob": 5.7,
-        "atlas_prob": 14.0,
-        "edge": 8.3,
-        "confidence": "medium",
-        "topics": [
-          "other"
-        ],
-        "countries": [
-          "US"
-        ]
-      },
-      {
-        "question": "Will the U.S. invade Cuba in 2026?",
-        "market_prob": 19.5,
-        "atlas_prob": 27.6,
-        "edge": 8.1,
-        "confidence": "medium",
-        "topics": [
-          "conflict"
-        ],
-        "countries": [
-          "CU",
-          "US"
+          "IR"
         ]
       },
       {
         "question": "Will the U.S. invade Iran before 2027?",
         "market_prob": 13.5,
-        "atlas_prob": 21.3,
-        "edge": 7.8,
-        "confidence": "medium",
-        "topics": [
-          "conflict"
-        ],
-        "countries": [
-          "IR",
-          "US"
-        ]
-      },
-      {
-        "question": "Israel strike on Yemen by June 30, 2026?",
-        "market_prob": 6.2,
-        "atlas_prob": 14.0,
-        "edge": 7.8,
-        "confidence": "medium",
-        "topics": [
-          "conflict"
-        ],
-        "countries": [
-          "IL",
-          "YE"
-        ]
-      },
-      {
-        "question": "Will WTI Crude Oil (WTI) hit (LOW) $65 in June?",
-        "market_prob": 10.7,
-        "atlas_prob": 18.2,
-        "edge": 7.5,
-        "confidence": "medium",
-        "topics": [
-          "energy"
-        ],
-        "countries": []
-      },
-      {
-        "question": "Fed Rate Hike by July 2026 Meeting?",
-        "market_prob": 18.8,
-        "atlas_prob": 26.1,
+        "atlas_prob": 20.8,
         "edge": 7.3,
         "confidence": "medium",
         "topics": [
-          "other"
+          "conflict"
         ],
         "countries": [
-          "US"
+          "US",
+          "IR"
         ]
       },
       {
-        "question": "Will  become President of the United States before 2045?",
-        "market_prob": 16.5,
-        "atlas_prob": 23.7,
-        "edge": 7.2,
+        "question": "Will Russia enter Zaporizhia by December 31, 2026?",
+        "market_prob": 8.2,
+        "atlas_prob": 15.2,
+        "edge": 7.0,
         "confidence": "medium",
         "topics": [
           "other"
         ],
         "countries": [
-          "US"
-        ]
-      },
-      {
-        "question": "Will the Fed increase interest rates by 25 bps after the July 2026 meeting?",
-        "market_prob": 18.2,
-        "atlas_prob": 25.3,
-        "edge": 7.1,
-        "confidence": "medium",
-        "topics": [
-          "economic"
-        ],
-        "countries": [
-          "US"
-        ]
-      },
-      {
-        "question": "Will  become President of the United States before 2045?",
-        "market_prob": 15.0,
-        "atlas_prob": 22.1,
-        "edge": 7.1,
-        "confidence": "medium",
-        "topics": [
-          "other"
-        ],
-        "countries": [
-          "US"
+          "RU"
         ]
       },
       {
         "question": "Will China invade Taiwan by end of 2026?",
-        "market_prob": 5.7,
-        "atlas_prob": 12.7,
-        "edge": 7.0,
-        "confidence": "medium",
-        "topics": [
-          "conflict"
-        ],
-        "countries": [
-          "TW",
-          "CN"
-        ]
-      },
-      {
-        "question": "Will SpaceX's valuation hit (LOW) $1.5T by June 30?",
-        "market_prob": 11.5,
-        "atlas_prob": 18.3,
-        "edge": 6.8,
-        "confidence": "medium",
-        "topics": [
-          "other"
-        ],
-        "countries": [
-          "US"
-        ]
-      },
-      {
-        "question": "Will SpaceX's valuation hit (LOW) $1.45T by June 30?",
-        "market_prob": 11.7,
-        "atlas_prob": 18.5,
-        "edge": 6.8,
-        "confidence": "medium",
-        "topics": [
-          "other"
-        ],
-        "countries": [
-          "US"
-        ]
-      },
-      {
-        "question": "Will SpaceX's valuation hit (LOW) $1.4T by June 30?",
-        "market_prob": 11.2,
-        "atlas_prob": 17.9,
-        "edge": 6.7,
-        "confidence": "medium",
-        "topics": [
-          "other"
-        ],
-        "countries": [
-          "US"
-        ]
-      },
-      {
-        "question": "Will China invade Taiwan by September 30, 2026?",
-        "market_prob": 3.1,
-        "atlas_prob": 9.7,
+        "market_prob": 3.2,
+        "atlas_prob": 9.8,
         "edge": 6.6,
         "confidence": "medium",
         "topics": [
@@ -13071,38 +12901,198 @@
         ]
       },
       {
-        "question": "Putin out as President of Russia by December 31, 2026?",
-        "market_prob": 9.5,
-        "atlas_prob": 16.0,
-        "edge": 6.5,
+        "question": "Will Warren Buffett be the world's second trillionaire?",
+        "market_prob": 3.5,
+        "atlas_prob": 9.6,
+        "edge": 6.1,
+        "confidence": "medium",
+        "topics": [
+          "conflict"
+        ],
+        "countries": []
+      },
+      {
+        "question": "Will Donald Trump win the Nobel Peace Prize in 2026?",
+        "market_prob": 6.5,
+        "atlas_prob": 12.5,
+        "edge": 6.0,
+        "confidence": "medium",
+        "topics": [
+          "peace"
+        ],
+        "countries": []
+      },
+      {
+        "question": "Will Fl\u00e1vio Bolsonaro finish in second place in the first round of the 2026 Braz",
+        "market_prob": 79.5,
+        "atlas_prob": 73.5,
+        "edge": 6.0,
+        "confidence": "medium",
+        "topics": [
+          "election"
+        ],
+        "countries": [
+          "BR",
+          "CN"
+        ]
+      },
+      {
+        "question": "Iran full airspace closure by July 15?",
+        "market_prob": 5.5,
+        "atlas_prob": 11.4,
+        "edge": 5.9,
         "confidence": "medium",
         "topics": [
           "other"
         ],
         "countries": [
-          "RU"
+          "IR"
         ]
+      },
+      {
+        "question": "Will the Iranian regime fall before 2027?",
+        "market_prob": 7.5,
+        "atlas_prob": 13.4,
+        "edge": 5.9,
+        "confidence": "medium",
+        "topics": [
+          "other"
+        ],
+        "countries": [
+          "IR"
+        ]
+      },
+      {
+        "question": "Israel closes its airspace by July 31?",
+        "market_prob": 5.5,
+        "atlas_prob": 11.4,
+        "edge": 5.9,
+        "confidence": "medium",
+        "topics": [
+          "other"
+        ],
+        "countries": [
+          "IL"
+        ]
+      },
+      {
+        "question": "Will Yair Lapid be the next Prime Minister of Israel?",
+        "market_prob": 4.9,
+        "atlas_prob": 10.8,
+        "edge": 5.9,
+        "confidence": "medium",
+        "topics": [
+          "other"
+        ],
+        "countries": [
+          "IL"
+        ]
+      },
+      {
+        "question": "Will Israel Katz be the next Prime Minister of Israel?",
+        "market_prob": 9.0,
+        "atlas_prob": 14.9,
+        "edge": 5.9,
+        "confidence": "medium",
+        "topics": [
+          "other"
+        ],
+        "countries": [
+          "IL"
+        ]
+      },
+      {
+        "question": "Will Avigdor Lieberman be the next Prime Minister of Israel?",
+        "market_prob": 4.1,
+        "atlas_prob": 10.0,
+        "edge": 5.9,
+        "confidence": "medium",
+        "topics": [
+          "other"
+        ],
+        "countries": [
+          "IL"
+        ]
+      },
+      {
+        "question": "Will Google have the best AI model at the end of July 2026?",
+        "market_prob": 8.5,
+        "atlas_prob": 14.3,
+        "edge": 5.8,
+        "confidence": "low",
+        "topics": [
+          "technology"
+        ],
+        "countries": [
+          "US"
+        ]
+      },
+      {
+        "question": "Will Anthropic's valuation hit (HIGH) $3.0T by December 31?",
+        "market_prob": 9.5,
+        "atlas_prob": 15.3,
+        "edge": 5.8,
+        "confidence": "low",
+        "topics": [
+          "other"
+        ],
+        "countries": [
+          "US"
+        ]
+      },
+      {
+        "question": "Israel x Turkey military clash before 2027?",
+        "market_prob": 10.0,
+        "atlas_prob": 15.8,
+        "edge": 5.8,
+        "confidence": "low",
+        "topics": [
+          "other"
+        ],
+        "countries": [
+          "IL",
+          "TR"
+        ]
+      },
+      {
+        "question": "Will Itamar Ben-Gvir be the next Prime Minister of Israel?",
+        "market_prob": 3.0,
+        "atlas_prob": 8.8,
+        "edge": 5.8,
+        "confidence": "medium",
+        "topics": [
+          "other"
+        ],
+        "countries": [
+          "IL"
+        ]
+      },
+      {
+        "question": "Will the Fed increase interest rates by 25 bps after the July 2026 meeting?",
+        "market_prob": 8.2,
+        "atlas_prob": 13.9,
+        "edge": 5.7,
+        "confidence": "low",
+        "topics": [
+          "economic"
+        ],
+        "countries": [
+          "US"
+        ]
+      },
+      {
+        "question": "Strait of Hormuz traffic returns to normal by July 15?",
+        "market_prob": 6.5,
+        "atlas_prob": 12.2,
+        "edge": 5.7,
+        "confidence": "low",
+        "topics": [
+          "maritime"
+        ],
+        "countries": []
       }
     ],
     "information_gaps": [
-      {
-        "question": "Cuban regime falls in 2026?",
-        "countries": [
-          "CU"
-        ],
-        "topics": [
-          "other"
-        ]
-      },
-      {
-        "question": "Romanian PM Bolojan out by June 30?",
-        "countries": [
-          "RO"
-        ],
-        "topics": [
-          "other"
-        ]
-      },
       {
         "question": "US strike on Cuba by December 31?",
         "countries": [
@@ -13110,6 +13100,15 @@
         ],
         "topics": [
           "conflict"
+        ]
+      },
+      {
+        "question": "Will Malcolm Kenyatta be the next Chair of the Democratic National Committee?",
+        "countries": [
+          "KE"
+        ],
+        "topics": [
+          "other"
         ]
       },
       {
@@ -13174,120 +13173,114 @@
         "topics": [
           "other"
         ]
-      }
-    ],
-    "cross_platform_divergences": [
+      },
       {
-        "topic": "Will Z.ai have the best AI model at the end of June 2026?",
-        "spread": 90.0,
-        "sources": [
-          {
-            "source": "polymarket",
-            "prob": 0.1,
-            "question": "Will Z.ai have the best AI model at the end of June 2026?"
-          },
-          {
-            "source": "atlas_predictions",
-            "prob": 1.0,
-            "question": "Will Z.ai have the best AI model at the end of June 2026?"
-          }
+        "question": "Will Raluca Turcan be the next Prime Minister of Romania?",
+        "countries": [
+          "RO"
+        ],
+        "topics": [
+          "other"
         ]
       }
     ],
+    "cross_platform_divergences": [],
     "geopolitical_hotspots": [
       {
         "country": "US",
         "lat": 37.1,
         "lon": -95.7,
-        "market_mentions": 29,
-        "avg_market_prob": 30.4
+        "market_mentions": 33,
+        "avg_market_prob": 29.1
       },
       {
         "country": "RO",
         "lat": 45.9,
         "lon": 25.0,
-        "market_mentions": 20,
-        "avg_market_prob": 19.6
-      },
-      {
-        "country": "IL",
-        "lat": 31.0,
-        "lon": 34.9,
-        "market_mentions": 19,
-        "avg_market_prob": 13.5
-      },
-      {
-        "country": "CN",
-        "lat": 35.9,
-        "lon": 104.2,
-        "market_mentions": 13,
-        "avg_market_prob": 10.1
+        "market_mentions": 17,
+        "avg_market_prob": 6.5
       },
       {
         "country": "IR",
         "lat": 32.4,
         "lon": 53.7,
-        "market_mentions": 12,
-        "avg_market_prob": 14.2
+        "market_mentions": 14,
+        "avg_market_prob": 26.3
       },
       {
         "country": "RU",
         "lat": 61.5,
         "lon": 105.3,
-        "market_mentions": 9,
-        "avg_market_prob": 16.0
+        "market_mentions": 10,
+        "avg_market_prob": 21.0
       },
       {
-        "country": "TW",
-        "lat": 23.7,
-        "lon": 121.0,
+        "country": "CN",
+        "lat": 35.9,
+        "lon": 104.2,
+        "market_mentions": 10,
+        "avg_market_prob": 17.5
+      },
+      {
+        "country": "IL",
+        "lat": 31.0,
+        "lon": 34.9,
+        "market_mentions": 10,
+        "avg_market_prob": 15.8
+      },
+      {
+        "country": "UA",
+        "lat": 48.4,
+        "lon": 31.2,
+        "market_mentions": 4,
+        "avg_market_prob": 11.1
+      },
+      {
+        "country": "BE",
+        "lat": 50.5,
+        "lon": 4.5,
         "market_mentions": 3,
-        "avg_market_prob": 5.4
+        "avg_market_prob": 6.5
+      },
+      {
+        "country": "VE",
+        "lat": 6.4,
+        "lon": -66.6,
+        "market_mentions": 2,
+        "avg_market_prob": 54.0
       },
       {
         "country": "CU",
         "lat": 21.5,
         "lon": -78.0,
-        "market_mentions": 3,
-        "avg_market_prob": 25.7
-      },
-      {
-        "country": "GB",
-        "lat": 55.4,
-        "lon": -3.4,
-        "market_mentions": 3,
-        "avg_market_prob": 22.1
-      },
-      {
-        "country": "LB",
-        "lat": 33.9,
-        "lon": 35.9,
         "market_mentions": 2,
-        "avg_market_prob": 6.8
+        "avg_market_prob": 26.5
       }
     ],
     "sentiment_map": {
-      "peace": -0.111,
-      "nuclear": -0.167,
-      "other": -0.429,
-      "election": -0.429,
-      "conflict": -0.167,
-      "maritime": -0.167
+      "other": 0.1,
+      "election": 0.1,
+      "peace": 0.077
     },
     "base_rate_usage": {
-      "base_20": {
-        "rate": 20,
-        "count": 7,
-        "reason": "Base rate: ceasefires during active conflict resolve YES ~20% historically"
-      },
       "base_5": {
         "rate": 5,
         "count": 4,
         "reason": "Base rate: new wars/invasions are rare, resolve YES ~5% historically"
       },
+      "base_35": {
+        "rate": 35,
+        "count": 1,
+        "reason": "Base rate: diplomatic agreements resolve YES ~35% historically"
+      },
+      "base_20": {
+        "rate": 20,
+        "count": 6,
+        "reason": "Base rate: ceasefires during active conflict resolve YES ~20% historically"
+      },
       "base_15": {
         "rate": 15,
-        "count": 4,
+        "count": 2,
         "reason": "Base rate: conflict escalation questions resolve YES ~15% historically"
       }
     },
@@ -13296,30 +13289,45 @@
       "cooling_hotspots": [],
       "edge_shifts": {
         "peace": {
-          "current_avg": 3.6,
-          "previous_avg": 9.2,
-          "direction": "narrowing"
-        },
-        "conflict": {
-          "current_avg": 6.3,
-          "previous_avg": 3.9,
+          "current_avg": 6.2,
+          "previous_avg": 3.6,
           "direction": "widening"
         },
         "space": {
-          "current_avg": 2.7,
+          "current_avg": 0.0,
+          "previous_avg": 2.7,
+          "direction": "narrowing"
+        },
+        "coup": {
+          "current_avg": 3.8,
           "previous_avg": 0,
           "direction": "widening"
         }
       },
       "sentiment_shifts": {
         "other": {
-          "current": -0.25,
-          "previous": 0.0,
+          "current": 0.1,
+          "previous": -0.429,
+          "direction": "improving"
+        },
+        "conflict": {
+          "current": -0.5,
+          "previous": -0.167,
           "direction": "deteriorating"
         },
         "election": {
-          "current": -0.429,
-          "previous": 0.0,
+          "current": 0.1,
+          "previous": -0.429,
+          "direction": "improving"
+        },
+        "nuclear": {
+          "current": -0.667,
+          "previous": -0.167,
+          "direction": "deteriorating"
+        },
+        "coup": {
+          "current": -0.667,
+          "previous": 0,
           "direction": "deteriorating"
         }
       },
@@ -13327,14 +13335,14 @@
     }
   },
   "paper_trader": {
-    "balance": 760.0,
+    "balance": 717.14,
     "starting_balance": 1000.0,
     "total_pnl": 0.0,
     "wins": 0,
     "losses": 0,
-    "total_wagered": 240.0,
-    "total_bets_placed": 6,
-    "pending_count": 6,
+    "total_wagered": 282.86,
+    "total_bets_placed": 7,
+    "pending_count": 7,
     "pending": [
       {
         "bet_id": "0db35fb14987",
@@ -13764,9 +13772,83 @@
         "status": "pending",
         "resolved_at": null,
         "pnl": null
+      },
+      {
+        "bet_id": "a60a812b9111",
+        "platform": "polymarket",
+        "question": "US-Iran 60 day negotiation period extended?",
+        "market_id": "0x518df6d694ad4658fe6c284850c029c6f00c9b3609cf05f7757d1fecba1641f8",
+        "ticker": "",
+        "slug": "us-iran-60-day-negotiation-period-extended-20260624044855448",
+        "condition_id": "0x518df6d694ad4658fe6c284850c029c6f00c9b3609cf05f7757d1fecba1641f8",
+        "url": "https://polymarket.com/event/us-iran-60-day-negotiation-period-extended-20260624044855448",
+        "market_prob": 62.5,
+        "atlas_prob": 48.4,
+        "edge": 14.1,
+        "position": "NO",
+        "entry_price": 0.375,
+        "bet_amount": 42.86,
+        "shares": 114.29,
+        "potential_payout": 114.29,
+        "potential_profit": 71.43,
+        "reasoning": "Expert analysis: Iranian Elites Are Not in Agreement About What to Do Next; Tehran 5 June 2026 #1; Tehran 3 June 2026 #3. ATLAS assessment: Currency Shock: 1 currencies moving >2% vs USD. Active conflict zone: Israel-Iran (shadow_war) \u2014 peace historically unlikely during active hostilities. ATLAS prior prediction: 14.1% vs market 62.5%. Base rate: ceasefires during active conflict resolve YES ~20% historically.",
+        "confidence": "medium",
+        "effective_edge": 10.9,
+        "market_quality": {
+          "volume": 94004.660797,
+          "efficiency": "normal",
+          "efficiency_multiplier": 0.7,
+          "days_to_expiry": 48,
+          "time_label": "quarter",
+          "time_multiplier": 1.1
+        },
+        "evidence_summary": {
+          "gdelt_relevant": 0,
+          "news_relevant": 10,
+          "think_tanks_relevant": 11,
+          "reddit_relevant": 3,
+          "aircraft_near_region": 0,
+          "critical_aircraft": 0,
+          "predictions_related": 5,
+          "conflict_zones": 1,
+          "nuclear_sites": 5,
+          "chokepoints": 1
+        },
+        "evidence_factors": [
+          {
+            "source": "base_rate_prior",
+            "adjustment": -3.8,
+            "reason": "Base rate: ceasefires during active conflict resolve YES ~20% historically"
+          },
+          {
+            "source": "geo_intel",
+            "adjustment": -9.6,
+            "reason": "Active conflict zone: Israel-Iran (shadow_war) \u2014 peace historically unlikely during active hostilities"
+          },
+          {
+            "source": "think_tanks",
+            "adjustment": 0.8,
+            "reason": "11 think tank articles on this topic \u2014 significant expert attention"
+          },
+          {
+            "source": "atlas_prior",
+            "adjustment": -4.4,
+            "reason": "ATLAS prior prediction: 14.1% vs market 62.5%"
+          },
+          {
+            "source": "sanctions",
+            "adjustment": -1.2,
+            "reason": "30 active sanctions entries \u2014 indicates adversarial posture"
+          }
+        ],
+        "end_date": "2026-08-20T23:59:00Z",
+        "placed_at": "2026-07-03T15:05:10.775992+00:00",
+        "status": "pending",
+        "resolved_at": null,
+        "pnl": null
       }
     ],
     "recent_resolved": [],
-    "last_scan": "2026-07-01T01:00:04.460132+00:00"
+    "last_scan": "2026-07-03T15:05:21.681301+00:00"
   }
 }
