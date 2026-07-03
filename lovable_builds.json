@@ -1,0 +1,43 @@
+{
+  "sites": [
+    {
+      "name": "Cannon Heating & Air Service LLC",
+      "slug": "cannon-heating-air-service-llc",
+      "niche": "HVAC",
+      "phone": "(601) 942-3192",
+      "score": 75,
+      "status": "ready"
+    },
+    {
+      "name": "Moore Plumbing",
+      "slug": "moore-plumbing",
+      "niche": "Plumbing",
+      "phone": "(870) 972-1365",
+      "score": 75,
+      "status": "ready"
+    },
+    {
+      "name": "Texas Fireman Lawn & Landscape",
+      "slug": "texas-fireman-lawn-landscape",
+      "niche": "Lawn & Landscaping",
+      "phone": "(214) 475-7325",
+      "score": 0,
+      "status": "ready"
+    },
+    {
+      "name": "Tupelo Heating & Air Conditioning",
+      "slug": "tupelo-heating-air-conditioning",
+      "niche": "HVAC",
+      "phone": "(662) 205-2566",
+      "score": 35,
+      "status": "needs_call",
+      "remaining_required": 1
+    }
+  ],
+  "counts": {
+    "built": 0,
+    "ready": 3,
+    "needs_call": 1
+  },
+  "updated": "2026-07-03 03:29 PM CT"
+}
