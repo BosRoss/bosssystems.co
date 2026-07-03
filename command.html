@@ -48,8 +48,9 @@ header{background:linear-gradient(180deg,#09090f 0%,var(--bg) 100%);border-botto
 main{padding:0 12px 80px;max-width:600px;margin:0 auto}
 
 /* TABS */
-.tab-bar{display:flex;border-bottom:1px solid var(--border);margin-bottom:0;position:sticky;top:52px;background:var(--bg);z-index:90;padding-top:8px}
-.tab{padding:10px 16px;font-size:10px;font-family:'Share Tech Mono',monospace;letter-spacing:2px;color:var(--dim);cursor:pointer;border-bottom:2px solid transparent;text-transform:uppercase;transition:color .15s}
+.tab-bar{display:flex;border-bottom:1px solid var(--border);margin-bottom:0;position:sticky;top:52px;background:var(--bg);z-index:90;padding-top:8px;overflow-x:auto;-webkit-overflow-scrolling:touch;scrollbar-width:none}
+.tab-bar::-webkit-scrollbar{display:none}
+.tab{padding:10px 12px;font-size:10px;font-family:'Share Tech Mono',monospace;letter-spacing:1px;color:var(--dim);cursor:pointer;border-bottom:2px solid transparent;text-transform:uppercase;transition:color .15s;white-space:nowrap;flex-shrink:0}
 .tab:active{opacity:.7}
 .tab.active{color:var(--gold);border-bottom-color:var(--gold)}
 .tab-content{display:none}
@@ -195,7 +196,7 @@ footer{text-align:center;padding:16px;font-family:'Share Tech Mono',monospace;fo
 
   <div class="tab-bar">
     <div class="tab active" id="tab-cmd" onclick="switchTab('cmd')">COMMAND</div>
-    <div class="tab" id="tab-bpp" onclick="switchTab('bpp')">BPP PARTNERS <span class="tab-count" id="bpp-count"></span></div>
+    <div class="tab" id="tab-bpp" onclick="switchTab('bpp')">BPP <span class="tab-count" id="bpp-count"></span></div>
     <div class="tab" id="tab-engage" onclick="switchTab('engage')">ENGAGE <span class="tab-count" id="engage-count"></span></div>
     <div class="tab" id="tab-sites" onclick="switchTab('sites')">SITES <span class="tab-count" id="sites-count"></span></div>
   </div>
