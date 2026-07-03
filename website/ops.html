@@ -1,0 +1,413 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>BOSS OPS — Command Center</title>
+<meta name="description" content="BOSS Systems operations dashboard. System health, workflow status, and performance monitoring.">
+<style>
+*{margin:0;padding:0;box-sizing:border-box}
+body{background:#0a0a0a;color:#ccc;font-family:'SF Mono',Menlo,monospace;font-size:13px;min-height:100vh}
+.header{background:linear-gradient(135deg,#111 0%,#1a1a2e 100%);border-bottom:2px solid #00ff41;padding:20px 24px;display:flex;justify-content:space-between;align-items:center}
+.header h1{color:#00ff41;font-size:20px;letter-spacing:2px}
+.header .meta{color:#999;font-size:11px;text-align:right}
+.header .meta .live{color:#00ff41;animation:pulse 2s infinite}
+@keyframes pulse{0%,100%{opacity:1}50%{opacity:.4}}
+.grid{display:grid;grid-template-columns:1fr 1fr 1fr;gap:16px;padding:16px;max-width:1600px;margin:0 auto}
+@media(max-width:1200px){.grid{grid-template-columns:1fr 1fr}}
+@media(max-width:768px){.grid{grid-template-columns:1fr}}
+.card{background:#111;border:1px solid #222;border-radius:8px;padding:16px;position:relative;overflow:hidden}
+.card.wide{grid-column:span 2}
+@media(max-width:768px){.card.wide{grid-column:span 1}}
+.card.full{grid-column:1/-1}
+.card h2{color:#00ff41;font-size:14px;letter-spacing:1px;margin-bottom:12px;padding-bottom:8px;border-bottom:1px solid #222}
+.card h2 .badge{float:right;font-size:10px;padding:2px 8px;border-radius:10px;font-weight:normal}
+.badge.green{background:#00ff4120;color:#00ff41;border:1px solid #00ff4140}
+.badge.red{background:#ff000020;color:#ff4444;border:1px solid #ff000040}
+.badge.yellow{background:#ffaa0020;color:#ffaa00;border:1px solid #ffaa0040}
+.badge.blue{background:#4B92DB20;color:#4B92DB;border:1px solid #4B92DB40}
+.stat-row{display:flex;justify-content:space-between;padding:4px 0;border-bottom:1px solid #1a1a1a}
+.stat-row:last-child{border:none}
+.stat-row .label{color:#888}
+.stat-row .value{color:#ddd;font-weight:bold}
+.stat-row .value.green{color:#00ff41}
+.stat-row .value.red{color:#ff4444}
+.stat-row .value.yellow{color:#ffaa00}
+.stat-row .value.blue{color:#4B92DB}
+.big-number{font-size:36px;font-weight:bold;color:#00ff41;text-align:center;padding:8px 0}
+.big-number.red{color:#ff4444}
+.big-number.yellow{color:#ffaa00}
+.big-number.blue{color:#4B92DB}
+.big-label{text-align:center;color:#999;font-size:11px;text-transform:uppercase;letter-spacing:1px}
+.meter{height:6px;background:#1a1a1a;border-radius:3px;margin:8px 0;overflow:hidden}
+.meter .fill{height:100%;border-radius:3px;transition:width .5s}
+.meter .fill.green{background:#00ff41}
+.meter .fill.yellow{background:#ffaa00}
+.meter .fill.red{background:#ff4444}
+.meter .fill.blue{background:#4B92DB}
+.workflow-list{list-style:none}
+.workflow-list li{display:flex;justify-content:space-between;padding:3px 0;border-bottom:1px solid #1a1a1a}
+.workflow-list li:last-child{border:none}
+.workflow-list .on{color:#00ff41}
+.workflow-list .off{color:#ff4444}
+.lead-table{width:100%;border-collapse:collapse;font-size:11px}
+.lead-table th{text-align:left;color:#00ff41;padding:4px 6px;border-bottom:1px solid #333;font-weight:normal;text-transform:uppercase;letter-spacing:.5px}
+.lead-table td{padding:4px 6px;border-bottom:1px solid #1a1a1a;color:#aaa}
+.lead-table .tier{font-weight:bold}
+.lead-table .tier.SUPERNICHE{color:#ff4444}
+.lead-table .tier.HOT{color:#ffaa00}
+.lead-table .tier.WARM{color:#4B92DB}
+.error-list{list-style:none}
+.error-list li{color:#ff6666;padding:2px 0;font-size:11px}
+.error-list li::before{content:''; margin-right:4px}
+.signal-list{list-style:none}
+.signal-list li{padding:3px 0;color:#aaa;font-size:11px;border-bottom:1px solid #1a1a1a}
+.signal-list li:last-child{border:none}
+.signal-list .type{color:#00ff41;font-weight:bold;margin-right:4px}
+.refresh-btn{position:fixed;bottom:20px;right:20px;background:#00ff4120;color:#00ff41;border:1px solid #00ff41;padding:8px 16px;border-radius:4px;cursor:pointer;font-family:inherit;font-size:12px}
+.refresh-btn:hover{background:#00ff4140}
+.loading{color:#999;text-align:center;padding:40px}
+.four-grid{display:grid;grid-template-columns:1fr 1fr 1fr 1fr;gap:12px}
+@media(max-width:768px){.four-grid{grid-template-columns:1fr 1fr}}
+.mini-card{text-align:center;padding:12px;background:#0d0d0d;border-radius:6px;border:1px solid #1a1a1a}
+</style>
+</head>
+<body>
+<nav style="display:flex;align-items:center;gap:12px;padding:6px 16px;background:#060606;border-bottom:1px solid #1a1a1a;font-size:11px;font-family:'SF Mono',Menlo,monospace;overflow-x:auto;white-space:nowrap">
+  <a href="command.html" style="color:#888;text-decoration:none">Command</a>
+  <span style="color:#00ff41;font-weight:600">Ops</span>
+  <a href="atlas.html" style="color:#888;text-decoration:none">ATLAS</a>
+  <a href="engine.html" style="color:#888;text-decoration:none">Leads</a>
+  <a href="social.html" style="color:#888;text-decoration:none">Social</a>
+  <a href="quant.html" style="color:#888;text-decoration:none">Quant</a>
+  <a href="washington_trainer/trainer.html" style="color:#888;text-decoration:none">Skills</a>
+  <a href="partners.html" style="color:#888;text-decoration:none">Partners</a>
+  <a href="index.html" style="color:#888;text-decoration:none;margin-left:auto">Website</a>
+</nav>
+<div class="header">
+    <h1>BOSS OPS</h1>
+    <div class="meta">
+        <div class="live" id="live-dot">LIVE</div>
+        <div id="last-update">Loading...</div>
+    </div>
+</div>
+
+<div class="grid" id="dashboard">
+    <div class="loading" style="grid-column:1/-1">Loading operations data...</div>
+</div>
+
+<div class="grid" style="margin-top:0;padding-top:0">
+    <div class="card" id="lovable-sites">
+        <h2>LOVABLE SITES <span class="badge blue">NEW</span></h2>
+        <div class="card-body"><div style="color:#999;text-align:center;padding:12px">Loading...</div></div>
+    </div>
+    <div class="card" id="system-health">
+        <h2>SYSTEM HEALTH <span class="badge green">AUDIT</span></h2>
+        <div class="card-body"><div style="color:#999;text-align:center;padding:12px">Loading...</div></div>
+    </div>
+    <div class="card" id="sales-pulse">
+        <h2>SALES PULSE <span class="badge green">LIVE</span></h2>
+        <div class="card-body"><div style="color:#999;text-align:center;padding:12px">Loading...</div></div>
+    </div>
+</div>
+
+<button class="refresh-btn" onclick="loadData()">REFRESH</button>
+
+<script>
+const DATA_URL = 'https://raw.githubusercontent.com/BosRoss/bosssystems.co/main/ops_report.json';
+
+function timeAgo(iso) {
+    if (!iso) return 'never';
+    const d = new Date(iso);
+    const now = new Date();
+    const sec = Math.floor((now - d) / 1000);
+    if (sec < 60) return sec + 's ago';
+    if (sec < 3600) return Math.floor(sec/60) + 'm ago';
+    if (sec < 86400) return Math.floor(sec/3600) + 'h ago';
+    return Math.floor(sec/86400) + 'd ago';
+}
+
+function badge(text, color) {
+    return `<span class="badge ${color}">${text}</span>`;
+}
+
+function meterBar(pct, thresholds) {
+    const color = pct > (thresholds?.red || 80) ? 'red' : pct > (thresholds?.yellow || 60) ? 'yellow' : 'green';
+    return `<div class="meter"><div class="fill ${color}" style="width:${Math.min(pct,100)}%"></div></div>`;
+}
+
+function render(data) {
+    const s = data.sections;
+    const el = document.getElementById('dashboard');
+    document.getElementById('last-update').textContent = timeAgo(data.generated);
+
+    let html = '';
+
+    // ── Top KPIs ──
+    html += `<div class="card full">
+        <div class="four-grid">
+            <div class="mini-card">
+                <div class="big-number ${s.atlas.heat_score >= 70 ? 'green' : s.atlas.heat_score >= 40 ? 'yellow' : ''}">${s.atlas.heat_score}</div>
+                <div class="big-label">ATLAS Heat Score</div>
+            </div>
+            <div class="mini-card">
+                <div class="big-number blue">${s.lead_engine.total_leads}</div>
+                <div class="big-label">Leads in Pipeline</div>
+            </div>
+            <div class="mini-card">
+                <div class="big-number">${s.n8n.active_workflows}</div>
+                <div class="big-label">Active Workflows</div>
+            </div>
+            <div class="mini-card">
+                <div class="big-number ${s.retell.calls_24h > 0 ? 'green' : ''}">${s.retell.calls_24h}</div>
+                <div class="big-label">Calls (24h)</div>
+            </div>
+        </div>
+    </div>`;
+
+    // ── ATLAS Intelligence ──
+    html += `<div class="card">
+        <h2>ATLAS INTELLIGENCE ${badge(s.atlas.power_level, 'blue')}</h2>
+        <div class="stat-row"><span class="label">Last Scan</span><span class="value">${timeAgo(s.atlas.last_scan)}</span></div>
+        <div class="stat-row"><span class="label">Demand Signals</span><span class="value green">${s.atlas.demand_signals}</span></div>
+        <div class="stat-row"><span class="label">Pain Signals</span><span class="value yellow">${s.atlas.pain_signals}</span></div>
+        <div class="stat-row"><span class="label">Pitch Adjustments</span><span class="value">${s.atlas.pitch_adjustments}</span></div>
+        <div class="stat-row"><span class="label">Competitor Intel</span><span class="value">${s.atlas.competitor_intel}</span></div>
+        <div class="stat-row"><span class="label">Territory Alerts</span><span class="value">${s.atlas.territory_alerts}</span></div>
+        ${s.atlas.recommendation ? `<div style="margin-top:8px;padding:8px;background:#0d0d0d;border-left:2px solid #00ff41;color:#aaa;font-size:11px">${s.atlas.recommendation}</div>` : ''}
+    </div>`;
+
+    // ── Lead Engine ──
+    const spendPct = s.lead_engine.api_percent || 0;
+    html += `<div class="card">
+        <h2>LEAD ENGINE ${badge(s.lead_engine.state, s.lead_engine.state === 'ACTIVE' ? 'green' : 'red')}</h2>
+        <div class="stat-row"><span class="label">Total Leads</span><span class="value blue">${s.lead_engine.total_leads}</span></div>
+        <div class="stat-row"><span class="label">SUPERNICHE</span><span class="value red">${s.lead_engine.by_tier.SUPERNICHE || 0}</span></div>
+        <div class="stat-row"><span class="label">HOT</span><span class="value yellow">${s.lead_engine.by_tier.HOT || 0}</span></div>
+        <div class="stat-row"><span class="label">WARM</span><span class="value blue">${s.lead_engine.by_tier.WARM || 0}</span></div>
+        <div class="stat-row"><span class="label">Synced to Caller</span><span class="value green">${s.lead_engine.synced_to_pipeline}</span></div>
+        <div class="stat-row"><span class="label">Outcomes Recorded</span><span class="value">${s.lead_engine.outcomes_recorded}</span></div>
+        <div class="stat-row"><span class="label">Learning Active</span><span class="value ${s.lead_engine.learned_weights ? 'green' : ''}">${s.lead_engine.learned_weights ? 'YES' : 'NO (need 15+ outcomes)'}</span></div>
+        <div class="stat-row"><span class="label">API Spend</span><span class="value">$${s.lead_engine.api_spend} / $300</span></div>
+        ${meterBar(spendPct, {yellow: 50, red: 75})}
+    </div>`;
+
+    // ── n8n Workflows ──
+    html += `<div class="card">
+        <h2>n8n WORKFLOWS ${badge(s.n8n.active_workflows + ' active', 'green')}</h2>
+        <div class="stat-row"><span class="label">Active</span><span class="value green">${s.n8n.active_workflows}</span></div>
+        <div class="stat-row"><span class="label">Inactive</span><span class="value">${s.n8n.inactive_workflows}</span></div>
+        <div class="stat-row"><span class="label">Errors (recent)</span><span class="value ${s.n8n.recent_errors > 0 ? 'red' : 'green'}">${s.n8n.recent_errors}</span></div>
+        <div class="stat-row"><span class="label">Crashes</span><span class="value ${s.n8n.recent_crashes > 0 ? 'red' : 'green'}">${s.n8n.recent_crashes}</span></div>
+        <h3 style="color:#888;font-size:11px;margin:10px 0 6px;text-transform:uppercase;letter-spacing:1px">Critical Workflows</h3>
+        <ul class="workflow-list">
+            ${(s.n8n.critical_workflows || []).map(w =>
+                `<li><span>${w.name}</span><span class="${w.active ? 'on' : 'off'}">${w.active ? 'ON' : 'OFF'}</span></li>`
+            ).join('')}
+        </ul>
+        ${s.n8n.recent_failures.length > 0 ? `
+            <h3 style="color:#ff4444;font-size:11px;margin:10px 0 6px">Recent Failures</h3>
+            <ul class="error-list">
+                ${s.n8n.recent_failures.map(f => `<li>${f.workflow} — ${f.started}</li>`).join('')}
+            </ul>
+        ` : ''}
+    </div>`;
+
+    // ── Retell Agents ──
+    html += `<div class="card">
+        <h2>RETELL VOICE ${badge(s.retell.total_agents + ' agents', 'blue')}</h2>
+        <div class="stat-row"><span class="label">Calls (24h)</span><span class="value">${s.retell.calls_24h}</span></div>
+        <div class="stat-row"><span class="label">Outbound</span><span class="value">${s.retell.outbound_24h}</span></div>
+        <div class="stat-row"><span class="label">Inbound</span><span class="value">${s.retell.inbound_24h}</span></div>
+        <div class="stat-row"><span class="label">Avg Duration</span><span class="value">${s.retell.avg_duration_sec}s</span></div>
+    </div>`;
+
+    // ── Outcomes Breakdown ──
+    const outcomes = s.lead_engine.by_outcome || {};
+    const hasOutcomes = Object.keys(outcomes).length > 0;
+    html += `<div class="card">
+        <h2>CALL OUTCOMES ${badge(s.lead_engine.outcomes_recorded + ' total', hasOutcomes ? 'green' : 'yellow')}</h2>
+        ${hasOutcomes ? Object.entries(outcomes).map(([k,v]) =>
+            `<div class="stat-row"><span class="label">${k}</span><span class="value ${k === 'meeting_set' || k === 'closed' ? 'green' : k === 'not_interested' || k === 'opted_out' ? 'red' : ''}">${v}</span></div>`
+        ).join('') : '<div style="color:#999;text-align:center;padding:16px">No outcomes yet.<br>Sync will start automatically when calls match pipeline leads.</div>'}
+    </div>`;
+
+    // ── System Health ──
+    const h = s.health;
+    const issues = [];
+    if (h.engine_paused) issues.push('Lead Engine PAUSED');
+    if (h.circuit_breakers_tripped.length > 0) issues.push('Circuit breakers: ' + h.circuit_breakers_tripped.join(', '));
+    if (h.n8n_errors_24h > 5) issues.push(h.n8n_errors_24h + ' n8n errors in 24h');
+    if (h.api_spend_pct > 75) issues.push('API spend at ' + h.api_spend_pct + '%');
+
+    html += `<div class="card">
+        <h2>SYSTEM HEALTH ${badge(issues.length === 0 ? 'ALL CLEAR' : issues.length + ' ISSUES', issues.length === 0 ? 'green' : 'red')}</h2>
+        ${issues.length === 0 ?
+            '<div style="color:#00ff41;text-align:center;padding:16px;font-size:14px">All systems nominal.</div>' :
+            '<ul class="error-list">' + issues.map(i => `<li>${i}</li>`).join('') + '</ul>'
+        }
+        <div style="margin-top:10px">
+            <div class="stat-row"><span class="label">ATLAS Power</span><span class="value blue">${h.atlas_power}</span></div>
+            <div class="stat-row"><span class="label">Engine State</span><span class="value ${!h.engine_paused ? 'green' : 'red'}">${h.engine_paused ? 'PAUSED' : 'ACTIVE'}</span></div>
+            <div class="stat-row"><span class="label">API Budget Used</span><span class="value ${h.api_spend_pct > 75 ? 'red' : h.api_spend_pct > 50 ? 'yellow' : 'green'}">${h.api_spend_pct}%</span></div>
+        </div>
+    </div>`;
+
+    // ── Top Leads Table ──
+    const leads = s.lead_engine.top_leads || [];
+    if (leads.length > 0) {
+        html += `<div class="card full">
+            <h2>TOP LEADS ${badge(leads.length + ' shown', 'blue')}</h2>
+            <table class="lead-table">
+                <thead><tr><th>Business</th><th>Niche</th><th>State</th><th>Tier</th><th>Score</th><th>Route</th><th>Status</th></tr></thead>
+                <tbody>
+                    ${leads.map(l => `<tr>
+                        <td>${l.name}</td>
+                        <td>${l.niche}</td>
+                        <td>${l.state}</td>
+                        <td class="tier ${l.tier}">${l.tier}</td>
+                        <td>${l.score}</td>
+                        <td>${l.route}</td>
+                        <td>${l.status}</td>
+                    </tr>`).join('')}
+                </tbody>
+            </table>
+        </div>`;
+    }
+
+    // ── ATLAS Top Demands ──
+    const demands = s.atlas.top_demands || [];
+    if (demands.length > 0) {
+        html += `<div class="card">
+            <h2>ACTIVE DEMAND SIGNALS</h2>
+            <ul class="signal-list">
+                ${demands.map(d => `<li><span class="type">${(d.type || '').toUpperCase()}</span>${d.area} — ${d.niche}</li>`).join('')}
+            </ul>
+        </div>`;
+    }
+
+    // ── Route Breakdown ──
+    const routes = s.lead_engine.by_route || {};
+    if (Object.keys(routes).length > 0) {
+        html += `<div class="card">
+            <h2>LEAD ROUTING</h2>
+            ${Object.entries(routes).map(([k,v]) =>
+                `<div class="stat-row"><span class="label">${k}</span><span class="value">${v}</span></div>`
+            ).join('')}
+        </div>`;
+    }
+
+    el.innerHTML = html;
+}
+
+async function loadLovable() {
+    const el = document.getElementById('lovable-sites');
+    if (!el) return;
+    try {
+        const r = await fetch('https://raw.githubusercontent.com/BosRoss/bosssystems.co/main/lovable_builds.json?t=' + Date.now());
+        if (!r.ok) { el.querySelector('.card-body').innerHTML = '<div style="color:#999;text-align:center;padding:12px">No builds yet.</div>'; return; }
+        const data = await r.json();
+        const builds = data.builds || [];
+        let html = `<div class="four-grid" style="margin-bottom:12px">
+            <div class="mini-card"><div class="big-number blue" style="font-size:24px">${builds.length}</div><div class="big-label">Built</div></div>
+            <div class="mini-card"><div class="big-number yellow" style="font-size:24px">${data.total_credits_spent || 0}</div><div class="big-label">Credits</div></div>
+        </div>`;
+        if (builds.length > 0) {
+            html += '<div style="max-height:200px;overflow-y:auto">';
+            builds.slice(-10).reverse().forEach(b => {
+                html += `<div class="stat-row">
+                    <span class="label">${b.business_name || '?'}</span>
+                    <span class="value">${b.url ? '<a href="'+b.url+'" target="_blank" style="color:#4B92DB">Live</a>' : 'pending'} <span style="color:#666;font-size:10px">${(b.timestamp || '').slice(0,10)}</span></span>
+                </div>`;
+            });
+            html += '</div>';
+        } else {
+            html += '<div style="color:#999;text-align:center;padding:8px">No sites built yet. Run lovable_site_pipeline.py</div>';
+        }
+        el.querySelector('.card-body').innerHTML = html;
+    } catch(e) {
+        el.querySelector('.card-body').innerHTML = '<div style="color:#999;text-align:center;padding:12px">No builds yet.</div>';
+    }
+}
+
+async function loadHealth() {
+    const el = document.getElementById('system-health');
+    if (!el) return;
+    try {
+        const r = await fetch('https://raw.githubusercontent.com/BosRoss/bosssystems.co/main/system_health.json?t=' + Date.now());
+        if (!r.ok) throw new Error('No data');
+        const data = await r.json();
+        const a = data.alive || 0, d = data.dead || 0, b = data.broken || 0, s = data.stale || 0;
+        const allGood = d === 0 && b === 0;
+        el.querySelector('.card-body').innerHTML = `
+            <div style="display:flex;align-items:center;gap:8px;margin-bottom:10px">
+                <div style="width:10px;height:10px;border-radius:50%;background:${allGood ? '#00ff41' : '#ff4444'};animation:pulse 2s infinite"></div>
+                <span style="color:${allGood ? '#00ff41' : '#ff4444'};font-size:14px">${allGood ? 'ALL SYSTEMS GO' : b + d + ' ISSUES'}</span>
+            </div>
+            <div class="stat-row"><span class="label">Alive</span><span class="value green">${a}</span></div>
+            <div class="stat-row"><span class="label">Broken</span><span class="value ${b ? 'red' : ''}">${b}</span></div>
+            <div class="stat-row"><span class="label">Dead</span><span class="value ${d ? 'red' : ''}">${d}</span></div>
+            <div class="stat-row"><span class="label">Stale</span><span class="value ${s ? 'yellow' : ''}">${s}</span></div>
+            <div style="margin-top:8px;font-size:10px;color:#666">Last audit: ${data.timestamp || 'unknown'}</div>
+        `;
+    } catch(e) {
+        el.querySelector('.card-body').innerHTML = '<div style="color:#999;text-align:center;padding:12px">Run nuclear audit to generate.</div>';
+    }
+}
+
+async function loadSalesPulse() {
+    const el = document.getElementById('sales-pulse');
+    if (!el) return;
+    try {
+        const r = await fetch(DATA_URL + '?t=' + Date.now());
+        if (!r.ok) throw new Error('No data');
+        const data = await r.json();
+        const s = data.sections || {};
+        const le = s.lead_engine || {};
+        const rt = s.retell || {};
+        const oc = le.by_outcome || {};
+        const meetings = (oc.meeting_set || 0) + (oc.closed || 0);
+        el.querySelector('.card-body').innerHTML = `
+            <div class="four-grid" style="margin-bottom:12px">
+                <div class="mini-card"><div class="big-number green" style="font-size:24px">$50</div><div class="big-label">MRR</div></div>
+                <div class="mini-card"><div class="big-number blue" style="font-size:24px">1</div><div class="big-label">Clients</div></div>
+                <div class="mini-card"><div class="big-number yellow" style="font-size:24px">${le.total_leads || 0}</div><div class="big-label">Pipeline</div></div>
+                <div class="mini-card"><div class="big-number" style="font-size:24px">${rt.calls_24h || 0}</div><div class="big-label">Calls 24h</div></div>
+            </div>
+            <div class="stat-row"><span class="label">Outbound (24h)</span><span class="value">${rt.outbound_24h || 0}</span></div>
+            <div class="stat-row"><span class="label">Inbound (24h)</span><span class="value">${rt.inbound_24h || 0}</span></div>
+            <div class="stat-row"><span class="label">Avg Call Duration</span><span class="value">${rt.avg_duration_sec || 0}s</span></div>
+            <div class="stat-row"><span class="label">Meetings Set</span><span class="value ${meetings > 0 ? 'green' : ''}">${meetings}</span></div>
+            <div class="stat-row"><span class="label">Suppressed</span><span class="value">${le.suppression_count || 0}</span></div>
+        `;
+    } catch(e) {
+        el.querySelector('.card-body').innerHTML = '<div style="color:#999;text-align:center;padding:12px">Run ops_report.py to generate.</div>';
+    }
+}
+
+async function loadData() {
+    try {
+        const r = await fetch(DATA_URL + '?t=' + Date.now());
+        if (!r.ok) throw new Error('HTTP ' + r.status);
+        const data = await r.json();
+        render(data);
+    } catch(e) {
+        document.getElementById('dashboard').innerHTML =
+            `<div class="loading" style="grid-column:1/-1;color:#ff4444">
+                Failed to load: ${e.message}<br><br>
+                <span style="color:#999">Run: python3 scripts/ops_report.py</span>
+            </div>`;
+    }
+}
+
+loadData();
+loadLovable();
+loadHealth();
+loadSalesPulse();
+setInterval(loadData, 120000);
+setInterval(loadLovable, 120000);
+setInterval(loadHealth, 120000);
+setInterval(loadSalesPulse, 120000);
+</script>
+</body>
+</html>
