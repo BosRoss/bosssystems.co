@@ -97,8 +97,8 @@ body{background:#0a0a0a;color:#ccc;font-family:'SF Mono',Menlo,monospace;font-si
 </div>
 
 <div class="grid" style="margin-top:0;padding-top:0">
-    <div class="card" id="lovable-sites">
-        <h2>LOVABLE SITES <span class="badge blue">NEW</span></h2>
+    <div class="card" id="lovable-sites" style="grid-column:span 2">
+        <h2>WEBSITE PIPELINE <span class="badge blue">REMIX</span></h2>
         <div class="card-body"><div style="color:#999;text-align:center;padding:12px">Loading...</div></div>
     </div>
     <div class="card" id="system-health">
@@ -305,22 +305,37 @@ async function loadLovable() {
     if (!el) return;
     try {
         const r = await fetch('https://raw.githubusercontent.com/BosRoss/bosssystems.co/main/lovable_builds.json?t=' + Date.now());
-        if (!r.ok) { el.querySelector('.card-body').innerHTML = '<div style="color:#999;text-align:center;padding:12px">No sites yet. Run: boss website</div>'; return; }
+        if (!r.ok) { el.querySelector('.card-body').innerHTML = '<div style="color:#999;text-align:center;padding:12px">No sites yet.</div>'; return; }
         const data = await r.json();
-        const built = (data.sites || []).filter(s => s.status === 'built');
-        const ready = (data.sites || []).filter(s => s.status === 'ready');
-        const needs = (data.sites || []).filter(s => s.status === 'needs_call');
-        const total = built.length + ready.length + needs.length;
+        const sites = data.sites || [];
+        const built = sites.filter(s => s.status === 'built');
+        const ready = sites.filter(s => s.status === 'ready');
+        const needs = sites.filter(s => s.status === 'needs_call');
+        const unsold = sites.filter(s => s.status === 'unsold');
+        const building = sites.filter(s => s.status === 'building');
+        const cs = data.credit_stats || {};
+        const total = built.length + ready.length + needs.length + unsold.length + building.length;
         let html = `<div class="four-grid" style="margin-bottom:12px">
-            <div class="mini-card"><div class="big-number green" style="font-size:24px">${built.length}</div><div class="big-label">Built</div></div>
-            <div class="mini-card"><div class="big-number blue" style="font-size:24px">${ready.length}</div><div class="big-label">Ready</div></div>
-            <div class="mini-card"><div class="big-number yellow" style="font-size:24px">${needs.length}</div><div class="big-label">Need Call</div></div>
-            <div class="mini-card"><div class="big-number" style="font-size:24px;color:#ccc">${total}</div><div class="big-label">Total</div></div>
+            <div class="mini-card"><div class="big-number green" style="font-size:22px">${built.length}</div><div class="big-label">Live</div></div>
+            <div class="mini-card"><div class="big-number blue" style="font-size:22px">${ready.length}</div><div class="big-label">Ready</div></div>
+            <div class="mini-card"><div class="big-number yellow" style="font-size:22px">${needs.length + building.length}</div><div class="big-label">Pipeline</div></div>
+            <div class="mini-card"><div class="big-number" style="font-size:22px;color:#ccc">${cs.avg_per_site || '—'}</div><div class="big-label">Avg Cr/Site</div></div>
         </div>`;
+        if (cs.total_credits > 0) {
+            html += `<div class="meter"><div class="fill blue" style="width:100%"></div></div>`;
+            html += `<div style="display:flex;justify-content:space-between;font-size:10px;color:#888;margin-bottom:8px"><span>${cs.total_credits} total credits</span><span>${cs.sites_tracked} sites tracked</span></div>`;
+        }
         if (built.length > 0) {
-            html += '<div style="font-size:10px;color:#00ff41;text-transform:uppercase;letter-spacing:1px;margin:8px 0 4px">Built</div>';
+            html += '<div style="font-size:10px;color:#00ff41;text-transform:uppercase;letter-spacing:1px;margin:8px 0 4px">Live</div>';
             built.forEach(b => {
-                html += `<div class="stat-row"><span class="label">${b.name}</span><span class="value">${b.url ? '<a href="'+b.url+'" target="_blank" style="color:#4B92DB">Live</a>' : '<span style="color:#00ff41">Done</span>'}</span></div>`;
+                const cr = b.credits_used != null ? `<span style="color:#888;font-size:10px">${b.credits_used}cr</span> ` : '';
+                html += `<div class="stat-row"><span class="label">${b.name}</span><span class="value">${cr}${b.url ? '<a href="'+b.url+'" target="_blank" style="color:#4B92DB">View</a>' : '<span style="color:#00ff41">Done</span>'}</span></div>`;
+            });
+        }
+        if (unsold.length > 0) {
+            html += '<div style="font-size:10px;color:#ff8c00;text-transform:uppercase;letter-spacing:1px;margin:8px 0 4px">Unsold (Recyclable)</div>';
+            unsold.forEach(b => {
+                html += `<div class="stat-row"><span class="label">${b.name}</span><span class="value"><span style="color:#ff8c00">${b.niche}</span></span></div>`;
             });
         }
         if (ready.length > 0) {
@@ -332,10 +347,10 @@ async function loadLovable() {
         if (needs.length > 0) {
             html += '<div style="font-size:10px;color:#ffaa00;text-transform:uppercase;letter-spacing:1px;margin:8px 0 4px">Needs Call</div>';
             needs.forEach(b => {
-                html += `<div class="stat-row"><span class="label">${b.name}</span><span class="value"><span style="color:#ffaa00">${b.remaining_required}q</span> ${b.phone ? '<a href="tel:'+b.phone+'" style="color:#999;font-size:10px">'+b.phone+'</a>' : ''}</span></div>`;
+                html += `<div class="stat-row"><span class="label">${b.name}</span><span class="value"><span style="color:#ffaa00">${b.remaining_required || '?'}q</span> ${b.phone ? '<a href="tel:'+b.phone+'" style="color:#999;font-size:10px">'+b.phone+'</a>' : ''}</span></div>`;
             });
         }
-        if (total === 0) html += '<div style="color:#999;text-align:center;padding:8px">No sites yet. Run: boss website</div>';
+        if (total === 0) html += '<div style="color:#999;text-align:center;padding:8px">No sites yet.</div>';
         if (data.updated) html += `<div style="color:#555;font-size:10px;text-align:right;margin-top:8px">${data.updated}</div>`;
         el.querySelector('.card-body').innerHTML = html;
     } catch(e) {
