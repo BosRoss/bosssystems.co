@@ -3903,10 +3903,19 @@ def generate_atlas_predictions(data: dict, anomalies: list, assessments: list) -
     trader_sentiment = trader_intel.get("sentiment_map", {})
     trader_momentum = trader_intel.get("momentum", {})
 
+    SPORTS_SKIP = ["fifa", "world cup", "premier league", "champions league",
+                    "nba", "nfl", "mlb", "nhl", "serie a", "la liga", "bundesliga",
+                    "super bowl", "olympics", "tennis", "boxing", "ufc", "mma",
+                    "cricket", "f1", "formula 1", "grand prix", "team to advance",
+                    "copa america", "euros 2026", "win the"]
+
     for market in poly[:20]:
         question = market.get("question", "")
         market_prob = market.get("probability", 50)
         q_lower = question.lower()
+
+        if any(s in q_lower for s in SPORTS_SKIP):
+            continue
 
         atlas_prob = market_prob
         reasoning_parts = []
@@ -4344,16 +4353,11 @@ def _alert_key(text):
     return hashlib.md5(text.strip().lower()[:120].encode()).hexdigest()[:12]
 
 def send_alert(report: dict):
-    JUICY_PATTERNS = {
-        "blackout_conflict",
-        "wiki_storm",
-        "economic_shock",
-        "radiation_elevated",
-        "trader_divergence",
-    }
     SKIP_PATTERNS = {"seismic_major"}
 
     anomalies = report.get("anomalies", [])
+    assessments = report.get("assessments", [])
+    headlines = report.get("headlines", [])
     opportunities = report.get("opportunities", [])
     pred_data = report.get("predictions", {})
     if isinstance(pred_data, dict):
@@ -4369,19 +4373,27 @@ def send_alert(report: dict):
             if HAS_INTEL and (find_nearby_conflict_zones(lat, lon, 400)
                               or find_nearby_chokepoints(lat, lon, 300)):
                 a["pattern"] = "mil_air_conflict_zone"
-                JUICY_PATTERNS.add("mil_air_conflict_zone")
 
+    # --- Collect all intelligence worth sending ---
+
+    # Anomalies: score >= 50 (lowered from 70)
     juicy = [a for a in anomalies
-             if a.get("score", 0) >= 70
+             if a.get("score", 0) >= 50
              and a.get("pattern", "") not in SKIP_PATTERNS]
 
-    urgent_opps = [o for o in opportunities
-                   if o.get("urgency") == "immediate" and o.get("confidence", 0) >= 75]
+    # Assessments: confidence >= 60, prioritize geopolitical/security/economic over business
+    _cat_priority = {"security": 0, "geopolitical": 1, "economic": 2, "technology": 3,
+                     "environmental": 4, "market_opportunity": 5, "market_intelligence": 6}
+    strong_assessments = sorted(
+        [a for a in assessments if a.get("confidence", 0) >= 60],
+        key=lambda x: (_cat_priority.get(x.get("category", ""), 9), -x.get("confidence", 0)))
 
-    big_divergences = [p for p in predictions
-                       if isinstance(p, dict) and abs(p.get("divergence", 0)) >= 15
-                       and p.get("confidence") in ("medium", "high")]
+    # Predictions where ATLAS disagrees with markets: divergence >= 8
+    divergences = [p for p in predictions
+                   if isinstance(p, dict) and abs(p.get("divergence", 0)) >= 8
+                   and p.get("confidence") in ("medium", "high")]
 
+    # Breaking news detection
     BREAKING_KEYWORDS = [
         "iran attack", "iran strike", "iran bomb", "iran war",
         "israel strike", "israel attack", "israel bomb",
@@ -4401,11 +4413,8 @@ def send_alert(report: dict):
         "no-fly zone", "shoots down",
         "chemical weapon", "biological weapon", "gas attack",
     ]
-    gdelt_articles = report.get("gdelt", [])
-    tt_articles = report.get("think_tanks", [])
-    rss_articles = report.get("rss", [])
+    all_news = report.get("gdelt", []) + report.get("think_tanks", []) + report.get("rss", [])
     telegram_posts = report.get("telegram", [])
-    all_news = gdelt_articles + tt_articles + rss_articles
 
     breaking = []
     seen_titles = set()
@@ -4418,38 +4427,26 @@ def send_alert(report: dict):
             seen_titles.add(title_key)
             breaking.append(article)
 
-    telegram_breaking = []
-    for post in telegram_posts:
-        text = (post.get("text") or "").lower()
-        if any(kw in text for kw in BREAKING_KEYWORDS):
-            telegram_breaking.append(post)
+    telegram_breaking = [p for p in telegram_posts
+                         if any(kw in (p.get("text") or "").lower() for kw in BREAKING_KEYWORDS)]
 
-    futures_data = report.get("futures", [])
-    futures_spikes = [f for f in futures_data if abs(f.get("change_pct", 0)) >= 3.0]
+    futures_spikes = [f for f in report.get("futures", []) if abs(f.get("change_pct", 0)) >= 3.0]
+    firms_alerts = [f for f in report.get("firms", []) if f.get("hotspot_count", 0) >= 10]
 
-    firms_data = report.get("firms", [])
-    firms_alerts = [f for f in firms_data if f.get("hotspot_count", 0) >= 10]
+    # Congress/legislation activity
+    congress_items = report.get("congress", [])[:3]
 
-    poly_alerts = []
-    for p in predictions:
-        if not isinstance(p, dict):
-            continue
-        q = (p.get("question") or "").lower()
-        if any(k in q for k in ["war", "attack", "strike", "iran", "israel", "taiwan", "nuclear"]):
-            if abs(p.get("divergence", 0)) >= 10:
-                poly_alerts.append(p)
-
-    if not juicy and not urgent_opps and not big_divergences and not breaking \
-       and not poly_alerts and not telegram_breaking and not futures_spikes and not firms_alerts:
+    # If there's literally nothing from any source, skip
+    has_breaking = breaking or telegram_breaking or futures_spikes or firms_alerts
+    has_intel = strong_assessments or divergences or juicy or headlines or congress_items
+    if not has_breaking and not has_intel:
         return
 
-    # Dedup against previous alerts sent in the last 48 hours
+    # --- Dedup against previous alerts (48h window) ---
     state = _load_alert_state()
     sent = state.get("sent_keys", {})
     now_iso = datetime.now(timezone.utc).isoformat()
     cutoff = (datetime.now(timezone.utc) - timedelta(hours=48)).isoformat()
-
-    # Clean old keys
     sent = {k: v for k, v in sent.items() if v > cutoff}
 
     def is_new(text):
@@ -4459,88 +4456,117 @@ def send_alert(report: dict):
         sent[k] = now_iso
         return True
 
-    # Filter out already-sent items
     telegram_breaking = [t for t in telegram_breaking if is_new(t.get("text", ""))]
     breaking = [b for b in breaking if is_new(b.get("title", ""))]
     futures_spikes = [f for f in futures_spikes if is_new(f.get("name", "") + str(f.get("change_pct", 0)))]
     firms_alerts = [f for f in firms_alerts if is_new(f.get("region", "") + str(f.get("hotspot_count", 0)))]
     juicy = [a for a in juicy if is_new(a.get("description", ""))]
-    poly_alerts = [p for p in poly_alerts if is_new(p.get("question", ""))]
-    big_divergences = [d for d in big_divergences if is_new(d.get("question", ""))]
-    urgent_opps = [o for o in urgent_opps if is_new(o.get("opportunity", ""))]
+    divergences = [d for d in divergences if is_new(d.get("question", ""))]
+    strong_assessments = [a for a in strong_assessments if is_new(a.get("title", ""))]
+    headlines = [h for h in headlines if is_new(h.get("headline", ""))]
+    congress_items = [c for c in congress_items if is_new(c.get("title", c.get("bill", "")))]
 
     state["sent_keys"] = sent
     state["last_cleanup"] = now_iso
     _save_alert_state(state)
 
+    # After dedup, check if anything survived
     if not any([telegram_breaking, breaking, futures_spikes, firms_alerts,
-                juicy, poly_alerts, big_divergences, urgent_opps]):
+                juicy, divergences, strong_assessments, headlines, congress_items]):
         return
 
-    # Build clean, summarized notification (no headlines, plain language)
+    # --- Build intelligence brief ---
     lines = []
 
+    # SECTION 1: Breaking (if any) — urgent stuff first
     if telegram_breaking:
         for t in telegram_breaking[:3]:
-            channel = t.get("channel", "")
-            text = t.get("text", "")[:150]
-            lines.append(f"Telegram ({channel}) reports {text}")
+            lines.append(f"TELEGRAM ({t.get('channel', '?')}): {t.get('text', '')[:150]}")
 
     if breaking:
-        if len(breaking) == 1:
-            b = breaking[0]
-            lines.append(f"Breaking news from {b.get('source', 'multiple sources')} about {b.get('title', '')[:100]}")
-        else:
-            topics = set()
-            for b in breaking[:5]:
-                title = b.get("title", "").lower()
-                for kw in BREAKING_KEYWORDS:
-                    if kw in title:
-                        topics.add(kw.split()[0])
-                        break
-            topic_str = ", ".join(list(topics)[:3]) if topics else "multiple events"
-            lines.append(f"{len(breaking)} breaking stories about {topic_str}")
+        for b in breaking[:3]:
+            lines.append(f"BREAKING: {b.get('title', '')[:120]}")
 
     if futures_spikes:
-        moves = []
-        for f in futures_spikes:
-            moves.append(f"{f['name']} moved {f['change_pct']:+.1f}%")
-        lines.append("Market spike. " + ", ".join(moves))
+        moves = ", ".join(f"{f['name']} {f['change_pct']:+.1f}%" for f in futures_spikes)
+        lines.append(f"MARKETS MOVING: {moves}")
 
     if firms_alerts:
-        for f in firms_alerts:
-            lines.append(f"Satellite detected {f['hotspot_count']} fire hotspots in {f['region']}")
+        for f in firms_alerts[:2]:
+            lines.append(f"SATELLITE: {f['hotspot_count']} fire hotspots detected in {f['region']}")
 
-    if juicy:
-        for a in juicy[:3]:
-            desc = a.get("description", "")[:120]
-            lines.append(f"Intel (score {a['score']}). {desc}")
+    # SECTION 2: ATLAS assessments — the predictive analysis
+    if strong_assessments:
+        lines.append("")
+        lines.append("WHAT ATLAS SEES DEVELOPING:")
+        for a in strong_assessments[:4]:
+            title = a.get("title", "")[:100]
+            analysis = a.get("analysis", "")[:200]
+            conf = a.get("confidence", 0)
+            cat = a.get("category", "")
+            watch = ""
+            watch_list = a.get("watch_for", [])
+            if watch_list and isinstance(watch_list, list):
+                watch = f" Watch for: {watch_list[0][:80]}" if watch_list[0] else ""
+            lines.append(f"[{cat.upper()} {conf}%] {title}")
+            if analysis:
+                lines.append(f"  {analysis}")
+            if watch:
+                lines.append(f"  {watch}")
 
-    if poly_alerts:
-        for p in poly_alerts[:2]:
-            q = p.get("question", "")[:80]
+    # SECTION 3: ATLAS vs prediction markets
+    if divergences:
+        lines.append("")
+        lines.append("ATLAS DISAGREES WITH MARKETS:")
+        for p in divergences[:4]:
+            q = p.get("question", "")[:90]
+            atlas_pct = p.get("atlas_probability", "?")
+            market_pct = p.get("market_probability", "?")
             div = p.get("divergence", 0)
-            lines.append(f"Prediction market shift on {q}, {div:+.0f} points")
+            reasoning = p.get("atlas_reasoning", "")[:120]
+            lines.append(f"  {q}")
+            lines.append(f"  ATLAS: {atlas_pct}% vs Market: {market_pct}% (gap: {div:+.0f})")
+            if reasoning:
+                lines.append(f"  Why: {reasoning}")
 
-    if big_divergences:
-        non_conflict = [d for d in big_divergences if d not in poly_alerts]
-        for p in non_conflict[:2]:
-            q = p.get("question", "")[:80]
-            lines.append(f"ATLAS sees {q} at {p.get('atlas_probability', '?')}% vs market at {p.get('market_probability', '?')}%")
+    # SECTION 4: Congress/legislation
+    if congress_items:
+        lines.append("")
+        lines.append("CONGRESS:")
+        for c in congress_items[:3]:
+            bill = c.get("bill", c.get("title", ""))[:120]
+            lines.append(f"  {bill}")
 
-    if urgent_opps:
-        for o in urgent_opps[:2]:
-            lines.append(f"Opportunity ({o.get('confidence', 0)}% confidence). {o['opportunity'][:100]}")
+    # SECTION 5: Anomalies (skip earthquakes — already filtered by SKIP_PATTERNS but also filter text)
+    non_seismic = [a for a in juicy if "earthquake" not in a.get("description", "").lower()
+                   and "seismic" not in a.get("pattern", "")]
+    if non_seismic:
+        lines.append("")
+        for a in non_seismic[:3]:
+            lines.append(f"ANOMALY (score {a['score']}): {a.get('description', '')[:140]}")
 
-    body = "\n\n".join(lines)
+    # SECTION 6: Headlines — filtered, no earthquake spam
+    non_quake_headlines = [h for h in headlines
+                           if "earthquake" not in h.get("headline", "").lower()
+                           and "seismic" not in h.get("headline", "").lower()]
+    if non_quake_headlines and not strong_assessments:
+        lines.append("")
+        lines.append("TOP INTEL:")
+        for h in non_quake_headlines[:5]:
+            lines.append(f"  {h.get('headline', '')[:120]}")
+
+    body = "\n".join(lines).strip()
 
     is_urgent = bool(breaking or telegram_breaking or futures_spikes
                      or any(a.get("score", 0) >= 90 for a in juicy))
     priority = "urgent" if is_urgent else "high"
 
-    item_count = sum(len(x) for x in [telegram_breaking, breaking, futures_spikes,
-                                       firms_alerts, juicy, poly_alerts, big_divergences, urgent_opps])
-    title = f"ATLAS found {item_count} thing{'s' if item_count != 1 else ''} worth knowing"
+    total_items = sum(len(x) for x in [telegram_breaking, breaking, futures_spikes,
+                                        firms_alerts, juicy, divergences, strong_assessments])
+    if is_urgent:
+        title = f"ATLAS URGENT: {total_items} items"
+    else:
+        title = f"ATLAS Intel Brief: {total_items} items"
 
     try:
         requests.post(
@@ -4549,8 +4575,9 @@ def send_alert(report: dict):
             headers={"Title": title, "Priority": priority},
             timeout=10,
         )
-    except requests.RequestException:
-        pass
+        log.info("Alert sent: %d items, priority=%s", total_items, priority)
+    except requests.RequestException as e:
+        log.warning("Alert send failed: %s", e)
 
 # ---------------------------------------------------------------------------
 # Deploy
