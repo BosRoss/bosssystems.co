@@ -1,74 +1,74 @@
 {
-  "generated": "2026-07-04T16:37:48.240719+00:00",
+  "generated": "2026-07-03T15:04:33.137364+00:00",
   "sections": {
     "atlas": {
       "power_level": "ACTIVE",
-      "last_scan": "2026-07-04T16:09:14.901590+00:00",
-      "scan_count": 133,
+      "last_scan": "2026-07-01T03:44:24.977162+00:00",
+      "scan_count": 126,
       "heat_score": 100,
-      "recommendation": "HOT DAY. Weather-driven demand in Ashley; Chicot; Bolivar; Sunflower; Leflore; Grenada; Carroll; Montgomery; Webster; Clay; Lowndes; Choctaw; Oktibbeha; Washington; Humphreys; Holmes; Attala; Winston; Noxubee, Morehouse; West Carroll; East Carroll; Richland; Madison; Franklin; Catahoula; Tensas; Concordia; Issaquena; Sharkey; Yazoo; Madison; Leake; Neshoba; Kemper; Warren; Hinds; Rankin; Scott; Newton; Laud, Hartley; Moore; Hutchinson; Oldham; Potter; Deaf Smith; Randall; Palo Duro Canyon. Call HVAC/roofers there NOW.",
+      "recommendation": "HOT DAY. Weather-driven demand in Chicot; East Carroll; Madison; Tensas; Bolivar; Sunflower; Leflore; Washington; Humphreys; Holmes; Issaquena; Sharkey; Yazoo; Madison; Warren; Hinds; Rankin; Claiborne; Copiah; Simpson; Jefferson, Jeff Davis, TX; Reeves, TX, Armstrong, TX; Randall, TX. Call HVAC/roofers there NOW.",
       "demand_signals": 10,
       "pain_signals": 0,
       "pitch_adjustments": 0,
       "competitor_intel": 0,
-      "territory_alerts": 25,
+      "territory_alerts": 22,
       "top_demands": [
         {
-          "type": "heat_wave",
-          "area": "Hartley; Moore; Hutchinson; Oldham; Potter; Deaf Smith; Rand",
-          "niche": "hvac"
-        },
-        {
-          "type": "heat_wave",
-          "area": "Inland Harris; Coastal Harris",
-          "niche": "hvac"
-        },
-        {
-          "type": "heat_wave",
-          "area": "Morehouse; West Carroll; East Carroll; Richland; Madison; Fr",
-          "niche": "hvac"
-        },
-        {
-          "type": "heat_wave",
-          "area": "Ashley; Chicot; Bolivar; Sunflower; Leflore; Grenada; Carrol",
-          "niche": "hvac"
+          "type": "flood",
+          "area": "Lubbock, TX",
+          "niche": "plumbing"
         },
         {
           "type": "flood",
-          "area": "Washington, LA; Pearl River, MS",
+          "area": "Armstrong, TX; Randall, TX",
           "niche": "plumbing"
+        },
+        {
+          "type": "flood",
+          "area": "Jeff Davis, TX; Reeves, TX",
+          "niche": "plumbing"
+        },
+        {
+          "type": "flood",
+          "area": "Donley, TX",
+          "niche": "plumbing"
+        },
+        {
+          "type": "heat_wave",
+          "area": "Wayne; Perry; Greene; Stone; George",
+          "niche": "hvac"
         }
       ],
       "sources_online": 0
     },
     "lead_engine": {
-      "state": "PAUSED",
+      "state": "ACTIVE",
       "total_leads": 200,
       "by_tier": {
         "SUPERNICHE": 19,
-        "HOT": 65,
-        "WARM": 116
+        "HOT": 62,
+        "WARM": 119
       },
       "by_route": {
-        "watchlist": 158,
-        "email": 40,
+        "watchlist": 157,
+        "email": 41,
         "call_queue": 2
       },
       "by_status": {
-        "re_engaged": 157,
-        "queued": 19,
+        "re_engaged": 155,
+        "queued": 21,
         "called": 24
       },
       "synced_to_pipeline": 41,
-      "api_spend": 11.14,
+      "api_spend": 9.6,
       "api_budget": 300.0,
-      "api_percent": 3.7,
-      "outcomes_recorded": 229,
+      "api_percent": 3.2,
+      "outcomes_recorded": 226,
       "by_outcome": {
         "no_answer": 32,
         "hangup": 21,
         "call_failed": 37,
-        "call_initiated": 125,
+        "call_initiated": 122,
         "callback": 7,
         "meeting_set": 7
       },
@@ -82,8 +82,7 @@
           "tier": "SUPERNICHE",
           "score": 78,
           "route": "watchlist",
-          "status": "re_engaged",
-          "phone": "5802568110"
+          "status": "re_engaged"
         },
         {
           "name": "Stanley Graves Plumbing Co",
@@ -92,8 +91,7 @@
           "tier": "SUPERNICHE",
           "score": 78,
           "route": "watchlist",
-          "status": "queued",
-          "phone": "6018470183"
+          "status": "queued"
         },
         {
           "name": "Jackson Heating And Cooling",
@@ -102,8 +100,7 @@
           "tier": "SUPERNICHE",
           "score": 75,
           "route": "watchlist",
-          "status": "queued",
-          "phone": "6016109690"
+          "status": "queued"
         },
         {
           "name": "Anderson Plumbing LLC",
@@ -112,8 +109,7 @@
           "tier": "SUPERNICHE",
           "score": 72,
           "route": "watchlist",
-          "status": "re_engaged",
-          "phone": "2286978926"
+          "status": "queued"
         },
         {
           "name": "Jimmy's Plumbing",
@@ -122,8 +118,7 @@
           "tier": "SUPERNICHE",
           "score": 68,
           "route": "watchlist",
-          "status": "re_engaged",
-          "phone": "8702511595"
+          "status": "re_engaged"
         },
         {
           "name": "Russell Branan Plumbing",
@@ -132,8 +127,7 @@
           "tier": "SUPERNICHE",
           "score": 67,
           "route": "email",
-          "status": "queued",
-          "phone": "9186831775"
+          "status": "queued"
         },
         {
           "name": "George Electric Plumbing & HVA",
@@ -142,8 +136,7 @@
           "tier": "SUPERNICHE",
           "score": 63,
           "route": "watchlist",
-          "status": "re_engaged",
-          "phone": "6624286413"
+          "status": "re_engaged"
         },
         {
           "name": "Pinner Plumbing & Heating Inc",
@@ -152,8 +145,7 @@
           "tier": "SUPERNICHE",
           "score": 63,
           "route": "watchlist",
-          "status": "re_engaged",
-          "phone": "8702341667"
+          "status": "re_engaged"
         },
         {
           "name": "Mcbee Plumbing",
@@ -162,8 +154,7 @@
           "tier": "SUPERNICHE",
           "score": 63,
           "route": "watchlist",
-          "status": "re_engaged",
-          "phone": "5802567022"
+          "status": "re_engaged"
         },
         {
           "name": "Pipkins Plumbing",
@@ -172,236 +163,13 @@
           "tier": "SUPERNICHE",
           "score": 63,
           "route": "watchlist",
-          "status": "queued",
-          "phone": "6019477107"
-        },
-        {
-          "name": "Charlie's Plumbing Services",
-          "niche": "plumber",
-          "state": "AL",
-          "tier": "SUPERNICHE",
-          "score": 62,
-          "route": "watchlist",
-          "status": "re_engaged",
-          "phone": "2565776791"
-        },
-        {
-          "name": "Delcase Plumbing Co",
-          "niche": "plumber",
-          "state": "AR",
-          "tier": "SUPERNICHE",
-          "score": 62,
-          "route": "watchlist",
-          "status": "re_engaged",
-          "phone": "8705238264"
-        },
-        {
-          "name": "Edwards Electric",
-          "niche": "electrician",
-          "state": "AR",
-          "tier": "SUPERNICHE",
-          "score": 62,
-          "route": "watchlist",
-          "status": "re_engaged",
-          "phone": "8707939351"
-        },
-        {
-          "name": "Mc Lain Plumbing & Electric",
-          "niche": "plumbing",
-          "state": "MS",
-          "tier": "SUPERNICHE",
-          "score": 62,
-          "route": "email",
-          "status": "queued",
-          "phone": "6016566333"
-        },
-        {
-          "name": "Bolton Heat & Air",
-          "niche": "HVAC contractor",
-          "state": "OK",
-          "tier": "SUPERNICHE",
-          "score": 60,
-          "route": "watchlist",
-          "status": "re_engaged",
-          "phone": "9185400242"
-        },
-        {
-          "name": "A & R Plumbing L.L.C",
-          "niche": "plumber",
-          "state": "OK",
-          "tier": "SUPERNICHE",
-          "score": 57,
-          "route": "email",
-          "status": "re_engaged",
-          "phone": "5805592703"
-        },
-        {
-          "name": "CARL RAY'S PLUMBING AND SUPPLI",
-          "niche": "plumber",
-          "state": "OK",
-          "tier": "SUPERNICHE",
-          "score": 57,
-          "route": "watchlist",
-          "status": "re_engaged",
-          "phone": "9186477189"
-        },
-        {
-          "name": "Morrow Heating and Cooling",
-          "niche": "HVAC",
-          "state": "AL",
-          "tier": "SUPERNICHE",
-          "score": 56,
-          "route": "watchlist",
-          "status": "called",
-          "phone": "2564985000"
-        },
-        {
-          "name": "Controlled Air & Metal Co",
-          "niche": "HVAC",
-          "state": "NM",
-          "tier": "SUPERNICHE",
-          "score": 56,
-          "route": "watchlist",
-          "status": "called",
-          "phone": "5057226363"
-        },
-        {
-          "name": "Beck's Plumbing",
-          "niche": "plumber",
-          "state": "AL",
-          "tier": "HOT",
-          "score": 54,
-          "route": "watchlist",
-          "status": "re_engaged",
-          "phone": "2567646812"
-        }
-      ],
-      "hot_leads": [
-        {
-          "name": "C & S Plumbing",
-          "phone": "9182258097",
-          "outcome": "meeting_set",
-          "duration": 43.7,
-          "date": "2026-06-27",
-          "signals": [
-            "ATLAS_WEATHER(flood)",
-            "WEAK_RATING(4.1)",
-            "NO_WEBSITE"
-          ]
-        },
-        {
-          "name": "Whiteaker Electric",
-          "phone": "8703074611",
-          "outcome": "callback",
-          "duration": 79.8,
-          "date": "2026-06-27",
-          "signals": [
-            "NO_WEBSITE",
-            "TIER1_NICHE",
-            "LOW_REVIEWS(3)"
-          ]
-        },
-        {
-          "name": "Joe's Electrical Repair",
-          "phone": "8703071177",
-          "outcome": "meeting_set",
-          "duration": 39.2,
-          "date": "2026-06-27",
-          "signals": [
-            "NO_WEBSITE",
-            "TIER1_NICHE",
-            "LOW_REVIEWS(1)"
-          ]
-        },
-        {
-          "name": "George Electric Plumbing & HVAC",
-          "phone": "6624286413",
-          "outcome": "callback",
-          "duration": 42.5,
-          "date": "2026-06-27",
-          "signals": [
-            "ATLAS_WEATHER(surge)",
-            "NO_CAPACITY_SURGE",
-            "PAIN_REVIEW('no answer')"
-          ]
-        },
-        {
-          "name": "Anderson Plumbing LLC",
-          "phone": "2286978926",
-          "outcome": "callback",
-          "duration": 73.1,
-          "date": "2026-06-27",
-          "signals": [
-            "ATLAS_WEATHER(flood)",
-            "NO_CAPACITY_SURGE",
-            "PAIN_REVIEW('voicemail')"
-          ]
-        },
-        {
-          "name": "CARL RAY'S PLUMBING AND SUPPLIES",
-          "phone": "9186477189",
-          "outcome": "meeting_set",
-          "duration": 121.0,
-          "date": "2026-06-27",
-          "signals": [
-            "ATLAS_WEATHER(flood)",
-            "NO_CAPACITY_SURGE",
-            "PAIN_REVIEW('voicemail')"
-          ]
-        },
-        {
-          "name": "Russell Branan Plumbing",
-          "phone": "9186831775",
-          "outcome": "meeting_set",
-          "duration": 160.2,
-          "date": "2026-06-27",
-          "signals": [
-            "PAIN_REVIEW('no answer')",
-            "MULTIPLE_PAIN",
-            "WEAK_RATING(4.3)"
-          ]
-        },
-        {
-          "name": "Pinner Plumbing & Heating Inc",
-          "phone": "8702341667",
-          "outcome": "meeting_set",
-          "duration": 67.2,
-          "date": "2026-06-27",
-          "signals": [
-            "ATLAS_WEATHER(surge)",
-            "NO_CAPACITY_SURGE",
-            "PAIN_REVIEW('no one answered')"
-          ]
-        },
-        {
-          "name": "George Electric Plumbing & HVAC",
-          "phone": "6624286413",
-          "outcome": "callback",
-          "duration": 155.0,
-          "date": "2026-06-27",
-          "signals": [
-            "ATLAS_WEATHER(surge)",
-            "NO_CAPACITY_SURGE",
-            "PAIN_REVIEW('no answer')"
-          ]
-        },
-        {
-          "name": "",
-          "phone": "",
-          "outcome": "callback",
-          "duration": 39.2,
-          "date": "2026-06-27",
-          "signals": [
-            "TIER1",
-            "WEAK_RATING(4.2\u2b50)",
-            "SMALL_OP(26)"
-          ]
+          "status": "queued"
         }
       ]
     },
     "n8n": {
-      "active_workflows": 34,
-      "inactive_workflows": 98,
+      "active_workflows": 77,
+      "inactive_workflows": 55,
       "total_workflows": 132,
       "recent_errors": 20,
       "recent_crashes": 10,
@@ -424,7 +192,7 @@
         {
           "name": "Lead Hunter",
           "id": "wMWL3U0JsdP6FO7F",
-          "active": false
+          "active": true
         },
         {
           "name": "Watchdog",
@@ -449,24 +217,24 @@
       ],
       "recent_failures": [
         {
-          "workflow": "FV413faAXiMk1CiY",
-          "started": "2026-07-03T15:05"
-        },
-        {
-          "workflow": "FV413faAXiMk1CiY",
-          "started": "2026-07-03T15:05"
-        },
-        {
           "workflow": "TdpdYjgIL04aYw3e",
           "started": "2026-07-03T13:00"
         },
         {
-          "workflow": "5mItIMTXR4Ivh8Dw",
-          "started": "2026-07-03T12:05"
-        },
-        {
           "workflow": "7wFm6CQB3VtoiRb6",
           "started": "2026-07-02T19:00"
+        },
+        {
+          "workflow": "HWQP9Xg2D9T0yWQ1",
+          "started": "2026-07-02T18:00"
+        },
+        {
+          "workflow": "TdpdYjgIL04aYw3e",
+          "started": "2026-07-02T13:00"
+        },
+        {
+          "workflow": "5mItIMTXR4Ivh8Dw",
+          "started": "2026-07-02T12:05"
         }
       ]
     },
@@ -527,20 +295,20 @@
       "calls_24h": 50,
       "outbound_24h": 43,
       "inbound_24h": 7,
-      "avg_duration_sec": 18.6
+      "avg_duration_sec": 18.0
     },
     "quant": {
-      "state": "PAUSED",
+      "state": "ACTIVE",
       "strategies": 0,
       "survivors": 0
     },
     "health": {
       "circuit_breakers_tripped": [],
-      "engine_paused": true,
+      "engine_paused": false,
       "atlas_power": "ACTIVE",
       "n8n_errors_24h": 20,
       "retell_calls_24h": 50,
-      "api_spend_pct": 3.7
+      "api_spend_pct": 3.2
     }
   }
 }
