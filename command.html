@@ -547,6 +547,12 @@ footer{text-align:center;padding:16px;font-family:'Share Tech Mono',monospace;fo
     <!-- Site cards by stage -->
     <div id="sites-pipeline"></div>
 
+    <!-- Hot Leads — meetings/callbacks -->
+    <div id="hot-leads-section"></div>
+
+    <!-- Top Leads — highest scored -->
+    <div id="top-leads-section"></div>
+
     <div style="margin-top:20px;padding:12px;font-size:10px;color:var(--dim);font-family:'Share Tech Mono',monospace">
       CLI: boss pipeline status | remix SLUG | close SLUG | reject SLUG | export
     </div>
@@ -1112,8 +1118,21 @@ function copyReply(postId) {
         h += '<div id="'+sid+'" style="display:none;margin-top:8px;padding:8px 10px;background:var(--bg);border:1px solid var(--border);font-size:11px;color:var(--muted);line-height:1.5">'+esc(s.call_script)+'</div>';
       }
 
+      if(s.suggested_domains && s.suggested_domains.length){
+        h += '<div style="margin-top:8px;font-size:10px;color:var(--dim)">';
+        h += '<span style="color:var(--muted)">Domains:</span> ';
+        s.suggested_domains.forEach(function(d,i){h+=(i?', ':'')+esc(d);});
+        h += ' <span style="color:var(--dim)">~$12/yr</span></div>';
+      }
+
+      if(s.ask_list && s.ask_list.length){
+        h += '<div style="margin-top:6px;font-size:10px">';
+        s.ask_list.forEach(function(q){h+='<div style="color:var(--blue);padding:1px 0">&rarr; '+esc(q)+'</div>';});
+        h += '</div>';
+      }
+
       if(s.remaining_questions && s.remaining_questions.length){
-        h += '<div style="margin-top:8px;font-size:11px">';
+        h += '<div style="margin-top:6px;font-size:11px">';
         s.remaining_questions.forEach(function(q){h+='<div style="color:var(--orange);padding:2px 0">? '+esc(q)+'</div>';});
         h += '</div>';
       }
@@ -1175,6 +1194,69 @@ function copyReply(postId) {
   .catch(function(){
     document.getElementById('sites-pipeline').innerHTML = '<div class="app-empty" style="font-size:11px">Pipeline data not loaded.</div>';
   });
+})();
+
+/* ═══ LEADS ON SITES TAB ═══ */
+(function(){
+  var OPS_URL = 'https://raw.githubusercontent.com/BosRoss/bosssystems.co/main/ops_report.json';
+  fetch(OPS_URL + '?t=' + Date.now())
+  .then(function(r){ return r.json(); })
+  .then(function(data){
+    var le = (data.sections || {}).lead_engine || {};
+    var hot = le.hot_leads || [];
+    var top = le.top_leads || [];
+
+    function phoneFmt(p){
+      if(!p) return '';
+      p = String(p).replace(/\D/g,'');
+      if(p.length===11 && p[0]==='1') p=p.slice(1);
+      if(p.length===10) return '('+p.slice(0,3)+') '+p.slice(3,6)+'-'+p.slice(6);
+      return p;
+    }
+    function esc(s){return (s||'').replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;');}
+
+    function leadRow(l, isHot){
+      var phone = l.phone || '';
+      var digits = String(phone).replace(/\D/g,'');
+      if(digits.length===11 && digits[0]==='1') digits=digits.slice(1);
+      var h = '<div style="background:var(--bg2);border:1px solid var(--border);padding:12px 14px;margin-bottom:4px;display:flex;align-items:center;justify-content:space-between;gap:8px">';
+      h += '<div style="flex:1;min-width:0">';
+      h += '<div style="font-size:13px;font-weight:700;color:var(--text);white-space:nowrap;overflow:hidden;text-overflow:ellipsis">'+esc(l.name)+'</div>';
+      h += '<div style="font-size:10px;color:var(--muted);margin-top:2px">';
+      if(l.niche) h += esc(l.niche);
+      if(l.state) h += ' &middot; '+esc(l.state);
+      if(l.tier) h += ' &middot; '+l.tier;
+      if(l.score) h += ' &middot; '+l.score+'pts';
+      if(isHot && l.duration) h += ' &middot; '+Math.round(l.duration)+'s call';
+      if(isHot && l.date) h += ' &middot; '+l.date;
+      h += '</div></div>';
+      if(digits.length===10){
+        h += '<a href="tel:+1'+digits+'" style="padding:10px 14px;background:rgba(0,232,122,0.08);border:1px solid rgba(0,232,122,0.2);color:var(--green);font-size:11px;font-family:\'Share Tech Mono\',monospace;text-decoration:none;white-space:nowrap;border-radius:2px">CALL</a>';
+      }
+      h += '</div>';
+      return h;
+    }
+
+    // Hot leads
+    if(hot.length){
+      var hh = '<div style="font-size:9px;font-family:\'Share Tech Mono\',monospace;letter-spacing:3px;color:var(--red);text-transform:uppercase;margin:24px 0 8px;padding-bottom:6px;border-bottom:1px solid var(--border)">HOT — SAID YES TO MEETING <span style="color:var(--dim)">('+hot.length+')</span></div>';
+      // Dedup by name
+      var seen = {};
+      hot.forEach(function(l){
+        if(!l.name || seen[l.name]) return;
+        seen[l.name] = true;
+        hh += leadRow(l, true);
+      });
+      document.getElementById('hot-leads-section').innerHTML = hh;
+    }
+
+    // Top leads
+    if(top.length){
+      var th = '<div style="font-size:9px;font-family:\'Share Tech Mono\',monospace;letter-spacing:3px;color:var(--muted);text-transform:uppercase;margin:24px 0 8px;padding-bottom:6px;border-bottom:1px solid var(--border)">TOP LEADS <span style="color:var(--dim)">('+top.length+')</span></div>';
+      top.forEach(function(l){ th += leadRow(l, false); });
+      document.getElementById('top-leads-section').innerHTML = th;
+    }
+  }).catch(function(){});
 })();
 
 function siteCopy(slug) {
