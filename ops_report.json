@@ -1,21 +1,26 @@
 {
-  "generated": "2026-07-04T02:48:46.066828+00:00",
+  "generated": "2026-07-04T16:37:48.240719+00:00",
   "sections": {
     "atlas": {
-      "power_level": "SURGE",
-      "last_scan": "2026-07-03T22:34:37.136711+00:00",
-      "scan_count": 130,
+      "power_level": "ACTIVE",
+      "last_scan": "2026-07-04T16:09:14.901590+00:00",
+      "scan_count": 133,
       "heat_score": 100,
-      "recommendation": "HOT DAY. Weather-driven demand in Concordia, LA; Adams, MS; Wilkinson, MS, Washington, LA; Pearl River, MS, St. Tammany, LA; Hancock, MS; Pearl River, MS. Call HVAC/roofers there NOW.",
+      "recommendation": "HOT DAY. Weather-driven demand in Ashley; Chicot; Bolivar; Sunflower; Leflore; Grenada; Carroll; Montgomery; Webster; Clay; Lowndes; Choctaw; Oktibbeha; Washington; Humphreys; Holmes; Attala; Winston; Noxubee, Morehouse; West Carroll; East Carroll; Richland; Madison; Franklin; Catahoula; Tensas; Concordia; Issaquena; Sharkey; Yazoo; Madison; Leake; Neshoba; Kemper; Warren; Hinds; Rankin; Scott; Newton; Laud, Hartley; Moore; Hutchinson; Oldham; Potter; Deaf Smith; Randall; Palo Duro Canyon. Call HVAC/roofers there NOW.",
       "demand_signals": 10,
       "pain_signals": 0,
       "pitch_adjustments": 0,
       "competitor_intel": 0,
-      "territory_alerts": 24,
+      "territory_alerts": 25,
       "top_demands": [
         {
           "type": "heat_wave",
-          "area": "Ashley; Chicot; Bolivar; Sunflower; Leflore; Grenada; Carrol",
+          "area": "Hartley; Moore; Hutchinson; Oldham; Potter; Deaf Smith; Rand",
+          "niche": "hvac"
+        },
+        {
+          "type": "heat_wave",
+          "area": "Inland Harris; Coastal Harris",
           "niche": "hvac"
         },
         {
@@ -25,18 +30,13 @@
         },
         {
           "type": "heat_wave",
-          "area": "Clay; Greene; Craighead; Poinsett; Mississippi; Cross; Critt",
+          "area": "Ashley; Chicot; Bolivar; Sunflower; Leflore; Grenada; Carrol",
           "niche": "hvac"
         },
         {
-          "type": "heat_wave",
-          "area": "Marshall; Benton; Tippah; Alcorn; Tishomingo; Tate; Prentiss",
-          "niche": "hvac"
-        },
-        {
-          "type": "heat_wave",
-          "area": "Lafayette; Union; Pontotoc; Lee; Itawamba; Yalobusha; Calhou",
-          "niche": "hvac"
+          "type": "flood",
+          "area": "Washington, LA; Pearl River, MS",
+          "niche": "plumbing"
         }
       ],
       "sources_online": 0
@@ -46,12 +46,12 @@
       "total_leads": 200,
       "by_tier": {
         "SUPERNICHE": 19,
-        "HOT": 63,
-        "WARM": 118
+        "HOT": 65,
+        "WARM": 116
       },
       "by_route": {
-        "watchlist": 156,
-        "email": 42,
+        "watchlist": 158,
+        "email": 40,
         "call_queue": 2
       },
       "by_status": {
@@ -59,10 +59,10 @@
         "queued": 19,
         "called": 24
       },
-      "synced_to_pipeline": 43,
-      "api_spend": 10.5,
+      "synced_to_pipeline": 41,
+      "api_spend": 11.14,
       "api_budget": 300.0,
-      "api_percent": 3.5,
+      "api_percent": 3.7,
       "outcomes_recorded": 229,
       "by_outcome": {
         "no_answer": 32,
@@ -400,11 +400,11 @@
       ]
     },
     "n8n": {
-      "active_workflows": 0,
-      "inactive_workflows": 0,
-      "total_workflows": 0,
-      "recent_errors": 0,
-      "recent_crashes": 0,
+      "active_workflows": 34,
+      "inactive_workflows": 98,
+      "total_workflows": 132,
+      "recent_errors": 20,
+      "recent_crashes": 10,
       "critical_workflows": [
         {
           "name": "Auto Caller",
@@ -419,7 +419,7 @@
         {
           "name": "ORACLE",
           "id": "7wFm6CQB3VtoiRb6",
-          "active": false
+          "active": true
         },
         {
           "name": "Lead Hunter",
@@ -444,10 +444,31 @@
         {
           "name": "Hot Lead Handler",
           "id": "kGJ7aDQmp3MgiPWI",
-          "active": false
+          "active": true
         }
       ],
-      "recent_failures": []
+      "recent_failures": [
+        {
+          "workflow": "FV413faAXiMk1CiY",
+          "started": "2026-07-03T15:05"
+        },
+        {
+          "workflow": "FV413faAXiMk1CiY",
+          "started": "2026-07-03T15:05"
+        },
+        {
+          "workflow": "TdpdYjgIL04aYw3e",
+          "started": "2026-07-03T13:00"
+        },
+        {
+          "workflow": "5mItIMTXR4Ivh8Dw",
+          "started": "2026-07-03T12:05"
+        },
+        {
+          "workflow": "7wFm6CQB3VtoiRb6",
+          "started": "2026-07-02T19:00"
+        }
+      ]
     },
     "retell": {
       "total_agents": 15,
@@ -516,10 +537,10 @@
     "health": {
       "circuit_breakers_tripped": [],
       "engine_paused": true,
-      "atlas_power": "SURGE",
-      "n8n_errors_24h": 0,
+      "atlas_power": "ACTIVE",
+      "n8n_errors_24h": 20,
       "retell_calls_24h": 50,
-      "api_spend_pct": 3.5
+      "api_spend_pct": 3.7
     }
   }
 }
