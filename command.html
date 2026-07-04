@@ -541,8 +541,9 @@ footer{text-align:center;padding:16px;font-family:'Share Tech Mono',monospace;fo
       </div>
     </div>
 
-    <!-- Templates status -->
-    <div style="background:var(--bg2);border:1px solid var(--border);padding:10px 16px;margin-bottom:16px;display:flex;align-items:center;gap:6px;font-size:11px;overflow-x:auto" id="tmpl-bar"></div>
+    <!-- Templates status + build buttons -->
+    <div style="background:var(--bg2);border:1px solid var(--border);padding:10px 16px;margin-bottom:8px;display:flex;align-items:center;gap:6px;font-size:11px;overflow-x:auto" id="tmpl-bar"></div>
+    <div id="tmpl-build" style="margin-bottom:16px"></div>
 
     <!-- Site cards by stage -->
     <div id="sites-pipeline"></div>
@@ -1098,6 +1099,20 @@ function copyReply(postId) {
     });
     document.getElementById('tmpl-bar').innerHTML = thtml;
 
+    // Template build buttons for unbuilt niches
+    var tprompts = data.template_prompts || {};
+    var unbuilt = Object.keys(tprompts);
+    if(unbuilt.length){
+      var bh = '<div style="display:flex;gap:4px;flex-wrap:wrap">';
+      unbuilt.forEach(function(n){
+        bh += '<button onclick="copyTemplate(\''+n+'\')" style="flex:1;min-width:80px;padding:8px 6px;background:var(--bg);border:1px solid var(--border);color:var(--purple);font-size:10px;font-family:\'Share Tech Mono\',monospace;cursor:pointer" id="tb-'+n+'">BUILD '+n.toUpperCase()+'</button>';
+      });
+      bh += '</div>';
+      bh += '<div style="font-size:9px;color:var(--dim);margin-top:4px;padding:0 2px">Tap to copy template prompt. Paste in Lovable to build. ~10 credits each.</div>';
+      document.getElementById('tmpl-build').innerHTML = bh;
+      window._templatePrompts = tprompts;
+    }
+
     var html = '';
     function esc(s){return (s||'').replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;').replace(/'/g,'&#39;');}
 
@@ -1258,6 +1273,19 @@ function copyReply(postId) {
     }
   }).catch(function(){});
 })();
+
+function copyTemplate(niche) {
+  var prompt = (window._templatePrompts || {})[niche];
+  if (!prompt) { alert('No prompt for ' + niche); return; }
+  navigator.clipboard.writeText(prompt).then(function(){
+    var btn = document.getElementById('tb-' + niche);
+    if(btn){btn.textContent='COPIED';btn.style.color='var(--green)';btn.style.borderColor='rgba(0,232,122,0.3)';setTimeout(function(){btn.textContent='BUILD '+niche.toUpperCase();btn.style.color='var(--purple)';btn.style.borderColor='var(--border)';},2000);}
+  }).catch(function(){
+    var ta = document.createElement('textarea'); ta.value = prompt; ta.style.cssText = 'position:fixed;left:-9999px'; document.body.appendChild(ta); ta.select(); document.execCommand('copy'); document.body.removeChild(ta);
+    var btn = document.getElementById('tb-' + niche);
+    if(btn){btn.textContent='COPIED';btn.style.color='var(--green)';}
+  });
+}
 
 function siteCopy(slug) {
   var prompt = (window._pipelineSites || {})[slug];
