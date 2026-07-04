@@ -1,0 +1,11 @@
+User-agent: *
+Allow: /
+Disallow: /command.html
+Disallow: /ops.html
+Disallow: /engine.html
+Disallow: /partner-dashboard.html
+Disallow: /partner-tools.html
+Disallow: /client-dashboard.html
+Disallow: /grade-dashboard.html
+
+Sitemap: https://bosssystems.co/sitemap.xml
