@@ -1,17 +1,57 @@
 {
-  "generated": "2026-07-06T20:15:25.016570+00:00",
+  "generated": "2026-07-06T20:21:23.158178+00:00",
   "summary": {
     "total_leads": 200,
     "callable": 177,
     "by_status": {
-      "re_engaged": 160,
-      "queued": 17,
+      "re_engaged": 152,
+      "queued": 25,
       "called": 23
     },
     "meetings_set": 10,
     "callbacks": 8
   },
   "call_list": [
+    {
+      "name": "Walker Law Office Pllc",
+      "phone": "(662) 665-9536",
+      "phone_raw": "6626659536",
+      "niche": "law firm",
+      "city": "Corinth MS",
+      "state": "MS",
+      "tier": "SUPERNICHE",
+      "score": 80,
+      "status": "queued",
+      "signals": [
+        "PAIN_REVIEW('no answer')",
+        "MULTIPLE_PAIN",
+        "WEAK_RATING_REACH(4.0)"
+      ],
+      "rating": 0,
+      "review_count": 0,
+      "last_contact": "",
+      "last_outcome": ""
+    },
+    {
+      "name": "Phillips Family Dentistry",
+      "phone": "(662) 287-3373",
+      "phone_raw": "6622873373",
+      "niche": "dentist",
+      "city": "Corinth MS",
+      "state": "MS",
+      "tier": "SUPERNICHE",
+      "score": 80,
+      "status": "queued",
+      "signals": [
+        "PAIN_REVIEW('voicemail')",
+        "MULTIPLE_PAIN",
+        "WEAK_RATING_REACH(3.4)"
+      ],
+      "rating": 0,
+      "review_count": 0,
+      "last_contact": "",
+      "last_outcome": ""
+    },
     {
       "name": "Jeff's Plumbing",
       "phone": "(580) 256-8110",
@@ -66,6 +106,26 @@
         "ATLAS_WEATHER(flood)",
         "NO_CAPACITY_SURGE",
         "PAIN_REVIEW('voicemail')"
+      ],
+      "rating": 0,
+      "review_count": 0,
+      "last_contact": "",
+      "last_outcome": ""
+    },
+    {
+      "name": "Edwards Electrical Services",
+      "phone": "(601) 483-2384",
+      "phone_raw": "6014832384",
+      "niche": "electrician",
+      "city": "Meridian MS",
+      "state": "MS",
+      "tier": "SUPERNICHE",
+      "score": 73,
+      "status": "queued",
+      "signals": [
+        "PAIN_REVIEW('voicemail')",
+        "MULTIPLE_PAIN",
+        "WEAK_RATING_REACH(3.3)"
       ],
       "rating": 0,
       "review_count": 0,
@@ -493,6 +553,26 @@
       "last_outcome": "call_initiated"
     },
     {
+      "name": "Mathis Plumbing & Electrical",
+      "phone": "(662) 415-3543",
+      "phone_raw": "6624153543",
+      "niche": "plumber",
+      "city": "Corinth MS",
+      "state": "MS",
+      "tier": "HOT",
+      "score": 50,
+      "status": "queued",
+      "signals": [
+        "PAIN_REVIEW('voicemail')",
+        "NO_WEBSITE",
+        "TIER1_NICHE"
+      ],
+      "rating": 0,
+      "review_count": 0,
+      "last_contact": "2026-06-27",
+      "last_outcome": "no_answer"
+    },
+    {
       "name": "Swinney's Air Conditioning",
       "phone": "(662) 728-6167",
       "phone_raw": "6627286167",
@@ -526,6 +606,26 @@
         "ATLAS_WEATHER(flood)",
         "NO_CAPACITY_SURGE",
         "PAIN_REVIEW('voicemail')"
+      ],
+      "rating": 0,
+      "review_count": 0,
+      "last_contact": "",
+      "last_outcome": ""
+    },
+    {
+      "name": "Orkin",
+      "phone": "(877) 250-1652",
+      "phone_raw": "8772501652",
+      "niche": "pest control",
+      "city": "Meridian MS",
+      "state": "",
+      "tier": "HOT",
+      "score": 49,
+      "status": "queued",
+      "signals": [
+        "PAIN_REVIEW('no response')",
+        "WEAK_RATING(3.1)",
+        "TIER2_NICHE"
       ],
       "rating": 0,
       "review_count": 0,
@@ -673,6 +773,26 @@
       "last_outcome": ""
     },
     {
+      "name": "Wilbanks Wee Con-Du-It Electric, Inc.",
+      "phone": "(662) 286-6211",
+      "phone_raw": "6622866211",
+      "niche": "plumber",
+      "city": "Corinth MS",
+      "state": "MS",
+      "tier": "HOT",
+      "score": 46,
+      "status": "queued",
+      "signals": [
+        "PAIN_REVIEW('never called back')",
+        "WEAK_RATING(3.5)",
+        "TIER1_NICHE"
+      ],
+      "rating": 0,
+      "review_count": 0,
+      "last_contact": "",
+      "last_outcome": ""
+    },
+    {
       "name": "M&M Plumbing Services, LLC",
       "phone": "(575) 631-8660",
       "phone_raw": "5756318660",
@@ -793,6 +913,26 @@
       "last_outcome": "call_initiated"
     },
     {
+      "name": "ALL Star Plumbing LLC",
+      "phone": "(731) 694-1234",
+      "phone_raw": "7316941234",
+      "niche": "plumber",
+      "city": "Jackson TN",
+      "state": "TN",
+      "tier": "HOT",
+      "score": 45,
+      "status": "queued",
+      "signals": [
+        "ATLAS_ECON(competitor_failure)",
+        "WEAK_RATING(3.4)",
+        "NO_WEBSITE"
+      ],
+      "rating": 0,
+      "review_count": 0,
+      "last_contact": "2026-06-25",
+      "last_outcome": "call_initiated"
+    },
+    {
       "name": "Reed Heating & AC",
       "phone": "(573) 445-4112",
       "phone_raw": "5734454112",
@@ -893,6 +1033,26 @@
       "last_outcome": "call_initiated"
     },
     {
+      "name": "DBR Metal Roofing Supply, Inc",
+      "phone": "(423) 345-4700",
+      "phone_raw": "4233454700",
+      "niche": "roofing",
+      "city": "Hancock TN",
+      "state": "TN",
+      "tier": "HOT",
+      "score": 43,
+      "status": "queued",
+      "signals": [
+        "ATLAS_WEATHER(storm)",
+        "PAIN_REVIEW('no response')",
+        "NO_WEBSITE"
+      ],
+      "rating": 0,
+      "review_count": 0,
+      "last_contact": "",
+      "last_outcome": ""
+    },
+    {
       "name": "Shaw Heating & Air",
       "phone": "(662) 808-4270",
       "phone_raw": "6628084270",
@@ -973,6 +1133,26 @@
       "last_outcome": ""
     },
     {
+      "name": "DC RESIDENTIAL SERVICES LLC",
+      "phone": "(601) 527-3506",
+      "phone_raw": "6015273506",
+      "niche": "HVAC contractor",
+      "city": "Meridian MS",
+      "state": "MS",
+      "tier": "HOT",
+      "score": 41,
+      "status": "queued",
+      "signals": [
+        "PAIN_REVIEW('no answer')",
+        "TIER1_NICHE",
+        "HVAC_PEAK"
+      ],
+      "rating": 0,
+      "review_count": 0,
+      "last_contact": "",
+      "last_outcome": ""
+    },
+    {
       "name": "McCool's Air Tech",
       "phone": "(575) 738-8080",
       "phone_raw": "5757388080",
@@ -1030,186 +1210,6 @@
       "rating": 0,
       "review_count": 0,
       "last_contact": "2026-06-10",
-      "last_outcome": "call_initiated"
-    },
-    {
-      "name": "Keeton Electric Co",
-      "phone": "(256) 767-5836",
-      "phone_raw": "2567675836",
-      "niche": "electrician",
-      "city": "Florence AL",
-      "state": "AL",
-      "tier": "HOT",
-      "score": 40,
-      "status": "re_engaged",
-      "signals": [
-        "WEAK_RATING(3.7)",
-        "NO_WEBSITE",
-        "TIER1_NICHE"
-      ],
-      "rating": 0,
-      "review_count": 0,
-      "last_contact": "2026-06-11",
-      "last_outcome": "call_initiated"
-    },
-    {
-      "name": "Allen HVAC Service Co. Inc.",
-      "phone": "(580) 320-6072",
-      "phone_raw": "5803206072",
-      "niche": "HVAC contractor",
-      "city": "Ada OK",
-      "state": "OK",
-      "tier": "HOT",
-      "score": 40,
-      "status": "re_engaged",
-      "signals": [
-        "ATLAS_ECON",
-        "NO_WEBSITE",
-        "TIER1_NICHE"
-      ],
-      "rating": 0,
-      "review_count": 0,
-      "last_contact": "2026-06-11",
-      "last_outcome": "call_initiated"
-    },
-    {
-      "name": "2B Cool HVAC",
-      "phone": "(405) 221-7595",
-      "phone_raw": "4052217595",
-      "niche": "HVAC contractor",
-      "city": "Ada OK",
-      "state": "OK",
-      "tier": "HOT",
-      "score": 40,
-      "status": "re_engaged",
-      "signals": [
-        "ATLAS_ECON",
-        "NO_WEBSITE",
-        "TIER1_NICHE"
-      ],
-      "rating": 0,
-      "review_count": 0,
-      "last_contact": "2026-06-11",
-      "last_outcome": "call_initiated"
-    },
-    {
-      "name": "Moore Plumbing",
-      "phone": "(870) 972-1365",
-      "phone_raw": "8709721365",
-      "niche": "plumber",
-      "city": "Jonesboro AR",
-      "state": "AR",
-      "tier": "HOT",
-      "score": 40,
-      "status": "re_engaged",
-      "signals": [
-        "WEAK_RATING(4.3)",
-        "NO_WEBSITE",
-        "TIER1_NICHE"
-      ],
-      "rating": 0,
-      "review_count": 0,
-      "last_contact": "2026-06-11",
-      "last_outcome": "call_initiated"
-    },
-    {
-      "name": "Ogles Plumbing",
-      "phone": "(870) 316-4888",
-      "phone_raw": "8703164888",
-      "niche": "plumber",
-      "city": "Jonesboro AR",
-      "state": "AR",
-      "tier": "HOT",
-      "score": 40,
-      "status": "re_engaged",
-      "signals": [
-        "WEAK_RATING(3.8)",
-        "NO_WEBSITE",
-        "TIER1_NICHE"
-      ],
-      "rating": 0,
-      "review_count": 0,
-      "last_contact": "2026-06-25",
-      "last_outcome": "no_answer"
-    },
-    {
-      "name": "Swafford Electric Co",
-      "phone": "(870) 793-5742",
-      "phone_raw": "8707935742",
-      "niche": "electrician",
-      "city": "Batesville AR",
-      "state": "AR",
-      "tier": "HOT",
-      "score": 40,
-      "status": "re_engaged",
-      "signals": [
-        "WEAK_RATING(4.3)",
-        "NO_WEBSITE",
-        "TIER1_NICHE"
-      ],
-      "rating": 0,
-      "review_count": 0,
-      "last_contact": "2026-06-11",
-      "last_outcome": "call_initiated"
-    },
-    {
-      "name": "River City Plumbing Co",
-      "phone": "(256) 355-8366",
-      "phone_raw": "2563558366",
-      "niche": "plumber",
-      "city": "Decatur AL",
-      "state": "AL",
-      "tier": "HOT",
-      "score": 40,
-      "status": "re_engaged",
-      "signals": [
-        "WEAK_RATING(4.2)",
-        "NO_WEBSITE",
-        "TIER1_NICHE"
-      ],
-      "rating": 0,
-      "review_count": 0,
-      "last_contact": "2026-06-12",
-      "last_outcome": "call_initiated"
-    },
-    {
-      "name": "Superior Plumbing",
-      "phone": "(870) 206-7809",
-      "phone_raw": "8702067809",
-      "niche": "plumber",
-      "city": "Jonesboro AR",
-      "state": "AR",
-      "tier": "HOT",
-      "score": 40,
-      "status": "re_engaged",
-      "signals": [
-        "WEAK_RATING(3.6)",
-        "NO_WEBSITE",
-        "TIER1_NICHE"
-      ],
-      "rating": 0,
-      "review_count": 0,
-      "last_contact": "2026-06-12",
-      "last_outcome": "call_initiated"
-    },
-    {
-      "name": "Hoskins Mid-South Plumbing",
-      "phone": "(662) 563-5154",
-      "phone_raw": "6625635154",
-      "niche": "plumber",
-      "city": "Batesville AR",
-      "state": "MS",
-      "tier": "HOT",
-      "score": 40,
-      "status": "queued",
-      "signals": [
-        "WEAK_RATING(3.3)",
-        "NO_WEBSITE",
-        "TIER1_NICHE"
-      ],
-      "rating": 0,
-      "review_count": 0,
-      "last_contact": "2026-06-11",
       "last_outcome": "call_initiated"
     }
   ],
