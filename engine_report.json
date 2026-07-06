@@ -1,52 +1,28 @@
 {
-  "generated": "2026-07-04T16:37:46.954121+00:00",
-  "engine_state": "paused",
+  "generated": "2026-07-06T19:53:23.384306+00:00",
+  "engine_state": "active",
   "signals": [
     {
-      "type": "heat_wave",
-      "area": "Hartley; Moore; Hutchinson; Oldham; Potter; Deaf Smith; Randall; Palo Duro Canyon",
-      "niche": "hvac",
-      "action": "HVAC businesses in Hartley; Moore; Hutchinson; Oldham; Potter; Deaf Smith; Randall; Palo Duro Canyon are drowning in calls right now. Perfect time to pitch.",
+      "type": "storm",
+      "area": "Gregg, TX; Upshur, TX; Wood, TX",
+      "niche": "roofing",
+      "action": "Storm damage in Gregg, TX; Upshur, TX; Wood, TX. Roofers and restoration companies about to get flooded.",
       "urgency": "today",
-      "pitch_hook": "You're getting slammed with calls \u2014 how many went to voicemail today?"
-    },
-    {
-      "type": "heat_wave",
-      "area": "Inland Harris; Coastal Harris",
-      "niche": "hvac",
-      "action": "HVAC businesses in Inland Harris; Coastal Harris are drowning in calls right now. Perfect time to pitch.",
-      "urgency": "today",
-      "pitch_hook": "You're getting slammed with calls \u2014 how many went to voicemail today?"
-    },
-    {
-      "type": "heat_wave",
-      "area": "Morehouse; West Carroll; East Carroll; Richland; Madison; Franklin; Catahoula; Tensas; Concordia; Issaquena; Sharkey; Yazoo; Madison; Leake; Neshoba; Kemper; Warren; Hinds; Rankin; Scott; Newton; Laud",
-      "niche": "hvac",
-      "action": "HVAC businesses in Morehouse; West Carroll; East Carroll; Richland; Madison; Franklin; Catahoula; Tensas; Concordia; Issaquena; Sharkey; Yazoo; Madison; Leake; Neshoba; Kemper; Warren; Hinds; Rankin; Scott; Newton; Laud are drowning in calls right now. Perfect time to pitch.",
-      "urgency": "today",
-      "pitch_hook": "You're getting slammed with calls \u2014 how many went to voicemail today?"
-    },
-    {
-      "type": "heat_wave",
-      "area": "Ashley; Chicot; Bolivar; Sunflower; Leflore; Grenada; Carroll; Montgomery; Webster; Clay; Lowndes; Choctaw; Oktibbeha; Washington; Humphreys; Holmes; Attala; Winston; Noxubee",
-      "niche": "hvac",
-      "action": "HVAC businesses in Ashley; Chicot; Bolivar; Sunflower; Leflore; Grenada; Carroll; Montgomery; Webster; Clay; Lowndes; Choctaw; Oktibbeha; Washington; Humphreys; Holmes; Attala; Winston; Noxubee are drowning in calls right now. Perfect time to pitch.",
-      "urgency": "today",
-      "pitch_hook": "You're getting slammed with calls \u2014 how many went to voicemail today?"
+      "pitch_hook": "After a storm like that, you'll get 10x your normal call volume. Ready for it?"
     },
     {
       "type": "flood",
-      "area": "Washington, LA; Pearl River, MS",
+      "area": "Menard, TX",
       "niche": "plumbing",
-      "action": "Flood warnings in Washington, LA; Pearl River, MS. Plumbers, restoration, mold companies will spike.",
+      "action": "Flood warnings in Menard, TX. Plumbers, restoration, mold companies will spike.",
       "urgency": "today",
       "pitch_hook": "Water damage calls are coming. Every one you miss is $500+ walking away."
     },
     {
       "type": "flood",
-      "area": "St. Tammany, LA; Hancock, MS; Pearl River, MS",
+      "area": "Kimble, TX; Menard, TX; Schleicher, TX; Sutton, TX",
       "niche": "plumbing",
-      "action": "Flood warnings in St. Tammany, LA; Hancock, MS; Pearl River, MS. Plumbers, restoration, mold companies will spike.",
+      "action": "Flood warnings in Kimble, TX; Menard, TX; Schleicher, TX; Sutton, TX. Plumbers, restoration, mold companies will spike.",
       "urgency": "today",
       "pitch_hook": "Water damage calls are coming. Every one you miss is $500+ walking away."
     },
@@ -59,26 +35,50 @@
       "pitch_hook": "Water damage calls are coming. Every one you miss is $500+ walking away."
     },
     {
+      "type": "flood",
+      "area": "St. Tammany, LA; Hancock, MS; Pearl River, MS",
+      "niche": "plumbing",
+      "action": "Flood warnings in St. Tammany, LA; Hancock, MS; Pearl River, MS. Plumbers, restoration, mold companies will spike.",
+      "urgency": "today",
+      "pitch_hook": "Water damage calls are coming. Every one you miss is $500+ walking away."
+    },
+    {
+      "type": "storm",
+      "area": "Hancock, TN; Lee, VA; Scott, VA",
+      "niche": "roofing",
+      "action": "Storm damage in Hancock, TN; Lee, VA; Scott, VA. Roofers and restoration companies about to get flooded.",
+      "urgency": "today",
+      "pitch_hook": "After a storm like that, you'll get 10x your normal call volume. Ready for it?"
+    },
+    {
+      "type": "flood",
+      "area": "Muskogee, OK",
+      "niche": "plumbing",
+      "action": "Flood warnings in Muskogee, OK. Plumbers, restoration, mold companies will spike.",
+      "urgency": "today",
+      "pitch_hook": "Water damage calls are coming. Every one you miss is $500+ walking away."
+    },
+    {
       "type": "heat_wave",
-      "area": "Marshall; Benton; Tippah; Alcorn; Tishomingo; Tate; Prentiss; Panola; Tallahatchie",
+      "area": "Inland Broward County; Metro Broward County; Inland Miami-Dade County; Metropolitan Miami Dade; Coastal Broward County; Coastal Miami Dade County; Far South Miami-Dade County",
       "niche": "hvac",
-      "action": "HVAC businesses in Marshall; Benton; Tippah; Alcorn; Tishomingo; Tate; Prentiss; Panola; Tallahatchie are drowning in calls right now. Perfect time to pitch.",
+      "action": "HVAC businesses in Inland Broward County; Metro Broward County; Inland Miami-Dade County; Metropolitan Miami Dade; Coastal Broward County; Coastal Miami Dade County; Far South Miami-Dade County are drowning in calls right now. Perfect time to pitch.",
       "urgency": "today",
       "pitch_hook": "You're getting slammed with calls \u2014 how many went to voicemail today?"
     },
     {
       "type": "heat_wave",
-      "area": "Clay; Greene; Craighead; Poinsett; Mississippi; Cross; Crittenden; St. Francis; Lee; Phillips; Dunklin; Pemiscot; DeSoto; Tunica; Coahoma; Quitman; Lake; Obion; Weakley; Henry; Dyer; Gibson; Carroll; ",
+      "area": "Parker Valley; Kofa; Yuma; Central La Paz; Gila River Valley; Imperial County Southwest; Chuckwalla Mountains; Imperial County Southeast; Imperial County West; Imperial Valley; Chiriaco Summit; Palo V",
       "niche": "hvac",
-      "action": "HVAC businesses in Clay; Greene; Craighead; Poinsett; Mississippi; Cross; Crittenden; St. Francis; Lee; Phillips; Dunklin; Pemiscot; DeSoto; Tunica; Coahoma; Quitman; Lake; Obion; Weakley; Henry; Dyer; Gibson; Carroll;  are drowning in calls right now. Perfect time to pitch.",
+      "action": "HVAC businesses in Parker Valley; Kofa; Yuma; Central La Paz; Gila River Valley; Imperial County Southwest; Chuckwalla Mountains; Imperial County Southeast; Imperial County West; Imperial Valley; Chiriaco Summit; Palo V are drowning in calls right now. Perfect time to pitch.",
       "urgency": "today",
       "pitch_hook": "You're getting slammed with calls \u2014 how many went to voicemail today?"
     },
     {
       "type": "heat_wave",
-      "area": "Lafayette; Union; Pontotoc; Lee; Itawamba; Yalobusha; Calhoun; Chickasaw; Monroe",
+      "area": "Los Angeles County Inland Coast including Downtown Los Angeles",
       "niche": "hvac",
-      "action": "HVAC businesses in Lafayette; Union; Pontotoc; Lee; Itawamba; Yalobusha; Calhoun; Chickasaw; Monroe are drowning in calls right now. Perfect time to pitch.",
+      "action": "HVAC businesses in Los Angeles County Inland Coast including Downtown Los Angeles are drowning in calls right now. Perfect time to pitch.",
       "urgency": "today",
       "pitch_hook": "You're getting slammed with calls \u2014 how many went to voicemail today?"
     }
@@ -225,69 +225,69 @@
     "leads_superniche": 19,
     "leads_hot": 65,
     "leads_warm": 116,
-    "cost_per_qualified": 0.59,
-    "total_spend": 11.136000000000008,
+    "cost_per_qualified": 0.62,
+    "total_spend": 11.776000000000009,
     "spend_cap": 300.0
   },
   "channels": {
     "emails_sent": 85,
     "texts_sent": 8,
     "calls_made": 0,
-    "meetings_set": 7,
+    "meetings_set": 10,
     "closes": 0
   },
   "feeds": [
     {
       "name": "NOAA",
-      "last_hit": "2026-07-04T16:09:14.901590+00:00",
+      "last_hit": "2026-07-06T19:46:17.798520+00:00",
       "status": "yellow",
       "data_points_today": 0
     },
     {
       "name": "REDDIT",
-      "last_hit": "2026-07-04T16:09:14.901590+00:00",
+      "last_hit": "2026-07-06T19:46:17.798520+00:00",
       "status": "green",
       "data_points_today": 30
     },
     {
       "name": "USGS",
-      "last_hit": "2026-07-04T16:09:14.901590+00:00",
+      "last_hit": "2026-07-06T19:46:17.798520+00:00",
       "status": "yellow",
       "data_points_today": 0
     },
     {
       "name": "HACKERNEWS",
-      "last_hit": "2026-07-04T16:09:14.901590+00:00",
+      "last_hit": "2026-07-06T19:46:17.798520+00:00",
       "status": "green",
       "data_points_today": 30
     },
     {
       "name": "FEMA",
-      "last_hit": "2026-07-04T16:09:14.901590+00:00",
+      "last_hit": "2026-07-06T19:46:17.798520+00:00",
       "status": "green",
       "data_points_today": 20
     },
     {
       "name": "COMMODITIES",
-      "last_hit": "2026-07-04T16:09:14.901590+00:00",
+      "last_hit": "2026-07-06T19:46:17.798520+00:00",
       "status": "green",
       "data_points_today": 7
     },
     {
       "name": "RSS",
-      "last_hit": "2026-07-04T16:09:14.901590+00:00",
+      "last_hit": "2026-07-06T19:46:17.798520+00:00",
       "status": "green",
-      "data_points_today": 746
+      "data_points_today": 751
     },
     {
       "name": "FRED",
-      "last_hit": "2026-07-04T16:09:14.901590+00:00",
+      "last_hit": "2026-07-06T19:46:17.798520+00:00",
       "status": "yellow",
       "data_points_today": 0
     },
     {
       "name": "BLS",
-      "last_hit": "2026-07-04T16:09:14.901590+00:00",
+      "last_hit": "2026-07-06T19:46:17.798520+00:00",
       "status": "green",
       "data_points_today": 9
     }
@@ -296,8 +296,8 @@
     "signals": 10,
     "leads": 200,
     "contacted": 93,
-    "replied": 7,
-    "meeting": 7,
+    "replied": 10,
+    "meeting": 10,
     "close": 0
   }
 }
