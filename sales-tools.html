@@ -1,0 +1,682 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1.0,maximum-scale=1.0">
+<title>BOSS — Sales Tools</title>
+<link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'><rect width='32' height='32' rx='6' fill='%23C9A84C'/><text x='16' y='23' text-anchor='middle' font-size='20' font-weight='bold' fill='%23080808'>B</text></svg>">
+<style>
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+:root{--bg:#080808;--bg2:#0f0f0f;--card:#111;--gold:#C9A84C;--gold2:#dfc070;--text:#f0ede8;--muted:#bbb;--dim:#999;--border:#1a1a1a;--green:#2ecc71;--red:#e74c3c}
+body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;background:var(--bg);color:var(--text);min-height:100vh;-webkit-tap-highlight-color:transparent}
+.wrap{max-width:600px;margin:0 auto;padding:12px 16px 100px}
+
+/* PIN SCREEN */
+.pin-screen{position:fixed;inset:0;background:var(--bg);display:flex;align-items:center;justify-content:center;flex-direction:column;z-index:100;transition:opacity .3s}
+.pin-screen.out{opacity:0;pointer-events:none}
+.pin-screen h2{color:var(--gold);font-size:14px;letter-spacing:4px;margin-bottom:24px}
+.pin-input{background:var(--bg2);border:1px solid var(--border);color:var(--text);font-size:32px;text-align:center;width:160px;padding:16px;letter-spacing:12px;border-radius:4px}
+.pin-input:focus{outline:none;border-color:var(--gold)}
+.pin-error{color:var(--red);font-size:12px;margin-top:12px;height:16px}
+
+/* APP */
+#app{display:none}
+
+/* HEADER */
+.header{display:flex;justify-content:space-between;align-items:center;padding:8px 0 16px;border-bottom:1px solid var(--border);margin-bottom:16px}
+.header h1{font-size:14px;font-weight:800;letter-spacing:3px;color:var(--gold)}
+.header .meta{font-size:11px;color:var(--dim)}
+
+/* TABS */
+.tabs{display:flex;gap:0;overflow-x:auto;-webkit-overflow-scrolling:touch;scrollbar-width:none;margin-bottom:16px;border-bottom:1px solid var(--border)}
+.tabs::-webkit-scrollbar{display:none}
+.tab{font-size:11px;font-weight:700;letter-spacing:1px;padding:10px 14px;color:var(--dim);cursor:pointer;white-space:nowrap;flex-shrink:0;border-bottom:2px solid transparent;transition:all .2s}
+.tab.active{color:var(--gold);border-bottom-color:var(--gold)}
+.tab-panel{display:none}
+.tab-panel.active{display:block}
+
+/* STATS ROW */
+.stats{display:flex;gap:8px;margin-bottom:16px}
+.stat{flex:1;background:var(--bg2);border:1px solid var(--border);padding:10px;text-align:center}
+.stat-val{font-size:20px;font-weight:700;color:var(--gold)}
+.stat-label{font-size:9px;letter-spacing:1px;color:var(--dim);margin-top:2px;text-transform:uppercase}
+
+/* LEAD CARDS */
+.lead{background:var(--bg2);border:1px solid var(--border);padding:14px;margin-bottom:8px;border-radius:4px}
+.lead-top{display:flex;justify-content:space-between;align-items:flex-start;gap:8px}
+.lead-name{font-size:14px;font-weight:700}
+.lead-info{font-size:12px;color:var(--muted);margin-top:2px}
+.lead-tier{font-size:10px;font-weight:700;padding:2px 8px;letter-spacing:1px;border-radius:2px}
+.lead-tier.SUPERNICHE{background:rgba(231,76,60,.15);color:#e74c3c;border:1px solid rgba(231,76,60,.3)}
+.lead-tier.HOT{background:rgba(201,169,110,.15);color:var(--gold);border:1px solid rgba(201,169,110,.3)}
+.lead-tier.WARM{background:rgba(75,146,219,.15);color:#4b92db;border:1px solid rgba(75,146,219,.3)}
+.lead-signals{font-size:11px;color:var(--dim);margin-top:6px}
+.lead-btns{display:flex;gap:6px;margin-top:10px;flex-wrap:wrap}
+
+/* BUTTONS */
+.btn{font-size:11px;font-weight:700;letter-spacing:1px;padding:8px 14px;border:none;cursor:pointer;text-decoration:none;display:inline-flex;align-items:center;gap:4px;border-radius:3px;transition:opacity .2s}
+.btn:hover{opacity:.85}
+.btn-call{background:var(--green);color:#fff}
+.btn-text{background:#4b92db;color:#fff}
+.btn-gold{background:var(--gold);color:var(--bg)}
+.btn-outline{background:transparent;border:1px solid var(--border);color:var(--muted)}
+.btn-sm{padding:6px 10px;font-size:10px}
+.btn-red{background:rgba(231,76,60,.15);color:#e74c3c;border:1px solid rgba(231,76,60,.3)}
+
+/* HOT OUTCOME CARD */
+.hot-card{background:var(--bg2);border:1px solid rgba(46,204,113,.3);padding:14px;margin-bottom:8px;border-radius:4px}
+.hot-badge{font-size:10px;font-weight:700;padding:2px 8px;background:rgba(46,204,113,.15);color:var(--green);border:1px solid rgba(46,204,113,.3);letter-spacing:1px;border-radius:2px}
+
+/* QUICK SEND */
+.send-grid{display:grid;grid-template-columns:1fr 1fr;gap:8px;margin-bottom:16px}
+.send-btn{background:var(--bg2);border:1px solid var(--border);padding:16px 12px;text-align:center;cursor:pointer;border-radius:4px;transition:border-color .2s;text-decoration:none;display:block}
+.send-btn:hover{border-color:var(--gold)}
+.send-btn .icon{font-size:24px;margin-bottom:6px}
+.send-btn .label{font-size:12px;font-weight:600;color:var(--text)}
+.send-btn .sub{font-size:10px;color:var(--dim);margin-top:2px}
+
+/* ROI CALC */
+.calc-form{background:var(--bg2);border:1px solid var(--border);padding:20px;border-radius:4px;margin-bottom:16px}
+.calc-row{display:flex;gap:8px;margin-bottom:12px;align-items:center}
+.calc-row label{font-size:12px;color:var(--muted);min-width:100px}
+.calc-row select,.calc-row input{flex:1;background:var(--card);border:1px solid var(--border);color:var(--text);padding:10px;font-size:14px;font-family:inherit;border-radius:3px}
+.calc-row select:focus,.calc-row input:focus{outline:none;border-color:var(--gold)}
+.calc-result{background:var(--card);border:2px solid var(--gold);padding:20px;text-align:center;border-radius:4px;margin-top:16px}
+.calc-result .big{font-size:36px;font-weight:800;color:var(--gold)}
+.calc-result .label{font-size:12px;color:var(--muted);margin-top:4px}
+
+/* OBJECTIONS */
+.obj{background:var(--bg2);border:1px solid var(--border);padding:14px;margin-bottom:6px;border-radius:4px;cursor:pointer}
+.obj-q{font-size:14px;font-weight:600;display:flex;justify-content:space-between;align-items:center}
+.obj-q::after{content:'+';color:var(--gold);font-size:18px;flex-shrink:0}
+.obj.open .obj-q::after{content:'\2212'}
+.obj-a{max-height:0;overflow:hidden;transition:max-height .3s;font-size:13px;color:var(--muted);line-height:1.7}
+.obj.open .obj-a{max-height:200px;padding-top:10px}
+
+/* COMPETITOR */
+.comp-table{width:100%;font-size:13px;border-collapse:collapse}
+.comp-table th{text-align:left;font-size:10px;letter-spacing:1px;color:var(--gold);padding:8px;border-bottom:1px solid var(--border);text-transform:uppercase}
+.comp-table td{padding:8px;border-bottom:1px solid var(--border);color:var(--muted)}
+.comp-table .boss-row{color:var(--gold);font-weight:700}
+
+/* SCRIPTS */
+.script-card{background:var(--bg2);border-left:3px solid var(--gold);padding:14px 16px;margin-bottom:12px;font-size:13px;line-height:1.7;color:var(--text);position:relative;border-radius:0 4px 4px 0}
+.script-label{font-size:10px;letter-spacing:2px;color:var(--dim);margin-bottom:8px;text-transform:uppercase}
+.script-copy{position:absolute;top:10px;right:10px;background:var(--gold);color:var(--bg);font-size:10px;font-weight:700;padding:4px 10px;border:none;cursor:pointer;border-radius:2px;letter-spacing:1px}
+
+/* LOG */
+.log-form{background:var(--bg2);border:1px solid var(--border);padding:16px;border-radius:4px;margin-bottom:16px}
+.log-row{display:flex;gap:8px;margin-bottom:10px}
+.log-row input,.log-row select{flex:1;background:var(--card);border:1px solid var(--border);color:var(--text);padding:10px;font-size:13px;font-family:inherit;border-radius:3px}
+.log-row input:focus,.log-row select:focus{outline:none;border-color:var(--gold)}
+.log-entry{background:var(--bg2);border:1px solid var(--border);padding:10px 14px;margin-bottom:4px;border-radius:4px;font-size:12px;display:flex;justify-content:space-between;color:var(--muted)}
+.log-entry .outcome-badge{font-size:10px;font-weight:700;padding:2px 6px;border-radius:2px;letter-spacing:1px}
+
+/* EMPTY */
+.empty{text-align:center;padding:40px 20px;color:var(--dim);font-size:13px}
+
+@media(max-width:400px){
+  .stats{flex-wrap:wrap}
+  .stat{min-width:calc(50% - 4px)}
+  .send-grid{grid-template-columns:1fr}
+}
+</style>
+</head>
+<body>
+
+<!-- PIN SCREEN -->
+<div class="pin-screen" id="pin-screen">
+  <h2>SALES TOOLS</h2>
+  <input type="tel" class="pin-input" id="pin-input" maxlength="4" placeholder="----" autocomplete="off">
+  <div class="pin-error" id="pin-error"></div>
+</div>
+
+<!-- APP -->
+<div id="app">
+  <div class="wrap">
+    <div class="header">
+      <h1>SALES TOOLS</h1>
+      <div class="meta" id="last-updated"></div>
+    </div>
+
+    <div class="tabs">
+      <div class="tab active" data-tab="calls">CALL LIST</div>
+      <div class="tab" data-tab="hot">HOT LEADS</div>
+      <div class="tab" data-tab="send">QUICK SEND</div>
+      <div class="tab" data-tab="roi">ROI CALC</div>
+      <div class="tab" data-tab="objections">OBJECTIONS</div>
+      <div class="tab" data-tab="scripts">SCRIPTS</div>
+      <div class="tab" data-tab="competitors">COMPETITORS</div>
+      <div class="tab" data-tab="log">CALL LOG</div>
+    </div>
+
+    <!-- TAB: CALL LIST -->
+    <div class="tab-panel active" id="panel-calls">
+      <div class="stats">
+        <div class="stat"><div class="stat-val" id="stat-callable">--</div><div class="stat-label">Callable</div></div>
+        <div class="stat"><div class="stat-val" id="stat-meetings">--</div><div class="stat-label">Meetings</div></div>
+        <div class="stat"><div class="stat-val" id="stat-callbacks">--</div><div class="stat-label">Callbacks</div></div>
+        <div class="stat"><div class="stat-val" id="stat-total">--</div><div class="stat-label">Total Leads</div></div>
+      </div>
+      <div id="call-list"></div>
+    </div>
+
+    <!-- TAB: HOT LEADS -->
+    <div class="tab-panel" id="panel-hot">
+      <div id="hot-list"></div>
+    </div>
+
+    <!-- TAB: QUICK SEND -->
+    <div class="tab-panel" id="panel-send">
+      <p style="font-size:12px;color:var(--dim);margin-bottom:12px">Tap to copy the link, then paste into a text message to the prospect.</p>
+      <div class="send-grid">
+        <div class="send-btn" onclick="copyLink('https://bosssystems.co/analyze.html','Free Analysis')">
+          <div class="icon">📊</div>
+          <div class="label">Free Analysis</div>
+          <div class="sub">Door opener. Zero risk.</div>
+        </div>
+        <div class="send-btn" onclick="copyLink('https://bosssystems.co/calculator.html','Calculator')">
+          <div class="icon">💰</div>
+          <div class="label">Missed Call Calculator</div>
+          <div class="sub">Shows their annual loss.</div>
+        </div>
+        <div class="send-btn" onclick="copyLink('https://bosssystems.co/hear-it.html','Demo Page')">
+          <div class="icon">📞</div>
+          <div class="label">Demo Page</div>
+          <div class="sub">Hear the AI. 30 seconds.</div>
+        </div>
+        <div class="send-btn" onclick="copyLink('https://bosssystems.co/faq.html','FAQ')">
+          <div class="icon">❓</div>
+          <div class="label">FAQ</div>
+          <div class="sub">For the "send me info" crowd.</div>
+        </div>
+        <div class="send-btn" onclick="copyLink('https://bosssystems.co/guarantee.html','Guarantee')">
+          <div class="icon">✅</div>
+          <div class="label">Guarantee</div>
+          <div class="sub">95% or first month free.</div>
+        </div>
+        <div class="send-btn" onclick="copyLink('https://bosssystems.co/grade.html','Phone Grade')">
+          <div class="icon">🎯</div>
+          <div class="label">Phone Grade ($29)</div>
+          <div class="sub">Mystery shop their phone.</div>
+        </div>
+        <div class="send-btn" onclick="copyLink('https://bosssystems.co/onboard.html','Onboard Form')">
+          <div class="icon">📋</div>
+          <div class="label">Onboard Form</div>
+          <div class="sub">After the sale. Setup form.</div>
+        </div>
+        <div class="send-btn" onclick="copyLink('https://bosssystems.co/pay.html','Payment')">
+          <div class="icon">💳</div>
+          <div class="label">Payment Page</div>
+          <div class="sub">Venmo @BosRoss / Zelle</div>
+        </div>
+      </div>
+      <div id="copy-toast" style="display:none;position:fixed;bottom:80px;left:50%;transform:translateX(-50%);background:var(--gold);color:var(--bg);padding:10px 20px;font-size:13px;font-weight:700;border-radius:4px;z-index:50"></div>
+    </div>
+
+    <!-- TAB: ROI CALC -->
+    <div class="tab-panel" id="panel-roi">
+      <div class="calc-form">
+        <div class="calc-row">
+          <label>Trade</label>
+          <select id="calc-trade" onchange="calcROI()">
+            <option value="hvac">HVAC</option>
+            <option value="plumber">Plumber</option>
+            <option value="electrician">Electrician</option>
+            <option value="roofer">Roofer</option>
+            <option value="lawn">Lawn Care</option>
+            <option value="pest">Pest Control</option>
+            <option value="auto">Auto Repair</option>
+            <option value="dental">Dental</option>
+            <option value="legal">Law Firm</option>
+          </select>
+        </div>
+        <div class="calc-row">
+          <label>Calls / Week</label>
+          <input type="number" id="calc-calls" value="40" min="1" max="500" onchange="calcROI()" oninput="calcROI()">
+        </div>
+        <div class="calc-row">
+          <label>Miss Rate %</label>
+          <input type="number" id="calc-miss" value="62" min="1" max="100" onchange="calcROI()" oninput="calcROI()">
+        </div>
+        <div class="calc-result">
+          <div class="big" id="calc-annual">$0</div>
+          <div class="label">Lost per year to missed calls</div>
+          <div style="margin-top:12px;font-size:13px;color:var(--muted)">
+            <span id="calc-monthly">$0</span>/month &middot;
+            <span id="calc-weekly">$0</span>/week &middot;
+            BOSS costs <strong style="color:var(--gold)">$50/mo</strong>
+          </div>
+          <div style="margin-top:8px;font-size:13px;color:var(--green)" id="calc-roi-ratio"></div>
+        </div>
+      </div>
+      <button class="btn btn-gold" style="width:100%" onclick="copyROI()">COPY ROI PITCH</button>
+    </div>
+
+    <!-- TAB: OBJECTIONS -->
+    <div class="tab-panel" id="panel-objections">
+      <div class="obj open" onclick="this.classList.toggle('open')">
+        <div class="obj-q">"Too expensive"</div>
+        <div class="obj-a">What's one job worth to you? One caught call pays for 7 months of this. You're losing $5,000 a month minimum in missed calls. This costs $50.</div>
+      </div>
+      <div class="obj" onclick="this.classList.toggle('open')">
+        <div class="obj-q">"I don't need it"</div>
+        <div class="obj-a">62% of contractor calls go unanswered. 85% never call back. Do you know where you stand? We can mystery shop your phone for free and show you.</div>
+      </div>
+      <div class="obj" onclick="this.classList.toggle('open')">
+        <div class="obj-q">"I already have someone"</div>
+        <div class="obj-a">What happens when she's not available? Evenings, weekends, when she's at lunch? This is her backup so she's not chained to the phone 24/7.</div>
+      </div>
+      <div class="obj" onclick="this.classList.toggle('open')">
+        <div class="obj-q">"I need to think about it"</div>
+        <div class="obj-a">What specifically, the cost or whether it works? Because if it is the cost, $50 is less than one missed call. And if it is whether it works, call the demo right now and find out.</div>
+      </div>
+      <div class="obj" onclick="this.classList.toggle('open')">
+        <div class="obj-q">"I'm too busy right now"</div>
+        <div class="obj-a">The fact that you're too busy is exactly why calls are going to voicemail. Can I call you Thursday at 5:30 when you're done for the day?</div>
+      </div>
+      <div class="obj" onclick="this.classList.toggle('open')">
+        <div class="obj-q">"I don't trust AI"</div>
+        <div class="obj-a">Don't trust my words either. Call this number. 30 seconds. If it sounds like a robot, I'll leave and never bother you again. (903) 522-4459</div>
+      </div>
+      <div class="obj" onclick="this.classList.toggle('open')">
+        <div class="obj-q">"My customers want a real person"</div>
+        <div class="obj-a">What's worse for a customer: a natural-sounding AI that answers in 2 seconds, or your competitor's human who answered first because your phone was ringing out?</div>
+      </div>
+      <div class="obj" onclick="this.classList.toggle('open')">
+        <div class="obj-q">"Send me some info"</div>
+        <div class="obj-a">I'd rather show you. Call this number. 20 seconds. If you're not impressed, I'll email you everything and stop bugging you. (903) 522-4459</div>
+      </div>
+      <div class="obj" onclick="this.classList.toggle('open')">
+        <div class="obj-q">"Call me back later"</div>
+        <div class="obj-a">Is this something you're actually interested in, or are you being polite? If it is real interest, let's lock in a day and time so I don't have to keep calling.</div>
+      </div>
+      <div class="obj" onclick="this.classList.toggle('open')">
+        <div class="obj-q">"I answer all my calls"</div>
+        <div class="obj-a">What about 9 PM on a Saturday when someone has a burst pipe? When you're under a house with both hands full? This catches the ones you can't.</div>
+      </div>
+      <div class="obj" onclick="this.classList.toggle('open')">
+        <div class="obj-q">"I got burned before"</div>
+        <div class="obj-a">Don't trust my words then. 30 days. See the call logs yourself. Cancel if it doesn't do exactly what I said it would. No contract, no penalty.</div>
+      </div>
+      <div class="obj" onclick="this.classList.toggle('open')">
+        <div class="obj-q">"My wife handles the phones"</div>
+        <div class="obj-a">BUYING SIGNAL. This isn't replacing her. It is her backup so she's not chained to the phone 24/7. Can I talk to her? She should know about this.</div>
+      </div>
+      <div class="obj" onclick="this.classList.toggle('open')">
+        <div class="obj-q">"It's the slow season"</div>
+        <div class="obj-a">Slow season means 3 calls a day instead of 10. Missing one of those three is missing 33% of your business for the day. Every call matters more when they're rare.</div>
+      </div>
+    </div>
+
+    <!-- TAB: SCRIPTS -->
+    <div class="tab-panel" id="panel-scripts">
+      <div class="script-card">
+        <div class="script-label">Opening Question</div>
+        <button class="script-copy" onclick="copyText(this.parentElement,'Opening')">COPY</button>
+        When you're out on a job and a call comes in, what happens to it?
+      </div>
+      <div class="script-card">
+        <div class="script-label">15-Second Pitch</div>
+        <button class="script-copy" onclick="copyText(this.parentElement,'15s Pitch')">COPY</button>
+        I built an AI that answers contractor phones 24/7 for $50 a month. You miss a call, your competitor gets the job. This stops that. Want to hear it? Call this number.
+      </div>
+      <div class="script-card">
+        <div class="script-label">60-Second Walk-In</div>
+        <button class="script-copy" onclick="copyText(this.parentElement,'Walk-In')">COPY</button>
+        Hey, are you the owner? I'm [name]. I live here in [city]. Got something I want to show you, about 60 seconds.<br><br>I actually called your shop yesterday. [Voicemail / rang out / hold music]. If I'm a customer whose pipe just burst, I'm calling the next guy.<br><br>[PAUSE. Say nothing.]<br><br>Call this number and hear what your customers would hear instead. (903) 522-4459<br><br>That answers every call, 24/7, books the appointment, texts you the info. $50 a month, no contract.
+      </div>
+      <div class="script-card">
+        <div class="script-label">After Good Call Text</div>
+        <button class="script-copy" onclick="copyText(this.parentElement,'Follow-Up')">COPY</button>
+        Hey [Name], good talking to you. Here's the demo number if you want to hear it again: (903) 522-4459. Call it anytime. No pressure either way.
+      </div>
+      <div class="script-card">
+        <div class="script-label">After They Pay Text</div>
+        <button class="script-copy" onclick="copyText(this.parentElement,'Payment Confirm')">COPY</button>
+        Got it. Thank you. I'm starting your build right now. You'll have a test call to listen to within 2 hours. Here's my number if you need anything: 903-522-4459
+      </div>
+      <div class="script-card">
+        <div class="script-label">System Live Text</div>
+        <button class="script-copy" onclick="copyText(this.parentElement,'Go Live')">COPY</button>
+        Hey [Name], you're live. Your AI is answering [number] right now. Try calling it and talk to it like a customer. You'll get a text every time it takes a message or books something. If anything sounds off, text me and I'll fix it same day.
+      </div>
+      <div class="script-card">
+        <div class="script-label">Spouse Text (MOST IMPORTANT)</div>
+        <button class="script-copy" onclick="copyText(this.parentElement,'Spouse')">COPY</button>
+        Hi [Spouse], this is [you] from BOSS Systems. I just set up the AI for [business]. It answers all the calls [Owner] can't get to. Nights, weekends, while he's on a job. You'll never get a surprise bill. $50 a month flat, cancel anytime by texting me.
+      </div>
+      <div class="script-card">
+        <div class="script-label">After a "No" (Send Once)</div>
+        <button class="script-copy" onclick="copyText(this.parentElement,'Regret Seed')">COPY</button>
+        No worries. If you ever want to hear what the AI sounds like, call (903) 522-4459 anytime. It's live 24/7. Have a good one.
+      </div>
+      <div class="script-card">
+        <div class="script-label">Cancellation Save</div>
+        <button class="script-copy" onclick="copyText(this.parentElement,'Cancel Save')">COPY</button>
+        Would it help if we paused for a month instead? Everything stays saved. Your AI, your settings, your number routing. Zero charge. When you want it back on, just text me and it's 5 minutes.
+      </div>
+      <div class="script-card">
+        <div class="script-label">The Close</div>
+        <button class="script-copy" onclick="copyText(this.parentElement,'Close')">COPY</button>
+        I have two build slots this week. Wednesday or Friday. Which works better?
+      </div>
+    </div>
+
+    <!-- TAB: COMPETITORS -->
+    <div class="tab-panel" id="panel-competitors">
+      <p style="font-size:12px;color:var(--dim);margin-bottom:12px">At real volume (50 calls/day, ~4,500 min/month)</p>
+      <table class="comp-table">
+        <tr><th>Service</th><th>Monthly</th><th>vs BOSS</th></tr>
+        <tr><td>Ruby (human)</td><td>$8,625-12,375</td><td>172-247x more</td></tr>
+        <tr><td>Smith.ai (AI)</td><td>$2,400+</td><td>48x more</td></tr>
+        <tr><td>Dialzara</td><td>$1,530-1,785</td><td>30-35x more</td></tr>
+        <tr><td>Avoca</td><td>$1,000-3,000</td><td>20-60x more</td></tr>
+        <tr><td>PATLive (human)</td><td>$250-720+</td><td>5-14x more</td></tr>
+        <tr><td>Goodcall (AI)</td><td>$79-249</td><td>1.5-5x more</td></tr>
+        <tr class="boss-row"><td>BOSS Systems</td><td>$50 flat</td><td>--</td></tr>
+      </table>
+      <div style="margin-top:20px;padding:16px;background:var(--bg2);border:1px solid var(--border);border-radius:4px">
+        <div style="font-size:12px;color:var(--dim);letter-spacing:1px;margin-bottom:8px">WHY RUBY CUSTOMERS CANCEL</div>
+        <p style="font-size:13px;color:var(--muted)">Bill shock. They signed up for $250/month. Got a $720 bill because of per-minute overages. The spouse saw it and killed it.</p>
+        <p style="font-size:13px;color:var(--text);margin-top:8px;font-weight:600">"Our competitors charge by the minute. You get a surprise bill every month. We charge $50. That's it."</p>
+      </div>
+      <div style="margin-top:12px;padding:16px;background:var(--bg2);border:1px solid var(--border);border-radius:4px">
+        <div style="font-size:12px;color:var(--dim);letter-spacing:1px;margin-bottom:8px">THE AVOCA GAP</div>
+        <p style="font-size:13px;color:var(--muted)">Avoca: $1B valuation, $125M raised. Only serves $3M+ revenue businesses on ServiceTitan. Charges $1,000-3,000/month. They left the entire small business market wide open. That is our market.</p>
+      </div>
+    </div>
+
+    <!-- TAB: CALL LOG -->
+    <div class="tab-panel" id="panel-log">
+      <div class="log-form">
+        <div class="log-row">
+          <input type="text" id="log-name" placeholder="Business name">
+        </div>
+        <div class="log-row">
+          <input type="tel" id="log-phone" placeholder="Phone number">
+          <select id="log-outcome">
+            <option value="interested">Interested</option>
+            <option value="callback">Callback</option>
+            <option value="meeting">Meeting Set</option>
+            <option value="demo">Demo Given</option>
+            <option value="closed">CLOSED</option>
+            <option value="not_interested">Not Interested</option>
+            <option value="voicemail">Voicemail</option>
+            <option value="no_answer">No Answer</option>
+            <option value="dnc">DNC</option>
+          </select>
+        </div>
+        <div class="log-row">
+          <input type="text" id="log-notes" placeholder="Notes (optional)">
+        </div>
+        <button class="btn btn-gold" style="width:100%" onclick="logCall()">LOG CALL</button>
+      </div>
+      <div style="font-size:10px;letter-spacing:2px;color:var(--dim);margin-bottom:8px;text-transform:uppercase">Today's Calls (<span id="log-count">0</span>)</div>
+      <div id="log-list"></div>
+    </div>
+
+  </div>
+</div>
+
+<script>
+var PIN = '1003';
+var DATA_URL = 'https://raw.githubusercontent.com/BosRoss/bosssystems.co/main/sales_data.json';
+
+var TRADE_DATA = {
+  hvac: {name:'HVAC', ticket:800, scene:'July, 102 degrees. You are on a roof.'},
+  plumber: {name:'Plumber', ticket:350, scene:'9 PM. Pipe burst.'},
+  electrician: {name:'Electrician', ticket:450, scene:'Hands in a panel.'},
+  roofer: {name:'Roofer', ticket:5000, scene:'Storm Saturday night. 15 calls Sunday.'},
+  lawn: {name:'Lawn Care', ticket:150, scene:'Spring Saturday. 20 calls. You are mowing.'},
+  pest: {name:'Pest Control', ticket:250, scene:'Termite season. Every call counts.'},
+  auto: {name:'Auto Repair', ticket:600, scene:'Under a car. Phone rings. Hands covered in oil.'},
+  dental: {name:'Dental', ticket:400, scene:'Mid-procedure. New patient calls.'},
+  legal: {name:'Law Firm', ticket:2500, scene:'In court. Potential $50K case calls.'}
+};
+
+// PIN
+var pinInput = document.getElementById('pin-input');
+if (sessionStorage.getItem('boss_sales_auth') === 'true') unlock();
+pinInput.addEventListener('input', function(){
+  document.getElementById('pin-error').textContent = '';
+  if (pinInput.value.length === 4) {
+    if (pinInput.value === PIN) {
+      sessionStorage.setItem('boss_sales_auth', 'true');
+      unlock();
+    } else {
+      document.getElementById('pin-error').textContent = 'WRONG PIN';
+      pinInput.value = '';
+    }
+  }
+});
+
+function unlock() {
+  document.getElementById('pin-screen').classList.add('out');
+  document.getElementById('app').style.display = 'block';
+  loadData();
+  loadLog();
+  calcROI();
+}
+
+// TABS
+document.querySelectorAll('.tab').forEach(function(t){
+  t.addEventListener('click', function(){
+    document.querySelectorAll('.tab').forEach(function(x){x.classList.remove('active')});
+    document.querySelectorAll('.tab-panel').forEach(function(x){x.classList.remove('active')});
+    t.classList.add('active');
+    document.getElementById('panel-'+t.dataset.tab).classList.add('active');
+  });
+});
+
+// LOAD DATA
+function loadData() {
+  fetch(DATA_URL + '?t=' + Date.now())
+    .then(function(r){return r.json()})
+    .then(function(data){
+      renderData(data);
+    })
+    .catch(function(){
+      document.getElementById('call-list').innerHTML = '<div class="empty">Could not load lead data. Check connection.</div>';
+    });
+}
+
+function renderData(data) {
+  var s = data.summary || {};
+  document.getElementById('stat-callable').textContent = s.callable || 0;
+  document.getElementById('stat-meetings').textContent = s.meetings_set || 0;
+  document.getElementById('stat-callbacks').textContent = s.callbacks || 0;
+  document.getElementById('stat-total').textContent = s.total_leads || 0;
+
+  var gen = data.generated || '';
+  if (gen) {
+    var d = new Date(gen);
+    document.getElementById('last-updated').textContent = 'Updated ' + d.toLocaleDateString() + ' ' + d.toLocaleTimeString([], {hour:'2-digit',minute:'2-digit'});
+  }
+
+  // Call list
+  var calls = data.call_list || [];
+  var html = '';
+  if (calls.length === 0) {
+    html = '<div class="empty">No callable leads. Run the lead engine to fill the queue.</div>';
+  }
+  calls.forEach(function(l){
+    var tierClass = l.tier || 'WARM';
+    var signals = (l.signals || []).join(', ') || 'No signals';
+    var ratingInfo = '';
+    if (l.rating) ratingInfo = l.rating + ' stars (' + (l.review_count||0) + ' reviews)';
+
+    html += '<div class="lead">';
+    html += '<div class="lead-top">';
+    html += '<div><div class="lead-name">' + esc(l.name) + '</div>';
+    html += '<div class="lead-info">' + esc(l.niche) + ' &middot; ' + esc(l.city||'') + ', ' + esc(l.state||'') + (ratingInfo ? ' &middot; ' + ratingInfo : '') + '</div></div>';
+    html += '<div class="lead-tier ' + tierClass + '">' + tierClass + '</div>';
+    html += '</div>';
+    html += '<div class="lead-signals">' + esc(signals) + '</div>';
+    html += '<div class="lead-btns">';
+    html += '<a class="btn btn-call btn-sm" href="tel:+1' + l.phone_raw + '">CALL ' + esc(l.phone) + '</a>';
+    html += '<a class="btn btn-text btn-sm" href="sms:+1' + l.phone_raw + '?body=' + encodeURIComponent('Hey, this is [name] from BOSS Systems. I tried calling you about your business phone setup. Got a minute?') + '">TEXT</a>';
+    html += '<button class="btn btn-outline btn-sm" onclick="prefillLog(\'' + esc(l.name) + '\',\'' + l.phone_raw + '\')">LOG</button>';
+    html += '</div></div>';
+  });
+  document.getElementById('call-list').innerHTML = html;
+
+  // Hot leads
+  var hots = data.hot_outcomes || [];
+  var hotHtml = '';
+  if (hots.length === 0) {
+    hotHtml = '<div class="empty">No hot leads yet. When the AI caller gets a meeting or callback, it shows up here.</div>';
+  }
+  hots.forEach(function(h){
+    var badge = h.outcome === 'meeting_set' ? 'MEETING SET' : h.outcome === 'callback' ? 'CALLBACK' : 'CLOSED';
+    hotHtml += '<div class="hot-card">';
+    hotHtml += '<div style="display:flex;justify-content:space-between;align-items:flex-start">';
+    hotHtml += '<div><div class="lead-name">' + esc(h.name) + '</div>';
+    hotHtml += '<div class="lead-info">' + esc(h.niche||'') + ' &middot; ' + esc(h.city||'') + ' &middot; ' + esc(h.date||'') + '</div></div>';
+    hotHtml += '<span class="hot-badge">' + badge + '</span>';
+    hotHtml += '</div>';
+    if (h.phone_raw) {
+      hotHtml += '<div class="lead-btns">';
+      hotHtml += '<a class="btn btn-call btn-sm" href="tel:+1' + h.phone_raw + '">CALL ' + esc(h.phone) + '</a>';
+      hotHtml += '<a class="btn btn-text btn-sm" href="sms:+1' + h.phone_raw + '?body=' + encodeURIComponent('Hey, this is [name] from BOSS Systems. We spoke earlier about your phone setup. Still interested in hearing the demo?') + '">TEXT</a>';
+      hotHtml += '</div>';
+    }
+    hotHtml += '</div>';
+  });
+  document.getElementById('hot-list').innerHTML = hotHtml;
+}
+
+function esc(s) { var d = document.createElement('div'); d.textContent = s||''; return d.innerHTML; }
+
+// QUICK SEND
+function copyLink(url, label) {
+  if (navigator.clipboard) {
+    navigator.clipboard.writeText(url).then(function(){ showToast(label + ' link copied'); });
+  } else {
+    var ta = document.createElement('textarea');
+    ta.value = url;
+    document.body.appendChild(ta);
+    ta.select();
+    document.execCommand('copy');
+    document.body.removeChild(ta);
+    showToast(label + ' link copied');
+  }
+}
+
+function showToast(msg) {
+  var t = document.getElementById('copy-toast');
+  t.textContent = msg;
+  t.style.display = 'block';
+  setTimeout(function(){ t.style.display = 'none'; }, 2000);
+}
+
+// ROI CALC
+function calcROI() {
+  var trade = document.getElementById('calc-trade').value;
+  var calls = parseInt(document.getElementById('calc-calls').value) || 40;
+  var miss = parseInt(document.getElementById('calc-miss').value) || 62;
+  var td = TRADE_DATA[trade] || TRADE_DATA.hvac;
+
+  var missedPerWeek = Math.round(calls * (miss / 100));
+  var neverCallBack = Math.round(missedPerWeek * 0.85);
+  var weeklyLoss = neverCallBack * td.ticket;
+  var monthlyLoss = weeklyLoss * 4.33;
+  var annualLoss = weeklyLoss * 52;
+
+  document.getElementById('calc-annual').textContent = '$' + annualLoss.toLocaleString();
+  document.getElementById('calc-monthly').textContent = '$' + Math.round(monthlyLoss).toLocaleString();
+  document.getElementById('calc-weekly').textContent = '$' + weeklyLoss.toLocaleString();
+
+  var ratio = Math.round(annualLoss / 600);
+  document.getElementById('calc-roi-ratio').textContent = ratio + ':1 return on $50/month';
+}
+
+function copyROI() {
+  var trade = document.getElementById('calc-trade').value;
+  var td = TRADE_DATA[trade];
+  var annual = document.getElementById('calc-annual').textContent;
+  var monthly = document.getElementById('calc-monthly').textContent;
+
+  var pitch = 'At your call volume, you are losing about ' + annual + ' a year to missed calls. That is ' + monthly + ' a month walking out the door. BOSS answers every call for $50 a month flat. No overages, no contracts. Want to hear what it sounds like? Call (903) 522-4459.';
+
+  if (navigator.clipboard) {
+    navigator.clipboard.writeText(pitch).then(function(){ showToast('ROI pitch copied'); });
+  }
+}
+
+// SCRIPTS
+function copyText(el, label) {
+  var text = el.innerText.replace(/COPY$/, '').replace(el.querySelector('.script-label').innerText, '').trim();
+  if (navigator.clipboard) {
+    navigator.clipboard.writeText(text).then(function(){ showToast(label + ' copied'); });
+  }
+}
+
+// CALL LOG
+function logCall() {
+  var name = document.getElementById('log-name').value.trim();
+  var phone = document.getElementById('log-phone').value.trim();
+  var outcome = document.getElementById('log-outcome').value;
+  var notes = document.getElementById('log-notes').value.trim();
+
+  if (!name) { document.getElementById('log-name').style.borderColor = 'var(--red)'; return; }
+
+  var logs = JSON.parse(localStorage.getItem('boss_call_log') || '[]');
+  logs.unshift({
+    name: name,
+    phone: phone,
+    outcome: outcome,
+    notes: notes,
+    time: new Date().toISOString()
+  });
+  localStorage.setItem('boss_call_log', JSON.stringify(logs));
+
+  document.getElementById('log-name').value = '';
+  document.getElementById('log-phone').value = '';
+  document.getElementById('log-notes').value = '';
+  document.getElementById('log-name').style.borderColor = 'var(--border)';
+
+  loadLog();
+  showToast('Call logged');
+}
+
+function prefillLog(name, phone) {
+  document.querySelectorAll('.tab').forEach(function(x){x.classList.remove('active')});
+  document.querySelectorAll('.tab-panel').forEach(function(x){x.classList.remove('active')});
+  document.querySelector('[data-tab="log"]').classList.add('active');
+  document.getElementById('panel-log').classList.add('active');
+  document.getElementById('log-name').value = name;
+  document.getElementById('log-phone').value = phone;
+  document.getElementById('log-name').focus();
+}
+
+function loadLog() {
+  var logs = JSON.parse(localStorage.getItem('boss_call_log') || '[]');
+  var today = new Date().toDateString();
+  var todayLogs = logs.filter(function(l){ return new Date(l.time).toDateString() === today; });
+
+  document.getElementById('log-count').textContent = todayLogs.length;
+
+  var html = '';
+  var colors = {interested:'var(--green)',callback:'var(--gold)',meeting:'var(--green)',demo:'#4b92db',closed:'var(--green)',not_interested:'var(--dim)',voicemail:'var(--dim)',no_answer:'var(--dim)',dnc:'var(--red)'};
+
+  logs.slice(0, 50).forEach(function(l){
+    var d = new Date(l.time);
+    var timeStr = d.toLocaleDateString() + ' ' + d.toLocaleTimeString([], {hour:'2-digit',minute:'2-digit'});
+    var color = colors[l.outcome] || 'var(--dim)';
+    html += '<div class="log-entry">';
+    html += '<div><strong>' + esc(l.name) + '</strong>';
+    if (l.phone) html += ' &middot; ' + esc(l.phone);
+    if (l.notes) html += ' &middot; <span style="color:var(--dim)">' + esc(l.notes) + '</span>';
+    html += '</div>';
+    html += '<div><span class="outcome-badge" style="color:' + color + '">' + l.outcome.replace(/_/g,' ').toUpperCase() + '</span>';
+    html += '<div style="font-size:10px;color:var(--dim);margin-top:2px">' + timeStr + '</div></div>';
+    html += '</div>';
+  });
+
+  if (logs.length === 0) html = '<div class="empty">No calls logged yet. Use the LOG button on any lead or fill out the form above.</div>';
+  document.getElementById('log-list').innerHTML = html;
+}
+</script>
+</body>
+</html>
