@@ -1,46 +1,54 @@
 {
-  "generated": "2026-07-06T20:07:42.980925+00:00",
+  "generated": "2026-07-06T22:14:35.140319+00:00",
   "engine_state": "active",
   "signals": [
     {
       "type": "storm",
-      "area": "Camp, TX; Gregg, TX; Harrison, TX; Marion, TX; Upshur, TX; Wood, TX",
+      "area": "Miller, AR; Caddo, LA; Cass, TX; Harrison, TX; Marion, TX",
       "niche": "roofing",
-      "action": "Storm damage in Camp, TX; Gregg, TX; Harrison, TX; Marion, TX; Upshur, TX; Wood, TX. Roofers and restoration companies about to get flooded.",
+      "action": "Storm damage in Miller, AR; Caddo, LA; Cass, TX; Harrison, TX; Marion, TX. Roofers and restoration companies about to get flooded.",
+      "urgency": "today",
+      "pitch_hook": "After a storm like that, you'll get 10x your normal call volume. Ready for it?"
+    },
+    {
+      "type": "storm",
+      "area": "Bossier, LA; Caddo, LA; De Soto, LA; Panola, TX",
+      "niche": "roofing",
+      "action": "Storm damage in Bossier, LA; Caddo, LA; De Soto, LA; Panola, TX. Roofers and restoration companies about to get flooded.",
+      "urgency": "today",
+      "pitch_hook": "After a storm like that, you'll get 10x your normal call volume. Ready for it?"
+    },
+    {
+      "type": "storm",
+      "area": "Harrison, TX; Panola, TX",
+      "niche": "roofing",
+      "action": "Storm damage in Harrison, TX; Panola, TX. Roofers and restoration companies about to get flooded.",
+      "urgency": "today",
+      "pitch_hook": "After a storm like that, you'll get 10x your normal call volume. Ready for it?"
+    },
+    {
+      "type": "storm",
+      "area": "De Soto, LA; Panola, TX; Shelby, TX",
+      "niche": "roofing",
+      "action": "Storm damage in De Soto, LA; Panola, TX; Shelby, TX. Roofers and restoration companies about to get flooded.",
       "urgency": "today",
       "pitch_hook": "After a storm like that, you'll get 10x your normal call volume. Ready for it?"
     },
     {
       "type": "flood",
-      "area": "Kerr, TX",
+      "area": "Edwards, TX",
       "niche": "plumbing",
-      "action": "Flood warnings in Kerr, TX. Plumbers, restoration, mold companies will spike.",
+      "action": "Flood warnings in Edwards, TX. Plumbers, restoration, mold companies will spike.",
       "urgency": "today",
       "pitch_hook": "Water damage calls are coming. Every one you miss is $500+ walking away."
     },
     {
       "type": "storm",
-      "area": "Gregg, TX; Upshur, TX; Wood, TX",
+      "area": "Columbia, AR; Lafayette, AR; Miller, AR; Union, AR; Bienville, LA; Bossier, LA; Caddo, LA; Caldwell, LA; Claiborne, LA; De Soto, LA; Grant, LA; Jackson, LA; La Salle, LA; Lincoln, LA; Natchitoches, LA",
       "niche": "roofing",
-      "action": "Storm damage in Gregg, TX; Upshur, TX; Wood, TX. Roofers and restoration companies about to get flooded.",
+      "action": "Storm damage in Columbia, AR; Lafayette, AR; Miller, AR; Union, AR; Bienville, LA; Bossier, LA; Caddo, LA; Caldwell, LA; Claiborne, LA; De Soto, LA; Grant, LA; Jackson, LA; La Salle, LA; Lincoln, LA; Natchitoches, LA. Roofers and restoration companies about to get flooded.",
       "urgency": "today",
       "pitch_hook": "After a storm like that, you'll get 10x your normal call volume. Ready for it?"
-    },
-    {
-      "type": "flood",
-      "area": "Menard, TX",
-      "niche": "plumbing",
-      "action": "Flood warnings in Menard, TX. Plumbers, restoration, mold companies will spike.",
-      "urgency": "today",
-      "pitch_hook": "Water damage calls are coming. Every one you miss is $500+ walking away."
-    },
-    {
-      "type": "flood",
-      "area": "Kimble, TX; Menard, TX; Schleicher, TX; Sutton, TX",
-      "niche": "plumbing",
-      "action": "Flood warnings in Kimble, TX; Menard, TX; Schleicher, TX; Sutton, TX. Plumbers, restoration, mold companies will spike.",
-      "urgency": "today",
-      "pitch_hook": "Water damage calls are coming. Every one you miss is $500+ walking away."
     },
     {
       "type": "flood",
@@ -51,39 +59,49 @@
       "pitch_hook": "Water damage calls are coming. Every one you miss is $500+ walking away."
     },
     {
-      "type": "flood",
-      "area": "St. Tammany, LA; Hancock, MS; Pearl River, MS",
-      "niche": "plumbing",
-      "action": "Flood warnings in St. Tammany, LA; Hancock, MS; Pearl River, MS. Plumbers, restoration, mold companies will spike.",
-      "urgency": "today",
-      "pitch_hook": "Water damage calls are coming. Every one you miss is $500+ walking away."
-    },
-    {
       "type": "storm",
-      "area": "Hancock, TN; Lee, VA; Scott, VA",
+      "area": "Conway, AR; Perry, AR; Pope, AR; Yell, AR",
       "niche": "roofing",
-      "action": "Storm damage in Hancock, TN; Lee, VA; Scott, VA. Roofers and restoration companies about to get flooded.",
+      "action": "Storm damage in Conway, AR; Perry, AR; Pope, AR; Yell, AR. Roofers and restoration companies about to get flooded.",
       "urgency": "today",
       "pitch_hook": "After a storm like that, you'll get 10x your normal call volume. Ready for it?"
     },
     {
-      "type": "flood",
-      "area": "Muskogee, OK",
-      "niche": "plumbing",
-      "action": "Flood warnings in Muskogee, OK. Plumbers, restoration, mold companies will spike.",
+      "type": "storm",
+      "area": "Faulkner, AR; Pulaski, AR; Saline, AR",
+      "niche": "roofing",
+      "action": "Storm damage in Faulkner, AR; Pulaski, AR; Saline, AR. Roofers and restoration companies about to get flooded.",
       "urgency": "today",
-      "pitch_hook": "Water damage calls are coming. Every one you miss is $500+ walking away."
+      "pitch_hook": "After a storm like that, you'll get 10x your normal call volume. Ready for it?"
     },
     {
-      "type": "heat_wave",
-      "area": "Inland Broward County; Metro Broward County; Inland Miami-Dade County; Metropolitan Miami Dade; Coastal Broward County; Coastal Miami Dade County; Far South Miami-Dade County",
-      "niche": "hvac",
-      "action": "HVAC businesses in Inland Broward County; Metro Broward County; Inland Miami-Dade County; Metropolitan Miami Dade; Coastal Broward County; Coastal Miami Dade County; Far South Miami-Dade County are drowning in calls right now. Perfect time to pitch.",
+      "type": "storm",
+      "area": "Lonoke, AR; Pulaski, AR",
+      "niche": "roofing",
+      "action": "Storm damage in Lonoke, AR; Pulaski, AR. Roofers and restoration companies about to get flooded.",
       "urgency": "today",
-      "pitch_hook": "You're getting slammed with calls \u2014 how many went to voicemail today?"
+      "pitch_hook": "After a storm like that, you'll get 10x your normal call volume. Ready for it?"
     }
   ],
   "leads": [
+    {
+      "name": "law firm",
+      "city": "MS",
+      "score": 80,
+      "tier": "SUPERNICHE",
+      "channel": "watchlist",
+      "sequence_status": "queued",
+      "trigger": "market_sweep"
+    },
+    {
+      "name": "dentist",
+      "city": "MS",
+      "score": 80,
+      "tier": "SUPERNICHE",
+      "channel": "watchlist",
+      "sequence_status": "queued",
+      "trigger": "market_sweep"
+    },
     {
       "name": "plumbing",
       "city": "OK",
@@ -110,6 +128,15 @@
       "channel": "watchlist",
       "sequence_status": "queued",
       "trigger": "flood"
+    },
+    {
+      "name": "electrician",
+      "city": "MS",
+      "score": 73,
+      "tier": "SUPERNICHE",
+      "channel": "email",
+      "sequence_status": "queued",
+      "trigger": "market_sweep"
     },
     {
       "name": "plumbing",
@@ -191,46 +218,19 @@
       "channel": "watchlist",
       "sequence_status": "re_engaged",
       "trigger": "territory_alert"
-    },
-    {
-      "name": "electrician",
-      "city": "AR",
-      "score": 62,
-      "tier": "SUPERNICHE",
-      "channel": "watchlist",
-      "sequence_status": "re_engaged",
-      "trigger": "territory_alert"
-    },
-    {
-      "name": "plumbing",
-      "city": "MS",
-      "score": 62,
-      "tier": "SUPERNICHE",
-      "channel": "email",
-      "sequence_status": "queued",
-      "trigger": "flood"
-    },
-    {
-      "name": "HVAC contractor",
-      "city": "OK",
-      "score": 60,
-      "tier": "SUPERNICHE",
-      "channel": "watchlist",
-      "sequence_status": "re_engaged",
-      "trigger": "flood"
     }
   ],
   "kpis": {
     "signals_firing": 10,
-    "leads_superniche": 19,
-    "leads_hot": 65,
-    "leads_warm": 116,
-    "cost_per_qualified": 0.62,
-    "total_spend": 11.776000000000009,
+    "leads_superniche": 22,
+    "leads_hot": 76,
+    "leads_warm": 102,
+    "cost_per_qualified": 0.68,
+    "total_spend": 14.976000000000012,
     "spend_cap": 300.0
   },
   "channels": {
-    "emails_sent": 85,
+    "emails_sent": 107,
     "texts_sent": 8,
     "calls_made": 0,
     "meetings_set": 10,
@@ -239,55 +239,55 @@
   "feeds": [
     {
       "name": "NOAA",
-      "last_hit": "2026-07-06T19:59:37.531988+00:00",
+      "last_hit": "2026-07-06T22:07:48.174009+00:00",
       "status": "yellow",
       "data_points_today": 0
     },
     {
       "name": "REDDIT",
-      "last_hit": "2026-07-06T19:59:37.531988+00:00",
+      "last_hit": "2026-07-06T22:07:48.174009+00:00",
       "status": "green",
-      "data_points_today": 30
+      "data_points_today": 15
     },
     {
       "name": "USGS",
-      "last_hit": "2026-07-06T19:59:37.531988+00:00",
+      "last_hit": "2026-07-06T22:07:48.174009+00:00",
       "status": "yellow",
       "data_points_today": 0
     },
     {
       "name": "HACKERNEWS",
-      "last_hit": "2026-07-06T19:59:37.531988+00:00",
+      "last_hit": "2026-07-06T22:07:48.174009+00:00",
       "status": "green",
       "data_points_today": 30
     },
     {
       "name": "FEMA",
-      "last_hit": "2026-07-06T19:59:37.531988+00:00",
+      "last_hit": "2026-07-06T22:07:48.174009+00:00",
       "status": "green",
       "data_points_today": 20
     },
     {
       "name": "COMMODITIES",
-      "last_hit": "2026-07-06T19:59:37.531988+00:00",
+      "last_hit": "2026-07-06T22:07:48.174009+00:00",
       "status": "green",
       "data_points_today": 7
     },
     {
       "name": "RSS",
-      "last_hit": "2026-07-06T19:59:37.531988+00:00",
+      "last_hit": "2026-07-06T22:07:48.174009+00:00",
       "status": "green",
-      "data_points_today": 751
+      "data_points_today": 740
     },
     {
       "name": "FRED",
-      "last_hit": "2026-07-06T19:59:37.531988+00:00",
+      "last_hit": "2026-07-06T22:07:48.174009+00:00",
       "status": "yellow",
       "data_points_today": 0
     },
     {
       "name": "BLS",
-      "last_hit": "2026-07-06T19:59:37.531988+00:00",
+      "last_hit": "2026-07-06T22:07:48.174009+00:00",
       "status": "green",
       "data_points_today": 9
     }
@@ -295,7 +295,7 @@
   "conversion_funnel": {
     "signals": 10,
     "leads": 200,
-    "contacted": 93,
+    "contacted": 115,
     "replied": 10,
     "meeting": 10,
     "close": 0
