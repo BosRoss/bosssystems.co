@@ -1,5 +1,5 @@
 {
-  "generated": "2026-07-06T20:15:21.651017+00:00",
+  "generated": "2026-07-06T20:21:20.050877+00:00",
   "sections": {
     "atlas": {
       "power_level": "ACTIVE",
@@ -45,24 +45,24 @@
       "state": "ACTIVE",
       "total_leads": 200,
       "by_tier": {
-        "SUPERNICHE": 19,
-        "HOT": 65,
-        "WARM": 116
+        "SUPERNICHE": 22,
+        "HOT": 73,
+        "WARM": 105
       },
       "by_route": {
-        "watchlist": 158,
-        "email": 40,
+        "watchlist": 159,
+        "email": 39,
         "call_queue": 2
       },
       "by_status": {
-        "re_engaged": 160,
-        "queued": 17,
+        "re_engaged": 152,
+        "queued": 25,
         "called": 23
       },
-      "synced_to_pipeline": 41,
-      "api_spend": 11.78,
+      "synced_to_pipeline": 40,
+      "api_spend": 13.38,
       "api_budget": 300.0,
-      "api_percent": 3.9,
+      "api_percent": 4.5,
       "outcomes_recorded": 250,
       "by_outcome": {
         "no_answer": 39,
@@ -75,6 +75,26 @@
       "learned_weights": true,
       "suppression_count": 0,
       "top_leads": [
+        {
+          "name": "Walker Law Office Pllc",
+          "niche": "law firm",
+          "state": "MS",
+          "tier": "SUPERNICHE",
+          "score": 80,
+          "route": "watchlist",
+          "status": "queued",
+          "phone": "6626659536"
+        },
+        {
+          "name": "Phillips Family Dentistry",
+          "niche": "dentist",
+          "state": "MS",
+          "tier": "SUPERNICHE",
+          "score": 80,
+          "route": "watchlist",
+          "status": "queued",
+          "phone": "6622873373"
+        },
         {
           "name": "Jeff's Plumbing",
           "niche": "plumbing",
@@ -104,6 +124,16 @@
           "route": "watchlist",
           "status": "queued",
           "phone": "6016109690"
+        },
+        {
+          "name": "Edwards Electrical Services",
+          "niche": "electrician",
+          "state": "MS",
+          "tier": "SUPERNICHE",
+          "score": 73,
+          "route": "email",
+          "status": "queued",
+          "phone": "6014832384"
         },
         {
           "name": "Anderson Plumbing LLC",
@@ -244,36 +274,6 @@
           "route": "watchlist",
           "status": "re_engaged",
           "phone": "9186477189"
-        },
-        {
-          "name": "Morrow Heating and Cooling",
-          "niche": "HVAC",
-          "state": "AL",
-          "tier": "SUPERNICHE",
-          "score": 56,
-          "route": "watchlist",
-          "status": "called",
-          "phone": "2564985000"
-        },
-        {
-          "name": "Controlled Air & Metal Co",
-          "niche": "HVAC",
-          "state": "NM",
-          "tier": "SUPERNICHE",
-          "score": 56,
-          "route": "watchlist",
-          "status": "called",
-          "phone": "5057226363"
-        },
-        {
-          "name": "Beck's Plumbing",
-          "niche": "plumber",
-          "state": "AL",
-          "tier": "HOT",
-          "score": 54,
-          "route": "watchlist",
-          "status": "re_engaged",
-          "phone": "2567646812"
         }
       ],
       "hot_leads": [
@@ -449,24 +449,24 @@
       ],
       "recent_failures": [
         {
+          "workflow": "FV413faAXiMk1CiY",
+          "started": "2026-07-06T20:20"
+        },
+        {
+          "workflow": "FV413faAXiMk1CiY",
+          "started": "2026-07-06T20:20"
+        },
+        {
+          "workflow": "FV413faAXiMk1CiY",
+          "started": "2026-07-06T20:20"
+        },
+        {
+          "workflow": "FV413faAXiMk1CiY",
+          "started": "2026-07-06T20:20"
+        },
+        {
           "workflow": "koi5QT6XJvuoPuvL",
           "started": "2026-07-06T18:00"
-        },
-        {
-          "workflow": "FV413faAXiMk1CiY",
-          "started": "2026-07-03T15:05"
-        },
-        {
-          "workflow": "FV413faAXiMk1CiY",
-          "started": "2026-07-03T15:05"
-        },
-        {
-          "workflow": "TdpdYjgIL04aYw3e",
-          "started": "2026-07-03T13:00"
-        },
-        {
-          "workflow": "5mItIMTXR4Ivh8Dw",
-          "started": "2026-07-03T12:05"
         }
       ]
     },
@@ -540,7 +540,7 @@
       "atlas_power": "ACTIVE",
       "n8n_errors_24h": 20,
       "retell_calls_24h": 50,
-      "api_spend_pct": 3.9
+      "api_spend_pct": 4.5
     }
   }
 }
