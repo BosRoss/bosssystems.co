@@ -1,0 +1,1233 @@
+{
+  "generated": "2026-07-06T19:27:55.011390+00:00",
+  "summary": {
+    "total_leads": 200,
+    "callable": 177,
+    "by_status": {
+      "re_engaged": 160,
+      "queued": 17,
+      "called": 23
+    },
+    "meetings_set": 10,
+    "callbacks": 8
+  },
+  "call_list": [
+    {
+      "name": "Jeff's Plumbing",
+      "phone": "(580) 256-8110",
+      "phone_raw": "5802568110",
+      "niche": "plumbing",
+      "city": "Woodward OK",
+      "state": "OK",
+      "tier": "SUPERNICHE",
+      "score": 78,
+      "status": "re_engaged",
+      "signals": [
+        "ATLAS_WEATHER(flood)",
+        "NO_CAPACITY_SURGE",
+        "PAIN_REVIEW('voicemail')"
+      ],
+      "rating": 0,
+      "review_count": 0
+    },
+    {
+      "name": "Stanley Graves Plumbing Co",
+      "phone": "(601) 847-0183",
+      "phone_raw": "6018470183",
+      "niche": "plumbing",
+      "city": "Warren MS",
+      "state": "MS",
+      "tier": "SUPERNICHE",
+      "score": 78,
+      "status": "queued",
+      "signals": [
+        "ATLAS_WEATHER(flood)",
+        "NO_CAPACITY_SURGE",
+        "PAIN_REVIEW('no answer')"
+      ],
+      "rating": 0,
+      "review_count": 0
+    },
+    {
+      "name": "Jackson Heating And Cooling",
+      "phone": "(601) 610-9690",
+      "phone_raw": "6016109690",
+      "niche": "HVAC contractor",
+      "city": "Jackson MS",
+      "state": "MS",
+      "tier": "SUPERNICHE",
+      "score": 75,
+      "status": "queued",
+      "signals": [
+        "ATLAS_WEATHER(flood)",
+        "NO_CAPACITY_SURGE",
+        "PAIN_REVIEW('voicemail')"
+      ],
+      "rating": 0,
+      "review_count": 0
+    },
+    {
+      "name": "Anderson Plumbing LLC",
+      "phone": "(228) 697-8926",
+      "phone_raw": "2286978926",
+      "niche": "plumbing",
+      "city": "Harrison MS",
+      "state": "MS",
+      "tier": "SUPERNICHE",
+      "score": 72,
+      "status": "re_engaged",
+      "signals": [
+        "ATLAS_WEATHER(flood)",
+        "NO_CAPACITY_SURGE",
+        "PAIN_REVIEW('voicemail')"
+      ],
+      "rating": 0,
+      "review_count": 0
+    },
+    {
+      "name": "Jimmy's Plumbing",
+      "phone": "(870) 251-1595",
+      "phone_raw": "8702511595",
+      "niche": "plumber",
+      "city": "Batesville AR",
+      "state": "AR",
+      "tier": "SUPERNICHE",
+      "score": 68,
+      "status": "re_engaged",
+      "signals": [
+        "PAIN_REVIEW('never responded')",
+        "WEAK_RATING_REACH(3.3)",
+        "NO_WEBSITE"
+      ],
+      "rating": 0,
+      "review_count": 0
+    },
+    {
+      "name": "Russell Branan Plumbing",
+      "phone": "(918) 683-1775",
+      "phone_raw": "9186831775",
+      "niche": "plumber",
+      "city": "Alfalfa OK",
+      "state": "OK",
+      "tier": "SUPERNICHE",
+      "score": 67,
+      "status": "queued",
+      "signals": [
+        "PAIN_REVIEW('no answer')",
+        "MULTIPLE_PAIN",
+        "WEAK_RATING(4.3)"
+      ],
+      "rating": 0,
+      "review_count": 0
+    },
+    {
+      "name": "George Electric Plumbing & HVAC",
+      "phone": "(662) 428-6413",
+      "phone_raw": "6624286413",
+      "niche": "plumbing",
+      "city": "George MS",
+      "state": "MS",
+      "tier": "SUPERNICHE",
+      "score": 63,
+      "status": "re_engaged",
+      "signals": [
+        "ATLAS_WEATHER(surge)",
+        "NO_CAPACITY_SURGE",
+        "PAIN_REVIEW('no answer')"
+      ],
+      "rating": 0,
+      "review_count": 0
+    },
+    {
+      "name": "Pinner Plumbing & Heating Inc",
+      "phone": "(870) 234-1667",
+      "phone_raw": "8702341667",
+      "niche": "plumbing",
+      "city": "Jackson AR",
+      "state": "AR",
+      "tier": "SUPERNICHE",
+      "score": 63,
+      "status": "re_engaged",
+      "signals": [
+        "ATLAS_WEATHER(surge)",
+        "NO_CAPACITY_SURGE",
+        "PAIN_REVIEW('no one answered')"
+      ],
+      "rating": 0,
+      "review_count": 0
+    },
+    {
+      "name": "Mcbee Plumbing",
+      "phone": "(580) 256-7022",
+      "phone_raw": "5802567022",
+      "niche": "plumbing",
+      "city": "Woodward OK",
+      "state": "OK",
+      "tier": "SUPERNICHE",
+      "score": 63,
+      "status": "re_engaged",
+      "signals": [
+        "ATLAS_WEATHER(flood)",
+        "NO_CAPACITY_SURGE",
+        "PAIN_REVIEW('no answer')"
+      ],
+      "rating": 0,
+      "review_count": 0
+    },
+    {
+      "name": "Pipkins Plumbing",
+      "phone": "(601) 947-7107",
+      "phone_raw": "6019477107",
+      "niche": "plumbing",
+      "city": "George MS",
+      "state": "MS",
+      "tier": "SUPERNICHE",
+      "score": 63,
+      "status": "queued",
+      "signals": [
+        "ATLAS_WEATHER(flood)",
+        "NO_CAPACITY_SURGE",
+        "PAIN_REVIEW('no answer')"
+      ],
+      "rating": 0,
+      "review_count": 0
+    },
+    {
+      "name": "Charlie's Plumbing Services",
+      "phone": "(256) 577-6791",
+      "phone_raw": "2565776791",
+      "niche": "plumber",
+      "city": "Florence AL",
+      "state": "AL",
+      "tier": "SUPERNICHE",
+      "score": 62,
+      "status": "re_engaged",
+      "signals": [
+        "PAIN_REVIEW('no response')",
+        "WEAK_RATING(3.4)",
+        "NO_WEBSITE"
+      ],
+      "rating": 0,
+      "review_count": 0
+    },
+    {
+      "name": "Delcase Plumbing Co",
+      "phone": "(870) 523-8264",
+      "phone_raw": "8705238264",
+      "niche": "plumber",
+      "city": "Batesville AR",
+      "state": "AR",
+      "tier": "SUPERNICHE",
+      "score": 62,
+      "status": "re_engaged",
+      "signals": [
+        "PAIN_REVIEW('voicemail')",
+        "WEAK_RATING(4.1)",
+        "NO_WEBSITE"
+      ],
+      "rating": 0,
+      "review_count": 0
+    },
+    {
+      "name": "Edwards Electric",
+      "phone": "(870) 793-9351",
+      "phone_raw": "8707939351",
+      "niche": "electrician",
+      "city": "Batesville AR",
+      "state": "AR",
+      "tier": "SUPERNICHE",
+      "score": 62,
+      "status": "re_engaged",
+      "signals": [
+        "PAIN_REVIEW('no answer')",
+        "WEAK_RATING(4.3)",
+        "NO_WEBSITE"
+      ],
+      "rating": 0,
+      "review_count": 0
+    },
+    {
+      "name": "Mc Lain Plumbing & Electric",
+      "phone": "(601) 656-6333",
+      "phone_raw": "6016566333",
+      "niche": "plumbing",
+      "city": "Simpson MS",
+      "state": "MS",
+      "tier": "SUPERNICHE",
+      "score": 62,
+      "status": "queued",
+      "signals": [
+        "ATLAS_WEATHER(flood)",
+        "NO_CAPACITY_SURGE",
+        "PAIN_REVIEW('voicemail')"
+      ],
+      "rating": 0,
+      "review_count": 0
+    },
+    {
+      "name": "Bolton Heat & Air",
+      "phone": "(918) 540-0242",
+      "phone_raw": "9185400242",
+      "niche": "HVAC contractor",
+      "city": "Ottawa OK",
+      "state": "OK",
+      "tier": "SUPERNICHE",
+      "score": 60,
+      "status": "re_engaged",
+      "signals": [
+        "ATLAS_WEATHER(flood)",
+        "NO_CAPACITY_SURGE",
+        "PAIN_REVIEW('left a message')"
+      ],
+      "rating": 0,
+      "review_count": 0
+    },
+    {
+      "name": "A & R Plumbing L.L.C",
+      "phone": "(580) 559-2703",
+      "phone_raw": "5805592703",
+      "niche": "plumber",
+      "city": "Ada OK",
+      "state": "OK",
+      "tier": "SUPERNICHE",
+      "score": 57,
+      "status": "re_engaged",
+      "signals": [
+        "ATLAS_ECON",
+        "PAIN_REVIEW('voicemail')",
+        "WEAK_RATING(4.3)"
+      ],
+      "rating": 0,
+      "review_count": 0
+    },
+    {
+      "name": "CARL RAY'S PLUMBING AND SUPPLIES",
+      "phone": "(918) 647-7189",
+      "phone_raw": "9186477189",
+      "niche": "plumber",
+      "city": "Le Flore OK",
+      "state": "OK",
+      "tier": "SUPERNICHE",
+      "score": 57,
+      "status": "re_engaged",
+      "signals": [
+        "ATLAS_WEATHER(flood)",
+        "NO_CAPACITY_SURGE",
+        "PAIN_REVIEW('voicemail')"
+      ],
+      "rating": 0,
+      "review_count": 0
+    },
+    {
+      "name": "Beck's Plumbing",
+      "phone": "(256) 764-6812",
+      "phone_raw": "2567646812",
+      "niche": "plumber",
+      "city": "Florence AL",
+      "state": "AL",
+      "tier": "HOT",
+      "score": 54,
+      "status": "re_engaged",
+      "signals": [
+        "PAIN_REVIEW('no response')",
+        "NO_WEBSITE",
+        "TIER1_NICHE"
+      ],
+      "rating": 0,
+      "review_count": 0
+    },
+    {
+      "name": "Glover Plumbing",
+      "phone": "(256) 757-5939",
+      "phone_raw": "2567575939",
+      "niche": "plumber",
+      "city": "Florence AL",
+      "state": "AL",
+      "tier": "HOT",
+      "score": 53,
+      "status": "re_engaged",
+      "signals": [
+        "PAIN_REVIEW('no answer')",
+        "MULTIPLE_PAIN",
+        "TIER1_NICHE"
+      ],
+      "rating": 0,
+      "review_count": 0
+    },
+    {
+      "name": "Cope Plumbing",
+      "phone": "(580) 482-8088",
+      "phone_raw": "5804828088",
+      "niche": "plumbing",
+      "city": "Custer OK",
+      "state": "OK",
+      "tier": "HOT",
+      "score": 53,
+      "status": "re_engaged",
+      "signals": [
+        "ATLAS_WEATHER(flood)",
+        "NO_CAPACITY_SURGE",
+        "PAIN_REVIEW('never answered')"
+      ],
+      "rating": 0,
+      "review_count": 0
+    },
+    {
+      "name": "Lovelace Service Heating & Air",
+      "phone": "(256) 350-8555",
+      "phone_raw": "2563508555",
+      "niche": "HVAC contractor",
+      "city": "Decatur AL",
+      "state": "AL",
+      "tier": "HOT",
+      "score": 51,
+      "status": "re_engaged",
+      "signals": [
+        "PAIN_REVIEW('called several times')",
+        "WEAK_RATING(4.3)",
+        "NO_WEBSITE"
+      ],
+      "rating": 0,
+      "review_count": 0
+    },
+    {
+      "name": "Haven Contracting",
+      "phone": "(870) 569-1385",
+      "phone_raw": "8705691385",
+      "niche": "HVAC contractor",
+      "city": "Batesville AR",
+      "state": "AR",
+      "tier": "HOT",
+      "score": 51,
+      "status": "re_engaged",
+      "signals": [
+        "PAIN_REVIEW('no response')",
+        "RECENT_NEGATIVE",
+        "TIER1_NICHE"
+      ],
+      "rating": 0,
+      "review_count": 0
+    },
+    {
+      "name": "S & S Plumbing Inc",
+      "phone": "(501) 767-6100",
+      "phone_raw": "5017676100",
+      "niche": "plumber",
+      "city": "Columbia AR",
+      "state": "AR",
+      "tier": "HOT",
+      "score": 51,
+      "status": "queued",
+      "signals": [
+        "ATLAS_WEATHER(flood)",
+        "NO_CAPACITY_SURGE",
+        "PAIN_REVIEW('no one answered')"
+      ],
+      "rating": 0,
+      "review_count": 0
+    },
+    {
+      "name": "A B Electric",
+      "phone": "(870) 277-1885",
+      "phone_raw": "8702771885",
+      "niche": "electrician",
+      "city": "Jonesboro AR",
+      "state": "AR",
+      "tier": "HOT",
+      "score": 50,
+      "status": "re_engaged",
+      "signals": [
+        "PAIN_REVIEW('no response')",
+        "NO_WEBSITE",
+        "TIER1_NICHE"
+      ],
+      "rating": 0,
+      "review_count": 0
+    },
+    {
+      "name": "Swinney's Air Conditioning",
+      "phone": "(662) 728-6167",
+      "phone_raw": "6627286167",
+      "niche": "HVAC contractor",
+      "city": "Corinth MS",
+      "state": "MS",
+      "tier": "HOT",
+      "score": 49,
+      "status": "re_engaged",
+      "signals": [
+        "PAIN_REVIEW('called several times')",
+        "WEAK_RATING(4.1)",
+        "TIER1_NICHE"
+      ],
+      "rating": 0,
+      "review_count": 0
+    },
+    {
+      "name": "River City Plumbing",
+      "phone": "(601) 638-9150",
+      "phone_raw": "6016389150",
+      "niche": "plumbing",
+      "city": "Warren MS",
+      "state": "MS",
+      "tier": "HOT",
+      "score": 49,
+      "status": "queued",
+      "signals": [
+        "ATLAS_WEATHER(flood)",
+        "NO_CAPACITY_SURGE",
+        "PAIN_REVIEW('voicemail')"
+      ],
+      "rating": 0,
+      "review_count": 0
+    },
+    {
+      "name": "Jay\u2019s Inc.",
+      "phone": "(575) 392-5072",
+      "phone_raw": "5753925072",
+      "niche": "HVAC contractor",
+      "city": "Hobbs NM",
+      "state": "NM",
+      "tier": "HOT",
+      "score": 48,
+      "status": "re_engaged",
+      "signals": [
+        "ATLAS_ECON",
+        "WEAK_RATING(3.3)",
+        "NO_WEBSITE"
+      ],
+      "rating": 0,
+      "review_count": 0
+    },
+    {
+      "name": "Daniel's Heat & Air",
+      "phone": "(580) 924-1718",
+      "phone_raw": "5809241718",
+      "niche": "HVAC contractor",
+      "city": "Durant OK",
+      "state": "OK",
+      "tier": "HOT",
+      "score": 48,
+      "status": "re_engaged",
+      "signals": [
+        "ATLAS_ECON",
+        "WEAK_RATING(4.2)",
+        "NO_WEBSITE"
+      ],
+      "rating": 0,
+      "review_count": 0
+    },
+    {
+      "name": "NOR-TEX AC & REFRIGERATION",
+      "phone": "(580) 920-2400",
+      "phone_raw": "5809202400",
+      "niche": "HVAC contractor",
+      "city": "Durant OK",
+      "state": "OK",
+      "tier": "HOT",
+      "score": 48,
+      "status": "re_engaged",
+      "signals": [
+        "ATLAS_ECON",
+        "WEAK_RATING(3.1)",
+        "NO_WEBSITE"
+      ],
+      "rating": 0,
+      "review_count": 0
+    },
+    {
+      "name": "Holladay Air Conditioning",
+      "phone": "(870) 932-6999",
+      "phone_raw": "8709326999",
+      "niche": "HVAC contractor",
+      "city": "Jonesboro AR",
+      "state": "AR",
+      "tier": "HOT",
+      "score": 48,
+      "status": "queued",
+      "signals": [
+        "PAIN_REVIEW('no answer')",
+        "MULTIPLE_PAIN",
+        "TIER1_NICHE"
+      ],
+      "rating": 0,
+      "review_count": 0
+    },
+    {
+      "name": "Dayne Hearn Heating and Cooling",
+      "phone": "(256) 856-0252",
+      "phone_raw": "2568560252",
+      "niche": "HVAC contractor",
+      "city": "Florence AL",
+      "state": "AL",
+      "tier": "HOT",
+      "score": 47,
+      "status": "re_engaged",
+      "signals": [
+        "PAIN_REVIEW('voicemail')",
+        "TIER1_NICHE",
+        "HVAC_PEAK"
+      ],
+      "rating": 0,
+      "review_count": 0
+    },
+    {
+      "name": "Faith Plumbing",
+      "phone": "(251) 509-9313",
+      "phone_raw": "2515099313",
+      "niche": "plumbing",
+      "city": "Jackson AL",
+      "state": "AL",
+      "tier": "HOT",
+      "score": 47,
+      "status": "re_engaged",
+      "signals": [
+        "ATLAS_WEATHER(flood)",
+        "NO_CAPACITY_SURGE",
+        "PAIN_REVIEW('voicemail')"
+      ],
+      "rating": 0,
+      "review_count": 0
+    },
+    {
+      "name": "Robbie's AC & Heat LLC (Air Conditioning",
+      "phone": "(228) 304-1517",
+      "phone_raw": "2283041517",
+      "niche": "HVAC contractor",
+      "city": "Hancock MS",
+      "state": "MS",
+      "tier": "HOT",
+      "score": 46,
+      "status": "queued",
+      "signals": [
+        "ATLAS_WEATHER(flood)",
+        "NO_CAPACITY_SURGE",
+        "PAIN_REVIEW('left a message')"
+      ],
+      "rating": 0,
+      "review_count": 0
+    },
+    {
+      "name": "M&M Plumbing Services, LLC",
+      "phone": "(575) 631-8660",
+      "phone_raw": "5756318660",
+      "niche": "plumber",
+      "city": "Hobbs NM",
+      "state": "NM",
+      "tier": "HOT",
+      "score": 45,
+      "status": "re_engaged",
+      "signals": [
+        "ATLAS_ECON",
+        "WEAK_RATING(3.8)",
+        "NO_WEBSITE"
+      ],
+      "rating": 0,
+      "review_count": 0
+    },
+    {
+      "name": "Eades Drilling & Pump Service",
+      "phone": "(575) 392-2457",
+      "phone_raw": "5753922457",
+      "niche": "plumber",
+      "city": "Hobbs NM",
+      "state": "NM",
+      "tier": "HOT",
+      "score": 45,
+      "status": "re_engaged",
+      "signals": [
+        "ATLAS_ECON",
+        "WEAK_RATING(4.3)",
+        "NO_WEBSITE"
+      ],
+      "rating": 0,
+      "review_count": 0
+    },
+    {
+      "name": "Peralez Plumbing & Heating",
+      "phone": "(575) 763-4746",
+      "phone_raw": "5757634746",
+      "niche": "plumber",
+      "city": "Clovis NM",
+      "state": "NM",
+      "tier": "HOT",
+      "score": 45,
+      "status": "re_engaged",
+      "signals": [
+        "ATLAS_ECON",
+        "WEAK_RATING(3.4)",
+        "NO_WEBSITE"
+      ],
+      "rating": 0,
+      "review_count": 0
+    },
+    {
+      "name": "Reliable Plumbing & Drain",
+      "phone": "(575) 762-2900",
+      "phone_raw": "5757622900",
+      "niche": "plumber",
+      "city": "Clovis NM",
+      "state": "NM",
+      "tier": "HOT",
+      "score": 45,
+      "status": "re_engaged",
+      "signals": [
+        "ATLAS_ECON",
+        "WEAK_RATING(3.6)",
+        "NO_WEBSITE"
+      ],
+      "rating": 0,
+      "review_count": 0
+    },
+    {
+      "name": "Innovative Plumbing",
+      "phone": "(580) 924-0381",
+      "phone_raw": "5809240381",
+      "niche": "plumber",
+      "city": "Durant OK",
+      "state": "OK",
+      "tier": "HOT",
+      "score": 45,
+      "status": "re_engaged",
+      "signals": [
+        "ATLAS_ECON",
+        "WEAK_RATING(4.0)",
+        "NO_WEBSITE"
+      ],
+      "rating": 0,
+      "review_count": 0
+    },
+    {
+      "name": "Crawford Electric LLC",
+      "phone": "(580) 740-0400",
+      "phone_raw": "5807400400",
+      "niche": "electrician",
+      "city": "Durant OK",
+      "state": "OK",
+      "tier": "HOT",
+      "score": 45,
+      "status": "re_engaged",
+      "signals": [
+        "ATLAS_ECON",
+        "WEAK_RATING(4.0)",
+        "NO_WEBSITE"
+      ],
+      "rating": 0,
+      "review_count": 0
+    },
+    {
+      "name": "Reed Heating & AC",
+      "phone": "(573) 445-4112",
+      "phone_raw": "5734454112",
+      "niche": "HVAC contractor",
+      "city": "Columbia AR",
+      "state": "",
+      "tier": "HOT",
+      "score": 44,
+      "status": "queued",
+      "signals": [
+        "ATLAS_WEATHER(flood)",
+        "PAIN_REVIEW('left a message')",
+        "WEAK_RATING(4.3)"
+      ],
+      "rating": 0,
+      "review_count": 0
+    },
+    {
+      "name": "Jackson Plumbing Company",
+      "phone": "(731) 664-6556",
+      "phone_raw": "7316646556",
+      "niche": "plumbing",
+      "city": "Jackson MS",
+      "state": "TN",
+      "tier": "HOT",
+      "score": 43,
+      "status": "re_engaged",
+      "signals": [
+        "ATLAS_WEATHER(surge)",
+        "NO_CAPACITY_SURGE",
+        "PAIN_REVIEW('left a message')"
+      ],
+      "rating": 0,
+      "review_count": 0
+    },
+    {
+      "name": "Chris's Heating & Air",
+      "phone": "(580) 775-3819",
+      "phone_raw": "5807753819",
+      "niche": "HVAC contractor",
+      "city": "Durant OK",
+      "state": "OK",
+      "tier": "HOT",
+      "score": 43,
+      "status": "re_engaged",
+      "signals": [
+        "WEAK_RATING(4.1)",
+        "NO_WEBSITE",
+        "TIER1_NICHE"
+      ],
+      "rating": 0,
+      "review_count": 0
+    },
+    {
+      "name": "T-L-C REFRIGERATION",
+      "phone": "(580) 931-3820",
+      "phone_raw": "5809313820",
+      "niche": "HVAC contractor",
+      "city": "Durant OK",
+      "state": "OK",
+      "tier": "HOT",
+      "score": 43,
+      "status": "re_engaged",
+      "signals": [
+        "WEAK_RATING(3.9)",
+        "NO_WEBSITE",
+        "TIER1_NICHE"
+      ],
+      "rating": 0,
+      "review_count": 0
+    },
+    {
+      "name": "C and C Roofing and Home Repair",
+      "phone": "(918) 645-5660",
+      "phone_raw": "9186455660",
+      "niche": "roofing contractor",
+      "city": "Nowata OK",
+      "state": "OK",
+      "tier": "HOT",
+      "score": 43,
+      "status": "queued",
+      "signals": [
+        "ATLAS_WEATHER(flood)",
+        "PAIN_REVIEW('never responded')",
+        "NO_WEBSITE"
+      ],
+      "rating": 0,
+      "review_count": 0
+    },
+    {
+      "name": "Shaw Heating & Air",
+      "phone": "(662) 808-4270",
+      "phone_raw": "6628084270",
+      "niche": "HVAC contractor",
+      "city": "Corinth MS",
+      "state": "MS",
+      "tier": "HOT",
+      "score": 42,
+      "status": "re_engaged",
+      "signals": [
+        "TIER1",
+        "WEAK_RATING(3.6\u2b50)",
+        "SMALL_OP(5)"
+      ],
+      "rating": 0,
+      "review_count": 0
+    },
+    {
+      "name": "AeroFlow Climate Systems",
+      "phone": "(662) 276-9987",
+      "phone_raw": "6622769987",
+      "niche": "HVAC contractor",
+      "city": "Corinth MS",
+      "state": "MS",
+      "tier": "HOT",
+      "score": 42,
+      "status": "re_engaged",
+      "signals": [
+        "TIER1",
+        "WEAK_RATING(3.9\u2b50)",
+        "SMALL_OP(13)"
+      ],
+      "rating": 0,
+      "review_count": 0
+    },
+    {
+      "name": "Rick's Comfort Solutions LLC",
+      "phone": "(575) 693-8951",
+      "phone_raw": "5756938951",
+      "niche": "HVAC contractor",
+      "city": "Clovis NM",
+      "state": "NM",
+      "tier": "HOT",
+      "score": 41,
+      "status": "re_engaged",
+      "signals": [
+        "ATLAS_ECON",
+        "PAIN_REVIEW('never answered')",
+        "MULTIPLE_PAIN"
+      ],
+      "rating": 0,
+      "review_count": 0
+    },
+    {
+      "name": "Moss service and repair LLC",
+      "phone": "(918) 297-5205",
+      "phone_raw": "9182975205",
+      "niche": "HVAC contractor",
+      "city": "Durant OK",
+      "state": "OK",
+      "tier": "HOT",
+      "score": 41,
+      "status": "queued",
+      "signals": [
+        "PAIN_REVIEW('doesn't answer')",
+        "TIER1_NICHE",
+        "HVAC_PEAK"
+      ],
+      "rating": 0,
+      "review_count": 0
+    },
+    {
+      "name": "McCool's Air Tech",
+      "phone": "(575) 738-8080",
+      "phone_raw": "5757388080",
+      "niche": "HVAC contractor",
+      "city": "Hobbs NM",
+      "state": "NM",
+      "tier": "HOT",
+      "score": 40,
+      "status": "re_engaged",
+      "signals": [
+        "ATLAS_ECON",
+        "NO_WEBSITE",
+        "TIER1_NICHE"
+      ],
+      "rating": 0,
+      "review_count": 0
+    },
+    {
+      "name": "Triple B Plumbing, LLC.",
+      "phone": "(256) 808-8355",
+      "phone_raw": "2568088355",
+      "niche": "plumber",
+      "city": "Decatur AL",
+      "state": "AL",
+      "tier": "HOT",
+      "score": 40,
+      "status": "re_engaged",
+      "signals": [
+        "WEAK_RATING(4.3)",
+        "NO_WEBSITE",
+        "TIER1_NICHE"
+      ],
+      "rating": 0,
+      "review_count": 0
+    },
+    {
+      "name": "Advance Electric Co",
+      "phone": "(256) 762-7850",
+      "phone_raw": "2567627850",
+      "niche": "electrician",
+      "city": "Florence AL",
+      "state": "AL",
+      "tier": "HOT",
+      "score": 40,
+      "status": "re_engaged",
+      "signals": [
+        "WEAK_RATING(4.3)",
+        "NO_WEBSITE",
+        "TIER1_NICHE"
+      ],
+      "rating": 0,
+      "review_count": 0
+    },
+    {
+      "name": "Keeton Electric Co",
+      "phone": "(256) 767-5836",
+      "phone_raw": "2567675836",
+      "niche": "electrician",
+      "city": "Florence AL",
+      "state": "AL",
+      "tier": "HOT",
+      "score": 40,
+      "status": "re_engaged",
+      "signals": [
+        "WEAK_RATING(3.7)",
+        "NO_WEBSITE",
+        "TIER1_NICHE"
+      ],
+      "rating": 0,
+      "review_count": 0
+    },
+    {
+      "name": "Allen HVAC Service Co. Inc.",
+      "phone": "(580) 320-6072",
+      "phone_raw": "5803206072",
+      "niche": "HVAC contractor",
+      "city": "Ada OK",
+      "state": "OK",
+      "tier": "HOT",
+      "score": 40,
+      "status": "re_engaged",
+      "signals": [
+        "ATLAS_ECON",
+        "NO_WEBSITE",
+        "TIER1_NICHE"
+      ],
+      "rating": 0,
+      "review_count": 0
+    },
+    {
+      "name": "2B Cool HVAC",
+      "phone": "(405) 221-7595",
+      "phone_raw": "4052217595",
+      "niche": "HVAC contractor",
+      "city": "Ada OK",
+      "state": "OK",
+      "tier": "HOT",
+      "score": 40,
+      "status": "re_engaged",
+      "signals": [
+        "ATLAS_ECON",
+        "NO_WEBSITE",
+        "TIER1_NICHE"
+      ],
+      "rating": 0,
+      "review_count": 0
+    },
+    {
+      "name": "Moore Plumbing",
+      "phone": "(870) 972-1365",
+      "phone_raw": "8709721365",
+      "niche": "plumber",
+      "city": "Jonesboro AR",
+      "state": "AR",
+      "tier": "HOT",
+      "score": 40,
+      "status": "re_engaged",
+      "signals": [
+        "WEAK_RATING(4.3)",
+        "NO_WEBSITE",
+        "TIER1_NICHE"
+      ],
+      "rating": 0,
+      "review_count": 0
+    },
+    {
+      "name": "Ogles Plumbing",
+      "phone": "(870) 316-4888",
+      "phone_raw": "8703164888",
+      "niche": "plumber",
+      "city": "Jonesboro AR",
+      "state": "AR",
+      "tier": "HOT",
+      "score": 40,
+      "status": "re_engaged",
+      "signals": [
+        "WEAK_RATING(3.8)",
+        "NO_WEBSITE",
+        "TIER1_NICHE"
+      ],
+      "rating": 0,
+      "review_count": 0
+    },
+    {
+      "name": "Swafford Electric Co",
+      "phone": "(870) 793-5742",
+      "phone_raw": "8707935742",
+      "niche": "electrician",
+      "city": "Batesville AR",
+      "state": "AR",
+      "tier": "HOT",
+      "score": 40,
+      "status": "re_engaged",
+      "signals": [
+        "WEAK_RATING(4.3)",
+        "NO_WEBSITE",
+        "TIER1_NICHE"
+      ],
+      "rating": 0,
+      "review_count": 0
+    },
+    {
+      "name": "River City Plumbing Co",
+      "phone": "(256) 355-8366",
+      "phone_raw": "2563558366",
+      "niche": "plumber",
+      "city": "Decatur AL",
+      "state": "AL",
+      "tier": "HOT",
+      "score": 40,
+      "status": "re_engaged",
+      "signals": [
+        "WEAK_RATING(4.2)",
+        "NO_WEBSITE",
+        "TIER1_NICHE"
+      ],
+      "rating": 0,
+      "review_count": 0
+    },
+    {
+      "name": "Superior Plumbing",
+      "phone": "(870) 206-7809",
+      "phone_raw": "8702067809",
+      "niche": "plumber",
+      "city": "Jonesboro AR",
+      "state": "AR",
+      "tier": "HOT",
+      "score": 40,
+      "status": "re_engaged",
+      "signals": [
+        "WEAK_RATING(3.6)",
+        "NO_WEBSITE",
+        "TIER1_NICHE"
+      ],
+      "rating": 0,
+      "review_count": 0
+    },
+    {
+      "name": "Hoskins Mid-South Plumbing",
+      "phone": "(662) 563-5154",
+      "phone_raw": "6625635154",
+      "niche": "plumber",
+      "city": "Batesville AR",
+      "state": "MS",
+      "tier": "HOT",
+      "score": 40,
+      "status": "queued",
+      "signals": [
+        "WEAK_RATING(3.3)",
+        "NO_WEBSITE",
+        "TIER1_NICHE"
+      ],
+      "rating": 0,
+      "review_count": 0
+    }
+  ],
+  "hot_outcomes": [
+    {
+      "name": "Bryan Baird's Plumbing",
+      "phone": "(479) 747-6492",
+      "phone_raw": "4797476492",
+      "outcome": "callback",
+      "date": "2026-07-06",
+      "niche": "plumbing",
+      "city": "Woodruff AR"
+    },
+    {
+      "name": "Brad Rodgers Plumbing & Gas",
+      "phone": "(601) 856-0367",
+      "phone_raw": "6018560367",
+      "outcome": "meeting_set",
+      "date": "2026-07-06",
+      "niche": "plumbing",
+      "city": "Greene MS"
+    },
+    {
+      "name": "Wood's Plumbing",
+      "phone": "(870) 856-2303",
+      "phone_raw": "8708562303",
+      "outcome": "meeting_set",
+      "date": "2026-07-06",
+      "niche": "plumbing",
+      "city": "Woodruff AR"
+    },
+    {
+      "name": "Bluff Creek Electric LLC",
+      "phone": "(256) 627-9818",
+      "phone_raw": "2566279818",
+      "outcome": "meeting_set",
+      "date": "2026-07-06",
+      "niche": "electrician",
+      "city": "Florence AL"
+    },
+    {
+      "name": "C & S Plumbing",
+      "phone": "(918) 225-8097",
+      "phone_raw": "9182258097",
+      "outcome": "meeting_set",
+      "date": "2026-06-27",
+      "niche": "plumbing",
+      "city": "Custer OK"
+    },
+    {
+      "name": "Whiteaker Electric",
+      "phone": "(870) 307-4611",
+      "phone_raw": "8703074611",
+      "outcome": "callback",
+      "date": "2026-06-27",
+      "niche": "electrician",
+      "city": "Batesville AR"
+    },
+    {
+      "name": "Joe's Electrical Repair",
+      "phone": "(870) 307-1177",
+      "phone_raw": "8703071177",
+      "outcome": "meeting_set",
+      "date": "2026-06-27",
+      "niche": "electrician",
+      "city": "Batesville AR"
+    },
+    {
+      "name": "George Electric Plumbing & HVAC",
+      "phone": "(662) 428-6413",
+      "phone_raw": "6624286413",
+      "outcome": "callback",
+      "date": "2026-06-27",
+      "niche": "plumbing",
+      "city": "George MS"
+    },
+    {
+      "name": "Anderson Plumbing LLC",
+      "phone": "(228) 697-8926",
+      "phone_raw": "2286978926",
+      "outcome": "callback",
+      "date": "2026-06-27",
+      "niche": "plumbing",
+      "city": "Harrison MS"
+    },
+    {
+      "name": "CARL RAY'S PLUMBING AND SUPPLIES",
+      "phone": "(918) 647-7189",
+      "phone_raw": "9186477189",
+      "outcome": "meeting_set",
+      "date": "2026-06-27",
+      "niche": "plumber",
+      "city": "Le Flore OK"
+    },
+    {
+      "name": "Russell Branan Plumbing",
+      "phone": "(918) 683-1775",
+      "phone_raw": "9186831775",
+      "outcome": "meeting_set",
+      "date": "2026-06-27",
+      "niche": "plumber",
+      "city": "Alfalfa OK"
+    },
+    {
+      "name": "Pinner Plumbing & Heating Inc",
+      "phone": "(870) 234-1667",
+      "phone_raw": "8702341667",
+      "outcome": "meeting_set",
+      "date": "2026-06-27",
+      "niche": "plumbing",
+      "city": "Jackson AR"
+    },
+    {
+      "name": "George Electric Plumbing & HVAC",
+      "phone": "(662) 428-6413",
+      "phone_raw": "6624286413",
+      "outcome": "callback",
+      "date": "2026-06-27",
+      "niche": "plumbing",
+      "city": "George MS"
+    },
+    {
+      "name": "f8ffc43ab7697336",
+      "phone": "",
+      "phone_raw": "",
+      "outcome": "callback",
+      "date": "2026-06-27",
+      "niche": "",
+      "city": ""
+    },
+    {
+      "name": "C & S Plumbing",
+      "phone": "(918) 225-8097",
+      "phone_raw": "9182258097",
+      "outcome": "meeting_set",
+      "date": "2026-06-25",
+      "niche": "plumbing",
+      "city": "Custer OK"
+    }
+  ]
+}
