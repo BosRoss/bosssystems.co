@@ -150,6 +150,7 @@ body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;backgrou
       <div class="tab" data-tab="objections">OBJECTIONS</div>
       <div class="tab" data-tab="scripts">SCRIPTS</div>
       <div class="tab" data-tab="competitors">COMPETITORS</div>
+      <div class="tab" data-tab="metrics">METRICS</div>
       <div class="tab" data-tab="log">CALL LOG</div>
     </div>
 
@@ -402,6 +403,48 @@ body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;backgrou
       </div>
     </div>
 
+    <!-- TAB: METRICS -->
+    <div class="tab-panel" id="panel-metrics">
+      <div class="stats">
+        <div class="stat"><div class="stat-val" id="m-today">0</div><div class="stat-label">Today</div></div>
+        <div class="stat"><div class="stat-val" id="m-week">0</div><div class="stat-label">This Week</div></div>
+        <div class="stat"><div class="stat-val" id="m-month">0</div><div class="stat-label">This Month</div></div>
+        <div class="stat"><div class="stat-val" id="m-total">0</div><div class="stat-label">All Time</div></div>
+      </div>
+      <div style="font-size:10px;letter-spacing:2px;color:var(--dim);margin-bottom:8px;text-transform:uppercase">Conversion Funnel</div>
+      <div id="funnel"></div>
+      <div style="margin-top:16px;font-size:10px;letter-spacing:2px;color:var(--dim);margin-bottom:8px;text-transform:uppercase">Revenue</div>
+      <div class="card" style="background:var(--bg2);border:1px solid var(--border);padding:16px;border-radius:4px">
+        <div style="display:flex;justify-content:space-between;margin-bottom:8px">
+          <span style="font-size:13px;color:var(--muted)">Deals Closed</span>
+          <span style="font-size:13px;font-weight:700;color:var(--green)" id="m-closed">0</span>
+        </div>
+        <div style="display:flex;justify-content:space-between;margin-bottom:8px">
+          <span style="font-size:13px;color:var(--muted)">Setup Revenue</span>
+          <span style="font-size:13px;font-weight:700;color:var(--gold)" id="m-setup">$0</span>
+        </div>
+        <div style="display:flex;justify-content:space-between">
+          <span style="font-size:13px;color:var(--muted)">Monthly Recurring</span>
+          <span style="font-size:13px;font-weight:700;color:var(--gold)" id="m-mrr">$0</span>
+        </div>
+      </div>
+      <div style="margin-top:16px">
+        <button class="btn btn-outline btn-sm" onclick="resetMetrics()" style="font-size:10px">RESET ALL DATA</button>
+      </div>
+    </div>
+
+    <!-- MY INFO SETUP -->
+    <div id="setup-overlay" style="display:none;position:fixed;inset:0;background:rgba(0,0,0,.9);z-index:90;display:none;align-items:center;justify-content:center">
+      <div style="background:var(--bg2);border:1px solid var(--border);padding:24px;max-width:340px;width:90%;border-radius:8px">
+        <div style="font-size:12px;letter-spacing:2px;color:var(--gold);margin-bottom:16px">YOUR INFO</div>
+        <p style="font-size:12px;color:var(--dim);margin-bottom:16px">Scripts will auto-fill with your name and number when you tap COPY.</p>
+        <div class="log-row"><input type="text" id="setup-name" placeholder="Your first name"></div>
+        <div class="log-row"><input type="tel" id="setup-phone" placeholder="Your phone number"></div>
+        <button class="btn btn-gold" style="width:100%;margin-top:8px" onclick="saveMyInfo()">SAVE</button>
+        <button class="btn btn-outline" style="width:100%;margin-top:8px" onclick="skipSetup()">SKIP FOR NOW</button>
+      </div>
+    </div>
+
     <!-- TAB: CALL LOG -->
     <div class="tab-panel" id="panel-log">
       <div class="log-form">
@@ -475,6 +518,11 @@ function unlock() {
   loadData();
   loadLog();
   calcROI();
+  calcMetrics();
+  var info = getMyInfo();
+  if (!info.name) {
+    document.getElementById('setup-overlay').style.display = 'flex';
+  }
 }
 
 // TABS
@@ -536,6 +584,7 @@ function renderData(data) {
     html += '<div class="lead-info">' + esc(l.niche) + ' &middot; ' + esc(l.city||'') + ', ' + esc(l.state||'') + (ratingInfo ? ' &middot; ' + ratingInfo : '') + '</div></div>';
     html += '<div class="lead-tier ' + tierClass + '">' + tierClass + '</div>';
     html += '</div>';
+    if (l.last_contact) html += '<div style="font-size:10px;color:#4b92db;margin-top:4px">AI called ' + esc(l.last_contact) + ' &middot; ' + esc((l.last_outcome||'').replace(/_/g,' ')) + '</div>';
     html += '<div class="lead-signals">' + esc(signals) + '</div>';
     html += '<div class="lead-btns">';
     html += '<a class="btn btn-call btn-sm" href="tel:+1' + l.phone_raw + '">CALL ' + esc(l.phone) + '</a>';
@@ -668,9 +717,14 @@ function logCall() {
   document.getElementById('log-notes').value = '';
   document.getElementById('log-name').style.borderColor = 'var(--border)';
 
+  if (outcome === 'closed' || outcome === 'meeting') {
+    notifyDeal(name, phone, outcome, notes);
+  }
+
   loadLog();
   loadData();
-  showToast('Call logged');
+  calcMetrics();
+  showToast(outcome === 'closed' ? 'DEAL LOGGED. Team notified.' : 'Call logged');
 }
 
 function exportCSV() {
@@ -724,6 +778,118 @@ function loadLog() {
 
   if (logs.length === 0) html = '<div class="empty">No calls logged yet. Use the LOG button on any lead or fill out the form above.</div>';
   document.getElementById('log-list').innerHTML = html;
+}
+
+// MY INFO
+function getMyInfo() {
+  return JSON.parse(localStorage.getItem('boss_my_info') || '{"name":"","phone":""}');
+}
+function saveMyInfo() {
+  var name = document.getElementById('setup-name').value.trim();
+  var phone = document.getElementById('setup-phone').value.trim();
+  if (!name) { document.getElementById('setup-name').style.borderColor = 'var(--red)'; return; }
+  localStorage.setItem('boss_my_info', JSON.stringify({name:name, phone:phone}));
+  document.getElementById('setup-overlay').style.display = 'none';
+  showToast('Info saved. Scripts will auto-fill your name.');
+}
+function skipSetup() {
+  document.getElementById('setup-overlay').style.display = 'none';
+}
+
+// SCRIPT COPY WITH AUTO-FILL
+function copyText(el, label) {
+  var text = el.innerText.replace(/COPY$/, '').replace(el.querySelector('.script-label').innerText, '').trim();
+  var info = getMyInfo();
+  if (info.name) {
+    text = text.replace(/\[name\]/gi, info.name).replace(/\[you\]/gi, info.name);
+  }
+  if (info.phone) {
+    text = text.replace(/\[YOUR PHONE NUMBER\]/gi, info.phone);
+  }
+  if (navigator.clipboard) {
+    navigator.clipboard.writeText(text).then(function(){ showToast(label + ' copied' + (info.name ? ' (auto-filled)' : '')); });
+  }
+}
+
+// DEAL NOTIFICATION
+function notifyDeal(name, phone, outcome, notes) {
+  var msg = 'DEAL ALERT: ' + outcome.toUpperCase() + ' - ' + name;
+  if (phone) msg += ' (' + phone + ')';
+  if (notes) msg += ' - ' + notes;
+  var info = getMyInfo();
+  if (info.name) msg += ' [Rep: ' + info.name + ']';
+  try {
+    fetch('https://ntfy.sh/bossai-sales-alerts', {
+      method: 'POST',
+      headers: {'Title': 'BOSS Sales: ' + outcome.toUpperCase(), 'Priority': outcome === 'closed' ? '5' : '4', 'Tags': outcome === 'closed' ? 'moneybag' : 'phone'},
+      body: msg
+    });
+    fetch('https://ntfy.sh/bossai-bostonrossall-alerts', {
+      method: 'POST',
+      headers: {'Title': 'BOSS Sales: ' + outcome.toUpperCase(), 'Priority': '5', 'Tags': outcome === 'closed' ? 'moneybag,rotating_light' : 'phone'},
+      body: msg
+    });
+  } catch(e) {}
+}
+
+// METRICS
+function calcMetrics() {
+  var logs = JSON.parse(localStorage.getItem('boss_call_log') || '[]');
+  var now = new Date();
+  var todayStr = now.toDateString();
+  var weekAgo = new Date(now - 7*24*60*60*1000);
+  var monthAgo = new Date(now - 30*24*60*60*1000);
+
+  var today = 0, week = 0, month = 0;
+  var outcomes = {};
+  logs.forEach(function(l){
+    var d = new Date(l.time);
+    if (d.toDateString() === todayStr) today++;
+    if (d >= weekAgo) week++;
+    if (d >= monthAgo) month++;
+    var o = l.outcome || 'unknown';
+    outcomes[o] = (outcomes[o] || 0) + 1;
+  });
+
+  document.getElementById('m-today').textContent = today;
+  document.getElementById('m-week').textContent = week;
+  document.getElementById('m-month').textContent = month;
+  document.getElementById('m-total').textContent = logs.length;
+
+  var closed = outcomes.closed || 0;
+  document.getElementById('m-closed').textContent = closed;
+  document.getElementById('m-setup').textContent = '$' + (closed * 250).toLocaleString();
+  document.getElementById('m-mrr').textContent = '$' + (closed * 50).toLocaleString() + '/mo';
+
+  var funnel = [
+    {label:'Total Calls', count:logs.length, color:'var(--dim)'},
+    {label:'Interested', count:(outcomes.interested||0)+(outcomes.callback||0)+(outcomes.meeting||0)+(outcomes.demo||0)+(outcomes.closed||0), color:'#4b92db'},
+    {label:'Demos Given', count:(outcomes.demo||0)+(outcomes.meeting||0)+(outcomes.closed||0), color:'var(--gold)'},
+    {label:'Meetings Set', count:(outcomes.meeting||0)+(outcomes.closed||0), color:'var(--gold2)'},
+    {label:'CLOSED', count:closed, color:'var(--green)'}
+  ];
+
+  var maxCount = Math.max(funnel[0].count, 1);
+  var funnelHtml = '';
+  funnel.forEach(function(f){
+    var pct = Math.round((f.count / maxCount) * 100);
+    var rate = funnel[0].count > 0 ? Math.round((f.count / funnel[0].count) * 100) : 0;
+    funnelHtml += '<div style="margin-bottom:8px">';
+    funnelHtml += '<div style="display:flex;justify-content:space-between;font-size:12px;margin-bottom:3px"><span style="color:var(--muted)">' + f.label + '</span><span style="color:' + f.color + ';font-weight:700">' + f.count + ' (' + rate + '%)</span></div>';
+    funnelHtml += '<div style="background:var(--bg);height:8px;border-radius:4px;overflow:hidden"><div style="background:' + f.color + ';height:100%;width:' + pct + '%;border-radius:4px;transition:width .3s"></div></div>';
+    funnelHtml += '</div>';
+  });
+  document.getElementById('funnel').innerHTML = funnelHtml;
+}
+
+function resetMetrics() {
+  if (confirm('This will delete ALL call log data. Are you sure?')) {
+    localStorage.removeItem('boss_call_log');
+    loadLog();
+    calcMetrics();
+    loadData();
+    showToast('All data cleared');
+  }
 }
 </script>
 </body>
