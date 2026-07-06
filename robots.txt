@@ -7,5 +7,6 @@ Disallow: /partner-dashboard.html
 Disallow: /partner-tools.html
 Disallow: /client-dashboard.html
 Disallow: /grade-dashboard.html
+Disallow: /sales-guide.html
 
 Sitemap: https://bosssystems.co/sitemap.xml
