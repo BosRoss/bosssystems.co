@@ -1,0 +1,815 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="robots" content="noindex,nofollow">
+<title>My Dashboard — BOSS Partnership Program</title>
+<style>
+*{margin:0;padding:0;box-sizing:border-box}
+:root{
+  --gold:#C9A84C;--dark:#080808;--bg:#0a0a0a;--gray:#0f0f0f;--gray2:#111;--gray3:#141414;
+  --border:#1e1e1e;--border-gold:rgba(201,168,76,0.2);
+  --text:#f0ede8;--muted:#aaa;--dim:#999;
+  --green:#4caf50;--green-bg:rgba(76,175,80,0.08);--green-border:rgba(76,175,80,0.25);
+  --red:#e57373;--red-bg:rgba(229,115,115,0.08);--red-border:rgba(229,115,115,0.25);
+  --blue:#64b5f6;--blue-bg:rgba(100,181,246,0.08);--blue-border:rgba(100,181,246,0.25);
+  --font:'SF Mono',Menlo,monospace
+}
+html{scroll-behavior:smooth}
+body{background:var(--dark);color:var(--text);font-family:var(--font);font-size:13px;line-height:1.6;-webkit-font-smoothing:antialiased;min-height:100vh}
+a{color:var(--gold);text-decoration:none}
+a:hover{text-decoration:underline}
+
+/* NAV */
+nav{display:flex;gap:12px;padding:6px 16px;background:#060606;border-bottom:1px solid #1a1a1a;font-size:11px;overflow-x:auto;white-space:nowrap}
+nav a{color:#888;text-decoration:none}
+nav a:hover{color:#ccc}
+nav .active{color:var(--gold);font-weight:600}
+
+/* HEADER */
+.header{background:linear-gradient(135deg,#111 0%,#1a1a0e 100%);border-bottom:2px solid var(--gold);padding:24px 24px 20px}
+.header-inner{max-width:900px;margin:0 auto}
+.header-top{display:flex;justify-content:space-between;align-items:flex-start;flex-wrap:wrap;gap:12px;margin-bottom:12px}
+.header h1{color:var(--gold);font-size:18px;letter-spacing:2px;margin-bottom:2px}
+.header .welcome-name{font-size:14px;color:var(--text);font-weight:400}
+.header .meta{color:var(--dim);font-size:11px;text-align:right}
+.header .meta .live{color:#00ff41;animation:pulse 2s infinite}
+@keyframes pulse{0%,100%{opacity:1}50%{opacity:.4}}
+.header-intro{color:var(--muted);font-size:12px;line-height:1.7;max-width:640px}
+.header-intro strong{color:var(--text)}
+
+/* SECTION NAV */
+.section-nav{display:flex;gap:0;overflow-x:auto;background:var(--gray2);border-bottom:1px solid var(--border);white-space:nowrap;-webkit-overflow-scrolling:touch}
+.section-nav::-webkit-scrollbar{display:none}
+.section-nav a{color:var(--dim);font-size:11px;padding:10px 16px;border-bottom:2px solid transparent;display:block;text-decoration:none;letter-spacing:0.5px;transition:all .15s}
+.section-nav a:hover{color:var(--text);background:rgba(201,168,76,0.04)}
+.section-nav a.active{color:var(--gold);border-bottom-color:var(--gold)}
+
+/* MAIN */
+.main{max-width:900px;margin:0 auto;padding:0 16px 80px}
+
+/* SECTION */
+.section{padding:32px 0 0;border-bottom:1px solid var(--border)}
+.section:last-child{border-bottom:none}
+.section-label{font-size:10px;letter-spacing:3px;text-transform:uppercase;color:var(--gold);margin-bottom:6px;display:block}
+.section h2{font-size:16px;font-weight:700;margin-bottom:4px;letter-spacing:0.5px}
+.section-desc{color:var(--muted);font-size:12px;line-height:1.7;margin-bottom:20px;max-width:640px}
+
+/* CARDS */
+.card{background:var(--gray2);border:1px solid var(--border);padding:20px;margin-bottom:12px}
+.card h3{color:var(--gold);font-size:13px;margin-bottom:4px;letter-spacing:0.5px}
+.card-desc{color:var(--muted);font-size:11px;line-height:1.6;margin-bottom:12px}
+.card-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(260px,1fr));gap:12px;margin-bottom:20px}
+@media(max-width:600px){.card-grid{grid-template-columns:1fr}}
+
+/* ROWS */
+.row{display:flex;justify-content:space-between;align-items:center;padding:6px 0;border-bottom:1px solid rgba(30,30,30,0.6);font-size:12px}
+.row:last-child{border:none}
+.row .k{color:var(--dim)}
+.row .v{color:var(--text);font-weight:600;text-align:right}
+.row .v.gold{color:var(--gold)}
+.row .v.green{color:var(--green)}
+
+/* CHECKLIST */
+.checklist{list-style:none;padding:0}
+.checklist li{display:flex;align-items:flex-start;gap:12px;padding:12px 16px;background:var(--gray2);border:1px solid var(--border);margin-bottom:6px;cursor:pointer;transition:all .15s;user-select:none}
+.checklist li:hover{border-color:var(--gold);background:#111a0e}
+.checklist li.done{opacity:0.55;border-color:#1a3a1a}
+.checklist li.done .check-box{background:var(--green);border-color:var(--green)}
+.checklist li.done .check-box::after{content:'';display:block}
+.check-box{width:18px;height:18px;border:2px solid #444;flex-shrink:0;margin-top:1px;display:flex;align-items:center;justify-content:center;transition:all .15s}
+.check-box::after{content:'';display:none;width:8px;height:5px;border-left:2px solid var(--dark);border-bottom:2px solid var(--dark);transform:rotate(-45deg);margin-top:-2px}
+.check-text{flex:1}
+.check-title{font-size:12px;font-weight:700;color:var(--text);margin-bottom:2px}
+.check-desc{font-size:11px;color:var(--muted);line-height:1.5}
+
+/* STATUS BADGE */
+.badge{display:inline-block;font-size:9px;letter-spacing:1px;padding:2px 8px;font-weight:700;text-transform:uppercase}
+.badge-green{background:var(--green-bg);color:var(--green);border:1px solid var(--green-border)}
+.badge-gold{background:rgba(201,168,76,0.1);color:var(--gold);border:1px solid var(--border-gold)}
+.badge-blue{background:var(--blue-bg);color:var(--blue);border:1px solid var(--blue-border)}
+.badge-red{background:var(--red-bg);color:var(--red);border:1px solid var(--red-border)}
+
+/* TRAINING LINKS */
+.training-card{background:var(--gray2);border:1px solid var(--border);padding:20px;display:block;text-decoration:none;transition:all .15s}
+.training-card:hover{border-color:var(--gold);text-decoration:none;background:#111a0e}
+.training-card h4{color:var(--gold);font-size:12px;margin-bottom:4px;letter-spacing:0.5px}
+.training-card p{color:var(--muted);font-size:11px;line-height:1.5}
+.training-card .arrow{color:var(--gold);font-size:14px;float:right;margin-top:-18px}
+
+/* PERMIT BLOCKS */
+.permit-block{background:var(--gray2);border:1px solid var(--border);padding:20px;margin-bottom:12px}
+.permit-block h4{color:var(--text);font-size:13px;margin-bottom:4px}
+.permit-block .type-tag{font-size:9px;letter-spacing:1px;color:var(--gold);text-transform:uppercase;margin-bottom:8px;display:block}
+.permit-list{list-style:none;padding:0;margin:0}
+.permit-list li{font-size:11px;color:var(--muted);padding:4px 0;border-bottom:1px solid rgba(30,30,30,0.4);line-height:1.6}
+.permit-list li:last-child{border:none}
+.permit-list li strong{color:var(--text);font-weight:600}
+.permit-cost{display:inline-block;color:var(--green);font-weight:600;font-size:11px}
+
+/* MONEY */
+.money-flow{display:grid;grid-template-columns:repeat(4,1fr);gap:2px;background:var(--border);margin-bottom:20px}
+.money-step{background:var(--gray2);padding:16px 12px;text-align:center}
+.money-step .num{font-size:18px;font-weight:900;color:var(--gold);margin-bottom:4px}
+.money-step .label{font-size:10px;color:var(--muted);line-height:1.4;text-transform:uppercase;letter-spacing:0.5px}
+@media(max-width:600px){.money-flow{grid-template-columns:1fr 1fr}}
+
+.revenue-placeholder{background:var(--gray2);border:1px solid var(--border);padding:24px;text-align:center}
+.revenue-placeholder .big{font-size:28px;font-weight:900;color:var(--gold);margin-bottom:4px}
+.revenue-placeholder .sub{font-size:11px;color:var(--dim)}
+
+/* FAQ */
+.faq-item{border-bottom:1px solid var(--border);padding:0}
+.faq-q{padding:14px 0;cursor:pointer;display:flex;justify-content:space-between;align-items:center;font-size:12px;font-weight:700;color:var(--text);user-select:none}
+.faq-q:hover{color:var(--gold)}
+.faq-q .toggle{color:var(--dim);font-size:16px;flex-shrink:0;margin-left:12px;transition:transform .2s}
+.faq-item.open .faq-q .toggle{transform:rotate(45deg)}
+.faq-a{display:none;padding:0 0 14px;font-size:11px;color:var(--muted);line-height:1.7}
+.faq-item.open .faq-a{display:block}
+
+/* GUIDE BLOCKS */
+.guide-block{background:var(--gray2);border:1px solid var(--border);padding:20px;margin-bottom:12px}
+.guide-block h4{color:var(--text);font-size:13px;margin-bottom:8px}
+.guide-block p,.guide-block li{font-size:11px;color:var(--muted);line-height:1.7}
+.guide-block ol,.guide-block ul{padding-left:18px;margin-top:6px}
+.guide-block li{margin-bottom:4px}
+
+/* SUPPORT */
+.support-box{background:linear-gradient(135deg,#111 0%,#1a1a0e 100%);border:2px solid var(--gold);padding:28px;text-align:center;margin-bottom:20px}
+.support-box h3{color:var(--gold);font-size:16px;margin-bottom:8px}
+.support-box p{color:var(--muted);font-size:12px;margin-bottom:14px;line-height:1.6}
+.support-phone{font-size:22px;font-weight:900;color:var(--text);letter-spacing:2px;display:block;margin-bottom:6px}
+.support-phone a{color:var(--text);text-decoration:none}
+.support-phone a:hover{color:var(--gold)}
+.support-note{font-size:10px;color:var(--dim)}
+
+/* PROGRESS BAR */
+.progress-wrap{margin-bottom:20px}
+.progress-label{display:flex;justify-content:space-between;font-size:10px;color:var(--dim);margin-bottom:4px;text-transform:uppercase;letter-spacing:0.5px}
+.progress-bar{height:6px;background:#1a1a1a;overflow:hidden}
+.progress-fill{height:100%;background:var(--gold);transition:width .5s ease}
+
+/* DEMO BANNER */
+.demo-banner{background:#2a2000;border:1px solid #4a3800;padding:8px 16px;text-align:center;font-size:11px;color:var(--gold);display:none}
+.demo-banner.show{display:block}
+
+/* FOOTER */
+.footer{text-align:center;padding:24px;color:#999;font-size:10px;border-top:1px solid var(--border);margin-top:40px}
+.footer a{color:var(--dim)}
+
+@media(max-width:600px){
+  .header{padding:16px}
+  .header h1{font-size:15px}
+  .main{padding:0 10px 60px}
+  .card{padding:14px}
+  .money-flow{grid-template-columns:1fr 1fr}
+  .section-nav a{padding:8px 12px;font-size:10px}
+}
+</style>
+</head>
+<body>
+
+<nav>
+  <a href="command.html">Command</a>
+  <a href="ops.html">Ops</a>
+  <a href="atlas.html">ATLAS</a>
+  <a href="engine.html">Leads</a>
+  <a href="social.html">Social</a>
+  <a href="quant.html">Quant</a>
+  <a href="overview.html">Map</a>
+  <a href="partners.html">Partners</a>
+  <a href="partner-dashboard.html" class="active">My Dashboard</a>
+</nav>
+
+<div class="demo-banner" id="demo-banner">DEMO MODE -- Viewing as sample partner Marcus Johnson. <a href="partner-dashboard.html" style="color:#fff;text-decoration:underline">Exit demo</a></div>
+
+<div class="header">
+  <div class="header-inner">
+    <div class="header-top">
+      <div>
+        <h1>BOSS PARTNERSHIP PROGRAM</h1>
+        <div class="welcome-name" id="welcome-name">Welcome, Partner</div>
+      </div>
+      <div class="meta">
+        <div><span class="live">LIVE</span> Your Dashboard</div>
+        <div id="member-since">Partner since --</div>
+      </div>
+    </div>
+    <p class="header-intro">
+      This is your home base. The BOSS Partnership Program is simple: <strong>we build your entire AI-powered business system</strong>, and <strong>you do the physical work</strong> (the actual jobs). You keep <strong>80% of every dollar</strong> you earn. BOSS keeps 20% for building and maintaining all the tech that runs your business. No setup fee. No catch.
+    </p>
+  </div>
+</div>
+
+<div class="section-nav">
+  <a href="#getting-started" class="active">Getting Started</a>
+  <a href="#my-business">My Business</a>
+  <a href="#training">Training</a>
+  <a href="#permits">Permits</a>
+  <a href="#money">Money</a>
+  <a href="#resources">Resources</a>
+  <a href="#support">Support</a>
+</div>
+
+<div class="main">
+
+<!-- ===================== GETTING STARTED ===================== -->
+<div class="section" id="getting-started">
+  <span class="section-label">Step 1</span>
+  <h2>Getting Started</h2>
+  <p class="section-desc">
+    This is your launch checklist. Go through each step in order. Check them off as you finish. Your progress saves automatically. If you get stuck on any step, scroll down to Support and call us.
+  </p>
+
+  <div class="progress-wrap">
+    <div class="progress-label"><span>LAUNCH PROGRESS</span><span id="progress-pct">0%</span></div>
+    <div class="progress-bar"><div class="progress-fill" id="progress-fill" style="width:0%"></div></div>
+  </div>
+
+  <ul class="checklist" id="checklist">
+    <li data-key="step_training">
+      <div class="check-box"></div>
+      <div class="check-text">
+        <div class="check-title">Watch the training</div>
+        <div class="check-desc">Takes about 30 minutes. Covers how the whole program works, what BOSS builds for you, and what you need to do. <a href="learn.html">Open BOSS Scout training</a></div>
+      </div>
+    </li>
+    <li data-key="step_quiz">
+      <div class="check-box"></div>
+      <div class="check-text">
+        <div class="check-title">Complete the business quiz</div>
+        <div class="check-desc">Answer a few quick questions so we know your skills, your area, and what kind of work you want to do. <a href="partner-quiz.html">Take the quiz</a></div>
+      </div>
+    </li>
+    <li data-key="step_pick">
+      <div class="check-box"></div>
+      <div class="check-text">
+        <div class="check-title">Pick your business type</div>
+        <div class="check-desc">Junk removal, lawn care, pressure washing, or something else. Choose what fits you. Not sure? The quiz helps you figure it out. <a href="learn.html">Explore business types</a></div>
+      </div>
+    </li>
+    <li data-key="step_permits">
+      <div class="check-box"></div>
+      <div class="check-text">
+        <div class="check-title">Get your permits and licenses</div>
+        <div class="check-desc">Most BPP businesses need a basic business license, and some need extra permits. Scroll down to the Permits section for a step-by-step guide based on your business type.</div>
+      </div>
+    </li>
+    <li data-key="step_phone">
+      <div class="check-box"></div>
+      <div class="check-text">
+        <div class="check-title">Get your business phone number</div>
+        <div class="check-desc">BOSS builds this for you. We set up an AI phone system that answers your calls 24/7. You do not need to do anything here except confirm your area and business info with us.</div>
+      </div>
+    </li>
+    <li data-key="step_insurance">
+      <div class="check-box"></div>
+      <div class="check-text">
+        <div class="check-title">Get basic insurance</div>
+        <div class="check-desc">General liability insurance protects you if something goes wrong on a job. Costs around $30-$60/month for most service businesses. See the Permits section below for details.</div>
+      </div>
+    </li>
+    <li data-key="step_first_customer">
+      <div class="check-box"></div>
+      <div class="check-text">
+        <div class="check-title">Get your first customer</div>
+        <div class="check-desc">This is the big one. Scroll to Resources for a full guide on how to land your first job. Hint: start with people you already know. Family, neighbors, anyone with a need.</div>
+      </div>
+    </li>
+    <li data-key="step_first_job">
+      <div class="check-box"></div>
+      <div class="check-text">
+        <div class="check-title">Complete your first job</div>
+        <div class="check-desc">Show up on time, do great work, be friendly. Take a before/after photo if you can. Your first review matters more than your hundredth.</div>
+      </div>
+    </li>
+    <li data-key="step_paid">
+      <div class="check-box"></div>
+      <div class="check-text">
+        <div class="check-title">Get paid</div>
+        <div class="check-desc">Customer pays you directly. You send BOSS the 20% split. Scroll to the Money section to see exactly how this works.</div>
+      </div>
+    </li>
+  </ul>
+</div>
+
+<!-- ===================== MY BUSINESS ===================== -->
+<div class="section" id="my-business">
+  <span class="section-label">Your Setup</span>
+  <h2>My Business</h2>
+  <p class="section-desc">
+    This is what we know about your business. If anything looks wrong or you need changes, call us.
+  </p>
+
+  <div class="card">
+    <div class="row"><span class="k">Partner Name</span><span class="v" id="biz-name">Not set yet</span></div>
+    <div class="row"><span class="k">Business Type</span><span class="v gold" id="biz-type">Not selected</span></div>
+    <div class="row"><span class="k">Service Area</span><span class="v" id="biz-city">Not set</span></div>
+    <div class="row"><span class="k">Business Phone</span><span class="v gold" id="biz-phone">Pending setup</span></div>
+    <div class="row"><span class="k">AI Agent Status</span><span class="v" id="biz-agent-status"><span class="badge badge-gold">PENDING</span></span></div>
+    <div class="row"><span class="k">Member Since</span><span class="v" id="biz-started">--</span></div>
+  </div>
+
+  <div class="card">
+    <h3>What BOSS Built For You</h3>
+    <p class="card-desc">These are the AI systems running behind the scenes for your business, 24 hours a day, 7 days a week. You do not need to manage any of this.</p>
+    <div class="row"><span class="k">AI Phone Receptionist</span><span class="v">Answers every call, books jobs, takes messages</span></div>
+    <div class="row"><span class="k">Missed Call Text-Back</span><span class="v">Texts customers back if they hang up</span></div>
+    <div class="row"><span class="k">Voicemail AI</span><span class="v">Transcribes voicemails, sends you a summary</span></div>
+    <div class="row"><span class="k">Customer Follow-Up</span><span class="v">Checks in after jobs to get reviews</span></div>
+  </div>
+</div>
+
+<!-- ===================== TRAINING HUB ===================== -->
+<div class="section" id="training">
+  <span class="section-label">Learn</span>
+  <h2>Training Hub</h2>
+  <p class="section-desc">
+    Free training built specifically for BPP partners. No fluff, no textbook talk. Just the stuff you need to know to start making money.
+  </p>
+
+  <div class="card-grid">
+    <a href="learn.html" class="training-card">
+      <h4>BOSS Scout</h4>
+      <p>Pick your business type. Explore 11 businesses side by side: what it costs to start, how much you can make, what a typical day looks like, and what equipment you need.</p>
+      <span class="arrow">&rarr;</span>
+    </a>
+    <a href="learn-business.html" class="training-card">
+      <h4>BOSS Learn</h4>
+      <p>Hands-on business training. Covers pricing, getting customers, handling complaints, safety, insurance, and everything else you need to run the day-to-day.</p>
+      <span class="arrow">&rarr;</span>
+    </a>
+    <a href="partner-tools.html" class="training-card">
+      <h4>Partner Resources</h4>
+      <p>Pricing calculators, job checklists, scripts for talking to customers, and on-the-job reference guides. Use these while you work.</p>
+      <span class="arrow">&rarr;</span>
+    </a>
+    <a href="partner-start.html" class="training-card">
+      <h4>Complete Launch Guide</h4>
+      <p>The full step-by-step guide to launching your partner business. Permits, first customers, pricing, equipment lists, and how the 80/20 split actually works.</p>
+      <span class="arrow">&rarr;</span>
+    </a>
+  </div>
+</div>
+
+<!-- ===================== PERMITS & LICENSES ===================== -->
+<div class="section" id="permits">
+  <span class="section-label">Legal Stuff</span>
+  <h2>Permits and Licenses</h2>
+  <p class="section-desc">
+    Before you take your first paid job, you need a few things set up to stay legal. This is not complicated, but it is important. Here is exactly what you need based on your business type.
+  </p>
+
+  <!-- GENERAL -->
+  <div class="permit-block">
+    <span class="type-tag">Every BPP Business</span>
+    <h4>What Everyone Needs</h4>
+    <ul class="permit-list">
+      <li><strong>Business License</strong> -- Most cities and counties require one. Go to your city hall or county clerk's office and ask for a "general business license" or "business registration." <span class="permit-cost">$25-$100/year typical</span></li>
+      <li><strong>General Liability Insurance</strong> -- Protects you if you damage a customer's property or someone gets hurt. You can get this online in about 15 minutes. Try <a href="https://www.nextinsurance.com" target="_blank">Next Insurance</a> or <a href="https://www.thimble.com" target="_blank">Thimble</a>. <span class="permit-cost">$30-$60/month typical</span></li>
+      <li><strong>Vehicle</strong> -- You need a reliable way to get to jobs. A truck or SUV with space for equipment is ideal. A car works for some businesses (lawn care with a trailer, pressure washing with a small rig).</li>
+      <li><strong>EIN (Employer Identification Number)</strong> -- Free from the IRS. Takes 5 minutes online at <a href="https://www.irs.gov/businesses/small-businesses-self-employed/apply-for-an-employer-identification-number-ein-online" target="_blank">irs.gov/ein</a>. You need this for taxes. Think of it as a Social Security number for your business.</li>
+      <li><strong>Separate Bank Account</strong> -- Open a free business checking account at your local bank or credit union. Keep business money separate from personal money. This makes taxes way easier.</li>
+    </ul>
+  </div>
+
+  <!-- JUNK REMOVAL -->
+  <div class="permit-block">
+    <span class="type-tag">Junk Removal</span>
+    <h4>Junk Removal Permits</h4>
+    <ul class="permit-list">
+      <li><strong>Solid Waste Hauling Permit</strong> -- Some cities require this if you are hauling waste commercially. Check with your city or county waste management department. <span class="permit-cost">$50-$200/year</span></li>
+      <li><strong>Dump Access</strong> -- Find your local transfer station or landfill. Most charge by weight ($30-$60/ton). Some require you to register as a commercial hauler. Call them before your first load so you know the process.</li>
+      <li><strong>DOT Number</strong> -- Only if you use a truck over 10,001 lbs (like a big box truck). Most people starting out use a pickup truck and a trailer, so this probably does not apply to you yet. Check with your state DOT to be sure.</li>
+      <li><strong>What you do NOT need</strong> -- You do not need a contractor's license for junk removal. You are hauling, not building.</li>
+    </ul>
+  </div>
+
+  <!-- LAWN CARE -->
+  <div class="permit-block">
+    <span class="type-tag">Lawn Care</span>
+    <h4>Lawn Care Permits</h4>
+    <ul class="permit-list">
+      <li><strong>Pesticide Applicator License</strong> -- Only if you spray chemicals (weed killer, fertilizer, pest control). If you only mow, edge, and trim, you do not need this. If you want to offer weed treatment later, apply through your state's agriculture department. <span class="permit-cost">$50-$150 + exam</span></li>
+      <li><strong>Trailer Registration</strong> -- If you use an open trailer for your mower, make sure it is registered with your state DMV. <span class="permit-cost">$25-$75/year</span></li>
+      <li><strong>Noise Ordinances</strong> -- Most cities have rules about when you can run loud equipment. Typical rule: no mowing before 7am or after 9pm. Check your city's noise ordinance.</li>
+      <li><strong>What you do NOT need</strong> -- No contractor's license for mowing lawns. No special certifications to start.</li>
+    </ul>
+  </div>
+
+  <!-- PRESSURE WASHING -->
+  <div class="permit-block">
+    <span class="type-tag">Pressure Washing</span>
+    <h4>Pressure Washing Permits</h4>
+    <ul class="permit-list">
+      <li><strong>Wastewater Discharge Permit</strong> -- Some cities require this because dirty runoff water goes into storm drains. Call your city's public works or environmental department and ask. Some cities do not care, others are strict about it. <span class="permit-cost">$0-$100/year</span></li>
+      <li><strong>Chemical Handling</strong> -- If you use sodium hypochlorite (bleach) for soft washing, some states want you to have basic chemical safety training. Check your state EPA or environmental agency.</li>
+      <li><strong>Water Access</strong> -- You will use the customer's water unless you bring a tank. Make sure to discuss water usage with customers upfront so there are no surprises on their water bill.</li>
+      <li><strong>What you do NOT need</strong> -- No contractor's license for exterior cleaning. No plumbing license.</li>
+    </ul>
+  </div>
+
+  <!-- HOW TO FIND -->
+  <div class="card" style="margin-top:16px">
+    <h3>How to Find Your Specific Requirements</h3>
+    <p class="card-desc">Every state and city is a little different. Here is how to find out exactly what YOUR area requires:</p>
+    <ul class="permit-list">
+      <li><strong>Step 1:</strong> Search "[your city] business license application" on Google. Most cities have an online form or a PDF you can download.</li>
+      <li><strong>Step 2:</strong> Call your city hall. Say: "I am starting a [junk removal / lawn care / pressure washing] business. What permits or licenses do I need?" They deal with this question every day.</li>
+      <li><strong>Step 3:</strong> Check your state's Secretary of State website for any state-level registrations.</li>
+      <li><strong>Step 4:</strong> Search <a href="https://www.sba.gov/business-guide/launch-your-business/apply-licenses-permits" target="_blank">SBA.gov permits guide</a> for your state's specific requirements.</li>
+    </ul>
+  </div>
+</div>
+
+<!-- ===================== MONEY ===================== -->
+<div class="section" id="money">
+  <span class="section-label">Revenue</span>
+  <h2>Money</h2>
+  <p class="section-desc">
+    Here is how money flows in the BPP. It is simple: you do the work, the customer pays you, and you send BOSS the 20% split. No invoices, no complicated billing.
+  </p>
+
+  <div class="card">
+    <h3>How Payments Work</h3>
+    <p class="card-desc">Four steps, every single job:</p>
+  </div>
+  <div class="money-flow">
+    <div class="money-step">
+      <div class="num">1</div>
+      <div class="label">You do the job</div>
+    </div>
+    <div class="money-step">
+      <div class="num">2</div>
+      <div class="label">Customer pays you directly</div>
+    </div>
+    <div class="money-step">
+      <div class="num">3</div>
+      <div class="label">You send BOSS 20%</div>
+    </div>
+    <div class="money-step">
+      <div class="num">4</div>
+      <div class="label">You keep the other 80%</div>
+    </div>
+  </div>
+
+  <div class="card">
+    <h3>Example</h3>
+    <p class="card-desc">Say you do a junk removal job for $300:</p>
+    <div class="row"><span class="k">Customer pays you</span><span class="v gold">$300.00</span></div>
+    <div class="row"><span class="k">You send BOSS (20%)</span><span class="v" style="color:var(--red)">$60.00</span></div>
+    <div class="row"><span class="k">You keep (80%)</span><span class="v green">$240.00</span></div>
+    <div class="row"><span class="k">Your costs (gas, dump fee, etc.)</span><span class="v">~$40-$80</span></div>
+    <div class="row"><span class="k">Your actual profit</span><span class="v green">~$160-$200</span></div>
+  </div>
+
+  <div class="card">
+    <h3>How to Send the 20%</h3>
+    <p class="card-desc">Send your split to BOSS at the end of each week (or after each job, your choice):</p>
+    <div class="row"><span class="k">Venmo</span><span class="v gold">@BosRoss</span></div>
+    <div class="row"><span class="k">When to pay</span><span class="v">Weekly (end of week) or per job</span></div>
+    <div class="row"><span class="k">Include in memo</span><span class="v">Your name + "BPP split"</span></div>
+  </div>
+
+  <div class="card">
+    <h3>Your Revenue</h3>
+    <p class="card-desc">Once you start completing jobs, your earnings will show up here.</p>
+    <div class="revenue-placeholder" id="revenue-display">
+      <div class="big" id="rev-total">$0</div>
+      <div class="sub">Total revenue to date</div>
+    </div>
+    <div style="margin-top:12px">
+      <div class="row"><span class="k">Your 80% earned</span><span class="v green" id="rev-partner">$0</span></div>
+      <div class="row"><span class="k">BOSS 20% owed</span><span class="v" id="rev-boss" style="color:var(--dim)">$0</span></div>
+      <div class="row"><span class="k">Jobs completed</span><span class="v" id="rev-jobs">0</span></div>
+    </div>
+  </div>
+
+  <div class="card">
+    <h3>Payment History</h3>
+    <p class="card-desc">Your payment records will appear here once revenue starts flowing.</p>
+    <div id="payment-history">
+      <div style="text-align:center;padding:16px;color:var(--dim);font-size:11px">No payments yet. Complete your first job to get started.</div>
+    </div>
+  </div>
+</div>
+
+<!-- ===================== RESOURCES ===================== -->
+<div class="section" id="resources">
+  <span class="section-label">Help</span>
+  <h2>Resources</h2>
+  <p class="section-desc">
+    Practical guides for the most common questions new partners have. No theory, just what to do.
+  </p>
+
+  <!-- PRICING -->
+  <div class="guide-block">
+    <h4>How to Price Your Services</h4>
+    <p>Pricing is one of the scariest parts when you are starting out. Here is a simple formula that works:</p>
+    <ol>
+      <li><strong>Find out what others charge.</strong> Search Google for "[your service] prices in [your city]." Call 2-3 competitors and ask for a quote on a standard job. Now you know the range.</li>
+      <li><strong>Start in the middle.</strong> Do not be the cheapest (people think cheap means bad). Do not be the most expensive (you do not have reviews yet). Price right in the middle.</li>
+      <li><strong>Factor in your costs.</strong> Gas, dump fees, equipment wear, and the 20% BOSS split. Make sure your price covers everything and still leaves you profit.</li>
+      <li><strong>Typical ranges:</strong>
+        <ul>
+          <li>Junk removal: $150-$500 per load (depends on how much stuff)</li>
+          <li>Lawn care: $35-$75 per yard (depends on size)</li>
+          <li>Pressure washing: $150-$400 per house, $80-$200 per driveway</li>
+        </ul>
+      </li>
+      <li><strong>Raise your prices after 10 jobs.</strong> Once you have a few reviews, you have earned the right to charge more. Most people raise prices 10-20% after their first month.</li>
+    </ol>
+  </div>
+
+  <!-- FIRST CUSTOMER -->
+  <div class="guide-block">
+    <h4>How to Get Your First Customer</h4>
+    <p>Your first customer is the hardest one to get. After that, it gets easier. Here is what actually works:</p>
+    <ol>
+      <li><strong>Start with people you know.</strong> Text everyone you know: friends, family, neighbors, parents' friends, church members. Say: "I just started a [business type] business. Do you know anyone who needs [service]?" You are not selling them. You are asking for referrals.</li>
+      <li><strong>Do your first job free or cheap.</strong> Offer one free or discounted job to someone you know. Take before/after photos. Ask them to leave you a Google review. That one review is worth more than the money.</li>
+      <li><strong>Post on Facebook Marketplace and Nextdoor.</strong> These are free. Post with photos, your price range, and your phone number. People in your area are already looking.</li>
+      <li><strong>Door hangers and flyers.</strong> Print 50 simple flyers (Canva is free) and put them on doors in neighborhoods where you want to work. Include your phone number (the BOSS AI will answer).</li>
+      <li><strong>Tell every person you meet.</strong> "I run a [business type] business" should be part of how you introduce yourself. You will be surprised how many people say "actually, I need that."</li>
+    </ol>
+  </div>
+
+  <!-- WHEN THINGS GO WRONG -->
+  <div class="guide-block">
+    <h4>What to Do When Things Go Wrong</h4>
+    <p>Things will go wrong. That is normal. Here is how to handle the most common problems:</p>
+    <ol>
+      <li><strong>Customer is unhappy with the work:</strong> Go back and fix it. Do not argue. Do not get defensive. Say "I want to make this right" and then actually make it right. A customer who had a problem fixed is more loyal than one who never had a problem.</li>
+      <li><strong>You broke something on the job:</strong> Tell the customer immediately. Do not hide it. Offer to pay for the repair or file an insurance claim (this is why you have insurance). Honesty builds trust.</li>
+      <li><strong>Customer will not pay:</strong> Get payment before you leave the job site when possible. If they owe you, send a polite text with the amount and a Venmo/CashApp link. If they ghost you, move on. One bad customer is not worth your energy.</li>
+      <li><strong>Bad weather or equipment breaks:</strong> Communicate early. Text the customer: "Rain tomorrow, moving your job to Thursday. Does that work?" Customers respect communication more than perfection.</li>
+      <li><strong>You do not know how to do something:</strong> YouTube has a tutorial for literally everything. Search "[thing you need to do] tutorial" before the job. And call BOSS if you are stuck.</li>
+    </ol>
+  </div>
+
+  <!-- FAQ -->
+  <div class="card" style="margin-top:16px">
+    <h3>Frequently Asked Questions</h3>
+    <p class="card-desc">The 10 questions every new partner asks.</p>
+
+    <div class="faq-item" onclick="this.classList.toggle('open')">
+      <div class="faq-q">How much money can I actually make?<span class="toggle">+</span></div>
+      <div class="faq-a">It depends on how much you work. A partner doing junk removal full-time (5 days a week, 2-3 jobs a day) can make $450-$750/week after costs and the BOSS split. Part-time (weekends only), expect $150-$300/week. These are real numbers based on actual job pricing, not hype. Results vary.</div>
+    </div>
+    <div class="faq-item" onclick="this.classList.toggle('open')">
+      <div class="faq-q">Do I need my own truck or equipment?<span class="toggle">+</span></div>
+      <div class="faq-a">For most businesses, yes. Junk removal needs a truck or a trailer. Lawn care needs a mower, trimmer, and blower (you can start with used equipment for $300-$500). Pressure washing needs a pressure washer ($200-$400 for a good starter). You do NOT need brand new professional equipment to start. Upgrade as you grow.</div>
+    </div>
+    <div class="faq-item" onclick="this.classList.toggle('open')">
+      <div class="faq-q">What does BOSS actually do for me?<span class="toggle">+</span></div>
+      <div class="faq-a">BOSS builds and runs your entire tech stack: an AI phone system that answers your calls 24/7, texts customers back automatically, schedules jobs, follows up for reviews, and handles all the behind-the-scenes stuff you would normally need to hire someone for. You focus on the work. We handle the phones and the tech.</div>
+    </div>
+    <div class="faq-item" onclick="this.classList.toggle('open')">
+      <div class="faq-q">Can I do this if I am under 18?<span class="toggle">+</span></div>
+      <div class="faq-a">Yes, but you need a parent or guardian to sign off. Some states require a parent to co-sign your business license if you are a minor. We will walk you through it. Many successful businesses were started by teenagers.</div>
+    </div>
+    <div class="faq-item" onclick="this.classList.toggle('open')">
+      <div class="faq-q">What if I want to switch business types later?<span class="toggle">+</span></div>
+      <div class="faq-a">You can. Just let us know and we will rebuild your AI system for the new business type. Some partners run multiple services (like lawn care + pressure washing). The phone system handles all of it.</div>
+    </div>
+    <div class="faq-item" onclick="this.classList.toggle('open')">
+      <div class="faq-q">How do I handle taxes?<span class="toggle">+</span></div>
+      <div class="faq-a">As a self-employed person, you will owe income tax and self-employment tax on your profits. Set aside 25-30% of what you earn for taxes. Get an EIN from irs.gov (free, takes 5 minutes). Keep track of every expense (gas, dump fees, equipment, insurance) because those reduce what you owe. We strongly recommend talking to a tax professional before tax season.</div>
+    </div>
+    <div class="faq-item" onclick="this.classList.toggle('open')">
+      <div class="faq-q">What if I am not getting enough customers?<span class="toggle">+</span></div>
+      <div class="faq-a">This is the most common problem. Check the "How to Get Your First Customer" guide above. The biggest mistake is waiting for customers to come to you. You have to go find them. Post on Facebook Marketplace, put out door hangers, tell everyone you know. The AI phone system only works if people know your number.</div>
+    </div>
+    <div class="faq-item" onclick="this.classList.toggle('open')">
+      <div class="faq-q">Can I cancel anytime?<span class="toggle">+</span></div>
+      <div class="faq-a">Yes. There is no contract and no cancellation fee. If you want to stop, just tell us. You keep everything you have earned, and we turn off the AI systems. No hard feelings.</div>
+    </div>
+    <div class="faq-item" onclick="this.classList.toggle('open')">
+      <div class="faq-q">What area can I work in?<span class="toggle">+</span></div>
+      <div class="faq-a">Anywhere in your city and surrounding areas. When we set up your AI phone system, we configure it for your specific service area. You decide how far you want to drive. Most partners start within a 15-20 mile radius and expand as they get busier.</div>
+    </div>
+    <div class="faq-item" onclick="this.classList.toggle('open')">
+      <div class="faq-q">What happens if I have a slow week?<span class="toggle">+</span></div>
+      <div class="faq-a">Slow weeks happen, especially when you are starting. You only pay the 20% split when you actually earn money. No jobs = nothing owed. Use slow weeks to market: post on social media, put out flyers, and follow up with past customers. Seasonality is real (lawn care slows in winter, junk removal picks up in spring). Plan for it.</div>
+    </div>
+  </div>
+</div>
+
+<!-- ===================== SUPPORT ===================== -->
+<div class="section" id="support">
+  <span class="section-label">Help</span>
+  <h2>Support</h2>
+  <p class="section-desc">
+    Stuck? Have a question? Need something fixed? We are here. The BOSS support line is answered 24/7 by our AI, and Boston (the founder) personally checks in with every partner.
+  </p>
+
+  <div class="support-box">
+    <h3>BOSS Support Line</h3>
+    <p>Call or text anytime. Our AI answers 24/7. For urgent issues, leave a message and Boston will call you back.</p>
+    <span class="support-phone"><a href="tel:+19035224459">(903) 522-4459</a></span>
+    <span class="support-note">24/7 AI support -- Boston personally follows up on every issue</span>
+  </div>
+
+  <div class="card">
+    <h3>When to Contact Support</h3>
+    <p class="card-desc">Call us for any of these:</p>
+    <div class="row"><span class="k">Phone system issue</span><span class="v">Calls not coming through, AI saying wrong info</span></div>
+    <div class="row"><span class="k">Business question</span><span class="v">Pricing, permits, customer situation</span></div>
+    <div class="row"><span class="k">Want to change something</span><span class="v">Service area, business type, phone greeting</span></div>
+    <div class="row"><span class="k">Equipment advice</span><span class="v">What to buy, where to buy it</span></div>
+    <div class="row"><span class="k">Customer emergency</span><span class="v">Broke something, angry customer, safety issue</span></div>
+  </div>
+
+  <div class="card">
+    <h3>Other Partner Pages</h3>
+    <p class="card-desc">More resources from the BOSS Partnership Program:</p>
+    <div class="row"><span class="k"><a href="summer.html">Program Overview</a></span><span class="v">Full BPP details</span></div>
+    <div class="row"><span class="k"><a href="partner-tools.html">Partner Tools</a></span><span class="v">Pricing guides, checklists, scripts</span></div>
+    <div class="row"><span class="k"><a href="partner-start.html">Launch Guide</a></span><span class="v">Complete launch walkthrough</span></div>
+    <div class="row"><span class="k"><a href="partner-quiz.html">Business Quiz</a></span><span class="v">Find the right business for you</span></div>
+    <div class="row"><span class="k"><a href="pay.html">Make a Payment</a></span><span class="v">Send your 20% split</span></div>
+    <div class="row"><span class="k"><a href="log-job.html">Log a Job</a></span><span class="v">Record completed jobs</span></div>
+  </div>
+</div>
+
+</div><!-- .main -->
+
+<div class="footer">
+  BOSS Systems -- AI Business Innovation<br>
+  <a href="terms.html">Terms</a> &middot; <a href="privacy.html">Privacy</a> &middot; <a href="index.html">bosssystems.co</a>
+</div>
+
+<script>
+(function(){
+  // ========== DEMO MODE ==========
+  var params = new URLSearchParams(window.location.search);
+  if (params.get('demo') === 'true') {
+    localStorage.setItem('bpp_name', 'Marcus Johnson');
+    localStorage.setItem('bpp_business_type', 'Junk Removal');
+    localStorage.setItem('bpp_city', 'Hattiesburg, MS');
+    localStorage.setItem('bpp_phone', '(601) 555-0142');
+    localStorage.setItem('bpp_started', '2026-06-10');
+    localStorage.setItem('bpp_agent_status', 'active');
+    document.getElementById('demo-banner').classList.add('show');
+  }
+
+  // ========== LOAD PARTNER DATA ==========
+  var name = localStorage.getItem('bpp_name');
+  var bizType = localStorage.getItem('bpp_business_type');
+  var city = localStorage.getItem('bpp_city');
+  var phone = localStorage.getItem('bpp_phone');
+  var started = localStorage.getItem('bpp_started');
+  var agentStatus = localStorage.getItem('bpp_agent_status') || 'pending';
+
+  if (name) {
+    document.getElementById('welcome-name').textContent = 'Welcome, ' + name;
+    document.getElementById('biz-name').textContent = name;
+  }
+  if (bizType) {
+    document.getElementById('biz-type').textContent = bizType;
+  }
+  if (city) {
+    document.getElementById('biz-city').textContent = city;
+  }
+  if (phone) {
+    document.getElementById('biz-phone').textContent = phone;
+  }
+  if (started) {
+    var d = new Date(started + 'T00:00:00');
+    var formatted = d.toLocaleDateString('en-US', { month: 'long', day: 'numeric', year: 'numeric' });
+    document.getElementById('biz-started').textContent = formatted;
+    document.getElementById('member-since').textContent = 'Partner since ' + formatted;
+  }
+
+  // Agent status badge
+  var statusEl = document.getElementById('biz-agent-status');
+  if (agentStatus === 'active') {
+    statusEl.innerHTML = '<span class="badge badge-green">ACTIVE</span>';
+  } else if (agentStatus === 'building') {
+    statusEl.innerHTML = '<span class="badge badge-blue">BUILDING</span>';
+  } else {
+    statusEl.innerHTML = '<span class="badge badge-gold">PENDING</span>';
+  }
+
+  // ========== CHECKLIST ==========
+  var checklist = document.getElementById('checklist');
+  var items = checklist.querySelectorAll('li[data-key]');
+  var totalSteps = items.length;
+
+  function updateProgress() {
+    var done = 0;
+    items.forEach(function(item) {
+      if (localStorage.getItem('bpp_check_' + item.getAttribute('data-key')) === '1') {
+        item.classList.add('done');
+        done++;
+      } else {
+        item.classList.remove('done');
+      }
+    });
+    var pct = Math.round((done / totalSteps) * 100);
+    document.getElementById('progress-pct').textContent = pct + '%';
+    document.getElementById('progress-fill').style.width = pct + '%';
+  }
+
+  items.forEach(function(item) {
+    item.addEventListener('click', function(e) {
+      if (e.target.tagName === 'A') return;
+      var key = item.getAttribute('data-key');
+      var current = localStorage.getItem('bpp_check_' + key);
+      if (current === '1') {
+        localStorage.removeItem('bpp_check_' + key);
+      } else {
+        localStorage.setItem('bpp_check_' + key, '1');
+      }
+      updateProgress();
+    });
+  });
+
+  updateProgress();
+
+  // ========== REVENUE DATA ==========
+  // Try to load from partner_report.json for this partner
+  var REPORT_URL = 'https://raw.githubusercontent.com/BosRoss/bosssystems.co/main/partner_report.json';
+
+  function loadRevenue() {
+    if (!name) return;
+    fetch(REPORT_URL + '?t=' + Date.now())
+      .then(function(r) { return r.json(); })
+      .then(function(data) {
+        var partners = data.partners || [];
+        var me = null;
+        for (var i = 0; i < partners.length; i++) {
+          if (partners[i].name && partners[i].name.toLowerCase() === name.toLowerCase()) {
+            me = partners[i];
+            break;
+          }
+        }
+        if (me) {
+          document.getElementById('rev-total').textContent = '$' + fmt(me.revenue || 0);
+          document.getElementById('rev-partner').textContent = '$' + fmt(me.partner_share || 0);
+          document.getElementById('rev-boss').textContent = '$' + fmt(me.boss_share || 0);
+          document.getElementById('rev-jobs').textContent = (me.calls && me.calls.total) ? me.calls.total : '0';
+
+          if (me.payments && me.payments.length) {
+            var historyEl = document.getElementById('payment-history');
+            var html = '';
+            me.payments.slice().reverse().forEach(function(pay) {
+              var statusTag = pay.paid_out
+                ? '<span style="color:#4caf50;font-size:9px;font-weight:700">PAID</span>'
+                : '<span style="color:#e57373;font-size:9px;font-weight:700">PENDING</span>';
+              html += '<div class="row"><span class="k">' + (pay.date || '--') + '</span><span class="v">$' + fmt(pay.amount) + ' ' + statusTag + '</span></div>';
+            });
+            historyEl.innerHTML = html;
+          }
+        }
+      })
+      .catch(function(){});
+  }
+
+  loadRevenue();
+
+  function fmt(n) {
+    return (n || 0).toLocaleString(undefined, {minimumFractionDigits: 0, maximumFractionDigits: 0});
+  }
+
+  // ========== SECTION NAV HIGHLIGHT ==========
+  var sectionNavLinks = document.querySelectorAll('.section-nav a');
+  var sections = [];
+  sectionNavLinks.forEach(function(link) {
+    var target = link.getAttribute('href');
+    if (target && target.startsWith('#')) {
+      var el = document.querySelector(target);
+      if (el) sections.push({ link: link, el: el });
+    }
+  });
+
+  function updateSectionNav() {
+    var scrollPos = window.scrollY + 120;
+    var current = null;
+    for (var i = sections.length - 1; i >= 0; i--) {
+      if (sections[i].el.offsetTop <= scrollPos) {
+        current = sections[i].link;
+        break;
+      }
+    }
+    sectionNavLinks.forEach(function(l) { l.classList.remove('active'); });
+    if (current) current.classList.add('active');
+  }
+
+  window.addEventListener('scroll', updateSectionNav);
+  updateSectionNav();
+
+  // ========== DEMO PRESETS FOR CHECKLIST ==========
+  if (params.get('demo') === 'true') {
+    localStorage.setItem('bpp_check_step_training', '1');
+    localStorage.setItem('bpp_check_step_quiz', '1');
+    localStorage.setItem('bpp_check_step_pick', '1');
+    localStorage.setItem('bpp_check_step_permits', '1');
+    localStorage.setItem('bpp_check_step_phone', '1');
+    updateProgress();
+  }
+})();
+</script>
+</body>
+</html>

@@ -1,0 +1,352 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="description" content="BOSS Systems — Secure payment">
+<title>BOSS Systems — Payment</title>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+<style>
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+:root{--bg:#0a0a0f;--bg-card:#12121a;--bg-card2:#181822;--gold:#c9a96e;--gold-light:#dfc070;--text:#f0ede8;--text-muted:#bbb;--text-dim:#888;--border:rgba(201,169,110,.15);--green:#00d632;--blue:#3d95ce;--purple:#6d1ed4;--square:#000}
+html{scroll-behavior:smooth}
+body{font-family:'Inter',-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;background:var(--bg);color:var(--text);line-height:1.6;min-height:100vh;display:flex;flex-direction:column;align-items:center;padding:40px 20px}
+.container{max-width:580px;width:100%}
+
+.header{text-align:center;margin-bottom:32px}
+.logo{font-size:.75rem;letter-spacing:4px;color:var(--text-dim);text-transform:uppercase;margin-bottom:8px}
+h1{font-size:1.8rem;font-weight:700;color:var(--text);margin-bottom:4px}
+.sub{color:var(--text-muted);font-size:.95rem}
+
+.order-box{background:var(--bg-card);border:1px solid var(--border);border-radius:12px;padding:24px;margin-bottom:24px}
+.order-product{font-size:1.1rem;font-weight:600;margin-bottom:4px}
+.order-desc{font-size:.85rem;color:var(--text-muted);margin-bottom:16px}
+.order-line{display:flex;justify-content:space-between;padding:8px 0;border-bottom:1px solid rgba(255,255,255,.05);font-size:.9rem;color:var(--text-muted)}
+.order-line:last-child{border-bottom:none}
+.order-line .label{color:var(--text-muted)}
+.order-line .value{color:var(--text);font-weight:600}
+.order-total{display:flex;justify-content:space-between;padding:12px 0 0;margin-top:8px;border-top:1px solid var(--border);font-size:1.15rem;font-weight:700}
+.order-total .value{color:var(--gold)}
+
+.section-label{font-size:.7rem;letter-spacing:2px;color:var(--text-dim);text-transform:uppercase;margin:24px 0 12px}
+
+.pay-btn{display:block;width:100%;padding:16px;border:none;border-radius:10px;font-family:inherit;font-size:1rem;font-weight:600;cursor:pointer;text-align:center;text-decoration:none;transition:.15s;margin-bottom:10px}
+.pay-btn:active{transform:scale(.98)}
+.pay-primary{background:var(--gold);color:#000}
+.pay-primary:hover{background:var(--gold-light)}
+
+.pay-alt{display:flex;gap:10px;margin-bottom:10px}
+.pay-alt-btn{flex:1;display:flex;flex-direction:column;align-items:center;gap:4px;padding:14px 8px;background:var(--bg-card);border:1px solid var(--border);border-radius:10px;text-decoration:none;color:var(--text);font-size:.8rem;font-weight:500;transition:.15s}
+.pay-alt-btn:hover{border-color:rgba(255,255,255,.15)}
+.pay-alt-btn .alt-name{font-weight:600;font-size:.85rem}
+.pay-alt-btn .alt-handle{color:var(--text-dim);font-size:.75rem}
+
+.square-badge{display:inline-flex;align-items:center;gap:6px;background:var(--bg-card2);border:1px solid var(--border);border-radius:6px;padding:8px 14px;font-size:.75rem;color:var(--text-dim);margin:16px auto 0;width:fit-content}
+.square-badge::before{content:"";width:8px;height:8px;background:var(--green);border-radius:50%}
+
+.info-box{background:var(--bg-card);border:1px solid var(--border);border-radius:10px;padding:20px;margin-top:20px;font-size:.85rem;color:var(--text-muted);line-height:1.7}
+.info-box strong{color:var(--text)}
+
+.back{display:block;text-align:center;margin-top:24px;color:var(--text-dim);text-decoration:none;font-size:.85rem}
+.back:hover{color:var(--gold)}
+
+.product-select{display:none;margin-bottom:24px}
+.product-select.show{display:block}
+.product-select select{width:100%;padding:14px 16px;background:var(--bg-card);border:1px solid var(--border);border-radius:10px;color:var(--text);font-family:inherit;font-size:.95rem;appearance:none;cursor:pointer;outline:none}
+.product-select select:focus{border-color:var(--gold)}
+
+.guarantees{display:flex;gap:8px;margin-top:16px;flex-wrap:wrap}
+.guarantee{display:flex;align-items:center;gap:6px;font-size:.75rem;color:var(--text-dim)}
+.guarantee::before{content:"";width:6px;height:6px;background:var(--green);border-radius:50%}
+
+.partner-badge{background:var(--bg-card2);border:1px solid var(--border);border-radius:8px;padding:12px 16px;margin-bottom:20px;display:flex;align-items:center;gap:10px;font-size:.9rem}
+.partner-badge .pb-dot{width:10px;height:10px;background:var(--green);border-radius:50%;flex-shrink:0}
+.partner-badge .pb-text{color:var(--text-muted)}
+.partner-badge .pb-name{color:var(--text);font-weight:600}
+
+.amount-input{display:none;margin-bottom:20px}
+.amount-input.show{display:block}
+.amount-input label{display:block;font-size:.85rem;color:var(--text-muted);margin-bottom:8px}
+.amount-input input{width:100%;padding:14px 16px;background:var(--bg-card);border:1px solid var(--border);border-radius:10px;color:var(--text);font-family:inherit;font-size:1.2rem;font-weight:700;outline:none;text-align:center}
+.amount-input input:focus{border-color:var(--gold)}
+.amount-input input::placeholder{color:var(--text-dim);font-weight:400}
+
+@media(max-width:500px){
+  body{padding:24px 16px}
+  h1{font-size:1.5rem}
+  .pay-alt{flex-direction:column}
+}
+</style>
+</head>
+<body>
+<div class="container">
+  <div class="header">
+    <div class="logo">BOSS Systems</div>
+    <h1 id="page-title">Payment</h1>
+    <div class="sub" id="page-sub">Secure payment for BOSS Systems services</div>
+  </div>
+
+  <div class="partner-badge" id="partner-badge" style="display:none">
+    <div class="pb-dot"></div>
+    <div><span class="pb-text">Paying </span><span class="pb-name" id="partner-name"></span></div>
+  </div>
+
+  <div class="product-select" id="product-picker">
+    <select id="product-select" onchange="selectProduct(this.value)">
+      <option value="">Choose a product...</option>
+      <option value="build_standard">BOSS Build Standard — $1,497 setup + $97/mo</option>
+      <option value="build_premium">BOSS Build Premium — $2,997 setup + $197/mo</option>
+      <option value="full">Full Transformation — $5,997 setup + $497/mo</option>
+      <option value="custom">Custom amount</option>
+    </select>
+  </div>
+
+  <div class="amount-input" id="amount-input">
+    <label>Enter payment amount</label>
+    <input type="number" id="custom-amount" placeholder="$0.00" min="1" step="1" oninput="updatePartnerAmount(this.value)">
+  </div>
+
+  <div class="order-box" id="order-box" style="display:none">
+    <div class="order-product" id="order-product"></div>
+    <div class="order-desc" id="order-desc"></div>
+    <div id="order-lines">
+      <div class="order-line" id="setup-line"><span class="label">Setup fee</span><span class="value" id="order-setup"></span></div>
+      <div class="order-line" id="monthly-line"><span class="label">Monthly (starts after build)</span><span class="value" id="order-monthly"></span></div>
+    </div>
+    <div class="order-total"><span>Due today</span><span class="value" id="order-due"></span></div>
+    <div class="guarantees" id="guarantees">
+      <span class="guarantee">No contracts</span>
+      <span class="guarantee">Cancel anytime</span>
+      <span class="guarantee">No overages</span>
+      <span class="guarantee">Built in 72 hours</span>
+    </div>
+  </div>
+
+  <div id="pay-buttons">
+    <div class="section-label">Pay with card</div>
+    <a href="#" class="pay-btn pay-primary" id="square-btn" onclick="return handleSquare()">Pay with Card</a>
+
+    <div class="section-label">Or use</div>
+    <div class="pay-alt">
+      <a href="venmo://paycharge?txn=pay&recipients=BosRoss" class="pay-alt-btn" id="venmo-btn">
+        <span class="alt-name">Venmo</span>
+        <span class="alt-handle">@BosRoss</span>
+      </a>
+    </div>
+  </div>
+
+  <div class="info-box" id="info-box">
+    <strong>After payment:</strong> Text or call <strong>(903) 522-4459</strong> with your receipt. We'll start building your system within 24 hours. You'll get a test call before it goes live.
+  </div>
+
+  <div class="square-badge" id="secure-badge">Secure payment via Square</div>
+
+  <a href="https://bosssystems.co" class="back" id="back-link">&larr; Back to bosssystems.co</a>
+</div>
+
+<script>
+var PRODUCTS = {
+  build_standard: {name:"BOSS Build Standard", desc:"AI phone system + CRM basics. Custom-built for your business. Deployed in 72 hours.", setup:1497, monthly:97},
+  build_premium: {name:"BOSS Build Premium", desc:"Phone + follow-ups + reviews. The full automated front office.", setup:2997, monthly:197},
+  full: {name:"Full Transformation", desc:"Complete AI system. Phone, follow-ups, reviews, scheduling, lead capture, marketing.", setup:5997, monthly:497},
+};
+
+var SQUARE_LINK = null;
+var currentProduct = null;
+var partnerSlug = null;
+var partnerName = null;
+
+function init() {
+  var params = new URLSearchParams(window.location.search);
+  var product = params.get('product');
+  var amount = params.get('amount');
+  var squareUrl = params.get('square');
+  var partner = params.get('partner');
+  var pname = params.get('name');
+  var label = params.get('label');
+
+  if (squareUrl) SQUARE_LINK = decodeURIComponent(squareUrl);
+
+  // Partner payment mode
+  if (partner) {
+    partnerSlug = partner;
+    partnerName = pname || partner.replace(/-/g, ' ').replace(/\b\w/g, function(l){return l.toUpperCase()});
+    setupPartnerMode(partnerName, parseInt(amount) || 0, label || '');
+    return;
+  }
+
+  // BOSS product mode
+  if (product && PRODUCTS[product]) {
+    showProduct(product);
+  } else if (amount) {
+    showCustomAmount(parseInt(amount), label || 'BOSS Systems Service');
+  } else {
+    document.getElementById('product-picker').classList.add('show');
+  }
+}
+
+function setupPartnerMode(name, amount, label) {
+  document.getElementById('partner-badge').style.display = 'flex';
+  document.getElementById('partner-name').textContent = name;
+  document.getElementById('page-title').textContent = 'Payment';
+  document.getElementById('page-sub').textContent = 'Pay for services from ' + name;
+  document.getElementById('guarantees').style.display = 'none';
+
+  document.getElementById('info-box').innerHTML = '<strong>Payment goes to:</strong> ' + name + ' via BOSS Systems. You\'ll receive a receipt from Square.';
+
+  var backLink = document.getElementById('back-link');
+  backLink.textContent = '← Back to ' + name;
+  backLink.href = 'https://bosssystems.co/p/' + partnerSlug + '.html';
+
+  // Always show amount input in partner mode
+  document.getElementById('amount-input').classList.add('show');
+  document.getElementById('order-box').style.display = 'none';
+
+  if (amount > 0) {
+    document.getElementById('custom-amount').value = amount;
+    updatePartnerAmount(amount);
+  } else {
+    updateSquareBtn(0);
+  }
+}
+
+function updatePartnerAmount(val) {
+  var amt = parseInt(val) || 0;
+  var btn = document.getElementById('square-btn');
+  if (amt > 0) {
+    btn.textContent = 'Pay $' + amt + ' with Card';
+    var note = partnerName + ' [partner:' + partnerSlug + ']';
+    updateVenmoLink(amt, note);
+  } else {
+    btn.textContent = 'Enter amount above';
+  }
+}
+
+function selectProduct(val) {
+  if (!val) {
+    document.getElementById('order-box').style.display = 'none';
+    return;
+  }
+  if (val === 'custom') {
+    var amt = prompt('Enter amount ($):');
+    if (amt) showCustomAmount(parseInt(amt), 'BOSS Systems Service');
+    return;
+  }
+  showProduct(val);
+}
+
+function showProduct(key) {
+  var p = PRODUCTS[key];
+  if (!p) return;
+  currentProduct = p;
+  document.getElementById('order-product').textContent = p.name;
+  document.getElementById('order-desc').textContent = p.desc;
+  document.getElementById('setup-line').style.display = 'flex';
+  document.getElementById('monthly-line').style.display = 'flex';
+  document.getElementById('order-setup').textContent = '$' + p.setup.toLocaleString();
+  document.getElementById('order-monthly').textContent = '$' + p.monthly + '/mo';
+  document.getElementById('order-due').textContent = '$' + p.setup.toLocaleString();
+  document.getElementById('order-box').style.display = 'block';
+  document.getElementById('page-title').textContent = 'Payment';
+  document.getElementById('page-sub').textContent = p.name + ' — due today: $' + p.setup.toLocaleString();
+
+  updateVenmoLink(p.setup, p.name);
+  updateSquareBtn(p.setup);
+
+  var picker = document.getElementById('product-select');
+  if (picker) picker.value = key;
+}
+
+function showCustomAmount(amt, label) {
+  currentProduct = {name: label, desc: '', setup: amt, monthly: 0};
+  document.getElementById('order-product').textContent = label;
+  document.getElementById('order-desc').textContent = '';
+  document.getElementById('setup-line').style.display = 'flex';
+  document.getElementById('monthly-line').style.display = 'flex';
+  document.getElementById('order-setup').textContent = '$' + amt.toLocaleString();
+  document.getElementById('order-monthly').textContent = 'TBD';
+  document.getElementById('order-due').textContent = '$' + amt.toLocaleString();
+  document.getElementById('order-box').style.display = 'block';
+
+  updateVenmoLink(amt, label);
+  updateSquareBtn(amt);
+}
+
+function updateVenmoLink(amount, note) {
+  var venmo = document.getElementById('venmo-btn');
+  venmo.href = 'venmo://paycharge?txn=pay&recipients=BosRoss&amount=' + amount + '&note=' + encodeURIComponent(note + ' - BOSS Systems');
+}
+
+function updateSquareBtn(amount) {
+  var btn = document.getElementById('square-btn');
+  if (amount > 0) {
+    btn.textContent = 'Pay $' + amount.toLocaleString() + ' with Card';
+  } else {
+    btn.textContent = 'Pay with Card';
+  }
+  if (SQUARE_LINK) {
+    btn.href = SQUARE_LINK;
+    btn.target = '_blank';
+  }
+}
+
+function handleSquare() {
+  if (SQUARE_LINK) return true;
+
+  // Partner mode — create checkout link via webhook
+  if (partnerSlug) {
+    var input = document.getElementById('custom-amount');
+    var amt = parseInt(input ? input.value : 0) || 0;
+    if (!amt) {
+      alert('Please enter an amount first.');
+      return false;
+    }
+    var btn = document.getElementById('square-btn');
+    btn.textContent = 'Processing...';
+    btn.style.pointerEvents = 'none';
+    btn.style.opacity = '0.6';
+
+    var x = new XMLHttpRequest();
+    x.open('POST', 'https://jamross.app.n8n.cloud/webhook/partner-pay');
+    x.setRequestHeader('Content-Type', 'application/json');
+    x.onload = function() {
+      try {
+        var d = JSON.parse(x.responseText);
+        if (d.url) {
+          window.location.href = d.url;
+        } else {
+          btn.textContent = 'Error - try Venmo below';
+          btn.style.pointerEvents = 'auto';
+          btn.style.opacity = '1';
+        }
+      } catch(e) {
+        btn.textContent = 'Error - try Venmo below';
+        btn.style.pointerEvents = 'auto';
+        btn.style.opacity = '1';
+      }
+    };
+    x.onerror = function() {
+      btn.textContent = 'Error - try Venmo below';
+      btn.style.pointerEvents = 'auto';
+      btn.style.opacity = '1';
+    };
+    x.send(JSON.stringify({partner: partnerSlug, amount: amt, name: partnerName}));
+    return false;
+  }
+
+  // BOSS product mode — direct to text for card payment setup
+  var amt = currentProduct ? currentProduct.setup : 0;
+  if (!amt) {
+    alert('Please select a product first.');
+    return false;
+  }
+  var productName = currentProduct ? currentProduct.name : 'BOSS Systems';
+  var smsBody = encodeURIComponent('Hi, I want to pay $' + amt.toLocaleString() + ' for ' + productName + ' by card.');
+  window.location.href = 'sms:+19035224459&body=' + smsBody;
+  return false;
+}
+
+init();
+</script>
+</body>
+</html>
