@@ -1,5 +1,5 @@
 {
-  "generated": "2026-07-06T20:11:39.260133+00:00",
+  "generated": "2026-07-06T20:15:25.016570+00:00",
   "summary": {
     "total_leads": 200,
     "callable": 177,
@@ -28,7 +28,9 @@
         "PAIN_REVIEW('voicemail')"
       ],
       "rating": 0,
-      "review_count": 0
+      "review_count": 0,
+      "last_contact": "2026-06-25",
+      "last_outcome": "call_initiated"
     },
     {
       "name": "Stanley Graves Plumbing Co",
@@ -46,7 +48,9 @@
         "PAIN_REVIEW('no answer')"
       ],
       "rating": 0,
-      "review_count": 0
+      "review_count": 0,
+      "last_contact": "2026-06-27",
+      "last_outcome": "hangup"
     },
     {
       "name": "Jackson Heating And Cooling",
@@ -64,7 +68,9 @@
         "PAIN_REVIEW('voicemail')"
       ],
       "rating": 0,
-      "review_count": 0
+      "review_count": 0,
+      "last_contact": "",
+      "last_outcome": ""
     },
     {
       "name": "Anderson Plumbing LLC",
@@ -82,7 +88,9 @@
         "PAIN_REVIEW('voicemail')"
       ],
       "rating": 0,
-      "review_count": 0
+      "review_count": 0,
+      "last_contact": "2026-07-03",
+      "last_outcome": "call_initiated"
     },
     {
       "name": "Jimmy's Plumbing",
@@ -100,7 +108,9 @@
         "NO_WEBSITE"
       ],
       "rating": 0,
-      "review_count": 0
+      "review_count": 0,
+      "last_contact": "2026-06-10",
+      "last_outcome": "call_initiated"
     },
     {
       "name": "Russell Branan Plumbing",
@@ -118,7 +128,9 @@
         "WEAK_RATING(4.3)"
       ],
       "rating": 0,
-      "review_count": 0
+      "review_count": 0,
+      "last_contact": "2026-06-27",
+      "last_outcome": "meeting_set"
     },
     {
       "name": "George Electric Plumbing & HVAC",
@@ -136,7 +148,9 @@
         "PAIN_REVIEW('no answer')"
       ],
       "rating": 0,
-      "review_count": 0
+      "review_count": 0,
+      "last_contact": "2026-06-27",
+      "last_outcome": "callback"
     },
     {
       "name": "Pinner Plumbing & Heating Inc",
@@ -154,7 +168,9 @@
         "PAIN_REVIEW('no one answered')"
       ],
       "rating": 0,
-      "review_count": 0
+      "review_count": 0,
+      "last_contact": "2026-06-27",
+      "last_outcome": "meeting_set"
     },
     {
       "name": "Mcbee Plumbing",
@@ -172,7 +188,9 @@
         "PAIN_REVIEW('no answer')"
       ],
       "rating": 0,
-      "review_count": 0
+      "review_count": 0,
+      "last_contact": "2026-06-25",
+      "last_outcome": "call_initiated"
     },
     {
       "name": "Pipkins Plumbing",
@@ -190,7 +208,9 @@
         "PAIN_REVIEW('no answer')"
       ],
       "rating": 0,
-      "review_count": 0
+      "review_count": 0,
+      "last_contact": "",
+      "last_outcome": ""
     },
     {
       "name": "Charlie's Plumbing Services",
@@ -208,7 +228,9 @@
         "NO_WEBSITE"
       ],
       "rating": 0,
-      "review_count": 0
+      "review_count": 0,
+      "last_contact": "2026-06-27",
+      "last_outcome": "no_answer"
     },
     {
       "name": "Delcase Plumbing Co",
@@ -226,7 +248,9 @@
         "NO_WEBSITE"
       ],
       "rating": 0,
-      "review_count": 0
+      "review_count": 0,
+      "last_contact": "2026-06-10",
+      "last_outcome": "call_initiated"
     },
     {
       "name": "Edwards Electric",
@@ -244,7 +268,9 @@
         "NO_WEBSITE"
       ],
       "rating": 0,
-      "review_count": 0
+      "review_count": 0,
+      "last_contact": "2026-06-10",
+      "last_outcome": "call_initiated"
     },
     {
       "name": "Mc Lain Plumbing & Electric",
@@ -262,7 +288,9 @@
         "PAIN_REVIEW('voicemail')"
       ],
       "rating": 0,
-      "review_count": 0
+      "review_count": 0,
+      "last_contact": "",
+      "last_outcome": ""
     },
     {
       "name": "Bolton Heat & Air",
@@ -280,7 +308,9 @@
         "PAIN_REVIEW('left a message')"
       ],
       "rating": 0,
-      "review_count": 0
+      "review_count": 0,
+      "last_contact": "2026-06-25",
+      "last_outcome": "call_initiated"
     },
     {
       "name": "A & R Plumbing L.L.C",
@@ -298,7 +328,9 @@
         "WEAK_RATING(4.3)"
       ],
       "rating": 0,
-      "review_count": 0
+      "review_count": 0,
+      "last_contact": "2026-06-27",
+      "last_outcome": "no_answer"
     },
     {
       "name": "CARL RAY'S PLUMBING AND SUPPLIES",
@@ -316,7 +348,9 @@
         "PAIN_REVIEW('voicemail')"
       ],
       "rating": 0,
-      "review_count": 0
+      "review_count": 0,
+      "last_contact": "2026-07-03",
+      "last_outcome": "call_initiated"
     },
     {
       "name": "Beck's Plumbing",
@@ -334,7 +368,9 @@
         "TIER1_NICHE"
       ],
       "rating": 0,
-      "review_count": 0
+      "review_count": 0,
+      "last_contact": "2026-06-10",
+      "last_outcome": "call_initiated"
     },
     {
       "name": "Glover Plumbing",
@@ -352,7 +388,9 @@
         "TIER1_NICHE"
       ],
       "rating": 0,
-      "review_count": 0
+      "review_count": 0,
+      "last_contact": "",
+      "last_outcome": ""
     },
     {
       "name": "Cope Plumbing",
@@ -370,7 +408,9 @@
         "PAIN_REVIEW('never answered')"
       ],
       "rating": 0,
-      "review_count": 0
+      "review_count": 0,
+      "last_contact": "",
+      "last_outcome": ""
     },
     {
       "name": "Lovelace Service Heating & Air",
@@ -388,7 +428,9 @@
         "NO_WEBSITE"
       ],
       "rating": 0,
-      "review_count": 0
+      "review_count": 0,
+      "last_contact": "2026-06-10",
+      "last_outcome": "call_initiated"
     },
     {
       "name": "Haven Contracting",
@@ -406,7 +448,9 @@
         "TIER1_NICHE"
       ],
       "rating": 0,
-      "review_count": 0
+      "review_count": 0,
+      "last_contact": "",
+      "last_outcome": ""
     },
     {
       "name": "S & S Plumbing Inc",
@@ -424,7 +468,9 @@
         "PAIN_REVIEW('no one answered')"
       ],
       "rating": 0,
-      "review_count": 0
+      "review_count": 0,
+      "last_contact": "",
+      "last_outcome": ""
     },
     {
       "name": "A B Electric",
@@ -442,7 +488,9 @@
         "TIER1_NICHE"
       ],
       "rating": 0,
-      "review_count": 0
+      "review_count": 0,
+      "last_contact": "2026-06-10",
+      "last_outcome": "call_initiated"
     },
     {
       "name": "Swinney's Air Conditioning",
@@ -460,7 +508,9 @@
         "TIER1_NICHE"
       ],
       "rating": 0,
-      "review_count": 0
+      "review_count": 0,
+      "last_contact": "",
+      "last_outcome": ""
     },
     {
       "name": "River City Plumbing",
@@ -478,7 +528,9 @@
         "PAIN_REVIEW('voicemail')"
       ],
       "rating": 0,
-      "review_count": 0
+      "review_count": 0,
+      "last_contact": "",
+      "last_outcome": ""
     },
     {
       "name": "Jay\u2019s Inc.",
@@ -496,7 +548,9 @@
         "NO_WEBSITE"
       ],
       "rating": 0,
-      "review_count": 0
+      "review_count": 0,
+      "last_contact": "2026-06-10",
+      "last_outcome": "call_initiated"
     },
     {
       "name": "Daniel's Heat & Air",
@@ -514,7 +568,9 @@
         "NO_WEBSITE"
       ],
       "rating": 0,
-      "review_count": 0
+      "review_count": 0,
+      "last_contact": "2026-06-10",
+      "last_outcome": "call_initiated"
     },
     {
       "name": "NOR-TEX AC & REFRIGERATION",
@@ -532,7 +588,9 @@
         "NO_WEBSITE"
       ],
       "rating": 0,
-      "review_count": 0
+      "review_count": 0,
+      "last_contact": "2026-06-10",
+      "last_outcome": "call_initiated"
     },
     {
       "name": "Holladay Air Conditioning",
@@ -550,7 +608,9 @@
         "TIER1_NICHE"
       ],
       "rating": 0,
-      "review_count": 0
+      "review_count": 0,
+      "last_contact": "",
+      "last_outcome": ""
     },
     {
       "name": "Dayne Hearn Heating and Cooling",
@@ -568,7 +628,9 @@
         "HVAC_PEAK"
       ],
       "rating": 0,
-      "review_count": 0
+      "review_count": 0,
+      "last_contact": "",
+      "last_outcome": ""
     },
     {
       "name": "Faith Plumbing",
@@ -586,7 +648,9 @@
         "PAIN_REVIEW('voicemail')"
       ],
       "rating": 0,
-      "review_count": 0
+      "review_count": 0,
+      "last_contact": "2026-06-25",
+      "last_outcome": "call_initiated"
     },
     {
       "name": "Robbie's AC & Heat LLC (Air Conditioning",
@@ -604,7 +668,9 @@
         "PAIN_REVIEW('left a message')"
       ],
       "rating": 0,
-      "review_count": 0
+      "review_count": 0,
+      "last_contact": "",
+      "last_outcome": ""
     },
     {
       "name": "M&M Plumbing Services, LLC",
@@ -622,7 +688,9 @@
         "NO_WEBSITE"
       ],
       "rating": 0,
-      "review_count": 0
+      "review_count": 0,
+      "last_contact": "2026-06-10",
+      "last_outcome": "call_initiated"
     },
     {
       "name": "Eades Drilling & Pump Service",
@@ -640,7 +708,9 @@
         "NO_WEBSITE"
       ],
       "rating": 0,
-      "review_count": 0
+      "review_count": 0,
+      "last_contact": "2026-06-10",
+      "last_outcome": "call_initiated"
     },
     {
       "name": "Peralez Plumbing & Heating",
@@ -658,7 +728,9 @@
         "NO_WEBSITE"
       ],
       "rating": 0,
-      "review_count": 0
+      "review_count": 0,
+      "last_contact": "2026-06-10",
+      "last_outcome": "call_initiated"
     },
     {
       "name": "Reliable Plumbing & Drain",
@@ -676,7 +748,9 @@
         "NO_WEBSITE"
       ],
       "rating": 0,
-      "review_count": 0
+      "review_count": 0,
+      "last_contact": "2026-06-10",
+      "last_outcome": "call_initiated"
     },
     {
       "name": "Innovative Plumbing",
@@ -694,7 +768,9 @@
         "NO_WEBSITE"
       ],
       "rating": 0,
-      "review_count": 0
+      "review_count": 0,
+      "last_contact": "2026-06-10",
+      "last_outcome": "call_initiated"
     },
     {
       "name": "Crawford Electric LLC",
@@ -712,7 +788,9 @@
         "NO_WEBSITE"
       ],
       "rating": 0,
-      "review_count": 0
+      "review_count": 0,
+      "last_contact": "2026-06-10",
+      "last_outcome": "call_initiated"
     },
     {
       "name": "Reed Heating & AC",
@@ -730,7 +808,9 @@
         "WEAK_RATING(4.3)"
       ],
       "rating": 0,
-      "review_count": 0
+      "review_count": 0,
+      "last_contact": "",
+      "last_outcome": ""
     },
     {
       "name": "Jackson Plumbing Company",
@@ -748,7 +828,9 @@
         "PAIN_REVIEW('left a message')"
       ],
       "rating": 0,
-      "review_count": 0
+      "review_count": 0,
+      "last_contact": "2026-06-15",
+      "last_outcome": "call_initiated"
     },
     {
       "name": "Chris's Heating & Air",
@@ -766,7 +848,9 @@
         "TIER1_NICHE"
       ],
       "rating": 0,
-      "review_count": 0
+      "review_count": 0,
+      "last_contact": "2026-06-12",
+      "last_outcome": "call_initiated"
     },
     {
       "name": "T-L-C REFRIGERATION",
@@ -784,7 +868,9 @@
         "TIER1_NICHE"
       ],
       "rating": 0,
-      "review_count": 0
+      "review_count": 0,
+      "last_contact": "2026-06-12",
+      "last_outcome": "call_initiated"
     },
     {
       "name": "C and C Roofing and Home Repair",
@@ -802,7 +888,9 @@
         "NO_WEBSITE"
       ],
       "rating": 0,
-      "review_count": 0
+      "review_count": 0,
+      "last_contact": "2026-06-25",
+      "last_outcome": "call_initiated"
     },
     {
       "name": "Shaw Heating & Air",
@@ -820,7 +908,9 @@
         "SMALL_OP(5)"
       ],
       "rating": 0,
-      "review_count": 0
+      "review_count": 0,
+      "last_contact": "2026-06-12",
+      "last_outcome": "call_initiated"
     },
     {
       "name": "AeroFlow Climate Systems",
@@ -838,7 +928,9 @@
         "SMALL_OP(13)"
       ],
       "rating": 0,
-      "review_count": 0
+      "review_count": 0,
+      "last_contact": "2026-06-12",
+      "last_outcome": "call_initiated"
     },
     {
       "name": "Rick's Comfort Solutions LLC",
@@ -856,7 +948,9 @@
         "MULTIPLE_PAIN"
       ],
       "rating": 0,
-      "review_count": 0
+      "review_count": 0,
+      "last_contact": "",
+      "last_outcome": ""
     },
     {
       "name": "Moss service and repair LLC",
@@ -874,7 +968,9 @@
         "HVAC_PEAK"
       ],
       "rating": 0,
-      "review_count": 0
+      "review_count": 0,
+      "last_contact": "",
+      "last_outcome": ""
     },
     {
       "name": "McCool's Air Tech",
@@ -892,7 +988,9 @@
         "TIER1_NICHE"
       ],
       "rating": 0,
-      "review_count": 0
+      "review_count": 0,
+      "last_contact": "2026-06-10",
+      "last_outcome": "call_initiated"
     },
     {
       "name": "Triple B Plumbing, LLC.",
@@ -910,7 +1008,9 @@
         "TIER1_NICHE"
       ],
       "rating": 0,
-      "review_count": 0
+      "review_count": 0,
+      "last_contact": "2026-06-10",
+      "last_outcome": "call_initiated"
     },
     {
       "name": "Advance Electric Co",
@@ -928,7 +1028,9 @@
         "TIER1_NICHE"
       ],
       "rating": 0,
-      "review_count": 0
+      "review_count": 0,
+      "last_contact": "2026-06-10",
+      "last_outcome": "call_initiated"
     },
     {
       "name": "Keeton Electric Co",
@@ -946,7 +1048,9 @@
         "TIER1_NICHE"
       ],
       "rating": 0,
-      "review_count": 0
+      "review_count": 0,
+      "last_contact": "2026-06-11",
+      "last_outcome": "call_initiated"
     },
     {
       "name": "Allen HVAC Service Co. Inc.",
@@ -964,7 +1068,9 @@
         "TIER1_NICHE"
       ],
       "rating": 0,
-      "review_count": 0
+      "review_count": 0,
+      "last_contact": "2026-06-11",
+      "last_outcome": "call_initiated"
     },
     {
       "name": "2B Cool HVAC",
@@ -982,7 +1088,9 @@
         "TIER1_NICHE"
       ],
       "rating": 0,
-      "review_count": 0
+      "review_count": 0,
+      "last_contact": "2026-06-11",
+      "last_outcome": "call_initiated"
     },
     {
       "name": "Moore Plumbing",
@@ -1000,7 +1108,9 @@
         "TIER1_NICHE"
       ],
       "rating": 0,
-      "review_count": 0
+      "review_count": 0,
+      "last_contact": "2026-06-11",
+      "last_outcome": "call_initiated"
     },
     {
       "name": "Ogles Plumbing",
@@ -1018,7 +1128,9 @@
         "TIER1_NICHE"
       ],
       "rating": 0,
-      "review_count": 0
+      "review_count": 0,
+      "last_contact": "2026-06-25",
+      "last_outcome": "no_answer"
     },
     {
       "name": "Swafford Electric Co",
@@ -1036,7 +1148,9 @@
         "TIER1_NICHE"
       ],
       "rating": 0,
-      "review_count": 0
+      "review_count": 0,
+      "last_contact": "2026-06-11",
+      "last_outcome": "call_initiated"
     },
     {
       "name": "River City Plumbing Co",
@@ -1054,7 +1168,9 @@
         "TIER1_NICHE"
       ],
       "rating": 0,
-      "review_count": 0
+      "review_count": 0,
+      "last_contact": "2026-06-12",
+      "last_outcome": "call_initiated"
     },
     {
       "name": "Superior Plumbing",
@@ -1072,7 +1188,9 @@
         "TIER1_NICHE"
       ],
       "rating": 0,
-      "review_count": 0
+      "review_count": 0,
+      "last_contact": "2026-06-12",
+      "last_outcome": "call_initiated"
     },
     {
       "name": "Hoskins Mid-South Plumbing",
@@ -1090,7 +1208,9 @@
         "TIER1_NICHE"
       ],
       "rating": 0,
-      "review_count": 0
+      "review_count": 0,
+      "last_contact": "2026-06-11",
+      "last_outcome": "call_initiated"
     }
   ],
   "hot_outcomes": [
@@ -1203,31 +1323,13 @@
       "city": "Jackson AR"
     },
     {
-      "name": "George Electric Plumbing & HVAC",
-      "phone": "(662) 428-6413",
-      "phone_raw": "6624286413",
+      "name": "Tri State Electric-Jonesboro",
+      "phone": "(870) 935-9362",
+      "phone_raw": "8709359362",
       "outcome": "callback",
-      "date": "2026-06-27",
-      "niche": "plumbing",
-      "city": "George MS"
-    },
-    {
-      "name": "f8ffc43ab7697336",
-      "phone": "",
-      "phone_raw": "",
-      "outcome": "callback",
-      "date": "2026-06-27",
-      "niche": "",
-      "city": ""
-    },
-    {
-      "name": "C & S Plumbing",
-      "phone": "(918) 225-8097",
-      "phone_raw": "9182258097",
-      "outcome": "meeting_set",
       "date": "2026-06-25",
-      "niche": "plumbing",
-      "city": "Custer OK"
+      "niche": "electrician",
+      "city": "Jonesboro AR"
     }
   ]
 }
