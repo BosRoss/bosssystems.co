@@ -1,7 +1,23 @@
 {
-  "generated": "2026-07-06T19:53:23.384306+00:00",
+  "generated": "2026-07-06T20:07:42.980925+00:00",
   "engine_state": "active",
   "signals": [
+    {
+      "type": "storm",
+      "area": "Camp, TX; Gregg, TX; Harrison, TX; Marion, TX; Upshur, TX; Wood, TX",
+      "niche": "roofing",
+      "action": "Storm damage in Camp, TX; Gregg, TX; Harrison, TX; Marion, TX; Upshur, TX; Wood, TX. Roofers and restoration companies about to get flooded.",
+      "urgency": "today",
+      "pitch_hook": "After a storm like that, you'll get 10x your normal call volume. Ready for it?"
+    },
+    {
+      "type": "flood",
+      "area": "Kerr, TX",
+      "niche": "plumbing",
+      "action": "Flood warnings in Kerr, TX. Plumbers, restoration, mold companies will spike.",
+      "urgency": "today",
+      "pitch_hook": "Water damage calls are coming. Every one you miss is $500+ walking away."
+    },
     {
       "type": "storm",
       "area": "Gregg, TX; Upshur, TX; Wood, TX",
@@ -63,22 +79,6 @@
       "area": "Inland Broward County; Metro Broward County; Inland Miami-Dade County; Metropolitan Miami Dade; Coastal Broward County; Coastal Miami Dade County; Far South Miami-Dade County",
       "niche": "hvac",
       "action": "HVAC businesses in Inland Broward County; Metro Broward County; Inland Miami-Dade County; Metropolitan Miami Dade; Coastal Broward County; Coastal Miami Dade County; Far South Miami-Dade County are drowning in calls right now. Perfect time to pitch.",
-      "urgency": "today",
-      "pitch_hook": "You're getting slammed with calls \u2014 how many went to voicemail today?"
-    },
-    {
-      "type": "heat_wave",
-      "area": "Parker Valley; Kofa; Yuma; Central La Paz; Gila River Valley; Imperial County Southwest; Chuckwalla Mountains; Imperial County Southeast; Imperial County West; Imperial Valley; Chiriaco Summit; Palo V",
-      "niche": "hvac",
-      "action": "HVAC businesses in Parker Valley; Kofa; Yuma; Central La Paz; Gila River Valley; Imperial County Southwest; Chuckwalla Mountains; Imperial County Southeast; Imperial County West; Imperial Valley; Chiriaco Summit; Palo V are drowning in calls right now. Perfect time to pitch.",
-      "urgency": "today",
-      "pitch_hook": "You're getting slammed with calls \u2014 how many went to voicemail today?"
-    },
-    {
-      "type": "heat_wave",
-      "area": "Los Angeles County Inland Coast including Downtown Los Angeles",
-      "niche": "hvac",
-      "action": "HVAC businesses in Los Angeles County Inland Coast including Downtown Los Angeles are drowning in calls right now. Perfect time to pitch.",
       "urgency": "today",
       "pitch_hook": "You're getting slammed with calls \u2014 how many went to voicemail today?"
     }
@@ -239,55 +239,55 @@
   "feeds": [
     {
       "name": "NOAA",
-      "last_hit": "2026-07-06T19:46:17.798520+00:00",
+      "last_hit": "2026-07-06T19:59:37.531988+00:00",
       "status": "yellow",
       "data_points_today": 0
     },
     {
       "name": "REDDIT",
-      "last_hit": "2026-07-06T19:46:17.798520+00:00",
+      "last_hit": "2026-07-06T19:59:37.531988+00:00",
       "status": "green",
       "data_points_today": 30
     },
     {
       "name": "USGS",
-      "last_hit": "2026-07-06T19:46:17.798520+00:00",
+      "last_hit": "2026-07-06T19:59:37.531988+00:00",
       "status": "yellow",
       "data_points_today": 0
     },
     {
       "name": "HACKERNEWS",
-      "last_hit": "2026-07-06T19:46:17.798520+00:00",
+      "last_hit": "2026-07-06T19:59:37.531988+00:00",
       "status": "green",
       "data_points_today": 30
     },
     {
       "name": "FEMA",
-      "last_hit": "2026-07-06T19:46:17.798520+00:00",
+      "last_hit": "2026-07-06T19:59:37.531988+00:00",
       "status": "green",
       "data_points_today": 20
     },
     {
       "name": "COMMODITIES",
-      "last_hit": "2026-07-06T19:46:17.798520+00:00",
+      "last_hit": "2026-07-06T19:59:37.531988+00:00",
       "status": "green",
       "data_points_today": 7
     },
     {
       "name": "RSS",
-      "last_hit": "2026-07-06T19:46:17.798520+00:00",
+      "last_hit": "2026-07-06T19:59:37.531988+00:00",
       "status": "green",
       "data_points_today": 751
     },
     {
       "name": "FRED",
-      "last_hit": "2026-07-06T19:46:17.798520+00:00",
+      "last_hit": "2026-07-06T19:59:37.531988+00:00",
       "status": "yellow",
       "data_points_today": 0
     },
     {
       "name": "BLS",
-      "last_hit": "2026-07-06T19:46:17.798520+00:00",
+      "last_hit": "2026-07-06T19:59:37.531988+00:00",
       "status": "green",
       "data_points_today": 9
     }
