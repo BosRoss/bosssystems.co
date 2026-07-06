@@ -7,20 +7,9 @@
 <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'><rect width='32' height='32' rx='6' fill='%23C9A84C'/><text x='16' y='23' text-anchor='middle' font-size='20' font-weight='bold' fill='%23080808'>B</text></svg>">
 <style>
 *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
-:root{--bg:#080808;--bg2:#0f0f0f;--card:#111;--gold:#C9A84C;--gold2:#dfc070;--text:#f0ede8;--muted:#bbb;--dim:#999;--border:#1a1a1a;--green:#2ecc71;--red:#e74c3c}
+:root{--bg:#080808;--bg2:#0f0f0f;--card:#111;--gold:#C9A84C;--gold2:#dfc070;--text:#f0ede8;--muted:#bbb;--dim:#999;--border:#1a1a1a;--green:#2ecc71;--red:#e74c3c;--blue:#4b92db}
 body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;background:var(--bg);color:var(--text);min-height:100vh;-webkit-tap-highlight-color:transparent}
 .wrap{max-width:600px;margin:0 auto;padding:12px 16px 100px}
-
-/* PIN SCREEN */
-.pin-screen{position:fixed;inset:0;background:var(--bg);display:flex;align-items:center;justify-content:center;flex-direction:column;z-index:100;transition:opacity .3s}
-.pin-screen.out{opacity:0;pointer-events:none}
-.pin-screen h2{color:var(--gold);font-size:14px;letter-spacing:4px;margin-bottom:24px}
-.pin-input{background:var(--bg2);border:1px solid var(--border);color:var(--text);font-size:32px;text-align:center;width:160px;padding:16px;letter-spacing:12px;border-radius:4px}
-.pin-input:focus{outline:none;border-color:var(--gold)}
-.pin-error{color:var(--red);font-size:12px;margin-top:12px;height:16px}
-
-/* APP */
-#app{display:none}
 
 /* HEADER */
 .header{display:flex;justify-content:space-between;align-items:center;padding:8px 0 16px;border-bottom:1px solid var(--border);margin-bottom:16px}
@@ -49,7 +38,7 @@ body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;backgrou
 .lead-tier{font-size:10px;font-weight:700;padding:2px 8px;letter-spacing:1px;border-radius:2px}
 .lead-tier.SUPERNICHE{background:rgba(231,76,60,.15);color:#e74c3c;border:1px solid rgba(231,76,60,.3)}
 .lead-tier.HOT{background:rgba(201,169,110,.15);color:var(--gold);border:1px solid rgba(201,169,110,.3)}
-.lead-tier.WARM{background:rgba(75,146,219,.15);color:#4b92db;border:1px solid rgba(75,146,219,.3)}
+.lead-tier.WARM{background:rgba(75,146,219,.15);color:var(--blue);border:1px solid rgba(75,146,219,.3)}
 .lead-signals{font-size:11px;color:var(--dim);margin-top:6px}
 .lead-btns{display:flex;gap:6px;margin-top:10px;flex-wrap:wrap}
 
@@ -57,7 +46,7 @@ body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;backgrou
 .btn{font-size:11px;font-weight:700;letter-spacing:1px;padding:8px 14px;border:none;cursor:pointer;text-decoration:none;display:inline-flex;align-items:center;gap:4px;border-radius:3px;transition:opacity .2s}
 .btn:hover{opacity:.85}
 .btn-call{background:var(--green);color:#fff}
-.btn-text{background:#4b92db;color:#fff}
+.btn-text{background:var(--blue);color:#fff}
 .btn-gold{background:var(--gold);color:var(--bg)}
 .btn-outline{background:transparent;border:1px solid var(--border);color:var(--muted)}
 .btn-sm{padding:6px 10px;font-size:10px}
@@ -67,7 +56,7 @@ body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;backgrou
 .hot-card{background:var(--bg2);border:1px solid rgba(46,204,113,.3);padding:14px;margin-bottom:8px;border-radius:4px}
 .hot-badge{font-size:10px;font-weight:700;padding:2px 8px;background:rgba(46,204,113,.15);color:var(--green);border:1px solid rgba(46,204,113,.3);letter-spacing:1px;border-radius:2px}
 
-/* QUICK SEND */
+/* SEND / TOOLS GRID */
 .send-grid{display:grid;grid-template-columns:1fr 1fr;gap:8px;margin-bottom:16px}
 .send-btn{background:var(--bg2);border:1px solid var(--border);padding:16px 12px;text-align:center;cursor:pointer;border-radius:4px;transition:border-color .2s;text-decoration:none;display:block}
 .send-btn:hover{border-color:var(--gold)}
@@ -112,6 +101,32 @@ body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;backgrou
 .log-entry{background:var(--bg2);border:1px solid var(--border);padding:10px 14px;margin-bottom:4px;border-radius:4px;font-size:12px;display:flex;justify-content:space-between;color:var(--muted)}
 .log-entry .outcome-badge{font-size:10px;font-weight:700;padding:2px 6px;border-radius:2px;letter-spacing:1px}
 
+/* LEARN */
+.learn-section{margin-bottom:24px}
+.learn-title{font-size:10px;letter-spacing:2px;color:var(--gold);margin-bottom:10px;text-transform:uppercase;border-bottom:1px solid var(--border);padding-bottom:6px}
+.learn-card{background:var(--bg2);border:1px solid var(--border);padding:14px;margin-bottom:8px;border-radius:4px}
+.learn-card h3{font-size:13px;font-weight:700;margin-bottom:6px}
+.learn-card p{font-size:12px;color:var(--muted);line-height:1.7}
+.learn-stat{background:var(--card);border:1px solid var(--gold);padding:12px;border-radius:4px;margin-bottom:8px;text-align:center}
+.learn-stat .num{font-size:24px;font-weight:800;color:var(--gold)}
+.learn-stat .desc{font-size:11px;color:var(--muted);margin-top:2px}
+.learn-rule{background:rgba(231,76,60,.05);border:1px solid rgba(231,76,60,.2);padding:10px 14px;margin-bottom:6px;border-radius:4px;font-size:12px;color:#e74c3c}
+
+/* DELIVERY */
+.deliver-step{background:var(--bg2);border:1px solid var(--border);padding:14px 16px;margin-bottom:8px;border-radius:4px;display:flex;gap:12px;align-items:flex-start}
+.deliver-num{min-width:28px;height:28px;background:var(--gold);color:var(--bg);font-size:13px;font-weight:800;display:flex;align-items:center;justify-content:center;border-radius:50%;flex-shrink:0}
+.deliver-step h3{font-size:13px;font-weight:700;margin-bottom:4px}
+.deliver-step p{font-size:12px;color:var(--muted);line-height:1.6}
+.deliver-tip{font-size:11px;color:var(--gold);margin-top:4px;font-style:italic}
+
+/* SCHEDULE */
+.sched-card{background:var(--bg2);border:1px solid rgba(201,169,110,.3);padding:12px 14px;margin-bottom:6px;border-radius:4px;display:flex;justify-content:space-between;align-items:center}
+.sched-card .sched-name{font-size:13px;font-weight:700}
+.sched-card .sched-time{font-size:12px;color:var(--gold)}
+.sched-type{font-size:10px;font-weight:700;padding:2px 8px;letter-spacing:1px;border-radius:2px}
+.sched-type.meeting{background:rgba(46,204,113,.15);color:var(--green);border:1px solid rgba(46,204,113,.3)}
+.sched-type.callback{background:rgba(75,146,219,.15);color:var(--blue);border:1px solid rgba(75,146,219,.3)}
+
 /* EMPTY */
 .empty{text-align:center;padding:40px 20px;color:var(--dim);font-size:13px}
 
@@ -124,18 +139,10 @@ body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;backgrou
 </head>
 <body>
 
-<!-- PIN SCREEN -->
-<div class="pin-screen" id="pin-screen">
-  <h2>SALES TOOLS</h2>
-  <input type="tel" class="pin-input" id="pin-input" maxlength="4" placeholder="----" autocomplete="off">
-  <div class="pin-error" id="pin-error"></div>
-</div>
-
-<!-- APP -->
 <div id="app">
   <div class="wrap">
     <div class="header">
-      <h1>SALES TOOLS</h1>
+      <h1>BOSS SALES HQ</h1>
       <div style="display:flex;align-items:center;gap:10px">
         <a class="btn btn-red btn-sm" href="sms:+19035224459?body=HELP%20-%20Sales%20associate%20needs%20assistance" style="text-decoration:none">NEED HELP</a>
         <div class="meta" id="last-updated"></div>
@@ -143,19 +150,154 @@ body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;backgrou
     </div>
 
     <div class="tabs">
-      <div class="tab active" data-tab="calls">CALL LIST</div>
-      <div class="tab" data-tab="hot">HOT LEADS</div>
-      <div class="tab" data-tab="send">QUICK SEND</div>
-      <div class="tab" data-tab="roi">ROI CALC</div>
+      <div class="tab active" data-tab="learn">LEARN</div>
+      <div class="tab" data-tab="calls">LEADS</div>
+      <div class="tab" data-tab="hot">HOT</div>
+      <div class="tab" data-tab="tools">TOOLS</div>
       <div class="tab" data-tab="objections">OBJECTIONS</div>
       <div class="tab" data-tab="scripts">SCRIPTS</div>
       <div class="tab" data-tab="competitors">COMPETITORS</div>
+      <div class="tab" data-tab="deliver">DELIVER</div>
+      <div class="tab" data-tab="schedule">SCHEDULE</div>
       <div class="tab" data-tab="metrics">METRICS</div>
-      <div class="tab" data-tab="log">CALL LOG</div>
+      <div class="tab" data-tab="log">LOG</div>
     </div>
 
-    <!-- TAB: CALL LIST -->
-    <div class="tab-panel active" id="panel-calls">
+    <!-- ==================== TAB: LEARN ==================== -->
+    <div class="tab-panel active" id="panel-learn">
+
+      <div class="learn-section">
+        <div class="learn-title">What You Are Selling</div>
+        <div class="learn-card">
+          <h3>BOSS Systems builds AI that answers business phones 24/7</h3>
+          <p>When a contractor is on a roof, under a house, or asleep at 2 AM and a customer calls, our AI picks up instantly. It sounds like a real person. It books the appointment, takes a message, and texts the owner. The customer never hits voicemail. The owner never loses a job.</p>
+        </div>
+        <div class="learn-card">
+          <h3>Pricing</h3>
+          <p><strong style="color:var(--gold)">$250 one-time build fee</strong> — we custom-build the AI for their specific business. Their answers, their tone, their hours, their services.<br><br>
+          <strong style="color:var(--gold)">$50/month flat</strong> — unlimited calls. No per-minute charges. No overages. No contracts. Cancel anytime by texting us.<br><br>
+          That is it. No hidden fees. No surprises. The spouse will never see an unexpected charge.</p>
+        </div>
+        <div class="learn-card">
+          <h3>How It Actually Works</h3>
+          <p>1. Customer calls the business number<br>
+          2. If the owner can't answer, the call forwards to our AI<br>
+          3. AI picks up in under 2 seconds, sounds human, handles the conversation<br>
+          4. AI books appointments, answers common questions, takes messages<br>
+          5. Owner gets a text immediately with the caller's info and what they need<br>
+          6. All call recordings and logs show on their private dashboard<br><br>
+          The owner keeps their same phone number. Nothing changes for them except they stop losing calls.</p>
+        </div>
+      </div>
+
+      <div class="learn-section">
+        <div class="learn-title">Numbers You Need to Know</div>
+        <div style="display:grid;grid-template-columns:1fr 1fr;gap:8px">
+          <div class="learn-stat"><div class="num">62%</div><div class="desc">of contractor calls go unanswered</div></div>
+          <div class="learn-stat"><div class="num">85%</div><div class="desc">of voicemail callers never call back</div></div>
+          <div class="learn-stat"><div class="num">78%</div><div class="desc">buy from the first business that answers</div></div>
+          <div class="learn-stat"><div class="num">$50</div><div class="desc">per month. Flat. No overages.</div></div>
+        </div>
+        <div class="learn-card" style="margin-top:8px">
+          <p>For an HVAC company getting 40 calls a week and missing 62% of them: that is 25 missed calls a week. At $800 average ticket and 85% never calling back, that is <strong style="color:var(--gold)">$884,000 a year</strong> walking out the door. Our service costs $600 a year.</p>
+        </div>
+      </div>
+
+      <div class="learn-section">
+        <div class="learn-title">The Demo Number</div>
+        <div class="learn-card" style="border:1px solid var(--gold)">
+          <h3 style="text-align:center">Call (903) 522-4459</h3>
+          <p style="text-align:center">This is a live AI. Call it right now. Talk to it like you are a customer whose AC just broke. 30 seconds is all it takes to understand what we sell.<br><br>
+          <strong>Use this in every conversation.</strong> When someone says "send me info," say "I would rather show you. Call this number. 20 seconds."</p>
+          <a class="btn btn-call" href="tel:+19035224459" style="width:100%;justify-content:center;margin-top:8px">CALL DEMO NOW</a>
+        </div>
+      </div>
+
+      <div class="learn-section">
+        <div class="learn-title">Your AI Tools (Send These to Prospects)</div>
+        <div class="learn-card">
+          <h3>Free Business Analysis</h3>
+          <p>bosssystems.co/analyze.html — The prospect enters their business type and city. AI instantly maps every place they are losing money and shows exactly what AI can fix. Zero risk for them, and it qualifies the lead for you.</p>
+          <p style="margin-top:6px"><strong style="color:var(--green)">When to use:</strong> First touch. "I want to show you something. Takes 60 seconds. Put in your business type and see where you are losing money."</p>
+        </div>
+        <div class="learn-card">
+          <h3>Missed Call Calculator</h3>
+          <p>bosssystems.co/calculator.html — Shows them exactly how much money they lose per year to missed calls, based on their trade and call volume.</p>
+          <p style="margin-top:6px"><strong style="color:var(--green)">When to use:</strong> When they say "I don't miss that many calls." Send the calculator. Let the math do the talking.</p>
+        </div>
+        <div class="learn-card">
+          <h3>Phone Grade ($29)</h3>
+          <p>bosssystems.co/grade.html — We mystery shop their phone. Call them like a real customer. Grade their response time, friendliness, booking ability. They get a professional report.</p>
+          <p style="margin-top:6px"><strong style="color:var(--green)">When to use:</strong> When they say "I answer all my calls." Say "Prove it. We will mystery shop your phone for $29 and show you the grade. If you get an A, I will leave you alone."</p>
+        </div>
+        <div class="learn-card">
+          <h3>Demo Page</h3>
+          <p>bosssystems.co/hear-it.html — One page with the demo number and a simple explanation. Send this when they want to "think about it."</p>
+        </div>
+        <div class="learn-card">
+          <h3>FAQ Page</h3>
+          <p>bosssystems.co/faq.html — Answers every common question. For the "send me info" crowd.</p>
+        </div>
+        <div class="learn-card">
+          <h3>Guarantee Page</h3>
+          <p>bosssystems.co/guarantee.html — 95% answer rate or first month free. For the skeptics.</p>
+        </div>
+        <div class="learn-card">
+          <h3>Onboard Form (After the Sale)</h3>
+          <p>bosssystems.co/onboard.html — Collects everything needed to build their AI: greeting, hours, services, Q&A, tone. Send this AFTER they pay.</p>
+        </div>
+        <div class="learn-card">
+          <h3>Payment Page</h3>
+          <p>bosssystems.co/pay.html — Venmo @BosRoss or Zelle bosssystemsai@gmail.com. Send this when they are ready to pay.</p>
+        </div>
+      </div>
+
+      <div class="learn-section">
+        <div class="learn-title">The Sales Process (Start to Close)</div>
+        <div class="learn-card">
+          <h3>Step 1: Open With a Question</h3>
+          <p>"When you are out on a job and a call comes in, what happens to it?"<br><br>This gets them talking about THEIR problem. Do not pitch first. Let them tell you they miss calls.</p>
+        </div>
+        <div class="learn-card">
+          <h3>Step 2: Show, Don't Tell</h3>
+          <p>"Call this number real quick. (903) 522-4459. Talk to it like a customer. 30 seconds."<br><br>The demo sells itself. Your job is to get them to call it.</p>
+        </div>
+        <div class="learn-card">
+          <h3>Step 3: Give Them the Number</h3>
+          <p>Use the ROI Calculator (TOOLS tab) to show them their annual loss. Then: "That is what you are losing. This costs $50 a month to fix."</p>
+        </div>
+        <div class="learn-card">
+          <h3>Step 4: Close</h3>
+          <p>"I have two build slots this week. Wednesday or Friday. Which works better?"<br><br>Do not ask "Do you want to sign up?" Give them two options that both mean yes.</p>
+        </div>
+        <div class="learn-card">
+          <h3>Step 5: After They Pay</h3>
+          <p>Send them the Onboard Form. The AI gets built automatically from their answers. See the DELIVER tab for the full step-by-step.</p>
+        </div>
+      </div>
+
+      <div class="learn-section">
+        <div class="learn-title">Rules</div>
+        <div class="learn-rule">NEVER cold call 903 or 430 area codes. That is East Texas. In-person territory only.</div>
+        <div class="learn-rule">NEVER say "free." Say "no cost for the first week" or "try it 30 days."</div>
+        <div class="learn-rule">NEVER skip the spouse text after a sale. The spouse controls the bank account. If they do not know what this charge is, they cancel it.</div>
+        <div class="learn-rule">NEVER promise features we do not have. The AI answers calls, books appointments, takes messages, and texts the owner. That is what it does.</div>
+        <div class="learn-rule">If someone says they got a robocall from us, apologize immediately, remove them, and move on. Do not pitch. Do not argue.</div>
+        <div class="learn-rule">When someone asks for your boss or who runs this: "BOSS Systems is run by a team in East Texas. I can connect you with our business line: (903) 522-4459."</div>
+      </div>
+
+      <div class="learn-section">
+        <div class="learn-title">Your Daily Routine</div>
+        <div class="learn-card">
+          <p><strong style="color:var(--gold)">Morning:</strong> Open this page. Check LEADS tab for your call list. Check HOT tab for warm leads. Check SCHEDULE tab for meetings and callbacks due today.<br><br>
+          <strong style="color:var(--gold)">During the Day:</strong> Call leads from the list. Log every call in the LOG tab. Use TOOLS to send links. Use SCRIPTS for word-for-word text messages. Use OBJECTIONS when you get pushback.<br><br>
+          <strong style="color:var(--gold)">End of Day:</strong> Check METRICS to see your numbers. Review LOG for any callbacks you promised. Export CSV if needed.</p>
+        </div>
+      </div>
+    </div>
+
+    <!-- ==================== TAB: LEADS ==================== -->
+    <div class="tab-panel" id="panel-calls">
       <div class="stats">
         <div class="stat"><div class="stat-val" id="stat-callable">--</div><div class="stat-label">Callable</div></div>
         <div class="stat"><div class="stat-val" id="stat-meetings">--</div><div class="stat-label">Meetings</div></div>
@@ -165,13 +307,13 @@ body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;backgrou
       <div id="call-list"></div>
     </div>
 
-    <!-- TAB: HOT LEADS -->
+    <!-- ==================== TAB: HOT ==================== -->
     <div class="tab-panel" id="panel-hot">
       <div id="hot-list"></div>
     </div>
 
-    <!-- TAB: QUICK SEND -->
-    <div class="tab-panel" id="panel-send">
+    <!-- ==================== TAB: TOOLS ==================== -->
+    <div class="tab-panel" id="panel-tools">
       <p style="font-size:12px;color:var(--dim);margin-bottom:12px">Tap to copy the link, then paste into a text message to the prospect.</p>
       <div class="send-grid">
         <div class="send-btn" onclick="copyLink('https://bosssystems.co/analyze.html','Free Analysis')">
@@ -189,6 +331,11 @@ body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;backgrou
           <div class="label">Demo Page</div>
           <div class="sub">Hear the AI. 30 seconds.</div>
         </div>
+        <div class="send-btn" onclick="copyLink('https://bosssystems.co/grade.html','Phone Grade')">
+          <div class="icon">🎯</div>
+          <div class="label">Phone Grade ($29)</div>
+          <div class="sub">Mystery shop their phone.</div>
+        </div>
         <div class="send-btn" onclick="copyLink('https://bosssystems.co/faq.html','FAQ')">
           <div class="icon">❓</div>
           <div class="label">FAQ</div>
@@ -198,11 +345,6 @@ body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;backgrou
           <div class="icon">✅</div>
           <div class="label">Guarantee</div>
           <div class="sub">95% or first month free.</div>
-        </div>
-        <div class="send-btn" onclick="copyLink('https://bosssystems.co/grade.html','Phone Grade')">
-          <div class="icon">🎯</div>
-          <div class="label">Phone Grade ($29)</div>
-          <div class="sub">Mystery shop their phone.</div>
         </div>
         <div class="send-btn" onclick="copyLink('https://bosssystems.co/onboard.html','Onboard Form')">
           <div class="icon">📋</div>
@@ -216,10 +358,8 @@ body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;backgrou
         </div>
       </div>
       <div id="copy-toast" style="display:none;position:fixed;bottom:80px;left:50%;transform:translateX(-50%);background:var(--gold);color:var(--bg);padding:10px 20px;font-size:13px;font-weight:700;border-radius:4px;z-index:50"></div>
-    </div>
 
-    <!-- TAB: ROI CALC -->
-    <div class="tab-panel" id="panel-roi">
+      <div style="font-size:10px;letter-spacing:2px;color:var(--dim);margin:20px 0 10px;text-transform:uppercase;border-top:1px solid var(--border);padding-top:16px">ROI Calculator</div>
       <div class="calc-form">
         <div class="calc-row">
           <label>Trade</label>
@@ -257,11 +397,11 @@ body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;backgrou
       <button class="btn btn-gold" style="width:100%" onclick="copyROI()">COPY ROI PITCH</button>
     </div>
 
-    <!-- TAB: OBJECTIONS -->
+    <!-- ==================== TAB: OBJECTIONS ==================== -->
     <div class="tab-panel" id="panel-objections">
       <div class="obj open" onclick="this.classList.toggle('open')">
         <div class="obj-q">"Too expensive"</div>
-        <div class="obj-a">What's one job worth to you? One caught call pays for 7 months of this. You're losing $5,000 a month minimum in missed calls. This costs $50.</div>
+        <div class="obj-a">What is one job worth to you? One caught call pays for 7 months of this. You are losing $5,000 a month minimum in missed calls. This costs $50.</div>
       </div>
       <div class="obj" onclick="this.classList.toggle('open')">
         <div class="obj-q">"I don't need it"</div>
@@ -269,7 +409,7 @@ body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;backgrou
       </div>
       <div class="obj" onclick="this.classList.toggle('open')">
         <div class="obj-q">"I already have someone"</div>
-        <div class="obj-a">What happens when she's not available? Evenings, weekends, when she's at lunch? This is her backup so she's not chained to the phone 24/7.</div>
+        <div class="obj-a">What happens when she is not available? Evenings, weekends, when she is at lunch? This is her backup so she is not chained to the phone 24/7.</div>
       </div>
       <div class="obj" onclick="this.classList.toggle('open')">
         <div class="obj-q">"I need to think about it"</div>
@@ -277,60 +417,60 @@ body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;backgrou
       </div>
       <div class="obj" onclick="this.classList.toggle('open')">
         <div class="obj-q">"I'm too busy right now"</div>
-        <div class="obj-a">The fact that you're too busy is exactly why calls are going to voicemail. Can I call you Thursday at 5:30 when you're done for the day?</div>
+        <div class="obj-a">The fact that you are too busy is exactly why calls are going to voicemail. Can I call you Thursday at 5:30 when you are done for the day?</div>
       </div>
       <div class="obj" onclick="this.classList.toggle('open')">
         <div class="obj-q">"I don't trust AI"</div>
-        <div class="obj-a">Don't trust my words either. Call this number. 30 seconds. If it sounds like a robot, I'll leave and never bother you again. (903) 522-4459</div>
+        <div class="obj-a">Do not trust my words either. Call this number. 30 seconds. If it sounds like a robot, I will leave and never bother you again. (903) 522-4459</div>
       </div>
       <div class="obj" onclick="this.classList.toggle('open')">
         <div class="obj-q">"My customers want a real person"</div>
-        <div class="obj-a">What's worse for a customer: a natural-sounding AI that answers in 2 seconds, or your competitor's human who answered first because your phone was ringing out?</div>
+        <div class="obj-a">What is worse for a customer: a natural-sounding AI that answers in 2 seconds, or your competitor's human who answered first because your phone was ringing out?</div>
       </div>
       <div class="obj" onclick="this.classList.toggle('open')">
         <div class="obj-q">"Send me some info"</div>
-        <div class="obj-a">I'd rather show you. Call this number. 20 seconds. If you're not impressed, I'll email you everything and stop bugging you. (903) 522-4459</div>
+        <div class="obj-a">I would rather show you. Call this number. 20 seconds. If you are not impressed, I will email you everything and stop bugging you. (903) 522-4459</div>
       </div>
       <div class="obj" onclick="this.classList.toggle('open')">
         <div class="obj-q">"Call me back later"</div>
-        <div class="obj-a">Is this something you're actually interested in, or are you being polite? If it is real interest, let's lock in a day and time so I don't have to keep calling.</div>
+        <div class="obj-a">Is this something you are actually interested in, or are you being polite? If it is real interest, let us lock in a day and time so I do not have to keep calling.</div>
       </div>
       <div class="obj" onclick="this.classList.toggle('open')">
         <div class="obj-q">"I answer all my calls"</div>
-        <div class="obj-a">What about 9 PM on a Saturday when someone has a burst pipe? When you're under a house with both hands full? This catches the ones you can't.</div>
+        <div class="obj-a">What about 9 PM on a Saturday when someone has a burst pipe? When you are under a house with both hands full? This catches the ones you can not.</div>
       </div>
       <div class="obj" onclick="this.classList.toggle('open')">
         <div class="obj-q">"I got burned before"</div>
-        <div class="obj-a">Don't trust my words then. 30 days. See the call logs yourself. Cancel if it doesn't do exactly what I said it would. No contract, no penalty.</div>
+        <div class="obj-a">Do not trust my words then. 30 days. See the call logs yourself. Cancel if it does not do exactly what I said it would. No contract, no penalty.</div>
       </div>
       <div class="obj" onclick="this.classList.toggle('open')">
         <div class="obj-q">"My wife handles the phones"</div>
-        <div class="obj-a">BUYING SIGNAL. This isn't replacing her. It is her backup so she's not chained to the phone 24/7. Can I talk to her? She should know about this.</div>
+        <div class="obj-a">BUYING SIGNAL. This is not replacing her. It is her backup so she is not chained to the phone 24/7. Can I talk to her? She should know about this.</div>
       </div>
       <div class="obj" onclick="this.classList.toggle('open')">
         <div class="obj-q">"It's the slow season"</div>
-        <div class="obj-a">Slow season means 3 calls a day instead of 10. Missing one of those three is missing 33% of your business for the day. Every call matters more when they're rare.</div>
+        <div class="obj-a">Slow season means 3 calls a day instead of 10. Missing one of those three is missing 33% of your business for the day. Every call matters more when they are rare.</div>
       </div>
       <div class="obj" onclick="this.classList.toggle('open')">
         <div class="obj-q">"I got a robocall from you guys"</div>
         <div class="obj-a">I apologize for that. I am removing you from our list right now. You will not hear from us again. Do not argue. Do not pitch. Remove them immediately and move on.</div>
       </div>
       <div class="obj" onclick="this.classList.toggle('open')">
-        <div class="obj-q">"What about data privacy?" / "Are you recording calls?"</div>
+        <div class="obj-q">"What about data privacy?"</div>
         <div class="obj-a">All calls are processed by the AI in real time. We do not sell or share any data. You see every call log and recording on your private dashboard. Only you have access.</div>
       </div>
       <div class="obj" onclick="this.classList.toggle('open')">
         <div class="obj-q">"I just want to keep using my own phone"</div>
-        <div class="obj-a">You keep using your phone exactly the same way. This is a backup. When you can't answer, the AI picks up instead of voicemail. When you can answer, you answer. Nothing changes except you stop losing the calls you miss.</div>
+        <div class="obj-a">You keep using your phone exactly the same way. This is a backup. When you can not answer, the AI picks up instead of voicemail. When you can answer, you answer. Nothing changes except you stop losing the calls you miss.</div>
       </div>
     </div>
 
-    <!-- TAB: SCRIPTS -->
+    <!-- ==================== TAB: SCRIPTS ==================== -->
     <div class="tab-panel" id="panel-scripts">
       <div class="script-card">
         <div class="script-label">Opening Question</div>
         <button class="script-copy" onclick="copyText(this.parentElement,'Opening')">COPY</button>
-        When you're out on a job and a call comes in, what happens to it?
+        When you are out on a job and a call comes in, what happens to it?
       </div>
       <div class="script-card">
         <div class="script-label">15-Second Pitch</div>
@@ -340,46 +480,61 @@ body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;backgrou
       <div class="script-card">
         <div class="script-label">60-Second Walk-In</div>
         <button class="script-copy" onclick="copyText(this.parentElement,'Walk-In')">COPY</button>
-        Hey, are you the owner? I'm [name]. I live here in [city]. Got something I want to show you, about 60 seconds.<br><br>I actually called your shop yesterday. [Voicemail / rang out / hold music]. If I'm a customer whose pipe just burst, I'm calling the next guy.<br><br>[PAUSE. Say nothing.]<br><br>Call this number and hear what your customers would hear instead. (903) 522-4459<br><br>That answers every call, 24/7, books the appointment, texts you the info. $50 a month, no contract.
+        Hey, are you the owner? I am [name]. I live here in [city]. Got something I want to show you, about 60 seconds.<br><br>I actually called your shop yesterday. [Voicemail / rang out / hold music]. If I am a customer whose pipe just burst, I am calling the next guy.<br><br>[PAUSE. Say nothing.]<br><br>Call this number and hear what your customers would hear instead. (903) 522-4459<br><br>That answers every call, 24/7, books the appointment, texts you the info. $50 a month, no contract.
       </div>
       <div class="script-card">
         <div class="script-label">After Good Call Text</div>
         <button class="script-copy" onclick="copyText(this.parentElement,'Follow-Up')">COPY</button>
-        Hey [Name], good talking to you. Here's the demo number if you want to hear it again: (903) 522-4459. Call it anytime. No pressure either way.
+        Hey [Name], good talking to you. Here is the demo number if you want to hear it again: (903) 522-4459. Call it anytime. No pressure either way.
       </div>
       <div class="script-card">
         <div class="script-label">After They Pay Text</div>
         <button class="script-copy" onclick="copyText(this.parentElement,'Payment Confirm')">COPY</button>
-        Got it. Thank you. I'm starting your build right now. You'll have a test call to listen to within 2 hours. Here's my number if you need anything: [YOUR PHONE NUMBER]
+        Got it. Thank you. I am starting your build right now. You will have a test call to listen to within 2 hours. Here is my number if you need anything: [YOUR PHONE NUMBER]
       </div>
       <div class="script-card">
         <div class="script-label">System Live Text</div>
         <button class="script-copy" onclick="copyText(this.parentElement,'Go Live')">COPY</button>
-        Hey [Name], you're live. Your AI is answering [number] right now. Try calling it and talk to it like a customer. You'll get a text every time it takes a message or books something. If anything sounds off, text me and I'll fix it same day.
+        Hey [Name], you are live. Your AI is answering right now. Try calling it and talk to it like a customer. You will get a text every time it takes a message or books something. If anything sounds off, text me and I will fix it same day.
       </div>
       <div class="script-card">
         <div class="script-label">Spouse Text (MOST IMPORTANT)</div>
         <button class="script-copy" onclick="copyText(this.parentElement,'Spouse')">COPY</button>
-        Hi [Spouse], this is [you] from BOSS Systems. I just set up the AI for [business]. It answers all the calls [Owner] can't get to. Nights, weekends, while he's on a job. You'll never get a surprise bill. $50 a month flat, cancel anytime by texting me.
+        Hi [Spouse], this is [you] from BOSS Systems. I just set up the AI for [business]. It answers all the calls [Owner] can not get to. Nights, weekends, while he is on a job. You will never get a surprise bill. $50 a month flat, cancel anytime by texting me.
       </div>
       <div class="script-card">
         <div class="script-label">After a "No" (Send Once)</div>
         <button class="script-copy" onclick="copyText(this.parentElement,'Regret Seed')">COPY</button>
-        No worries. If you ever want to hear what the AI sounds like, call (903) 522-4459 anytime. It's live 24/7. Have a good one.
+        No worries. If you ever want to hear what the AI sounds like, call (903) 522-4459 anytime. It is live 24/7. Have a good one.
       </div>
       <div class="script-card">
         <div class="script-label">Cancellation Save</div>
         <button class="script-copy" onclick="copyText(this.parentElement,'Cancel Save')">COPY</button>
-        Would it help if we paused for a month instead? Everything stays saved. Your AI, your settings, your number routing. Zero charge. When you want it back on, just text me and it's 5 minutes.
+        Would it help if we paused for a month instead? Everything stays saved. Your AI, your settings, your number routing. Zero charge. When you want it back on, just text me and it is 5 minutes.
       </div>
       <div class="script-card">
         <div class="script-label">The Close</div>
         <button class="script-copy" onclick="copyText(this.parentElement,'Close')">COPY</button>
         I have two build slots this week. Wednesday or Friday. Which works better?
       </div>
+      <div class="script-card">
+        <div class="script-label">First Catch Text</div>
+        <button class="script-copy" onclick="copyText(this.parentElement,'First Catch')">COPY</button>
+        Hey [Name], your AI just caught its first call. [Caller] called about [service]. That is money you would have lost to voicemail. Check your dashboard to see the full log.
+      </div>
+      <div class="script-card">
+        <div class="script-label">Week 1 Check-In</div>
+        <button class="script-copy" onclick="copyText(this.parentElement,'Week 1')">COPY</button>
+        Hey [Name], how is the AI working? Any calls you want me to adjust the responses for? I can fix anything same day.
+      </div>
+      <div class="script-card">
+        <div class="script-label">Month 1 Summary</div>
+        <button class="script-copy" onclick="copyText(this.parentElement,'Month 1')">COPY</button>
+        Hey [Name], your AI answered [X] calls this month and booked [Y] jobs. At your average ticket that is roughly $[Z] in revenue you would have missed. Your cost: $50.
+      </div>
     </div>
 
-    <!-- TAB: COMPETITORS -->
+    <!-- ==================== TAB: COMPETITORS ==================== -->
     <div class="tab-panel" id="panel-competitors">
       <p style="font-size:12px;color:var(--dim);margin-bottom:12px">At real volume (50 calls/day, ~4,500 min/month)</p>
       <table class="comp-table">
@@ -395,7 +550,7 @@ body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;backgrou
       <div style="margin-top:20px;padding:16px;background:var(--bg2);border:1px solid var(--border);border-radius:4px">
         <div style="font-size:12px;color:var(--dim);letter-spacing:1px;margin-bottom:8px">WHY RUBY CUSTOMERS CANCEL</div>
         <p style="font-size:13px;color:var(--muted)">Bill shock. They signed up for $250/month. Got a $720 bill because of per-minute overages. The spouse saw it and killed it.</p>
-        <p style="font-size:13px;color:var(--text);margin-top:8px;font-weight:600">"Our competitors charge by the minute. You get a surprise bill every month. We charge $50. That's it."</p>
+        <p style="font-size:13px;color:var(--text);margin-top:8px;font-weight:600">"Our competitors charge by the minute. You get a surprise bill every month. We charge $50. That is it."</p>
       </div>
       <div style="margin-top:12px;padding:16px;background:var(--bg2);border:1px solid var(--border);border-radius:4px">
         <div style="font-size:12px;color:var(--dim);letter-spacing:1px;margin-bottom:8px">THE AVOCA GAP</div>
@@ -403,7 +558,120 @@ body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;backgrou
       </div>
     </div>
 
-    <!-- TAB: METRICS -->
+    <!-- ==================== TAB: DELIVER ==================== -->
+    <div class="tab-panel" id="panel-deliver">
+      <div style="font-size:12px;color:var(--dim);margin-bottom:16px">After someone pays, follow these steps exactly. Every step matters. Skip one and you lose the client.</div>
+
+      <div class="deliver-step">
+        <div class="deliver-num">1</div>
+        <div>
+          <h3>Collect Payment</h3>
+          <p>$250 build fee + first month ($50). Total: $300. Venmo @BosRoss or Zelle bosssystemsai@gmail.com. Confirm payment received before moving on.</p>
+          <div class="deliver-tip">Use the Payment link in TOOLS tab to send them the pay page.</div>
+        </div>
+      </div>
+
+      <div class="deliver-step">
+        <div class="deliver-num">2</div>
+        <div>
+          <h3>Send Onboard Form</h3>
+          <p>Text them: "Got it. Starting your build now. Fill this out real quick so we can make the AI sound right for your business:" then send bosssystems.co/onboard.html</p>
+          <div class="deliver-tip">Use the Onboard Form link in TOOLS tab. This collects their greeting, hours, services, Q&A, and never-say rules.</div>
+        </div>
+      </div>
+
+      <div class="deliver-step">
+        <div class="deliver-num">3</div>
+        <div>
+          <h3>Wait for Form + Build Gets Created</h3>
+          <p>When they submit the form, the team gets a notification and the AI agent build starts automatically. Their custom AI gets built with their exact answers, tone, and business info. You do not need to do anything here.</p>
+          <div class="deliver-tip">If they have not filled it out within 2 hours, text them a reminder.</div>
+        </div>
+      </div>
+
+      <div class="deliver-step">
+        <div class="deliver-num">4</div>
+        <div>
+          <h3>Test the AI Yourself</h3>
+          <p>Once the build is done, you will get a notification with the test number. Call it yourself. Talk to it like a customer. Make sure it sounds right, answers their questions correctly, and books appointments.</p>
+          <div class="deliver-tip">Call at least twice. Once as a normal customer, once as an angry customer. If anything sounds off, text Boston immediately.</div>
+        </div>
+      </div>
+
+      <div class="deliver-step">
+        <div class="deliver-num">5</div>
+        <div>
+          <h3>Send Test Call to Client</h3>
+          <p>Text the client: "Your AI is built. Call [test number] and talk to it like one of your customers. Tell me what you think."</p>
+          <div class="deliver-tip">Let THEM hear it and approve before going live. If they want changes, text Boston with the specifics.</div>
+        </div>
+      </div>
+
+      <div class="deliver-step">
+        <div class="deliver-num">6</div>
+        <div>
+          <h3>Go Live (Set Up Forwarding)</h3>
+          <p>Walk them through call forwarding. When they can not answer, calls forward to the AI number. Use the Go Live script in SCRIPTS tab.</p>
+          <div class="deliver-tip">Most carriers: Settings then Phone then Call Forwarding then enter the AI number. If confused, have them call their carrier.</div>
+        </div>
+      </div>
+
+      <div class="deliver-step">
+        <div class="deliver-num">7</div>
+        <div>
+          <h3>Text the Spouse</h3>
+          <p>This is the most important step. The spouse controls the bank account. If they do not know what this $50 charge is, they cancel it. Use the Spouse script in SCRIPTS tab.</p>
+          <div class="deliver-tip">Ask the owner: "Who else should know about this? Your wife? Your office manager?" Get their number and text them.</div>
+        </div>
+      </div>
+
+      <div class="deliver-step">
+        <div class="deliver-num">8</div>
+        <div>
+          <h3>First Catch Text (Day 1-2)</h3>
+          <p>The first time the AI catches a call, text the client immediately with the details. Use the First Catch script in SCRIPTS tab.</p>
+          <div class="deliver-tip">This is the "aha moment." They need to SEE the value within the first 48 hours or doubt creeps in.</div>
+        </div>
+      </div>
+
+      <div class="deliver-step">
+        <div class="deliver-num">9</div>
+        <div>
+          <h3>Week 1 Check-In</h3>
+          <p>Day 7. Use the Week 1 script. Fix anything they mention same day.</p>
+          <div class="deliver-tip">Week 1 is when 40% of cancellations happen. This one text prevents most of them.</div>
+        </div>
+      </div>
+
+      <div class="deliver-step">
+        <div class="deliver-num">10</div>
+        <div>
+          <h3>Month 1 Summary</h3>
+          <p>Day 30. Send them their actual numbers: calls answered, jobs booked, revenue saved. Use the Month 1 script.</p>
+          <div class="deliver-tip">Real numbers from their dashboard. This is the text that makes them stay forever.</div>
+        </div>
+      </div>
+
+      <div style="background:var(--card);border:2px solid var(--gold);padding:16px;border-radius:4px;margin-top:16px">
+        <div style="font-size:12px;letter-spacing:2px;color:var(--gold);margin-bottom:8px">DELIVERY RULES</div>
+        <p style="font-size:12px;color:var(--muted);line-height:1.8">
+          Never skip the spouse text. That one step prevents more cancellations than everything else combined.<br>
+          Never go live without the client hearing it first.<br>
+          If anything is broken or sounds wrong, do not go live. Text Boston and wait for the fix. Same day turnaround.<br>
+          The client dashboard at bosssystems.co/client-dashboard.html shows all their call data. Send them the link after go-live.
+        </p>
+      </div>
+    </div>
+
+    <!-- ==================== TAB: SCHEDULE ==================== -->
+    <div class="tab-panel" id="panel-schedule">
+      <div style="font-size:10px;letter-spacing:2px;color:var(--dim);margin-bottom:12px;text-transform:uppercase">Upcoming Meetings & Callbacks</div>
+      <div id="schedule-list"></div>
+      <div style="margin-top:16px;font-size:10px;letter-spacing:2px;color:var(--dim);margin-bottom:8px;text-transform:uppercase">Past (Last 7 Days)</div>
+      <div id="schedule-past"></div>
+    </div>
+
+    <!-- ==================== TAB: METRICS ==================== -->
     <div class="tab-panel" id="panel-metrics">
       <div class="stats">
         <div class="stat"><div class="stat-val" id="m-today">0</div><div class="stat-label">Today</div></div>
@@ -434,7 +702,7 @@ body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;backgrou
     </div>
 
     <!-- MY INFO SETUP -->
-    <div id="setup-overlay" style="display:none;position:fixed;inset:0;background:rgba(0,0,0,.9);z-index:90;display:none;align-items:center;justify-content:center">
+    <div id="setup-overlay" style="display:none;position:fixed;inset:0;background:rgba(0,0,0,.9);z-index:90;align-items:center;justify-content:center">
       <div style="background:var(--bg2);border:1px solid var(--border);padding:24px;max-width:340px;width:90%;border-radius:8px">
         <div style="font-size:12px;letter-spacing:2px;color:var(--gold);margin-bottom:16px">YOUR INFO</div>
         <p style="font-size:12px;color:var(--dim);margin-bottom:16px">Scripts will auto-fill with your name and number when you tap COPY.</p>
@@ -445,7 +713,7 @@ body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;backgrou
       </div>
     </div>
 
-    <!-- TAB: CALL LOG -->
+    <!-- ==================== TAB: LOG ==================== -->
     <div class="tab-panel" id="panel-log">
       <div class="log-form">
         <div class="log-row">
@@ -465,6 +733,11 @@ body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;backgrou
             <option value="dnc">DNC</option>
           </select>
         </div>
+        <div class="log-row" id="log-datetime-row" style="display:none">
+          <input type="datetime-local" id="log-datetime" style="flex:1;background:var(--card);border:1px solid var(--border);color:var(--text);padding:10px;font-size:13px;font-family:inherit;border-radius:3px">
+          <div style="font-size:10px;color:var(--gold);align-self:center;min-width:80px" id="log-datetime-label">Meeting time</div>
+        </div>
+        <div id="log-conflict-warning" style="display:none;background:rgba(231,76,60,.1);border:1px solid rgba(231,76,60,.3);color:#e74c3c;padding:10px;border-radius:4px;font-size:12px;margin-bottom:10px"></div>
         <div class="log-row">
           <input type="text" id="log-notes" placeholder="Notes (optional)">
         </div>
@@ -481,49 +754,32 @@ body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;backgrou
 </div>
 
 <script>
-var PIN = '1003';
 var DATA_URL = 'https://raw.githubusercontent.com/BosRoss/bosssystems.co/main/sales_data.json';
 
 var TRADE_DATA = {
-  hvac: {name:'HVAC', ticket:800, scene:'July, 102 degrees. You are on a roof.'},
-  plumber: {name:'Plumber', ticket:350, scene:'9 PM. Pipe burst.'},
-  electrician: {name:'Electrician', ticket:450, scene:'Hands in a panel.'},
-  roofer: {name:'Roofer', ticket:5000, scene:'Storm Saturday night. 15 calls Sunday.'},
-  lawn: {name:'Lawn Care', ticket:150, scene:'Spring Saturday. 20 calls. You are mowing.'},
-  pest: {name:'Pest Control', ticket:250, scene:'Termite season. Every call counts.'},
-  auto: {name:'Auto Repair', ticket:600, scene:'Under a car. Phone rings. Hands covered in oil.'},
-  dental: {name:'Dental', ticket:400, scene:'Mid-procedure. New patient calls.'},
-  legal: {name:'Law Firm', ticket:2500, scene:'In court. Potential $50K case calls.'}
+  hvac: {name:'HVAC', ticket:800},
+  plumber: {name:'Plumber', ticket:350},
+  electrician: {name:'Electrician', ticket:450},
+  roofer: {name:'Roofer', ticket:5000},
+  lawn: {name:'Lawn Care', ticket:150},
+  pest: {name:'Pest Control', ticket:250},
+  auto: {name:'Auto Repair', ticket:600},
+  dental: {name:'Dental', ticket:400},
+  legal: {name:'Law Firm', ticket:2500}
 };
 
-// PIN
-var pinInput = document.getElementById('pin-input');
-if (sessionStorage.getItem('boss_sales_auth') === 'true') unlock();
-pinInput.addEventListener('input', function(){
-  document.getElementById('pin-error').textContent = '';
-  if (pinInput.value.length === 4) {
-    if (pinInput.value === PIN) {
-      sessionStorage.setItem('boss_sales_auth', 'true');
-      unlock();
-    } else {
-      document.getElementById('pin-error').textContent = 'WRONG PIN';
-      pinInput.value = '';
-    }
-  }
-});
-
-function unlock() {
-  document.getElementById('pin-screen').classList.add('out');
-  document.getElementById('app').style.display = 'block';
+// INIT
+(function(){
   loadData();
   loadLog();
   calcROI();
   calcMetrics();
+  renderSchedule();
   var info = getMyInfo();
   if (!info.name) {
     document.getElementById('setup-overlay').style.display = 'flex';
   }
-}
+})();
 
 // TABS
 document.querySelectorAll('.tab').forEach(function(t){
@@ -535,13 +791,59 @@ document.querySelectorAll('.tab').forEach(function(t){
   });
 });
 
+// SHOW/HIDE datetime field based on outcome
+document.getElementById('log-outcome').addEventListener('change', function(){
+  var v = this.value;
+  var row = document.getElementById('log-datetime-row');
+  var label = document.getElementById('log-datetime-label');
+  var warn = document.getElementById('log-conflict-warning');
+  warn.style.display = 'none';
+  if (v === 'meeting' || v === 'callback') {
+    row.style.display = 'flex';
+    label.textContent = v === 'meeting' ? 'Meeting time' : 'Callback time';
+    var now = new Date();
+    now.setHours(now.getHours() + 1, 0, 0, 0);
+    var y = now.getFullYear(), mo = String(now.getMonth()+1).padStart(2,'0'), d = String(now.getDate()).padStart(2,'0');
+    var h = String(now.getHours()).padStart(2,'0'), mi = String(now.getMinutes()).padStart(2,'0');
+    document.getElementById('log-datetime').value = y+'-'+mo+'-'+d+'T'+h+':'+mi;
+    if (v === 'meeting') checkConflict();
+  } else {
+    row.style.display = 'none';
+  }
+});
+
+document.getElementById('log-datetime').addEventListener('change', function(){
+  if (document.getElementById('log-outcome').value === 'meeting') checkConflict();
+});
+
+function checkConflict() {
+  var dt = document.getElementById('log-datetime').value;
+  if (!dt) return;
+  var target = new Date(dt).getTime();
+  var logs = JSON.parse(localStorage.getItem('boss_call_log') || '[]');
+  var conflicts = [];
+  logs.forEach(function(l){
+    if (l.scheduled_at && l.outcome === 'meeting') {
+      var existing = new Date(l.scheduled_at).getTime();
+      if (Math.abs(target - existing) < 30 * 60 * 1000) {
+        conflicts.push(l.name + ' at ' + new Date(l.scheduled_at).toLocaleString([], {month:'short',day:'numeric',hour:'2-digit',minute:'2-digit'}));
+      }
+    }
+  });
+  var warn = document.getElementById('log-conflict-warning');
+  if (conflicts.length > 0) {
+    warn.textContent = 'CONFLICT: You already have a meeting within 30 minutes of this time with ' + conflicts.join(', ');
+    warn.style.display = 'block';
+  } else {
+    warn.style.display = 'none';
+  }
+}
+
 // LOAD DATA
 function loadData() {
   fetch(DATA_URL + '?t=' + Date.now())
     .then(function(r){return r.json()})
-    .then(function(data){
-      renderData(data);
-    })
+    .then(function(data){ renderData(data); })
     .catch(function(){
       document.getElementById('call-list').innerHTML = '<div class="empty">Could not load lead data. Check connection.</div>';
     });
@@ -560,11 +862,10 @@ function renderData(data) {
     document.getElementById('last-updated').textContent = 'Updated ' + d.toLocaleDateString() + ' ' + d.toLocaleTimeString([], {hour:'2-digit',minute:'2-digit'});
   }
 
-  // Call list
   var calls = data.call_list || [];
   var html = '';
   if (calls.length === 0) {
-    html = '<div class="empty">No callable leads. Run the lead engine to fill the queue.</div>';
+    html = '<div class="empty">No leads yet. New leads get added every weekday.</div>';
   }
   var loggedPhones = getLoggedPhones();
   calls.forEach(function(l){
@@ -584,7 +885,7 @@ function renderData(data) {
     html += '<div class="lead-info">' + esc(l.niche) + ' &middot; ' + esc(l.city||'') + ', ' + esc(l.state||'') + (ratingInfo ? ' &middot; ' + ratingInfo : '') + '</div></div>';
     html += '<div class="lead-tier ' + tierClass + '">' + tierClass + '</div>';
     html += '</div>';
-    if (l.last_contact) html += '<div style="font-size:10px;color:#4b92db;margin-top:4px">AI called ' + esc(l.last_contact) + ' &middot; ' + esc((l.last_outcome||'').replace(/_/g,' ')) + '</div>';
+    if (l.last_contact) html += '<div style="font-size:10px;color:var(--blue);margin-top:4px">AI called ' + esc(l.last_contact) + ' &middot; ' + esc((l.last_outcome||'').replace(/_/g,' ')) + '</div>';
     html += '<div class="lead-signals">' + esc(signals) + '</div>';
     html += '<div class="lead-btns">';
     html += '<a class="btn btn-call btn-sm" href="tel:+1' + l.phone_raw + '">CALL ' + esc(l.phone) + '</a>';
@@ -594,11 +895,10 @@ function renderData(data) {
   });
   document.getElementById('call-list').innerHTML = html;
 
-  // Hot leads
   var hots = data.hot_outcomes || [];
   var hotHtml = '';
   if (hots.length === 0) {
-    hotHtml = '<div class="empty">No hot leads yet. When the AI caller gets a meeting or callback, it shows up here.</div>';
+    hotHtml = '<div class="empty">No hot leads yet. When you log a meeting or callback, it shows here.</div>';
   }
   hots.forEach(function(h){
     var badge = h.outcome === 'meeting_set' ? 'MEETING SET' : h.outcome === 'callback' ? 'CALLBACK' : 'CLOSED';
@@ -621,7 +921,7 @@ function renderData(data) {
 
 function esc(s) { var d = document.createElement('div'); d.textContent = s||''; return d.innerHTML; }
 
-// QUICK SEND
+// COPY LINK
 function copyLink(url, label) {
   if (navigator.clipboard) {
     navigator.clipboard.writeText(url).then(function(){ showToast(label + ' link copied'); });
@@ -659,125 +959,16 @@ function calcROI() {
   document.getElementById('calc-annual').textContent = '$' + annualLoss.toLocaleString();
   document.getElementById('calc-monthly').textContent = '$' + Math.round(monthlyLoss).toLocaleString();
   document.getElementById('calc-weekly').textContent = '$' + weeklyLoss.toLocaleString();
-
-  var ratio = Math.round(annualLoss / 600);
-  document.getElementById('calc-roi-ratio').textContent = ratio + ':1 return on $50/month';
+  document.getElementById('calc-roi-ratio').textContent = Math.round(annualLoss / 600) + ':1 return on $50/month';
 }
 
 function copyROI() {
-  var trade = document.getElementById('calc-trade').value;
-  var td = TRADE_DATA[trade];
   var annual = document.getElementById('calc-annual').textContent;
   var monthly = document.getElementById('calc-monthly').textContent;
-
   var pitch = 'At your call volume, you are losing about ' + annual + ' a year to missed calls. That is ' + monthly + ' a month walking out the door. BOSS answers every call for $50 a month flat. No overages, no contracts. Want to hear what it sounds like? Call (903) 522-4459.';
-
   if (navigator.clipboard) {
     navigator.clipboard.writeText(pitch).then(function(){ showToast('ROI pitch copied'); });
   }
-}
-
-// SCRIPTS
-function copyText(el, label) {
-  var text = el.innerText.replace(/COPY$/, '').replace(el.querySelector('.script-label').innerText, '').trim();
-  if (navigator.clipboard) {
-    navigator.clipboard.writeText(text).then(function(){ showToast(label + ' copied'); });
-  }
-}
-
-// LOGGED PHONE LOOKUP (for cross-reference)
-function getLoggedPhones() {
-  var logs = JSON.parse(localStorage.getItem('boss_call_log') || '[]');
-  var map = {};
-  logs.forEach(function(l){ if (l.phone) map[l.phone.replace(/\D/g,'')] = true; });
-  return map;
-}
-
-// CALL LOG
-function logCall() {
-  var name = document.getElementById('log-name').value.trim();
-  var phone = document.getElementById('log-phone').value.trim();
-  var outcome = document.getElementById('log-outcome').value;
-  var notes = document.getElementById('log-notes').value.trim();
-
-  if (!name) { document.getElementById('log-name').style.borderColor = 'var(--red)'; return; }
-
-  var logs = JSON.parse(localStorage.getItem('boss_call_log') || '[]');
-  logs.unshift({
-    name: name,
-    phone: phone,
-    outcome: outcome,
-    notes: notes,
-    time: new Date().toISOString()
-  });
-  localStorage.setItem('boss_call_log', JSON.stringify(logs));
-
-  document.getElementById('log-name').value = '';
-  document.getElementById('log-phone').value = '';
-  document.getElementById('log-notes').value = '';
-  document.getElementById('log-name').style.borderColor = 'var(--border)';
-
-  if (outcome === 'closed' || outcome === 'meeting') {
-    notifyDeal(name, phone, outcome, notes);
-  }
-
-  loadLog();
-  loadData();
-  calcMetrics();
-  showToast(outcome === 'closed' ? 'DEAL LOGGED. Team notified.' : 'Call logged');
-}
-
-function exportCSV() {
-  var logs = JSON.parse(localStorage.getItem('boss_call_log') || '[]');
-  if (logs.length === 0) { showToast('No calls to export'); return; }
-  var csv = 'Name,Phone,Outcome,Notes,Time\n';
-  logs.forEach(function(l){
-    csv += '"' + (l.name||'').replace(/"/g,'""') + '","' + (l.phone||'') + '","' + (l.outcome||'') + '","' + (l.notes||'').replace(/"/g,'""') + '","' + (l.time||'') + '"\n';
-  });
-  var blob = new Blob([csv], {type:'text/csv'});
-  var a = document.createElement('a');
-  a.href = URL.createObjectURL(blob);
-  a.download = 'boss_call_log_' + new Date().toISOString().slice(0,10) + '.csv';
-  a.click();
-  showToast('CSV downloaded');
-}
-
-function prefillLog(name, phone) {
-  document.querySelectorAll('.tab').forEach(function(x){x.classList.remove('active')});
-  document.querySelectorAll('.tab-panel').forEach(function(x){x.classList.remove('active')});
-  document.querySelector('[data-tab="log"]').classList.add('active');
-  document.getElementById('panel-log').classList.add('active');
-  document.getElementById('log-name').value = name;
-  document.getElementById('log-phone').value = phone;
-  document.getElementById('log-name').focus();
-}
-
-function loadLog() {
-  var logs = JSON.parse(localStorage.getItem('boss_call_log') || '[]');
-  var today = new Date().toDateString();
-  var todayLogs = logs.filter(function(l){ return new Date(l.time).toDateString() === today; });
-
-  document.getElementById('log-count').textContent = todayLogs.length;
-
-  var html = '';
-  var colors = {interested:'var(--green)',callback:'var(--gold)',meeting:'var(--green)',demo:'#4b92db',closed:'var(--green)',not_interested:'var(--dim)',voicemail:'var(--dim)',no_answer:'var(--dim)',dnc:'var(--red)'};
-
-  logs.slice(0, 50).forEach(function(l){
-    var d = new Date(l.time);
-    var timeStr = d.toLocaleDateString() + ' ' + d.toLocaleTimeString([], {hour:'2-digit',minute:'2-digit'});
-    var color = colors[l.outcome] || 'var(--dim)';
-    html += '<div class="log-entry">';
-    html += '<div><strong>' + esc(l.name) + '</strong>';
-    if (l.phone) html += ' &middot; ' + esc(l.phone);
-    if (l.notes) html += ' &middot; <span style="color:var(--dim)">' + esc(l.notes) + '</span>';
-    html += '</div>';
-    html += '<div><span class="outcome-badge" style="color:' + color + '">' + l.outcome.replace(/_/g,' ').toUpperCase() + '</span>';
-    html += '<div style="font-size:10px;color:var(--dim);margin-top:2px">' + timeStr + '</div></div>';
-    html += '</div>';
-  });
-
-  if (logs.length === 0) html = '<div class="empty">No calls logged yet. Use the LOG button on any lead or fill out the form above.</div>';
-  document.getElementById('log-list').innerHTML = html;
 }
 
 // MY INFO
@@ -811,23 +1002,130 @@ function copyText(el, label) {
   }
 }
 
+// LOGGED PHONE LOOKUP
+function getLoggedPhones() {
+  var logs = JSON.parse(localStorage.getItem('boss_call_log') || '[]');
+  var map = {};
+  logs.forEach(function(l){ if (l.phone) map[l.phone.replace(/\D/g,'')] = true; });
+  return map;
+}
+
+// CALL LOG
+function logCall() {
+  var name = document.getElementById('log-name').value.trim();
+  var phone = document.getElementById('log-phone').value.trim();
+  var outcome = document.getElementById('log-outcome').value;
+  var notes = document.getElementById('log-notes').value.trim();
+  var scheduledAt = '';
+
+  if (!name) { document.getElementById('log-name').style.borderColor = 'var(--red)'; return; }
+
+  if ((outcome === 'meeting' || outcome === 'callback') && document.getElementById('log-datetime').value) {
+    scheduledAt = document.getElementById('log-datetime').value;
+  }
+
+  var logs = JSON.parse(localStorage.getItem('boss_call_log') || '[]');
+  var entry = { name:name, phone:phone, outcome:outcome, notes:notes, time:new Date().toISOString() };
+  if (scheduledAt) entry.scheduled_at = scheduledAt;
+  logs.unshift(entry);
+  localStorage.setItem('boss_call_log', JSON.stringify(logs));
+
+  document.getElementById('log-name').value = '';
+  document.getElementById('log-phone').value = '';
+  document.getElementById('log-notes').value = '';
+  document.getElementById('log-datetime').value = '';
+  document.getElementById('log-datetime-row').style.display = 'none';
+  document.getElementById('log-conflict-warning').style.display = 'none';
+  document.getElementById('log-name').style.borderColor = 'var(--border)';
+
+  if (outcome === 'closed' || outcome === 'meeting') {
+    notifyDeal(name, phone, outcome, notes, scheduledAt);
+  }
+
+  loadLog();
+  loadData();
+  calcMetrics();
+  renderSchedule();
+  showToast(outcome === 'closed' ? 'DEAL LOGGED. Team notified.' : outcome === 'meeting' ? 'MEETING LOGGED. Check SCHEDULE tab.' : 'Call logged');
+}
+
+function exportCSV() {
+  var logs = JSON.parse(localStorage.getItem('boss_call_log') || '[]');
+  if (logs.length === 0) { showToast('No calls to export'); return; }
+  var csv = 'Name,Phone,Outcome,Scheduled,Notes,Time\n';
+  logs.forEach(function(l){
+    csv += '"' + (l.name||'').replace(/"/g,'""') + '","' + (l.phone||'') + '","' + (l.outcome||'') + '","' + (l.scheduled_at||'') + '","' + (l.notes||'').replace(/"/g,'""') + '","' + (l.time||'') + '"\n';
+  });
+  var blob = new Blob([csv], {type:'text/csv'});
+  var a = document.createElement('a');
+  a.href = URL.createObjectURL(blob);
+  a.download = 'boss_call_log_' + new Date().toISOString().slice(0,10) + '.csv';
+  a.click();
+  showToast('CSV downloaded');
+}
+
+function prefillLog(name, phone) {
+  document.querySelectorAll('.tab').forEach(function(x){x.classList.remove('active')});
+  document.querySelectorAll('.tab-panel').forEach(function(x){x.classList.remove('active')});
+  document.querySelector('[data-tab="log"]').classList.add('active');
+  document.getElementById('panel-log').classList.add('active');
+  document.getElementById('log-name').value = name;
+  document.getElementById('log-phone').value = phone;
+  document.getElementById('log-name').focus();
+}
+
+function loadLog() {
+  var logs = JSON.parse(localStorage.getItem('boss_call_log') || '[]');
+  var today = new Date().toDateString();
+  var todayLogs = logs.filter(function(l){ return new Date(l.time).toDateString() === today; });
+  document.getElementById('log-count').textContent = todayLogs.length;
+
+  var html = '';
+  var colors = {interested:'var(--green)',callback:'var(--gold)',meeting:'var(--green)',demo:'var(--blue)',closed:'var(--green)',not_interested:'var(--dim)',voicemail:'var(--dim)',no_answer:'var(--dim)',dnc:'var(--red)'};
+
+  logs.slice(0, 50).forEach(function(l){
+    var d = new Date(l.time);
+    var timeStr = d.toLocaleDateString() + ' ' + d.toLocaleTimeString([], {hour:'2-digit',minute:'2-digit'});
+    var color = colors[l.outcome] || 'var(--dim)';
+    html += '<div class="log-entry">';
+    html += '<div><strong>' + esc(l.name) + '</strong>';
+    if (l.phone) html += ' &middot; ' + esc(l.phone);
+    if (l.scheduled_at) {
+      var sd = new Date(l.scheduled_at);
+      html += ' &middot; <span style="color:var(--gold);font-weight:700">' + (l.outcome === 'meeting' ? 'Meeting' : 'Callback') + ': ' + sd.toLocaleString([], {month:'short',day:'numeric',hour:'2-digit',minute:'2-digit'}) + '</span>';
+    }
+    if (l.notes) html += ' &middot; <span style="color:var(--dim)">' + esc(l.notes) + '</span>';
+    html += '</div>';
+    html += '<div><span class="outcome-badge" style="color:' + color + '">' + l.outcome.replace(/_/g,' ').toUpperCase() + '</span>';
+    html += '<div style="font-size:10px;color:var(--dim);margin-top:2px">' + timeStr + '</div></div>';
+    html += '</div>';
+  });
+
+  if (logs.length === 0) html = '<div class="empty">No calls logged yet. Use the LOG button on any lead or fill out the form above.</div>';
+  document.getElementById('log-list').innerHTML = html;
+}
+
 // DEAL NOTIFICATION
-function notifyDeal(name, phone, outcome, notes) {
+function notifyDeal(name, phone, outcome, notes, scheduledAt) {
   var msg = 'DEAL ALERT: ' + outcome.toUpperCase() + ' - ' + name;
   if (phone) msg += ' (' + phone + ')';
+  if (scheduledAt) {
+    var sd = new Date(scheduledAt);
+    msg += ' - ' + sd.toLocaleString([], {weekday:'short',month:'short',day:'numeric',hour:'2-digit',minute:'2-digit'});
+  }
   if (notes) msg += ' - ' + notes;
   var info = getMyInfo();
   if (info.name) msg += ' [Rep: ' + info.name + ']';
   try {
     fetch('https://ntfy.sh/bossai-sales-alerts', {
-      method: 'POST',
-      headers: {'Title': 'BOSS Sales: ' + outcome.toUpperCase(), 'Priority': outcome === 'closed' ? '5' : '4', 'Tags': outcome === 'closed' ? 'moneybag' : 'phone'},
-      body: msg
+      method:'POST',
+      headers:{'Title':'BOSS Sales: '+outcome.toUpperCase(),'Priority':outcome==='closed'?'5':'4','Tags':outcome==='closed'?'moneybag':'phone'},
+      body:msg
     });
     fetch('https://ntfy.sh/bossai-bostonrossall-alerts', {
-      method: 'POST',
-      headers: {'Title': 'BOSS Sales: ' + outcome.toUpperCase(), 'Priority': '5', 'Tags': outcome === 'closed' ? 'moneybag,rotating_light' : 'phone'},
-      body: msg
+      method:'POST',
+      headers:{'Title':'BOSS Sales: '+outcome.toUpperCase(),'Priority':'5','Tags':outcome==='closed'?'moneybag,rotating_light':'phone'},
+      body:msg
     });
   } catch(e) {}
 }
@@ -847,8 +1145,7 @@ function calcMetrics() {
     if (d.toDateString() === todayStr) today++;
     if (d >= weekAgo) week++;
     if (d >= monthAgo) month++;
-    var o = l.outcome || 'unknown';
-    outcomes[o] = (outcomes[o] || 0) + 1;
+    outcomes[l.outcome] = (outcomes[l.outcome] || 0) + 1;
   });
 
   document.getElementById('m-today').textContent = today;
@@ -863,7 +1160,7 @@ function calcMetrics() {
 
   var funnel = [
     {label:'Total Calls', count:logs.length, color:'var(--dim)'},
-    {label:'Interested', count:(outcomes.interested||0)+(outcomes.callback||0)+(outcomes.meeting||0)+(outcomes.demo||0)+(outcomes.closed||0), color:'#4b92db'},
+    {label:'Interested', count:(outcomes.interested||0)+(outcomes.callback||0)+(outcomes.meeting||0)+(outcomes.demo||0)+(outcomes.closed||0), color:'var(--blue)'},
     {label:'Demos Given', count:(outcomes.demo||0)+(outcomes.meeting||0)+(outcomes.closed||0), color:'var(--gold)'},
     {label:'Meetings Set', count:(outcomes.meeting||0)+(outcomes.closed||0), color:'var(--gold2)'},
     {label:'CLOSED', count:closed, color:'var(--green)'}
@@ -887,9 +1184,73 @@ function resetMetrics() {
     localStorage.removeItem('boss_call_log');
     loadLog();
     calcMetrics();
+    renderSchedule();
     loadData();
     showToast('All data cleared');
   }
+}
+
+// SCHEDULE
+function renderSchedule() {
+  var logs = JSON.parse(localStorage.getItem('boss_call_log') || '[]');
+  var now = Date.now();
+  var weekAgo = now - 7 * 24 * 60 * 60 * 1000;
+  var upcoming = [];
+  var past = [];
+
+  logs.forEach(function(l){
+    if (!l.scheduled_at) return;
+    if (l.outcome !== 'meeting' && l.outcome !== 'callback') return;
+    var t = new Date(l.scheduled_at).getTime();
+    if (t >= now) upcoming.push(l);
+    else if (t >= weekAgo) past.push(l);
+  });
+
+  upcoming.sort(function(a, b){ return new Date(a.scheduled_at) - new Date(b.scheduled_at); });
+  past.sort(function(a, b){ return new Date(b.scheduled_at) - new Date(a.scheduled_at); });
+
+  var upHtml = '';
+  if (upcoming.length === 0) {
+    upHtml = '<div class="empty">No upcoming meetings or callbacks. Log a call with "Meeting Set" or "Callback" to schedule one.</div>';
+  }
+  upcoming.forEach(function(l){
+    var sd = new Date(l.scheduled_at);
+    var diff = sd.getTime() - now;
+    var hours = Math.floor(diff / 3600000);
+    var mins = Math.floor((diff % 3600000) / 60000);
+    var countdown = hours > 0 ? hours + 'h ' + mins + 'm' : mins + 'm';
+    var typeClass = l.outcome;
+
+    upHtml += '<div class="sched-card">';
+    upHtml += '<div>';
+    upHtml += '<div class="sched-name">' + esc(l.name) + '</div>';
+    upHtml += '<div class="sched-time">' + sd.toLocaleString([], {weekday:'short',month:'short',day:'numeric',hour:'2-digit',minute:'2-digit'}) + ' &middot; in ' + countdown + '</div>';
+    if (l.phone) upHtml += '<div style="font-size:11px;color:var(--dim);margin-top:2px">' + esc(l.phone) + '</div>';
+    if (l.notes) upHtml += '<div style="font-size:11px;color:var(--dim)">' + esc(l.notes) + '</div>';
+    upHtml += '</div>';
+    upHtml += '<div style="display:flex;flex-direction:column;align-items:flex-end;gap:6px">';
+    upHtml += '<span class="sched-type ' + typeClass + '">' + (l.outcome === 'meeting' ? 'MEETING' : 'CALLBACK') + '</span>';
+    if (l.phone) upHtml += '<a class="btn btn-call btn-sm" href="tel:+1' + l.phone.replace(/\D/g,'') + '">CALL</a>';
+    upHtml += '</div>';
+    upHtml += '</div>';
+  });
+  document.getElementById('schedule-list').innerHTML = upHtml;
+
+  var pastHtml = '';
+  if (past.length === 0) {
+    pastHtml = '<div class="empty" style="padding:20px">No past meetings in the last 7 days.</div>';
+  }
+  past.forEach(function(l){
+    var sd = new Date(l.scheduled_at);
+    pastHtml += '<div class="sched-card" style="opacity:.5">';
+    pastHtml += '<div>';
+    pastHtml += '<div class="sched-name">' + esc(l.name) + '</div>';
+    pastHtml += '<div style="font-size:12px;color:var(--dim)">' + sd.toLocaleString([], {weekday:'short',month:'short',day:'numeric',hour:'2-digit',minute:'2-digit'}) + '</div>';
+    pastHtml += '</div>';
+    pastHtml += '<span class="sched-type ' + l.outcome + '">' + (l.outcome === 'meeting' ? 'MEETING' : 'CALLBACK') + '</span>';
+    pastHtml += '</div>';
+  });
+  document.getElementById('schedule-past').innerHTML = pastHtml;
 }
 </script>
 </body>
