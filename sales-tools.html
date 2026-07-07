@@ -174,7 +174,9 @@ body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;backgrou
         </div>
         <div class="learn-card">
           <h3>The Foot in the Door: AI Phone Answering</h3>
-          <p>The easiest sell is the phone AI. When a contractor is on a roof and a call comes in, our AI picks up instantly. It sounds like a real person. It books the appointment, takes a message, and texts the owner. The customer never hits voicemail. The owner never loses a job.<br><br>This is the entry point. Once they see it work, you upsell the full AI transformation.</p>
+          <p>The easiest first sell is the phone AI. When a contractor is on a roof and a call comes in, our AI picks up instantly. It sounds like a real person. Books the appointment, takes a message, texts the owner. The customer never hits voicemail.<br><br>
+          <strong>Be honest about the value.</strong> Some businesses only miss a few calls a month. Do not tell them they are losing $100K — tell them what one caught call is actually worth to them. For an HVAC company, one saved job is $400-$800. Even 2-3 extra jobs a month pays for the service 10x over.<br><br>
+          This is the entry point. Once they see it work, you introduce the full AI transformation — scheduling, follow-ups, reviews, invoicing, everything automated.</p>
         </div>
         <div class="learn-card">
           <h3>Pricing</h3>
@@ -209,13 +211,15 @@ body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;backgrou
       <div class="learn-section">
         <div class="learn-title">Numbers You Need to Know</div>
         <div style="display:grid;grid-template-columns:1fr 1fr;gap:8px">
-          <div class="learn-stat"><div class="num">62%</div><div class="desc">of contractor calls go unanswered</div></div>
           <div class="learn-stat"><div class="num">85%</div><div class="desc">of voicemail callers never call back</div></div>
           <div class="learn-stat"><div class="num">78%</div><div class="desc">buy from the first business that answers</div></div>
           <div class="learn-stat"><div class="num">$50</div><div class="desc">per month. Flat. No overages.</div></div>
+          <div class="learn-stat"><div class="num">1 job</div><div class="desc">One caught call pays for months of service</div></div>
         </div>
         <div class="learn-card" style="margin-top:8px">
-          <p>For an HVAC company getting 40 calls a week and missing 62% of them: that is 25 missed calls a week. At $800 average ticket and 85% never calling back, that is <strong style="color:var(--gold)">$884,000 a year</strong> walking out the door. Our service costs $600 a year.</p>
+          <p><strong>Be honest, not flashy.</strong> Some businesses miss 2-3 calls a month. Some miss 10. Do not make up numbers. Ask them: "How many calls do you think you miss in a week?" Then do the math together with THEIR answer.<br><br>
+          <strong>The real pitch:</strong> An HVAC company with a $480 average ticket that catches even 2 extra calls a month just made $960 that was walking out the door. Our service costs $50/month. Even one caught call pays for the whole year.<br><br>
+          The industry stat (62% unanswered) is real, but every business is different. Let the Analyze tool pull their actual Google data. Do not guess — let the numbers speak for themselves.</p>
         </div>
       </div>
 
@@ -393,11 +397,11 @@ body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;backgrou
         </div>
         <div class="calc-row">
           <label>Calls / Week</label>
-          <input type="number" id="calc-calls" value="40" min="1" max="500" onchange="calcROI()" oninput="calcROI()">
+          <input type="number" id="calc-calls" value="15" min="1" max="500" onchange="calcROI()" oninput="calcROI()">
         </div>
         <div class="calc-row">
           <label>Miss Rate %</label>
-          <input type="number" id="calc-miss" value="62" min="1" max="100" onchange="calcROI()" oninput="calcROI()">
+          <input type="number" id="calc-miss" value="15" min="1" max="100" onchange="calcROI()" oninput="calcROI()">
         </div>
         <div class="calc-result">
           <div class="big" id="calc-annual">$0</div>
@@ -417,11 +421,11 @@ body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;backgrou
     <div class="tab-panel" id="panel-objections">
       <div class="obj open" onclick="this.classList.toggle('open')">
         <div class="obj-q">"Too expensive"</div>
-        <div class="obj-a">What is one job worth to you? One caught call pays for 7 months of this. You are losing $5,000 a month minimum in missed calls. This costs $50.</div>
+        <div class="obj-a">What is one job worth to you? Even one extra caught call per month pays for the whole service. $50 a month, no overages, no contracts. If it does not pay for itself, cancel anytime.</div>
       </div>
       <div class="obj" onclick="this.classList.toggle('open')">
         <div class="obj-q">"I don't need it"</div>
-        <div class="obj-a">62% of contractor calls go unanswered. 85% never call back. Do you know where you stand? We can mystery shop your phone for free and show you.</div>
+        <div class="obj-a">How many calls do you think you miss in a week? Even if it is only 2-3, that is 2-3 jobs your competitor got instead. 85% of people who hit voicemail never call back. We can mystery shop your phone for $29 and show you exactly where you stand.</div>
       </div>
       <div class="obj" onclick="this.classList.toggle('open')">
         <div class="obj-q">"I already have someone"</div>
@@ -981,7 +985,7 @@ function calcROI() {
 function copyROI() {
   var annual = document.getElementById('calc-annual').textContent;
   var monthly = document.getElementById('calc-monthly').textContent;
-  var pitch = 'At your call volume, you are losing about ' + annual + ' a year to missed calls. That is ' + monthly + ' a month walking out the door. BOSS answers every call for $50 a month flat. No overages, no contracts. Want to hear what it sounds like? Call (903) 522-4459.';
+  var pitch = 'Based on the numbers you gave me, missed calls could be costing you around ' + monthly + ' a month. Even if you only catch 1-2 extra calls, that pays for the whole service many times over. BOSS answers every call for $50 a month flat. No overages, no contracts. Want to hear what it sounds like? Call (903) 522-4459.';
   if (navigator.clipboard) {
     navigator.clipboard.writeText(pitch).then(function(){ showToast('ROI pitch copied'); });
   }

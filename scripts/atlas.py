@@ -28,7 +28,23 @@ from typing import Dict, List, Optional, Tuple
 from urllib.parse import quote
 from zoneinfo import ZoneInfo
 
+import concurrent.futures
+
 import requests
+
+try:
+    from atlas_feeds import (
+        NEWS_FEEDS as _FEEDS_NEWS,
+        ANALYSIS_FEEDS as _FEEDS_ANALYSIS,
+        OFFICIAL_FEEDS as _FEEDS_OFFICIAL,
+        SUBREDDITS as _FEEDS_SUBREDDITS,
+        TELEGRAM_CHANNELS as _FEEDS_TELEGRAM,
+        SPECIALIZED_FEEDS as _FEEDS_SPECIALIZED,
+    )
+except ImportError:
+    _FEEDS_NEWS = _FEEDS_ANALYSIS = _FEEDS_OFFICIAL = []
+    _FEEDS_SUBREDDITS = []
+    _FEEDS_TELEGRAM = _FEEDS_SPECIALIZED = []
 
 try:
     import feedparser
@@ -168,14 +184,14 @@ POWER_SOURCES = {
                "gdelt", "reddit", "hackernews", "rss", "fred", "govinfo", "congress",
                "currencies", "commodities", "global_weather",
                "space_weather", "treasury", "cisa",
-               "think_tanks", "official_feeds", "world_bank", "gdacs",
+               "think_tanks", "official_feeds", "specialized", "world_bank", "gdacs",
                "sec_edgar", "fema", "bls", "eia", "finnhub", "patents", "alpha_vantage",
                "telegram", "futures", "firms"],
     "ACTIVE": ["usgs", "noaa", "nasa", "iss", "polymarket", "manifold", "metaculus",
                "gdelt", "reddit", "hackernews", "rss", "fred", "govinfo", "congress",
                "currencies", "commodities", "global_weather",
                "space_weather", "treasury", "cisa",
-               "think_tanks", "official_feeds", "world_bank", "gdacs",
+               "think_tanks", "official_feeds", "specialized", "world_bank", "gdacs",
                "sec_edgar", "fema", "bls", "eia", "finnhub", "patents", "alpha_vantage",
                "telegram", "futures", "firms",
                "adsb", "wikipedia", "safecast", "crest",
@@ -184,7 +200,7 @@ POWER_SOURCES = {
                "gdelt", "reddit", "hackernews", "rss", "fred", "govinfo", "congress",
                "currencies", "commodities", "global_weather",
                "space_weather", "treasury", "cisa",
-               "think_tanks", "official_feeds", "world_bank", "gdacs",
+               "think_tanks", "official_feeds", "specialized", "world_bank", "gdacs",
                "sec_edgar", "fema", "bls", "eia", "finnhub", "patents", "alpha_vantage",
                "telegram", "futures", "firms",
                "adsb", "wikipedia", "safecast", "crest",
@@ -230,6 +246,7 @@ SOURCE_RELIABILITY = {
     "telegram": 0.45,      # OSINT channels, fast but unverified raw intel
     "futures": 0.80,       # Market data, money-weighted signal
     "firms": 0.90,         # NASA satellite sensor data
+    "specialized": 0.75,   # Sanctions/courts/trade/terrorism specialized feeds
     "reddit": 0.25,        # Anonymous, unverified, easily manipulated
     "hackernews": 0.30,    # Community curated but unverified
     "wikipedia": 0.35,     # Can be manipulated
@@ -995,60 +1012,50 @@ def scan_acled() -> List[Dict]:
 # Source: Reddit (pain signals + global)
 # ---------------------------------------------------------------------------
 
-SUBREDDITS = [
-    # Geopolitical / intelligence
+SUBREDDITS = _FEEDS_SUBREDDITS if _FEEDS_SUBREDDITS else [
     "worldnews", "geopolitics", "intelligence", "CredibleDefense",
-    "NuclearPower", "foreignpolicy", "MiddleEastNews",
-    # Economic / markets
-    "economics", "CryptoCurrency", "wallstreetbets", "stocks",
-    "SupplyChain", "commodities",
-    # Business pain signals (Boston's market)
-    "smallbusiness", "HVAC", "Plumbing", "electricians",
-    "Roofing", "lawncare", "AutoRepair", "contractors",
-    # Technology / AI / cyber
-    "technology", "artificial", "cybersecurity", "privacy",
-    "MachineLearning",
-    # Environment / disaster / resilience
-    "collapse", "preppers", "weather", "TropicalWeather",
-    "Earthquakes", "climate",
-    # Infrastructure / transport
-    "aviation", "shipping", "space", "energy",
-    # Regional
-    "india", "europe", "africa", "China", "LatinAmerica",
-    # US Domestic / Policy
-    "politics", "law",
+    "economics", "politics", "law", "technology", "cybersecurity",
 ]
+
+def _fetch_subreddit(sub: str) -> List[Dict]:
+    url = f"https://www.reddit.com/r/{sub}/hot.rss?limit=15"
+    r = safe_get(url)
+    if r is None:
+        return []
+    items = []
+    try:
+        root = ET.fromstring(r.content)
+        ns = {"atom": "http://www.w3.org/2005/Atom"}
+        for entry in root.findall("atom:entry", ns)[:15]:
+            title_el = entry.find("atom:title", ns)
+            link_el = entry.find("atom:link", ns)
+            updated_el = entry.find("atom:updated", ns)
+            title = title_el.text.strip() if title_el is not None and title_el.text else ""
+            link = link_el.get("href", "") if link_el is not None else ""
+            updated = updated_el.text.strip() if updated_el is not None and updated_el.text else ""
+            if title:
+                items.append({
+                    "source": "reddit",
+                    "subreddit": f"r/{sub}",
+                    "title": title[:200],
+                    "url": link,
+                    "timestamp": updated,
+                    "date": updated,
+                })
+    except ET.ParseError:
+        pass
+    return items
+
 
 def scan_reddit() -> List[Dict]:
     results = []
-    for sub in SUBREDDITS:
-        url = f"https://www.reddit.com/r/{sub}/hot.rss?limit=20"
-        r = safe_get(url)
-        if r is None:
-            time.sleep(1)
-            continue
-        try:
-            root = ET.fromstring(r.content)
-            ns = {"atom": "http://www.w3.org/2005/Atom"}
-            for entry in root.findall("atom:entry", ns)[:20]:
-                title_el = entry.find("atom:title", ns)
-                link_el = entry.find("atom:link", ns)
-                updated_el = entry.find("atom:updated", ns)
-                title = title_el.text.strip() if title_el is not None and title_el.text else ""
-                link = link_el.get("href", "") if link_el is not None else ""
-                updated = updated_el.text.strip() if updated_el is not None and updated_el.text else ""
-                if title:
-                    results.append({
-                        "source": "reddit",
-                        "subreddit": f"r/{sub}",
-                        "title": title[:200],
-                        "url": link,
-                        "timestamp": updated,
-                        "date": updated,
-                    })
-        except ET.ParseError:
-            pass
-        time.sleep(1)
+    with concurrent.futures.ThreadPoolExecutor(max_workers=8) as pool:
+        future_map = {pool.submit(_fetch_subreddit, sub): sub for sub in SUBREDDITS}
+        for future in concurrent.futures.as_completed(future_map, timeout=180):
+            try:
+                results.extend(future.result())
+            except Exception:
+                pass
     return results
 
 # ---------------------------------------------------------------------------
@@ -1088,70 +1095,32 @@ def scan_hackernews() -> List[Dict]:
 # Source: RSS Feeds.TIER 2 (mainstream news, confirmation only)
 # ---------------------------------------------------------------------------
 
-NEWS_FEEDS = [
+NEWS_FEEDS = _FEEDS_NEWS if _FEEDS_NEWS else [
     ("bbc_world", "https://feeds.bbci.co.uk/news/world/rss.xml"),
-    ("bbc_business", "https://feeds.bbci.co.uk/news/business/rss.xml"),
     ("aljazeera", "https://www.aljazeera.com/xml/rss/all.xml"),
     ("nyt_world", "https://rss.nytimes.com/services/xml/rss/nyt/World.xml"),
-    ("bbc_africa", "https://feeds.bbci.co.uk/news/world/africa/rss.xml"),
-    ("bbc_asia", "https://feeds.bbci.co.uk/news/world/asia/rss.xml"),
-    ("bbc_europe", "https://feeds.bbci.co.uk/news/world/europe/rss.xml"),
-    ("bbc_latam", "https://feeds.bbci.co.uk/news/world/latin_america/rss.xml"),
-    ("bbc_mideast", "https://feeds.bbci.co.uk/news/world/middle_east/rss.xml"),
-    ("bbc_economy", "https://feeds.bbci.co.uk/news/business/economy/rss.xml"),
-    ("bbc_science", "https://feeds.bbci.co.uk/news/science_and_environment/rss.xml"),
-    ("ars_technica", "https://feeds.arstechnica.com/arstechnica/index"),
-    ("techcrunch_ai", "https://techcrunch.com/category/artificial-intelligence/feed/"),
-    ("wired", "https://www.wired.com/feed/rss"),
-    ("the_verge", "https://www.theverge.com/rss/index.xml"),
-    ("phys_earth", "https://phys.org/rss-feed/earth-news/"),
-    ("who_news", "https://www.who.int/rss-feeds/news-english.xml"),
 ]
 
 # ---------------------------------------------------------------------------
 # Source: Think Tank & Analysis Feeds.TIER 1 (primary intelligence)
 # ---------------------------------------------------------------------------
 
-ANALYSIS_FEEDS = [
-    # Conflict / geopolitical analysis
+ANALYSIS_FEEDS = _FEEDS_ANALYSIS if _FEEDS_ANALYSIS else [
     ("atlantic_council", "https://www.atlanticcouncil.org/feed/"),
-    ("crisis_group", "https://www.crisisgroup.org/rss.xml"),
-    ("war_on_rocks", "https://warontherocks.com/feed/"),
     ("brookings", "https://www.brookings.edu/feed/"),
-    ("ecfr", "https://ecfr.eu/feed/"),
-    ("fdd", "https://www.fdd.org/feed/"),
-    # Arms / nuclear / WMD
-    ("arms_control", "https://www.armscontrol.org/taxonomy/term/30/feed"),
-    ("rand_commentary", "https://www.rand.org/pubs/commentary.xml"),
-    # Security / defense primary
-    ("defense_news", "https://www.defensenews.com/arc/outboundfeeds/rss/?outputType=xml"),
-    ("foreign_policy", "https://foreignpolicy.com/feed/"),
-    ("just_security", "https://www.justsecurity.org/feed/"),
-    ("heritage", "https://www.heritage.org/rss"),
-    # OSINT / investigations
     ("bellingcat", "https://www.bellingcat.com/feed/"),
-    # Cybersecurity
-    ("krebs_security", "https://krebsonsecurity.com/feed/"),
-    ("cisa_alerts", "https://www.cisa.gov/cybersecurity-advisories/all.xml"),
-    # Humanitarian / crisis
-    ("reliefweb", "https://reliefweb.int/updates/rss.xml"),
-    # Regulatory / policy
-    ("fed_register", "https://www.federalregister.gov/documents/search.rss?conditions%5Btype%5D=RULE"),
-    # Peace / conflict indices
-    ("iep", "https://www.economicsandpeace.org/feed/"),
 ]
 
 # ---------------------------------------------------------------------------
 # Source: Central Bank & Financial Institution Feeds.TIER 1 (official)
 # ---------------------------------------------------------------------------
 
-OFFICIAL_FEEDS = [
+OFFICIAL_FEEDS = _FEEDS_OFFICIAL if _FEEDS_OFFICIAL else [
     ("fed_reserve", "https://www.federalreserve.gov/feeds/press_all.xml"),
-    ("ecb", "https://www.ecb.europa.eu/rss/press.html"),
-    ("boe", "https://www.bankofengland.co.uk/rss/publications"),
-    ("bis", "https://www.bis.org/doclist/cbspeeches.rss"),
     ("un_news", "https://news.un.org/feed/subscribe/en/news/all/rss.xml"),
 ]
+
+SPECIALIZED_FEEDS = _FEEDS_SPECIALIZED if _FEEDS_SPECIALIZED else []
 
 def _parse_rss_feed(url: str, name: str, tier: str, max_items: int = 15) -> List[Dict]:
     r = safe_get(url)
@@ -1197,28 +1166,35 @@ def _parse_rss_feed(url: str, name: str, tier: str, max_items: int = 15) -> List
     return results
 
 
-def scan_rss() -> List[Dict]:
+def _parallel_rss_scan(feeds: List[Tuple[str, str]], tier: str, max_items: int = 8) -> List[Dict]:
     results = []
-    for name, url in NEWS_FEEDS:
-        results.extend(_parse_rss_feed(url, name, "news", max_items=10))
-        time.sleep(1)
+    def _fetch_one(pair):
+        name, url = pair
+        return _parse_rss_feed(url, name, tier, max_items=max_items)
+    with concurrent.futures.ThreadPoolExecutor(max_workers=12) as pool:
+        futures = {pool.submit(_fetch_one, f): f[0] for f in feeds}
+        for future in concurrent.futures.as_completed(futures, timeout=180):
+            try:
+                results.extend(future.result())
+            except Exception:
+                pass
     return results
+
+
+def scan_rss() -> List[Dict]:
+    return _parallel_rss_scan(NEWS_FEEDS, "news", max_items=8)
 
 
 def scan_think_tanks() -> List[Dict]:
-    results = []
-    for name, url in ANALYSIS_FEEDS:
-        results.extend(_parse_rss_feed(url, name, "analysis", max_items=10))
-        time.sleep(1)
-    return results
+    return _parallel_rss_scan(ANALYSIS_FEEDS, "analysis", max_items=8)
 
 
 def scan_official_feeds() -> List[Dict]:
-    results = []
-    for name, url in OFFICIAL_FEEDS:
-        results.extend(_parse_rss_feed(url, name, "official", max_items=10))
-        time.sleep(1)
-    return results
+    return _parallel_rss_scan(OFFICIAL_FEEDS, "official", max_items=8)
+
+
+def scan_specialized() -> List[Dict]:
+    return _parallel_rss_scan(SPECIALIZED_FEEDS, "specialized", max_items=8)
 
 # ---------------------------------------------------------------------------
 # Source: GovInfo (US Federal Register)
@@ -2147,52 +2123,59 @@ def scan_alpha_vantage() -> List[Dict]:
 # Source: Telegram OSINT Channels.TIER 0 (fastest breaking news, 5-30min ahead of MSM)
 # ---------------------------------------------------------------------------
 
-TELEGRAM_CHANNELS = [
+TELEGRAM_CHANNELS = _FEEDS_TELEGRAM if _FEEDS_TELEGRAM else [
     ("osintdefender", "Global OSINT, verified visuals"),
     ("ClashReport", "Battlefield footage worldwide"),
     ("intelslava", "Ukraine/Russia ground updates"),
-    ("middleeastobserver", "Israel-Gaza, Syria, Lebanon, Iran"),
-    ("BellumActaNews", "Global military developments"),
-    ("war_monitor", "Multi-theater conflict"),
 ]
+
+def _fetch_telegram_channel(channel: str, description: str) -> List[Dict]:
+    import re as _re
+    url = f"https://t.me/s/{channel}"
+    items = []
+    try:
+        r = _session.get(url, timeout=10, headers={"User-Agent": USER_AGENT})
+        if r.status_code != 200:
+            return []
+        text = r.text
+        messages = text.split('tgme_widget_message_wrap')
+        for msg_block in messages[-15:]:
+            text_start = msg_block.find('tgme_widget_message_text')
+            if text_start == -1:
+                continue
+            inner_start = msg_block.find('>', text_start) + 1
+            inner_end = msg_block.find('</div>', inner_start)
+            if inner_start <= 0 or inner_end == -1:
+                continue
+            raw = msg_block[inner_start:inner_end]
+            clean = _re.sub(r'<[^>]+>', ' ', raw).strip()[:500]
+            if len(clean) < 20:
+                continue
+            time_match = _re.search(r'datetime="([^"]+)"', msg_block)
+            timestamp = time_match.group(1) if time_match else ""
+            items.append({
+                "source": "telegram",
+                "channel": channel,
+                "channel_desc": description,
+                "text": clean,
+                "date": timestamp,
+                "title": clean[:150],
+            })
+    except Exception:
+        pass
+    return items
+
 
 def scan_telegram() -> List[Dict]:
     results = []
-    for channel, description in TELEGRAM_CHANNELS:
-        url = f"https://t.me/s/{channel}"
-        try:
-            r = _session.get(url, timeout=10, headers={"User-Agent": USER_AGENT})
-            if r.status_code != 200:
-                continue
-            text = r.text
-            messages = text.split('tgme_widget_message_wrap')
-            for msg_block in messages[-15:]:
-                text_start = msg_block.find('tgme_widget_message_text')
-                if text_start == -1:
-                    continue
-                inner_start = msg_block.find('>', text_start) + 1
-                inner_end = msg_block.find('</div>', inner_start)
-                if inner_start <= 0 or inner_end == -1:
-                    continue
-                raw = msg_block[inner_start:inner_end]
-                import re
-                clean = re.sub(r'<[^>]+>', ' ', raw).strip()
-                clean = clean[:500]
-                if len(clean) < 20:
-                    continue
-                time_match = re.search(r'datetime="([^"]+)"', msg_block)
-                timestamp = time_match.group(1) if time_match else ""
-                results.append({
-                    "source": "telegram",
-                    "channel": channel,
-                    "channel_desc": description,
-                    "text": clean,
-                    "date": timestamp,
-                    "title": clean[:150],
-                })
-        except Exception:
-            continue
-        time.sleep(0.5)
+    with concurrent.futures.ThreadPoolExecutor(max_workers=6) as pool:
+        futures = {pool.submit(_fetch_telegram_channel, ch, desc): ch
+                   for ch, desc in TELEGRAM_CHANNELS}
+        for future in concurrent.futures.as_completed(futures, timeout=120):
+            try:
+                results.extend(future.result())
+            except Exception:
+                pass
     return results
 
 # ---------------------------------------------------------------------------
@@ -4784,6 +4767,7 @@ def _run_scan_impl(power: str):
         "aviation_wx": scan_aviation_wx,
         "think_tanks": scan_think_tanks,
         "official_feeds": scan_official_feeds,
+        "specialized": scan_specialized,
         "world_bank": scan_world_bank,
         "sanctions": scan_sanctions,
         "gdacs": scan_gdacs,
@@ -5190,6 +5174,360 @@ def listen_for_triggers():
             time.sleep(30)
 
 
+def daily_digest():
+    """Send one consolidated daily ntfy notification with world news bullets."""
+    if not REPORT_PATH.exists():
+        log.warning("No report for daily digest")
+        return
+
+    try:
+        report = json.loads(REPORT_PATH.read_text(encoding="utf-8"))
+    except (json.JSONDecodeError, OSError) as e:
+        log.error("Failed to read report for digest: %s", e)
+        return
+
+    lines = []
+
+    # Top assessments
+    assessments = report.get("assessments", [])
+    if assessments:
+        for a in assessments[:5]:
+            cat = a.get("category", "").upper()
+            title = a.get("title", "")[:100]
+            conf = a.get("confidence", 0)
+            lines.append(f"[{cat}] {title} ({conf}% conf)")
+
+    # Congress
+    congress = report.get("congress", [])
+    if congress:
+        for c in congress[:3]:
+            bill = c.get("bill", c.get("title", ""))[:100]
+            lines.append(f"CONGRESS: {bill}")
+
+    # Key headlines (non-earthquake)
+    headlines = report.get("headlines", [])
+    for h in headlines[:5]:
+        hl = h.get("headline", "")
+        if "earthquake" not in hl.lower() and "seismic" not in hl.lower():
+            lines.append(f"- {hl[:100]}")
+
+    # Prediction market divergences
+    pred_data = report.get("predictions", {})
+    atlas_preds = pred_data.get("atlas_predictions", []) if isinstance(pred_data, dict) else []
+    divergences = [p for p in atlas_preds if isinstance(p, dict) and abs(p.get("divergence", 0)) >= 8]
+    if divergences:
+        for d in divergences[:3]:
+            q = d.get("question", "")[:80]
+            div = d.get("divergence", 0)
+            lines.append(f"ATLAS vs MARKET: {q} (gap {div:+.0f}%)")
+
+    # Weather alerts (BOSS territory)
+    weather = report.get("weather", [])
+    severe = [w for w in weather if w.get("severity") in ("Severe", "Extreme")]
+    if severe:
+        for w in severe[:2]:
+            lines.append(f"WEATHER: {w.get('event', '')} in {w.get('area', '')[:60]}")
+
+    # Market moves
+    futures = report.get("futures", [])
+    spikes = [f for f in futures if abs(f.get("change_pct", 0)) >= 2.0]
+    if spikes:
+        moves = ", ".join(f"{f['name']} {f['change_pct']:+.1f}%" for f in spikes[:4])
+        lines.append(f"MARKETS: {moves}")
+
+    # Business opportunities
+    opps = report.get("opportunities", [])
+    if opps:
+        for o in opps[:2]:
+            lines.append(f"OPPORTUNITY: {o.get('title', '')[:100]}")
+
+    if not lines:
+        lines.append("Nothing major today. All systems normal.")
+
+    # Scan stats
+    src_count = report.get("sources_scanned", 0)
+    pts = report.get("data_points", 0)
+    lines.append(f"\n{src_count} sources, {pts} data points")
+
+    body = "\n".join(lines)
+
+    try:
+        ct_now = datetime.now(ZoneInfo("America/Chicago"))
+    except Exception:
+        ct_now = datetime.now(timezone(timedelta(hours=-6)))
+
+    title = f"ATLAS Daily Brief - {ct_now.strftime('%b %d')}"
+
+    try:
+        requests.post(
+            f"{NTFY_BASE}/{NTFY_TOPIC}",
+            data=body.encode("utf-8"),
+            headers={"Title": title, "Priority": "default"},
+            timeout=10,
+        )
+        log.info("Daily digest sent: %d lines", len(lines))
+        print(f"Daily digest sent ({len(lines)} items)")
+    except requests.RequestException as e:
+        log.warning("Daily digest send failed: %s", e)
+
+
+def analyze_business_deep(business_query: str, city: str):
+    """ATLAS deep business analysis using Google Places + all available data."""
+    import urllib.request
+
+    GOOGLE_PLACES_KEY = os.environ.get("GOOGLE_PLACES_KEY", "")
+    if not GOOGLE_PLACES_KEY:
+        print("ERROR: GOOGLE_PLACES_KEY not set. Run: source scripts/config.sh")
+        sys.exit(1)
+
+    def places_search(query, max_results=5):
+        url = "https://places.googleapis.com/v1/places:searchText"
+        payload = json.dumps({"textQuery": query, "maxResultCount": min(max_results, 20)})
+        headers = {
+            "X-Goog-Api-Key": GOOGLE_PLACES_KEY,
+            "Content-Type": "application/json",
+            "X-Goog-FieldMask": (
+                "places.displayName,places.rating,places.userRatingCount,"
+                "places.formattedAddress,places.types,places.websiteUri,"
+                "places.internationalPhoneNumber,places.id,"
+                "places.regularOpeningHours,places.businessStatus"
+            ),
+        }
+        req = urllib.request.Request(url, data=payload.encode(), headers=headers, method="POST")
+        try:
+            with urllib.request.urlopen(req, timeout=10) as r:
+                return json.loads(r.read().decode()).get("places", [])
+        except Exception as e:
+            log.warning("Places search failed: %s", e)
+            return []
+
+    def places_reviews(place_id):
+        url = f"https://places.googleapis.com/v1/places/{place_id}"
+        headers = {
+            "X-Goog-Api-Key": GOOGLE_PLACES_KEY,
+            "X-Goog-FieldMask": "reviews,rating,userRatingCount",
+        }
+        req = urllib.request.Request(url, headers=headers)
+        try:
+            with urllib.request.urlopen(req, timeout=10) as r:
+                return json.loads(r.read().decode()).get("reviews", [])
+        except Exception:
+            return []
+
+    print(f"\nATLAS DEEP BUSINESS ANALYSIS")
+    print(f"{'='*50}")
+    print(f"Query: {business_query} in {city}")
+    print()
+
+    # Step 1: Find the business
+    print("[1/5] Searching Google Places...")
+    results = places_search(f"{business_query} {city}")
+    target = None
+    if results:
+        query_lower = business_query.lower()
+        for p in results:
+            name = p.get("displayName", {}).get("text", "").lower()
+            words = [w for w in query_lower.split() if len(w) > 2]
+            if any(w in name for w in words):
+                target = p
+                break
+        if not target:
+            target = results[0]
+
+    if not target:
+        print("  Business NOT FOUND on Google. Trying broader search...")
+        results = places_search(f"{business_query}")
+        if results:
+            target = results[0]
+
+    if target:
+        biz_name = target.get("displayName", {}).get("text", "Unknown")
+        biz_rating = target.get("rating", "N/A")
+        biz_reviews = target.get("userRatingCount", 0)
+        biz_address = target.get("formattedAddress", "N/A")
+        biz_website = target.get("websiteUri", "None")
+        biz_phone = target.get("internationalPhoneNumber", "N/A")
+        biz_status = target.get("businessStatus", "N/A")
+
+        hours_info = target.get("regularOpeningHours", {})
+        hours_text = hours_info.get("weekdayDescriptions", [])
+
+        print(f"  FOUND: {biz_name}")
+        print(f"  Rating: {biz_rating} stars ({biz_reviews} reviews)")
+        print(f"  Address: {biz_address}")
+        print(f"  Phone: {biz_phone}")
+        print(f"  Website: {biz_website}")
+        print(f"  Status: {biz_status}")
+        if hours_text:
+            print(f"  Hours:")
+            for h in hours_text:
+                print(f"    {h}")
+    else:
+        print("  BUSINESS NOT FOUND on Google Places.")
+        print("  Running analysis with industry estimates only.")
+        biz_name = business_query
+        biz_rating = None
+        biz_reviews = 0
+        biz_website = None
+        biz_phone = None
+        biz_address = city
+
+    # Step 2: Pull reviews and analyze
+    print("\n[2/5] Analyzing reviews for pain signals...")
+    pain_signals = []
+    review_data = []
+    if target:
+        place_id = target.get("id", "")
+        if place_id:
+            reviews = places_reviews(place_id)
+            for rev in reviews[:5]:
+                text = rev.get("text", {}).get("text", "")
+                rating = rev.get("rating", 5)
+                review_data.append({"rating": rating, "text": text[:200]})
+                if rating <= 3 and text:
+                    tl = text.lower()
+                    if any(w in tl for w in ["call", "phone", "answer", "voicemail", "reach"]):
+                        pain_signals.append("Phone/reachability complaints in reviews")
+                    if any(w in tl for w in ["slow", "late", "wait", "hours", "response"]):
+                        pain_signals.append("Slow response time complaints")
+                    if any(w in tl for w in ["price", "expensive", "quote", "cost"]):
+                        pain_signals.append("Pricing concerns from customers")
+                    if any(w in tl for w in ["schedule", "appointment", "booking"]):
+                        pain_signals.append("Scheduling/appointment issues")
+                    if any(w in tl for w in ["follow", "callback", "never called"]):
+                        pain_signals.append("Follow-up gaps losing business")
+            pain_signals = list(set(pain_signals))
+
+    if pain_signals:
+        for ps in pain_signals:
+            print(f"  PAIN: {ps}")
+    else:
+        print("  No specific pain signals found in reviews")
+
+    if review_data:
+        for rd in review_data[:3]:
+            stars = "★" * rd["rating"] + "☆" * (5 - rd["rating"])
+            print(f"  [{stars}] {rd['text'][:120]}...")
+
+    # Step 3: Scan competitors
+    print("\n[3/5] Scanning competitor landscape...")
+    # Guess the business type from the name/types
+    biz_types = target.get("types", []) if target else []
+    comp_query = f"{business_query.split()[0] if business_query else 'business'} {city}"
+    competitors = places_search(comp_query, max_results=10)
+
+    # Filter out the target business
+    target_id = target.get("id", "") if target else ""
+    competitors = [c for c in competitors if c.get("id") != target_id]
+
+    if competitors:
+        print(f"  Found {len(competitors)} competitors:")
+        for c in competitors[:8]:
+            cn = c.get("displayName", {}).get("text", "?")
+            cr = c.get("rating", "?")
+            crc = c.get("userRatingCount", 0)
+            cw = "has website" if c.get("websiteUri") else "no website"
+            print(f"    {cn} - {cr}★ ({crc} reviews) - {cw}")
+
+        ratings = [c.get("rating", 0) for c in competitors if c.get("rating")]
+        avg_rating = round(sum(ratings) / len(ratings), 1) if ratings else 0
+        review_counts = [c.get("userRatingCount", 0) for c in competitors]
+        avg_reviews = round(sum(review_counts) / len(review_counts)) if review_counts else 0
+
+        print(f"\n  Market avg rating: {avg_rating}★")
+        print(f"  Market avg reviews: {avg_reviews}")
+        if biz_rating and biz_rating != "N/A":
+            if biz_rating > avg_rating:
+                print(f"  {biz_name} is ABOVE market average ({biz_rating} vs {avg_rating})")
+            elif biz_rating < avg_rating:
+                print(f"  {biz_name} is BELOW market average ({biz_rating} vs {avg_rating})")
+            else:
+                print(f"  {biz_name} matches market average")
+
+    # Step 4: Online presence check
+    print("\n[4/5] Checking online presence...")
+    has_website = bool(biz_website and biz_website != "None")
+    has_after_hours = True
+    has_weekends = True
+
+    if target and target.get("regularOpeningHours", {}).get("periods"):
+        periods = target["regularOpeningHours"]["periods"]
+        has_sat = any(p.get("open", {}).get("day") == 6 for p in periods)
+        has_sun = any(p.get("open", {}).get("day") == 0 for p in periods)
+        has_late = any(p.get("close", {}).get("hour", 0) >= 18 for p in periods)
+        has_weekends = has_sat or has_sun
+        has_after_hours = has_late
+
+    print(f"  Website: {'YES' if has_website else 'NO — losing search traffic'}")
+    print(f"  After-hours coverage: {'YES' if has_after_hours else 'NO — missing evening calls'}")
+    print(f"  Weekend hours: {'YES' if has_weekends else 'NO — missing weekend demand'}")
+
+    # Step 5: Honest opportunity assessment
+    print("\n[5/5] Building honest opportunity assessment...")
+    print()
+    print(f"ATLAS ASSESSMENT: {biz_name}")
+    print(f"{'='*50}")
+
+    opportunities = []
+    if not has_website:
+        opportunities.append("No website — invisible to Google searchers. A basic landing page would capture leads currently going to competitors.")
+    if not has_after_hours:
+        opportunities.append("No after-hours coverage — calls outside business hours go unanswered. AI phone system would catch these.")
+    if not has_weekends:
+        opportunities.append("No weekend hours listed — weekend callers go to competitors.")
+    if "Phone/reachability complaints in reviews" in pain_signals:
+        opportunities.append("VERIFIED: Customers are already complaining about phone accessibility in Google reviews.")
+    if "Slow response time complaints" in pain_signals:
+        opportunities.append("VERIFIED: Response time complaints found in reviews — automation could speed this up.")
+    if biz_reviews and biz_reviews < 30:
+        opportunities.append(f"Only {biz_reviews} reviews — automated review requests after each job would build this fast.")
+    if biz_rating and biz_rating != "N/A" and biz_rating < 4.5:
+        opportunities.append(f"Rating is {biz_rating}★ — review recovery system could catch unhappy customers before they post.")
+
+    opportunities.append("AI phone answering ($50/mo) catches calls the owner misses while working. Even 1-2 extra jobs/month pays for itself many times over.")
+
+    print("\nOPPORTUNITIES (honest assessment):")
+    for i, opp in enumerate(opportunities, 1):
+        print(f"  {i}. {opp}")
+
+    # Honest revenue estimate
+    if biz_reviews and biz_reviews > 0:
+        est_monthly = max(5, round(biz_reviews / 0.07 / 36))
+        est_missed_month = max(1, round(est_monthly * 0.15))
+    else:
+        est_monthly = 15
+        est_missed_month = 2
+
+    print(f"\nHONEST NUMBERS:")
+    print(f"  Est. monthly jobs (from {biz_reviews or 'no'} reviews): ~{est_monthly}")
+    print(f"  Est. missed calls/month (conservative 15%): ~{est_missed_month}")
+    print(f"  NOTE: Some businesses only miss 2 calls/month. Do not inflate these numbers.")
+    print(f"  The real pitch: even 1 extra caught call pays for the service.")
+
+    print(f"\n{'='*50}")
+    print("Analysis complete. Use these numbers honestly with the prospect.")
+
+    # Send ntfy notification
+    brief = f"{biz_name} ({city})\n"
+    if biz_rating and biz_rating != "N/A":
+        brief += f"{biz_rating}★ ({biz_reviews} reviews)\n"
+    brief += f"{len(opportunities)} opportunities found\n"
+    if pain_signals:
+        brief += f"Pain signals: {', '.join(pain_signals[:3])}\n"
+    brief += f"Est. {est_missed_month} missed calls/month"
+
+    try:
+        safe_title = f"ATLAS Business Intel: {biz_name}".encode("ascii", "replace").decode("ascii")
+        requests.post(
+            f"{NTFY_BASE}/{NTFY_TOPIC}",
+            data=brief.encode("utf-8"),
+            headers={"Title": safe_title, "Priority": "default"},
+            timeout=10,
+        )
+    except requests.RequestException:
+        pass
+
+
 def main():
     parser = argparse.ArgumentParser(description="ATLAS v3.Intelligence Engine")
     parser.add_argument("--power", choices=["SLEEP", "IDLE", "ACTIVE", "SURGE"])
@@ -5197,6 +5535,9 @@ def main():
     parser.add_argument("--deploy", action="store_true")
     parser.add_argument("--scan-and-deploy", action="store_true")
     parser.add_argument("--listen", action="store_true", help="Listen for ntfy scan triggers")
+    parser.add_argument("--daily-digest", action="store_true", help="Send consolidated daily news notification")
+    parser.add_argument("--analyze-business", nargs=2, metavar=("QUERY", "CITY"),
+                        help="Deep business analysis: --analyze-business 'Business Name' 'City ST'")
     args = parser.parse_args()
 
     if args.status:
@@ -5207,6 +5548,12 @@ def main():
         return
     if args.listen:
         listen_for_triggers()
+        return
+    if args.daily_digest:
+        daily_digest()
+        return
+    if args.analyze_business:
+        analyze_business_deep(args.analyze_business[0], args.analyze_business[1])
         return
 
     cfg = load_config()
