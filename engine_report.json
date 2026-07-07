@@ -1,5 +1,5 @@
 {
-  "generated": "2026-07-07T15:02:52.135785+00:00",
+  "generated": "2026-07-07T15:31:55.839018+00:00",
   "engine_state": "active",
   "signals": [
     {
@@ -157,6 +157,15 @@
       "trigger": "territory_alert"
     },
     {
+      "name": "electrician",
+      "city": "AR",
+      "score": 68,
+      "tier": "SUPERNICHE",
+      "channel": "watchlist",
+      "sequence_status": "queued",
+      "trigger": "market_sweep"
+    },
+    {
       "name": "plumber",
       "city": "OK",
       "score": 67,
@@ -209,28 +218,19 @@
       "channel": "watchlist",
       "sequence_status": "queued",
       "trigger": "storm"
-    },
-    {
-      "name": "plumber",
-      "city": "AL",
-      "score": 62,
-      "tier": "SUPERNICHE",
-      "channel": "watchlist",
-      "sequence_status": "re_engaged",
-      "trigger": ""
     }
   ],
   "kpis": {
     "signals_firing": 10,
-    "leads_superniche": 27,
-    "leads_hot": 81,
-    "leads_warm": 92,
-    "cost_per_qualified": 0.61,
-    "total_spend": 16.57600000000001,
+    "leads_superniche": 29,
+    "leads_hot": 83,
+    "leads_warm": 88,
+    "cost_per_qualified": 0.62,
+    "total_spend": 18.112000000000013,
     "spend_cap": 300.0
   },
   "channels": {
-    "emails_sent": 116,
+    "emails_sent": 123,
     "texts_sent": 8,
     "calls_made": 0,
     "meetings_set": 10,
@@ -239,55 +239,55 @@
   "feeds": [
     {
       "name": "NOAA",
-      "last_hit": "2026-07-07T14:54:47.541235+00:00",
+      "last_hit": "2026-07-07T15:23:36.495749+00:00",
       "status": "yellow",
       "data_points_today": 0
     },
     {
       "name": "REDDIT",
-      "last_hit": "2026-07-07T14:54:47.541235+00:00",
+      "last_hit": "2026-07-07T15:23:36.495749+00:00",
       "status": "green",
-      "data_points_today": 30
+      "data_points_today": 15
     },
     {
       "name": "USGS",
-      "last_hit": "2026-07-07T14:54:47.541235+00:00",
+      "last_hit": "2026-07-07T15:23:36.495749+00:00",
       "status": "yellow",
       "data_points_today": 0
     },
     {
       "name": "HACKERNEWS",
-      "last_hit": "2026-07-07T14:54:47.541235+00:00",
-      "status": "yellow",
-      "data_points_today": 0
+      "last_hit": "2026-07-07T15:23:36.495749+00:00",
+      "status": "green",
+      "data_points_today": 30
     },
     {
       "name": "FEMA",
-      "last_hit": "2026-07-07T14:54:47.541235+00:00",
+      "last_hit": "2026-07-07T15:23:36.495749+00:00",
       "status": "green",
       "data_points_today": 20
     },
     {
       "name": "COMMODITIES",
-      "last_hit": "2026-07-07T14:54:47.541235+00:00",
+      "last_hit": "2026-07-07T15:23:36.495749+00:00",
       "status": "green",
       "data_points_today": 7
     },
     {
       "name": "RSS",
-      "last_hit": "2026-07-07T14:54:47.541235+00:00",
+      "last_hit": "2026-07-07T15:23:36.495749+00:00",
       "status": "green",
-      "data_points_today": 753
+      "data_points_today": 745
     },
     {
       "name": "FRED",
-      "last_hit": "2026-07-07T14:54:47.541235+00:00",
+      "last_hit": "2026-07-07T15:23:36.495749+00:00",
       "status": "yellow",
       "data_points_today": 0
     },
     {
       "name": "BLS",
-      "last_hit": "2026-07-07T14:54:47.541235+00:00",
+      "last_hit": "2026-07-07T15:23:36.495749+00:00",
       "status": "green",
       "data_points_today": 9
     }
@@ -295,7 +295,7 @@
   "conversion_funnel": {
     "signals": 10,
     "leads": 200,
-    "contacted": 124,
+    "contacted": 131,
     "replied": 10,
     "meeting": 10,
     "close": 0
