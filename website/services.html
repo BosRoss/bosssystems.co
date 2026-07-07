@@ -80,6 +80,13 @@
   .card-cta{display:block;background:var(--gold);color:var(--dark);text-align:center;padding:.7rem;font-weight:900;font-size:.85rem;text-decoration:none;margin-top:1rem;letter-spacing:.5px}
   .card-cta:hover{opacity:.9}
 
+  .detail-section{margin-top:1rem;padding-top:.8rem;border-top:1px solid #1a1a1a}
+  .detail-section-label{font-size:.68rem;letter-spacing:1.5px;text-transform:uppercase;color:var(--gold);margin-bottom:.4rem}
+  .detail-section-text{font-size:.82rem;color:var(--muted);line-height:1.5}
+  .compat-tags{display:flex;flex-wrap:wrap;gap:.3rem;margin-top:.4rem}
+  .compat-tag{font-size:.68rem;padding:2px 8px;background:#0a1a0a;border:1px solid #1a3a1a;color:#6dbe6d}
+  .setup-tag{display:inline-block;font-size:.72rem;padding:3px 10px;background:#0a0a1a;border:1px solid #1a1a3a;color:#7d9fd6;margin-top:.3rem}
+
   .bottom-cta{text-align:center;padding:3rem 2rem;max-width:600px;margin:0 auto}
   .bottom-cta h2{font-size:1.5rem;font-weight:900;margin-bottom:.5rem}
   .bottom-cta p{color:var(--muted);font-size:.95rem;line-height:1.6;margin-bottom:1.5rem}
@@ -792,6 +799,63 @@ const AUTOMATIONS = [
 
 const KNOWN_CATS = ["Website + Online Presence","Customer Acquisition","Sales & Quoting","Operations","Customer Retention","Intelligence"];
 
+const NUCLEAR = {
+  website:{setup:"We build it for you. 1 call to get your info, logo, photos. Done in 72 hours.",integration:"No technical setup needed. We handle domain, hosting, everything. You just approve the design.",compatible:["Any business"]},
+  gbp:{setup:"Send us your Google login or we walk you through it in 10 minutes.",integration:"We optimize your existing Google listing. No new accounts needed.",compatible:["Google Business Profile"]},
+  phone_receptionist:{setup:"15-minute call: your services, pricing ranges, hours. Nothing ongoing.",integration:"We forward your existing number. No new number, no hardware. Works with any carrier.",compatible:["Any phone system","Google Calendar","ServiceTitan","Housecall Pro","Jobber"]},
+  missed_call_textback:{setup:"Give us your business number. 5-minute setup. Fully automated after that.",integration:"Uses your existing phone number. Runs alongside whatever you already have.",compatible:["Any phone system","Any carrier"]},
+  outbound_caller:{setup:"Tell us your service area, target types, and pitch points. 30-minute setup call.",integration:"Pulls prospects from Google Maps data. Full AI disclosure on every call. DNC scrub built in.",compatible:["Any CRM","Google Sheets"]},
+  review_mining:{setup:"Tell us your top 5 competitors. We handle the rest. Weekly report via text.",integration:"Reads public Google reviews. No access to your systems needed.",compatible:["Google Business Profile","Any CRM"]},
+  google_lsa_optimizer:{setup:"Share your LSA dashboard access. 15-minute setup. Weekly report delivered automatically.",integration:"Reads your Google LSA data. Does not make changes without your approval.",compatible:["Google Local Services","Google Ads"]},
+  social_media_ai:{setup:"20-minute call: your voice, topics to avoid, approval preference. Posts start next day.",integration:"Posts via Buffer or direct API. You approve each post or set to auto-publish after 7 clean days.",compatible:["Facebook","Google Business Profile","Instagram","Buffer"]},
+  quote_generator:{setup:"45 minutes. Walk us through your pricing for each job type. Most involved setup.",integration:"Customer texts your number. AI drafts quote using your pricing. You approve before it sends.",compatible:["Any phone system","ServiceTitan","Housecall Pro","Jobber","QuickBooks"]},
+  follow_up_sequence:{setup:"10 minutes. Tell us your business name and what you want the texts to say.",integration:"Works alongside your existing CRM. Texts come from your business number.",compatible:["Any CRM","Any phone system"]},
+  lead_scoring:{setup:"15-minute call: what makes a good lead for you, your service area, high-value job types.",integration:"Scores leads as they come in. Sends you a text alert for high-score leads.",compatible:["Any CRM","ServiceTitan","Housecall Pro","Jobber"]},
+  proposal_generator:{setup:"30 minutes. Provide your pricing tiers, warranty terms, company info, and logo.",integration:"Generates PDF from your pricing. Sends to customer via text or email. You approve first.",compatible:["Any email","ServiceTitan","Housecall Pro","QuickBooks"]},
+  appointment_booking:{setup:"Share your Google Calendar (or give us view access). 15-minute setup.",integration:"Books directly into your calendar. Works with Google Calendar, Outlook, or your CRM scheduler.",compatible:["Google Calendar","Outlook","ServiceTitan","Housecall Pro","Jobber"]},
+  dispatch_automation:{setup:"30 minutes. List crew members, skills, and phone numbers.",integration:"Reads jobs from your calendar or CRM. Sends crew their route via text at 7am.",compatible:["Google Calendar","Google Maps","ServiceTitan","Housecall Pro","Jobber"]},
+  job_status_updates:{setup:"10 minutes. Define your job stages. Tech texts a code when status changes.",integration:"Tech texts a short code (e.g., 'OTW 123') to trigger customer notification. No app needed.",compatible:["Any phone system","ServiceTitan","Housecall Pro"]},
+  invoice_generator:{setup:"15 minutes. Your business info, payment methods, logo.",integration:"Triggered when job is marked complete in your system. Invoice sent via text with payment link.",compatible:["Venmo","QuickBooks","Any payment processor"]},
+  payment_collection:{setup:"Give us your Venmo or payment link. 5-minute setup.",integration:"Sends payment link via text when job completes. Auto-reminders if unpaid.",compatible:["Venmo","QuickBooks","Any payment link"]},
+  review_request:{setup:"5 minutes. Give us your Google review link. Fully automated.",integration:"Triggered 2 hours after payment confirmed. One text with your direct Google review link.",compatible:["Google Business Profile","Any payment system"]},
+  re_engagement_campaign:{setup:"10 minutes. Tell us your seasonal offers and preferred tone.",integration:"Reads your customer list. Sends personalized texts to anyone dormant 90+ days.",compatible:["Any CRM","Google Sheets","ServiceTitan","Housecall Pro"]},
+  seasonal_campaigns:{setup:"30 minutes. Define 12 seasonal offers with dates and messages.",integration:"Pre-scheduled campaigns fire automatically. Texts your full customer list on each date.",compatible:["Any CRM","Google Sheets","ServiceTitan","Housecall Pro"]},
+  referral_program:{setup:"10 minutes. Set your referral discount amount and terms.",integration:"Triggered after every completed job. Tracks referrals via phone number.",compatible:["Any CRM","Google Sheets"]},
+  birthday_outreach:{setup:"5 minutes. Set your birthday discount. We need birth dates from your customer list.",integration:"Reads birth dates from your customer database. Sends text on each birthday.",compatible:["Any CRM","Google Sheets"]},
+  revenue_dashboard:{setup:"30 minutes. Connect your data sources: calendar, payment system, review accounts.",integration:"Pulls data from your existing systems. Web dashboard you can view on your phone.",compatible:["Google Sheets","QuickBooks","Any CRM","ServiceTitan","Housecall Pro"]},
+  competitor_monitor:{setup:"10 minutes. List your top competitors by name or Google listing.",integration:"Reads public Google data. Report delivered every Monday via text.",compatible:["Google Business Profile"]},
+  employee_tracking:{setup:"15 minutes. List crew members. We set up tracking per tech.",integration:"Data entered via simple text commands or pulled from your CRM job records.",compatible:["Google Sheets","ServiceTitan","Housecall Pro","Jobber"]},
+  inventory_alerts:{setup:"5 minutes. Set your items and reorder thresholds.",integration:"You text stock updates. System alerts when below threshold. No app needed.",compatible:["Any supplier","Text-based"]},
+  review_response_ai:{setup:"10 minutes. Tell us your tone and any topics to avoid.",integration:"Monitors your Google listing. Drafts response, sends to you for 1-tap approval.",compatible:["Google Business Profile"]},
+  hvac_filter_reminders:{setup:"Give us your customer list with last service dates. 10 minutes.",integration:"Reads from ServiceTitan, Housecall Pro, or Google Sheets. Auto-texts at 90-day intervals.",compatible:["ServiceTitan","Housecall Pro","Jobber","FieldEdge","Google Sheets"]},
+  hvac_seasonal_maintenance:{setup:"15 minutes. Set your spring/fall campaign pricing and message.",integration:"Texts your full customer list in March and September. Books directly to your calendar.",compatible:["ServiceTitan","Housecall Pro","Jobber","Google Calendar"]},
+  hvac_warranty_tracker:{setup:"20 minutes. Enter equipment install dates and warranty terms.",integration:"Tracks in Google Sheets or your CRM. Alerts you + texts customer 60 days before expiry.",compatible:["ServiceTitan","Housecall Pro","Google Sheets","FieldEdge"]},
+  plumber_emergency_routing:{setup:"15 minutes. Set on-call rotation and emergency keywords.",integration:"Works with your AI receptionist. Detects emergency keywords, pages on-call tech instantly.",compatible:["Any phone system","ServiceTitan","Housecall Pro"]},
+  plumber_permit_tracker:{setup:"20 minutes. Enter current open permits.",integration:"You enter new permits via text or form. System tracks deadlines and alerts you.",compatible:["Google Sheets","ServiceTitan","Housecall Pro"]},
+  roofing_storm_lead_gen:{setup:"20 minutes. Your service area zip codes and storm damage process.",integration:"NOAA weather API detects storms. Google Maps scrapes affected neighborhoods. List sent to you.",compatible:["Google Sheets","AccuLynx","Roofr","JobNimbus"]},
+  roofing_insurance_automation:{setup:"30 minutes. Walk us through your insurance claim intake questions.",integration:"Adds to your AI phone system. Collects insurance info on the call, emails summary after.",compatible:["Any phone system","AccuLynx","Roofr","Google Sheets"]},
+  law_firm_intake:{setup:"30 minutes. Define case types, intake questions, scoring criteria.",integration:"AI handles the intake call. Summary with case score sent to attorney before callback.",compatible:["Any phone system","Clio","MyCase","PracticePanther"]},
+  law_firm_document_requests:{setup:"15 minutes. Define document checklists per case type.",integration:"Triggered after intake. Sends checklist via text. Follows up every 3 days automatically.",compatible:["Clio","MyCase","Google Sheets"]},
+  restaurant_reservations:{setup:"20 minutes. Your table count, hours, party size limits, special policies.",integration:"AI handles phone reservations. Checks your calendar availability in real time.",compatible:["Google Calendar","OpenTable","Resy","Toast"]},
+  restaurant_review_response:{setup:"10 minutes. Your tone, any topics to avoid.",integration:"Monitors Google, Yelp, TripAdvisor every 4 hours. Drafts response for your approval.",compatible:["Google","Yelp","TripAdvisor"]},
+  gym_class_booking:{setup:"15 minutes. Your class schedule, capacity per class, policies.",integration:"Members text or call to book. System checks your schedule and confirms.",compatible:["Google Calendar","Mindbody","Zen Planner"]},
+  gym_membership_renewal:{setup:"10 minutes. Your renewal pricing and membership terms.",integration:"Reads expiration dates from your system. Auto-sends renewal sequence.",compatible:["Mindbody","Zen Planner","Google Sheets"]},
+  real_estate_listing_updates:{setup:"20 minutes. Connect your MLS feed or listing source.",integration:"New listings auto-match to buyer preferences. Showing management via text.",compatible:["MLS","Zillow","Google Calendar","Follow Up Boss"]},
+  retail_inventory_reorder:{setup:"15 minutes. Connect your POS or set up manual tracking.",integration:"Reads inventory from POS data or manual text updates. Alerts at reorder thresholds.",compatible:["Square","Shopify","Clover","Google Sheets"]},
+  retail_loyalty_program:{setup:"15 minutes. Set point values, reward thresholds, and rewards.",integration:"Phone-number based. No app needed. Works alongside any POS system.",compatible:["Square","Shopify","Clover","Any POS"]},
+  electrician_emergency_routing:{setup:"15 minutes. Set on-call rotation and emergency keywords.",integration:"Works with your AI receptionist. Detects electrical emergency keywords, pages on-call tech.",compatible:["Any phone system","ServiceTitan","Housecall Pro"]},
+  electrician_permit_tracker:{setup:"20 minutes. Enter current open permits and inspection dates.",integration:"You enter new permits via text or form. System tracks deadlines and alerts you.",compatible:["Google Sheets","ServiceTitan","Housecall Pro"]},
+  auto_repair_service_reminders:{setup:"15 minutes. Provide customer list with vehicles and last service dates.",integration:"Reads from your shop management system or Google Sheets. Auto-texts at service intervals.",compatible:["Mitchell 1","ShopWare","Tekmetric","Google Sheets"]},
+  auto_repair_parts_tracker:{setup:"10 minutes. Set up parts tracking spreadsheet or connect to your system.",integration:"You mark parts ordered. System auto-texts customer when part arrives.",compatible:["Mitchell 1","ShopWare","Google Sheets"]},
+  pest_control_recurring_reminders:{setup:"10 minutes. Provide customer list with treatment schedules.",integration:"Reads treatment dates from your system. Sends reminder 5 days before next treatment.",compatible:["PestRoutes","FieldRoutes","Briostack","Google Sheets"]},
+  pest_control_seasonal_campaigns:{setup:"20 minutes. Define 4 seasonal campaigns with offers.",integration:"Pre-scheduled campaigns text your full customer list at each season change.",compatible:["PestRoutes","FieldRoutes","Google Sheets"]},
+  lawn_care_route_optimizer:{setup:"15 minutes. Your crew info and job addresses for the week.",integration:"Reads jobs from your calendar. Google Maps optimizes route. Sends crew text at 6am.",compatible:["Google Calendar","Jobber","LawnPro","Google Maps"]},
+  lawn_care_weather_reschedule:{setup:"10 minutes. Your service area zip codes and reschedule preferences.",integration:"Checks NOAA forecast each evening. Auto-texts customers if rain predicted.",compatible:["Google Calendar","Jobber","LawnPro"]},
+  dental_appointment_reminders:{setup:"10 minutes. Connect your practice calendar.",integration:"Reads appointments from your calendar or practice management system. Sends 3-touch reminders.",compatible:["Google Calendar","Dentrix","Eaglesoft","Open Dental"]},
+  dental_recall_system:{setup:"15 minutes. Provide patient list with last visit dates.",integration:"Reads from your practice management system. Sends recall texts at 5, 6, 7, 9 months.",compatible:["Dentrix","Eaglesoft","Open Dental","Google Sheets"]},
+  dental_new_patient_onboarding:{setup:"15 minutes. Your welcome message, intake form link, review link.",integration:"Triggered when new patient books. 5-step automated welcome sequence via text.",compatible:["Dentrix","Eaglesoft","Open Dental","Google Calendar"]}
+};
+
 let activeFilter = "all";
 let searchQuery = "";
 
@@ -819,6 +883,18 @@ function renderCard(a){
     if(roi > 1) rows.push('<div class="detail-row"><span class="detail-label">ROI</span><span class="detail-value gold">'+roi+'x return</span></div>');
   }
 
+  var nuc = NUCLEAR[a.id] || {};
+  var nucHtml = "";
+  if(nuc.integration){
+    nucHtml += '<div class="detail-section"><div class="detail-section-label">How it connects</div><div class="detail-section-text">'+nuc.integration+'</div></div>';
+  }
+  if(nuc.setup){
+    nucHtml += '<div class="detail-section"><div class="detail-section-label">Your setup</div><span class="setup-tag">'+nuc.setup+'</span></div>';
+  }
+  if(nuc.compatible && nuc.compatible.length){
+    nucHtml += '<div class="detail-section"><div class="detail-section-label">Works with</div><div class="compat-tags">'+nuc.compatible.map(function(c){return '<span class="compat-tag">'+c+'</span>';}).join("")+'</div></div>';
+  }
+
   return '<div class="auto-card" data-id="'+a.id+'" data-filter="'+a.filter+'">'
     + '<div class="card-header" onclick="toggle(\''+a.id+'\')">'
     + '<div class="card-top"><div class="card-name">'+a.name+'</div>'+priceHtml+'</div>'
@@ -828,6 +904,7 @@ function renderCard(a){
     + '<div class="card-detail">'
     + '<div class="detail-desc">'+a.description+'</div>'
     + rows.join("")
+    + nucHtml
     + '<div class="works-for"><div class="works-label">Works for</div><div class="works-tags">'+tags+'</div></div>'
     + '<a href="/analyze.html" class="card-cta">Get This Built</a>'
     + '</div></div>';
