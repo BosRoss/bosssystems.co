@@ -562,7 +562,7 @@ def scan_ioda() -> List[Dict]:
     # Georgia Tech IODA API
     now = int(time.time())
     start = now - 86400  # last 24h
-    url = f"https://api.ioda.inetintel.cc.gatech.edu/v2/signals/raw/country?from={start}&until={now}"
+    url = f"https://api.ioda.inetintel.cc.gatech.edu/v2/outages/summary?entityType=country&from={start}&until={now}"
     r = safe_get(url, timeout=20)
     if r is None:
         return []
@@ -695,7 +695,7 @@ def scan_polymarket() -> List[Dict]:
 def scan_manifold() -> List[Dict]:
     results = []
     for term in ["geopolitics war", "economy recession", "AI technology", "climate disaster"]:
-        r = safe_get(f"https://api.manifold.markets/v0/search-markets?term={quote(term)}&sort=liquidity&limit=15")
+        r = safe_get(f"https://api.manifold.markets/v0/search-markets?term={quote(term)}&limit=15")
         if r is None:
             continue
         try:
@@ -726,54 +726,9 @@ def scan_manifold() -> List[Dict]:
 # ---------------------------------------------------------------------------
 
 def scan_metaculus() -> List[Dict]:
-    r = safe_get("https://www.metaculus.com/api/questions/?limit=20&order_by=-activity&status=open&type=forecast&format=json")
-    if r is None:
-        r = safe_get("https://www.metaculus.com/questions/feed/rss/")
-        if r is None:
-            return []
-        results = []
-        try:
-            root = ET.fromstring(r.text)
-            for item in root.findall(".//item")[:15]:
-                title = (item.findtext("title") or "").strip()
-                link = (item.findtext("link") or "").strip()
-                if not title:
-                    continue
-                pub_el = item.findtext("pubDate") or item.findtext("dc:date") or ""
-                results.append({
-                    "source": "metaculus",
-                    "question": title[:200],
-                    "url": link,
-                    "date": pub_el.strip() if pub_el else "",
-                })
-        except ET.ParseError:
-            pass
-        return results
-    results = []
-    try:
-        data = r.json()
-        questions = data.get("results", data) if isinstance(data, dict) else data
-        if not isinstance(questions, list):
-            questions = []
-        for q in questions[:20]:
-            title = q.get("title", "")
-            qid = q.get("id", "")
-            if not title:
-                continue
-            community_pred = q.get("community_prediction", {})
-            prob = None
-            if isinstance(community_pred, dict):
-                prob = community_pred.get("full", {}).get("q2")
-            results.append({
-                "source": "metaculus",
-                "question": title[:200],
-                "url": f"https://www.metaculus.com/questions/{qid}/",
-                "probability": round(prob * 100, 1) if prob else None,
-                "date": q.get("publish_time", ""),
-            })
-    except (ValueError, KeyError, TypeError):
-        pass
-    return results
+    # Metaculus API and RSS both return 403 (Cloudflare block) as of July 2026.
+    # Disabled to avoid wasting 30s on two failed HTTP calls per scan.
+    return []
 
 # ---------------------------------------------------------------------------
 # Source: USGS Earthquakes
@@ -1887,7 +1842,7 @@ def scan_sec_edgar() -> List[Dict]:
 def scan_fema() -> List[Dict]:
     since = (datetime.now(timezone.utc) - timedelta(days=30)).strftime("%Y-%m-%dT00:00:00.000Z")
     r = safe_get(f"https://www.fema.gov/api/open/v2/DisasterDeclarationsSummaries?"
-                 f"$filter=declarationDate gt '{since}'&$top=25&$orderby=declarationDate desc")
+                 f"$top=25&$orderby=declarationDate%20desc")
     if r is None:
         return []
     results = []
@@ -2906,7 +2861,7 @@ def generate_assessments(data: dict, anomalies: list, claims: list) -> List[Dict
 
         # Cross-reference: any competitor mentions?
         competitors = ["smith.ai", "ruby receptionist", "patlive", "avoca", "my ai front desk",
-                       "dialpad", "grasshopper", "ai receptionist", "voice ai"]
+                       "dialzara", "dialpad", "grasshopper", "ai receptionist", "voice ai"]
         competitor_hits = []
         for item in sp["ai_signals"] + sp["rss"]:
             t = (item.get("title") or "").lower()
@@ -4190,6 +4145,48 @@ def detect_anomalies(data: dict) -> List[Dict]:
             "max_cpm": max(s.get("cpm", 0) for s in elevated),
         })
 
+    # Pattern 7: Coordinated futures spike (oil+gold+VIX moving together = crisis signal)
+    futures = data.get("futures", [])
+    spikes = [f for f in futures if abs(f.get("change_pct", 0)) >= 3.0]
+    if len(spikes) >= 2:
+        spike_names = [f.get("name", "?") for f in spikes]
+        max_move = max(abs(f.get("change_pct", 0)) for f in spikes)
+        anomalies.append({
+            "pattern": "futures_crisis_signal",
+            "score": min(95, 50 + len(spikes) * 10 + int(max_move * 3)),
+            "description": f"{len(spikes)} futures spiking simultaneously: {', '.join(spike_names)}. Max move: {max_move:.1f}%",
+            "instruments": spike_names,
+            "max_change_pct": round(max_move, 1),
+        })
+
+    # Pattern 8: Currency contagion (3+ emerging market currencies dropping together)
+    currencies = data.get("currencies", [])
+    falling = [c for c in currencies if c.get("change_pct", 0) < -2.0]
+    if len(falling) >= 3:
+        worst = min(falling, key=lambda c: c.get("change_pct", 0))
+        names = [c.get("currency", "?") for c in falling[:6]]
+        anomalies.append({
+            "pattern": "currency_contagion",
+            "score": min(95, 50 + len(falling) * 8),
+            "description": f"{len(falling)} currencies falling >2%: {', '.join(names)}. Worst: {worst.get('currency', '?')} at {worst.get('change_pct', 0):.1f}%",
+            "currencies": names,
+            "worst_drop": round(worst.get("change_pct", 0), 1),
+        })
+
+    # Pattern 9: FIRMS satellite fire cluster in conflict zone
+    firms = data.get("firms", [])
+    for region_data in firms:
+        hotspots = region_data.get("hotspot_count", 0)
+        region = region_data.get("region", "")
+        if hotspots >= 15:
+            anomalies.append({
+                "pattern": "satellite_fire_cluster",
+                "score": min(95, 40 + hotspots * 2),
+                "description": f"{hotspots} satellite fire/explosion hotspots in {region}",
+                "region": region,
+                "hotspot_count": hotspots,
+            })
+
     now_iso = datetime.now(timezone.utc).isoformat()
     for a in anomalies:
         if "date" not in a:
@@ -5230,10 +5227,25 @@ def daily_digest():
 
     # Market moves
     futures = report.get("futures", [])
-    spikes = [f for f in futures if abs(f.get("change_pct", 0)) >= 2.0]
+    spikes = [f for f in futures if abs(f.get("change_pct", 0)) >= 3.0]
     if spikes:
         moves = ", ".join(f"{f['name']} {f['change_pct']:+.1f}%" for f in spikes[:4])
         lines.append(f"MARKETS: {moves}")
+
+    # Reddit pain signals
+    pain_posts = report.get("pain_posts", [])
+    if pain_posts:
+        subs = list(set(p.get("subreddit", "") for p in pain_posts[:20]))
+        lines.append(f"PAIN SIGNALS: {len(pain_posts)} service business posts across {', '.join(subs[:4])}")
+
+    # CISA KEV
+    cisa = report.get("cisa", [])
+    ransomware = [v for v in cisa if v.get("known_ransomware") == "Known"]
+    if cisa:
+        msg = f"CISA KEV: {len(cisa)} vulnerabilities cataloged"
+        if ransomware:
+            msg += f" ({len(ransomware)} ransomware-linked)"
+        lines.append(msg)
 
     # Business opportunities
     opps = report.get("opportunities", [])
