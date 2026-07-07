@@ -1,30 +1,14 @@
 {
-  "generated": "2026-07-07T02:28:04.291654+00:00",
+  "generated": "2026-07-07T15:02:52.135785+00:00",
   "engine_state": "active",
   "signals": [
     {
-      "type": "storm",
-      "area": "Rains, TX",
-      "niche": "roofing",
-      "action": "Storm damage in Rains, TX. Roofers and restoration companies about to get flooded.",
+      "type": "flood",
+      "area": "Bossier, LA; Caddo, LA; Harrison, TX; Marion, TX",
+      "niche": "plumbing",
+      "action": "Flood warnings in Bossier, LA; Caddo, LA; Harrison, TX; Marion, TX. Plumbers, restoration, mold companies will spike.",
       "urgency": "today",
-      "pitch_hook": "After a storm like that, you'll get 10x your normal call volume. Ready for it?"
-    },
-    {
-      "type": "storm",
-      "area": "Panola, TX; Rusk, TX",
-      "niche": "roofing",
-      "action": "Storm damage in Panola, TX; Rusk, TX. Roofers and restoration companies about to get flooded.",
-      "urgency": "today",
-      "pitch_hook": "After a storm like that, you'll get 10x your normal call volume. Ready for it?"
-    },
-    {
-      "type": "storm",
-      "area": "Union, AR; Bienville, LA; Caldwell, LA; Claiborne, LA; De Soto, LA; Grant, LA; Jackson, LA; La Salle, LA; Lincoln, LA; Natchitoches, LA; Ouachita, LA; Red River, LA; Sabine, LA; Union, LA; Winn, LA; N",
-      "niche": "roofing",
-      "action": "Storm damage in Union, AR; Bienville, LA; Caldwell, LA; Claiborne, LA; De Soto, LA; Grant, LA; Jackson, LA; La Salle, LA; Lincoln, LA; Natchitoches, LA; Ouachita, LA; Red River, LA; Sabine, LA; Union, LA; Winn, LA; N. Roofers and restoration companies about to get flooded.",
-      "urgency": "today",
-      "pitch_hook": "After a storm like that, you'll get 10x your normal call volume. Ready for it?"
+      "pitch_hook": "Water damage calls are coming. Every one you miss is $500+ walking away."
     },
     {
       "type": "flood",
@@ -35,14 +19,6 @@
       "pitch_hook": "Water damage calls are coming. Every one you miss is $500+ walking away."
     },
     {
-      "type": "storm",
-      "area": "Ashley, AR",
-      "niche": "roofing",
-      "action": "Storm damage in Ashley, AR. Roofers and restoration companies about to get flooded.",
-      "urgency": "today",
-      "pitch_hook": "After a storm like that, you'll get 10x your normal call volume. Ready for it?"
-    },
-    {
       "type": "flood",
       "area": "Muskogee, OK",
       "niche": "plumbing",
@@ -51,18 +27,34 @@
       "pitch_hook": "Water damage calls are coming. Every one you miss is $500+ walking away."
     },
     {
-      "type": "storm",
-      "area": "Catahoula, LA; Concordia, LA",
-      "niche": "roofing",
-      "action": "Storm damage in Catahoula, LA; Concordia, LA. Roofers and restoration companies about to get flooded.",
+      "type": "heat_wave",
+      "area": "Coastal Collier County; Inland Collier County",
+      "niche": "hvac",
+      "action": "HVAC businesses in Coastal Collier County; Inland Collier County are drowning in calls right now. Perfect time to pitch.",
       "urgency": "today",
-      "pitch_hook": "After a storm like that, you'll get 10x your normal call volume. Ready for it?"
+      "pitch_hook": "You're getting slammed with calls \u2014 how many went to voicemail today?"
     },
     {
       "type": "heat_wave",
-      "area": "San Diego County Deserts",
+      "area": "Metro Broward County; Metropolitan Miami Dade; Coastal Broward County; Coastal Miami Dade County",
       "niche": "hvac",
-      "action": "HVAC businesses in San Diego County Deserts are drowning in calls right now. Perfect time to pitch.",
+      "action": "HVAC businesses in Metro Broward County; Metropolitan Miami Dade; Coastal Broward County; Coastal Miami Dade County are drowning in calls right now. Perfect time to pitch.",
+      "urgency": "today",
+      "pitch_hook": "You're getting slammed with calls \u2014 how many went to voicemail today?"
+    },
+    {
+      "type": "heat_wave",
+      "area": "Los Angeles County Inland Coast including Downtown Los Angeles",
+      "niche": "hvac",
+      "action": "HVAC businesses in Los Angeles County Inland Coast including Downtown Los Angeles are drowning in calls right now. Perfect time to pitch.",
+      "urgency": "today",
+      "pitch_hook": "You're getting slammed with calls \u2014 how many went to voicemail today?"
+    },
+    {
+      "type": "heat_wave",
+      "area": "Cuyama Valley; Santa Clarita Valley; Southern Salinas Valley; San Luis Obispo County Interior Valleys; San Luis Obispo County Mountains; Santa Barbara County Interior Mountains; Western San Fernando V",
+      "niche": "hvac",
+      "action": "HVAC businesses in Cuyama Valley; Santa Clarita Valley; Southern Salinas Valley; San Luis Obispo County Interior Valleys; San Luis Obispo County Mountains; Santa Barbara County Interior Mountains; Western San Fernando V are drowning in calls right now. Perfect time to pitch.",
       "urgency": "today",
       "pitch_hook": "You're getting slammed with calls \u2014 how many went to voicemail today?"
     },
@@ -71,6 +63,14 @@
       "area": "San Bernardino and Riverside County Valleys-The Inland Empire",
       "niche": "hvac",
       "action": "HVAC businesses in San Bernardino and Riverside County Valleys-The Inland Empire are drowning in calls right now. Perfect time to pitch.",
+      "urgency": "today",
+      "pitch_hook": "You're getting slammed with calls \u2014 how many went to voicemail today?"
+    },
+    {
+      "type": "heat_wave",
+      "area": "Riverside County Mountains",
+      "niche": "hvac",
+      "action": "HVAC businesses in Riverside County Mountains are drowning in calls right now. Perfect time to pitch.",
       "urgency": "today",
       "pitch_hook": "You're getting slammed with calls \u2014 how many went to voicemail today?"
     },
@@ -90,7 +90,7 @@
       "score": 80,
       "tier": "SUPERNICHE",
       "channel": "watchlist",
-      "sequence_status": "queued",
+      "sequence_status": "called",
       "trigger": "market_sweep"
     },
     {
@@ -99,7 +99,7 @@
       "score": 80,
       "tier": "SUPERNICHE",
       "channel": "watchlist",
-      "sequence_status": "queued",
+      "sequence_status": "called",
       "trigger": "market_sweep"
     },
     {
@@ -202,6 +202,15 @@
       "trigger": "flood"
     },
     {
+      "name": "roofing contractor",
+      "city": "OK",
+      "score": 63,
+      "tier": "SUPERNICHE",
+      "channel": "watchlist",
+      "sequence_status": "queued",
+      "trigger": "storm"
+    },
+    {
       "name": "plumber",
       "city": "AL",
       "score": 62,
@@ -209,28 +218,19 @@
       "channel": "watchlist",
       "sequence_status": "re_engaged",
       "trigger": ""
-    },
-    {
-      "name": "plumber",
-      "city": "AR",
-      "score": 62,
-      "tier": "SUPERNICHE",
-      "channel": "watchlist",
-      "sequence_status": "re_engaged",
-      "trigger": "territory_alert"
     }
   ],
   "kpis": {
     "signals_firing": 10,
-    "leads_superniche": 22,
-    "leads_hot": 76,
-    "leads_warm": 102,
-    "cost_per_qualified": 0.68,
-    "total_spend": 14.976000000000012,
+    "leads_superniche": 27,
+    "leads_hot": 81,
+    "leads_warm": 92,
+    "cost_per_qualified": 0.61,
+    "total_spend": 16.57600000000001,
     "spend_cap": 300.0
   },
   "channels": {
-    "emails_sent": 107,
+    "emails_sent": 116,
     "texts_sent": 8,
     "calls_made": 0,
     "meetings_set": 10,
@@ -239,55 +239,55 @@
   "feeds": [
     {
       "name": "NOAA",
-      "last_hit": "2026-07-07T02:21:29.851758+00:00",
+      "last_hit": "2026-07-07T14:54:47.541235+00:00",
       "status": "yellow",
       "data_points_today": 0
     },
     {
       "name": "REDDIT",
-      "last_hit": "2026-07-07T02:21:29.851758+00:00",
+      "last_hit": "2026-07-07T14:54:47.541235+00:00",
       "status": "green",
-      "data_points_today": 15
+      "data_points_today": 30
     },
     {
       "name": "USGS",
-      "last_hit": "2026-07-07T02:21:29.851758+00:00",
+      "last_hit": "2026-07-07T14:54:47.541235+00:00",
       "status": "yellow",
       "data_points_today": 0
     },
     {
       "name": "HACKERNEWS",
-      "last_hit": "2026-07-07T02:21:29.851758+00:00",
-      "status": "green",
-      "data_points_today": 30
+      "last_hit": "2026-07-07T14:54:47.541235+00:00",
+      "status": "yellow",
+      "data_points_today": 0
     },
     {
       "name": "FEMA",
-      "last_hit": "2026-07-07T02:21:29.851758+00:00",
+      "last_hit": "2026-07-07T14:54:47.541235+00:00",
       "status": "green",
       "data_points_today": 20
     },
     {
       "name": "COMMODITIES",
-      "last_hit": "2026-07-07T02:21:29.851758+00:00",
+      "last_hit": "2026-07-07T14:54:47.541235+00:00",
       "status": "green",
       "data_points_today": 7
     },
     {
       "name": "RSS",
-      "last_hit": "2026-07-07T02:21:29.851758+00:00",
+      "last_hit": "2026-07-07T14:54:47.541235+00:00",
       "status": "green",
-      "data_points_today": 748
+      "data_points_today": 753
     },
     {
       "name": "FRED",
-      "last_hit": "2026-07-07T02:21:29.851758+00:00",
+      "last_hit": "2026-07-07T14:54:47.541235+00:00",
       "status": "yellow",
       "data_points_today": 0
     },
     {
       "name": "BLS",
-      "last_hit": "2026-07-07T02:21:29.851758+00:00",
+      "last_hit": "2026-07-07T14:54:47.541235+00:00",
       "status": "green",
       "data_points_today": 9
     }
@@ -295,7 +295,7 @@
   "conversion_funnel": {
     "signals": 10,
     "leads": 200,
-    "contacted": 115,
+    "contacted": 124,
     "replied": 10,
     "meeting": 10,
     "close": 0
