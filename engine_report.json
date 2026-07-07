@@ -1,38 +1,30 @@
 {
-  "generated": "2026-07-06T22:14:35.140319+00:00",
+  "generated": "2026-07-07T00:21:24.917266+00:00",
   "engine_state": "active",
   "signals": [
     {
       "type": "storm",
-      "area": "Miller, AR; Caddo, LA; Cass, TX; Harrison, TX; Marion, TX",
+      "area": "De Soto, LA; Natchitoches, LA; Red River, LA; Sabine, LA; Winn, LA; Shelby, TX",
       "niche": "roofing",
-      "action": "Storm damage in Miller, AR; Caddo, LA; Cass, TX; Harrison, TX; Marion, TX. Roofers and restoration companies about to get flooded.",
+      "action": "Storm damage in De Soto, LA; Natchitoches, LA; Red River, LA; Sabine, LA; Winn, LA; Shelby, TX. Roofers and restoration companies about to get flooded.",
       "urgency": "today",
       "pitch_hook": "After a storm like that, you'll get 10x your normal call volume. Ready for it?"
     },
     {
       "type": "storm",
-      "area": "Bossier, LA; Caddo, LA; De Soto, LA; Panola, TX",
+      "area": "Union, AR; Bienville, LA; Caldwell, LA; Claiborne, LA; De Soto, LA; Grant, LA; Jackson, LA; La Salle, LA; Lincoln, LA; Natchitoches, LA; Ouachita, LA; Red River, LA; Sabine, LA; Union, LA; Winn, LA; N",
       "niche": "roofing",
-      "action": "Storm damage in Bossier, LA; Caddo, LA; De Soto, LA; Panola, TX. Roofers and restoration companies about to get flooded.",
+      "action": "Storm damage in Union, AR; Bienville, LA; Caldwell, LA; Claiborne, LA; De Soto, LA; Grant, LA; Jackson, LA; La Salle, LA; Lincoln, LA; Natchitoches, LA; Ouachita, LA; Red River, LA; Sabine, LA; Union, LA; Winn, LA; N. Roofers and restoration companies about to get flooded.",
       "urgency": "today",
       "pitch_hook": "After a storm like that, you'll get 10x your normal call volume. Ready for it?"
     },
     {
-      "type": "storm",
-      "area": "Harrison, TX; Panola, TX",
-      "niche": "roofing",
-      "action": "Storm damage in Harrison, TX; Panola, TX. Roofers and restoration companies about to get flooded.",
+      "type": "flood",
+      "area": "El Paso, TX; Hudspeth, TX",
+      "niche": "plumbing",
+      "action": "Flood warnings in El Paso, TX; Hudspeth, TX. Plumbers, restoration, mold companies will spike.",
       "urgency": "today",
-      "pitch_hook": "After a storm like that, you'll get 10x your normal call volume. Ready for it?"
-    },
-    {
-      "type": "storm",
-      "area": "De Soto, LA; Panola, TX; Shelby, TX",
-      "niche": "roofing",
-      "action": "Storm damage in De Soto, LA; Panola, TX; Shelby, TX. Roofers and restoration companies about to get flooded.",
-      "urgency": "today",
-      "pitch_hook": "After a storm like that, you'll get 10x your normal call volume. Ready for it?"
+      "pitch_hook": "Water damage calls are coming. Every one you miss is $500+ walking away."
     },
     {
       "type": "flood",
@@ -43,14 +35,6 @@
       "pitch_hook": "Water damage calls are coming. Every one you miss is $500+ walking away."
     },
     {
-      "type": "storm",
-      "area": "Columbia, AR; Lafayette, AR; Miller, AR; Union, AR; Bienville, LA; Bossier, LA; Caddo, LA; Caldwell, LA; Claiborne, LA; De Soto, LA; Grant, LA; Jackson, LA; La Salle, LA; Lincoln, LA; Natchitoches, LA",
-      "niche": "roofing",
-      "action": "Storm damage in Columbia, AR; Lafayette, AR; Miller, AR; Union, AR; Bienville, LA; Bossier, LA; Caddo, LA; Caldwell, LA; Claiborne, LA; De Soto, LA; Grant, LA; Jackson, LA; La Salle, LA; Lincoln, LA; Natchitoches, LA. Roofers and restoration companies about to get flooded.",
-      "urgency": "today",
-      "pitch_hook": "After a storm like that, you'll get 10x your normal call volume. Ready for it?"
-    },
-    {
       "type": "flood",
       "area": "Concordia, LA; Adams, MS; Wilkinson, MS",
       "niche": "plumbing",
@@ -59,28 +43,44 @@
       "pitch_hook": "Water damage calls are coming. Every one you miss is $500+ walking away."
     },
     {
-      "type": "storm",
-      "area": "Conway, AR; Perry, AR; Pope, AR; Yell, AR",
-      "niche": "roofing",
-      "action": "Storm damage in Conway, AR; Perry, AR; Pope, AR; Yell, AR. Roofers and restoration companies about to get flooded.",
+      "type": "flood",
+      "area": "Lewis, TN; Wayne, TN",
+      "niche": "plumbing",
+      "action": "Flood warnings in Lewis, TN; Wayne, TN. Plumbers, restoration, mold companies will spike.",
       "urgency": "today",
-      "pitch_hook": "After a storm like that, you'll get 10x your normal call volume. Ready for it?"
+      "pitch_hook": "Water damage calls are coming. Every one you miss is $500+ walking away."
     },
     {
-      "type": "storm",
-      "area": "Faulkner, AR; Pulaski, AR; Saline, AR",
-      "niche": "roofing",
-      "action": "Storm damage in Faulkner, AR; Pulaski, AR; Saline, AR. Roofers and restoration companies about to get flooded.",
+      "type": "flood",
+      "area": "Loudon, TN; McMinn, TN; Monroe, TN; Roane, TN",
+      "niche": "plumbing",
+      "action": "Flood warnings in Loudon, TN; McMinn, TN; Monroe, TN; Roane, TN. Plumbers, restoration, mold companies will spike.",
       "urgency": "today",
-      "pitch_hook": "After a storm like that, you'll get 10x your normal call volume. Ready for it?"
+      "pitch_hook": "Water damage calls are coming. Every one you miss is $500+ walking away."
     },
     {
-      "type": "storm",
-      "area": "Lonoke, AR; Pulaski, AR",
-      "niche": "roofing",
-      "action": "Storm damage in Lonoke, AR; Pulaski, AR. Roofers and restoration companies about to get flooded.",
+      "type": "flood",
+      "area": "Putnam, TN",
+      "niche": "plumbing",
+      "action": "Flood warnings in Putnam, TN. Plumbers, restoration, mold companies will spike.",
       "urgency": "today",
-      "pitch_hook": "After a storm like that, you'll get 10x your normal call volume. Ready for it?"
+      "pitch_hook": "Water damage calls are coming. Every one you miss is $500+ walking away."
+    },
+    {
+      "type": "flood",
+      "area": "Sullivan, TN; Washington, VA; City of Bristol, VA",
+      "niche": "plumbing",
+      "action": "Flood warnings in Sullivan, TN; Washington, VA; City of Bristol, VA. Plumbers, restoration, mold companies will spike.",
+      "urgency": "today",
+      "pitch_hook": "Water damage calls are coming. Every one you miss is $500+ walking away."
+    },
+    {
+      "type": "flood",
+      "area": "Muskogee, OK",
+      "niche": "plumbing",
+      "action": "Flood warnings in Muskogee, OK. Plumbers, restoration, mold companies will spike.",
+      "urgency": "today",
+      "pitch_hook": "Water damage calls are coming. Every one you miss is $500+ walking away."
     }
   ],
   "leads": [
@@ -239,55 +239,55 @@
   "feeds": [
     {
       "name": "NOAA",
-      "last_hit": "2026-07-06T22:07:48.174009+00:00",
+      "last_hit": "2026-07-07T00:14:39.398782+00:00",
       "status": "yellow",
       "data_points_today": 0
     },
     {
       "name": "REDDIT",
-      "last_hit": "2026-07-06T22:07:48.174009+00:00",
+      "last_hit": "2026-07-07T00:14:39.398782+00:00",
       "status": "green",
       "data_points_today": 15
     },
     {
       "name": "USGS",
-      "last_hit": "2026-07-06T22:07:48.174009+00:00",
+      "last_hit": "2026-07-07T00:14:39.398782+00:00",
       "status": "yellow",
       "data_points_today": 0
     },
     {
       "name": "HACKERNEWS",
-      "last_hit": "2026-07-06T22:07:48.174009+00:00",
+      "last_hit": "2026-07-07T00:14:39.398782+00:00",
       "status": "green",
       "data_points_today": 30
     },
     {
       "name": "FEMA",
-      "last_hit": "2026-07-06T22:07:48.174009+00:00",
-      "status": "green",
-      "data_points_today": 20
+      "last_hit": "2026-07-07T00:14:39.398782+00:00",
+      "status": "yellow",
+      "data_points_today": 0
     },
     {
       "name": "COMMODITIES",
-      "last_hit": "2026-07-06T22:07:48.174009+00:00",
+      "last_hit": "2026-07-07T00:14:39.398782+00:00",
       "status": "green",
       "data_points_today": 7
     },
     {
       "name": "RSS",
-      "last_hit": "2026-07-06T22:07:48.174009+00:00",
+      "last_hit": "2026-07-07T00:14:39.398782+00:00",
       "status": "green",
-      "data_points_today": 740
+      "data_points_today": 749
     },
     {
       "name": "FRED",
-      "last_hit": "2026-07-06T22:07:48.174009+00:00",
+      "last_hit": "2026-07-07T00:14:39.398782+00:00",
       "status": "yellow",
       "data_points_today": 0
     },
     {
       "name": "BLS",
-      "last_hit": "2026-07-06T22:07:48.174009+00:00",
+      "last_hit": "2026-07-07T00:14:39.398782+00:00",
       "status": "green",
       "data_points_today": 9
     }
