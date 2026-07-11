@@ -1253,11 +1253,14 @@ function buildWebsite() {
       prompt += '\nStyle inspiration: use ' + styleUrl + ' as a reference for the visual style and layout approach.\n';
     }
 
-    // Open Lovable
-    var lovableUrl = 'https://lovable.dev/projects/new?prompt=' + encodeURIComponent(prompt);
-    window.open(lovableUrl, '_blank');
+    // Copy to clipboard first, then open Lovable
+    navigator.clipboard.writeText(prompt).then(function(){}).catch(function(){});
+    window.open('https://lovable.dev/projects/new', '_blank');
 
-    statusEl.textContent = 'Opened Lovable with prompt for ' + name + '. Rating: ' + rating + '/5 (' + reviewCount + ' reviews).';
+    // Show prompt in copyable textarea as backup
+    statusEl.innerHTML = '<span style="color:var(--green);font-weight:700">COPIED TO CLIPBOARD</span> — paste into Lovable. Business: ' + name + ' (' + rating + '/5, ' + reviewCount + ' reviews).'
+      + '<textarea id="wb-prompt-text" readonly style="width:100%;height:120px;margin-top:8px;background:var(--card);color:var(--text);border:1px solid var(--border);padding:8px;font-size:11px;font-family:inherit;resize:vertical">' + prompt.replace(/</g,'&lt;') + '</textarea>'
+      + '<button class="btn btn-outline btn-sm" style="margin-top:4px" onclick="navigator.clipboard.writeText(document.getElementById(\'wb-prompt-text\').value)">COPY AGAIN</button>';
     btn.textContent = 'BUILD WEBSITE';
     btn.disabled = false;
   })
