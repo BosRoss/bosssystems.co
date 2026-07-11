@@ -1,6 +1,17 @@
 {
   "pending": [
     {
+      "text": "Saturday morning and your phone's been ringing all week. You answered maybe half of them. The other half became someone else's jobs. That's 27% of your calls going to voicemail while you're actually working. Send this to the contractor still losing money to a silent phone.",
+      "audience": "boss",
+      "platform": "instagram",
+      "service": "instagram",
+      "channel_id": "6a235eb2c687a22dd46643fa",
+      "pattern": "behind_scenes",
+      "image_url": "https://raw.githubusercontent.com/BosRoss/bosssystems.co/main/social_images/post_boss_20260711_130008.png",
+      "pending_id": "0e6ebb71",
+      "queued_at": "2026-07-11T13:00:10.757609"
+    },
+    {
       "text": "Your competitor just answered the phone in 3 seconds. You didn't answer at all. He booked the job. You lost it. Twenty seven percent of calls go straight to voicemail in your industry. Ninety three percent never call back. Share this with someone still leaving money on the table.",
       "audience": "boss",
       "platform": "instagram",
@@ -45,6 +56,39 @@
       "queued_at": "2026-07-11T09:49:03.741361"
     },
     {
+      "text": "Your cousin started pressure washing 6 weeks ago. Books his own jobs. Keeps 80%. Makes $500-$800/week after costs.\n\nYou're still waiting for the right time.\n\nThere's never a right time. There's just now or later.\n\nWe build the whole thing\u2014website, phone system, booking, payment processing. You show up and do the work. $0 to start.\n\nSend this to someone still waiting.\n\nbosssystems.co/summer.html\n\n*Results vary.*",
+      "audience": "bpp",
+      "platform": "instagram",
+      "service": "instagram",
+      "channel_id": "6a235eb2c687a22dd46643fa",
+      "pattern": "social_proof",
+      "image_url": "https://raw.githubusercontent.com/BosRoss/bosssystems.co/main/social_images/post_bpp_20260711_130020.png",
+      "pending_id": "83bfaf2b",
+      "queued_at": "2026-07-11T13:00:25.705139"
+    },
+    {
+      "text": "Most service business owners think they're losing money on big stuff. Wrong. You're bleeding out on the small things. The calls nobody picks up. The jobs that never get scheduled. The invoices that sit unpaid. One lost job covers a month of what we charge. bosssystems.co #ServiceBusiness #HVAC #Plumber #SmallBusiness #MoneySavingTips",
+      "audience": "boss",
+      "platform": "tiktok",
+      "service": "tiktok",
+      "channel_id": "6a235eddc687a22dd4664478",
+      "pattern": "behind_scenes",
+      "image_url": "https://raw.githubusercontent.com/BosRoss/bosssystems.co/main/social_images/post_boss_20260711_130013.png",
+      "pending_id": "8c9c209b",
+      "queued_at": "2026-07-11T13:00:14.953985"
+    },
+    {
+      "text": "Your buddy started pressure washing with us three months ago. Now he's booking 8-10 jobs a week, pocketing $500-$700 after the split.\n\nYou're still thinking about it.\n\nHere's what actually happened: he got a website, a phone number that answers itself, online booking, and payment processing. We handle all that. He just shows up and works. Keeps 80%.\n\nThe catch? You do the actual work. We're not magic. But if you're already good at what you do, why are you still working FOR someone else?\n\n*Res...",
+      "audience": "bpp",
+      "platform": "facebook",
+      "service": "facebook",
+      "channel_id": "6a235ecac687a22dd4664434",
+      "pattern": "social_proof",
+      "image_url": null,
+      "pending_id": "d691b816",
+      "queued_at": "2026-07-11T13:00:17.825944"
+    },
+    {
       "text": "Most service business owners are leaving 27 percent of their calls on the table. You answer three calls. Two more just hung up. That's two jobs you never knew existed. We build systems so you catch every single one. No subscription trap either. Just pay when you use it. bosssystems.co #ServiceBusiness #HVAC #Plumbing #SmallBusiness #LocalBusiness",
       "audience": "boss",
       "platform": "tiktok",
@@ -65,6 +109,28 @@
       "image_url": null,
       "pending_id": "e097f771",
       "queued_at": "2026-07-11T09:48:46.841389"
+    },
+    {
+      "text": "Real talk: your coworker just launched a pressure washing side gig. Making $500-$750/week. You're still waiting for Monday. We handle the website, calls, and bookings. You show up and work. Keep 80%. $0 to start. *Results vary.*\n\n#ServiceBusiness #PressureWashing #SideHustle #StartYourOwn #WeekendMoney\n\nbosssystems.co/summer.html",
+      "audience": "bpp",
+      "platform": "tiktok",
+      "service": "tiktok",
+      "channel_id": "6a235eddc687a22dd4664478",
+      "pattern": "social_proof",
+      "image_url": "https://raw.githubusercontent.com/BosRoss/bosssystems.co/main/social_images/post_bpp_20260711_130028.png",
+      "pending_id": "e0f51190",
+      "queued_at": "2026-07-11T13:00:29.700106"
+    },
+    {
+      "text": "Here's what happens behind the scenes at most service shops on Saturday morning.\n\nThe phone starts ringing at 8 AM. Owner's already got three jobs lined up. Receptionist calls in sick. By 10 AM, five calls have gone unanswered.\n\nThat's real money walking away while you're focused on the job in front of you.\n\nThe thing is, you can't be two places at once. Nobody expects you to answer your phone while you're fixing something. But 27% of calls in your industry go straight to voicemail anyway.\n\nA...",
+      "audience": "boss",
+      "platform": "facebook",
+      "service": "facebook",
+      "channel_id": "6a235ecac687a22dd4664434",
+      "pattern": "behind_scenes",
+      "image_url": null,
+      "pending_id": "fb0fafdc",
+      "queued_at": "2026-07-11T13:00:05.645593"
     }
   ]
 }
