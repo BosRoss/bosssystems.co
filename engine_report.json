@@ -1,15 +1,7 @@
 {
-  "generated": "2026-07-11T16:57:20.826508+00:00",
+  "generated": "2026-07-11T19:04:39.793175+00:00",
   "engine_state": "active",
   "signals": [
-    {
-      "type": "flood",
-      "area": "Comal, TX; Guadalupe, TX",
-      "niche": "plumbing",
-      "action": "Flood warnings in Comal, TX; Guadalupe, TX. Plumbers, restoration, mold companies will spike.",
-      "urgency": "today",
-      "pitch_hook": "Water damage calls are coming. Every one you miss is $500+ walking away."
-    },
     {
       "type": "flood",
       "area": "Bexar, TX",
@@ -19,18 +11,42 @@
       "pitch_hook": "Water damage calls are coming. Every one you miss is $500+ walking away."
     },
     {
-      "type": "heat_wave",
-      "area": "Chicot; Bolivar; Sunflower; Leflore; Washington",
-      "niche": "hvac",
-      "action": "HVAC businesses in Chicot; Bolivar; Sunflower; Leflore; Washington are drowning in calls right now. Perfect time to pitch.",
+      "type": "flood",
+      "area": "Hays, TX; Travis, TX",
+      "niche": "plumbing",
+      "action": "Flood warnings in Hays, TX; Travis, TX. Plumbers, restoration, mold companies will spike.",
       "urgency": "today",
-      "pitch_hook": "You're getting slammed with calls \u2014 how many went to voicemail today?"
+      "pitch_hook": "Water damage calls are coming. Every one you miss is $500+ walking away."
+    },
+    {
+      "type": "flood",
+      "area": "Comal, TX; Guadalupe, TX",
+      "niche": "plumbing",
+      "action": "Flood warnings in Comal, TX; Guadalupe, TX. Plumbers, restoration, mold companies will spike.",
+      "urgency": "today",
+      "pitch_hook": "Water damage calls are coming. Every one you miss is $500+ walking away."
+    },
+    {
+      "type": "storm",
+      "area": "Craighead, AR; Crittenden, AR; Cross, AR; Greene, AR; Lee, AR; Mississippi, AR; Poinsett, AR; St. Francis, AR; Dunklin, MO; Pemiscot, MO; Alcorn, MS; Benton, MS; DeSoto, MS; Marshall, MS; Prentiss, MS",
+      "niche": "roofing",
+      "action": "Storm damage in Craighead, AR; Crittenden, AR; Cross, AR; Greene, AR; Lee, AR; Mississippi, AR; Poinsett, AR; St. Francis, AR; Dunklin, MO; Pemiscot, MO; Alcorn, MS; Benton, MS; DeSoto, MS; Marshall, MS; Prentiss, MS. Roofers and restoration companies about to get flooded.",
+      "urgency": "today",
+      "pitch_hook": "After a storm like that, you'll get 10x your normal call volume. Ready for it?"
     },
     {
       "type": "heat_wave",
       "area": "St. Francis; Lee; Phillips; Tunica; Coahoma; Quitman; Tallahatchie",
       "niche": "hvac",
       "action": "HVAC businesses in St. Francis; Lee; Phillips; Tunica; Coahoma; Quitman; Tallahatchie are drowning in calls right now. Perfect time to pitch.",
+      "urgency": "today",
+      "pitch_hook": "You're getting slammed with calls \u2014 how many went to voicemail today?"
+    },
+    {
+      "type": "heat_wave",
+      "area": "Chicot; Bolivar; Sunflower; Leflore; Washington",
+      "niche": "hvac",
+      "action": "HVAC businesses in Chicot; Bolivar; Sunflower; Leflore; Washington are drowning in calls right now. Perfect time to pitch.",
       "urgency": "today",
       "pitch_hook": "You're getting slammed with calls \u2014 how many went to voicemail today?"
     },
@@ -43,44 +59,28 @@
       "pitch_hook": "Water damage calls are coming. Every one you miss is $500+ walking away."
     },
     {
-      "type": "heat_wave",
-      "area": "White; Woodruff; Lonoke; Prairie; Monroe; Arkansas; Desha",
-      "niche": "hvac",
-      "action": "HVAC businesses in White; Woodruff; Lonoke; Prairie; Monroe; Arkansas; Desha are drowning in calls right now. Perfect time to pitch.",
+      "type": "storm",
+      "area": "Baxter, AR; Boone, AR; Cleburne, AR; Conway, AR; Faulkner, AR; Independence, AR; Izard, AR; Jackson, AR; Johnson, AR; Lawrence, AR; Logan, AR; Lonoke, AR; Marion, AR; Monroe, AR; Newton, AR; Perry, AR",
+      "niche": "roofing",
+      "action": "Storm damage in Baxter, AR; Boone, AR; Cleburne, AR; Conway, AR; Faulkner, AR; Independence, AR; Izard, AR; Jackson, AR; Johnson, AR; Lawrence, AR; Logan, AR; Lonoke, AR; Marion, AR; Monroe, AR; Newton, AR; Perry, AR. Roofers and restoration companies about to get flooded.",
       "urgency": "today",
-      "pitch_hook": "You're getting slammed with calls \u2014 how many went to voicemail today?"
+      "pitch_hook": "After a storm like that, you'll get 10x your normal call volume. Ready for it?"
     },
     {
-      "type": "heat_wave",
-      "area": "Conway; Faulkner; Perry; Saline; Pulaski; Southern Johnson County; Southern Pope County; Western and Northern Logan County; Northwest Yell County; Southern and Eastern Logan County; Yell Excluding Nor",
-      "niche": "hvac",
-      "action": "HVAC businesses in Conway; Faulkner; Perry; Saline; Pulaski; Southern Johnson County; Southern Pope County; Western and Northern Logan County; Northwest Yell County; Southern and Eastern Logan County; Yell Excluding Nor are drowning in calls right now. Perfect time to pitch.",
+      "type": "storm",
+      "area": "Independence, AR; Jackson, AR; Lawrence, AR; Sharp, AR",
+      "niche": "roofing",
+      "action": "Storm damage in Independence, AR; Jackson, AR; Lawrence, AR; Sharp, AR. Roofers and restoration companies about to get flooded.",
       "urgency": "today",
-      "pitch_hook": "You're getting slammed with calls \u2014 how many went to voicemail today?"
+      "pitch_hook": "After a storm like that, you'll get 10x your normal call volume. Ready for it?"
     },
     {
-      "type": "flood",
-      "area": "Clay; Dunklin; Pemiscot; Lake; Obion; Weakley; Henry; Dyer; Gibson; Carroll; Benton; Henderson; Decatur",
-      "niche": "plumbing",
-      "action": "Flood warnings in Clay; Dunklin; Pemiscot; Lake; Obion; Weakley; Henry; Dyer; Gibson; Carroll; Benton; Henderson; Decatur. Plumbers, restoration, mold companies will spike.",
+      "type": "storm",
+      "area": "Craighead, AR; Greene, AR",
+      "niche": "roofing",
+      "action": "Storm damage in Craighead, AR; Greene, AR. Roofers and restoration companies about to get flooded.",
       "urgency": "today",
-      "pitch_hook": "Water damage calls are coming. Every one you miss is $500+ walking away."
-    },
-    {
-      "type": "heat_wave",
-      "area": "North and Central Sebastian; Southern Crawford; Central and Southern Franklin; Tulsa; Okmulgee; Wagoner; Muskogee; McIntosh; Pittsburg; Haskell; Northern Le Flore; Central and Southern Sequoyah",
-      "niche": "hvac",
-      "action": "HVAC businesses in North and Central Sebastian; Southern Crawford; Central and Southern Franklin; Tulsa; Okmulgee; Wagoner; Muskogee; McIntosh; Pittsburg; Haskell; Northern Le Flore; Central and Southern Sequoyah are drowning in calls right now. Perfect time to pitch.",
-      "urgency": "today",
-      "pitch_hook": "You're getting slammed with calls \u2014 how many went to voicemail today?"
-    },
-    {
-      "type": "flood",
-      "area": "Cherokee; Clay; Scott; Campbell; Claiborne; Hancock; Hawkins; Sullivan; Johnson; Morgan; Anderson; Union; Grainger; Hamblen; Northwest Cocke; Cocke Smoky Mountains; Northwest Greene; Southeast Greene;",
-      "niche": "plumbing",
-      "action": "Flood warnings in Cherokee; Clay; Scott; Campbell; Claiborne; Hancock; Hawkins; Sullivan; Johnson; Morgan; Anderson; Union; Grainger; Hamblen; Northwest Cocke; Cocke Smoky Mountains; Northwest Greene; Southeast Greene;. Plumbers, restoration, mold companies will spike.",
-      "urgency": "today",
-      "pitch_hook": "Water damage calls are coming. Every one you miss is $500+ walking away."
+      "pitch_hook": "After a storm like that, you'll get 10x your normal call volume. Ready for it?"
     }
   ],
   "leads": [
@@ -126,7 +126,7 @@
       "score": 75,
       "tier": "SUPERNICHE",
       "channel": "watchlist",
-      "sequence_status": "queued",
+      "sequence_status": "re_engaged",
       "trigger": "flood"
     },
     {
@@ -222,15 +222,15 @@
   ],
   "kpis": {
     "signals_firing": 10,
-    "leads_superniche": 39,
-    "leads_hot": 112,
-    "leads_warm": 49,
-    "cost_per_qualified": 0.59,
-    "total_spend": 22.848000000000017,
+    "leads_superniche": 41,
+    "leads_hot": 118,
+    "leads_warm": 41,
+    "cost_per_qualified": 0.64,
+    "total_spend": 26.04800000000002,
     "spend_cap": 300.0
   },
   "channels": {
-    "emails_sent": 145,
+    "emails_sent": 154,
     "texts_sent": 8,
     "calls_made": 0,
     "meetings_set": 10,
@@ -239,55 +239,55 @@
   "feeds": [
     {
       "name": "NOAA",
-      "last_hit": "2026-07-11T16:50:13.529868+00:00",
+      "last_hit": "2026-07-11T18:57:25.428868+00:00",
       "status": "yellow",
       "data_points_today": 0
     },
     {
       "name": "REDDIT",
-      "last_hit": "2026-07-11T16:50:13.529868+00:00",
+      "last_hit": "2026-07-11T18:57:25.428868+00:00",
       "status": "green",
-      "data_points_today": 30
+      "data_points_today": 15
     },
     {
       "name": "USGS",
-      "last_hit": "2026-07-11T16:50:13.529868+00:00",
+      "last_hit": "2026-07-11T18:57:25.428868+00:00",
       "status": "yellow",
       "data_points_today": 0
     },
     {
       "name": "HACKERNEWS",
-      "last_hit": "2026-07-11T16:50:13.529868+00:00",
+      "last_hit": "2026-07-11T18:57:25.428868+00:00",
       "status": "green",
       "data_points_today": 30
     },
     {
       "name": "FEMA",
-      "last_hit": "2026-07-11T16:50:13.529868+00:00",
+      "last_hit": "2026-07-11T18:57:25.428868+00:00",
       "status": "green",
       "data_points_today": 20
     },
     {
       "name": "COMMODITIES",
-      "last_hit": "2026-07-11T16:50:13.529868+00:00",
+      "last_hit": "2026-07-11T18:57:25.428868+00:00",
       "status": "green",
       "data_points_today": 7
     },
     {
       "name": "RSS",
-      "last_hit": "2026-07-11T16:50:13.529868+00:00",
+      "last_hit": "2026-07-11T18:57:25.428868+00:00",
       "status": "green",
-      "data_points_today": 736
+      "data_points_today": 751
     },
     {
       "name": "FRED",
-      "last_hit": "2026-07-11T16:50:13.529868+00:00",
+      "last_hit": "2026-07-11T18:57:25.428868+00:00",
       "status": "yellow",
       "data_points_today": 0
     },
     {
       "name": "BLS",
-      "last_hit": "2026-07-11T16:50:13.529868+00:00",
+      "last_hit": "2026-07-11T18:57:25.428868+00:00",
       "status": "green",
       "data_points_today": 9
     }
@@ -295,7 +295,7 @@
   "conversion_funnel": {
     "signals": 10,
     "leads": 200,
-    "contacted": 153,
+    "contacted": 162,
     "replied": 10,
     "meeting": 10,
     "close": 0
