@@ -340,8 +340,8 @@ body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;backgrou
           <p>Go to the TOOLS tab. Scroll to <strong style="color:var(--gold)">Website Builder</strong>. Enter the business name and city exactly as it appears on Google Maps.<br><br>
           <strong style="color:var(--gold)">Style Notes:</strong> Ask the client what they like. Do NOT paste a competitor URL — the result will look like a copy. Instead, write what they want in plain English: "clean layout, big hero photo, blue and white colors, no clutter, prominent phone number." The more specific, the better the website turns out.<br><br>
           <strong style="color:var(--gold)">Colors:</strong> Ask "What colors are on your truck/logo/uniform?" Match those. If they do not care, leave it blank and Lovable will pick professional colors for their trade.<br><br>
-          <strong style="color:var(--gold)">What happens:</strong> The tool pulls their real Google data (rating, reviews, hours, phone, address) and generates a complete prompt. It copies to your clipboard and opens Lovable. Paste the prompt. Lovable builds the site in 2-3 minutes.<br><br>
-          <strong style="color:var(--gold)">Images:</strong> The website comes with labeled placeholder slots (hero, team, gallery). The client uploads their own photos later using the photo upload link (see below). Never use stock photos.</p>
+          <strong style="color:var(--gold)">What happens:</strong> The tool pulls their real Google data (rating, reviews, hours, phone, address). If the business already has a website, it automatically scrapes their existing site for images, text content, logo, and brand colors — so the new site keeps their real photos and info. If there is no existing website, it skips that step and uses Google data only. Either way, it generates a complete prompt, copies to your clipboard, and opens Lovable. Paste the prompt. Lovable builds the site in 2-3 minutes.<br><br>
+          <strong style="color:var(--gold)">Existing Website vs No Website:</strong> If they already have a site, the builder pulls their actual images and content so Lovable builds an UPGRADE, not a blank slate. You will see "Pulled X images + content from existing site" in the status. If they have no website, the builder uses placeholder image slots instead and the client uploads photos later using the photo upload link (see below). Never use stock photos in either case.</p>
         </div>
         <div class="learn-card">
           <h3>Client Photo Upload System</h3>
@@ -354,8 +354,12 @@ body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;backgrou
           <strong style="color:var(--gold)">They can use this link anytime in the future</strong> — new project photo, new team member, seasonal update. Same link, same process. This is a selling point: "You can update your photos anytime from your phone. No calling us, no waiting."</p>
         </div>
         <div class="learn-card" style="border-color:var(--green)">
-          <h3>Website Sale Script (Word for Word)</h3>
+          <h3>Website Sale Script — No Website</h3>
           <p>"I noticed your business does not have a website. Right now, anyone searching for [their service] in [their city] on their phone — they are scrolling right past you. We can build you a professional site in 72 hours. Your real reviews, your hours, click-to-call, shows up on Google. $299 and it is done, $29 a month after that. And you can update your photos anytime from your phone — no tech skills needed. I have a build slot open [Wednesday/Thursday]. Which works better?"</p>
+        </div>
+        <div class="learn-card" style="border-color:var(--green)">
+          <h3>Website Sale Script — Has a Bad Website</h3>
+          <p>"I checked out your website and honestly, it is costing you customers. It is not mobile-friendly / loads slow / hard to find your phone number / [specific issue]. When someone searches [their service] in [their city] on their phone and your site does not work right, they go to the next guy. We can rebuild it in 72 hours — we will keep your photos, your real reviews, everything that is already working. Just make it modern and fast. $299 and it is done, $29 a month. Your customers will actually be able to book you from their phone."</p>
         </div>
       </div>
 
@@ -1318,6 +1322,81 @@ function buildWebsite() {
       });
     }
 
+    // If business has an existing website, scrape it for content + images
+    var siteData = null;
+    var scrapePromise;
+    if (website) {
+      statusEl.textContent = 'Found existing website — pulling images and content from ' + website + '...';
+      scrapePromise = fetch('https://api.allorigins.win/raw?url=' + encodeURIComponent(website), { signal: AbortSignal.timeout(8000) })
+        .then(function(r) { return r.text(); })
+        .then(function(html) {
+          var parser = new DOMParser();
+          var doc = parser.parseFromString(html, 'text/html');
+          siteData = {};
+
+          // Page title + meta description
+          var titleEl = doc.querySelector('title');
+          if (titleEl) siteData.title = titleEl.textContent.trim();
+          var metaDesc = doc.querySelector('meta[name="description"]');
+          if (metaDesc) siteData.description = metaDesc.getAttribute('content');
+
+          // Pull all meaningful images (filter out icons/tracking pixels)
+          var imgs = doc.querySelectorAll('img[src]');
+          siteData.images = [];
+          var baseUrl = website.replace(/\/$/, '');
+          for (var ii = 0; ii < imgs.length && siteData.images.length < 10; ii++) {
+            var src = imgs[ii].getAttribute('src') || '';
+            var alt = imgs[ii].getAttribute('alt') || '';
+            if (src.match(/tracking|pixel|1x1|spacer|favicon|icon|logo.*small|badge|sprite/i)) continue;
+            if (src.startsWith('data:image/gif') || src.startsWith('data:image/png;base64,iVBOR')) continue;
+            if (src.startsWith('//')) src = 'https:' + src;
+            else if (src.startsWith('/')) src = baseUrl + src;
+            else if (!src.startsWith('http')) src = baseUrl + '/' + src;
+            siteData.images.push({ src: src, alt: alt });
+          }
+
+          // Pull text content from main sections
+          var textBlocks = [];
+          var contentEls = doc.querySelectorAll('h1, h2, h3, p, li');
+          for (var ti = 0; ti < contentEls.length && textBlocks.length < 20; ti++) {
+            var txt = contentEls[ti].textContent.trim();
+            if (txt.length > 15 && txt.length < 500) {
+              var tag = contentEls[ti].tagName.toLowerCase();
+              textBlocks.push((tag.match(/^h/) ? '[heading] ' : '') + txt);
+            }
+          }
+          siteData.textContent = textBlocks;
+
+          // Try to detect brand colors from inline styles or CSS
+          var bodyStyle = doc.querySelector('body');
+          var colorHints = [];
+          var allEls = doc.querySelectorAll('[style*="background"], [style*="color"]');
+          var colorSet = {};
+          for (var ci = 0; ci < allEls.length && ci < 50; ci++) {
+            var style = allEls[ci].getAttribute('style') || '';
+            var colorMatches = style.match(/#[0-9a-fA-F]{3,6}/g);
+            if (colorMatches) colorMatches.forEach(function(c) { colorSet[c.toLowerCase()] = (colorSet[c.toLowerCase()] || 0) + 1; });
+          }
+          var sorted = Object.entries(colorSet).sort(function(a,b) { return b[1] - a[1]; });
+          siteData.detectedColors = sorted.slice(0, 5).map(function(e) { return e[0]; });
+
+          // Pull logo if identifiable
+          var logoImg = doc.querySelector('img[class*="logo"], img[id*="logo"], img[alt*="logo" i], header img, .logo img, .navbar-brand img');
+          if (logoImg) {
+            var logoSrc = logoImg.getAttribute('src') || '';
+            if (logoSrc.startsWith('/')) logoSrc = baseUrl + logoSrc;
+            else if (!logoSrc.startsWith('http') && !logoSrc.startsWith('data:')) logoSrc = baseUrl + '/' + logoSrc;
+            siteData.logo = logoSrc;
+          }
+        })
+        .catch(function() { siteData = null; });
+    } else {
+      scrapePromise = Promise.resolve();
+    }
+
+    scrapePromise.then(function() {
+    statusEl.textContent = 'Building prompt...';
+
     // Build the Lovable prompt
     var prompt = 'Build a professional single-page website for "' + name + '" located in ' + city + '.\n\n';
     prompt += 'Business details from Google:\n';
@@ -1329,6 +1408,32 @@ function buildWebsite() {
     if (phone) prompt += '- Phone: ' + phone + '\n';
     if (website) prompt += '- Current website: ' + website + '\n';
     prompt += '\n';
+
+    // If we scraped data from the existing site, include it
+    if (siteData) {
+      prompt += '--- EXISTING WEBSITE DATA (scraped from ' + website + ') ---\n';
+      prompt += 'This business already has a website. Use the content below to build a BETTER version — keep their real info, improve the design.\n\n';
+      if (siteData.title) prompt += 'Page title: ' + siteData.title + '\n';
+      if (siteData.description) prompt += 'Meta description: ' + siteData.description + '\n';
+      if (siteData.logo) prompt += 'Logo URL (embed this): ' + siteData.logo + '\n';
+      if (siteData.images.length > 0) {
+        prompt += '\nImages from their current site (USE these real images instead of placeholders where possible):\n';
+        siteData.images.forEach(function(img, idx) {
+          prompt += '- Image ' + (idx + 1) + ': ' + img.src + (img.alt ? ' (alt: ' + img.alt + ')' : '') + '\n';
+        });
+      }
+      if (siteData.textContent.length > 0) {
+        prompt += '\nContent from their current site (rewrite and improve, keep the facts accurate):\n';
+        siteData.textContent.forEach(function(t) {
+          prompt += '- ' + t + '\n';
+        });
+      }
+      if (siteData.detectedColors.length > 0 && !colors) {
+        prompt += '\nColors detected from their current site: ' + siteData.detectedColors.join(', ') + '\n';
+        prompt += 'Use these as a starting point for the color scheme (they match the brand).\n';
+      }
+      prompt += '--- END EXISTING WEBSITE DATA ---\n\n';
+    }
 
     if (reviewSnippets.length > 0) {
       prompt += 'Real customer reviews to feature as testimonials:\n';
@@ -1350,15 +1455,24 @@ function buildWebsite() {
     prompt += '- SEO meta tags for "' + types.split(',')[0] + ' in ' + city + '"\n';
     prompt += '\n';
 
-    prompt += 'Image placeholders (the client will upload their own photos later):\n';
-    prompt += '- Use clearly labeled placeholder areas with a grey background and text like "[HERO IMAGE - Upload your best project photo]"\n';
-    prompt += '- Include image slots for: hero banner, about/team photo, and 3-4 gallery/portfolio images\n';
-    prompt += '- Each placeholder should have an ID attribute (img-hero, img-team, img-gallery-1, etc.) so they can be swapped later\n';
-    prompt += '- Do NOT use stock photos. Use styled placeholder boxes only.\n';
+    // Image instructions depend on whether we got real images
+    if (siteData && siteData.images.length > 0) {
+      prompt += 'Images: Use the real images pulled from their existing site above. For any sections without a real image, use clearly labeled placeholder areas with a grey background and text like "[UPLOAD YOUR PHOTO]".\n';
+      prompt += '- Each placeholder should have an ID attribute (img-hero, img-team, img-gallery-1, etc.) so they can be swapped later\n';
+      prompt += '- Do NOT use stock photos.\n';
+    } else {
+      prompt += 'Image placeholders (the client will upload their own photos later):\n';
+      prompt += '- Use clearly labeled placeholder areas with a grey background and text like "[HERO IMAGE - Upload your best project photo]"\n';
+      prompt += '- Include image slots for: hero banner, about/team photo, and 3-4 gallery/portfolio images\n';
+      prompt += '- Each placeholder should have an ID attribute (img-hero, img-team, img-gallery-1, etc.) so they can be swapped later\n';
+      prompt += '- Do NOT use stock photos. Use styled placeholder boxes only.\n';
+    }
     prompt += '\n';
 
     if (colors) {
       prompt += 'Color scheme: ' + colors + '\n';
+    } else if (siteData && siteData.detectedColors.length > 0) {
+      prompt += 'Color scheme: Use the brand colors detected from their existing site (' + siteData.detectedColors.join(', ') + ') as a base, polished and modernized.\n';
     } else {
       prompt += 'Color scheme: Professional and clean. Pick colors that fit a ' + types.split(',')[0] + ' business.\n';
     }
@@ -1372,12 +1486,14 @@ function buildWebsite() {
     navigator.clipboard.writeText(prompt).then(function(){}).catch(function(){});
     window.open('https://lovable.dev/projects/new', '_blank');
 
+    var scraped = siteData ? ' Pulled ' + siteData.images.length + ' images + content from existing site.' : (website ? ' Could not reach existing site — using Google data only.' : ' No existing website found — using Google data only.');
     // Show prompt in copyable textarea as backup
-    statusEl.innerHTML = '<span style="color:var(--green);font-weight:700">COPIED TO CLIPBOARD</span> — paste into Lovable. Business: ' + name + ' (' + rating + '/5, ' + reviewCount + ' reviews).'
+    statusEl.innerHTML = '<span style="color:var(--green);font-weight:700">COPIED TO CLIPBOARD</span> — paste into Lovable. Business: ' + name + ' (' + rating + '/5, ' + reviewCount + ' reviews).' + scraped
       + '<textarea id="wb-prompt-text" readonly style="width:100%;height:120px;margin-top:8px;background:var(--card);color:var(--text);border:1px solid var(--border);padding:8px;font-size:11px;font-family:inherit;resize:vertical">' + prompt.replace(/</g,'&lt;') + '</textarea>'
       + '<button class="btn btn-outline btn-sm" style="margin-top:4px" onclick="navigator.clipboard.writeText(document.getElementById(\'wb-prompt-text\').value)">COPY AGAIN</button>';
     btn.textContent = 'BUILD WEBSITE';
     btn.disabled = false;
+    });
   })
   .catch(function(err) {
     errorEl.textContent = err.message || 'Google Places lookup failed. Check your connection.';
