@@ -296,19 +296,74 @@ async function lookupOnGoogle(query, businessName, cityName, businessType) {
     }
   }
 
-  // Strategy 3: if still nothing, try business type + city to get market data
+  // Strategy 3: if still nothing, pull market data from competitors in same industry + city
   if (!target && businessType) {
     var typeLabel = (TYPE_DEFAULTS[businessType] || TYPE_DEFAULTS.general).label;
     var s3 = await _placesSearch(typeLabel + ' ' + (cityName || ''), bias ? { locationBias: bias } : {});
     if (s3.places.length > 0) {
-      // Use market data but flag that we found competitors, not the actual business
-      target = s3.places[0];
-      return _extractPlaceData(target, true);
+      return _aggregateMarketData(s3.places, businessName, cityName, typeLabel);
     }
   }
 
   if (!target) return { found: false };
   return _extractPlaceData(target, false);
+}
+
+function _aggregateMarketData(places, businessName, cityName, typeLabel) {
+  var totalRating = 0, ratedCount = 0, totalReviews = 0;
+  var negCount = 0, phoneCount = 0, totalRevsScanned = 0;
+  var websiteCount = 0, afterHoursCount = 0, weekendCount = 0;
+  var competitorNames = [];
+
+  places.forEach(function(p) {
+    if (p.rating) { totalRating += p.rating; ratedCount++; }
+    totalReviews += (p.userRatingCount || 0);
+    if (p.websiteUri) websiteCount++;
+    competitorNames.push((p.displayName || {}).text || '?');
+
+    var revs = p.reviews || [];
+    totalRevsScanned += revs.length;
+    revs.forEach(function(r) {
+      if (r.rating && r.rating <= 3) {
+        negCount++;
+        var t = ((r.text || r.originalText || {}).text || '').toLowerCase();
+        if (/\b(call|phone|answer|voicemail|reach|respond|response|contact|wait|waiting|hold|rude|slow|never got back)\b/.test(t)) phoneCount++;
+      }
+    });
+
+    var hours = p.currentOpeningHours;
+    if (hours && hours.weekdayDescriptions) {
+      var descs = hours.weekdayDescriptions;
+      var satDesc = descs.find(function(d) { return d.startsWith('Saturday'); }) || '';
+      var sunDesc = descs.find(function(d) { return d.startsWith('Sunday'); }) || '';
+      if (!(/closed/i.test(satDesc) && /closed/i.test(sunDesc))) weekendCount++;
+      var hasLate = descs.some(function(d) { return /24 hours/i.test(d); });
+      if (!hasLate && hours.periods) {
+        hours.periods.forEach(function(per) { if (per.close && per.close.hour >= 18) hasLate = true; });
+      }
+      if (hasLate) afterHoursCount++;
+    }
+  });
+
+  var avgRating = ratedCount > 0 ? Math.round(totalRating / ratedCount * 10) / 10 : 0;
+  var avgReviews = Math.round(totalReviews / places.length);
+
+  return {
+    found: true,
+    isMarket: true,
+    marketSize: places.length,
+    marketNames: competitorNames.slice(0, 5),
+    name: businessName || (typeLabel + ' in ' + cityName),
+    address: cityName || '',
+    rating: avgRating,
+    reviewCount: avgReviews,
+    hasWebsite: websiteCount < places.length * 0.7,
+    hasAfterHours: afterHoursCount < places.length * 0.5,
+    hasWeekends: weekendCount > places.length * 0.5,
+    negativeReviews: negCount,
+    phoneComplaints: phoneCount,
+    reviewsChecked: totalRevsScanned
+  };
 }
 
 function _extractPlaceData(target, isMarketData) {
@@ -380,12 +435,15 @@ function buildAutomations(btype, jobValue, googleData, userMonthlyJobs) {
     jobsSource = 'your number (' + userMonthlyJobs + ' jobs/mo)';
   } else if (estJobs) {
     monthlyJobs = estJobs;
-    jobsSource = 'calculated: ' + g.reviewCount + ' reviews ÷ ' + (d.reviewRate * 100) + '% review rate ÷ listing age = ~' + estJobs + '/mo';
+    jobsSource = 'calculated: ' + (isMarket ? 'avg ' : '') + g.reviewCount + ' reviews' + (isMarket ? ' across ' + g.marketSize + ' competitors' : '') + ' ÷ ' + (d.reviewRate * 100) + '% review rate ÷ listing age = ~' + estJobs + '/mo';
   } else {
     monthlyJobs = d.monthlyJobs;
     jobsSource = d.label + ' industry average (' + d.monthlyJobs + '/mo)';
   }
   var hasPhoneEvidence = g.found && g.phoneComplaints > 0;
+  var isMarket = g.isMarket || false;
+  var srcLabel = isMarket ? 'market data from ' + g.marketSize + ' local competitors' : 'your Google listing';
+  var revLabel = isMarket ? g.marketSize + ' competitors (avg ' + g.reviewCount + ' reviews each)' : g.reviewCount + ' reviews';
 
   var annualRevenue = monthlyJobs * job * 12;
   var estWeeklyCalls = Math.max(2, Math.round(monthlyJobs * d.callsPerJob / 4.33));
@@ -399,7 +457,7 @@ function buildAutomations(btype, jobValue, googleData, userMonthlyJobs) {
   var recoveryHigh = 0.25;
   var phoneLow = Math.round(estMissedPerWeek * recoveryLow * job * 52);
   var phoneHigh = Math.round(estMissedPerWeek * recoveryHigh * job * 52);
-  var phoneDataLevel = g.found ? (hasPhoneEvidence ? 'verified' : 'calculated') : 'estimate';
+  var phoneDataLevel = g.found ? (hasPhoneEvidence && !isMarket ? 'verified' : 'calculated') : 'estimate';
   var phoneSources = [
     { text: '62% of calls to small businesses go unanswered — 411 Locals (2022)', type: 'industry' },
     { text: '80-85% who reach voicemail never call back — Invoca (2020)', type: 'industry' },
@@ -411,7 +469,7 @@ function buildAutomations(btype, jobValue, googleData, userMonthlyJobs) {
     phoneSources.unshift({ text: g.reviewCount + ' reviews ÷ ' + (d.reviewRate*100) + '% review rate = ~' + fmtN(Math.round(g.reviewCount / d.reviewRate)) + ' total customers. At ~' + Math.round(Math.max(12, Math.min(60, g.reviewCount/2))) + ' months listing age = ' + monthlyJobs + ' jobs/mo', type: 'calculated' });
   }
   if (hasPhoneEvidence) {
-    phoneSources.unshift({ text: g.phoneComplaints + ' customer review' + (g.phoneComplaints > 1 ? 's' : '') + ' mentioning phone/response issues found on your Google listing', type: 'verified' });
+    phoneSources.unshift({ text: g.phoneComplaints + ' customer review' + (g.phoneComplaints > 1 ? 's' : '') + ' mentioning phone/response issues found in ' + srcLabel + '', type: 'verified' });
   }
   autos.push({
     key: 'phone_receptionist',
@@ -422,7 +480,7 @@ function buildAutomations(btype, jobValue, googleData, userMonthlyJobs) {
     setup: 250, monthly: 97,
     selected: true,
     dataLevel: phoneDataLevel,
-    desc: 'Answers every call on the first ring, day or night. Qualifies the caller, gives quotes based on your pricing, and books appointments directly into your schedule. Customers never hit voicemail.' + (hasPhoneEvidence ? ' We found ' + g.phoneComplaints + ' review' + (g.phoneComplaints > 1 ? 's' : '') + ' from your actual customers complaining about phone or response issues — this is already costing you.' : ''),
+    desc: 'Answers every call on the first ring, day or night. Qualifies the caller, gives quotes based on your pricing, and books appointments directly into your schedule. Customers never hit voicemail.' + (hasPhoneEvidence ? ' We found ' + g.phoneComplaints + ' review' + (g.phoneComplaints > 1 ? 's' : '') + ' from ' + (isMarket ? 'customers of competitors in your market' : 'your actual customers') + ' complaining about phone or response issues — this is already costing you.' : ''),
     math: [
       { label: 'Monthly jobs (' + jobsSource + ')', value: monthlyJobs },
       { label: 'Calls/job (' + d.label + ' avg)', value: d.callsPerJob },
@@ -479,11 +537,11 @@ function buildAutomations(btype, jobValue, googleData, userMonthlyJobs) {
       var revLift = monthlyJobs * 0.03; // 3% lift from ~0.3 star increase (Harvard: 5-9% per full star)
       reviewLow = Math.round(Math.max(0.5, revLift * 0.5) * job * 12);
       reviewHigh = Math.round(Math.max(1, revLift) * job * 12);
-      reviewDesc = 'Your rating is ' + g.rating + '★ with ' + fmtN(g.reviewCount) + ' reviews. Research shows a 1-star increase drives 5-9% more revenue. Moving from ' + g.rating + ' to ' + targetRating.toFixed(1) + ' could drive a ~3% lift — about ' + Math.round(Math.max(0.5, revLift * 0.5)) + '-' + Math.round(Math.max(1, revLift)) + ' extra jobs per month from improved Google visibility.';
+      reviewDesc = (isMarket ? 'The average rating for ' + d.label.toLowerCase() + ' businesses in your area is ' : 'Your rating is ') + g.rating + '★ with ' + (isMarket ? 'an avg of ' : '') + fmtN(g.reviewCount) + ' reviews. Research shows a 1-star increase drives 5-9% more revenue. Moving from ' + g.rating + ' to ' + targetRating.toFixed(1) + ' could drive a ~3% lift — about ' + Math.round(Math.max(0.5, revLift * 0.5)) + '-' + Math.round(Math.max(1, revLift)) + ' extra jobs per month from improved Google visibility.';
     } else {
       reviewLow = Math.round(0.25 * job * 12);
       reviewHigh = Math.round(0.5 * job * 12);
-      reviewDesc = 'Your rating is solid at ' + g.rating + '★, but with only ' + fmtN(g.reviewCount) + ' reviews, one bad review can visibly drop your average. Automated review requests build a cushion and keep you visible in local search.';
+      reviewDesc = (isMarket ? 'The average rating in your market is solid at ' : 'Your rating is solid at ') + g.rating + '★, but with only ' + fmtN(g.reviewCount) + ' reviews, one bad review can visibly drop your average. Automated review requests build a cushion and keep you visible in local search.';
     }
     autos.push({
       key: 'review_system',
@@ -503,7 +561,7 @@ function buildAutomations(btype, jobValue, googleData, userMonthlyJobs) {
       ],
       mathFormula: (g.rating < 4.5 ? Math.round(Math.max(0.5, revLift * 0.5)) + '-' + Math.round(Math.max(1, revLift)) : '0.25-0.5') + ' extra jobs/mo × $' + fmtN(job) + ' × 12 months',
       sources: [
-        { text: 'Your rating (' + g.rating + '★) and review count (' + g.reviewCount + ') verified from Google', type: 'verified' },
+        { text: (isMarket ? 'Avg market rating (' + g.rating + '★) and review count (' + g.reviewCount + ') from ' + g.marketSize + ' competitors' : 'Your rating (' + g.rating + '★) and review count (' + g.reviewCount + ') verified from Google'), type: isMarket ? 'calculated' : 'verified' },
         { text: '1-star increase = 5-9% revenue lift — Harvard Business School, Michael Luca (2016), peer-reviewed', type: 'industry' },
       ],
       disclaimer: 'Revenue impact assumes your market has enough search volume for improved rankings to convert. Very small towns may see less effect.',
@@ -534,7 +592,7 @@ function buildAutomations(btype, jobValue, googleData, userMonthlyJobs) {
       ],
       mathFormula: preventPerYear + ' prevented reviews × (0.5-1.5 jobs saved) × $' + fmtN(job),
       sources: [
-        { text: g.negativeReviews + ' negative review' + (g.negativeReviews > 1 ? 's' : '') + ' found on your Google listing', type: 'verified' },
+        { text: g.negativeReviews + ' negative review' + (g.negativeReviews > 1 ? 's' : '') + ' found in ' + srcLabel, type: isMarket ? 'calculated' : 'verified' },
         { text: '1-star increase = 5-9% revenue lift — Harvard Business School (2016)', type: 'industry' },
       ],
       disclaimer: 'Not every bad review is preventable — some come from non-customers or unreasonable expectations. This system works on your actual customers who had a fixable bad experience.',
@@ -557,7 +615,7 @@ function buildAutomations(btype, jobValue, googleData, userMonthlyJobs) {
       setup: 200, monthly: 49,
       selected: false,
       dataLevel: 'verified',
-      desc: 'We checked — your business has no website listed on Google. Anyone searching for your service type in your area won\'t find you unless they already know your name. A basic landing page with your services, reviews, and a booking button changes that.',
+      desc: isMarket ? 'Many ' + d.label.toLowerCase() + ' businesses in your area lack a proper website. Anyone searching for your service type on their phone won\'t find you unless they already know your name. A basic landing page with your services, reviews, and a booking button changes that.' : 'We checked — your business has no website listed on Google. Anyone searching for your service type in your area won\'t find you unless they already know your name. A basic landing page with your services, reviews, and a booking button changes that.',
       math: [
         { label: 'Current monthly jobs (no website)', value: monthlyJobs },
         { label: 'Expected lift from web presence', value: '5-10% of current volume' },
@@ -566,8 +624,8 @@ function buildAutomations(btype, jobValue, googleData, userMonthlyJobs) {
       ],
       mathFormula: webJobsLow + '-' + webJobsHigh + ' new jobs/mo × $' + fmtN(job) + ' × 12 months',
       sources: [
-        { text: 'No website found on your Google listing', type: 'verified' },
-        { text: 'Job volume estimate: ' + monthlyJobs + '/month from your review data', type: 'calculated' },
+        { text: 'No website found in ' + srcLabel, type: isMarket ? 'calculated' : 'verified' },
+        { text: 'Job volume estimate: ' + monthlyJobs + '/month from ' + revLabel, type: 'calculated' },
       ],
       disclaimer: 'A website doesn\'t guarantee traffic. These numbers assume basic SEO and that people in your area are searching for your service.',
       breakeven: function() { return 1; },
@@ -603,7 +661,7 @@ function buildAutomations(btype, jobValue, googleData, userMonthlyJobs) {
       ],
       mathFormula: afterMissedPerWeek + ' after-hours calls/week × 25-40% booked × $' + fmtN(job) + ' × 52 weeks',
       sources: [
-        { text: 'Limited hours verified on your Google listing', type: 'verified' },
+        { text: 'Limited hours verified from ' + srcLabel, type: isMarket ? 'calculated' : 'verified' },
         { text: '35-43% of home service calls come outside business hours — CallRail SMB Report (2024)', type: 'industry' },
         { text: 'Call volume calculated from your estimated ' + monthlyJobs + ' jobs/month', type: 'calculated' },
       ],
@@ -622,7 +680,7 @@ function buildAutomations(btype, jobValue, googleData, userMonthlyJobs) {
     { text: 'Text reminders reduce no-shows by 29-38% — PLOS ONE systematic review (2020), 28 of 29 studies confirmed', type: 'industry' },
   ];
   if (g.found && estJobs) {
-    apptSources.unshift({ text: monthlyJobs + ' jobs/month calculated from your ' + g.reviewCount + ' Google reviews', type: 'calculated' });
+    apptSources.unshift({ text: monthlyJobs + ' jobs/month calculated from ' + revLabel, type: 'calculated' });
   }
   if (apptLow > 0) {
     autos.push({
@@ -703,7 +761,7 @@ function buildAutomations(btype, jobValue, googleData, userMonthlyJobs) {
     dataLevel: g.found ? 'calculated' : 'estimate',
     desc: '60-90 days after a customer\'s last job, they get a personalized text. "Hey [name], it\'s been a while since we worked on your [last service]. Need anything?" Simple, personal, effective.',
     math: [
-      { label: 'Est. total customer base', value: fmtN(estCustomerBase) + ' (' + (g.found ? 'from your reviews' : 'industry est.') + ')' },
+      { label: 'Est. total customer base', value: fmtN(estCustomerBase) + ' (' + (g.found ? 'from ' + (isMarket ? 'market data' : 'your reviews') : 'industry est.') + ')' },
       { label: 'Lapsed customers/month (5% churn)', value: lapsedPerMonth },
       { label: 'Re-engagement rate (HubSpot)', value: '10-15%' },
       { label: 'Reactivations/month', value: Math.max(0.5, reengageConvertLow) + ' - ' + Math.max(1, reengageConvertHigh) },
@@ -772,7 +830,7 @@ function buildAutomations(btype, jobValue, googleData, userMonthlyJobs) {
       ],
       mathFormula: Math.max(3, Math.round(maintBase * 0.6)) + '-' + Math.max(8, maintBase) + ' tune-ups/mo × $175 × 12',
       sources: g.found ? [
-        { text: 'Customer base estimated from your ' + g.reviewCount + ' Google reviews', type: 'calculated' },
+        { text: 'Customer base estimated from ' + revLabel, type: 'calculated' },
         { text: 'HVAC maintenance cycle: 6-month filter, annual tune-up', type: 'industry' },
       ] : [
         { text: 'Based on typical HVAC maintenance cycle (6-month filter, annual tune-up)', type: 'industry' },
@@ -803,7 +861,7 @@ function buildAutomations(btype, jobValue, googleData, userMonthlyJobs) {
       ],
       mathFormula: Math.max(5, Math.round(recallBase * 0.6)) + '-' + Math.max(12, recallBase) + ' recalls/mo × $' + fmtN(job) + ' × 12',
       sources: g.found ? [
-        { text: 'Patient base estimated from your ' + g.reviewCount + ' Google reviews', type: 'calculated' },
+        { text: 'Patient base estimated from ' + revLabel, type: 'calculated' },
         { text: '60% of dental revenue comes from existing patients — ADA', type: 'industry' },
       ] : [
         { text: '60% of dental revenue comes from existing patients — ADA', type: 'industry' },
@@ -861,7 +919,7 @@ function buildAutomations(btype, jobValue, googleData, userMonthlyJobs) {
       ],
       mathFormula: Math.max(2, Math.round(svcBase * 0.6)) + '-' + Math.max(4, svcBase) + ' jobs/mo × $' + fmtN(job) + ' × 12',
       sources: g.found ? [
-        { text: 'Customer base estimated from your ' + g.reviewCount + ' reviews', type: 'calculated' },
+        { text: 'Customer base estimated from ' + revLabel, type: 'calculated' },
         { text: 'Service reminders generate 30-40% of repeat revenue for top shops — AAIA', type: 'industry' },
       ] : [
         { text: 'Service reminders generate 30-40% of repeat revenue for top shops — AAIA', type: 'industry' },
@@ -886,13 +944,13 @@ function buildAutomations(btype, jobValue, googleData, userMonthlyJobs) {
       dataLevel: g.found ? 'calculated' : 'estimate',
       desc: 'Five days before every scheduled treatment, customers get a text reminder with one-tap confirm. Reduces cancellations and keeps recurring revenue locked in.',
       math: [
-        { label: 'Est. recurring accounts', value: pestAccounts + (g.found ? ' (from your reviews)' : '') },
+        { label: 'Est. recurring accounts', value: pestAccounts + (g.found ? ' (from ' + (isMarket ? 'market data' : 'your reviews') + ')' : '') },
         { label: 'Churn reduction', value: '10-15%' },
         { label: 'Avg quarterly value', value: '$200' },
       ],
       mathFormula: '10-15% churn reduction × ' + pestAccounts + ' accounts × $200/quarter × 4 quarters',
       sources: g.found ? [
-        { text: 'Account count estimated from your ' + g.reviewCount + ' reviews', type: 'calculated' },
+        { text: 'Account count estimated from ' + revLabel, type: 'calculated' },
       ] : [
         { text: 'Industry estimate — pest control has high quarterly churn without reminders', type: 'estimate' },
       ],
@@ -943,13 +1001,13 @@ function buildAutomations(btype, jobValue, googleData, userMonthlyJobs) {
       dataLevel: g.found ? 'calculated' : 'estimate',
       desc: 'Tracks member check-ins. After 10 days with no visit, they get a personal text. Renewal reminders go out 30 days before expiration.',
       math: [
-        { label: 'Est. active members', value: gymMembers + (g.found ? ' (from your reviews)' : '') },
+        { label: 'Est. active members', value: gymMembers + (g.found ? ' (from ' + (isMarket ? 'market data' : 'your reviews') + ')' : '') },
         { label: 'Members retained/month', value: gymRetainLow + ' - ' + gymRetainHigh },
         { label: 'Monthly membership value', value: '$45' },
       ],
       mathFormula: gymRetainLow + '-' + gymRetainHigh + ' retained/mo × $45 × 12',
       sources: g.found ? [
-        { text: 'Member count estimated from your ' + g.reviewCount + ' reviews', type: 'calculated' },
+        { text: 'Member count estimated from ' + revLabel, type: 'calculated' },
         { text: 'Average gym loses 5-8% of members/month — IHRSA', type: 'industry' },
       ] : [
         { text: 'Average gym loses 5-8% of members per month — IHRSA', type: 'industry' },
@@ -1323,9 +1381,19 @@ async function _doAnalysis(btype, city, bname, jobValue, userMonthlyJobs) {
   var jobLabel = jobValue ? '$' + fmtN(jobValue) + ' (your number)' : '$' + fmtN(job) + ' (' + d.label + ' average)';
   var volumeLabel = userMonthlyJobs ? fmtN(userMonthlyJobs) + '/mo (your number)' : (googleData.found && estimateMonthlyJobs(googleData.reviewCount, btype) ? fmtN(estimateMonthlyJobs(googleData.reviewCount, btype)) + '/mo (from reviews)' : fmtN(d.monthlyJobs) + '/mo (industry avg)');
 
-  // Google data badge — only show when we FOUND data, never tell user we couldn't find them
+  // Google data badge
   var verifiedHTML = '';
-  if (googleData.found) {
+  if (googleData.found && googleData.isMarket) {
+    verifiedHTML = ''
+      + '<div style="background:#0a1a0a;border:1px solid #1a3a1a;padding:1rem 1.2rem;margin-bottom:2rem;font-size:.85rem;color:#bbb;line-height:1.6">'
+      + '<strong style="color:var(--text)">' + esc(bname || d.label) + '</strong> — ' + esc(city) + '<br>'
+      + 'Market data from <strong style="color:var(--gold)">' + googleData.marketSize + ' ' + d.label.toLowerCase() + ' businesses</strong> in your area'
+      + ' · Avg rating: <strong style="color:var(--gold)">' + googleData.rating + '★</strong> (' + fmtN(googleData.reviewCount) + ' avg reviews)'
+      + (googleData.phoneComplaints > 0 ? ' · <span style="color:#e74c3c">' + googleData.phoneComplaints + ' phone complaints found across competitors</span>' : '')
+      + (!googleData.hasAfterHours ? ' · <span style="color:#e67e22">Most competitors lack after-hours coverage</span>' : '')
+      + '<br><span style="font-size:.75rem;color:#999">' + googleData.reviewsChecked + ' reviews scanned across ' + googleData.marketSize + ' businesses</span>'
+      + '</div>';
+  } else if (googleData.found) {
     verifiedHTML = ''
       + '<div style="background:#0a1a0a;border:1px solid #1a3a1a;padding:1rem 1.2rem;margin-bottom:2rem;font-size:.85rem;color:#bbb;line-height:1.6">'
       + '<strong style="color:var(--text)">' + esc(googleData.name) + '</strong> — ' + esc(googleData.address || '') + '<br>'
@@ -1348,13 +1416,13 @@ async function _doAnalysis(btype, city, bname, jobValue, userMonthlyJobs) {
     + '<div class="stats-row">'
     + '<div class="stat"><div class="num">' + fmt(totalLow) + ' - ' + fmt(totalHigh) + '</div><div class="lbl">Estimated Annual Opportunity</div></div>'
     + '<div class="stat"><div class="num">' + autos.length + '</div><div class="lbl">Automations Found</div></div>'
-    + '<div class="stat"><div class="num">' + dataBackedCount + '/' + autos.length + '</div><div class="lbl">Backed by Your Data</div></div>'
+    + '<div class="stat"><div class="num">' + dataBackedCount + '/' + autos.length + '</div><div class="lbl">Backed by ' + (googleData.isMarket ? 'Real Data' : 'Your Data') + '</div></div>'
     + '</div>';
 
   // Explanation
   var dataExplain = '';
-  if (verifiedCount > 0) dataExplain += ' <span style="color:#4CAF50">' + verifiedCount + ' verified</span> directly from your Google listing.';
-  if (calculatedCount > 0) dataExplain += ' <span style="color:#4B92DB">' + calculatedCount + ' calculated</span> from your review data + published research.';
+  if (verifiedCount > 0) dataExplain += ' <span style="color:#4CAF50">' + verifiedCount + ' verified</span> from ' + (googleData.isMarket ? 'local market data' : 'your Google listing') + '.';
+  if (calculatedCount > 0) dataExplain += ' <span style="color:#4B92DB">' + calculatedCount + ' calculated</span> from ' + (googleData.isMarket ? googleData.marketSize + ' competitors (avg ' + googleData.reviewCount + ' reviews each)' : googleData.reviewCount + ' reviews') + ' + published research.';
   if (estimateCount > 0) dataExplain += ' <span style="color:#b08930">' + estimateCount + ' use industry data only</span> (sources cited).';
 
   var explainHTML = ''
