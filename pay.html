@@ -125,26 +125,10 @@ h1{font-size:1.8rem;font-weight:700;color:var(--text);margin-bottom:4px}
   <div id="pay-buttons">
     <div class="section-label">Pay with card</div>
     <a href="#" class="pay-btn pay-primary" id="square-btn" onclick="return handleSquare()">Pay with Card</a>
-
-    <div class="section-label">Or use</div>
-    <div class="pay-alt">
-      <a href="venmo://paycharge?txn=pay&recipients=BosRoss" class="pay-alt-btn" id="venmo-btn">
-        <span class="alt-name">Venmo</span>
-        <span class="alt-handle">@BosRoss</span>
-      </a>
-      <a href="#" class="pay-alt-btn" id="zelle-btn">
-        <span class="alt-name">Zelle</span>
-        <span class="alt-handle">bosssystemsai@gmail.com</span>
-      </a>
-      <a href="https://cash.app/$BosRoss" class="pay-alt-btn" id="cashapp-btn" target="_blank">
-        <span class="alt-name">Cash App</span>
-        <span class="alt-handle">$BosRoss</span>
-      </a>
-    </div>
   </div>
 
   <div class="info-box" id="info-box">
-    <strong>After payment:</strong> Text or call <strong>(903) 522-4459</strong> with your receipt. We'll start building your system within 24 hours. You'll get a test call before it goes live.
+    <strong>After payment:</strong> You will get a confirmation email and a text from our team within 24 hours. We will start building your system immediately. You will get a test call before it goes live.
   </div>
 
   <div class="square-badge" id="secure-badge">Secure payment via Square</div>
@@ -281,8 +265,7 @@ function showCustomAmount(amt, label) {
 }
 
 function updateVenmoLink(amount, note) {
-  var venmo = document.getElementById('venmo-btn');
-  venmo.href = 'venmo://paycharge?txn=pay&recipients=BosRoss&amount=' + amount + '&note=' + encodeURIComponent(note + ' - BOSS Systems');
+  // Card only — no Venmo
 }
 
 function updateSquareBtn(amount) {
@@ -342,15 +325,46 @@ function handleSquare() {
     return false;
   }
 
-  // BOSS product mode — direct to text for card payment setup
+  // BOSS product mode — create Square checkout link
   var amt = currentProduct ? currentProduct.setup : 0;
   if (!amt) {
     alert('Please select a product first.');
     return false;
   }
   var productName = currentProduct ? currentProduct.name : 'BOSS Systems';
-  var smsBody = encodeURIComponent('Hi, I want to pay $' + amt.toLocaleString() + ' for ' + productName + ' by card.');
-  window.location.href = 'sms:+19035224459&body=' + smsBody;
+  var btn = document.getElementById('square-btn');
+  btn.textContent = 'Processing...';
+  btn.style.pointerEvents = 'none';
+  btn.style.opacity = '0.6';
+
+  var x = new XMLHttpRequest();
+  x.open('POST', 'https://jamross.app.n8n.cloud/webhook/boss-pay');
+  x.setRequestHeader('Content-Type', 'application/json');
+  x.onload = function() {
+    try {
+      var d = JSON.parse(x.responseText);
+      if (d.url) {
+        window.location.href = d.url;
+      } else {
+        btn.textContent = 'Pay $' + amt.toLocaleString() + ' with Card';
+        btn.style.pointerEvents = 'auto';
+        btn.style.opacity = '1';
+        alert('Payment system is loading. Please try again in a moment.');
+      }
+    } catch(e) {
+      btn.textContent = 'Pay $' + amt.toLocaleString() + ' with Card';
+      btn.style.pointerEvents = 'auto';
+      btn.style.opacity = '1';
+      alert('Payment system is loading. Please try again in a moment.');
+    }
+  };
+  x.onerror = function() {
+    btn.textContent = 'Pay $' + amt.toLocaleString() + ' with Card';
+    btn.style.pointerEvents = 'auto';
+    btn.style.opacity = '1';
+    alert('Payment system is loading. Please try again in a moment.');
+  };
+  x.send(JSON.stringify({product: productName, amount: amt}));
   return false;
 }
 

@@ -100,6 +100,10 @@
     html.theme-pink .footer-brand .nav-logo { color: #ffffff; }
     html.theme-pink #problem h3,
     html.theme-pink #who h3 { color: #D43880; }
+    html.theme-pink .btn-gold,
+    html.theme-pink .badge-gold { color: #F7CAE0; }
+    html.theme-pink .btn-gold:hover { color: #FCE0EC; }
+    html.theme-pink .hero-bar span { color: #D43880 !important; }
 
     html { scroll-behavior: smooth; }
 
@@ -1227,7 +1231,7 @@
   </section>
 
   <!-- ========== CTA BANNER ========== -->
-  <section style="background:var(--gold);padding:18px 0;">
+  <section class="hero-bar" style="background:var(--gold);padding:18px 0;">
     <div class="container" style="display:flex;align-items:center;justify-content:center;gap:20px;flex-wrap:wrap;text-align:center;">
       <span style="font-weight:700;color:#000;font-size:15px;letter-spacing:.3px;">See where your business is losing money. Free 60-second analysis.</span>
       <a href="/analyze.html" style="background:#000;color:var(--gold);font-weight:800;font-size:15px;padding:10px 22px;border-radius:4px;text-decoration:none;letter-spacing:.5px;white-space:nowrap;">Run Free Analysis</a>
@@ -1468,7 +1472,7 @@
 
         <!-- BUILD -->
         <div style="background:var(--bg-3);border:2px solid var(--gold);border-radius:var(--radius-lg);padding:32px 24px;text-align:center;position:relative;">
-          <div style="position:absolute;top:-12px;left:50%;transform:translateX(-50%);background:var(--gold);color:#000;font-size:11px;font-weight:700;padding:4px 12px;border-radius:20px;">MOST POPULAR</div>
+          <div class="badge-gold" style="position:absolute;top:-12px;left:50%;transform:translateX(-50%);background:var(--gold);color:#000;font-size:11px;font-weight:700;padding:4px 12px;border-radius:20px;">MOST POPULAR</div>
           <div style="font-size:12px;font-weight:700;letter-spacing:0.1em;color:var(--gold);margin-bottom:12px;">BUILD</div>
           <div style="font-size:36px;font-weight:800;color:var(--text);margin-bottom:4px;">$1,497&ndash;$5,997</div>
           <div style="font-size:14px;color:var(--text-muted);margin-bottom:24px;">+ $97&ndash;$497/mo maintenance</div>
@@ -1507,39 +1511,39 @@
   <section id="bpp" style="padding:80px 0;border-top:1px solid var(--border);">
     <div class="container" style="max-width:720px;">
       <div style="text-align:center;margin-bottom:40px;">
-        <span class="section-label">Want to Start a Business?</span>
-        <h2 style="margin-top:12px;">BOSS Partnership Program</h2>
+        <span class="section-label">Not a Business Owner Yet?</span>
+        <h2 style="margin-top:12px;">We Also Help People Start From Zero</h2>
         <div class="gold-divider" style="margin:20px auto 0;"></div>
+        <p style="font-size:15px;color:var(--text-muted);margin-top:20px;line-height:1.7;">Everything above is for businesses that already exist. But if you do not have a business yet and want to start one — we do that too. Same AI systems, but we build the entire company around you from scratch.</p>
       </div>
       <div style="background:var(--bg-3);border:1px solid var(--border);border-radius:var(--radius-lg);padding:36px 32px;">
         <div style="font-size:15px;color:var(--text);line-height:1.8;margin-bottom:24px;">
-          <p style="margin-bottom:16px;"><strong style="color:var(--gold);">We build your entire business. You do the work. Keep 80%.</strong></p>
-          <p style="margin-bottom:16px;">No experience needed. No startup costs. BOSS builds your website, phone system, scheduling, invoicing, marketing — the full AI stack. You show up, do the physical work, and keep 80% of every dollar that comes in.</p>
-          <p>Open to anyone who wants to start a service business but does not want to figure out the tech, marketing, or systems side. We handle all of it.</p>
+          <p style="margin-bottom:16px;"><strong style="color:var(--gold);">Here is how it works:</strong> We pick a service business that works in your area (lawn care, junk removal, pressure washing, etc.). We build everything — website, phone system, scheduling, invoicing, marketing. You just show up and do the physical work. You keep 80% of every dollar.</p>
+          <p>No experience needed. No startup costs. No figuring out websites or marketing or how to get customers. We handle the entire business side with AI so you can focus on the actual work.</p>
         </div>
         <div style="display:grid;grid-template-columns:1fr 1fr;gap:16px;margin-bottom:24px;">
           <div style="background:var(--bg-2);border:1px solid var(--border);padding:16px;border-radius:var(--radius);">
-            <div style="font-size:12px;letter-spacing:1.5px;color:var(--gold);text-transform:uppercase;margin-bottom:6px;">You Get</div>
+            <div style="font-size:12px;letter-spacing:1.5px;color:var(--gold);text-transform:uppercase;margin-bottom:6px;">We Handle</div>
             <ul style="list-style:none;font-size:14px;color:var(--text-muted);line-height:2;">
-              <li>Full AI business stack built for you</li>
-              <li>Website + phone + scheduling</li>
-              <li>Marketing that runs itself</li>
-              <li>80% of all revenue</li>
+              <li>Website + phone system</li>
+              <li>Scheduling + invoicing</li>
+              <li>Marketing + lead generation</li>
+              <li>All the AI and tech</li>
             </ul>
           </div>
           <div style="background:var(--bg-2);border:1px solid var(--border);padding:16px;border-radius:var(--radius);">
-            <div style="font-size:12px;letter-spacing:1.5px;color:var(--gold);text-transform:uppercase;margin-bottom:6px;">Your Cost</div>
+            <div style="font-size:12px;letter-spacing:1.5px;color:var(--gold);text-transform:uppercase;margin-bottom:6px;">You Handle</div>
             <ul style="list-style:none;font-size:14px;color:var(--text-muted);line-height:2;">
-              <li>$0 setup fee</li>
-              <li>$0 monthly fee</li>
-              <li>BOSS keeps 20% of revenue</li>
-              <li>Cancel anytime</li>
+              <li>Show up and do the work</li>
+              <li>Keep 80% of revenue</li>
+              <li>$0 to start</li>
+              <li>Cancel whenever you want</li>
             </ul>
           </div>
         </div>
         <div style="text-align:center;">
-          <a href="/summer.html" class="btn btn-gold" style="display:inline-block;padding:14px 32px;font-size:15px;">Learn More About the Partnership</a>
-          <p style="font-size:13px;color:var(--text-dim);margin-top:12px;">No application fee. No commitment until you are ready.</p>
+          <a href="/summer.html" class="btn btn-gold" style="display:inline-block;padding:14px 32px;font-size:15px;">See How It Works &rarr;</a>
+          <p style="font-size:13px;color:var(--text-dim);margin-top:12px;">No application fee. No commitment until you are ready to start.</p>
         </div>
       </div>
     </div>
@@ -1594,12 +1598,12 @@
           </ul>
         </div>
         <div class="footer-links-group">
-          <h4>Contact</h4>
+          <h4>Clients</h4>
           <ul>
+            <li><a href="/client-dashboard.html">Client Dashboard</a></li>
+            <li><a href="/pay.html">Make a Payment</a></li>
             <li><a href="tel:+19035224459">903-522-4459</a></li>
-            <li><a href="sms:+19035224459?body=Hey">Text Us</a></li>
             <li><a href="mailto:bosssystemsai@gmail.com">bosssystemsai@gmail.com</a></li>
-            <li><a href="https://venmo.com/BosRoss" target="_blank" rel="noopener">@BosRoss on Venmo</a></li>
           </ul>
         </div>
       </div>
