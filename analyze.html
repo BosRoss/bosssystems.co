@@ -255,7 +255,7 @@ async function lookupOnGoogle(query, businessName) {
   if (!ready || !window._placesService) return { found: false };
   var svc = window._placesService;
 
-  return new Promise(function(resolve) {
+  var innerPromise = new Promise(function(resolve) {
     svc.textSearch({ query: query }, function(results, status) {
       if (status !== 'OK' || !results || !results.length) {
         resolve({ found: false });
@@ -334,6 +334,12 @@ async function lookupOnGoogle(query, businessName) {
       });
     });
   });
+
+  var timeout = new Promise(function(resolve) {
+    setTimeout(function() { resolve({ found: false }); }, 10000);
+  });
+
+  return Promise.race([innerPromise, timeout]);
 }
 
 // Estimate monthly job volume from Google review count
@@ -1133,6 +1139,7 @@ function showLeadGate(businessType, city, estimatedLoss) {
       + '</div>'
       + '<p class="gate-alt"><a onclick="document.getElementById(\'gate-email-row\').style.display=\'block\';this.parentElement.style.display=\'none\'">Use email instead</a></p>'
       + '<p class="gate-privacy">No spam. We just want to send you a copy of your results.</p>'
+      + '<p style="margin-top:1rem;font-size:.8rem"><a style="color:#999;cursor:pointer;text-decoration:underline" onclick="skipLeadGate()">Skip — just show my results</a></p>'
       + '</div>';
     document.getElementById('results-content').innerHTML = gateHTML;
     window._gateResolve = resolve;
@@ -1187,6 +1194,14 @@ function submitLeadGate() {
   }
 }
 
+function skipLeadGate() {
+  localStorage.setItem('boss_analyze_lead', JSON.stringify({ skipped: true }));
+  if (window._gateResolve) {
+    window._gateResolve();
+    window._gateResolve = null;
+  }
+}
+
 async function runAnalysis() {
   var btype = document.getElementById('btype').value;
   var city  = document.getElementById('city').value.trim();
@@ -1203,6 +1218,22 @@ async function runAnalysis() {
   btn.disabled = true;
   btn.textContent = 'Analyzing...';
 
+  try { await _doAnalysis(btype, city, bname, jobValue); }
+  catch (err) {
+    console.error('Analysis error:', err);
+    document.getElementById('results-content').innerHTML = ''
+      + '<div style="padding:2rem;text-align:center;color:#aaa">'
+      + '<p style="color:#e74c3c;font-weight:700;margin-bottom:1rem">Something went wrong</p>'
+      + '<p>Could not complete the analysis. Try refreshing the page or <a href="tel:+19035224459" style="color:var(--gold)">call us at 903-522-4459</a>.</p>'
+      + '<p style="margin-top:1rem;font-size:.8rem;color:#666">Error: ' + (err.message || 'Unknown') + '</p>'
+      + '</div>';
+    document.getElementById('results').style.display = 'block';
+  }
+  btn.disabled = false;
+  btn.textContent = 'RUN MY FREE ANALYSIS';
+}
+
+async function _doAnalysis(btype, city, bname, jobValue) {
   var d = TYPE_DEFAULTS[btype] || TYPE_DEFAULTS.general;
   var job = jobValue || d.job;
 
@@ -1224,6 +1255,7 @@ async function runAnalysis() {
   } catch (e) {
     googleData = { found: false };
   }
+  if (!googleData) googleData = { found: false };
 
   document.getElementById('results-content').innerHTML = ''
     + '<div class="loading">'
