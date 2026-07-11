@@ -1,23 +1,7 @@
 {
-  "generated": "2026-07-11T14:50:02.983754+00:00",
+  "generated": "2026-07-11T15:19:36.784345+00:00",
   "engine_state": "active",
   "signals": [
-    {
-      "type": "storm",
-      "area": "Smith, TX",
-      "niche": "roofing",
-      "action": "Storm damage in Smith, TX. Roofers and restoration companies about to get flooded.",
-      "urgency": "today",
-      "pitch_hook": "After a storm like that, you'll get 10x your normal call volume. Ready for it?"
-    },
-    {
-      "type": "flood",
-      "area": "Bossier, LA; Caddo, LA; Harrison, TX; Panola, TX",
-      "niche": "plumbing",
-      "action": "Flood warnings in Bossier, LA; Caddo, LA; Harrison, TX; Panola, TX. Plumbers, restoration, mold companies will spike.",
-      "urgency": "today",
-      "pitch_hook": "Water damage calls are coming. Every one you miss is $500+ walking away."
-    },
     {
       "type": "flood",
       "area": "Concordia, LA; Adams, MS; Wilkinson, MS",
@@ -27,60 +11,76 @@
       "pitch_hook": "Water damage calls are coming. Every one you miss is $500+ walking away."
     },
     {
+      "type": "heat_wave",
+      "area": "White; Woodruff; Lonoke; Prairie; Monroe; Arkansas; Desha",
+      "niche": "hvac",
+      "action": "HVAC businesses in White; Woodruff; Lonoke; Prairie; Monroe; Arkansas; Desha are drowning in calls right now. Perfect time to pitch.",
+      "urgency": "today",
+      "pitch_hook": "You're getting slammed with calls \u2014 how many went to voicemail today?"
+    },
+    {
+      "type": "heat_wave",
+      "area": "Conway; Faulkner; Perry; Saline; Pulaski; Southern Johnson County; Southern Pope County; Western and Northern Logan County; Northwest Yell County; Southern and Eastern Logan County; Yell Excluding Nor",
+      "niche": "hvac",
+      "action": "HVAC businesses in Conway; Faulkner; Perry; Saline; Pulaski; Southern Johnson County; Southern Pope County; Western and Northern Logan County; Northwest Yell County; Southern and Eastern Logan County; Yell Excluding Nor are drowning in calls right now. Perfect time to pitch.",
+      "urgency": "today",
+      "pitch_hook": "You're getting slammed with calls \u2014 how many went to voicemail today?"
+    },
+    {
       "type": "flood",
-      "area": "Muskogee, OK",
+      "area": "Clay; Dunklin; Pemiscot; Lake; Obion; Weakley; Henry; Dyer; Gibson; Carroll; Benton; Henderson; Decatur",
       "niche": "plumbing",
-      "action": "Flood warnings in Muskogee, OK. Plumbers, restoration, mold companies will spike.",
+      "action": "Flood warnings in Clay; Dunklin; Pemiscot; Lake; Obion; Weakley; Henry; Dyer; Gibson; Carroll; Benton; Henderson; Decatur. Plumbers, restoration, mold companies will spike.",
       "urgency": "today",
       "pitch_hook": "Water damage calls are coming. Every one you miss is $500+ walking away."
     },
     {
       "type": "heat_wave",
-      "area": "Suwannee; Baker; Inland Nassau; Union; Bradford; Gilchrist; Inland Flagler; Eastern Hamilton; Coastal Nassau; Coastal Duval; Eastern Clay; Eastern Alachua; Eastern Putnam; Coastal Flagler; Eastern Mar",
+      "area": "North and Central Sebastian; Southern Crawford; Central and Southern Franklin; Tulsa; Okmulgee; Wagoner; Muskogee; McIntosh; Pittsburg; Haskell; Northern Le Flore; Central and Southern Sequoyah",
       "niche": "hvac",
-      "action": "HVAC businesses in Suwannee; Baker; Inland Nassau; Union; Bradford; Gilchrist; Inland Flagler; Eastern Hamilton; Coastal Nassau; Coastal Duval; Eastern Clay; Eastern Alachua; Eastern Putnam; Coastal Flagler; Eastern Mar are drowning in calls right now. Perfect time to pitch.",
+      "action": "HVAC businesses in North and Central Sebastian; Southern Crawford; Central and Southern Franklin; Tulsa; Okmulgee; Wagoner; Muskogee; McIntosh; Pittsburg; Haskell; Northern Le Flore; Central and Southern Sequoyah are drowning in calls right now. Perfect time to pitch.",
       "urgency": "today",
       "pitch_hook": "You're getting slammed with calls \u2014 how many went to voicemail today?"
     },
     {
-      "type": "heat_wave",
-      "area": "Coastal Collier County; Inland Collier County",
-      "niche": "hvac",
-      "action": "HVAC businesses in Coastal Collier County; Inland Collier County are drowning in calls right now. Perfect time to pitch.",
+      "type": "flood",
+      "area": "Cocke, TN",
+      "niche": "plumbing",
+      "action": "Flood warnings in Cocke, TN. Plumbers, restoration, mold companies will spike.",
       "urgency": "today",
-      "pitch_hook": "You're getting slammed with calls \u2014 how many went to voicemail today?"
+      "pitch_hook": "Water damage calls are coming. Every one you miss is $500+ walking away."
     },
     {
-      "type": "heat_wave",
-      "area": "Metro Broward County; Metropolitan Miami Dade; Coastal Broward County; Coastal Miami Dade County",
-      "niche": "hvac",
-      "action": "HVAC businesses in Metro Broward County; Metropolitan Miami Dade; Coastal Broward County; Coastal Miami Dade County are drowning in calls right now. Perfect time to pitch.",
+      "type": "flood",
+      "area": "Greene, TN; Hamblen, TN; Hawkins, TN; Unicoi, TN; Washington, TN",
+      "niche": "plumbing",
+      "action": "Flood warnings in Greene, TN; Hamblen, TN; Hawkins, TN; Unicoi, TN; Washington, TN. Plumbers, restoration, mold companies will spike.",
       "urgency": "today",
-      "pitch_hook": "You're getting slammed with calls \u2014 how many went to voicemail today?"
+      "pitch_hook": "Water damage calls are coming. Every one you miss is $500+ walking away."
     },
     {
-      "type": "heat_wave",
-      "area": "Los Angeles County Inland Coast including Downtown Los Angeles",
-      "niche": "hvac",
-      "action": "HVAC businesses in Los Angeles County Inland Coast including Downtown Los Angeles are drowning in calls right now. Perfect time to pitch.",
+      "type": "flood",
+      "area": "Cocke, TN; Greene, TN",
+      "niche": "plumbing",
+      "action": "Flood warnings in Cocke, TN; Greene, TN. Plumbers, restoration, mold companies will spike.",
       "urgency": "today",
-      "pitch_hook": "You're getting slammed with calls \u2014 how many went to voicemail today?"
+      "pitch_hook": "Water damage calls are coming. Every one you miss is $500+ walking away."
     },
     {
-      "type": "heat_wave",
-      "area": "Cuyama Valley; Santa Clarita Valley; Southern Salinas Valley; San Luis Obispo County Interior Valleys; San Luis Obispo County Mountains; Santa Barbara County Interior Mountains; Western San Fernando V",
-      "niche": "hvac",
-      "action": "HVAC businesses in Cuyama Valley; Santa Clarita Valley; Southern Salinas Valley; San Luis Obispo County Interior Valleys; San Luis Obispo County Mountains; Santa Barbara County Interior Mountains; Western San Fernando V are drowning in calls right now. Perfect time to pitch.",
+      "type": "flood",
+      "area": "Dyer, TN; Gibson, TN; Obion, TN",
+      "niche": "plumbing",
+      "action": "Flood warnings in Dyer, TN; Gibson, TN; Obion, TN. Plumbers, restoration, mold companies will spike.",
       "urgency": "today",
-      "pitch_hook": "You're getting slammed with calls \u2014 how many went to voicemail today?"
+      "pitch_hook": "Water damage calls are coming. Every one you miss is $500+ walking away."
     },
     {
-      "type": "heat_wave",
-      "area": "San Bernardino and Riverside County Valleys-The Inland Empire",
-      "niche": "hvac",
-      "action": "HVAC businesses in San Bernardino and Riverside County Valleys-The Inland Empire are drowning in calls right now. Perfect time to pitch.",
+      "type": "flood",
+      "area": "Cherokee; Clay; Scott; Campbell; Claiborne; Hancock; Hawkins; Sullivan; Johnson; Morgan; Anderson; Union; Grainger; Hamblen; Northwest Cocke; Cocke Smoky Mountains; Northwest Greene; Southeast Greene;",
+      "niche": "plumbing",
+      "action": "Flood warnings in Cherokee; Clay; Scott; Campbell; Claiborne; Hancock; Hawkins; Sullivan; Johnson; Morgan; Anderson; Union; Grainger; Hamblen; Northwest Cocke; Cocke Smoky Mountains; Northwest Greene; Southeast Greene;. Plumbers, restoration, mold companies will spike.",
       "urgency": "today",
-      "pitch_hook": "You're getting slammed with calls \u2014 how many went to voicemail today?"
+      "pitch_hook": "Water damage calls are coming. Every one you miss is $500+ walking away."
     }
   ],
   "leads": [
@@ -176,6 +176,15 @@
     },
     {
       "name": "plumber",
+      "city": "AR",
+      "score": 68,
+      "tier": "SUPERNICHE",
+      "channel": "watchlist",
+      "sequence_status": "queued",
+      "trigger": "market_sweep"
+    },
+    {
+      "name": "plumber",
       "city": "OK",
       "score": 67,
       "tier": "SUPERNICHE",
@@ -209,23 +218,14 @@
       "channel": "email",
       "sequence_status": "queued",
       "trigger": "market_sweep"
-    },
-    {
-      "name": "electrician",
-      "city": "AR",
-      "score": 64,
-      "tier": "SUPERNICHE",
-      "channel": "watchlist",
-      "sequence_status": "queued",
-      "trigger": "market_sweep"
     }
   ],
   "kpis": {
     "signals_firing": 10,
-    "leads_superniche": 37,
-    "leads_hot": 103,
-    "leads_warm": 60,
-    "cost_per_qualified": 0.57,
+    "leads_superniche": 38,
+    "leads_hot": 111,
+    "leads_warm": 52,
+    "cost_per_qualified": 0.56,
     "total_spend": 21.248000000000015,
     "spend_cap": 300.0
   },
@@ -239,62 +239,62 @@
   "feeds": [
     {
       "name": "NOAA",
-      "last_hit": "2026-07-07T17:32:02.103483+00:00",
+      "last_hit": "2026-07-11T15:13:04.091972+00:00",
       "status": "yellow",
       "data_points_today": 0
     },
     {
       "name": "REDDIT",
-      "last_hit": "2026-07-07T17:32:02.103483+00:00",
+      "last_hit": "2026-07-11T15:13:04.091972+00:00",
       "status": "green",
       "data_points_today": 30
     },
     {
       "name": "USGS",
-      "last_hit": "2026-07-07T17:32:02.103483+00:00",
+      "last_hit": "2026-07-11T15:13:04.091972+00:00",
       "status": "yellow",
       "data_points_today": 0
     },
     {
       "name": "HACKERNEWS",
-      "last_hit": "2026-07-07T17:32:02.103483+00:00",
+      "last_hit": "2026-07-11T15:13:04.091972+00:00",
       "status": "green",
       "data_points_today": 30
     },
     {
       "name": "FEMA",
-      "last_hit": "2026-07-07T17:32:02.103483+00:00",
+      "last_hit": "2026-07-11T15:13:04.091972+00:00",
       "status": "green",
       "data_points_today": 20
     },
     {
       "name": "COMMODITIES",
-      "last_hit": "2026-07-07T17:32:02.103483+00:00",
+      "last_hit": "2026-07-11T15:13:04.091972+00:00",
       "status": "green",
       "data_points_today": 7
     },
     {
       "name": "RSS",
-      "last_hit": "2026-07-07T17:32:02.103483+00:00",
+      "last_hit": "2026-07-11T15:13:04.091972+00:00",
       "status": "green",
-      "data_points_today": 755
+      "data_points_today": 744
     },
     {
       "name": "FRED",
-      "last_hit": "2026-07-07T17:32:02.103483+00:00",
+      "last_hit": "2026-07-11T15:13:04.091972+00:00",
       "status": "yellow",
       "data_points_today": 0
     },
     {
       "name": "BLS",
-      "last_hit": "2026-07-07T17:32:02.103483+00:00",
+      "last_hit": "2026-07-11T15:13:04.091972+00:00",
       "status": "green",
       "data_points_today": 9
     }
   ],
   "conversion_funnel": {
     "signals": 10,
-    "leads": 200,
+    "leads": 201,
     "contacted": 150,
     "replied": 10,
     "meeting": 10,
