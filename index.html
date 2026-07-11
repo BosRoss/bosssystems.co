@@ -1137,12 +1137,15 @@
       .products-grid { grid-template-columns: 1fr; }
       .automations-grid { grid-template-columns: repeat(2, 1fr); }
       .process-steps { grid-template-columns: repeat(2, 1fr); gap: 40px; }
+      .pricing-grid { grid-template-columns: 1fr !important; gap: 16px !important; }
       .process-steps::before { display: none; }
       .stats-grid { grid-template-columns: repeat(2, 1fr); }
       .pricing-grid { grid-template-columns: 1fr; max-width: 480px; margin-left: auto; margin-right: auto; }
       .about-inner { grid-template-columns: 1fr; gap: 48px; }
       .about-photo-wrap { order: -1; }
       .who-grid { grid-template-columns: 1fr; }
+
+      #pricing .container > div[style*="grid-template-columns"] { grid-template-columns: 1fr !important; max-width: 400px; margin-left: auto !important; margin-right: auto !important; }
 
       .nav-links { display: none; }
       .nav-hamburger { display: flex; }
@@ -1272,23 +1275,23 @@
       <div class="process-steps">
         <div class="step">
           <div class="step-num">01</div>
-          <div class="step-title">Tell Us About Your Business</div>
-          <p class="step-desc">Fill out a short form: your services, hours, how you want the phone answered, and any questions your customers usually ask. Takes 5 minutes.</p>
+          <div class="step-title">Run Your Free Analysis</div>
+          <p class="step-desc">60-second AI scan of your business. We find every place you're losing money, missing leads, or doing something manually that a machine should handle.</p>
         </div>
         <div class="step">
           <div class="step-num">02</div>
-          <div class="step-title">We Build Your AI Receptionist</div>
-          <p class="step-desc">We train the AI on your business. It learns your services, your pricing, your hours, and how you talk to customers. You get a dedicated phone number.</p>
+          <div class="step-title">We Show You The Gaps</div>
+          <p class="step-desc">You get a full report: what's broken, what it's costing you, and exactly which AI systems would fix it. No guessing. No generic advice.</p>
         </div>
         <div class="step">
           <div class="step-num">03</div>
-          <div class="step-title">Forward Your Calls</div>
-          <p class="step-desc">Set your existing number to forward to your new AI line when you can't answer. Takes 30 seconds in your phone settings.</p>
+          <div class="step-title">We Build The Systems</div>
+          <p class="step-desc">Our team builds your custom AI stack — phone answering, lead capture, follow-ups, scheduling, reviews, whatever your business actually needs.</p>
         </div>
         <div class="step">
           <div class="step-num">04</div>
-          <div class="step-title">Never Miss a Call Again</div>
-          <p class="step-desc">Every call gets answered. Every lead gets captured. You do the jobs — the AI handles the phone.</p>
+          <div class="step-title">Live in 72 Hours</div>
+          <p class="step-desc">Not weeks. Not months. Your AI systems go live within 72 hours of payment. You start saving money and capturing leads immediately.</p>
         </div>
       </div>
     </div>
@@ -1369,8 +1372,8 @@
           <span class="stat-label">average annual revenue lost to missed calls (HVAC)</span>
         </div>
         <div class="stat-item">
-          <span class="stat-num">147:1</span>
-          <span class="stat-label">ROI on BOSS AI Receptionist at $50/month</span>
+          <span class="stat-num">52</span>
+          <span class="stat-label">AI systems available for any business</span>
         </div>
         <div class="stat-item">
           <span class="stat-num">72hrs</span>
@@ -1443,52 +1446,59 @@
     <div class="container">
       <div class="pricing-header">
         <span class="section-label">Pricing</span>
-        <h2>$50/Month. That's It.</h2>
+        <h2>Three Ways to Work With Us</h2>
         <div class="gold-divider"></div>
       </div>
 
-      <div class="pricing-formula">
-        <div class="formula-block">
-          <span class="formula-label">One-Time Setup</span>
-          <div class="formula-calc">$250</div>
-          <div class="formula-range">Custom AI trained on your business</div>
-        </div>
-        <div class="formula-plus">+</div>
-        <div class="formula-block right">
-          <span class="formula-label">Monthly</span>
-          <div class="formula-calc">$50/mo</div>
-          <div class="formula-range">No overages &nbsp;&middot;&nbsp; No contracts &nbsp;&middot;&nbsp; Cancel anytime</div>
-        </div>
-      </div>
+      <div class="pricing-grid" style="display:grid;grid-template-columns:repeat(3,1fr);gap:24px;max-width:960px;margin:0 auto 48px;">
 
-      <div style="max-width:640px;margin:0 auto 48px;">
-        <div style="display:grid;grid-template-columns:1fr 1fr;gap:2px;background:var(--border);border:1px solid var(--border);border-radius:var(--radius-lg);overflow:hidden;">
-          <div style="background:var(--bg-3);padding:20px 24px;">
-            <div style="font-size:13px;font-weight:700;color:var(--text);margin-bottom:8px;">What You Get</div>
-            <ul style="list-style:none;display:flex;flex-direction:column;gap:8px;">
-              <li style="font-size:14px;color:var(--text-muted);">AI answers every call 24/7</li>
-              <li style="font-size:14px;color:var(--text-muted);">Trained on your services and pricing</li>
-              <li style="font-size:14px;color:var(--text-muted);">Books jobs and captures leads</li>
-              <li style="font-size:14px;color:var(--text-muted);">Dedicated phone number</li>
-              <li style="font-size:14px;color:var(--text-muted);">Sounds human, not robotic</li>
-            </ul>
-          </div>
-          <div style="background:var(--bg-3);padding:20px 24px;">
-            <div style="font-size:13px;font-weight:700;color:var(--text);margin-bottom:8px;">What Competitors Charge</div>
-            <ul style="list-style:none;display:flex;flex-direction:column;gap:8px;">
-              <li style="font-size:14px;color:var(--text-muted);">Ruby: $250-$720/mo</li>
-              <li style="font-size:14px;color:var(--text-muted);">Smith.ai: $95-$270/mo</li>
-              <li style="font-size:14px;color:var(--text-muted);">PATLive: $250-$720/mo</li>
-              <li style="font-size:14px;color:var(--text-muted);">Avoca: $1,000-$3,000/mo</li>
-              <li style="font-size:14px;color:var(--gold);font-weight:700;">BOSS: $50/mo flat</li>
-            </ul>
-          </div>
+        <!-- ANALYZE -->
+        <div style="background:var(--bg-3);border:1px solid var(--border);border-radius:var(--radius-lg);padding:32px 24px;text-align:center;">
+          <div style="font-size:12px;font-weight:700;letter-spacing:0.1em;color:var(--gold);margin-bottom:12px;">ANALYZE</div>
+          <div style="font-size:36px;font-weight:800;color:var(--text);margin-bottom:4px;">Free</div>
+          <div style="font-size:14px;color:var(--text-muted);margin-bottom:24px;">60-second AI business scan</div>
+          <ul style="list-style:none;display:flex;flex-direction:column;gap:10px;text-align:left;margin-bottom:28px;">
+            <li style="font-size:14px;color:var(--text-muted);">Find where you're losing money</li>
+            <li style="font-size:14px;color:var(--text-muted);">Map every automation opportunity</li>
+            <li style="font-size:14px;color:var(--text-muted);">Get a custom ROI report</li>
+            <li style="font-size:14px;color:var(--text-muted);">No commitment required</li>
+          </ul>
+          <a href="/analyze.html" class="btn btn-gold" style="width:100%;">Run Free Analysis &rarr;</a>
         </div>
+
+        <!-- BUILD -->
+        <div style="background:var(--bg-3);border:2px solid var(--gold);border-radius:var(--radius-lg);padding:32px 24px;text-align:center;position:relative;">
+          <div style="position:absolute;top:-12px;left:50%;transform:translateX(-50%);background:var(--gold);color:#000;font-size:11px;font-weight:700;padding:4px 12px;border-radius:20px;">MOST POPULAR</div>
+          <div style="font-size:12px;font-weight:700;letter-spacing:0.1em;color:var(--gold);margin-bottom:12px;">BUILD</div>
+          <div style="font-size:36px;font-weight:800;color:var(--text);margin-bottom:4px;">$1,497&ndash;$5,997</div>
+          <div style="font-size:14px;color:var(--text-muted);margin-bottom:24px;">+ $97&ndash;$497/mo maintenance</div>
+          <ul style="list-style:none;display:flex;flex-direction:column;gap:10px;text-align:left;margin-bottom:28px;">
+            <li style="font-size:14px;color:var(--text-muted);">Full AI business transformation</li>
+            <li style="font-size:14px;color:var(--text-muted);">Custom-built systems for your business</li>
+            <li style="font-size:14px;color:var(--text-muted);">Live in 72 hours</li>
+            <li style="font-size:14px;color:var(--text-muted);">Phone, leads, follow-ups, reviews, scheduling</li>
+          </ul>
+          <a href="/onboard.html" class="btn btn-gold" style="width:100%;">Get Started &rarr;</a>
+        </div>
+
+        <!-- AUTOPILOT -->
+        <div style="background:var(--bg-3);border:1px solid var(--border);border-radius:var(--radius-lg);padding:32px 24px;text-align:center;">
+          <div style="font-size:12px;font-weight:700;letter-spacing:0.1em;color:var(--gold);margin-bottom:12px;">AUTOPILOT</div>
+          <div style="font-size:36px;font-weight:800;color:var(--text);margin-bottom:4px;">$0 Setup</div>
+          <div style="font-size:14px;color:var(--text-muted);margin-bottom:24px;">80/20 revenue split</div>
+          <ul style="list-style:none;display:flex;flex-direction:column;gap:10px;text-align:left;margin-bottom:28px;">
+            <li style="font-size:14px;color:var(--text-muted);">We build and operate the AI</li>
+            <li style="font-size:14px;color:var(--text-muted);">You do the physical work</li>
+            <li style="font-size:14px;color:var(--text-muted);">You keep 80% of revenue</li>
+            <li style="font-size:14px;color:var(--text-muted);">No upfront cost, no risk</li>
+          </ul>
+          <a href="/summer.html" class="btn btn-gold" style="width:100%;">Learn More &rarr;</a>
+        </div>
+
       </div>
 
       <div class="pricing-cta-wrap">
-        <a href="/onboard.html" class="btn btn-gold btn-lg">Get Started &rarr;</a>
-        <p class="pricing-note" style="margin-top:20px;">Payment via <a href="https://venmo.com/BosRoss" target="_blank" rel="noopener">Venmo @BosRoss</a>. Questions? Call <a href="tel:+19035224459">(903) 522-4459</a> or email <a href="mailto:bosssystemsai@gmail.com">bosssystemsai@gmail.com</a>.</p>
+        <p class="pricing-note" style="margin-top:20px;">Questions? Call <a href="tel:+19035224459">(903) 522-4459</a> or email <a href="mailto:bosssystemsai@gmail.com">bosssystemsai@gmail.com</a>.</p>
       </div>
     </div>
   </section>
@@ -1540,12 +1550,12 @@
     <div class="container">
       <div class="cta-inner">
         <span class="section-label" style="display:block;text-align:center;margin-bottom:20px;">Get Started</span>
-        <h2>Stop Losing Calls. Start Today.</h2>
-        <p>$250 setup. $50/month. Live in 72 hours. Cancel anytime.</p>
+        <h2>Find Out What You're Losing. Fix It This Week.</h2>
+        <p>Free 60-second analysis. See exactly where AI saves you money. Live in 72 hours.</p>
         <div class="cta-actions">
-          <a href="/onboard.html" class="btn btn-gold btn-lg">Get Started</a>
+          <a href="/analyze.html" class="btn btn-gold btn-lg">Run Free Analysis &rarr;</a>
           <div class="cta-or">&mdash; or &mdash;</div>
-          <div class="cta-phone">Call <a href="tel:+19035224459">(903) 522-4459</a> right now and hear the AI answer live.</div>
+          <div class="cta-phone">Call <a href="tel:+19035224459">(903) 522-4459</a> and talk to our team right now.</div>
         </div>
       </div>
     </div>

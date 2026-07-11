@@ -442,6 +442,26 @@ body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;backgrou
         </div>
       </div>
       <button class="btn btn-gold" style="width:100%" onclick="copyROI()">COPY ROI PITCH</button>
+
+      <div style="font-size:10px;letter-spacing:2px;color:var(--dim);margin:20px 0 10px;text-transform:uppercase;border-top:1px solid var(--border);padding-top:16px">Website Builder</div>
+      <div class="calc-form" id="website-builder">
+        <p style="font-size:12px;color:var(--muted);margin-bottom:14px">Look up a business on Google, pull their data, and open Lovable with a pre-filled website prompt.</p>
+        <div class="calc-row">
+          <label>Business</label>
+          <input type="text" id="wb-business" placeholder="e.g. Smith's HVAC">
+        </div>
+        <div class="calc-row">
+          <label>City, State</label>
+          <input type="text" id="wb-city" placeholder="e.g. Tyler, TX">
+        </div>
+        <div class="calc-row">
+          <label>Style URL</label>
+          <input type="text" id="wb-style" placeholder="(optional) example site URL">
+        </div>
+        <button class="btn btn-gold" style="width:100%;margin-top:4px" onclick="buildWebsite()" id="wb-btn">BUILD WEBSITE</button>
+        <div id="wb-status" style="display:none;margin-top:12px;font-size:12px;color:var(--muted);text-align:center"></div>
+        <div id="wb-error" style="display:none;margin-top:12px;font-size:12px;color:var(--red);text-align:center"></div>
+      </div>
     </div>
 
     <!-- ==================== TAB: OBJECTIONS ==================== -->
@@ -1132,6 +1152,122 @@ function copyROI() {
   if (navigator.clipboard) {
     navigator.clipboard.writeText(pitch).then(function(){ showToast('ROI pitch copied'); });
   }
+}
+
+// WEBSITE BUILDER
+function buildWebsite() {
+  var business = document.getElementById('wb-business').value.trim();
+  var city = document.getElementById('wb-city').value.trim();
+  var styleUrl = document.getElementById('wb-style').value.trim();
+  var statusEl = document.getElementById('wb-status');
+  var errorEl = document.getElementById('wb-error');
+  var btn = document.getElementById('wb-btn');
+
+  errorEl.style.display = 'none';
+  if (!business) { document.getElementById('wb-business').style.borderColor = 'var(--red)'; return; }
+  if (!city) { document.getElementById('wb-city').style.borderColor = 'var(--red)'; return; }
+  document.getElementById('wb-business').style.borderColor = 'var(--border)';
+  document.getElementById('wb-city').style.borderColor = 'var(--border)';
+
+  btn.disabled = true;
+  btn.textContent = 'LOOKING UP...';
+  statusEl.textContent = 'Searching Google Places for ' + business + ' in ' + city + '...';
+  statusEl.style.display = 'block';
+
+  var query = business + ' ' + city;
+  var apiKey = 'AIzaSyC-HHg-IBqX0rfBwhrFSqshHD3j0--j3so';
+  var fieldMask = 'places.displayName,places.rating,places.userRatingCount,places.formattedAddress,places.websiteUri,places.currentOpeningHours,places.reviews,places.types';
+
+  fetch('https://places.googleapis.com/v1/places:searchText', {
+    method: 'POST',
+    headers: {
+      'Content-Type': 'application/json',
+      'X-Goog-Api-Key': apiKey,
+      'X-Goog-FieldMask': fieldMask
+    },
+    body: JSON.stringify({ textQuery: query })
+  })
+  .then(function(r) { return r.json(); })
+  .then(function(data) {
+    if (!data.places || data.places.length === 0) {
+      throw new Error('No results found. Try a different business name or city.');
+    }
+    var place = data.places[0];
+    var name = (place.displayName && place.displayName.text) || business;
+    var rating = place.rating || 'N/A';
+    var reviewCount = place.userRatingCount || 0;
+    var address = place.formattedAddress || city;
+    var website = place.websiteUri || '';
+    var types = (place.types || []).slice(0, 5).join(', ');
+
+    // Extract hours
+    var hours = 'Not available';
+    if (place.currentOpeningHours && place.currentOpeningHours.weekdayDescriptions) {
+      hours = place.currentOpeningHours.weekdayDescriptions.join('; ');
+    }
+
+    // Extract review snippets
+    var reviewSnippets = [];
+    if (place.reviews && place.reviews.length > 0) {
+      place.reviews.slice(0, 3).forEach(function(rev) {
+        if (rev.text && rev.text.text) {
+          var snippet = rev.text.text.substring(0, 120);
+          if (rev.text.text.length > 120) snippet += '...';
+          reviewSnippets.push(snippet);
+        }
+      });
+    }
+
+    // Build the Lovable prompt
+    var prompt = 'Build a professional single-page website for "' + name + '" located in ' + city + '.\n\n';
+    prompt += 'Business details from Google:\n';
+    prompt += '- Business name: ' + name + '\n';
+    prompt += '- Address: ' + address + '\n';
+    prompt += '- Rating: ' + rating + '/5 (' + reviewCount + ' reviews)\n';
+    prompt += '- Business types: ' + types + '\n';
+    prompt += '- Hours: ' + hours + '\n';
+    if (website) prompt += '- Current website: ' + website + '\n';
+    prompt += '\n';
+
+    if (reviewSnippets.length > 0) {
+      prompt += 'Real customer reviews to feature as testimonials:\n';
+      reviewSnippets.forEach(function(s, i) {
+        prompt += (i + 1) + '. "' + s + '"\n';
+      });
+      prompt += '\n';
+    }
+
+    prompt += 'Design requirements:\n';
+    prompt += '- Dark modern design with professional color scheme\n';
+    prompt += '- Mobile-first responsive layout\n';
+    prompt += '- Hero section with business name, tagline, and a strong call-to-action button (Call Now)\n';
+    prompt += '- Services section listing what they offer based on their business type\n';
+    prompt += '- Reviews/testimonials section featuring the real reviews above\n';
+    prompt += '- Business hours section\n';
+    prompt += '- Contact section with address, phone click-to-call, and embedded Google Maps\n';
+    prompt += '- Sticky call-to-action button on mobile\n';
+    prompt += '- Fast loading, clean typography, no stock photos placeholder boxes\n';
+    prompt += '- SEO meta tags for "' + types.split(',')[0] + ' in ' + city + '"\n';
+
+    if (styleUrl) {
+      prompt += '\nStyle inspiration: use ' + styleUrl + ' as a reference for the visual style and layout approach.\n';
+    }
+
+    // Open Lovable
+    var lovableUrl = 'https://lovable.dev/projects/new?prompt=' + encodeURIComponent(prompt);
+    window.open(lovableUrl, '_blank');
+
+    statusEl.textContent = 'Opened Lovable with prompt for ' + name + '. Rating: ' + rating + '/5 (' + reviewCount + ' reviews).';
+    btn.textContent = 'BUILD WEBSITE';
+    btn.disabled = false;
+  })
+  .catch(function(err) {
+    errorEl.textContent = err.message || 'Google Places lookup failed. Check your connection.';
+    errorEl.style.display = 'block';
+    statusEl.style.display = 'none';
+    btn.textContent = 'BUILD WEBSITE';
+    btn.disabled = false;
+  });
 }
 
 // MY INFO
