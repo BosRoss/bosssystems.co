@@ -236,8 +236,9 @@ var TYPE_DEFAULTS = {
 
 var selectedItems = {};
 
-async function lookupOnGoogle(query, businessName) {
+async function _placesSearch(textQuery, extraBody) {
   var fields = 'places.displayName,places.rating,places.userRatingCount,places.websiteUri,places.currentOpeningHours,places.reviews,places.formattedAddress';
+  var body = Object.assign({ textQuery: textQuery, maxResultCount: 10 }, extraBody || {});
   var resp = await fetch('https://places.googleapis.com/v1/places:searchText', {
     method: 'POST',
     headers: {
@@ -245,31 +246,72 @@ async function lookupOnGoogle(query, businessName) {
       'X-Goog-Api-Key': PLACES_API_KEY,
       'X-Goog-FieldMask': fields
     },
-    body: JSON.stringify({ textQuery: query, maxResultCount: 5 })
+    body: JSON.stringify(body)
   });
-
-  if (!resp.ok) {
-    console.error('Places API error:', resp.status, await resp.text());
-    return { found: false, apiError: resp.status };
-  }
-
+  if (!resp.ok) return { error: resp.status, places: [] };
   var data = await resp.json();
-  var results = data.places || [];
-  if (!results.length) return { found: false };
+  return { error: null, places: data.places || [] };
+}
+
+function _nameMatch(results, businessName) {
+  if (!businessName) return null;
+  var words = businessName.toLowerCase().split(/\s+/).filter(function(w) { return w.length > 1; });
+  for (var i = 0; i < results.length; i++) {
+    var rn = ((results[i].displayName || {}).text || '').toLowerCase();
+    if (words.some(function(w) { return rn.indexOf(w) >= 0; })) return results[i];
+  }
+  return null;
+}
+
+var CITY_COORDS = {
+  'tyler': {lat:32.3513,lng:-95.3011}, 'longview': {lat:32.5007,lng:-94.7405},
+  'dallas': {lat:32.7767,lng:-96.7970}, 'houston': {lat:29.7604,lng:-95.3698},
+  'austin': {lat:30.2672,lng:-97.7431}, 'san antonio': {lat:29.4241,lng:-98.4936},
+  'fort worth': {lat:32.7555,lng:-97.3308}, 'mckinney': {lat:33.1972,lng:-96.6397}
+};
+
+function _getLocationBias(city) {
+  var key = (city || '').toLowerCase().replace(/,.*/, '').trim();
+  var c = CITY_COORDS[key];
+  if (c) return { circle: { center: { latitude: c.lat, longitude: c.lng }, radius: 30000 } };
+  return null;
+}
+
+async function lookupOnGoogle(query, businessName, cityName, businessType) {
+  // Strategy 1: exact query (business name + city)
+  var bias = _getLocationBias(cityName);
+  var s1 = await _placesSearch(query, bias ? { locationBias: bias } : {});
+  if (s1.error) return { found: false, apiError: s1.error };
 
   var target = null;
-  if (businessName) {
-    var words = businessName.toLowerCase().split(/\s+/).filter(function(w) { return w.length > 2; });
-    for (var i = 0; i < Math.min(results.length, 5); i++) {
-      var rn = ((results[i].displayName || {}).text || '').toLowerCase();
-      if (words.some(function(w) { return rn.indexOf(w) >= 0; })) {
-        target = results[i];
-        break;
-      }
+  if (s1.places.length > 0) {
+    target = _nameMatch(s1.places, businessName) || s1.places[0];
+  }
+
+  // Strategy 2: if no results, try just the business name with location bias
+  if (!target && businessName && bias) {
+    var s2 = await _placesSearch(businessName, { locationBias: bias });
+    if (s2.places.length > 0) {
+      target = _nameMatch(s2.places, businessName) || s2.places[0];
     }
   }
-  if (!target) target = results[0];
 
+  // Strategy 3: if still nothing, try business type + city to get market data
+  if (!target && businessType) {
+    var typeLabel = (TYPE_DEFAULTS[businessType] || TYPE_DEFAULTS.general).label;
+    var s3 = await _placesSearch(typeLabel + ' ' + (cityName || ''), bias ? { locationBias: bias } : {});
+    if (s3.places.length > 0) {
+      // Use market data but flag that we found competitors, not the actual business
+      target = s3.places[0];
+      return _extractPlaceData(target, true);
+    }
+  }
+
+  if (!target) return { found: false };
+  return _extractPlaceData(target, false);
+}
+
+function _extractPlaceData(target, isMarketData) {
   var negCount = 0, phoneCount = 0;
   var revs = target.reviews || [];
   revs.forEach(function(r) {
@@ -297,7 +339,8 @@ async function lookupOnGoogle(query, businessName) {
   }
 
   return {
-    found: true,
+    found: !isMarketData,
+    marketOnly: !!isMarketData,
     name: (target.displayName || {}).text || '',
     address: target.formattedAddress || '',
     rating: target.rating || 0,
@@ -1237,7 +1280,7 @@ async function _doAnalysis(btype, city, bname, jobValue, userMonthlyJobs) {
     + '</div>';
 
   try {
-    googleData = await lookupOnGoogle(query, bname);
+    googleData = await lookupOnGoogle(query, bname, city, btype);
   } catch (e) {
     googleData = { found: false };
   }
@@ -1294,11 +1337,21 @@ async function _doAnalysis(btype, city, bname, jobValue, userMonthlyJobs) {
       + (googleData.negativeReviews > 0 ? ' · <span style="color:#e74c3c">' + googleData.negativeReviews + ' negative review' + (googleData.negativeReviews > 1 ? 's' : '') + '</span>' : '')
       + '<br><span style="font-size:.75rem;color:#999">Data from Google Places API · ' + (googleData.reviewsChecked || 5) + ' most recent reviews scanned</span>'
       + '</div>';
+  } else if (googleData.marketOnly) {
+    verifiedHTML = ''
+      + '<div style="background:#0a150a;border:1px solid #1a351a;padding:1rem 1.2rem;margin-bottom:2rem;font-size:.85rem;color:#bbb;line-height:1.6">'
+      + '<span style="color:#4CAF50;font-weight:700">MARKET DATA FOUND</span><br>'
+      + 'Your business is not in Google\'s database yet — that is normal for newer businesses or those without a Google Business Profile. '
+      + 'We pulled data from <strong style="color:var(--text)">' + d.label + ' businesses in ' + esc(city) + '</strong> to make this analysis accurate for your market. '
+      + 'Enter your real job value and volume above for exact numbers.'
+      + '</div>';
   } else {
-    var notFoundReason = googleData.apiError ? 'Google API returned an error (code ' + googleData.apiError + '). ' : 'We couldn\'t find "' + esc(bname || d.label) + '" on Google for ' + esc(city) + '. ';
+    var notFoundReason = googleData.apiError
+      ? 'Google API returned an error (code ' + googleData.apiError + '). '
+      : 'Your business is not in Google\'s database yet — this is common for newer businesses, or ones without a Google Business Profile set up. It does not mean anything is wrong. ';
     verifiedHTML = ''
       + '<div style="background:#1a1500;border:1px solid #3a3000;padding:1rem 1.2rem;margin-bottom:2rem;font-size:.85rem;color:#bbb;line-height:1.6">'
-      + '<span style="color:#e67e22;font-weight:700">NOT VERIFIED</span><br>'
+      + '<span style="color:#e67e22;font-weight:700">USING INDUSTRY DATA</span><br>'
       + notFoundReason + 'The analysis below uses <strong>' + d.label + ' industry data for ' + fmtN(d.monthlyJobs) + ' jobs/month</strong> — enter your real numbers above for exact results.'
       + '</div>';
   }
