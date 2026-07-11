@@ -1,7 +1,15 @@
 {
-  "generated": "2026-07-11T19:04:39.793175+00:00",
+  "generated": "2026-07-11T21:12:45.699437+00:00",
   "engine_state": "active",
   "signals": [
+    {
+      "type": "flood",
+      "area": "Mason, TX",
+      "niche": "plumbing",
+      "action": "Flood warnings in Mason, TX. Plumbers, restoration, mold companies will spike.",
+      "urgency": "today",
+      "pitch_hook": "Water damage calls are coming. Every one you miss is $500+ walking away."
+    },
     {
       "type": "flood",
       "area": "Bexar, TX",
@@ -15,14 +23,6 @@
       "area": "Hays, TX; Travis, TX",
       "niche": "plumbing",
       "action": "Flood warnings in Hays, TX; Travis, TX. Plumbers, restoration, mold companies will spike.",
-      "urgency": "today",
-      "pitch_hook": "Water damage calls are coming. Every one you miss is $500+ walking away."
-    },
-    {
-      "type": "flood",
-      "area": "Comal, TX; Guadalupe, TX",
-      "niche": "plumbing",
-      "action": "Flood warnings in Comal, TX; Guadalupe, TX. Plumbers, restoration, mold companies will spike.",
       "urgency": "today",
       "pitch_hook": "Water damage calls are coming. Every one you miss is $500+ walking away."
     },
@@ -60,27 +60,27 @@
     },
     {
       "type": "storm",
-      "area": "Baxter, AR; Boone, AR; Cleburne, AR; Conway, AR; Faulkner, AR; Independence, AR; Izard, AR; Jackson, AR; Johnson, AR; Lawrence, AR; Logan, AR; Lonoke, AR; Marion, AR; Monroe, AR; Newton, AR; Perry, AR",
+      "area": "Crittenden, AR; Mississippi, AR; Lauderdale, TN; Shelby, TN; Tipton, TN",
       "niche": "roofing",
-      "action": "Storm damage in Baxter, AR; Boone, AR; Cleburne, AR; Conway, AR; Faulkner, AR; Independence, AR; Izard, AR; Jackson, AR; Johnson, AR; Lawrence, AR; Logan, AR; Lonoke, AR; Marion, AR; Monroe, AR; Newton, AR; Perry, AR. Roofers and restoration companies about to get flooded.",
+      "action": "Storm damage in Crittenden, AR; Mississippi, AR; Lauderdale, TN; Shelby, TN; Tipton, TN. Roofers and restoration companies about to get flooded.",
       "urgency": "today",
       "pitch_hook": "After a storm like that, you'll get 10x your normal call volume. Ready for it?"
     },
     {
       "type": "storm",
-      "area": "Independence, AR; Jackson, AR; Lawrence, AR; Sharp, AR",
+      "area": "Cleburne, AR; Van Buren, AR",
       "niche": "roofing",
-      "action": "Storm damage in Independence, AR; Jackson, AR; Lawrence, AR; Sharp, AR. Roofers and restoration companies about to get flooded.",
+      "action": "Storm damage in Cleburne, AR; Van Buren, AR. Roofers and restoration companies about to get flooded.",
       "urgency": "today",
       "pitch_hook": "After a storm like that, you'll get 10x your normal call volume. Ready for it?"
     },
     {
-      "type": "storm",
-      "area": "Craighead, AR; Greene, AR",
-      "niche": "roofing",
-      "action": "Storm damage in Craighead, AR; Greene, AR. Roofers and restoration companies about to get flooded.",
+      "type": "flood",
+      "area": "Baxter, AR; Searcy, AR; Stone, AR",
+      "niche": "plumbing",
+      "action": "Flood warnings in Baxter, AR; Searcy, AR; Stone, AR. Plumbers, restoration, mold companies will spike.",
       "urgency": "today",
-      "pitch_hook": "After a storm like that, you'll get 10x your normal call volume. Ready for it?"
+      "pitch_hook": "Water damage calls are coming. Every one you miss is $500+ walking away."
     }
   ],
   "leads": [
@@ -121,6 +121,15 @@
       "trigger": "flood"
     },
     {
+      "name": "plumbing",
+      "city": "AR",
+      "score": 78,
+      "tier": "SUPERNICHE",
+      "channel": "watchlist",
+      "sequence_status": "queued",
+      "trigger": "flood"
+    },
+    {
       "name": "HVAC contractor",
       "city": "MS",
       "score": 75,
@@ -146,6 +155,15 @@
       "channel": "watchlist",
       "sequence_status": "re_engaged",
       "trigger": "flood"
+    },
+    {
+      "name": "plumber",
+      "city": "AR",
+      "score": 72,
+      "tier": "SUPERNICHE",
+      "channel": "watchlist",
+      "sequence_status": "queued",
+      "trigger": "storm"
     },
     {
       "name": "plumber",
@@ -184,6 +202,15 @@
       "trigger": "market_sweep"
     },
     {
+      "name": "roofing contractor",
+      "city": "OK",
+      "score": 68,
+      "tier": "SUPERNICHE",
+      "channel": "email",
+      "sequence_status": "queued",
+      "trigger": "storm"
+    },
+    {
       "name": "plumber",
       "city": "OK",
       "score": 67,
@@ -191,46 +218,19 @@
       "channel": "email",
       "sequence_status": "re_engaged",
       "trigger": "territory_alert"
-    },
-    {
-      "name": "plumber",
-      "city": "TN",
-      "score": 66,
-      "tier": "SUPERNICHE",
-      "channel": "watchlist",
-      "sequence_status": "queued",
-      "trigger": "flood"
-    },
-    {
-      "name": "plumber",
-      "city": "TN",
-      "score": 66,
-      "tier": "SUPERNICHE",
-      "channel": "watchlist",
-      "sequence_status": "queued",
-      "trigger": "flood"
-    },
-    {
-      "name": "law firm",
-      "city": "AR",
-      "score": 64,
-      "tier": "SUPERNICHE",
-      "channel": "email",
-      "sequence_status": "queued",
-      "trigger": "market_sweep"
     }
   ],
   "kpis": {
     "signals_firing": 10,
-    "leads_superniche": 41,
-    "leads_hot": 118,
-    "leads_warm": 41,
-    "cost_per_qualified": 0.64,
-    "total_spend": 26.04800000000002,
+    "leads_superniche": 48,
+    "leads_hot": 120,
+    "leads_warm": 32,
+    "cost_per_qualified": 0.58,
+    "total_spend": 27.64800000000002,
     "spend_cap": 300.0
   },
   "channels": {
-    "emails_sent": 154,
+    "emails_sent": 156,
     "texts_sent": 8,
     "calls_made": 0,
     "meetings_set": 10,
@@ -239,55 +239,55 @@
   "feeds": [
     {
       "name": "NOAA",
-      "last_hit": "2026-07-11T18:57:25.428868+00:00",
+      "last_hit": "2026-07-11T21:04:54.632228+00:00",
       "status": "yellow",
       "data_points_today": 0
     },
     {
       "name": "REDDIT",
-      "last_hit": "2026-07-11T18:57:25.428868+00:00",
+      "last_hit": "2026-07-11T21:04:54.632228+00:00",
       "status": "green",
-      "data_points_today": 15
+      "data_points_today": 30
     },
     {
       "name": "USGS",
-      "last_hit": "2026-07-11T18:57:25.428868+00:00",
+      "last_hit": "2026-07-11T21:04:54.632228+00:00",
       "status": "yellow",
       "data_points_today": 0
     },
     {
       "name": "HACKERNEWS",
-      "last_hit": "2026-07-11T18:57:25.428868+00:00",
+      "last_hit": "2026-07-11T21:04:54.632228+00:00",
       "status": "green",
       "data_points_today": 30
     },
     {
       "name": "FEMA",
-      "last_hit": "2026-07-11T18:57:25.428868+00:00",
+      "last_hit": "2026-07-11T21:04:54.632228+00:00",
       "status": "green",
       "data_points_today": 20
     },
     {
       "name": "COMMODITIES",
-      "last_hit": "2026-07-11T18:57:25.428868+00:00",
+      "last_hit": "2026-07-11T21:04:54.632228+00:00",
       "status": "green",
       "data_points_today": 7
     },
     {
       "name": "RSS",
-      "last_hit": "2026-07-11T18:57:25.428868+00:00",
+      "last_hit": "2026-07-11T21:04:54.632228+00:00",
       "status": "green",
-      "data_points_today": 751
+      "data_points_today": 730
     },
     {
       "name": "FRED",
-      "last_hit": "2026-07-11T18:57:25.428868+00:00",
+      "last_hit": "2026-07-11T21:04:54.632228+00:00",
       "status": "yellow",
       "data_points_today": 0
     },
     {
       "name": "BLS",
-      "last_hit": "2026-07-11T18:57:25.428868+00:00",
+      "last_hit": "2026-07-11T21:04:54.632228+00:00",
       "status": "green",
       "data_points_today": 9
     }
@@ -295,7 +295,7 @@
   "conversion_funnel": {
     "signals": 10,
     "leads": 200,
-    "contacted": 162,
+    "contacted": 164,
     "replied": 10,
     "meeting": 10,
     "close": 0
