@@ -445,7 +445,7 @@ body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;backgrou
 
       <div style="font-size:10px;letter-spacing:2px;color:var(--dim);margin:20px 0 10px;text-transform:uppercase;border-top:1px solid var(--border);padding-top:16px">Website Builder</div>
       <div class="calc-form" id="website-builder">
-        <p style="font-size:12px;color:var(--muted);margin-bottom:14px">Look up a business on Google, pull their data, and open Lovable with a pre-filled website prompt.</p>
+        <p style="font-size:12px;color:var(--muted);margin-bottom:14px">Look up a business on Google, pull their real data, and generate a Lovable prompt. Includes image upload system for the client.</p>
         <div class="calc-row">
           <label>Business</label>
           <input type="text" id="wb-business" placeholder="e.g. Smith's HVAC">
@@ -454,13 +454,28 @@ body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;backgrou
           <label>City, State</label>
           <input type="text" id="wb-city" placeholder="e.g. Tyler, TX">
         </div>
-        <div class="calc-row">
-          <label>Style URL</label>
-          <input type="text" id="wb-style" placeholder="(optional) example site URL">
+        <div class="calc-row" style="align-items:flex-start">
+          <label style="padding-top:10px">Style Notes</label>
+          <textarea id="wb-style" placeholder="What do they like? e.g. 'Clean layout like competitor.com, big hero image, blue color scheme, no clutter'" style="flex:1;background:var(--card);border:1px solid var(--border);color:var(--text);padding:10px;font-size:13px;font-family:inherit;border-radius:3px;min-height:60px;resize:vertical"></textarea>
+        </div>
+        <div class="calc-row" style="align-items:flex-start">
+          <label style="padding-top:10px">Colors</label>
+          <input type="text" id="wb-colors" placeholder="(optional) e.g. Navy blue + white, or match their truck">
         </div>
         <button class="btn btn-gold" style="width:100%;margin-top:4px" onclick="buildWebsite()" id="wb-btn">BUILD WEBSITE</button>
-        <div id="wb-status" style="display:none;margin-top:12px;font-size:12px;color:var(--muted);text-align:center"></div>
+        <div id="wb-status" style="display:none;margin-top:12px;font-size:12px;color:var(--muted)"></div>
         <div id="wb-error" style="display:none;margin-top:12px;font-size:12px;color:var(--red);text-align:center"></div>
+      </div>
+
+      <div style="font-size:10px;letter-spacing:2px;color:var(--dim);margin:20px 0 10px;text-transform:uppercase;border-top:1px solid var(--border);padding-top:16px">Client Image Upload Link</div>
+      <div class="calc-form">
+        <p style="font-size:12px;color:var(--muted);margin-bottom:14px">Generate a link for the client to upload/change photos on their website. Send this to the business owner.</p>
+        <div class="calc-row">
+          <label>Client Name</label>
+          <input type="text" id="img-client" placeholder="e.g. Smith's HVAC">
+        </div>
+        <button class="btn btn-gold" style="width:100%;margin-top:4px" onclick="generateImageLink()">GENERATE UPLOAD LINK</button>
+        <div id="img-result" style="display:none;margin-top:12px;font-size:12px;color:var(--muted)"></div>
       </div>
     </div>
 
@@ -1155,10 +1170,25 @@ function copyROI() {
 }
 
 // WEBSITE BUILDER
+function generateImageLink() {
+  var client = document.getElementById('img-client').value.trim();
+  if (!client) { document.getElementById('img-client').style.borderColor = 'var(--red)'; return; }
+  document.getElementById('img-client').style.borderColor = 'var(--border)';
+  var slug = client.toLowerCase().replace(/[^a-z0-9]+/g, '-').replace(/^-|-$/g, '');
+  var link = 'https://bosssystems.co/photos.html?client=' + encodeURIComponent(slug);
+  var resultEl = document.getElementById('img-result');
+  resultEl.style.display = 'block';
+  resultEl.innerHTML = '<span style="color:var(--green);font-weight:700">LINK READY</span>'
+    + '<div style="margin-top:8px;background:var(--card);border:1px solid var(--border);padding:10px;border-radius:3px;word-break:break-all;font-size:11px;color:var(--text)">' + link + '</div>'
+    + '<button class="btn btn-outline btn-sm" style="margin-top:6px" onclick="navigator.clipboard.writeText(\'' + link + '\')">COPY LINK</button>'
+    + '<p style="margin-top:8px;font-size:11px;color:var(--dim)">Send this to the client. They pick which image slot to update (hero, team, gallery, etc.) and upload a photo. You get notified when they submit.</p>';
+}
+
 function buildWebsite() {
   var business = document.getElementById('wb-business').value.trim();
   var city = document.getElementById('wb-city').value.trim();
-  var styleUrl = document.getElementById('wb-style').value.trim();
+  var styleNotes = document.getElementById('wb-style').value.trim();
+  var colors = document.getElementById('wb-colors').value.trim();
   var statusEl = document.getElementById('wb-status');
   var errorEl = document.getElementById('wb-error');
   var btn = document.getElementById('wb-btn');
@@ -1258,7 +1288,6 @@ function buildWebsite() {
     }
 
     prompt += 'Design requirements:\n';
-    prompt += '- Dark modern design with professional color scheme\n';
     prompt += '- Mobile-first responsive layout\n';
     prompt += '- Hero section with business name, tagline, and a strong call-to-action button (Call Now)\n';
     prompt += '- Services section listing what they offer based on their business type\n';
@@ -1266,11 +1295,26 @@ function buildWebsite() {
     prompt += '- Business hours section\n';
     prompt += '- Contact section with address' + (phone ? ', phone ' + phone + ' as click-to-call link' : '') + ', and embedded Google Maps\n';
     prompt += '- Sticky call-to-action button on mobile\n';
-    prompt += '- Fast loading, clean typography, no stock photos placeholder boxes\n';
+    prompt += '- Fast loading, clean typography\n';
     prompt += '- SEO meta tags for "' + types.split(',')[0] + ' in ' + city + '"\n';
+    prompt += '\n';
 
-    if (styleUrl) {
-      prompt += '\nStyle inspiration: use ' + styleUrl + ' as a reference for the visual style and layout approach.\n';
+    prompt += 'Image placeholders (the client will upload their own photos later):\n';
+    prompt += '- Use clearly labeled placeholder areas with a grey background and text like "[HERO IMAGE - Upload your best project photo]"\n';
+    prompt += '- Include image slots for: hero banner, about/team photo, and 3-4 gallery/portfolio images\n';
+    prompt += '- Each placeholder should have an ID attribute (img-hero, img-team, img-gallery-1, etc.) so they can be swapped later\n';
+    prompt += '- Do NOT use stock photos. Use styled placeholder boxes only.\n';
+    prompt += '\n';
+
+    if (colors) {
+      prompt += 'Color scheme: ' + colors + '\n';
+    } else {
+      prompt += 'Color scheme: Professional and clean. Pick colors that fit a ' + types.split(',')[0] + ' business.\n';
+    }
+
+    if (styleNotes) {
+      prompt += '\nClient style preferences (do NOT copy any reference site — just incorporate these specific elements they liked):\n';
+      prompt += styleNotes + '\n';
     }
 
     // Copy to clipboard first, then open Lovable
