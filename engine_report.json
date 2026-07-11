@@ -1,7 +1,39 @@
 {
-  "generated": "2026-07-11T15:19:36.784345+00:00",
+  "generated": "2026-07-11T16:57:20.826508+00:00",
   "engine_state": "active",
   "signals": [
+    {
+      "type": "flood",
+      "area": "Comal, TX; Guadalupe, TX",
+      "niche": "plumbing",
+      "action": "Flood warnings in Comal, TX; Guadalupe, TX. Plumbers, restoration, mold companies will spike.",
+      "urgency": "today",
+      "pitch_hook": "Water damage calls are coming. Every one you miss is $500+ walking away."
+    },
+    {
+      "type": "flood",
+      "area": "Bexar, TX",
+      "niche": "plumbing",
+      "action": "Flood warnings in Bexar, TX. Plumbers, restoration, mold companies will spike.",
+      "urgency": "today",
+      "pitch_hook": "Water damage calls are coming. Every one you miss is $500+ walking away."
+    },
+    {
+      "type": "heat_wave",
+      "area": "Chicot; Bolivar; Sunflower; Leflore; Washington",
+      "niche": "hvac",
+      "action": "HVAC businesses in Chicot; Bolivar; Sunflower; Leflore; Washington are drowning in calls right now. Perfect time to pitch.",
+      "urgency": "today",
+      "pitch_hook": "You're getting slammed with calls \u2014 how many went to voicemail today?"
+    },
+    {
+      "type": "heat_wave",
+      "area": "St. Francis; Lee; Phillips; Tunica; Coahoma; Quitman; Tallahatchie",
+      "niche": "hvac",
+      "action": "HVAC businesses in St. Francis; Lee; Phillips; Tunica; Coahoma; Quitman; Tallahatchie are drowning in calls right now. Perfect time to pitch.",
+      "urgency": "today",
+      "pitch_hook": "You're getting slammed with calls \u2014 how many went to voicemail today?"
+    },
     {
       "type": "flood",
       "area": "Concordia, LA; Adams, MS; Wilkinson, MS",
@@ -41,38 +73,6 @@
       "action": "HVAC businesses in North and Central Sebastian; Southern Crawford; Central and Southern Franklin; Tulsa; Okmulgee; Wagoner; Muskogee; McIntosh; Pittsburg; Haskell; Northern Le Flore; Central and Southern Sequoyah are drowning in calls right now. Perfect time to pitch.",
       "urgency": "today",
       "pitch_hook": "You're getting slammed with calls \u2014 how many went to voicemail today?"
-    },
-    {
-      "type": "flood",
-      "area": "Cocke, TN",
-      "niche": "plumbing",
-      "action": "Flood warnings in Cocke, TN. Plumbers, restoration, mold companies will spike.",
-      "urgency": "today",
-      "pitch_hook": "Water damage calls are coming. Every one you miss is $500+ walking away."
-    },
-    {
-      "type": "flood",
-      "area": "Greene, TN; Hamblen, TN; Hawkins, TN; Unicoi, TN; Washington, TN",
-      "niche": "plumbing",
-      "action": "Flood warnings in Greene, TN; Hamblen, TN; Hawkins, TN; Unicoi, TN; Washington, TN. Plumbers, restoration, mold companies will spike.",
-      "urgency": "today",
-      "pitch_hook": "Water damage calls are coming. Every one you miss is $500+ walking away."
-    },
-    {
-      "type": "flood",
-      "area": "Cocke, TN; Greene, TN",
-      "niche": "plumbing",
-      "action": "Flood warnings in Cocke, TN; Greene, TN. Plumbers, restoration, mold companies will spike.",
-      "urgency": "today",
-      "pitch_hook": "Water damage calls are coming. Every one you miss is $500+ walking away."
-    },
-    {
-      "type": "flood",
-      "area": "Dyer, TN; Gibson, TN; Obion, TN",
-      "niche": "plumbing",
-      "action": "Flood warnings in Dyer, TN; Gibson, TN; Obion, TN. Plumbers, restoration, mold companies will spike.",
-      "urgency": "today",
-      "pitch_hook": "Water damage calls are coming. Every one you miss is $500+ walking away."
     },
     {
       "type": "flood",
@@ -189,7 +189,7 @@
       "score": 67,
       "tier": "SUPERNICHE",
       "channel": "email",
-      "sequence_status": "queued",
+      "sequence_status": "re_engaged",
       "trigger": "territory_alert"
     },
     {
@@ -222,15 +222,15 @@
   ],
   "kpis": {
     "signals_firing": 10,
-    "leads_superniche": 38,
-    "leads_hot": 111,
-    "leads_warm": 52,
-    "cost_per_qualified": 0.56,
-    "total_spend": 21.248000000000015,
+    "leads_superniche": 39,
+    "leads_hot": 112,
+    "leads_warm": 49,
+    "cost_per_qualified": 0.59,
+    "total_spend": 22.848000000000017,
     "spend_cap": 300.0
   },
   "channels": {
-    "emails_sent": 142,
+    "emails_sent": 145,
     "texts_sent": 8,
     "calls_made": 0,
     "meetings_set": 10,
@@ -239,63 +239,63 @@
   "feeds": [
     {
       "name": "NOAA",
-      "last_hit": "2026-07-11T15:13:04.091972+00:00",
+      "last_hit": "2026-07-11T16:50:13.529868+00:00",
       "status": "yellow",
       "data_points_today": 0
     },
     {
       "name": "REDDIT",
-      "last_hit": "2026-07-11T15:13:04.091972+00:00",
+      "last_hit": "2026-07-11T16:50:13.529868+00:00",
       "status": "green",
       "data_points_today": 30
     },
     {
       "name": "USGS",
-      "last_hit": "2026-07-11T15:13:04.091972+00:00",
+      "last_hit": "2026-07-11T16:50:13.529868+00:00",
       "status": "yellow",
       "data_points_today": 0
     },
     {
       "name": "HACKERNEWS",
-      "last_hit": "2026-07-11T15:13:04.091972+00:00",
+      "last_hit": "2026-07-11T16:50:13.529868+00:00",
       "status": "green",
       "data_points_today": 30
     },
     {
       "name": "FEMA",
-      "last_hit": "2026-07-11T15:13:04.091972+00:00",
+      "last_hit": "2026-07-11T16:50:13.529868+00:00",
       "status": "green",
       "data_points_today": 20
     },
     {
       "name": "COMMODITIES",
-      "last_hit": "2026-07-11T15:13:04.091972+00:00",
+      "last_hit": "2026-07-11T16:50:13.529868+00:00",
       "status": "green",
       "data_points_today": 7
     },
     {
       "name": "RSS",
-      "last_hit": "2026-07-11T15:13:04.091972+00:00",
+      "last_hit": "2026-07-11T16:50:13.529868+00:00",
       "status": "green",
-      "data_points_today": 744
+      "data_points_today": 736
     },
     {
       "name": "FRED",
-      "last_hit": "2026-07-11T15:13:04.091972+00:00",
+      "last_hit": "2026-07-11T16:50:13.529868+00:00",
       "status": "yellow",
       "data_points_today": 0
     },
     {
       "name": "BLS",
-      "last_hit": "2026-07-11T15:13:04.091972+00:00",
+      "last_hit": "2026-07-11T16:50:13.529868+00:00",
       "status": "green",
       "data_points_today": 9
     }
   ],
   "conversion_funnel": {
     "signals": 10,
-    "leads": 201,
-    "contacted": 150,
+    "leads": 200,
+    "contacted": 153,
     "replied": 10,
     "meeting": 10,
     "close": 0
