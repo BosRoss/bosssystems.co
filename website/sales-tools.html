@@ -1176,7 +1176,7 @@ function buildWebsite() {
 
   var query = business + ' ' + city;
   var apiKey = 'AIzaSyC-HHg-IBqX0rfBwhrFSqshHD3j0--j3so';
-  var fieldMask = 'places.displayName,places.rating,places.userRatingCount,places.formattedAddress,places.websiteUri,places.currentOpeningHours,places.reviews,places.types';
+  var fieldMask = 'places.displayName,places.rating,places.userRatingCount,places.formattedAddress,places.websiteUri,places.currentOpeningHours,places.reviews,places.types,places.nationalPhoneNumber';
 
   fetch('https://places.googleapis.com/v1/places:searchText', {
     method: 'POST',
@@ -1185,19 +1185,38 @@ function buildWebsite() {
       'X-Goog-Api-Key': apiKey,
       'X-Goog-FieldMask': fieldMask
     },
-    body: JSON.stringify({ textQuery: query })
+    body: JSON.stringify({ textQuery: query, maxResultCount: 10 })
   })
   .then(function(r) { return r.json(); })
   .then(function(data) {
     if (!data.places || data.places.length === 0) {
       throw new Error('No results found. Try a different business name or city.');
     }
-    var place = data.places[0];
+
+    // Match by business name — find the result that best matches what they typed
+    var place = null;
+    var inputWords = business.toLowerCase().split(/\s+/).filter(function(w) { return w.length > 2; });
+    for (var i = 0; i < data.places.length; i++) {
+      var rn = ((data.places[i].displayName || {}).text || '').toLowerCase();
+      var matchCount = inputWords.filter(function(w) { return rn.indexOf(w) >= 0; }).length;
+      if (matchCount >= Math.max(1, Math.ceil(inputWords.length * 0.5))) {
+        place = data.places[i];
+        break;
+      }
+    }
+    // If no name match, show what we found and let user know
+    if (!place) {
+      var foundNames = data.places.slice(0, 5).map(function(p) {
+        return (p.displayName || {}).text || '?';
+      }).join(', ');
+      throw new Error('Could not find "' + business + '". Google returned: ' + foundNames + '. Try the exact name as it appears on Google Maps.');
+    }
     var name = (place.displayName && place.displayName.text) || business;
     var rating = place.rating || 'N/A';
     var reviewCount = place.userRatingCount || 0;
     var address = place.formattedAddress || city;
     var website = place.websiteUri || '';
+    var phone = place.nationalPhoneNumber || '';
     var types = (place.types || []).slice(0, 5).join(', ');
 
     // Extract hours
@@ -1226,6 +1245,7 @@ function buildWebsite() {
     prompt += '- Rating: ' + rating + '/5 (' + reviewCount + ' reviews)\n';
     prompt += '- Business types: ' + types + '\n';
     prompt += '- Hours: ' + hours + '\n';
+    if (phone) prompt += '- Phone: ' + phone + '\n';
     if (website) prompt += '- Current website: ' + website + '\n';
     prompt += '\n';
 
@@ -1244,7 +1264,7 @@ function buildWebsite() {
     prompt += '- Services section listing what they offer based on their business type\n';
     prompt += '- Reviews/testimonials section featuring the real reviews above\n';
     prompt += '- Business hours section\n';
-    prompt += '- Contact section with address, phone click-to-call, and embedded Google Maps\n';
+    prompt += '- Contact section with address' + (phone ? ', phone ' + phone + ' as click-to-call link' : '') + ', and embedded Google Maps\n';
     prompt += '- Sticky call-to-action button on mobile\n';
     prompt += '- Fast loading, clean typography, no stock photos placeholder boxes\n';
     prompt += '- SEO meta tags for "' + types.split(',')[0] + ' in ' + city + '"\n';
