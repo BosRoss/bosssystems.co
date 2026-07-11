@@ -152,15 +152,8 @@
   }
 </style>
 <script>
-window._placesReady = false;
-function initPlaces() {
-  try {
-    window._placesService = new google.maps.places.PlacesService(document.createElement('div'));
-    window._placesReady = true;
-  } catch(e) {}
-}
+var PLACES_API_KEY = 'AIzaSyC-HHg-IBqX0rfBwhrFSqshHD3j0--j3so';
 </script>
-<script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyC-HHg-IBqX0rfBwhrFSqshHD3j0--j3so&libraries=places&callback=initPlaces"></script>
 </head>
 <body>
 
@@ -207,6 +200,10 @@ function initPlaces() {
     </div>
   </div>
   <div class="form-group">
+    <label>Jobs Per Month <span class="label-hint">(how many jobs/customers you handle monthly — optional, we'll calculate if blank)</span></label>
+    <input type="number" id="jobcount" placeholder="e.g. 30" min="1" />
+  </div>
+  <div class="form-group">
     <label>Business Name <span class="label-hint" style="color:var(--gold)">(enter your name for real Google data — without it we can only estimate)</span></label>
     <input type="text" id="bname" placeholder="e.g. Dale's HVAC — we'll pull your real ratings, reviews & hours" style="border-color:#444" />
   </div>
@@ -220,155 +217,137 @@ function initPlaces() {
 
 <script>
 var TYPE_DEFAULTS = {
-  hvac:        { job: 480,  label: 'HVAC' },
-  plumber:     { job: 380,  label: 'Plumbing' },
-  electrician: { job: 420,  label: 'Electrical' },
-  roofer:      { job: 6500, label: 'Roofing' },
-  junk_removal:{ job: 260,  label: 'Junk Removal' },
-  cleaning:    { job: 145,  label: 'Cleaning' },
-  auto_repair: { job: 320,  label: 'Auto Repair' },
-  pest_control:{ job: 185,  label: 'Pest Control' },
-  law_firm:    { job: 2800, label: 'Law Firm' },
-  lawn_care:   { job: 80,   label: 'Lawn Care' },
-  dental:      { job: 350,  label: 'Dental' },
-  restaurant:  { job: 42,   label: 'Restaurant' },
-  real_estate: { job: 7500, label: 'Real Estate' },
-  gym:         { job: 45,   label: 'Gym / Fitness' },
-  general:     { job: 320,  label: 'Service Business' },
+  hvac:        { job: 480,  monthlyJobs: 35,  reviewRate: 0.06, label: 'HVAC',            callsPerJob: 2.5 },
+  plumber:     { job: 380,  monthlyJobs: 35,  reviewRate: 0.06, label: 'Plumbing',        callsPerJob: 2.5 },
+  electrician: { job: 420,  monthlyJobs: 30,  reviewRate: 0.05, label: 'Electrical',      callsPerJob: 2.0 },
+  roofer:      { job: 6500, monthlyJobs: 8,   reviewRate: 0.04, label: 'Roofing',         callsPerJob: 3.0 },
+  junk_removal:{ job: 260,  monthlyJobs: 45,  reviewRate: 0.10, label: 'Junk Removal',    callsPerJob: 1.5 },
+  cleaning:    { job: 145,  monthlyJobs: 55,  reviewRate: 0.07, label: 'Cleaning',        callsPerJob: 1.5 },
+  auto_repair: { job: 320,  monthlyJobs: 55,  reviewRate: 0.06, label: 'Auto Repair',     callsPerJob: 2.0 },
+  pest_control:{ job: 185,  monthlyJobs: 70,  reviewRate: 0.05, label: 'Pest Control',    callsPerJob: 1.5 },
+  law_firm:    { job: 2800, monthlyJobs: 10,  reviewRate: 0.04, label: 'Law Firm',        callsPerJob: 3.0 },
+  lawn_care:   { job: 80,   monthlyJobs: 120, reviewRate: 0.05, label: 'Lawn Care',       callsPerJob: 1.2 },
+  dental:      { job: 350,  monthlyJobs: 120, reviewRate: 0.06, label: 'Dental',          callsPerJob: 1.5 },
+  restaurant:  { job: 42,   monthlyJobs: 3000,reviewRate: 0.15, label: 'Restaurant',      callsPerJob: 0.02 },
+  real_estate: { job: 7500, monthlyJobs: 4,   reviewRate: 0.07, label: 'Real Estate',     callsPerJob: 5.0 },
+  gym:         { job: 45,   monthlyJobs: 200, reviewRate: 0.07, label: 'Gym / Fitness',   callsPerJob: 0.3 },
+  general:     { job: 320,  monthlyJobs: 30,  reviewRate: 0.06, label: 'Service Business', callsPerJob: 2.0 },
 };
 
 var selectedItems = {};
 
-function waitForPlaces(timeout) {
-  return new Promise(function(resolve) {
-    if (window._placesReady) { resolve(true); return; }
-    var start = Date.now();
-    var iv = setInterval(function() {
-      if (window._placesReady) { clearInterval(iv); resolve(true); }
-      else if (Date.now() - start > timeout) { clearInterval(iv); resolve(false); }
-    }, 100);
-  });
-}
-
 async function lookupOnGoogle(query, businessName) {
-  var ready = await waitForPlaces(6000);
-  if (!ready || !window._placesService) return { found: false };
-  var svc = window._placesService;
+  var fields = 'places.displayName,places.rating,places.userRatingCount,places.websiteUri,places.currentOpeningHours,places.reviews,places.formattedAddress';
+  var resp = await fetch('https://places.googleapis.com/v1/places:searchText', {
+    method: 'POST',
+    headers: {
+      'Content-Type': 'application/json',
+      'X-Goog-Api-Key': PLACES_API_KEY,
+      'X-Goog-FieldMask': fields
+    },
+    body: JSON.stringify({ textQuery: query, maxResultCount: 5 })
+  });
 
-  var innerPromise = new Promise(function(resolve) {
-    svc.textSearch({ query: query }, function(results, status) {
-      if (status !== 'OK' || !results || !results.length) {
-        resolve({ found: false });
-        return;
+  if (!resp.ok) {
+    console.error('Places API error:', resp.status, await resp.text());
+    return { found: false, apiError: resp.status };
+  }
+
+  var data = await resp.json();
+  var results = data.places || [];
+  if (!results.length) return { found: false };
+
+  var target = null;
+  if (businessName) {
+    var words = businessName.toLowerCase().split(/\s+/).filter(function(w) { return w.length > 2; });
+    for (var i = 0; i < Math.min(results.length, 5); i++) {
+      var rn = ((results[i].displayName || {}).text || '').toLowerCase();
+      if (words.some(function(w) { return rn.indexOf(w) >= 0; })) {
+        target = results[i];
+        break;
       }
+    }
+  }
+  if (!target) target = results[0];
 
-      var target = null;
-      if (businessName) {
-        var words = businessName.toLowerCase().split(/\s+/).filter(function(w) { return w.length > 2; });
-        for (var i = 0; i < Math.min(results.length, 5); i++) {
-          var rn = (results[i].name || '').toLowerCase();
-          if (words.some(function(w) { return rn.indexOf(w) >= 0; })) {
-            target = results[i];
-            break;
-          }
-        }
-      }
-      if (!target) target = results[0];
+  var negCount = 0, phoneCount = 0;
+  var revs = target.reviews || [];
+  revs.forEach(function(r) {
+    if (r.rating && r.rating <= 3) {
+      negCount++;
+      var t = ((r.text || r.originalText || {}).text || '').toLowerCase();
+      if (/\b(call|phone|answer|voicemail|reach|respond|response|contact|wait|waiting|hold|rude|slow|never got back)\b/.test(t)) phoneCount++;
+    }
+  });
 
-      svc.getDetails({
-        placeId: target.place_id,
-        fields: ['name', 'rating', 'user_ratings_total', 'formatted_address', 'website', 'opening_hours', 'reviews']
-      }, function(place, ds) {
-        if (ds !== 'OK' || !place) {
-          resolve({
-            found: true,
-            name: target.name || '',
-            address: target.formatted_address || '',
-            rating: target.rating || 0,
-            reviewCount: target.user_ratings_total || 0,
-            hasWebsite: false, hasAfterHours: true, hasWeekends: true,
-            negativeReviews: 0, phoneComplaints: 0, reviewsChecked: 0
-          });
-          return;
-        }
-
-        var negCount = 0, phoneCount = 0;
-        var revs = place.reviews || [];
-        revs.forEach(function(r) {
-          if (r.rating && r.rating <= 3) {
-            negCount++;
-            var t = (r.text || '').toLowerCase();
-            if (/\b(call|phone|answer|voicemail|reach|respond|response|contact)\b/.test(t)) phoneCount++;
-          }
-        });
-
-        var afterHrs = true, wkends = true;
-        if (place.opening_hours && place.opening_hours.periods) {
-          var periods = place.opening_hours.periods;
-          var hasSat = false, hasSun = false, hasLate = false;
-          periods.forEach(function(p) {
-            if (p.open) {
-              if (p.open.day === 6) hasSat = true;
-              if (p.open.day === 0) hasSun = true;
-            }
-            if (p.close && p.close.hours >= 18) hasLate = true;
-            if (!p.close) { hasLate = true; hasSat = true; hasSun = true; }
-          });
-          wkends = hasSat || hasSun;
-          afterHrs = hasLate;
-        }
-
-        resolve({
-          found: true,
-          name: place.name || '',
-          address: place.formatted_address || '',
-          rating: place.rating || 0,
-          reviewCount: place.user_ratings_total || 0,
-          hasWebsite: !!place.website,
-          hasAfterHours: afterHrs,
-          hasWeekends: wkends,
-          negativeReviews: negCount,
-          phoneComplaints: phoneCount,
-          reviewsChecked: revs.length
-        });
+  var afterHrs = true, wkends = true;
+  var hours = target.currentOpeningHours;
+  if (hours && hours.weekdayDescriptions) {
+    var descs = hours.weekdayDescriptions;
+    var satDesc = descs.find(function(d) { return d.startsWith('Saturday'); }) || '';
+    var sunDesc = descs.find(function(d) { return d.startsWith('Sunday'); }) || '';
+    wkends = !(/closed/i.test(satDesc) && /closed/i.test(sunDesc));
+    var hasLate = descs.some(function(d) { return /24 hours/i.test(d); });
+    if (!hasLate && hours.periods) {
+      hours.periods.forEach(function(p) {
+        if (p.close && p.close.hour >= 18) hasLate = true;
       });
-    });
-  });
+    }
+    afterHrs = hasLate;
+  }
 
-  var timeout = new Promise(function(resolve) {
-    setTimeout(function() { resolve({ found: false }); }, 10000);
-  });
-
-  return Promise.race([innerPromise, timeout]);
+  return {
+    found: true,
+    name: (target.displayName || {}).text || '',
+    address: target.formattedAddress || '',
+    rating: target.rating || 0,
+    reviewCount: target.userRatingCount || 0,
+    hasWebsite: !!target.websiteUri,
+    hasAfterHours: afterHrs,
+    hasWeekends: wkends,
+    negativeReviews: negCount,
+    phoneComplaints: phoneCount,
+    reviewsChecked: revs.length
+  };
 }
 
-// Estimate monthly job volume from Google review count
-// BrightLocal (2023): ~7% of customers leave a Google review unprompted
-// Assumes reviews accumulated over ~3 years (typical listing age)
-function estimateMonthlyJobs(reviewCount) {
+function estimateMonthlyJobs(reviewCount, btype) {
   if (!reviewCount || reviewCount < 1) return null;
-  var totalCustomers = reviewCount / 0.07;
-  var monthlyJobs = Math.round(totalCustomers / 36); // 36 months = 3 years
-  return Math.max(8, Math.min(80, monthlyJobs)); // clamp 8-80
+  var d = TYPE_DEFAULTS[btype] || TYPE_DEFAULTS.general;
+  var totalCustomers = reviewCount / d.reviewRate;
+  var listingAge = Math.max(12, Math.min(60, reviewCount / 2));
+  var monthlyJobs = Math.round(totalCustomers / listingAge);
+  var floor = Math.round(d.monthlyJobs * 0.3);
+  var ceiling = Math.round(d.monthlyJobs * 4);
+  return Math.max(floor, Math.min(ceiling, monthlyJobs));
 }
 
-function buildAutomations(btype, jobValue, googleData) {
+function buildAutomations(btype, jobValue, googleData, userMonthlyJobs) {
   var d = TYPE_DEFAULTS[btype] || TYPE_DEFAULTS.general;
   var job = jobValue || d.job;
   var g = googleData || {};
   var userProvidedJob = !!jobValue;
-  var jobSource = userProvidedJob ? 'your number' : d.label + ' industry average';
+  var jobSource = userProvidedJob ? 'your number' : d.label + ' industry avg ($' + d.job + ')';
 
-  // Derive monthly job volume from their review data if we found them
-  var estJobs = g.found ? estimateMonthlyJobs(g.reviewCount) : null;
-  var monthlyJobs = estJobs || 15;
-  var jobsSource = estJobs ? 'calculated from your ' + g.reviewCount + ' Google reviews' : 'industry estimate (conservative)';
+  var estJobs = g.found ? estimateMonthlyJobs(g.reviewCount, btype) : null;
+  var monthlyJobs;
+  var jobsSource;
+  if (userMonthlyJobs) {
+    monthlyJobs = userMonthlyJobs;
+    jobsSource = 'your number (' + userMonthlyJobs + ' jobs/mo)';
+  } else if (estJobs) {
+    monthlyJobs = estJobs;
+    jobsSource = 'calculated: ' + g.reviewCount + ' reviews ÷ ' + (d.reviewRate * 100) + '% review rate ÷ listing age = ~' + estJobs + '/mo';
+  } else {
+    monthlyJobs = d.monthlyJobs;
+    jobsSource = d.label + ' industry average (' + d.monthlyJobs + '/mo)';
+  }
   var hasPhoneEvidence = g.found && g.phoneComplaints > 0;
 
-  // Weekly call estimate: ~2 calls per job (inquiry + scheduling).
-  // Missed rate 15% (conservative — industry says 62% but most are robocalls/existing clients).
-  var estWeeklyCalls = Math.max(2, Math.round(monthlyJobs * 2 / 4.33));
-  var estMissedPerWeek = Math.max(1, Math.round(estWeeklyCalls * 0.15));
+  var annualRevenue = monthlyJobs * job * 12;
+  var estWeeklyCalls = Math.max(2, Math.round(monthlyJobs * d.callsPerJob / 4.33));
+  var missRate = hasPhoneEvidence ? 0.25 : 0.18;
+  var estMissedPerWeek = Math.max(1, Math.round(estWeeklyCalls * missRate));
 
   var autos = [];
 
@@ -383,8 +362,10 @@ function buildAutomations(btype, jobValue, googleData) {
     { text: '80-85% who reach voicemail never call back — Invoca (2020)', type: 'industry' },
     { text: '78% buy from the first company that responds — Lead Connect (2020)', type: 'industry' },
   ];
-  if (g.found && estJobs) {
-    phoneSources.unshift({ text: 'Est. ' + monthlyJobs + ' jobs/month calculated from your ' + g.reviewCount + ' Google reviews (7% review rate, ~3yr accumulation — BrightLocal 2023)', type: 'calculated' });
+  if (userMonthlyJobs) {
+    phoneSources.unshift({ text: 'Using your stated volume: ' + monthlyJobs + ' jobs/month × ' + d.callsPerJob + ' calls/job = ~' + estWeeklyCalls + ' calls/week', type: 'verified' });
+  } else if (g.found && estJobs) {
+    phoneSources.unshift({ text: g.reviewCount + ' reviews ÷ ' + (d.reviewRate*100) + '% review rate = ~' + fmtN(Math.round(g.reviewCount / d.reviewRate)) + ' total customers. At ~' + Math.round(Math.max(12, Math.min(60, g.reviewCount/2))) + ' months listing age = ' + monthlyJobs + ' jobs/mo', type: 'calculated' });
   }
   if (hasPhoneEvidence) {
     phoneSources.unshift({ text: g.phoneComplaints + ' customer review' + (g.phoneComplaints > 1 ? 's' : '') + ' mentioning phone/response issues found on your Google listing', type: 'verified' });
@@ -400,15 +381,16 @@ function buildAutomations(btype, jobValue, googleData) {
     dataLevel: phoneDataLevel,
     desc: 'Answers every call on the first ring, day or night. Qualifies the caller, gives quotes based on your pricing, and books appointments directly into your schedule. Customers never hit voicemail.' + (hasPhoneEvidence ? ' We found ' + g.phoneComplaints + ' review' + (g.phoneComplaints > 1 ? 's' : '') + ' from your actual customers complaining about phone or response issues — this is already costing you.' : ''),
     math: [
-      { label: 'Est. monthly jobs (' + jobsSource + ')', value: monthlyJobs },
-      { label: 'Est. weekly calls (2 calls/job)', value: estWeeklyCalls },
-      { label: 'Est. missed calls/week (15% miss rate)', value: estMissedPerWeek },
-      { label: 'Recovery rate', value: (recoveryLow*100) + '-' + (recoveryHigh*100) + '%' },
+      { label: 'Monthly jobs (' + jobsSource + ')', value: monthlyJobs },
+      { label: 'Calls/job (' + d.label + ' avg)', value: d.callsPerJob },
+      { label: 'Weekly inbound calls', value: estWeeklyCalls },
+      { label: 'Missed calls/week (' + Math.round(missRate*100) + '% miss rate' + (hasPhoneEvidence ? ' — phone complaints found' : '') + ')', value: estMissedPerWeek },
+      { label: 'Recovery rate (AI answers → booked)', value: (recoveryLow*100) + '-' + (recoveryHigh*100) + '%' },
       { label: 'Avg job value (' + jobSource + ')', value: '$' + fmtN(job) },
     ],
     mathFormula: estMissedPerWeek + ' missed/week × ' + (recoveryLow*100) + '-' + (recoveryHigh*100) + '% recovered × $' + fmtN(job) + ' × 52 weeks',
     sources: phoneSources,
-    disclaimer: 'These are conservative estimates. We use a 15% miss rate — well below the 62% industry figure — because many missed calls are robocalls or existing customers. Your actual numbers may be higher or lower. We can do a free phone audit to get your real data.',
+    disclaimer: 'Miss rate: ' + Math.round(missRate*100) + '% (conservative — industry says 62% but many are robocalls/existing clients' + (hasPhoneEvidence ? '; raised to 25% because your reviews show phone complaints' : '') + '). Recovery: 15-25% of answered calls convert. Your annual revenue at these numbers: $' + fmtN(annualRevenue) + '/yr. We can do a free phone audit to verify your actual miss rate.',
     breakeven: function() { return Math.max(1, Math.round(this.monthly / (job * recoveryLow))); },
   });
 
@@ -420,8 +402,10 @@ function buildAutomations(btype, jobValue, googleData) {
   var textSources = [
     { text: 'Responding within 5 min = 21x more likely to qualify — MIT/InsideSales.com (2007), 100K+ leads analyzed', type: 'industry' },
   ];
-  if (g.found && estJobs) {
-    textSources.unshift({ text: 'Missed call volume calculated from your estimated ' + monthlyJobs + ' jobs/month', type: 'calculated' });
+  if (userMonthlyJobs) {
+    textSources.unshift({ text: 'Missed call volume: ' + estMissedPerWeek + '/week from your ' + monthlyJobs + ' jobs/month × ' + d.callsPerJob + ' calls/job', type: 'verified' });
+  } else if (g.found && estJobs) {
+    textSources.unshift({ text: 'Missed call volume calculated from your estimated ' + monthlyJobs + ' jobs/month (' + g.reviewCount + ' reviews)', type: 'calculated' });
   }
   autos.push({
     key: 'missed_call_textback',
@@ -1208,6 +1192,8 @@ async function runAnalysis() {
   var bname = document.getElementById('bname').value.trim();
   var jobInput = parseFloat(document.getElementById('jobval').value);
   var jobValue = (!isNaN(jobInput) && jobInput > 0) ? jobInput : null;
+  var jobCountInput = parseInt(document.getElementById('jobcount').value);
+  var userMonthlyJobs = (!isNaN(jobCountInput) && jobCountInput > 0) ? jobCountInput : null;
 
   if (!btype || !city) {
     alert('Please select your business type and enter your city.');
@@ -1218,14 +1204,14 @@ async function runAnalysis() {
   btn.disabled = true;
   btn.textContent = 'Analyzing...';
 
-  try { await _doAnalysis(btype, city, bname, jobValue); }
+  try { await _doAnalysis(btype, city, bname, jobValue, userMonthlyJobs); }
   catch (err) {
     console.error('Analysis error:', err);
     document.getElementById('results-content').innerHTML = ''
       + '<div style="padding:2rem;text-align:center;color:#aaa">'
       + '<p style="color:#e74c3c;font-weight:700;margin-bottom:1rem">Something went wrong</p>'
       + '<p>Could not complete the analysis. Try refreshing the page or <a href="tel:+19035224459" style="color:var(--gold)">call us at 903-522-4459</a>.</p>'
-      + '<p style="margin-top:1rem;font-size:.8rem;color:#666">Error: ' + (err.message || 'Unknown') + '</p>'
+      + '<p style="margin-top:1rem;font-size:.8rem;color:#999">Error: ' + (err.message || 'Unknown') + '</p>'
       + '</div>';
     document.getElementById('results').style.display = 'block';
   }
@@ -1233,7 +1219,7 @@ async function runAnalysis() {
   btn.textContent = 'RUN MY FREE ANALYSIS';
 }
 
-async function _doAnalysis(btype, city, bname, jobValue) {
+async function _doAnalysis(btype, city, bname, jobValue, userMonthlyJobs) {
   var d = TYPE_DEFAULTS[btype] || TYPE_DEFAULTS.general;
   var job = jobValue || d.job;
 
@@ -1266,7 +1252,7 @@ async function _doAnalysis(btype, city, bname, jobValue) {
 
   await new Promise(function(r) { setTimeout(r, 800); });
 
-  var autos = buildAutomations(btype, jobValue, googleData);
+  var autos = buildAutomations(btype, jobValue, googleData, userMonthlyJobs);
   window._currentAutos = autos;
   selectedItems = {};
 
@@ -1292,6 +1278,7 @@ async function _doAnalysis(btype, city, bname, jobValue) {
 
   var bizLabel = googleData.found ? esc(googleData.name) : esc(bname || (d.label + ' in ' + city));
   var jobLabel = jobValue ? '$' + fmtN(jobValue) + ' (your number)' : '$' + fmtN(job) + ' (' + d.label + ' average)';
+  var volumeLabel = userMonthlyJobs ? fmtN(userMonthlyJobs) + '/mo (your number)' : (googleData.found && estimateMonthlyJobs(googleData.reviewCount, btype) ? fmtN(estimateMonthlyJobs(googleData.reviewCount, btype)) + '/mo (from reviews)' : fmtN(d.monthlyJobs) + '/mo (industry avg)');
 
   // Google verification badge
   var verifiedHTML = '';
@@ -1308,10 +1295,11 @@ async function _doAnalysis(btype, city, bname, jobValue) {
       + '<br><span style="font-size:.75rem;color:#999">Data from Google Places API · ' + (googleData.reviewsChecked || 5) + ' most recent reviews scanned</span>'
       + '</div>';
   } else {
+    var notFoundReason = googleData.apiError ? 'Google API returned an error (code ' + googleData.apiError + '). ' : 'We couldn\'t find "' + esc(bname || d.label) + '" on Google for ' + esc(city) + '. ';
     verifiedHTML = ''
       + '<div style="background:#1a1500;border:1px solid #3a3000;padding:1rem 1.2rem;margin-bottom:2rem;font-size:.85rem;color:#bbb;line-height:1.6">'
-      + '<span style="color:#e67e22;font-weight:700">COULD NOT VERIFY</span><br>'
-      + 'We couldn\'t find "' + esc(bname || d.label) + '" on Google for ' + esc(city) + '. The analysis below uses <strong>industry estimates only</strong> — no verified data.'
+      + '<span style="color:#e67e22;font-weight:700">NOT VERIFIED</span><br>'
+      + notFoundReason + 'The analysis below uses <strong>' + d.label + ' industry data for ' + fmtN(d.monthlyJobs) + ' jobs/month</strong> — enter your real numbers above for exact results.'
       + '</div>';
   }
 
@@ -1340,7 +1328,7 @@ async function _doAnalysis(btype, city, bname, jobValue) {
     + '<strong>How to read these numbers:</strong> The range (' + fmt(totalLow) + ' - ' + fmt(totalHigh) + ') is the sum of all individual systems below. Each estimate is already conservative — low end is cautious, high end is optimistic.'
     + dataExplain
     + ' Click any item to see the full math and sources.'
-    + (!jobValue ? '<br><span style="color:#e67e22">You didn\'t enter your avg job value, so we used the ' + d.label + ' industry average ($' + fmtN(d.job) + '). Enter yours for more accurate numbers.</span>' : '')
+    + (!jobValue || !userMonthlyJobs ? '<br><span style="color:#e67e22">' + (!jobValue ? 'Job value: using ' + d.label + ' avg ($' + fmtN(d.job) + '). ' : '') + (!userMonthlyJobs ? 'Volume: ' + (googleData.found ? 'calculated from your ' + googleData.reviewCount + ' reviews.' : 'using ' + d.label + ' avg (' + d.monthlyJobs + '/mo).') : '') + ' Enter your real numbers above for exact calculations.</span>' : '')
     + '</div>';
 
   // Build automation cards
@@ -1448,7 +1436,7 @@ async function _doAnalysis(btype, city, bname, jobValue) {
   var html = ''
     + '<div class="result-header">'
     + '<h2>' + bizLabel + '</h2>'
-    + '<p>' + d.label + ' · ' + esc(city) + ' · Avg job value used: ' + jobLabel + '</p>'
+    + '<p>' + d.label + ' · ' + esc(city) + ' · Job value: ' + jobLabel + ' · Volume: ' + volumeLabel + '</p>'
     + '</div>'
     + verifiedHTML
     + statsHTML
