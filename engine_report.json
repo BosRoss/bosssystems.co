@@ -1,15 +1,7 @@
 {
-  "generated": "2026-07-12T08:04:37.217790+00:00",
+  "generated": "2026-07-12T10:12:00.091496+00:00",
   "engine_state": "active",
   "signals": [
-    {
-      "type": "flood",
-      "area": "Kinney, TX; Maverick, TX; Zavala, TX",
-      "niche": "plumbing",
-      "action": "Flood warnings in Kinney, TX; Maverick, TX; Zavala, TX. Plumbers, restoration, mold companies will spike.",
-      "urgency": "today",
-      "pitch_hook": "Water damage calls are coming. Every one you miss is $500+ walking away."
-    },
     {
       "type": "flood",
       "area": "Concordia, LA; Adams, MS; Wilkinson, MS",
@@ -23,14 +15,6 @@
       "area": "Cherokee, NC; Polk, TN",
       "niche": "plumbing",
       "action": "Flood warnings in Cherokee, NC; Polk, TN. Plumbers, restoration, mold companies will spike.",
-      "urgency": "today",
-      "pitch_hook": "Water damage calls are coming. Every one you miss is $500+ walking away."
-    },
-    {
-      "type": "flood",
-      "area": "Cocke, TN; Greene, TN; Hamblen, TN; Jefferson, TN",
-      "niche": "plumbing",
-      "action": "Flood warnings in Cocke, TN; Greene, TN; Hamblen, TN; Jefferson, TN. Plumbers, restoration, mold companies will spike.",
       "urgency": "today",
       "pitch_hook": "Water damage calls are coming. Every one you miss is $500+ walking away."
     },
@@ -60,17 +44,25 @@
     },
     {
       "type": "flood",
-      "area": "Pontotoc, OK; Seminole, OK",
+      "area": "Canadian, OK; Cleveland, OK; Grady, OK; Logan, OK; McClain, OK; Oklahoma, OK; Pottawatomie, OK",
       "niche": "plumbing",
-      "action": "Flood warnings in Pontotoc, OK; Seminole, OK. Plumbers, restoration, mold companies will spike.",
+      "action": "Flood warnings in Canadian, OK; Cleveland, OK; Grady, OK; Logan, OK; McClain, OK; Oklahoma, OK; Pottawatomie, OK. Plumbers, restoration, mold companies will spike.",
       "urgency": "today",
       "pitch_hook": "Water damage calls are coming. Every one you miss is $500+ walking away."
     },
     {
       "type": "flood",
-      "area": "Hughes, OK; Pontotoc, OK; Seminole, OK",
+      "area": "Caddo, OK; Canadian, OK; Washita, OK",
       "niche": "plumbing",
-      "action": "Flood warnings in Hughes, OK; Pontotoc, OK; Seminole, OK. Plumbers, restoration, mold companies will spike.",
+      "action": "Flood warnings in Caddo, OK; Canadian, OK; Washita, OK. Plumbers, restoration, mold companies will spike.",
+      "urgency": "today",
+      "pitch_hook": "Water damage calls are coming. Every one you miss is $500+ walking away."
+    },
+    {
+      "type": "flood",
+      "area": "Creek, OK; Rogers, OK; Tulsa, OK; Wagoner, OK",
+      "niche": "plumbing",
+      "action": "Flood warnings in Creek, OK; Rogers, OK; Tulsa, OK; Wagoner, OK. Plumbers, restoration, mold companies will spike.",
       "urgency": "today",
       "pitch_hook": "Water damage calls are coming. Every one you miss is $500+ walking away."
     },
@@ -79,6 +71,14 @@
       "area": "Pittsburg, OK",
       "niche": "plumbing",
       "action": "Flood warnings in Pittsburg, OK. Plumbers, restoration, mold companies will spike.",
+      "urgency": "today",
+      "pitch_hook": "Water damage calls are coming. Every one you miss is $500+ walking away."
+    },
+    {
+      "type": "flood",
+      "area": "Pontotoc, OK; Seminole, OK",
+      "niche": "plumbing",
+      "action": "Flood warnings in Pontotoc, OK; Seminole, OK. Plumbers, restoration, mold companies will spike.",
       "urgency": "today",
       "pitch_hook": "Water damage calls are coming. Every one you miss is $500+ walking away."
     }
@@ -222,15 +222,15 @@
   ],
   "kpis": {
     "signals_firing": 10,
-    "leads_superniche": 53,
-    "leads_hot": 130,
-    "leads_warm": 18,
+    "leads_superniche": 56,
+    "leads_hot": 132,
+    "leads_warm": 12,
     "cost_per_qualified": 0.61,
-    "total_spend": 32.44799999999997,
+    "total_spend": 34.047999999999796,
     "spend_cap": 300.0
   },
   "channels": {
-    "emails_sent": 174,
+    "emails_sent": 181,
     "texts_sent": 8,
     "calls_made": 0,
     "meetings_set": 10,
@@ -239,63 +239,63 @@
   "feeds": [
     {
       "name": "NOAA",
-      "last_hit": "2026-07-12T07:58:53.528241+00:00",
+      "last_hit": "2026-07-12T10:04:41.577524+00:00",
       "status": "yellow",
       "data_points_today": 0
     },
     {
       "name": "REDDIT",
-      "last_hit": "2026-07-12T07:58:53.528241+00:00",
+      "last_hit": "2026-07-12T10:04:41.577524+00:00",
       "status": "green",
-      "data_points_today": 30
+      "data_points_today": 15
     },
     {
       "name": "USGS",
-      "last_hit": "2026-07-12T07:58:53.528241+00:00",
+      "last_hit": "2026-07-12T10:04:41.577524+00:00",
       "status": "yellow",
       "data_points_today": 0
     },
     {
       "name": "HACKERNEWS",
-      "last_hit": "2026-07-12T07:58:53.528241+00:00",
+      "last_hit": "2026-07-12T10:04:41.577524+00:00",
       "status": "green",
       "data_points_today": 30
     },
     {
       "name": "FEMA",
-      "last_hit": "2026-07-12T07:58:53.528241+00:00",
+      "last_hit": "2026-07-12T10:04:41.577524+00:00",
       "status": "green",
       "data_points_today": 20
     },
     {
       "name": "COMMODITIES",
-      "last_hit": "2026-07-12T07:58:53.528241+00:00",
+      "last_hit": "2026-07-12T10:04:41.577524+00:00",
       "status": "green",
       "data_points_today": 7
     },
     {
       "name": "RSS",
-      "last_hit": "2026-07-12T07:58:53.528241+00:00",
+      "last_hit": "2026-07-12T10:04:41.577524+00:00",
       "status": "green",
-      "data_points_today": 729
+      "data_points_today": 738
     },
     {
       "name": "FRED",
-      "last_hit": "2026-07-12T07:58:53.528241+00:00",
+      "last_hit": "2026-07-12T10:04:41.577524+00:00",
       "status": "yellow",
       "data_points_today": 0
     },
     {
       "name": "BLS",
-      "last_hit": "2026-07-12T07:58:53.528241+00:00",
+      "last_hit": "2026-07-12T10:04:41.577524+00:00",
       "status": "green",
       "data_points_today": 9
     }
   ],
   "conversion_funnel": {
     "signals": 10,
-    "leads": 201,
-    "contacted": 182,
+    "leads": 200,
+    "contacted": 189,
     "replied": 10,
     "meeting": 10,
     "close": 0
