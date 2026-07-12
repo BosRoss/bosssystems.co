@@ -1,5 +1,5 @@
 {
-  "generated": "2026-07-12T14:26:07.585446+00:00",
+  "generated": "2026-07-12T16:33:38.150826+00:00",
   "engine_state": "active",
   "signals": [
     {
@@ -36,9 +36,17 @@
     },
     {
       "type": "flood",
-      "area": "Dyer, TN; Gibson, TN; Obion, TN",
+      "area": "Custer, OK",
       "niche": "plumbing",
-      "action": "Flood warnings in Dyer, TN; Gibson, TN; Obion, TN. Plumbers, restoration, mold companies will spike.",
+      "action": "Flood warnings in Custer, OK. Plumbers, restoration, mold companies will spike.",
+      "urgency": "today",
+      "pitch_hook": "Water damage calls are coming. Every one you miss is $500+ walking away."
+    },
+    {
+      "type": "flood",
+      "area": "Custer, OK; Washita, OK",
+      "niche": "plumbing",
+      "action": "Flood warnings in Custer, OK; Washita, OK. Plumbers, restoration, mold companies will spike.",
       "urgency": "today",
       "pitch_hook": "Water damage calls are coming. Every one you miss is $500+ walking away."
     },
@@ -51,18 +59,10 @@
       "pitch_hook": "Water damage calls are coming. Every one you miss is $500+ walking away."
     },
     {
-      "type": "storm",
-      "area": "Custer, OK",
-      "niche": "roofing",
-      "action": "Storm damage in Custer, OK. Roofers and restoration companies about to get flooded.",
-      "urgency": "today",
-      "pitch_hook": "After a storm like that, you'll get 10x your normal call volume. Ready for it?"
-    },
-    {
       "type": "flood",
-      "area": "Custer, OK",
+      "area": "Okaloosa, FL",
       "niche": "plumbing",
-      "action": "Flood warnings in Custer, OK. Plumbers, restoration, mold companies will spike.",
+      "action": "Flood warnings in Okaloosa, FL. Plumbers, restoration, mold companies will spike.",
       "urgency": "today",
       "pitch_hook": "Water damage calls are coming. Every one you miss is $500+ walking away."
     },
@@ -222,15 +222,15 @@
   ],
   "kpis": {
     "signals_firing": 10,
-    "leads_superniche": 65,
-    "leads_hot": 135,
+    "leads_superniche": 69,
+    "leads_hot": 131,
     "leads_warm": 0,
-    "cost_per_qualified": 0.6,
-    "total_spend": 38.84799999999927,
+    "cost_per_qualified": 0.59,
+    "total_spend": 40.44799999999909,
     "spend_cap": 300.0
   },
   "channels": {
-    "emails_sent": 192,
+    "emails_sent": 201,
     "texts_sent": 8,
     "calls_made": 0,
     "meetings_set": 10,
@@ -239,55 +239,55 @@
   "feeds": [
     {
       "name": "NOAA",
-      "last_hit": "2026-07-12T14:19:05.742641+00:00",
+      "last_hit": "2026-07-12T16:26:13.691437+00:00",
       "status": "yellow",
       "data_points_today": 0
     },
     {
       "name": "REDDIT",
-      "last_hit": "2026-07-12T14:19:05.742641+00:00",
+      "last_hit": "2026-07-12T16:26:13.691437+00:00",
       "status": "green",
       "data_points_today": 30
     },
     {
       "name": "USGS",
-      "last_hit": "2026-07-12T14:19:05.742641+00:00",
+      "last_hit": "2026-07-12T16:26:13.691437+00:00",
       "status": "yellow",
       "data_points_today": 0
     },
     {
       "name": "HACKERNEWS",
-      "last_hit": "2026-07-12T14:19:05.742641+00:00",
+      "last_hit": "2026-07-12T16:26:13.691437+00:00",
       "status": "green",
       "data_points_today": 30
     },
     {
       "name": "FEMA",
-      "last_hit": "2026-07-12T14:19:05.742641+00:00",
+      "last_hit": "2026-07-12T16:26:13.691437+00:00",
       "status": "green",
       "data_points_today": 20
     },
     {
       "name": "COMMODITIES",
-      "last_hit": "2026-07-12T14:19:05.742641+00:00",
+      "last_hit": "2026-07-12T16:26:13.691437+00:00",
       "status": "green",
       "data_points_today": 7
     },
     {
       "name": "RSS",
-      "last_hit": "2026-07-12T14:19:05.742641+00:00",
+      "last_hit": "2026-07-12T16:26:13.691437+00:00",
       "status": "green",
-      "data_points_today": 737
+      "data_points_today": 727
     },
     {
       "name": "FRED",
-      "last_hit": "2026-07-12T14:19:05.742641+00:00",
+      "last_hit": "2026-07-12T16:26:13.691437+00:00",
       "status": "yellow",
       "data_points_today": 0
     },
     {
       "name": "BLS",
-      "last_hit": "2026-07-12T14:19:05.742641+00:00",
+      "last_hit": "2026-07-12T16:26:13.691437+00:00",
       "status": "green",
       "data_points_today": 9
     }
@@ -295,7 +295,7 @@
   "conversion_funnel": {
     "signals": 10,
     "leads": 200,
-    "contacted": 200,
+    "contacted": 209,
     "replied": 10,
     "meeting": 10,
     "close": 0
