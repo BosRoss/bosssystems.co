@@ -1,5 +1,5 @@
 {
-  "generated": "2026-07-12T16:33:38.150826+00:00",
+  "generated": "2026-07-12T18:39:42.440820+00:00",
   "engine_state": "active",
   "signals": [
     {
@@ -11,18 +11,50 @@
       "pitch_hook": "Water damage calls are coming. Every one you miss is $500+ walking away."
     },
     {
+      "type": "storm",
+      "area": "Dale, AL; Henry, AL",
+      "niche": "roofing",
+      "action": "Storm damage in Dale, AL; Henry, AL. Roofers and restoration companies about to get flooded.",
+      "urgency": "today",
+      "pitch_hook": "After a storm like that, you'll get 10x your normal call volume. Ready for it?"
+    },
+    {
+      "type": "storm",
+      "area": "Coffee, AL; Dale, AL; Henry, AL",
+      "niche": "roofing",
+      "action": "Storm damage in Coffee, AL; Dale, AL; Henry, AL. Roofers and restoration companies about to get flooded.",
+      "urgency": "today",
+      "pitch_hook": "After a storm like that, you'll get 10x your normal call volume. Ready for it?"
+    },
+    {
       "type": "flood",
-      "area": "Baldwin, AL; Escambia, FL",
+      "area": "Houston, AL",
       "niche": "plumbing",
-      "action": "Flood warnings in Baldwin, AL; Escambia, FL. Plumbers, restoration, mold companies will spike.",
+      "action": "Flood warnings in Houston, AL. Plumbers, restoration, mold companies will spike.",
       "urgency": "today",
       "pitch_hook": "Water damage calls are coming. Every one you miss is $500+ walking away."
     },
     {
       "type": "flood",
-      "area": "Cherokee; Clay; Scott; Campbell; Claiborne; Hancock; Hawkins; Sullivan; Johnson; Morgan; Anderson; Union; Grainger; Hamblen; Northwest Cocke; Cocke Smoky Mountains; Northwest Greene; Southeast Greene;",
+      "area": "Mobile, AL",
       "niche": "plumbing",
-      "action": "Flood warnings in Cherokee; Clay; Scott; Campbell; Claiborne; Hancock; Hawkins; Sullivan; Johnson; Morgan; Anderson; Union; Grainger; Hamblen; Northwest Cocke; Cocke Smoky Mountains; Northwest Greene; Southeast Greene;. Plumbers, restoration, mold companies will spike.",
+      "action": "Flood warnings in Mobile, AL. Plumbers, restoration, mold companies will spike.",
+      "urgency": "today",
+      "pitch_hook": "Water damage calls are coming. Every one you miss is $500+ walking away."
+    },
+    {
+      "type": "storm",
+      "area": "Coffee, AL; Dale, AL; Geneva, AL; Henry, AL; Houston, AL; Gadsden, FL; Jackson, FL; Jefferson, FL; Lafayette, FL; Leon, FL; Madison, FL; Taylor, FL; Wakulla, FL; Baker, GA; Berrien, GA; Brooks, GA; Ca",
+      "niche": "roofing",
+      "action": "Storm damage in Coffee, AL; Dale, AL; Geneva, AL; Henry, AL; Houston, AL; Gadsden, FL; Jackson, FL; Jefferson, FL; Lafayette, FL; Leon, FL; Madison, FL; Taylor, FL; Wakulla, FL; Baker, GA; Berrien, GA; Brooks, GA; Ca. Roofers and restoration companies about to get flooded.",
+      "urgency": "today",
+      "pitch_hook": "After a storm like that, you'll get 10x your normal call volume. Ready for it?"
+    },
+    {
+      "type": "flood",
+      "area": "Greene, TN; Hamblen, TN; Hawkins, TN",
+      "niche": "plumbing",
+      "action": "Flood warnings in Greene, TN; Hamblen, TN; Hawkins, TN. Plumbers, restoration, mold companies will spike.",
       "urgency": "today",
       "pitch_hook": "Water damage calls are coming. Every one you miss is $500+ walking away."
     },
@@ -36,51 +68,19 @@
     },
     {
       "type": "flood",
-      "area": "Custer, OK",
+      "area": "Greene, TN; Hancock, TN; Hawkins, TN; Sullivan, TN; Washington, TN",
       "niche": "plumbing",
-      "action": "Flood warnings in Custer, OK. Plumbers, restoration, mold companies will spike.",
+      "action": "Flood warnings in Greene, TN; Hancock, TN; Hawkins, TN; Sullivan, TN; Washington, TN. Plumbers, restoration, mold companies will spike.",
       "urgency": "today",
       "pitch_hook": "Water damage calls are coming. Every one you miss is $500+ walking away."
     },
     {
       "type": "flood",
-      "area": "Custer, OK; Washita, OK",
+      "area": "Cherokee; Clay; Scott; Campbell; Claiborne; Hancock; Hawkins; Sullivan; Johnson; Morgan; Anderson; Union; Grainger; Hamblen; Northwest Cocke; Cocke Smoky Mountains; Northwest Greene; Southeast Greene;",
       "niche": "plumbing",
-      "action": "Flood warnings in Custer, OK; Washita, OK. Plumbers, restoration, mold companies will spike.",
+      "action": "Flood warnings in Cherokee; Clay; Scott; Campbell; Claiborne; Hancock; Hawkins; Sullivan; Johnson; Morgan; Anderson; Union; Grainger; Hamblen; Northwest Cocke; Cocke Smoky Mountains; Northwest Greene; Southeast Greene;. Plumbers, restoration, mold companies will spike.",
       "urgency": "today",
       "pitch_hook": "Water damage calls are coming. Every one you miss is $500+ walking away."
-    },
-    {
-      "type": "flood",
-      "area": "Custer, OK; Dewey, OK",
-      "niche": "plumbing",
-      "action": "Flood warnings in Custer, OK; Dewey, OK. Plumbers, restoration, mold companies will spike.",
-      "urgency": "today",
-      "pitch_hook": "Water damage calls are coming. Every one you miss is $500+ walking away."
-    },
-    {
-      "type": "flood",
-      "area": "Okaloosa, FL",
-      "niche": "plumbing",
-      "action": "Flood warnings in Okaloosa, FL. Plumbers, restoration, mold companies will spike.",
-      "urgency": "today",
-      "pitch_hook": "Water damage calls are coming. Every one you miss is $500+ walking away."
-    },
-    {
-      "type": "heat_wave",
-      "area": "Inland Broward County; Metro Broward County; Inland Miami-Dade County; Metropolitan Miami Dade; Coastal Broward County; Coastal Miami Dade County; Far South Miami-Dade County",
-      "niche": "hvac",
-      "action": "HVAC businesses in Inland Broward County; Metro Broward County; Inland Miami-Dade County; Metropolitan Miami Dade; Coastal Broward County; Coastal Miami Dade County; Far South Miami-Dade County are drowning in calls right now. Perfect time to pitch.",
-      "urgency": "today",
-      "pitch_hook": "You're getting slammed with calls \u2014 how many went to voicemail today?"
-    },
-    {
-      "type": "heat_wave",
-      "area": "Inland Nassau; Inland Flagler; Coastal Nassau; Coastal Duval; Eastern Clay; Eastern Putnam; Coastal Flagler; Trout River; Western Clay; Northeast Coastal St. Johns; Western Putnam; South Central Duval",
-      "niche": "hvac",
-      "action": "HVAC businesses in Inland Nassau; Inland Flagler; Coastal Nassau; Coastal Duval; Eastern Clay; Eastern Putnam; Coastal Flagler; Trout River; Western Clay; Northeast Coastal St. Johns; Western Putnam; South Central Duval are drowning in calls right now. Perfect time to pitch.",
-      "urgency": "today",
-      "pitch_hook": "You're getting slammed with calls \u2014 how many went to voicemail today?"
     }
   ],
   "leads": [
@@ -100,6 +100,15 @@
       "tier": "SUPERNICHE",
       "channel": "watchlist",
       "sequence_status": "called",
+      "trigger": "market_sweep"
+    },
+    {
+      "name": "law firm",
+      "city": "NM",
+      "score": 80,
+      "tier": "SUPERNICHE",
+      "channel": "watchlist",
+      "sequence_status": "queued",
       "trigger": "market_sweep"
     },
     {
@@ -157,6 +166,15 @@
       "trigger": "flood"
     },
     {
+      "name": "pest control",
+      "city": "NM",
+      "score": 74,
+      "tier": "SUPERNICHE",
+      "channel": "watchlist",
+      "sequence_status": "queued",
+      "trigger": "market_sweep"
+    },
+    {
       "name": "electrician",
       "city": "MS",
       "score": 73,
@@ -200,37 +218,19 @@
       "channel": "watchlist",
       "sequence_status": "queued",
       "trigger": "flood"
-    },
-    {
-      "name": "plumber",
-      "city": "AR",
-      "score": 68,
-      "tier": "SUPERNICHE",
-      "channel": "watchlist",
-      "sequence_status": "re_engaged",
-      "trigger": "territory_alert"
-    },
-    {
-      "name": "electrician",
-      "city": "AR",
-      "score": 68,
-      "tier": "SUPERNICHE",
-      "channel": "watchlist",
-      "sequence_status": "queued",
-      "trigger": "market_sweep"
     }
   ],
   "kpis": {
     "signals_firing": 10,
-    "leads_superniche": 69,
-    "leads_hot": 131,
+    "leads_superniche": 74,
+    "leads_hot": 126,
     "leads_warm": 0,
-    "cost_per_qualified": 0.59,
-    "total_spend": 40.44799999999909,
+    "cost_per_qualified": 0.57,
+    "total_spend": 42.047999999998915,
     "spend_cap": 300.0
   },
   "channels": {
-    "emails_sent": 201,
+    "emails_sent": 210,
     "texts_sent": 8,
     "calls_made": 0,
     "meetings_set": 10,
@@ -239,55 +239,55 @@
   "feeds": [
     {
       "name": "NOAA",
-      "last_hit": "2026-07-12T16:26:13.691437+00:00",
+      "last_hit": "2026-07-12T18:33:42.733891+00:00",
       "status": "yellow",
       "data_points_today": 0
     },
     {
       "name": "REDDIT",
-      "last_hit": "2026-07-12T16:26:13.691437+00:00",
+      "last_hit": "2026-07-12T18:33:42.733891+00:00",
       "status": "green",
-      "data_points_today": 30
+      "data_points_today": 15
     },
     {
       "name": "USGS",
-      "last_hit": "2026-07-12T16:26:13.691437+00:00",
+      "last_hit": "2026-07-12T18:33:42.733891+00:00",
       "status": "yellow",
       "data_points_today": 0
     },
     {
       "name": "HACKERNEWS",
-      "last_hit": "2026-07-12T16:26:13.691437+00:00",
+      "last_hit": "2026-07-12T18:33:42.733891+00:00",
       "status": "green",
       "data_points_today": 30
     },
     {
       "name": "FEMA",
-      "last_hit": "2026-07-12T16:26:13.691437+00:00",
+      "last_hit": "2026-07-12T18:33:42.733891+00:00",
       "status": "green",
       "data_points_today": 20
     },
     {
       "name": "COMMODITIES",
-      "last_hit": "2026-07-12T16:26:13.691437+00:00",
+      "last_hit": "2026-07-12T18:33:42.733891+00:00",
       "status": "green",
       "data_points_today": 7
     },
     {
       "name": "RSS",
-      "last_hit": "2026-07-12T16:26:13.691437+00:00",
+      "last_hit": "2026-07-12T18:33:42.733891+00:00",
       "status": "green",
-      "data_points_today": 727
+      "data_points_today": 726
     },
     {
       "name": "FRED",
-      "last_hit": "2026-07-12T16:26:13.691437+00:00",
+      "last_hit": "2026-07-12T18:33:42.733891+00:00",
       "status": "yellow",
       "data_points_today": 0
     },
     {
       "name": "BLS",
-      "last_hit": "2026-07-12T16:26:13.691437+00:00",
+      "last_hit": "2026-07-12T18:33:42.733891+00:00",
       "status": "green",
       "data_points_today": 9
     }
@@ -295,7 +295,7 @@
   "conversion_funnel": {
     "signals": 10,
     "leads": 200,
-    "contacted": 209,
+    "contacted": 218,
     "replied": 10,
     "meeting": 10,
     "close": 0
