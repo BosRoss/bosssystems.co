@@ -1,54 +1,14 @@
 {
-  "generated": "2026-07-11T21:12:45.699437+00:00",
+  "generated": "2026-07-12T01:22:31.064374+00:00",
   "engine_state": "active",
   "signals": [
     {
       "type": "flood",
-      "area": "Mason, TX",
+      "area": "Dimmit, TX",
       "niche": "plumbing",
-      "action": "Flood warnings in Mason, TX. Plumbers, restoration, mold companies will spike.",
+      "action": "Flood warnings in Dimmit, TX. Plumbers, restoration, mold companies will spike.",
       "urgency": "today",
       "pitch_hook": "Water damage calls are coming. Every one you miss is $500+ walking away."
-    },
-    {
-      "type": "flood",
-      "area": "Bexar, TX",
-      "niche": "plumbing",
-      "action": "Flood warnings in Bexar, TX. Plumbers, restoration, mold companies will spike.",
-      "urgency": "today",
-      "pitch_hook": "Water damage calls are coming. Every one you miss is $500+ walking away."
-    },
-    {
-      "type": "flood",
-      "area": "Hays, TX; Travis, TX",
-      "niche": "plumbing",
-      "action": "Flood warnings in Hays, TX; Travis, TX. Plumbers, restoration, mold companies will spike.",
-      "urgency": "today",
-      "pitch_hook": "Water damage calls are coming. Every one you miss is $500+ walking away."
-    },
-    {
-      "type": "storm",
-      "area": "Craighead, AR; Crittenden, AR; Cross, AR; Greene, AR; Lee, AR; Mississippi, AR; Poinsett, AR; St. Francis, AR; Dunklin, MO; Pemiscot, MO; Alcorn, MS; Benton, MS; DeSoto, MS; Marshall, MS; Prentiss, MS",
-      "niche": "roofing",
-      "action": "Storm damage in Craighead, AR; Crittenden, AR; Cross, AR; Greene, AR; Lee, AR; Mississippi, AR; Poinsett, AR; St. Francis, AR; Dunklin, MO; Pemiscot, MO; Alcorn, MS; Benton, MS; DeSoto, MS; Marshall, MS; Prentiss, MS. Roofers and restoration companies about to get flooded.",
-      "urgency": "today",
-      "pitch_hook": "After a storm like that, you'll get 10x your normal call volume. Ready for it?"
-    },
-    {
-      "type": "heat_wave",
-      "area": "St. Francis; Lee; Phillips; Tunica; Coahoma; Quitman; Tallahatchie",
-      "niche": "hvac",
-      "action": "HVAC businesses in St. Francis; Lee; Phillips; Tunica; Coahoma; Quitman; Tallahatchie are drowning in calls right now. Perfect time to pitch.",
-      "urgency": "today",
-      "pitch_hook": "You're getting slammed with calls \u2014 how many went to voicemail today?"
-    },
-    {
-      "type": "heat_wave",
-      "area": "Chicot; Bolivar; Sunflower; Leflore; Washington",
-      "niche": "hvac",
-      "action": "HVAC businesses in Chicot; Bolivar; Sunflower; Leflore; Washington are drowning in calls right now. Perfect time to pitch.",
-      "urgency": "today",
-      "pitch_hook": "You're getting slammed with calls \u2014 how many went to voicemail today?"
     },
     {
       "type": "flood",
@@ -59,26 +19,66 @@
       "pitch_hook": "Water damage calls are coming. Every one you miss is $500+ walking away."
     },
     {
-      "type": "storm",
-      "area": "Crittenden, AR; Mississippi, AR; Lauderdale, TN; Shelby, TN; Tipton, TN",
-      "niche": "roofing",
-      "action": "Storm damage in Crittenden, AR; Mississippi, AR; Lauderdale, TN; Shelby, TN; Tipton, TN. Roofers and restoration companies about to get flooded.",
+      "type": "flood",
+      "area": "Washington, AR",
+      "niche": "plumbing",
+      "action": "Flood warnings in Washington, AR. Plumbers, restoration, mold companies will spike.",
       "urgency": "today",
-      "pitch_hook": "After a storm like that, you'll get 10x your normal call volume. Ready for it?"
-    },
-    {
-      "type": "storm",
-      "area": "Cleburne, AR; Van Buren, AR",
-      "niche": "roofing",
-      "action": "Storm damage in Cleburne, AR; Van Buren, AR. Roofers and restoration companies about to get flooded.",
-      "urgency": "today",
-      "pitch_hook": "After a storm like that, you'll get 10x your normal call volume. Ready for it?"
+      "pitch_hook": "Water damage calls are coming. Every one you miss is $500+ walking away."
     },
     {
       "type": "flood",
-      "area": "Baxter, AR; Searcy, AR; Stone, AR",
+      "area": "Yell, AR",
       "niche": "plumbing",
-      "action": "Flood warnings in Baxter, AR; Searcy, AR; Stone, AR. Plumbers, restoration, mold companies will spike.",
+      "action": "Flood warnings in Yell, AR. Plumbers, restoration, mold companies will spike.",
+      "urgency": "today",
+      "pitch_hook": "Water damage calls are coming. Every one you miss is $500+ walking away."
+    },
+    {
+      "type": "flood",
+      "area": "Crittenden, AR; Lee, AR; St. Francis, AR",
+      "niche": "plumbing",
+      "action": "Flood warnings in Crittenden, AR; Lee, AR; St. Francis, AR. Plumbers, restoration, mold companies will spike.",
+      "urgency": "today",
+      "pitch_hook": "Water damage calls are coming. Every one you miss is $500+ walking away."
+    },
+    {
+      "type": "flood",
+      "area": "Perry, AR",
+      "niche": "plumbing",
+      "action": "Flood warnings in Perry, AR. Plumbers, restoration, mold companies will spike.",
+      "urgency": "today",
+      "pitch_hook": "Water damage calls are coming. Every one you miss is $500+ walking away."
+    },
+    {
+      "type": "flood",
+      "area": "Madison, AR; Washington, AR",
+      "niche": "plumbing",
+      "action": "Flood warnings in Madison, AR; Washington, AR. Plumbers, restoration, mold companies will spike.",
+      "urgency": "today",
+      "pitch_hook": "Water damage calls are coming. Every one you miss is $500+ walking away."
+    },
+    {
+      "type": "flood",
+      "area": "Clay, TN",
+      "niche": "plumbing",
+      "action": "Flood warnings in Clay, TN. Plumbers, restoration, mold companies will spike.",
+      "urgency": "today",
+      "pitch_hook": "Water damage calls are coming. Every one you miss is $500+ walking away."
+    },
+    {
+      "type": "flood",
+      "area": "Sumner, TN; Trousdale, TN; Wilson, TN",
+      "niche": "plumbing",
+      "action": "Flood warnings in Sumner, TN; Trousdale, TN; Wilson, TN. Plumbers, restoration, mold companies will spike.",
+      "urgency": "today",
+      "pitch_hook": "Water damage calls are coming. Every one you miss is $500+ walking away."
+    },
+    {
+      "type": "flood",
+      "area": "Stewart; Montgomery; Robertson; Sumner; Macon; Clay; Pickett; Houston; Humphreys; Dickson; Cheatham; Davidson; Wilson; Trousdale; Smith; Jackson; Putnam; Overton; Fentress; Perry; Hickman; Lewis; Will",
+      "niche": "plumbing",
+      "action": "Flood warnings in Stewart; Montgomery; Robertson; Sumner; Macon; Clay; Pickett; Houston; Humphreys; Dickson; Cheatham; Davidson; Wilson; Trousdale; Smith; Jackson; Putnam; Overton; Fentress; Perry; Hickman; Lewis; Will. Plumbers, restoration, mold companies will spike.",
       "urgency": "today",
       "pitch_hook": "Water damage calls are coming. Every one you miss is $500+ walking away."
     }
@@ -223,14 +223,14 @@
   "kpis": {
     "signals_firing": 10,
     "leads_superniche": 48,
-    "leads_hot": 120,
-    "leads_warm": 32,
-    "cost_per_qualified": 0.58,
-    "total_spend": 27.64800000000002,
+    "leads_hot": 121,
+    "leads_warm": 31,
+    "cost_per_qualified": 0.61,
+    "total_spend": 29.248000000000022,
     "spend_cap": 300.0
   },
   "channels": {
-    "emails_sent": 156,
+    "emails_sent": 162,
     "texts_sent": 8,
     "calls_made": 0,
     "meetings_set": 10,
@@ -239,55 +239,55 @@
   "feeds": [
     {
       "name": "NOAA",
-      "last_hit": "2026-07-11T21:04:54.632228+00:00",
+      "last_hit": "2026-07-12T01:16:45.289922+00:00",
       "status": "yellow",
       "data_points_today": 0
     },
     {
       "name": "REDDIT",
-      "last_hit": "2026-07-11T21:04:54.632228+00:00",
+      "last_hit": "2026-07-12T01:16:45.289922+00:00",
       "status": "green",
-      "data_points_today": 30
+      "data_points_today": 15
     },
     {
       "name": "USGS",
-      "last_hit": "2026-07-11T21:04:54.632228+00:00",
+      "last_hit": "2026-07-12T01:16:45.289922+00:00",
       "status": "yellow",
       "data_points_today": 0
     },
     {
       "name": "HACKERNEWS",
-      "last_hit": "2026-07-11T21:04:54.632228+00:00",
+      "last_hit": "2026-07-12T01:16:45.289922+00:00",
       "status": "green",
       "data_points_today": 30
     },
     {
       "name": "FEMA",
-      "last_hit": "2026-07-11T21:04:54.632228+00:00",
+      "last_hit": "2026-07-12T01:16:45.289922+00:00",
       "status": "green",
       "data_points_today": 20
     },
     {
       "name": "COMMODITIES",
-      "last_hit": "2026-07-11T21:04:54.632228+00:00",
+      "last_hit": "2026-07-12T01:16:45.289922+00:00",
       "status": "green",
       "data_points_today": 7
     },
     {
       "name": "RSS",
-      "last_hit": "2026-07-11T21:04:54.632228+00:00",
+      "last_hit": "2026-07-12T01:16:45.289922+00:00",
       "status": "green",
-      "data_points_today": 730
+      "data_points_today": 736
     },
     {
       "name": "FRED",
-      "last_hit": "2026-07-11T21:04:54.632228+00:00",
+      "last_hit": "2026-07-12T01:16:45.289922+00:00",
       "status": "yellow",
       "data_points_today": 0
     },
     {
       "name": "BLS",
-      "last_hit": "2026-07-11T21:04:54.632228+00:00",
+      "last_hit": "2026-07-12T01:16:45.289922+00:00",
       "status": "green",
       "data_points_today": 9
     }
@@ -295,7 +295,7 @@
   "conversion_funnel": {
     "signals": 10,
     "leads": 200,
-    "contacted": 164,
+    "contacted": 170,
     "replied": 10,
     "meeting": 10,
     "close": 0
