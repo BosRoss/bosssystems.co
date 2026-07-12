@@ -1,7 +1,15 @@
 {
-  "generated": "2026-07-12T03:52:28.827173+00:00",
+  "generated": "2026-07-12T05:58:49.009991+00:00",
   "engine_state": "active",
   "signals": [
+    {
+      "type": "flood",
+      "area": "Kinney, TX; Maverick, TX; Zavala, TX",
+      "niche": "plumbing",
+      "action": "Flood warnings in Kinney, TX; Maverick, TX; Zavala, TX. Plumbers, restoration, mold companies will spike.",
+      "urgency": "today",
+      "pitch_hook": "Water damage calls are coming. Every one you miss is $500+ walking away."
+    },
     {
       "type": "flood",
       "area": "Concordia, LA; Adams, MS; Wilkinson, MS",
@@ -12,17 +20,9 @@
     },
     {
       "type": "flood",
-      "area": "Washington, AR",
+      "area": "Howard, AR; Sevier, AR; McCurtain, OK",
       "niche": "plumbing",
-      "action": "Flood warnings in Washington, AR. Plumbers, restoration, mold companies will spike.",
-      "urgency": "today",
-      "pitch_hook": "Water damage calls are coming. Every one you miss is $500+ walking away."
-    },
-    {
-      "type": "flood",
-      "area": "Crawford, AR; Sebastian, AR; Le Flore, OK",
-      "niche": "plumbing",
-      "action": "Flood warnings in Crawford, AR; Sebastian, AR; Le Flore, OK. Plumbers, restoration, mold companies will spike.",
+      "action": "Flood warnings in Howard, AR; Sevier, AR; McCurtain, OK. Plumbers, restoration, mold companies will spike.",
       "urgency": "today",
       "pitch_hook": "Water damage calls are coming. Every one you miss is $500+ walking away."
     },
@@ -36,17 +36,9 @@
     },
     {
       "type": "flood",
-      "area": "Etowah, AL",
+      "area": "Cocke, TN; Greene, TN; Hamblen, TN; Jefferson, TN",
       "niche": "plumbing",
-      "action": "Flood warnings in Etowah, AL. Plumbers, restoration, mold companies will spike.",
-      "urgency": "today",
-      "pitch_hook": "Water damage calls are coming. Every one you miss is $500+ walking away."
-    },
-    {
-      "type": "flood",
-      "area": "Stewart; Montgomery; Robertson; Sumner; Macon; Clay; Pickett; Houston; Humphreys; Dickson; Cheatham; Davidson; Wilson; Trousdale; Smith; Jackson; Putnam; Overton; Fentress; Perry; Hickman; Lewis; Will",
-      "niche": "plumbing",
-      "action": "Flood warnings in Stewart; Montgomery; Robertson; Sumner; Macon; Clay; Pickett; Houston; Humphreys; Dickson; Cheatham; Davidson; Wilson; Trousdale; Smith; Jackson; Putnam; Overton; Fentress; Perry; Hickman; Lewis; Will. Plumbers, restoration, mold companies will spike.",
+      "action": "Flood warnings in Cocke, TN; Greene, TN; Hamblen, TN; Jefferson, TN. Plumbers, restoration, mold companies will spike.",
       "urgency": "today",
       "pitch_hook": "Water damage calls are coming. Every one you miss is $500+ walking away."
     },
@@ -60,6 +52,22 @@
     },
     {
       "type": "flood",
+      "area": "Anderson, TN; Grainger, TN; Hamblen, TN; Jefferson, TN; Knox, TN; Union, TN",
+      "niche": "plumbing",
+      "action": "Flood warnings in Anderson, TN; Grainger, TN; Hamblen, TN; Jefferson, TN; Knox, TN; Union, TN. Plumbers, restoration, mold companies will spike.",
+      "urgency": "today",
+      "pitch_hook": "Water damage calls are coming. Every one you miss is $500+ walking away."
+    },
+    {
+      "type": "flood",
+      "area": "Stewart; Montgomery; Robertson; Sumner; Macon; Clay; Pickett; Houston; Humphreys; Dickson; Cheatham; Davidson; Wilson; Trousdale; Smith; Jackson; Putnam; Overton; Fentress; Perry; Hickman; Lewis; Will",
+      "niche": "plumbing",
+      "action": "Flood warnings in Stewart; Montgomery; Robertson; Sumner; Macon; Clay; Pickett; Houston; Humphreys; Dickson; Cheatham; Davidson; Wilson; Trousdale; Smith; Jackson; Putnam; Overton; Fentress; Perry; Hickman; Lewis; Will. Plumbers, restoration, mold companies will spike.",
+      "urgency": "today",
+      "pitch_hook": "Water damage calls are coming. Every one you miss is $500+ walking away."
+    },
+    {
+      "type": "flood",
       "area": "Dyer, TN; Gibson, TN; Obion, TN",
       "niche": "plumbing",
       "action": "Flood warnings in Dyer, TN; Gibson, TN; Obion, TN. Plumbers, restoration, mold companies will spike.",
@@ -68,17 +76,9 @@
     },
     {
       "type": "flood",
-      "area": "Creek, OK; Rogers, OK; Tulsa, OK; Wagoner, OK",
+      "area": "Pottawatomie, OK; Seminole, OK",
       "niche": "plumbing",
-      "action": "Flood warnings in Creek, OK; Rogers, OK; Tulsa, OK; Wagoner, OK. Plumbers, restoration, mold companies will spike.",
-      "urgency": "today",
-      "pitch_hook": "Water damage calls are coming. Every one you miss is $500+ walking away."
-    },
-    {
-      "type": "flood",
-      "area": "Kay, OK",
-      "niche": "plumbing",
-      "action": "Flood warnings in Kay, OK. Plumbers, restoration, mold companies will spike.",
+      "action": "Flood warnings in Pottawatomie, OK; Seminole, OK. Plumbers, restoration, mold companies will spike.",
       "urgency": "today",
       "pitch_hook": "Water damage calls are coming. Every one you miss is $500+ walking away."
     }
@@ -224,7 +224,7 @@
     "signals_firing": 10,
     "leads_superniche": 53,
     "leads_hot": 130,
-    "leads_warm": 17,
+    "leads_warm": 18,
     "cost_per_qualified": 0.61,
     "total_spend": 32.44799999999997,
     "spend_cap": 300.0
@@ -239,62 +239,62 @@
   "feeds": [
     {
       "name": "NOAA",
-      "last_hit": "2026-07-12T03:44:48.031982+00:00",
+      "last_hit": "2026-07-12T05:52:48.967649+00:00",
       "status": "yellow",
       "data_points_today": 0
     },
     {
       "name": "REDDIT",
-      "last_hit": "2026-07-12T03:44:48.031982+00:00",
+      "last_hit": "2026-07-12T05:52:48.967649+00:00",
       "status": "green",
       "data_points_today": 30
     },
     {
       "name": "USGS",
-      "last_hit": "2026-07-12T03:44:48.031982+00:00",
+      "last_hit": "2026-07-12T05:52:48.967649+00:00",
       "status": "yellow",
       "data_points_today": 0
     },
     {
       "name": "HACKERNEWS",
-      "last_hit": "2026-07-12T03:44:48.031982+00:00",
+      "last_hit": "2026-07-12T05:52:48.967649+00:00",
       "status": "green",
       "data_points_today": 30
     },
     {
       "name": "FEMA",
-      "last_hit": "2026-07-12T03:44:48.031982+00:00",
+      "last_hit": "2026-07-12T05:52:48.967649+00:00",
       "status": "green",
       "data_points_today": 20
     },
     {
       "name": "COMMODITIES",
-      "last_hit": "2026-07-12T03:44:48.031982+00:00",
+      "last_hit": "2026-07-12T05:52:48.967649+00:00",
       "status": "green",
       "data_points_today": 7
     },
     {
       "name": "RSS",
-      "last_hit": "2026-07-12T03:44:48.031982+00:00",
+      "last_hit": "2026-07-12T05:52:48.967649+00:00",
       "status": "green",
       "data_points_today": 728
     },
     {
       "name": "FRED",
-      "last_hit": "2026-07-12T03:44:48.031982+00:00",
+      "last_hit": "2026-07-12T05:52:48.967649+00:00",
       "status": "yellow",
       "data_points_today": 0
     },
     {
       "name": "BLS",
-      "last_hit": "2026-07-12T03:44:48.031982+00:00",
+      "last_hit": "2026-07-12T05:52:48.967649+00:00",
       "status": "green",
       "data_points_today": 9
     }
   ],
   "conversion_funnel": {
     "signals": 10,
-    "leads": 200,
+    "leads": 201,
     "contacted": 182,
     "replied": 10,
     "meeting": 10,
