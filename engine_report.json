@@ -1,36 +1,52 @@
 {
-  "generated": "2026-07-12T20:46:34.381525+00:00",
+  "generated": "2026-07-12T22:52:52.563674+00:00",
   "engine_state": "active",
   "signals": [
     {
       "type": "flood",
-      "area": "Armstrong, TX; Randall, TX",
+      "area": "Hockley, TX; Lubbock, TX",
       "niche": "plumbing",
-      "action": "Flood warnings in Armstrong, TX; Randall, TX. Plumbers, restoration, mold companies will spike.",
+      "action": "Flood warnings in Hockley, TX; Lubbock, TX. Plumbers, restoration, mold companies will spike.",
       "urgency": "today",
       "pitch_hook": "Water damage calls are coming. Every one you miss is $500+ walking away."
     },
     {
-      "type": "storm",
-      "area": "Harris, TX; Montgomery, TX",
-      "niche": "roofing",
-      "action": "Storm damage in Harris, TX; Montgomery, TX. Roofers and restoration companies about to get flooded.",
+      "type": "flood",
+      "area": "Callahan, TX; Coleman, TX; Runnels, TX; Taylor, TX",
+      "niche": "plumbing",
+      "action": "Flood warnings in Callahan, TX; Coleman, TX; Runnels, TX; Taylor, TX. Plumbers, restoration, mold companies will spike.",
       "urgency": "today",
-      "pitch_hook": "After a storm like that, you'll get 10x your normal call volume. Ready for it?"
-    },
-    {
-      "type": "storm",
-      "area": "Randall, TX",
-      "niche": "roofing",
-      "action": "Storm damage in Randall, TX. Roofers and restoration companies about to get flooded.",
-      "urgency": "today",
-      "pitch_hook": "After a storm like that, you'll get 10x your normal call volume. Ready for it?"
+      "pitch_hook": "Water damage calls are coming. Every one you miss is $500+ walking away."
     },
     {
       "type": "flood",
-      "area": "Potter, TX; Randall, TX",
+      "area": "Nacogdoches, TX; Shelby, TX",
       "niche": "plumbing",
-      "action": "Flood warnings in Potter, TX; Randall, TX. Plumbers, restoration, mold companies will spike.",
+      "action": "Flood warnings in Nacogdoches, TX; Shelby, TX. Plumbers, restoration, mold companies will spike.",
+      "urgency": "today",
+      "pitch_hook": "Water damage calls are coming. Every one you miss is $500+ walking away."
+    },
+    {
+      "type": "flood",
+      "area": "Hempstead, AR; Little River, AR; Miller, AR; McCurtain, OK; Bowie, TX",
+      "niche": "plumbing",
+      "action": "Flood warnings in Hempstead, AR; Little River, AR; Miller, AR; McCurtain, OK; Bowie, TX. Plumbers, restoration, mold companies will spike.",
+      "urgency": "today",
+      "pitch_hook": "Water damage calls are coming. Every one you miss is $500+ walking away."
+    },
+    {
+      "type": "flood",
+      "area": "Wayne, MS",
+      "niche": "plumbing",
+      "action": "Flood warnings in Wayne, MS. Plumbers, restoration, mold companies will spike.",
+      "urgency": "today",
+      "pitch_hook": "Water damage calls are coming. Every one you miss is $500+ walking away."
+    },
+    {
+      "type": "flood",
+      "area": "Forrest, MS; Jones, MS; Lamar, MS",
+      "niche": "plumbing",
+      "action": "Flood warnings in Forrest, MS; Jones, MS; Lamar, MS. Plumbers, restoration, mold companies will spike.",
       "urgency": "today",
       "pitch_hook": "Water damage calls are coming. Every one you miss is $500+ walking away."
     },
@@ -52,33 +68,17 @@
     },
     {
       "type": "flood",
-      "area": "Polk, AR",
+      "area": "Ouachita, AR",
       "niche": "plumbing",
-      "action": "Flood warnings in Polk, AR. Plumbers, restoration, mold companies will spike.",
+      "action": "Flood warnings in Ouachita, AR. Plumbers, restoration, mold companies will spike.",
       "urgency": "today",
       "pitch_hook": "Water damage calls are coming. Every one you miss is $500+ walking away."
     },
     {
       "type": "flood",
-      "area": "Cherokee; Clay; Scott; Campbell; Claiborne; Hancock; Hawkins; Sullivan; Johnson; Morgan; Anderson; Union; Grainger; Hamblen; Northwest Cocke; Cocke Smoky Mountains; Northwest Greene; Southeast Greene;",
+      "area": "Hempstead, AR; Howard, AR; Nevada, AR",
       "niche": "plumbing",
-      "action": "Flood warnings in Cherokee; Clay; Scott; Campbell; Claiborne; Hancock; Hawkins; Sullivan; Johnson; Morgan; Anderson; Union; Grainger; Hamblen; Northwest Cocke; Cocke Smoky Mountains; Northwest Greene; Southeast Greene;. Plumbers, restoration, mold companies will spike.",
-      "urgency": "today",
-      "pitch_hook": "Water damage calls are coming. Every one you miss is $500+ walking away."
-    },
-    {
-      "type": "flood",
-      "area": "Greene, TN; Hamblen, TN; Hawkins, TN",
-      "niche": "plumbing",
-      "action": "Flood warnings in Greene, TN; Hamblen, TN; Hawkins, TN. Plumbers, restoration, mold companies will spike.",
-      "urgency": "today",
-      "pitch_hook": "Water damage calls are coming. Every one you miss is $500+ walking away."
-    },
-    {
-      "type": "flood",
-      "area": "Stewart; Montgomery; Robertson; Sumner; Macon; Clay; Pickett; Houston; Humphreys; Dickson; Cheatham; Davidson; Wilson; Trousdale; Smith; Jackson; Putnam; Overton; Fentress; Perry; Hickman; Lewis; Will",
-      "niche": "plumbing",
-      "action": "Flood warnings in Stewart; Montgomery; Robertson; Sumner; Macon; Clay; Pickett; Houston; Humphreys; Dickson; Cheatham; Davidson; Wilson; Trousdale; Smith; Jackson; Putnam; Overton; Fentress; Perry; Hickman; Lewis; Will. Plumbers, restoration, mold companies will spike.",
+      "action": "Flood warnings in Hempstead, AR; Howard, AR; Nevada, AR. Plumbers, restoration, mold companies will spike.",
       "urgency": "today",
       "pitch_hook": "Water damage calls are coming. Every one you miss is $500+ walking away."
     }
@@ -239,55 +239,55 @@
   "feeds": [
     {
       "name": "NOAA",
-      "last_hit": "2026-07-12T20:39:49.683973+00:00",
+      "last_hit": "2026-07-12T22:46:38.532838+00:00",
       "status": "yellow",
       "data_points_today": 0
     },
     {
       "name": "REDDIT",
-      "last_hit": "2026-07-12T20:39:49.683973+00:00",
+      "last_hit": "2026-07-12T22:46:38.532838+00:00",
       "status": "green",
-      "data_points_today": 30
+      "data_points_today": 15
     },
     {
       "name": "USGS",
-      "last_hit": "2026-07-12T20:39:49.683973+00:00",
+      "last_hit": "2026-07-12T22:46:38.532838+00:00",
       "status": "yellow",
       "data_points_today": 0
     },
     {
       "name": "HACKERNEWS",
-      "last_hit": "2026-07-12T20:39:49.683973+00:00",
+      "last_hit": "2026-07-12T22:46:38.532838+00:00",
       "status": "green",
       "data_points_today": 30
     },
     {
       "name": "FEMA",
-      "last_hit": "2026-07-12T20:39:49.683973+00:00",
+      "last_hit": "2026-07-12T22:46:38.532838+00:00",
       "status": "green",
       "data_points_today": 20
     },
     {
       "name": "COMMODITIES",
-      "last_hit": "2026-07-12T20:39:49.683973+00:00",
+      "last_hit": "2026-07-12T22:46:38.532838+00:00",
       "status": "green",
       "data_points_today": 7
     },
     {
       "name": "RSS",
-      "last_hit": "2026-07-12T20:39:49.683973+00:00",
+      "last_hit": "2026-07-12T22:46:38.532838+00:00",
       "status": "green",
-      "data_points_today": 726
+      "data_points_today": 717
     },
     {
       "name": "FRED",
-      "last_hit": "2026-07-12T20:39:49.683973+00:00",
+      "last_hit": "2026-07-12T22:46:38.532838+00:00",
       "status": "yellow",
       "data_points_today": 0
     },
     {
       "name": "BLS",
-      "last_hit": "2026-07-12T20:39:49.683973+00:00",
+      "last_hit": "2026-07-12T22:46:38.532838+00:00",
       "status": "green",
       "data_points_today": 9
     }
