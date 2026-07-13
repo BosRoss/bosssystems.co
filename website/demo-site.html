@@ -1,0 +1,563 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Summit Plumbing Co. | Tyler TX — 24/7 Emergency Plumbing</title>
+<meta name="description" content="Summit Plumbing Co. in Tyler TX — licensed, insured, 5-star rated. Emergency repairs, water heaters, drain cleaning, remodels. Call (903) 555-0199.">
+<meta name="robots" content="noindex,nofollow">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&family=Playfair+Display:wght@700&display=swap" rel="stylesheet">
+<style>
+*{margin:0;padding:0;box-sizing:border-box}
+:root{
+  --blue:#1a73e8;
+  --blue-dark:#1557b0;
+  --blue-light:#e8f0fe;
+  --blue-50:#f0f6ff;
+  --navy:#0d2137;
+  --white:#ffffff;
+  --gray-50:#f8fafc;
+  --gray-100:#f1f5f9;
+  --gray-200:#e2e8f0;
+  --gray-300:#cbd5e1;
+  --gray-400:#94a3b8;
+  --gray-500:#64748b;
+  --gray-600:#475569;
+  --gray-700:#334155;
+  --gray-800:#1e293b;
+  --gray-900:#0f172a;
+  --green:#059669;
+  --green-light:#d1fae5;
+  --orange:#ea580c;
+  --yellow:#f59e0b;
+  --shadow-sm:0 1px 2px rgba(0,0,0,.05);
+  --shadow:0 4px 6px -1px rgba(0,0,0,.1),0 2px 4px -2px rgba(0,0,0,.1);
+  --shadow-lg:0 10px 25px -3px rgba(0,0,0,.1),0 4px 6px -4px rgba(0,0,0,.1);
+  --shadow-xl:0 20px 50px -12px rgba(0,0,0,.25);
+  --radius:12px;
+  --radius-lg:16px;
+}
+html{scroll-behavior:smooth;-webkit-text-size-adjust:100%}
+body{font-family:'Inter',system-ui,-apple-system,sans-serif;color:var(--gray-800);background:var(--white);line-height:1.6;overflow-x:hidden}
+img{max-width:100%;height:auto;display:block}
+a{color:var(--blue);text-decoration:none}
+
+/* NAV */
+.nav{position:fixed;top:0;left:0;right:0;z-index:100;background:rgba(255,255,255,.95);backdrop-filter:blur(12px);border-bottom:1px solid var(--gray-200);transition:box-shadow .3s}
+.nav.scrolled{box-shadow:var(--shadow)}
+.nav-inner{max-width:1200px;margin:0 auto;padding:0 24px;display:flex;align-items:center;justify-content:space-between;height:72px}
+.nav-logo{display:flex;align-items:center;gap:10px}
+.nav-logo svg{width:40px;height:40px}
+.nav-logo-text{font-weight:800;font-size:18px;color:var(--navy);letter-spacing:-.02em}
+.nav-logo-sub{font-size:11px;color:var(--gray-500);font-weight:500;letter-spacing:.03em;text-transform:uppercase}
+.nav-links{display:flex;gap:32px;align-items:center}
+.nav-links a{font-size:14px;font-weight:500;color:var(--gray-600);transition:color .2s}
+.nav-links a:hover{color:var(--blue)}
+.nav-cta{background:var(--blue);color:var(--white)!important;padding:10px 24px;border-radius:8px;font-weight:600;font-size:14px;transition:background .2s,transform .1s}
+.nav-cta:hover{background:var(--blue-dark);transform:translateY(-1px)}
+.nav-mobile{display:none;background:none;border:none;cursor:pointer;padding:8px}
+.nav-mobile svg{width:28px;height:28px;color:var(--gray-700)}
+
+/* HERO */
+.hero{position:relative;min-height:90vh;display:flex;align-items:center;overflow:hidden;padding-top:72px}
+.hero-bg{position:absolute;inset:0;z-index:0}
+.hero-bg img{width:100%;height:100%;object-fit:cover}
+.hero-bg::after{content:'';position:absolute;inset:0;background:linear-gradient(135deg,rgba(13,33,55,.88) 0%,rgba(26,115,232,.65) 100%)}
+.hero-content{position:relative;z-index:1;max-width:1200px;margin:0 auto;padding:80px 24px;width:100%}
+.hero-badge{display:inline-flex;align-items:center;gap:8px;background:rgba(255,255,255,.15);backdrop-filter:blur(8px);border:1px solid rgba(255,255,255,.2);padding:8px 16px;border-radius:100px;font-size:13px;font-weight:600;color:var(--white);margin-bottom:24px}
+.hero-badge .dot{width:8px;height:8px;background:#4ade80;border-radius:50%;animation:pulse 2s infinite}
+@keyframes pulse{0%,100%{opacity:1}50%{opacity:.4}}
+.hero h1{font-family:'Playfair Display',serif;font-size:clamp(40px,6vw,72px);font-weight:700;color:var(--white);line-height:1.1;margin-bottom:20px;max-width:700px}
+.hero p{font-size:clamp(16px,2vw,20px);color:rgba(255,255,255,.85);max-width:540px;margin-bottom:36px;line-height:1.7}
+.hero-btns{display:flex;gap:16px;flex-wrap:wrap}
+.btn-primary{display:inline-flex;align-items:center;gap:10px;background:var(--blue);color:var(--white);padding:16px 32px;border-radius:10px;font-size:16px;font-weight:700;transition:all .2s;border:none;cursor:pointer;box-shadow:0 4px 14px rgba(26,115,232,.4)}
+.btn-primary:hover{background:var(--blue-dark);transform:translateY(-2px);box-shadow:0 6px 20px rgba(26,115,232,.5)}
+.btn-secondary{display:inline-flex;align-items:center;gap:10px;background:rgba(255,255,255,.12);backdrop-filter:blur(8px);color:var(--white);padding:16px 32px;border-radius:10px;font-size:16px;font-weight:600;border:1px solid rgba(255,255,255,.25);transition:all .2s;cursor:pointer}
+.btn-secondary:hover{background:rgba(255,255,255,.2);border-color:rgba(255,255,255,.4)}
+.hero-stats{display:flex;gap:48px;margin-top:56px;padding-top:32px;border-top:1px solid rgba(255,255,255,.15)}
+.hero-stat .num{font-size:32px;font-weight:800;color:var(--white)}
+.hero-stat .label{font-size:13px;color:rgba(255,255,255,.6);margin-top:2px;font-weight:500}
+
+/* TRUST BAR */
+.trust{background:var(--white);border-bottom:1px solid var(--gray-200);padding:20px 24px}
+.trust-inner{max-width:1200px;margin:0 auto;display:flex;align-items:center;justify-content:center;gap:40px;flex-wrap:wrap}
+.trust-item{display:flex;align-items:center;gap:8px;font-size:14px;font-weight:600;color:var(--gray-600);white-space:nowrap}
+.trust-item svg{width:20px;height:20px;color:var(--blue);flex-shrink:0}
+
+/* SECTIONS */
+.section{padding:96px 24px}
+.section-alt{background:var(--gray-50)}
+.section-blue{background:var(--navy);color:var(--white)}
+.section-inner{max-width:1200px;margin:0 auto}
+.section-label{font-size:13px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:var(--blue);margin-bottom:12px}
+.section-blue .section-label{color:rgba(255,255,255,.5)}
+.section-title{font-family:'Playfair Display',serif;font-size:clamp(28px,4vw,44px);font-weight:700;color:var(--gray-900);line-height:1.2;margin-bottom:16px}
+.section-blue .section-title{color:var(--white)}
+.section-desc{font-size:17px;color:var(--gray-500);max-width:560px;line-height:1.7}
+.section-blue .section-desc{color:rgba(255,255,255,.6)}
+.section-header{margin-bottom:56px}
+
+/* SERVICES */
+.services-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:24px}
+.service-card{background:var(--white);border:1px solid var(--gray-200);border-radius:var(--radius-lg);padding:32px;transition:all .3s;position:relative;overflow:hidden}
+.service-card:hover{border-color:var(--blue);box-shadow:var(--shadow-lg);transform:translateY(-4px)}
+.service-icon{width:56px;height:56px;border-radius:12px;background:var(--blue-light);display:flex;align-items:center;justify-content:center;margin-bottom:20px}
+.service-icon svg{width:28px;height:28px;color:var(--blue)}
+.service-card h3{font-size:20px;font-weight:700;color:var(--gray-900);margin-bottom:10px}
+.service-card p{font-size:14px;color:var(--gray-500);line-height:1.7}
+.service-tag{display:inline-block;background:var(--green-light);color:var(--green);font-size:12px;font-weight:600;padding:4px 10px;border-radius:100px;margin-top:14px}
+
+/* WHY US */
+.why-grid{display:grid;grid-template-columns:1fr 1fr;gap:64px;align-items:center}
+.why-img{border-radius:var(--radius-lg);overflow:hidden;box-shadow:var(--shadow-xl);position:relative}
+.why-img img{width:100%;height:400px;object-fit:cover}
+.why-badge{position:absolute;bottom:20px;left:20px;background:var(--blue);color:var(--white);padding:12px 20px;border-radius:10px;font-weight:700;font-size:14px;box-shadow:var(--shadow-lg)}
+.why-list{display:flex;flex-direction:column;gap:28px}
+.why-item{display:flex;gap:16px}
+.why-check{width:36px;height:36px;border-radius:10px;background:var(--blue-light);display:flex;align-items:center;justify-content:center;flex-shrink:0;margin-top:2px}
+.why-check svg{width:20px;height:20px;color:var(--blue)}
+.why-item h4{font-size:16px;font-weight:700;color:var(--gray-900);margin-bottom:4px}
+.why-item p{font-size:14px;color:var(--gray-500);line-height:1.6}
+
+/* REVIEWS */
+.reviews-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:24px}
+.review-card{background:var(--white);border:1px solid var(--gray-200);border-radius:var(--radius-lg);padding:28px;transition:box-shadow .3s}
+.review-card:hover{box-shadow:var(--shadow-lg)}
+.review-stars{display:flex;gap:2px;margin-bottom:14px}
+.review-stars svg{width:18px;height:18px;color:var(--yellow)}
+.review-text{font-size:15px;color:var(--gray-600);line-height:1.7;margin-bottom:18px;font-style:italic}
+.review-author{display:flex;align-items:center;gap:12px}
+.review-avatar{width:40px;height:40px;border-radius:50%;background:var(--blue-light);display:flex;align-items:center;justify-content:center;font-weight:700;font-size:16px;color:var(--blue)}
+.review-name{font-weight:600;font-size:14px;color:var(--gray-800)}
+.review-date{font-size:12px;color:var(--gray-400)}
+.review-source{display:flex;align-items:center;gap:6px;margin-top:14px;padding-top:14px;border-top:1px solid var(--gray-100);font-size:12px;color:var(--gray-400);font-weight:500}
+
+/* GALLERY */
+.gallery-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:12px}
+.gallery-item{border-radius:var(--radius);overflow:hidden;aspect-ratio:1;position:relative;cursor:pointer}
+.gallery-item img{width:100%;height:100%;object-fit:cover;transition:transform .4s}
+.gallery-item:hover img{transform:scale(1.08)}
+.gallery-item::after{content:'';position:absolute;inset:0;background:linear-gradient(180deg,transparent 60%,rgba(0,0,0,.3));opacity:0;transition:opacity .3s}
+.gallery-item:hover::after{opacity:1}
+
+/* HOURS + MAP */
+.contact-grid{display:grid;grid-template-columns:1fr 1fr;gap:48px;align-items:start}
+.hours-card{background:rgba(255,255,255,.06);border:1px solid rgba(255,255,255,.1);border-radius:var(--radius-lg);padding:32px}
+.hours-row{display:flex;justify-content:space-between;padding:12px 0;border-bottom:1px solid rgba(255,255,255,.06);font-size:15px}
+.hours-row:last-child{border-bottom:none}
+.hours-day{color:rgba(255,255,255,.7);font-weight:500}
+.hours-time{color:var(--white);font-weight:600}
+.hours-time.emergency{color:#4ade80}
+.map-wrap{border-radius:var(--radius-lg);overflow:hidden;height:100%;min-height:360px}
+.map-wrap iframe{width:100%;height:100%;border:0;min-height:360px}
+
+/* CTA BAND */
+.cta-band{background:linear-gradient(135deg,var(--blue) 0%,var(--blue-dark) 100%);padding:72px 24px;text-align:center}
+.cta-band h2{font-family:'Playfair Display',serif;font-size:clamp(28px,4vw,40px);color:var(--white);margin-bottom:16px}
+.cta-band p{font-size:17px;color:rgba(255,255,255,.8);margin-bottom:32px;max-width:500px;margin-left:auto;margin-right:auto}
+.cta-band .btn-white{background:var(--white);color:var(--blue);padding:16px 36px;border-radius:10px;font-weight:700;font-size:16px;display:inline-flex;align-items:center;gap:10px;transition:all .2s;border:none;cursor:pointer;box-shadow:var(--shadow-lg)}
+.cta-band .btn-white:hover{transform:translateY(-2px);box-shadow:var(--shadow-xl)}
+
+/* FOOTER */
+.footer{background:var(--gray-900);color:rgba(255,255,255,.5);padding:48px 24px}
+.footer-inner{max-width:1200px;margin:0 auto;display:grid;grid-template-columns:2fr 1fr 1fr 1fr;gap:40px}
+.footer-brand{font-weight:800;font-size:18px;color:var(--white);margin-bottom:12px}
+.footer-desc{font-size:14px;line-height:1.7;margin-bottom:16px}
+.footer h4{color:var(--white);font-size:14px;font-weight:700;margin-bottom:16px;text-transform:uppercase;letter-spacing:.05em}
+.footer a{color:rgba(255,255,255,.5);font-size:14px;display:block;margin-bottom:10px;transition:color .2s}
+.footer a:hover{color:var(--white)}
+.footer-bottom{max-width:1200px;margin:32px auto 0;padding-top:24px;border-top:1px solid rgba(255,255,255,.08);display:flex;justify-content:space-between;font-size:13px}
+
+/* MOBILE CTA */
+.mobile-cta{display:none;position:fixed;bottom:0;left:0;right:0;z-index:99;background:var(--white);border-top:1px solid var(--gray-200);padding:12px 16px;box-shadow:0 -4px 12px rgba(0,0,0,.08)}
+.mobile-cta a{display:flex;align-items:center;justify-content:center;gap:10px;background:var(--blue);color:var(--white);padding:14px;border-radius:10px;font-weight:700;font-size:16px;width:100%}
+
+/* MOBILE MENU */
+.mobile-menu{display:none;position:fixed;inset:0;z-index:200;background:var(--white);padding:24px;flex-direction:column}
+.mobile-menu.open{display:flex}
+.mobile-menu-close{align-self:flex-end;background:none;border:none;cursor:pointer;padding:8px}
+.mobile-menu-close svg{width:28px;height:28px}
+.mobile-menu-links{display:flex;flex-direction:column;gap:4px;margin-top:32px}
+.mobile-menu-links a{font-size:20px;font-weight:600;color:var(--gray-800);padding:16px 0;border-bottom:1px solid var(--gray-100)}
+.mobile-menu-links .cta-link{color:var(--blue);border:none;margin-top:12px}
+
+/* DEMO BANNER */
+.demo-banner{position:fixed;bottom:70px;left:50%;transform:translateX(-50%);z-index:98;background:var(--navy);color:var(--white);padding:10px 20px;border-radius:100px;font-size:13px;font-weight:600;box-shadow:var(--shadow-xl);display:flex;align-items:center;gap:10px;white-space:nowrap}
+.demo-banner a{color:#60a5fa;text-decoration:underline}
+
+/* RESPONSIVE */
+@media(max-width:900px){
+  .services-grid{grid-template-columns:1fr 1fr}
+  .reviews-grid{grid-template-columns:1fr}
+  .gallery-grid{grid-template-columns:repeat(2,1fr)}
+  .why-grid{grid-template-columns:1fr;gap:32px}
+  .contact-grid{grid-template-columns:1fr}
+  .footer-inner{grid-template-columns:1fr 1fr}
+  .hero-stats{gap:24px}
+}
+@media(max-width:768px){
+  .nav-links{display:none}
+  .nav-mobile{display:block}
+  .mobile-cta{display:block}
+  body{padding-bottom:72px}
+  .services-grid{grid-template-columns:1fr}
+  .hero-stats{flex-wrap:wrap;gap:20px}
+  .hero h1{font-size:36px}
+  .section{padding:64px 16px}
+  .footer-inner{grid-template-columns:1fr}
+  .footer-bottom{flex-direction:column;gap:8px}
+  .demo-banner{bottom:80px;font-size:12px;padding:8px 16px}
+}
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav class="nav" id="nav">
+  <div class="nav-inner">
+    <a href="#" class="nav-logo">
+      <svg viewBox="0 0 40 40" fill="none"><circle cx="20" cy="20" r="18" stroke="#1a73e8" stroke-width="2.5"/><path d="M14 16v8c0 2.2 1.8 4 4 4h4c2.2 0 4-1.8 4-4v-4h-6" stroke="#1a73e8" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/><circle cx="20" cy="13" r="2.5" fill="#1a73e8"/></svg>
+      <div>
+        <div class="nav-logo-text">Summit Plumbing</div>
+        <div class="nav-logo-sub">Tyler, Texas</div>
+      </div>
+    </a>
+    <div class="nav-links">
+      <a href="#services">Services</a>
+      <a href="#about">About</a>
+      <a href="#reviews">Reviews</a>
+      <a href="#gallery">Our Work</a>
+      <a href="#contact">Hours</a>
+      <a href="tel:+19035550199" class="nav-cta">Call (903) 555-0199</a>
+    </div>
+    <button class="nav-mobile" onclick="document.getElementById('mob-menu').classList.add('open')" aria-label="Menu">
+      <svg fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" d="M4 6h16M4 12h16M4 18h16"/></svg>
+    </button>
+  </div>
+</nav>
+
+<!-- MOBILE MENU -->
+<div class="mobile-menu" id="mob-menu">
+  <button class="mobile-menu-close" onclick="this.parentElement.classList.remove('open')" aria-label="Close">
+    <svg fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" d="M6 18L18 6M6 6l12 12"/></svg>
+  </button>
+  <div class="mobile-menu-links">
+    <a href="#services" onclick="this.closest('.mobile-menu').classList.remove('open')">Services</a>
+    <a href="#about" onclick="this.closest('.mobile-menu').classList.remove('open')">About Us</a>
+    <a href="#reviews" onclick="this.closest('.mobile-menu').classList.remove('open')">Reviews</a>
+    <a href="#gallery" onclick="this.closest('.mobile-menu').classList.remove('open')">Our Work</a>
+    <a href="#contact" onclick="this.closest('.mobile-menu').classList.remove('open')">Hours &amp; Location</a>
+    <a href="tel:+19035550199" class="cta-link" onclick="this.closest('.mobile-menu').classList.remove('open')">Call (903) 555-0199</a>
+  </div>
+</div>
+
+<!-- HERO -->
+<section class="hero">
+  <div class="hero-bg">
+    <img src="https://images.unsplash.com/photo-1504328345606-18bbc8c9d7d1?w=1600&q=80" alt="Professional plumber working" loading="eager">
+  </div>
+  <div class="hero-content">
+    <div class="hero-badge"><span class="dot"></span> Available 24/7 for Emergencies</div>
+    <h1>Plumbing Done Right, Every Time</h1>
+    <p>Licensed and insured plumbers serving Tyler and East Texas since 2009. From emergency repairs to full remodels — we show up on time, fix it right, and clean up after ourselves.</p>
+    <div class="hero-btns">
+      <a href="tel:+19035550199" class="btn-primary">
+        <svg width="20" height="20" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z"/></svg>
+        Call Now — (903) 555-0199
+      </a>
+      <a href="#services" class="btn-secondary">
+        <svg width="20" height="20" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" d="M19 9l-7 7-7-7"/></svg>
+        View Services
+      </a>
+    </div>
+    <div class="hero-stats">
+      <div class="hero-stat"><div class="num">15+</div><div class="label">Years Experience</div></div>
+      <div class="hero-stat"><div class="num">4,800+</div><div class="label">Jobs Completed</div></div>
+      <div class="hero-stat"><div class="num">4.9★</div><div class="label">Google Rating</div></div>
+      <div class="hero-stat"><div class="num">60 min</div><div class="label">Avg Response Time</div></div>
+    </div>
+  </div>
+</section>
+
+<!-- TRUST BAR -->
+<div class="trust">
+  <div class="trust-inner">
+    <div class="trust-item">
+      <svg fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z"/></svg>
+      Licensed &amp; Insured
+    </div>
+    <div class="trust-item">
+      <svg fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"/></svg>
+      24/7 Emergency Service
+    </div>
+    <div class="trust-item">
+      <svg fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" d="M17 9V7a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2m2 4h10a2 2 0 002-2v-6a2 2 0 00-2-2H9a2 2 0 00-2 2v6a2 2 0 002 2zm7-5a2 2 0 11-4 0 2 2 0 014 0z"/></svg>
+      Upfront Pricing
+    </div>
+    <div class="trust-item">
+      <svg fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" d="M14 10h4.764a2 2 0 011.789 2.894l-3.5 7A2 2 0 0115.263 21h-4.017c-.163 0-.326-.02-.485-.06L7 20m7-10V5a2 2 0 00-2-2h-.095c-.5 0-.905.405-.905.905 0 .714-.211 1.412-.608 2.006L7 11v9m7-10h-2M7 20H5a2 2 0 01-2-2v-6a2 2 0 012-2h2.5"/></svg>
+      Satisfaction Guaranteed
+    </div>
+    <div class="trust-item">
+      <svg fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" d="M11.049 2.927c.3-.921 1.603-.921 1.902 0l1.519 4.674a1 1 0 00.95.69h4.915c.969 0 1.371 1.24.588 1.81l-3.976 2.888a1 1 0 00-.363 1.118l1.518 4.674c.3.922-.755 1.688-1.538 1.118l-3.976-2.888a1 1 0 00-1.176 0l-3.976 2.888c-.783.57-1.838-.197-1.538-1.118l1.518-4.674a1 1 0 00-.363-1.118l-3.976-2.888c-.784-.57-.38-1.81.588-1.81h4.914a1 1 0 00.951-.69l1.519-4.674z"/></svg>
+      4.9★ on Google (312 reviews)
+    </div>
+  </div>
+</div>
+
+<!-- SERVICES -->
+<section class="section section-alt" id="services">
+  <div class="section-inner">
+    <div class="section-header">
+      <div class="section-label">Our Services</div>
+      <div class="section-title">Expert Plumbing for Every Situation</div>
+      <p class="section-desc">From a dripping faucet to a full bathroom remodel — we handle it all. Every job comes with upfront pricing and a satisfaction guarantee.</p>
+    </div>
+    <div class="services-grid">
+      <div class="service-card">
+        <div class="service-icon">
+          <svg fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" d="M13 10V3L4 14h7v7l9-11h-7z"/></svg>
+        </div>
+        <h3>Emergency Repairs</h3>
+        <p>Burst pipes, sewer backups, gas leaks, overflowing toilets. We answer the phone 24 hours a day, 7 days a week and dispatch a licensed plumber immediately.</p>
+        <span class="service-tag">Available 24/7</span>
+      </div>
+      <div class="service-card">
+        <div class="service-icon">
+          <svg fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" d="M17.657 18.657A8 8 0 016.343 7.343S7 9 9 10c0-2 .5-5 2.986-7C14 5 16.09 5.777 17.656 7.343A7.975 7.975 0 0120 13a7.975 7.975 0 01-2.343 5.657z"/><path stroke-linecap="round" d="M9.879 16.121A3 3 0 1012.015 11L11 14H9c0 .768.293 1.536.879 2.121z"/></svg>
+        </div>
+        <h3>Water Heaters</h3>
+        <p>Tank and tankless water heater installation, repair, and replacement. We carry all major brands and can usually install same-day.</p>
+        <span class="service-tag">Same-Day Install Available</span>
+      </div>
+      <div class="service-card">
+        <div class="service-icon">
+          <svg fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" d="M19.428 15.428a2 2 0 00-1.022-.547l-2.387-.477a6 6 0 00-3.86.517l-.318.158a6 6 0 01-3.86.517L6.05 15.21a2 2 0 00-1.806.547M8 4h8l-1 1v5.172a2 2 0 00.586 1.414l5 5c1.26 1.26.367 3.414-1.415 3.414H4.828c-1.782 0-2.674-2.154-1.414-3.414l5-5A2 2 0 009 10.172V5L8 4z"/></svg>
+        </div>
+        <h3>Drain Cleaning</h3>
+        <p>Slow drains, clogs, and sewer line blockages cleared with professional equipment. We use camera inspections to find the problem before we start digging.</p>
+      </div>
+      <div class="service-card">
+        <div class="service-icon">
+          <svg fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" d="M4 4v5h.582m15.356 2A8.001 8.001 0 004.582 9m0 0H9m11 11v-5h-.581m0 0a8.003 8.003 0 01-15.357-2m15.357 2H15"/></svg>
+        </div>
+        <h3>Repiping</h3>
+        <p>Old galvanized or polybutylene pipes replaced with modern copper or PEX. We minimize wall damage and get your water pressure back to where it should be.</p>
+      </div>
+      <div class="service-card">
+        <div class="service-icon">
+          <svg fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" d="M3 12l2-2m0 0l7-7 7 7M5 10v10a1 1 0 001 1h3m10-11l2 2m-2-2v10a1 1 0 01-1 1h-3m-6 0a1 1 0 001-1v-4a1 1 0 011-1h2a1 1 0 011 1v4a1 1 0 001 1m-6 0h6"/></svg>
+        </div>
+        <h3>Bathroom Remodels</h3>
+        <p>Full bathroom renovations from rough-in plumbing to fixture installation. Showers, tubs, vanities, toilets — all done by licensed plumbers, not handymen.</p>
+      </div>
+      <div class="service-card">
+        <div class="service-icon">
+          <svg fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" d="M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2m-6 9l2 2 4-4"/></svg>
+        </div>
+        <h3>Inspections</h3>
+        <p>Buying a home? Selling one? We do thorough plumbing inspections with written reports. Camera inspections of sewer lines included on every home inspection.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- WHY US -->
+<section class="section" id="about">
+  <div class="section-inner">
+    <div class="why-grid">
+      <div class="why-img">
+        <img src="https://images.unsplash.com/photo-1621905252507-b35492cc74b4?w=800&q=80" alt="Summit Plumbing team" loading="lazy">
+        <div class="why-badge">Serving East Texas Since 2009</div>
+      </div>
+      <div>
+        <div class="section-label">Why Summit</div>
+        <div class="section-title" style="margin-bottom:32px">We Treat Your Home Like It's Ours</div>
+        <div class="why-list">
+          <div class="why-item">
+            <div class="why-check"><svg fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.5"><path stroke-linecap="round" d="M5 13l4 4L19 7"/></svg></div>
+            <div><h4>Upfront Pricing, No Surprises</h4><p>We quote the price before we start. If it costs more than we said, we eat the difference. You will never get a surprise bill from us.</p></div>
+          </div>
+          <div class="why-item">
+            <div class="why-check"><svg fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.5"><path stroke-linecap="round" d="M5 13l4 4L19 7"/></svg></div>
+            <div><h4>On Time, Every Time</h4><p>We give you a 2-hour arrival window and call 30 minutes before we get there. If we are late, the service call is free.</p></div>
+          </div>
+          <div class="why-item">
+            <div class="why-check"><svg fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.5"><path stroke-linecap="round" d="M5 13l4 4L19 7"/></svg></div>
+            <div><h4>Clean Work, Every Job</h4><p>Booties on our feet, drop cloths on your floors. We clean up everything when we leave. Your home will look better than when we walked in.</p></div>
+          </div>
+          <div class="why-item">
+            <div class="why-check"><svg fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.5"><path stroke-linecap="round" d="M5 13l4 4L19 7"/></svg></div>
+            <div><h4>Licensed, Insured, Background-Checked</h4><p>Every plumber on our team is a licensed journeyman or master plumber. Fully insured. Background-checked. Drug-tested.</p></div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- REVIEWS -->
+<section class="section section-alt" id="reviews">
+  <div class="section-inner">
+    <div class="section-header" style="text-align:center">
+      <div class="section-label">Customer Reviews</div>
+      <div class="section-title">What Tyler Homeowners Say About Us</div>
+      <p class="section-desc" style="margin:0 auto">We have earned every one of our 312 five-star reviews. Here are a few from your neighbors.</p>
+    </div>
+    <div class="reviews-grid">
+      <div class="review-card">
+        <div class="review-stars"><svg viewBox="0 0 24 24" fill="#f59e0b"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg><svg viewBox="0 0 24 24" fill="#f59e0b"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg><svg viewBox="0 0 24 24" fill="#f59e0b"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg><svg viewBox="0 0 24 24" fill="#f59e0b"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg><svg viewBox="0 0 24 24" fill="#f59e0b"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg></div>
+        <p class="review-text">"Our water heater died on a Sunday morning. Called Summit and they had a new one installed by 2 PM. Didn't try to upsell me on anything. Fair price, fast work, cleaned up perfectly."</p>
+        <div class="review-author"><div class="review-avatar">M</div><div><div class="review-name">Mark Thompson</div><div class="review-date">3 weeks ago</div></div></div>
+        <div class="review-source"><svg width="14" height="14" viewBox="0 0 24 24" fill="#4285f4"><path d="M22.56 12.25c0-.78-.07-1.53-.2-2.25H12v4.26h5.92a5.06 5.06 0 01-2.2 3.32v2.77h3.57c2.08-1.92 3.28-4.74 3.28-8.1z"/><path d="M12 23c2.97 0 5.46-.98 7.28-2.66l-3.57-2.77c-.98.66-2.23 1.06-3.71 1.06-2.86 0-5.29-1.93-6.16-4.53H2.18v2.84C3.99 20.53 7.7 23 12 23z" fill="#34a853"/><path d="M5.84 14.09c-.22-.66-.35-1.36-.35-2.09s.13-1.43.35-2.09V7.07H2.18C1.43 8.55 1 10.22 1 12s.43 3.45 1.18 4.93l2.85-2.22.81-.62z" fill="#fbbc05"/><path d="M12 5.38c1.62 0 3.06.56 4.21 1.64l3.15-3.15C17.45 2.09 14.97 1 12 1 7.7 1 3.99 3.47 2.18 7.07l3.66 2.84c.87-2.6 3.3-4.53 6.16-4.53z" fill="#ea4335"/></svg> Google Review</div>
+      </div>
+      <div class="review-card">
+        <div class="review-stars"><svg viewBox="0 0 24 24" fill="#f59e0b"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg><svg viewBox="0 0 24 24" fill="#f59e0b"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg><svg viewBox="0 0 24 24" fill="#f59e0b"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg><svg viewBox="0 0 24 24" fill="#f59e0b"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg><svg viewBox="0 0 24 24" fill="#f59e0b"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg></div>
+        <p class="review-text">"Had a slab leak that two other companies couldn't find. Summit came out with their camera equipment, found it in 20 minutes, and gave me options. Repair was done the next day. These guys know what they're doing."</p>
+        <div class="review-author"><div class="review-avatar">S</div><div><div class="review-name">Sarah Mitchell</div><div class="review-date">1 month ago</div></div></div>
+        <div class="review-source"><svg width="14" height="14" viewBox="0 0 24 24" fill="#4285f4"><path d="M22.56 12.25c0-.78-.07-1.53-.2-2.25H12v4.26h5.92a5.06 5.06 0 01-2.2 3.32v2.77h3.57c2.08-1.92 3.28-4.74 3.28-8.1z"/><path d="M12 23c2.97 0 5.46-.98 7.28-2.66l-3.57-2.77c-.98.66-2.23 1.06-3.71 1.06-2.86 0-5.29-1.93-6.16-4.53H2.18v2.84C3.99 20.53 7.7 23 12 23z" fill="#34a853"/><path d="M5.84 14.09c-.22-.66-.35-1.36-.35-2.09s.13-1.43.35-2.09V7.07H2.18C1.43 8.55 1 10.22 1 12s.43 3.45 1.18 4.93l2.85-2.22.81-.62z" fill="#fbbc05"/><path d="M12 5.38c1.62 0 3.06.56 4.21 1.64l3.15-3.15C17.45 2.09 14.97 1 12 1 7.7 1 3.99 3.47 2.18 7.07l3.66 2.84c.87-2.6 3.3-4.53 6.16-4.53z" fill="#ea4335"/></svg> Google Review</div>
+      </div>
+      <div class="review-card">
+        <div class="review-stars"><svg viewBox="0 0 24 24" fill="#f59e0b"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg><svg viewBox="0 0 24 24" fill="#f59e0b"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg><svg viewBox="0 0 24 24" fill="#f59e0b"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg><svg viewBox="0 0 24 24" fill="#f59e0b"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg><svg viewBox="0 0 24 24" fill="#f59e0b"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg></div>
+        <p class="review-text">"We've used Summit for three different projects over the past two years. Bathroom remodel, kitchen rough-in, and a water line replacement. Every single time — on time, clean work, fair price. They're the only plumber we call now."</p>
+        <div class="review-author"><div class="review-avatar">J</div><div><div class="review-name">James &amp; Lisa Nguyen</div><div class="review-date">2 months ago</div></div></div>
+        <div class="review-source"><svg width="14" height="14" viewBox="0 0 24 24" fill="#4285f4"><path d="M22.56 12.25c0-.78-.07-1.53-.2-2.25H12v4.26h5.92a5.06 5.06 0 01-2.2 3.32v2.77h3.57c2.08-1.92 3.28-4.74 3.28-8.1z"/><path d="M12 23c2.97 0 5.46-.98 7.28-2.66l-3.57-2.77c-.98.66-2.23 1.06-3.71 1.06-2.86 0-5.29-1.93-6.16-4.53H2.18v2.84C3.99 20.53 7.7 23 12 23z" fill="#34a853"/><path d="M5.84 14.09c-.22-.66-.35-1.36-.35-2.09s.13-1.43.35-2.09V7.07H2.18C1.43 8.55 1 10.22 1 12s.43 3.45 1.18 4.93l2.85-2.22.81-.62z" fill="#fbbc05"/><path d="M12 5.38c1.62 0 3.06.56 4.21 1.64l3.15-3.15C17.45 2.09 14.97 1 12 1 7.7 1 3.99 3.47 2.18 7.07l3.66 2.84c.87-2.6 3.3-4.53 6.16-4.53z" fill="#ea4335"/></svg> Google Review</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- GALLERY -->
+<section class="section" id="gallery">
+  <div class="section-inner">
+    <div class="section-header" style="text-align:center">
+      <div class="section-label">Our Work</div>
+      <div class="section-title">Recent Projects</div>
+      <p class="section-desc" style="margin:0 auto">A look at some of our recent work around Tyler and East Texas.</p>
+    </div>
+    <div class="gallery-grid">
+      <div class="gallery-item"><img src="https://images.unsplash.com/photo-1585704032915-c3400ca199e7?w=600&q=80" alt="Modern bathroom renovation" loading="lazy"></div>
+      <div class="gallery-item"><img src="https://images.unsplash.com/photo-1584622650111-993a426fbf0a?w=600&q=80" alt="Kitchen plumbing installation" loading="lazy"></div>
+      <div class="gallery-item"><img src="https://images.unsplash.com/photo-1552321554-5fefe8c9ef14?w=600&q=80" alt="Water heater installation" loading="lazy"></div>
+      <div class="gallery-item"><img src="https://images.unsplash.com/photo-1620626011761-996317b8d101?w=600&q=80" alt="Bathroom fixtures" loading="lazy"></div>
+      <div class="gallery-item"><img src="https://images.unsplash.com/photo-1507089947368-19c1da9775ae?w=600&q=80" alt="Modern kitchen sink" loading="lazy"></div>
+      <div class="gallery-item"><img src="https://images.unsplash.com/photo-1631889993959-41b4e9c260c5?w=600&q=80" alt="Pipe repair work" loading="lazy"></div>
+      <div class="gallery-item"><img src="https://images.unsplash.com/photo-1600607687939-ce8a6c25118c?w=600&q=80" alt="Luxury bathroom" loading="lazy"></div>
+      <div class="gallery-item"><img src="https://images.unsplash.com/photo-1600566753376-12c8ab7a5a2d?w=600&q=80" alt="Clean bathroom design" loading="lazy"></div>
+    </div>
+  </div>
+</section>
+
+<!-- CTA BAND -->
+<div class="cta-band">
+  <h2>Need a Plumber? We Answer 24/7.</h2>
+  <p>No voicemail. No runaround. A real person answers every call — day or night, weekends and holidays.</p>
+  <a href="tel:+19035550199" class="btn-white">
+    <svg width="20" height="20" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z"/></svg>
+    (903) 555-0199
+  </a>
+</div>
+
+<!-- HOURS + MAP -->
+<section class="section section-blue" id="contact">
+  <div class="section-inner">
+    <div class="section-header" style="text-align:center">
+      <div class="section-label">Hours &amp; Location</div>
+      <div class="section-title">Find Us in Tyler</div>
+      <p class="section-desc" style="margin:0 auto">Serving Tyler, Longview, Jacksonville, Whitehouse, Lindale, and all of Smith County.</p>
+    </div>
+    <div class="contact-grid">
+      <div class="hours-card">
+        <div class="hours-row"><span class="hours-day">Monday – Friday</span><span class="hours-time">7:00 AM – 6:00 PM</span></div>
+        <div class="hours-row"><span class="hours-day">Saturday</span><span class="hours-time">8:00 AM – 2:00 PM</span></div>
+        <div class="hours-row"><span class="hours-day">Sunday</span><span class="hours-time">Closed</span></div>
+        <div class="hours-row" style="border-top:2px solid rgba(255,255,255,.1);margin-top:8px;padding-top:16px"><span class="hours-day">Emergency Service</span><span class="hours-time emergency">24/7 — Always Available</span></div>
+        <div style="margin-top:24px;display:flex;flex-direction:column;gap:12px">
+          <a href="tel:+19035550199" style="display:flex;align-items:center;gap:10px;color:var(--white);font-weight:600;font-size:15px">
+            <svg width="18" height="18" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z"/></svg>
+            (903) 555-0199
+          </a>
+          <a href="mailto:service@summitplumbingtx.com" style="display:flex;align-items:center;gap:10px;color:rgba(255,255,255,.6);font-size:14px">
+            <svg width="18" height="18" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"/></svg>
+            service@summitplumbingtx.com
+          </a>
+          <div style="display:flex;align-items:flex-start;gap:10px;color:rgba(255,255,255,.6);font-size:14px;line-height:1.5">
+            <svg width="18" height="18" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2" style="flex-shrink:0;margin-top:2px"><path stroke-linecap="round" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z"/><path stroke-linecap="round" d="M15 11a3 3 0 11-6 0 3 3 0 016 0z"/></svg>
+            1847 South Broadway Ave<br>Tyler, TX 75701
+          </div>
+        </div>
+      </div>
+      <div class="map-wrap">
+        <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d107200.46834831868!2d-95.36677!3d32.3513!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x8649d9bc0a5ea5f5%3A0x97b1667e96eaa212!2sTyler%2C%20TX!5e0!3m2!1sen!2sus!4v1" allowfullscreen loading="lazy" referrerpolicy="no-referrer-when-downgrade" title="Summit Plumbing location map"></iframe>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer class="footer">
+  <div class="footer-inner">
+    <div>
+      <div class="footer-brand">Summit Plumbing Co.</div>
+      <p class="footer-desc">Licensed and insured plumbing professionals serving Tyler and East Texas since 2009. Texas Master Plumber License #M-41827.</p>
+      <div style="display:flex;gap:12px">
+        <a href="#" style="display:flex;align-items:center;justify-content:center;width:36px;height:36px;border-radius:8px;background:rgba(255,255,255,.06)">
+          <svg width="18" height="18" fill="currentColor" viewBox="0 0 24 24"><path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"/></svg>
+        </a>
+        <a href="#" style="display:flex;align-items:center;justify-content:center;width:36px;height:36px;border-radius:8px;background:rgba(255,255,255,.06)">
+          <svg width="18" height="18" fill="currentColor" viewBox="0 0 24 24"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zM12 0C8.741 0 8.333.014 7.053.072 2.695.272.273 2.69.073 7.052.014 8.333 0 8.741 0 12c0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98C8.333 23.986 8.741 24 12 24c3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98C15.668.014 15.259 0 12 0zm0 5.838a6.162 6.162 0 100 12.324 6.162 6.162 0 000-12.324zM12 16a4 4 0 110-8 4 4 0 010 8zm6.406-11.845a1.44 1.44 0 100 2.881 1.44 1.44 0 000-2.881z"/></svg>
+        </a>
+      </div>
+    </div>
+    <div>
+      <h4>Services</h4>
+      <a href="#services">Emergency Repairs</a>
+      <a href="#services">Water Heaters</a>
+      <a href="#services">Drain Cleaning</a>
+      <a href="#services">Repiping</a>
+      <a href="#services">Bathroom Remodels</a>
+      <a href="#services">Inspections</a>
+    </div>
+    <div>
+      <h4>Service Area</h4>
+      <a href="#">Tyler</a>
+      <a href="#">Longview</a>
+      <a href="#">Jacksonville</a>
+      <a href="#">Whitehouse</a>
+      <a href="#">Lindale</a>
+      <a href="#">Flint</a>
+    </div>
+    <div>
+      <h4>Contact</h4>
+      <a href="tel:+19035550199">(903) 555-0199</a>
+      <a href="mailto:service@summitplumbingtx.com">service@summitplumbingtx.com</a>
+      <a href="#">1847 S Broadway Ave, Tyler TX</a>
+    </div>
+  </div>
+  <div class="footer-bottom">
+    <span>&copy; 2025 Summit Plumbing Co. All rights reserved.</span>
+    <span>TX Master Plumber License #M-41827</span>
+  </div>
+</footer>
+
+<!-- MOBILE STICKY CTA -->
+<div class="mobile-cta">
+  <a href="tel:+19035550199">
+    <svg width="20" height="20" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z"/></svg>
+    Call Summit Plumbing — (903) 555-0199
+  </a>
+</div>
+
+<!-- DEMO BANNER -->
+<div class="demo-banner">
+  This is a demo website built by <a href="https://bosssystems.co">BOSS Systems</a> — $299 setup, $39/mo
+</div>
+
+<script>
+window.addEventListener('scroll',function(){
+  document.getElementById('nav').classList.toggle('scrolled',window.scrollY>20);
+});
+</script>
+</body>
+</html>
