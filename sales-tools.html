@@ -31,7 +31,9 @@ body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;backgrou
 .stat-label{font-size:9px;letter-spacing:1px;color:var(--dim);margin-top:2px;text-transform:uppercase}
 
 /* LEAD CARDS */
-.lead{background:var(--bg2);border:1px solid var(--border);padding:14px;margin-bottom:8px;border-radius:4px}
+.lead{background:var(--bg2);border:1px solid var(--border);padding:14px;margin-bottom:8px;border-radius:4px;position:relative}
+.lead-delete{position:absolute;top:6px;right:6px;background:none;border:1px solid rgba(255,255,255,.15);color:#999;font-size:16px;cursor:pointer;width:26px;height:26px;display:flex;align-items:center;justify-content:center;border-radius:3px;line-height:1;transition:all .15s}
+.lead-delete:hover{background:var(--red);color:#fff;border-color:var(--red)}
 .lead-top{display:flex;justify-content:space-between;align-items:flex-start;gap:8px}
 .lead-name{font-size:14px;font-weight:700}
 .lead-info{font-size:12px;color:var(--muted);margin-top:2px}
@@ -1820,6 +1822,8 @@ function renderData(data) {
   }
 
   var calls = data.call_list || [];
+  var deleted = getDeletedLeads();
+  calls = calls.filter(function(l){ return !deleted[l.phone_raw]; });
   var html = '';
   if (calls.length === 0) {
     html = '<div class="empty">No leads yet. New leads get added every weekday.</div>';
@@ -1856,6 +1860,7 @@ function renderData(data) {
     else fitd = 'FREE ANALYSIS (qualify first)';
 
     html += '<div class="lead" style="' + (contacted ? 'opacity:.5' : '') + '">';
+    html += '<button class="lead-delete" onclick="deleteLead(\'' + l.phone_raw + '\')" title="Remove lead">&times;</button>';
     if (isET) html += '<div style="font-size:10px;color:var(--red);font-weight:700;margin-bottom:4px">EAST TEXAS - IN-PERSON ONLY. Do not cold call.</div>';
     if (contacted) html += '<div style="font-size:10px;color:var(--green);font-weight:700;margin-bottom:4px">CONTACTED</div>';
     html += '<div style="font-size:10px;font-weight:700;padding:3px 8px;margin-bottom:6px;border-radius:2px;display:inline-block;' + (noWebsite ? 'background:rgba(201,168,76,.15);color:var(--gold);border:1px solid rgba(201,168,76,.3)' : 'background:rgba(75,146,219,.1);color:var(--blue);border:1px solid rgba(75,146,219,.2)') + '">FOOT IN THE DOOR: ' + fitd + '</div>';
@@ -2270,6 +2275,25 @@ function getLoggedPhones() {
   var map = {};
   logs.forEach(function(l){ if (l.phone) map[l.phone.replace(/\D/g,'')] = true; });
   return map;
+}
+
+function getDeletedLeads() {
+  return JSON.parse(localStorage.getItem('boss_deleted_leads') || '{}');
+}
+
+function deleteLead(phone) {
+  if (!confirm('Remove this lead from the pipeline?')) return;
+  var deleted = getDeletedLeads();
+  deleted[phone] = Date.now();
+  localStorage.setItem('boss_deleted_leads', JSON.stringify(deleted));
+  document.querySelectorAll('.lead').forEach(function(el) {
+    if (el.innerHTML.indexOf(phone) > -1) {
+      el.style.transition = 'opacity .2s, transform .2s';
+      el.style.opacity = '0';
+      el.style.transform = 'translateX(30px)';
+      setTimeout(function(){ el.remove(); }, 200);
+    }
+  });
 }
 
 // CALL LOG
