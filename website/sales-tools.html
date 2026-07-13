@@ -101,6 +101,30 @@ body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;backgrou
 .log-entry{background:var(--bg2);border:1px solid var(--border);padding:10px 14px;margin-bottom:4px;border-radius:4px;font-size:12px;display:flex;justify-content:space-between;color:var(--muted)}
 .log-entry .outcome-badge{font-size:10px;font-weight:700;padding:2px 6px;border-radius:2px;letter-spacing:1px}
 
+/* CALLS TAB */
+.call-card{background:var(--bg2);border:1px solid var(--border);padding:14px;margin-bottom:8px;border-radius:4px;position:relative}
+.call-card.closing{border-color:rgba(46,204,113,.3)}
+.call-card.deleted{opacity:.4;pointer-events:none}
+.call-header{display:flex;justify-content:space-between;align-items:flex-start;gap:8px;margin-bottom:6px}
+.call-number{font-size:14px;font-weight:700}
+.call-name{font-size:13px;color:var(--gold);font-weight:600;margin-bottom:2px}
+.call-meta{font-size:11px;color:var(--dim)}
+.call-summary{font-size:12px;color:var(--muted);line-height:1.6;margin:8px 0;padding:8px;background:var(--card);border-radius:3px}
+.call-sentiment{font-size:10px;font-weight:700;padding:2px 8px;border-radius:2px;letter-spacing:1px}
+.call-sentiment.Positive{background:rgba(46,204,113,.15);color:var(--green)}
+.call-sentiment.Negative{background:rgba(231,76,60,.15);color:#e74c3c}
+.call-sentiment.Neutral{background:rgba(201,169,110,.15);color:var(--gold)}
+.call-notes{width:100%;background:var(--card);border:1px solid var(--border);color:var(--text);padding:8px 10px;font-size:12px;font-family:inherit;border-radius:3px;resize:vertical;min-height:36px;margin:8px 0}
+.call-notes:focus{outline:none;border-color:var(--gold)}
+.call-actions{display:flex;gap:6px;flex-wrap:wrap}
+.call-status-badge{position:absolute;top:10px;right:10px;font-size:9px;font-weight:700;padding:3px 8px;letter-spacing:1px;border-radius:2px}
+.call-status-badge.closing-badge{background:rgba(46,204,113,.15);color:var(--green);border:1px solid rgba(46,204,113,.3)}
+.call-status-badge.deleted-badge{background:rgba(231,76,60,.15);color:#e74c3c;border:1px solid rgba(231,76,60,.3)}
+.call-filter{display:flex;gap:6px;margin-bottom:12px;flex-wrap:wrap}
+.call-filter .btn.active{background:var(--gold);color:var(--bg)}
+.call-empty{text-align:center;padding:40px 20px;color:var(--dim);font-size:13px}
+.closing-count{background:rgba(46,204,113,.15);color:var(--green);padding:2px 8px;font-size:10px;font-weight:700;border-radius:2px;letter-spacing:1px;border:1px solid rgba(46,204,113,.3)}
+
 /* LEARN */
 .learn-section{margin-bottom:24px}
 .learn-title{font-size:10px;letter-spacing:2px;color:var(--gold);margin-bottom:10px;text-transform:uppercase;border-bottom:1px solid var(--border);padding-bottom:6px}
@@ -161,6 +185,7 @@ body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;backgrou
       <div class="tab" data-tab="schedule">SCHEDULE</div>
       <div class="tab" data-tab="metrics">METRICS</div>
       <div class="tab" data-tab="log">LOG</div>
+      <div class="tab" data-tab="tracker">CALLS</div>
     </div>
 
     <!-- ==================== TAB: LEARN ==================== -->
@@ -978,6 +1003,26 @@ body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;backgrou
       <div id="log-list"></div>
     </div>
 
+    <!-- ==================== TAB: CALLS (Auto-Tracked) ==================== -->
+    <div class="tab-panel" id="panel-tracker">
+      <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:12px">
+        <div style="font-size:10px;letter-spacing:2px;color:var(--dim);text-transform:uppercase">
+          Auto-Tracked Calls <span id="tracker-total" style="color:var(--muted)"></span>
+        </div>
+        <div style="display:flex;gap:6px;align-items:center">
+          <span id="closing-count-badge" class="closing-count" style="display:none">0 CLOSING</span>
+          <button class="btn btn-outline btn-sm" onclick="loadCalls()">REFRESH</button>
+        </div>
+      </div>
+      <div class="call-filter">
+        <button class="btn btn-outline btn-sm active" onclick="filterCalls('all',this)">ALL</button>
+        <button class="btn btn-outline btn-sm" onclick="filterCalls('new',this)">NEW</button>
+        <button class="btn btn-outline btn-sm" onclick="filterCalls('closing',this)">CLOSING</button>
+        <button class="btn btn-outline btn-sm" onclick="filterCalls('deleted',this)">DELETED</button>
+      </div>
+      <div id="tracker-list"><div class="call-empty">Loading calls...</div></div>
+    </div>
+
   </div>
 </div>
 
@@ -1016,6 +1061,7 @@ document.querySelectorAll('.tab').forEach(function(t){
     document.querySelectorAll('.tab-panel').forEach(function(x){x.classList.remove('active')});
     t.classList.add('active');
     document.getElementById('panel-'+t.dataset.tab).classList.add('active');
+    if (t.dataset.tab === 'tracker' && allCalls.length === 0) loadCalls();
   });
 });
 
@@ -1784,6 +1830,223 @@ function renderSchedule() {
     pastHtml += '</div>';
   });
   document.getElementById('schedule-past').innerHTML = pastHtml;
+}
+
+// ==================== CALLS TAB (Auto-Tracked) ====================
+var AGENT_NAMES = {
+  'agent_6c19e0315cf3dfd1ffa3db63a2': 'Outbound Sales',
+  'agent_2ccbf93129f1b5d505c3669d41': 'BOSS Support',
+  'agent_d1f1604b4cf25a35060e918fc9': 'Follow-Up',
+  'agent_8e070633763cb961bcc35d6668': 'Pipeline Agent',
+  'agent_c2003a57424906726c5ef52131': 'THE BOSS',
+  'agent_10c6519858eebc75047ee7ab8f': 'Built by BOSS Sales',
+  'agent_1b02f73e8688ccb05043f2d724': 'Mystery Caller',
+  'agent_6d02eab9ce7293fc7ef932b2cb': 'Wickham Lawn Care'
+};
+
+var allCalls = [];
+var currentFilter = 'all';
+
+function getCallNotes() {
+  try { return JSON.parse(localStorage.getItem('boss_call_notes') || '{}'); } catch(e) { return {}; }
+}
+function saveCallNotes(notes) {
+  localStorage.setItem('boss_call_notes', JSON.stringify(notes));
+}
+function getCallStatuses() {
+  try { return JSON.parse(localStorage.getItem('boss_call_statuses') || '{}'); } catch(e) { return {}; }
+}
+function saveCallStatuses(statuses) {
+  localStorage.setItem('boss_call_statuses', JSON.stringify(statuses));
+}
+function getCallNames() {
+  try { return JSON.parse(localStorage.getItem('boss_call_names') || '{}'); } catch(e) { return {}; }
+}
+function saveCallNames(names) {
+  localStorage.setItem('boss_call_names', JSON.stringify(names));
+}
+
+function loadCalls() {
+  document.getElementById('tracker-list').innerHTML = '<div class="call-empty">Loading calls from Retell...</div>';
+  fetch('https://jamross.app.n8n.cloud/webhook/sales-calls', {
+    method: 'POST',
+    headers: { 'Content-Type': 'application/json' },
+    body: '{}'
+  })
+  .then(function(r) { return r.json(); })
+  .then(function(data) {
+    allCalls = Array.isArray(data) ? data : [];
+    allCalls = allCalls.filter(function(c) {
+      var dur = c.end_timestamp && c.start_timestamp ? (c.end_timestamp - c.start_timestamp) / 1000 : 0;
+      return dur > 5;
+    });
+    renderCalls();
+  })
+  .catch(function(e) {
+    document.getElementById('tracker-list').innerHTML = '<div class="call-empty">Failed to load calls. Check connection.</div>';
+  });
+}
+
+function formatPhone(num) {
+  if (!num) return '?';
+  var d = num.replace(/\D/g, '');
+  if (d.length === 11 && d[0] === '1') d = d.substring(1);
+  if (d.length === 10) return '(' + d.substring(0,3) + ') ' + d.substring(3,6) + '-' + d.substring(6);
+  return num;
+}
+
+function timeAgo(ts) {
+  if (!ts) return '';
+  var diff = Date.now() - ts;
+  var mins = Math.floor(diff / 60000);
+  if (mins < 1) return 'just now';
+  if (mins < 60) return mins + 'm ago';
+  var hrs = Math.floor(mins / 60);
+  if (hrs < 24) return hrs + 'h ago';
+  var days = Math.floor(hrs / 24);
+  return days + 'd ago';
+}
+
+function renderCalls() {
+  var statuses = getCallStatuses();
+  var notes = getCallNotes();
+  var names = getCallNames();
+
+  var closingCount = 0;
+  allCalls.forEach(function(c) { if (statuses[c.call_id] === 'closing') closingCount++; });
+
+  var badge = document.getElementById('closing-count-badge');
+  if (closingCount > 0) {
+    badge.textContent = closingCount + ' CLOSING';
+    badge.style.display = 'inline';
+  } else {
+    badge.style.display = 'none';
+  }
+
+  var filtered = allCalls.filter(function(c) {
+    var s = statuses[c.call_id] || 'new';
+    if (currentFilter === 'all') return s !== 'deleted';
+    if (currentFilter === 'new') return s === 'new' || !statuses[c.call_id];
+    return s === currentFilter;
+  });
+
+  document.getElementById('tracker-total').textContent = '(' + filtered.length + ')';
+
+  if (filtered.length === 0) {
+    document.getElementById('tracker-list').innerHTML = '<div class="call-empty">No calls match this filter.</div>';
+    return;
+  }
+
+  var html = '';
+  filtered.forEach(function(c) {
+    var cid = c.call_id;
+    var status = statuses[cid] || 'new';
+    var note = notes[cid] || '';
+    var customName = names[cid] || '';
+    var dur = c.end_timestamp && c.start_timestamp ? Math.round((c.end_timestamp - c.start_timestamp) / 1000) : 0;
+    var an = c.call_analysis || {};
+    var summary = an.call_summary || '';
+    var sentiment = an.user_sentiment || '';
+    var agentName = AGENT_NAMES[c.agent_id] || 'Unknown Agent';
+    var phone = c.from_number || c.to_number || '';
+    var isInbound = c.call_type === 'phone_call' && c.to_number && /903/.test(c.to_number);
+    var callerPhone = isInbound ? c.from_number : c.to_number;
+    var direction = isInbound ? 'Inbound' : 'Outbound';
+    var durStr = dur >= 60 ? Math.floor(dur/60) + 'm ' + (dur%60) + 's' : dur + 's';
+    var when = timeAgo(c.start_timestamp);
+    var cardClass = 'call-card' + (status === 'closing' ? ' closing' : '') + (status === 'deleted' ? ' deleted' : '');
+
+    html += '<div class="' + cardClass + '" id="call-' + cid + '">';
+
+    if (status === 'closing') html += '<span class="call-status-badge closing-badge">CLOSING</span>';
+    if (status === 'deleted') html += '<span class="call-status-badge deleted-badge">DELETED</span>';
+
+    html += '<div class="call-header"><div>';
+    if (customName) html += '<div class="call-name">' + esc(customName) + '</div>';
+    html += '<div class="call-number">' + formatPhone(callerPhone) + '</div>';
+    html += '<div class="call-meta">' + direction + ' &middot; ' + agentName + ' &middot; ' + durStr + ' &middot; ' + when + '</div>';
+    html += '</div>';
+    if (sentiment) html += '<span class="call-sentiment ' + sentiment + '">' + sentiment.toUpperCase() + '</span>';
+    html += '</div>';
+
+    if (summary) html += '<div class="call-summary">' + esc(summary) + '</div>';
+
+    html += '<input type="text" class="call-notes" placeholder="Add business name..." value="' + esc(customName) + '" onchange="saveCallName(\'' + cid + '\',this.value)" style="margin:4px 0 0;min-height:auto">';
+    html += '<textarea class="call-notes" placeholder="Add notes about this call..." onchange="saveNote(\'' + cid + '\',this.value)">' + esc(note) + '</textarea>';
+
+    if (status !== 'deleted' && status !== 'closing') {
+      html += '<div class="call-actions">';
+      html += '<button class="btn btn-sm" style="background:rgba(46,204,113,.15);color:var(--green);border:1px solid rgba(46,204,113,.3)" onclick="moveToClosing(\'' + cid + '\')">MOVE TO CLOSING</button>';
+      html += '<button class="btn btn-sm btn-red" onclick="deleteLead(\'' + cid + '\')">DELETE LEAD</button>';
+      if (callerPhone) html += '<a class="btn btn-sm btn-outline" href="tel:' + callerPhone + '">CALL BACK</a>';
+      html += '</div>';
+    } else if (status === 'closing') {
+      html += '<div class="call-actions">';
+      html += '<button class="btn btn-sm btn-outline" onclick="undoStatus(\'' + cid + '\')">UNDO</button>';
+      if (callerPhone) html += '<a class="btn btn-sm btn-outline" href="tel:' + callerPhone + '">CALL BACK</a>';
+      html += '</div>';
+    } else if (status === 'deleted') {
+      html += '<div class="call-actions">';
+      html += '<button class="btn btn-sm btn-outline" onclick="undoStatus(\'' + cid + '\')">RESTORE</button>';
+      html += '</div>';
+    }
+
+    html += '</div>';
+  });
+  document.getElementById('tracker-list').innerHTML = html;
+}
+
+function saveNote(callId, val) {
+  var notes = getCallNotes();
+  notes[callId] = val;
+  saveCallNotes(notes);
+}
+
+function saveCallName(callId, val) {
+  var names = getCallNames();
+  names[callId] = val;
+  saveCallNames(names);
+  renderCalls();
+}
+
+function moveToClosing(callId) {
+  var statuses = getCallStatuses();
+  statuses[callId] = 'closing';
+  saveCallStatuses(statuses);
+  var names = getCallNames();
+  var call = allCalls.find(function(c) { return c.call_id === callId; });
+  var phone = call ? (call.from_number || call.to_number || '') : '';
+  var name = names[callId] || formatPhone(phone);
+  var notes = getCallNotes();
+  try {
+    fetch('https://ntfy.sh/bossai-bostonrossall-alerts', {
+      method: 'POST',
+      headers: { 'Title': 'Lead moved to CLOSING', 'Priority': '4', 'Tags': 'star' },
+      body: name + ' ' + formatPhone(phone) + (notes[callId] ? ' - ' + notes[callId] : '')
+    });
+  } catch(e) {}
+  renderCalls();
+}
+
+function deleteLead(callId) {
+  var statuses = getCallStatuses();
+  statuses[callId] = 'deleted';
+  saveCallStatuses(statuses);
+  renderCalls();
+}
+
+function undoStatus(callId) {
+  var statuses = getCallStatuses();
+  delete statuses[callId];
+  saveCallStatuses(statuses);
+  renderCalls();
+}
+
+function filterCalls(filter, btn) {
+  currentFilter = filter;
+  document.querySelectorAll('.call-filter .btn').forEach(function(b) { b.classList.remove('active'); });
+  if (btn) btn.classList.add('active');
+  renderCalls();
 }
 </script>
 </body>
