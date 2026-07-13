@@ -156,6 +156,19 @@ function init() {
   var partner = params.get('partner');
   var pname = params.get('name');
   var label = params.get('label');
+  var success = params.get('success');
+
+  if (success) {
+    document.querySelector('.container').innerHTML = ''
+      + '<div style="text-align:center;padding:60px 20px">'
+      + '<div style="font-size:3rem;margin-bottom:16px">&#10003;</div>'
+      + '<h1 style="color:var(--gold);margin-bottom:12px">Payment Received</h1>'
+      + '<p style="color:var(--text-muted);font-size:1rem;line-height:1.7;max-width:400px;margin:0 auto 24px">'
+      + 'Thank you! Your payment has been processed. You will receive a confirmation and our team will reach out within 24 hours to get started.</p>'
+      + '<a href="https://bosssystems.co" style="color:var(--gold);text-decoration:none;font-size:.9rem">&larr; Back to bosssystems.co</a>'
+      + '</div>';
+    return;
+  }
 
   if (squareUrl) SQUARE_LINK = decodeURIComponent(squareUrl);
 
@@ -306,18 +319,18 @@ function handleSquare() {
         if (d.url) {
           window.location.href = d.url;
         } else {
-          btn.textContent = 'Error - try Venmo below';
+          btn.textContent = 'Error — please try again';
           btn.style.pointerEvents = 'auto';
           btn.style.opacity = '1';
         }
       } catch(e) {
-        btn.textContent = 'Error - try Venmo below';
+        btn.textContent = 'Error — please try again';
         btn.style.pointerEvents = 'auto';
         btn.style.opacity = '1';
       }
     };
     x.onerror = function() {
-      btn.textContent = 'Error - try Venmo below';
+      btn.textContent = 'Error — please try again';
       btn.style.pointerEvents = 'auto';
       btn.style.opacity = '1';
     };
