@@ -1,5 +1,5 @@
 {
-  "generated": "2026-07-13T03:24:48.418987+00:00",
+  "generated": "2026-07-13T03:49:01.142487+00:00",
   "engine_state": "active",
   "signals": [
     {
@@ -68,17 +68,17 @@
     },
     {
       "type": "flood",
-      "area": "Ashley, AR; Chicot, AR; Morehouse, LA; West Carroll, LA",
+      "area": "Clay, AL",
       "niche": "plumbing",
-      "action": "Flood warnings in Ashley, AR; Chicot, AR; Morehouse, LA; West Carroll, LA. Plumbers, restoration, mold companies will spike.",
+      "action": "Flood warnings in Clay, AL. Plumbers, restoration, mold companies will spike.",
       "urgency": "today",
       "pitch_hook": "Water damage calls are coming. Every one you miss is $500+ walking away."
     },
     {
       "type": "flood",
-      "area": "Clay, AL",
+      "area": "Blount, TN; Knox, TN",
       "niche": "plumbing",
-      "action": "Flood warnings in Clay, AL. Plumbers, restoration, mold companies will spike.",
+      "action": "Flood warnings in Blount, TN; Knox, TN. Plumbers, restoration, mold companies will spike.",
       "urgency": "today",
       "pitch_hook": "Water damage calls are coming. Every one you miss is $500+ walking away."
     }
@@ -225,12 +225,12 @@
     "leads_superniche": 74,
     "leads_hot": 126,
     "leads_warm": 0,
-    "cost_per_qualified": 0.58,
-    "total_spend": 42.81599999999883,
+    "cost_per_qualified": 0.6,
+    "total_spend": 44.415999999998654,
     "spend_cap": 300.0
   },
   "channels": {
-    "emails_sent": 210,
+    "emails_sent": 212,
     "texts_sent": 8,
     "calls_made": 0,
     "meetings_set": 10,
@@ -239,55 +239,55 @@
   "feeds": [
     {
       "name": "NOAA",
-      "last_hit": "2026-07-13T03:18:39.287845+00:00",
+      "last_hit": "2026-07-13T03:41:47.457949+00:00",
       "status": "yellow",
       "data_points_today": 0
     },
     {
       "name": "REDDIT",
-      "last_hit": "2026-07-13T03:18:39.287845+00:00",
+      "last_hit": "2026-07-13T03:41:47.457949+00:00",
       "status": "green",
       "data_points_today": 15
     },
     {
       "name": "USGS",
-      "last_hit": "2026-07-13T03:18:39.287845+00:00",
+      "last_hit": "2026-07-13T03:41:47.457949+00:00",
       "status": "yellow",
       "data_points_today": 0
     },
     {
       "name": "HACKERNEWS",
-      "last_hit": "2026-07-13T03:18:39.287845+00:00",
+      "last_hit": "2026-07-13T03:41:47.457949+00:00",
       "status": "green",
       "data_points_today": 30
     },
     {
       "name": "FEMA",
-      "last_hit": "2026-07-13T03:18:39.287845+00:00",
+      "last_hit": "2026-07-13T03:41:47.457949+00:00",
       "status": "green",
       "data_points_today": 20
     },
     {
       "name": "COMMODITIES",
-      "last_hit": "2026-07-13T03:18:39.287845+00:00",
+      "last_hit": "2026-07-13T03:41:47.457949+00:00",
       "status": "green",
       "data_points_today": 7
     },
     {
       "name": "RSS",
-      "last_hit": "2026-07-13T03:18:39.287845+00:00",
+      "last_hit": "2026-07-13T03:41:47.457949+00:00",
       "status": "green",
       "data_points_today": 725
     },
     {
       "name": "FRED",
-      "last_hit": "2026-07-13T03:18:39.287845+00:00",
+      "last_hit": "2026-07-13T03:41:47.457949+00:00",
       "status": "yellow",
       "data_points_today": 0
     },
     {
       "name": "BLS",
-      "last_hit": "2026-07-13T03:18:39.287845+00:00",
+      "last_hit": "2026-07-13T03:41:47.457949+00:00",
       "status": "green",
       "data_points_today": 9
     }
@@ -295,7 +295,7 @@
   "conversion_funnel": {
     "signals": 10,
     "leads": 200,
-    "contacted": 218,
+    "contacted": 220,
     "replied": 10,
     "meeting": 10,
     "close": 0
