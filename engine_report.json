@@ -1,60 +1,60 @@
 {
-  "generated": "2026-07-12T22:52:52.563674+00:00",
+  "generated": "2026-07-13T03:24:48.418987+00:00",
   "engine_state": "active",
   "signals": [
     {
       "type": "flood",
-      "area": "Hockley, TX; Lubbock, TX",
+      "area": "Bosque, TX; Hill, TX",
       "niche": "plumbing",
-      "action": "Flood warnings in Hockley, TX; Lubbock, TX. Plumbers, restoration, mold companies will spike.",
+      "action": "Flood warnings in Bosque, TX; Hill, TX. Plumbers, restoration, mold companies will spike.",
       "urgency": "today",
       "pitch_hook": "Water damage calls are coming. Every one you miss is $500+ walking away."
     },
     {
       "type": "flood",
-      "area": "Callahan, TX; Coleman, TX; Runnels, TX; Taylor, TX",
+      "area": "Ellis, TX; Hill, TX; Johnson, TX; Navarro, TX",
       "niche": "plumbing",
-      "action": "Flood warnings in Callahan, TX; Coleman, TX; Runnels, TX; Taylor, TX. Plumbers, restoration, mold companies will spike.",
+      "action": "Flood warnings in Ellis, TX; Hill, TX; Johnson, TX; Navarro, TX. Plumbers, restoration, mold companies will spike.",
       "urgency": "today",
       "pitch_hook": "Water damage calls are coming. Every one you miss is $500+ walking away."
     },
     {
       "type": "flood",
-      "area": "Nacogdoches, TX; Shelby, TX",
+      "area": "Dallas, TX; Kaufman, TX; Rockwall, TX",
       "niche": "plumbing",
-      "action": "Flood warnings in Nacogdoches, TX; Shelby, TX. Plumbers, restoration, mold companies will spike.",
+      "action": "Flood warnings in Dallas, TX; Kaufman, TX; Rockwall, TX. Plumbers, restoration, mold companies will spike.",
+      "urgency": "today",
+      "pitch_hook": "Water damage calls are coming. Every one you miss is $500+ walking away."
+    },
+    {
+      "type": "storm",
+      "area": "Hinds, MS; Madison, MS; Rankin, MS",
+      "niche": "roofing",
+      "action": "Storm damage in Hinds, MS; Madison, MS; Rankin, MS. Roofers and restoration companies about to get flooded.",
+      "urgency": "today",
+      "pitch_hook": "After a storm like that, you'll get 10x your normal call volume. Ready for it?"
+    },
+    {
+      "type": "flood",
+      "area": "Lauderdale, MS; Newton, MS",
+      "niche": "plumbing",
+      "action": "Flood warnings in Lauderdale, MS; Newton, MS. Plumbers, restoration, mold companies will spike.",
       "urgency": "today",
       "pitch_hook": "Water damage calls are coming. Every one you miss is $500+ walking away."
     },
     {
       "type": "flood",
-      "area": "Hempstead, AR; Little River, AR; Miller, AR; McCurtain, OK; Bowie, TX",
+      "area": "Rankin, MS",
       "niche": "plumbing",
-      "action": "Flood warnings in Hempstead, AR; Little River, AR; Miller, AR; McCurtain, OK; Bowie, TX. Plumbers, restoration, mold companies will spike.",
+      "action": "Flood warnings in Rankin, MS. Plumbers, restoration, mold companies will spike.",
       "urgency": "today",
       "pitch_hook": "Water damage calls are coming. Every one you miss is $500+ walking away."
     },
     {
       "type": "flood",
-      "area": "Wayne, MS",
+      "area": "East Carroll, LA; Franklin, LA; Madison, LA; Morehouse, LA; Richland, LA; Tensas, LA; West Carroll, LA; Warren, MS",
       "niche": "plumbing",
-      "action": "Flood warnings in Wayne, MS. Plumbers, restoration, mold companies will spike.",
-      "urgency": "today",
-      "pitch_hook": "Water damage calls are coming. Every one you miss is $500+ walking away."
-    },
-    {
-      "type": "flood",
-      "area": "Forrest, MS; Jones, MS; Lamar, MS",
-      "niche": "plumbing",
-      "action": "Flood warnings in Forrest, MS; Jones, MS; Lamar, MS. Plumbers, restoration, mold companies will spike.",
-      "urgency": "today",
-      "pitch_hook": "Water damage calls are coming. Every one you miss is $500+ walking away."
-    },
-    {
-      "type": "flood",
-      "area": "Harrison, MS; Jackson, MS",
-      "niche": "plumbing",
-      "action": "Flood warnings in Harrison, MS; Jackson, MS. Plumbers, restoration, mold companies will spike.",
+      "action": "Flood warnings in East Carroll, LA; Franklin, LA; Madison, LA; Morehouse, LA; Richland, LA; Tensas, LA; West Carroll, LA; Warren, MS. Plumbers, restoration, mold companies will spike.",
       "urgency": "today",
       "pitch_hook": "Water damage calls are coming. Every one you miss is $500+ walking away."
     },
@@ -68,17 +68,17 @@
     },
     {
       "type": "flood",
-      "area": "Ouachita, AR",
+      "area": "Ashley, AR; Chicot, AR; Morehouse, LA; West Carroll, LA",
       "niche": "plumbing",
-      "action": "Flood warnings in Ouachita, AR. Plumbers, restoration, mold companies will spike.",
+      "action": "Flood warnings in Ashley, AR; Chicot, AR; Morehouse, LA; West Carroll, LA. Plumbers, restoration, mold companies will spike.",
       "urgency": "today",
       "pitch_hook": "Water damage calls are coming. Every one you miss is $500+ walking away."
     },
     {
       "type": "flood",
-      "area": "Hempstead, AR; Howard, AR; Nevada, AR",
+      "area": "Clay, AL",
       "niche": "plumbing",
-      "action": "Flood warnings in Hempstead, AR; Howard, AR; Nevada, AR. Plumbers, restoration, mold companies will spike.",
+      "action": "Flood warnings in Clay, AL. Plumbers, restoration, mold companies will spike.",
       "urgency": "today",
       "pitch_hook": "Water damage calls are coming. Every one you miss is $500+ walking away."
     }
@@ -239,55 +239,55 @@
   "feeds": [
     {
       "name": "NOAA",
-      "last_hit": "2026-07-12T22:46:38.532838+00:00",
+      "last_hit": "2026-07-13T03:18:39.287845+00:00",
       "status": "yellow",
       "data_points_today": 0
     },
     {
       "name": "REDDIT",
-      "last_hit": "2026-07-12T22:46:38.532838+00:00",
+      "last_hit": "2026-07-13T03:18:39.287845+00:00",
       "status": "green",
       "data_points_today": 15
     },
     {
       "name": "USGS",
-      "last_hit": "2026-07-12T22:46:38.532838+00:00",
+      "last_hit": "2026-07-13T03:18:39.287845+00:00",
       "status": "yellow",
       "data_points_today": 0
     },
     {
       "name": "HACKERNEWS",
-      "last_hit": "2026-07-12T22:46:38.532838+00:00",
+      "last_hit": "2026-07-13T03:18:39.287845+00:00",
       "status": "green",
       "data_points_today": 30
     },
     {
       "name": "FEMA",
-      "last_hit": "2026-07-12T22:46:38.532838+00:00",
+      "last_hit": "2026-07-13T03:18:39.287845+00:00",
       "status": "green",
       "data_points_today": 20
     },
     {
       "name": "COMMODITIES",
-      "last_hit": "2026-07-12T22:46:38.532838+00:00",
+      "last_hit": "2026-07-13T03:18:39.287845+00:00",
       "status": "green",
       "data_points_today": 7
     },
     {
       "name": "RSS",
-      "last_hit": "2026-07-12T22:46:38.532838+00:00",
+      "last_hit": "2026-07-13T03:18:39.287845+00:00",
       "status": "green",
-      "data_points_today": 717
+      "data_points_today": 725
     },
     {
       "name": "FRED",
-      "last_hit": "2026-07-12T22:46:38.532838+00:00",
+      "last_hit": "2026-07-13T03:18:39.287845+00:00",
       "status": "yellow",
       "data_points_today": 0
     },
     {
       "name": "BLS",
-      "last_hit": "2026-07-12T22:46:38.532838+00:00",
+      "last_hit": "2026-07-13T03:18:39.287845+00:00",
       "status": "green",
       "data_points_today": 9
     }
