@@ -236,6 +236,60 @@ var TYPE_DEFAULTS = {
 
 var selectedItems = {};
 
+async function _serpSearch(query) {
+  try {
+    var resp = await fetch('https://jamross.app.n8n.cloud/webhook/analyze-serp', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ query: query })
+    });
+    if (!resp.ok) return null;
+    var data = await resp.json();
+    var p = data.place;
+    if (!p || !p.title) return null;
+    var revs = (data.reviews || []).map(function(r) {
+      return { rating: r.rating || 5, text: r.snippet || r.extract || '' };
+    });
+    var negCount = 0, phoneCount = 0;
+    revs.forEach(function(r) {
+      if (r.rating <= 3) {
+        negCount++;
+        var t = (r.text || '').toLowerCase();
+        if (/\b(call|phone|answer|voicemail|reach|respond|response|contact|wait|waiting|hold|rude|slow|never got back)\b/.test(t)) phoneCount++;
+      }
+    });
+    var hours = p.hours || p.operating_hours || [];
+    var hasAfterHours = false, hasWeekends = false;
+    if (Array.isArray(hours)) {
+      hours.forEach(function(h) {
+        var day = Object.keys(h)[0] || '';
+        var val = h[day] || '';
+        if (/saturday|sunday/i.test(day) && !/closed/i.test(val)) hasWeekends = true;
+        if (/PM/i.test(val)) {
+          var match = val.match(/(\d+)\s*PM/);
+          if (match && parseInt(match[1]) >= 6) hasAfterHours = true;
+        }
+      });
+    }
+    return {
+      found: true,
+      isMarket: false,
+      name: p.title,
+      address: p.address || '',
+      rating: p.rating || 0,
+      reviewCount: p.reviews || p.user_ratings_total || 0,
+      hasWebsite: !!(p.website),
+      hasAfterHours: hasAfterHours,
+      hasWeekends: hasWeekends,
+      negativeReviews: negCount,
+      phoneComplaints: phoneCount,
+      reviewsChecked: revs.length
+    };
+  } catch(e) {
+    return null;
+  }
+}
+
 async function _placesSearch(textQuery, extraBody) {
   var fields = 'places.displayName,places.rating,places.userRatingCount,places.websiteUri,places.currentOpeningHours,places.reviews,places.formattedAddress';
   var body = Object.assign({ textQuery: textQuery, maxResultCount: 10 }, extraBody || {});
@@ -296,7 +350,13 @@ async function lookupOnGoogle(query, businessName, cityName, businessType) {
     }
   }
 
-  // Strategy 3: if still nothing, pull market data from competitors in same industry + city
+  // Strategy 3: SerpAPI fallback — finds businesses Google Places misses
+  if (!target) {
+    var serpResult = await _serpSearch(query);
+    if (serpResult && serpResult.found) return serpResult;
+  }
+
+  // Strategy 4: if still nothing, pull market data from competitors in same industry + city
   if (!target && businessType) {
     var typeLabel = (TYPE_DEFAULTS[businessType] || TYPE_DEFAULTS.general).label;
     var s3 = await _placesSearch(typeLabel + ' ' + (cityName || ''), bias ? { locationBias: bias } : {});
