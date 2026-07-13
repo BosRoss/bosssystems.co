@@ -124,6 +124,15 @@ body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;backgrou
 .call-filter .btn.active{background:var(--gold);color:var(--bg)}
 .call-empty{text-align:center;padding:40px 20px;color:var(--dim);font-size:13px}
 .closing-count{background:rgba(46,204,113,.15);color:var(--green);padding:2px 8px;font-size:10px;font-weight:700;border-radius:2px;letter-spacing:1px;border:1px solid rgba(46,204,113,.3)}
+.check-item{display:flex;align-items:center;gap:8px;padding:10px 14px;background:var(--bg2);border:1px solid var(--border);border-radius:4px;margin-bottom:6px;font-size:12px;color:var(--muted);cursor:pointer}
+.check-item input[type="checkbox"]{accent-color:var(--green);width:16px;height:16px;cursor:pointer}
+.check-item.done{color:var(--green);border-color:rgba(46,204,113,.2);background:rgba(46,204,113,.03)}
+.deal-card{background:var(--bg2);border:1px solid var(--border);padding:14px;margin-bottom:8px;border-radius:4px}
+.deal-card.stage-closing{border-color:rgba(201,169,110,.3)}
+.deal-card.stage-won{border-color:rgba(46,204,113,.3)}
+.deal-card.stage-lost{opacity:.5}
+.deal-stage{font-size:9px;font-weight:700;padding:2px 6px;letter-spacing:1px;border-radius:2px}
+.deal-amount{font-size:11px;font-weight:700;color:var(--gold)}
 
 /* LEARN */
 .learn-section{margin-bottom:24px}
@@ -185,7 +194,8 @@ body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;backgrou
       <div class="tab" data-tab="schedule">SCHEDULE</div>
       <div class="tab" data-tab="metrics">METRICS</div>
       <div class="tab" data-tab="log">LOG</div>
-      <div class="tab" data-tab="tracker">CALLS</div>
+      <div class="tab" data-tab="tracker">DEALS</div>
+      <div class="tab" data-tab="checklist">CHECKLIST</div>
     </div>
 
     <!-- ==================== TAB: LEARN ==================== -->
@@ -200,18 +210,18 @@ body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;backgrou
         <div class="learn-card" style="border:1px solid var(--gold)">
           <h3>The Foot in the Door</h3>
           <p><strong style="color:var(--gold)">Look at their business profile in the LEADS tab.</strong> Each lead shows a recommended entry point based on their actual data.<br><br>
-          <strong style="color:var(--gold)">No Website?</strong> That is your #1 opening. 69% of contractors in small towns have no website. They are invisible to anyone searching Google. A website is the easiest, most visible thing you can sell — they can show it to their wife, their buddy, their customers. $299-$499 one-time plus $29/month hosting. Once the website brings in calls, you sell them the rest.<br><br>
+          <strong style="color:var(--gold)">No Website?</strong> That is your #1 opening. 69% of contractors in small towns have no website. They are invisible to anyone searching Google. A website is the easiest, most visible thing you can sell — they can show it to their wife, their buddy, their customers. $299 one-time plus $39/month hosting. Once the website brings in calls, you sell them the rest.<br><br>
           <strong style="color:var(--gold)">Has a Website?</strong> Run the free Analyze tool on their business. Show them the gaps — missed calls, no follow-up system, no review strategy, manual scheduling. Start with whatever is costing them the most money. Usually that is phone answering ($50/mo) or lead follow-up ($20/mo).<br><br>
           <strong style="color:var(--gold)">The strategy:</strong> Get one thing working. Prove value. Then expand. One small win earns the trust to build everything else.</p>
         </div>
         <div class="learn-card">
           <h3>Pricing</h3>
-          <p><strong style="color:var(--gold)">Website Build: $299-$499 one-time + $29/mo</strong> — professional site, mobile-friendly, shows up on Google. This is the easiest first sale for businesses with no web presence.<br><br>
+          <p><strong style="color:var(--gold)">Website Build: $299 one-time + $39/mo</strong> — professional site, mobile-friendly, shows up on Google. This is the easiest first sale for businesses with no web presence.<br><br>
           <strong style="color:var(--gold)">Google Profile Optimization: $99-$199 one-time</strong> — we fix their Google listing so they actually show up in search results. Quick win, builds trust.<br><br>
           <strong style="color:var(--gold)">AI Phone Answering: $250 build + $50/mo flat</strong> — unlimited calls, no overages, no contracts. Cancel anytime.<br><br>
           <strong style="color:var(--gold)">Individual Automations: $10-$80/mo each</strong> — follow-ups, scheduling, reviews, invoicing, lead capture, dispatch. Pick what they need.<br><br>
           <strong style="color:var(--gold)">Full AI Transformation: $1,497-$5,997</strong> — the complete overhaul. Everything automated end to end.<br><br>
-          Payment: <strong>Venmo @BosRoss only.</strong></p>
+          Payment: <strong>Card only at bosssystems.co/pay.html only.</strong></p>
         </div>
       </div>
 
@@ -223,7 +233,7 @@ body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;backgrou
         </div>
         <div class="learn-card">
           <h3>Website & Online Presence</h3>
-          <p><strong style="color:var(--gold)">Professional Business Website</strong> — $299-$499 + $29/mo<br>
+          <p><strong style="color:var(--gold)">Professional Business Website</strong> — $299 + $39/mo<br>
           <strong style="color:var(--gold)">Google Business Profile Optimization</strong> — $99-$199 one-time</p>
         </div>
         <div class="learn-card">
@@ -316,7 +326,7 @@ body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;backgrou
           <p>bosssystems.co/faq.html — Answers every common question.<br>
           bosssystems.co/guarantee.html — 95% answer rate or first month free.<br>
           bosssystems.co/onboard.html — Setup form. Send AFTER the sale.<br>
-          bosssystems.co/pay.html — Venmo @BosRoss.</p>
+          bosssystems.co/pay.html — Card only at bosssystems.co/pay.html.</p>
         </div>
       </div>
 
@@ -380,11 +390,11 @@ body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;backgrou
         </div>
         <div class="learn-card" style="border-color:var(--green)">
           <h3>Website Sale Script — No Website</h3>
-          <p>"I noticed your business does not have a website. Right now, anyone searching for [their service] in [their city] on their phone — they are scrolling right past you. We can build you a professional site in 72 hours. Your real reviews, your hours, click-to-call, shows up on Google. $299 and it is done, $29 a month after that. And you can update your photos anytime from your phone — no tech skills needed. I have a build slot open [Wednesday/Thursday]. Which works better?"</p>
+          <p>"I noticed your business does not have a website. Right now, anyone searching for [their service] in [their city] on their phone — they are scrolling right past you. We can build you a professional site in 72 hours. Your real reviews, your hours, click-to-call, shows up on Google. $299 and it is done, $39 a month after that. And you can update your photos anytime from your phone — no tech skills needed. I have a build slot open [Wednesday/Thursday]. Which works better?"</p>
         </div>
         <div class="learn-card" style="border-color:var(--green)">
           <h3>Website Sale Script — Has a Bad Website</h3>
-          <p>"I checked out your website and honestly, it is costing you customers. It is not mobile-friendly / loads slow / hard to find your phone number / [specific issue]. When someone searches [their service] in [their city] on their phone and your site does not work right, they go to the next guy. We can rebuild it in 72 hours — we will keep your photos, your real reviews, everything that is already working. Just make it modern and fast. $299 and it is done, $29 a month. Your customers will actually be able to book you from their phone."</p>
+          <p>"I checked out your website and honestly, it is costing you customers. It is not mobile-friendly / loads slow / hard to find your phone number / [specific issue]. When someone searches [their service] in [their city] on their phone and your site does not work right, they go to the next guy. We can rebuild it in 72 hours — we will keep your photos, your real reviews, everything that is already working. Just make it modern and fast. $299 and it is done, $39 a month. Your customers will actually be able to book you from their phone."</p>
         </div>
       </div>
 
@@ -413,13 +423,132 @@ body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;backgrou
       </div>
 
       <div class="learn-section">
+        <div class="learn-title">Website Sales — What You Need to Know</div>
+        <div class="learn-card" style="border-color:var(--gold)">
+          <h3>What We Build (Lovable Platform)</h3>
+          <p>We build websites on Lovable (lovable.dev). It creates React/Tailwind sites that are fast, modern, and mobile-first.<br><br>
+          <strong style="color:var(--green)">What Lovable CAN do:</strong><br>
+          - Single-page and multi-page sites<br>
+          - Contact forms (with email notification)<br>
+          - Click-to-call buttons<br>
+          - Embedded Google Maps<br>
+          - Photo galleries and portfolios<br>
+          - Review/testimonial sections<br>
+          - Service listings with descriptions<br>
+          - Mobile-responsive layouts<br>
+          - SEO meta tags and page titles<br>
+          - Booking links (link to external booking service)<br>
+          - Social media links<br>
+          - Custom color schemes matching their brand<br><br>
+          <strong style="color:var(--red)">What Lovable CANNOT do:</strong><br>
+          - E-commerce / online stores (no shopping cart)<br>
+          - Client login portals or password-protected areas<br>
+          - Blog with CMS (no content management system)<br>
+          - Real-time chat widgets<br>
+          - Payment processing on the site itself<br>
+          - Complex animations or video backgrounds<br>
+          - Database-backed features (member directories, etc.)<br><br>
+          <strong>If a client asks for something not on the CAN list, say:</strong> "That is not something we include in the $299 build, but let me see what we can do. I will check with the team and get back to you."</p>
+        </div>
+        <div class="learn-card">
+          <h3>What $39/mo Covers</h3>
+          <p><strong style="color:var(--gold)">Hosting:</strong> Their site stays live on Lovable's servers. Fast, reliable, no downtime.<br>
+          <strong style="color:var(--gold)">SSL Certificate:</strong> The padlock icon in the browser. Required for Google ranking and customer trust. Included.<br>
+          <strong style="color:var(--gold)">Uptime Monitoring:</strong> We make sure the site stays up. If something breaks, we fix it.<br>
+          <strong style="color:var(--gold)">Content Updates:</strong> Up to 2 text/photo updates per month. "Change the phone number," "add a new service," "swap out the hero photo." Included.<br>
+          <strong style="color:var(--gold)">Domain Connection:</strong> We connect their domain (or Lovable subdomain) and keep DNS working.<br><br>
+          <strong>What is NOT included in $39/mo:</strong> Full redesigns, adding new pages, major feature additions, or ongoing SEO campaigns. Those are separate quotes.</p>
+        </div>
+        <div class="learn-card">
+          <h3>Revisions Policy</h3>
+          <p><strong style="color:var(--gold)">Up to 3 rounds of changes are included in the $299 build.</strong><br><br>
+          A "round" means one set of feedback. Example: "Change the blue to navy, add a fourth service, make the phone number bigger." That is one round even if it is multiple items.<br><br>
+          After 3 rounds, additional changes are $25 per round. But honestly, most clients are happy after 1-2 rounds. If they are asking for 4+ rounds, they are not sure what they want — help them decide, do not just keep revising.<br><br>
+          <strong>Common revision asks:</strong> Different photo, color tweak, add/remove a service, fix a phone number, change wording on a section. All easy, all same-day.</p>
+        </div>
+        <div class="learn-card">
+          <h3>Domain Connection Process</h3>
+          <p><strong style="color:var(--gold)">If they already own a domain:</strong><br>
+          Ask: "Who is your domain registered with? GoDaddy, Namecheap, Google Domains?" Get their login or have them share screen. You change the DNS records to point to Lovable. Takes 5 minutes. DNS propagation takes up to 48 hours but usually under 2.<br><br>
+          <strong style="color:var(--gold)">If they need a domain:</strong><br>
+          Buy it on Namecheap (~$12/year). The client pays for the domain separately — it is not included in the $299. Help them pick a name: businessname.com is ideal, add the city if taken (smithplumbingtyler.com).<br><br>
+          <strong style="color:var(--gold)">Free fallback:</strong><br>
+          Every Lovable site comes with a free subdomain: businessname.lovable.app. This works immediately and is fine for clients who do not want to buy a domain. It still looks professional.</p>
+        </div>
+        <div class="learn-card">
+          <h3>Timeline</h3>
+          <p><strong style="color:var(--gold)">Day 0:</strong> Collect payment ($299) and requirements<br>
+          <strong style="color:var(--gold)">Day 1:</strong> Build the site on Lovable using Website Builder tool<br>
+          <strong style="color:var(--gold)">Day 1-2:</strong> Send preview link to client for review<br>
+          <strong style="color:var(--gold)">Day 2-3:</strong> Handle revisions (same day turnaround)<br>
+          <strong style="color:var(--gold)">Day 3-4:</strong> Connect domain, go live, send handoff message<br>
+          <strong style="color:var(--gold)">Day 6-7:</strong> Follow-up text to check satisfaction<br><br>
+          Promise "72 hours" to the client. Internally, aim for 48. Under-promise, over-deliver.</p>
+        </div>
+      </div>
+
+      <div class="learn-section">
+        <div class="learn-title">Common Salesperson Questions (FAQ)</div>
+        <div class="learn-card">
+          <h3>"What if they already have a website?"</h3>
+          <p>The Website Builder tool automatically scrapes their existing site for images, content, and brand colors. You are selling them an UPGRADE, not a replacement. "We will keep everything that is working and make it modern, fast, and mobile-friendly."</p>
+        </div>
+        <div class="learn-card">
+          <h3>"What if they want to see an example first?"</h3>
+          <p>Lovable has a gallery of templates. Pull up lovable.dev on your phone and show them examples. Or build a 2-minute demo site right in front of them using the Website Builder. The wow factor of seeing their business name on a real site in real time closes deals.</p>
+        </div>
+        <div class="learn-card">
+          <h3>"What if they want to pay monthly instead of $299 upfront?"</h3>
+          <p>We do not offer payment plans on the $299. It is a one-time build fee. If they cannot afford $299, they probably are not a good fit right now. Move on. The $39/month starts after the site is live.</p>
+        </div>
+        <div class="learn-card">
+          <h3>"What if they cancel the $39/month?"</h3>
+          <p>The site goes offline. No hosting, no SSL, no updates. They can reactivate anytime by paying the $39 again. They do not lose the site — it just goes dark until they restart. No cancellation fee, no penalty.</p>
+        </div>
+        <div class="learn-card">
+          <h3>"Can they edit the site themselves?"</h3>
+          <p>Not directly. Content updates go through us (2 per month included in $39). They CAN upload new photos anytime using the photo upload link you generate. For anything else, they text you and we handle it same-day.</p>
+        </div>
+        <div class="learn-card">
+          <h3>"What if they want a feature we cannot build?"</h3>
+          <p>Say: "That is not included in the standard build, but let me check with the team on what we can do." Then text Boston. Do not promise anything you are not sure about. It is better to say "let me find out" than to over-promise and under-deliver.</p>
+        </div>
+        <div class="learn-card">
+          <h3>"How do I handle a competitor who charges less?"</h3>
+          <p>Wix and Squarespace are DIY — the client has to build it themselves. We build it FOR them in 72 hours with their real Google data, reviews, and photos. A freelance web designer charges $1,000-5,000 and takes 2-4 weeks. We charge $299 and deliver in 72 hours. The comparison is not even close.</p>
+        </div>
+      </div>
+
+      <div class="learn-section">
+        <div class="learn-title">Complete Website Sale Workflow</div>
+        <div class="learn-card" style="border-color:var(--gold)">
+          <h3>The Full Path From First Contact to Handoff</h3>
+          <p><strong style="color:var(--gold)">1. Find the lead:</strong> LEADS tab. Businesses without websites are at the top, marked "FOOT IN THE DOOR: WEBSITE BUILD ($299)."<br><br>
+          <strong style="color:var(--gold)">2. Call or visit:</strong> Use the opening script from SCRIPTS tab. Walk-in or phone, match the approach to the lead.<br><br>
+          <strong style="color:var(--gold)">3. If interested:</strong> Go to DEALS tab. Add the deal. Stage = ACTIVE.<br><br>
+          <strong style="color:var(--gold)">4. If they say yes:</strong> Move deal to CLOSING. Open the CHECKLIST tab. Select their deal. Follow every step.<br><br>
+          <strong style="color:var(--gold)">5. Collect requirements:</strong> Fill out the requirements form in CHECKLIST. Business name, type, services, colors, pages, features. Every field matters.<br><br>
+          <strong style="color:var(--gold)">6. Collect payment:</strong> Send bosssystems.co/pay.html?product=website. $299. Do NOT start building until payment is confirmed.<br><br>
+          <strong style="color:var(--gold)">7. Build:</strong> Go to TOOLS tab, use Website Builder. Enter their info, generate the prompt, paste into Lovable. Build takes 5-10 minutes.<br><br>
+          <strong style="color:var(--gold)">8. Quality check:</strong> Open the site on your phone. Does everything work? Contact form, phone links, map, photos, services. Fix anything broken.<br><br>
+          <strong style="color:var(--gold)">9. Send preview:</strong> Text the Lovable preview URL to the client. "Your site is ready for review."<br><br>
+          <strong style="color:var(--gold)">10. Revisions:</strong> Handle any changes. Up to 3 rounds included. Same-day turnaround.<br><br>
+          <strong style="color:var(--gold)">11. Go live:</strong> Connect their domain (or use the free subdomain). Send confirmation text with the live URL and what $39/mo covers.<br><br>
+          <strong style="color:var(--gold)">12. Photo upload link:</strong> Generate in CHECKLIST and send to the client so they can update photos anytime.<br><br>
+          <strong style="color:var(--gold)">13. Follow up:</strong> Day 3 text. "How is the website looking? Getting any calls from it yet?"<br><br>
+          <strong style="color:var(--gold)">14. Upsell:</strong> After 2 weeks, plant the seed: "Now that your website is bringing in traffic, let me show you what else we can automate." Send bosssystems.co/services.html.<br><br>
+          <strong style="color:var(--gold)">15. Mark as WON:</strong> Once everything is delivered, mark the deal as WON in the CHECKLIST tab.</p>
+        </div>
+      </div>
+
+      <div class="learn-section">
         <div class="learn-title">Your Daily Routine</div>
         <div class="learn-card">
           <p><strong style="color:var(--gold)">Morning:</strong> Open this page. Check LEADS tab — businesses without websites are at the top. Check HOT tab for warm leads. Pick 30-50 leads to work today.<br><br>
-          <strong style="color:var(--gold)">During the Day:</strong> Call leads from the list. Log every call in the LOG tab. Check the CALLS tab — every AI sales call is auto-tracked with duration, summary, and sentiment. Add notes after each call. Use TOOLS to send links and build websites on the spot. Use SCRIPTS for word-for-word text messages. Use OBJECTIONS when you get pushback.<br><br>
-          <strong style="color:var(--gold)">After a Call:</strong> Go to the CALLS tab. Add the business name to the call. Write your notes. Hit MOVE TO CLOSING if they're interested, or DELETE LEAD if it's dead. The closing pipeline shows all leads ready to close.<br><br>
-          <strong style="color:var(--gold)">After a Sale:</strong> Send the Onboard form link. Generate a photo upload link. Build the website using the Website Builder. Send the photo link to the client so they can upload their own images.<br><br>
-          <strong style="color:var(--gold)">End of Day:</strong> Check METRICS to see your numbers. Check CALLS tab for closing pipeline. Review LOG for any callbacks you promised.</p>
+          <strong style="color:var(--gold)">During the Day:</strong> Call leads from the list. Log every call in the LOG tab. After each call, add a deal in the DEALS tab if they showed interest. Use TOOLS to send links and build websites on the spot. Use SCRIPTS for word-for-word text messages. Use OBJECTIONS when you get pushback.<br><br>
+          <strong style="color:var(--gold)">After a Good Call:</strong> Go to the DEALS tab. Add the deal with business name, phone, contact person, and notes. Move to CLOSING if they are ready to buy. Open CHECKLIST to track every step of the sale.<br><br>
+          <strong style="color:var(--gold)">After a Sale:</strong> Follow the CHECKLIST step by step. Collect requirements, build on Lovable, send preview, handle revisions, connect domain, send photo upload link, handoff message, follow-up text. Every step has a checkbox — do not skip any.<br><br>
+          <strong style="color:var(--gold)">End of Day:</strong> Check METRICS to see your numbers. Check DEALS tab for active and closing deals. Review SCHEDULE for any callbacks or meetings you promised.</p>
         </div>
       </div>
     </div>
@@ -482,7 +611,7 @@ body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;backgrou
         <div class="send-btn" onclick="copyLink('https://bosssystems.co/pay.html','Payment')">
           <div class="icon" style="font-size:16px;color:var(--dim);font-weight:700">PAY</div>
           <div class="label">Payment Page</div>
-          <div class="sub">Venmo @BosRoss</div>
+          <div class="sub">Card only at bosssystems.co/pay.html</div>
         </div>
       </div>
       <div id="copy-toast" style="display:none;position:fixed;bottom:80px;left:50%;transform:translateX(-50%);background:var(--gold);color:var(--bg);padding:10px 20px;font-size:13px;font-weight:700;border-radius:4px;z-index:50"></div>
@@ -517,7 +646,7 @@ body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;backgrou
           <div style="margin-top:12px;font-size:13px;color:var(--muted)">
             <span id="calc-monthly">$0</span>/month &middot;
             <span id="calc-weekly">$0</span>/week &middot;
-            BOSS costs <strong style="color:var(--gold)">$50/mo</strong>
+            Phone AI: <strong style="color:var(--gold)">$50/mo</strong> &middot; Website: <strong style="color:var(--gold)">$299 + $39/mo</strong>
           </div>
           <div style="margin-top:8px;font-size:13px;color:var(--green)" id="calc-roi-ratio"></div>
         </div>
@@ -705,7 +834,7 @@ body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;backgrou
       <div class="script-card">
         <div class="script-label">After They Pay Text</div>
         <button class="script-copy" onclick="copyText(this.parentElement,'Payment Confirm')">COPY</button>
-        Got it. Thank you. I am starting your build right now. You will hear from us within 24 hours with a preview. Here is my number if you need anything: [YOUR PHONE NUMBER]
+        Got it. Thank you. I am starting your build right now. You will hear from us within 24 hours with a preview. Here is our number if you need anything: (903) 522-4459
       </div>
       <div class="script-card">
         <div class="script-label">After a "No" (Send Once)</div>
@@ -772,14 +901,14 @@ body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;backgrou
 
     <!-- ==================== TAB: DELIVER ==================== -->
     <div class="tab-panel" id="panel-deliver">
-      <div style="font-size:12px;color:var(--dim);margin-bottom:16px">After someone pays, follow these steps based on what they bought. Every step matters. Skip one and you lose the client.</div>
+      <div style="font-size:12px;color:var(--dim);margin-bottom:16px">After someone pays, follow these steps based on what they bought. Every step matters. Skip one and you lose the client. For website sales, use the <strong style="color:var(--gold)">CHECKLIST tab</strong> — it tracks every step per deal so nothing gets missed.</div>
 
       <div style="font-size:10px;letter-spacing:2px;color:var(--gold);margin-bottom:12px;text-transform:uppercase">For Website Builds</div>
       <div class="deliver-step">
         <div class="deliver-num">1</div>
         <div>
           <h3>Collect Payment</h3>
-          <p>Website build: $299-$499. Venmo @BosRoss. Confirm payment received before moving on.</p>
+          <p>Website build: $299. Card only at bosssystems.co/pay.html. Confirm payment received before moving on.</p>
           <div class="deliver-tip">Use the Payment link in TOOLS tab to send them the pay page.</div>
         </div>
       </div>
@@ -820,7 +949,7 @@ body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;backgrou
         <div class="deliver-num">1</div>
         <div>
           <h3>Collect Payment</h3>
-          <p>Phone AI: $250 build + first month ($50) = $300. Other automations: varies. Venmo @BosRoss.</p>
+          <p>Phone AI: $250 build + first month ($50) = $300. Other automations: varies. Card only at bosssystems.co/pay.html.</p>
           <div class="deliver-tip">Use the Payment link in TOOLS tab to send them the pay page.</div>
         </div>
       </div>
@@ -1004,24 +1133,124 @@ body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;backgrou
       <div id="log-list"></div>
     </div>
 
-    <!-- ==================== TAB: CALLS (Auto-Tracked) ==================== -->
+    <!-- ==================== TAB: DEALS (Sales Pipeline) ==================== -->
     <div class="tab-panel" id="panel-tracker">
-      <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:12px">
-        <div style="font-size:10px;letter-spacing:2px;color:var(--dim);text-transform:uppercase">
-          Auto-Tracked Calls <span id="tracker-total" style="color:var(--muted)"></span>
+      <!-- ADD NEW DEAL -->
+      <div style="background:var(--bg2);border:1px solid var(--border);padding:14px;border-radius:4px;margin-bottom:16px">
+        <div style="font-size:10px;letter-spacing:2px;color:var(--gold);margin-bottom:10px;text-transform:uppercase">New Deal</div>
+        <div class="log-row"><input type="text" id="deal-name" placeholder="Business name"></div>
+        <div class="log-row">
+          <input type="tel" id="deal-phone" placeholder="Phone number">
+          <select id="deal-type">
+            <option value="website">Website ($299)</option>
+            <option value="build_standard">BOSS Build ($1,497)</option>
+            <option value="build_premium">Build Premium ($2,997)</option>
+            <option value="full">Full Transform ($5,997)</option>
+          </select>
         </div>
-        <div style="display:flex;gap:6px;align-items:center">
-          <span id="closing-count-badge" class="closing-count" style="display:none">0 CLOSING</span>
-          <button class="btn btn-outline btn-sm" onclick="loadCalls()">REFRESH</button>
-        </div>
+        <div class="log-row"><input type="text" id="deal-contact" placeholder="Contact person name"></div>
+        <div class="log-row"><textarea id="deal-notes" placeholder="Call notes — what did they say? What do they need?" style="flex:1;background:var(--card);border:1px solid var(--border);color:var(--text);padding:10px;font-size:13px;font-family:inherit;border-radius:3px;min-height:60px;resize:vertical"></textarea></div>
+        <button class="btn btn-gold" style="width:100%" onclick="addDeal()">ADD TO PIPELINE</button>
       </div>
+
+      <!-- FILTER -->
       <div class="call-filter">
-        <button class="btn btn-outline btn-sm active" onclick="filterCalls('all',this)">ALL</button>
-        <button class="btn btn-outline btn-sm" onclick="filterCalls('new',this)">NEW</button>
-        <button class="btn btn-outline btn-sm" onclick="filterCalls('closing',this)">CLOSING</button>
-        <button class="btn btn-outline btn-sm" onclick="filterCalls('deleted',this)">DELETED</button>
+        <button class="btn btn-outline btn-sm active" onclick="filterDeals('active',this)">ACTIVE <span id="deal-active-count"></span></button>
+        <button class="btn btn-outline btn-sm" onclick="filterDeals('closing',this)">CLOSING <span id="deal-closing-count"></span></button>
+        <button class="btn btn-outline btn-sm" onclick="filterDeals('won',this)">WON <span id="deal-won-count"></span></button>
+        <button class="btn btn-outline btn-sm" onclick="filterDeals('lost',this)">LOST <span id="deal-lost-count"></span></button>
       </div>
-      <div id="tracker-list"><div class="call-empty">Loading calls...</div></div>
+
+      <!-- DEAL LIST -->
+      <div id="deal-list"></div>
+    </div>
+
+    <!-- ==================== TAB: CHECKLIST (Website Sale Steps) ==================== -->
+    <div class="tab-panel" id="panel-checklist">
+      <div style="font-size:10px;letter-spacing:2px;color:var(--gold);margin-bottom:6px;text-transform:uppercase">Select a Deal</div>
+      <select id="checklist-deal-select" onchange="loadChecklist(this.value)" style="width:100%;background:var(--card);border:1px solid var(--border);color:var(--text);padding:10px;font-size:13px;font-family:inherit;border-radius:3px;margin-bottom:16px">
+        <option value="">Choose a deal...</option>
+      </select>
+      <div id="checklist-content" style="display:none">
+
+        <div style="font-size:10px;letter-spacing:2px;color:var(--gold);margin-bottom:10px;text-transform:uppercase">Step 1 — Discovery Call</div>
+        <div class="deliver-step"><div class="deliver-num">1</div><div><h3>Qualify the Lead</h3><p>Do they have a website? Is it bad or missing? Are they the decision-maker? What's their budget comfort? When do they need it?</p></div></div>
+        <label class="check-item" data-step="qualify"><input type="checkbox" onchange="saveCheck(this)"> Lead is qualified — decision-maker, needs a site, comfortable with price</label>
+
+        <div class="deliver-step"><div class="deliver-num">2</div><div><h3>Pitch the Website</h3><p>"Right now when someone Googles your service in your city, they find your competitors. For $299 we build you a professional website and keep it running for $39/month. No contracts, cancel anytime."</p></div></div>
+        <label class="check-item" data-step="pitched"><input type="checkbox" onchange="saveCheck(this)"> Pitched — they're interested</label>
+
+        <div style="font-size:10px;letter-spacing:2px;color:var(--gold);margin:20px 0 10px;text-transform:uppercase">Step 2 — Collect Requirements</div>
+        <div style="background:var(--bg2);border:1px solid var(--border);padding:14px;border-radius:4px;margin-bottom:12px">
+          <div class="log-row"><label style="font-size:12px;color:var(--muted);min-width:110px">Business name</label><input type="text" id="req-biz-name" onchange="saveReq(this)"></div>
+          <div class="log-row"><label style="font-size:12px;color:var(--muted);min-width:110px">Business type</label><input type="text" id="req-biz-type" placeholder="e.g. HVAC, Plumbing, Lawn Care" onchange="saveReq(this)"></div>
+          <div class="log-row"><label style="font-size:12px;color:var(--muted);min-width:110px">City / Area</label><input type="text" id="req-city" onchange="saveReq(this)"></div>
+          <div class="log-row"><label style="font-size:12px;color:var(--muted);min-width:110px">Phone</label><input type="tel" id="req-phone" onchange="saveReq(this)"></div>
+          <div class="log-row"><label style="font-size:12px;color:var(--muted);min-width:110px">Email</label><input type="email" id="req-email" onchange="saveReq(this)"></div>
+          <div class="log-row"><label style="font-size:12px;color:var(--muted);min-width:110px">Preferred URL</label><input type="text" id="req-url" placeholder="e.g. smithplumbing.com" onchange="saveReq(this)"></div>
+          <div class="log-row"><label style="font-size:12px;color:var(--muted);min-width:110px">Brand colors</label><input type="text" id="req-colors" placeholder="e.g. blue and white, red and black" onchange="saveReq(this)"></div>
+          <div class="log-row"><label style="font-size:12px;color:var(--muted);min-width:110px">Services offered</label><textarea id="req-services" placeholder="List their services" style="flex:1;background:var(--card);border:1px solid var(--border);color:var(--text);padding:10px;font-size:13px;font-family:inherit;border-radius:3px;min-height:50px" onchange="saveReq(this)"></textarea></div>
+          <div class="log-row"><label style="font-size:12px;color:var(--muted);min-width:110px">Service area</label><input type="text" id="req-area" placeholder="e.g. Tyler TX and surrounding" onchange="saveReq(this)"></div>
+          <div class="log-row"><label style="font-size:12px;color:var(--muted);min-width:110px">Has logo?</label><select id="req-logo" onchange="saveReq(this)"><option value="">--</option><option value="yes">Yes — will send</option><option value="no">No — make one</option><option value="text">Text logo is fine</option></select></div>
+          <div class="log-row"><label style="font-size:12px;color:var(--muted);min-width:110px">Has photos?</label><select id="req-photos" onchange="saveReq(this)"><option value="">--</option><option value="yes">Yes — will send</option><option value="no">No — use stock</option><option value="some">Some — will send what they have</option></select></div>
+          <div class="log-row"><label style="font-size:12px;color:var(--muted);min-width:110px">Pages wanted</label>
+            <div style="display:flex;gap:8px;flex-wrap:wrap;flex:1">
+              <label style="font-size:12px;color:var(--muted);display:flex;align-items:center;gap:4px"><input type="checkbox" id="req-page-home" onchange="saveReq(this)"> Home</label>
+              <label style="font-size:12px;color:var(--muted);display:flex;align-items:center;gap:4px"><input type="checkbox" id="req-page-about" onchange="saveReq(this)"> About</label>
+              <label style="font-size:12px;color:var(--muted);display:flex;align-items:center;gap:4px"><input type="checkbox" id="req-page-services" onchange="saveReq(this)"> Services</label>
+              <label style="font-size:12px;color:var(--muted);display:flex;align-items:center;gap:4px"><input type="checkbox" id="req-page-contact" onchange="saveReq(this)"> Contact</label>
+              <label style="font-size:12px;color:var(--muted);display:flex;align-items:center;gap:4px"><input type="checkbox" id="req-page-gallery" onchange="saveReq(this)"> Gallery</label>
+              <label style="font-size:12px;color:var(--muted);display:flex;align-items:center;gap:4px"><input type="checkbox" id="req-page-reviews" onchange="saveReq(this)"> Reviews</label>
+            </div>
+          </div>
+          <div class="log-row"><label style="font-size:12px;color:var(--muted);min-width:110px">Features</label>
+            <div style="display:flex;gap:8px;flex-wrap:wrap;flex:1">
+              <label style="font-size:12px;color:var(--muted);display:flex;align-items:center;gap:4px"><input type="checkbox" id="req-feat-form" onchange="saveReq(this)"> Contact form</label>
+              <label style="font-size:12px;color:var(--muted);display:flex;align-items:center;gap:4px"><input type="checkbox" id="req-feat-map" onchange="saveReq(this)"> Google Map</label>
+              <label style="font-size:12px;color:var(--muted);display:flex;align-items:center;gap:4px"><input type="checkbox" id="req-feat-click" onchange="saveReq(this)"> Click-to-call</label>
+              <label style="font-size:12px;color:var(--muted);display:flex;align-items:center;gap:4px"><input type="checkbox" id="req-feat-reviews" onchange="saveReq(this)"> Review section</label>
+              <label style="font-size:12px;color:var(--muted);display:flex;align-items:center;gap:4px"><input type="checkbox" id="req-feat-booking" onchange="saveReq(this)"> Booking link</label>
+            </div>
+          </div>
+          <div class="log-row"><label style="font-size:12px;color:var(--muted);min-width:110px">Special notes</label><textarea id="req-notes" placeholder="Anything else they mentioned" style="flex:1;background:var(--card);border:1px solid var(--border);color:var(--text);padding:10px;font-size:13px;font-family:inherit;border-radius:3px;min-height:50px" onchange="saveReq(this)"></textarea></div>
+        </div>
+        <label class="check-item" data-step="requirements"><input type="checkbox" onchange="saveCheck(this)"> All requirements collected</label>
+
+        <div style="font-size:10px;letter-spacing:2px;color:var(--gold);margin:20px 0 10px;text-transform:uppercase">Step 3 — Close the Deal</div>
+        <div class="deliver-step"><div class="deliver-num">3</div><div><h3>Collect Payment</h3><p>Send the payment link: bosssystems.co/pay.html?product=website. $299 setup + $39/mo. Once paid, move to build.</p></div></div>
+        <button class="btn btn-sm btn-gold" onclick="copyLink('https://bosssystems.co/pay.html?product=website','Website Payment Link')" style="margin-bottom:8px">COPY PAYMENT LINK</button>
+        <label class="check-item" data-step="paid"><input type="checkbox" onchange="saveCheck(this)"> Payment received ($299)</label>
+
+        <div style="font-size:10px;letter-spacing:2px;color:var(--gold);margin:20px 0 10px;text-transform:uppercase">Step 4 — Build the Website</div>
+        <div class="deliver-step"><div class="deliver-num">4</div><div><h3>Build on Lovable</h3><p>Go to the TOOLS tab, use the Website Builder. Enter their business info, hit Generate. It creates the full Lovable prompt. Paste into Lovable and let it build. Takes 5-10 minutes.</p></div></div>
+        <div class="deliver-step"><div class="deliver-num">5</div><div><h3>Quality Check</h3><p>Before showing the client: Does every page load? Does the phone number work? Are services listed correctly? Does the contact form work? Does it look good on mobile? Are there any placeholder images or lorem ipsum text?</p></div></div>
+        <label class="check-item" data-step="built"><input type="checkbox" onchange="saveCheck(this)"> Website built and quality-checked</label>
+
+        <div style="font-size:10px;letter-spacing:2px;color:var(--gold);margin:20px 0 10px;text-transform:uppercase">Step 5 — Client Review</div>
+        <div class="deliver-step"><div class="deliver-num">6</div><div><h3>Send Preview</h3><p>Text the client the Lovable preview URL. "Hey [name], your website is ready for review! Check it out here: [link]. Let me know if you want any changes." Give them 24-48 hours.</p></div></div>
+        <label class="check-item" data-step="preview_sent"><input type="checkbox" onchange="saveCheck(this)"> Preview link sent to client</label>
+        <div class="deliver-step"><div class="deliver-num">7</div><div><h3>Handle Revisions</h3><p>If they want changes, make them on Lovable. Common asks: different photo, color tweak, add a service, fix a phone number. Up to 3 rounds of changes included in the $299.</p></div></div>
+        <label class="check-item" data-step="approved"><input type="checkbox" onchange="saveCheck(this)"> Client approved the site</label>
+
+        <div style="font-size:10px;letter-spacing:2px;color:var(--gold);margin:20px 0 10px;text-transform:uppercase">Step 6 — Go Live</div>
+        <div class="deliver-step"><div class="deliver-num">8</div><div><h3>Domain Setup</h3><p>If they have a domain: get their registrar login (GoDaddy, Namecheap, etc.) and point DNS to Lovable. If they need a domain: buy it on Namecheap (~$12/yr, bill to client). Lovable provides a free subdomain (name.lovable.app) as a fallback.</p></div></div>
+        <label class="check-item" data-step="domain"><input type="checkbox" onchange="saveCheck(this)"> Domain connected or subdomain set up</label>
+        <div class="deliver-step"><div class="deliver-num">9</div><div><h3>Send Photo Upload Link</h3><p>Generate their photo upload page and text them the link so they can upload their own images anytime.</p></div></div>
+        <button class="btn btn-sm btn-outline" id="photo-link-btn" onclick="generatePhotoLink()" style="margin-bottom:8px">GENERATE PHOTO LINK</button>
+        <label class="check-item" data-step="photos"><input type="checkbox" onchange="saveCheck(this)"> Photo upload link sent</label>
+
+        <div style="font-size:10px;letter-spacing:2px;color:var(--gold);margin:20px 0 10px;text-transform:uppercase">Step 7 — Handoff</div>
+        <div class="deliver-step"><div class="deliver-num">10</div><div><h3>Confirmation Text</h3><p>"Your website is live at [URL]! Here's what's included in your $39/mo: hosting, SSL, uptime monitoring, and up to 2 content updates per month. Text me anytime if you need changes."</p></div></div>
+        <label class="check-item" data-step="handoff"><input type="checkbox" onchange="saveCheck(this)"> Handoff message sent</label>
+        <div class="deliver-step"><div class="deliver-num">11</div><div><h3>Follow-Up (Day 3)</h3><p>Text: "Hey [name], how's the website looking? Getting any calls from it yet? Let me know if you need anything changed." This prevents buyer's remorse and opens upsell conversations.</p></div></div>
+        <label class="check-item" data-step="followup"><input type="checkbox" onchange="saveCheck(this)"> 3-day follow-up sent</label>
+
+        <div style="background:rgba(46,204,113,.05);border:1px solid rgba(46,204,113,.2);padding:14px;border-radius:4px;margin-top:16px">
+          <div style="font-size:10px;letter-spacing:2px;color:var(--green);margin-bottom:6px;text-transform:uppercase">Deal Complete</div>
+          <button class="btn btn-sm" style="background:rgba(46,204,113,.15);color:var(--green);border:1px solid rgba(46,204,113,.3)" onclick="markDealWon()">MARK AS WON</button>
+        </div>
+      </div>
+      <div id="checklist-empty" style="text-align:center;padding:30px;color:var(--dim);font-size:13px">Add a deal in the DEALS tab first, then select it here to track the full sale.</div>
     </div>
 
   </div>
@@ -1062,7 +1291,7 @@ document.querySelectorAll('.tab').forEach(function(t){
     document.querySelectorAll('.tab-panel').forEach(function(x){x.classList.remove('active')});
     t.classList.add('active');
     document.getElementById('panel-'+t.dataset.tab).classList.add('active');
-    if (t.dataset.tab === 'tracker' && allCalls.length === 0) loadCalls();
+    if (t.dataset.tab === 'tracker') renderDeals();
   });
 });
 
@@ -1168,7 +1397,7 @@ function renderData(data) {
     var hasPhonePain = (l.signals||[]).some(function(s){return s.indexOf('PAIN')>=0 || s.indexOf('voicemail')>=0 || s.indexOf('unreachable')>=0 || s.indexOf('missed')>=0;});
     var weakRating = (l.signals||[]).some(function(s){return s.indexOf('WEAK_RATING')>=0 || s.indexOf('weak rating')>=0;});
     var fitd = '';
-    if (noWebsite) fitd = 'WEBSITE BUILD ($299-$499)';
+    if (noWebsite) fitd = 'WEBSITE BUILD ($299)';
     else if (hasPhonePain) fitd = 'AI PHONE ANSWERING ($50/mo)';
     else if (weakRating) fitd = 'GOOGLE PROFILE + REVIEWS ($99-$199)';
     else fitd = 'FREE ANALYSIS (qualify first)';
@@ -1259,7 +1488,7 @@ function calcROI() {
   document.getElementById('calc-annual').textContent = '$' + annualLoss.toLocaleString();
   document.getElementById('calc-monthly').textContent = '$' + Math.round(monthlyLoss).toLocaleString();
   document.getElementById('calc-weekly').textContent = '$' + weeklyLoss.toLocaleString();
-  document.getElementById('calc-roi-ratio').textContent = Math.round(annualLoss / 600) + ':1 return on $50/month';
+  document.getElementById('calc-roi-ratio').textContent = Math.round(annualLoss / 600) + ':1 return on phone AI ($50/mo)';
 }
 
 function copyROI() {
@@ -1735,8 +1964,8 @@ function calcMetrics() {
 
   var closed = outcomes.closed || 0;
   document.getElementById('m-closed').textContent = closed;
-  document.getElementById('m-setup').textContent = '$' + (closed * 250).toLocaleString();
-  document.getElementById('m-mrr').textContent = '$' + (closed * 50).toLocaleString() + '/mo';
+  document.getElementById('m-setup').textContent = '$' + (closed * 299).toLocaleString();
+  document.getElementById('m-mrr').textContent = '$' + (closed * 39).toLocaleString() + '/mo';
 
   var funnel = [
     {label:'Total Calls', count:logs.length, color:'var(--dim)'},
@@ -1833,222 +2062,267 @@ function renderSchedule() {
   document.getElementById('schedule-past').innerHTML = pastHtml;
 }
 
-// ==================== CALLS TAB (Auto-Tracked) ====================
-var AGENT_NAMES = {
-  'agent_6c19e0315cf3dfd1ffa3db63a2': 'Outbound Sales',
-  'agent_2ccbf93129f1b5d505c3669d41': 'BOSS Support',
-  'agent_d1f1604b4cf25a35060e918fc9': 'Follow-Up',
-  'agent_8e070633763cb961bcc35d6668': 'Pipeline Agent',
-  'agent_c2003a57424906726c5ef52131': 'THE BOSS',
-  'agent_10c6519858eebc75047ee7ab8f': 'Built by BOSS Sales',
-  'agent_1b02f73e8688ccb05043f2d724': 'Mystery Caller',
-  'agent_6d02eab9ce7293fc7ef932b2cb': 'Wickham Lawn Care'
+// ==================== DEALS TAB ====================
+var DEAL_TYPES = {
+  website: { name: 'Website', setup: 299, monthly: 39 },
+  build_standard: { name: 'BOSS Build Standard', setup: 1497, monthly: 97 },
+  build_premium: { name: 'BOSS Build Premium', setup: 2997, monthly: 197 },
+  full: { name: 'Full Transformation', setup: 5997, monthly: 497 }
 };
 
-var allCalls = [];
-var currentFilter = 'all';
+var dealFilter = 'active';
 
-function getCallNotes() {
-  try { return JSON.parse(localStorage.getItem('boss_call_notes') || '{}'); } catch(e) { return {}; }
+function getDeals() {
+  try { return JSON.parse(localStorage.getItem('boss_deals') || '[]'); } catch(e) { return []; }
 }
-function saveCallNotes(notes) {
-  localStorage.setItem('boss_call_notes', JSON.stringify(notes));
-}
-function getCallStatuses() {
-  try { return JSON.parse(localStorage.getItem('boss_call_statuses') || '{}'); } catch(e) { return {}; }
-}
-function saveCallStatuses(statuses) {
-  localStorage.setItem('boss_call_statuses', JSON.stringify(statuses));
-}
-function getCallNames() {
-  try { return JSON.parse(localStorage.getItem('boss_call_names') || '{}'); } catch(e) { return {}; }
-}
-function saveCallNames(names) {
-  localStorage.setItem('boss_call_names', JSON.stringify(names));
-}
+function saveDeals(deals) { localStorage.setItem('boss_deals', JSON.stringify(deals)); }
 
-function loadCalls() {
-  document.getElementById('tracker-list').innerHTML = '<div class="call-empty">Loading calls from Retell...</div>';
-  fetch('https://jamross.app.n8n.cloud/webhook/sales-calls', {
-    method: 'POST',
-    headers: { 'Content-Type': 'application/json' },
-    body: '{}'
-  })
-  .then(function(r) { return r.json(); })
-  .then(function(data) {
-    allCalls = Array.isArray(data) ? data : [];
-    allCalls = allCalls.filter(function(c) {
-      var dur = c.end_timestamp && c.start_timestamp ? (c.end_timestamp - c.start_timestamp) / 1000 : 0;
-      return dur > 5;
+function addDeal() {
+  var name = document.getElementById('deal-name').value.trim();
+  var phone = document.getElementById('deal-phone').value.trim();
+  var type = document.getElementById('deal-type').value;
+  var contact = document.getElementById('deal-contact').value.trim();
+  var notes = document.getElementById('deal-notes').value.trim();
+  if (!name) { alert('Enter a business name.'); return; }
+  var dt = DEAL_TYPES[type] || DEAL_TYPES.website;
+  var deal = {
+    id: 'deal_' + Date.now(),
+    name: name,
+    phone: phone,
+    type: type,
+    typeName: dt.name,
+    setup: dt.setup,
+    monthly: dt.monthly,
+    contact: contact,
+    notes: notes,
+    stage: 'active',
+    created: new Date().toISOString(),
+    history: [{ action: 'created', time: new Date().toISOString() }]
+  };
+  var deals = getDeals();
+  deals.unshift(deal);
+  saveDeals(deals);
+  document.getElementById('deal-name').value = '';
+  document.getElementById('deal-phone').value = '';
+  document.getElementById('deal-contact').value = '';
+  document.getElementById('deal-notes').value = '';
+  renderDeals();
+  populateChecklistSelect();
+  try {
+    fetch('https://ntfy.sh/bossai-bostonrossall-alerts', {
+      method: 'POST',
+      headers: { 'Title': 'New deal added', 'Priority': '3', 'Tags': 'briefcase' },
+      body: name + ' — ' + dt.name + ' ($' + dt.setup + ' + $' + dt.monthly + '/mo)' + (notes ? '\n' + notes : '')
     });
-    renderCalls();
-  })
-  .catch(function(e) {
-    document.getElementById('tracker-list').innerHTML = '<div class="call-empty">Failed to load calls. Check connection.</div>';
-  });
+  } catch(e) {}
 }
 
-function formatPhone(num) {
-  if (!num) return '?';
-  var d = num.replace(/\D/g, '');
-  if (d.length === 11 && d[0] === '1') d = d.substring(1);
-  if (d.length === 10) return '(' + d.substring(0,3) + ') ' + d.substring(3,6) + '-' + d.substring(6);
-  return num;
-}
+function renderDeals() {
+  var deals = getDeals();
+  var counts = { active: 0, closing: 0, won: 0, lost: 0 };
+  deals.forEach(function(d) { counts[d.stage] = (counts[d.stage] || 0) + 1; });
+  document.getElementById('deal-active-count').textContent = counts.active ? '(' + counts.active + ')' : '';
+  document.getElementById('deal-closing-count').textContent = counts.closing ? '(' + counts.closing + ')' : '';
+  document.getElementById('deal-won-count').textContent = counts.won ? '(' + counts.won + ')' : '';
+  document.getElementById('deal-lost-count').textContent = counts.lost ? '(' + counts.lost + ')' : '';
 
-function timeAgo(ts) {
-  if (!ts) return '';
-  var diff = Date.now() - ts;
-  var mins = Math.floor(diff / 60000);
-  if (mins < 1) return 'just now';
-  if (mins < 60) return mins + 'm ago';
-  var hrs = Math.floor(mins / 60);
-  if (hrs < 24) return hrs + 'h ago';
-  var days = Math.floor(hrs / 24);
-  return days + 'd ago';
-}
-
-function renderCalls() {
-  var statuses = getCallStatuses();
-  var notes = getCallNotes();
-  var names = getCallNames();
-
-  var closingCount = 0;
-  allCalls.forEach(function(c) { if (statuses[c.call_id] === 'closing') closingCount++; });
-
-  var badge = document.getElementById('closing-count-badge');
-  if (closingCount > 0) {
-    badge.textContent = closingCount + ' CLOSING';
-    badge.style.display = 'inline';
-  } else {
-    badge.style.display = 'none';
-  }
-
-  var filtered = allCalls.filter(function(c) {
-    var s = statuses[c.call_id] || 'new';
-    if (currentFilter === 'all') return s !== 'deleted';
-    if (currentFilter === 'new') return s === 'new' || !statuses[c.call_id];
-    return s === currentFilter;
-  });
-
-  document.getElementById('tracker-total').textContent = '(' + filtered.length + ')';
-
+  var filtered = deals.filter(function(d) { return d.stage === dealFilter; });
   if (filtered.length === 0) {
-    document.getElementById('tracker-list').innerHTML = '<div class="call-empty">No calls match this filter.</div>';
+    document.getElementById('deal-list').innerHTML = '<div class="call-empty">No ' + dealFilter + ' deals.</div>';
     return;
   }
 
   var html = '';
-  filtered.forEach(function(c) {
-    var cid = c.call_id;
-    var status = statuses[cid] || 'new';
-    var note = notes[cid] || '';
-    var customName = names[cid] || '';
-    var dur = c.end_timestamp && c.start_timestamp ? Math.round((c.end_timestamp - c.start_timestamp) / 1000) : 0;
-    var an = c.call_analysis || {};
-    var summary = an.call_summary || '';
-    var sentiment = an.user_sentiment || '';
-    var agentName = AGENT_NAMES[c.agent_id] || 'Unknown Agent';
-    var phone = c.from_number || c.to_number || '';
-    var isInbound = c.call_type === 'phone_call' && c.to_number && /903/.test(c.to_number);
-    var callerPhone = isInbound ? c.from_number : c.to_number;
-    var direction = isInbound ? 'Inbound' : 'Outbound';
-    var durStr = dur >= 60 ? Math.floor(dur/60) + 'm ' + (dur%60) + 's' : dur + 's';
-    var when = timeAgo(c.start_timestamp);
-    var cardClass = 'call-card' + (status === 'closing' ? ' closing' : '') + (status === 'deleted' ? ' deleted' : '');
-
-    html += '<div class="' + cardClass + '" id="call-' + cid + '">';
-
-    if (status === 'closing') html += '<span class="call-status-badge closing-badge">CLOSING</span>';
-    if (status === 'deleted') html += '<span class="call-status-badge deleted-badge">DELETED</span>';
-
-    html += '<div class="call-header"><div>';
-    if (customName) html += '<div class="call-name">' + esc(customName) + '</div>';
-    html += '<div class="call-number">' + formatPhone(callerPhone) + '</div>';
-    html += '<div class="call-meta">' + direction + ' &middot; ' + agentName + ' &middot; ' + durStr + ' &middot; ' + when + '</div>';
+  filtered.forEach(function(d) {
+    var stageColors = { active: 'var(--blue)', closing: 'var(--gold)', won: 'var(--green)', lost: 'var(--red)' };
+    var stageColor = stageColors[d.stage] || 'var(--dim)';
+    html += '<div class="deal-card stage-' + d.stage + '">';
+    html += '<div style="display:flex;justify-content:space-between;align-items:flex-start">';
+    html += '<div><div style="font-size:14px;font-weight:700">' + esc(d.name) + '</div>';
+    if (d.contact) html += '<div style="font-size:11px;color:var(--muted)">' + esc(d.contact) + '</div>';
+    if (d.phone) html += '<div style="font-size:11px;color:var(--dim)">' + esc(d.phone) + '</div>';
     html += '</div>';
-    if (sentiment) html += '<span class="call-sentiment ' + sentiment + '">' + sentiment.toUpperCase() + '</span>';
-    html += '</div>';
+    html += '<div style="text-align:right">';
+    html += '<span class="deal-stage" style="color:' + stageColor + ';border:1px solid ' + stageColor + ';background:rgba(0,0,0,.3)">' + d.stage.toUpperCase() + '</span>';
+    html += '<div class="deal-amount" style="margin-top:4px">$' + d.setup + ' + $' + d.monthly + '/mo</div>';
+    html += '</div></div>';
+    html += '<div style="font-size:11px;color:var(--muted);margin-top:4px">' + esc(d.typeName) + ' &middot; Added ' + new Date(d.created).toLocaleDateString() + '</div>';
+    if (d.notes) html += '<div style="font-size:12px;color:var(--muted);margin-top:6px;padding:8px;background:var(--card);border-radius:3px;line-height:1.5">' + esc(d.notes) + '</div>';
 
-    if (summary) html += '<div class="call-summary">' + esc(summary) + '</div>';
+    html += '<textarea class="call-notes" placeholder="Add notes..." onchange="updateDealNotes(\'' + d.id + '\',this.value)">' + esc(d.notes || '') + '</textarea>';
 
-    html += '<input type="text" class="call-notes" placeholder="Add business name..." value="' + esc(customName) + '" onchange="saveCallName(\'' + cid + '\',this.value)" style="margin:4px 0 0;min-height:auto">';
-    html += '<textarea class="call-notes" placeholder="Add notes about this call..." onchange="saveNote(\'' + cid + '\',this.value)">' + esc(note) + '</textarea>';
-
-    if (status !== 'deleted' && status !== 'closing') {
-      html += '<div class="call-actions">';
-      html += '<button class="btn btn-sm" style="background:rgba(46,204,113,.15);color:var(--green);border:1px solid rgba(46,204,113,.3)" onclick="moveToClosing(\'' + cid + '\')">MOVE TO CLOSING</button>';
-      html += '<button class="btn btn-sm btn-red" onclick="deleteLead(\'' + cid + '\')">DELETE LEAD</button>';
-      if (callerPhone) html += '<a class="btn btn-sm btn-outline" href="tel:' + callerPhone + '">CALL BACK</a>';
-      html += '</div>';
-    } else if (status === 'closing') {
-      html += '<div class="call-actions">';
-      html += '<button class="btn btn-sm btn-outline" onclick="undoStatus(\'' + cid + '\')">UNDO</button>';
-      if (callerPhone) html += '<a class="btn btn-sm btn-outline" href="tel:' + callerPhone + '">CALL BACK</a>';
-      html += '</div>';
-    } else if (status === 'deleted') {
-      html += '<div class="call-actions">';
-      html += '<button class="btn btn-sm btn-outline" onclick="undoStatus(\'' + cid + '\')">RESTORE</button>';
-      html += '</div>';
+    html += '<div class="call-actions">';
+    if (d.stage === 'active') {
+      html += '<button class="btn btn-sm" style="background:rgba(201,169,110,.15);color:var(--gold);border:1px solid rgba(201,169,110,.3)" onclick="moveDeal(\'' + d.id + '\',\'closing\')">MOVE TO CLOSING</button>';
+      html += '<button class="btn btn-sm btn-red" onclick="moveDeal(\'' + d.id + '\',\'lost\')">LOST</button>';
     }
-
-    html += '</div>';
+    if (d.stage === 'closing') {
+      html += '<button class="btn btn-sm" style="background:rgba(46,204,113,.15);color:var(--green);border:1px solid rgba(46,204,113,.3)" onclick="moveDeal(\'' + d.id + '\',\'won\')">WON</button>';
+      html += '<button class="btn btn-sm btn-red" onclick="moveDeal(\'' + d.id + '\',\'lost\')">LOST</button>';
+      html += '<button class="btn btn-sm btn-outline" onclick="moveDeal(\'' + d.id + '\',\'active\')">BACK TO ACTIVE</button>';
+    }
+    if (d.stage === 'lost') {
+      html += '<button class="btn btn-sm btn-outline" onclick="moveDeal(\'' + d.id + '\',\'active\')">REOPEN</button>';
+      html += '<button class="btn btn-sm btn-red" onclick="deleteDeal(\'' + d.id + '\')">DELETE</button>';
+    }
+    if (d.stage === 'won') {
+      html += '<button class="btn btn-sm btn-outline" onclick="openChecklist(\'' + d.id + '\')">OPEN CHECKLIST</button>';
+    }
+    if (d.phone) html += '<a class="btn btn-sm btn-outline" href="tel:' + d.phone + '">CALL</a>';
+    html += '</div></div>';
   });
-  document.getElementById('tracker-list').innerHTML = html;
+  document.getElementById('deal-list').innerHTML = html;
 }
 
-function saveNote(callId, val) {
-  var notes = getCallNotes();
-  notes[callId] = val;
-  saveCallNotes(notes);
+function moveDeal(id, newStage) {
+  var deals = getDeals();
+  var deal = deals.find(function(d) { return d.id === id; });
+  if (!deal) return;
+  deal.stage = newStage;
+  deal.history.push({ action: 'moved to ' + newStage, time: new Date().toISOString() });
+  saveDeals(deals);
+  renderDeals();
+  populateChecklistSelect();
+  if (newStage === 'won' || newStage === 'closing') {
+    try {
+      fetch('https://ntfy.sh/bossai-bostonrossall-alerts', {
+        method: 'POST',
+        headers: { 'Title': 'Deal ' + newStage.toUpperCase() + ': ' + deal.name, 'Priority': newStage === 'won' ? '5' : '4', 'Tags': newStage === 'won' ? 'moneybag' : 'star' },
+        body: deal.name + ' — ' + deal.typeName + ' ($' + deal.setup + ')' + (deal.notes ? '\n' + deal.notes : '')
+      });
+    } catch(e) {}
+  }
 }
 
-function saveCallName(callId, val) {
-  var names = getCallNames();
-  names[callId] = val;
-  saveCallNames(names);
-  renderCalls();
+function updateDealNotes(id, val) {
+  var deals = getDeals();
+  var deal = deals.find(function(d) { return d.id === id; });
+  if (deal) { deal.notes = val; saveDeals(deals); }
 }
 
-function moveToClosing(callId) {
-  var statuses = getCallStatuses();
-  statuses[callId] = 'closing';
-  saveCallStatuses(statuses);
-  var names = getCallNames();
-  var call = allCalls.find(function(c) { return c.call_id === callId; });
-  var phone = call ? (call.from_number || call.to_number || '') : '';
-  var name = names[callId] || formatPhone(phone);
-  var notes = getCallNotes();
-  try {
-    fetch('https://ntfy.sh/bossai-bostonrossall-alerts', {
-      method: 'POST',
-      headers: { 'Title': 'Lead moved to CLOSING', 'Priority': '4', 'Tags': 'star' },
-      body: name + ' ' + formatPhone(phone) + (notes[callId] ? ' - ' + notes[callId] : '')
-    });
-  } catch(e) {}
-  renderCalls();
+function deleteDeal(id) {
+  if (!confirm('Permanently delete this deal?')) return;
+  var deals = getDeals().filter(function(d) { return d.id !== id; });
+  saveDeals(deals);
+  renderDeals();
+  populateChecklistSelect();
 }
 
-function deleteLead(callId) {
-  var statuses = getCallStatuses();
-  statuses[callId] = 'deleted';
-  saveCallStatuses(statuses);
-  renderCalls();
-}
-
-function undoStatus(callId) {
-  var statuses = getCallStatuses();
-  delete statuses[callId];
-  saveCallStatuses(statuses);
-  renderCalls();
-}
-
-function filterCalls(filter, btn) {
-  currentFilter = filter;
-  document.querySelectorAll('.call-filter .btn').forEach(function(b) { b.classList.remove('active'); });
+function filterDeals(filter, btn) {
+  dealFilter = filter;
+  document.querySelectorAll('#panel-tracker .call-filter .btn').forEach(function(b) { b.classList.remove('active'); });
   if (btn) btn.classList.add('active');
-  renderCalls();
+  renderDeals();
 }
+
+function openChecklist(dealId) {
+  document.querySelector('[data-tab="checklist"]').click();
+  document.getElementById('checklist-deal-select').value = dealId;
+  loadChecklist(dealId);
+}
+
+// ==================== CHECKLIST TAB ====================
+var currentChecklistDeal = null;
+
+function populateChecklistSelect() {
+  var sel = document.getElementById('checklist-deal-select');
+  var deals = getDeals();
+  var val = sel.value;
+  sel.innerHTML = '<option value="">Choose a deal...</option>';
+  deals.forEach(function(d) {
+    if (d.stage === 'lost') return;
+    sel.innerHTML += '<option value="' + d.id + '">' + esc(d.name) + ' — ' + d.typeName + ' (' + d.stage + ')</option>';
+  });
+  sel.value = val;
+}
+
+function getChecklistData() {
+  try { return JSON.parse(localStorage.getItem('boss_checklists') || '{}'); } catch(e) { return {}; }
+}
+function saveChecklistData(data) { localStorage.setItem('boss_checklists', JSON.stringify(data)); }
+
+function loadChecklist(dealId) {
+  currentChecklistDeal = dealId;
+  var content = document.getElementById('checklist-content');
+  var empty = document.getElementById('checklist-empty');
+  if (!dealId) { content.style.display = 'none'; empty.style.display = 'block'; return; }
+  content.style.display = 'block';
+  empty.style.display = 'none';
+
+  var deals = getDeals();
+  var deal = deals.find(function(d) { return d.id === dealId; });
+  if (!deal) return;
+
+  var data = getChecklistData();
+  var checks = data[dealId] || {};
+  var reqs = checks._reqs || {};
+
+  document.querySelectorAll('.check-item input[type="checkbox"]').forEach(function(cb) {
+    var step = cb.parentElement.dataset.step;
+    cb.checked = !!checks[step];
+    cb.parentElement.classList.toggle('done', !!checks[step]);
+  });
+
+  var reqFields = ['req-biz-name','req-biz-type','req-city','req-phone','req-email','req-url','req-colors','req-services','req-area','req-logo','req-photos','req-notes'];
+  reqFields.forEach(function(fid) {
+    var el = document.getElementById(fid);
+    if (el) el.value = reqs[fid] || '';
+  });
+  var reqPages = ['req-page-home','req-page-about','req-page-services','req-page-contact','req-page-gallery','req-page-reviews'];
+  reqPages.forEach(function(fid) {
+    var el = document.getElementById(fid);
+    if (el) el.checked = !!reqs[fid];
+  });
+  var reqFeats = ['req-feat-form','req-feat-map','req-feat-click','req-feat-reviews','req-feat-booking'];
+  reqFeats.forEach(function(fid) {
+    var el = document.getElementById(fid);
+    if (el) el.checked = !!reqs[fid];
+  });
+
+  if (deal.name && !reqs['req-biz-name']) { document.getElementById('req-biz-name').value = deal.name; }
+  if (deal.phone && !reqs['req-phone']) { document.getElementById('req-phone').value = deal.phone; }
+}
+
+function saveCheck(cb) {
+  if (!currentChecklistDeal) return;
+  var step = cb.parentElement.dataset.step;
+  var data = getChecklistData();
+  if (!data[currentChecklistDeal]) data[currentChecklistDeal] = {};
+  data[currentChecklistDeal][step] = cb.checked;
+  saveChecklistData(data);
+  cb.parentElement.classList.toggle('done', cb.checked);
+}
+
+function saveReq(el) {
+  if (!currentChecklistDeal) return;
+  var data = getChecklistData();
+  if (!data[currentChecklistDeal]) data[currentChecklistDeal] = {};
+  if (!data[currentChecklistDeal]._reqs) data[currentChecklistDeal]._reqs = {};
+  data[currentChecklistDeal]._reqs[el.id] = el.type === 'checkbox' ? el.checked : el.value;
+  saveChecklistData(data);
+}
+
+function generatePhotoLink() {
+  if (!currentChecklistDeal) return;
+  var data = getChecklistData();
+  var reqs = (data[currentChecklistDeal] || {})._reqs || {};
+  var name = reqs['req-biz-name'] || '';
+  var slug = name.toLowerCase().replace(/[^a-z0-9]+/g, '-').replace(/-+$/, '');
+  if (!slug) { alert('Enter a business name in the requirements first.'); return; }
+  var link = 'https://bosssystems.co/photos.html?client=' + slug;
+  navigator.clipboard.writeText(link);
+  showToast('Photo link copied: ' + link);
+}
+
+function markDealWon() {
+  if (!currentChecklistDeal) return;
+  moveDeal(currentChecklistDeal, 'won');
+  showToast('Deal marked as WON!');
+}
+
+// Init deals on load
+renderDeals();
+populateChecklistSelect();
 </script>
 </body>
 </html>
