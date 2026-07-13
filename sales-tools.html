@@ -543,7 +543,7 @@ body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;backgrou
         <h3>Confirmation Text + Monthly Billing</h3>
         <p>Text the client:<br><br>
         <em style="color:var(--text)">"Your website is live at [URL]! Here is what your $39/mo covers: hosting, SSL security, uptime monitoring, and up to 2 content updates per month. Text me anytime if you need changes. Our number: (903) 522-4459"</em><br><br>
-        Then immediately notify the team to set up monthly billing. Hit the button below — it sends all the client details to the team so they can create the $39/month recurring invoice in Square. The client will get an email invoice on the same day each month.</p>
+        Then immediately notify the team to set up monthly billing. Hit the button below — it sends all the client details to the team so they can create the $39/month automatic subscription in Square. The client gets a professional invoice by email each month and can put their card on autopay so it charges automatically. No chasing payments.</p>
         <button class="btn btn-sm btn-gold" id="guide-billing-btn" onclick="notifyBilling()">NOTIFY TEAM — START $39/MO BILLING</button>
         <div id="guide-billing-status" style="display:none;margin-top:8px;font-size:12px"></div>
       </div></div>
@@ -896,6 +896,14 @@ body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;backgrou
           <strong style="color:var(--gold)">Content Updates:</strong> Up to 2 text/photo updates per month. "Change the phone number," "add a new service," "swap out the hero photo." Included.<br>
           <strong style="color:var(--gold)">Domain Connection:</strong> We connect their domain (or Lovable subdomain) and keep DNS working.<br><br>
           <strong>What is NOT included in $39/mo:</strong> Full redesigns, adding new pages, major feature additions, or ongoing SEO campaigns. Those are separate quotes.</p>
+        </div>
+        <div class="learn-card" style="border-color:var(--gold)">
+          <h3>How Monthly Billing Works</h3>
+          <p><strong style="color:var(--gold)">Automatic invoices through Square.</strong> After the site goes live, we set up a subscription in Square. The client gets a professional invoice email each month — looks like any other business invoice, not some janky payment request.<br><br>
+          <strong style="color:var(--gold)">Autopay:</strong> From their first invoice email, the client can save their card and turn on autopay. After that, they are charged automatically on the same day each month. They get an email receipt. Zero effort from anyone.<br><br>
+          <strong style="color:var(--gold)">If they prefer to pay manually:</strong> They can pay each invoice by clicking the link in the email and entering their card. Same professional Square checkout page.<br><br>
+          <strong style="color:var(--gold)">Cancellation:</strong> They text us, we cancel the subscription in Square. No contracts, no cancellation fees, no guilt trips. If you did a good job, they stay. If not, let them go gracefully — angry ex-clients hurt referrals.<br><br>
+          <strong>You do not handle billing directly.</strong> When you click NOTIFY TEAM in the CHECKLIST, the team sets up the subscription. The client deals with Square from that point on.</p>
         </div>
         <div class="learn-card">
           <h3>Revisions Policy</h3>
@@ -1680,7 +1688,7 @@ body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;backgrou
         <label class="check-item" data-step="handoff"><input type="checkbox" onchange="saveCheck(this)"> Handoff message sent</label>
         <div class="deliver-step"><div class="deliver-num">!</div><div><h3>Text the Spouse (MOST IMPORTANT)</h3><p>Ask the owner: "Who else handles your finances? Your wife? Your office manager?" Get their number. Text: "Hi [spouse], this is [you] from BOSS Systems. We just built a website for [business]. Here is the link: [URL]. The monthly charge is $39 for hosting and updates. No contracts, cancel anytime by texting (903) 522-4459." This one text prevents more cancellations than everything else combined.</p></div></div>
         <label class="check-item" data-step="spouse"><input type="checkbox" onchange="saveCheck(this)"> Spouse/bookkeeper notified about $39/mo charge</label>
-        <div class="deliver-step"><div class="deliver-num">11</div><div><h3>Start Monthly Billing</h3><p>Notify the team to create a $39/mo recurring invoice in Square. This must happen before you mark the deal as done. Click the button below to send the notification with all client details.</p></div></div>
+        <div class="deliver-step"><div class="deliver-num">11</div><div><h3>Start Monthly Billing</h3><p>Notify the team to create the $39/mo automatic subscription in Square. The client gets a professional invoice by email each month. They can put their card on autopay. Click the button below to send the notification with all client details.</p></div></div>
         <button class="btn btn-sm btn-gold" onclick="notifyBilling()" style="margin-bottom:8px">NOTIFY TEAM — START $39/MO BILLING</button>
         <div id="checklist-billing-status" style="display:none;margin-top:4px;margin-bottom:8px;font-size:12px"></div>
         <label class="check-item" data-step="billing"><input type="checkbox" onchange="saveCheck(this)"> Monthly billing ($39/mo) set up in Square</label>
@@ -2409,8 +2417,12 @@ function notifyBilling() {
   if (bizType) msg += 'Type: ' + bizType + '\n';
   if (url) msg += 'Website: ' + url + '\n';
   msg += 'Product: Website ($39/mo)\n';
-  msg += 'Action: Create recurring monthly invoice in Square Dashboard\n';
-  if (info.name) msg += 'Rep: ' + info.name;
+  msg += '\nRun this command:\n';
+  msg += 'python3 scripts/square_payments.py subscribe website "' + name + '"';
+  if (email) msg += ' --email ' + email;
+  if (phone) msg += ' --phone ' + phone;
+  msg += '\n';
+  if (info.name) msg += '\nRep: ' + info.name;
 
   fetch('https://ntfy.sh/bossai-bostonrossall-alerts', {
     method: 'POST',
