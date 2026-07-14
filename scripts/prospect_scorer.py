@@ -149,6 +149,15 @@ PAIN_KEYWORDS = [
     "doesn't answer", "doesnt answer", "never returns", "never got a response"
 ]
 
+RESPONSIVE_KEYWORDS = [
+    "answered right away", "picked up immediately", "called me back",
+    "quick to respond", "very responsive", "returned my call",
+    "answered the phone", "always answers", "easy to reach",
+    "great communication", "responded quickly", "prompt response",
+    "got right back to me", "called back quickly", "fast response",
+    "answered my call", "picks up the phone", "reliable communication"
+]
+
 def extract_reviews(reviews):
     parts = []
     for rv in (reviews or []):
@@ -169,19 +178,13 @@ def extract_negative_reviews(reviews):
         elif isinstance(txt, str): parts.append(txt)
     return ' '.join(parts).lower()
 
-def make_opener(pain, has_web, rating, niche, city):
-    if pain:
-        kw = pain[0]
-        if any(w in kw for w in ['answer', 'reach', 'through', 'response', 'responds', 'return']):
-            return f"I noticed a customer left a review saying they had trouble reaching y'all by phone. That's jobs walking out the door — that's exactly what we fix for {niche} businesses."
-        elif 'voicemail' in kw:
-            return f"I saw a review mentioning getting sent to voicemail. Wanted to reach out — every one of those could be a job going to a competitor."
-        elif 'message' in kw or 'called several' in kw:
-            return f"I noticed a review where someone mentioned leaving messages without hearing back. That usually means jobs are slipping through — and that's exactly what we help fix."
-        else:
-            return f"I noticed a review mentioning trouble getting through on the phone. Wanted to reach out because that's the exact problem we fix for {niche} businesses."
+def make_opener(pain, has_web, rating, niche, city, responsive=False, review_count=0):
+    if not has_web and review_count >= 5:
+        return f"I was looking at {niche} businesses in {city} and noticed y'all have great reviews but no website. We build websites for {niche} businesses for $299 — and we already have everything we need from your Google profile to get started."
     elif not has_web:
-        return f"I was looking at {niche} businesses in {city} — noticed y'all don't have a website listed, which means your phone is doing all the work. That's actually our specialty."
+        return f"I was looking at {niche} businesses in {city} — noticed y'all don't have a website. We build professional websites for {niche} businesses for $299, ready in 72 hours."
+    elif responsive:
+        return f"I noticed your customers say you're great at picking up the phone — that's rare for {niche} businesses. We help businesses like yours turn that into more jobs with AI-powered follow-up and scheduling."
     elif rating < 3.8:
         return f"I was looking at {niche} businesses in {city}. Noticed you're at {rating} stars — we help businesses improve that by making sure every call gets answered and every customer gets followed up with."
     else:
@@ -197,19 +200,29 @@ def score_place(p, niche, city):
     rev_count = int(p.get('userRatingCount') or 0)
     has_web = bool(p.get('websiteUri'))
     neg_text = extract_negative_reviews(p.get('reviews', []))
+    all_text = extract_reviews(p.get('reviews', []))
     month = datetime.now().month
 
     score = 0
     signals = []
     pain = []
 
-    # Pain signals — only from verified negative reviews (<=3 stars)
+    # Pain signals — PENALIZE: these businesses won't answer our call either
     for kw in PAIN_KEYWORDS:
         if kw in neg_text:
             pain.append(kw)
-            score += 14
-            signals.append(f"PAIN:'{kw}'")
+            score -= 8
+            signals.append(f"UNREACHABLE_PAIN:'{kw}'")
             if len(pain) >= 2: break
+
+    # Responsive signals — check ALL reviews for reachability proof
+    responsive_signals = []
+    for kw in RESPONSIVE_KEYWORDS:
+        if kw in all_text:
+            responsive_signals.append(kw)
+            score += 12
+            signals.append(f"RESPONSIVE:'{kw}'")
+            if len(responsive_signals) >= 2: break
 
     # Niche tier
     n = niche.lower()
@@ -225,7 +238,7 @@ def score_place(p, niche, city):
         score += 10
         signals.append(f'WEAK_RATING({rating}⭐)')
     elif rating > 4.7 and rev_count > 100:
-        score -= 5  # established, harder sell
+        score -= 8  # established, already have everything
 
     # Size — small operators are the target
     if 5 <= rev_count <= 60:
@@ -238,10 +251,15 @@ def score_place(p, niche, city):
         score -= 12
         signals.append('TOO_ESTABLISHED')
 
-    # No website — unsophisticated, open to simple solutions
+    # No website — #1 signal, clear need BOSS can fill
     if not has_web:
-        score += 8
+        score += 25
         signals.append('NO_WEBSITE')
+
+    # Website-buildable: no website + enough public data to build one
+    if not has_web and rev_count >= 5 and bool(p.get('formattedAddress')):
+        score += 8
+        signals.append('WEBSITE_BUILDABLE')
 
     # Peak season timing
     if any(t in n for t in ['hvac', 'air']) and month in [5, 6, 7, 8]:
@@ -283,11 +301,13 @@ def score_place(p, niche, city):
             est_loss = v
             break
 
-    best_method = "phone"
-    if any(s.startswith('PAIN:') for s in signals):
-        best_method = "walk-in (bring proof)"
-    elif not has_web:
-        best_method = "walk-in"
+    # Best method — lead with phone (website pitch) instead of walk-ins
+    if not has_web:
+        best_method = "phone (website pitch)"
+    elif any('RESPONSIVE' in s for s in signals):
+        best_method = "phone"
+    else:
+        best_method = "phone"
 
     is_field_trade = any(t in n for t in ['hvac', 'plumb', 'electr', 'roof', 'junk', 'lawn', 'pest', 'pool'])
     if is_field_trade:
@@ -308,12 +328,27 @@ def score_place(p, niche, city):
         'rating': rating, 'reviews': rev_count, 'has_web': has_web,
         'score': score, 'tier': tier,
         'signals': signals, 'pain': pain,
-        'opener': make_opener(pain, has_web, rating, niche, city),
+        'opener': make_opener(pain, has_web, rating, niche, city, responsive=bool(responsive_signals), review_count=rev_count),
         'address': p.get('formattedAddress', ''),
         'niche': niche, 'city': city,
         'est_annual_loss': est_loss,
         'best_contact_time': best_time,
-        'best_contact_method': best_method
+        'best_contact_method': best_method,
+        'website_buildable': not has_web and rev_count >= 5 and bool(p.get('formattedAddress')),
+        'responsive': bool(responsive_signals),
+        'google_data': {
+            'name': p.get('displayName', {}).get('text', ''),
+            'address': p.get('formattedAddress', ''),
+            'rating': rating,
+            'review_count': rev_count,
+            'reviews': [{'text': rv.get('text', {}).get('text', '') if isinstance(rv.get('text'), dict) else rv.get('text', ''), 'rating': rv.get('rating', 5)} for rv in (p.get('reviews', []))[:5]],
+            'phone': phone,
+            'niche': niche,
+            'city': city,
+            'primary_type': p.get('primaryType', ''),
+            'opening_hours': p.get('currentOpeningHours', {}),
+            'photos': len(p.get('photos', []))
+        }
     }
 
 def hunt(niche, city, verbose=True):
@@ -325,7 +360,7 @@ def hunt(niche, city, verbose=True):
 
     h = {
         "X-Goog-Api-Key": GKEY,
-        "X-Goog-FieldMask": "places.displayName,places.nationalPhoneNumber,places.rating,places.userRatingCount,places.websiteUri,places.reviews,places.formattedAddress",
+        "X-Goog-FieldMask": "places.displayName,places.nationalPhoneNumber,places.rating,places.userRatingCount,places.websiteUri,places.reviews,places.formattedAddress,places.currentOpeningHours,places.primaryType,places.photos",
         "Content-Type": "application/json"
     }
     r = requests.post("https://places.googleapis.com/v1/places:searchText",

@@ -144,8 +144,24 @@ def build_report():
                 "score": l.get("score", 0),
                 "route": l.get("route", ""),
                 "status": l.get("status", ""),
+                "phone": l.get("phone", ""),
             }
-            for l in sorted(leads, key=lambda x: -x.get("score", 0))[:10]
+            for l in sorted(leads, key=lambda x: -x.get("score", 0))[:20]
+        ],
+        "hot_leads": [
+            {
+                "name": next((ld.get("business_name", "") for ld in leads if ld.get("lead_id") == o.get("lead_id")), ""),
+                "phone": next((ld.get("phone", "") for ld in leads if ld.get("lead_id") == o.get("lead_id")), ""),
+                "outcome": o.get("outcome", ""),
+                "duration": o.get("call_duration_sec", 0),
+                "date": o.get("recorded_at", "")[:10],
+                "signals": o.get("signals_hit", [])[:3],
+            }
+            for o in sorted(
+                [x for x in outcomes if x.get("outcome") in ("meeting_set", "callback", "closed")],
+                key=lambda x: x.get("recorded_at", ""),
+                reverse=True,
+            )[:10]
         ],
     }
 
@@ -382,6 +398,103 @@ def update_boss_state(report):
     boss_state_path.write_text(json.dumps(boss_state, indent=2, default=str) + "\n")
 
 
+def build_sales_data():
+    """Build sales_data.json for the sales tools dashboard."""
+    queue = load_json(ATLAS_DIR / "leads_queue.json", {"leads": []})
+    leads = queue.get("leads", [])
+    outcomes_data = load_json(ATLAS_DIR / "outcomes.json", {"outcomes": []})
+    outcomes = outcomes_data if isinstance(outcomes_data, list) else outcomes_data.get("outcomes", [])
+
+    callable_statuses = {"queued", "re_engaged", "cold", "callback", "called"}
+    callable_leads = sorted(
+        [l for l in leads if l.get("status") in callable_statuses],
+        key=lambda x: -x.get("score", 0),
+    )
+
+    def fmt_phone(p):
+        p = str(p).strip()
+        if len(p) == 10 and p.isdigit():
+            return f"({p[:3]}) {p[3:6]}-{p[6:]}"
+        return p
+
+    # Build outcome lookup for last-contact info
+    outcome_by_lead = {}
+    for o in sorted(outcomes, key=lambda x: x.get("recorded_at", "")):
+        lid = o.get("lead_id", "")
+        if lid:
+            outcome_by_lead[lid] = {
+                "last_outcome": o.get("outcome", ""),
+                "last_contact": o.get("recorded_at", "")[:10],
+            }
+
+    call_list = []
+    for l in callable_leads[:200]:
+        phone = l.get("phone", "")
+        if not phone or len(str(phone).strip()) < 10:
+            continue
+        lid = l.get("lead_id", "")
+        contact_info = outcome_by_lead.get(lid, {})
+        call_list.append({
+            "name": l.get("business_name", "")[:40],
+            "phone": fmt_phone(phone),
+            "phone_raw": str(phone).strip(),
+            "niche": l.get("niche", ""),
+            "city": l.get("area", ""),
+            "state": l.get("state", ""),
+            "tier": l.get("tier", ""),
+            "score": l.get("score", 0),
+            "status": l.get("status", ""),
+            "signals": l.get("signals_hit", [])[:3],
+            "rating": l.get("rating", 0),
+            "review_count": l.get("review_count", 0),
+            "last_contact": contact_info.get("last_contact", ""),
+            "last_outcome": contact_info.get("last_outcome", ""),
+        })
+
+    hot_outcomes = []
+    seen_phones = set()
+    for o in sorted(outcomes, key=lambda x: x.get("recorded_at", ""), reverse=True):
+        if o.get("outcome") in ("meeting_set", "callback", "closed"):
+            lead_match = next((ld for ld in leads if ld.get("lead_id") == o.get("lead_id")), {})
+            phone = lead_match.get("phone", "")
+            raw = str(phone).strip()
+            name = lead_match.get("business_name", o.get("lead_id", ""))[:40]
+            if not raw or len(raw) < 10 or not name or len(name) < 3:
+                continue
+            if raw in seen_phones:
+                continue
+            seen_phones.add(raw)
+            hot_outcomes.append({
+                "name": name,
+                "phone": fmt_phone(phone) if phone else "",
+                "phone_raw": raw,
+                "outcome": o.get("outcome", ""),
+                "date": o.get("recorded_at", "")[:10],
+                "niche": lead_match.get("niche", ""),
+                "city": lead_match.get("area", ""),
+            })
+            if len(hot_outcomes) >= 15:
+                break
+
+    by_status = {}
+    for l in leads:
+        s = l.get("status", "unknown")
+        by_status[s] = by_status.get(s, 0) + 1
+
+    return {
+        "generated": datetime.now(timezone.utc).isoformat(),
+        "summary": {
+            "total_leads": len(leads),
+            "callable": len([l for l in leads if l.get("status") in callable_statuses]),
+            "by_status": by_status,
+            "meetings_set": len([o for o in outcomes if o.get("outcome") == "meeting_set"]),
+            "callbacks": len([o for o in outcomes if o.get("outcome") == "callback"]),
+        },
+        "call_list": call_list,
+        "hot_outcomes": hot_outcomes,
+    }
+
+
 def main():
     print("=" * 60)
     print("  BOSS OPS REPORT — Generating...")
@@ -395,6 +508,11 @@ def main():
 
     update_boss_state(report)
     print("  boss_state.json updated with sales_activity")
+
+    sales_data = build_sales_data()
+    sales_path = BASE_DIR / "sales_data.json"
+    sales_path.write_text(json.dumps(sales_data, indent=2, default=str) + "\n", encoding="utf-8")
+    print(f"  sales_data.json: {len(sales_data['call_list'])} callable leads")
 
     s = report["sections"]
     print(f"\n  ATLAS: Heat {s['atlas']['heat_score']}/100, "
@@ -413,6 +531,7 @@ def main():
     if not local_only:
         push_to_github(report)
         push_file_to_github(ATLAS_DIR / "boss_intel.json", "boss_intel.json")
+        push_file_to_github(sales_path, "sales_data.json")
 
     print("\n" + "=" * 60)
 

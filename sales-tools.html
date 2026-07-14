@@ -998,6 +998,11 @@ body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;backgrou
         <div class="stat"><div class="stat-val" id="stat-callbacks">--</div><div class="stat-label">Callbacks</div></div>
         <div class="stat"><div class="stat-val" id="stat-total">--</div><div class="stat-label">Total Leads</div></div>
       </div>
+      <div style="display:flex;align-items:center;gap:12px;margin-bottom:14px;flex-wrap:wrap">
+        <button id="refill-btn" class="btn" onclick="refillPipeline()" style="background:#C9A84C;color:#080808;font-family:'SF Mono',SFMono-Regular,Menlo,monospace;font-size:12px;font-weight:800;letter-spacing:2px;padding:10px 20px;border:none;cursor:pointer;border-radius:3px;transition:opacity .2s">REFILL PIPELINE</button>
+        <span style="font-size:11px;color:var(--dim)">Fills pipeline to 200 no-website leads</span>
+        <span id="refill-msg" style="font-size:11px;color:var(--green);display:none"></span>
+      </div>
       <div id="call-list"></div>
     </div>
 
@@ -2858,6 +2863,44 @@ function markDealWon() {
 // Init deals on load
 renderDeals();
 populateChecklistSelect();
+
+// REFILL PIPELINE
+function refillPipeline() {
+  var btn = document.getElementById('refill-btn');
+  var msg = document.getElementById('refill-msg');
+  if (btn.disabled) return;
+  btn.disabled = true;
+  btn.style.opacity = '0.5';
+  btn.textContent = 'SENDING...';
+  msg.style.display = 'none';
+  fetch('https://ntfy.sh/bossai-bostonrossall-alerts', {
+    method: 'POST',
+    body: 'REFILL PIPELINE: Sales guy needs 200 more website leads. Run: cd ~/Desktop/BOSS_HQ && source scripts/config.sh && python3 scripts/fill_website_leads.py && python3 scripts/ops_report.py'
+  }).then(function() {
+    msg.textContent = 'Refill requested. Pipeline will be refreshed shortly.';
+    msg.style.display = 'inline';
+    btn.textContent = 'SENT';
+    var sec = 60;
+    var timer = setInterval(function() {
+      sec--;
+      btn.textContent = 'WAIT ' + sec + 's';
+      if (sec <= 0) {
+        clearInterval(timer);
+        btn.disabled = false;
+        btn.style.opacity = '1';
+        btn.textContent = 'REFILL PIPELINE';
+        msg.style.display = 'none';
+      }
+    }, 1000);
+  }).catch(function() {
+    msg.textContent = 'Failed to send. Check connection.';
+    msg.style.color = 'var(--red)';
+    msg.style.display = 'inline';
+    btn.disabled = false;
+    btn.style.opacity = '1';
+    btn.textContent = 'REFILL PIPELINE';
+  });
+}
 </script>
 </body>
 </html>
