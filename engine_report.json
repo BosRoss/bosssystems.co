@@ -1,36 +1,20 @@
 {
-  "generated": "2026-07-14T11:10:16.822031+00:00",
+  "generated": "2026-07-14T14:45:27.971776+00:00",
   "engine_state": "active",
   "signals": [
     {
       "type": "flood",
-      "area": "Uvalde, TX",
+      "area": "Edwards, TX; Kinney, TX; Val Verde, TX",
       "niche": "plumbing",
-      "action": "Flood warnings in Uvalde, TX. Plumbers, restoration, mold companies will spike.",
+      "action": "Flood warnings in Edwards, TX; Kinney, TX; Val Verde, TX. Plumbers, restoration, mold companies will spike.",
       "urgency": "today",
       "pitch_hook": "Water damage calls are coming. Every one you miss is $500+ walking away."
     },
     {
       "type": "flood",
-      "area": "Jefferson, TX",
+      "area": "Pecos, TX; Terrell, TX",
       "niche": "plumbing",
-      "action": "Flood warnings in Jefferson, TX. Plumbers, restoration, mold companies will spike.",
-      "urgency": "today",
-      "pitch_hook": "Water damage calls are coming. Every one you miss is $500+ walking away."
-    },
-    {
-      "type": "flood",
-      "area": "Leon, TX",
-      "niche": "plumbing",
-      "action": "Flood warnings in Leon, TX. Plumbers, restoration, mold companies will spike.",
-      "urgency": "today",
-      "pitch_hook": "Water damage calls are coming. Every one you miss is $500+ walking away."
-    },
-    {
-      "type": "flood",
-      "area": "Galveston, TX",
-      "niche": "plumbing",
-      "action": "Flood warnings in Galveston, TX. Plumbers, restoration, mold companies will spike.",
+      "action": "Flood warnings in Pecos, TX; Terrell, TX. Plumbers, restoration, mold companies will spike.",
       "urgency": "today",
       "pitch_hook": "Water damage calls are coming. Every one you miss is $500+ walking away."
     },
@@ -44,41 +28,57 @@
     },
     {
       "type": "flood",
-      "area": "Schleicher, TX; Sutton, TX",
+      "area": "Matagorda, TX; Wharton, TX",
       "niche": "plumbing",
-      "action": "Flood warnings in Schleicher, TX; Sutton, TX. Plumbers, restoration, mold companies will spike.",
+      "action": "Flood warnings in Matagorda, TX; Wharton, TX. Plumbers, restoration, mold companies will spike.",
       "urgency": "today",
       "pitch_hook": "Water damage calls are coming. Every one you miss is $500+ walking away."
     },
     {
       "type": "flood",
-      "area": "Crockett, TX",
+      "area": "Val Verde, TX",
       "niche": "plumbing",
-      "action": "Flood warnings in Crockett, TX. Plumbers, restoration, mold companies will spike.",
+      "action": "Flood warnings in Val Verde, TX. Plumbers, restoration, mold companies will spike.",
       "urgency": "today",
       "pitch_hook": "Water damage calls are coming. Every one you miss is $500+ walking away."
     },
     {
       "type": "flood",
-      "area": "Schleicher, TX",
+      "area": "Brazos, TX; Burleson, TX; Grimes, TX; Montgomery, TX; Waller, TX; Washington, TX",
       "niche": "plumbing",
-      "action": "Flood warnings in Schleicher, TX. Plumbers, restoration, mold companies will spike.",
+      "action": "Flood warnings in Brazos, TX; Burleson, TX; Grimes, TX; Montgomery, TX; Waller, TX; Washington, TX. Plumbers, restoration, mold companies will spike.",
       "urgency": "today",
       "pitch_hook": "Water damage calls are coming. Every one you miss is $500+ walking away."
     },
     {
       "type": "flood",
-      "area": "Bexar, TX; Comal, TX",
+      "area": "Webb",
       "niche": "plumbing",
-      "action": "Flood warnings in Bexar, TX; Comal, TX. Plumbers, restoration, mold companies will spike.",
+      "action": "Flood warnings in Webb. Plumbers, restoration, mold companies will spike.",
       "urgency": "today",
       "pitch_hook": "Water damage calls are coming. Every one you miss is $500+ walking away."
     },
     {
       "type": "flood",
-      "area": "Kimble, TX; Menard, TX; Schleicher, TX; Sutton, TX",
+      "area": "Fayette, TX; Lee, TX",
       "niche": "plumbing",
-      "action": "Flood warnings in Kimble, TX; Menard, TX; Schleicher, TX; Sutton, TX. Plumbers, restoration, mold companies will spike.",
+      "action": "Flood warnings in Fayette, TX; Lee, TX. Plumbers, restoration, mold companies will spike.",
+      "urgency": "today",
+      "pitch_hook": "Water damage calls are coming. Every one you miss is $500+ walking away."
+    },
+    {
+      "type": "flood",
+      "area": "Concordia, LA; Adams, MS; Wilkinson, MS",
+      "niche": "plumbing",
+      "action": "Flood warnings in Concordia, LA; Adams, MS; Wilkinson, MS. Plumbers, restoration, mold companies will spike.",
+      "urgency": "today",
+      "pitch_hook": "Water damage calls are coming. Every one you miss is $500+ walking away."
+    },
+    {
+      "type": "flood",
+      "area": "Jackson, AR; Woodruff, AR",
+      "niche": "plumbing",
+      "action": "Flood warnings in Jackson, AR; Woodruff, AR. Plumbers, restoration, mold companies will spike.",
       "urgency": "today",
       "pitch_hook": "Water damage calls are coming. Every one you miss is $500+ walking away."
     }
@@ -88,6 +88,15 @@
       "name": "roofing contractor",
       "city": "MS",
       "score": 83,
+      "tier": "SUPERNICHE",
+      "channel": "watchlist",
+      "sequence_status": "queued",
+      "trigger": "market_sweep"
+    },
+    {
+      "name": "law firm",
+      "city": "AR",
+      "score": 80,
       "tier": "SUPERNICHE",
       "channel": "watchlist",
       "sequence_status": "queued",
@@ -209,28 +218,19 @@
       "channel": "watchlist",
       "sequence_status": "queued",
       "trigger": "market_sweep"
-    },
-    {
-      "name": "electrician",
-      "city": "MS",
-      "score": 61,
-      "tier": "SUPERNICHE",
-      "channel": "call_queue",
-      "sequence_status": "queued",
-      "trigger": ""
     }
   ],
   "kpis": {
     "signals_firing": 10,
-    "leads_superniche": 50,
-    "leads_hot": 150,
+    "leads_superniche": 53,
+    "leads_hot": 147,
     "leads_warm": 0,
-    "cost_per_qualified": 1.15,
-    "total_spend": 57.40799999999722,
+    "cost_per_qualified": 1.14,
+    "total_spend": 60.479999999996885,
     "spend_cap": 300.0
   },
   "channels": {
-    "emails_sent": 267,
+    "emails_sent": 271,
     "texts_sent": 8,
     "calls_made": 0,
     "meetings_set": 10,
@@ -239,55 +239,55 @@
   "feeds": [
     {
       "name": "NOAA",
-      "last_hit": "2026-07-14T11:03:11.335780+00:00",
+      "last_hit": "2026-07-14T14:16:41.469227+00:00",
       "status": "yellow",
       "data_points_today": 0
     },
     {
       "name": "REDDIT",
-      "last_hit": "2026-07-14T11:03:11.335780+00:00",
+      "last_hit": "2026-07-14T14:16:41.469227+00:00",
       "status": "green",
-      "data_points_today": 30
+      "data_points_today": 15
     },
     {
       "name": "USGS",
-      "last_hit": "2026-07-14T11:03:11.335780+00:00",
+      "last_hit": "2026-07-14T14:16:41.469227+00:00",
       "status": "yellow",
       "data_points_today": 0
     },
     {
       "name": "HACKERNEWS",
-      "last_hit": "2026-07-14T11:03:11.335780+00:00",
+      "last_hit": "2026-07-14T14:16:41.469227+00:00",
       "status": "green",
       "data_points_today": 30
     },
     {
       "name": "FEMA",
-      "last_hit": "2026-07-14T11:03:11.335780+00:00",
+      "last_hit": "2026-07-14T14:16:41.469227+00:00",
       "status": "green",
       "data_points_today": 20
     },
     {
       "name": "COMMODITIES",
-      "last_hit": "2026-07-14T11:03:11.335780+00:00",
+      "last_hit": "2026-07-14T14:16:41.469227+00:00",
       "status": "green",
       "data_points_today": 7
     },
     {
       "name": "RSS",
-      "last_hit": "2026-07-14T11:03:11.335780+00:00",
+      "last_hit": "2026-07-14T14:16:41.469227+00:00",
       "status": "green",
-      "data_points_today": 730
+      "data_points_today": 747
     },
     {
       "name": "FRED",
-      "last_hit": "2026-07-14T11:03:11.335780+00:00",
+      "last_hit": "2026-07-14T14:16:41.469227+00:00",
       "status": "yellow",
       "data_points_today": 0
     },
     {
       "name": "BLS",
-      "last_hit": "2026-07-14T11:03:11.335780+00:00",
+      "last_hit": "2026-07-14T14:16:41.469227+00:00",
       "status": "green",
       "data_points_today": 9
     }
@@ -295,7 +295,7 @@
   "conversion_funnel": {
     "signals": 10,
     "leads": 200,
-    "contacted": 275,
+    "contacted": 279,
     "replied": 10,
     "meeting": 10,
     "close": 0
