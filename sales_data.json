@@ -1,12 +1,12 @@
 {
-  "generated": "2026-07-14T04:11:55.810844+00:00",
+  "generated": "2026-07-14T04:16:37.942089+00:00",
   "summary": {
-    "total_leads": 148,
-    "callable": 106,
+    "total_leads": 70,
+    "callable": 46,
     "by_status": {
-      "called": 42,
-      "re_engaged": 51,
-      "queued": 55
+      "called": 24,
+      "re_engaged": 28,
+      "queued": 18
     },
     "meetings_set": 10,
     "callbacks": 8
@@ -71,86 +71,6 @@
       "review_count": 0,
       "last_contact": "2026-06-10",
       "last_outcome": "call_initiated"
-    },
-    {
-      "name": "Jeff's Plumbing",
-      "phone": "(580) 256-8110",
-      "phone_raw": "5802568110",
-      "niche": "plumbing",
-      "city": "Woodward OK",
-      "state": "OK",
-      "tier": "WARM",
-      "score": 48,
-      "status": "re_engaged",
-      "signals": [
-        "ATLAS_WEATHER(flood)",
-        "NO_CAPACITY_SURGE",
-        "UNREACHABLE('voicemail')"
-      ],
-      "rating": 0,
-      "review_count": 0,
-      "last_contact": "2026-06-25",
-      "last_outcome": "call_initiated"
-    },
-    {
-      "name": "Stanley Graves Plumbing Co",
-      "phone": "(601) 847-0183",
-      "phone_raw": "6018470183",
-      "niche": "plumbing",
-      "city": "Warren MS",
-      "state": "MS",
-      "tier": "WARM",
-      "score": 48,
-      "status": "re_engaged",
-      "signals": [
-        "ATLAS_WEATHER(flood)",
-        "NO_CAPACITY_SURGE",
-        "UNREACHABLE('no answer')"
-      ],
-      "rating": 0,
-      "review_count": 0,
-      "last_contact": "2026-06-27",
-      "last_outcome": "hangup"
-    },
-    {
-      "name": "Brico Plumbing",
-      "phone": "(870) 490-1424",
-      "phone_raw": "8704901424",
-      "niche": "plumbing",
-      "city": "Baxter AR",
-      "state": "AR",
-      "tier": "WARM",
-      "score": 48,
-      "status": "queued",
-      "signals": [
-        "ATLAS_WEATHER(flood)",
-        "NO_CAPACITY_SURGE",
-        "UNREACHABLE('no answer')"
-      ],
-      "rating": 0,
-      "review_count": 0,
-      "last_contact": "",
-      "last_outcome": ""
-    },
-    {
-      "name": "Lonnie's Plumbing",
-      "phone": "(918) 434-2612",
-      "phone_raw": "9184342612",
-      "niche": "plumber",
-      "city": "Mayes OK",
-      "state": "OK",
-      "tier": "WARM",
-      "score": 48,
-      "status": "queued",
-      "signals": [
-        "ATLAS_WEATHER(flood)",
-        "NO_CAPACITY_SURGE",
-        "UNREACHABLE('no answer')"
-      ],
-      "rating": 0,
-      "review_count": 0,
-      "last_contact": "",
-      "last_outcome": ""
     },
     {
       "name": "M&M Plumbing Services, LLC",
@@ -293,26 +213,6 @@
       "last_outcome": "call_initiated"
     },
     {
-      "name": "Jackson Heating And Cooling",
-      "phone": "(601) 610-9690",
-      "phone_raw": "6016109690",
-      "niche": "HVAC contractor",
-      "city": "Jackson MS",
-      "state": "MS",
-      "tier": "WARM",
-      "score": 45,
-      "status": "re_engaged",
-      "signals": [
-        "ATLAS_WEATHER(flood)",
-        "NO_CAPACITY_SURGE",
-        "UNREACHABLE('voicemail')"
-      ],
-      "rating": 0,
-      "review_count": 0,
-      "last_contact": "",
-      "last_outcome": ""
-    },
-    {
       "name": "Chris's Heating & Air",
       "phone": "(580) 775-3819",
       "phone_raw": "5807753819",
@@ -391,86 +291,6 @@
       "review_count": 0,
       "last_contact": "2026-06-12",
       "last_outcome": "call_initiated"
-    },
-    {
-      "name": "Anderson Plumbing LLC",
-      "phone": "(228) 697-8926",
-      "phone_raw": "2286978926",
-      "niche": "plumbing",
-      "city": "Harrison MS",
-      "state": "MS",
-      "tier": "WARM",
-      "score": 42,
-      "status": "re_engaged",
-      "signals": [
-        "ATLAS_WEATHER(flood)",
-        "NO_CAPACITY_SURGE",
-        "UNREACHABLE('voicemail')"
-      ],
-      "rating": 0,
-      "review_count": 0,
-      "last_contact": "2026-07-03",
-      "last_outcome": "call_initiated"
-    },
-    {
-      "name": "patriot plumbing",
-      "phone": "(870) 559-2623",
-      "phone_raw": "8705592623",
-      "niche": "plumber",
-      "city": "Crittenden AR",
-      "state": "AR",
-      "tier": "WARM",
-      "score": 42,
-      "status": "queued",
-      "signals": [
-        "ATLAS_WEATHER(storm)",
-        "NO_CAPACITY_SURGE",
-        "UNREACHABLE('voicemail')"
-      ],
-      "rating": 0,
-      "review_count": 0,
-      "last_contact": "",
-      "last_outcome": ""
-    },
-    {
-      "name": "Plumber",
-      "phone": "(479) 900-4512",
-      "phone_raw": "4799004512",
-      "niche": "plumbing",
-      "city": "Washington AR",
-      "state": "AR",
-      "tier": "WARM",
-      "score": 42,
-      "status": "queued",
-      "signals": [
-        "ATLAS_WEATHER(flood)",
-        "NO_CAPACITY_SURGE",
-        "UNREACHABLE('no answer')"
-      ],
-      "rating": 0,
-      "review_count": 0,
-      "last_contact": "",
-      "last_outcome": ""
-    },
-    {
-      "name": "Plumbing Armontrout",
-      "phone": "(918) 825-3644",
-      "phone_raw": "9188253644",
-      "niche": "plumber",
-      "city": "Mayes OK",
-      "state": "OK",
-      "tier": "WARM",
-      "score": 42,
-      "status": "queued",
-      "signals": [
-        "ATLAS_WEATHER(flood)",
-        "NO_CAPACITY_SURGE",
-        "UNREACHABLE('no response')"
-      ],
-      "rating": 0,
-      "review_count": 0,
-      "last_contact": "",
-      "last_outcome": ""
     },
     {
       "name": "McCool's Air Tech",
@@ -1111,144 +931,7 @@
       "review_count": 0,
       "last_contact": "",
       "last_outcome": ""
-    },
-    {
-      "name": "Jimmy's Plumbing",
-      "phone": "(870) 251-1595",
-      "phone_raw": "8702511595",
-      "niche": "plumber",
-      "city": "Batesville AR",
-      "state": "AR",
-      "tier": "WARM",
-      "score": 38,
-      "status": "re_engaged",
-      "signals": [
-        "UNREACHABLE('never responded')",
-        "WEAK_RATING_REACH(3.3)",
-        "NO_WEBSITE"
-      ],
-      "rating": 0,
-      "review_count": 0,
-      "last_contact": "2026-06-10",
-      "last_outcome": "call_initiated"
-    },
-    {
-      "name": "Candela Roofing Corp.",
-      "phone": "(325) 227-6825",
-      "phone_raw": "3252276825",
-      "niche": "roofing contractor",
-      "city": "San Angelo TX",
-      "state": "",
-      "tier": "WARM",
-      "score": 38,
-      "status": "queued",
-      "signals": [
-        "UNREACHABLE('voicemail')",
-        "WEAK_RATING_REACH(3.9)",
-        "NO_WEBSITE"
-      ],
-      "rating": 0,
-      "review_count": 0,
-      "last_contact": "",
-      "last_outcome": ""
-    },
-    {
-      "name": "Dill's Plumbing Repair Services",
-      "phone": "(662) 323-5821",
-      "phone_raw": "6623235821",
-      "niche": "plumber",
-      "city": "Starkville MS",
-      "state": "MS",
-      "tier": "WARM",
-      "score": 38,
-      "status": "queued",
-      "signals": [
-        "UNREACHABLE('voicemail')",
-        "WEAK_RATING_REACH(3.1)",
-        "NO_WEBSITE"
-      ],
-      "rating": 0,
-      "review_count": 0,
-      "last_contact": "",
-      "last_outcome": ""
-    },
-    {
-      "name": "Vassar Plumbing",
-      "phone": "(423) 623-5899",
-      "phone_raw": "4236235899",
-      "niche": "plumber",
-      "city": "Cocke TN",
-      "state": "TN",
-      "tier": "WARM",
-      "score": 36,
-      "status": "queued",
-      "signals": [
-        "ATLAS_WEATHER(flood)",
-        "NO_CAPACITY_SURGE",
-        "UNREACHABLE('no response')"
-      ],
-      "rating": 0,
-      "review_count": 0,
-      "last_contact": "",
-      "last_outcome": ""
-    },
-    {
-      "name": "Tolbert Plumbing And Electric",
-      "phone": "(731) 234-6012",
-      "phone_raw": "7312346012",
-      "niche": "plumber",
-      "city": "Dyer TN",
-      "state": "TN",
-      "tier": "WARM",
-      "score": 36,
-      "status": "queued",
-      "signals": [
-        "ATLAS_WEATHER(flood)",
-        "NO_CAPACITY_SURGE",
-        "UNREACHABLE('no response')"
-      ],
-      "rating": 0,
-      "review_count": 0,
-      "last_contact": "",
-      "last_outcome": ""
     }
   ],
-  "hot_outcomes": [
-    {
-      "name": "George Electric Plumbing & HVAC",
-      "phone": "(662) 428-6413",
-      "phone_raw": "6624286413",
-      "outcome": "callback",
-      "date": "2026-06-27",
-      "niche": "plumbing",
-      "city": "George MS"
-    },
-    {
-      "name": "Anderson Plumbing LLC",
-      "phone": "(228) 697-8926",
-      "phone_raw": "2286978926",
-      "outcome": "callback",
-      "date": "2026-06-27",
-      "niche": "plumbing",
-      "city": "Harrison MS"
-    },
-    {
-      "name": "CARL RAY'S PLUMBING AND SUPPLIES",
-      "phone": "(918) 647-7189",
-      "phone_raw": "9186477189",
-      "outcome": "meeting_set",
-      "date": "2026-06-27",
-      "niche": "plumber",
-      "city": "Le Flore OK"
-    },
-    {
-      "name": "Pinner Plumbing & Heating Inc",
-      "phone": "(870) 234-1667",
-      "phone_raw": "8702341667",
-      "outcome": "meeting_set",
-      "date": "2026-06-27",
-      "niche": "plumbing",
-      "city": "Jackson AR"
-    }
-  ]
+  "hot_outcomes": []
 }
