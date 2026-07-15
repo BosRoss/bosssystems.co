@@ -1,7 +1,39 @@
 {
-  "generated": "2026-07-15T19:23:21.250197+00:00",
+  "generated": "2026-07-15T21:31:07.589191+00:00",
   "engine_state": "active",
   "signals": [
+    {
+      "type": "storm",
+      "area": "Bexar, TX",
+      "niche": "roofing",
+      "action": "Storm damage in Bexar, TX. Roofers and restoration companies about to get flooded.",
+      "urgency": "today",
+      "pitch_hook": "After a storm like that, you'll get 10x your normal call volume. Ready for it?"
+    },
+    {
+      "type": "flood",
+      "area": "Medina, TX",
+      "niche": "plumbing",
+      "action": "Flood warnings in Medina, TX. Plumbers, restoration, mold companies will spike.",
+      "urgency": "today",
+      "pitch_hook": "Water damage calls are coming. Every one you miss is $500+ walking away."
+    },
+    {
+      "type": "flood",
+      "area": "Jackson, TX; Wharton, TX",
+      "niche": "plumbing",
+      "action": "Flood warnings in Jackson, TX; Wharton, TX. Plumbers, restoration, mold companies will spike.",
+      "urgency": "today",
+      "pitch_hook": "Water damage calls are coming. Every one you miss is $500+ walking away."
+    },
+    {
+      "type": "flood",
+      "area": "Bandera, TX; Kendall, TX",
+      "niche": "plumbing",
+      "action": "Flood warnings in Bandera, TX; Kendall, TX. Plumbers, restoration, mold companies will spike.",
+      "urgency": "today",
+      "pitch_hook": "Water damage calls are coming. Every one you miss is $500+ walking away."
+    },
     {
       "type": "flood",
       "area": "Bandera, TX; Real, TX",
@@ -20,41 +52,17 @@
     },
     {
       "type": "flood",
-      "area": "Bexar, TX; Guadalupe, TX",
+      "area": "Boone, AR; Marion, AR",
       "niche": "plumbing",
-      "action": "Flood warnings in Bexar, TX; Guadalupe, TX. Plumbers, restoration, mold companies will spike.",
+      "action": "Flood warnings in Boone, AR; Marion, AR. Plumbers, restoration, mold companies will spike.",
       "urgency": "today",
       "pitch_hook": "Water damage calls are coming. Every one you miss is $500+ walking away."
     },
     {
       "type": "flood",
-      "area": "Brown, TX; Coleman, TX; McCulloch, TX; Mason, TX; San Saba, TX",
+      "area": "Pope, AR",
       "niche": "plumbing",
-      "action": "Flood warnings in Brown, TX; Coleman, TX; McCulloch, TX; Mason, TX; San Saba, TX. Plumbers, restoration, mold companies will spike.",
-      "urgency": "today",
-      "pitch_hook": "Water damage calls are coming. Every one you miss is $500+ walking away."
-    },
-    {
-      "type": "flood",
-      "area": "Llano; Burnet; Williamson; Val Verde; Edwards; Real; Kerr; Bandera; Gillespie; Kendall; Blanco; Hays; Travis; Kinney; Uvalde; Medina; Bexar; Comal; Guadalupe; Maverick; Zavala; Frio; Dimmit",
-      "niche": "plumbing",
-      "action": "Flood warnings in Llano; Burnet; Williamson; Val Verde; Edwards; Real; Kerr; Bandera; Gillespie; Kendall; Blanco; Hays; Travis; Kinney; Uvalde; Medina; Bexar; Comal; Guadalupe; Maverick; Zavala; Frio; Dimmit. Plumbers, restoration, mold companies will spike.",
-      "urgency": "today",
-      "pitch_hook": "Water damage calls are coming. Every one you miss is $500+ walking away."
-    },
-    {
-      "type": "flood",
-      "area": "Jackson, TX; Wharton, TX",
-      "niche": "plumbing",
-      "action": "Flood warnings in Jackson, TX; Wharton, TX. Plumbers, restoration, mold companies will spike.",
-      "urgency": "today",
-      "pitch_hook": "Water damage calls are coming. Every one you miss is $500+ walking away."
-    },
-    {
-      "type": "flood",
-      "area": "Medina, TX",
-      "niche": "plumbing",
-      "action": "Flood warnings in Medina, TX. Plumbers, restoration, mold companies will spike.",
+      "action": "Flood warnings in Pope, AR. Plumbers, restoration, mold companies will spike.",
       "urgency": "today",
       "pitch_hook": "Water damage calls are coming. Every one you miss is $500+ walking away."
     },
@@ -71,14 +79,6 @@
       "area": "Newton, AR; Searcy, AR; Van Buren, AR",
       "niche": "plumbing",
       "action": "Flood warnings in Newton, AR; Searcy, AR; Van Buren, AR. Plumbers, restoration, mold companies will spike.",
-      "urgency": "today",
-      "pitch_hook": "Water damage calls are coming. Every one you miss is $500+ walking away."
-    },
-    {
-      "type": "flood",
-      "area": "Cleburne, AR",
-      "niche": "plumbing",
-      "action": "Flood warnings in Cleburne, AR. Plumbers, restoration, mold companies will spike.",
       "urgency": "today",
       "pitch_hook": "Water damage calls are coming. Every one you miss is $500+ walking away."
     }
@@ -225,13 +225,13 @@
     "leads_superniche": 78,
     "leads_hot": 122,
     "leads_warm": 0,
-    "cost_per_qualified": 0.95,
-    "total_spend": 74.23999999999538,
+    "cost_per_qualified": 0.97,
+    "total_spend": 75.8399999999952,
     "spend_cap": 300.0
   },
   "channels": {
-    "emails_sent": 313,
-    "texts_sent": 1,
+    "emails_sent": 311,
+    "texts_sent": 0,
     "calls_made": 0,
     "meetings_set": 10,
     "closes": 0
@@ -239,55 +239,55 @@
   "feeds": [
     {
       "name": "NOAA",
-      "last_hit": "2026-07-15T19:15:44.578945+00:00",
+      "last_hit": "2026-07-15T21:23:28.345016+00:00",
       "status": "yellow",
       "data_points_today": 0
     },
     {
       "name": "REDDIT",
-      "last_hit": "2026-07-15T19:15:44.578945+00:00",
+      "last_hit": "2026-07-15T21:23:28.345016+00:00",
       "status": "green",
       "data_points_today": 15
     },
     {
       "name": "USGS",
-      "last_hit": "2026-07-15T19:15:44.578945+00:00",
+      "last_hit": "2026-07-15T21:23:28.345016+00:00",
       "status": "yellow",
       "data_points_today": 0
     },
     {
       "name": "HACKERNEWS",
-      "last_hit": "2026-07-15T19:15:44.578945+00:00",
+      "last_hit": "2026-07-15T21:23:28.345016+00:00",
       "status": "green",
       "data_points_today": 30
     },
     {
       "name": "FEMA",
-      "last_hit": "2026-07-15T19:15:44.578945+00:00",
+      "last_hit": "2026-07-15T21:23:28.345016+00:00",
       "status": "green",
       "data_points_today": 20
     },
     {
       "name": "COMMODITIES",
-      "last_hit": "2026-07-15T19:15:44.578945+00:00",
+      "last_hit": "2026-07-15T21:23:28.345016+00:00",
       "status": "green",
       "data_points_today": 7
     },
     {
       "name": "RSS",
-      "last_hit": "2026-07-15T19:15:44.578945+00:00",
+      "last_hit": "2026-07-15T21:23:28.345016+00:00",
       "status": "green",
-      "data_points_today": 737
+      "data_points_today": 745
     },
     {
       "name": "FRED",
-      "last_hit": "2026-07-15T19:15:44.578945+00:00",
+      "last_hit": "2026-07-15T21:23:28.345016+00:00",
       "status": "yellow",
       "data_points_today": 0
     },
     {
       "name": "BLS",
-      "last_hit": "2026-07-15T19:15:44.578945+00:00",
+      "last_hit": "2026-07-15T21:23:28.345016+00:00",
       "status": "green",
       "data_points_today": 9
     }
@@ -295,7 +295,7 @@
   "conversion_funnel": {
     "signals": 10,
     "leads": 200,
-    "contacted": 314,
+    "contacted": 311,
     "replied": 10,
     "meeting": 10,
     "close": 0
