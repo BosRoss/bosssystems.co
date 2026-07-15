@@ -1,88 +1,7 @@
 {
-  "generated": "2026-07-14T21:05:55.737231+00:00",
+  "generated": "2026-07-15T02:21:37.472962+00:00",
   "engine_state": "active",
-  "signals": [
-    {
-      "type": "flood",
-      "area": "Medina, TX",
-      "niche": "plumbing",
-      "action": "Flood warnings in Medina, TX. Plumbers, restoration, mold companies will spike.",
-      "urgency": "today",
-      "pitch_hook": "Water damage calls are coming. Every one you miss is $500+ walking away."
-    },
-    {
-      "type": "flood",
-      "area": "Milam, TX",
-      "niche": "plumbing",
-      "action": "Flood warnings in Milam, TX. Plumbers, restoration, mold companies will spike.",
-      "urgency": "today",
-      "pitch_hook": "Water damage calls are coming. Every one you miss is $500+ walking away."
-    },
-    {
-      "type": "flood",
-      "area": "Uvalde, TX",
-      "niche": "plumbing",
-      "action": "Flood warnings in Uvalde, TX. Plumbers, restoration, mold companies will spike.",
-      "urgency": "today",
-      "pitch_hook": "Water damage calls are coming. Every one you miss is $500+ walking away."
-    },
-    {
-      "type": "flood",
-      "area": "San Saba, TX",
-      "niche": "plumbing",
-      "action": "Flood warnings in San Saba, TX. Plumbers, restoration, mold companies will spike.",
-      "urgency": "today",
-      "pitch_hook": "Water damage calls are coming. Every one you miss is $500+ walking away."
-    },
-    {
-      "type": "flood",
-      "area": "Bell, TX; Coryell, TX",
-      "niche": "plumbing",
-      "action": "Flood warnings in Bell, TX; Coryell, TX. Plumbers, restoration, mold companies will spike.",
-      "urgency": "today",
-      "pitch_hook": "Water damage calls are coming. Every one you miss is $500+ walking away."
-    },
-    {
-      "type": "flood",
-      "area": "Bexar, TX",
-      "niche": "plumbing",
-      "action": "Flood warnings in Bexar, TX. Plumbers, restoration, mold companies will spike.",
-      "urgency": "today",
-      "pitch_hook": "Water damage calls are coming. Every one you miss is $500+ walking away."
-    },
-    {
-      "type": "flood",
-      "area": "Concordia, LA; Adams, MS; Wilkinson, MS",
-      "niche": "plumbing",
-      "action": "Flood warnings in Concordia, LA; Adams, MS; Wilkinson, MS. Plumbers, restoration, mold companies will spike.",
-      "urgency": "today",
-      "pitch_hook": "Water damage calls are coming. Every one you miss is $500+ walking away."
-    },
-    {
-      "type": "flood",
-      "area": "Calhoun, AL",
-      "niche": "plumbing",
-      "action": "Flood warnings in Calhoun, AL. Plumbers, restoration, mold companies will spike.",
-      "urgency": "today",
-      "pitch_hook": "Water damage calls are coming. Every one you miss is $500+ walking away."
-    },
-    {
-      "type": "flood",
-      "area": "Lafayette, LA; Vermilion, LA",
-      "niche": "plumbing",
-      "action": "Flood warnings in Lafayette, LA; Vermilion, LA. Plumbers, restoration, mold companies will spike.",
-      "urgency": "today",
-      "pitch_hook": "Water damage calls are coming. Every one you miss is $500+ walking away."
-    },
-    {
-      "type": "flood",
-      "area": "Rapides, LA",
-      "niche": "plumbing",
-      "action": "Flood warnings in Rapides, LA. Plumbers, restoration, mold companies will spike.",
-      "urgency": "today",
-      "pitch_hook": "Water damage calls are coming. Every one you miss is $500+ walking away."
-    }
-  ],
+  "signals": [],
   "leads": [
     {
       "name": "roofing contractor",
@@ -131,6 +50,15 @@
     },
     {
       "name": "HVAC contractor",
+      "city": "AL",
+      "score": 70,
+      "tier": "SUPERNICHE",
+      "channel": "email",
+      "sequence_status": "queued",
+      "trigger": "market_sweep"
+    },
+    {
+      "name": "HVAC contractor",
       "city": "MS",
       "score": 69,
       "tier": "SUPERNICHE",
@@ -157,6 +85,15 @@
       "trigger": "market_sweep"
     },
     {
+      "name": "plumber",
+      "city": "AL",
+      "score": 68,
+      "tier": "SUPERNICHE",
+      "channel": "watchlist",
+      "sequence_status": "queued",
+      "trigger": "market_sweep"
+    },
+    {
       "name": "HVAC contractor",
       "city": "MS",
       "score": 67,
@@ -166,71 +103,53 @@
       "trigger": ""
     },
     {
-      "name": "plumbing",
-      "city": "AR",
-      "score": 63,
+      "name": "law firm",
+      "city": "AL",
+      "score": 65,
       "tier": "SUPERNICHE",
       "channel": "watchlist",
       "sequence_status": "queued",
-      "trigger": "flood"
+      "trigger": "market_sweep"
     },
     {
-      "name": "plumbing",
-      "city": "",
-      "score": 63,
+      "name": "HVAC contractor",
+      "city": "AL",
+      "score": 65,
       "tier": "SUPERNICHE",
       "channel": "watchlist",
       "sequence_status": "queued",
-      "trigger": "flood"
-    },
-    {
-      "name": "plumber",
-      "city": "AR",
-      "score": 62,
-      "tier": "SUPERNICHE",
-      "channel": "watchlist",
-      "sequence_status": "queued",
-      "trigger": "territory_alert"
-    },
-    {
-      "name": "electrician",
-      "city": "AR",
-      "score": 62,
-      "tier": "SUPERNICHE",
-      "channel": "watchlist",
-      "sequence_status": "queued",
-      "trigger": "territory_alert"
+      "trigger": "market_sweep"
     },
     {
       "name": "plumber",
       "city": "AL",
-      "score": 62,
+      "score": 64,
       "tier": "SUPERNICHE",
       "channel": "watchlist",
       "sequence_status": "queued",
-      "trigger": "territory_alert"
+      "trigger": "market_sweep"
     },
     {
-      "name": "electrician",
-      "city": "MS",
-      "score": 62,
+      "name": "plumbing",
+      "city": "AR",
+      "score": 63,
       "tier": "SUPERNICHE",
       "channel": "watchlist",
-      "sequence_status": "called",
-      "trigger": "market_sweep"
+      "sequence_status": "queued",
+      "trigger": "flood"
     }
   ],
   "kpis": {
-    "signals_firing": 10,
-    "leads_superniche": 53,
-    "leads_hot": 147,
+    "signals_firing": 0,
+    "leads_superniche": 60,
+    "leads_hot": 140,
     "leads_warm": 0,
-    "cost_per_qualified": 1.18,
-    "total_spend": 62.559999999996656,
+    "cost_per_qualified": 1.06,
+    "total_spend": 63.551999999996546,
     "spend_cap": 300.0
   },
   "channels": {
-    "emails_sent": 273,
+    "emails_sent": 281,
     "texts_sent": 8,
     "calls_made": 0,
     "meetings_set": 10,
@@ -239,63 +158,63 @@
   "feeds": [
     {
       "name": "NOAA",
-      "last_hit": "2026-07-14T20:59:30.996812+00:00",
+      "last_hit": "2026-07-15T00:40:22.565583+00:00",
       "status": "yellow",
       "data_points_today": 0
     },
     {
       "name": "REDDIT",
-      "last_hit": "2026-07-14T20:59:30.996812+00:00",
-      "status": "green",
-      "data_points_today": 15
+      "last_hit": "2026-07-15T00:40:22.565583+00:00",
+      "status": "yellow",
+      "data_points_today": 0
     },
     {
       "name": "USGS",
-      "last_hit": "2026-07-14T20:59:30.996812+00:00",
+      "last_hit": "2026-07-15T00:40:22.565583+00:00",
       "status": "yellow",
       "data_points_today": 0
     },
     {
       "name": "HACKERNEWS",
-      "last_hit": "2026-07-14T20:59:30.996812+00:00",
-      "status": "green",
-      "data_points_today": 30
+      "last_hit": "2026-07-15T00:40:22.565583+00:00",
+      "status": "yellow",
+      "data_points_today": 0
     },
     {
       "name": "FEMA",
-      "last_hit": "2026-07-14T20:59:30.996812+00:00",
-      "status": "green",
-      "data_points_today": 20
+      "last_hit": "2026-07-15T00:40:22.565583+00:00",
+      "status": "yellow",
+      "data_points_today": 0
     },
     {
       "name": "COMMODITIES",
-      "last_hit": "2026-07-14T20:59:30.996812+00:00",
-      "status": "green",
-      "data_points_today": 7
+      "last_hit": "2026-07-15T00:40:22.565583+00:00",
+      "status": "yellow",
+      "data_points_today": 0
     },
     {
       "name": "RSS",
-      "last_hit": "2026-07-14T20:59:30.996812+00:00",
-      "status": "green",
-      "data_points_today": 740
+      "last_hit": "2026-07-15T00:40:22.565583+00:00",
+      "status": "yellow",
+      "data_points_today": 0
     },
     {
       "name": "FRED",
-      "last_hit": "2026-07-14T20:59:30.996812+00:00",
+      "last_hit": "2026-07-15T00:40:22.565583+00:00",
       "status": "yellow",
       "data_points_today": 0
     },
     {
       "name": "BLS",
-      "last_hit": "2026-07-14T20:59:30.996812+00:00",
+      "last_hit": "2026-07-15T00:40:22.565583+00:00",
       "status": "green",
       "data_points_today": 9
     }
   ],
   "conversion_funnel": {
-    "signals": 10,
+    "signals": 0,
     "leads": 200,
-    "contacted": 281,
+    "contacted": 289,
     "replied": 10,
     "meeting": 10,
     "close": 0
