@@ -1,7 +1,88 @@
 {
-  "generated": "2026-07-15T08:41:33.112729+00:00",
+  "generated": "2026-07-15T10:49:09.191066+00:00",
   "engine_state": "active",
-  "signals": [],
+  "signals": [
+    {
+      "type": "storm",
+      "area": "Frio, TX; Medina, TX",
+      "niche": "roofing",
+      "action": "Storm damage in Frio, TX; Medina, TX. Roofers and restoration companies about to get flooded.",
+      "urgency": "today",
+      "pitch_hook": "After a storm like that, you'll get 10x your normal call volume. Ready for it?"
+    },
+    {
+      "type": "flood",
+      "area": "Uvalde, TX",
+      "niche": "plumbing",
+      "action": "Flood warnings in Uvalde, TX. Plumbers, restoration, mold companies will spike.",
+      "urgency": "today",
+      "pitch_hook": "Water damage calls are coming. Every one you miss is $500+ walking away."
+    },
+    {
+      "type": "flood",
+      "area": "Kinney, TX; Uvalde, TX",
+      "niche": "plumbing",
+      "action": "Flood warnings in Kinney, TX; Uvalde, TX. Plumbers, restoration, mold companies will spike.",
+      "urgency": "today",
+      "pitch_hook": "Water damage calls are coming. Every one you miss is $500+ walking away."
+    },
+    {
+      "type": "flood",
+      "area": "Ward; Crane; Upton; Reagan; Pecos; Terrell; Reeves County Plains; Chinati Mountains; Marfa Plateau; Davis Mountains; Davis Mountains Foothills; Central Brewster County; Chisos Basin; Presidio Valley; ",
+      "niche": "plumbing",
+      "action": "Flood warnings in Ward; Crane; Upton; Reagan; Pecos; Terrell; Reeves County Plains; Chinati Mountains; Marfa Plateau; Davis Mountains; Davis Mountains Foothills; Central Brewster County; Chisos Basin; Presidio Valley; . Plumbers, restoration, mold companies will spike.",
+      "urgency": "today",
+      "pitch_hook": "Water damage calls are coming. Every one you miss is $500+ walking away."
+    },
+    {
+      "type": "flood",
+      "area": "Edwards, TX; Kinney, TX; Real, TX",
+      "niche": "plumbing",
+      "action": "Flood warnings in Edwards, TX; Kinney, TX; Real, TX. Plumbers, restoration, mold companies will spike.",
+      "urgency": "today",
+      "pitch_hook": "Water damage calls are coming. Every one you miss is $500+ walking away."
+    },
+    {
+      "type": "flood",
+      "area": "Kimble, TX; Mason, TX",
+      "niche": "plumbing",
+      "action": "Flood warnings in Kimble, TX; Mason, TX. Plumbers, restoration, mold companies will spike.",
+      "urgency": "today",
+      "pitch_hook": "Water damage calls are coming. Every one you miss is $500+ walking away."
+    },
+    {
+      "type": "flood",
+      "area": "Concordia, LA; Adams, MS; Wilkinson, MS",
+      "niche": "plumbing",
+      "action": "Flood warnings in Concordia, LA; Adams, MS; Wilkinson, MS. Plumbers, restoration, mold companies will spike.",
+      "urgency": "today",
+      "pitch_hook": "Water damage calls are coming. Every one you miss is $500+ walking away."
+    },
+    {
+      "type": "flood",
+      "area": "Calcasieu, LA",
+      "niche": "plumbing",
+      "action": "Flood warnings in Calcasieu, LA. Plumbers, restoration, mold companies will spike.",
+      "urgency": "today",
+      "pitch_hook": "Water damage calls are coming. Every one you miss is $500+ walking away."
+    },
+    {
+      "type": "flood",
+      "area": "Rapides, LA",
+      "niche": "plumbing",
+      "action": "Flood warnings in Rapides, LA. Plumbers, restoration, mold companies will spike.",
+      "urgency": "today",
+      "pitch_hook": "Water damage calls are coming. Every one you miss is $500+ walking away."
+    },
+    {
+      "type": "flood",
+      "area": "Monroe Lower Keys",
+      "niche": "plumbing",
+      "action": "Flood warnings in Monroe Lower Keys. Plumbers, restoration, mold companies will spike.",
+      "urgency": "today",
+      "pitch_hook": "Water damage calls are coming. Every one you miss is $500+ walking away."
+    }
+  ],
   "leads": [
     {
       "name": "roofing contractor",
@@ -121,6 +202,15 @@
       "trigger": "market_sweep"
     },
     {
+      "name": "HVAC contractor",
+      "city": "TN",
+      "score": 65,
+      "tier": "SUPERNICHE",
+      "channel": "watchlist",
+      "sequence_status": "queued",
+      "trigger": "market_sweep"
+    },
+    {
       "name": "plumber",
       "city": "AL",
       "score": 64,
@@ -128,28 +218,19 @@
       "channel": "watchlist",
       "sequence_status": "queued",
       "trigger": "market_sweep"
-    },
-    {
-      "name": "plumbing",
-      "city": "AR",
-      "score": 63,
-      "tier": "SUPERNICHE",
-      "channel": "watchlist",
-      "sequence_status": "queued",
-      "trigger": "flood"
     }
   ],
   "kpis": {
-    "signals_firing": 0,
-    "leads_superniche": 63,
-    "leads_hot": 137,
+    "signals_firing": 10,
+    "leads_superniche": 68,
+    "leads_hot": 132,
     "leads_warm": 0,
-    "cost_per_qualified": 1.03,
-    "total_spend": 64.9599999999964,
+    "cost_per_qualified": 0.98,
+    "total_spend": 66.55999999999622,
     "spend_cap": 300.0
   },
   "channels": {
-    "emails_sent": 291,
+    "emails_sent": 301,
     "texts_sent": 8,
     "calls_made": 0,
     "meetings_set": 10,
@@ -158,63 +239,63 @@
   "feeds": [
     {
       "name": "NOAA",
-      "last_hit": "2026-07-15T08:36:01.009772+00:00",
+      "last_hit": "2026-07-15T10:41:37.831224+00:00",
       "status": "yellow",
       "data_points_today": 0
     },
     {
       "name": "REDDIT",
-      "last_hit": "2026-07-15T08:36:01.009772+00:00",
+      "last_hit": "2026-07-15T10:41:37.831224+00:00",
       "status": "green",
-      "data_points_today": 30
+      "data_points_today": 15
     },
     {
       "name": "USGS",
-      "last_hit": "2026-07-15T08:36:01.009772+00:00",
+      "last_hit": "2026-07-15T10:41:37.831224+00:00",
       "status": "yellow",
       "data_points_today": 0
     },
     {
       "name": "HACKERNEWS",
-      "last_hit": "2026-07-15T08:36:01.009772+00:00",
+      "last_hit": "2026-07-15T10:41:37.831224+00:00",
       "status": "green",
       "data_points_today": 30
     },
     {
       "name": "FEMA",
-      "last_hit": "2026-07-15T08:36:01.009772+00:00",
+      "last_hit": "2026-07-15T10:41:37.831224+00:00",
       "status": "green",
       "data_points_today": 20
     },
     {
       "name": "COMMODITIES",
-      "last_hit": "2026-07-15T08:36:01.009772+00:00",
+      "last_hit": "2026-07-15T10:41:37.831224+00:00",
       "status": "green",
       "data_points_today": 7
     },
     {
       "name": "RSS",
-      "last_hit": "2026-07-15T08:36:01.009772+00:00",
+      "last_hit": "2026-07-15T10:41:37.831224+00:00",
       "status": "green",
-      "data_points_today": 730
+      "data_points_today": 731
     },
     {
       "name": "FRED",
-      "last_hit": "2026-07-15T08:36:01.009772+00:00",
+      "last_hit": "2026-07-15T10:41:37.831224+00:00",
       "status": "yellow",
       "data_points_today": 0
     },
     {
       "name": "BLS",
-      "last_hit": "2026-07-15T08:36:01.009772+00:00",
+      "last_hit": "2026-07-15T10:41:37.831224+00:00",
       "status": "green",
       "data_points_today": 9
     }
   ],
   "conversion_funnel": {
-    "signals": 0,
+    "signals": 10,
     "leads": 200,
-    "contacted": 299,
+    "contacted": 309,
     "replied": 10,
     "meeting": 10,
     "close": 0
