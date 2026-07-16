@@ -1,88 +1,7 @@
 {
-  "generated": "2026-07-16T12:03:09.487367+00:00",
+  "generated": "2026-07-16T12:31:14.372104+00:00",
   "engine_state": "active",
-  "signals": [
-    {
-      "type": "storm",
-      "area": "Real, TX; Uvalde, TX",
-      "niche": "roofing",
-      "action": "Storm damage in Real, TX; Uvalde, TX. Roofers and restoration companies about to get flooded.",
-      "urgency": "today",
-      "pitch_hook": "After a storm like that, you'll get 10x your normal call volume. Ready for it?"
-    },
-    {
-      "type": "storm",
-      "area": "Kinney, TX",
-      "niche": "roofing",
-      "action": "Storm damage in Kinney, TX. Roofers and restoration companies about to get flooded.",
-      "urgency": "today",
-      "pitch_hook": "After a storm like that, you'll get 10x your normal call volume. Ready for it?"
-    },
-    {
-      "type": "flood",
-      "area": "Dawson; Borden; Scurry; Martin; Howard; Mitchell; Ector; Midland; Glasscock; Ward; Crane; Upton; Reagan; Pecos; Terrell; Reeves County Plains; Chinati Mountains; Marfa Plateau; Davis Mountains; Davis ",
-      "niche": "plumbing",
-      "action": "Flood warnings in Dawson; Borden; Scurry; Martin; Howard; Mitchell; Ector; Midland; Glasscock; Ward; Crane; Upton; Reagan; Pecos; Terrell; Reeves County Plains; Chinati Mountains; Marfa Plateau; Davis Mountains; Davis . Plumbers, restoration, mold companies will spike.",
-      "urgency": "today",
-      "pitch_hook": "Water damage calls are coming. Every one you miss is $500+ walking away."
-    },
-    {
-      "type": "flood",
-      "area": "Nolan, TX; Taylor, TX",
-      "niche": "plumbing",
-      "action": "Flood warnings in Nolan, TX; Taylor, TX. Plumbers, restoration, mold companies will spike.",
-      "urgency": "today",
-      "pitch_hook": "Water damage calls are coming. Every one you miss is $500+ walking away."
-    },
-    {
-      "type": "flood",
-      "area": "Kendall, TX",
-      "niche": "plumbing",
-      "action": "Flood warnings in Kendall, TX. Plumbers, restoration, mold companies will spike.",
-      "urgency": "today",
-      "pitch_hook": "Water damage calls are coming. Every one you miss is $500+ walking away."
-    },
-    {
-      "type": "flood",
-      "area": "Haskell, TX; Jones, TX; Shackelford, TX; Throckmorton, TX",
-      "niche": "plumbing",
-      "action": "Flood warnings in Haskell, TX; Jones, TX; Shackelford, TX; Throckmorton, TX. Plumbers, restoration, mold companies will spike.",
-      "urgency": "today",
-      "pitch_hook": "Water damage calls are coming. Every one you miss is $500+ walking away."
-    },
-    {
-      "type": "flood",
-      "area": "Kimble, TX; Mason, TX",
-      "niche": "plumbing",
-      "action": "Flood warnings in Kimble, TX; Mason, TX. Plumbers, restoration, mold companies will spike.",
-      "urgency": "today",
-      "pitch_hook": "Water damage calls are coming. Every one you miss is $500+ walking away."
-    },
-    {
-      "type": "flood",
-      "area": "Uvalde, TX",
-      "niche": "plumbing",
-      "action": "Flood warnings in Uvalde, TX. Plumbers, restoration, mold companies will spike.",
-      "urgency": "today",
-      "pitch_hook": "Water damage calls are coming. Every one you miss is $500+ walking away."
-    },
-    {
-      "type": "flood",
-      "area": "Calcasieu, LA",
-      "niche": "plumbing",
-      "action": "Flood warnings in Calcasieu, LA. Plumbers, restoration, mold companies will spike.",
-      "urgency": "today",
-      "pitch_hook": "Water damage calls are coming. Every one you miss is $500+ walking away."
-    },
-    {
-      "type": "heat_wave",
-      "area": "Metro Palm Beach County; Coastal Collier County; Inland Collier County; Metro Broward County; Metropolitan Miami Dade; Coastal Palm Beach County; Coastal Broward County; Coastal Miami Dade County",
-      "niche": "hvac",
-      "action": "HVAC businesses in Metro Palm Beach County; Coastal Collier County; Inland Collier County; Metro Broward County; Metropolitan Miami Dade; Coastal Palm Beach County; Coastal Broward County; Coastal Miami Dade County are drowning in calls right now. Perfect time to pitch.",
-      "urgency": "today",
-      "pitch_hook": "You're getting slammed with calls \u2014 how many went to voicemail today?"
-    }
-  ],
+  "signals": [],
   "leads": [
     {
       "name": "roofing contractor",
@@ -221,12 +140,12 @@
     }
   ],
   "kpis": {
-    "signals_firing": 10,
-    "leads_superniche": 83,
-    "leads_hot": 117,
+    "signals_firing": 0,
+    "leads_superniche": 84,
+    "leads_hot": 116,
     "leads_warm": 0,
     "cost_per_qualified": 0.97,
-    "total_spend": 80.63999999999467,
+    "total_spend": 81.63199999999456,
     "spend_cap": 300.0
   },
   "channels": {
@@ -239,61 +158,61 @@
   "feeds": [
     {
       "name": "NOAA",
-      "last_hit": "2026-07-16T11:42:40.736126+00:00",
+      "last_hit": "2026-07-16T12:26:27.986903+00:00",
       "status": "yellow",
       "data_points_today": 0
     },
     {
       "name": "REDDIT",
-      "last_hit": "2026-07-16T11:42:40.736126+00:00",
-      "status": "green",
-      "data_points_today": 30
+      "last_hit": "2026-07-16T12:26:27.986903+00:00",
+      "status": "yellow",
+      "data_points_today": 0
     },
     {
       "name": "USGS",
-      "last_hit": "2026-07-16T11:42:40.736126+00:00",
+      "last_hit": "2026-07-16T12:26:27.986903+00:00",
       "status": "yellow",
       "data_points_today": 0
     },
     {
       "name": "HACKERNEWS",
-      "last_hit": "2026-07-16T11:42:40.736126+00:00",
-      "status": "green",
-      "data_points_today": 30
+      "last_hit": "2026-07-16T12:26:27.986903+00:00",
+      "status": "yellow",
+      "data_points_today": 0
     },
     {
       "name": "FEMA",
-      "last_hit": "2026-07-16T11:42:40.736126+00:00",
+      "last_hit": "2026-07-16T12:26:27.986903+00:00",
       "status": "green",
       "data_points_today": 20
     },
     {
       "name": "COMMODITIES",
-      "last_hit": "2026-07-16T11:42:40.736126+00:00",
-      "status": "green",
-      "data_points_today": 7
+      "last_hit": "2026-07-16T12:26:27.986903+00:00",
+      "status": "yellow",
+      "data_points_today": 0
     },
     {
       "name": "RSS",
-      "last_hit": "2026-07-16T11:42:40.736126+00:00",
-      "status": "green",
-      "data_points_today": 730
+      "last_hit": "2026-07-16T12:26:27.986903+00:00",
+      "status": "yellow",
+      "data_points_today": 0
     },
     {
       "name": "FRED",
-      "last_hit": "2026-07-16T11:42:40.736126+00:00",
+      "last_hit": "2026-07-16T12:26:27.986903+00:00",
       "status": "yellow",
       "data_points_today": 0
     },
     {
       "name": "BLS",
-      "last_hit": "2026-07-16T11:42:40.736126+00:00",
+      "last_hit": "2026-07-16T12:26:27.986903+00:00",
       "status": "green",
       "data_points_today": 9
     }
   ],
   "conversion_funnel": {
-    "signals": 10,
+    "signals": 0,
     "leads": 200,
     "contacted": 283,
     "replied": 10,
