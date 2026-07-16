@@ -1,68 +1,52 @@
 {
-  "generated": "2026-07-16T03:57:27.301381+00:00",
+  "generated": "2026-07-16T08:47:26.076642+00:00",
   "engine_state": "active",
   "signals": [
     {
-      "type": "flood",
-      "area": "Kimble, TX",
-      "niche": "plumbing",
-      "action": "Flood warnings in Kimble, TX. Plumbers, restoration, mold companies will spike.",
-      "urgency": "today",
-      "pitch_hook": "Water damage calls are coming. Every one you miss is $500+ walking away."
-    },
-    {
-      "type": "flood",
-      "area": "Bexar, TX; Comal, TX; Guadalupe, TX; Wilson, TX",
-      "niche": "plumbing",
-      "action": "Flood warnings in Bexar, TX; Comal, TX; Guadalupe, TX; Wilson, TX. Plumbers, restoration, mold companies will spike.",
-      "urgency": "today",
-      "pitch_hook": "Water damage calls are coming. Every one you miss is $500+ walking away."
-    },
-    {
-      "type": "flood",
-      "area": "Live Oak, TX; McMullen, TX",
-      "niche": "plumbing",
-      "action": "Flood warnings in Live Oak, TX; McMullen, TX. Plumbers, restoration, mold companies will spike.",
-      "urgency": "today",
-      "pitch_hook": "Water damage calls are coming. Every one you miss is $500+ walking away."
-    },
-    {
-      "type": "flood",
-      "area": "Edwards, TX",
-      "niche": "plumbing",
-      "action": "Flood warnings in Edwards, TX. Plumbers, restoration, mold companies will spike.",
-      "urgency": "today",
-      "pitch_hook": "Water damage calls are coming. Every one you miss is $500+ walking away."
-    },
-    {
-      "type": "flood",
-      "area": "Dimmit, TX",
-      "niche": "plumbing",
-      "action": "Flood warnings in Dimmit, TX. Plumbers, restoration, mold companies will spike.",
-      "urgency": "today",
-      "pitch_hook": "Water damage calls are coming. Every one you miss is $500+ walking away."
-    },
-    {
-      "type": "flood",
-      "area": "Matagorda, TX; Wharton, TX",
-      "niche": "plumbing",
-      "action": "Flood warnings in Matagorda, TX; Wharton, TX. Plumbers, restoration, mold companies will spike.",
-      "urgency": "today",
-      "pitch_hook": "Water damage calls are coming. Every one you miss is $500+ walking away."
-    },
-    {
-      "type": "flood",
-      "area": "Jackson, TX; Wharton, TX",
-      "niche": "plumbing",
-      "action": "Flood warnings in Jackson, TX; Wharton, TX. Plumbers, restoration, mold companies will spike.",
-      "urgency": "today",
-      "pitch_hook": "Water damage calls are coming. Every one you miss is $500+ walking away."
-    },
-    {
-      "type": "flood",
+      "type": "storm",
       "area": "Uvalde, TX",
+      "niche": "roofing",
+      "action": "Storm damage in Uvalde, TX. Roofers and restoration companies about to get flooded.",
+      "urgency": "today",
+      "pitch_hook": "After a storm like that, you'll get 10x your normal call volume. Ready for it?"
+    },
+    {
+      "type": "flood",
+      "area": "Kerr, TX",
       "niche": "plumbing",
-      "action": "Flood warnings in Uvalde, TX. Plumbers, restoration, mold companies will spike.",
+      "action": "Flood warnings in Kerr, TX. Plumbers, restoration, mold companies will spike.",
+      "urgency": "today",
+      "pitch_hook": "Water damage calls are coming. Every one you miss is $500+ walking away."
+    },
+    {
+      "type": "flood",
+      "area": "Kendall, TX",
+      "niche": "plumbing",
+      "action": "Flood warnings in Kendall, TX. Plumbers, restoration, mold companies will spike.",
+      "urgency": "today",
+      "pitch_hook": "Water damage calls are coming. Every one you miss is $500+ walking away."
+    },
+    {
+      "type": "flood",
+      "area": "Kinney, TX; Maverick, TX; Uvalde, TX; Zavala, TX",
+      "niche": "plumbing",
+      "action": "Flood warnings in Kinney, TX; Maverick, TX; Uvalde, TX; Zavala, TX. Plumbers, restoration, mold companies will spike.",
+      "urgency": "today",
+      "pitch_hook": "Water damage calls are coming. Every one you miss is $500+ walking away."
+    },
+    {
+      "type": "flood",
+      "area": "Eastland, TX",
+      "niche": "plumbing",
+      "action": "Flood warnings in Eastland, TX. Plumbers, restoration, mold companies will spike.",
+      "urgency": "today",
+      "pitch_hook": "Water damage calls are coming. Every one you miss is $500+ walking away."
+    },
+    {
+      "type": "flood",
+      "area": "Bandera, TX; Kerr, TX; Real, TX",
+      "niche": "plumbing",
+      "action": "Flood warnings in Bandera, TX; Kerr, TX; Real, TX. Plumbers, restoration, mold companies will spike.",
       "urgency": "today",
       "pitch_hook": "Water damage calls are coming. Every one you miss is $500+ walking away."
     },
@@ -76,9 +60,25 @@
     },
     {
       "type": "heat_wave",
-      "area": "Los Banos - Dos Palos; Merced - Madera - Mendota; Planada - Le Grand - Snelling; West Side of Fresno and Kings Counties; Caruthers - San Joaquin - Selma; Fresno-Clovis; Buttonwillow - Lost Hills - I5;",
+      "area": "Metro Palm Beach County; Coastal Collier County; Inland Collier County; Metro Broward County; Metropolitan Miami Dade; Coastal Palm Beach County; Coastal Broward County; Coastal Miami Dade County",
       "niche": "hvac",
-      "action": "HVAC businesses in Los Banos - Dos Palos; Merced - Madera - Mendota; Planada - Le Grand - Snelling; West Side of Fresno and Kings Counties; Caruthers - San Joaquin - Selma; Fresno-Clovis; Buttonwillow - Lost Hills - I5; are drowning in calls right now. Perfect time to pitch.",
+      "action": "HVAC businesses in Metro Palm Beach County; Coastal Collier County; Inland Collier County; Metro Broward County; Metropolitan Miami Dade; Coastal Palm Beach County; Coastal Broward County; Coastal Miami Dade County are drowning in calls right now. Perfect time to pitch.",
+      "urgency": "today",
+      "pitch_hook": "You're getting slammed with calls \u2014 how many went to voicemail today?"
+    },
+    {
+      "type": "heat_wave",
+      "area": "Catalina and Santa Barbara Islands; San Luis Obispo County Inland Central Coast; Santa Lucia Mountains; Southern Salinas Valley; San Luis Obispo County Interior Valleys; San Luis Obispo County Mountai",
+      "niche": "hvac",
+      "action": "HVAC businesses in Catalina and Santa Barbara Islands; San Luis Obispo County Inland Central Coast; Santa Lucia Mountains; Southern Salinas Valley; San Luis Obispo County Interior Valleys; San Luis Obispo County Mountai are drowning in calls right now. Perfect time to pitch.",
+      "urgency": "today",
+      "pitch_hook": "You're getting slammed with calls \u2014 how many went to voicemail today?"
+    },
+    {
+      "type": "heat_wave",
+      "area": "Cuyama Valley; Santa Clarita Valley; Lake Casitas; Ojai Valley; Central Ventura County Valleys; Los Angeles County Inland Coast including Downtown Los Angeles; Western Santa Monica Mountains Recreatio",
+      "niche": "hvac",
+      "action": "HVAC businesses in Cuyama Valley; Santa Clarita Valley; Lake Casitas; Ojai Valley; Central Ventura County Valleys; Los Angeles County Inland Coast including Downtown Los Angeles; Western Santa Monica Mountains Recreatio are drowning in calls right now. Perfect time to pitch.",
       "urgency": "today",
       "pitch_hook": "You're getting slammed with calls \u2014 how many went to voicemail today?"
     }
@@ -239,55 +239,55 @@
   "feeds": [
     {
       "name": "NOAA",
-      "last_hit": "2026-07-16T03:49:57.447023+00:00",
+      "last_hit": "2026-07-16T08:40:26.938032+00:00",
       "status": "yellow",
       "data_points_today": 0
     },
     {
       "name": "REDDIT",
-      "last_hit": "2026-07-16T03:49:57.447023+00:00",
+      "last_hit": "2026-07-16T08:40:26.938032+00:00",
       "status": "green",
-      "data_points_today": 30
+      "data_points_today": 15
     },
     {
       "name": "USGS",
-      "last_hit": "2026-07-16T03:49:57.447023+00:00",
+      "last_hit": "2026-07-16T08:40:26.938032+00:00",
       "status": "yellow",
       "data_points_today": 0
     },
     {
       "name": "HACKERNEWS",
-      "last_hit": "2026-07-16T03:49:57.447023+00:00",
+      "last_hit": "2026-07-16T08:40:26.938032+00:00",
       "status": "green",
       "data_points_today": 30
     },
     {
       "name": "FEMA",
-      "last_hit": "2026-07-16T03:49:57.447023+00:00",
+      "last_hit": "2026-07-16T08:40:26.938032+00:00",
       "status": "green",
       "data_points_today": 20
     },
     {
       "name": "COMMODITIES",
-      "last_hit": "2026-07-16T03:49:57.447023+00:00",
+      "last_hit": "2026-07-16T08:40:26.938032+00:00",
       "status": "green",
       "data_points_today": 7
     },
     {
       "name": "RSS",
-      "last_hit": "2026-07-16T03:49:57.447023+00:00",
+      "last_hit": "2026-07-16T08:40:26.938032+00:00",
       "status": "green",
-      "data_points_today": 728
+      "data_points_today": 729
     },
     {
       "name": "FRED",
-      "last_hit": "2026-07-16T03:49:57.447023+00:00",
+      "last_hit": "2026-07-16T08:40:26.938032+00:00",
       "status": "yellow",
       "data_points_today": 0
     },
     {
       "name": "BLS",
-      "last_hit": "2026-07-16T03:49:57.447023+00:00",
+      "last_hit": "2026-07-16T08:40:26.938032+00:00",
       "status": "green",
       "data_points_today": 9
     }
