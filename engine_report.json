@@ -1,7 +1,23 @@
 {
-  "generated": "2026-07-16T03:01:35.863197+00:00",
+  "generated": "2026-07-16T03:57:27.301381+00:00",
   "engine_state": "active",
   "signals": [
+    {
+      "type": "flood",
+      "area": "Kimble, TX",
+      "niche": "plumbing",
+      "action": "Flood warnings in Kimble, TX. Plumbers, restoration, mold companies will spike.",
+      "urgency": "today",
+      "pitch_hook": "Water damage calls are coming. Every one you miss is $500+ walking away."
+    },
+    {
+      "type": "flood",
+      "area": "Bexar, TX; Comal, TX; Guadalupe, TX; Wilson, TX",
+      "niche": "plumbing",
+      "action": "Flood warnings in Bexar, TX; Comal, TX; Guadalupe, TX; Wilson, TX. Plumbers, restoration, mold companies will spike.",
+      "urgency": "today",
+      "pitch_hook": "Water damage calls are coming. Every one you miss is $500+ walking away."
+    },
     {
       "type": "flood",
       "area": "Live Oak, TX; McMullen, TX",
@@ -15,14 +31,6 @@
       "area": "Edwards, TX",
       "niche": "plumbing",
       "action": "Flood warnings in Edwards, TX. Plumbers, restoration, mold companies will spike.",
-      "urgency": "today",
-      "pitch_hook": "Water damage calls are coming. Every one you miss is $500+ walking away."
-    },
-    {
-      "type": "flood",
-      "area": "Kimble, TX",
-      "niche": "plumbing",
-      "action": "Flood warnings in Kimble, TX. Plumbers, restoration, mold companies will spike.",
       "urgency": "today",
       "pitch_hook": "Water damage calls are coming. Every one you miss is $500+ walking away."
     },
@@ -60,27 +68,19 @@
     },
     {
       "type": "flood",
-      "area": "Kinney, TX; Uvalde, TX",
-      "niche": "plumbing",
-      "action": "Flood warnings in Kinney, TX; Uvalde, TX. Plumbers, restoration, mold companies will spike.",
-      "urgency": "today",
-      "pitch_hook": "Water damage calls are coming. Every one you miss is $500+ walking away."
-    },
-    {
-      "type": "flood",
-      "area": "Haskell, OK; McIntosh, OK; Muskogee, OK; Sequoyah, OK",
-      "niche": "plumbing",
-      "action": "Flood warnings in Haskell, OK; McIntosh, OK; Muskogee, OK; Sequoyah, OK. Plumbers, restoration, mold companies will spike.",
-      "urgency": "today",
-      "pitch_hook": "Water damage calls are coming. Every one you miss is $500+ walking away."
-    },
-    {
-      "type": "flood",
       "area": "Calcasieu, LA",
       "niche": "plumbing",
       "action": "Flood warnings in Calcasieu, LA. Plumbers, restoration, mold companies will spike.",
       "urgency": "today",
       "pitch_hook": "Water damage calls are coming. Every one you miss is $500+ walking away."
+    },
+    {
+      "type": "heat_wave",
+      "area": "Los Banos - Dos Palos; Merced - Madera - Mendota; Planada - Le Grand - Snelling; West Side of Fresno and Kings Counties; Caruthers - San Joaquin - Selma; Fresno-Clovis; Buttonwillow - Lost Hills - I5;",
+      "niche": "hvac",
+      "action": "HVAC businesses in Los Banos - Dos Palos; Merced - Madera - Mendota; Planada - Le Grand - Snelling; West Side of Fresno and Kings Counties; Caruthers - San Joaquin - Selma; Fresno-Clovis; Buttonwillow - Lost Hills - I5; are drowning in calls right now. Perfect time to pitch.",
+      "urgency": "today",
+      "pitch_hook": "You're getting slammed with calls \u2014 how many went to voicemail today?"
     }
   ],
   "leads": [
@@ -123,6 +123,15 @@
     {
       "name": "plumbing",
       "city": "AR",
+      "score": 78,
+      "tier": "SUPERNICHE",
+      "channel": "watchlist",
+      "sequence_status": "queued",
+      "trigger": "flood"
+    },
+    {
+      "name": "plumbing",
+      "city": "",
       "score": 78,
       "tier": "SUPERNICHE",
       "channel": "watchlist",
@@ -193,6 +202,15 @@
       "trigger": "market_sweep"
     },
     {
+      "name": "plumber",
+      "city": "NM",
+      "score": 68,
+      "tier": "SUPERNICHE",
+      "channel": "watchlist",
+      "sequence_status": "queued",
+      "trigger": "market_sweep"
+    },
+    {
       "name": "HVAC contractor",
       "city": "MS",
       "score": 67,
@@ -200,37 +218,19 @@
       "channel": "call_queue",
       "sequence_status": "called",
       "trigger": ""
-    },
-    {
-      "name": "law firm",
-      "city": "AL",
-      "score": 65,
-      "tier": "SUPERNICHE",
-      "channel": "watchlist",
-      "sequence_status": "called",
-      "trigger": "market_sweep"
-    },
-    {
-      "name": "HVAC contractor",
-      "city": "AL",
-      "score": 65,
-      "tier": "SUPERNICHE",
-      "channel": "watchlist",
-      "sequence_status": "queued",
-      "trigger": "market_sweep"
     }
   ],
   "kpis": {
     "signals_firing": 10,
-    "leads_superniche": 81,
-    "leads_hot": 119,
+    "leads_superniche": 83,
+    "leads_hot": 117,
     "leads_warm": 0,
-    "cost_per_qualified": 0.96,
-    "total_spend": 77.43999999999502,
+    "cost_per_qualified": 0.95,
+    "total_spend": 79.03999999999485,
     "spend_cap": 300.0
   },
   "channels": {
-    "emails_sent": 298,
+    "emails_sent": 285,
     "texts_sent": 0,
     "calls_made": 0,
     "meetings_set": 10,
@@ -239,63 +239,63 @@
   "feeds": [
     {
       "name": "NOAA",
-      "last_hit": "2026-07-16T02:55:14.285081+00:00",
+      "last_hit": "2026-07-16T03:49:57.447023+00:00",
       "status": "yellow",
       "data_points_today": 0
     },
     {
       "name": "REDDIT",
-      "last_hit": "2026-07-16T02:55:14.285081+00:00",
+      "last_hit": "2026-07-16T03:49:57.447023+00:00",
       "status": "green",
       "data_points_today": 30
     },
     {
       "name": "USGS",
-      "last_hit": "2026-07-16T02:55:14.285081+00:00",
+      "last_hit": "2026-07-16T03:49:57.447023+00:00",
       "status": "yellow",
       "data_points_today": 0
     },
     {
       "name": "HACKERNEWS",
-      "last_hit": "2026-07-16T02:55:14.285081+00:00",
+      "last_hit": "2026-07-16T03:49:57.447023+00:00",
       "status": "green",
       "data_points_today": 30
     },
     {
       "name": "FEMA",
-      "last_hit": "2026-07-16T02:55:14.285081+00:00",
+      "last_hit": "2026-07-16T03:49:57.447023+00:00",
       "status": "green",
       "data_points_today": 20
     },
     {
       "name": "COMMODITIES",
-      "last_hit": "2026-07-16T02:55:14.285081+00:00",
+      "last_hit": "2026-07-16T03:49:57.447023+00:00",
       "status": "green",
       "data_points_today": 7
     },
     {
       "name": "RSS",
-      "last_hit": "2026-07-16T02:55:14.285081+00:00",
+      "last_hit": "2026-07-16T03:49:57.447023+00:00",
       "status": "green",
-      "data_points_today": 744
+      "data_points_today": 728
     },
     {
       "name": "FRED",
-      "last_hit": "2026-07-16T02:55:14.285081+00:00",
+      "last_hit": "2026-07-16T03:49:57.447023+00:00",
       "status": "yellow",
       "data_points_today": 0
     },
     {
       "name": "BLS",
-      "last_hit": "2026-07-16T02:55:14.285081+00:00",
-      "status": "yellow",
-      "data_points_today": 0
+      "last_hit": "2026-07-16T03:49:57.447023+00:00",
+      "status": "green",
+      "data_points_today": 9
     }
   ],
   "conversion_funnel": {
     "signals": 10,
     "leads": 200,
-    "contacted": 298,
+    "contacted": 285,
     "replied": 10,
     "meeting": 10,
     "close": 0
