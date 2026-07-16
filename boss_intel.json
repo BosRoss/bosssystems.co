@@ -1,131 +1,107 @@
 {
-  "generated": "2026-07-06T20:07:22.790803+00:00",
-  "atlas_scan_time": "2026-07-06T19:59:37.531988+00:00",
+  "generated": "2026-07-16T18:11:50.059982+00:00",
+  "atlas_scan_time": "2026-07-16T18:05:01.931025+00:00",
   "demand_signals": [
     {
-      "type": "storm",
-      "area": "Camp, TX; Gregg, TX; Harrison, TX; Marion, TX; Upshur, TX; Wood, TX",
-      "niche": "roofing",
-      "action": "Storm damage in Camp, TX; Gregg, TX; Harrison, TX; Marion, TX; Upshur, TX; Wood, TX. Roofers and restoration companies about to get flooded.",
-      "urgency": "today",
-      "pitch_hook": "After a storm like that, you'll get 10x your normal call volume. Ready for it?"
-    },
-    {
       "type": "flood",
-      "area": "Kerr, TX",
+      "area": "Llano, TX",
       "niche": "plumbing",
-      "action": "Flood warnings in Kerr, TX. Plumbers, restoration, mold companies will spike.",
-      "urgency": "today",
-      "pitch_hook": "Water damage calls are coming. Every one you miss is $500+ walking away."
-    },
-    {
-      "type": "storm",
-      "area": "Gregg, TX; Upshur, TX; Wood, TX",
-      "niche": "roofing",
-      "action": "Storm damage in Gregg, TX; Upshur, TX; Wood, TX. Roofers and restoration companies about to get flooded.",
-      "urgency": "today",
-      "pitch_hook": "After a storm like that, you'll get 10x your normal call volume. Ready for it?"
-    },
-    {
-      "type": "flood",
-      "area": "Menard, TX",
-      "niche": "plumbing",
-      "action": "Flood warnings in Menard, TX. Plumbers, restoration, mold companies will spike.",
+      "action": "Flood warnings in Llano, TX. Plumbers, restoration, mold companies will spike.",
       "urgency": "today",
       "pitch_hook": "Water damage calls are coming. Every one you miss is $500+ walking away."
     },
     {
       "type": "flood",
-      "area": "Kimble, TX; Menard, TX; Schleicher, TX; Sutton, TX",
+      "area": "Bandera, TX; Kerr, TX; Real, TX",
       "niche": "plumbing",
-      "action": "Flood warnings in Kimble, TX; Menard, TX; Schleicher, TX; Sutton, TX. Plumbers, restoration, mold companies will spike.",
+      "action": "Flood warnings in Bandera, TX; Kerr, TX; Real, TX. Plumbers, restoration, mold companies will spike.",
       "urgency": "today",
       "pitch_hook": "Water damage calls are coming. Every one you miss is $500+ walking away."
     },
     {
       "type": "flood",
-      "area": "Concordia, LA; Adams, MS; Wilkinson, MS",
+      "area": "Kinney, TX; Maverick, TX; Uvalde, TX; Zavala, TX",
       "niche": "plumbing",
-      "action": "Flood warnings in Concordia, LA; Adams, MS; Wilkinson, MS. Plumbers, restoration, mold companies will spike.",
+      "action": "Flood warnings in Kinney, TX; Maverick, TX; Uvalde, TX; Zavala, TX. Plumbers, restoration, mold companies will spike.",
       "urgency": "today",
       "pitch_hook": "Water damage calls are coming. Every one you miss is $500+ walking away."
     },
     {
       "type": "flood",
-      "area": "St. Tammany, LA; Hancock, MS; Pearl River, MS",
+      "area": "Kinney, TX; Maverick, TX; Val Verde, TX",
       "niche": "plumbing",
-      "action": "Flood warnings in St. Tammany, LA; Hancock, MS; Pearl River, MS. Plumbers, restoration, mold companies will spike.",
+      "action": "Flood warnings in Kinney, TX; Maverick, TX; Val Verde, TX. Plumbers, restoration, mold companies will spike.",
       "urgency": "today",
       "pitch_hook": "Water damage calls are coming. Every one you miss is $500+ walking away."
-    },
-    {
-      "type": "storm",
-      "area": "Hancock, TN; Lee, VA; Scott, VA",
-      "niche": "roofing",
-      "action": "Storm damage in Hancock, TN; Lee, VA; Scott, VA. Roofers and restoration companies about to get flooded.",
-      "urgency": "today",
-      "pitch_hook": "After a storm like that, you'll get 10x your normal call volume. Ready for it?"
     },
     {
       "type": "flood",
-      "area": "Muskogee, OK",
+      "area": "Borden, TX; Dawson, TX",
       "niche": "plumbing",
-      "action": "Flood warnings in Muskogee, OK. Plumbers, restoration, mold companies will spike.",
+      "action": "Flood warnings in Borden, TX; Dawson, TX. Plumbers, restoration, mold companies will spike.",
       "urgency": "today",
       "pitch_hook": "Water damage calls are coming. Every one you miss is $500+ walking away."
     },
     {
-      "type": "heat_wave",
-      "area": "Inland Broward County; Metro Broward County; Inland Miami-Dade County; Metropolitan Miami Dade; Coastal Broward County; Coastal Miami Dade County; Far South Miami-Dade County",
-      "niche": "hvac",
-      "action": "HVAC businesses in Inland Broward County; Metro Broward County; Inland Miami-Dade County; Metropolitan Miami Dade; Coastal Broward County; Coastal Miami Dade County; Far South Miami-Dade County are drowning in calls right now. Perfect time to pitch.",
+      "type": "flood",
+      "area": "Mitchell, TX; Scurry, TX",
+      "niche": "plumbing",
+      "action": "Flood warnings in Mitchell, TX; Scurry, TX. Plumbers, restoration, mold companies will spike.",
       "urgency": "today",
-      "pitch_hook": "You're getting slammed with calls \u2014 how many went to voicemail today?"
-    }
-  ],
-  "competitor_intel": [
+      "pitch_hook": "Water damage calls are coming. Every one you miss is $500+ walking away."
+    },
     {
-      "type": "failure",
-      "detail": "Competitor/adjacent company failure: Every major tech layoff in 2026 that has name-checked AI",
-      "action": "Their customers need alternatives. If they served small businesses, those leads are live right now.",
-      "evidence": [
-        "https://techcrunch.com/2026/07/06/the-running-list-major-tech-layoffs-in-2026-where-employers-cited-ai/"
-      ]
+      "type": "flood",
+      "area": "Borden, TX; Scurry, TX",
+      "niche": "plumbing",
+      "action": "Flood warnings in Borden, TX; Scurry, TX. Plumbers, restoration, mold companies will spike.",
+      "urgency": "today",
+      "pitch_hook": "Water damage calls are coming. Every one you miss is $500+ walking away."
+    },
+    {
+      "type": "flood",
+      "area": "Llano; Val Verde; Edwards; Real; Kerr; Bandera; Gillespie; Kendall; Blanco; Kinney; Uvalde; Medina; Maverick; Zavala; Frio; Dimmit",
+      "niche": "plumbing",
+      "action": "Flood warnings in Llano; Val Verde; Edwards; Real; Kerr; Bandera; Gillespie; Kendall; Blanco; Kinney; Uvalde; Medina; Maverick; Zavala; Frio; Dimmit. Plumbers, restoration, mold companies will spike.",
+      "urgency": "today",
+      "pitch_hook": "Water damage calls are coming. Every one you miss is $500+ walking away."
+    },
+    {
+      "type": "flood",
+      "area": "Matagorda, TX; Wharton, TX",
+      "niche": "plumbing",
+      "action": "Flood warnings in Matagorda, TX; Wharton, TX. Plumbers, restoration, mold companies will spike.",
+      "urgency": "today",
+      "pitch_hook": "Water damage calls are coming. Every one you miss is $500+ walking away."
+    },
+    {
+      "type": "flood",
+      "area": "Gillespie, TX",
+      "niche": "plumbing",
+      "action": "Flood warnings in Gillespie, TX. Plumbers, restoration, mold companies will spike.",
+      "urgency": "today",
+      "pitch_hook": "Water damage calls are coming. Every one you miss is $500+ walking away."
     }
   ],
   "territory_alerts": [
     {
-      "region": "Pueblo of Acoma, NM",
-      "opportunity": "FEMA Disaster: Severe Storm in Pueblo of Acoma, NM. Contractors overwhelmed",
-      "action": "Target roofers, restoration, HVAC, plumbers in NM immediately. They're drowning in calls.",
-      "urgency": "immediate",
-      "confidence": 92
-    },
-    {
-      "region": "Inland Broward County; Metro Broward County; Inland Miami-Dade County; Metropolitan Miami Dade; Coastal Broward County; Coastal Miami Dade County; Far South Miami-Dade County",
-      "opportunity": "HVAC contractors overwhelmed in Inland Broward County; Metro Broward County; Inland Miami-Dade County; Metropolitan Miami Dade; Coastal Broward County; Coastal Miami Dade County; Far South Miami-Dade County. Heat emergency",
-      "action": "Target HVAC businesses in Inland Broward County; Metro Broward County; Inland Miami-Dade County; Metropolitan Miami Dade; Coastal Broward County; Coastal Miami Dade County; Far South Miami-Dade County with missed-call pitch. They're too busy to answer right now.",
+      "region": "Metro Palm Beach County; Coastal Collier County; Inland Collier County; Metro Broward County; Metropolitan Miami Dade; Coastal Palm Beach County; Coastal Broward County; Coastal Miami Dade County",
+      "opportunity": "HVAC contractors overwhelmed in Metro Palm Beach County; Coastal Collier County; Inland Collier County; Metro Broward County; Metropolitan Miami Dade; Coastal Palm Beach County; Coastal Broward County; Coastal Miami Dade County. Heat emergency",
+      "action": "Target HVAC businesses in Metro Palm Beach County; Coastal Collier County; Inland Collier County; Metro Broward County; Metropolitan Miami Dade; Coastal Palm Beach County; Coastal Broward County; Coastal Miami Dade County with missed-call pitch. They're too busy to answer right now.",
       "urgency": "immediate",
       "confidence": 90
     },
     {
-      "region": "Parker Valley; Kofa; Yuma; Central La Paz; Gila River Valley; Imperial County Southwest; Chuckwalla Mountains; Imperial County Southeast; Imperial County West; Imperial Valley; Chiriaco Summit; Palo V",
-      "opportunity": "HVAC contractors overwhelmed in Parker Valley; Kofa; Yuma; Central La Paz; Gila River Valley; Imperial County Southwest; Chuckwalla Mountains; Imperial County Southeast; Imperial County West; Imperial Valley; Chiriaco Summit; Palo V. Heat emergency",
-      "action": "Target HVAC businesses in Parker Valley; Kofa; Yuma; Central La Paz; Gila River Valley; Imperial County Southwest; Chuckwalla Mountains; Imperial County Southeast; Imperial County West; Imperial Valley; Chiriaco Summit; Palo V with missed-call pitch. They're too busy to answer right now.",
+      "region": "San Diego County Coastal Areas; Orange County Coastal",
+      "opportunity": "HVAC contractors overwhelmed in San Diego County Coastal Areas; Orange County Coastal. Heat emergency",
+      "action": "Target HVAC businesses in San Diego County Coastal Areas; Orange County Coastal with missed-call pitch. They're too busy to answer right now.",
       "urgency": "immediate",
       "confidence": 90
     },
     {
-      "region": "Cuyama Valley; Santa Clarita Valley; Southern Salinas Valley; San Luis Obispo County Interior Valleys; San Luis Obispo County Mountains; Santa Barbara County Interior Mountains; Western San Fernando V",
-      "opportunity": "HVAC contractors overwhelmed in Cuyama Valley; Santa Clarita Valley; Southern Salinas Valley; San Luis Obispo County Interior Valleys; San Luis Obispo County Mountains; Santa Barbara County Interior Mountains; Western San Fernando V. Heat emergency",
-      "action": "Target HVAC businesses in Cuyama Valley; Santa Clarita Valley; Southern Salinas Valley; San Luis Obispo County Interior Valleys; San Luis Obispo County Mountains; Santa Barbara County Interior Mountains; Western San Fernando V with missed-call pitch. They're too busy to answer right now.",
-      "urgency": "immediate",
-      "confidence": 90
-    },
-    {
-      "region": "San Gorgonio Pass Near Banning",
-      "opportunity": "HVAC contractors overwhelmed in San Gorgonio Pass Near Banning. Heat emergency",
-      "action": "Target HVAC businesses in San Gorgonio Pass Near Banning with missed-call pitch. They're too busy to answer right now.",
+      "region": "San Bernardino and Riverside County Valleys-The Inland Empire; San Diego County Inland Valleys; San Bernardino County Mountains; Riverside County Mountains; Santa Ana Mountains and Foothills; San Dieg",
+      "opportunity": "HVAC contractors overwhelmed in San Bernardino and Riverside County Valleys-The Inland Empire; San Diego County Inland Valleys; San Bernardino County Mountains; Riverside County Mountains; Santa Ana Mountains and Foothills; San Dieg. Heat emergency",
+      "action": "Target HVAC businesses in San Bernardino and Riverside County Valleys-The Inland Empire; San Diego County Inland Valleys; San Bernardino County Mountains; Riverside County Mountains; Santa Ana Mountains and Foothills; San Dieg with missed-call pitch. They're too busy to answer right now.",
       "urgency": "immediate",
       "confidence": 90
     },
@@ -137,30 +113,37 @@
       "confidence": 90
     },
     {
-      "region": "Coastal Bryan; Inland Chatham; Coastal Chatham; Coastal Liberty; Coastal McIntosh",
-      "opportunity": "HVAC contractors overwhelmed in Coastal Bryan; Inland Chatham; Coastal Chatham; Coastal Liberty; Coastal McIntosh. Heat emergency",
-      "action": "Target HVAC businesses in Coastal Bryan; Inland Chatham; Coastal Chatham; Coastal Liberty; Coastal McIntosh with missed-call pitch. They're too busy to answer right now.",
+      "region": "West Side of Fresno and Kings Counties; Caruthers - San Joaquin - Selma; Fresno-Clovis; Buttonwillow - Lost Hills - I5; Delano-Wasco-Shafter; Hanford - Corcoran - Lemoore; Visalia - Porterville - Reed",
+      "opportunity": "HVAC contractors overwhelmed in West Side of Fresno and Kings Counties; Caruthers - San Joaquin - Selma; Fresno-Clovis; Buttonwillow - Lost Hills - I5; Delano-Wasco-Shafter; Hanford - Corcoran - Lemoore; Visalia - Porterville - Reed. Heat emergency",
+      "action": "Target HVAC businesses in West Side of Fresno and Kings Counties; Caruthers - San Joaquin - Selma; Fresno-Clovis; Buttonwillow - Lost Hills - I5; Delano-Wasco-Shafter; Hanford - Corcoran - Lemoore; Visalia - Porterville - Reed with missed-call pitch. They're too busy to answer right now.",
       "urgency": "immediate",
       "confidence": 90
     },
     {
-      "region": "Inland Berkeley; Beaufort; Coastal Colleton; Charleston; Coastal Jasper; Tidal Berkeley",
-      "opportunity": "HVAC contractors overwhelmed in Inland Berkeley; Beaufort; Coastal Colleton; Charleston; Coastal Jasper; Tidal Berkeley. Heat emergency",
-      "action": "Target HVAC businesses in Inland Berkeley; Beaufort; Coastal Colleton; Charleston; Coastal Jasper; Tidal Berkeley with missed-call pitch. They're too busy to answer right now.",
+      "region": "Cuyama Valley; Santa Clarita Valley; Lake Casitas; Ojai Valley; Central Ventura County Valleys; Los Angeles County Inland Coast including Downtown Los Angeles; Western Santa Monica Mountains Recreatio",
+      "opportunity": "HVAC contractors overwhelmed in Cuyama Valley; Santa Clarita Valley; Lake Casitas; Ojai Valley; Central Ventura County Valleys; Los Angeles County Inland Coast including Downtown Los Angeles; Western Santa Monica Mountains Recreatio. Heat emergency",
+      "action": "Target HVAC businesses in Cuyama Valley; Santa Clarita Valley; Lake Casitas; Ojai Valley; Central Ventura County Valleys; Los Angeles County Inland Coast including Downtown Los Angeles; Western Santa Monica Mountains Recreatio with missed-call pitch. They're too busy to answer right now.",
       "urgency": "immediate",
       "confidence": 90
     },
     {
-      "region": "Inland Berkeley; Beaufort; Coastal Colleton; Charleston; Coastal Jasper; Tidal Berkeley",
-      "opportunity": "HVAC contractors overwhelmed in Inland Berkeley; Beaufort; Coastal Colleton; Charleston; Coastal Jasper; Tidal Berkeley. Heat emergency",
-      "action": "Target HVAC businesses in Inland Berkeley; Beaufort; Coastal Colleton; Charleston; Coastal Jasper; Tidal Berkeley with missed-call pitch. They're too busy to answer right now.",
+      "region": "Catalina and Santa Barbara Islands; San Luis Obispo County Inland Central Coast; Santa Lucia Mountains; Southern Salinas Valley; San Luis Obispo County Interior Valleys; San Luis Obispo County Mountai",
+      "opportunity": "HVAC contractors overwhelmed in Catalina and Santa Barbara Islands; San Luis Obispo County Inland Central Coast; Santa Lucia Mountains; Southern Salinas Valley; San Luis Obispo County Interior Valleys; San Luis Obispo County Mountai. Heat emergency",
+      "action": "Target HVAC businesses in Catalina and Santa Barbara Islands; San Luis Obispo County Inland Central Coast; Santa Lucia Mountains; Southern Salinas Valley; San Luis Obispo County Interior Valleys; San Luis Obispo County Mountai with missed-call pitch. They're too busy to answer right now.",
       "urgency": "immediate",
       "confidence": 90
     },
     {
-      "region": "Robeson; Bladen; Columbus; Inland Pender; Coastal Pender; Inland New Hanover; Coastal New Hanover; Inland Brunswick; Coastal Brunswick; Marlboro; Darlington; Dillon; Florence; Marion; Williamsburg; Co",
-      "opportunity": "HVAC contractors overwhelmed in Robeson; Bladen; Columbus; Inland Pender; Coastal Pender; Inland New Hanover; Coastal New Hanover; Inland Brunswick; Coastal Brunswick; Marlboro; Darlington; Dillon; Florence; Marion; Williamsburg; Co. Heat emergency",
-      "action": "Target HVAC businesses in Robeson; Bladen; Columbus; Inland Pender; Coastal Pender; Inland New Hanover; Coastal New Hanover; Inland Brunswick; Coastal Brunswick; Marlboro; Darlington; Dillon; Florence; Marion; Williamsburg; Co with missed-call pitch. They're too busy to answer right now.",
+      "region": "Santa Barbara County Southwestern Coast; Santa Barbara County Southeastern Coast; Santa Ynez Mountains Western Range; Santa Ynez Mountains Eastern Range; Santa Barbara County Interior Mountains",
+      "opportunity": "HVAC contractors overwhelmed in Santa Barbara County Southwestern Coast; Santa Barbara County Southeastern Coast; Santa Ynez Mountains Western Range; Santa Ynez Mountains Eastern Range; Santa Barbara County Interior Mountains. Heat emergency",
+      "action": "Target HVAC businesses in Santa Barbara County Southwestern Coast; Santa Barbara County Southeastern Coast; Santa Ynez Mountains Western Range; Santa Ynez Mountains Eastern Range; Santa Barbara County Interior Mountains with missed-call pitch. They're too busy to answer right now.",
+      "urgency": "immediate",
+      "confidence": 90
+    },
+    {
+      "region": "Parker Valley; Yuma; Imperial County Southwest; Salton Sea; Imperial County Southeast; Imperial County West; Imperial Valley; Palo Verde Valley; Chuckwalla Valley",
+      "opportunity": "HVAC contractors overwhelmed in Parker Valley; Yuma; Imperial County Southwest; Salton Sea; Imperial County Southeast; Imperial County West; Imperial Valley; Palo Verde Valley; Chuckwalla Valley. Heat emergency",
+      "action": "Target HVAC businesses in Parker Valley; Yuma; Imperial County Southwest; Salton Sea; Imperial County Southeast; Imperial County West; Imperial Valley; Palo Verde Valley; Chuckwalla Valley with missed-call pitch. They're too busy to answer right now.",
       "urgency": "immediate",
       "confidence": 90
     }
@@ -173,6 +156,6 @@
     }
   ],
   "boss_heat_score": 100,
-  "recommendation": "HOT DAY. Weather-driven demand in Hancock, TN; Lee, VA; Scott, VA, Gregg, TX; Upshur, TX; Wood, TX, Camp, TX; Gregg, TX; Harrison, TX; Marion, TX; Upshur, TX; Wood, TX. Call HVAC/roofers there NOW.",
-  "daily_briefing": "ATLAS BOSS Score: 100/100\nDEMAND: STORM in Camp, TX; Gregg, TX; Harrison, TX; Marion, TX; Upshur, TX; Wood, TX \u2014 target roofing businesses\nCOMPETITOR: Competitor/adjacent company failure: Every major tech layoff in 2026 that has na\nHOT DAY. Weather-driven demand in Hancock, TN; Lee, VA; Scott, VA, Gregg, TX; Upshur, TX; Wood, TX, Camp, TX; Gregg, TX; Harrison, TX; Marion, TX; Upshur, TX; Wood, TX. Call HVAC/roofers there NOW."
+  "recommendation": "HOT DAY. Weather-driven demand in Llano, TX, Kinney, TX; Maverick, TX; Val Verde, TX, Borden, TX; Scurry, TX. Call HVAC/roofers there NOW.",
+  "daily_briefing": "ATLAS BOSS Score: 100/100\nDEMAND: FLOOD in Llano, TX \u2014 target plumbing businesses\nHOT DAY. Weather-driven demand in Llano, TX, Kinney, TX; Maverick, TX; Val Verde, TX, Borden, TX; Scurry, TX. Call HVAC/roofers there NOW."
 }
