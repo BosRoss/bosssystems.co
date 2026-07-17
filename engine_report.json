@@ -1,60 +1,76 @@
 {
-  "generated": "2026-07-16T21:31:35.921833+00:00",
+  "generated": "2026-07-17T16:51:28.176995+00:00",
   "engine_state": "active",
   "signals": [
     {
       "type": "flood",
-      "area": "Blanco, TX",
+      "area": "Crockett, TX",
       "niche": "plumbing",
-      "action": "Flood warnings in Blanco, TX. Plumbers, restoration, mold companies will spike.",
+      "action": "Flood warnings in Crockett, TX. Plumbers, restoration, mold companies will spike.",
       "urgency": "today",
       "pitch_hook": "Water damage calls are coming. Every one you miss is $500+ walking away."
     },
     {
       "type": "flood",
-      "area": "Gillespie, TX",
+      "area": "Crockett, TX; Schleicher, TX",
       "niche": "plumbing",
-      "action": "Flood warnings in Gillespie, TX. Plumbers, restoration, mold companies will spike.",
-      "urgency": "today",
-      "pitch_hook": "Water damage calls are coming. Every one you miss is $500+ walking away."
-    },
-    {
-      "type": "storm",
-      "area": "Ward, TX; Winkler, TX",
-      "niche": "roofing",
-      "action": "Storm damage in Ward, TX; Winkler, TX. Roofers and restoration companies about to get flooded.",
-      "urgency": "today",
-      "pitch_hook": "After a storm like that, you'll get 10x your normal call volume. Ready for it?"
-    },
-    {
-      "type": "flood",
-      "area": "Comal, TX",
-      "niche": "plumbing",
-      "action": "Flood warnings in Comal, TX. Plumbers, restoration, mold companies will spike.",
+      "action": "Flood warnings in Crockett, TX; Schleicher, TX. Plumbers, restoration, mold companies will spike.",
       "urgency": "today",
       "pitch_hook": "Water damage calls are coming. Every one you miss is $500+ walking away."
     },
     {
       "type": "flood",
-      "area": "Andrews, TX; Ector, TX; Winkler, TX",
+      "area": "Reagan, TX",
       "niche": "plumbing",
-      "action": "Flood warnings in Andrews, TX; Ector, TX; Winkler, TX. Plumbers, restoration, mold companies will spike.",
+      "action": "Flood warnings in Reagan, TX. Plumbers, restoration, mold companies will spike.",
       "urgency": "today",
       "pitch_hook": "Water damage calls are coming. Every one you miss is $500+ walking away."
     },
     {
       "type": "flood",
-      "area": "Hidalgo, NM",
+      "area": "Schleicher, TX; Sutton, TX; Tom Green, TX",
       "niche": "plumbing",
-      "action": "Flood warnings in Hidalgo, NM. Plumbers, restoration, mold companies will spike.",
+      "action": "Flood warnings in Schleicher, TX; Sutton, TX; Tom Green, TX. Plumbers, restoration, mold companies will spike.",
       "urgency": "today",
       "pitch_hook": "Water damage calls are coming. Every one you miss is $500+ walking away."
     },
     {
       "type": "flood",
-      "area": "Southern Lea County; Gaines; Andrews; Loving; Winkler",
+      "area": "Kimble, TX",
       "niche": "plumbing",
-      "action": "Flood warnings in Southern Lea County; Gaines; Andrews; Loving; Winkler. Plumbers, restoration, mold companies will spike.",
+      "action": "Flood warnings in Kimble, TX. Plumbers, restoration, mold companies will spike.",
+      "urgency": "today",
+      "pitch_hook": "Water damage calls are coming. Every one you miss is $500+ walking away."
+    },
+    {
+      "type": "flood",
+      "area": "Sutton, TX",
+      "niche": "plumbing",
+      "action": "Flood warnings in Sutton, TX. Plumbers, restoration, mold companies will spike.",
+      "urgency": "today",
+      "pitch_hook": "Water damage calls are coming. Every one you miss is $500+ walking away."
+    },
+    {
+      "type": "flood",
+      "area": "Irion, TX",
+      "niche": "plumbing",
+      "action": "Flood warnings in Irion, TX. Plumbers, restoration, mold companies will spike.",
+      "urgency": "today",
+      "pitch_hook": "Water damage calls are coming. Every one you miss is $500+ walking away."
+    },
+    {
+      "type": "flood",
+      "area": "Frio, TX",
+      "niche": "plumbing",
+      "action": "Flood warnings in Frio, TX. Plumbers, restoration, mold companies will spike.",
+      "urgency": "today",
+      "pitch_hook": "Water damage calls are coming. Every one you miss is $500+ walking away."
+    },
+    {
+      "type": "flood",
+      "area": "Uvalde, TX",
+      "niche": "plumbing",
+      "action": "Flood warnings in Uvalde, TX. Plumbers, restoration, mold companies will spike.",
       "urgency": "today",
       "pitch_hook": "Water damage calls are coming. Every one you miss is $500+ walking away."
     },
@@ -65,22 +81,6 @@
       "action": "Flood warnings in South Central Mountains. Plumbers, restoration, mold companies will spike.",
       "urgency": "today",
       "pitch_hook": "Water damage calls are coming. Every one you miss is $500+ walking away."
-    },
-    {
-      "type": "flood",
-      "area": "Calcasieu, LA",
-      "niche": "plumbing",
-      "action": "Flood warnings in Calcasieu, LA. Plumbers, restoration, mold companies will spike.",
-      "urgency": "today",
-      "pitch_hook": "Water damage calls are coming. Every one you miss is $500+ walking away."
-    },
-    {
-      "type": "heat_wave",
-      "area": "Metro Palm Beach County; Coastal Collier County; Inland Collier County; Metro Broward County; Metropolitan Miami Dade; Coastal Palm Beach County; Coastal Broward County; Coastal Miami Dade County",
-      "niche": "hvac",
-      "action": "HVAC businesses in Metro Palm Beach County; Coastal Collier County; Inland Collier County; Metro Broward County; Metropolitan Miami Dade; Coastal Palm Beach County; Coastal Broward County; Coastal Miami Dade County are drowning in calls right now. Perfect time to pitch.",
-      "urgency": "today",
-      "pitch_hook": "You're getting slammed with calls \u2014 how many went to voicemail today?"
     }
   ],
   "leads": [
@@ -239,55 +239,55 @@
   "feeds": [
     {
       "name": "NOAA",
-      "last_hit": "2026-07-16T21:23:41.229958+00:00",
+      "last_hit": "2026-07-17T16:44:50.710178+00:00",
       "status": "yellow",
       "data_points_today": 0
     },
     {
       "name": "REDDIT",
-      "last_hit": "2026-07-16T21:23:41.229958+00:00",
+      "last_hit": "2026-07-17T16:44:50.710178+00:00",
       "status": "green",
       "data_points_today": 30
     },
     {
       "name": "USGS",
-      "last_hit": "2026-07-16T21:23:41.229958+00:00",
+      "last_hit": "2026-07-17T16:44:50.710178+00:00",
       "status": "yellow",
       "data_points_today": 0
     },
     {
       "name": "HACKERNEWS",
-      "last_hit": "2026-07-16T21:23:41.229958+00:00",
+      "last_hit": "2026-07-17T16:44:50.710178+00:00",
       "status": "green",
       "data_points_today": 30
     },
     {
       "name": "FEMA",
-      "last_hit": "2026-07-16T21:23:41.229958+00:00",
+      "last_hit": "2026-07-17T16:44:50.710178+00:00",
       "status": "green",
       "data_points_today": 20
     },
     {
       "name": "COMMODITIES",
-      "last_hit": "2026-07-16T21:23:41.229958+00:00",
+      "last_hit": "2026-07-17T16:44:50.710178+00:00",
       "status": "green",
       "data_points_today": 7
     },
     {
       "name": "RSS",
-      "last_hit": "2026-07-16T21:23:41.229958+00:00",
+      "last_hit": "2026-07-17T16:44:50.710178+00:00",
       "status": "green",
-      "data_points_today": 743
+      "data_points_today": 752
     },
     {
       "name": "FRED",
-      "last_hit": "2026-07-16T21:23:41.229958+00:00",
+      "last_hit": "2026-07-17T16:44:50.710178+00:00",
       "status": "yellow",
       "data_points_today": 0
     },
     {
       "name": "BLS",
-      "last_hit": "2026-07-16T21:23:41.229958+00:00",
+      "last_hit": "2026-07-17T16:44:50.710178+00:00",
       "status": "green",
       "data_points_today": 9
     }
