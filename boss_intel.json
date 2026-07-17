@@ -1,84 +1,84 @@
 {
-  "generated": "2026-07-16T18:11:50.059982+00:00",
-  "atlas_scan_time": "2026-07-16T18:05:01.931025+00:00",
+  "generated": "2026-07-17T18:20:10.141702+00:00",
+  "atlas_scan_time": "2026-07-17T18:13:35.178881+00:00",
   "demand_signals": [
     {
       "type": "flood",
-      "area": "Llano, TX",
+      "area": "Sutton, TX",
       "niche": "plumbing",
-      "action": "Flood warnings in Llano, TX. Plumbers, restoration, mold companies will spike.",
+      "action": "Flood warnings in Sutton, TX. Plumbers, restoration, mold companies will spike.",
       "urgency": "today",
       "pitch_hook": "Water damage calls are coming. Every one you miss is $500+ walking away."
     },
     {
       "type": "flood",
-      "area": "Bandera, TX; Kerr, TX; Real, TX",
+      "area": "Mason, TX",
       "niche": "plumbing",
-      "action": "Flood warnings in Bandera, TX; Kerr, TX; Real, TX. Plumbers, restoration, mold companies will spike.",
+      "action": "Flood warnings in Mason, TX. Plumbers, restoration, mold companies will spike.",
       "urgency": "today",
       "pitch_hook": "Water damage calls are coming. Every one you miss is $500+ walking away."
     },
     {
       "type": "flood",
-      "area": "Kinney, TX; Maverick, TX; Uvalde, TX; Zavala, TX",
+      "area": "Kimble, TX",
       "niche": "plumbing",
-      "action": "Flood warnings in Kinney, TX; Maverick, TX; Uvalde, TX; Zavala, TX. Plumbers, restoration, mold companies will spike.",
+      "action": "Flood warnings in Kimble, TX. Plumbers, restoration, mold companies will spike.",
       "urgency": "today",
       "pitch_hook": "Water damage calls are coming. Every one you miss is $500+ walking away."
     },
     {
       "type": "flood",
-      "area": "Kinney, TX; Maverick, TX; Val Verde, TX",
+      "area": "Crockett, TX; Schleicher, TX; Sutton, TX",
       "niche": "plumbing",
-      "action": "Flood warnings in Kinney, TX; Maverick, TX; Val Verde, TX. Plumbers, restoration, mold companies will spike.",
+      "action": "Flood warnings in Crockett, TX; Schleicher, TX; Sutton, TX. Plumbers, restoration, mold companies will spike.",
       "urgency": "today",
       "pitch_hook": "Water damage calls are coming. Every one you miss is $500+ walking away."
     },
     {
       "type": "flood",
-      "area": "Borden, TX; Dawson, TX",
+      "area": "Crockett, TX",
       "niche": "plumbing",
-      "action": "Flood warnings in Borden, TX; Dawson, TX. Plumbers, restoration, mold companies will spike.",
+      "action": "Flood warnings in Crockett, TX. Plumbers, restoration, mold companies will spike.",
       "urgency": "today",
       "pitch_hook": "Water damage calls are coming. Every one you miss is $500+ walking away."
     },
     {
       "type": "flood",
-      "area": "Mitchell, TX; Scurry, TX",
+      "area": "Schleicher, TX; Sutton, TX; Tom Green, TX",
       "niche": "plumbing",
-      "action": "Flood warnings in Mitchell, TX; Scurry, TX. Plumbers, restoration, mold companies will spike.",
+      "action": "Flood warnings in Schleicher, TX; Sutton, TX; Tom Green, TX. Plumbers, restoration, mold companies will spike.",
       "urgency": "today",
       "pitch_hook": "Water damage calls are coming. Every one you miss is $500+ walking away."
     },
     {
       "type": "flood",
-      "area": "Borden, TX; Scurry, TX",
+      "area": "Uvalde, TX",
       "niche": "plumbing",
-      "action": "Flood warnings in Borden, TX; Scurry, TX. Plumbers, restoration, mold companies will spike.",
+      "action": "Flood warnings in Uvalde, TX. Plumbers, restoration, mold companies will spike.",
       "urgency": "today",
       "pitch_hook": "Water damage calls are coming. Every one you miss is $500+ walking away."
     },
     {
       "type": "flood",
-      "area": "Llano; Val Verde; Edwards; Real; Kerr; Bandera; Gillespie; Kendall; Blanco; Kinney; Uvalde; Medina; Maverick; Zavala; Frio; Dimmit",
+      "area": "Frio, TX",
       "niche": "plumbing",
-      "action": "Flood warnings in Llano; Val Verde; Edwards; Real; Kerr; Bandera; Gillespie; Kendall; Blanco; Kinney; Uvalde; Medina; Maverick; Zavala; Frio; Dimmit. Plumbers, restoration, mold companies will spike.",
+      "action": "Flood warnings in Frio, TX. Plumbers, restoration, mold companies will spike.",
       "urgency": "today",
       "pitch_hook": "Water damage calls are coming. Every one you miss is $500+ walking away."
     },
     {
       "type": "flood",
-      "area": "Matagorda, TX; Wharton, TX",
+      "area": "Kerr, TX",
       "niche": "plumbing",
-      "action": "Flood warnings in Matagorda, TX; Wharton, TX. Plumbers, restoration, mold companies will spike.",
+      "action": "Flood warnings in Kerr, TX. Plumbers, restoration, mold companies will spike.",
       "urgency": "today",
       "pitch_hook": "Water damage calls are coming. Every one you miss is $500+ walking away."
     },
     {
       "type": "flood",
-      "area": "Gillespie, TX",
+      "area": "Anderson, TN; Campbell, TN; Morgan, TN; Scott, TN",
       "niche": "plumbing",
-      "action": "Flood warnings in Gillespie, TX. Plumbers, restoration, mold companies will spike.",
+      "action": "Flood warnings in Anderson, TN; Campbell, TN; Morgan, TN; Scott, TN. Plumbers, restoration, mold companies will spike.",
       "urgency": "today",
       "pitch_hook": "Water damage calls are coming. Every one you miss is $500+ walking away."
     }
@@ -92,58 +92,65 @@
       "confidence": 90
     },
     {
-      "region": "San Diego County Coastal Areas; Orange County Coastal",
-      "opportunity": "HVAC contractors overwhelmed in San Diego County Coastal Areas; Orange County Coastal. Heat emergency",
-      "action": "Target HVAC businesses in San Diego County Coastal Areas; Orange County Coastal with missed-call pitch. They're too busy to answer right now.",
+      "region": "Banks; Jackson; Madison; Barrow; Clarke; Oconee; Oglethorpe; Wilkes; Walton; Newton; Morgan; Greene; Taliaferro; Jasper; Putnam; Hancock; Warren; Jones; Baldwin; Washington; Glascock; Jefferson; Wilki",
+      "opportunity": "HVAC contractors overwhelmed in Banks; Jackson; Madison; Barrow; Clarke; Oconee; Oglethorpe; Wilkes; Walton; Newton; Morgan; Greene; Taliaferro; Jasper; Putnam; Hancock; Warren; Jones; Baldwin; Washington; Glascock; Jefferson; Wilki. Heat emergency",
+      "action": "Target HVAC businesses in Banks; Jackson; Madison; Barrow; Clarke; Oconee; Oglethorpe; Wilkes; Walton; Newton; Morgan; Greene; Taliaferro; Jasper; Putnam; Hancock; Warren; Jones; Baldwin; Washington; Glascock; Jefferson; Wilki with missed-call pitch. They're too busy to answer right now.",
       "urgency": "immediate",
       "confidence": 90
     },
     {
-      "region": "San Bernardino and Riverside County Valleys-The Inland Empire; San Diego County Inland Valleys; San Bernardino County Mountains; Riverside County Mountains; Santa Ana Mountains and Foothills; San Dieg",
-      "opportunity": "HVAC contractors overwhelmed in San Bernardino and Riverside County Valleys-The Inland Empire; San Diego County Inland Valleys; San Bernardino County Mountains; Riverside County Mountains; Santa Ana Mountains and Foothills; San Dieg. Heat emergency",
-      "action": "Target HVAC businesses in San Bernardino and Riverside County Valleys-The Inland Empire; San Diego County Inland Valleys; San Bernardino County Mountains; Riverside County Mountains; Santa Ana Mountains and Foothills; San Dieg with missed-call pitch. They're too busy to answer right now.",
+      "region": "Inland Berkeley; Charleston; Tidal Berkeley",
+      "opportunity": "HVAC contractors overwhelmed in Inland Berkeley; Charleston; Tidal Berkeley. Heat emergency",
+      "action": "Target HVAC businesses in Inland Berkeley; Charleston; Tidal Berkeley with missed-call pitch. They're too busy to answer right now.",
       "urgency": "immediate",
       "confidence": 90
     },
     {
-      "region": "Coachella Valley",
-      "opportunity": "HVAC contractors overwhelmed in Coachella Valley. Heat emergency",
-      "action": "Target HVAC businesses in Coachella Valley with missed-call pitch. They're too busy to answer right now.",
+      "region": "Robeson; Bladen; Columbus; Inland Pender; Coastal Pender; Inland New Hanover; Coastal New Hanover; Inland Brunswick; Coastal Brunswick; Marlboro; Darlington; Dillon; Florence; Marion; Williamsburg; Co",
+      "opportunity": "HVAC contractors overwhelmed in Robeson; Bladen; Columbus; Inland Pender; Coastal Pender; Inland New Hanover; Coastal New Hanover; Inland Brunswick; Coastal Brunswick; Marlboro; Darlington; Dillon; Florence; Marion; Williamsburg; Co. Heat emergency",
+      "action": "Target HVAC businesses in Robeson; Bladen; Columbus; Inland Pender; Coastal Pender; Inland New Hanover; Coastal New Hanover; Inland Brunswick; Coastal Brunswick; Marlboro; Darlington; Dillon; Florence; Marion; Williamsburg; Co with missed-call pitch. They're too busy to answer right now.",
       "urgency": "immediate",
       "confidence": 90
     },
     {
-      "region": "West Side of Fresno and Kings Counties; Caruthers - San Joaquin - Selma; Fresno-Clovis; Buttonwillow - Lost Hills - I5; Delano-Wasco-Shafter; Hanford - Corcoran - Lemoore; Visalia - Porterville - Reed",
-      "opportunity": "HVAC contractors overwhelmed in West Side of Fresno and Kings Counties; Caruthers - San Joaquin - Selma; Fresno-Clovis; Buttonwillow - Lost Hills - I5; Delano-Wasco-Shafter; Hanford - Corcoran - Lemoore; Visalia - Porterville - Reed. Heat emergency",
-      "action": "Target HVAC businesses in West Side of Fresno and Kings Counties; Caruthers - San Joaquin - Selma; Fresno-Clovis; Buttonwillow - Lost Hills - I5; Delano-Wasco-Shafter; Hanford - Corcoran - Lemoore; Visalia - Porterville - Reed with missed-call pitch. They're too busy to answer right now.",
+      "region": "Martin; Pitt; Washington; Tyrrell; Mainland Dare; Greene; Beaufort; Mainland Hyde; Duplin; Lenoir; Jones; Pamlico; Northern Craven; Southern Craven; West Carteret; East Carteret; Inland Onslow; Coasta",
+      "opportunity": "HVAC contractors overwhelmed in Martin; Pitt; Washington; Tyrrell; Mainland Dare; Greene; Beaufort; Mainland Hyde; Duplin; Lenoir; Jones; Pamlico; Northern Craven; Southern Craven; West Carteret; East Carteret; Inland Onslow; Coasta. Heat emergency",
+      "action": "Target HVAC businesses in Martin; Pitt; Washington; Tyrrell; Mainland Dare; Greene; Beaufort; Mainland Hyde; Duplin; Lenoir; Jones; Pamlico; Northern Craven; Southern Craven; West Carteret; East Carteret; Inland Onslow; Coasta with missed-call pitch. They're too busy to answer right now.",
       "urgency": "immediate",
       "confidence": 90
     },
     {
-      "region": "Cuyama Valley; Santa Clarita Valley; Lake Casitas; Ojai Valley; Central Ventura County Valleys; Los Angeles County Inland Coast including Downtown Los Angeles; Western Santa Monica Mountains Recreatio",
-      "opportunity": "HVAC contractors overwhelmed in Cuyama Valley; Santa Clarita Valley; Lake Casitas; Ojai Valley; Central Ventura County Valleys; Los Angeles County Inland Coast including Downtown Los Angeles; Western Santa Monica Mountains Recreatio. Heat emergency",
-      "action": "Target HVAC businesses in Cuyama Valley; Santa Clarita Valley; Lake Casitas; Ojai Valley; Central Ventura County Valleys; Los Angeles County Inland Coast including Downtown Los Angeles; Western Santa Monica Mountains Recreatio with missed-call pitch. They're too busy to answer right now.",
+      "region": "Durham; Wake; Johnston; Wilson; Harnett; Wayne; Cumberland; Sampson",
+      "opportunity": "HVAC contractors overwhelmed in Durham; Wake; Johnston; Wilson; Harnett; Wayne; Cumberland; Sampson. Heat emergency",
+      "action": "Target HVAC businesses in Durham; Wake; Johnston; Wilson; Harnett; Wayne; Cumberland; Sampson with missed-call pitch. They're too busy to answer right now.",
       "urgency": "immediate",
       "confidence": 90
     },
     {
-      "region": "Catalina and Santa Barbara Islands; San Luis Obispo County Inland Central Coast; Santa Lucia Mountains; Southern Salinas Valley; San Luis Obispo County Interior Valleys; San Luis Obispo County Mountai",
-      "opportunity": "HVAC contractors overwhelmed in Catalina and Santa Barbara Islands; San Luis Obispo County Inland Central Coast; Santa Lucia Mountains; Southern Salinas Valley; San Luis Obispo County Interior Valleys; San Luis Obispo County Mountai. Heat emergency",
-      "action": "Target HVAC businesses in Catalina and Santa Barbara Islands; San Luis Obispo County Inland Central Coast; Santa Lucia Mountains; Southern Salinas Valley; San Luis Obispo County Interior Valleys; San Luis Obispo County Mountai with missed-call pitch. They're too busy to answer right now.",
+      "region": "Warren; Halifax; Franklin; Nash; Edgecombe",
+      "opportunity": "HVAC contractors overwhelmed in Warren; Halifax; Franklin; Nash; Edgecombe. Heat emergency",
+      "action": "Target HVAC businesses in Warren; Halifax; Franklin; Nash; Edgecombe with missed-call pitch. They're too busy to answer right now.",
       "urgency": "immediate",
       "confidence": 90
     },
     {
-      "region": "Santa Barbara County Southwestern Coast; Santa Barbara County Southeastern Coast; Santa Ynez Mountains Western Range; Santa Ynez Mountains Eastern Range; Santa Barbara County Interior Mountains",
-      "opportunity": "HVAC contractors overwhelmed in Santa Barbara County Southwestern Coast; Santa Barbara County Southeastern Coast; Santa Ynez Mountains Western Range; Santa Ynez Mountains Eastern Range; Santa Barbara County Interior Mountains. Heat emergency",
-      "action": "Target HVAC businesses in Santa Barbara County Southwestern Coast; Santa Barbara County Southeastern Coast; Santa Ynez Mountains Western Range; Santa Ynez Mountains Eastern Range; Santa Barbara County Interior Mountains with missed-call pitch. They're too busy to answer right now.",
+      "region": "Jefferson; Henry; Des Moines; Van Buren; Lee; Henderson; Warren; Hancock; McDonough; Scotland; Clark",
+      "opportunity": "HVAC contractors overwhelmed in Jefferson; Henry; Des Moines; Van Buren; Lee; Henderson; Warren; Hancock; McDonough; Scotland; Clark. Heat emergency",
+      "action": "Target HVAC businesses in Jefferson; Henry; Des Moines; Van Buren; Lee; Henderson; Warren; Hancock; McDonough; Scotland; Clark with missed-call pitch. They're too busy to answer right now.",
       "urgency": "immediate",
       "confidence": 90
     },
     {
-      "region": "Parker Valley; Yuma; Imperial County Southwest; Salton Sea; Imperial County Southeast; Imperial County West; Imperial Valley; Palo Verde Valley; Chuckwalla Valley",
-      "opportunity": "HVAC contractors overwhelmed in Parker Valley; Yuma; Imperial County Southwest; Salton Sea; Imperial County Southeast; Imperial County West; Imperial Valley; Palo Verde Valley; Chuckwalla Valley. Heat emergency",
-      "action": "Target HVAC businesses in Parker Valley; Yuma; Imperial County Southwest; Salton Sea; Imperial County Southeast; Imperial County West; Imperial Valley; Palo Verde Valley; Chuckwalla Valley with missed-call pitch. They're too busy to answer right now.",
+      "region": "Clinton; Washington; Randolph; Madison; St. Clair; Monroe; Boone; Moniteau; Cole; Osage; Callaway; Montgomery; Gasconade; Warren; St. Charles; Franklin; St. Louis; St. Louis City; Jefferson; Crawford;",
+      "opportunity": "HVAC contractors overwhelmed in Clinton; Washington; Randolph; Madison; St. Clair; Monroe; Boone; Moniteau; Cole; Osage; Callaway; Montgomery; Gasconade; Warren; St. Charles; Franklin; St. Louis; St. Louis City; Jefferson; Crawford;. Heat emergency",
+      "action": "Target HVAC businesses in Clinton; Washington; Randolph; Madison; St. Clair; Monroe; Boone; Moniteau; Cole; Osage; Callaway; Montgomery; Gasconade; Warren; St. Charles; Franklin; St. Louis; St. Louis City; Jefferson; Crawford; with missed-call pitch. They're too busy to answer right now.",
+      "urgency": "immediate",
+      "confidence": 90
+    },
+    {
+      "region": "Perry; Franklin; Jackson; Williamson; Saline; Union; Johnson; Pope; Alexander; Pulaski; Massac; Fulton; Hickman; Carlisle; Ballard; McCracken; Graves; Livingston; Marshall; Calloway; Perry; Bollinger;",
+      "opportunity": "HVAC contractors overwhelmed in Perry; Franklin; Jackson; Williamson; Saline; Union; Johnson; Pope; Alexander; Pulaski; Massac; Fulton; Hickman; Carlisle; Ballard; McCracken; Graves; Livingston; Marshall; Calloway; Perry; Bollinger;. Heat emergency",
+      "action": "Target HVAC businesses in Perry; Franklin; Jackson; Williamson; Saline; Union; Johnson; Pope; Alexander; Pulaski; Massac; Fulton; Hickman; Carlisle; Ballard; McCracken; Graves; Livingston; Marshall; Calloway; Perry; Bollinger; with missed-call pitch. They're too busy to answer right now.",
       "urgency": "immediate",
       "confidence": 90
     }
@@ -156,6 +163,6 @@
     }
   ],
   "boss_heat_score": 100,
-  "recommendation": "HOT DAY. Weather-driven demand in Llano, TX, Kinney, TX; Maverick, TX; Val Verde, TX, Borden, TX; Scurry, TX. Call HVAC/roofers there NOW.",
-  "daily_briefing": "ATLAS BOSS Score: 100/100\nDEMAND: FLOOD in Llano, TX \u2014 target plumbing businesses\nHOT DAY. Weather-driven demand in Llano, TX, Kinney, TX; Maverick, TX; Val Verde, TX, Borden, TX; Scurry, TX. Call HVAC/roofers there NOW."
+  "recommendation": "HOT DAY. Weather-driven demand in Anderson, TN; Campbell, TN; Morgan, TN; Scott, TN, Sutton, TX, Kerr, TX. Call HVAC/roofers there NOW.",
+  "daily_briefing": "ATLAS BOSS Score: 100/100\nDEMAND: FLOOD in Sutton, TX \u2014 target plumbing businesses\nHOT DAY. Weather-driven demand in Anderson, TN; Campbell, TN; Morgan, TN; Scott, TN, Sutton, TX, Kerr, TX. Call HVAC/roofers there NOW."
 }
