@@ -1,36 +1,20 @@
 {
-  "generated": "2026-07-17T16:51:28.176995+00:00",
+  "generated": "2026-07-17T18:21:33.738196+00:00",
   "engine_state": "active",
   "signals": [
     {
       "type": "flood",
-      "area": "Crockett, TX",
+      "area": "Sutton, TX",
       "niche": "plumbing",
-      "action": "Flood warnings in Crockett, TX. Plumbers, restoration, mold companies will spike.",
+      "action": "Flood warnings in Sutton, TX. Plumbers, restoration, mold companies will spike.",
       "urgency": "today",
       "pitch_hook": "Water damage calls are coming. Every one you miss is $500+ walking away."
     },
     {
       "type": "flood",
-      "area": "Crockett, TX; Schleicher, TX",
+      "area": "Mason, TX",
       "niche": "plumbing",
-      "action": "Flood warnings in Crockett, TX; Schleicher, TX. Plumbers, restoration, mold companies will spike.",
-      "urgency": "today",
-      "pitch_hook": "Water damage calls are coming. Every one you miss is $500+ walking away."
-    },
-    {
-      "type": "flood",
-      "area": "Reagan, TX",
-      "niche": "plumbing",
-      "action": "Flood warnings in Reagan, TX. Plumbers, restoration, mold companies will spike.",
-      "urgency": "today",
-      "pitch_hook": "Water damage calls are coming. Every one you miss is $500+ walking away."
-    },
-    {
-      "type": "flood",
-      "area": "Schleicher, TX; Sutton, TX; Tom Green, TX",
-      "niche": "plumbing",
-      "action": "Flood warnings in Schleicher, TX; Sutton, TX; Tom Green, TX. Plumbers, restoration, mold companies will spike.",
+      "action": "Flood warnings in Mason, TX. Plumbers, restoration, mold companies will spike.",
       "urgency": "today",
       "pitch_hook": "Water damage calls are coming. Every one you miss is $500+ walking away."
     },
@@ -44,25 +28,25 @@
     },
     {
       "type": "flood",
-      "area": "Sutton, TX",
+      "area": "Crockett, TX; Schleicher, TX; Sutton, TX",
       "niche": "plumbing",
-      "action": "Flood warnings in Sutton, TX. Plumbers, restoration, mold companies will spike.",
+      "action": "Flood warnings in Crockett, TX; Schleicher, TX; Sutton, TX. Plumbers, restoration, mold companies will spike.",
       "urgency": "today",
       "pitch_hook": "Water damage calls are coming. Every one you miss is $500+ walking away."
     },
     {
       "type": "flood",
-      "area": "Irion, TX",
+      "area": "Crockett, TX",
       "niche": "plumbing",
-      "action": "Flood warnings in Irion, TX. Plumbers, restoration, mold companies will spike.",
+      "action": "Flood warnings in Crockett, TX. Plumbers, restoration, mold companies will spike.",
       "urgency": "today",
       "pitch_hook": "Water damage calls are coming. Every one you miss is $500+ walking away."
     },
     {
       "type": "flood",
-      "area": "Frio, TX",
+      "area": "Schleicher, TX; Sutton, TX; Tom Green, TX",
       "niche": "plumbing",
-      "action": "Flood warnings in Frio, TX. Plumbers, restoration, mold companies will spike.",
+      "action": "Flood warnings in Schleicher, TX; Sutton, TX; Tom Green, TX. Plumbers, restoration, mold companies will spike.",
       "urgency": "today",
       "pitch_hook": "Water damage calls are coming. Every one you miss is $500+ walking away."
     },
@@ -76,9 +60,25 @@
     },
     {
       "type": "flood",
-      "area": "South Central Mountains",
+      "area": "Frio, TX",
       "niche": "plumbing",
-      "action": "Flood warnings in South Central Mountains. Plumbers, restoration, mold companies will spike.",
+      "action": "Flood warnings in Frio, TX. Plumbers, restoration, mold companies will spike.",
+      "urgency": "today",
+      "pitch_hook": "Water damage calls are coming. Every one you miss is $500+ walking away."
+    },
+    {
+      "type": "flood",
+      "area": "Kerr, TX",
+      "niche": "plumbing",
+      "action": "Flood warnings in Kerr, TX. Plumbers, restoration, mold companies will spike.",
+      "urgency": "today",
+      "pitch_hook": "Water damage calls are coming. Every one you miss is $500+ walking away."
+    },
+    {
+      "type": "flood",
+      "area": "Anderson, TN; Campbell, TN; Morgan, TN; Scott, TN",
+      "niche": "plumbing",
+      "action": "Flood warnings in Anderson, TN; Campbell, TN; Morgan, TN; Scott, TN. Plumbers, restoration, mold companies will spike.",
       "urgency": "today",
       "pitch_hook": "Water damage calls are coming. Every one you miss is $500+ walking away."
     }
@@ -166,6 +166,15 @@
       "trigger": "market_sweep"
     },
     {
+      "name": "electrician",
+      "city": "MS",
+      "score": 73,
+      "tier": "SUPERNICHE",
+      "channel": "email",
+      "sequence_status": "queued",
+      "trigger": "territory_alert"
+    },
+    {
       "name": "plumber",
       "city": "MS",
       "score": 71,
@@ -209,28 +218,19 @@
       "channel": "watchlist",
       "sequence_status": "called",
       "trigger": "market_sweep"
-    },
-    {
-      "name": "plumber",
-      "city": "AL",
-      "score": 68,
-      "tier": "SUPERNICHE",
-      "channel": "watchlist",
-      "sequence_status": "queued",
-      "trigger": "market_sweep"
     }
   ],
   "kpis": {
     "signals_firing": 10,
-    "leads_superniche": 89,
-    "leads_hot": 111,
+    "leads_superniche": 91,
+    "leads_hot": 109,
     "leads_warm": 0,
-    "cost_per_qualified": 0.98,
-    "total_spend": 87.6479999999939,
+    "cost_per_qualified": 1.0,
+    "total_spend": 90.81599999999355,
     "spend_cap": 300.0
   },
   "channels": {
-    "emails_sent": 280,
+    "emails_sent": 279,
     "texts_sent": 0,
     "calls_made": 0,
     "meetings_set": 10,
@@ -239,63 +239,63 @@
   "feeds": [
     {
       "name": "NOAA",
-      "last_hit": "2026-07-17T16:44:50.710178+00:00",
+      "last_hit": "2026-07-17T18:13:35.178881+00:00",
       "status": "yellow",
       "data_points_today": 0
     },
     {
       "name": "REDDIT",
-      "last_hit": "2026-07-17T16:44:50.710178+00:00",
+      "last_hit": "2026-07-17T18:13:35.178881+00:00",
       "status": "green",
       "data_points_today": 30
     },
     {
       "name": "USGS",
-      "last_hit": "2026-07-17T16:44:50.710178+00:00",
+      "last_hit": "2026-07-17T18:13:35.178881+00:00",
       "status": "yellow",
       "data_points_today": 0
     },
     {
       "name": "HACKERNEWS",
-      "last_hit": "2026-07-17T16:44:50.710178+00:00",
+      "last_hit": "2026-07-17T18:13:35.178881+00:00",
       "status": "green",
       "data_points_today": 30
     },
     {
       "name": "FEMA",
-      "last_hit": "2026-07-17T16:44:50.710178+00:00",
+      "last_hit": "2026-07-17T18:13:35.178881+00:00",
       "status": "green",
       "data_points_today": 20
     },
     {
       "name": "COMMODITIES",
-      "last_hit": "2026-07-17T16:44:50.710178+00:00",
+      "last_hit": "2026-07-17T18:13:35.178881+00:00",
       "status": "green",
       "data_points_today": 7
     },
     {
       "name": "RSS",
-      "last_hit": "2026-07-17T16:44:50.710178+00:00",
+      "last_hit": "2026-07-17T18:13:35.178881+00:00",
       "status": "green",
-      "data_points_today": 752
+      "data_points_today": 751
     },
     {
       "name": "FRED",
-      "last_hit": "2026-07-17T16:44:50.710178+00:00",
+      "last_hit": "2026-07-17T18:13:35.178881+00:00",
       "status": "yellow",
       "data_points_today": 0
     },
     {
       "name": "BLS",
-      "last_hit": "2026-07-17T16:44:50.710178+00:00",
-      "status": "green",
-      "data_points_today": 9
+      "last_hit": "2026-07-17T18:13:35.178881+00:00",
+      "status": "yellow",
+      "data_points_today": 0
     }
   ],
   "conversion_funnel": {
     "signals": 10,
     "leads": 200,
-    "contacted": 280,
+    "contacted": 279,
     "replied": 10,
     "meeting": 10,
     "close": 0
