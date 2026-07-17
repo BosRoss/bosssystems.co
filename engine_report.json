@@ -1,60 +1,20 @@
 {
-  "generated": "2026-07-17T18:21:33.738196+00:00",
+  "generated": "2026-07-17T21:02:36.968021+00:00",
   "engine_state": "active",
   "signals": [
     {
       "type": "flood",
-      "area": "Sutton, TX",
+      "area": "Dimmit, TX",
       "niche": "plumbing",
-      "action": "Flood warnings in Sutton, TX. Plumbers, restoration, mold companies will spike.",
+      "action": "Flood warnings in Dimmit, TX. Plumbers, restoration, mold companies will spike.",
       "urgency": "today",
       "pitch_hook": "Water damage calls are coming. Every one you miss is $500+ walking away."
     },
     {
       "type": "flood",
-      "area": "Mason, TX",
+      "area": "Goliad, TX; Karnes, TX",
       "niche": "plumbing",
-      "action": "Flood warnings in Mason, TX. Plumbers, restoration, mold companies will spike.",
-      "urgency": "today",
-      "pitch_hook": "Water damage calls are coming. Every one you miss is $500+ walking away."
-    },
-    {
-      "type": "flood",
-      "area": "Kimble, TX",
-      "niche": "plumbing",
-      "action": "Flood warnings in Kimble, TX. Plumbers, restoration, mold companies will spike.",
-      "urgency": "today",
-      "pitch_hook": "Water damage calls are coming. Every one you miss is $500+ walking away."
-    },
-    {
-      "type": "flood",
-      "area": "Crockett, TX; Schleicher, TX; Sutton, TX",
-      "niche": "plumbing",
-      "action": "Flood warnings in Crockett, TX; Schleicher, TX; Sutton, TX. Plumbers, restoration, mold companies will spike.",
-      "urgency": "today",
-      "pitch_hook": "Water damage calls are coming. Every one you miss is $500+ walking away."
-    },
-    {
-      "type": "flood",
-      "area": "Crockett, TX",
-      "niche": "plumbing",
-      "action": "Flood warnings in Crockett, TX. Plumbers, restoration, mold companies will spike.",
-      "urgency": "today",
-      "pitch_hook": "Water damage calls are coming. Every one you miss is $500+ walking away."
-    },
-    {
-      "type": "flood",
-      "area": "Schleicher, TX; Sutton, TX; Tom Green, TX",
-      "niche": "plumbing",
-      "action": "Flood warnings in Schleicher, TX; Sutton, TX; Tom Green, TX. Plumbers, restoration, mold companies will spike.",
-      "urgency": "today",
-      "pitch_hook": "Water damage calls are coming. Every one you miss is $500+ walking away."
-    },
-    {
-      "type": "flood",
-      "area": "Uvalde, TX",
-      "niche": "plumbing",
-      "action": "Flood warnings in Uvalde, TX. Plumbers, restoration, mold companies will spike.",
+      "action": "Flood warnings in Goliad, TX; Karnes, TX. Plumbers, restoration, mold companies will spike.",
       "urgency": "today",
       "pitch_hook": "Water damage calls are coming. Every one you miss is $500+ walking away."
     },
@@ -68,17 +28,57 @@
     },
     {
       "type": "flood",
-      "area": "Kerr, TX",
+      "area": "Uvalde, TX",
       "niche": "plumbing",
-      "action": "Flood warnings in Kerr, TX. Plumbers, restoration, mold companies will spike.",
+      "action": "Flood warnings in Uvalde, TX. Plumbers, restoration, mold companies will spike.",
       "urgency": "today",
       "pitch_hook": "Water damage calls are coming. Every one you miss is $500+ walking away."
     },
     {
       "type": "flood",
-      "area": "Anderson, TN; Campbell, TN; Morgan, TN; Scott, TN",
+      "area": "Karnes, TX; Wilson, TX",
       "niche": "plumbing",
-      "action": "Flood warnings in Anderson, TN; Campbell, TN; Morgan, TN; Scott, TN. Plumbers, restoration, mold companies will spike.",
+      "action": "Flood warnings in Karnes, TX; Wilson, TX. Plumbers, restoration, mold companies will spike.",
+      "urgency": "today",
+      "pitch_hook": "Water damage calls are coming. Every one you miss is $500+ walking away."
+    },
+    {
+      "type": "flood",
+      "area": "Karnes, TX",
+      "niche": "plumbing",
+      "action": "Flood warnings in Karnes, TX. Plumbers, restoration, mold companies will spike.",
+      "urgency": "today",
+      "pitch_hook": "Water damage calls are coming. Every one you miss is $500+ walking away."
+    },
+    {
+      "type": "flood",
+      "area": "Maverick, TX",
+      "niche": "plumbing",
+      "action": "Flood warnings in Maverick, TX. Plumbers, restoration, mold companies will spike.",
+      "urgency": "today",
+      "pitch_hook": "Water damage calls are coming. Every one you miss is $500+ walking away."
+    },
+    {
+      "type": "flood",
+      "area": "Anderson, TN; Blount, TN; Knox, TN; Loudon, TN; Roane, TN; Union, TN",
+      "niche": "plumbing",
+      "action": "Flood warnings in Anderson, TN; Blount, TN; Knox, TN; Loudon, TN; Roane, TN; Union, TN. Plumbers, restoration, mold companies will spike.",
+      "urgency": "today",
+      "pitch_hook": "Water damage calls are coming. Every one you miss is $500+ walking away."
+    },
+    {
+      "type": "flood",
+      "area": "Loudon, TN; McMinn, TN; Monroe, TN; Roane, TN",
+      "niche": "plumbing",
+      "action": "Flood warnings in Loudon, TN; McMinn, TN; Monroe, TN; Roane, TN. Plumbers, restoration, mold companies will spike.",
+      "urgency": "today",
+      "pitch_hook": "Water damage calls are coming. Every one you miss is $500+ walking away."
+    },
+    {
+      "type": "flood",
+      "area": "Cheatham, TN; Davidson, TN; Dickson, TN; Hickman, TN; Maury, TN; Williamson, TN",
+      "niche": "plumbing",
+      "action": "Flood warnings in Cheatham, TN; Davidson, TN; Dickson, TN; Hickman, TN; Maury, TN; Williamson, TN. Plumbers, restoration, mold companies will spike.",
       "urgency": "today",
       "pitch_hook": "Water damage calls are coming. Every one you miss is $500+ walking away."
     }
@@ -148,6 +148,15 @@
       "trigger": "flood"
     },
     {
+      "name": "HVAC contractor",
+      "city": "NM",
+      "score": 75,
+      "tier": "SUPERNICHE",
+      "channel": "watchlist",
+      "sequence_status": "queued",
+      "trigger": "storm"
+    },
+    {
       "name": "law firm",
       "city": "AR",
       "score": 74,
@@ -202,35 +211,26 @@
       "trigger": ""
     },
     {
-      "name": "plumber",
-      "city": "AR",
-      "score": 68,
+      "name": "HVAC contractor",
+      "city": "",
+      "score": 69,
       "tier": "SUPERNICHE",
       "channel": "watchlist",
       "sequence_status": "queued",
-      "trigger": "territory_alert"
-    },
-    {
-      "name": "auto repair",
-      "city": "MS",
-      "score": 68,
-      "tier": "SUPERNICHE",
-      "channel": "watchlist",
-      "sequence_status": "called",
-      "trigger": "market_sweep"
+      "trigger": "storm"
     }
   ],
   "kpis": {
     "signals_firing": 10,
-    "leads_superniche": 91,
-    "leads_hot": 109,
+    "leads_superniche": 94,
+    "leads_hot": 106,
     "leads_warm": 0,
-    "cost_per_qualified": 1.0,
-    "total_spend": 90.81599999999355,
+    "cost_per_qualified": 0.98,
+    "total_spend": 92.41599999999337,
     "spend_cap": 300.0
   },
   "channels": {
-    "emails_sent": 279,
+    "emails_sent": 280,
     "texts_sent": 0,
     "calls_made": 0,
     "meetings_set": 10,
@@ -239,63 +239,63 @@
   "feeds": [
     {
       "name": "NOAA",
-      "last_hit": "2026-07-17T18:13:35.178881+00:00",
+      "last_hit": "2026-07-17T20:54:49.182487+00:00",
       "status": "yellow",
       "data_points_today": 0
     },
     {
       "name": "REDDIT",
-      "last_hit": "2026-07-17T18:13:35.178881+00:00",
+      "last_hit": "2026-07-17T20:54:49.182487+00:00",
       "status": "green",
       "data_points_today": 30
     },
     {
       "name": "USGS",
-      "last_hit": "2026-07-17T18:13:35.178881+00:00",
+      "last_hit": "2026-07-17T20:54:49.182487+00:00",
       "status": "yellow",
       "data_points_today": 0
     },
     {
       "name": "HACKERNEWS",
-      "last_hit": "2026-07-17T18:13:35.178881+00:00",
+      "last_hit": "2026-07-17T20:54:49.182487+00:00",
       "status": "green",
       "data_points_today": 30
     },
     {
       "name": "FEMA",
-      "last_hit": "2026-07-17T18:13:35.178881+00:00",
+      "last_hit": "2026-07-17T20:54:49.182487+00:00",
       "status": "green",
       "data_points_today": 20
     },
     {
       "name": "COMMODITIES",
-      "last_hit": "2026-07-17T18:13:35.178881+00:00",
+      "last_hit": "2026-07-17T20:54:49.182487+00:00",
       "status": "green",
       "data_points_today": 7
     },
     {
       "name": "RSS",
-      "last_hit": "2026-07-17T18:13:35.178881+00:00",
+      "last_hit": "2026-07-17T20:54:49.182487+00:00",
       "status": "green",
       "data_points_today": 751
     },
     {
       "name": "FRED",
-      "last_hit": "2026-07-17T18:13:35.178881+00:00",
+      "last_hit": "2026-07-17T20:54:49.182487+00:00",
       "status": "yellow",
       "data_points_today": 0
     },
     {
       "name": "BLS",
-      "last_hit": "2026-07-17T18:13:35.178881+00:00",
-      "status": "yellow",
-      "data_points_today": 0
+      "last_hit": "2026-07-17T20:54:49.182487+00:00",
+      "status": "green",
+      "data_points_today": 9
     }
   ],
   "conversion_funnel": {
     "signals": 10,
     "leads": 200,
-    "contacted": 279,
+    "contacted": 280,
     "replied": 10,
     "meeting": 10,
     "close": 0
