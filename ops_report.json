@@ -1,41 +1,41 @@
 {
-  "generated": "2026-07-06T20:37:44.803779+00:00",
+  "generated": "2026-07-17T20:30:04.230741+00:00",
   "sections": {
     "atlas": {
       "power_level": "ACTIVE",
-      "last_scan": "2026-07-06T19:59:37.531988+00:00",
-      "scan_count": 137,
+      "last_scan": "2026-07-17T18:13:35.178881+00:00",
+      "scan_count": 192,
       "heat_score": 100,
-      "recommendation": "HOT DAY. Weather-driven demand in Hancock, TN; Lee, VA; Scott, VA, Gregg, TX; Upshur, TX; Wood, TX, Camp, TX; Gregg, TX; Harrison, TX; Marion, TX; Upshur, TX; Wood, TX. Call HVAC/roofers there NOW.",
+      "recommendation": "HOT DAY. Weather-driven demand in Anderson, TN; Campbell, TN; Morgan, TN; Scott, TN, Sutton, TX, Kerr, TX. Call HVAC/roofers there NOW.",
       "demand_signals": 10,
       "pain_signals": 0,
       "pitch_adjustments": 0,
-      "competitor_intel": 1,
+      "competitor_intel": 0,
       "territory_alerts": 10,
       "top_demands": [
         {
-          "type": "storm",
-          "area": "Camp, TX; Gregg, TX; Harrison, TX; Marion, TX; Upshur, TX; W",
-          "niche": "roofing"
-        },
-        {
           "type": "flood",
-          "area": "Kerr, TX",
-          "niche": "plumbing"
-        },
-        {
-          "type": "storm",
-          "area": "Gregg, TX; Upshur, TX; Wood, TX",
-          "niche": "roofing"
-        },
-        {
-          "type": "flood",
-          "area": "Menard, TX",
+          "area": "Sutton, TX",
           "niche": "plumbing"
         },
         {
           "type": "flood",
-          "area": "Kimble, TX; Menard, TX; Schleicher, TX; Sutton, TX",
+          "area": "Mason, TX",
+          "niche": "plumbing"
+        },
+        {
+          "type": "flood",
+          "area": "Kimble, TX",
+          "niche": "plumbing"
+        },
+        {
+          "type": "flood",
+          "area": "Crockett, TX; Schleicher, TX; Sutton, TX",
+          "niche": "plumbing"
+        },
+        {
+          "type": "flood",
+          "area": "Crockett, TX",
           "niche": "plumbing"
         }
       ],
@@ -45,65 +45,61 @@
       "state": "ACTIVE",
       "total_leads": 200,
       "by_tier": {
-        "SUPERNICHE": 22,
-        "HOT": 73,
-        "WARM": 105
+        "SUPERNICHE": 91,
+        "HOT": 109
       },
       "by_route": {
-        "watchlist": 159,
-        "email": 39,
-        "call_queue": 2
+        "call_queue": 95,
+        "watchlist": 93,
+        "email": 12
       },
       "by_status": {
-        "re_engaged": 152,
-        "queued": 25,
-        "called": 23
+        "called": 97,
+        "queued": 75,
+        "re_engaged": 28
       },
-      "synced_to_pipeline": 40,
-      "api_spend": 13.38,
+      "synced_to_pipeline": 107,
+      "api_spend": 90.82,
       "api_budget": 300.0,
-      "api_percent": 4.5,
-      "outcomes_recorded": 250,
+      "api_percent": 30.3,
+      "outcomes_recorded": 381,
       "by_outcome": {
-        "no_answer": 39,
-        "hangup": 29,
-        "call_failed": 37,
-        "call_initiated": 127,
-        "callback": 8,
+        "no_answer": 40,
+        "hangup": 31,
+        "call_failed": 67,
+        "call_initiated": 224,
+        "callback": 9,
         "meeting_set": 10
       },
       "learned_weights": true,
       "suppression_count": 0,
       "top_leads": [
         {
-          "name": "Walker Law Office Pllc",
+          "name": "Lonnie Lofton Roofing",
+          "niche": "roofing contractor",
+          "state": "MS",
+          "tier": "SUPERNICHE",
+          "score": 83,
+          "route": "watchlist",
+          "status": "called"
+        },
+        {
+          "name": "Kizer Law Firm",
           "niche": "law firm",
-          "state": "MS",
+          "state": "AR",
           "tier": "SUPERNICHE",
           "score": 80,
           "route": "watchlist",
-          "status": "queued",
-          "phone": "6626659536"
+          "status": "called"
         },
         {
-          "name": "Phillips Family Dentistry",
-          "niche": "dentist",
-          "state": "MS",
+          "name": "Taylor Heating & Air Condition",
+          "niche": "HVAC contractor",
+          "state": "TN",
           "tier": "SUPERNICHE",
           "score": 80,
           "route": "watchlist",
-          "status": "queued",
-          "phone": "6622873373"
-        },
-        {
-          "name": "Jeff's Plumbing",
-          "niche": "plumbing",
-          "state": "OK",
-          "tier": "SUPERNICHE",
-          "score": 78,
-          "route": "watchlist",
-          "status": "re_engaged",
-          "phone": "5802568110"
+          "status": "called"
         },
         {
           "name": "Stanley Graves Plumbing Co",
@@ -112,18 +108,52 @@
           "tier": "SUPERNICHE",
           "score": 78,
           "route": "watchlist",
-          "status": "queued",
-          "phone": "6018470183"
+          "status": "queued"
         },
         {
-          "name": "Jackson Heating And Cooling",
-          "niche": "HVAC contractor",
-          "state": "MS",
+          "name": "Bob Clark Plumbing",
+          "niche": "plumbing",
+          "state": "AR",
           "tier": "SUPERNICHE",
-          "score": 75,
+          "score": 78,
           "route": "watchlist",
-          "status": "queued",
-          "phone": "6016109690"
+          "status": "queued"
+        },
+        {
+          "name": "davison plumbing san antonio, ",
+          "niche": "plumbing",
+          "state": "",
+          "tier": "SUPERNICHE",
+          "score": 78,
+          "route": "watchlist",
+          "status": "queued"
+        },
+        {
+          "name": "Dillon's Plumbing Service",
+          "niche": "plumbing",
+          "state": "",
+          "tier": "SUPERNICHE",
+          "score": 78,
+          "route": "watchlist",
+          "status": "queued"
+        },
+        {
+          "name": "Blankenship Law Firm",
+          "niche": "law firm",
+          "state": "AR",
+          "tier": "SUPERNICHE",
+          "score": 74,
+          "route": "watchlist",
+          "status": "called"
+        },
+        {
+          "name": "E6 Plumbing",
+          "niche": "plumber",
+          "state": "",
+          "tier": "SUPERNICHE",
+          "score": 73,
+          "route": "email",
+          "status": "queued"
         },
         {
           "name": "Edwards Electrical Services",
@@ -132,277 +162,14 @@
           "tier": "SUPERNICHE",
           "score": 73,
           "route": "email",
-          "status": "queued",
-          "phone": "6014832384"
-        },
-        {
-          "name": "Anderson Plumbing LLC",
-          "niche": "plumbing",
-          "state": "MS",
-          "tier": "SUPERNICHE",
-          "score": 72,
-          "route": "watchlist",
-          "status": "re_engaged",
-          "phone": "2286978926"
-        },
-        {
-          "name": "Jimmy's Plumbing",
-          "niche": "plumber",
-          "state": "AR",
-          "tier": "SUPERNICHE",
-          "score": 68,
-          "route": "watchlist",
-          "status": "re_engaged",
-          "phone": "8702511595"
-        },
-        {
-          "name": "Russell Branan Plumbing",
-          "niche": "plumber",
-          "state": "OK",
-          "tier": "SUPERNICHE",
-          "score": 67,
-          "route": "email",
-          "status": "queued",
-          "phone": "9186831775"
-        },
-        {
-          "name": "George Electric Plumbing & HVA",
-          "niche": "plumbing",
-          "state": "MS",
-          "tier": "SUPERNICHE",
-          "score": 63,
-          "route": "watchlist",
-          "status": "re_engaged",
-          "phone": "6624286413"
-        },
-        {
-          "name": "Pinner Plumbing & Heating Inc",
-          "niche": "plumbing",
-          "state": "AR",
-          "tier": "SUPERNICHE",
-          "score": 63,
-          "route": "watchlist",
-          "status": "re_engaged",
-          "phone": "8702341667"
-        },
-        {
-          "name": "Mcbee Plumbing",
-          "niche": "plumbing",
-          "state": "OK",
-          "tier": "SUPERNICHE",
-          "score": 63,
-          "route": "watchlist",
-          "status": "re_engaged",
-          "phone": "5802567022"
-        },
-        {
-          "name": "Pipkins Plumbing",
-          "niche": "plumbing",
-          "state": "MS",
-          "tier": "SUPERNICHE",
-          "score": 63,
-          "route": "watchlist",
-          "status": "queued",
-          "phone": "6019477107"
-        },
-        {
-          "name": "Charlie's Plumbing Services",
-          "niche": "plumber",
-          "state": "AL",
-          "tier": "SUPERNICHE",
-          "score": 62,
-          "route": "watchlist",
-          "status": "re_engaged",
-          "phone": "2565776791"
-        },
-        {
-          "name": "Delcase Plumbing Co",
-          "niche": "plumber",
-          "state": "AR",
-          "tier": "SUPERNICHE",
-          "score": 62,
-          "route": "watchlist",
-          "status": "re_engaged",
-          "phone": "8705238264"
-        },
-        {
-          "name": "Edwards Electric",
-          "niche": "electrician",
-          "state": "AR",
-          "tier": "SUPERNICHE",
-          "score": 62,
-          "route": "watchlist",
-          "status": "re_engaged",
-          "phone": "8707939351"
-        },
-        {
-          "name": "Mc Lain Plumbing & Electric",
-          "niche": "plumbing",
-          "state": "MS",
-          "tier": "SUPERNICHE",
-          "score": 62,
-          "route": "email",
-          "status": "queued",
-          "phone": "6016566333"
-        },
-        {
-          "name": "Bolton Heat & Air",
-          "niche": "HVAC contractor",
-          "state": "OK",
-          "tier": "SUPERNICHE",
-          "score": 60,
-          "route": "watchlist",
-          "status": "re_engaged",
-          "phone": "9185400242"
-        },
-        {
-          "name": "A & R Plumbing L.L.C",
-          "niche": "plumber",
-          "state": "OK",
-          "tier": "SUPERNICHE",
-          "score": 57,
-          "route": "email",
-          "status": "re_engaged",
-          "phone": "5805592703"
-        },
-        {
-          "name": "CARL RAY'S PLUMBING AND SUPPLI",
-          "niche": "plumber",
-          "state": "OK",
-          "tier": "SUPERNICHE",
-          "score": 57,
-          "route": "watchlist",
-          "status": "re_engaged",
-          "phone": "9186477189"
-        }
-      ],
-      "hot_leads": [
-        {
-          "name": "Bryan Baird's Plumbing",
-          "phone": "4797476492",
-          "outcome": "callback",
-          "duration": 38.6,
-          "date": "2026-07-06",
-          "signals": [
-            "ATLAS_WEATHER(surge)",
-            "NO_CAPACITY_SURGE",
-            "WEAK_RATING(3.9)"
-          ]
-        },
-        {
-          "name": "Brad Rodgers Plumbing & Gas",
-          "phone": "6018560367",
-          "outcome": "meeting_set",
-          "duration": 16.0,
-          "date": "2026-07-06",
-          "signals": [
-            "ATLAS_WEATHER(surge)",
-            "NO_CAPACITY_SURGE",
-            "WEAK_RATING(3.9)"
-          ]
-        },
-        {
-          "name": "Wood's Plumbing",
-          "phone": "8708562303",
-          "outcome": "meeting_set",
-          "duration": 11.6,
-          "date": "2026-07-06",
-          "signals": [
-            "ATLAS_WEATHER(surge)",
-            "NO_CAPACITY_SURGE",
-            "WEAK_RATING(4.2)"
-          ]
-        },
-        {
-          "name": "Bluff Creek Electric LLC",
-          "phone": "2566279818",
-          "outcome": "meeting_set",
-          "duration": 15.4,
-          "date": "2026-07-06",
-          "signals": [
-            "NO_WEBSITE",
-            "TIER1_NICHE",
-            "LOW_REVIEWS(8)"
-          ]
-        },
-        {
-          "name": "C & S Plumbing",
-          "phone": "9182258097",
-          "outcome": "meeting_set",
-          "duration": 43.7,
-          "date": "2026-06-27",
-          "signals": [
-            "ATLAS_WEATHER(flood)",
-            "WEAK_RATING(4.1)",
-            "NO_WEBSITE"
-          ]
-        },
-        {
-          "name": "Whiteaker Electric",
-          "phone": "8703074611",
-          "outcome": "callback",
-          "duration": 79.8,
-          "date": "2026-06-27",
-          "signals": [
-            "NO_WEBSITE",
-            "TIER1_NICHE",
-            "LOW_REVIEWS(3)"
-          ]
-        },
-        {
-          "name": "Joe's Electrical Repair",
-          "phone": "8703071177",
-          "outcome": "meeting_set",
-          "duration": 39.2,
-          "date": "2026-06-27",
-          "signals": [
-            "NO_WEBSITE",
-            "TIER1_NICHE",
-            "LOW_REVIEWS(1)"
-          ]
-        },
-        {
-          "name": "George Electric Plumbing & HVAC",
-          "phone": "6624286413",
-          "outcome": "callback",
-          "duration": 42.5,
-          "date": "2026-06-27",
-          "signals": [
-            "ATLAS_WEATHER(surge)",
-            "NO_CAPACITY_SURGE",
-            "PAIN_REVIEW('no answer')"
-          ]
-        },
-        {
-          "name": "Anderson Plumbing LLC",
-          "phone": "2286978926",
-          "outcome": "callback",
-          "duration": 73.1,
-          "date": "2026-06-27",
-          "signals": [
-            "ATLAS_WEATHER(flood)",
-            "NO_CAPACITY_SURGE",
-            "PAIN_REVIEW('voicemail')"
-          ]
-        },
-        {
-          "name": "CARL RAY'S PLUMBING AND SUPPLIES",
-          "phone": "9186477189",
-          "outcome": "meeting_set",
-          "duration": 121.0,
-          "date": "2026-06-27",
-          "signals": [
-            "ATLAS_WEATHER(flood)",
-            "NO_CAPACITY_SURGE",
-            "PAIN_REVIEW('voicemail')"
-          ]
+          "status": "queued"
         }
       ]
     },
     "n8n": {
-      "active_workflows": 35,
+      "active_workflows": 39,
       "inactive_workflows": 97,
-      "total_workflows": 132,
+      "total_workflows": 136,
       "recent_errors": 20,
       "recent_crashes": 10,
       "critical_workflows": [
@@ -450,23 +217,23 @@
       "recent_failures": [
         {
           "workflow": "FV413faAXiMk1CiY",
-          "started": "2026-07-06T20:20"
+          "started": "2026-07-17T18:21"
         },
         {
           "workflow": "FV413faAXiMk1CiY",
-          "started": "2026-07-06T20:20"
+          "started": "2026-07-17T17:01"
+        },
+        {
+          "workflow": "7wFm6CQB3VtoiRb6",
+          "started": "2026-07-16T19:00"
         },
         {
           "workflow": "FV413faAXiMk1CiY",
-          "started": "2026-07-06T20:20"
+          "started": "2026-07-16T18:14"
         },
         {
           "workflow": "FV413faAXiMk1CiY",
-          "started": "2026-07-06T20:20"
-        },
-        {
-          "workflow": "koi5QT6XJvuoPuvL",
-          "started": "2026-07-06T18:00"
+          "started": "2026-07-16T12:31"
         }
       ]
     },
@@ -476,7 +243,7 @@
         {
           "name": "BOSS Support",
           "id": "agent_2ccbf93129f1b5d505c3669d41",
-          "last_modification": "1781063490"
+          "last_modification": "1783787869"
         },
         {
           "name": "BOSS Junk Removal \u2014 Laurel MS",
@@ -525,9 +292,9 @@
         }
       ],
       "calls_24h": 50,
-      "outbound_24h": 43,
-      "inbound_24h": 7,
-      "avg_duration_sec": 16.7
+      "outbound_24h": 48,
+      "inbound_24h": 2,
+      "avg_duration_sec": 17.0
     },
     "quant": {
       "state": "PAUSED",
@@ -540,7 +307,7 @@
       "atlas_power": "ACTIVE",
       "n8n_errors_24h": 20,
       "retell_calls_24h": 50,
-      "api_spend_pct": 4.5
+      "api_spend_pct": 30.3
     }
   }
 }
