@@ -1,202 +1,70 @@
 {
   "pending": [
     {
-      "text": "Friday afternoon and you're thinking about next week already. New jobs lined up, but you know how it goes. Some calls come in while you're on site. You call back Monday. By then they've already hired someone else.\n\nThat 93% stat isn't just a number. It's jobs you're not getting because you couldn't answer in the moment.\n\nWe built something that answers for you. Takes the details. Books the appointment. Sends you the info. You never miss a call again because the call never goes unanswered.\n\nMo...",
-      "audience": "boss",
-      "platform": "facebook",
-      "service": "facebook",
-      "channel_id": "6a235ecac687a22dd4664434",
-      "pattern": "story",
-      "image_url": null,
-      "pending_id": "02299223",
-      "queued_at": "2026-07-17T13:00:14.666398"
-    },
-    {
-      "text": "Twenty-seven percent of calls to service businesses go straight to voicemail. Your competitors are probably hitting that number too. But the ones who answer first get the job. We built something that answers your phone like you're sitting right there. No monthly subscription trap. Just the calls you're missing turning into money you're not leaving on the table. #ServiceBusiness #HVAC #Plumbing #LocalBusiness #MakeMoreMoney",
-      "audience": "boss",
-      "platform": "tiktok",
-      "service": "tiktok",
-      "channel_id": "6a235eddc687a22dd4664478",
-      "pattern": "story",
-      "image_url": "https://raw.githubusercontent.com/BosRoss/bosssystems.co/main/social_images/post_boss_20260717_130009.png",
-      "pending_id": "046e3b87",
-      "queued_at": "2026-07-17T13:00:10.872428"
-    },
-    {
-      "text": "You're leaving $200-$400 on the table every week you don't answer the phone.\n\nWe handle all your calls, booking, payments\u2014you just do the work. Keep 80%. $0 to start.\n\nThe catch? You actually have to show up.\n\nbosssystems.co/summer.html\n\n*Results vary.*\n\n#ServiceBusiness #SideHustle #WorkForYourself #LocalBusiness #SmallBizOwner",
+      "text": "Here's the thing nobody tells you: you could be making $500-$800/week right now, but instead you're waiting for the \"perfect time\" that never comes. We handle website, calls, payments\u2014you do the work, keep 80%. There's a catch though: you actually have to start. *Results vary.\n\n#ServiceBusiness #SideHustle #SmallBiz #PassiveIncome #WorkForYourself\n\nbosssystems.co/summer.html",
       "audience": "bpp",
       "platform": "tiktok",
       "service": "tiktok",
       "channel_id": "6a235eddc687a22dd4664478",
       "pattern": "the_catch",
-      "image_url": "https://raw.githubusercontent.com/BosRoss/bosssystems.co/main/social_images/post_bpp_20260717_130021.png",
-      "pending_id": "19400a30",
-      "queued_at": "2026-07-17T13:00:22.648239"
+      "image_url": "https://raw.githubusercontent.com/BosRoss/bosssystems.co/main/social_images/post_bpp_20260720_130023.png",
+      "pending_id": "00b77aa4",
+      "queued_at": "2026-07-20T13:00:24.543633"
     },
     {
-      "text": "You could spend the next year working for someone else, building their business while they keep most of what you make.\n\nOr you could start your own thing Monday.\n\nHere's the catch: you do the actual work. We handle everything else\u2014website, phone lines, booking system, payments. You keep 80% of what comes in.\n\nReal numbers: pressure washing crews are hitting $450-$750 a week. Handyman jobs range higher. Cleaning, landscaping, HVAC\u2014same deal.\n\n$0 to start. We don't make money until you do.\n\nThi...",
+      "text": "Your competition answers calls you miss. 27% of service calls go straight to voicemail. 93% never call back. That's jobs walking to the guy who picks up. Send this to someone still losing money to their phone.",
+      "audience": "boss",
+      "platform": "instagram",
+      "service": "instagram",
+      "channel_id": "6a235eb2c687a22dd46643fa",
+      "pattern": "stat_bomb",
+      "image_url": "https://raw.githubusercontent.com/BosRoss/bosssystems.co/main/social_images/post_boss_20260720_130007.png",
+      "pending_id": "0b3ae464",
+      "queued_at": "2026-07-20T13:00:09.035529"
+    },
+    {
+      "text": "Here's what most service guys don't realize. Twenty seven percent of incoming calls go straight to voicemail. Ninety three percent of those callers never call back. That's not a scheduling problem. That's money walking out the door every single week.\n\nYour competitor picks up. Gets the job. Sends the bill. You're still figuring out how to call them back by Friday.\n\nWe built systems that answer your phone, book the appointment, and send a confirmation. No fancy stuff. Just the basics that actu...",
+      "audience": "boss",
+      "platform": "facebook",
+      "service": "facebook",
+      "channel_id": "6a235ecac687a22dd4664434",
+      "pattern": "stat_bomb",
+      "image_url": null,
+      "pending_id": "519d5ce3",
+      "queued_at": "2026-07-20T13:00:03.853338"
+    },
+    {
+      "text": "Here's the catch with most business ideas: they cost money upfront and you split the profits.\n\nWith BOSS, we build your entire operation\u2014website, booking system, payment processing, phone line that actually gets answered. You show up and do the work. You keep 80%.\n\nThe trade-off? We handle the backend so you don't have to. You're not learning to code or troubleshooting your own tech on nights and weekends.\n\nReal numbers: pressure washing crews are pulling $450-$750 a week after costs and our ...",
       "audience": "bpp",
       "platform": "facebook",
       "service": "facebook",
       "channel_id": "6a235ecac687a22dd4664434",
       "pattern": "the_catch",
       "image_url": null,
-      "pending_id": "25d6e6d9",
-      "queued_at": "2026-07-17T13:00:28.898954"
+      "pending_id": "6314dc1a",
+      "queued_at": "2026-07-20T13:00:16.604201"
     },
     {
-      "text": "You know what kills me. You're good at what you do. Really good. Your customers love you. But somewhere between the job site and the office, money just disappears. A call you missed. A follow-up you forgot. An invoice that sits for weeks. Nothing huge on its own. But it adds up fast.\n\nMost service guys lose about 27% of incoming calls. And here's the brutal part. 93% of those people never call back. They just find someone who answered.\n\nWe built something that catches those calls when you can...",
-      "audience": "boss",
-      "platform": "facebook",
-      "service": "facebook",
-      "channel_id": "6a235ecac687a22dd4664434",
-      "pattern": "story",
-      "image_url": null,
-      "pending_id": "428c751d",
-      "queued_at": "2026-07-15T13:43:45.460151"
-    },
-    {
-      "text": "You're leaving money on the table every single week you don't start.\n\nLet's be real: a pressure washing business can pull $450-$750 a week once you're moving. Gutter cleaning, lawn care, junk removal\u2014same deal. We build the whole backend (website, booking, payments, phone). You do the work. Keep 80%.\n\nZero startup cost. You literally just show up and work.\n\nThe catch? You have to actually be willing to show up. Not everyone is.\n\nIf you are, let's talk.\n\nbosssystems.co/summer.html\n\n*Results va...",
-      "audience": "bpp",
-      "platform": "facebook",
-      "service": "facebook",
-      "channel_id": "6a235ecac687a22dd4664434",
-      "pattern": "stat_bomb",
-      "image_url": null,
-      "pending_id": "45050321",
-      "queued_at": "2026-07-15T13:44:03.596863"
-    },
-    {
-      "text": "Just watched a roofer lose a job yesterday because his voicemail was full. Customer called back three times. Got tired of waiting. Went with someone else.\n\nHe was out doing estimates all day. Made good money on those jobs. But missed the one that would have paid better because nobody picked up the phone.\n\nThat's the thing nobody talks about. You're not bad at business. You're just busy. And being busy is costing you more than you think.\n\nTwenty-seven percent of calls don't get answered in tra...",
-      "audience": "boss",
-      "platform": "facebook",
-      "service": "facebook",
-      "channel_id": "6a235ecac687a22dd4664434",
-      "pattern": "behind_scenes",
-      "image_url": null,
-      "pending_id": "5094a338",
-      "queued_at": "2026-07-16T13:00:05.280203"
-    },
-    {
-      "text": "Twenty-seven percent of calls to service businesses go unanswered. Ninety-three percent of those people never call back. That's not a slow season problem. That's a money problem. Send this to the contractor still losing jobs to voicemail.",
-      "audience": "boss",
-      "platform": "instagram",
-      "service": "instagram",
-      "channel_id": "6a235eb2c687a22dd46643fa",
-      "pattern": "story",
-      "image_url": "https://raw.githubusercontent.com/BosRoss/bosssystems.co/main/social_images/post_boss_20260715_134334.png",
-      "pending_id": "5769a8ff",
-      "queued_at": "2026-07-15T13:43:39.495210"
-    },
-    {
-      "text": "What if you kept every dollar instead of handing 20% to a boss? We build your whole operation\u2014website, booking, payment system\u2014you do the work, keep 80%. Real money: $450-$750/week pressure washing, $600-$1.2k/week handyman. Zero startup cost. The catch? You actually have to show up and work. *Results vary.*\n\n#ServiceBusiness #SideHustle #WorkForYourself #StartYourOwn #PassiveIncome\n\nbosssystems.co/summer.html",
-      "audience": "bpp",
-      "platform": "tiktok",
-      "service": "tiktok",
-      "channel_id": "6a235eddc687a22dd4664478",
-      "pattern": "question",
-      "image_url": "https://raw.githubusercontent.com/BosRoss/bosssystems.co/main/social_images/post_bpp_20260716_130025.png",
-      "pending_id": "71c89f25",
-      "queued_at": "2026-07-16T13:00:27.895224"
-    },
-    {
-      "text": "Most service business owners are losing money right now and have no idea where it's coming from. We spent last week digging through call logs and invoices for a plumbing crew in East Texas. Found out they were missing seventeen grand a year just because calls weren't getting answered. Seventeen thousand dollars. Gone. We built them a system that catches every call now. Cost them less than one lost job per month. That's the stuff we dig into. #ServiceBusiness #SmallBusiness #HVAC #Plumber #Loc...",
-      "audience": "boss",
-      "platform": "tiktok",
-      "service": "tiktok",
-      "channel_id": "6a235eddc687a22dd4664478",
-      "pattern": "behind_scenes",
-      "image_url": "https://raw.githubusercontent.com/BosRoss/bosssystems.co/main/social_images/post_boss_20260716_130009.png",
-      "pending_id": "72830fbf",
-      "queued_at": "2026-07-16T13:00:12.533522"
-    },
-    {
-      "text": "You're literally paying someone else to own your schedule.\n\nWith BOSS, you keep 80% of what you make. We handle the phone, website, and bookings. You show up and do the work.\n\nThe catch? You split with us. But 80% of something beats 100% of nothing.\n\n$450-$750/week is real for pressure washers. Lawn care. Handyman. Cleaning.\n\n*Results vary.*\n\n#ServiceBusiness #SideHustle #OwnYourTime #StartSmall\n\nbosssystems.co/summer.html",
-      "audience": "bpp",
-      "platform": "tiktok",
-      "service": "tiktok",
-      "channel_id": "6a235eddc687a22dd4664478",
-      "pattern": "stat_bomb",
-      "image_url": "https://raw.githubusercontent.com/BosRoss/bosssystems.co/main/social_images/post_bpp_20260715_134408.png",
-      "pending_id": "7b87b640",
-      "queued_at": "2026-07-15T13:44:10.540321"
-    },
-    {
-      "text": "You're leaving $200-$400 on the table every single week because you can't answer the phone while you're working. We handle the calls, bookings, and payments. You do the work, keep 80%. $0 to start. *Results vary.*\n\nSend this to someone still losing jobs to missed calls.\n\nbosssystems.co/summer.html",
-      "audience": "bpp",
-      "platform": "instagram",
-      "service": "instagram",
-      "channel_id": "6a235eb2c687a22dd46643fa",
-      "pattern": "stat_bomb",
-      "image_url": "https://raw.githubusercontent.com/BosRoss/bosssystems.co/main/social_images/post_bpp_20260715_134357.png",
-      "pending_id": "85b63382",
-      "queued_at": "2026-07-15T13:44:00.110756"
-    },
-    {
-      "text": "What if you didn't have to choose between doing the work and running the business?\n\nRight now you're either the one swinging the hammer or answering phones. Not both. That's the catch most people miss when they go solo.\n\nWe handle the website, the phone system, the booking calendar, the payments. You show up, do the work, keep 80% of what comes in.\n\n$450-$750/week is real money for pressure washing. Handyman jobs run higher. Lawn care too.\n\nThe only thing stopping most people? They think they...",
-      "audience": "bpp",
-      "platform": "facebook",
-      "service": "facebook",
-      "channel_id": "6a235ecac687a22dd4664434",
-      "pattern": "question",
-      "image_url": null,
-      "pending_id": "8996d354",
-      "queued_at": "2026-07-16T13:00:22.577364"
-    },
-    {
-      "text": "Your phone buzzes. You're elbow deep in a job. By the time you call back, they already booked someone else. Twenty-seven percent of calls go unanswered in service businesses. Ninety-three percent never call back. That's money walking out the door while you're literally working. Share this with someone still losing jobs to voicemail.",
-      "audience": "boss",
-      "platform": "instagram",
-      "service": "instagram",
-      "channel_id": "6a235eb2c687a22dd46643fa",
-      "pattern": "behind_scenes",
-      "image_url": "https://raw.githubusercontent.com/BosRoss/bosssystems.co/main/social_images/post_boss_20260716_130016.png",
-      "pending_id": "95b424b8",
-      "queued_at": "2026-07-16T13:00:18.269212"
-    },
-    {
-      "text": "Here's the catch: we build your website, booking system, and payment setup. You do the work. You keep 80%. Sounds too good? The real cost is showing up consistently and actually closing jobs. Most people won't. Will you?\n\nSend this to someone still waiting for permission to start.\n\nbosssystems.co/summer.html\n\n*Results vary.*",
+      "text": "The catch: You keep 80%. We handle everything else\u2014website, phone, booking, payments. $0 to start. But here's the real part: you actually have to show up and do the work. No shortcuts. People making $450-$750/week pressure washing aren't doing it from their couch. *Results vary.*\n\nSend this to someone still waiting for permission to start.\n\nbosssystems.co/summer.html",
       "audience": "bpp",
       "platform": "instagram",
       "service": "instagram",
       "channel_id": "6a235eb2c687a22dd46643fa",
       "pattern": "the_catch",
-      "image_url": "https://raw.githubusercontent.com/BosRoss/bosssystems.co/main/social_images/post_bpp_20260717_130016.png",
-      "pending_id": "9d02bae2",
-      "queued_at": "2026-07-17T13:00:18.446811"
+      "image_url": "https://raw.githubusercontent.com/BosRoss/bosssystems.co/main/social_images/post_bpp_20260720_130019.png",
+      "pending_id": "69cb26d9",
+      "queued_at": "2026-07-20T13:00:20.345794"
     },
     {
-      "text": "Most plumbers think they lose jobs because of price. They don't. They lose jobs because someone else answered the phone and they didn't. Twenty-seven percent of calls go straight to voicemail. Ninety-three percent never call back. That's not a pricing problem. That's a phone problem. Share this with the contractor still leaving money on the table every single week.",
-      "audience": "boss",
-      "platform": "instagram",
-      "service": "instagram",
-      "channel_id": "6a235eb2c687a22dd46643fa",
-      "pattern": "story",
-      "image_url": "https://raw.githubusercontent.com/BosRoss/bosssystems.co/main/social_images/post_boss_20260717_130003.png",
-      "pending_id": "ac3e11e5",
-      "queued_at": "2026-07-17T13:00:05.531637"
-    },
-    {
-      "text": "Your competitor just booked the job you missed because you didn't answer the phone. 27% of calls go straight to voicemail. 93% never call back. That's money walking out the door while you're on another job. We built something that answers for you and books the appointment. Costs less than one lost job. #HVAC #Plumber #ServiceBusiness #SmallBusiness #LocalBusiness",
+      "text": "Twenty seven percent of calls to service businesses go straight to voicemail. Guess where those jobs go instead. Your competitor answers on ring two and books them before you call back. That's not a technology problem. That's a money problem. bosssystems.co #ServiceBusiness #HVAC #Plumber #Electrician #LocalBusiness",
       "audience": "boss",
       "platform": "tiktok",
       "service": "tiktok",
       "channel_id": "6a235eddc687a22dd4664478",
-      "pattern": "story",
-      "image_url": "https://raw.githubusercontent.com/BosRoss/bosssystems.co/main/social_images/post_boss_20260715_134350.png",
-      "pending_id": "c461c26f",
-      "queued_at": "2026-07-15T13:43:53.554964"
-    },
-    {
-      "text": "What if every missed call this week actually cost you $50? $100? $200?\n\nThat's real money walking out the door while you're juggling everything alone.\n\nWe handle the calls, the booking, the payments. You show up and do the work. Keep 80%.\n\n$0 to start. bosssystems.co/summer.html\n\n*Results vary.*\n\nShare this with someone still answering their phone like it's 2005.",
-      "audience": "bpp",
-      "platform": "instagram",
-      "service": "instagram",
-      "channel_id": "6a235eb2c687a22dd46643fa",
-      "pattern": "question",
-      "image_url": "https://raw.githubusercontent.com/BosRoss/bosssystems.co/main/social_images/post_bpp_20260716_130030.png",
-      "pending_id": "cfa26bc9",
-      "queued_at": "2026-07-16T13:00:32.081350"
+      "pattern": "stat_bomb",
+      "image_url": "https://raw.githubusercontent.com/BosRoss/bosssystems.co/main/social_images/post_boss_20260720_130011.png",
+      "pending_id": "e0d67e29",
+      "queued_at": "2026-07-20T13:00:13.070446"
     }
   ]
 }
