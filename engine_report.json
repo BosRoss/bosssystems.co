@@ -1,7 +1,31 @@
 {
-  "generated": "2026-07-21T14:48:35.374092+00:00",
+  "generated": "2026-07-21T16:56:14.979169+00:00",
   "engine_state": "active",
   "signals": [
+    {
+      "type": "heat_wave",
+      "area": "Llano; Burnet; Williamson; Hays; Travis; Bastrop; Lee; Medina; Bexar; Comal; Guadalupe; Caldwell; Fayette; Frio; Atascosa; Wilson; Karnes; Gonzales; De Witt; Lavaca",
+      "niche": "hvac",
+      "action": "HVAC businesses in Llano; Burnet; Williamson; Hays; Travis; Bastrop; Lee; Medina; Bexar; Comal; Guadalupe; Caldwell; Fayette; Frio; Atascosa; Wilson; Karnes; Gonzales; De Witt; Lavaca are drowning in calls right now. Perfect time to pitch.",
+      "urgency": "today",
+      "pitch_hook": "You're getting slammed with calls \u2014 how many went to voicemail today?"
+    },
+    {
+      "type": "heat_wave",
+      "area": "Vernon; Rapides; Avoyelles; Beauregard; Allen; Evangeline; St. Landry; Lafayette; Upper St. Martin; Lower St. Martin; West Cameron; East Cameron; Northern Calcasieu; Northern Jefferson Davis; Northern",
+      "niche": "hvac",
+      "action": "HVAC businesses in Vernon; Rapides; Avoyelles; Beauregard; Allen; Evangeline; St. Landry; Lafayette; Upper St. Martin; Lower St. Martin; West Cameron; East Cameron; Northern Calcasieu; Northern Jefferson Davis; Northern are drowning in calls right now. Perfect time to pitch.",
+      "urgency": "today",
+      "pitch_hook": "You're getting slammed with calls \u2014 how many went to voicemail today?"
+    },
+    {
+      "type": "heat_wave",
+      "area": "Inland Kenedy; Inland Willacy; Inland Cameron",
+      "niche": "hvac",
+      "action": "HVAC businesses in Inland Kenedy; Inland Willacy; Inland Cameron are drowning in calls right now. Perfect time to pitch.",
+      "urgency": "today",
+      "pitch_hook": "You're getting slammed with calls \u2014 how many went to voicemail today?"
+    },
     {
       "type": "flood",
       "area": "Dimmit, TX",
@@ -44,41 +68,17 @@
     },
     {
       "type": "heat_wave",
-      "area": "Briscoe; Hall; Childress; Motley; Cottle; Dickens; King; Kent; Stonewall",
+      "area": "Clay; Greene; Craighead; Poinsett; Mississippi; Cross; Crittenden; St. Francis; Lee; Phillips; Dunklin; Pemiscot; DeSoto; Marshall; Benton; Tunica; Tate; Coahoma; Quitman; Panola; Tallahatchie; Lake; ",
       "niche": "hvac",
-      "action": "HVAC businesses in Briscoe; Hall; Childress; Motley; Cottle; Dickens; King; Kent; Stonewall are drowning in calls right now. Perfect time to pitch.",
+      "action": "HVAC businesses in Clay; Greene; Craighead; Poinsett; Mississippi; Cross; Crittenden; St. Francis; Lee; Phillips; Dunklin; Pemiscot; DeSoto; Marshall; Benton; Tunica; Tate; Coahoma; Quitman; Panola; Tallahatchie; Lake;  are drowning in calls right now. Perfect time to pitch.",
       "urgency": "today",
       "pitch_hook": "You're getting slammed with calls \u2014 how many went to voicemail today?"
     },
     {
       "type": "heat_wave",
-      "area": "Houston; Trinity; Madison; Walker; San Jacinto; Polk; Burleson; Brazos; Washington; Grimes; Montgomery; Northern Liberty; Colorado; Austin; Waller; Inland Harris; Chambers; Wharton; Fort Bend; Inland ",
+      "area": "Tippah; Alcorn; Tishomingo; Prentiss; Lafayette; Union; Pontotoc; Lee; Itawamba; Yalobusha; Calhoun; Chickasaw; Monroe; Benton; Chester; Henderson; Decatur; McNairy; Hardin",
       "niche": "hvac",
-      "action": "HVAC businesses in Houston; Trinity; Madison; Walker; San Jacinto; Polk; Burleson; Brazos; Washington; Grimes; Montgomery; Northern Liberty; Colorado; Austin; Waller; Inland Harris; Chambers; Wharton; Fort Bend; Inland  are drowning in calls right now. Perfect time to pitch.",
-      "urgency": "today",
-      "pitch_hook": "You're getting slammed with calls \u2014 how many went to voicemail today?"
-    },
-    {
-      "type": "heat_wave",
-      "area": "Vernon; Rapides; Avoyelles; Beauregard; Allen; Evangeline; St. Landry; Lafayette; Upper St. Martin; Lower St. Martin; West Cameron; East Cameron; Northern Calcasieu; Northern Jefferson Davis; Northern",
-      "niche": "hvac",
-      "action": "HVAC businesses in Vernon; Rapides; Avoyelles; Beauregard; Allen; Evangeline; St. Landry; Lafayette; Upper St. Martin; Lower St. Martin; West Cameron; East Cameron; Northern Calcasieu; Northern Jefferson Davis; Northern are drowning in calls right now. Perfect time to pitch.",
-      "urgency": "today",
-      "pitch_hook": "You're getting slammed with calls \u2014 how many went to voicemail today?"
-    },
-    {
-      "type": "heat_wave",
-      "area": "Young; Stephens; Eastland; Erath; Comanche; Mills; Hamilton; Lampasas; Coryell",
-      "niche": "hvac",
-      "action": "HVAC businesses in Young; Stephens; Eastland; Erath; Comanche; Mills; Hamilton; Lampasas; Coryell are drowning in calls right now. Perfect time to pitch.",
-      "urgency": "today",
-      "pitch_hook": "You're getting slammed with calls \u2014 how many went to voicemail today?"
-    },
-    {
-      "type": "heat_wave",
-      "area": "Cooke; Grayson; Fannin; Lamar; Denton; Collin; Hunt; Delta; Hopkins; Tarrant; Dallas; Rockwall; Kaufman; Van Zandt; Rains",
-      "niche": "hvac",
-      "action": "HVAC businesses in Cooke; Grayson; Fannin; Lamar; Denton; Collin; Hunt; Delta; Hopkins; Tarrant; Dallas; Rockwall; Kaufman; Van Zandt; Rains are drowning in calls right now. Perfect time to pitch.",
+      "action": "HVAC businesses in Tippah; Alcorn; Tishomingo; Prentiss; Lafayette; Union; Pontotoc; Lee; Itawamba; Yalobusha; Calhoun; Chickasaw; Monroe; Benton; Chester; Henderson; Decatur; McNairy; Hardin are drowning in calls right now. Perfect time to pitch.",
       "urgency": "today",
       "pitch_hook": "You're getting slammed with calls \u2014 how many went to voicemail today?"
     }
@@ -222,11 +222,11 @@
   ],
   "kpis": {
     "signals_firing": 10,
-    "leads_superniche": 100,
-    "leads_hot": 100,
+    "leads_superniche": 101,
+    "leads_hot": 99,
     "leads_warm": 0,
     "cost_per_qualified": 0.99,
-    "total_spend": 98.81599999999267,
+    "total_spend": 100.4159999999925,
     "spend_cap": 300.0
   },
   "channels": {
@@ -239,57 +239,57 @@
   "feeds": [
     {
       "name": "NOAA",
-      "last_hit": "2026-07-21T14:41:24.587168+00:00",
+      "last_hit": "2026-07-21T16:48:40.664362+00:00",
       "status": "yellow",
       "data_points_today": 0
     },
     {
       "name": "REDDIT",
-      "last_hit": "2026-07-21T14:41:24.587168+00:00",
+      "last_hit": "2026-07-21T16:48:40.664362+00:00",
       "status": "green",
-      "data_points_today": 45
+      "data_points_today": 15
     },
     {
       "name": "USGS",
-      "last_hit": "2026-07-21T14:41:24.587168+00:00",
+      "last_hit": "2026-07-21T16:48:40.664362+00:00",
       "status": "yellow",
       "data_points_today": 0
     },
     {
       "name": "HACKERNEWS",
-      "last_hit": "2026-07-21T14:41:24.587168+00:00",
+      "last_hit": "2026-07-21T16:48:40.664362+00:00",
       "status": "green",
       "data_points_today": 30
     },
     {
       "name": "FEMA",
-      "last_hit": "2026-07-21T14:41:24.587168+00:00",
+      "last_hit": "2026-07-21T16:48:40.664362+00:00",
       "status": "green",
       "data_points_today": 20
     },
     {
       "name": "COMMODITIES",
-      "last_hit": "2026-07-21T14:41:24.587168+00:00",
+      "last_hit": "2026-07-21T16:48:40.664362+00:00",
       "status": "green",
       "data_points_today": 7
     },
     {
       "name": "RSS",
-      "last_hit": "2026-07-21T14:41:24.587168+00:00",
+      "last_hit": "2026-07-21T16:48:40.664362+00:00",
       "status": "green",
-      "data_points_today": 739
+      "data_points_today": 740
     },
     {
       "name": "FRED",
-      "last_hit": "2026-07-21T14:41:24.587168+00:00",
+      "last_hit": "2026-07-21T16:48:40.664362+00:00",
       "status": "yellow",
       "data_points_today": 0
     },
     {
       "name": "BLS",
-      "last_hit": "2026-07-21T14:41:24.587168+00:00",
-      "status": "yellow",
-      "data_points_today": 0
+      "last_hit": "2026-07-21T16:48:40.664362+00:00",
+      "status": "green",
+      "data_points_today": 9
     }
   ],
   "conversion_funnel": {
