@@ -1,5 +1,5 @@
 {
-  "generated": "2026-07-21T19:03:52.588799+00:00",
+  "generated": "2026-07-21T21:11:49.036101+00:00",
   "engine_state": "active",
   "signals": [
     {
@@ -225,12 +225,12 @@
     "leads_superniche": 102,
     "leads_hot": 98,
     "leads_warm": 0,
-    "cost_per_qualified": 1.02,
-    "total_spend": 103.61599999999214,
+    "cost_per_qualified": 1.03,
+    "total_spend": 105.21599999999196,
     "spend_cap": 300.0
   },
   "channels": {
-    "emails_sent": 274,
+    "emails_sent": 272,
     "texts_sent": 0,
     "calls_made": 0,
     "meetings_set": 10,
@@ -239,55 +239,55 @@
   "feeds": [
     {
       "name": "NOAA",
-      "last_hit": "2026-07-21T18:56:19.679782+00:00",
+      "last_hit": "2026-07-21T21:03:57.916320+00:00",
       "status": "yellow",
       "data_points_today": 0
     },
     {
       "name": "REDDIT",
-      "last_hit": "2026-07-21T18:56:19.679782+00:00",
+      "last_hit": "2026-07-21T21:03:57.916320+00:00",
       "status": "green",
       "data_points_today": 30
     },
     {
       "name": "USGS",
-      "last_hit": "2026-07-21T18:56:19.679782+00:00",
+      "last_hit": "2026-07-21T21:03:57.916320+00:00",
       "status": "yellow",
       "data_points_today": 0
     },
     {
       "name": "HACKERNEWS",
-      "last_hit": "2026-07-21T18:56:19.679782+00:00",
+      "last_hit": "2026-07-21T21:03:57.916320+00:00",
       "status": "green",
       "data_points_today": 30
     },
     {
       "name": "FEMA",
-      "last_hit": "2026-07-21T18:56:19.679782+00:00",
+      "last_hit": "2026-07-21T21:03:57.916320+00:00",
       "status": "green",
       "data_points_today": 20
     },
     {
       "name": "COMMODITIES",
-      "last_hit": "2026-07-21T18:56:19.679782+00:00",
+      "last_hit": "2026-07-21T21:03:57.916320+00:00",
       "status": "green",
       "data_points_today": 7
     },
     {
       "name": "RSS",
-      "last_hit": "2026-07-21T18:56:19.679782+00:00",
+      "last_hit": "2026-07-21T21:03:57.916320+00:00",
       "status": "green",
-      "data_points_today": 742
+      "data_points_today": 743
     },
     {
       "name": "FRED",
-      "last_hit": "2026-07-21T18:56:19.679782+00:00",
+      "last_hit": "2026-07-21T21:03:57.916320+00:00",
       "status": "yellow",
       "data_points_today": 0
     },
     {
       "name": "BLS",
-      "last_hit": "2026-07-21T18:56:19.679782+00:00",
+      "last_hit": "2026-07-21T21:03:57.916320+00:00",
       "status": "green",
       "data_points_today": 9
     }
@@ -295,7 +295,7 @@
   "conversion_funnel": {
     "signals": 10,
     "leads": 200,
-    "contacted": 274,
+    "contacted": 272,
     "replied": 10,
     "meeting": 10,
     "close": 0
