@@ -1,7 +1,55 @@
 {
-  "generated": "2026-07-21T14:35:22.252047+00:00",
+  "generated": "2026-07-21T14:48:35.374092+00:00",
   "engine_state": "active",
   "signals": [
+    {
+      "type": "flood",
+      "area": "Dimmit, TX",
+      "niche": "plumbing",
+      "action": "Flood warnings in Dimmit, TX. Plumbers, restoration, mold companies will spike.",
+      "urgency": "today",
+      "pitch_hook": "Water damage calls are coming. Every one you miss is $500+ walking away."
+    },
+    {
+      "type": "flood",
+      "area": "Frio, TX",
+      "niche": "plumbing",
+      "action": "Flood warnings in Frio, TX. Plumbers, restoration, mold companies will spike.",
+      "urgency": "today",
+      "pitch_hook": "Water damage calls are coming. Every one you miss is $500+ walking away."
+    },
+    {
+      "type": "flood",
+      "area": "La Salle, TX",
+      "niche": "plumbing",
+      "action": "Flood warnings in La Salle, TX. Plumbers, restoration, mold companies will spike.",
+      "urgency": "today",
+      "pitch_hook": "Water damage calls are coming. Every one you miss is $500+ walking away."
+    },
+    {
+      "type": "flood",
+      "area": "Live Oak, TX; McMullen, TX",
+      "niche": "plumbing",
+      "action": "Flood warnings in Live Oak, TX; McMullen, TX. Plumbers, restoration, mold companies will spike.",
+      "urgency": "today",
+      "pitch_hook": "Water damage calls are coming. Every one you miss is $500+ walking away."
+    },
+    {
+      "type": "heat_wave",
+      "area": "Beaver; Ochiltree; Lipscomb; Hutchinson; Roberts; Hemphill; Carson; Gray; Wheeler; Armstrong; Donley; Collingsworth; Palo Duro Canyon",
+      "niche": "hvac",
+      "action": "HVAC businesses in Beaver; Ochiltree; Lipscomb; Hutchinson; Roberts; Hemphill; Carson; Gray; Wheeler; Armstrong; Donley; Collingsworth; Palo Duro Canyon are drowning in calls right now. Perfect time to pitch.",
+      "urgency": "today",
+      "pitch_hook": "You're getting slammed with calls \u2014 how many went to voicemail today?"
+    },
+    {
+      "type": "heat_wave",
+      "area": "Briscoe; Hall; Childress; Motley; Cottle; Dickens; King; Kent; Stonewall",
+      "niche": "hvac",
+      "action": "HVAC businesses in Briscoe; Hall; Childress; Motley; Cottle; Dickens; King; Kent; Stonewall are drowning in calls right now. Perfect time to pitch.",
+      "urgency": "today",
+      "pitch_hook": "You're getting slammed with calls \u2014 how many went to voicemail today?"
+    },
     {
       "type": "heat_wave",
       "area": "Houston; Trinity; Madison; Walker; San Jacinto; Polk; Burleson; Brazos; Washington; Grimes; Montgomery; Northern Liberty; Colorado; Austin; Waller; Inland Harris; Chambers; Wharton; Fort Bend; Inland ",
@@ -20,22 +68,6 @@
     },
     {
       "type": "heat_wave",
-      "area": "Montague; Jack; Wise; Palo Pinto; Parker; Hood; Somervell; Johnson; Ellis; Henderson; Bosque; Hill; Navarro; Freestone; Anderson; Bell; McLennan; Falls; Limestone; Leon; Milam; Robertson",
-      "niche": "hvac",
-      "action": "HVAC businesses in Montague; Jack; Wise; Palo Pinto; Parker; Hood; Somervell; Johnson; Ellis; Henderson; Bosque; Hill; Navarro; Freestone; Anderson; Bell; McLennan; Falls; Limestone; Leon; Milam; Robertson are drowning in calls right now. Perfect time to pitch.",
-      "urgency": "today",
-      "pitch_hook": "You're getting slammed with calls \u2014 how many went to voicemail today?"
-    },
-    {
-      "type": "heat_wave",
-      "area": "Cooke; Grayson; Fannin; Lamar; Denton; Collin; Hunt; Delta; Hopkins; Tarrant; Dallas; Rockwall; Kaufman; Van Zandt; Rains",
-      "niche": "hvac",
-      "action": "HVAC businesses in Cooke; Grayson; Fannin; Lamar; Denton; Collin; Hunt; Delta; Hopkins; Tarrant; Dallas; Rockwall; Kaufman; Van Zandt; Rains are drowning in calls right now. Perfect time to pitch.",
-      "urgency": "today",
-      "pitch_hook": "You're getting slammed with calls \u2014 how many went to voicemail today?"
-    },
-    {
-      "type": "heat_wave",
       "area": "Young; Stephens; Eastland; Erath; Comanche; Mills; Hamilton; Lampasas; Coryell",
       "niche": "hvac",
       "action": "HVAC businesses in Young; Stephens; Eastland; Erath; Comanche; Mills; Hamilton; Lampasas; Coryell are drowning in calls right now. Perfect time to pitch.",
@@ -44,41 +76,9 @@
     },
     {
       "type": "heat_wave",
-      "area": "Fisher; Haskell; Throckmorton; Jones; Shackelford; Taylor; Callahan",
+      "area": "Cooke; Grayson; Fannin; Lamar; Denton; Collin; Hunt; Delta; Hopkins; Tarrant; Dallas; Rockwall; Kaufman; Van Zandt; Rains",
       "niche": "hvac",
-      "action": "HVAC businesses in Fisher; Haskell; Throckmorton; Jones; Shackelford; Taylor; Callahan are drowning in calls right now. Perfect time to pitch.",
-      "urgency": "today",
-      "pitch_hook": "You're getting slammed with calls \u2014 how many went to voicemail today?"
-    },
-    {
-      "type": "heat_wave",
-      "area": "Lipscomb; Hutchinson; Roberts; Hemphill; Carson; Gray; Wheeler; Armstrong; Donley; Collingsworth; Palo Duro Canyon",
-      "niche": "hvac",
-      "action": "HVAC businesses in Lipscomb; Hutchinson; Roberts; Hemphill; Carson; Gray; Wheeler; Armstrong; Donley; Collingsworth; Palo Duro Canyon are drowning in calls right now. Perfect time to pitch.",
-      "urgency": "today",
-      "pitch_hook": "You're getting slammed with calls \u2014 how many went to voicemail today?"
-    },
-    {
-      "type": "heat_wave",
-      "area": "Beaver; Ochiltree",
-      "niche": "hvac",
-      "action": "HVAC businesses in Beaver; Ochiltree are drowning in calls right now. Perfect time to pitch.",
-      "urgency": "today",
-      "pitch_hook": "You're getting slammed with calls \u2014 how many went to voicemail today?"
-    },
-    {
-      "type": "heat_wave",
-      "area": "Harper; Woods; Ellis; Woodward; Roger Mills; Dewey; Custer; Blaine; Beckham; Washita; Caddo; Grady; Harmon; Greer; Kiowa; Jackson; Tillman; Comanche; Stephens; Cotton; Jefferson; Hardeman; Foard; Wilb",
-      "niche": "hvac",
-      "action": "HVAC businesses in Harper; Woods; Ellis; Woodward; Roger Mills; Dewey; Custer; Blaine; Beckham; Washita; Caddo; Grady; Harmon; Greer; Kiowa; Jackson; Tillman; Comanche; Stephens; Cotton; Jefferson; Hardeman; Foard; Wilb are drowning in calls right now. Perfect time to pitch.",
-      "urgency": "today",
-      "pitch_hook": "You're getting slammed with calls \u2014 how many went to voicemail today?"
-    },
-    {
-      "type": "heat_wave",
-      "area": "Caddo; Bossier; Webster; De Soto; Red River; Bienville; Sabine; Natchitoches; Franklin; Titus; Camp; Morris; Cass; Wood; Upshur; Marion; Smith; Gregg; Harrison; Cherokee; Rusk; Panola; Nacogdoches; Sh",
-      "niche": "hvac",
-      "action": "HVAC businesses in Caddo; Bossier; Webster; De Soto; Red River; Bienville; Sabine; Natchitoches; Franklin; Titus; Camp; Morris; Cass; Wood; Upshur; Marion; Smith; Gregg; Harrison; Cherokee; Rusk; Panola; Nacogdoches; Sh are drowning in calls right now. Perfect time to pitch.",
+      "action": "HVAC businesses in Cooke; Grayson; Fannin; Lamar; Denton; Collin; Hunt; Delta; Hopkins; Tarrant; Dallas; Rockwall; Kaufman; Van Zandt; Rains are drowning in calls right now. Perfect time to pitch.",
       "urgency": "today",
       "pitch_hook": "You're getting slammed with calls \u2014 how many went to voicemail today?"
     }
@@ -239,57 +239,57 @@
   "feeds": [
     {
       "name": "NOAA",
-      "last_hit": "2026-07-21T06:13:47.465967+00:00",
+      "last_hit": "2026-07-21T14:41:24.587168+00:00",
       "status": "yellow",
       "data_points_today": 0
     },
     {
       "name": "REDDIT",
-      "last_hit": "2026-07-21T06:13:47.465967+00:00",
+      "last_hit": "2026-07-21T14:41:24.587168+00:00",
       "status": "green",
-      "data_points_today": 15
+      "data_points_today": 45
     },
     {
       "name": "USGS",
-      "last_hit": "2026-07-21T06:13:47.465967+00:00",
+      "last_hit": "2026-07-21T14:41:24.587168+00:00",
       "status": "yellow",
       "data_points_today": 0
     },
     {
       "name": "HACKERNEWS",
-      "last_hit": "2026-07-21T06:13:47.465967+00:00",
+      "last_hit": "2026-07-21T14:41:24.587168+00:00",
       "status": "green",
       "data_points_today": 30
     },
     {
       "name": "FEMA",
-      "last_hit": "2026-07-21T06:13:47.465967+00:00",
+      "last_hit": "2026-07-21T14:41:24.587168+00:00",
       "status": "green",
       "data_points_today": 20
     },
     {
       "name": "COMMODITIES",
-      "last_hit": "2026-07-21T06:13:47.465967+00:00",
+      "last_hit": "2026-07-21T14:41:24.587168+00:00",
       "status": "green",
       "data_points_today": 7
     },
     {
       "name": "RSS",
-      "last_hit": "2026-07-21T06:13:47.465967+00:00",
+      "last_hit": "2026-07-21T14:41:24.587168+00:00",
       "status": "green",
       "data_points_today": 739
     },
     {
       "name": "FRED",
-      "last_hit": "2026-07-21T06:13:47.465967+00:00",
+      "last_hit": "2026-07-21T14:41:24.587168+00:00",
       "status": "yellow",
       "data_points_today": 0
     },
     {
       "name": "BLS",
-      "last_hit": "2026-07-21T06:13:47.465967+00:00",
-      "status": "green",
-      "data_points_today": 9
+      "last_hit": "2026-07-21T14:41:24.587168+00:00",
+      "status": "yellow",
+      "data_points_today": 0
     }
   ],
   "conversion_funnel": {
