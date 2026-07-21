@@ -1,12 +1,12 @@
 {
-  "generated": "2026-07-20T20:52:47.080170+00:00",
+  "generated": "2026-07-21T20:30:01.365046+00:00",
   "sections": {
     "atlas": {
       "power_level": "ACTIVE",
-      "last_scan": "2026-07-20T17:37:56.776454+00:00",
-      "scan_count": 196,
+      "last_scan": "2026-07-21T18:56:19.679782+00:00",
+      "scan_count": 200,
       "heat_score": 100,
-      "recommendation": "HOT DAY. Weather-driven demand in Harper; Ellis; Woodward; Roger Mills; Dewey; Custer; Beckham; Washita; Caddo; Grady; Harmon; Greer; Kiowa; Jackson; Tillman; Comanche; Cotton; Hardeman; Foard; Wilbarger; Wichita; Knox; Baylor; Archer, Live Oak, TX; McMullen, TX, Montague; Cooke; Grayson; Fannin; Lamar; Jack; Wise; Denton; Collin; Hunt; Delta; Hopkins; Palo Pinto; Parker; Tarrant; Dallas; Rockwall; Kaufman; Van Zandt; Rains; Hood; Somervell; Johnson; Ellis; He. Call HVAC/roofers there NOW.",
+      "recommendation": "HOT DAY. Weather-driven demand in Cooke; Grayson; Denton; Collin; Hunt; Hopkins; Tarrant; Dallas; Rockwall; Kaufman; Van Zandt; Rains, Franklin; Lincoln; Lawrence; Jefferson Davis; Covington; Marion; Lamar, Palo Duro Canyon. Call HVAC/roofers there NOW.",
       "demand_signals": 10,
       "pain_signals": 0,
       "pitch_adjustments": 0,
@@ -14,29 +14,29 @@
       "territory_alerts": 25,
       "top_demands": [
         {
-          "type": "heat_wave",
-          "area": "Harper; Ellis; Woodward; Roger Mills; Dewey; Custer; Beckham",
-          "niche": "hvac"
-        },
-        {
-          "type": "heat_wave",
-          "area": "Montague; Cooke; Grayson; Fannin; Lamar; Jack; Wise; Denton;",
-          "niche": "hvac"
-        },
-        {
-          "type": "heat_wave",
-          "area": "Vernon; Beauregard; Allen; West Cameron; East Cameron; North",
-          "niche": "hvac"
-        },
-        {
-          "type": "heat_wave",
-          "area": "Sevier; Howard; Little River; Hempstead; Nevada; Miller; Laf",
-          "niche": "hvac"
-        },
-        {
           "type": "flood",
           "area": "Dimmit, TX",
           "niche": "plumbing"
+        },
+        {
+          "type": "flood",
+          "area": "Frio, TX",
+          "niche": "plumbing"
+        },
+        {
+          "type": "heat_wave",
+          "area": "Palo Duro Canyon",
+          "niche": "hvac"
+        },
+        {
+          "type": "heat_wave",
+          "area": "Beaver; Ochiltree; Lipscomb; Hutchinson; Roberts; Hemphill; ",
+          "niche": "hvac"
+        },
+        {
+          "type": "heat_wave",
+          "area": "Montague; Young; Jack; Wise; Stephens; Palo Pinto; Parker; E",
+          "niche": "hvac"
         }
       ],
       "sources_online": 0
@@ -45,8 +45,8 @@
       "state": "ACTIVE",
       "total_leads": 200,
       "by_tier": {
-        "SUPERNICHE": 100,
-        "HOT": 100
+        "SUPERNICHE": 102,
+        "HOT": 98
       },
       "by_route": {
         "call_queue": 95,
@@ -55,18 +55,18 @@
       },
       "by_status": {
         "called": 94,
-        "queued": 84,
-        "re_engaged": 22
+        "queued": 86,
+        "re_engaged": 20
       },
       "synced_to_pipeline": 107,
-      "api_spend": 98.82,
+      "api_spend": 103.62,
       "api_budget": 300.0,
-      "api_percent": 32.9,
-      "outcomes_recorded": 411,
+      "api_percent": 34.5,
+      "outcomes_recorded": 441,
       "by_outcome": {
         "no_answer": 40,
         "hangup": 31,
-        "call_failed": 97,
+        "call_failed": 127,
         "call_initiated": 224,
         "callback": 9,
         "meeting_set": 10
@@ -271,9 +271,9 @@
         }
       ],
       "calls_24h": 50,
-      "outbound_24h": 45,
-      "inbound_24h": 5,
-      "avg_duration_sec": 17.3
+      "outbound_24h": 43,
+      "inbound_24h": 7,
+      "avg_duration_sec": 17.5
     },
     "quant": {
       "state": "PAUSED",
@@ -286,7 +286,7 @@
       "atlas_power": "ACTIVE",
       "n8n_errors_24h": 0,
       "retell_calls_24h": 50,
-      "api_spend_pct": 32.9
+      "api_spend_pct": 34.5
     }
   }
 }
