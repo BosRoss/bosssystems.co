@@ -18760,53 +18760,57 @@
   ],
   "firms": [],
   "trader_intel": {
-    "generated": "2026-07-21T20:00:39.922492+00:00",
-    "markets_analyzed": 380,
-    "edges_found": 166,
+    "generated": "2026-07-22T20:00:46.036468+00:00",
+    "markets_analyzed": 352,
+    "edges_found": 170,
     "topics_with_edge": {
       "economic": {
         "count": 18,
-        "avg_edge": 4.9
+        "avg_edge": 4.4
+      },
+      "energy": {
+        "count": 10,
+        "avg_edge": 6.3
       },
       "other": {
-        "count": 242,
-        "avg_edge": 3.3
+        "count": 227,
+        "avg_edge": 3.5
+      },
+      "maritime": {
+        "count": 12,
+        "avg_edge": 3.4
       },
       "conflict": {
-        "count": 17,
-        "avg_edge": 4.5
+        "count": 15,
+        "avg_edge": 3.7
+      },
+      "peace": {
+        "count": 15,
+        "avg_edge": 6.2
       },
       "financial": {
         "count": 24,
-        "avg_edge": 3.0
-      },
-      "energy": {
-        "count": 9,
-        "avg_edge": 6.9
-      },
-      "peace": {
-        "count": 25,
-        "avg_edge": 5.7
-      },
-      "maritime": {
-        "count": 16,
-        "avg_edge": 3.3
-      },
-      "election": {
-        "count": 16,
-        "avg_edge": 3.6
-      },
-      "nuclear": {
-        "count": 12,
         "avg_edge": 2.8
       },
-      "space": {
-        "count": 2,
-        "avg_edge": 4.2
+      "nuclear": {
+        "count": 6,
+        "avg_edge": 3.4
+      },
+      "election": {
+        "count": 18,
+        "avg_edge": 3.6
       },
       "technology": {
-        "count": 6,
-        "avg_edge": 3.8
+        "count": 5,
+        "avg_edge": 4.0
+      },
+      "coup": {
+        "count": 1,
+        "avg_edge": 3.9
+      },
+      "space": {
+        "count": 1,
+        "avg_edge": 8.9
       },
       "climate": {
         "count": 4,
@@ -18815,64 +18819,68 @@
     },
     "countries_active": {
       "US": {
-        "mentions": 42,
-        "avg_market_prob": 36.9
+        "mentions": 34,
+        "avg_market_prob": 41.4
       },
       "IR": {
-        "mentions": 50,
-        "avg_market_prob": 24.3
-      },
-      "UA": {
-        "mentions": 12,
-        "avg_market_prob": 16.9
+        "mentions": 35,
+        "avg_market_prob": 25.8
       },
       "IL": {
-        "mentions": 14,
-        "avg_market_prob": 30.9
+        "mentions": 19,
+        "avg_market_prob": 26.5
+      },
+      "RU": {
+        "mentions": 11,
+        "avg_market_prob": 19.5
       },
       "TW": {
         "mentions": 3,
-        "avg_market_prob": 6.9
+        "avg_market_prob": 22.0
       },
       "CN": {
-        "mentions": 16,
-        "avg_market_prob": 19.2
+        "mentions": 14,
+        "avg_market_prob": 23.3
       },
-      "JP": {
+      "AE": {
         "mentions": 1,
-        "avg_market_prob": 8.5
+        "avg_market_prob": 4.3
       },
-      "RU": {
-        "mentions": 16,
-        "avg_market_prob": 31.1
+      "UA": {
+        "mentions": 5,
+        "avg_market_prob": 23.3
+      },
+      "FR": {
+        "mentions": 4,
+        "avg_market_prob": 79.5
       },
       "YE": {
         "mentions": 1,
-        "avg_market_prob": 47.0
+        "avg_market_prob": 36.5
       },
-      "CU": {
-        "mentions": 4,
-        "avg_market_prob": 22.0
-      },
-      "VE": {
-        "mentions": 2,
-        "avg_market_prob": 44.5
-      },
-      "TD": {
+      "ML": {
         "mentions": 1,
-        "avg_market_prob": 8.5
+        "avg_market_prob": 9.5
+      },
+      "SA": {
+        "mentions": 3,
+        "avg_market_prob": 8.7
+      },
+      "DE": {
+        "mentions": 1,
+        "avg_market_prob": 95.7
       },
       "GB": {
         "mentions": 2,
-        "avg_market_prob": 7.8
+        "avg_market_prob": 10.0
       },
-      "PK": {
+      "CU": {
         "mentions": 1,
-        "avg_market_prob": 18.4
+        "avg_market_prob": 33.0
       },
-      "NZ": {
+      "KR": {
         "mentions": 1,
-        "avg_market_prob": 35.5
+        "avg_market_prob": 11.0
       },
       "KE": {
         "mentions": 1,
@@ -18880,97 +18888,79 @@
       },
       "RO": {
         "mentions": 15,
-        "avg_market_prob": 6.9
+        "avg_market_prob": 6.8
       },
       "IT": {
         "mentions": 1,
         "avg_market_prob": 3.5
       },
-      "FR": {
-        "mentions": 1,
-        "avg_market_prob": 89.0
-      },
       "IN": {
         "mentions": 3,
-        "avg_market_prob": 48.3
+        "avg_market_prob": 49.7
       }
     },
     "market_consensus": [
       {
-        "question": "Israel x Iran ceasefire continues through July 31?",
-        "market_prob": 62.5,
-        "atlas_prob": 48.6,
-        "edge": 13.9,
+        "question": "Israel x Iran ceasefire continues through July 25?",
+        "market_prob": 68.5,
+        "atlas_prob": 54.1,
+        "edge": 14.4,
         "confidence": "medium",
         "topics": [
           "peace"
         ],
         "countries": [
-          "IL",
-          "IR"
+          "IR",
+          "IL"
         ]
       },
       {
         "question": "Israel x Iran ceasefire continues through August 15?",
-        "market_prob": 53.5,
-        "atlas_prob": 40.6,
-        "edge": 12.9,
+        "market_prob": 48.5,
+        "atlas_prob": 36.2,
+        "edge": 12.3,
         "confidence": "medium",
         "topics": [
           "peace"
         ],
         "countries": [
-          "IL",
-          "IR"
-        ]
-      },
-      {
-        "question": "Israel x Iran ceasefire continues through July 25?",
-        "market_prob": 79.5,
-        "atlas_prob": 66.9,
-        "edge": 12.6,
-        "confidence": "medium",
-        "topics": [
-          "peace"
-        ],
-        "countries": [
-          "IL",
-          "IR"
+          "IR",
+          "IL"
         ]
       },
       {
         "question": "Israel x Iran ceasefire continues through August 31?",
-        "market_prob": 46.0,
-        "atlas_prob": 34.5,
-        "edge": 11.5,
+        "market_prob": 42.5,
+        "atlas_prob": 31.5,
+        "edge": 11.0,
         "confidence": "medium",
         "topics": [
           "peace"
         ],
         "countries": [
-          "IL",
-          "IR"
+          "IR",
+          "IL"
         ]
       },
       {
-        "question": "Russia-Ukraine peace talks by December 31, 2026?",
-        "market_prob": 51.5,
-        "atlas_prob": 40.4,
-        "edge": 11.1,
+        "question": "Russia-Ukraine peace talks by September 30, 2026?",
+        "market_prob": 39.5,
+        "atlas_prob": 30.1,
+        "edge": 9.4,
         "confidence": "medium",
         "topics": [
           "peace"
         ],
         "countries": [
-          "RU",
-          "UA"
+          "UA",
+          "RU"
         ]
       },
       {
         "question": "US x Iran Effective Ceasefire by August 14?",
-        "market_prob": 36.5,
-        "atlas_prob": 27.3,
-        "edge": 9.2,
+        "market_prob": 35.5,
+        "atlas_prob": 26.4,
+        "edge": 9.1,
         "confidence": "medium",
         "topics": [
           "peace"
@@ -18980,9 +18970,9 @@
         ]
       },
       {
-        "question": "Will Crude Oil reach a new all-time high by September 30?",
-        "market_prob": 8.8,
-        "atlas_prob": 17.8,
+        "question": "Will WTI Crude Oil (WTI) hit (HIGH) $105 in July?",
+        "market_prob": 8.4,
+        "atlas_prob": 17.4,
         "edge": 9.0,
         "confidence": "medium",
         "topics": [
@@ -18991,24 +18981,36 @@
         "countries": []
       },
       {
-        "question": "UNSC Resolution Endorsing Final U.S.-Iran Deal by December 31?",
-        "market_prob": 33.5,
-        "atlas_prob": 24.6,
+        "question": "Will SpaceX Starship Flight Test 13 launch by July 31?",
+        "market_prob": 93.4,
+        "atlas_prob": 84.5,
         "edge": 8.9,
         "confidence": "medium",
         "topics": [
-          "peace"
+          "space"
         ],
         "countries": [
-          "IR",
           "US"
         ]
       },
       {
-        "question": "Will WTI Crude Oil (WTI) hit (HIGH) $95 in July?",
-        "market_prob": 19.1,
-        "atlas_prob": 27.8,
+        "question": "Will there be no next Google Gemini Pro model release by July 31, 2026?",
+        "market_prob": 94.3,
+        "atlas_prob": 85.6,
         "edge": 8.7,
+        "confidence": "medium",
+        "topics": [
+          "other"
+        ],
+        "countries": [
+          "US"
+        ]
+      },
+      {
+        "question": "Will Crude Oil reach a new all-time high by September 30?",
+        "market_prob": 6.3,
+        "atlas_prob": 14.7,
+        "edge": 8.4,
         "confidence": "medium",
         "topics": [
           "energy"
@@ -19016,23 +19018,9 @@
         "countries": []
       },
       {
-        "question": "Russia-Ukraine peace talks by September 30, 2026?",
-        "market_prob": 33.5,
-        "atlas_prob": 25.3,
-        "edge": 8.2,
-        "confidence": "medium",
-        "topics": [
-          "peace"
-        ],
-        "countries": [
-          "RU",
-          "UA"
-        ]
-      },
-      {
-        "question": "Will Crude Oil reach a new all-time high by December 31?",
-        "market_prob": 16.0,
-        "atlas_prob": 24.1,
+        "question": "Will WTI Crude Oil (WTI) hit (HIGH) $100 in July?",
+        "market_prob": 15.8,
+        "atlas_prob": 23.9,
         "edge": 8.1,
         "confidence": "medium",
         "topics": [
@@ -19041,9 +19029,20 @@
         "countries": []
       },
       {
-        "question": "Will WTI Crude Oil (WTI) hit (HIGH) $95 Week of July 20 2026?",
-        "market_prob": 4.5,
-        "atlas_prob": 12.5,
+        "question": "Will WTI Crude Oil (WTI) hit (HIGH) $110 in July?",
+        "market_prob": 4.9,
+        "atlas_prob": 13.0,
+        "edge": 8.1,
+        "confidence": "medium",
+        "topics": [
+          "energy"
+        ],
+        "countries": []
+      },
+      {
+        "question": "Will Crude Oil reach a new all-time high by December 31?",
+        "market_prob": 15.5,
+        "atlas_prob": 23.5,
         "edge": 8.0,
         "confidence": "medium",
         "topics": [
@@ -19052,64 +19051,78 @@
         "countries": []
       },
       {
-        "question": "Will WTI Crude Oil (WTI) hit (HIGH) $105 in July?",
-        "market_prob": 3.7,
-        "atlas_prob": 11.4,
-        "edge": 7.7,
+        "question": "Will SpaceX Starship Flight Test 13 Superheavy explode?",
+        "market_prob": 82.5,
+        "atlas_prob": 74.6,
+        "edge": 7.9,
         "confidence": "medium",
         "topics": [
-          "energy"
-        ],
-        "countries": []
-      },
-      {
-        "question": "Will WTI Crude Oil (WTI) hit (HIGH) $90 in July?",
-        "market_prob": 42.4,
-        "atlas_prob": 50.0,
-        "edge": 7.6,
-        "confidence": "medium",
-        "topics": [
-          "energy"
-        ],
-        "countries": []
-      },
-      {
-        "question": "Will China invade Taiwan by June 30, 2027?",
-        "market_prob": 9.5,
-        "atlas_prob": 17.1,
-        "edge": 7.6,
-        "confidence": "medium",
-        "topics": [
-          "conflict"
+          "other"
         ],
         "countries": [
-          "TW",
-          "CN"
-        ]
-      },
-      {
-        "question": "Will the US officially declare war on Iran by December 31, 2026?",
-        "market_prob": 4.5,
-        "atlas_prob": 11.9,
-        "edge": 7.4,
-        "confidence": "high",
-        "topics": [
-          "conflict"
-        ],
-        "countries": [
-          "IR",
           "US"
         ]
       },
       {
-        "question": "US announces end of Iranian blockade by July 24, 2026?",
-        "market_prob": 4.8,
-        "atlas_prob": 12.1,
-        "edge": 7.3,
+        "question": "Will Open AI or Anthropic IPO first?",
+        "market_prob": 84.0,
+        "atlas_prob": 76.2,
+        "edge": 7.8,
+        "confidence": "medium",
+        "topics": [
+          "technology"
+        ],
+        "countries": [
+          "US"
+        ]
+      },
+      {
+        "question": "Will NVIDIA be the largest company in the world by market cap on July 31?",
+        "market_prob": 85.5,
+        "atlas_prob": 77.8,
+        "edge": 7.7,
+        "confidence": "medium",
+        "topics": [
+          "other"
+        ],
+        "countries": [
+          "US"
+        ]
+      },
+      {
+        "question": "Will no Fed rate cuts happen in 2026?",
+        "market_prob": 84.7,
+        "atlas_prob": 77.0,
+        "edge": 7.7,
+        "confidence": "medium",
+        "topics": [
+          "other"
+        ],
+        "countries": [
+          "US"
+        ]
+      },
+      {
+        "question": "Will Anthropic's valuation hit (HIGH) $1.25T by December 31?",
+        "market_prob": 84.5,
+        "atlas_prob": 76.8,
+        "edge": 7.7,
+        "confidence": "medium",
+        "topics": [
+          "other"
+        ],
+        "countries": [
+          "US"
+        ]
+      },
+      {
+        "question": "US announces halt in Iran offensive operations by July 24?",
+        "market_prob": 8.5,
+        "atlas_prob": 16.1,
+        "edge": 7.6,
         "confidence": "high",
         "topics": [
-          "conflict",
-          "maritime"
+          "conflict"
         ],
         "countries": [
           "IR"
@@ -19117,9 +19130,9 @@
       },
       {
         "question": "Iran invades Kuwait by August 31?",
-        "market_prob": 3.9,
-        "atlas_prob": 10.8,
-        "edge": 6.9,
+        "market_prob": 4.9,
+        "atlas_prob": 12.4,
+        "edge": 7.5,
         "confidence": "high",
         "topics": [
           "conflict"
@@ -19129,41 +19142,18 @@
         ]
       },
       {
-        "question": "Will WTI Crude Oil (WTI) hit (HIGH) $100 in July?",
-        "market_prob": 10.3,
-        "atlas_prob": 17.2,
-        "edge": 6.9,
+        "question": "Will WTI Crude Oil (WTI) hit (HIGH) $95 in July?",
+        "market_prob": 34.0,
+        "atlas_prob": 41.1,
+        "edge": 7.1,
         "confidence": "medium",
         "topics": [
           "energy"
         ],
         "countries": []
-      },
-      {
-        "question": "Will China invade Taiwan by end of 2026?",
-        "market_prob": 4.2,
-        "atlas_prob": 11.0,
-        "edge": 6.8,
-        "confidence": "medium",
-        "topics": [
-          "conflict"
-        ],
-        "countries": [
-          "TW",
-          "CN"
-        ]
       }
     ],
     "information_gaps": [
-      {
-        "question": "Will National Party win the most seats in the New Zealand House of Representativ",
-        "countries": [
-          "NZ"
-        ],
-        "topics": [
-          "election"
-        ]
-      },
       {
         "question": "Will Alexandru Nazare be the next Prime Minister of Romania?",
         "countries": [
@@ -19244,6 +19234,15 @@
         "topics": [
           "other"
         ]
+      },
+      {
+        "question": "Will Mugur Is\u0103rescu be the next Prime Minister of Romania?",
+        "countries": [
+          "RO"
+        ],
+        "topics": [
+          "other"
+        ]
       }
     ],
     "cross_platform_divergences": [
@@ -19301,80 +19300,74 @@
         "country": "IR",
         "lat": 32.4,
         "lon": 53.7,
-        "market_mentions": 50,
-        "avg_market_prob": 24.3
+        "market_mentions": 35,
+        "avg_market_prob": 25.8
       },
       {
         "country": "US",
         "lat": 37.1,
         "lon": -95.7,
-        "market_mentions": 42,
-        "avg_market_prob": 36.9
+        "market_mentions": 34,
+        "avg_market_prob": 41.4
       },
       {
-        "country": "CN",
-        "lat": 35.9,
-        "lon": 104.2,
-        "market_mentions": 16,
-        "avg_market_prob": 19.2
-      },
-      {
-        "country": "RU",
-        "lat": 61.5,
-        "lon": 105.3,
-        "market_mentions": 16,
-        "avg_market_prob": 31.1
+        "country": "IL",
+        "lat": 31.0,
+        "lon": 34.9,
+        "market_mentions": 19,
+        "avg_market_prob": 26.5
       },
       {
         "country": "RO",
         "lat": 45.9,
         "lon": 25.0,
         "market_mentions": 15,
-        "avg_market_prob": 6.9
+        "avg_market_prob": 6.8
       },
       {
-        "country": "IL",
-        "lat": 31.0,
-        "lon": 34.9,
+        "country": "CN",
+        "lat": 35.9,
+        "lon": 104.2,
         "market_mentions": 14,
-        "avg_market_prob": 30.9
+        "avg_market_prob": 23.3
+      },
+      {
+        "country": "RU",
+        "lat": 61.5,
+        "lon": 105.3,
+        "market_mentions": 11,
+        "avg_market_prob": 19.5
       },
       {
         "country": "UA",
         "lat": 48.4,
         "lon": 31.2,
-        "market_mentions": 12,
-        "avg_market_prob": 16.9
+        "market_mentions": 5,
+        "avg_market_prob": 23.3
       },
       {
-        "country": "CU",
-        "lat": 21.5,
-        "lon": -78.0,
+        "country": "FR",
+        "lat": 46.2,
+        "lon": 2.2,
         "market_mentions": 4,
-        "avg_market_prob": 22.0
+        "avg_market_prob": 79.5
       },
       {
         "country": "TW",
         "lat": 23.7,
         "lon": 121.0,
         "market_mentions": 3,
-        "avg_market_prob": 6.9
+        "avg_market_prob": 22.0
       },
       {
-        "country": "IN",
-        "lat": 20.6,
-        "lon": 78.9,
+        "country": "SA",
+        "lat": 23.9,
+        "lon": 45.1,
         "market_mentions": 3,
-        "avg_market_prob": 48.3
+        "avg_market_prob": 8.7
       }
     ],
-    "sentiment_map": {
-      "other": -0.6,
-      "conflict": -0.6,
-      "peace": -0.6,
-      "maritime": -0.6,
-      "nuclear": -0.6
-    },
+    "sentiment_map": {},
     "base_rate_usage": {
       "base_5": {
         "rate": 5,
@@ -19383,12 +19376,12 @@
       },
       "base_20": {
         "rate": 20,
-        "count": 23,
+        "count": 13,
         "reason": "Base rate: ceasefires during active conflict resolve YES ~20% historically"
       },
       "base_15": {
         "rate": 15,
-        "count": 11,
+        "count": 10,
         "reason": "Base rate: conflict escalation questions resolve YES ~15% historically"
       },
       "base_35": {
@@ -19401,37 +19394,27 @@
       "new_hotspots": [],
       "cooling_hotspots": [],
       "edge_shifts": {
-        "energy": {
-          "current_avg": 6.9,
-          "previous_avg": 3.7,
+        "coup": {
+          "current_avg": 3.9,
+          "previous_avg": 0,
+          "direction": "widening"
+        },
+        "space": {
+          "current_avg": 8.9,
+          "previous_avg": 4.2,
           "direction": "widening"
         }
       },
       "sentiment_shifts": {
-        "other": {
-          "current": -0.6,
-          "previous": -0.2,
-          "direction": "deteriorating"
-        },
-        "conflict": {
-          "current": -0.25,
-          "previous": 0,
-          "direction": "deteriorating"
-        },
         "peace": {
-          "current": -0.6,
-          "previous": -0.286,
-          "direction": "deteriorating"
+          "current": -0.25,
+          "previous": -0.6,
+          "direction": "improving"
         },
-        "maritime": {
-          "current": -0.6,
-          "previous": 0,
-          "direction": "deteriorating"
-        },
-        "nuclear": {
-          "current": -0.6,
-          "previous": 0,
-          "direction": "deteriorating"
+        "other": {
+          "current": -0.25,
+          "previous": -0.6,
+          "direction": "improving"
         }
       },
       "coverage_changes": []
@@ -20110,6 +20093,6 @@
       }
     ],
     "recent_resolved": [],
-    "last_scan": "2026-07-21T20:00:39.915752+00:00"
+    "last_scan": "2026-07-22T20:00:46.015474+00:00"
   }
 }
