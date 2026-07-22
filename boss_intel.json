@@ -1,7 +1,273 @@
 {
-  "generated": "2026-07-21T23:14:16.145320+00:00",
-  "atlas_scan_time": "2026-07-21T23:11:53.744423+00:00",
-  "boss_heat_score": 0,
-  "recommendation": "QUIET. No actionable intel. Focus on product, content, or in-person visits.",
-  "daily_briefing": "ATLAS BOSS Score: 0/100\nQUIET. No actionable intel. Focus on product, content, or in-person visits."
+  "generated": "2026-07-22T03:32:23.045512+00:00",
+  "atlas_scan_time": "2026-07-22T03:26:44.202557+00:00",
+  "demand_signals": [
+    {
+      "type": "heat_wave",
+      "area": "Harmon; Greer; Kiowa; Jackson; Tillman; Comanche; Stephens; Coal; Cotton; Jefferson; Carter; Johnston; Atoka; Love; Marshall; Bryan; Hardeman; Foard; Wilbarger; Wichita; Knox; Baylor; Archer; Clay",
+      "niche": "hvac",
+      "action": "HVAC businesses in Harmon; Greer; Kiowa; Jackson; Tillman; Comanche; Stephens; Coal; Cotton; Jefferson; Carter; Johnston; Atoka; Love; Marshall; Bryan; Hardeman; Foard; Wilbarger; Wichita; Knox; Baylor; Archer; Clay are drowning in calls right now. Perfect time to pitch.",
+      "urgency": "today",
+      "pitch_hook": "You're getting slammed with calls \u2014 how many went to voicemail today?"
+    },
+    {
+      "type": "heat_wave",
+      "area": "Briscoe; Hall; Childress; Motley; Cottle; Dickens; King; Kent; Stonewall",
+      "niche": "hvac",
+      "action": "HVAC businesses in Briscoe; Hall; Childress; Motley; Cottle; Dickens; King; Kent; Stonewall are drowning in calls right now. Perfect time to pitch.",
+      "urgency": "today",
+      "pitch_hook": "You're getting slammed with calls \u2014 how many went to voicemail today?"
+    },
+    {
+      "type": "heat_wave",
+      "area": "Palo Duro Canyon",
+      "niche": "hvac",
+      "action": "HVAC businesses in Palo Duro Canyon are drowning in calls right now. Perfect time to pitch.",
+      "urgency": "today",
+      "pitch_hook": "You're getting slammed with calls \u2014 how many went to voicemail today?"
+    },
+    {
+      "type": "flood",
+      "area": "Frio, TX",
+      "niche": "plumbing",
+      "action": "Flood warnings in Frio, TX. Plumbers, restoration, mold companies will spike.",
+      "urgency": "today",
+      "pitch_hook": "Water damage calls are coming. Every one you miss is $500+ walking away."
+    },
+    {
+      "type": "flood",
+      "area": "Dimmit, TX",
+      "niche": "plumbing",
+      "action": "Flood warnings in Dimmit, TX. Plumbers, restoration, mold companies will spike.",
+      "urgency": "today",
+      "pitch_hook": "Water damage calls are coming. Every one you miss is $500+ walking away."
+    },
+    {
+      "type": "flood",
+      "area": "La Salle, TX",
+      "niche": "plumbing",
+      "action": "Flood warnings in La Salle, TX. Plumbers, restoration, mold companies will spike.",
+      "urgency": "today",
+      "pitch_hook": "Water damage calls are coming. Every one you miss is $500+ walking away."
+    },
+    {
+      "type": "flood",
+      "area": "Live Oak, TX; McMullen, TX",
+      "niche": "plumbing",
+      "action": "Flood warnings in Live Oak, TX; McMullen, TX. Plumbers, restoration, mold companies will spike.",
+      "urgency": "today",
+      "pitch_hook": "Water damage calls are coming. Every one you miss is $500+ walking away."
+    },
+    {
+      "type": "heat_wave",
+      "area": "Vernon; Rapides; Avoyelles; Beauregard; Allen; Evangeline; St. Landry; Lafayette; Upper St. Martin; Lower St. Martin; West Cameron; East Cameron; Northern Calcasieu; Northern Jefferson Davis; Northern",
+      "niche": "hvac",
+      "action": "HVAC businesses in Vernon; Rapides; Avoyelles; Beauregard; Allen; Evangeline; St. Landry; Lafayette; Upper St. Martin; Lower St. Martin; West Cameron; East Cameron; Northern Calcasieu; Northern Jefferson Davis; Northern are drowning in calls right now. Perfect time to pitch.",
+      "urgency": "today",
+      "pitch_hook": "You're getting slammed with calls \u2014 how many went to voicemail today?"
+    },
+    {
+      "type": "heat_wave",
+      "area": "East Carroll; Madison; Franklin; Catahoula; Tensas; Concordia; Issaquena; Sharkey; Yazoo; Madison; Warren; Hinds; Rankin; Claiborne; Copiah; Simpson; Jefferson; Adams; Franklin; Lincoln; Lawrence; Jef",
+      "niche": "hvac",
+      "action": "HVAC businesses in East Carroll; Madison; Franklin; Catahoula; Tensas; Concordia; Issaquena; Sharkey; Yazoo; Madison; Warren; Hinds; Rankin; Claiborne; Copiah; Simpson; Jefferson; Adams; Franklin; Lincoln; Lawrence; Jef are drowning in calls right now. Perfect time to pitch.",
+      "urgency": "today",
+      "pitch_hook": "You're getting slammed with calls \u2014 how many went to voicemail today?"
+    },
+    {
+      "type": "heat_wave",
+      "area": "Ashley; Chicot; Morehouse; West Carroll; Richland; Bolivar; Sunflower; Leflore; Grenada; Carroll; Montgomery; Webster; Clay; Lowndes; Choctaw; Oktibbeha; Washington; Humphreys; Holmes; Attala; Winston",
+      "niche": "hvac",
+      "action": "HVAC businesses in Ashley; Chicot; Morehouse; West Carroll; Richland; Bolivar; Sunflower; Leflore; Grenada; Carroll; Montgomery; Webster; Clay; Lowndes; Choctaw; Oktibbeha; Washington; Humphreys; Holmes; Attala; Winston are drowning in calls right now. Perfect time to pitch.",
+      "urgency": "today",
+      "pitch_hook": "You're getting slammed with calls \u2014 how many went to voicemail today?"
+    }
+  ],
+  "territory_alerts": [
+    {
+      "region": "Wilson (County), TX",
+      "opportunity": "FEMA Disaster: Flood in Wilson (County), TX. Contractors overwhelmed",
+      "action": "Target roofers, restoration, HVAC, plumbers in TX immediately. They're drowning in calls.",
+      "urgency": "immediate",
+      "confidence": 92
+    },
+    {
+      "region": "Sutton (County), TX",
+      "opportunity": "FEMA Disaster: Flood in Sutton (County), TX. Contractors overwhelmed",
+      "action": "Target roofers, restoration, HVAC, plumbers in TX immediately. They're drowning in calls.",
+      "urgency": "immediate",
+      "confidence": 92
+    },
+    {
+      "region": "Maverick (County), TX",
+      "opportunity": "FEMA Disaster: Flood in Maverick (County), TX. Contractors overwhelmed",
+      "action": "Target roofers, restoration, HVAC, plumbers in TX immediately. They're drowning in calls.",
+      "urgency": "immediate",
+      "confidence": 92
+    },
+    {
+      "region": "Kerr (County), TX",
+      "opportunity": "FEMA Disaster: Flood in Kerr (County), TX. Contractors overwhelmed",
+      "action": "Target roofers, restoration, HVAC, plumbers in TX immediately. They're drowning in calls.",
+      "urgency": "immediate",
+      "confidence": 92
+    },
+    {
+      "region": "Medina (County), TX",
+      "opportunity": "FEMA Disaster: Flood in Medina (County), TX. Contractors overwhelmed",
+      "action": "Target roofers, restoration, HVAC, plumbers in TX immediately. They're drowning in calls.",
+      "urgency": "immediate",
+      "confidence": 92
+    },
+    {
+      "region": "La Salle (County), TX",
+      "opportunity": "FEMA Disaster: Flood in La Salle (County), TX. Contractors overwhelmed",
+      "action": "Target roofers, restoration, HVAC, plumbers in TX immediately. They're drowning in calls.",
+      "urgency": "immediate",
+      "confidence": 92
+    },
+    {
+      "region": "Uvalde (County), TX",
+      "opportunity": "FEMA Disaster: Flood in Uvalde (County), TX. Contractors overwhelmed",
+      "action": "Target roofers, restoration, HVAC, plumbers in TX immediately. They're drowning in calls.",
+      "urgency": "immediate",
+      "confidence": 92
+    },
+    {
+      "region": "Kinney (County), TX",
+      "opportunity": "FEMA Disaster: Flood in Kinney (County), TX. Contractors overwhelmed",
+      "action": "Target roofers, restoration, HVAC, plumbers in TX immediately. They're drowning in calls.",
+      "urgency": "immediate",
+      "confidence": 92
+    },
+    {
+      "region": "Bexar (County), TX",
+      "opportunity": "FEMA Disaster: Flood in Bexar (County), TX. Contractors overwhelmed",
+      "action": "Target roofers, restoration, HVAC, plumbers in TX immediately. They're drowning in calls.",
+      "urgency": "immediate",
+      "confidence": 92
+    },
+    {
+      "region": "Val Verde (County), TX",
+      "opportunity": "FEMA Disaster: Flood in Val Verde (County), TX. Contractors overwhelmed",
+      "action": "Target roofers, restoration, HVAC, plumbers in TX immediately. They're drowning in calls.",
+      "urgency": "immediate",
+      "confidence": 92
+    },
+    {
+      "region": "Dimmit (County), TX",
+      "opportunity": "FEMA Disaster: Flood in Dimmit (County), TX. Contractors overwhelmed",
+      "action": "Target roofers, restoration, HVAC, plumbers in TX immediately. They're drowning in calls.",
+      "urgency": "immediate",
+      "confidence": 92
+    },
+    {
+      "region": "Terrell (County), TX",
+      "opportunity": "FEMA Disaster: Flood in Terrell (County), TX. Contractors overwhelmed",
+      "action": "Target roofers, restoration, HVAC, plumbers in TX immediately. They're drowning in calls.",
+      "urgency": "immediate",
+      "confidence": 92
+    },
+    {
+      "region": "Crockett (County), TX",
+      "opportunity": "FEMA Disaster: Flood in Crockett (County), TX. Contractors overwhelmed",
+      "action": "Target roofers, restoration, HVAC, plumbers in TX immediately. They're drowning in calls.",
+      "urgency": "immediate",
+      "confidence": 92
+    },
+    {
+      "region": "Zavala (County), TX",
+      "opportunity": "FEMA Disaster: Flood in Zavala (County), TX. Contractors overwhelmed",
+      "action": "Target roofers, restoration, HVAC, plumbers in TX immediately. They're drowning in calls.",
+      "urgency": "immediate",
+      "confidence": 92
+    },
+    {
+      "region": "Webb (County), TX",
+      "opportunity": "FEMA Disaster: Flood in Webb (County), TX. Contractors overwhelmed",
+      "action": "Target roofers, restoration, HVAC, plumbers in TX immediately. They're drowning in calls.",
+      "urgency": "immediate",
+      "confidence": 92
+    },
+    {
+      "region": "Menard (County), TX",
+      "opportunity": "FEMA Disaster: Flood in Menard (County), TX. Contractors overwhelmed",
+      "action": "Target roofers, restoration, HVAC, plumbers in TX immediately. They're drowning in calls.",
+      "urgency": "immediate",
+      "confidence": 92
+    },
+    {
+      "region": "Kendall (County), TX",
+      "opportunity": "FEMA Disaster: Flood in Kendall (County), TX. Contractors overwhelmed",
+      "action": "Target roofers, restoration, HVAC, plumbers in TX immediately. They're drowning in calls.",
+      "urgency": "immediate",
+      "confidence": 92
+    },
+    {
+      "region": "Atascosa (County), TX",
+      "opportunity": "FEMA Disaster: Flood in Atascosa (County), TX. Contractors overwhelmed",
+      "action": "Target roofers, restoration, HVAC, plumbers in TX immediately. They're drowning in calls.",
+      "urgency": "immediate",
+      "confidence": 92
+    },
+    {
+      "region": "Real (County), TX",
+      "opportunity": "FEMA Disaster: Flood in Real (County), TX. Contractors overwhelmed",
+      "action": "Target roofers, restoration, HVAC, plumbers in TX immediately. They're drowning in calls.",
+      "urgency": "immediate",
+      "confidence": 92
+    },
+    {
+      "region": "Schleicher (County), TX",
+      "opportunity": "FEMA Disaster: Flood in Schleicher (County), TX. Contractors overwhelmed",
+      "action": "Target roofers, restoration, HVAC, plumbers in TX immediately. They're drowning in calls.",
+      "urgency": "immediate",
+      "confidence": 92
+    },
+    {
+      "region": "Harmon; Greer; Kiowa; Jackson; Tillman; Comanche; Stephens; Coal; Cotton; Jefferson; Carter; Johnston; Atoka; Love; Marshall; Bryan; Hardeman; Foard; Wilbarger; Wichita; Knox; Baylor; Archer; Clay",
+      "opportunity": "HVAC contractors overwhelmed in Harmon; Greer; Kiowa; Jackson; Tillman; Comanche; Stephens; Coal; Cotton; Jefferson; Carter; Johnston; Atoka; Love; Marshall; Bryan; Hardeman; Foard; Wilbarger; Wichita; Knox; Baylor; Archer; Clay. Heat emergency",
+      "action": "Target HVAC businesses in Harmon; Greer; Kiowa; Jackson; Tillman; Comanche; Stephens; Coal; Cotton; Jefferson; Carter; Johnston; Atoka; Love; Marshall; Bryan; Hardeman; Foard; Wilbarger; Wichita; Knox; Baylor; Archer; Clay with missed-call pitch. They're too busy to answer right now.",
+      "urgency": "immediate",
+      "confidence": 90
+    },
+    {
+      "region": "Briscoe; Hall; Childress; Motley; Cottle; Dickens; King; Kent; Stonewall",
+      "opportunity": "HVAC contractors overwhelmed in Briscoe; Hall; Childress; Motley; Cottle; Dickens; King; Kent; Stonewall. Heat emergency",
+      "action": "Target HVAC businesses in Briscoe; Hall; Childress; Motley; Cottle; Dickens; King; Kent; Stonewall with missed-call pitch. They're too busy to answer right now.",
+      "urgency": "immediate",
+      "confidence": 90
+    },
+    {
+      "region": "Palo Duro Canyon",
+      "opportunity": "HVAC contractors overwhelmed in Palo Duro Canyon. Heat emergency",
+      "action": "Target HVAC businesses in Palo Duro Canyon with missed-call pitch. They're too busy to answer right now.",
+      "urgency": "immediate",
+      "confidence": 90
+    },
+    {
+      "region": "Vernon; Rapides; Avoyelles; Beauregard; Allen; Evangeline; St. Landry; Lafayette; Upper St. Martin; Lower St. Martin; West Cameron; East Cameron; Northern Calcasieu; Northern Jefferson Davis; Northern",
+      "opportunity": "HVAC contractors overwhelmed in Vernon; Rapides; Avoyelles; Beauregard; Allen; Evangeline; St. Landry; Lafayette; Upper St. Martin; Lower St. Martin; West Cameron; East Cameron; Northern Calcasieu; Northern Jefferson Davis; Northern. Heat emergency",
+      "action": "Target HVAC businesses in Vernon; Rapides; Avoyelles; Beauregard; Allen; Evangeline; St. Landry; Lafayette; Upper St. Martin; Lower St. Martin; West Cameron; East Cameron; Northern Calcasieu; Northern Jefferson Davis; Northern with missed-call pitch. They're too busy to answer right now.",
+      "urgency": "immediate",
+      "confidence": 90
+    },
+    {
+      "region": "East Carroll; Madison; Franklin; Catahoula; Tensas; Concordia; Issaquena; Sharkey; Yazoo; Madison; Warren; Hinds; Rankin; Claiborne; Copiah; Simpson; Jefferson; Adams; Franklin; Lincoln; Lawrence; Jef",
+      "opportunity": "HVAC contractors overwhelmed in East Carroll; Madison; Franklin; Catahoula; Tensas; Concordia; Issaquena; Sharkey; Yazoo; Madison; Warren; Hinds; Rankin; Claiborne; Copiah; Simpson; Jefferson; Adams; Franklin; Lincoln; Lawrence; Jef. Heat emergency",
+      "action": "Target HVAC businesses in East Carroll; Madison; Franklin; Catahoula; Tensas; Concordia; Issaquena; Sharkey; Yazoo; Madison; Warren; Hinds; Rankin; Claiborne; Copiah; Simpson; Jefferson; Adams; Franklin; Lincoln; Lawrence; Jef with missed-call pitch. They're too busy to answer right now.",
+      "urgency": "immediate",
+      "confidence": 90
+    }
+  ],
+  "economic_context": [
+    {
+      "source": "Treasury",
+      "data": {},
+      "relevance": "Interest rate environment affects small business expansion/contraction."
+    }
+  ],
+  "boss_heat_score": 100,
+  "recommendation": "HOT DAY. Weather-driven demand in La Salle, TX, Live Oak, TX; McMullen, TX, Briscoe; Hall; Childress; Motley; Cottle; Dickens; King; Kent; Stonewall. Call HVAC/roofers there NOW.",
+  "daily_briefing": "ATLAS BOSS Score: 100/100\nDEMAND: HEAT_WAVE in Harmon; Greer; Kiowa; Jackson; Tillman; Comanche; Stephens; Coal; Cotton; Jefferson; Carter; Johnston; Atoka; Love; Marshall; Bryan; Hardeman; Foard; Wilbarger; Wichita; Knox; Baylor; Archer; Clay \u2014 target hvac businesses\nHOT DAY. Weather-driven demand in La Salle, TX, Live Oak, TX; McMullen, TX, Briscoe; Hall; Childress; Motley; Cottle; Dickens; King; Kent; Stonewall. Call HVAC/roofers there NOW."
 }
