@@ -2393,7 +2393,13 @@ function genGrokComposite(v){
   if(!hasGroupSize)sections.push('SUBJECT SIZE RULE: When multiple subjects of the same type appear, they MUST all be the SAME BODY SIZE. Distinguish by COLOR, MARKINGS, POSE, or POSITION — never by size.');
 
   // Realism (condensed)
-  sections.push('REALISM: Shadows match existing light. Feet/paws touch ground (no floating). Scale subjects relative to buildings. Sky objects ABOVE roofline. Lighting on added subjects matches the plate exactly.\nOBJECT SCALE: Every object (grills, tables, chairs, coolers, tackle boxes, trucks) must be REAL HUMAN SIZE. Animals are small compared to human objects — a raccoon is knee-height next to a full-size grill, NOT the same size as it. Never shrink objects to match animal size. The animals live in a HUMAN-SCALE world.\nOBJECT PLACEMENT: Grills, tables, and furniture go on CONCRETE or DECK surfaces, never randomly on grass. Vehicles go on driveways or gravel roads, never on lawn. Place objects where they would realistically be at a rural cabin property. Do NOT add vehicles (buses, RVs, trucks) unless explicitly requested.');
+  sections.push('REALISM: Shadows match existing light. Feet/paws touch ground (no floating). Scale subjects relative to buildings. Sky objects ABOVE roofline. Lighting on added subjects matches the plate exactly.');
+
+  // OBJECT SCALE — separate critical block so Grok doesn't skip it
+  sections.push('OBJECT SCALE — CRITICAL: Every object (grills, tables, chairs, coolers, tackle boxes) must be REAL HUMAN SIZE — full-size, as you would see at a real property. A standard BBQ grill is 3 feet tall. A raccoon is 1 foot tall. The raccoon should reach the LEGS of the grill, not the cooking surface. NEVER shrink objects to match animal size. NEVER make a raccoon-sized grill. The animals live in a HUMAN-SCALE world and interact with HUMAN-SIZED objects.');
+
+  // OBJECT PLACEMENT — separate critical block
+  sections.push('OBJECT PLACEMENT — CRITICAL: Grills, tables, and furniture go on CONCRETE PADS or WOODEN DECKS, never randomly on grass. Place objects where they would realistically be at a rural cabin property.');
 
   // P5: Camera perspective
   if(fmt==='cctv'){sections.push('CAMERA PERSPECTIVE: Shot FROM a wide-angle security camera mounted high, looking slightly down. Do NOT place a CCTV camera, pole, or camera equipment as a physical object in the image.');}

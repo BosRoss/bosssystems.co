@@ -567,15 +567,22 @@ GROK_UNIVERSAL_SIZE_RULE = (
 GROK_UNIVERSAL_REALISM = (
     "REALISM: Shadows match existing light. Feet/paws touch ground (no floating). "
     "Scale subjects relative to buildings. Sky objects ABOVE roofline. "
-    "Lighting on added subjects matches the plate exactly.\n"
-    "OBJECT SCALE: Every object (grills, tables, chairs, coolers, tackle boxes, trucks) "
-    "must be REAL HUMAN SIZE. Animals are small compared to human objects — a raccoon "
-    "is knee-height next to a full-size grill, NOT the same size as it. Never shrink "
-    "objects to match animal size. The animals live in a HUMAN-SCALE world.\n"
-    "OBJECT PLACEMENT: Grills, tables, and furniture go on CONCRETE or DECK surfaces, "
-    "never randomly on grass. Vehicles go on driveways or gravel roads, never on lawn. "
-    "Place objects where they would realistically be at a rural cabin property. "
-    "Do NOT add vehicles (buses, RVs, trucks) unless explicitly requested."
+    "Lighting on added subjects matches the plate exactly."
+)
+
+GROK_OBJECT_SCALE = (
+    "OBJECT SCALE — CRITICAL: Every object (grills, tables, chairs, coolers, tackle boxes) "
+    "must be REAL HUMAN SIZE — full-size, as you would see at a real property. "
+    "A standard BBQ grill is 3 feet tall. A raccoon is 1 foot tall. The raccoon should "
+    "reach the LEGS of the grill, not the cooking surface. NEVER shrink objects to match "
+    "animal size. NEVER make a raccoon-sized grill. The animals live in a HUMAN-SCALE "
+    "world and interact with HUMAN-SIZED objects."
+)
+
+GROK_OBJECT_PLACEMENT = (
+    "OBJECT PLACEMENT — CRITICAL: Grills, tables, and furniture go on CONCRETE PADS "
+    "or WOODEN DECKS, never randomly on grass. Place objects where they would "
+    "realistically be at a rural cabin property."
 )
 
 # ── P2 + P7: HERO ELEMENT PROPORTION ENFORCEMENT ────────────
@@ -1084,6 +1091,8 @@ def _build_grok_prompt(idea, idea_id=""):
 
     # Realism: shadows, scale, lighting match
     sections.append(GROK_UNIVERSAL_REALISM)
+    sections.append(GROK_OBJECT_SCALE)
+    sections.append(GROK_OBJECT_PLACEMENT)
 
     # P5: Camera perspective
     format_rule = GROK_FORMAT_RULES.get(fmt)
