@@ -2316,19 +2316,24 @@ function genGrokComposite(v){
   const hasAnimals=groups.some(g=>['raccoon','deer','bear','armadillo','fish'].includes(g));
 
   // P2+P7: Hero element proportion (FIRST in output)
+  // Strip ban/negative text before hero detection so "No bus" doesn't trigger bus proportion
+  const heroText=t.replace(/do not add[^.]*\./gi,' ').replace(/don't add[^.]*\./gi,' ').replace(/no bus[^.]*\./gi,' ').replace(/no school bus[^.]*\./gi,' ').replace(/no coach bus[^.]*\./gi,' ').replace(/no vehicle[^.]*\./gi,' ').replace(/vehicle ban[^.]*\./gi,' ').replace(/hard rules[^]*?(?=\n\n|$)/i,' ').replace(/there are no buses[^.]*\./gi,' ').replace(/critical[^.]*do not[^.]*\./gi,' ');
   const skyKw=['ufo','flying saucer','spaceship','spacecraft','meteor','helicopter','portal','blimp','hot air balloon'];
   const bigKw=['bigfoot','sasquatch','monster','dinosaur','giant','godzilla'];
   const tallKw=['shaq','7-foot','7 foot','very tall man'];
-  const vehicleKw=['truck','bulldozer','tank','tractor','ambulance','fire truck','bus'];
+  const vehicleKw=['truck','bulldozer','tank','tractor','ambulance','fire truck'];
   let heroType=null,heroWord=null;
-  for(const kw of skyKw){if(t.includes(kw)){heroType='sky';heroWord=kw;break;}}
-  if(!heroType)for(const kw of bigKw){if(t.includes(kw)){heroType='big';heroWord=kw;break;}}
-  if(!heroType)for(const kw of tallKw){if(t.includes(kw)){heroType='tall';heroWord=kw;break;}}
-  if(!heroType)for(const kw of vehicleKw){if(t.includes(kw)){heroType='vehicle';heroWord=kw;break;}}
+  for(const kw of skyKw){if(heroText.includes(kw)){heroType='sky';heroWord=kw;break;}}
+  if(!heroType)for(const kw of bigKw){if(heroText.includes(kw)){heroType='big';heroWord=kw;break;}}
+  if(!heroType)for(const kw of tallKw){if(heroText.includes(kw)){heroType='tall';heroWord=kw;break;}}
+  if(!heroType)for(const kw of vehicleKw){if(heroText.includes(kw)){heroType='vehicle';heroWord=kw;break;}}
 
   let sections=[];
 
-  // Hero proportion block
+  // HARD RULES — ABSOLUTE FIRST. Grok prioritizes early instructions.
+  sections.push('HARD RULES — READ BEFORE DOING ANYTHING:\n1. Do NOT add any buses, RVs, motor coaches, tour buses, vans, or large vehicles. There are NO buses at this property.\n2. Every object (grills, tables, chairs, coolers) must be REAL HUMAN SIZE. A grill is 3 feet tall. A raccoon is 1 foot tall. The raccoon reaches the LEGS of the grill. NEVER shrink objects to animal size.\n3. Grills, tables, and furniture go on CONCRETE PADS or WOODEN DECKS only. Never on grass.\n4. If something is not mentioned in this prompt, do NOT add it.');
+
+  // Hero proportion block (AFTER hard rules)
   if(heroType==='sky'){
     sections.push(`SIZE AND POSITION — THIS IS THE MOST IMPORTANT INSTRUCTION:\nThe ${heroWord} is the DOMINANT VISUAL ELEMENT of this entire image. It MUST take up at least 30% of the total image area. It is positioned in the UPPER THIRD of the frame, ABOVE the roofline of the buildings — at treetop height or higher. It is NOT on the ground. It is NOT behind the buildings. It is NOT small. It is NOT a toy. It is the BIGGEST non-background object in the image. Every building, tree, and animal in the scene is SMALLER than the ${heroWord}.`+(hasAnimals?`\nThe animals are SMALL in comparison — realistic wild animal size, about knee-height on a human. The ${heroWord} is the star, not the animals.`:''));
   }else if(heroType==='big'){
@@ -2395,23 +2400,14 @@ function genGrokComposite(v){
   // Realism (condensed)
   sections.push('REALISM: Shadows match existing light. Feet/paws touch ground (no floating). Scale subjects relative to buildings. Sky objects ABOVE roofline. Lighting on added subjects matches the plate exactly.');
 
-  // OBJECT SCALE — separate critical block so Grok doesn't skip it
-  sections.push('OBJECT SCALE — CRITICAL: Every object (grills, tables, chairs, coolers, tackle boxes) must be REAL HUMAN SIZE — full-size, as you would see at a real property. A standard BBQ grill is 3 feet tall. A raccoon is 1 foot tall. The raccoon should reach the LEGS of the grill, not the cooking surface. NEVER shrink objects to match animal size. NEVER make a raccoon-sized grill. The animals live in a HUMAN-SCALE world and interact with HUMAN-SIZED objects.');
-
-  // OBJECT PLACEMENT — separate critical block
-  sections.push('OBJECT PLACEMENT — CRITICAL: Grills, tables, and furniture go on CONCRETE PADS or WOODEN DECKS, never randomly on grass. Place objects where they would realistically be at a rural cabin property.');
 
   // P5: Camera perspective
   if(fmt==='cctv'){sections.push('CAMERA PERSPECTIVE: Shot FROM a wide-angle security camera mounted high, looking slightly down. Do NOT place a CCTV camera, pole, or camera equipment as a physical object in the image.');}
   else if(fmt==='news'){sections.push('CAMERA PERSPECTIVE: Phone camera footage — slightly off-angle, natural framing. Do NOT add a news desk, microphone, reporter, or broadcast equipment.');}
 
-  // P6: Contamination bans — skip prop list if clear_instructions already has bans, but ALWAYS inject vehicle ban
-  if(!ciLow.includes('do not add any of these')&&!ciLow.includes('do not add any bus')){
-    sections.push('Do NOT add ANY of the following: poker chips, playing cards, gambling items, gold chains, sunglasses, visors, hats, costumes, jerseys, sports equipment, BBQ grills (unless this IS the BBQ video), chef hats, aprons, luggage, briefcases, microphones, trophies, crowns, buses, RVs, motor coaches, tour buses, school buses, vans, large vehicles of any kind. Animals are PLAIN WILD ANIMALS with no props unless this video calls for them.');
-  }
-  // ALWAYS inject vehicle ban — Grok keeps hallucinating buses even with general bans
-  if(!ciLow.includes('bus')){
-    sections.push('VEHICLE BAN — CRITICAL: Do NOT add any buses, RVs, motor coaches, tour buses, vans, or large vehicles. There are NO buses at this property. If you see a bus in your output, you have made an error — remove it.');
+  // P6: Contamination bans — only skip if clear_instructions has a FULL ban list
+  if(!ciLow.includes('do not add any of these')){
+    sections.push('Do NOT add ANY of the following: poker chips, playing cards, gambling items, gold chains, sunglasses, visors, hats, costumes, jerseys, sports equipment, BBQ grills (unless this IS the BBQ video), chef hats, aprons, luggage, briefcases, microphones, trophies, crowns. Animals are PLAIN WILD ANIMALS with no props unless this video calls for them.');
   }
 
   // P1: Negative instructions — skip if clear_instructions has bans

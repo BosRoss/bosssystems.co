@@ -425,8 +425,7 @@ GROK_CONTAMINATION_BANS = (
     "sunglasses, visors, hats, costumes, jerseys, sports equipment, "
     "BBQ grills (unless this IS the BBQ video), chef hats, aprons, "
     "luggage, briefcases, ties, clipboards, microphones, news desks, "
-    "trophies, medals, crowns, buses, RVs, motor coaches, tour buses, "
-    "school buses, vans, or large vehicles of any kind. "
+    "trophies, medals, crowns. "
     "Animals are PLAIN WILD ANIMALS with no props or accessories "
     "unless this specific video calls for them. "
     "People wear only what is explicitly described — no extra clothing, "
@@ -621,7 +620,7 @@ GROK_HERO_ELEMENTS = {
     },
     "vehicle": {
         "keywords": ["truck", "bulldozer", "tank", "car", "tractor", "ambulance",
-                     "fire truck", "bus"],
+                     "fire truck"],
         "proportion": (
             "SIZE AND POSITION — THIS IS THE MOST IMPORTANT INSTRUCTION:\n"
             "The {element} is a full-sized real vehicle — as wide as a cabin, "
@@ -899,11 +898,35 @@ def _count_action_beats(scene_prompt):
 # ── AUTO-DETECTION FUNCTIONS ─────────────────────────────────
 
 def _detect_hero_element(text):
-    """Scan prompt text for hero elements. Returns (category, matched_keyword) or (None, None)."""
+    """Scan prompt text for hero elements. Returns (category, matched_keyword) or (None, None).
+
+    Strips negative/ban sentences first so "No bus" doesn't trigger a bus proportion block.
+    """
+    import re
     text_lower = text.lower()
+    # Remove all negative/ban context so banned items don't trigger hero detection
+    # Strip sentences containing ban patterns
+    ban_patterns = [
+        r'do not add[^.]*\.',
+        r'don\'t add[^.]*\.',
+        r'no bus[^.]*\.',
+        r'no school bus[^.]*\.',
+        r'no coach bus[^.]*\.',
+        r'no vehicle[^.]*\.',
+        r'no (?:rvs?|motor ?coaches?|tour ?buses?|vans?|large vehicles?)[^.]*\.',
+        r'critical[^.]*do not[^.]*\.',
+        r'vehicle ban[^.]*\.',
+        r'hard rules[^.]*?(?=\n\n|\Z)',
+        r'contamination[^.]*\.',
+        r'there are no buses[^.]*\.',
+    ]
+    cleaned = text_lower
+    for pat in ban_patterns:
+        cleaned = re.sub(pat, ' ', cleaned, flags=re.IGNORECASE | re.DOTALL)
+
     for category, info in GROK_HERO_ELEMENTS.items():
         for kw in info["keywords"]:
-            if kw in text_lower:
+            if kw in cleaned:
                 return category, kw
     return None, None
 
@@ -1062,6 +1085,19 @@ def _build_grok_prompt(idea, idea_id=""):
     proportion_block = _build_proportion_block(prompt + " " + title, groups)
 
     sections = []
+
+    # HARD RULES FIRST — AI models prioritize early instructions
+    sections.append(
+        "HARD RULES — READ BEFORE DOING ANYTHING:\n"
+        "1. Do NOT add any buses, RVs, motor coaches, tour buses, vans, or large vehicles. "
+        "There are NO buses at this property.\n"
+        "2. Every object (grills, tables, chairs, coolers) must be REAL HUMAN SIZE. "
+        "A grill is 3 feet tall. A raccoon is 1 foot tall. The raccoon reaches the LEGS "
+        "of the grill. NEVER shrink objects to animal size.\n"
+        "3. Grills, tables, and furniture go on CONCRETE PADS or WOODEN DECKS only. Never on grass.\n"
+        "4. If something is not mentioned in this prompt, do NOT add it."
+    )
+
     if proportion_block:
         sections.append(proportion_block)
 
@@ -1091,21 +1127,15 @@ def _build_grok_prompt(idea, idea_id=""):
 
     # Realism: shadows, scale, lighting match
     sections.append(GROK_UNIVERSAL_REALISM)
-    sections.append(GROK_OBJECT_SCALE)
-    sections.append(GROK_OBJECT_PLACEMENT)
 
     # P5: Camera perspective
     format_rule = GROK_FORMAT_RULES.get(fmt)
     if format_rule:
         sections.append(format_rule)
 
-    # P6: Contamination bans — skip if clear_instructions already has explicit bans
-    if "DO NOT ADD ANY OF THESE" not in clear and "Do NOT add ANY" not in clear:
+    # P6: Contamination bans — only skip if clear_instructions has a FULL ban list
+    if "DO NOT ADD ANY OF THESE" not in clear:
         sections.append(GROK_CONTAMINATION_BANS)
-
-    # ALWAYS inject vehicle ban — Grok keeps hallucinating buses
-    if "bus" not in clear.lower():
-        sections.append(GROK_VEHICLE_BAN)
 
     # P17: Celebrity prop contamination guard
     celeb_bans = _detect_celebrity_bans(full_text)
@@ -1480,9 +1510,11 @@ def _enrich_prompt(scene_prompt, meta):
             surface = SURFACE_CONTEXT.get(surface_key, surface)
             break
 
-    scene_prompt, was_substituted = _substitute_aquatic_on_land(scene_prompt, surface_key)
-    if was_substituted:
-        print(f"  AUTO-SUBSTITUTION: Aquatic animal on dry land → Rowdy Raccoons")
+    fmt = meta.get("format", "news")
+    if fmt != "impossible":
+        scene_prompt, was_substituted = _substitute_aquatic_on_land(scene_prompt, surface_key)
+        if was_substituted:
+            print(f"  AUTO-SUBSTITUTION: Aquatic animal on dry land → Rowdy Raccoons")
 
     scene_prompt, verb_fixes = _auto_fix_weak_verbs(scene_prompt)
     if verb_fixes:
@@ -2559,6 +2591,9 @@ PLATE_CATALOG = {
     "plate_0070.jpg": {"name": "Patio with fire pit", "surface": "concrete"},
     "plate_0080.jpg": {"name": "Boat shed with lawn", "surface": "grass"},
     "plate_0100.jpg": {"name": "Deck with picnic tables", "surface": "deck"},
+    "plate_0010.jpg": {"name": "Property entrance with sign", "surface": "road_grass"},
+    "plate_0090.jpg": {"name": "Sign with cabins vertical", "surface": "grass"},
+    "plate_0102.jpg": {"name": "Main lawn with shelter and grill", "surface": "grass"},
     "plate_0110.jpg": {"name": "515 front wide", "surface": "road_grass"},
     "vertical/plate_0100.jpg": {"name": "Deck with furniture (vertical 9:16)", "surface": "deck"},
     "vertical/plate_0100_clean.jpg": {"name": "Deck cleaned (vertical 9:16)", "surface": "deck"},
