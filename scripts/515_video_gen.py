@@ -425,11 +425,18 @@ GROK_CONTAMINATION_BANS = (
     "sunglasses, visors, hats, costumes, jerseys, sports equipment, "
     "BBQ grills (unless this IS the BBQ video), chef hats, aprons, "
     "luggage, briefcases, ties, clipboards, microphones, news desks, "
-    "trophies, medals, crowns. "
+    "trophies, medals, crowns, buses, RVs, motor coaches, tour buses, "
+    "school buses, vans, or large vehicles of any kind. "
     "Animals are PLAIN WILD ANIMALS with no props or accessories "
     "unless this specific video calls for them. "
     "People wear only what is explicitly described — no extra clothing, "
     "accessories, or items."
+)
+
+GROK_VEHICLE_BAN = (
+    "VEHICLE BAN — CRITICAL: Do NOT add any buses, RVs, motor coaches, "
+    "tour buses, vans, or large vehicles. There are NO buses at this property. "
+    "If you see a bus in your output, you have made an error — remove it."
 )
 
 GROK_NEGATIVE_INSTRUCTIONS = (
@@ -1086,6 +1093,10 @@ def _build_grok_prompt(idea, idea_id=""):
     # P6: Contamination bans — skip if clear_instructions already has explicit bans
     if "DO NOT ADD ANY OF THESE" not in clear and "Do NOT add ANY" not in clear:
         sections.append(GROK_CONTAMINATION_BANS)
+
+    # ALWAYS inject vehicle ban — Grok keeps hallucinating buses
+    if "bus" not in clear.lower():
+        sections.append(GROK_VEHICLE_BAN)
 
     # P17: Celebrity prop contamination guard
     celeb_bans = _detect_celebrity_bans(full_text)

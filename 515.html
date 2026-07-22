@@ -2399,9 +2399,13 @@ function genGrokComposite(v){
   if(fmt==='cctv'){sections.push('CAMERA PERSPECTIVE: Shot FROM a wide-angle security camera mounted high, looking slightly down. Do NOT place a CCTV camera, pole, or camera equipment as a physical object in the image.');}
   else if(fmt==='news'){sections.push('CAMERA PERSPECTIVE: Phone camera footage — slightly off-angle, natural framing. Do NOT add a news desk, microphone, reporter, or broadcast equipment.');}
 
-  // P6: Contamination bans — skip if clear_instructions already has bans
+  // P6: Contamination bans — skip prop list if clear_instructions already has bans, but ALWAYS inject vehicle ban
   if(!ciLow.includes('do not add any of these')&&!ciLow.includes('do not add any bus')){
-    sections.push('Do NOT add ANY of the following: poker chips, playing cards, gambling items, gold chains, sunglasses, visors, hats, costumes, jerseys, sports equipment, BBQ grills (unless this IS the BBQ video), chef hats, aprons, luggage, briefcases, microphones, trophies, crowns. Animals are PLAIN WILD ANIMALS with no props unless this video calls for them.');
+    sections.push('Do NOT add ANY of the following: poker chips, playing cards, gambling items, gold chains, sunglasses, visors, hats, costumes, jerseys, sports equipment, BBQ grills (unless this IS the BBQ video), chef hats, aprons, luggage, briefcases, microphones, trophies, crowns, buses, RVs, motor coaches, tour buses, school buses, vans, large vehicles of any kind. Animals are PLAIN WILD ANIMALS with no props unless this video calls for them.');
+  }
+  // ALWAYS inject vehicle ban — Grok keeps hallucinating buses even with general bans
+  if(!ciLow.includes('bus')){
+    sections.push('VEHICLE BAN — CRITICAL: Do NOT add any buses, RVs, motor coaches, tour buses, vans, or large vehicles. There are NO buses at this property. If you see a bus in your output, you have made an error — remove it.');
   }
 
   // P1: Negative instructions — skip if clear_instructions has bans
