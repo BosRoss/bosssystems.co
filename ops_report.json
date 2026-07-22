@@ -1,52 +1,26 @@
 {
-  "generated": "2026-07-21T20:30:01.365046+00:00",
+  "generated": "2026-07-22T02:06:21.682334+00:00",
   "sections": {
     "atlas": {
-      "power_level": "ACTIVE",
-      "last_scan": "2026-07-21T18:56:19.679782+00:00",
-      "scan_count": 200,
-      "heat_score": 100,
-      "recommendation": "HOT DAY. Weather-driven demand in Cooke; Grayson; Denton; Collin; Hunt; Hopkins; Tarrant; Dallas; Rockwall; Kaufman; Van Zandt; Rains, Franklin; Lincoln; Lawrence; Jefferson Davis; Covington; Marion; Lamar, Palo Duro Canyon. Call HVAC/roofers there NOW.",
-      "demand_signals": 10,
+      "power_level": "SURGE",
+      "last_scan": "2026-07-21T23:11:53.744423+00:00",
+      "scan_count": 202,
+      "heat_score": 0,
+      "recommendation": "QUIET. No actionable intel. Focus on product, content, or in-person visits.",
+      "demand_signals": 0,
       "pain_signals": 0,
       "pitch_adjustments": 0,
       "competitor_intel": 0,
-      "territory_alerts": 25,
-      "top_demands": [
-        {
-          "type": "flood",
-          "area": "Dimmit, TX",
-          "niche": "plumbing"
-        },
-        {
-          "type": "flood",
-          "area": "Frio, TX",
-          "niche": "plumbing"
-        },
-        {
-          "type": "heat_wave",
-          "area": "Palo Duro Canyon",
-          "niche": "hvac"
-        },
-        {
-          "type": "heat_wave",
-          "area": "Beaver; Ochiltree; Lipscomb; Hutchinson; Roberts; Hemphill; ",
-          "niche": "hvac"
-        },
-        {
-          "type": "heat_wave",
-          "area": "Montague; Young; Jack; Wise; Stephens; Palo Pinto; Parker; E",
-          "niche": "hvac"
-        }
-      ],
+      "territory_alerts": 0,
+      "top_demands": [],
       "sources_online": 0
     },
     "lead_engine": {
       "state": "ACTIVE",
       "total_leads": 200,
       "by_tier": {
-        "SUPERNICHE": 102,
-        "HOT": 98
+        "SUPERNICHE": 103,
+        "HOT": 97
       },
       "by_route": {
         "call_queue": 95,
@@ -55,13 +29,13 @@
       },
       "by_status": {
         "called": 94,
-        "queued": 86,
-        "re_engaged": 20
+        "queued": 87,
+        "re_engaged": 19
       },
       "synced_to_pipeline": 107,
-      "api_spend": 103.62,
+      "api_spend": 106.82,
       "api_budget": 300.0,
-      "api_percent": 34.5,
+      "api_percent": 35.6,
       "outcomes_recorded": 441,
       "by_outcome": {
         "no_answer": 40,
@@ -271,9 +245,9 @@
         }
       ],
       "calls_24h": 50,
-      "outbound_24h": 43,
-      "inbound_24h": 7,
-      "avg_duration_sec": 17.5
+      "outbound_24h": 42,
+      "inbound_24h": 8,
+      "avg_duration_sec": 17.7
     },
     "quant": {
       "state": "PAUSED",
@@ -281,12 +255,14 @@
       "survivors": 0
     },
     "health": {
-      "circuit_breakers_tripped": [],
+      "circuit_breakers_tripped": [
+        "google_places"
+      ],
       "engine_paused": false,
-      "atlas_power": "ACTIVE",
+      "atlas_power": "SURGE",
       "n8n_errors_24h": 0,
       "retell_calls_24h": 50,
-      "api_spend_pct": 34.5
+      "api_spend_pct": 35.6
     }
   }
 }
