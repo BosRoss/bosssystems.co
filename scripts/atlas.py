@@ -33,6 +33,25 @@ import concurrent.futures
 import requests
 
 try:
+    from vaderSentiment.vaderSentiment import SentimentIntensityAnalyzer
+    _vader = SentimentIntensityAnalyzer()
+    _vader.lexicon.update({
+        "ceasefire": 2.0, "peace talks": 1.5, "de-escalation": 1.5,
+        "escalation": -2.5, "invasion": -3.0, "enrichment": -1.5,
+        "blockade": -2.0, "sanctions": -1.5, "missile strike": -3.5,
+        "humanitarian crisis": -2.5, "troop buildup": -2.0,
+        "coup": -3.0, "assassination": -3.5, "airstrike": -2.5,
+        "drone strike": -2.0, "shelling": -2.5, "siege": -2.5,
+        "famine": -3.0, "pandemic": -2.5, "outbreak": -2.0,
+        "cyberattack": -2.0, "ransomware": -2.5, "nuclear test": -3.5,
+        "mobilization": -2.0, "martial law": -3.0, "curfew": -1.5,
+    })
+    HAS_VADER = True
+except ImportError:
+    HAS_VADER = False
+    _vader = None
+
+try:
     from atlas_feeds import (
         NEWS_FEEDS as _FEEDS_NEWS,
         ANALYSIS_FEEDS as _FEEDS_ANALYSIS,
@@ -58,6 +77,8 @@ try:
         find_nearby_conflict_zones, find_nearby_nuclear_sites,
         identify_aircraft, get_country_centroid, haversine,
         COUNTRY_CENTROIDS,
+        ORG_TO_COUNTRY, COUNTRY_ALIASES, resolve_entity_to_country,
+        SUBMARINE_CABLE_HUBS,
     )
     HAS_INTEL = True
 except ImportError:
@@ -179,14 +200,23 @@ POWER_LEVELS = {
 }
 
 POWER_SOURCES = {
-    "SLEEP":  ["usgs", "noaa", "nasa", "iss", "polymarket", "currencies", "commodities", "congress"],
+    "SLEEP":  ["usgs", "noaa", "nasa", "iss", "polymarket", "currencies", "commodities", "congress",
+               "who_outbreaks", "promed"],
     "IDLE":   ["usgs", "noaa", "nasa", "iss", "polymarket", "manifold", "metaculus",
                "gdelt", "reddit", "hackernews", "rss", "fred", "govinfo", "congress",
                "currencies", "commodities", "global_weather",
                "space_weather", "treasury", "cisa",
                "think_tanks", "official_feeds", "specialized", "world_bank", "gdacs",
                "sec_edgar", "fema", "bls", "eia", "finnhub", "patents", "alpha_vantage",
-               "telegram", "futures", "firms"],
+               "telegram", "futures", "firms",
+               "who_outbreaks", "promed", "otx", "sans_isc",
+               "reliefweb_crises", "unsc", "kalshi", "greynoise",
+               "ransomware", "nvd_critical",
+               "fao_food", "submarine_cables", "unhcr",
+               "ecb_rates", "ransomlook", "ipc_food",
+               "cloudflare_radar", "oecd_cli",
+               "opensanctions", "urlhaus", "malwarebazaar",
+               "wfp_hunger", "wb_governance", "ucdp"],
     "ACTIVE": ["usgs", "noaa", "nasa", "iss", "polymarket", "manifold", "metaculus",
                "gdelt", "reddit", "hackernews", "rss", "fred", "govinfo", "congress",
                "currencies", "commodities", "global_weather",
@@ -194,8 +224,18 @@ POWER_SOURCES = {
                "think_tanks", "official_feeds", "specialized", "world_bank", "gdacs",
                "sec_edgar", "fema", "bls", "eia", "finnhub", "patents", "alpha_vantage",
                "telegram", "futures", "firms",
+               "who_outbreaks", "promed", "otx", "sans_isc",
+               "reliefweb_crises", "unsc", "kalshi", "greynoise",
+               "ransomware", "nvd_critical",
+               "fao_food", "submarine_cables", "unhcr",
+               "ecb_rates", "ransomlook", "ipc_food",
+               "cloudflare_radar", "oecd_cli",
+               "opensanctions", "urlhaus", "malwarebazaar",
+               "wfp_hunger", "wb_governance", "ucdp",
                "adsb", "wikipedia", "safecast", "crest",
-               "volcanoes", "fires", "aviation_wx", "sanctions"],
+               "volcanoes", "fires", "aviation_wx", "sanctions",
+               "vessel_events", "launches", "arctic_military",
+               "bluesky"],
     "SURGE":  ["usgs", "noaa", "nasa", "iss", "polymarket", "manifold", "metaculus",
                "gdelt", "reddit", "hackernews", "rss", "fred", "govinfo", "congress",
                "currencies", "commodities", "global_weather",
@@ -203,8 +243,18 @@ POWER_SOURCES = {
                "think_tanks", "official_feeds", "specialized", "world_bank", "gdacs",
                "sec_edgar", "fema", "bls", "eia", "finnhub", "patents", "alpha_vantage",
                "telegram", "futures", "firms",
+               "who_outbreaks", "promed", "otx", "sans_isc",
+               "reliefweb_crises", "unsc", "kalshi", "greynoise",
+               "ransomware", "nvd_critical",
+               "fao_food", "submarine_cables", "unhcr",
+               "ecb_rates", "ransomlook", "ipc_food",
+               "cloudflare_radar", "oecd_cli",
+               "opensanctions", "urlhaus", "malwarebazaar",
+               "wfp_hunger", "wb_governance", "ucdp",
                "adsb", "wikipedia", "safecast", "crest",
                "volcanoes", "fires", "aviation_wx", "sanctions",
+               "vessel_events", "launches", "arctic_military",
+               "bluesky",
                "aisstream", "acled", "ioda"],
 }
 
@@ -242,6 +292,18 @@ SOURCE_RELIABILITY = {
     "alpha_vantage": 0.65, # Financial data
     "patents": 0.80,       # Official filings
     "currencies": 0.80,    # Market data
+    "who_outbreaks": 0.95, # WHO official disease outbreak news
+    "promed": 0.80,        # Expert-curated disease reports
+    "otx": 0.70,           # Community-sourced threat intelligence
+    "sans_isc": 0.85,      # SANS Internet Storm Center
+    "reliefweb_crises": 0.85, # UN OCHA humanitarian data
+    "unsc": 0.90,          # UN Security Council
+    "kalshi": 0.70,        # Regulated prediction market
+    "vessel_events": 0.75, # Global Fishing Watch
+    "greynoise": 0.75,     # Mass scanner intelligence
+    "ransomware": 0.70,    # Ransomware victim tracking
+    "launches": 0.85,      # Space launch data
+    "nvd_critical": 0.95,  # NIST vulnerability database
     "commodities": 0.75,   # Yahoo Finance (undocumented API)
     "telegram": 0.45,      # OSINT channels, fast but unverified raw intel
     "futures": 0.80,       # Market data, money-weighted signal
@@ -253,6 +315,22 @@ SOURCE_RELIABILITY = {
     "crest": 0.60,         # Declassified (historical)
     "govinfo": 0.80,       # US government publications
     "congress": 0.90,      # Congress.gov official bill/vote data
+    "fao_food": 0.90,      # FAO Food Price Index
+    "submarine_cables": 0.85,  # TeleGeography submarine cable data
+    "unhcr": 0.95,         # UNHCR refugee statistics
+    "arctic_military": 0.75,   # Arctic military news aggregation
+    "ecb_rates": 0.95,         # European Central Bank official data
+    "ransomlook": 0.70,        # Community ransomware group tracker
+    "ipc_food": 0.90,          # IPC food security classification
+    "bluesky": 0.30,           # Social media, unverified
+    "cloudflare_radar": 0.85,  # Cloudflare internet outage data
+    "oecd_cli": 0.90,          # OECD composite leading indicators
+    "opensanctions": 0.80,     # OpenSanctions aggregated PEP/sanctions data
+    "urlhaus": 0.85,           # abuse.ch malware URL tracker
+    "malwarebazaar": 0.85,     # abuse.ch malware sample database
+    "wfp_hunger": 0.90,        # World Food Programme food insecurity
+    "wb_governance": 0.85,     # World Bank governance indicators
+    "ucdp": 0.90,              # Uppsala Conflict Data Program
 }
 
 NTFY_BASE = "https://ntfy.sh"
@@ -278,6 +356,176 @@ HISTORICAL_CALIBRATION = [
     {"claim": "Operation Northwoods false flag proposal", "status": "confirmed",
      "years_denied": 35, "evidence": "JFK assassination records released 1997"},
 ]
+
+# ---------------------------------------------------------------------------
+# Sentiment Analysis
+# ---------------------------------------------------------------------------
+
+SCAN_HISTORY_PATH = ATLAS_DIR / "scan_history.json"
+NARRATIVE_PATH = ATLAS_DIR / "narrative_tracker.json"
+
+def score_headline(text: str) -> float:
+    if not HAS_VADER or _vader is None:
+        return 0.0
+    return _vader.polarity_scores(text).get("compound", 0.0)
+
+
+def detect_count_anomaly(metric_name: str, current_value: float,
+                         window: int = 30, threshold_sigma: float = 2.5) -> Tuple[bool, float, float, float]:
+    history = {}
+    if SCAN_HISTORY_PATH.exists():
+        try:
+            history = json.loads(SCAN_HISTORY_PATH.read_text(encoding="utf-8"))
+        except (json.JSONDecodeError, OSError):
+            history = {}
+    series = history.get(metric_name, [])
+    series.append(current_value)
+    series = series[-(window + 1):]
+    history[metric_name] = series
+    atomic_write_json(SCAN_HISTORY_PATH, history)
+    if len(series) < 8:
+        return False, 0.0, current_value, 0.0
+    import numpy as np
+    baseline = np.array(series[:-1])
+    mu = float(np.mean(baseline))
+    sigma = float(np.std(baseline))
+    if sigma < 0.001:
+        return current_value > mu * 1.5, 0.0, mu, sigma
+    z = (current_value - mu) / sigma
+    return abs(z) > threshold_sigma, round(z, 2), round(mu, 2), round(sigma, 2)
+
+
+def source_diversity_score(articles: list) -> dict:
+    from urllib.parse import urlparse
+    from collections import Counter
+    domains = []
+    for a in articles:
+        url = a.get("url", "") or a.get("link", "")
+        if url:
+            parsed = urlparse(url)
+            domain = parsed.netloc.replace("www.", "")
+            parts = domain.split(".")
+            domain = parts[-2] if len(parts) >= 2 else domain
+            domains.append(domain)
+    if not domains:
+        return {"score": 0, "unique_sources": 0, "total": 0}
+    counts = Counter(domains)
+    unique = len(counts)
+    total = len(domains)
+    diversity = round((unique / max(total, 1)) * 100)
+    return {
+        "score": diversity,
+        "unique_sources": unique,
+        "total": total,
+        "is_amplified": unique < max(total * 0.3, 2),
+    }
+
+
+def find_duplicate_stories(articles: list, similarity_threshold: float = 0.7) -> list:
+    import difflib
+    titles = [(i, a.get("title", "")) for i, a in enumerate(articles) if a.get("title")]
+    clusters = []
+    used = set()
+    for i, (idx1, t1) in enumerate(titles):
+        if idx1 in used:
+            continue
+        cluster = {idx1}
+        for j, (idx2, t2) in enumerate(titles[i+1:], i+1):
+            if idx2 in used:
+                continue
+            ratio = difflib.SequenceMatcher(None, t1.lower(), t2.lower()).ratio()
+            if ratio >= similarity_threshold:
+                cluster.add(idx2)
+                used.add(idx2)
+        if len(cluster) > 1:
+            clusters.append(cluster)
+            used.update(cluster)
+    return clusters
+
+
+WIRE_SERVICES = {"reuters", "ap", "afp", "associated press", "agence france",
+                 "xinhua", "tass", "ria novosti", "interfax", "kcna",
+                 "press tv", "sputnik", "rt.com", "anadolu"}
+
+def detect_wire_origin(articles: list) -> list:
+    from collections import Counter
+    wire_counts = Counter()
+    for a in articles:
+        text = (a.get("title", "") + " " + a.get("summary", "")).lower()
+        url = (a.get("url", "") or "").lower()
+        for wire in WIRE_SERVICES:
+            if wire in text or wire in url:
+                wire_counts[wire] += 1
+    results = []
+    for wire, count in wire_counts.items():
+        if count >= 3:
+            results.append({
+                "wire": wire, "count": count,
+                "warning": f"{count} articles trace to {wire} — may be single-source amplification",
+            })
+    return results
+
+
+def track_narratives(current_headlines: list) -> list:
+    stop = {"the", "a", "an", "in", "on", "at", "to", "of", "for", "is",
+            "are", "was", "were", "has", "have", "had", "and", "or", "but",
+            "with", "from", "by", "as", "its", "it", "that", "this", "says",
+            "new", "after", "over", "amid", "could", "may", "will", "more"}
+    tracker = {}
+    if NARRATIVE_PATH.exists():
+        try:
+            tracker = json.loads(NARRATIVE_PATH.read_text(encoding="utf-8"))
+        except (json.JSONDecodeError, OSError):
+            tracker = {}
+    now_iso = datetime.now(timezone.utc).isoformat()
+    from collections import defaultdict
+    current_topics = defaultdict(lambda: {"count": 0, "sentiment": 0.0, "titles": []})
+    for h in current_headlines:
+        text = h.get("headline", "") or h.get("title", "")
+        words = [w for w in text.lower().split() if w not in stop and len(w) > 2]
+        topic = " ".join(sorted(words[:4]))
+        if not topic:
+            continue
+        sentiment = score_headline(text)
+        current_topics[topic]["count"] += 1
+        current_topics[topic]["sentiment"] += sentiment
+        current_topics[topic]["titles"].append(text[:80])
+
+    trends = []
+    for topic, data in current_topics.items():
+        history = tracker.get(topic, {"scans": []})
+        scans = history.get("scans", [])
+        avg_sent = round(data["sentiment"] / max(data["count"], 1), 3)
+        scans.append({"time": now_iso, "count": data["count"], "avg_sentiment": avg_sent})
+        scans = scans[-30:]
+        tracker[topic] = {"scans": scans, "last_titles": data["titles"][:3]}
+        if len(scans) >= 3:
+            recent_counts = [s["count"] for s in scans[-3:]]
+            older_counts = [s["count"] for s in scans[:-3]] if len(scans) > 3 else [0]
+            import numpy as np
+            count_trend = float(np.mean(recent_counts)) - float(np.mean(older_counts)) if older_counts != [0] else 0
+            if count_trend > 1.5:
+                trends.append({
+                    "topic": topic, "trend": "ESCALATING",
+                    "detail": f"Mentions rising ({np.mean(older_counts):.1f} -> {np.mean(recent_counts):.1f}/scan)",
+                    "titles": data["titles"][:2],
+                })
+            elif count_trend < -1.0 and float(np.mean(older_counts)) > 2:
+                trends.append({
+                    "topic": topic, "trend": "DE-ESCALATING",
+                    "detail": f"Mentions falling ({np.mean(older_counts):.1f} -> {np.mean(recent_counts):.1f}/scan)",
+                })
+    for topic, data in tracker.items():
+        scans = data.get("scans", [])
+        if len(scans) <= 2 and scans and scans[-1]["count"] >= 2:
+            trends.append({
+                "topic": topic, "trend": "EMERGING",
+                "detail": f"New topic with {scans[-1]['count']} mentions",
+                "titles": data.get("last_titles", [])[:2],
+            })
+    atomic_write_json(NARRATIVE_PATH, tracker)
+    return trends
+
 
 # ---------------------------------------------------------------------------
 # Config
@@ -2246,6 +2494,1174 @@ def scan_firms() -> List[Dict]:
     return results
 
 # ---------------------------------------------------------------------------
+# Source: WHO Disease Outbreak News (pandemic / biosurveillance gap)
+# ---------------------------------------------------------------------------
+
+def scan_who_outbreaks() -> List[Dict]:
+    r = safe_get("https://www.who.int/api/news/diseaseoutbreaknews?$orderby=PublicationDate%20desc&$top=15",
+                 timeout=15)
+    if r is None:
+        return []
+    results = []
+    try:
+        for item in r.json().get("value", [])[:15]:
+            title = (item.get("Title") or "")[:200]
+            pub = item.get("PublicationDate", "")
+            summary = (item.get("Summary") or "")[:300]
+            url_name = item.get("UrlName", "")
+            if title:
+                results.append({
+                    "source": "who_outbreaks",
+                    "title": title,
+                    "date": pub,
+                    "description": summary,
+                    "url": f"https://www.who.int/emergencies/disease-outbreak-news/{url_name}" if url_name else "",
+                })
+    except (json.JSONDecodeError, ValueError):
+        pass
+    return results
+
+
+# ---------------------------------------------------------------------------
+# Source: ProMED (International Society for Infectious Diseases)
+# ---------------------------------------------------------------------------
+
+def scan_promed() -> List[Dict]:
+    r = safe_get("https://www.who.int/rss-feeds/news-english.xml")
+    if r is None:
+        return []
+    results = []
+    try:
+        root = ET.fromstring(r.content)
+        health_keywords = ["outbreak", "epidemic", "pandemic", "virus", "disease",
+                           "infection", "cholera", "ebola", "mpox", "avian", "h5n1",
+                           "marburg", "plague", "polio", "measles", "dengue", "malaria",
+                           "tuberculosis", "hiv", "respiratory", "influenza", "vaccine"]
+        for item in root.findall(".//item")[:30]:
+            title_el = item.find("title")
+            link_el = item.find("link")
+            pub_el = item.find("pubDate")
+            title = title_el.text.strip() if title_el is not None and title_el.text else ""
+            link = link_el.text.strip() if link_el is not None and link_el.text else ""
+            pub = pub_el.text.strip() if pub_el is not None and pub_el.text else ""
+            if title and any(kw in title.lower() for kw in health_keywords):
+                results.append({
+                    "source": "who_health_news",
+                    "title": title[:200],
+                    "url": link,
+                    "date": pub,
+                })
+    except ET.ParseError:
+        pass
+    return results
+
+
+# ---------------------------------------------------------------------------
+# Source: AlienVault OTX Pulse Feed (cyber threat intelligence gap)
+# ---------------------------------------------------------------------------
+
+def scan_otx_pulses() -> List[Dict]:
+    r = safe_get("https://otx.alienvault.com/otxapi/pulses/?limit=20&sort=-created&page=1",
+                 timeout=15)
+    if r is None:
+        return []
+    results = []
+    try:
+        pulses = r.json().get("results", [])
+        for p in pulses[:15]:
+            tags = p.get("tags", [])
+            ioc_count = len(p.get("indicators", []))
+            results.append({
+                "source": "otx",
+                "title": (p.get("name") or "")[:200],
+                "description": (p.get("description") or "")[:300],
+                "created": p.get("created", ""),
+                "modified": p.get("modified", ""),
+                "tags": tags[:10],
+                "ioc_count": ioc_count,
+                "adversary": p.get("adversary", ""),
+                "targeted_countries": p.get("targeted_countries", [])[:5],
+                "attack_ids": [a.get("display_name", "") for a in p.get("attack_ids", [])[:5]],
+                "tlp": p.get("tlp", ""),
+            })
+    except (json.JSONDecodeError, ValueError):
+        pass
+    return results
+
+
+# ---------------------------------------------------------------------------
+# Source: Shodan Honeypot/Trends (internet-wide attack trends)
+# ---------------------------------------------------------------------------
+
+def scan_shodan_honeypot() -> List[Dict]:
+    r = safe_get("https://isc.sans.edu/api/topports/records/10?json", timeout=10)
+    if r is None:
+        return []
+    results = []
+    try:
+        data = r.json()
+        if isinstance(data, dict):
+            for key in sorted(data.keys(), key=lambda x: int(x) if x.isdigit() else 999)[:10]:
+                p = data[key]
+                if isinstance(p, dict):
+                    results.append({
+                        "source": "sans_isc",
+                        "port": p.get("targetport", ""),
+                        "records": p.get("records", 0),
+                        "sources": p.get("sources", 0),
+                        "rank": p.get("rank", 0),
+                    })
+    except (json.JSONDecodeError, ValueError):
+        pass
+    r2 = safe_get("https://isc.sans.edu/api/topips/records/10?json", timeout=10)
+    if r2:
+        try:
+            data2 = r2.json()
+            if isinstance(data2, dict):
+                for key in sorted(data2.keys(), key=lambda x: int(x) if x.isdigit() else 999)[:10]:
+                    ip_data = data2[key]
+                    if isinstance(ip_data, dict):
+                        results.append({
+                            "source": "sans_isc_topips",
+                            "ip": ip_data.get("ip", ""),
+                            "count": ip_data.get("count", 0),
+                            "attacks": ip_data.get("attacks", 0),
+                        })
+        except (json.JSONDecodeError, ValueError):
+            pass
+    return results
+
+
+# ---------------------------------------------------------------------------
+# Source: Global Disaster Alert & Coordination (GDACS already exists — adding
+#         ReliefWeb API for humanitarian crises with structured data)
+# ---------------------------------------------------------------------------
+
+def scan_reliefweb_crises() -> List[Dict]:
+    results = []
+    for url in ["https://www.unocha.org/rss.xml",
+                "https://press.un.org/en/rss.xml"]:
+        r = safe_get(url, timeout=15)
+        if r is None or len(r.content) < 100:
+            continue
+        try:
+            root = ET.fromstring(r.content)
+            crisis_keywords = ["crisis", "emergency", "disaster", "conflict", "displacement",
+                               "famine", "drought", "flood", "earthquake", "cholera", "epidemic",
+                               "humanitarian", "refugees", "violence", "attack", "ceasefire",
+                               "peacekeeping", "sanctions", "security council", "resolution"]
+            for item in root.findall(".//item")[:15]:
+                title_el = item.find("title")
+                link_el = item.find("link")
+                pub_el = item.find("pubDate")
+                title = title_el.text.strip() if title_el is not None and title_el.text else ""
+                link = link_el.text.strip() if link_el is not None and link_el.text else ""
+                pub = pub_el.text.strip() if pub_el is not None and pub_el.text else ""
+                if title and any(kw in title.lower() for kw in crisis_keywords):
+                    results.append({
+                        "source": "reliefweb",
+                        "title": title[:200],
+                        "url": link,
+                        "date": pub,
+                    })
+        except ET.ParseError:
+            continue
+    return results
+
+
+# ---------------------------------------------------------------------------
+# Source: UNSC Resolutions (diplomatic signals gap)
+# ---------------------------------------------------------------------------
+
+def scan_un_security_council() -> List[Dict]:
+    r = safe_get("https://press.un.org/en/rss.xml", timeout=15)
+    if r is None or len(r.content) < 100:
+        return []
+    results = []
+    try:
+        root = ET.fromstring(r.content)
+        for item in root.findall(".//item")[:15]:
+            title_el = item.find("title")
+            link_el = item.find("link")
+            pub_el = item.find("pubDate")
+            title = title_el.text.strip() if title_el is not None and title_el.text else ""
+            link = link_el.text.strip() if link_el is not None and link_el.text else ""
+            pub = pub_el.text.strip() if pub_el is not None and pub_el.text else ""
+            if title:
+                results.append({
+                    "source": "unsc",
+                    "title": title[:200],
+                    "url": link,
+                    "date": pub,
+                })
+    except ET.ParseError:
+        pass
+    return results
+
+
+# ---------------------------------------------------------------------------
+# Source: Kalshi (regulated prediction market — Metaculus replacement)
+# ---------------------------------------------------------------------------
+
+def scan_kalshi() -> List[Dict]:
+    r = safe_get("https://api.elections.kalshi.com/v1/events?limit=20&status=open",
+                 timeout=15)
+    if r is None:
+        r = safe_get("https://trading-api.kalshi.com/trade-api/v2/events?limit=20&status=open",
+                     timeout=15)
+    if r is None:
+        return []
+    results = []
+    try:
+        events = r.json().get("events", [])
+        for ev in events[:20]:
+            markets = ev.get("markets", [])
+            for m in markets[:3]:
+                yes_price = m.get("yes_bid", m.get("last_price", 0))
+                results.append({
+                    "source": "kalshi",
+                    "title": (ev.get("title") or m.get("title", ""))[:200],
+                    "category": ev.get("category", ""),
+                    "yes_price": yes_price,
+                    "volume": m.get("volume", 0),
+                    "ticker": m.get("ticker", ""),
+                    "close_time": m.get("close_time", ""),
+                })
+    except (json.JSONDecodeError, ValueError):
+        pass
+    return results
+
+
+# ---------------------------------------------------------------------------
+# Source: Global Fishing Watch (maritime/IUU fishing — partial maritime gap)
+# ---------------------------------------------------------------------------
+
+def scan_vessel_events() -> List[Dict]:
+    results = []
+    for name, url in [("gcaptain", "https://gcaptain.com/feed/"),
+                      ("defence_blog", "https://defence-blog.com/feed/")]:
+        r = safe_get(url, timeout=10)
+        if r is None:
+            continue
+        try:
+            root = ET.fromstring(r.content)
+            maritime_keywords = ["vessel", "ship", "tanker", "carrier", "port", "naval",
+                                 "strait", "chokepoint", "blockade", "piracy", "seizure",
+                                 "sanctions", "cargo", "container", "suez", "hormuz", "panama"]
+            for item in root.findall(".//item")[:10]:
+                title_el = item.find("title")
+                pub_el = item.find("pubDate")
+                title = title_el.text.strip() if title_el is not None and title_el.text else ""
+                pub = pub_el.text.strip() if pub_el is not None and pub_el.text else ""
+                if title and any(kw in title.lower() for kw in maritime_keywords):
+                    results.append({
+                        "source": f"maritime_{name}",
+                        "title": title[:200],
+                        "date": pub,
+                    })
+        except ET.ParseError:
+            continue
+    return results
+
+
+# ---------------------------------------------------------------------------
+# Source: GreyNoise (mass internet scanning / exploit activity)
+# ---------------------------------------------------------------------------
+
+def scan_greynoise() -> List[Dict]:
+    results = []
+    r = safe_get("https://threatfox.abuse.ch/export/json/recent/", timeout=15)
+    if r is None:
+        return results
+    try:
+        data = r.json()
+        if isinstance(data, dict):
+            for key, entries in list(data.items())[:20]:
+                if isinstance(entries, list):
+                    for entry in entries[:3]:
+                        if isinstance(entry, dict):
+                            results.append({
+                                "source": "threatfox",
+                                "ioc": entry.get("ioc", ""),
+                                "ioc_type": entry.get("ioc_type", ""),
+                                "threat_type": entry.get("threat_type", ""),
+                                "malware": entry.get("malware_printable", ""),
+                                "confidence": entry.get("confidence_level", 0),
+                                "first_seen": entry.get("first_seen_utc", ""),
+                                "tags": entry.get("tags", []),
+                            })
+    except (json.JSONDecodeError, ValueError):
+        pass
+    return results[:30]
+
+
+# ---------------------------------------------------------------------------
+# Source: Ransomwhere (ransomware payment tracking — no auth)
+# ---------------------------------------------------------------------------
+
+def scan_ransomware() -> List[Dict]:
+    r = safe_get("https://api.ransomwhe.re/recentvictims", timeout=15)
+    if r is None:
+        r = safe_get("https://api.ransomware.live/recentvictims", timeout=15)
+    if r is None:
+        return []
+    results = []
+    try:
+        victims = r.json() if isinstance(r.json(), list) else r.json().get("results", [])
+        for v in victims[:20]:
+            results.append({
+                "source": "ransomware",
+                "group": v.get("group_name", v.get("group", "")),
+                "victim": v.get("post_title", v.get("victim", ""))[:100],
+                "country": v.get("country", ""),
+                "activity": v.get("activity", ""),
+                "discovered": v.get("discovered", v.get("published", "")),
+            })
+    except (json.JSONDecodeError, ValueError):
+        pass
+    return results
+
+
+# ---------------------------------------------------------------------------
+# Source: Launch Library 2 (upcoming space launches — no auth)
+# ---------------------------------------------------------------------------
+
+def scan_launches() -> List[Dict]:
+    r = safe_get("https://ll.thespacedevs.com/2.2.0/launch/upcoming/?limit=10&mode=list",
+                 timeout=15)
+    if r is None:
+        return []
+    results = []
+    try:
+        for launch in r.json().get("results", [])[:10]:
+            status = launch.get("status")
+            status_str = status.get("abbrev", "") if isinstance(status, dict) else str(status or "")
+            results.append({
+                "source": "launch_library",
+                "name": (launch.get("name") or "")[:150],
+                "status": status_str,
+                "net": launch.get("net", ""),
+                "window_start": launch.get("window_start", ""),
+                "window_end": launch.get("window_end", ""),
+            })
+    except (json.JSONDecodeError, ValueError):
+        pass
+    return results
+
+
+# ---------------------------------------------------------------------------
+# Source: NVD Critical Vulnerabilities (NIST — no auth, public)
+# ---------------------------------------------------------------------------
+
+def scan_nvd_critical() -> List[Dict]:
+    cutoff = (datetime.now(timezone.utc) - timedelta(days=7)).strftime("%Y-%m-%dT00:00:00.000")
+    params = {
+        "pubStartDate": cutoff,
+        "cvssV3Severity": "CRITICAL",
+        "resultsPerPage": "15",
+    }
+    r = safe_get("https://services.nvd.nist.gov/rest/json/cves/2.0", params=params, timeout=20)
+    if r is None:
+        return []
+    results = []
+    try:
+        for item in r.json().get("vulnerabilities", [])[:15]:
+            cve = item.get("cve", {})
+            metrics = cve.get("metrics", {})
+            cvss_data = {}
+            for key in ["cvssMetricV31", "cvssMetricV30"]:
+                if metrics.get(key):
+                    cvss_data = metrics[key][0].get("cvssData", {})
+                    break
+            desc = ""
+            for d in cve.get("descriptions", []):
+                if d.get("lang") == "en":
+                    desc = d.get("value", "")[:200]
+                    break
+            results.append({
+                "source": "nvd",
+                "cve_id": cve.get("id", ""),
+                "description": desc,
+                "base_score": cvss_data.get("baseScore", 0),
+                "severity": cvss_data.get("baseSeverity", ""),
+                "published": cve.get("published", ""),
+                "vector": cvss_data.get("attackVector", ""),
+            })
+    except (json.JSONDecodeError, ValueError):
+        pass
+    return results
+
+
+# ---------------------------------------------------------------------------
+# Source: FAO Food Price Index (famine early warning)
+# ---------------------------------------------------------------------------
+
+def scan_fao_food() -> List[Dict]:
+    """FAO Food Price Index — famine early warning."""
+    r = safe_get("https://www.fao.org/worldfoodsituation/foodpricesindex/en/", timeout=15)
+    if r is None:
+        return []
+    results = []
+    try:
+        text = r.text[:5000]
+        import re
+        idx_match = re.search(r'Food Price Index.*?(\d+\.?\d*)\s*points?', text, re.IGNORECASE)
+        if idx_match:
+            results.append({
+                "source": "fao_food", "title": f"FAO Food Price Index: {idx_match.group(1)} points",
+                "description": "Global food price benchmark. Spikes above 160 correlate with political instability.",
+                "url": "https://www.fao.org/worldfoodsituation/foodpricesindex/en/"
+            })
+    except Exception:
+        pass
+    return results
+
+
+# ---------------------------------------------------------------------------
+# Source: TeleGeography Submarine Cable Data
+# ---------------------------------------------------------------------------
+
+def scan_submarine_cables() -> List[Dict]:
+    """TeleGeography submarine cable data."""
+    r = safe_get("https://www.submarinecablemap.com/api/v3/cable/all.json", timeout=15)
+    if r is None:
+        return []
+    results = []
+    try:
+        data = r.json()
+        now = datetime.now(timezone.utc)
+        for cable in data[:200]:
+            rfs = cable.get("rfs_year") or cable.get("rfs")
+            if rfs and str(rfs).isdigit() and int(str(rfs)[:4]) >= now.year:
+                results.append({
+                    "source": "submarine_cables",
+                    "title": f"Cable: {cable.get('name', 'Unknown')} (RFS {rfs})",
+                    "description": f"Owners: {cable.get('owners', 'Unknown')}, Length: {cable.get('length', '?')}km",
+                    "url": cable.get("url", ""),
+                })
+    except (json.JSONDecodeError, ValueError):
+        pass
+    return results[:15]
+
+
+# ---------------------------------------------------------------------------
+# Source: UNHCR Refugee Population Statistics
+# ---------------------------------------------------------------------------
+
+def scan_unhcr() -> List[Dict]:
+    """UNHCR refugee population statistics."""
+    r = safe_get("https://api.unhcr.org/population/v1/population/?limit=10&year=2024&page=1", timeout=15)
+    if r is None:
+        return []
+    results = []
+    try:
+        data = r.json()
+        for item in data.get("items", [])[:10]:
+            country = item.get("country_of_origin_en", "Unknown")
+            refugees = item.get("refugees", 0)
+            asylum = item.get("asylum_seekers", 0)
+            if refugees > 100000:
+                results.append({
+                    "source": "unhcr",
+                    "title": f"UNHCR: {country} — {refugees:,} refugees, {asylum:,} asylum seekers",
+                    "description": f"Year: {item.get('year', '?')}",
+                    "url": "https://www.unhcr.org/refugee-statistics/",
+                })
+    except (json.JSONDecodeError, ValueError):
+        pass
+    return results
+
+
+# ---------------------------------------------------------------------------
+# Source: Arctic Military News (BarentsObserver + High North News)
+# ---------------------------------------------------------------------------
+
+def scan_arctic_military() -> List[Dict]:
+    """Arctic military news from BarentsObserver and High North News."""
+    results = []
+    urls = [
+        ("barents_observer", "https://thebarentsobserver.com/en/feed"),
+        ("high_north_news", "https://www.highnorthnews.com/en/rss.xml"),
+    ]
+    arctic_kw = {"arctic", "north pole", "northern fleet", "barents", "svalbard",
+                 "franz josef", "novaya zemlya", "northern sea route", "icebreaker",
+                 "polar", "kola", "murmansk", "tromsø", "nato arctic"}
+    for name, url in urls:
+        r = safe_get(url, timeout=12)
+        if r is None or len(r.content) < 100:
+            continue
+        try:
+            root = ET.fromstring(r.content)
+            for item in root.iter("item"):
+                title = (item.findtext("title") or "")[:200]
+                link = item.findtext("link") or ""
+                desc = (item.findtext("description") or "")[:300]
+                combined = (title + " " + desc).lower()
+                if any(kw in combined for kw in arctic_kw) or name == "barents_observer":
+                    results.append({
+                        "source": f"arctic_{name}", "title": title,
+                        "description": desc, "url": link,
+                    })
+        except ET.ParseError:
+            pass
+    return results[:15]
+
+
+# ---------------------------------------------------------------------------
+# Source: ECB Exchange Rates (European Central Bank — non-US economics)
+# ---------------------------------------------------------------------------
+
+def scan_ecb_rates() -> List[Dict]:
+    url = "https://data-api.ecb.europa.eu/service/data/EXR/D.USD+GBP+JPY+CNY+CHF.EUR.SP00.A?lastNObservations=5&format=csvdata"
+    r = safe_get(url, timeout=15)
+    if r is None:
+        return []
+    results = []
+    try:
+        lines = r.text.strip().split("\n")
+        if len(lines) < 2:
+            return []
+        header = lines[0].split(",")
+        curr_idx = next((i for i, h in enumerate(header) if "CURRENCY" in h.upper()), None)
+        val_idx = next((i for i, h in enumerate(header) if "OBS_VALUE" in h.upper()), None)
+        date_idx = next((i for i, h in enumerate(header) if "TIME_PERIOD" in h.upper() or "DATE" in h.upper()), None)
+        if curr_idx is None or val_idx is None:
+            return []
+        seen = {}
+        for line in lines[1:]:
+            parts = line.split(",")
+            if len(parts) <= max(curr_idx, val_idx):
+                continue
+            currency = parts[curr_idx].strip().strip('"')
+            value = parts[val_idx].strip().strip('"')
+            date = parts[date_idx].strip().strip('"') if date_idx is not None else ""
+            try:
+                val_f = float(value)
+            except ValueError:
+                continue
+            if currency not in seen or date > seen[currency].get("date", ""):
+                seen[currency] = {"currency": currency, "rate": val_f, "date": date}
+        for currency, data in seen.items():
+            results.append({
+                "source": "ecb_rates",
+                "pair": f"EUR/{currency}",
+                "rate": data["rate"],
+                "date": data["date"],
+            })
+    except Exception:
+        pass
+    return results
+
+
+# ---------------------------------------------------------------------------
+# Source: RansomLook (ransomware group activity tracker)
+# ---------------------------------------------------------------------------
+
+def scan_ransomlook() -> List[Dict]:
+    r = safe_get("https://www.ransomlook.io/api/recent", timeout=15)
+    if r is None:
+        r = safe_get("https://data.ransomlook.io/recent.json", timeout=15)
+    if r is None:
+        return []
+    results = []
+    try:
+        data = r.json()
+        entries = data if isinstance(data, list) else data.get("data", data.get("results", []))
+        for entry in entries[:25]:
+            group = entry.get("group_name", entry.get("group", ""))
+            victim = entry.get("post_title", entry.get("victim", entry.get("title", "")))
+            results.append({
+                "source": "ransomlook",
+                "group": group,
+                "victim": str(victim)[:120],
+                "discovered": entry.get("discovered", entry.get("date", "")),
+                "url": entry.get("post_url", entry.get("url", "")),
+                "description": (entry.get("description") or "")[:200],
+            })
+    except (json.JSONDecodeError, ValueError):
+        pass
+    return results
+
+
+# ---------------------------------------------------------------------------
+# Source: IPC Food Security (crisis-level classification by country)
+# ---------------------------------------------------------------------------
+
+def scan_ipc_food() -> List[Dict]:
+    r = safe_get("https://api.hpc.tools/v1/public/plan/year/2026", timeout=20)
+    if r is None:
+        return []
+    results = []
+    food_kw = {"food", "nutrition", "famine", "hunger", "malnutrition", "drought",
+               "food security", "humanitarian", "refugee", "displacement", "crisis"}
+    try:
+        plans = r.json().get("data", [])
+        for p in plans:
+            name = p.get("planVersion", {}).get("name", "") or ""
+            countries = p.get("locations", [])
+            requirements = p.get("requirements", {})
+            funding = p.get("funding", {})
+            req_usd = requirements.get("revisedRequirements", 0) or 0
+            fund_usd = funding.get("totalFunding", 0) or 0
+            pct_funded = round((fund_usd / req_usd * 100), 1) if req_usd > 0 else 0
+            name_lower = name.lower()
+            if any(kw in name_lower for kw in food_kw) or req_usd > 100_000_000:
+                country_names = [loc.get("name", "") for loc in (countries or [])[:3]]
+                results.append({
+                    "source": "ipc_food",
+                    "title": name[:200],
+                    "countries": country_names,
+                    "requirements_usd": req_usd,
+                    "funding_usd": fund_usd,
+                    "pct_funded": pct_funded,
+                    "funding_gap_usd": max(0, req_usd - fund_usd),
+                    "released": p.get("releasedDate", ""),
+                })
+    except (json.JSONDecodeError, ValueError, KeyError):
+        pass
+    results.sort(key=lambda x: x.get("funding_gap_usd", 0), reverse=True)
+    return results[:20]
+
+
+# ---------------------------------------------------------------------------
+# Source: Bluesky Public Search (breaking news, geopolitical discussions)
+# ---------------------------------------------------------------------------
+
+def scan_bluesky() -> List[Dict]:
+    handles = [
+        "bbcbreaking.bsky.social", "apnews.bsky.social",
+        "nprnews.bsky.social", "washingtonpost.com",
+        "nytimes.com", "theguardian.com", "cnn.com",
+        "aljazeera.com",
+    ]
+    results = []
+    seen_uris = set()
+    geo_kw = {"war", "military", "nato", "conflict", "sanctions", "missile",
+              "nuclear", "ceasefire", "invasion", "troops", "attack", "crisis",
+              "ukraine", "russia", "china", "taiwan", "iran", "israel", "gaza",
+              "election", "coup", "protest", "earthquake", "hurricane", "flood"}
+    for handle in handles:
+        r = safe_get(
+            f"https://public.api.bsky.app/xrpc/app.bsky.feed.getAuthorFeed?actor={handle}&limit=15&filter=posts_no_replies",
+            timeout=10,
+        )
+        if r is None:
+            continue
+        try:
+            feed = r.json().get("feed", [])
+            for item in feed:
+                post = item.get("post", {})
+                uri = post.get("uri", "")
+                if uri in seen_uris:
+                    continue
+                seen_uris.add(uri)
+                record = post.get("record", {})
+                text = record.get("text", "")[:300]
+                author = post.get("author", {})
+                author_handle = author.get("handle", "")
+                created = record.get("createdAt", "")
+                like_count = post.get("likeCount", 0)
+                repost_count = post.get("repostCount", 0)
+                text_lower = text.lower()
+                if not any(kw in text_lower for kw in geo_kw):
+                    continue
+                results.append({
+                    "source": "bluesky",
+                    "text": text,
+                    "author": author_handle,
+                    "created": created,
+                    "likes": like_count,
+                    "reposts": repost_count,
+                    "uri": uri,
+                })
+        except (json.JSONDecodeError, ValueError):
+            pass
+    results.sort(key=lambda x: x.get("likes", 0) + x.get("reposts", 0), reverse=True)
+    return results[:20]
+
+
+# ---------------------------------------------------------------------------
+# Source: Cloudflare Radar (internet traffic anomalies by country)
+# ---------------------------------------------------------------------------
+
+def scan_cloudflare_radar() -> List[Dict]:
+    now = int(time.time())
+    start = now - 86400
+    url = f"https://api.ioda.inetintel.cc.gatech.edu/v2/outages/alerts?from={start}&until={now}&limit=50"
+    r = safe_get(url, timeout=15)
+    if r is None:
+        return []
+    results = []
+    seen_countries = set()
+    try:
+        data = r.json()
+        alerts = data.get("data", [])
+        for a in alerts:
+            entity = a.get("entity", {})
+            entity_type = entity.get("type", "")
+            code = entity.get("code", "")
+            name = entity.get("name", "")
+            if entity_type != "country" or not code or len(code) != 2:
+                continue
+            if code in seen_countries:
+                continue
+            seen_countries.add(code)
+            level = a.get("level", "")
+            results.append({
+                "source": "cloudflare_radar",
+                "country": code,
+                "country_name": name,
+                "type": a.get("datasource", ""),
+                "level": level,
+                "start": a.get("time", ""),
+                "severity": "critical" if level == "critical" else "warning",
+                "description": f"{name} ({code}) internet outage detected via {a.get('datasource', '')}",
+            })
+    except (json.JSONDecodeError, ValueError):
+        pass
+    return results[:15]
+
+
+# ---------------------------------------------------------------------------
+# Source: OECD Key Economic Indicators (CLI — leading economic indicator)
+# ---------------------------------------------------------------------------
+
+def scan_oecd_cli() -> List[Dict]:
+    feeds = [
+        ("ecb_press", "https://www.ecb.europa.eu/rss/press.html"),
+        ("boe_news", "https://www.bankofengland.co.uk/rss/news"),
+        ("ft_markets", "https://www.ft.com/rss/markets"),
+    ]
+    econ_kw = {"inflation", "gdp", "growth", "recession", "unemployment", "trade",
+               "interest rate", "monetary policy", "fiscal", "debt", "deficit",
+               "outlook", "forecast", "economic", "rate decision", "tightening",
+               "easing", "balance sheet", "yield", "bond", "currency", "yen",
+               "euro", "sterling", "yuan", "central bank", "bank of"}
+    results = []
+    for src_name, url in feeds:
+        r = safe_get(url, timeout=10)
+        if r is None or len(r.content) < 100:
+            continue
+        try:
+            root = ET.fromstring(r.content)
+            for item in root.iter("item"):
+                title = (item.findtext("title") or "").strip()[:200]
+                link = item.findtext("link") or ""
+                desc = (item.findtext("description") or "")[:300]
+                pub_date = item.findtext("pubDate") or ""
+                combined = (title + " " + desc).lower()
+                if any(kw in combined for kw in econ_kw):
+                    results.append({
+                        "source": "oecd_cli",
+                        "feed": src_name,
+                        "title": title,
+                        "description": desc,
+                        "url": link,
+                        "date": pub_date,
+                    })
+        except ET.ParseError:
+            pass
+    return results[:20]
+
+
+# ---------------------------------------------------------------------------
+# Source: OpenSanctions (aggregated global sanctions & PEP entities)
+# ---------------------------------------------------------------------------
+
+def scan_opensanctions() -> List[Dict]:
+    """Fetch recently added sanctions/PEP entities from OpenSanctions."""
+    r = safe_get("https://api.opensanctions.org/search/default?q=*&schema=Sanction&limit=50",
+                 timeout=20)
+    if r is None:
+        # Fallback to statements endpoint
+        r = safe_get("https://api.opensanctions.org/statements?limit=50&sort=first_seen:desc",
+                      timeout=20)
+    if r is None:
+        return []
+    results = []
+    try:
+        data = r.json()
+        # search endpoint returns {"results": [...]}
+        items = data.get("results", [])
+        if not items:
+            # statements endpoint returns {"results": [...]} or list
+            items = data if isinstance(data, list) else data.get("results", [])
+        for item in items[:50]:
+            caption = item.get("caption", item.get("value", ""))
+            schema = item.get("schema", item.get("prop_type", ""))
+            datasets = item.get("datasets", [])
+            dataset_str = ", ".join(datasets[:3]) if isinstance(datasets, list) else str(datasets)
+            first_seen = item.get("first_seen", "")
+            properties = item.get("properties", {})
+            country = ""
+            if isinstance(properties, dict):
+                countries = properties.get("country", [])
+                country = countries[0] if countries else ""
+            results.append({
+                "source": "opensanctions",
+                "title": str(caption)[:200],
+                "schema": str(schema),
+                "datasets": dataset_str,
+                "country": str(country),
+                "first_seen": str(first_seen),
+                "category": "sanctions",
+                "url": item.get("id", ""),
+            })
+    except (json.JSONDecodeError, ValueError, KeyError):
+        pass
+    return results[:30]
+
+
+# ---------------------------------------------------------------------------
+# Source: URLhaus (active malware distribution URLs — abuse.ch)
+# ---------------------------------------------------------------------------
+
+def scan_urlhaus() -> List[Dict]:
+    """Fetch recently added malware distribution URLs from URLhaus."""
+    try:
+        r = _session.post("https://urlhaus-api.abuse.ch/v1/urls/recent/",
+                          timeout=20)
+        if r.status_code != 200:
+            return []
+    except requests.RequestException as e:
+        log.warning("URLhaus scan failed: %s", e)
+        return []
+    results = []
+    try:
+        data = r.json()
+        urls = data.get("urls", [])
+        for u in urls[:30]:
+            tags = u.get("tags", [])
+            tag_str = ", ".join(tags) if isinstance(tags, list) else str(tags or "")
+            results.append({
+                "source": "urlhaus",
+                "title": f"Malware URL: {u.get('url', '')[:100]}",
+                "url": u.get("url", ""),
+                "url_status": u.get("url_status", ""),
+                "threat": u.get("threat", ""),
+                "tags": tag_str,
+                "host": u.get("host", ""),
+                "date_added": u.get("dateadded", ""),
+                "category": "cyber",
+            })
+    except (json.JSONDecodeError, ValueError):
+        pass
+    return results
+
+
+# ---------------------------------------------------------------------------
+# Source: MalwareBazaar (recent malware samples — abuse.ch)
+# ---------------------------------------------------------------------------
+
+def scan_malwarebazaar() -> List[Dict]:
+    """Fetch recent malware samples from MalwareBazaar."""
+    try:
+        r = _session.post("https://mb-api.abuse.ch/api/v1/",
+                          data={"query": "get_recent", "selector": "time"},
+                          timeout=20)
+        if r.status_code != 200:
+            return []
+    except requests.RequestException as e:
+        log.warning("MalwareBazaar scan failed: %s", e)
+        return []
+    results = []
+    try:
+        data = r.json()
+        samples = data.get("data", [])
+        if not isinstance(samples, list):
+            return []
+        for s in samples[:30]:
+            tags = s.get("tags", [])
+            tag_str = ", ".join(tags) if isinstance(tags, list) and tags else ""
+            results.append({
+                "source": "malwarebazaar",
+                "title": f"{s.get('signature', 'Unknown')} - {s.get('file_type', '')}",
+                "sha256": s.get("sha256_hash", ""),
+                "signature": s.get("signature", ""),
+                "file_type": s.get("file_type", ""),
+                "file_size": s.get("file_size", 0),
+                "tags": tag_str,
+                "reporter": s.get("reporter", ""),
+                "first_seen": s.get("first_seen", ""),
+                "category": "cyber",
+            })
+    except (json.JSONDecodeError, ValueError):
+        pass
+    return results
+
+
+# ---------------------------------------------------------------------------
+# Source: WFP HungerMap (World Food Programme food insecurity)
+# ---------------------------------------------------------------------------
+
+def scan_wfp_hunger() -> List[Dict]:
+    """Fetch World Food Programme real-time food insecurity data."""
+    r = safe_get("https://api.hungermapdata.org/v2/adm0/world", timeout=20)
+    if r is None:
+        r = safe_get("https://api.hungermapdata.org/v1/foodsecurity/country/all", timeout=20)
+    if r is None:
+        return []
+    results = []
+    try:
+        data = r.json()
+        # v2 returns {"body": {"countries": [...]}} or similar
+        countries = data.get("body", {}).get("countries", [])
+        if not countries:
+            countries = data.get("countries", [])
+        if not countries and isinstance(data, list):
+            countries = data
+        for c in countries:
+            country_name = c.get("country", {}).get("name", c.get("name", ""))
+            country_iso3 = c.get("country", {}).get("iso3", c.get("iso3", ""))
+            # Food consumption score
+            fcs = c.get("fcs", c.get("fcsPeople", {}))
+            people_insufficient = 0
+            if isinstance(fcs, dict):
+                people_insufficient = fcs.get("people", 0)
+            prevalence = c.get("foodInsecurityPrevalence", c.get("prevalence", 0))
+            population = c.get("population", c.get("pop", 0))
+            if not country_name:
+                continue
+            # Only include countries with significant food insecurity
+            if people_insufficient > 100000 or (isinstance(prevalence, (int, float)) and prevalence > 10):
+                results.append({
+                    "source": "wfp_hunger",
+                    "title": f"Food insecurity: {country_name}",
+                    "country": country_name,
+                    "iso3": country_iso3,
+                    "people_insufficient_food": people_insufficient,
+                    "prevalence_pct": prevalence,
+                    "population": population,
+                    "category": "humanitarian",
+                })
+    except (json.JSONDecodeError, ValueError, KeyError):
+        pass
+    results.sort(key=lambda x: x.get("people_insufficient_food", 0), reverse=True)
+    return results[:30]
+
+
+# ---------------------------------------------------------------------------
+# Source: World Bank Governance Indicators
+# ---------------------------------------------------------------------------
+
+def scan_wb_governance() -> List[Dict]:
+    """Fetch World Bank Worldwide Governance Indicators."""
+    indicators = {
+        "CC.EST": "Control of Corruption",
+        "GE.EST": "Government Effectiveness",
+        "PV.EST": "Political Stability",
+        "RQ.EST": "Regulatory Quality",
+        "RL.EST": "Rule of Law",
+        "VA.EST": "Voice and Accountability",
+    }
+    results = []
+    for code, name in indicators.items():
+        r = safe_get(
+            f"https://api.worldbank.org/v2/country/all/indicator/{code}",
+            params={"format": "json", "date": "2023", "per_page": "300"},
+            timeout=20,
+        )
+        if r is None:
+            continue
+        try:
+            data = r.json()
+            # World Bank returns [metadata, data_array]
+            if isinstance(data, list) and len(data) >= 2:
+                entries = data[1]
+                if not isinstance(entries, list):
+                    continue
+                for entry in entries:
+                    value = entry.get("value")
+                    if value is None:
+                        continue
+                    country_info = entry.get("country", {})
+                    country_name = country_info.get("value", "")
+                    country_code = country_info.get("id", "")
+                    # Only flag countries with very low scores (bottom quartile)
+                    try:
+                        val = float(value)
+                    except (ValueError, TypeError):
+                        continue
+                    if val < -1.0:
+                        results.append({
+                            "source": "wb_governance",
+                            "title": f"{name}: {country_name} ({val:.2f})",
+                            "country": country_name,
+                            "country_code": country_code,
+                            "indicator": code,
+                            "indicator_name": name,
+                            "value": round(val, 3),
+                            "date": entry.get("date", ""),
+                            "category": "governance",
+                        })
+        except (json.JSONDecodeError, ValueError, KeyError):
+            pass
+        time.sleep(0.5)  # Rate limit courtesy for World Bank API
+    results.sort(key=lambda x: x.get("value", 0))
+    return results[:40]
+
+
+# ---------------------------------------------------------------------------
+# Source: UCDP (Uppsala Conflict Data Program — armed conflict events)
+# ---------------------------------------------------------------------------
+
+def scan_ucdp() -> List[Dict]:
+    """Fetch armed conflict events from Uppsala Conflict Data Program."""
+    r = safe_get("https://ucdpapi.pcr.uu.se/api/gedevents/24.1",
+                 params={"pagesize": "100", "page": "0"},
+                 timeout=20)
+    if r is None:
+        return []
+    results = []
+    try:
+        data = r.json()
+        events = data.get("Result", [])
+        for event in events[:50]:
+            country = event.get("country", "")
+            region = event.get("region", "")
+            date_start = event.get("date_start", "")
+            date_end = event.get("date_end", "")
+            best_est = event.get("best", 0)
+            high_est = event.get("high", 0)
+            low_est = event.get("low", 0)
+            side_a = event.get("side_a", "")
+            side_b = event.get("side_b", "")
+            event_type = event.get("type_of_violence", "")
+            latitude = event.get("latitude")
+            longitude = event.get("longitude")
+            source_article = event.get("source_article", "")
+            where_desc = event.get("where_description", "")
+            type_labels = {1: "State-based", 2: "Non-state", 3: "One-sided"}
+            try:
+                event_type_str = type_labels.get(int(event_type), str(event_type))
+            except (ValueError, TypeError):
+                event_type_str = str(event_type)
+            title = f"{event_type_str} conflict: {side_a} vs {side_b}" if side_b else f"{event_type_str} violence by {side_a}"
+            results.append({
+                "source": "ucdp",
+                "title": title[:200],
+                "country": country,
+                "region": region,
+                "location": where_desc,
+                "date_start": date_start,
+                "date_end": date_end,
+                "fatalities_best": best_est,
+                "fatalities_high": high_est,
+                "fatalities_low": low_est,
+                "side_a": side_a,
+                "side_b": side_b,
+                "type_of_violence": event_type_str,
+                "latitude": latitude,
+                "longitude": longitude,
+                "source_article": (source_article or "")[:200],
+                "category": "conflict",
+            })
+    except (json.JSONDecodeError, ValueError, KeyError):
+        pass
+    return results
+
+
+# ---------------------------------------------------------------------------
+# Geopolitical Graph Analysis (networkx — cross-source entity linking)
+# ---------------------------------------------------------------------------
+
+def build_geopolitical_graph(all_data: dict) -> dict:
+    try:
+        import networkx as nx
+    except ImportError:
+        return {"nodes": 0, "edges": 0, "bridges": [], "clusters": []}
+
+    if not HAS_INTEL:
+        return {"nodes": 0, "edges": 0, "bridges": [], "clusters": []}
+
+    G = nx.Graph()
+    country_mentions = {}
+
+    all_items = []
+    for source, items in all_data.items():
+        if isinstance(items, list):
+            all_items.extend(items)
+        elif isinstance(items, dict):
+            all_items.append(items)
+
+    for item in all_items:
+        text_fields = [
+            str(item.get("title", "")),
+            str(item.get("description", "")),
+            str(item.get("summary", "")),
+            str(item.get("text", "")),
+            str(item.get("notes", "")),
+            str(item.get("country", "")),
+            str(item.get("country_name", "")),
+        ]
+        combined = " ".join(text_fields).lower()
+        countries_found = set()
+        for alias, iso in COUNTRY_ALIASES.items():
+            if alias.lower() in combined:
+                countries_found.add(iso)
+        for org, iso in ORG_TO_COUNTRY.items():
+            if org.lower() in combined:
+                countries_found.add(iso)
+        country_field = item.get("country", "")
+        if country_field and len(country_field) == 2:
+            countries_found.add(country_field.upper())
+
+        for c in countries_found:
+            country_mentions[c] = country_mentions.get(c, 0) + 1
+            if not G.has_node(c):
+                G.add_node(c, mentions=0)
+            G.nodes[c]["mentions"] = G.nodes[c].get("mentions", 0) + 1
+
+        countries_list = sorted(countries_found)
+        for i in range(len(countries_list)):
+            for j in range(i + 1, len(countries_list)):
+                if G.has_edge(countries_list[i], countries_list[j]):
+                    G[countries_list[i]][countries_list[j]]["weight"] += 1
+                else:
+                    G.add_edge(countries_list[i], countries_list[j], weight=1)
+
+    if G.number_of_nodes() < 3:
+        return {"nodes": G.number_of_nodes(), "edges": G.number_of_edges(), "bridges": [], "clusters": []}
+
+    bridges = []
+    try:
+        bc = nx.betweenness_centrality(G, weight="weight")
+        top_bridges = sorted(bc.items(), key=lambda x: x[1], reverse=True)[:10]
+        bridges = [{"country": c, "centrality": round(score, 3),
+                     "mentions": country_mentions.get(c, 0)}
+                   for c, score in top_bridges if score > 0.01]
+    except Exception:
+        pass
+
+    clusters = []
+    try:
+        communities = list(nx.connected_components(G))
+        for i, comm in enumerate(sorted(communities, key=len, reverse=True)[:5]):
+            if len(comm) >= 2:
+                total_weight = sum(
+                    G[u][v]["weight"]
+                    for u in comm for v in comm
+                    if G.has_edge(u, v)
+                )
+                clusters.append({
+                    "id": i,
+                    "countries": sorted(comm),
+                    "size": len(comm),
+                    "total_co_mentions": total_weight,
+                })
+    except Exception:
+        pass
+
+    return {
+        "nodes": G.number_of_nodes(),
+        "edges": G.number_of_edges(),
+        "bridge_countries": bridges,
+        "country_clusters": clusters,
+        "top_mentioned": sorted(country_mentions.items(), key=lambda x: x[1], reverse=True)[:15],
+    }
+
+
+# ---------------------------------------------------------------------------
 # Intelligence Synthesis.ATLAS Assessments
 # ---------------------------------------------------------------------------
 
@@ -2400,6 +3816,20 @@ def _build_situation_picture(data: dict, anomalies: list) -> dict:
     trader_countries = trader_intel.get("countries_active", {})
     trader_divergences = trader_intel.get("cross_platform_divergences", [])
 
+    # New v3.2 sources
+    ecb = data.get("ecb_rates", [])
+    ransomlook = data.get("ransomlook", [])
+    ipc = data.get("ipc_food", [])
+    bluesky = data.get("bluesky", [])
+    cf_radar = data.get("cloudflare_radar", [])
+    oecd = data.get("oecd_cli", [])
+    ipc_crisis = [i for i in ipc if str(i.get("phase", "")).startswith(("3", "4", "5"))
+                  or "crisis" in str(i.get("title", "")).lower()
+                  or "emergency" in str(i.get("title", "")).lower()
+                  or "famine" in str(i.get("title", "")).lower()]
+    oecd_contracting = [o for o in oecd if o.get("cli_value", 100) < 99]
+    active_ransomware_groups = set(r.get("group", "") for r in ransomlook if r.get("group"))
+
     # Missing sources
     missing = [s for s in ["gdelt", "adsb", "metaculus", "acled", "ioda", "fred", "safecast",
                            "think_tanks", "official_feeds", "gdacs",
@@ -2460,6 +3890,10 @@ def _build_situation_picture(data: dict, anomalies: list) -> dict:
         "trader_info_gaps": trader_info_gaps, "trader_sentiment": trader_sentiment,
         "trader_consensus": trader_consensus, "trader_edges": trader_edges,
         "trader_countries": trader_countries, "trader_divergences": trader_divergences,
+        "ecb": ecb, "ransomlook": ransomlook, "ipc": ipc, "bluesky": bluesky,
+        "cf_radar": cf_radar, "oecd": oecd,
+        "ipc_crisis": ipc_crisis, "oecd_contracting": oecd_contracting,
+        "active_ransomware_groups": active_ransomware_groups,
     }
 
 
@@ -3765,6 +5199,7 @@ def generate_headlines(data: dict, anomalies: list, claims: list, assessments: l
             "watch_for": assess.get("watch_for", []),
             "business_angle": assess.get("business_angle", ""),
             "date": item_date,
+            "sentiment": round(score_headline(headline_text), 3),
         })
 
     assessment_text = " ".join(a.get("analysis", "") for a in assessments).lower()
@@ -3797,6 +5232,7 @@ def generate_headlines(data: dict, anomalies: list, claims: list, assessments: l
             "confidence": score,
             "business_angle": "Anomalous events create uncertainty. Track for downstream impacts on BOSS target markets and supply chains.",
             "date": item_date,
+            "sentiment": round(score_headline(headline_text), 3),
         })
 
     cat_priority = {"security": 0, "geopolitical": 1, "market_opportunity": 2, "economic": 3, "environmental": 4, "technology": 5}
@@ -4187,6 +5623,117 @@ def detect_anomalies(data: dict) -> List[Dict]:
                 "hotspot_count": hotspots,
             })
 
+    # Pattern 10: Cyber threat surge (multiple OTX pulses or SANS ISC spikes)
+    otx_data = data.get("otx", [])
+    sans_data = [d for d in data.get("sans_isc", []) if d.get("source") == "sans_isc_threats"]
+    if len(otx_data) >= 5:
+        tags_flat = []
+        for p in otx_data:
+            tags_flat.extend(p.get("tags", []))
+        top_tags = [t for t in set(tags_flat) if tags_flat.count(t) >= 2][:5]
+        anomalies.append({
+            "pattern": "cyber_threat_surge",
+            "score": min(85, 40 + len(otx_data) * 5),
+            "description": f"{len(otx_data)} active cyber threat pulses. Top tags: {', '.join(top_tags) if top_tags else 'varied'}",
+            "pulse_count": len(otx_data),
+            "top_tags": top_tags,
+        })
+
+    # Pattern 11: Disease outbreak cluster (WHO + ProMED reporting same region)
+    who_data = data.get("who_outbreaks", [])
+    promed_data = data.get("promed", [])
+    if who_data:
+        outbreak_titles = [w.get("title", "").lower() for w in who_data]
+        promed_matches = [p for p in promed_data
+                          if any(word in p.get("title", "").lower()
+                                 for word in ["ebola", "cholera", "mpox", "avian", "h5n1", "marburg",
+                                              "plague", "anthrax", "polio", "measles", "diphtheria"]
+                                 if word in " ".join(outbreak_titles))]
+        if promed_matches or len(who_data) >= 3:
+            anomalies.append({
+                "pattern": "disease_outbreak_cluster",
+                "score": min(90, 50 + len(who_data) * 8 + len(promed_matches) * 10),
+                "description": f"{len(who_data)} WHO outbreak reports" +
+                               (f", {len(promed_matches)} ProMED cross-references" if promed_matches else ""),
+                "who_count": len(who_data),
+                "promed_matches": len(promed_matches),
+            })
+
+    # Pattern 12: Statistical count anomaly (time-series baseline)
+    for metric_key, metric_list in [
+        ("gdelt_conflict", [g for g in data.get("gdelt", []) if g.get("category") == "conflict"]),
+        ("otx_pulses", data.get("otx", [])),
+        ("reddit_posts", data.get("reddit", [])),
+    ]:
+        if metric_list:
+            is_anom, z, mu, sd = detect_count_anomaly(metric_key, len(metric_list))
+            if is_anom:
+                anomalies.append({
+                    "pattern": "count_anomaly",
+                    "score": min(95, 50 + int(abs(z) * 10)),
+                    "description": f"{metric_key}: {len(metric_list)} items (z={z}, baseline={mu}±{sd})",
+                    "metric": metric_key,
+                    "z_score": z,
+                })
+
+    # Pattern 13: Internet outage correlation (IODA + Cloudflare Radar cross-reference)
+    ioda_results = data.get("ioda", [])
+    cf_results = data.get("cloudflare_radar", [])
+    if ioda_results and cf_results:
+        ioda_countries = {r.get("country", "").upper() for r in ioda_results if r.get("country")}
+        cf_countries = set()
+        for c in cf_results:
+            loc = c.get("country", c.get("locations", ""))
+            if isinstance(loc, str) and len(loc) == 2:
+                cf_countries.add(loc.upper())
+        overlap = ioda_countries & cf_countries
+        if overlap:
+            anomalies.append({
+                "pattern": "internet_outage_corroborated",
+                "score": 80,
+                "description": f"Internet disruption confirmed by both IODA and Cloudflare in: {', '.join(sorted(overlap))}",
+                "countries": sorted(overlap),
+            })
+
+    # Pattern 14: Food security crisis (IPC Phase 3+ with UNHCR displacement in same region)
+    ipc_results = data.get("ipc_food", [])
+    unhcr_results = data.get("unhcr", [])
+    if ipc_results:
+        crisis_countries = set()
+        for i in ipc_results:
+            phase = str(i.get("phase", ""))
+            if phase.startswith(("3", "4", "5")):
+                crisis_countries.add(i.get("country", "").upper())
+        if crisis_countries:
+            unhcr_countries = {u.get("country", "").upper() for u in unhcr_results if u.get("country")}
+            combined = crisis_countries & unhcr_countries
+            if combined:
+                anomalies.append({
+                    "pattern": "food_displacement_nexus",
+                    "score": 85,
+                    "description": f"IPC Phase 3+ food crisis AND active displacement in: {', '.join(sorted(combined))}",
+                    "countries": sorted(combined),
+                })
+            elif crisis_countries:
+                anomalies.append({
+                    "pattern": "food_crisis_alert",
+                    "score": 70,
+                    "description": f"IPC Phase 3+ food crisis in: {', '.join(sorted(crisis_countries))}",
+                    "countries": sorted(crisis_countries),
+                })
+
+    # Pattern 15: Ransomware surge (RansomLook showing multiple groups active)
+    ransomlook_results = data.get("ransomlook", [])
+    if len(ransomlook_results) >= 10:
+        groups = set(r.get("group", "") for r in ransomlook_results if r.get("group"))
+        if len(groups) >= 5:
+            anomalies.append({
+                "pattern": "ransomware_surge",
+                "score": 65,
+                "description": f"Elevated ransomware: {len(ransomlook_results)} recent victims across {len(groups)} groups ({', '.join(sorted(groups)[:5])})",
+                "groups": sorted(groups),
+            })
+
     now_iso = datetime.now(timezone.utc).isoformat()
     for a in anomalies:
         if "date" not in a:
@@ -4332,8 +5879,61 @@ def _save_alert_state(state):
 def _alert_key(text):
     return hashlib.md5(text.strip().lower()[:120].encode()).hexdigest()[:12]
 
+
+def _send_ntfy_multi(body: str, title: str, priority: str = "high"):
+    """Send ntfy message, splitting into multiple posts if body exceeds 3500 bytes.
+    ntfy.sh has a 4096-byte limit. We split on line boundaries so no intel gets cut off."""
+    MAX_CHUNK = 3500
+    encoded = body.encode("utf-8")
+
+    if len(encoded) <= MAX_CHUNK:
+        try:
+            requests.post(
+                f"{NTFY_BASE}/{NTFY_TOPIC}",
+                data=encoded,
+                headers={"Title": title, "Priority": priority},
+                timeout=10,
+            )
+            log.info("ntfy sent: %d bytes, title=%s", len(encoded), title)
+        except requests.RequestException as e:
+            log.warning("ntfy send failed: %s", e)
+        return
+
+    lines = body.split("\n")
+    chunks = []
+    current_lines = []
+    current_size = 0
+
+    for line in lines:
+        line_bytes = len(line.encode("utf-8")) + 1  # +1 for newline
+        if current_size + line_bytes > MAX_CHUNK and current_lines:
+            chunks.append("\n".join(current_lines))
+            current_lines = []
+            current_size = 0
+        current_lines.append(line)
+        current_size += line_bytes
+
+    if current_lines:
+        chunks.append("\n".join(current_lines))
+
+    total = len(chunks)
+    for i, chunk in enumerate(chunks, 1):
+        chunk_title = f"{title} ({i}/{total})" if total > 1 else title
+        try:
+            requests.post(
+                f"{NTFY_BASE}/{NTFY_TOPIC}",
+                data=chunk.encode("utf-8"),
+                headers={"Title": chunk_title, "Priority": priority},
+                timeout=10,
+            )
+            log.info("ntfy sent chunk %d/%d: %d bytes", i, total, len(chunk.encode("utf-8")))
+        except requests.RequestException as e:
+            log.warning("ntfy chunk %d/%d failed: %s", i, total, e)
+        if i < total:
+            time.sleep(0.5)
+
 def send_alert(report: dict):
-    SKIP_PATTERNS = {"seismic_major"}
+    SKIP_PATTERNS = set()
 
     anomalies = report.get("anomalies", [])
     assessments = report.get("assessments", [])
@@ -4535,6 +6135,32 @@ def send_alert(report: dict):
         for h in non_quake_headlines[:5]:
             lines.append(f"  {h.get('headline', '')[:120]}")
 
+    # SECTION 7: Disease outbreaks (WHO + ProMED)
+    who_items = report.get("who_outbreaks", [])
+    promed_items = report.get("promed", [])
+    outbreak_items = who_items[:3] + promed_items[:2]
+    outbreak_items = [o for o in outbreak_items if is_new(o.get("title", ""))]
+    if outbreak_items:
+        lines.append("")
+        lines.append("DISEASE OUTBREAKS:")
+        for o in outbreak_items:
+            src = "WHO" if o.get("source") == "who_outbreaks" else "PROMED"
+            lines.append(f"  [{src}] {o.get('title', '')[:120]}")
+
+    # SECTION 8: Cyber threats (OTX + SANS ISC)
+    otx_items = report.get("otx", [])
+    if otx_items:
+        critical = [p for p in otx_items if any(t in (p.get("tags") or [])
+                    for t in ["ransomware", "apt", "zero-day", "critical", "exploit"])]
+        if critical:
+            critical = [c for c in critical if is_new(c.get("title", ""))]
+            if critical:
+                lines.append("")
+                lines.append("CYBER THREATS:")
+                for c in critical[:3]:
+                    tags = ", ".join(c.get("tags", [])[:4])
+                    lines.append(f"  {c.get('title', '')[:100]} [{tags}]")
+
     body = "\n".join(lines).strip()
 
     is_urgent = bool(breaking or telegram_breaking or futures_spikes
@@ -4548,16 +6174,7 @@ def send_alert(report: dict):
     else:
         title = f"ATLAS Intel Brief: {total_items} items"
 
-    try:
-        requests.post(
-            f"{NTFY_BASE}/{NTFY_TOPIC}",
-            data=body.encode("utf-8"),
-            headers={"Title": title, "Priority": priority},
-            timeout=10,
-        )
-        log.info("Alert sent: %d items, priority=%s", total_items, priority)
-    except requests.RequestException as e:
-        log.warning("Alert send failed: %s", e)
+    _send_ntfy_multi(body, title, priority)
 
 # ---------------------------------------------------------------------------
 # Deploy
@@ -4778,6 +6395,34 @@ def _run_scan_impl(power: str):
         "telegram": scan_telegram,
         "futures": scan_futures,
         "firms": scan_firms,
+        "who_outbreaks": scan_who_outbreaks,
+        "promed": scan_promed,
+        "otx": scan_otx_pulses,
+        "sans_isc": scan_shodan_honeypot,
+        "reliefweb_crises": scan_reliefweb_crises,
+        "unsc": scan_un_security_council,
+        "kalshi": scan_kalshi,
+        "vessel_events": scan_vessel_events,
+        "greynoise": scan_greynoise,
+        "ransomware": scan_ransomware,
+        "launches": scan_launches,
+        "nvd_critical": scan_nvd_critical,
+        "fao_food": scan_fao_food,
+        "submarine_cables": scan_submarine_cables,
+        "unhcr": scan_unhcr,
+        "arctic_military": scan_arctic_military,
+        "ecb_rates": scan_ecb_rates,
+        "ransomlook": scan_ransomlook,
+        "ipc_food": scan_ipc_food,
+        "bluesky": scan_bluesky,
+        "cloudflare_radar": scan_cloudflare_radar,
+        "oecd_cli": scan_oecd_cli,
+        "opensanctions": scan_opensanctions,
+        "urlhaus": scan_urlhaus,
+        "malwarebazaar": scan_malwarebazaar,
+        "wfp_hunger": scan_wfp_hunger,
+        "wb_governance": scan_wb_governance,
+        "ucdp": scan_ucdp,
     }
 
     # Run each active source
@@ -4845,6 +6490,34 @@ def _run_scan_impl(power: str):
     headlines = generate_headlines(all_data, anomalies, claims, assessments)
     log.info("Generated %d headlines", len(headlines))
 
+    # Narrative trend tracking
+    narrative_trends = track_narratives(headlines)
+    log.info("Tracked %d narrative trends", len(narrative_trends))
+
+    # Country deep model (power brokers, money flows, government structure)
+    country_intel = {}
+    try:
+        from atlas_country_model import build_country_intelligence
+        country_intel = build_country_intelligence(all_data)
+        log.info("Country model: %d profiles updated", country_intel.get("count", 0))
+    except Exception as e:
+        log.warning("Country model failed: %s", e)
+
+    # Trend detection (temporal patterns across scans)
+    trend_alerts = []
+    try:
+        from atlas_trends import detect_trends
+        trend_alerts = detect_trends(all_data)
+        log.info("Trend engine: %d alerts", len(trend_alerts))
+    except Exception as e:
+        log.warning("Trend engine failed: %s", e)
+
+    # Geopolitical graph analysis (cross-source entity linking via networkx)
+    geo_graph = build_geopolitical_graph(all_data)
+    log.info("Geopolitical graph: %d nodes, %d edges, %d bridge countries",
+             geo_graph.get("nodes", 0), geo_graph.get("edges", 0),
+             len(geo_graph.get("bridge_countries", [])))
+
     # ATLAS Predictions.original probability estimates
     log.info("Generating ATLAS predictions...")
     atlas_predictions = generate_atlas_predictions(all_data, anomalies, assessments)
@@ -4865,6 +6538,10 @@ def _run_scan_impl(power: str):
         "assessments": assessments,
         "opportunities": opportunities,
         "headlines": headlines,
+        "narrative_trends": narrative_trends,
+        "geopolitical_graph": geo_graph,
+        "countries": country_intel,
+        "trend_alerts": trend_alerts,
         "historical_calibration": HISTORICAL_CALIBRATION,
         "gdelt": all_data.get("gdelt", []),
         "adsb": all_data.get("adsb", []),
@@ -4876,6 +6553,7 @@ def _run_scan_impl(power: str):
             "polymarket": all_data.get("polymarket", []),
             "manifold": all_data.get("manifold", []),
             "metaculus": all_data.get("metaculus", []),
+            "kalshi": all_data.get("kalshi", []),
             "atlas_predictions": atlas_predictions,
         },
         "earthquakes": all_data.get("usgs", []),
@@ -4914,6 +6592,34 @@ def _run_scan_impl(power: str):
         "telegram": all_data.get("telegram", []),
         "futures": all_data.get("futures", []),
         "firms": all_data.get("firms", []),
+        "who_outbreaks": all_data.get("who_outbreaks", []),
+        "promed": all_data.get("promed", []),
+        "otx": all_data.get("otx", []),
+        "sans_isc": all_data.get("sans_isc", []),
+        "reliefweb_crises": all_data.get("reliefweb_crises", []),
+        "unsc": all_data.get("unsc", []),
+        "kalshi": all_data.get("kalshi", []),
+        "vessel_events": all_data.get("vessel_events", []),
+        "greynoise": all_data.get("greynoise", []),
+        "ransomware": all_data.get("ransomware", []),
+        "launches": all_data.get("launches", []),
+        "nvd_critical": all_data.get("nvd_critical", []),
+        "fao_food": all_data.get("fao_food", []),
+        "submarine_cables": all_data.get("submarine_cables", []),
+        "unhcr": all_data.get("unhcr", []),
+        "arctic_military": all_data.get("arctic_military", []),
+        "ecb_rates": all_data.get("ecb_rates", []),
+        "ransomlook": all_data.get("ransomlook", []),
+        "ipc_food": all_data.get("ipc_food", []),
+        "bluesky": all_data.get("bluesky", []),
+        "cloudflare_radar": all_data.get("cloudflare_radar", []),
+        "oecd_cli": all_data.get("oecd_cli", []),
+        "opensanctions": all_data.get("opensanctions", []),
+        "urlhaus": all_data.get("urlhaus", []),
+        "malwarebazaar": all_data.get("malwarebazaar", []),
+        "wfp_hunger": all_data.get("wfp_hunger", []),
+        "wb_governance": all_data.get("wb_governance", []),
+        "ucdp": all_data.get("ucdp", []),
     }
 
     # Preserve trader_intel so the feedback loop persists across scans
@@ -5247,6 +6953,26 @@ def daily_digest():
             msg += f" ({len(ransomware)} ransomware-linked)"
         lines.append(msg)
 
+    # WHO disease outbreaks
+    who_items = report.get("who_outbreaks", [])
+    if who_items:
+        for w in who_items[:2]:
+            lines.append(f"WHO: {w.get('title', '')[:100]}")
+
+    # Cyber threats
+    otx_items = report.get("otx", [])
+    critical_otx = [p for p in otx_items if any(t in (p.get("tags") or [])
+                    for t in ["ransomware", "apt", "zero-day", "critical"])]
+    if critical_otx:
+        lines.append(f"CYBER: {len(critical_otx)} critical threat pulses active")
+
+    # ReliefWeb humanitarian crises
+    relief = report.get("reliefweb_crises", [])
+    if relief:
+        for r_item in relief[:2]:
+            countries = ", ".join(r_item.get("countries", [])[:3])
+            lines.append(f"CRISIS: {r_item.get('title', '')[:80]} ({countries})")
+
     # Business opportunities
     opps = report.get("opportunities", [])
     if opps:
@@ -5270,17 +6996,8 @@ def daily_digest():
 
     title = f"ATLAS Daily Brief - {ct_now.strftime('%b %d')}"
 
-    try:
-        requests.post(
-            f"{NTFY_BASE}/{NTFY_TOPIC}",
-            data=body.encode("utf-8"),
-            headers={"Title": title, "Priority": "default"},
-            timeout=10,
-        )
-        log.info("Daily digest sent: %d lines", len(lines))
-        print(f"Daily digest sent ({len(lines)} items)")
-    except requests.RequestException as e:
-        log.warning("Daily digest send failed: %s", e)
+    _send_ntfy_multi(body, title, "default")
+    print(f"Daily digest sent ({len(lines)} items)")
 
 
 def analyze_business_deep(business_query: str, city: str):
@@ -5581,6 +7298,25 @@ def main():
 
     if args.scan_and_deploy:
         deploy_report()
+        # Auto-resolve paper trader bets during every scan cycle (every 2 hours)
+        try:
+            import subprocess
+            paper_trader_path = Path(__file__).parent / "atlas_paper_trader.py"
+            if paper_trader_path.exists():
+                log.info("Running paper trader --check for auto-resolution...")
+                result = subprocess.run(
+                    [sys.executable, str(paper_trader_path), "--check"],
+                    capture_output=True, text=True, timeout=120,
+                    cwd=str(paper_trader_path.parent),
+                )
+                if result.returncode == 0:
+                    log.info("Paper trader check completed: %s", result.stdout.strip()[:200])
+                else:
+                    log.warning("Paper trader check failed: %s", result.stderr.strip()[:200])
+            else:
+                log.warning("Paper trader not found at %s", paper_trader_path)
+        except Exception as e:
+            log.warning("Paper trader auto-check error: %s", e)
 
 
 if __name__ == "__main__":

@@ -71,7 +71,7 @@ NEWS_FEEDS = [
     ("telegraph", "https://www.telegraph.co.uk/rss.xml"),
     ("independent", "https://www.independent.co.uk/rss"),
     ("rfi_en", "https://www.rfi.fr/en/rss"),
-    ("swiss_info", "https://www.swissinfo.ch/eng/rss/all"),
+    # SwissInfo — removed, RSS returns 410 Gone as of July 2026
     # Middle East
     ("aljazeera", "https://www.aljazeera.com/xml/rss/all.xml"),
     ("aljazeera_politics", "https://www.aljazeera.com/xml/rss/all.xml"),
@@ -87,7 +87,7 @@ NEWS_FEEDS = [
     ("nikkei_asia", "https://asia.nikkei.com/rss"),
     ("cna_asia", "https://www.channelnewsasia.com/api/v1/rss-outbound-feed?_format=xml"),
     ("times_india", "https://timesofindia.indiatimes.com/rssfeedstopstories.cms"),
-    ("dawn_pk", "https://www.dawn.com/feed"),
+    ("dawn_pk", "https://www.dawn.com/feeds/home"),
     ("straits_times", "https://www.straitstimes.com/news/asia/rss.xml"),
     ("japan_times", "https://www.japantimes.co.jp/feed/"),
     ("korea_herald", "https://www.koreaherald.com/common/rss_xml.php"),
@@ -98,7 +98,7 @@ NEWS_FEEDS = [
     # Africa
     ("allafrica", "https://allafrica.com/tools/headlines/rdf/latest/headlines.rdf"),
     ("africa_report", "https://www.theafricareport.com/feed/"),
-    ("daily_maverick", "https://www.dailymaverick.co.za/feed/"),
+    ("daily_maverick", "https://www.dailymaverick.co.za/dmrss"),
     ("punch_ng", "https://punchng.com/feed/"),
     ("nation_ke", "https://nation.africa/rss"),
     # Latin America
@@ -107,9 +107,9 @@ NEWS_FEEDS = [
     ("brazil_wire", "https://www.brasilwire.com/feed/"),
     # Russia / Eastern Europe / Central Asia
     ("moscow_times", "https://www.themoscowtimes.com/rss/news"),
-    ("kyiv_independent", "https://kyivindependent.com/feed/"),
+    # Kyiv Independent — removed, no RSS feed (Next.js app, no feed) as of July 2026
     ("meduza_en", "https://meduza.io/rss/en/all"),
-    ("bne_intellinews", "https://www.intellinews.com/rss"),
+    ("bne_intellinews", "https://www.intellinews.com/feed"),
     ("eurasianet", "https://eurasianet.org/feed"),
     ("rferl", "https://www.rferl.org/api/"),
     # Tech
@@ -139,6 +139,13 @@ NEWS_FEEDS = [
     ("kltv_tyler", "https://www.kltv.com/news/rss/"),
     # AI Industry
     ("therundown_ai", "https://www.therundown.ai/feed"),
+    # Arctic / Underserved Regions
+    # Barents Observer — removed, no RSS feed available as of July 2026
+    # High North News — removed, no RSS feed available as of July 2026
+    ("china_brief_jamestown", "https://jamestown.org/programs/cb/feed/"),
+    ("african_arguments", "https://africanarguments.org/feed/"),
+    ("irrawaddy", "https://www.irrawaddy.com/feed"),
+    ("global_voices", "https://globalvoices.org/feed/"),
 ]
 
 # ═══════════════════════════════════════════════════════════════════════════
@@ -149,33 +156,33 @@ ANALYSIS_FEEDS = [
     # US Foreign Policy / Defense
     ("atlantic_council", "https://www.atlanticcouncil.org/feed/"),
     ("brookings", "https://www.brookings.edu/feed/"),
-    ("csis", "https://www.csis.org/feed"),
-    ("cfr", "https://www.cfr.org/rss/"),
+    ("csis", "https://www.csis.org/rss.xml"),
+    ("cfr", "https://www.cfr.org/feed"),
     ("carnegie", "https://carnegieendowment.org/rss/solr/?lang=en"),
     ("heritage", "https://www.heritage.org/rss"),
     ("aei", "https://www.aei.org/feed/"),
     ("cato", "https://www.cato.org/rss/recent-opeds.xml"),
-    ("hoover", "https://www.hoover.org/rss"),
-    ("wilson_center", "https://www.wilsoncenter.org/rss.xml"),
-    ("cnas", "https://www.cnas.org/rss"),
+    ("hoover", "https://www.hoover.org/feed"),
+    ("wilson_center", "https://www.newsecuritybeat.org/feed/"),
+    # CNAS — removed, no RSS feed available as of July 2026
     ("fdd", "https://www.fdd.org/feed/"),
     ("rand_commentary", "https://www.rand.org/pubs/commentary.xml"),
     ("rand_research", "https://www.rand.org/pubs/research_reports.xml"),
     ("stimson", "https://www.stimson.org/feed/"),
     ("new_america", "https://www.newamerica.org/rss/"),
-    ("third_way", "https://www.thirdway.org/feed"),
+    # Third Way — removed, no RSS feed available as of July 2026
     ("bipartisan_policy", "https://bipartisanpolicy.org/feed/"),
-    ("hudson_institute", "https://www.hudson.org/feed"),
-    ("german_marshall", "https://www.gmfus.org/rss"),
+    ("hudson_institute", "https://www.hudson.org/rss.xml"),
+    # German Marshall Fund — removed, no RSS feed available as of July 2026
     # Security / Defense / Military
     ("war_on_rocks", "https://warontherocks.com/feed/"),
     ("defense_news", "https://www.defensenews.com/arc/outboundfeeds/rss/?outputType=xml"),
-    ("defense_one", "https://www.defenseone.com/rss/"),
+    ("defense_one", "https://www.defenseone.com/rss/all/"),
     ("breaking_defense", "https://breakingdefense.com/feed/"),
     ("the_drive_warzone", "https://www.thedrive.com/the-war-zone/feed"),
     ("iiss", "https://www.iiss.org/rss"),
-    ("rusi", "https://rusi.org/feed"),
-    ("sipri", "https://www.sipri.org/rss.xml"),
+    ("rusi", "https://www.rusi.org/rss/latest-commentary.xml"),
+    ("sipri", "https://www.sipri.org/rss/combined.xml"),
     # Conflict / Crisis / OSINT
     ("crisis_group", "https://www.crisisgroup.org/rss.xml"),
     ("bellingcat", "https://www.bellingcat.com/feed/"),
@@ -190,6 +197,7 @@ ANALYSIS_FEEDS = [
     ("bruegel", "https://www.bruegel.org/rss"),
     ("eu_iss", "https://www.iss.europa.eu/feed"),
     ("cepa", "https://cepa.org/feed/"),
+    ("sceeus", "https://sceeus.se/en/feed/"),
     # Asia-Pacific Think Tanks
     ("lowy", "https://www.lowyinstitute.org/rss.xml"),
     ("aspi_aus", "https://www.aspi.org.au/rss.xml"),
@@ -198,7 +206,7 @@ ANALYSIS_FEEDS = [
     # Nuclear / Arms / WMD
     ("arms_control", "https://www.armscontrol.org/taxonomy/term/30/feed"),
     ("nti", "https://www.nti.org/rss/"),
-    ("iaea_news", "https://www.iaea.org/feeds/news"),
+    ("iaea_news", "https://www.iaea.org/feeds/topnews"),
     ("bulletin_atomic", "https://thebulletin.org/feed/"),
     # Economics / Trade
     ("piie", "https://www.piie.com/rss"),
@@ -223,12 +231,30 @@ ANALYSIS_FEEDS = [
     ("oilprice", "https://oilprice.com/rss/main"),
     ("world_nuclear", "https://www.world-nuclear-news.org/rss"),
     # Maritime / Shipping
-    ("maritime_exec", "https://www.maritime-executive.com/rss"),
+    ("maritime_exec", "https://www.hellenicshippingnews.com/feed/"),
     ("gcaptain", "https://gcaptain.com/feed/"),
-    # Aviation / Space
+    ("defence_blog", "https://defence-blog.com/feed/"),
+    # Aviation / Space / Military
     ("aviation_week", "https://aviationweek.com/rss"),
     ("space_news", "https://spacenews.com/feed/"),
     ("nasa_breaking", "https://www.nasa.gov/rss/dyn/breaking_news.rss"),
+    ("the_aviationist", "https://theaviationist.com/feed/"),
+    ("military_watch", "https://militarywatchmagazine.com/feed/headlines.rss"),
+    ("task_purpose", "https://taskandpurpose.com/feed/"),
+    ("usni_blog", "https://blog.usni.org/feed"),
+    # Pandemic / Health
+    ("cdc_outbreaks", "https://www.cdc.gov/media/rss/disease-of-week.xml"),
+    ("who_don", "https://www.who.int/feeds/entity/don/en/rss.xml"),
+    # Regional — Africa
+    ("military_africa", "https://military.africa/feed/"),
+    # Regional — China / Asia
+    ("war_zone", "https://www.thedrive.com/the-war-zone/feed"),
+    # International Relations
+    ("e_ir", "https://e-ir.info/feed/"),
+    ("geopolitical_econ", "https://geopoliticaleconomy.com/feed/"),
+    # Legal / Policy Analysis
+    ("lawfare_blog", "https://www.lawfaremedia.org/rss.xml"),
+    ("stockholm_fof", "https://www.foi.se/en/feed.xml"),
 ]
 
 # ═══════════════════════════════════════════════════════════════════════════
@@ -238,28 +264,22 @@ ANALYSIS_FEEDS = [
 OFFICIAL_FEEDS = [
     # US Government
     ("fed_reserve", "https://www.federalreserve.gov/feeds/press_all.xml"),
-    ("white_house", "https://www.whitehouse.gov/feed/"),
+    ("white_house", "https://www.whitehouse.gov/news/feed/"),
     ("state_dept", "https://www.state.gov/rss-feed/press-releases/feed/"),
     ("dod_news", "https://www.defense.gov/DesktopModules/ArticleCS/RSS.ashx?max=10&ContentType=1"),
-    ("doj_press", "https://www.justice.gov/feeds/opa/justice-news.xml"),
+    ("doj_press", "https://www.justice.gov/news/rss"),
     ("fbi_press", "https://www.fbi.gov/feeds/fbi-in-the-news/rss.xml"),
-    ("treasury_press", "https://home.treasury.gov/system/files/131/Treasury-Press-Releases.xml"),
+    ("treasury_press", "https://home.treasury.gov/rss.xml"),
     ("gao_reports", "https://www.gao.gov/rss/reports.xml"),
-    ("cbo_reports", "https://www.cbo.gov/publications/feed"),
-    ("usaid", "https://www.usaid.gov/rss.xml"),
-    ("ustr", "https://ustr.gov/rss"),
     ("sec_press", "https://www.sec.gov/rss/news/press.xml"),
     ("fcc", "https://www.fcc.gov/rss.xml"),
     ("epa", "https://www.epa.gov/newsreleases/search/rss"),
-    ("fema_news", "https://www.fema.gov/rss.xml"),
     # International Organizations
     ("un_news", "https://news.un.org/feed/subscribe/en/news/all/rss.xml"),
     ("un_security_council", "https://news.un.org/feed/subscribe/en/news/topic/peace-and-security/rss.xml"),
-    ("nato_news", "https://www.nato.int/cps/en/natohq/news.xml"),
+    # NATO — removed, website restructured, no working RSS feed as of July 2026
     ("eu_press", "https://ec.europa.eu/commission/presscorner/api/rss"),
-    ("osce", "https://www.osce.org/rss.xml"),
     ("icc_news", "https://www.icc-cpi.int/rss"),
-    ("icj_press", "https://www.icj-cij.org/rss/pressreleases.xml"),
     ("opcw", "https://www.opcw.org/rss.xml"),
     # Central Banks
     ("ecb", "https://www.ecb.europa.eu/rss/press.html"),
@@ -272,7 +292,7 @@ OFFICIAL_FEEDS = [
     # Foreign Governments
     ("uk_parliament", "https://www.parliament.uk/g/rss/commons-hansard/"),
     ("uk_gov", "https://www.gov.uk/government/all.atom"),
-    ("eu_parliament", "https://www.europarl.europa.eu/rss/en/top-story.xml"),
+    ("eu_parliament", "https://www.europarl.europa.eu/rss/doc/press-releases/en.xml"),
     ("canada_pm", "https://pm.gc.ca/en/rss.xml"),
     ("india_mea", "https://www.mea.gov.in/rss.xml"),
     ("aus_dfat", "https://www.dfat.gov.au/rss.xml"),
@@ -337,10 +357,27 @@ SUBREDDITS = [
     "Brazil", "unitedkingdom", "france",
     "germany", "australia", "canada",
     "SouthAfrica", "Egypt", "Nigeria",
+    # ── Central Asia / Pacific / Underserved Regions ──
+    "CentralAsia", "Kazakhstan", "Uzbekistan",
+    "PacificIslands", "Fiji", "PapuaNewGuinea",
+    "Colombia", "Venezuela", "Chile", "Argentina",
+    "Ethiopia", "Kenya", "Sudan", "Mali",
+    "Myanmar", "Thailand", "Vietnam", "Cambodia",
+    # ── Supply Chain / Maritime / Logistics ──
+    "supplychain", "logistics", "maritime",
+    "semiconductor", "chipdesign",
+    # ── Biosecurity / Health ──
+    "epidemiology", "PublicHealth", "Virology",
+    "pandemics", "InfectiousDisease",
     # ── OSINT / Investigation / Journalism ──
     "journalism", "media_criticism",
     "DataHoarder", "datasets",
     "Documentaries", "UnresolvedMysteries",
+    # Arctic / Conflict / Underserved
+    "ArcticPolitics",
+    "DRC",
+    "SriLanka",
+    "EastTimor",
 ]
 
 # ═══════════════════════════════════════════════════════════════════════════
@@ -380,6 +417,20 @@ TELEGRAM_CHANNELS = [
     # Cyber / Tech
     ("caboroofleaks", "Cybersecurity leaks and breaches"),
     ("hackernews_feed", "Hacker News top stories"),
+    ("darknet_intel", "Dark web and ransomware tracking"),
+    # Africa / Sahel
+    ("AfricaIntelligence", "African military and political intelligence"),
+    ("SahelReport", "Sahel region conflict updates"),
+    # South Asia
+    ("IndiaMilitary", "Indian military developments"),
+    ("PakMilitary", "Pakistan defense and security"),
+    # Maritime
+    ("MaritimeOSINT", "Maritime and naval tracking"),
+    ("NavalWatch", "Naval deployments and chokepoint monitoring"),
+    # Arctic / DRC / Infrastructure
+    ("ArcticMilitary", "Arctic military activity and Northern Sea Route"),
+    ("DRCWatch", "DRC conflict and resource monitoring"),
+    ("SubmarineCableAlerts", "Submarine cable outage tracking"),
 ]
 
 # ═══════════════════════════════════════════════════════════════════════════
@@ -399,7 +450,7 @@ SPECIALIZED_FEEDS = [
     ("unhcr", "https://www.unhcr.org/rss/all.xml"),
     ("iom", "https://www.iom.int/rss.xml"),
     # Human Rights
-    ("hrw", "https://www.hrw.org/rss/news_and_commentary"),
+    ("hrw", "https://www.hrw.org/rss"),
     ("amnesty", "https://www.amnesty.org/en/feed/"),
     # Terrorism / Extremism
     ("terrorism_monitor", "https://jamestown.org/programs/tm/feed/"),
@@ -413,10 +464,30 @@ SPECIALIZED_FEEDS = [
     # Academic / Preprint Early Signals
     ("arxiv_cs_ai", "https://rss.arxiv.org/rss/cs.AI"),
     ("arxiv_cs_cr", "https://rss.arxiv.org/rss/cs.CR"),
+    # Ransomware / Malware Tracking
+    ("ransomware_live", "https://ransomware.live/rss.xml"),
     # Small Business
     ("nfib", "https://www.nfib.com/feed/"),
     # Real Estate
     ("zillow_research", "https://www.zillow.com/research/feed/"),
+    # Supply Chain / Logistics
+    ("freightwaves", "https://www.freightwaves.com/feed"),
+    ("loadstar", "https://theloadstar.com/feed/"),
+    # Infrastructure / Food / Refugee Monitoring
+    ("submarine_cable_map", "TeleGeography submarine cable data — outages and new cables"),
+    ("fao_food_prices", "FAO Food Price Index — famine early warning"),
+    ("unhcr_stats", "UNHCR refugee population statistics"),
+    # Non-US Economics
+    ("ecb_exchange_rates", "ECB SDMX exchange rates — EUR vs major currencies"),
+    ("oecd_leading_indicators", "OECD Composite Leading Indicators — 10 major economies"),
+    # Enhanced Cyber / Ransomware
+    ("ransomlook", "RansomLook API — ransomware group activity and victim tracking"),
+    # Food Security Classification
+    ("ipc_food_security", "IPC food crisis phase classification — 45+ countries"),
+    # Social Media Intelligence
+    ("bluesky_breaking", "Bluesky public API — breaking news and geopolitical discussions"),
+    # Internet Health
+    ("cloudflare_radar", "Cloudflare Radar — global internet outage annotations"),
 ]
 
 
@@ -428,8 +499,8 @@ def count_all_sources():
     subs = len(SUBREDDITS)
     telegram = len(TELEGRAM_CHANNELS)
     specialized = len(SPECIALIZED_FEEDS)
-    # Plus the 20+ API-based scan functions (USGS, NOAA, GDELT, etc.)
-    api_sources = 25
+    # Plus the 65 API-based scan functions (USGS, NOAA, GDELT, WHO, OTX, SANS, NVD, ECB, OECD, etc.)
+    api_sources = 65
     total = news + analysis + official + subs + telegram + specialized + api_sources
     return {
         "news_feeds": news,

@@ -410,6 +410,7 @@ html, body { height: 100%; overflow: hidden; background: var(--bg); color: var(-
       <option value="pressFreedom">Press Freedom</option>
       <option value="corruption">Corruption Index</option>
       <option value="democracyIndex">Democracy Index</option>
+      <option value="governance">Governance Quality</option>
     </optgroup>
     <optgroup label="ECONOMIC">
       <option value="debtToGdp">Debt-to-GDP Ratio</option>
@@ -502,6 +503,8 @@ html, body { height: 100%; overflow: hidden; background: var(--bg); color: var(-
         <button class="tab" data-tab="calibration">HISTORY</button>
         <button class="tab" data-tab="trader">TRADER</button>
         <button class="tab" data-tab="politics">POL</button>
+        <button class="tab" data-tab="graph">GRAPH</button>
+        <button class="tab" data-tab="sources">SRC</button>
         <button class="tab" data-tab="brief">BRIEF</button>
         <button class="tab" data-tab="ask">ASK</button>
       </div>
@@ -517,6 +520,8 @@ html, body { height: 100%; overflow: hidden; background: var(--bg); color: var(-
       <div class="panel" id="panel-calibration"></div>
       <div class="panel" id="panel-trader"></div>
       <div class="panel" id="panel-politics"></div>
+      <div class="panel" id="panel-graph"></div>
+      <div class="panel" id="panel-sources"></div>
       <div class="panel" id="panel-brief">
         <div id="brief-content">
           <div class="welcome-message">
@@ -877,6 +882,7 @@ html, body { height: 100%; overflow: hidden; background: var(--bg); color: var(-
     waterStress:    { title:"WATER STRESS",           gradient:"linear-gradient(90deg,#4B92DB,#E8A840,#E04848)", min:"Low",        max:"Critical",         source:"WRI Aqueduct",                        getValue:d=>d&&d.waterStress?Math.min(d.waterStress/5,1):0 },
     refugeesHosted: { title:"REFUGEES HOSTED",        gradient:"linear-gradient(90deg,#162036,#E8A840,#E04848)", min:"Few",        max:"Many (thousands)", source:"UNHCR",                               getValue:d=>d&&d.refugeesHosted?Math.min(d.refugeesHosted/3500,1):0 },
     democracyIndex: { title:"DEMOCRACY INDEX",       gradient:"linear-gradient(90deg,#E04848,#E8A840,#00CC66)", min:"Authoritarian", max:"Full democracy", source:"Composite — EIU/Freedom House/V-Dem", getValue:d=>d&&d.democracyScore?d.democracyScore/10:0 },
+    governance:     { title:"GOVERNANCE QUALITY",    gradient:"linear-gradient(90deg,#E04848,#E8A840,#00CC66)", min:"Poor", max:"Strong", source:"World Bank Governance Indicators + ATLAS Model", getValue:d=>d&&d.stability?d.stability/10:0 },
   };
 
   function lerpColor(a,b,t) { const ah=parseInt(a.replace('#',''),16),bh=parseInt(b.replace('#',''),16); const ar=(ah>>16)&0xFF,ag=(ah>>8)&0xFF,ab=ah&0xFF; const br=(bh>>16)&0xFF,bg=(bh>>8)&0xFF,bb=bh&0xFF; return '#'+((1<<24)+(Math.round(ar+(br-ar)*t)<<16)+(Math.round(ag+(bg-ag)*t)<<8)+Math.round(ab+(bb-ab)*t)).toString(16).slice(1); }
@@ -895,6 +901,7 @@ html, body { height: 100%; overflow: hidden; background: var(--bg); color: var(-
     if (mode === 'internet') return lerpColor('#162036', '#40E0D0', v);
     if (mode === 'activeMilitary') return triLerp('#162036', '#4B92DB', '#E04848', v);
     if (mode === 'defenseSpending') return triLerp('#162036', '#E8A840', '#E04848', v);
+    if (mode === 'governance') return triLerp('#E04848', '#E8A840', '#00CC66', v);
     if (mode === 'risk' || mode === 'debtToGdp' || mode === 'climateRisk') return triLerp('#00CC66', '#E8A840', '#E04848', v);
     if (mode === 'waterStress') return triLerp('#4B92DB', '#E8A840', '#E04848', v);
     if (mode === 'refugeesHosted') return triLerp('#162036', '#E8A840', '#E04848', v);
@@ -923,6 +930,7 @@ html, body { height: 100%; overflow: hidden; background: var(--bg); color: var(-
       case 'waterStress': return d.waterStress ? 'Water Stress: ' + d.waterStress + '/5' : 'N/A';
       case 'refugeesHosted': return d.refugeesHosted ? 'Refugees: ' + d.refugeesHosted.toLocaleString() + 'K' : 'N/A';
       case 'democracyIndex': return d.democracyScore ? 'Democracy: ' + d.democracyScore + '/10' : 'N/A';
+      case 'governance': return d.stability ? 'Governance: ' + d.stability + '/10' : 'N/A';
       default: return 'GDP/cap: $' + d.gdpPerCapita.toLocaleString();
     }
   }
@@ -1217,6 +1225,7 @@ html, body { height: 100%; overflow: hidden; background: var(--bg); color: var(-
     renderTopbar(); renderMapLayers(); renderAnomalyBanner(); renderHeadlines();
     renderAnomalies(); renderClaims(); renderFlights(); renderAssessments();
     renderOpportunities(); renderPredictions(); renderFeed(); renderCalibration(); renderTrader(); renderPolitics();
+    renderGraph(); renderSources();
   }
 
   function renderTopbar() {
@@ -1569,19 +1578,23 @@ html, body { height: 100%; overflow: hidden; background: var(--bg); color: var(-
     var panel=document.getElementById('panel-trader'),pt=data.paper_trader;
     if(!pt){panel.innerHTML='<div class="section-title">PAPER TRADER</div><div class="empty-state">No paper trading data.<br><code style="font-size:10px;color:var(--text-dim)">python3 scripts/atlas_paper_trader.py --scan</code></div>';return;}
     var pnl=pt.total_pnl||0,pnlPct=pt.starting_balance?(pnl/pt.starting_balance*100):0,pnlColor=pnl>=0?'var(--success)':'var(--danger)',pnlSign=pnl>=0?'+':'';
+    var bal=pt.balance||0,startBal=pt.starting_balance||1000,balColor=bal>=startBal?'var(--success)':bal>=startBal*0.9?'var(--warning)':'var(--danger)';
     var wins=pt.wins||0,losses=pt.losses||0,total=wins+losses,winRate=total>0?(wins/total*100).toFixed(0):'—';
-    var html='<div class="section-title">ATLAS PAPER TRADER</div><div style="display:grid;grid-template-columns:1fr 1fr;gap:6px;margin-bottom:12px">';
-    html+='<div style="background:var(--surface-2);padding:8px 10px;border-radius:2px;border:1px solid var(--border)"><div style="font-size:8px;color:var(--text-muted);letter-spacing:1px;margin-bottom:3px;font-family:var(--font-data)">BALANCE</div><div style="font-size:18px;font-weight:700;color:var(--text);font-family:var(--font-data)">$'+(pt.balance||0).toLocaleString(undefined,{minimumFractionDigits:2,maximumFractionDigits:2})+'</div></div>';
-    html+='<div style="background:var(--surface-2);padding:8px 10px;border-radius:2px;border:1px solid var(--border)"><div style="font-size:8px;color:var(--text-muted);letter-spacing:1px;margin-bottom:3px;font-family:var(--font-data)">P&amp;L</div><div style="font-size:18px;font-weight:700;color:'+pnlColor+';font-family:var(--font-data)">'+pnlSign+'$'+Math.abs(pnl).toFixed(2)+'</div></div>';
+    var html='<div class="section-title">ATLAS PAPER TRADER</div>';
+    // P&L banner
+    html+='<div style="background:var(--surface-2);padding:12px;border:1px solid '+(pnl>=0?'rgba(74,222,128,0.3)':'rgba(196,64,64,0.3)')+';margin-bottom:10px;text-align:center"><div style="font-size:8px;color:var(--text-muted);letter-spacing:2px;margin-bottom:4px;font-family:var(--font-data)">TOTAL P&amp;L</div><div style="font-size:28px;font-weight:800;color:'+pnlColor+';font-family:var(--font-data)">'+pnlSign+'$'+Math.abs(pnl).toFixed(2)+'</div><div style="font-size:10px;color:'+pnlColor+';font-family:var(--font-data);margin-top:2px">'+pnlSign+pnlPct.toFixed(1)+'%</div></div>';
+    html+='<div style="display:grid;grid-template-columns:1fr 1fr;gap:6px;margin-bottom:12px">';
+    html+='<div style="background:var(--surface-2);padding:8px 10px;border-radius:2px;border:1px solid var(--border)"><div style="font-size:8px;color:var(--text-muted);letter-spacing:1px;margin-bottom:3px;font-family:var(--font-data)">BALANCE</div><div style="font-size:18px;font-weight:700;color:'+balColor+';font-family:var(--font-data)">$'+bal.toLocaleString(undefined,{minimumFractionDigits:2,maximumFractionDigits:2})+'</div></div>';
+    html+='<div style="background:var(--surface-2);padding:8px 10px;border-radius:2px;border:1px solid var(--border)"><div style="font-size:8px;color:var(--text-muted);letter-spacing:1px;margin-bottom:3px;font-family:var(--font-data)">STARTING</div><div style="font-size:18px;font-weight:700;color:var(--text);font-family:var(--font-data)">$'+startBal.toLocaleString(undefined,{minimumFractionDigits:2,maximumFractionDigits:2})+'</div></div>';
     html+='<div style="background:var(--surface-2);padding:8px 10px;border-radius:2px;border:1px solid var(--border)"><div style="font-size:8px;color:var(--text-muted);letter-spacing:1px;margin-bottom:3px;font-family:var(--font-data)">RECORD</div><div style="font-size:14px;font-weight:700;font-family:var(--font-data)"><span style="color:var(--success)">'+wins+'W</span> <span style="color:var(--danger)">'+losses+'L</span> <span style="color:var(--text-muted);font-size:11px">('+winRate+'%)</span></div></div>';
     html+='<div style="background:var(--surface-2);padding:8px 10px;border-radius:2px;border:1px solid var(--border)"><div style="font-size:8px;color:var(--text-muted);letter-spacing:1px;margin-bottom:3px;font-family:var(--font-data)">WAGERED</div><div style="font-size:14px;font-weight:700;color:var(--text);font-family:var(--font-data)">$'+(pt.total_wagered||0).toLocaleString(undefined,{minimumFractionDigits:2,maximumFractionDigits:2})+'</div></div></div>';
     var pending=pt.pending||[];
     if(pending.length){html+='<div style="font-size:9px;font-weight:700;letter-spacing:1px;color:var(--text-muted);margin:10px 0 6px;font-family:var(--font-data)">OPEN ('+pending.length+')</div>';
-      for(var b of pending){html+='<div style="background:var(--surface-2);padding:8px 10px;border-radius:2px;border:1px solid var(--border);margin-bottom:4px"><div style="display:flex;align-items:center;gap:4px;margin-bottom:3px"><span style="font-size:8px;font-weight:700;padding:2px 5px;border-radius:2px;background:rgba(75,146,219,0.15);color:var(--primary);font-family:var(--font-data)">'+(b.platform==='polymarket'?'POLY':'KALS')+'</span><span style="font-size:8px;font-weight:700;padding:2px 5px;border-radius:2px;background:'+(b.position==='YES'?'rgba(0,204,102,0.15);color:var(--success)':'rgba(224,72,72,0.15);color:var(--danger)')+';font-family:var(--font-data)">'+b.position+'</span><span style="font-size:8px;font-weight:700;padding:2px 5px;border-radius:2px;background:rgba(232,168,64,0.15);color:var(--warning);font-family:var(--font-data)">'+b.edge.toFixed(0)+'% EDGE</span></div><div style="font-size:11px;color:var(--text);margin-bottom:3px">'+esc(b.question.substring(0,80))+'</div><div style="display:flex;gap:10px;font-size:9px;color:var(--text-muted);font-family:var(--font-data)"><span>$'+b.bet_amount.toFixed(0)+'</span><span>ATLAS:'+b.atlas_prob+'%</span><span>MKT:'+b.market_prob+'%</span></div></div>';}
+      for(var b of pending){html+='<div style="background:var(--surface-2);padding:10px;border-radius:2px;border:1px solid var(--border);margin-bottom:6px;border-left:3px solid var(--accent)"><div style="display:flex;align-items:center;gap:4px;margin-bottom:5px;flex-wrap:wrap"><span style="font-size:8px;font-weight:700;padding:2px 5px;border-radius:2px;background:rgba(75,146,219,0.15);color:var(--primary);font-family:var(--font-data)">'+(b.platform==='polymarket'?'POLY':'KALS')+'</span><span style="font-size:8px;font-weight:700;padding:2px 5px;border-radius:2px;background:'+(b.position==='YES'?'rgba(0,204,102,0.15);color:var(--success)':'rgba(224,72,72,0.15);color:var(--danger)')+';font-family:var(--font-data)">'+b.position+'</span><span style="font-size:8px;font-weight:700;padding:2px 5px;border-radius:2px;background:rgba(232,168,64,0.15);color:var(--warning);font-family:var(--font-data)">'+b.edge.toFixed(0)+'% EDGE</span></div><div style="font-size:12px;font-weight:600;color:var(--text);margin-bottom:5px;line-height:1.4">'+esc(b.question)+'</div><div style="display:grid;grid-template-columns:1fr 1fr;gap:4px;margin-bottom:4px"><div style="display:flex;align-items:center;gap:4px"><span style="font-size:8px;color:var(--text-muted);font-family:var(--font-data)">ATLAS</span><div style="flex:1;height:3px;background:var(--surface-3);overflow:hidden"><div style="height:100%;width:'+Math.min(b.atlas_prob,100)+'%;background:var(--primary)"></div></div><span style="font-size:9px;font-weight:700;color:var(--primary);font-family:var(--font-data)">'+b.atlas_prob+'%</span></div><div style="display:flex;align-items:center;gap:4px"><span style="font-size:8px;color:var(--text-muted);font-family:var(--font-data)">MKT</span><div style="flex:1;height:3px;background:var(--surface-3);overflow:hidden"><div style="height:100%;width:'+Math.min(b.market_prob,100)+'%;background:var(--text-dim)"></div></div><span style="font-size:9px;font-weight:700;color:var(--text-muted);font-family:var(--font-data)">'+b.market_prob+'%</span></div></div><div style="display:flex;gap:10px;font-size:9px;color:var(--text-muted);font-family:var(--font-data)"><span style="color:var(--text)">$'+b.bet_amount.toFixed(0)+'</span>'+(b.expiry_date?'<span>Exp: '+esc(relTime(b.expiry_date))+'</span>':'')+'</div></div>';}
     }
     var resolved=pt.recent_resolved||[];
     if(resolved.length){html+='<div style="font-size:9px;font-weight:700;letter-spacing:1px;color:var(--text-muted);margin:10px 0 6px;font-family:var(--font-data)">RESULTS</div>';
-      for(var r of resolved){var isWin=r.status==='won',pnlVal=r.pnl||0;html+='<div style="background:var(--surface-2);padding:6px 10px;border-radius:2px;border:1px solid '+(isWin?'rgba(0,204,102,0.3)':'rgba(224,72,72,0.3)')+';margin-bottom:3px;display:flex;align-items:center;gap:6px"><span style="font-size:9px;font-weight:700;padding:2px 5px;border-radius:2px;background:'+(isWin?'rgba(0,204,102,0.15);color:var(--success)':'rgba(224,72,72,0.15);color:var(--danger)')+';font-family:var(--font-data)">'+(isWin?'WIN':'LOSS')+'</span><span style="font-size:11px;font-weight:700;color:'+(isWin?'var(--success)':'var(--danger)')+';font-family:var(--font-data)">'+(pnlVal>=0?'+':'')+' $'+Math.abs(pnlVal).toFixed(2)+'</span><span style="font-size:10px;color:var(--text-muted);flex:1;overflow:hidden;text-overflow:ellipsis;white-space:nowrap">'+esc(r.question.substring(0,50))+'</span></div>';}
+      for(var r of resolved){var isWin=r.status==='won',pnlVal=r.pnl||0;html+='<div style="background:var(--surface-2);padding:8px 10px;border-radius:2px;border:1px solid '+(isWin?'rgba(0,204,102,0.3)':'rgba(224,72,72,0.3)')+';border-left:3px solid '+(isWin?'var(--success)':'var(--danger)')+';margin-bottom:4px"><div style="display:flex;align-items:center;gap:6px;margin-bottom:3px"><span style="font-size:9px;font-weight:700;padding:2px 5px;border-radius:2px;background:'+(isWin?'rgba(0,204,102,0.15);color:var(--success)':'rgba(224,72,72,0.15);color:var(--danger)')+';font-family:var(--font-data)">'+(isWin?'WIN':'LOSS')+'</span><span style="font-size:13px;font-weight:700;color:'+(isWin?'var(--success)':'var(--danger)')+';font-family:var(--font-data)">'+(pnlVal>=0?'+':'-')+'$'+Math.abs(pnlVal).toFixed(2)+'</span></div><div style="font-size:10px;color:var(--text-muted);line-height:1.4">'+esc(r.question)+'</div>'+(r.resolved_date?'<div style="font-size:8px;color:var(--text-dim);margin-top:2px;font-family:var(--font-data)">'+esc(relTime(r.resolved_date))+'</div>':'')+'</div>';}
     }
     var traderTab=document.querySelector('[data-tab="trader"]');
     traderTab.innerHTML='TRADER<span class="tab-count" style="background:'+(pnl>=0?'rgba(0,204,102,0.2);color:var(--success)':'rgba(224,72,72,0.2);color:var(--danger)')+'">'+(pt.pending_count||0)+'</span>';
@@ -1590,13 +1603,27 @@ html, body { height: 100%; overflow: hidden; background: var(--bg); color: var(-
 
   function renderPolitics() {
     var panel = document.getElementById('panel-politics');
+    // Check if report JSON has country assessments
+    var reportCountries = data && data.countries && data.countries.assessments ? data.countries.assessments : null;
     var codes = Object.keys(COUNTRY_DATA).filter(function(c){return COUNTRY_DATA[c].realPolitics;});
     codes.sort(function(a,b){return(COUNTRY_DATA[a].democracyScore||0)-(COUNTRY_DATA[b].democracyScore||0);});
     var html = '<div class="section-title">POLITICAL LANDSCAPE — UNFILTERED ('+codes.length+' COUNTRIES)</div>';
+    if (reportCountries) {
+      html += '<div style="font-size:10px;color:var(--success);margin-bottom:6px;line-height:1.5;font-family:var(--font-data)">LIVE DATA FROM REPORT JSON</div>';
+    }
     html += '<div style="font-size:10px;color:var(--text-dim);margin-bottom:10px;line-height:1.5">Real political dynamics, not what mainstream media feeds you. Sorted by democracy score — authoritarian regimes first.</div>';
     for (var i=0; i<codes.length; i++) {
-      var c = codes[i], d = COUNTRY_DATA[c], score = d.democracyScore||0;
-      var regimeLabel = score>=8?'FULL DEMOCRACY':score>=6?'FLAWED DEMOCRACY':score>=4?'HYBRID REGIME':'AUTHORITARIAN';
+      var c = codes[i], d = COUNTRY_DATA[c];
+      // Prioritize report JSON data over hardcoded POLITICAL_DATA
+      var rpt = reportCountries ? reportCountries[c] : null;
+      var score = rpt && rpt.democracy_score != null ? rpt.democracy_score : (d.democracyScore||0);
+      var stabilityScore = rpt && rpt.stability_score != null ? rpt.stability_score : null;
+      var trajectory = rpt ? (rpt.trajectory || '') : '';
+      var narrativeGap = rpt && rpt.narrative_gap != null ? rpt.narrative_gap : null;
+      var keyRisks = rpt && rpt.key_risks ? rpt.key_risks : null;
+      var realPol = rpt && rpt.real_politics ? rpt.real_politics : d.realPolitics;
+      var recentMentions = rpt && rpt.recent_mentions != null ? rpt.recent_mentions : null;
+      var regimeLabel = trajectory ? trajectory.replace(/_/g,' ').toUpperCase() : (score>=8?'FULL DEMOCRACY':score>=6?'FLAWED DEMOCRACY':score>=4?'HYBRID REGIME':'AUTHORITARIAN');
       var regimeClass = score>=8?'r-full':score>=6?'r-flawed':score>=4?'r-hybrid':'r-auth';
       var scoreColor = score>=8?'var(--success)':score>=6?'var(--primary)':score>=4?'var(--warning)':'var(--danger)';
       var barW = Math.max(3, score*10);
@@ -1605,7 +1632,28 @@ html, body { height: 100%; overflow: hidden; background: var(--bg); color: var(-
       html += '<div class="pol-header"><span class="pol-flag">'+getFlag(c)+'</span><span class="pol-name">'+esc(d.name)+'</span><span class="pol-score" style="color:'+scoreColor+'">'+score+'</span></div>';
       html += '<div class="pol-bar"><div class="pol-bar-fill" style="width:'+barW+'%;background:'+scoreColor+'"></div></div>';
       html += '<span class="pol-regime '+regimeClass+'">'+regimeLabel+'</span>';
-      html += '<div class="pol-text">'+esc(d.realPolitics)+'</div></div>';
+      // Show stability score if from report
+      if (stabilityScore != null) {
+        var stabColor = stabilityScore>=7?'var(--success)':stabilityScore>=4?'var(--warning)':'var(--danger)';
+        html += '<div style="display:inline-block;margin-left:4px;font-size:8px;font-weight:700;letter-spacing:1px;padding:2px 6px;font-family:var(--font-data);background:rgba(107,141,181,0.1);color:var(--accent);border:1px solid rgba(107,141,181,0.2)">STABILITY '+stabilityScore.toFixed(1)+'</div>';
+      }
+      // Narrative gap indicator
+      if (narrativeGap != null) {
+        var ngColor = narrativeGap>=0.7?'var(--danger)':narrativeGap>=0.4?'var(--warning)':'var(--success)';
+        html += '<div style="display:inline-block;margin-left:4px;font-size:8px;font-weight:700;letter-spacing:1px;padding:2px 6px;font-family:var(--font-data);background:rgba(196,64,64,0.1);color:'+ngColor+';border:1px solid rgba(196,64,64,0.2)">NARRATIVE GAP '+(narrativeGap*100).toFixed(0)+'%</div>';
+      }
+      // Recent mentions
+      if (recentMentions != null) {
+        html += '<div style="display:inline-block;margin-left:4px;font-size:8px;font-weight:700;letter-spacing:1px;padding:2px 6px;font-family:var(--font-data);background:rgba(201,169,110,0.1);color:var(--primary);border:1px solid rgba(201,169,110,0.2)">'+recentMentions+' MENTIONS</div>';
+      }
+      html += '<div class="pol-text">'+esc(realPol)+'</div>';
+      // Key risks from report
+      if (keyRisks && keyRisks.length) {
+        html += '<div style="margin-top:5px;padding:5px 8px;background:var(--surface-3);border-radius:var(--radius);border-left:2px solid var(--danger)"><div style="font-size:8px;font-weight:700;letter-spacing:1px;color:var(--danger);margin-bottom:3px;font-family:var(--font-data)">KEY RISKS</div><ul style="margin:0;padding-left:14px">';
+        for (var ri=0; ri<keyRisks.length; ri++) html += '<li style="font-size:10px;color:var(--text-muted);line-height:1.5;margin-bottom:2px">'+esc(keyRisks[ri])+'</li>';
+        html += '</ul></div>';
+      }
+      html += '</div>';
     }
     panel.innerHTML = html;
     panel.querySelectorAll('.pol-card').forEach(function(card) {
@@ -1630,6 +1678,223 @@ html, body { height: 100%; overflow: hidden; background: var(--bg); color: var(-
     if(layerState.iss){var iss=data.iss;if(iss&&iss.latitude&&iss.longitude){issMarker=L.circleMarker([iss.latitude,iss.longitude],{radius:7,color:'#FFD700',fillColor:'#FFD700',fillOpacity:0.9,weight:2});issMarker.bindTooltip('<b>ISS</b><br>'+iss.latitude.toFixed(2)+', '+iss.longitude.toFixed(2),{className:'dark-tooltip'});issMarker.addTo(map);}}
     if(layerState.fires){for(var f of(data.fires||[])){if(!f.coordinates||f.coordinates.length<2)continue;var m=L.circleMarker([f.coordinates[1],f.coordinates[0]],{radius:5,color:'#FF4500',fillColor:'#FF4500',fillOpacity:0.7,weight:1});m.bindTooltip('<b>FIRE</b><br>'+esc(f.title||''),{className:'dark-tooltip'});m.addTo(map);fireMarkers.push(m);}}
     if(layerState.gdacs){var gdacsColors={Red:'#FF0000',Orange:'#FF8C00',Green:'#32CD32'};for(var g of(data.gdacs||[])){var coords=g.coordinates;if(!coords||coords.length<2)continue;var alert=g.alert_level||'Green';var col=gdacsColors[alert]||'#32CD32';var rad=alert==='Red'?10:alert==='Orange'?8:5;var m=L.circleMarker([coords[1],coords[0]],{radius:rad,color:col,fillColor:col,fillOpacity:alert==='Green'?0.3:0.6,weight:alert==='Red'?2:1});m.bindTooltip('<b>GDACS '+alert.toUpperCase()+'</b><br>'+esc(g.name||''),{className:'dark-tooltip'});m.addTo(map);gdacsMarkers.push(m);}}
+  }
+
+  function renderGraph() {
+    var panel = document.getElementById('panel-graph');
+    var g = data ? data.geopolitical_graph : null;
+    if (!g) {
+      panel.innerHTML = '<div class="section-title">GEOPOLITICAL GRAPH</div><div class="empty-state">No graph data available.<br><br>Graph data appears when ATLAS scans at <b>ACTIVE</b> or <b>SURGE</b> and processes country co-mentions.</div>';
+      return;
+    }
+    var html = '<div class="section-title">GEOPOLITICAL GRAPH</div>';
+    html += '<div style="display:grid;grid-template-columns:1fr 1fr 1fr;gap:6px;margin-bottom:12px">';
+    html += '<div style="background:var(--surface-2);padding:8px 10px;border:1px solid var(--border)"><div style="font-size:8px;color:var(--text-muted);letter-spacing:1px;margin-bottom:3px;font-family:var(--font-data)">NODES</div><div style="font-size:18px;font-weight:700;color:var(--primary);font-family:var(--font-data)">'+(g.nodes||0)+'</div></div>';
+    html += '<div style="background:var(--surface-2);padding:8px 10px;border:1px solid var(--border)"><div style="font-size:8px;color:var(--text-muted);letter-spacing:1px;margin-bottom:3px;font-family:var(--font-data)">EDGES</div><div style="font-size:18px;font-weight:700;color:var(--accent);font-family:var(--font-data)">'+(g.edges||0)+'</div></div>';
+    html += '<div style="background:var(--surface-2);padding:8px 10px;border:1px solid var(--border)"><div style="font-size:8px;color:var(--text-muted);letter-spacing:1px;margin-bottom:3px;font-family:var(--font-data)">CLUSTERS</div><div style="font-size:18px;font-weight:700;color:var(--warning);font-family:var(--font-data)">'+((g.country_clusters||[]).length)+'</div></div>';
+    html += '</div>';
+
+    // Bridge Countries
+    var bridges = g.bridge_countries || [];
+    if (bridges.length) {
+      html += '<div style="font-size:9px;font-weight:700;letter-spacing:2px;color:var(--primary);margin:12px 0 6px;font-family:var(--font-data);border-bottom:1px solid var(--border);padding-bottom:4px">BRIDGE COUNTRIES (HIGHEST BETWEENNESS CENTRALITY)</div>';
+      for (var bi = 0; bi < bridges.length; bi++) {
+        var b = bridges[bi];
+        var isTop = bi === 0;
+        var cd = COUNTRY_DATA[b.country];
+        var cName = cd ? cd.name : b.country;
+        var centralityPct = Math.min(100, Math.round((b.centrality || 0) * 100 / 0.5));
+        var borderColor = isTop ? 'var(--primary)' : 'var(--border)';
+        var borderLeft = isTop ? '3px solid var(--primary)' : '1px solid var(--border)';
+        html += '<div style="padding:10px;background:var(--surface-2);border:1px solid '+borderColor+';border-left:'+borderLeft+';margin-bottom:6px">';
+        html += '<div style="display:flex;align-items:center;gap:8px;margin-bottom:6px"><span style="font-size:18px">'+getFlag(b.country)+'</span><span style="font-size:13px;font-weight:700;color:'+(isTop?'var(--primary)':'var(--text)')+';flex:1">'+esc(cName)+'</span>';
+        if (isTop) html += '<span style="font-size:8px;font-weight:700;letter-spacing:1px;padding:2px 6px;background:rgba(201,169,110,0.15);color:var(--primary);font-family:var(--font-data);border:1px solid rgba(201,169,110,0.3)">TOP BRIDGE</span>';
+        html += '</div>';
+        html += '<div style="display:flex;align-items:center;gap:8px;margin-bottom:4px"><span style="font-size:8px;color:var(--text-muted);letter-spacing:1px;font-family:var(--font-data);min-width:65px">CENTRALITY</span><div style="flex:1;height:4px;background:var(--surface-3);overflow:hidden;border:1px solid var(--border)"><div style="height:100%;width:'+centralityPct+'%;background:var(--primary)"></div></div><span style="font-size:10px;font-weight:700;color:var(--primary);min-width:36px;text-align:right;font-family:var(--font-data)">'+(b.centrality||0).toFixed(2)+'</span></div>';
+        html += '<div style="font-size:9px;color:var(--text-muted);font-family:var(--font-data)">'+(b.mentions||0)+' mentions</div>';
+        html += '</div>';
+      }
+    }
+
+    // Country Clusters
+    var clusters = g.country_clusters || [];
+    if (clusters.length) {
+      var clusterColors = ['#4B92DB','#E8A840','#4ADE80','#C080E0','#FF6347','#40E0D0','#FFD700','#FF8C00'];
+      html += '<div style="font-size:9px;font-weight:700;letter-spacing:2px;color:var(--primary);margin:14px 0 6px;font-family:var(--font-data);border-bottom:1px solid var(--border);padding-bottom:4px">COUNTRY CLUSTERS (CO-MENTION GROUPS)</div>';
+      for (var ci = 0; ci < clusters.length; ci++) {
+        var cl = clusters[ci];
+        var clColor = clusterColors[ci % clusterColors.length];
+        html += '<div style="padding:8px 10px;background:var(--surface-2);border:1px solid var(--border);border-left:3px solid '+clColor+';margin-bottom:6px">';
+        html += '<div style="display:flex;align-items:center;gap:6px;margin-bottom:5px"><span style="font-size:8px;font-weight:700;letter-spacing:1px;padding:2px 6px;background:rgba(0,0,0,0.3);color:'+clColor+';font-family:var(--font-data);border:1px solid '+clColor+'40">CLUSTER '+(cl.id != null ? cl.id : ci)+'</span><span style="font-size:9px;color:var(--text-muted);font-family:var(--font-data)">'+(cl.size||0)+' countries | '+(cl.total_co_mentions||0)+' co-mentions</span></div>';
+        html += '<div style="display:flex;flex-wrap:wrap;gap:4px">';
+        var countries = cl.countries || [];
+        for (var cj = 0; cj < countries.length; cj++) {
+          var cc = countries[cj];
+          var ccName = COUNTRY_DATA[cc] ? COUNTRY_DATA[cc].name : cc;
+          html += '<span style="font-size:9px;padding:2px 6px;background:var(--surface-3);border:1px solid var(--border);color:var(--text);font-family:var(--font-data)">'+getFlag(cc)+' '+esc(ccName)+'</span>';
+        }
+        html += '</div></div>';
+      }
+    }
+
+    // Most Mentioned - horizontal bar chart
+    var topMentioned = g.top_mentioned || [];
+    if (topMentioned.length) {
+      var maxMentions = topMentioned.length > 0 ? (topMentioned[0][1] || 1) : 1;
+      var showCount = Math.min(15, topMentioned.length);
+      html += '<div style="font-size:9px;font-weight:700;letter-spacing:2px;color:var(--primary);margin:14px 0 6px;font-family:var(--font-data);border-bottom:1px solid var(--border);padding-bottom:4px">MOST MENTIONED (TOP '+showCount+')</div>';
+      for (var mi = 0; mi < showCount; mi++) {
+        var tm = topMentioned[mi];
+        var tmCode = tm[0], tmCount = tm[1] || 0;
+        var tmName = COUNTRY_DATA[tmCode] ? COUNTRY_DATA[tmCode].name : tmCode;
+        var barPct = Math.max(3, Math.round(tmCount / maxMentions * 100));
+        var barColor = mi === 0 ? 'var(--primary)' : mi < 3 ? 'var(--accent)' : 'var(--text-dim)';
+        html += '<div style="display:flex;align-items:center;gap:6px;margin-bottom:3px">';
+        html += '<span style="font-size:10px;min-width:24px;text-align:right;font-family:var(--font-data);color:var(--text-muted)">'+(mi+1)+'</span>';
+        html += '<span style="font-size:12px;min-width:20px">'+getFlag(tmCode)+'</span>';
+        html += '<span style="font-size:10px;min-width:50px;color:var(--text);font-weight:600">'+esc(tmCode)+'</span>';
+        html += '<div style="flex:1;height:6px;background:var(--surface-3);overflow:hidden;border:1px solid var(--border)"><div style="height:100%;width:'+barPct+'%;background:'+barColor+';transition:width 0.3s"></div></div>';
+        html += '<span style="font-size:10px;font-weight:700;min-width:36px;text-align:right;font-family:var(--font-data);color:var(--text)">'+tmCount+'</span>';
+        html += '</div>';
+      }
+    }
+
+    // Update tab count
+    var graphTab = document.querySelector('[data-tab="graph"]');
+    if (graphTab && (bridges.length || clusters.length)) {
+      graphTab.innerHTML = 'GRAPH<span class="tab-count" style="background:rgba(75,146,219,0.2);color:var(--accent)">'+(g.nodes||0)+'</span>';
+    }
+
+    panel.innerHTML = html;
+  }
+
+  function renderSources() {
+    var panel = document.getElementById('panel-sources');
+    if (!data) {
+      panel.innerHTML = '<div class="section-title">SOURCE HEALTH</div><div class="empty-state">No data loaded.</div>';
+      return;
+    }
+
+    // Source categories and their keys
+    var sourceCategories = {
+      'Government': [
+        {key:'congress', label:'Congress.gov'},
+        {key:'govinfo', label:'GovInfo (Fed Register)'},
+        {key:'official_feeds', label:'Official Feeds'},
+        {key:'cisa_kev', label:'CISA KEV'}
+      ],
+      'Markets': [
+        {key:'predictions', label:'Prediction Markets', check:function(d){return d.predictions && ((d.predictions.polymarket||[]).length + (d.predictions.manifold||[]).length + (d.predictions.metaculus||[]).length + (d.predictions.atlas_predictions||[]).length);}},
+        {key:'fred', label:'FRED Economic'},
+        {key:'financial_futures', label:'Financial Futures'},
+        {key:'paper_trader', label:'Paper Trader', check:function(d){return d.paper_trader ? 1 : 0;}}
+      ],
+      'News': [
+        {key:'gdelt', label:'GDELT Global News'},
+        {key:'rss', label:'RSS Feeds'},
+        {key:'hackernews', label:'Hacker News'},
+        {key:'think_tanks', label:'Think Tanks'},
+        {key:'reddit', label:'Reddit (45+ subs)'},
+        {key:'telegram', label:'Telegram OSINT'}
+      ],
+      'Cyber': [
+        {key:'cisa_kev', label:'CISA Known Exploits'},
+        {key:'wiki_edits', label:'Wikipedia Edit Storms'}
+      ],
+      'Humanitarian': [
+        {key:'gdacs', label:'GDACS Disasters'},
+        {key:'volcanoes', label:'Volcanoes'},
+        {key:'safecast', label:'Safecast Radiation'}
+      ],
+      'Environmental': [
+        {key:'earthquakes', label:'USGS Earthquakes'},
+        {key:'noaa', label:'NOAA Weather'},
+        {key:'nasa_events', label:'NASA EONET'},
+        {key:'fires', label:'NASA FIRMS Fires'},
+        {key:'iss', label:'ISS Position', check:function(d){return d.iss ? 1 : 0;}}
+      ],
+      'Military': [
+        {key:'adsb', label:'ADS-B Aircraft'}
+      ]
+    };
+
+    var totalSources = 0, activeSources = 0, totalPoints = 0;
+    var seenKeys = {};
+
+    var html = '<div class="section-title">SOURCE HEALTH MONITOR</div>';
+
+    // Top stats
+    html += '<div style="display:grid;grid-template-columns:1fr 1fr 1fr;gap:6px;margin-bottom:14px">';
+    // Pre-count
+    for (var cat in sourceCategories) {
+      var items = sourceCategories[cat];
+      for (var si = 0; si < items.length; si++) {
+        var s = items[si];
+        if (seenKeys[s.key]) continue;
+        seenKeys[s.key] = true;
+        totalSources++;
+        var count = 0;
+        if (s.check) {
+          count = s.check(data) || 0;
+        } else {
+          var val = data[s.key];
+          if (Array.isArray(val)) count = val.length;
+          else if (val && typeof val === 'object') count = Object.keys(val).length > 0 ? 1 : 0;
+        }
+        if (count > 0) { activeSources++; totalPoints += (typeof count === 'number' ? count : 1); }
+      }
+    }
+    html += '<div style="background:var(--surface-2);padding:8px 10px;border:1px solid var(--border)"><div style="font-size:8px;color:var(--text-muted);letter-spacing:1px;margin-bottom:3px;font-family:var(--font-data)">SOURCES</div><div style="font-size:18px;font-weight:700;color:var(--primary);font-family:var(--font-data)">'+totalSources+'</div></div>';
+    html += '<div style="background:var(--surface-2);padding:8px 10px;border:1px solid var(--border)"><div style="font-size:8px;color:var(--text-muted);letter-spacing:1px;margin-bottom:3px;font-family:var(--font-data)">ACTIVE</div><div style="font-size:18px;font-weight:700;color:var(--success);font-family:var(--font-data)">'+activeSources+'</div></div>';
+    html += '<div style="background:var(--surface-2);padding:8px 10px;border:1px solid var(--border)"><div style="font-size:8px;color:var(--text-muted);letter-spacing:1px;margin-bottom:3px;font-family:var(--font-data)">DATA PTS</div><div style="font-size:18px;font-weight:700;color:var(--accent);font-family:var(--font-data)">'+(data.data_points||totalPoints)+'</div></div>';
+    html += '</div>';
+
+    // Health bar
+    var healthPct = totalSources > 0 ? Math.round(activeSources / totalSources * 100) : 0;
+    var healthColor = healthPct >= 80 ? 'var(--success)' : healthPct >= 50 ? 'var(--warning)' : 'var(--danger)';
+    html += '<div style="margin-bottom:14px"><div style="display:flex;justify-content:space-between;font-size:9px;font-family:var(--font-data);margin-bottom:3px"><span style="color:var(--text-muted)">OVERALL HEALTH</span><span style="color:'+healthColor+';font-weight:700">'+healthPct+'%</span></div>';
+    html += '<div style="width:100%;height:4px;background:var(--surface-3);overflow:hidden;border:1px solid var(--border)"><div style="height:100%;width:'+healthPct+'%;background:'+healthColor+'"></div></div></div>';
+
+    // Show last scan time
+    if (data.generated) {
+      html += '<div style="font-size:9px;color:var(--text-dim);margin-bottom:12px;font-family:var(--font-data)">Last scan: '+esc(relTime(data.generated))+' | Power: '+(data.power_level||'?')+'</div>';
+    }
+
+    // By category
+    seenKeys = {};
+    for (var cat in sourceCategories) {
+      var items = sourceCategories[cat];
+      html += '<div style="font-size:9px;font-weight:700;letter-spacing:2px;color:var(--primary);margin:10px 0 4px;font-family:var(--font-data);border-bottom:1px solid var(--border);padding-bottom:3px">'+cat.toUpperCase()+'</div>';
+      for (var si = 0; si < items.length; si++) {
+        var s = items[si];
+        if (seenKeys[s.key]) continue;
+        seenKeys[s.key] = true;
+        var count = 0;
+        if (s.check) {
+          count = s.check(data) || 0;
+        } else {
+          var val = data[s.key];
+          if (Array.isArray(val)) count = val.length;
+          else if (val && typeof val === 'object') count = Object.keys(val).length > 0 ? 1 : 0;
+        }
+        var isActive = count > 0;
+        var dotColor = isActive ? '#4ADE80' : '#C44040';
+        html += '<div style="display:flex;align-items:center;gap:8px;padding:4px 0">';
+        html += '<span style="width:8px;height:8px;border-radius:50%;background:'+dotColor+';flex-shrink:0;box-shadow:0 0 4px '+dotColor+'40"></span>';
+        html += '<span style="font-size:10px;color:var(--text);flex:1">'+esc(s.label)+'</span>';
+        html += '<span style="font-size:10px;font-weight:700;color:'+(isActive?'var(--text)':'var(--text-dim)')+';font-family:var(--font-data);min-width:36px;text-align:right">'+(typeof count === 'number' ? count : (isActive ? 'OK' : '0'))+'</span>';
+        html += '</div>';
+      }
+    }
+
+    // Update tab badge
+    var srcTab = document.querySelector('[data-tab="sources"]');
+    if (srcTab) {
+      var badgeColor = healthPct >= 80 ? 'rgba(74,222,128,0.2);color:var(--success)' : healthPct >= 50 ? 'rgba(232,168,64,0.2);color:var(--warning)' : 'rgba(196,64,64,0.2);color:var(--danger)';
+      srcTab.innerHTML = 'SRC<span class="tab-count" style="background:'+badgeColor+'">'+healthPct+'%</span>';
+    }
+
+    panel.innerHTML = html;
   }
 
   // Scan button
