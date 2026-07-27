@@ -3447,12 +3447,14 @@ def scan_wfp_hunger() -> List[Dict]:
 def scan_wb_governance() -> List[Dict]:
     """Fetch World Bank Worldwide Governance Indicators."""
     indicators = {
-        "CC.EST": "Control of Corruption",
-        "GE.EST": "Government Effectiveness",
-        "PV.EST": "Political Stability",
-        "RQ.EST": "Regulatory Quality",
-        "RL.EST": "Rule of Law",
-        "VA.EST": "Voice and Accountability",
+        "NY.GDP.PCAP.CD": "GDP Per Capita",
+        "SL.UEM.TOTL.ZS": "Unemployment Rate",
+        "FP.CPI.TOTL.ZG": "Inflation Rate",
+        "GC.DOD.TOTL.GD.ZS": "Government Debt to GDP",
+        "SI.POV.GINI": "Gini Inequality Index",
+        "MS.MIL.XPND.GD.ZS": "Military Expenditure % GDP",
+        "SH.XPD.CHEX.GD.ZS": "Health Expenditure % GDP",
+        "IT.NET.USER.ZS": "Internet Users %",
     }
     results = []
     for code, name in indicators.items():
@@ -3477,28 +3479,25 @@ def scan_wb_governance() -> List[Dict]:
                     country_info = entry.get("country", {})
                     country_name = country_info.get("value", "")
                     country_code = country_info.get("id", "")
-                    # Only flag countries with very low scores (bottom quartile)
                     try:
                         val = float(value)
                     except (ValueError, TypeError):
                         continue
-                    if val < -1.0:
-                        results.append({
-                            "source": "wb_governance",
-                            "title": f"{name}: {country_name} ({val:.2f})",
-                            "country": country_name,
-                            "country_code": country_code,
-                            "indicator": code,
-                            "indicator_name": name,
-                            "value": round(val, 3),
-                            "date": entry.get("date", ""),
-                            "category": "governance",
-                        })
+                    results.append({
+                        "source": "wb_governance",
+                        "title": f"{name}: {country_name} ({val:.1f})",
+                        "country": country_name,
+                        "country_code": country_code,
+                        "indicator": code,
+                        "indicator_name": name,
+                        "value": round(val, 3),
+                        "date": entry.get("date", ""),
+                        "category": "governance",
+                    })
         except (json.JSONDecodeError, ValueError, KeyError):
             pass
         time.sleep(0.5)  # Rate limit courtesy for World Bank API
-    results.sort(key=lambda x: x.get("value", 0))
-    return results[:40]
+    return results
 
 
 # ---------------------------------------------------------------------------
