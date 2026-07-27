@@ -1,5 +1,5 @@
 {
-  "generated": "2026-07-22T20:30:01.683237+00:00",
+  "generated": "2026-07-27T21:30:53.745310+00:00",
   "sections": {
     "atlas": {
       "power_level": "ACTIVE",
@@ -59,14 +59,14 @@
         "re_engaged": 19
       },
       "synced_to_pipeline": 107,
-      "api_spend": 108.42,
+      "api_spend": 111.62,
       "api_budget": 300.0,
-      "api_percent": 36.1,
-      "outcomes_recorded": 471,
+      "api_percent": 37.2,
+      "outcomes_recorded": 486,
       "by_outcome": {
         "no_answer": 40,
         "hangup": 31,
-        "call_failed": 157,
+        "call_failed": 172,
         "call_initiated": 224,
         "callback": 9,
         "meeting_set": 10
@@ -270,10 +270,10 @@
           "last_modification": "1781060826"
         }
       ],
-      "calls_24h": 50,
-      "outbound_24h": 42,
-      "inbound_24h": 8,
-      "avg_duration_sec": 17.7
+      "calls_24h": 0,
+      "outbound_24h": 0,
+      "inbound_24h": 0,
+      "avg_duration_sec": 0
     },
     "quant": {
       "state": "PAUSED",
@@ -287,8 +287,8 @@
       "engine_paused": false,
       "atlas_power": "ACTIVE",
       "n8n_errors_24h": 0,
-      "retell_calls_24h": 50,
-      "api_spend_pct": 36.1
+      "retell_calls_24h": 0,
+      "api_spend_pct": 37.2
     }
   }
 }
