@@ -1,5 +1,5 @@
 {
-  "generated": "2026-07-28T20:25:27.827770+00:00",
+  "generated": "2026-07-28T20:40:43.972192+00:00",
   "engine_state": "active",
   "signals": [
     {
@@ -28,17 +28,17 @@
     },
     {
       "type": "heat_wave",
-      "area": "Palo Duro Canyon",
+      "area": "Collingsworth",
       "niche": "hvac",
-      "action": "HVAC businesses in Palo Duro Canyon are drowning in calls right now. Perfect time to pitch.",
+      "action": "HVAC businesses in Collingsworth are drowning in calls right now. Perfect time to pitch.",
       "urgency": "today",
       "pitch_hook": "You're getting slammed with calls \u2014 how many went to voicemail today?"
     },
     {
       "type": "heat_wave",
-      "area": "Collingsworth",
+      "area": "Palo Duro Canyon",
       "niche": "hvac",
-      "action": "HVAC businesses in Collingsworth are drowning in calls right now. Perfect time to pitch.",
+      "action": "HVAC businesses in Palo Duro Canyon are drowning in calls right now. Perfect time to pitch.",
       "urgency": "today",
       "pitch_hook": "You're getting slammed with calls \u2014 how many went to voicemail today?"
     },
@@ -99,7 +99,7 @@
       "score": 83,
       "tier": "SUPERNICHE",
       "channel": "watchlist",
-      "sequence_status": "called",
+      "sequence_status": "re_engaged",
       "trigger": "market_sweep"
     },
     {
@@ -108,7 +108,7 @@
       "score": 80,
       "tier": "SUPERNICHE",
       "channel": "watchlist",
-      "sequence_status": "called",
+      "sequence_status": "re_engaged",
       "trigger": "market_sweep"
     },
     {
@@ -126,7 +126,7 @@
       "score": 78,
       "tier": "SUPERNICHE",
       "channel": "watchlist",
-      "sequence_status": "queued",
+      "sequence_status": "re_engaged",
       "trigger": "flood"
     },
     {
@@ -171,7 +171,7 @@
       "score": 74,
       "tier": "SUPERNICHE",
       "channel": "watchlist",
-      "sequence_status": "called",
+      "sequence_status": "re_engaged",
       "trigger": "market_sweep"
     },
     {
@@ -223,14 +223,14 @@
   "kpis": {
     "signals_firing": 10,
     "leads_superniche": 106,
-    "leads_hot": 97,
-    "leads_warm": 2,
-    "cost_per_qualified": 1.07,
-    "total_spend": 113.21599999999108,
+    "leads_hot": 94,
+    "leads_warm": 0,
+    "cost_per_qualified": 1.08,
+    "total_spend": 114.81599999999091,
     "spend_cap": 300.0
   },
   "channels": {
-    "emails_sent": 259,
+    "emails_sent": 254,
     "texts_sent": 0,
     "calls_made": 0,
     "meetings_set": 10,
@@ -239,63 +239,63 @@
   "feeds": [
     {
       "name": "NOAA",
-      "last_hit": "2026-07-28T20:15:41.091410+00:00",
+      "last_hit": "2026-07-28T20:29:43.804740+00:00",
       "status": "yellow",
       "data_points_today": 0
     },
     {
       "name": "REDDIT",
-      "last_hit": "2026-07-28T20:15:41.091410+00:00",
-      "status": "yellow",
-      "data_points_today": 0
+      "last_hit": "2026-07-28T20:29:43.804740+00:00",
+      "status": "green",
+      "data_points_today": 10
     },
     {
       "name": "USGS",
-      "last_hit": "2026-07-28T20:15:41.091410+00:00",
+      "last_hit": "2026-07-28T20:29:43.804740+00:00",
       "status": "yellow",
       "data_points_today": 0
     },
     {
       "name": "HACKERNEWS",
-      "last_hit": "2026-07-28T20:15:41.091410+00:00",
+      "last_hit": "2026-07-28T20:29:43.804740+00:00",
       "status": "green",
       "data_points_today": 30
     },
     {
       "name": "FEMA",
-      "last_hit": "2026-07-28T20:15:41.091410+00:00",
+      "last_hit": "2026-07-28T20:29:43.804740+00:00",
       "status": "green",
       "data_points_today": 20
     },
     {
       "name": "COMMODITIES",
-      "last_hit": "2026-07-28T20:15:41.091410+00:00",
+      "last_hit": "2026-07-28T20:29:43.804740+00:00",
       "status": "green",
       "data_points_today": 7
     },
     {
       "name": "RSS",
-      "last_hit": "2026-07-28T20:15:41.091410+00:00",
+      "last_hit": "2026-07-28T20:29:43.804740+00:00",
       "status": "green",
-      "data_points_today": 782
+      "data_points_today": 790
     },
     {
       "name": "FRED",
-      "last_hit": "2026-07-28T20:15:41.091410+00:00",
+      "last_hit": "2026-07-28T20:29:43.804740+00:00",
       "status": "yellow",
       "data_points_today": 0
     },
     {
       "name": "BLS",
-      "last_hit": "2026-07-28T20:15:41.091410+00:00",
+      "last_hit": "2026-07-28T20:29:43.804740+00:00",
       "status": "green",
       "data_points_today": 9
     }
   ],
   "conversion_funnel": {
     "signals": 10,
-    "leads": 205,
-    "contacted": 259,
+    "leads": 200,
+    "contacted": 254,
     "replied": 10,
     "meeting": 10,
     "close": 0
