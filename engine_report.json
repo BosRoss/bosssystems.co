@@ -1,5 +1,5 @@
 {
-  "generated": "2026-07-28T20:40:43.972192+00:00",
+  "generated": "2026-07-28T22:51:47.382893+00:00",
   "engine_state": "active",
   "signals": [
     {
@@ -20,9 +20,9 @@
     },
     {
       "type": "heat_wave",
-      "area": "Texas; Beaver; Sherman; Hansford; Ochiltree; Lipscomb; Moore; Hutchinson; Roberts; Hemphill; Oldham; Potter; Carson; Gray; Wheeler; Deaf Smith; Randall; Armstrong; Donley",
+      "area": "Palo Duro Canyon",
       "niche": "hvac",
-      "action": "HVAC businesses in Texas; Beaver; Sherman; Hansford; Ochiltree; Lipscomb; Moore; Hutchinson; Roberts; Hemphill; Oldham; Potter; Carson; Gray; Wheeler; Deaf Smith; Randall; Armstrong; Donley are drowning in calls right now. Perfect time to pitch.",
+      "action": "HVAC businesses in Palo Duro Canyon are drowning in calls right now. Perfect time to pitch.",
       "urgency": "today",
       "pitch_hook": "You're getting slammed with calls \u2014 how many went to voicemail today?"
     },
@@ -36,9 +36,9 @@
     },
     {
       "type": "heat_wave",
-      "area": "Palo Duro Canyon",
+      "area": "Texas; Beaver; Sherman; Hansford; Ochiltree; Lipscomb; Moore; Hutchinson; Roberts; Hemphill; Oldham; Potter; Carson; Gray; Wheeler; Deaf Smith; Randall; Armstrong; Donley",
       "niche": "hvac",
-      "action": "HVAC businesses in Palo Duro Canyon are drowning in calls right now. Perfect time to pitch.",
+      "action": "HVAC businesses in Texas; Beaver; Sherman; Hansford; Ochiltree; Lipscomb; Moore; Hutchinson; Roberts; Hemphill; Oldham; Potter; Carson; Gray; Wheeler; Deaf Smith; Randall; Armstrong; Donley are drowning in calls right now. Perfect time to pitch.",
       "urgency": "today",
       "pitch_hook": "You're getting slammed with calls \u2014 how many went to voicemail today?"
     },
@@ -225,8 +225,8 @@
     "leads_superniche": 106,
     "leads_hot": 94,
     "leads_warm": 0,
-    "cost_per_qualified": 1.08,
-    "total_spend": 114.81599999999091,
+    "cost_per_qualified": 1.11,
+    "total_spend": 118.01599999999056,
     "spend_cap": 300.0
   },
   "channels": {
@@ -239,55 +239,55 @@
   "feeds": [
     {
       "name": "NOAA",
-      "last_hit": "2026-07-28T20:29:43.804740+00:00",
+      "last_hit": "2026-07-28T22:40:57.751967+00:00",
       "status": "yellow",
       "data_points_today": 0
     },
     {
       "name": "REDDIT",
-      "last_hit": "2026-07-28T20:29:43.804740+00:00",
+      "last_hit": "2026-07-28T22:40:57.751967+00:00",
       "status": "green",
-      "data_points_today": 10
+      "data_points_today": 30
     },
     {
       "name": "USGS",
-      "last_hit": "2026-07-28T20:29:43.804740+00:00",
+      "last_hit": "2026-07-28T22:40:57.751967+00:00",
       "status": "yellow",
       "data_points_today": 0
     },
     {
       "name": "HACKERNEWS",
-      "last_hit": "2026-07-28T20:29:43.804740+00:00",
+      "last_hit": "2026-07-28T22:40:57.751967+00:00",
       "status": "green",
       "data_points_today": 30
     },
     {
       "name": "FEMA",
-      "last_hit": "2026-07-28T20:29:43.804740+00:00",
+      "last_hit": "2026-07-28T22:40:57.751967+00:00",
       "status": "green",
       "data_points_today": 20
     },
     {
       "name": "COMMODITIES",
-      "last_hit": "2026-07-28T20:29:43.804740+00:00",
+      "last_hit": "2026-07-28T22:40:57.751967+00:00",
       "status": "green",
       "data_points_today": 7
     },
     {
       "name": "RSS",
-      "last_hit": "2026-07-28T20:29:43.804740+00:00",
+      "last_hit": "2026-07-28T22:40:57.751967+00:00",
       "status": "green",
-      "data_points_today": 790
+      "data_points_today": 783
     },
     {
       "name": "FRED",
-      "last_hit": "2026-07-28T20:29:43.804740+00:00",
+      "last_hit": "2026-07-28T22:40:57.751967+00:00",
       "status": "yellow",
       "data_points_today": 0
     },
     {
       "name": "BLS",
-      "last_hit": "2026-07-28T20:29:43.804740+00:00",
+      "last_hit": "2026-07-28T22:40:57.751967+00:00",
       "status": "green",
       "data_points_today": 9
     }
