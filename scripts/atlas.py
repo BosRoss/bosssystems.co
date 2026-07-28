@@ -1215,13 +1215,35 @@ def scan_acled() -> List[Dict]:
 # Source: Reddit (pain signals + global)
 # ---------------------------------------------------------------------------
 
-SUBREDDITS = _FEEDS_SUBREDDITS if _FEEDS_SUBREDDITS else [
+# Reddit rate-limits unauthenticated RSS at ~10 req/min. 120+ subreddits
+# in parallel = instant 429 storm. Trimmed to ~30 highest-value subs and
+# switched from ThreadPoolExecutor to sequential with 3-5s sleep.
+# The full list still lives in atlas_feeds.py for reference.
+_REDDIT_TOP30 = [
+    # Geopolitical / Intelligence / Defense (highest signal density)
     "worldnews", "geopolitics", "intelligence", "CredibleDefense",
-    "economics", "politics", "law", "technology", "cybersecurity",
+    "UkrainianConflict", "NorthKoreaNews", "MiddleEastNews",
+    # US Politics / Law
+    "politics", "law", "NeutralPolitics",
+    # Economics / Markets
+    "economics", "stocks", "SupplyChain", "CryptoCurrency",
+    # Business / Trade Pain Signals (BOSS-relevant)
+    "smallbusiness", "HVAC", "Plumbing", "electricians", "contractors",
+    # Technology / AI / Cyber
+    "technology", "cybersecurity", "MachineLearning", "netsec",
+    # Science / Environment / Disaster
+    "collapse", "TropicalWeather", "Earthquakes",
+    # OSINT
+    "OSINT", "CombatFootage",
+    # Biosecurity
+    "epidemiology",
 ]
 
+SUBREDDITS = _REDDIT_TOP30
+
+
 def _fetch_subreddit(sub: str) -> List[Dict]:
-    url = f"https://www.reddit.com/r/{sub}/hot.rss?limit=15"
+    url = f"https://www.reddit.com/r/{sub}/hot.rss?limit=10"
     r = safe_get(url)
     if r is None:
         return []
@@ -1229,7 +1251,7 @@ def _fetch_subreddit(sub: str) -> List[Dict]:
     try:
         root = ET.fromstring(r.content)
         ns = {"atom": "http://www.w3.org/2005/Atom"}
-        for entry in root.findall("atom:entry", ns)[:15]:
+        for entry in root.findall("atom:entry", ns)[:10]:
             title_el = entry.find("atom:title", ns)
             link_el = entry.find("atom:link", ns)
             updated_el = entry.find("atom:updated", ns)
@@ -1251,14 +1273,23 @@ def _fetch_subreddit(sub: str) -> List[Dict]:
 
 
 def scan_reddit() -> List[Dict]:
+    """Fetch Reddit posts sequentially with 3-5s sleep to avoid 429s.
+
+    Previously used ThreadPoolExecutor(max_workers=8) across 120+ subs,
+    which hammered Reddit's unauthenticated RSS and got 429'd on every
+    single request. Now sequential with 30 subs and rate-limit sleep.
+    """
     results = []
-    with concurrent.futures.ThreadPoolExecutor(max_workers=8) as pool:
-        future_map = {pool.submit(_fetch_subreddit, sub): sub for sub in SUBREDDITS}
-        for future in concurrent.futures.as_completed(future_map, timeout=180):
-            try:
-                results.extend(future.result())
-            except Exception:
-                pass
+    for i, sub in enumerate(SUBREDDITS):
+        try:
+            items = _fetch_subreddit(sub)
+            results.extend(items)
+        except Exception:
+            pass
+        # Sleep 4s between requests to stay under Reddit's rate limit
+        # (~10 req/min for unauthenticated RSS)
+        if i < len(SUBREDDITS) - 1:
+            time.sleep(4)
     return results
 
 # ---------------------------------------------------------------------------
@@ -3269,46 +3300,71 @@ def scan_oecd_cli() -> List[Dict]:
 # ---------------------------------------------------------------------------
 
 def scan_opensanctions() -> List[Dict]:
-    """Fetch recently added sanctions/PEP entities from OpenSanctions."""
-    r = safe_get("https://api.opensanctions.org/search/default?q=*&schema=Sanction&limit=50",
-                 timeout=20)
-    if r is None:
-        # Fallback to statements endpoint
-        r = safe_get("https://api.opensanctions.org/statements?limit=50&sort=first_seen:desc",
-                      timeout=20)
-    if r is None:
-        return []
+    """Fetch sanctions data from OpenSanctions free bulk downloads.
+
+    The api.opensanctions.org search API now requires an API key (401).
+    Instead we pull the free CC-licensed US OFAC SDN targets.simple.csv
+    (~7.5 MB) which contains the most intel-relevant sanctions entities.
+    Fallback: names.txt (~1.4 MB plain text list).
+    """
     results = []
-    try:
-        data = r.json()
-        # search endpoint returns {"results": [...]}
-        items = data.get("results", [])
-        if not items:
-            # statements endpoint returns {"results": [...]} or list
-            items = data if isinstance(data, list) else data.get("results", [])
-        for item in items[:50]:
-            caption = item.get("caption", item.get("value", ""))
-            schema = item.get("schema", item.get("prop_type", ""))
-            datasets = item.get("datasets", [])
-            dataset_str = ", ".join(datasets[:3]) if isinstance(datasets, list) else str(datasets)
-            first_seen = item.get("first_seen", "")
-            properties = item.get("properties", {})
-            country = ""
-            if isinstance(properties, dict):
-                countries = properties.get("country", [])
-                country = countries[0] if countries else ""
-            results.append({
-                "source": "opensanctions",
-                "title": str(caption)[:200],
-                "schema": str(schema),
-                "datasets": dataset_str,
-                "country": str(country),
-                "first_seen": str(first_seen),
-                "category": "sanctions",
-                "url": item.get("id", ""),
-            })
-    except (json.JSONDecodeError, ValueError, KeyError):
-        pass
+    # Primary: US OFAC SDN targets.simple.csv (free, CC BY 4.0)
+    r = safe_get(
+        "https://data.opensanctions.org/datasets/latest/us_ofac_sdn/targets.simple.csv",
+        timeout=60,
+    )
+    if r is not None and r.status_code == 200:
+        try:
+            import csv
+            import io
+            reader = csv.DictReader(io.StringIO(r.text))
+            count = 0
+            for row in reader:
+                if count >= 50:
+                    break
+                caption = row.get("caption", row.get("name", ""))
+                schema = row.get("schema", "")
+                datasets = row.get("datasets", "")
+                country = row.get("countries", row.get("country", ""))
+                first_seen = row.get("first_seen", "")
+                if not caption:
+                    continue
+                results.append({
+                    "source": "opensanctions",
+                    "title": str(caption)[:200],
+                    "schema": str(schema),
+                    "datasets": str(datasets)[:100],
+                    "country": str(country),
+                    "first_seen": str(first_seen),
+                    "category": "sanctions",
+                    "url": f"https://www.opensanctions.org/entities/{row.get('id', '')}",
+                })
+                count += 1
+        except Exception:
+            pass
+    # Fallback: names.txt (plain text, ~1.4 MB)
+    if not results:
+        r2 = safe_get(
+            "https://data.opensanctions.org/datasets/latest/us_ofac_sdn/names.txt",
+            timeout=30,
+        )
+        if r2 is not None and r2.status_code == 200:
+            try:
+                lines = [ln.strip() for ln in r2.text.splitlines()
+                         if ln.strip() and not ln.startswith("#")]
+                for name in lines[:50]:
+                    results.append({
+                        "source": "opensanctions",
+                        "title": name[:200],
+                        "schema": "LegalEntity",
+                        "datasets": "us_ofac_sdn",
+                        "country": "",
+                        "first_seen": "",
+                        "category": "sanctions",
+                        "url": "",
+                    })
+            except Exception:
+                pass
     return results[:30]
 
 
@@ -3317,22 +3373,31 @@ def scan_opensanctions() -> List[Dict]:
 # ---------------------------------------------------------------------------
 
 def scan_urlhaus() -> List[Dict]:
-    """Fetch recently added malware distribution URLs from URLhaus."""
-    try:
-        r = _session.post("https://urlhaus-api.abuse.ch/v1/urls/recent/",
-                          timeout=20)
-        if r.status_code != 200:
-            return []
-    except requests.RequestException as e:
-        log.warning("URLhaus scan failed: %s", e)
+    """Fetch recently added malware distribution URLs from URLhaus.
+
+    The POST API at urlhaus-api.abuse.ch/v1/ now returns 401 (needs auth).
+    Instead we use the free JSON download at urlhaus.abuse.ch/downloads/json_recent/
+    which returns the same data without authentication.
+    """
+    # Primary: free JSON download (no auth required)
+    r = safe_get("https://urlhaus.abuse.ch/downloads/json_recent/", timeout=30)
+    if r is None:
         return []
     results = []
     try:
         data = r.json()
-        urls = data.get("urls", [])
-        for u in urls[:30]:
+        # json_recent returns {id: [entries...], id: [entries...], ...}
+        count = 0
+        for url_id, entries in data.items():
+            if count >= 30:
+                break
+            if not isinstance(entries, list) or not entries:
+                continue
+            u = entries[0]  # Take the first entry for each URL
             tags = u.get("tags", [])
-            tag_str = ", ".join(tags) if isinstance(tags, list) else str(tags or "")
+            if tags is None:
+                tags = []
+            tag_str = ", ".join(tags) if isinstance(tags, list) else str(tags)
             results.append({
                 "source": "urlhaus",
                 "title": f"Malware URL: {u.get('url', '')[:100]}",
@@ -3342,9 +3407,11 @@ def scan_urlhaus() -> List[Dict]:
                 "tags": tag_str,
                 "host": u.get("host", ""),
                 "date_added": u.get("dateadded", ""),
+                "urlhaus_link": u.get("urlhaus_link", ""),
                 "category": "cyber",
             })
-    except (json.JSONDecodeError, ValueError):
+            count += 1
+    except (json.JSONDecodeError, ValueError, TypeError, AttributeError):
         pass
     return results
 
@@ -3354,38 +3421,43 @@ def scan_urlhaus() -> List[Dict]:
 # ---------------------------------------------------------------------------
 
 def scan_malwarebazaar() -> List[Dict]:
-    """Fetch recent malware samples from MalwareBazaar."""
-    try:
-        r = _session.post("https://mb-api.abuse.ch/api/v1/",
-                          data={"query": "get_recent", "selector": "time"},
-                          timeout=20)
-        if r.status_code != 200:
-            return []
-    except requests.RequestException as e:
-        log.warning("MalwareBazaar scan failed: %s", e)
-        return []
+    """Fetch recent malware samples from MalwareBazaar.
+
+    The POST API at mb-api.abuse.ch/api/v1/ now returns 401 (needs auth key
+    from auth.abuse.ch). Instead we use the free text export of recent MD5
+    hashes at bazaar.abuse.ch/export/txt/md5/recent/ and SHA256 hashes at
+    bazaar.abuse.ch/export/txt/sha256/recent/ which work without auth.
+    """
     results = []
+    # Primary: recent SHA256 hashes (more useful for lookups than MD5)
+    r = safe_get("https://bazaar.abuse.ch/export/txt/sha256/recent/", timeout=30)
+    if r is None:
+        # Fallback: MD5 hashes
+        r = safe_get("https://bazaar.abuse.ch/export/txt/md5/recent/", timeout=30)
+    if r is None:
+        return []
     try:
-        data = r.json()
-        samples = data.get("data", [])
-        if not isinstance(samples, list):
-            return []
-        for s in samples[:30]:
-            tags = s.get("tags", [])
-            tag_str = ", ".join(tags) if isinstance(tags, list) and tags else ""
+        hash_type = "sha256" if "sha256" in (r.url or "") else "md5"
+        lines = [ln.strip() for ln in r.text.splitlines()
+                 if ln.strip() and not ln.startswith("#")]
+        for h in lines[:30]:
+            if not h or len(h) < 16:
+                continue
             results.append({
                 "source": "malwarebazaar",
-                "title": f"{s.get('signature', 'Unknown')} - {s.get('file_type', '')}",
-                "sha256": s.get("sha256_hash", ""),
-                "signature": s.get("signature", ""),
-                "file_type": s.get("file_type", ""),
-                "file_size": s.get("file_size", 0),
-                "tags": tag_str,
-                "reporter": s.get("reporter", ""),
-                "first_seen": s.get("first_seen", ""),
+                "title": f"Recent malware sample ({hash_type}): {h[:16]}...",
+                "sha256": h if hash_type == "sha256" else "",
+                "md5": h if hash_type == "md5" else "",
+                "signature": "",
+                "file_type": "",
+                "file_size": 0,
+                "tags": "",
+                "reporter": "",
+                "first_seen": "",
                 "category": "cyber",
+                "url": f"https://bazaar.abuse.ch/browse/tag/{h}/",
             })
-    except (json.JSONDecodeError, ValueError):
+    except (ValueError, AttributeError):
         pass
     return results
 
@@ -3395,47 +3467,86 @@ def scan_malwarebazaar() -> List[Dict]:
 # ---------------------------------------------------------------------------
 
 def scan_wfp_hunger() -> List[Dict]:
-    """Fetch World Food Programme real-time food insecurity data."""
-    r = safe_get("https://api.hungermapdata.org/v2/adm0/world", timeout=20)
-    if r is None:
-        r = safe_get("https://api.hungermapdata.org/v1/foodsecurity/country/all", timeout=20)
-    if r is None:
-        return []
+    """Fetch World Food Programme real-time food insecurity data.
+
+    The v2/adm0/world endpoint returns 404 and v1/foodsecurity/country/all
+    also returns 404. Working endpoints confirmed July 2026:
+    - v2/info/country returns country list with demographics (no FCS data)
+    - v1/foodsecurity/country/{ISO3} returns FCS + RCSI per country
+    We first get the country list, then query food security for the most
+    crisis-prone countries to stay under rate limits.
+    """
+    # Crisis-prone countries most likely to have food insecurity data
+    # (avoids querying 200+ countries and hitting rate limits)
+    CRISIS_COUNTRIES = [
+        "AFG", "YEM", "SSD", "SOM", "ETH", "COD", "SDN", "NGA", "MLI",
+        "BFA", "NER", "TCD", "CAF", "MOZ", "MDG", "HTI", "SYR", "IRQ",
+        "LBN", "PSE", "MMR", "PAK", "BGD", "KEN", "UGA", "TZA", "MWI",
+        "ZMB", "ZWE", "CMR", "GIN", "SLE", "LBR", "SEN", "MRT", "DJI",
+        "ERI", "LAO", "KHM", "GTM", "HND", "SLV", "NIC", "COL", "VEN",
+    ]
     results = []
-    try:
-        data = r.json()
-        # v2 returns {"body": {"countries": [...]}} or similar
-        countries = data.get("body", {}).get("countries", [])
-        if not countries:
-            countries = data.get("countries", [])
-        if not countries and isinstance(data, list):
-            countries = data
-        for c in countries:
-            country_name = c.get("country", {}).get("name", c.get("name", ""))
-            country_iso3 = c.get("country", {}).get("iso3", c.get("iso3", ""))
-            # Food consumption score
-            fcs = c.get("fcs", c.get("fcsPeople", {}))
-            people_insufficient = 0
-            if isinstance(fcs, dict):
-                people_insufficient = fcs.get("people", 0)
-            prevalence = c.get("foodInsecurityPrevalence", c.get("prevalence", 0))
-            population = c.get("population", c.get("pop", 0))
-            if not country_name:
+    # First get country names from v2/info/country
+    country_names = {}
+    r_info = safe_get("https://api.hungermapdata.org/v2/info/country", timeout=20)
+    if r_info is not None:
+        try:
+            info_data = r_info.json()
+            countries_info = info_data.get("body", {}).get("countries", [])
+            if not countries_info:
+                countries_info = info_data.get("countries", [])
+            for c in countries_info:
+                iso3 = c.get("iso3", "")
+                name = c.get("name", "")
+                pop = c.get("population", {}).get("number", 0) if isinstance(c.get("population"), dict) else 0
+                if iso3:
+                    country_names[iso3] = {"name": name, "population": pop}
+        except (json.JSONDecodeError, ValueError, KeyError):
+            pass
+    # Query food security for crisis countries via v1 per-country endpoint
+    for iso3 in CRISIS_COUNTRIES:
+        r = safe_get(
+            f"https://api.hungermapdata.org/v1/foodsecurity/country/{iso3}",
+            timeout=15,
+        )
+        if r is None:
+            continue
+        try:
+            data = r.json()
+            body = data.get("body", data)
+            if isinstance(body, dict) and body.get("statusCode") == "404":
                 continue
+            # v1 per-country returns {body: {metrics: {fcs: {people, prevalence}, rcsi: {people, prevalence}}}}
+            metrics = body.get("metrics", body)
+            fcs = metrics.get("fcs", {})
+            rcsi = metrics.get("rcsi", {})
+            fcs_people = 0
+            fcs_prevalence = 0
+            if isinstance(fcs, dict):
+                fcs_people = fcs.get("people", 0) or 0
+                fcs_prevalence = fcs.get("prevalence", 0) or 0
+            rcsi_people = 0
+            if isinstance(rcsi, dict):
+                rcsi_people = rcsi.get("people", 0) or 0
+            info = country_names.get(iso3, {})
+            country_name = info.get("name", iso3)
+            population = info.get("population", 0)
             # Only include countries with significant food insecurity
-            if people_insufficient > 100000 or (isinstance(prevalence, (int, float)) and prevalence > 10):
+            if fcs_people > 100000 or fcs_prevalence > 10:
                 results.append({
                     "source": "wfp_hunger",
                     "title": f"Food insecurity: {country_name}",
                     "country": country_name,
-                    "iso3": country_iso3,
-                    "people_insufficient_food": people_insufficient,
-                    "prevalence_pct": prevalence,
+                    "iso3": iso3,
+                    "people_insufficient_food": fcs_people,
+                    "prevalence_pct": fcs_prevalence,
+                    "rcsi_people": rcsi_people,
                     "population": population,
                     "category": "humanitarian",
                 })
-    except (json.JSONDecodeError, ValueError, KeyError):
-        pass
+        except (json.JSONDecodeError, ValueError, KeyError):
+            pass
+        time.sleep(0.3)  # Rate limit courtesy
     results.sort(key=lambda x: x.get("people_insufficient_food", 0), reverse=True)
     return results[:30]
 
@@ -3505,58 +3616,118 @@ def scan_wb_governance() -> List[Dict]:
 # ---------------------------------------------------------------------------
 
 def scan_ucdp() -> List[Dict]:
-    """Fetch armed conflict events from Uppsala Conflict Data Program."""
-    r = safe_get("https://ucdpapi.pcr.uu.se/api/gedevents/24.1",
-                 params={"pagesize": "100", "page": "0"},
-                 timeout=20)
+    """Fetch armed conflict events from Uppsala Conflict Data Program.
+
+    The UCDP API at ucdpapi.pcr.uu.se now requires an x-ucdp-access-token
+    header (returns 401 without it). Instead we download the GED CSV zip
+    directly from ucdp.uu.se/downloads/ which is free (CC BY 4.0).
+    We cache the extracted CSV for 24 hours to avoid re-downloading the
+    ~40MB zip on every scan.
+    """
+    import zipfile
+    import io
+    import csv
+
+    # Check for cached CSV data (24h TTL)
+    cache_path = os.path.join(os.path.dirname(os.path.abspath(__file__)),
+                              "..", "atlas_data", "ucdp_ged_cache.json")
+    cache_path = os.path.normpath(cache_path)
+    try:
+        if os.path.exists(cache_path):
+            cache_age = time.time() - os.path.getmtime(cache_path)
+            if cache_age < 86400:  # 24 hours
+                with open(cache_path, "r") as f:
+                    cached = json.load(f)
+                if isinstance(cached, list) and cached:
+                    log.info("  ucdp: using cached data (%d events, %.1fh old)",
+                             len(cached), cache_age / 3600)
+                    return cached
+    except Exception:
+        pass
+
+    # Download GED CSV zip -- try latest version first, then fallbacks
+    versions = ["261", "260", "251"]
+    r = None
+    for ver in versions:
+        url = f"https://ucdp.uu.se/downloads/ged/ged{ver}-csv.zip"
+        try:
+            r = _session.get(url, timeout=90, stream=True)
+            if r.status_code == 200:
+                log.info("  ucdp: downloading GED v%s CSV", ver)
+                break
+            r = None
+        except requests.RequestException:
+            r = None
+
     if r is None:
+        log.warning("ucdp: all GED CSV download attempts failed")
         return []
+
     results = []
     try:
-        data = r.json()
-        events = data.get("Result", [])
-        for event in events[:50]:
-            country = event.get("country", "")
-            region = event.get("region", "")
-            date_start = event.get("date_start", "")
-            date_end = event.get("date_end", "")
-            best_est = event.get("best", 0)
-            high_est = event.get("high", 0)
-            low_est = event.get("low", 0)
-            side_a = event.get("side_a", "")
-            side_b = event.get("side_b", "")
-            event_type = event.get("type_of_violence", "")
-            latitude = event.get("latitude")
-            longitude = event.get("longitude")
-            source_article = event.get("source_article", "")
-            where_desc = event.get("where_description", "")
-            type_labels = {1: "State-based", 2: "Non-state", 3: "One-sided"}
-            try:
-                event_type_str = type_labels.get(int(event_type), str(event_type))
-            except (ValueError, TypeError):
-                event_type_str = str(event_type)
-            title = f"{event_type_str} conflict: {side_a} vs {side_b}" if side_b else f"{event_type_str} violence by {side_a}"
-            results.append({
-                "source": "ucdp",
-                "title": title[:200],
-                "country": country,
-                "region": region,
-                "location": where_desc,
-                "date_start": date_start,
-                "date_end": date_end,
-                "fatalities_best": best_est,
-                "fatalities_high": high_est,
-                "fatalities_low": low_est,
-                "side_a": side_a,
-                "side_b": side_b,
-                "type_of_violence": event_type_str,
-                "latitude": latitude,
-                "longitude": longitude,
-                "source_article": (source_article or "")[:200],
-                "category": "conflict",
-            })
-    except (json.JSONDecodeError, ValueError, KeyError):
+        zf = zipfile.ZipFile(io.BytesIO(r.content))
+        csv_names = [n for n in zf.namelist() if n.endswith(".csv")]
+        if not csv_names:
+            return []
+        with zf.open(csv_names[0]) as csvfile:
+            reader = csv.DictReader(io.TextIOWrapper(csvfile, encoding="utf-8"))
+            # Collect all events, then sort by date to get most recent
+            all_events = []
+            for row in reader:
+                all_events.append(row)
+            # Sort by date descending to get most recent events
+            all_events.sort(key=lambda x: x.get("date_start", ""), reverse=True)
+            type_labels = {"1": "State-based", "2": "Non-state", "3": "One-sided"}
+            for event in all_events[:50]:
+                country = event.get("country", "")
+                region = event.get("region", "")
+                date_start = event.get("date_start", "")
+                date_end = event.get("date_end", "")
+                best_est = int(event.get("best", 0) or 0)
+                high_est = int(event.get("high", 0) or 0)
+                low_est = int(event.get("low", 0) or 0)
+                side_a = event.get("side_a", "")
+                side_b = event.get("side_b", "")
+                event_type = str(event.get("type_of_violence", ""))
+                latitude = event.get("latitude")
+                longitude = event.get("longitude")
+                source_article = event.get("source_article", "")
+                where_desc = event.get("where_description", event.get("where_prec", ""))
+                event_type_str = type_labels.get(event_type, event_type)
+                title = (f"{event_type_str} conflict: {side_a} vs {side_b}"
+                         if side_b
+                         else f"{event_type_str} violence by {side_a}")
+                results.append({
+                    "source": "ucdp",
+                    "title": title[:200],
+                    "country": country,
+                    "region": region,
+                    "location": where_desc,
+                    "date_start": date_start,
+                    "date_end": date_end,
+                    "fatalities_best": best_est,
+                    "fatalities_high": high_est,
+                    "fatalities_low": low_est,
+                    "side_a": side_a,
+                    "side_b": side_b,
+                    "type_of_violence": event_type_str,
+                    "latitude": latitude,
+                    "longitude": longitude,
+                    "source_article": (source_article or "")[:200],
+                    "category": "conflict",
+                })
+    except Exception as e:
+        log.warning("ucdp: CSV parse error: %s", e)
+        return []
+
+    # Cache results for 24h
+    try:
+        os.makedirs(os.path.dirname(cache_path), exist_ok=True)
+        with open(cache_path, "w") as f:
+            json.dump(results, f)
+    except Exception:
         pass
+
     return results
 
 
@@ -6517,6 +6688,15 @@ def _run_scan_impl(power: str):
              geo_graph.get("nodes", 0), geo_graph.get("edges", 0),
              len(geo_graph.get("bridge_countries", [])))
 
+    # Indicator-based warning system (war, coup, financial, humanitarian, cyber, nuclear)
+    active_warnings = []
+    try:
+        from atlas_warnings import evaluate_warnings
+        active_warnings = evaluate_warnings(all_data, anomalies)
+        log.info("Warning system: %d active warnings", len(active_warnings))
+    except Exception as e:
+        log.warning("Warning system failed: %s", e)
+
     # ATLAS Predictions.original probability estimates
     log.info("Generating ATLAS predictions...")
     atlas_predictions = generate_atlas_predictions(all_data, anomalies, assessments)
@@ -6541,6 +6721,7 @@ def _run_scan_impl(power: str):
         "geopolitical_graph": geo_graph,
         "countries": country_intel,
         "trend_alerts": trend_alerts,
+        "active_warnings": active_warnings,
         "historical_calibration": HISTORICAL_CALIBRATION,
         "gdelt": all_data.get("gdelt", []),
         "adsb": all_data.get("adsb", []),
@@ -6620,6 +6801,14 @@ def _run_scan_impl(power: str):
         "wb_governance": all_data.get("wb_governance", []),
         "ucdp": all_data.get("ucdp", []),
     }
+
+    # Structured daily brief (professional intelligence format)
+    try:
+        from atlas_brief import generate_brief
+        report["daily_brief"] = generate_brief(report, active_warnings)
+        log.info("Structured brief generated")
+    except Exception as e:
+        log.warning("Brief generation failed: %s", e)
 
     # Preserve trader_intel so the feedback loop persists across scans
     # The paper trader writes trader_intel to latest.json; when ATLAS scans,
@@ -6889,6 +7078,13 @@ def daily_digest():
         return
 
     lines = []
+
+    # Active warnings (highest priority — show before everything else)
+    active_warnings = report.get("active_warnings", [])
+    for w in active_warnings:
+        if w.get("level") in ("CRITICAL", "WARNING"):
+            evidence = "; ".join(w.get("evidence", [])[:2])
+            lines.append(f"[{w['level']}] {w.get('label', '')} ({w.get('triggered_count', 0)}/{w.get('total_indicators', 0)} indicators, {w.get('confidence', 0)}% conf) {evidence}")
 
     # Top assessments
     assessments = report.get("assessments", [])

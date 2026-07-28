@@ -505,6 +505,7 @@ html, body { height: 100%; overflow: hidden; background: var(--bg); color: var(-
         <button class="tab" data-tab="politics">POL</button>
         <button class="tab" data-tab="graph">GRAPH</button>
         <button class="tab" data-tab="sources">SRC</button>
+        <button class="tab" data-tab="warnings">WARN</button>
         <button class="tab" data-tab="brief">BRIEF</button>
         <button class="tab" data-tab="ask">ASK</button>
       </div>
@@ -522,6 +523,7 @@ html, body { height: 100%; overflow: hidden; background: var(--bg); color: var(-
       <div class="panel" id="panel-politics"></div>
       <div class="panel" id="panel-graph"></div>
       <div class="panel" id="panel-sources"></div>
+      <div class="panel" id="panel-warnings"></div>
       <div class="panel" id="panel-brief">
         <div id="brief-content">
           <div class="welcome-message">
@@ -1225,7 +1227,7 @@ html, body { height: 100%; overflow: hidden; background: var(--bg); color: var(-
     renderTopbar(); renderMapLayers(); renderAnomalyBanner(); renderHeadlines();
     renderAnomalies(); renderClaims(); renderFlights(); renderAssessments();
     renderOpportunities(); renderPredictions(); renderFeed(); renderCalibration(); renderTrader(); renderPolitics();
-    renderGraph(); renderSources();
+    renderGraph(); renderSources(); renderWarnings(); renderDailyBrief();
   }
 
   function renderTopbar() {
@@ -1250,6 +1252,12 @@ html, body { height: 100%; overflow: hidden; background: var(--bg); color: var(-
     var predCount = ((data.predictions || {}).atlas_predictions || []).length;
     var predTab = document.querySelector('[data-tab="predictions"]');
     if (predCount > 0) predTab.innerHTML = 'MARKETS<span class="tab-count" style="background:rgba(75,146,219,0.2);color:var(--primary)">' + predCount + '</span>';
+    var warnCount = (data.active_warnings || []).length;
+    var warnTab = document.querySelector('[data-tab="warnings"]');
+    if (warnTab) {
+      if (warnCount > 0) warnTab.innerHTML = 'WARN<span class="tab-count" style="background:rgba(232,64,64,0.2);color:var(--danger)">' + warnCount + '</span>';
+      else warnTab.innerHTML = 'WARN';
+    }
   }
 
   // Power selector
@@ -1895,6 +1903,195 @@ html, body { height: 100%; overflow: hidden; background: var(--bg); color: var(-
     }
 
     panel.innerHTML = html;
+  }
+
+  function renderWarnings() {
+    var panel = document.getElementById('panel-warnings');
+    if (!panel) return;
+    var warnings = data.active_warnings || [];
+    var html = '<div class="section-title">INDICATOR-BASED WARNING SYSTEM</div>';
+    html += '<div style="font-size:9px;color:var(--text-dim);margin-bottom:10px;font-family:var(--font-data)">6 threat bundles evaluated each scan. Warning issued when 3+ of 5-7 indicators trigger simultaneously.</div>';
+
+    var allBundles = [
+      {code:'WAR_RISK', label:'Interstate War / Major Conflict', icon:'&#9876;'},
+      {code:'COUP_RISK', label:'Coup / Unconstitutional Power Seizure', icon:'&#9760;'},
+      {code:'FINANCIAL_CRISIS', label:'Financial Crisis / Market Contagion', icon:'&#128200;'},
+      {code:'HUMANITARIAN_CRISIS', label:'Humanitarian Crisis / Mass Displacement', icon:'&#127987;'},
+      {code:'CYBER_THREAT', label:'Major Cyber Attack / Infrastructure Threat', icon:'&#128274;'},
+      {code:'NUCLEAR_RISK', label:'Nuclear Escalation / Radiological Event', icon:'&#9762;'}
+    ];
+
+    var warnMap = {};
+    for (var i = 0; i < warnings.length; i++) warnMap[warnings[i].code] = warnings[i];
+
+    for (var b = 0; b < allBundles.length; b++) {
+      var bundle = allBundles[b];
+      var w = warnMap[bundle.code];
+      var level = w ? w.level : 'NORMAL';
+      var levelColor = level === 'CRITICAL' ? 'var(--danger)' : level === 'WARNING' ? '#E84040' : level === 'ELEVATED' ? 'var(--warning)' : 'var(--text-dim)';
+      var bgColor = level === 'CRITICAL' ? 'rgba(232,64,64,0.08)' : level === 'WARNING' ? 'rgba(232,64,64,0.05)' : level === 'ELEVATED' ? 'rgba(232,168,64,0.05)' : 'var(--surface-2)';
+      var triggered = w ? w.triggered_count : 0;
+      var total = w ? w.total_indicators : 0;
+      var conf = w ? w.confidence : 0;
+
+      html += '<div style="background:'+bgColor+';border:1px solid '+(level !== 'NORMAL' ? levelColor+'40' : 'var(--border)')+';padding:10px;margin-bottom:6px">';
+      html += '<div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:4px">';
+      html += '<div style="display:flex;align-items:center;gap:6px"><span style="font-size:14px">'+bundle.icon+'</span><span style="font-size:10px;font-weight:700;color:var(--text);font-family:var(--font-data)">'+esc(bundle.label)+'</span></div>';
+      html += '<span style="font-size:9px;font-weight:700;color:'+levelColor+';font-family:var(--font-data);letter-spacing:1px;padding:2px 6px;border:1px solid '+levelColor+'40;background:'+levelColor+'10">'+level+'</span>';
+      html += '</div>';
+
+      html += '<div style="display:flex;gap:12px;font-size:9px;font-family:var(--font-data);color:var(--text-dim);margin-bottom:4px">';
+      html += '<span>Indicators: <span style="color:'+(triggered >= 3 ? levelColor : 'var(--text)')+'">'+triggered+'/'+total+'</span></span>';
+      if (conf > 0) html += '<span>Confidence: <span style="color:'+levelColor+'">'+conf+'%</span></span>';
+      html += '</div>';
+
+      // Indicator bar
+      if (total > 0) {
+        html += '<div style="display:flex;gap:2px;margin-bottom:4px">';
+        for (var ci = 0; ci < total; ci++) {
+          var iColor = ci < triggered ? levelColor : 'var(--surface-3)';
+          html += '<div style="flex:1;height:3px;background:'+iColor+'"></div>';
+        }
+        html += '</div>';
+      }
+
+      // Evidence
+      if (w && w.evidence && w.evidence.length > 0) {
+        for (var ei = 0; ei < Math.min(w.evidence.length, 3); ei++) {
+          html += '<div style="font-size:9px;color:var(--text-muted);font-family:var(--font-data);padding:2px 0 0 20px">'+esc(w.evidence[ei])+'</div>';
+        }
+      }
+
+      // Show individual indicators if available
+      if (w && w.indicators) {
+        html += '<div style="margin-top:4px;padding-left:20px">';
+        for (var ii = 0; ii < w.indicators.length; ii++) {
+          var ind = w.indicators[ii];
+          var indColor = ind.triggered ? levelColor : 'var(--text-dim)';
+          var indDot = ind.triggered ? '&#9679;' : '&#9675;';
+          html += '<div style="font-size:8px;color:'+indColor+';font-family:var(--font-data);padding:1px 0">'+indDot+' '+esc(ind.name.replace(/_/g,' '))+'</div>';
+        }
+        html += '</div>';
+      }
+
+      html += '</div>';
+    }
+
+    panel.innerHTML = html;
+  }
+
+  function renderDailyBrief() {
+    var brief = data.daily_brief;
+    if (!brief) return;
+
+    var panel = document.getElementById('panel-brief');
+    var briefContent = document.getElementById('brief-content');
+    if (!briefContent) return;
+
+    // Only render the structured brief when no country is selected (default view)
+    if (briefContent.getAttribute('data-country')) return;
+
+    var html = '<div class="section-title">STRUCTURED INTELLIGENCE BRIEF</div>';
+    html += '<div style="font-size:9px;color:var(--text-dim);margin-bottom:12px;font-family:var(--font-data)">Generated '+esc(relTime(brief.generated))+' | Click any country on the map for country-specific brief</div>';
+
+    // Key developments
+    var kd = brief.key_developments || [];
+    if (kd.length > 0) {
+      html += '<div style="font-size:9px;font-weight:700;letter-spacing:2px;color:var(--danger);margin:10px 0 6px;font-family:var(--font-data);border-bottom:1px solid var(--border);padding-bottom:3px">KEY DEVELOPMENTS</div>';
+      for (var i = 0; i < kd.length; i++) {
+        var d = kd[i];
+        var sevColor = d.severity === 'high' ? 'var(--danger)' : 'var(--warning)';
+        html += '<div style="padding:6px 8px;margin-bottom:4px;border-left:3px solid '+sevColor+';background:var(--surface-2)">';
+        html += '<div style="font-size:10px;color:var(--text);font-family:var(--font-data)">'+esc(d.headline)+'</div>';
+        html += '<div style="font-size:8px;color:var(--text-dim);font-family:var(--font-data);margin-top:2px">'+esc(d.type)+' | '+esc(d.severity)+'</div>';
+        html += '</div>';
+      }
+    }
+
+    // Regional updates
+    var regions = brief.regional_updates || {};
+    var regionKeys = Object.keys(regions);
+    if (regionKeys.length > 0) {
+      html += '<div style="font-size:9px;font-weight:700;letter-spacing:2px;color:var(--primary);margin:12px 0 6px;font-family:var(--font-data);border-bottom:1px solid var(--border);padding-bottom:3px">REGIONAL UPDATES</div>';
+      for (var ri = 0; ri < regionKeys.length; ri++) {
+        var rk = regionKeys[ri];
+        var rd = regions[rk];
+        if (!rd || !rd.items || !rd.items.length) continue;
+        html += '<div style="margin-bottom:8px">';
+        html += '<div style="font-size:9px;font-weight:700;color:var(--accent);font-family:var(--font-data);margin-bottom:3px">'+esc(rd.label || rk)+' <span style="color:var(--text-dim);font-weight:400">('+rd.event_count+' events)</span></div>';
+        for (var rii = 0; rii < Math.min(rd.items.length, 3); rii++) {
+          var item = rd.items[rii];
+          html += '<div style="font-size:9px;color:var(--text-muted);font-family:var(--font-data);padding:1px 0 1px 10px">- '+esc((item.title||'').substring(0,100))+'</div>';
+        }
+        html += '</div>';
+      }
+    }
+
+    // Economic pulse
+    var pulse = brief.economic_pulse || {};
+    var notableFutures = (pulse.futures || []).filter(function(f){ return f.notable; });
+    if (notableFutures.length > 0) {
+      html += '<div style="font-size:9px;font-weight:700;letter-spacing:2px;color:var(--warning);margin:12px 0 6px;font-family:var(--font-data);border-bottom:1px solid var(--border);padding-bottom:3px">ECONOMIC PULSE</div>';
+      html += '<div style="display:flex;flex-wrap:wrap;gap:6px;margin-bottom:6px">';
+      for (var fi = 0; fi < notableFutures.length; fi++) {
+        var f = notableFutures[fi];
+        var chgColor = f.change_pct > 0 ? 'var(--success)' : 'var(--danger)';
+        html += '<div style="background:var(--surface-2);border:1px solid var(--border);padding:4px 8px;font-family:var(--font-data)">';
+        html += '<div style="font-size:8px;color:var(--text-dim)">'+esc(f.name || f.symbol)+'</div>';
+        html += '<div style="font-size:11px;font-weight:700;color:'+chgColor+'">'+((f.change_pct > 0 ? '+' : '') + f.change_pct.toFixed(1))+'%</div>';
+        html += '</div>';
+      }
+      html += '</div>';
+    }
+
+    // Cyber/tech
+    var cyber = brief.cyber_tech || [];
+    var highCyber = cyber.filter(function(c){ return c.severity === 'high'; });
+    if (highCyber.length > 0) {
+      html += '<div style="font-size:9px;font-weight:700;letter-spacing:2px;color:#E040E0;margin:12px 0 6px;font-family:var(--font-data);border-bottom:1px solid var(--border);padding-bottom:3px">CYBER / TECH</div>';
+      for (var ci = 0; ci < highCyber.length; ci++) {
+        html += '<div style="font-size:9px;color:var(--text);font-family:var(--font-data);padding:2px 0">&#9679; '+esc(highCyber[ci].headline)+'</div>';
+      }
+    }
+
+    // Warnings
+    var warnings = brief.warnings || [];
+    if (warnings.length > 0) {
+      html += '<div style="font-size:9px;font-weight:700;letter-spacing:2px;color:var(--danger);margin:12px 0 6px;font-family:var(--font-data);border-bottom:1px solid var(--border);padding-bottom:3px">ACTIVE WARNINGS</div>';
+      for (var wi = 0; wi < warnings.length; wi++) {
+        var w = warnings[wi];
+        html += '<div style="background:rgba(232,64,64,0.06);border:1px solid rgba(232,64,64,0.2);padding:6px 8px;margin-bottom:4px">';
+        html += '<div style="font-size:9px;font-weight:700;color:var(--danger);font-family:var(--font-data)">['+esc(w.level)+'] '+esc(w.label)+'</div>';
+        html += '<div style="font-size:8px;color:var(--text-dim);font-family:var(--font-data)">'+w.triggered+'/'+w.total+' indicators | '+w.confidence+'% confidence</div>';
+        html += '</div>';
+      }
+    }
+
+    // Watch list
+    var watch = brief.watch_list || [];
+    if (watch.length > 0) {
+      html += '<div style="font-size:9px;font-weight:700;letter-spacing:2px;color:var(--warning);margin:12px 0 6px;font-family:var(--font-data);border-bottom:1px solid var(--border);padding-bottom:3px">WATCH LIST</div>';
+      for (var wli = 0; wli < Math.min(watch.length, 6); wli++) {
+        var wl = watch[wli];
+        var wlColor = wl.priority === 'high' ? 'var(--warning)' : 'var(--text-muted)';
+        html += '<div style="font-size:9px;color:'+wlColor+';font-family:var(--font-data);padding:2px 0">&#9679; '+esc(wl.alert)+'</div>';
+      }
+    }
+
+    // Forecast updates
+    var forecasts = brief.forecast_updates || [];
+    if (forecasts.length > 0) {
+      html += '<div style="font-size:9px;font-weight:700;letter-spacing:2px;color:var(--primary);margin:12px 0 6px;font-family:var(--font-data);border-bottom:1px solid var(--border);padding-bottom:3px">FORECAST DIVERGENCES</div>';
+      for (var fci = 0; fci < Math.min(forecasts.length, 5); fci++) {
+        var fc = forecasts[fci];
+        var divColor = Math.abs(fc.divergence) >= 10 ? 'var(--warning)' : 'var(--text-muted)';
+        html += '<div style="font-size:9px;color:var(--text);font-family:var(--font-data);padding:2px 0">';
+        html += esc(fc.question) + ' <span style="color:'+divColor+';font-weight:700">(gap '+(fc.divergence > 0 ? '+' : '')+fc.divergence.toFixed(0)+'%)</span>';
+        html += '</div>';
+      }
+    }
+
+    briefContent.innerHTML = html;
   }
 
   // Scan button
