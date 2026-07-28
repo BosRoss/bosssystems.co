@@ -1,26 +1,31 @@
 {
-  "generated": "2026-07-27T21:30:53.745310+00:00",
+  "generated": "2026-07-28T20:30:03.364215+00:00",
   "sections": {
     "atlas": {
       "power_level": "ACTIVE",
-      "last_scan": "2026-07-22T03:26:44.202557+00:00",
-      "scan_count": 203,
+      "last_scan": "2026-07-28T20:15:41.091410+00:00",
+      "scan_count": 207,
       "heat_score": 100,
-      "recommendation": "HOT DAY. Weather-driven demand in La Salle, TX, Live Oak, TX; McMullen, TX, Briscoe; Hall; Childress; Motley; Cottle; Dickens; King; Kent; Stonewall. Call HVAC/roofers there NOW.",
+      "recommendation": "HOT DAY. Weather-driven demand in Palo Duro Canyon, St. James; St. John The Baptist; Upper St. Bernard; Lower St. Bernard; Southeast St. Tammany; Western Orleans; Eastern Orleans; Northern St. Tammany; Southwestern St. Tammany; Central Tangipahoa; Lowe, Ashley; Chicot; Morehouse; West Carroll; East Carroll; Richland; Madison; Franklin; Catahoula; Tensas; Concordia; Montgomery; Webster; Clay; Lowndes; Choctaw; Oktibbeha; Attala; Winston; Noxubee; Leak. Call HVAC/roofers there NOW.",
       "demand_signals": 10,
       "pain_signals": 0,
       "pitch_adjustments": 0,
       "competitor_intel": 0,
-      "territory_alerts": 25,
+      "territory_alerts": 23,
       "top_demands": [
         {
           "type": "heat_wave",
-          "area": "Harmon; Greer; Kiowa; Jackson; Tillman; Comanche; Stephens; ",
+          "area": "La Salle; McMullen; Live Oak; Bee; Goliad; Victoria; Webb; D",
           "niche": "hvac"
         },
         {
           "type": "heat_wave",
-          "area": "Briscoe; Hall; Childress; Motley; Cottle; Dickens; King; Ken",
+          "area": "Bastrop; Lee; Caldwell; Fayette; Maverick; Zavala; Frio; Ata",
+          "niche": "hvac"
+        },
+        {
+          "type": "heat_wave",
+          "area": "Texas; Beaver; Sherman; Hansford; Ochiltree; Lipscomb; Moore",
           "niche": "hvac"
         },
         {
@@ -29,44 +34,40 @@
           "niche": "hvac"
         },
         {
-          "type": "flood",
-          "area": "Frio, TX",
-          "niche": "plumbing"
-        },
-        {
-          "type": "flood",
-          "area": "Dimmit, TX",
-          "niche": "plumbing"
+          "type": "heat_wave",
+          "area": "Collingsworth",
+          "niche": "hvac"
         }
       ],
       "sources_online": 0
     },
     "lead_engine": {
       "state": "ACTIVE",
-      "total_leads": 200,
+      "total_leads": 205,
       "by_tier": {
-        "SUPERNICHE": 103,
-        "HOT": 97
+        "SUPERNICHE": 106,
+        "HOT": 97,
+        "WARM": 2
       },
       "by_route": {
-        "call_queue": 95,
-        "watchlist": 91,
-        "email": 14
+        "call_queue": 98,
+        "watchlist": 90,
+        "email": 17
       },
       "by_status": {
         "called": 94,
-        "queued": 87,
-        "re_engaged": 19
+        "queued": 95,
+        "re_engaged": 16
       },
       "synced_to_pipeline": 107,
-      "api_spend": 111.62,
+      "api_spend": 113.22,
       "api_budget": 300.0,
-      "api_percent": 37.2,
-      "outcomes_recorded": 486,
+      "api_percent": 37.7,
+      "outcomes_recorded": 500,
       "by_outcome": {
-        "no_answer": 40,
         "hangup": 31,
-        "call_failed": 172,
+        "no_answer": 39,
+        "call_failed": 187,
         "call_initiated": 224,
         "callback": 9,
         "meeting_set": 10
@@ -74,6 +75,15 @@
       "learned_weights": true,
       "suppression_count": 0,
       "top_leads": [
+        {
+          "name": "Joe's Climate Control",
+          "niche": "HVAC contractor",
+          "state": "",
+          "tier": "SUPERNICHE",
+          "score": 86,
+          "route": "watchlist",
+          "status": "queued"
+        },
         {
           "name": "Lonnie Lofton Roofing",
           "niche": "roofing contractor",
@@ -154,15 +164,6 @@
           "score": 74,
           "route": "watchlist",
           "status": "called"
-        },
-        {
-          "name": "E6 Plumbing",
-          "niche": "plumber",
-          "state": "",
-          "tier": "SUPERNICHE",
-          "score": 73,
-          "route": "email",
-          "status": "queued"
         }
       ]
     },
@@ -270,10 +271,10 @@
           "last_modification": "1781060826"
         }
       ],
-      "calls_24h": 0,
-      "outbound_24h": 0,
-      "inbound_24h": 0,
-      "avg_duration_sec": 0
+      "calls_24h": 50,
+      "outbound_24h": 21,
+      "inbound_24h": 29,
+      "avg_duration_sec": 21.6
     },
     "quant": {
       "state": "PAUSED",
@@ -281,14 +282,12 @@
       "survivors": 0
     },
     "health": {
-      "circuit_breakers_tripped": [
-        "google_places"
-      ],
+      "circuit_breakers_tripped": [],
       "engine_paused": false,
       "atlas_power": "ACTIVE",
       "n8n_errors_24h": 0,
-      "retell_calls_24h": 0,
-      "api_spend_pct": 37.2
+      "retell_calls_24h": 50,
+      "api_spend_pct": 37.7
     }
   }
 }
