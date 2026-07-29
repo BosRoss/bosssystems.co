@@ -1,31 +1,7 @@
 {
-  "generated": "2026-07-28T22:51:47.382893+00:00",
+  "generated": "2026-07-29T01:03:37.790648+00:00",
   "engine_state": "active",
   "signals": [
-    {
-      "type": "heat_wave",
-      "area": "La Salle; McMullen; Live Oak; Bee; Goliad; Victoria; Webb; Duval; Jim Wells; Inland Kleberg; Inland Nueces; Inland San Patricio; Coastal Aransas; Inland Refugio; Inland Calhoun; Coastal Kleberg; Coast",
-      "niche": "hvac",
-      "action": "HVAC businesses in La Salle; McMullen; Live Oak; Bee; Goliad; Victoria; Webb; Duval; Jim Wells; Inland Kleberg; Inland Nueces; Inland San Patricio; Coastal Aransas; Inland Refugio; Inland Calhoun; Coastal Kleberg; Coast are drowning in calls right now. Perfect time to pitch.",
-      "urgency": "today",
-      "pitch_hook": "You're getting slammed with calls \u2014 how many went to voicemail today?"
-    },
-    {
-      "type": "heat_wave",
-      "area": "Bastrop; Lee; Caldwell; Fayette; Maverick; Zavala; Frio; Atascosa; Wilson; Karnes; Gonzales; De Witt; Lavaca; Dimmit",
-      "niche": "hvac",
-      "action": "HVAC businesses in Bastrop; Lee; Caldwell; Fayette; Maverick; Zavala; Frio; Atascosa; Wilson; Karnes; Gonzales; De Witt; Lavaca; Dimmit are drowning in calls right now. Perfect time to pitch.",
-      "urgency": "today",
-      "pitch_hook": "You're getting slammed with calls \u2014 how many went to voicemail today?"
-    },
-    {
-      "type": "heat_wave",
-      "area": "Palo Duro Canyon",
-      "niche": "hvac",
-      "action": "HVAC businesses in Palo Duro Canyon are drowning in calls right now. Perfect time to pitch.",
-      "urgency": "today",
-      "pitch_hook": "You're getting slammed with calls \u2014 how many went to voicemail today?"
-    },
     {
       "type": "heat_wave",
       "area": "Collingsworth",
@@ -44,9 +20,9 @@
     },
     {
       "type": "heat_wave",
-      "area": "Briscoe; Kent; Stonewall",
+      "area": "Palo Duro Canyon",
       "niche": "hvac",
-      "action": "HVAC businesses in Briscoe; Kent; Stonewall are drowning in calls right now. Perfect time to pitch.",
+      "action": "HVAC businesses in Palo Duro Canyon are drowning in calls right now. Perfect time to pitch.",
       "urgency": "today",
       "pitch_hook": "You're getting slammed with calls \u2014 how many went to voicemail today?"
     },
@@ -55,6 +31,22 @@
       "area": "Hall; Childress; Motley; Cottle; Dickens; King",
       "niche": "hvac",
       "action": "HVAC businesses in Hall; Childress; Motley; Cottle; Dickens; King are drowning in calls right now. Perfect time to pitch.",
+      "urgency": "today",
+      "pitch_hook": "You're getting slammed with calls \u2014 how many went to voicemail today?"
+    },
+    {
+      "type": "heat_wave",
+      "area": "Briscoe; Kent; Stonewall",
+      "niche": "hvac",
+      "action": "HVAC businesses in Briscoe; Kent; Stonewall are drowning in calls right now. Perfect time to pitch.",
+      "urgency": "today",
+      "pitch_hook": "You're getting slammed with calls \u2014 how many went to voicemail today?"
+    },
+    {
+      "type": "heat_wave",
+      "area": "Woods; Alfalfa; Grant; Kay; Major; Garfield; Noble; Blaine; Kingfisher; Logan; Payne; Beckham; Washita; Caddo; Canadian; Oklahoma; Lincoln; Grady; McClain; Cleveland; Pottawatomie; Seminole; Hughes; H",
+      "niche": "hvac",
+      "action": "HVAC businesses in Woods; Alfalfa; Grant; Kay; Major; Garfield; Noble; Blaine; Kingfisher; Logan; Payne; Beckham; Washita; Caddo; Canadian; Oklahoma; Lincoln; Grady; McClain; Cleveland; Pottawatomie; Seminole; Hughes; H are drowning in calls right now. Perfect time to pitch.",
       "urgency": "today",
       "pitch_hook": "You're getting slammed with calls \u2014 how many went to voicemail today?"
     },
@@ -79,6 +71,14 @@
       "area": "St. James; St. John The Baptist; Upper St. Bernard; Lower St. Bernard; Southeast St. Tammany; Western Orleans; Eastern Orleans; Northern St. Tammany; Southwestern St. Tammany; Central Tangipahoa; Lowe",
       "niche": "hvac",
       "action": "HVAC businesses in St. James; St. John The Baptist; Upper St. Bernard; Lower St. Bernard; Southeast St. Tammany; Western Orleans; Eastern Orleans; Northern St. Tammany; Southwestern St. Tammany; Central Tangipahoa; Lowe are drowning in calls right now. Perfect time to pitch.",
+      "urgency": "today",
+      "pitch_hook": "You're getting slammed with calls \u2014 how many went to voicemail today?"
+    },
+    {
+      "type": "heat_wave",
+      "area": "Pointe Coupee; West Feliciana; East Feliciana; St. Helena; Washington; Iberville; West Baton Rouge; East Baton Rouge; Assumption; Northern Tangipahoa; Lower Plaquemines; Coastal Jefferson; Upper Lafou",
+      "niche": "hvac",
+      "action": "HVAC businesses in Pointe Coupee; West Feliciana; East Feliciana; St. Helena; Washington; Iberville; West Baton Rouge; East Baton Rouge; Assumption; Northern Tangipahoa; Lower Plaquemines; Coastal Jefferson; Upper Lafou are drowning in calls right now. Perfect time to pitch.",
       "urgency": "today",
       "pitch_hook": "You're getting slammed with calls \u2014 how many went to voicemail today?"
     }
@@ -225,12 +225,12 @@
     "leads_superniche": 106,
     "leads_hot": 94,
     "leads_warm": 0,
-    "cost_per_qualified": 1.11,
-    "total_spend": 118.01599999999056,
+    "cost_per_qualified": 1.13,
+    "total_spend": 119.61599999999038,
     "spend_cap": 300.0
   },
   "channels": {
-    "emails_sent": 254,
+    "emails_sent": 249,
     "texts_sent": 0,
     "calls_made": 0,
     "meetings_set": 10,
@@ -239,55 +239,55 @@
   "feeds": [
     {
       "name": "NOAA",
-      "last_hit": "2026-07-28T22:40:57.751967+00:00",
+      "last_hit": "2026-07-29T00:51:59.113012+00:00",
       "status": "yellow",
       "data_points_today": 0
     },
     {
       "name": "REDDIT",
-      "last_hit": "2026-07-28T22:40:57.751967+00:00",
+      "last_hit": "2026-07-29T00:51:59.113012+00:00",
       "status": "green",
       "data_points_today": 30
     },
     {
       "name": "USGS",
-      "last_hit": "2026-07-28T22:40:57.751967+00:00",
+      "last_hit": "2026-07-29T00:51:59.113012+00:00",
       "status": "yellow",
       "data_points_today": 0
     },
     {
       "name": "HACKERNEWS",
-      "last_hit": "2026-07-28T22:40:57.751967+00:00",
+      "last_hit": "2026-07-29T00:51:59.113012+00:00",
       "status": "green",
       "data_points_today": 30
     },
     {
       "name": "FEMA",
-      "last_hit": "2026-07-28T22:40:57.751967+00:00",
+      "last_hit": "2026-07-29T00:51:59.113012+00:00",
       "status": "green",
       "data_points_today": 20
     },
     {
       "name": "COMMODITIES",
-      "last_hit": "2026-07-28T22:40:57.751967+00:00",
+      "last_hit": "2026-07-29T00:51:59.113012+00:00",
       "status": "green",
       "data_points_today": 7
     },
     {
       "name": "RSS",
-      "last_hit": "2026-07-28T22:40:57.751967+00:00",
+      "last_hit": "2026-07-29T00:51:59.113012+00:00",
       "status": "green",
-      "data_points_today": 783
+      "data_points_today": 792
     },
     {
       "name": "FRED",
-      "last_hit": "2026-07-28T22:40:57.751967+00:00",
+      "last_hit": "2026-07-29T00:51:59.113012+00:00",
       "status": "yellow",
       "data_points_today": 0
     },
     {
       "name": "BLS",
-      "last_hit": "2026-07-28T22:40:57.751967+00:00",
+      "last_hit": "2026-07-29T00:51:59.113012+00:00",
       "status": "green",
       "data_points_today": 9
     }
@@ -295,7 +295,7 @@
   "conversion_funnel": {
     "signals": 10,
     "leads": 200,
-    "contacted": 254,
+    "contacted": 249,
     "replied": 10,
     "meeting": 10,
     "close": 0
