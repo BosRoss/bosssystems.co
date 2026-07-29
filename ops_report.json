@@ -1,12 +1,12 @@
 {
-  "generated": "2026-07-28T20:30:03.364215+00:00",
+  "generated": "2026-07-29T02:00:03.420265+00:00",
   "sections": {
     "atlas": {
       "power_level": "ACTIVE",
-      "last_scan": "2026-07-28T20:15:41.091410+00:00",
-      "scan_count": 207,
+      "last_scan": "2026-07-29T00:51:59.113012+00:00",
+      "scan_count": 210,
       "heat_score": 100,
-      "recommendation": "HOT DAY. Weather-driven demand in Palo Duro Canyon, St. James; St. John The Baptist; Upper St. Bernard; Lower St. Bernard; Southeast St. Tammany; Western Orleans; Eastern Orleans; Northern St. Tammany; Southwestern St. Tammany; Central Tangipahoa; Lowe, Ashley; Chicot; Morehouse; West Carroll; East Carroll; Richland; Madison; Franklin; Catahoula; Tensas; Concordia; Montgomery; Webster; Clay; Lowndes; Choctaw; Oktibbeha; Attala; Winston; Noxubee; Leak. Call HVAC/roofers there NOW.",
+      "recommendation": "HOT DAY. Weather-driven demand in Palo Duro Canyon, Woods; Alfalfa; Grant; Kay; Major; Garfield; Noble; Blaine; Kingfisher; Logan; Payne; Beckham; Washita; Caddo; Canadian; Oklahoma; Lincoln; Grady; McClain; Cleveland; Pottawatomie; Seminole; Hughes; H, Hall; Childress; Motley; Cottle; Dickens; King. Call HVAC/roofers there NOW.",
       "demand_signals": 10,
       "pain_signals": 0,
       "pitch_adjustments": 0,
@@ -15,12 +15,7 @@
       "top_demands": [
         {
           "type": "heat_wave",
-          "area": "La Salle; McMullen; Live Oak; Bee; Goliad; Victoria; Webb; D",
-          "niche": "hvac"
-        },
-        {
-          "type": "heat_wave",
-          "area": "Bastrop; Lee; Caldwell; Fayette; Maverick; Zavala; Frio; Ata",
+          "area": "Collingsworth",
           "niche": "hvac"
         },
         {
@@ -35,7 +30,12 @@
         },
         {
           "type": "heat_wave",
-          "area": "Collingsworth",
+          "area": "Hall; Childress; Motley; Cottle; Dickens; King",
+          "niche": "hvac"
+        },
+        {
+          "type": "heat_wave",
+          "area": "Briscoe; Kent; Stonewall",
           "niche": "hvac"
         }
       ],
@@ -43,26 +43,25 @@
     },
     "lead_engine": {
       "state": "ACTIVE",
-      "total_leads": 205,
+      "total_leads": 200,
       "by_tier": {
         "SUPERNICHE": 106,
-        "HOT": 97,
-        "WARM": 2
+        "HOT": 94
       },
       "by_route": {
-        "call_queue": 98,
+        "call_queue": 95,
         "watchlist": 90,
-        "email": 17
+        "email": 15
       },
       "by_status": {
-        "called": 94,
-        "queued": 95,
-        "re_engaged": 16
+        "called": 87,
+        "re_engaged": 33,
+        "queued": 80
       },
       "synced_to_pipeline": 107,
-      "api_spend": 113.22,
+      "api_spend": 119.62,
       "api_budget": 300.0,
-      "api_percent": 37.7,
+      "api_percent": 39.9,
       "outcomes_recorded": 500,
       "by_outcome": {
         "hangup": 31,
@@ -91,7 +90,7 @@
           "tier": "SUPERNICHE",
           "score": 83,
           "route": "watchlist",
-          "status": "called"
+          "status": "re_engaged"
         },
         {
           "name": "Kizer Law Firm",
@@ -100,7 +99,7 @@
           "tier": "SUPERNICHE",
           "score": 80,
           "route": "watchlist",
-          "status": "called"
+          "status": "re_engaged"
         },
         {
           "name": "Taylor Heating & Air Condition",
@@ -118,7 +117,7 @@
           "tier": "SUPERNICHE",
           "score": 78,
           "route": "watchlist",
-          "status": "queued"
+          "status": "re_engaged"
         },
         {
           "name": "Bob Clark Plumbing",
@@ -163,7 +162,7 @@
           "tier": "SUPERNICHE",
           "score": 74,
           "route": "watchlist",
-          "status": "called"
+          "status": "re_engaged"
         }
       ]
     },
@@ -272,9 +271,9 @@
         }
       ],
       "calls_24h": 50,
-      "outbound_24h": 21,
-      "inbound_24h": 29,
-      "avg_duration_sec": 21.6
+      "outbound_24h": 18,
+      "inbound_24h": 32,
+      "avg_duration_sec": 20.7
     },
     "quant": {
       "state": "PAUSED",
@@ -287,7 +286,7 @@
       "atlas_power": "ACTIVE",
       "n8n_errors_24h": 0,
       "retell_calls_24h": 50,
-      "api_spend_pct": 37.7
+      "api_spend_pct": 39.9
     }
   }
 }
