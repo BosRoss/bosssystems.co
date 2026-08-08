@@ -1,12 +1,12 @@
 {
-  "generated": "2026-08-08T20:05:48.881639+00:00",
+  "generated": "2026-08-08T22:15:38.071312+00:00",
   "engine_state": "active",
   "signals": [
     {
       "type": "flood",
-      "area": "Miller, AR; Bowie, TX",
+      "area": "Harris, TX",
       "niche": "plumbing",
-      "action": "Flood warnings in Miller, AR; Bowie, TX. Plumbers, restoration, mold companies will spike.",
+      "action": "Flood warnings in Harris, TX. Plumbers, restoration, mold companies will spike.",
       "urgency": "today",
       "pitch_hook": "Water damage calls are coming. Every one you miss is $500+ walking away."
     },
@@ -43,14 +43,6 @@
       "pitch_hook": "Water damage calls are coming. Every one you miss is $500+ walking away."
     },
     {
-      "type": "flood",
-      "area": "Pike, AR",
-      "niche": "plumbing",
-      "action": "Flood warnings in Pike, AR. Plumbers, restoration, mold companies will spike.",
-      "urgency": "today",
-      "pitch_hook": "Water damage calls are coming. Every one you miss is $500+ walking away."
-    },
-    {
       "type": "heat_wave",
       "area": "North and Central Sebastian; Southern Crawford; Central and Southern Franklin; Pushmataha; Choctaw; Craig; Ottawa; Tulsa; Rogers; Mayes; Delaware; Okfuskee; Okmulgee; Wagoner; Cherokee; Muskogee; McIn",
       "niche": "hvac",
@@ -60,25 +52,33 @@
     },
     {
       "type": "flood",
-      "area": "Giles, TN",
+      "area": "Fayette, AL; Walker, AL",
       "niche": "plumbing",
-      "action": "Flood warnings in Giles, TN. Plumbers, restoration, mold companies will spike.",
+      "action": "Flood warnings in Fayette, AL; Walker, AL. Plumbers, restoration, mold companies will spike.",
+      "urgency": "today",
+      "pitch_hook": "Water damage calls are coming. Every one you miss is $500+ walking away."
+    },
+    {
+      "type": "storm",
+      "area": "Maury, TN; Rutherford, TN; Williamson, TN",
+      "niche": "roofing",
+      "action": "Storm damage in Maury, TN; Rutherford, TN; Williamson, TN. Roofers and restoration companies about to get flooded.",
+      "urgency": "today",
+      "pitch_hook": "After a storm like that, you'll get 10x your normal call volume. Ready for it?"
+    },
+    {
+      "type": "flood",
+      "area": "Maury, TN; Williamson, TN",
+      "niche": "plumbing",
+      "action": "Flood warnings in Maury, TN; Williamson, TN. Plumbers, restoration, mold companies will spike.",
       "urgency": "today",
       "pitch_hook": "Water damage calls are coming. Every one you miss is $500+ walking away."
     },
     {
       "type": "flood",
-      "area": "Carroll, TN; Gibson, TN; Weakley, TN",
+      "area": "Lewis, TN; Perry, TN; Wayne, TN",
       "niche": "plumbing",
-      "action": "Flood warnings in Carroll, TN; Gibson, TN; Weakley, TN. Plumbers, restoration, mold companies will spike.",
-      "urgency": "today",
-      "pitch_hook": "Water damage calls are coming. Every one you miss is $500+ walking away."
-    },
-    {
-      "type": "flood",
-      "area": "Cocke, TN; Grainger, TN; Greene, TN; Hamblen, TN; Jefferson, TN",
-      "niche": "plumbing",
-      "action": "Flood warnings in Cocke, TN; Grainger, TN; Greene, TN; Hamblen, TN; Jefferson, TN. Plumbers, restoration, mold companies will spike.",
+      "action": "Flood warnings in Lewis, TN; Perry, TN; Wayne, TN. Plumbers, restoration, mold companies will spike.",
       "urgency": "today",
       "pitch_hook": "Water damage calls are coming. Every one you miss is $500+ walking away."
     }
@@ -157,6 +157,15 @@
       "trigger": "flood"
     },
     {
+      "name": "plumbing",
+      "city": "",
+      "score": 78,
+      "tier": "SUPERNICHE",
+      "channel": "watchlist",
+      "sequence_status": "queued",
+      "trigger": "flood"
+    },
+    {
       "name": "HVAC contractor",
       "city": "NM",
       "score": 75,
@@ -209,28 +218,19 @@
       "channel": "call_queue",
       "sequence_status": "called",
       "trigger": ""
-    },
-    {
-      "name": "HVAC contractor",
-      "city": "AL",
-      "score": 70,
-      "tier": "SUPERNICHE",
-      "channel": "email",
-      "sequence_status": "re_engaged",
-      "trigger": "market_sweep"
     }
   ],
   "kpis": {
     "signals_firing": 10,
-    "leads_superniche": 110,
-    "leads_hot": 90,
+    "leads_superniche": 111,
+    "leads_hot": 89,
     "leads_warm": 0,
-    "cost_per_qualified": 1.19,
-    "total_spend": 130.8159999999904,
+    "cost_per_qualified": 1.21,
+    "total_spend": 134.01599999999146,
     "spend_cap": 300.0
   },
   "channels": {
-    "emails_sent": 241,
+    "emails_sent": 243,
     "texts_sent": 0,
     "calls_made": 0,
     "meetings_set": 10,
@@ -239,55 +239,55 @@
   "feeds": [
     {
       "name": "NOAA",
-      "last_hit": "2026-08-08T19:55:34.357640+00:00",
+      "last_hit": "2026-08-08T22:05:59.363593+00:00",
       "status": "yellow",
       "data_points_today": 0
     },
     {
       "name": "REDDIT",
-      "last_hit": "2026-08-08T19:55:34.357640+00:00",
-      "status": "green",
-      "data_points_today": 30
+      "last_hit": "2026-08-08T22:05:59.363593+00:00",
+      "status": "yellow",
+      "data_points_today": 0
     },
     {
       "name": "USGS",
-      "last_hit": "2026-08-08T19:55:34.357640+00:00",
+      "last_hit": "2026-08-08T22:05:59.363593+00:00",
       "status": "yellow",
       "data_points_today": 0
     },
     {
       "name": "HACKERNEWS",
-      "last_hit": "2026-08-08T19:55:34.357640+00:00",
+      "last_hit": "2026-08-08T22:05:59.363593+00:00",
       "status": "green",
       "data_points_today": 30
     },
     {
       "name": "FEMA",
-      "last_hit": "2026-08-08T19:55:34.357640+00:00",
+      "last_hit": "2026-08-08T22:05:59.363593+00:00",
       "status": "green",
       "data_points_today": 20
     },
     {
       "name": "COMMODITIES",
-      "last_hit": "2026-08-08T19:55:34.357640+00:00",
+      "last_hit": "2026-08-08T22:05:59.363593+00:00",
       "status": "green",
       "data_points_today": 7
     },
     {
       "name": "RSS",
-      "last_hit": "2026-08-08T19:55:34.357640+00:00",
+      "last_hit": "2026-08-08T22:05:59.363593+00:00",
       "status": "green",
       "data_points_today": 790
     },
     {
       "name": "FRED",
-      "last_hit": "2026-08-08T19:55:34.357640+00:00",
+      "last_hit": "2026-08-08T22:05:59.363593+00:00",
       "status": "yellow",
       "data_points_today": 0
     },
     {
       "name": "BLS",
-      "last_hit": "2026-08-08T19:55:34.357640+00:00",
+      "last_hit": "2026-08-08T22:05:59.363593+00:00",
       "status": "yellow",
       "data_points_today": 0
     }
@@ -295,7 +295,7 @@
   "conversion_funnel": {
     "signals": 10,
     "leads": 200,
-    "contacted": 241,
+    "contacted": 243,
     "replied": 10,
     "meeting": 10,
     "close": 0
