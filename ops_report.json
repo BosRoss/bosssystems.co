@@ -1,42 +1,42 @@
 {
-  "generated": "2026-07-31T21:43:22.069676+00:00",
+  "generated": "2026-08-08T20:30:01.557484+00:00",
   "sections": {
     "atlas": {
       "power_level": "ACTIVE",
-      "last_scan": "2026-07-31T19:23:15.504344+00:00",
-      "scan_count": 213,
+      "last_scan": "2026-08-08T19:55:34.357640+00:00",
+      "scan_count": 215,
       "heat_score": 100,
-      "recommendation": "HOT DAY. Weather-driven demand in Hall; Childress; Motley; Cottle; Dickens; King, Guadalupe Mountains of Eddy County; Eddy County Plains; Guadalupe Mountains Above 7000 Feet; Guadalupe and Delaware Mountains; Chinati Mountains; Davis Mountains, West Slopes Sacramento Mountains Below 7500 Feet; Sacramento Mountains Above 7500 Feet; East Slopes Sacramento Mountains Below 7500 Feet; Otero Mesa; West Central Tularosa Basin/White Sands; East Cent. Call HVAC/roofers there NOW.",
+      "recommendation": "HOT DAY. Weather-driven demand in Giles, TN, Pike, AR, McMullen, TX. Call HVAC/roofers there NOW.",
       "demand_signals": 10,
       "pain_signals": 0,
       "pitch_adjustments": 0,
       "competitor_intel": 0,
-      "territory_alerts": 23,
+      "territory_alerts": 19,
       "top_demands": [
         {
+          "type": "flood",
+          "area": "Miller, AR; Bowie, TX",
+          "niche": "plumbing"
+        },
+        {
           "type": "heat_wave",
-          "area": "Hall; Childress; Motley; Cottle; Dickens; King",
+          "area": "Harper; Woods; Alfalfa; Grant; Kay; Ellis; Woodward; Major; ",
           "niche": "hvac"
         },
         {
           "type": "heat_wave",
-          "area": "Bosque; McLennan; Falls; Limestone; Robertson",
+          "area": "Palo Duro Canyon",
           "niche": "hvac"
         },
         {
           "type": "heat_wave",
-          "area": "Palo Pinto; Hood; Somervell; Freestone; Anderson; Leon",
+          "area": "Texas; Beaver; Hansford; Ochiltree; Lipscomb; Hutchinson; Ro",
           "niche": "hvac"
         },
         {
-          "type": "heat_wave",
-          "area": "Montague; Cooke; Grayson; Fannin; Lamar; Young; Jack; Wise; ",
-          "niche": "hvac"
-        },
-        {
-          "type": "heat_wave",
-          "area": "Hill",
-          "niche": "hvac"
+          "type": "flood",
+          "area": "McMullen, TX",
+          "niche": "plumbing"
         }
       ],
       "sources_online": 0
@@ -45,8 +45,8 @@
       "state": "ACTIVE",
       "total_leads": 200,
       "by_tier": {
-        "SUPERNICHE": 107,
-        "HOT": 93
+        "SUPERNICHE": 110,
+        "HOT": 90
       },
       "by_route": {
         "call_queue": 95,
@@ -55,13 +55,13 @@
       },
       "by_status": {
         "called": 81,
-        "re_engaged": 49,
-        "queued": 70
+        "re_engaged": 48,
+        "queued": 71
       },
       "synced_to_pipeline": 107,
-      "api_spend": 126.02,
+      "api_spend": 130.82,
       "api_budget": 300.0,
-      "api_percent": 42.0,
+      "api_percent": 43.6,
       "outcomes_recorded": 500,
       "by_outcome": {
         "call_initiated": 197,
@@ -271,9 +271,9 @@
         }
       ],
       "calls_24h": 50,
-      "outbound_24h": 12,
-      "inbound_24h": 38,
-      "avg_duration_sec": 22.9
+      "outbound_24h": 0,
+      "inbound_24h": 50,
+      "avg_duration_sec": 0
     },
     "quant": {
       "state": "PAUSED",
@@ -286,7 +286,7 @@
       "atlas_power": "ACTIVE",
       "n8n_errors_24h": 0,
       "retell_calls_24h": 50,
-      "api_spend_pct": 42.0
+      "api_spend_pct": 43.6
     }
   }
 }
