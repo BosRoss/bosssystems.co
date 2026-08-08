@@ -1,78 +1,38 @@
 {
-  "generated": "2026-07-31T19:33:02.504628+00:00",
-  "atlas_scan_time": "2026-07-31T19:23:15.504344+00:00",
+  "generated": "2026-08-08T20:04:22.631393+00:00",
+  "atlas_scan_time": "2026-08-08T19:55:34.357640+00:00",
   "demand_signals": [
     {
-      "type": "heat_wave",
-      "area": "Hall; Childress; Motley; Cottle; Dickens; King",
-      "niche": "hvac",
-      "action": "HVAC businesses in Hall; Childress; Motley; Cottle; Dickens; King are drowning in calls right now. Perfect time to pitch.",
-      "urgency": "today",
-      "pitch_hook": "You're getting slammed with calls \u2014 how many went to voicemail today?"
-    },
-    {
-      "type": "heat_wave",
-      "area": "Bosque; McLennan; Falls; Limestone; Robertson",
-      "niche": "hvac",
-      "action": "HVAC businesses in Bosque; McLennan; Falls; Limestone; Robertson are drowning in calls right now. Perfect time to pitch.",
-      "urgency": "today",
-      "pitch_hook": "You're getting slammed with calls \u2014 how many went to voicemail today?"
-    },
-    {
-      "type": "heat_wave",
-      "area": "Palo Pinto; Hood; Somervell; Freestone; Anderson; Leon",
-      "niche": "hvac",
-      "action": "HVAC businesses in Palo Pinto; Hood; Somervell; Freestone; Anderson; Leon are drowning in calls right now. Perfect time to pitch.",
-      "urgency": "today",
-      "pitch_hook": "You're getting slammed with calls \u2014 how many went to voicemail today?"
-    },
-    {
-      "type": "heat_wave",
-      "area": "Montague; Cooke; Grayson; Fannin; Lamar; Young; Jack; Wise; Denton; Collin; Hunt; Delta; Hopkins; Parker; Tarrant; Dallas; Rockwall; Kaufman; Van Zandt; Rains; Johnson; Ellis; Henderson; Navarro",
-      "niche": "hvac",
-      "action": "HVAC businesses in Montague; Cooke; Grayson; Fannin; Lamar; Young; Jack; Wise; Denton; Collin; Hunt; Delta; Hopkins; Parker; Tarrant; Dallas; Rockwall; Kaufman; Van Zandt; Rains; Johnson; Ellis; Henderson; Navarro are drowning in calls right now. Perfect time to pitch.",
-      "urgency": "today",
-      "pitch_hook": "You're getting slammed with calls \u2014 how many went to voicemail today?"
-    },
-    {
-      "type": "heat_wave",
-      "area": "Hill",
-      "niche": "hvac",
-      "action": "HVAC businesses in Hill are drowning in calls right now. Perfect time to pitch.",
-      "urgency": "today",
-      "pitch_hook": "You're getting slammed with calls \u2014 how many went to voicemail today?"
-    },
-    {
       "type": "flood",
-      "area": "West Slopes Sacramento Mountains Below 7500 Feet; Sacramento Mountains Above 7500 Feet; East Slopes Sacramento Mountains Below 7500 Feet; Otero Mesa; West Central Tularosa Basin/White Sands; East Cent",
+      "area": "Miller, AR; Bowie, TX",
       "niche": "plumbing",
-      "action": "Flood warnings in West Slopes Sacramento Mountains Below 7500 Feet; Sacramento Mountains Above 7500 Feet; East Slopes Sacramento Mountains Below 7500 Feet; Otero Mesa; West Central Tularosa Basin/White Sands; East Cent. Plumbers, restoration, mold companies will spike.",
+      "action": "Flood warnings in Miller, AR; Bowie, TX. Plumbers, restoration, mold companies will spike.",
       "urgency": "today",
       "pitch_hook": "Water damage calls are coming. Every one you miss is $500+ walking away."
     },
     {
       "type": "heat_wave",
-      "area": "Guadalupe Mountains of Eddy County; Eddy County Plains; Guadalupe Mountains Above 7000 Feet; Guadalupe and Delaware Mountains; Chinati Mountains; Davis Mountains",
+      "area": "Harper; Woods; Alfalfa; Grant; Kay; Ellis; Woodward; Major; Garfield; Noble; Roger Mills; Dewey; Custer; Blaine; Kingfisher; Logan; Payne; Beckham; Washita; Caddo; Canadian; Oklahoma; Lincoln; Grady; ",
       "niche": "hvac",
-      "action": "HVAC businesses in Guadalupe Mountains of Eddy County; Eddy County Plains; Guadalupe Mountains Above 7000 Feet; Guadalupe and Delaware Mountains; Chinati Mountains; Davis Mountains are drowning in calls right now. Perfect time to pitch.",
+      "action": "HVAC businesses in Harper; Woods; Alfalfa; Grant; Kay; Ellis; Woodward; Major; Garfield; Noble; Roger Mills; Dewey; Custer; Blaine; Kingfisher; Logan; Payne; Beckham; Washita; Caddo; Canadian; Oklahoma; Lincoln; Grady;  are drowning in calls right now. Perfect time to pitch.",
       "urgency": "today",
       "pitch_hook": "You're getting slammed with calls \u2014 how many went to voicemail today?"
     },
     {
       "type": "heat_wave",
-      "area": "Collingsworth",
+      "area": "Palo Duro Canyon",
       "niche": "hvac",
-      "action": "HVAC businesses in Collingsworth are drowning in calls right now. Perfect time to pitch.",
+      "action": "HVAC businesses in Palo Duro Canyon are drowning in calls right now. Perfect time to pitch.",
       "urgency": "today",
       "pitch_hook": "You're getting slammed with calls \u2014 how many went to voicemail today?"
     },
     {
-      "type": "flood",
-      "area": "Live Oak, TX",
-      "niche": "plumbing",
-      "action": "Flood warnings in Live Oak, TX. Plumbers, restoration, mold companies will spike.",
+      "type": "heat_wave",
+      "area": "Texas; Beaver; Hansford; Ochiltree; Lipscomb; Hutchinson; Roberts; Hemphill; Gray; Wheeler; Collingsworth",
+      "niche": "hvac",
+      "action": "HVAC businesses in Texas; Beaver; Hansford; Ochiltree; Lipscomb; Hutchinson; Roberts; Hemphill; Gray; Wheeler; Collingsworth are drowning in calls right now. Perfect time to pitch.",
       "urgency": "today",
-      "pitch_hook": "Water damage calls are coming. Every one you miss is $500+ walking away."
+      "pitch_hook": "You're getting slammed with calls \u2014 how many went to voicemail today?"
     },
     {
       "type": "flood",
@@ -81,167 +41,179 @@
       "action": "Flood warnings in McMullen, TX. Plumbers, restoration, mold companies will spike.",
       "urgency": "today",
       "pitch_hook": "Water damage calls are coming. Every one you miss is $500+ walking away."
+    },
+    {
+      "type": "flood",
+      "area": "Pike, AR",
+      "niche": "plumbing",
+      "action": "Flood warnings in Pike, AR. Plumbers, restoration, mold companies will spike.",
+      "urgency": "today",
+      "pitch_hook": "Water damage calls are coming. Every one you miss is $500+ walking away."
+    },
+    {
+      "type": "heat_wave",
+      "area": "North and Central Sebastian; Southern Crawford; Central and Southern Franklin; Pushmataha; Choctaw; Craig; Ottawa; Tulsa; Rogers; Mayes; Delaware; Okfuskee; Okmulgee; Wagoner; Cherokee; Muskogee; McIn",
+      "niche": "hvac",
+      "action": "HVAC businesses in North and Central Sebastian; Southern Crawford; Central and Southern Franklin; Pushmataha; Choctaw; Craig; Ottawa; Tulsa; Rogers; Mayes; Delaware; Okfuskee; Okmulgee; Wagoner; Cherokee; Muskogee; McIn are drowning in calls right now. Perfect time to pitch.",
+      "urgency": "today",
+      "pitch_hook": "You're getting slammed with calls \u2014 how many went to voicemail today?"
+    },
+    {
+      "type": "flood",
+      "area": "Giles, TN",
+      "niche": "plumbing",
+      "action": "Flood warnings in Giles, TN. Plumbers, restoration, mold companies will spike.",
+      "urgency": "today",
+      "pitch_hook": "Water damage calls are coming. Every one you miss is $500+ walking away."
+    },
+    {
+      "type": "flood",
+      "area": "Carroll, TN; Gibson, TN; Weakley, TN",
+      "niche": "plumbing",
+      "action": "Flood warnings in Carroll, TN; Gibson, TN; Weakley, TN. Plumbers, restoration, mold companies will spike.",
+      "urgency": "today",
+      "pitch_hook": "Water damage calls are coming. Every one you miss is $500+ walking away."
+    },
+    {
+      "type": "flood",
+      "area": "Cocke, TN; Grainger, TN; Greene, TN; Hamblen, TN; Jefferson, TN",
+      "niche": "plumbing",
+      "action": "Flood warnings in Cocke, TN; Grainger, TN; Greene, TN; Hamblen, TN; Jefferson, TN. Plumbers, restoration, mold companies will spike.",
+      "urgency": "today",
+      "pitch_hook": "Water damage calls are coming. Every one you miss is $500+ walking away."
     }
   ],
   "territory_alerts": [
     {
-      "region": "Medina (County), TX",
-      "opportunity": "FEMA Disaster: Flood in Medina (County), TX. Contractors overwhelmed",
-      "action": "Target roofers, restoration, HVAC, plumbers in TX immediately. They're drowning in calls.",
-      "urgency": "immediate",
-      "confidence": 92
-    },
-    {
-      "region": "Dimmit (County), TX",
-      "opportunity": "FEMA Disaster: Flood in Dimmit (County), TX. Contractors overwhelmed",
-      "action": "Target roofers, restoration, HVAC, plumbers in TX immediately. They're drowning in calls.",
-      "urgency": "immediate",
-      "confidence": 92
-    },
-    {
-      "region": "Edwards (County), TX",
-      "opportunity": "FEMA Disaster: Flood in Edwards (County), TX. Contractors overwhelmed",
-      "action": "Target roofers, restoration, HVAC, plumbers in TX immediately. They're drowning in calls.",
-      "urgency": "immediate",
-      "confidence": 92
-    },
-    {
-      "region": "Pecos (County), TX",
-      "opportunity": "FEMA Disaster: Flood in Pecos (County), TX. Contractors overwhelmed",
-      "action": "Target roofers, restoration, HVAC, plumbers in TX immediately. They're drowning in calls.",
-      "urgency": "immediate",
-      "confidence": 92
-    },
-    {
-      "region": "Live Oak (County), TX",
-      "opportunity": "FEMA Disaster: Flood in Live Oak (County), TX. Contractors overwhelmed",
-      "action": "Target roofers, restoration, HVAC, plumbers in TX immediately. They're drowning in calls.",
-      "urgency": "immediate",
-      "confidence": 92
-    },
-    {
-      "region": "Terrell (County), TX",
-      "opportunity": "FEMA Disaster: Flood in Terrell (County), TX. Contractors overwhelmed",
-      "action": "Target roofers, restoration, HVAC, plumbers in TX immediately. They're drowning in calls.",
-      "urgency": "immediate",
-      "confidence": 92
-    },
-    {
-      "region": "La Salle (County), TX",
-      "opportunity": "FEMA Disaster: Flood in La Salle (County), TX. Contractors overwhelmed",
-      "action": "Target roofers, restoration, HVAC, plumbers in TX immediately. They're drowning in calls.",
-      "urgency": "immediate",
-      "confidence": 92
-    },
-    {
-      "region": "Webb (County), TX",
-      "opportunity": "FEMA Disaster: Flood in Webb (County), TX. Contractors overwhelmed",
-      "action": "Target roofers, restoration, HVAC, plumbers in TX immediately. They're drowning in calls.",
-      "urgency": "immediate",
-      "confidence": 92
-    },
-    {
-      "region": "Mason (County), TX",
-      "opportunity": "FEMA Disaster: Flood in Mason (County), TX. Contractors overwhelmed",
-      "action": "Target roofers, restoration, HVAC, plumbers in TX immediately. They're drowning in calls.",
-      "urgency": "immediate",
-      "confidence": 92
-    },
-    {
-      "region": "Zavala (County), TX",
-      "opportunity": "FEMA Disaster: Flood in Zavala (County), TX. Contractors overwhelmed",
-      "action": "Target roofers, restoration, HVAC, plumbers in TX immediately. They're drowning in calls.",
-      "urgency": "immediate",
-      "confidence": 92
-    },
-    {
-      "region": "Hall; Childress; Motley; Cottle; Dickens; King",
-      "opportunity": "HVAC contractors overwhelmed in Hall; Childress; Motley; Cottle; Dickens; King. Heat emergency",
-      "action": "Target HVAC businesses in Hall; Childress; Motley; Cottle; Dickens; King with missed-call pitch. They're too busy to answer right now.",
+      "region": "Harper; Woods; Alfalfa; Grant; Kay; Ellis; Woodward; Major; Garfield; Noble; Roger Mills; Dewey; Custer; Blaine; Kingfisher; Logan; Payne; Beckham; Washita; Caddo; Canadian; Oklahoma; Lincoln; Grady; ",
+      "opportunity": "HVAC contractors overwhelmed in Harper; Woods; Alfalfa; Grant; Kay; Ellis; Woodward; Major; Garfield; Noble; Roger Mills; Dewey; Custer; Blaine; Kingfisher; Logan; Payne; Beckham; Washita; Caddo; Canadian; Oklahoma; Lincoln; Grady; . Heat emergency",
+      "action": "Target HVAC businesses in Harper; Woods; Alfalfa; Grant; Kay; Ellis; Woodward; Major; Garfield; Noble; Roger Mills; Dewey; Custer; Blaine; Kingfisher; Logan; Payne; Beckham; Washita; Caddo; Canadian; Oklahoma; Lincoln; Grady;  with missed-call pitch. They're too busy to answer right now.",
       "urgency": "immediate",
       "confidence": 90
     },
     {
-      "region": "Bosque; McLennan; Falls; Limestone; Robertson",
-      "opportunity": "HVAC contractors overwhelmed in Bosque; McLennan; Falls; Limestone; Robertson. Heat emergency",
-      "action": "Target HVAC businesses in Bosque; McLennan; Falls; Limestone; Robertson with missed-call pitch. They're too busy to answer right now.",
+      "region": "Palo Duro Canyon",
+      "opportunity": "HVAC contractors overwhelmed in Palo Duro Canyon. Heat emergency",
+      "action": "Target HVAC businesses in Palo Duro Canyon with missed-call pitch. They're too busy to answer right now.",
       "urgency": "immediate",
       "confidence": 90
     },
     {
-      "region": "Palo Pinto; Hood; Somervell; Freestone; Anderson; Leon",
-      "opportunity": "HVAC contractors overwhelmed in Palo Pinto; Hood; Somervell; Freestone; Anderson; Leon. Heat emergency",
-      "action": "Target HVAC businesses in Palo Pinto; Hood; Somervell; Freestone; Anderson; Leon with missed-call pitch. They're too busy to answer right now.",
+      "region": "North and Central Sebastian; Southern Crawford; Central and Southern Franklin; Pushmataha; Choctaw; Craig; Ottawa; Tulsa; Rogers; Mayes; Delaware; Okfuskee; Okmulgee; Wagoner; Cherokee; Muskogee; McIn",
+      "opportunity": "HVAC contractors overwhelmed in North and Central Sebastian; Southern Crawford; Central and Southern Franklin; Pushmataha; Choctaw; Craig; Ottawa; Tulsa; Rogers; Mayes; Delaware; Okfuskee; Okmulgee; Wagoner; Cherokee; Muskogee; McIn. Heat emergency",
+      "action": "Target HVAC businesses in North and Central Sebastian; Southern Crawford; Central and Southern Franklin; Pushmataha; Choctaw; Craig; Ottawa; Tulsa; Rogers; Mayes; Delaware; Okfuskee; Okmulgee; Wagoner; Cherokee; Muskogee; McIn with missed-call pitch. They're too busy to answer right now.",
       "urgency": "immediate",
       "confidence": 90
     },
     {
-      "region": "Montague; Cooke; Grayson; Fannin; Lamar; Young; Jack; Wise; Denton; Collin; Hunt; Delta; Hopkins; Parker; Tarrant; Dallas; Rockwall; Kaufman; Van Zandt; Rains; Johnson; Ellis; Henderson; Navarro",
-      "opportunity": "HVAC contractors overwhelmed in Montague; Cooke; Grayson; Fannin; Lamar; Young; Jack; Wise; Denton; Collin; Hunt; Delta; Hopkins; Parker; Tarrant; Dallas; Rockwall; Kaufman; Van Zandt; Rains; Johnson; Ellis; Henderson; Navarro. Heat emergency",
-      "action": "Target HVAC businesses in Montague; Cooke; Grayson; Fannin; Lamar; Young; Jack; Wise; Denton; Collin; Hunt; Delta; Hopkins; Parker; Tarrant; Dallas; Rockwall; Kaufman; Van Zandt; Rains; Johnson; Ellis; Henderson; Navarro with missed-call pitch. They're too busy to answer right now.",
+      "region": "North and Central Sebastian; Southern Crawford; Central and Southern Franklin; Pushmataha; Choctaw; Craig; Ottawa; Tulsa; Rogers; Mayes; Delaware; Okfuskee; Okmulgee; Wagoner; Cherokee; Muskogee; McIn",
+      "opportunity": "HVAC contractors overwhelmed in North and Central Sebastian; Southern Crawford; Central and Southern Franklin; Pushmataha; Choctaw; Craig; Ottawa; Tulsa; Rogers; Mayes; Delaware; Okfuskee; Okmulgee; Wagoner; Cherokee; Muskogee; McIn. Heat emergency",
+      "action": "Target HVAC businesses in North and Central Sebastian; Southern Crawford; Central and Southern Franklin; Pushmataha; Choctaw; Craig; Ottawa; Tulsa; Rogers; Mayes; Delaware; Okfuskee; Okmulgee; Wagoner; Cherokee; Muskogee; McIn with missed-call pitch. They're too busy to answer right now.",
       "urgency": "immediate",
       "confidence": 90
     },
     {
-      "region": "Guadalupe Mountains of Eddy County; Eddy County Plains; Guadalupe Mountains Above 7000 Feet; Guadalupe and Delaware Mountains; Chinati Mountains; Davis Mountains",
-      "opportunity": "HVAC contractors overwhelmed in Guadalupe Mountains of Eddy County; Eddy County Plains; Guadalupe Mountains Above 7000 Feet; Guadalupe and Delaware Mountains; Chinati Mountains; Davis Mountains. Heat emergency",
-      "action": "Target HVAC businesses in Guadalupe Mountains of Eddy County; Eddy County Plains; Guadalupe Mountains Above 7000 Feet; Guadalupe and Delaware Mountains; Chinati Mountains; Davis Mountains with missed-call pitch. They're too busy to answer right now.",
+      "region": "Harper; Woods; Alfalfa; Grant; Kay; Ellis; Woodward; Major; Garfield; Noble; Roger Mills; Dewey; Custer; Blaine; Kingfisher; Logan; Payne; Beckham; Washita; Caddo; Canadian; Oklahoma; Lincoln; Grady; ",
+      "opportunity": "HVAC contractors overwhelmed in Harper; Woods; Alfalfa; Grant; Kay; Ellis; Woodward; Major; Garfield; Noble; Roger Mills; Dewey; Custer; Blaine; Kingfisher; Logan; Payne; Beckham; Washita; Caddo; Canadian; Oklahoma; Lincoln; Grady; . Heat emergency",
+      "action": "Target HVAC businesses in Harper; Woods; Alfalfa; Grant; Kay; Ellis; Woodward; Major; Garfield; Noble; Roger Mills; Dewey; Custer; Blaine; Kingfisher; Logan; Payne; Beckham; Washita; Caddo; Canadian; Oklahoma; Lincoln; Grady;  with missed-call pitch. They're too busy to answer right now.",
       "urgency": "immediate",
       "confidence": 90
     },
     {
-      "region": "Cross; St. Francis; Lee; Phillips; Tunica; Coahoma; Quitman; Panola; Tallahatchie; Yalobusha",
-      "opportunity": "HVAC contractors overwhelmed in Cross; St. Francis; Lee; Phillips; Tunica; Coahoma; Quitman; Panola; Tallahatchie; Yalobusha. Heat emergency",
-      "action": "Target HVAC businesses in Cross; St. Francis; Lee; Phillips; Tunica; Coahoma; Quitman; Panola; Tallahatchie; Yalobusha with missed-call pitch. They're too busy to answer right now.",
+      "region": "Hughes; Coal; Atoka; Bryan",
+      "opportunity": "HVAC contractors overwhelmed in Hughes; Coal; Atoka; Bryan. Heat emergency",
+      "action": "Target HVAC businesses in Hughes; Coal; Atoka; Bryan with missed-call pitch. They're too busy to answer right now.",
       "urgency": "immediate",
       "confidence": 90
     },
     {
-      "region": "Ashley; Chicot; Morehouse; West Carroll; East Carroll; Richland; Madison; Franklin; Catahoula; Tensas; Concordia; Bolivar; Sunflower; Leflore; Grenada; Carroll; Montgomery; Webster; Clay; Lowndes; Cho",
-      "opportunity": "HVAC contractors overwhelmed in Ashley; Chicot; Morehouse; West Carroll; East Carroll; Richland; Madison; Franklin; Catahoula; Tensas; Concordia; Bolivar; Sunflower; Leflore; Grenada; Carroll; Montgomery; Webster; Clay; Lowndes; Cho. Heat emergency",
-      "action": "Target HVAC businesses in Ashley; Chicot; Morehouse; West Carroll; East Carroll; Richland; Madison; Franklin; Catahoula; Tensas; Concordia; Bolivar; Sunflower; Leflore; Grenada; Carroll; Montgomery; Webster; Clay; Lowndes; Cho with missed-call pitch. They're too busy to answer right now.",
+      "region": "Hughes; Coal; Atoka; Bryan",
+      "opportunity": "HVAC contractors overwhelmed in Hughes; Coal; Atoka; Bryan. Heat emergency",
+      "action": "Target HVAC businesses in Hughes; Coal; Atoka; Bryan with missed-call pitch. They're too busy to answer right now.",
       "urgency": "immediate",
       "confidence": 90
     },
     {
-      "region": "Assumption; St. James; St. John The Baptist; Upper St. Bernard; Lower St. Bernard; Southeast St. Tammany; Western Orleans; Eastern Orleans; Northern St. Tammany; Southwestern St. Tammany; Central Tang",
-      "opportunity": "HVAC contractors overwhelmed in Assumption; St. James; St. John The Baptist; Upper St. Bernard; Lower St. Bernard; Southeast St. Tammany; Western Orleans; Eastern Orleans; Northern St. Tammany; Southwestern St. Tammany; Central Tang. Heat emergency",
-      "action": "Target HVAC businesses in Assumption; St. James; St. John The Baptist; Upper St. Bernard; Lower St. Bernard; Southeast St. Tammany; Western Orleans; Eastern Orleans; Northern St. Tammany; Southwestern St. Tammany; Central Tang with missed-call pitch. They're too busy to answer right now.",
+      "region": "North and Central Sebastian; Southern Crawford; Central and Southern Franklin; Pushmataha; Choctaw; Craig; Ottawa; Tulsa; Rogers; Mayes; Delaware; Okfuskee; Okmulgee; Wagoner; Cherokee; Muskogee; McIn",
+      "opportunity": "HVAC contractors overwhelmed in North and Central Sebastian; Southern Crawford; Central and Southern Franklin; Pushmataha; Choctaw; Craig; Ottawa; Tulsa; Rogers; Mayes; Delaware; Okfuskee; Okmulgee; Wagoner; Cherokee; Muskogee; McIn. Heat emergency",
+      "action": "Target HVAC businesses in North and Central Sebastian; Southern Crawford; Central and Southern Franklin; Pushmataha; Choctaw; Craig; Ottawa; Tulsa; Rogers; Mayes; Delaware; Okfuskee; Okmulgee; Wagoner; Cherokee; Muskogee; McIn with missed-call pitch. They're too busy to answer right now.",
       "urgency": "immediate",
       "confidence": 90
     },
     {
-      "region": "Benton; Carroll; Washington; Madison; Northern Crawford; Northern Franklin; Pushmataha; Choctaw; Adair; Northern Sequoyah",
-      "opportunity": "HVAC contractors overwhelmed in Benton; Carroll; Washington; Madison; Northern Crawford; Northern Franklin; Pushmataha; Choctaw; Adair; Northern Sequoyah. Heat emergency",
-      "action": "Target HVAC businesses in Benton; Carroll; Washington; Madison; Northern Crawford; Northern Franklin; Pushmataha; Choctaw; Adair; Northern Sequoyah with missed-call pitch. They're too busy to answer right now.",
+      "region": "North and Central Sebastian; Southern Crawford; Central and Southern Franklin; Pushmataha; Choctaw; Craig; Ottawa; Tulsa; Rogers; Mayes; Delaware; Okfuskee; Okmulgee; Wagoner; Cherokee; Muskogee; McIn",
+      "opportunity": "HVAC contractors overwhelmed in North and Central Sebastian; Southern Crawford; Central and Southern Franklin; Pushmataha; Choctaw; Craig; Ottawa; Tulsa; Rogers; Mayes; Delaware; Okfuskee; Okmulgee; Wagoner; Cherokee; Muskogee; McIn. Heat emergency",
+      "action": "Target HVAC businesses in North and Central Sebastian; Southern Crawford; Central and Southern Franklin; Pushmataha; Choctaw; Craig; Ottawa; Tulsa; Rogers; Mayes; Delaware; Okfuskee; Okmulgee; Wagoner; Cherokee; Muskogee; McIn with missed-call pitch. They're too busy to answer right now.",
       "urgency": "immediate",
       "confidence": 90
     },
     {
-      "region": "North and Central Sebastian; Southern Crawford; Central and Southern Franklin; Southern Sebastian; Washington; Nowata; Craig; Ottawa; Pawnee; Tulsa; Rogers; Mayes; Delaware; Creek; Okfuskee; Okmulgee;",
-      "opportunity": "HVAC contractors overwhelmed in North and Central Sebastian; Southern Crawford; Central and Southern Franklin; Southern Sebastian; Washington; Nowata; Craig; Ottawa; Pawnee; Tulsa; Rogers; Mayes; Delaware; Creek; Okfuskee; Okmulgee;. Heat emergency",
-      "action": "Target HVAC businesses in North and Central Sebastian; Southern Crawford; Central and Southern Franklin; Southern Sebastian; Washington; Nowata; Craig; Ottawa; Pawnee; Tulsa; Rogers; Mayes; Delaware; Creek; Okfuskee; Okmulgee; with missed-call pitch. They're too busy to answer right now.",
+      "region": "Espanola Valley; Middle Rio Grande Valley/Albuquerque Metro Area; Sandia/Manzano Mountains Including Edgewood",
+      "opportunity": "HVAC contractors overwhelmed in Espanola Valley; Middle Rio Grande Valley/Albuquerque Metro Area; Sandia/Manzano Mountains Including Edgewood. Heat emergency",
+      "action": "Target HVAC businesses in Espanola Valley; Middle Rio Grande Valley/Albuquerque Metro Area; Sandia/Manzano Mountains Including Edgewood with missed-call pitch. They're too busy to answer right now.",
       "urgency": "immediate",
       "confidence": 90
     },
     {
-      "region": "Cross; St. Francis; Lee; Phillips; Tunica; Coahoma; Quitman; Panola; Tallahatchie; Yalobusha",
-      "opportunity": "HVAC contractors overwhelmed in Cross; St. Francis; Lee; Phillips; Tunica; Coahoma; Quitman; Panola; Tallahatchie; Yalobusha. Heat emergency",
-      "action": "Target HVAC businesses in Cross; St. Francis; Lee; Phillips; Tunica; Coahoma; Quitman; Panola; Tallahatchie; Yalobusha with missed-call pitch. They're too busy to answer right now.",
+      "region": "Western Shasta County Mountains Above 3000 ft; Western Shasta County Foothills Between 1000-3000 ft; Shasta Lake Area and Interstate 5 Between 1000-3000 ft; South-Central Shasta County Including Reddi",
+      "opportunity": "HVAC contractors overwhelmed in Western Shasta County Mountains Above 3000 ft; Western Shasta County Foothills Between 1000-3000 ft; Shasta Lake Area and Interstate 5 Between 1000-3000 ft; South-Central Shasta County Including Reddi. Heat emergency",
+      "action": "Target HVAC businesses in Western Shasta County Mountains Above 3000 ft; Western Shasta County Foothills Between 1000-3000 ft; Shasta Lake Area and Interstate 5 Between 1000-3000 ft; South-Central Shasta County Including Reddi with missed-call pitch. They're too busy to answer right now.",
       "urgency": "immediate",
       "confidence": 90
     },
     {
-      "region": "Ashley; Chicot; Morehouse; West Carroll; East Carroll; Richland; Madison; Franklin; Catahoula; Tensas; Concordia; Bolivar; Sunflower; Leflore; Grenada; Carroll; Montgomery; Webster; Clay; Lowndes; Cho",
-      "opportunity": "HVAC contractors overwhelmed in Ashley; Chicot; Morehouse; West Carroll; East Carroll; Richland; Madison; Franklin; Catahoula; Tensas; Concordia; Bolivar; Sunflower; Leflore; Grenada; Carroll; Montgomery; Webster; Clay; Lowndes; Cho. Heat emergency",
-      "action": "Target HVAC businesses in Ashley; Chicot; Morehouse; West Carroll; East Carroll; Richland; Madison; Franklin; Catahoula; Tensas; Concordia; Bolivar; Sunflower; Leflore; Grenada; Carroll; Montgomery; Webster; Clay; Lowndes; Cho with missed-call pitch. They're too busy to answer right now.",
+      "region": "Sonoma Coastal Range; North Bay Interior Mountains; East Bay Interior Valleys; Santa Cruz Mountains; Santa Clara Valley Including San Jose; Eastern Santa Clara Hills; East Bay Hills; Southern Salinas ",
+      "opportunity": "HVAC contractors overwhelmed in Sonoma Coastal Range; North Bay Interior Mountains; East Bay Interior Valleys; Santa Cruz Mountains; Santa Clara Valley Including San Jose; Eastern Santa Clara Hills; East Bay Hills; Southern Salinas . Heat emergency",
+      "action": "Target HVAC businesses in Sonoma Coastal Range; North Bay Interior Mountains; East Bay Interior Valleys; Santa Cruz Mountains; Santa Clara Valley Including San Jose; Eastern Santa Clara Hills; East Bay Hills; Southern Salinas  with missed-call pitch. They're too busy to answer right now.",
       "urgency": "immediate",
       "confidence": 90
     },
     {
-      "region": "Sevier; Howard; Little River; Hempstead; Nevada; Miller; Lafayette; Columbia; Union; Caddo; Bossier; Webster; Claiborne; Lincoln; Union; De Soto; Red River; Bienville; Jackson; Ouachita; Sabine; Natch",
-      "opportunity": "HVAC contractors overwhelmed in Sevier; Howard; Little River; Hempstead; Nevada; Miller; Lafayette; Columbia; Union; Caddo; Bossier; Webster; Claiborne; Lincoln; Union; De Soto; Red River; Bienville; Jackson; Ouachita; Sabine; Natch. Heat emergency",
-      "action": "Target HVAC businesses in Sevier; Howard; Little River; Hempstead; Nevada; Miller; Lafayette; Columbia; Union; Caddo; Bossier; Webster; Claiborne; Lincoln; Union; De Soto; Red River; Bienville; Jackson; Ouachita; Sabine; Natch with missed-call pitch. They're too busy to answer right now.",
+      "region": "Indian Wells Valley; Mojave Desert Slopes; Mojave Desert",
+      "opportunity": "HVAC contractors overwhelmed in Indian Wells Valley; Mojave Desert Slopes; Mojave Desert. Heat emergency",
+      "action": "Target HVAC businesses in Indian Wells Valley; Mojave Desert Slopes; Mojave Desert with missed-call pitch. They're too busy to answer right now.",
+      "urgency": "immediate",
+      "confidence": 90
+    },
+    {
+      "region": "Los Banos - Dos Palos; Merced - Madera - Mendota; Planada - Le Grand - Snelling; Coalinga - Avenal; West Side of Fresno and Kings Counties; Caruthers - San Joaquin - Selma; Fresno-Clovis; West Side Mo",
+      "opportunity": "HVAC contractors overwhelmed in Los Banos - Dos Palos; Merced - Madera - Mendota; Planada - Le Grand - Snelling; Coalinga - Avenal; West Side of Fresno and Kings Counties; Caruthers - San Joaquin - Selma; Fresno-Clovis; West Side Mo. Heat emergency",
+      "action": "Target HVAC businesses in Los Banos - Dos Palos; Merced - Madera - Mendota; Planada - Le Grand - Snelling; Coalinga - Avenal; West Side of Fresno and Kings Counties; Caruthers - San Joaquin - Selma; Fresno-Clovis; West Side Mo with missed-call pitch. They're too busy to answer right now.",
+      "urgency": "immediate",
+      "confidence": 90
+    },
+    {
+      "region": "South Central Siskiyou County",
+      "opportunity": "HVAC contractors overwhelmed in South Central Siskiyou County. Heat emergency",
+      "action": "Target HVAC businesses in South Central Siskiyou County with missed-call pitch. They're too busy to answer right now.",
+      "urgency": "immediate",
+      "confidence": 90
+    },
+    {
+      "region": "Western Siskiyou County; Central Siskiyou County; North Central and Southeast Siskiyou County; Northeast Siskiyou and Northwest Modoc Counties; Modoc County",
+      "opportunity": "HVAC contractors overwhelmed in Western Siskiyou County; Central Siskiyou County; North Central and Southeast Siskiyou County; Northeast Siskiyou and Northwest Modoc Counties; Modoc County. Heat emergency",
+      "action": "Target HVAC businesses in Western Siskiyou County; Central Siskiyou County; North Central and Southeast Siskiyou County; Northeast Siskiyou and Northwest Modoc Counties; Modoc County with missed-call pitch. They're too busy to answer right now.",
+      "urgency": "immediate",
+      "confidence": 90
+    },
+    {
+      "region": "Apple and Lucerne Valleys",
+      "opportunity": "HVAC contractors overwhelmed in Apple and Lucerne Valleys. Heat emergency",
+      "action": "Target HVAC businesses in Apple and Lucerne Valleys with missed-call pitch. They're too busy to answer right now.",
+      "urgency": "immediate",
+      "confidence": 90
+    },
+    {
+      "region": "Coachella Valley; San Diego County Deserts; San Gorgonio Pass Near Banning",
+      "opportunity": "HVAC contractors overwhelmed in Coachella Valley; San Diego County Deserts; San Gorgonio Pass Near Banning. Heat emergency",
+      "action": "Target HVAC businesses in Coachella Valley; San Diego County Deserts; San Gorgonio Pass Near Banning with missed-call pitch. They're too busy to answer right now.",
+      "urgency": "immediate",
+      "confidence": 90
+    },
+    {
+      "region": "Clinton; Washington; Randolph; Madison; St. Clair; Monroe; Boone; Moniteau; Cole; Osage; Callaway; Montgomery; Gasconade; Warren; St. Charles; Franklin; St. Louis; St. Louis City; Jefferson",
+      "opportunity": "HVAC contractors overwhelmed in Clinton; Washington; Randolph; Madison; St. Clair; Monroe; Boone; Moniteau; Cole; Osage; Callaway; Montgomery; Gasconade; Warren; St. Charles; Franklin; St. Louis; St. Louis City; Jefferson. Heat emergency",
+      "action": "Target HVAC businesses in Clinton; Washington; Randolph; Madison; St. Clair; Monroe; Boone; Moniteau; Cole; Osage; Callaway; Montgomery; Gasconade; Warren; St. Charles; Franklin; St. Louis; St. Louis City; Jefferson with missed-call pitch. They're too busy to answer right now.",
       "urgency": "immediate",
       "confidence": 90
     }
@@ -254,6 +226,6 @@
     }
   ],
   "boss_heat_score": 100,
-  "recommendation": "HOT DAY. Weather-driven demand in Hall; Childress; Motley; Cottle; Dickens; King, Guadalupe Mountains of Eddy County; Eddy County Plains; Guadalupe Mountains Above 7000 Feet; Guadalupe and Delaware Mountains; Chinati Mountains; Davis Mountains, West Slopes Sacramento Mountains Below 7500 Feet; Sacramento Mountains Above 7500 Feet; East Slopes Sacramento Mountains Below 7500 Feet; Otero Mesa; West Central Tularosa Basin/White Sands; East Cent. Call HVAC/roofers there NOW.",
-  "daily_briefing": "ATLAS BOSS Score: 100/100\nDEMAND: HEAT_WAVE in Hall; Childress; Motley; Cottle; Dickens; King \u2014 target hvac businesses\nHOT DAY. Weather-driven demand in Hall; Childress; Motley; Cottle; Dickens; King, Guadalupe Mountains of Eddy County; Eddy County Plains; Guadalupe Mountains Above 7000 Feet; Guadalupe and Delaware Mountains; Chinati Mountains; Davis Mountains, West Slopes Sacramento Mountains Below 7500 Feet; Sacramento Mountains Above 7500 Feet; East Slopes Sacramento Mountains Below 7500 Feet; Otero Mesa; West Central Tularosa Basin/White Sands; East Cent. Call HVAC/roofers there NOW."
+  "recommendation": "HOT DAY. Weather-driven demand in Giles, TN, Pike, AR, McMullen, TX. Call HVAC/roofers there NOW.",
+  "daily_briefing": "ATLAS BOSS Score: 100/100\nDEMAND: FLOOD in Miller, AR; Bowie, TX \u2014 target plumbing businesses\nHOT DAY. Weather-driven demand in Giles, TN, Pike, AR, McMullen, TX. Call HVAC/roofers there NOW."
 }
