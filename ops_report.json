@@ -1,23 +1,18 @@
 {
-  "generated": "2026-08-08T20:30:01.557484+00:00",
+  "generated": "2026-08-09T02:00:04.294679+00:00",
   "sections": {
     "atlas": {
       "power_level": "ACTIVE",
-      "last_scan": "2026-08-08T19:55:34.357640+00:00",
-      "scan_count": 215,
+      "last_scan": "2026-08-09T00:15:52.489039+00:00",
+      "scan_count": 217,
       "heat_score": 100,
-      "recommendation": "HOT DAY. Weather-driven demand in Giles, TN, Pike, AR, McMullen, TX. Call HVAC/roofers there NOW.",
+      "recommendation": "HOT DAY. Weather-driven demand in Palo Duro Canyon, Harper; Woods; Alfalfa; Grant; Kay; Ellis; Woodward; Major; Garfield; Noble; Roger Mills; Dewey; Custer; Blaine; Kingfisher; Logan; Payne; Beckham; Washita; Caddo; Canadian; Oklahoma; Lincoln; Grady; , North and Central Sebastian; Southern Crawford; Central and Southern Franklin; Pushmataha; Choctaw; Craig; Ottawa; Tulsa; Rogers; Mayes; Delaware; Okfuskee; Okmulgee; Wagoner; Cherokee; Muskogee; McIn. Call HVAC/roofers there NOW.",
       "demand_signals": 10,
       "pain_signals": 0,
       "pitch_adjustments": 0,
       "competitor_intel": 0,
       "territory_alerts": 19,
       "top_demands": [
-        {
-          "type": "flood",
-          "area": "Miller, AR; Bowie, TX",
-          "niche": "plumbing"
-        },
         {
           "type": "heat_wave",
           "area": "Harper; Woods; Alfalfa; Grant; Kay; Ellis; Woodward; Major; ",
@@ -37,6 +32,11 @@
           "type": "flood",
           "area": "McMullen, TX",
           "niche": "plumbing"
+        },
+        {
+          "type": "heat_wave",
+          "area": "North and Central Sebastian; Southern Crawford; Central and ",
+          "niche": "hvac"
         }
       ],
       "sources_online": 0
@@ -45,23 +45,23 @@
       "state": "ACTIVE",
       "total_leads": 200,
       "by_tier": {
-        "SUPERNICHE": 110,
-        "HOT": 90
+        "SUPERNICHE": 115,
+        "HOT": 85
       },
       "by_route": {
-        "call_queue": 95,
-        "watchlist": 90,
-        "email": 15
+        "call_queue": 92,
+        "watchlist": 91,
+        "email": 17
       },
       "by_status": {
-        "called": 81,
-        "re_engaged": 48,
-        "queued": 71
+        "called": 79,
+        "re_engaged": 46,
+        "queued": 75
       },
-      "synced_to_pipeline": 107,
-      "api_spend": 130.82,
+      "synced_to_pipeline": 104,
+      "api_spend": 135.62,
       "api_budget": 300.0,
-      "api_percent": 43.6,
+      "api_percent": 45.2,
       "outcomes_recorded": 500,
       "by_outcome": {
         "call_initiated": 197,
@@ -147,6 +147,15 @@
           "status": "queued"
         },
         {
+          "name": "Santiago Plumbing LLC",
+          "niche": "plumbing",
+          "state": "",
+          "tier": "SUPERNICHE",
+          "score": 78,
+          "route": "watchlist",
+          "status": "queued"
+        },
+        {
           "name": "Dynamic Heating & Cooling",
           "niche": "HVAC contractor",
           "state": "NM",
@@ -154,15 +163,6 @@
           "score": 75,
           "route": "watchlist",
           "status": "queued"
-        },
-        {
-          "name": "Blankenship Law Firm",
-          "niche": "law firm",
-          "state": "AR",
-          "tier": "SUPERNICHE",
-          "score": 74,
-          "route": "watchlist",
-          "status": "re_engaged"
         }
       ]
     },
@@ -286,7 +286,7 @@
       "atlas_power": "ACTIVE",
       "n8n_errors_24h": 0,
       "retell_calls_24h": 50,
-      "api_spend_pct": 43.6
+      "api_spend_pct": 45.2
     }
   }
 }
