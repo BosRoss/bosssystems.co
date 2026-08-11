@@ -1,31 +1,21 @@
 {
-  "generated": "2026-08-09T02:00:04.294679+00:00",
+  "generated": "2026-08-11T02:02:18.480969+00:00",
   "sections": {
     "atlas": {
       "power_level": "ACTIVE",
-      "last_scan": "2026-08-09T00:15:52.489039+00:00",
-      "scan_count": 217,
+      "last_scan": "2026-08-09T02:25:51.927008+00:00",
+      "scan_count": 218,
       "heat_score": 100,
-      "recommendation": "HOT DAY. Weather-driven demand in Palo Duro Canyon, Harper; Woods; Alfalfa; Grant; Kay; Ellis; Woodward; Major; Garfield; Noble; Roger Mills; Dewey; Custer; Blaine; Kingfisher; Logan; Payne; Beckham; Washita; Caddo; Canadian; Oklahoma; Lincoln; Grady; , North and Central Sebastian; Southern Crawford; Central and Southern Franklin; Pushmataha; Choctaw; Craig; Ottawa; Tulsa; Rogers; Mayes; Delaware; Okfuskee; Okmulgee; Wagoner; Cherokee; Muskogee; McIn. Call HVAC/roofers there NOW.",
+      "recommendation": "HOT DAY. Weather-driven demand in Davidson, TN, San Francisco; North Bay Interior Valleys; San Francisco Bay Shoreline; Northern Monterey Bay; Southern Monterey Bay and Big Sur Coast, Williamson, TN. Call HVAC/roofers there NOW.",
       "demand_signals": 10,
       "pain_signals": 0,
       "pitch_adjustments": 0,
       "competitor_intel": 0,
-      "territory_alerts": 19,
+      "territory_alerts": 13,
       "top_demands": [
         {
           "type": "heat_wave",
           "area": "Harper; Woods; Alfalfa; Grant; Kay; Ellis; Woodward; Major; ",
-          "niche": "hvac"
-        },
-        {
-          "type": "heat_wave",
-          "area": "Palo Duro Canyon",
-          "niche": "hvac"
-        },
-        {
-          "type": "heat_wave",
-          "area": "Texas; Beaver; Hansford; Ochiltree; Lipscomb; Hutchinson; Ro",
           "niche": "hvac"
         },
         {
@@ -37,6 +27,16 @@
           "type": "heat_wave",
           "area": "North and Central Sebastian; Southern Crawford; Central and ",
           "niche": "hvac"
+        },
+        {
+          "type": "flood",
+          "area": "Williamson, TN",
+          "niche": "plumbing"
+        },
+        {
+          "type": "flood",
+          "area": "Davidson, TN",
+          "niche": "plumbing"
         }
       ],
       "sources_online": 0
@@ -45,27 +45,27 @@
       "state": "ACTIVE",
       "total_leads": 200,
       "by_tier": {
-        "SUPERNICHE": 115,
-        "HOT": 85
+        "SUPERNICHE": 124,
+        "HOT": 76
       },
       "by_route": {
         "call_queue": 92,
-        "watchlist": 91,
-        "email": 17
+        "watchlist": 90,
+        "email": 18
       },
       "by_status": {
-        "called": 79,
+        "called": 70,
         "re_engaged": 46,
-        "queued": 75
+        "queued": 84
       },
       "synced_to_pipeline": 104,
-      "api_spend": 135.62,
+      "api_spend": 138.66,
       "api_budget": 300.0,
-      "api_percent": 45.2,
+      "api_percent": 46.2,
       "outcomes_recorded": 500,
       "by_outcome": {
-        "call_initiated": 197,
-        "call_failed": 221,
+        "call_failed": 228,
+        "call_initiated": 190,
         "no_answer": 34,
         "hangup": 29,
         "callback": 9,
@@ -91,6 +91,15 @@
           "score": 83,
           "route": "watchlist",
           "status": "re_engaged"
+        },
+        {
+          "name": "Jeff's Plumbing",
+          "niche": "plumber",
+          "state": "OK",
+          "tier": "SUPERNICHE",
+          "score": 83,
+          "route": "watchlist",
+          "status": "queued"
         },
         {
           "name": "Kizer Law Firm",
@@ -152,15 +161,6 @@
           "state": "",
           "tier": "SUPERNICHE",
           "score": 78,
-          "route": "watchlist",
-          "status": "queued"
-        },
-        {
-          "name": "Dynamic Heating & Cooling",
-          "niche": "HVAC contractor",
-          "state": "NM",
-          "tier": "SUPERNICHE",
-          "score": 75,
           "route": "watchlist",
           "status": "queued"
         }
@@ -281,12 +281,14 @@
       "survivors": 0
     },
     "health": {
-      "circuit_breakers_tripped": [],
+      "circuit_breakers_tripped": [
+        "google_places"
+      ],
       "engine_paused": false,
       "atlas_power": "ACTIVE",
       "n8n_errors_24h": 0,
       "retell_calls_24h": 50,
-      "api_spend_pct": 45.2
+      "api_spend_pct": 46.2
     }
   }
 }
