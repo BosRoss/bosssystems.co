@@ -42379,286 +42379,124 @@
     }
   ],
   "trader_intel": {
-    "generated": "2026-08-08T20:00:54.511415+00:00",
-    "markets_analyzed": 407,
-    "edges_found": 26,
+    "generated": "2026-08-31T02:53:51.960340+00:00",
+    "markets_analyzed": 101,
+    "edges_found": 9,
     "topics_with_edge": {
-      "maritime": {
-        "count": 10,
-        "avg_edge": 2.5
+      "economic": {
+        "count": 3,
+        "avg_edge": 4.1
       },
       "other": {
-        "count": 290,
-        "avg_edge": 1.3
+        "count": 51,
+        "avg_edge": 2.0
       },
-      "conflict": {
+      "maritime": {
         "count": 8,
-        "avg_edge": 2.6
-      },
-      "economic": {
-        "count": 55,
-        "avg_edge": 2.5
-      },
-      "energy": {
-        "count": 11,
         "avg_edge": 2.1
       },
       "election": {
-        "count": 8,
-        "avg_edge": 1.6
+        "count": 6,
+        "avg_edge": 1.5
+      },
+      "conflict": {
+        "count": 6,
+        "avg_edge": 2.3
+      },
+      "energy": {
+        "count": 10,
+        "avg_edge": 1.8
       },
       "financial": {
-        "count": 13,
-        "avg_edge": 2.1
-      },
-      "nuclear": {
-        "count": 6,
-        "avg_edge": 2.6
+        "count": 14,
+        "avg_edge": 2.3
       },
       "peace": {
         "count": 5,
-        "avg_edge": 6.6
+        "avg_edge": 5.4
+      },
+      "nuclear": {
+        "count": 2,
+        "avg_edge": 1.9
       },
       "technology": {
-        "count": 7,
-        "avg_edge": 1.4
-      },
-      "sanctions": {
-        "count": 1,
-        "avg_edge": 5.9
+        "count": 2,
+        "avg_edge": 1.7
       },
       "space": {
         "count": 1,
-        "avg_edge": 1.3
+        "avg_edge": 1.5
       }
     },
     "countries_active": {
       "US": {
-        "mentions": 28,
-        "avg_market_prob": 36.2
-      },
-      "IR": {
-        "mentions": 29,
-        "avg_market_prob": 33.5
-      },
-      "TW": {
-        "mentions": 1,
-        "avg_market_prob": 3.8
-      },
-      "CN": {
-        "mentions": 10,
-        "avg_market_prob": 9.7
+        "mentions": 11,
+        "avg_market_prob": 53.8
       },
       "RU": {
-        "mentions": 13,
-        "avg_market_prob": 37.3
+        "mentions": 6,
+        "avg_market_prob": 35.0
       },
-      "UA": {
+      "IR": {
+        "mentions": 17,
+        "avg_market_prob": 33.5
+      },
+      "IL": {
         "mentions": 3,
-        "avg_market_prob": 25.8
+        "avg_market_prob": 35.8
       },
-      "PA": {
+      "CN": {
         "mentions": 1,
-        "avg_market_prob": 3.8
+        "avg_market_prob": 4.5
       },
       "CU": {
         "mentions": 1,
-        "avg_market_prob": 21.5
+        "avg_market_prob": 19.5
       },
       "PS": {
         "mentions": 1,
-        "avg_market_prob": 50.0
-      },
-      "IL": {
-        "mentions": 7,
-        "avg_market_prob": 19.1
-      },
-      "VE": {
-        "mentions": 1,
-        "avg_market_prob": 85.0
+        "avg_market_prob": 42.0
       },
       "JP": {
         "mentions": 2,
-        "avg_market_prob": 5.2
+        "avg_market_prob": 52.8
       },
-      "BR": {
+      "SA": {
         "mentions": 1,
-        "avg_market_prob": 89.0
+        "avg_market_prob": 7.5
       },
-      "RO": {
-        "mentions": 13,
-        "avg_market_prob": 7.3
-      },
-      "GB": {
+      "ML": {
         "mentions": 1,
-        "avg_market_prob": 3.5
+        "avg_market_prob": 7.5
       },
-      "IT": {
+      "UA": {
         "mentions": 1,
-        "avg_market_prob": 3.0
-      },
-      "DE": {
-        "mentions": 1,
-        "avg_market_prob": 9.0
-      },
-      "FR": {
-        "mentions": 1,
-        "avg_market_prob": 86.5
+        "avg_market_prob": 6.5
       }
     },
     "market_consensus": [
       {
-        "question": "Russia-Ukraine peace talks by December 31, 2026?",
-        "market_prob": 60.5,
-        "atlas_prob": 48.8,
-        "edge": 11.7,
+        "question": "Israel x Iran ceasefire continues through September 30?",
+        "market_prob": 67.5,
+        "atlas_prob": 53.1,
+        "edge": 14.4,
         "confidence": "medium",
         "topics": [
           "peace"
         ],
         "countries": [
-          "RU",
-          "UA"
+          "IL",
+          "IR"
         ]
       },
       {
         "question": "Iran-Oman Hormuz Agreement by August 31?",
-        "market_prob": 83.5,
-        "atlas_prob": 73.8,
-        "edge": 9.7,
+        "market_prob": 56.5,
+        "atlas_prob": 47.6,
+        "edge": 8.9,
         "confidence": "medium",
         "topics": [
           "peace"
-        ],
-        "countries": [
-          "IR"
-        ]
-      },
-      {
-        "question": "Will Benjamin Netanyahu be the next Prime Minister of Israel?",
-        "market_prob": 32.5,
-        "atlas_prob": 40.9,
-        "edge": 8.4,
-        "confidence": "medium",
-        "topics": [
-          "other"
-        ],
-        "countries": [
-          "IL"
-        ]
-      },
-      {
-        "question": "Israeli forces enter Tyre by August 31?",
-        "market_prob": 9.5,
-        "atlas_prob": 17.4,
-        "edge": 7.9,
-        "confidence": "medium",
-        "topics": [
-          "other"
-        ],
-        "countries": [
-          "IL"
-        ]
-      },
-      {
-        "question": "Will Naftali Bennett be the next Prime Minister of Israel?",
-        "market_prob": 14.0,
-        "atlas_prob": 21.9,
-        "edge": 7.9,
-        "confidence": "medium",
-        "topics": [
-          "other"
-        ],
-        "countries": [
-          "IL"
-        ]
-      },
-      {
-        "question": "Will Avigdor Lieberman be the next Prime Minister of Israel?",
-        "market_prob": 7.2,
-        "atlas_prob": 14.3,
-        "edge": 7.1,
-        "confidence": "medium",
-        "topics": [
-          "other"
-        ],
-        "countries": [
-          "IL"
-        ]
-      },
-      {
-        "question": "Iran charges Hormuz fees by August 31?",
-        "market_prob": 9.5,
-        "atlas_prob": 16.5,
-        "edge": 7.0,
-        "confidence": "medium",
-        "topics": [
-          "other"
-        ],
-        "countries": [
-          "IR"
-        ]
-      },
-      {
-        "question": "Iran leadership change by November 30?",
-        "market_prob": 15.5,
-        "atlas_prob": 22.5,
-        "edge": 7.0,
-        "confidence": "medium",
-        "topics": [
-          "other"
-        ],
-        "countries": [
-          "IR"
-        ]
-      },
-      {
-        "question": "Iran leadership change by June 30, 2027?",
-        "market_prob": 31.5,
-        "atlas_prob": 38.3,
-        "edge": 6.8,
-        "confidence": "medium",
-        "topics": [
-          "other"
-        ],
-        "countries": [
-          "IR"
-        ]
-      },
-      {
-        "question": "Will no qualifying diplomatic US-Iran meeting occur by September 30, 2026?",
-        "market_prob": 32.6,
-        "atlas_prob": 39.3,
-        "edge": 6.7,
-        "confidence": "medium",
-        "topics": [
-          "other"
-        ],
-        "countries": [
-          "IR"
-        ]
-      },
-      {
-        "question": "US-Iran Hormuz Agreement by August 31?",
-        "market_prob": 43.0,
-        "atlas_prob": 36.3,
-        "edge": 6.7,
-        "confidence": "medium",
-        "topics": [
-          "peace"
-        ],
-        "countries": [
-          "IR"
-        ]
-      },
-      {
-        "question": "Iran leadership change by December 31?",
-        "market_prob": 22.5,
-        "atlas_prob": 29.1,
-        "edge": 6.6,
-        "confidence": "medium",
-        "topics": [
-          "other"
         ],
         "countries": [
           "IR"
@@ -42666,9 +42504,9 @@
       },
       {
         "question": "US x Iran diplomatic meeting by August 31, 2026?",
-        "market_prob": 36.5,
-        "atlas_prob": 43.0,
-        "edge": 6.5,
+        "market_prob": 19.0,
+        "atlas_prob": 26.5,
+        "edge": 7.5,
         "confidence": "medium",
         "topics": [
           "other"
@@ -42678,75 +42516,23 @@
         ]
       },
       {
-        "question": "Will there be no change in Fed interest rates after the September 2026 meeting?",
-        "market_prob": 62.5,
-        "atlas_prob": 56.1,
-        "edge": 6.4,
+        "question": "Iran leadership change by December 31?",
+        "market_prob": 19.5,
+        "atlas_prob": 27.0,
+        "edge": 7.5,
         "confidence": "medium",
         "topics": [
-          "economic"
+          "other"
         ],
         "countries": [
-          "US"
+          "IR"
         ]
       },
       {
-        "question": "Iran leadership change by September 30?",
+        "question": "Iran charges Hormuz fees by August 31?",
         "market_prob": 7.5,
         "atlas_prob": 13.9,
         "edge": 6.4,
-        "confidence": "medium",
-        "topics": [
-          "other"
-        ],
-        "countries": [
-          "IR"
-        ]
-      },
-      {
-        "question": "Will Israel Katz be the next Prime Minister of Israel?",
-        "market_prob": 5.2,
-        "atlas_prob": 11.4,
-        "edge": 6.2,
-        "confidence": "medium",
-        "topics": [
-          "other"
-        ],
-        "countries": [
-          "IL"
-        ]
-      },
-      {
-        "question": " Iran agrees to end enrichment of uranium by December 31?",
-        "market_prob": 20.5,
-        "atlas_prob": 26.6,
-        "edge": 6.1,
-        "confidence": "medium",
-        "topics": [
-          "nuclear"
-        ],
-        "countries": [
-          "IR"
-        ]
-      },
-      {
-        "question": "Iran full airspace closure by August 31?",
-        "market_prob": 11.5,
-        "atlas_prob": 17.6,
-        "edge": 6.1,
-        "confidence": "medium",
-        "topics": [
-          "other"
-        ],
-        "countries": [
-          "IR"
-        ]
-      },
-      {
-        "question": "Iran leadership change by October 31?",
-        "market_prob": 11.5,
-        "atlas_prob": 17.6,
-        "edge": 6.1,
         "confidence": "medium",
         "topics": [
           "other"
@@ -42767,17 +42553,193 @@
         "countries": [
           "IR"
         ]
+      },
+      {
+        "question": "Will there be no change in Fed interest rates after the September 2026 meeting?",
+        "market_prob": 55.5,
+        "atlas_prob": 49.8,
+        "edge": 5.7,
+        "confidence": "medium",
+        "topics": [
+          "economic"
+        ],
+        "countries": [
+          "US"
+        ]
+      },
+      {
+        "question": "Will no qualifying diplomatic US-Iran meeting occur by September 30, 2026?",
+        "market_prob": 48.2,
+        "atlas_prob": 53.4,
+        "edge": 5.2,
+        "confidence": "medium",
+        "topics": [
+          "other"
+        ],
+        "countries": [
+          "IR"
+        ]
+      },
+      {
+        "question": "Kharg Island no longer under Iranian control by September 30?",
+        "market_prob": 4.2,
+        "atlas_prob": 9.3,
+        "edge": 5.1,
+        "confidence": "medium",
+        "topics": [
+          "other"
+        ],
+        "countries": [
+          "IR"
+        ]
+      },
+      {
+        "question": "US x Iran diplomatic meeting by September 30, 2026?",
+        "market_prob": 51.5,
+        "atlas_prob": 56.2,
+        "edge": 4.7,
+        "confidence": "medium",
+        "topics": [
+          "other"
+        ],
+        "countries": [
+          "IR"
+        ]
+      },
+      {
+        "question": "Will the Fed increase interest rates by 25 bps after the September 2026 meeting?",
+        "market_prob": 42.5,
+        "atlas_prob": 38.7,
+        "edge": 3.8,
+        "confidence": "medium",
+        "topics": [
+          "economic"
+        ],
+        "countries": [
+          "US"
+        ]
+      },
+      {
+        "question": "Strait of Hormuz traffic returns to normal by December 31?",
+        "market_prob": 46.5,
+        "atlas_prob": 42.8,
+        "edge": 3.7,
+        "confidence": "medium",
+        "topics": [
+          "maritime"
+        ],
+        "countries": []
+      },
+      {
+        "question": "Will the U.S. invade Iran before 2027?",
+        "market_prob": 16.5,
+        "atlas_prob": 20.0,
+        "edge": 3.5,
+        "confidence": "high",
+        "topics": [
+          "conflict"
+        ],
+        "countries": [
+          "US",
+          "IR"
+        ]
+      },
+      {
+        "question": "Will Bitcoin reach $72,500 in August?",
+        "market_prob": 9.5,
+        "atlas_prob": 12.4,
+        "edge": 2.9,
+        "confidence": "medium",
+        "topics": [
+          "financial"
+        ],
+        "countries": []
+      },
+      {
+        "question": "US strike on Cuba by December 31?",
+        "market_prob": 19.5,
+        "atlas_prob": 22.4,
+        "edge": 2.9,
+        "confidence": "medium",
+        "topics": [
+          "conflict"
+        ],
+        "countries": [
+          "CU"
+        ]
+      },
+      {
+        "question": "Will Bitcoin dip to $55,000 in August?",
+        "market_prob": 9.5,
+        "atlas_prob": 12.4,
+        "edge": 2.9,
+        "confidence": "medium",
+        "topics": [
+          "financial"
+        ],
+        "countries": []
+      },
+      {
+        "question": "No change in Bank of Japan\u2019s interest rates after the October 2026 meeting?",
+        "market_prob": 46.0,
+        "atlas_prob": 43.1,
+        "edge": 2.9,
+        "confidence": "medium",
+        "topics": [
+          "financial",
+          "economic"
+        ],
+        "countries": [
+          "JP"
+        ]
+      },
+      {
+        "question": "Total Internet Blackout in Iran by August 31, 2026?",
+        "market_prob": 8.5,
+        "atlas_prob": 11.3,
+        "edge": 2.8,
+        "confidence": "medium",
+        "topics": [
+          "other"
+        ],
+        "countries": [
+          "IR"
+        ]
+      },
+      {
+        "question": "Will Bitcoin reach $100,000 by December 31, 2026?",
+        "market_prob": 7.5,
+        "atlas_prob": 10.2,
+        "edge": 2.7,
+        "confidence": "medium",
+        "topics": [
+          "financial"
+        ],
+        "countries": []
+      },
+      {
+        "question": "Will Russia enter Malokaterynivka by December 31, 2026?",
+        "market_prob": 7.4,
+        "atlas_prob": 10.0,
+        "edge": 2.6,
+        "confidence": "low",
+        "topics": [
+          "other"
+        ],
+        "countries": [
+          "RU"
+        ]
       }
     ],
     "information_gaps": [],
     "cross_platform_divergences": [
       {
         "topic": "Strait of Hormuz traffic returns to normal by August 15?",
-        "spread": 48.0,
+        "spread": 38.0,
         "sources": [
           {
             "source": "polymarket",
-            "prob": 0.5,
+            "prob": 0.4,
             "question": "Strait of Hormuz traffic returns to normal by August 15?"
           },
           {
@@ -42788,50 +42750,34 @@
         ]
       },
       {
-        "topic": "US x Iran Effective Ceasefire by July 31?",
-        "spread": 7.5,
+        "topic": "US announces end of Iranian blockade by August 8, 2026?",
+        "spread": 48.0,
         "sources": [
           {
             "source": "polymarket",
-            "prob": 0.855,
+            "prob": 0.5,
+            "question": "US announces end of Iranian blockade by August 8, 2026?"
+          },
+          {
+            "source": "atlas_predictions",
+            "prob": 0.02,
+            "question": "US announces end of Iranian blockade by August 8, 2026?"
+          }
+        ]
+      },
+      {
+        "topic": "US x Iran Effective Ceasefire by July 31?",
+        "spread": 6.5,
+        "sources": [
+          {
+            "source": "polymarket",
+            "prob": 0.845,
             "question": "US x Iran Effective Ceasefire by July 31?"
           },
           {
             "source": "atlas_predictions",
             "prob": 0.78,
             "question": "US x Iran Effective Ceasefire by July 31?"
-          }
-        ]
-      },
-      {
-        "topic": "Israel x Iran ceasefire continues through August 9?",
-        "spread": 6.6,
-        "sources": [
-          {
-            "source": "polymarket",
-            "prob": 0.976,
-            "question": "Israel x Iran ceasefire continues through August 9?"
-          },
-          {
-            "source": "atlas_predictions",
-            "prob": 0.91,
-            "question": "Israel x Iran ceasefire continues through August 9?"
-          }
-        ]
-      },
-      {
-        "topic": "Will the Fed increase interest rates by 50+ bps after the September 2026 meeting",
-        "spread": 48.0,
-        "sources": [
-          {
-            "source": "polymarket",
-            "prob": 0.5,
-            "question": "Will the Fed increase interest rates by 50+ bps after the September 2026 meeting?"
-          },
-          {
-            "source": "atlas_predictions",
-            "prob": 0.02,
-            "question": "Will the Fed increase interest rates by 50+ bps after the September 2026 meeting?"
           }
         ]
       }
@@ -42841,140 +42787,120 @@
         "country": "IR",
         "lat": 32.4,
         "lon": 53.7,
-        "market_mentions": 29,
+        "market_mentions": 17,
         "avg_market_prob": 33.5
       },
       {
         "country": "US",
         "lat": 37.1,
         "lon": -95.7,
-        "market_mentions": 28,
-        "avg_market_prob": 36.2
+        "market_mentions": 11,
+        "avg_market_prob": 53.8
       },
       {
         "country": "RU",
         "lat": 61.5,
         "lon": 105.3,
-        "market_mentions": 13,
-        "avg_market_prob": 37.3
-      },
-      {
-        "country": "RO",
-        "lat": 45.9,
-        "lon": 25.0,
-        "market_mentions": 13,
-        "avg_market_prob": 7.3
-      },
-      {
-        "country": "CN",
-        "lat": 35.9,
-        "lon": 104.2,
-        "market_mentions": 10,
-        "avg_market_prob": 9.7
+        "market_mentions": 6,
+        "avg_market_prob": 35.0
       },
       {
         "country": "IL",
         "lat": 31.0,
         "lon": 34.9,
-        "market_mentions": 7,
-        "avg_market_prob": 19.1
-      },
-      {
-        "country": "UA",
-        "lat": 48.4,
-        "lon": 31.2,
         "market_mentions": 3,
-        "avg_market_prob": 25.8
+        "avg_market_prob": 35.8
       },
       {
         "country": "JP",
         "lat": 36.2,
         "lon": 138.3,
         "market_mentions": 2,
-        "avg_market_prob": 5.2
+        "avg_market_prob": 52.8
       },
       {
-        "country": "TW",
-        "lat": 23.7,
-        "lon": 121.0,
+        "country": "CN",
+        "lat": 35.9,
+        "lon": 104.2,
         "market_mentions": 1,
-        "avg_market_prob": 3.8
+        "avg_market_prob": 4.5
       },
       {
-        "country": "PA",
-        "lat": 8.5,
-        "lon": -80.8,
+        "country": "CU",
+        "lat": 21.5,
+        "lon": -78.0,
         "market_mentions": 1,
-        "avg_market_prob": 3.8
+        "avg_market_prob": 19.5
+      },
+      {
+        "country": "SA",
+        "lat": 23.9,
+        "lon": 45.1,
+        "market_mentions": 1,
+        "avg_market_prob": 7.5
+      },
+      {
+        "country": "ML",
+        "lat": 17.6,
+        "lon": -4.0,
+        "market_mentions": 1,
+        "avg_market_prob": 7.5
       }
     ],
-    "sentiment_map": {},
+    "sentiment_map": {
+      "other": 0.0
+    },
     "base_rate_usage": {
-      "base_5": {
-        "rate": 5,
-        "count": 2,
-        "reason": "Base rate: new wars/invasions are rare, resolve YES ~5% historically"
-      },
       "base_15": {
         "rate": 15,
-        "count": 6,
+        "count": 5,
         "reason": "Base rate: conflict escalation questions resolve YES ~15% historically"
+      },
+      "base_5": {
+        "rate": 5,
+        "count": 1,
+        "reason": "Base rate: new wars/invasions are rare, resolve YES ~5% historically"
       },
       "base_20": {
         "rate": 20,
         "count": 5,
         "reason": "Base rate: ceasefires during active conflict resolve YES ~20% historically"
-      },
-      "base_40": {
-        "rate": 40,
-        "count": 1,
-        "reason": "Base rate: new sanctions resolve YES ~40% when tensions exist"
       }
     },
     "momentum": {
       "new_hotspots": [],
       "cooling_hotspots": [
         {
-          "country": "PS",
-          "previous_mentions": 5,
+          "country": "CN",
+          "previous_mentions": 10,
           "current_mentions": 1
+        },
+        {
+          "country": "RO",
+          "previous_mentions": 13,
+          "current_mentions": 0
         }
       ],
-      "edge_shifts": {
-        "maritime": {
-          "current_avg": 2.5,
-          "previous_avg": 4.6,
-          "direction": "narrowing"
-        },
-        "economic": {
-          "current_avg": 2.5,
-          "previous_avg": 5.3,
-          "direction": "narrowing"
-        },
+      "edge_shifts": {},
+      "sentiment_shifts": {
         "election": {
-          "current_avg": 1.6,
-          "previous_avg": 4.1,
-          "direction": "narrowing"
-        },
-        "sanctions": {
-          "current_avg": 5.9,
-          "previous_avg": 0,
-          "direction": "widening"
+          "current": -0.333,
+          "previous": 0,
+          "direction": "deteriorating"
         }
       },
-      "sentiment_shifts": {},
       "coverage_changes": []
     }
   },
   "paper_trader": {
-    "balance": 659.2,
+    "balance": 874.96,
     "starting_balance": 1000.0,
     "total_pnl": -29.1,
     "wins": 0,
     "losses": 1,
     "total_wagered": 455.97,
     "total_bets_placed": 12,
-    "pending_count": 8,
+    "pending_count": 3,
     "pending": [
       {
         "bet_id": "232efcb88145",
@@ -43051,80 +42977,6 @@
         "pnl": null
       },
       {
-        "bet_id": "9491f523849b",
-        "platform": "polymarket",
-        "question": "US x Iran permanent peace deal by August 31, 2026?",
-        "market_id": "0xda519921a7090298cbdc56ee838a403a5193c2b3f637aef3e154e52de7b5e79c",
-        "ticker": "",
-        "slug": "us-x-iran-permanent-peace-deal-by-august-31-2026",
-        "condition_id": "0xda519921a7090298cbdc56ee838a403a5193c2b3f637aef3e154e52de7b5e79c",
-        "url": "https://polymarket.com/event/us-x-iran-permanent-peace-deal-by-august-31-2026",
-        "market_prob": 50.5,
-        "atlas_prob": 37.8,
-        "edge": 12.7,
-        "position": "NO",
-        "entry_price": 0.495,
-        "bet_amount": 55.75,
-        "shares": 112.63,
-        "potential_payout": 112.63,
-        "potential_profit": 56.88,
-        "reasoning": "Expert analysis: Negotiating with the Iranian regime; How will the Iran war change the US role in the world?; Tehran 18 May 2026 #1. ATLAS assessment: Analyst consensus: 140 think tank pieces, top focu. Active conflict zone: Israel-Iran (shadow_war) \u2014 peace historically unlikely during active hostilities. ATLAS prior prediction: 4% vs market 50.5%. Base rate: ceasefires during active conflict resolve YES ~20% historically.",
-        "confidence": "medium",
-        "effective_edge": 11.2,
-        "market_quality": {
-          "volume": 276509.5585579998,
-          "efficiency": "moderate",
-          "efficiency_multiplier": 0.8,
-          "days_to_expiry": 86,
-          "time_label": "quarter",
-          "time_multiplier": 1.1
-        },
-        "evidence_summary": {
-          "gdelt_relevant": 0,
-          "news_relevant": 13,
-          "think_tanks_relevant": 14,
-          "reddit_relevant": 38,
-          "aircraft_near_region": 0,
-          "critical_aircraft": 0,
-          "predictions_related": 10,
-          "conflict_zones": 1,
-          "nuclear_sites": 5,
-          "chokepoints": 1
-        },
-        "evidence_factors": [
-          {
-            "source": "base_rate_prior",
-            "adjustment": -2.7,
-            "reason": "Base rate: ceasefires during active conflict resolve YES ~20% historically"
-          },
-          {
-            "source": "geo_intel",
-            "adjustment": -9.6,
-            "reason": "Active conflict zone: Israel-Iran (shadow_war) \u2014 peace historically unlikely during active hostilities"
-          },
-          {
-            "source": "think_tanks",
-            "adjustment": 0.8,
-            "reason": "14 think tank articles on this topic \u2014 significant expert attention"
-          },
-          {
-            "source": "atlas_prior",
-            "adjustment": -4.2,
-            "reason": "ATLAS prior prediction: 4% vs market 50.5%"
-          },
-          {
-            "source": "reddit_sentiment",
-            "adjustment": -0.4,
-            "reason": "Reddit sentiment negative (-0.40) across 38 relevant posts (5+/20-)"
-          }
-        ],
-        "end_date": "2026-08-31T00:00:00Z",
-        "placed_at": "2026-06-05T03:55:54.749531+00:00",
-        "status": "pending",
-        "resolved_at": null,
-        "pnl": null
-      },
-      {
         "bet_id": "ad835ff0a4ab",
         "platform": "polymarket",
         "question": "Will Xi Jinping visit US before 2027?",
@@ -43182,314 +43034,6 @@
         "status": "pending",
         "resolved_at": null,
         "pnl": null
-      },
-      {
-        "bet_id": "a60a812b9111",
-        "platform": "polymarket",
-        "question": "US-Iran 60 day negotiation period extended?",
-        "market_id": "0x518df6d694ad4658fe6c284850c029c6f00c9b3609cf05f7757d1fecba1641f8",
-        "ticker": "",
-        "slug": "us-iran-60-day-negotiation-period-extended-20260624044855448",
-        "condition_id": "0x518df6d694ad4658fe6c284850c029c6f00c9b3609cf05f7757d1fecba1641f8",
-        "url": "https://polymarket.com/event/us-iran-60-day-negotiation-period-extended-20260624044855448",
-        "market_prob": 62.5,
-        "atlas_prob": 48.4,
-        "edge": 14.1,
-        "position": "NO",
-        "entry_price": 0.375,
-        "bet_amount": 42.86,
-        "shares": 114.29,
-        "potential_payout": 114.29,
-        "potential_profit": 71.43,
-        "reasoning": "Expert analysis: Iranian Elites Are Not in Agreement About What to Do Next; Tehran 5 June 2026 #1; Tehran 3 June 2026 #3. ATLAS assessment: Currency Shock: 1 currencies moving >2% vs USD. Active conflict zone: Israel-Iran (shadow_war) \u2014 peace historically unlikely during active hostilities. ATLAS prior prediction: 14.1% vs market 62.5%. Base rate: ceasefires during active conflict resolve YES ~20% historically.",
-        "confidence": "medium",
-        "effective_edge": 10.9,
-        "market_quality": {
-          "volume": 94004.660797,
-          "efficiency": "normal",
-          "efficiency_multiplier": 0.7,
-          "days_to_expiry": 48,
-          "time_label": "quarter",
-          "time_multiplier": 1.1
-        },
-        "evidence_summary": {
-          "gdelt_relevant": 0,
-          "news_relevant": 10,
-          "think_tanks_relevant": 11,
-          "reddit_relevant": 3,
-          "aircraft_near_region": 0,
-          "critical_aircraft": 0,
-          "predictions_related": 5,
-          "conflict_zones": 1,
-          "nuclear_sites": 5,
-          "chokepoints": 1
-        },
-        "evidence_factors": [
-          {
-            "source": "base_rate_prior",
-            "adjustment": -3.8,
-            "reason": "Base rate: ceasefires during active conflict resolve YES ~20% historically"
-          },
-          {
-            "source": "geo_intel",
-            "adjustment": -9.6,
-            "reason": "Active conflict zone: Israel-Iran (shadow_war) \u2014 peace historically unlikely during active hostilities"
-          },
-          {
-            "source": "think_tanks",
-            "adjustment": 0.8,
-            "reason": "11 think tank articles on this topic \u2014 significant expert attention"
-          },
-          {
-            "source": "atlas_prior",
-            "adjustment": -4.4,
-            "reason": "ATLAS prior prediction: 14.1% vs market 62.5%"
-          },
-          {
-            "source": "sanctions",
-            "adjustment": -1.2,
-            "reason": "30 active sanctions entries \u2014 indicates adversarial posture"
-          }
-        ],
-        "end_date": "2026-08-20T23:59:00Z",
-        "placed_at": "2026-07-03T15:05:10.775992+00:00",
-        "status": "pending",
-        "resolved_at": null,
-        "pnl": null
-      },
-      {
-        "bet_id": "f129c0c2608e",
-        "platform": "polymarket",
-        "question": "US x Iran Effective Ceasefire by August 31?",
-        "market_id": "0x61c2b9e70f7fdf3441fd1cfa2c8fa93308fefe3f5ecc2db87c393efab3a207a3",
-        "ticker": "",
-        "slug": "us-x-iran-effective-ceasfire-by-august-31-20260715194822047",
-        "condition_id": "0x61c2b9e70f7fdf3441fd1cfa2c8fa93308fefe3f5ecc2db87c393efab3a207a3",
-        "url": "https://polymarket.com/event/us-x-iran-effective-ceasfire-by-august-31-20260715194822047",
-        "market_prob": 54.5,
-        "atlas_prob": 41.2,
-        "edge": 13.3,
-        "position": "NO",
-        "entry_price": 0.455,
-        "bet_amount": 43.75,
-        "shares": 96.15,
-        "potential_payout": 96.15,
-        "potential_profit": 52.4,
-        "reasoning": "Expert analysis: U.S. military identifies soldiers killed in Iran attacks; U.S. soldiers killed in Jordan identified after Iran attack; Iran is rebuilding its nuclear program underground. Will Tru. ATLAS assessment: Analyst consensus: 288 think tank pieces, top focu. Active conflict zone: Israel-Iran (shadow_war) \u2014 peace historically unlikely during active hostilities. ATLAS prior prediction: 11.0% vs market 54.5%. Base rate: ceasefires during active conflict resolve YES ~20% historically.",
-        "confidence": "medium",
-        "effective_edge": 10.2,
-        "market_quality": {
-          "volume": 195201.33233500016,
-          "efficiency": "normal",
-          "efficiency_multiplier": 0.7,
-          "days_to_expiry": 42,
-          "time_label": "quarter",
-          "time_multiplier": 1.1
-        },
-        "evidence_summary": {
-          "gdelt_relevant": 0,
-          "news_relevant": 73,
-          "think_tanks_relevant": 22,
-          "reddit_relevant": 1,
-          "aircraft_near_region": 0,
-          "critical_aircraft": 0,
-          "predictions_related": 12,
-          "conflict_zones": 1,
-          "nuclear_sites": 5,
-          "chokepoints": 1
-        },
-        "evidence_factors": [
-          {
-            "source": "base_rate_prior",
-            "adjustment": -3.1,
-            "reason": "Base rate: ceasefires during active conflict resolve YES ~20% historically"
-          },
-          {
-            "source": "geo_intel",
-            "adjustment": -9.6,
-            "reason": "Active conflict zone: Israel-Iran (shadow_war) \u2014 peace historically unlikely during active hostilities"
-          },
-          {
-            "source": "think_tanks",
-            "adjustment": 0.8,
-            "reason": "22 think tank articles on this topic \u2014 significant expert attention"
-          },
-          {
-            "source": "atlas_prior",
-            "adjustment": -3.9,
-            "reason": "ATLAS prior prediction: 11.0% vs market 54.5%"
-          },
-          {
-            "source": "sanctions",
-            "adjustment": -1.2,
-            "reason": "30 active sanctions entries \u2014 indicates adversarial posture"
-          }
-        ],
-        "end_date": "2026-08-31T23:59:00Z",
-        "placed_at": "2026-07-20T21:07:02.257003+00:00",
-        "status": "pending",
-        "resolved_at": null,
-        "pnl": null
-      },
-      {
-        "bet_id": "37083544fcd3",
-        "platform": "polymarket",
-        "question": "Israel x Iran ceasefire continues through August 31?",
-        "market_id": "0xc1556ecbe613e403dfb9e38bf1b25a8aee2aa1687f2b343bc896dd2c9763ed74",
-        "ticker": "",
-        "slug": "israel-x-iran-ceasefire-continues-through-august-31-20260716224448970-754-896-823",
-        "condition_id": "0xc1556ecbe613e403dfb9e38bf1b25a8aee2aa1687f2b343bc896dd2c9763ed74",
-        "url": "https://polymarket.com/event/israel-x-iran-ceasefire-continues-through-august-31-20260716224448970-754-896-823",
-        "market_prob": 59.5,
-        "atlas_prob": 45.1,
-        "edge": 14.4,
-        "position": "NO",
-        "entry_price": 0.405,
-        "bet_amount": 43.18,
-        "shares": 106.62,
-        "potential_payout": 106.62,
-        "potential_profit": 63.44,
-        "reasoning": "Expert analysis: Board of Peace announces Hamas disarmament agreement, IDF re; The United States deal with Iran could put freedom of naviga; The Israel-Lebanon Framework Agreement: Return to the \u201cLand . ATLAS assessment: Analyst consensus: 399 think tank pieces, top focu. Active conflict zone: Israel-Palestine (Gaza) (active_conflict) \u2014 peace historically unlikely during active hostilities. ATLAS prior prediction: 8% vs market 59.5%. Base rate: ceasefires during active conflict resolve YES ~20% historically.",
-        "confidence": "medium",
-        "effective_edge": 14.488461538461538,
-        "market_quality": {
-          "volume": 620828.2059950004,
-          "efficiency": "moderate",
-          "efficiency_multiplier": 0.8,
-          "days_to_expiry": 31,
-          "time_label": "quarter",
-          "time_multiplier": 1.1
-        },
-        "evidence_summary": {
-          "gdelt_relevant": 0,
-          "news_relevant": 68,
-          "think_tanks_relevant": 41,
-          "reddit_relevant": 0,
-          "aircraft_near_region": 0,
-          "critical_aircraft": 0,
-          "predictions_related": 17,
-          "conflict_zones": 2,
-          "nuclear_sites": 6,
-          "chokepoints": 2
-        },
-        "evidence_factors": [
-          {
-            "source": "base_rate_prior",
-            "adjustment": -3.6,
-            "reason": "Base rate: ceasefires during active conflict resolve YES ~20% historically"
-          },
-          {
-            "source": "geo_intel",
-            "adjustment": -9.6,
-            "reason": "Active conflict zone: Israel-Palestine (Gaza) (active_conflict) \u2014 peace historically unlikely during active hostilities"
-          },
-          {
-            "source": "think_tanks",
-            "adjustment": 0.8,
-            "reason": "41 think tank articles on this topic \u2014 significant expert attention"
-          },
-          {
-            "source": "atlas_prior",
-            "adjustment": -4.6,
-            "reason": "ATLAS prior prediction: 8% vs market 59.5%"
-          },
-          {
-            "source": "alliance_dynamics",
-            "adjustment": -1.6,
-            "reason": "Countries are adversaries \u2014 peace deals between adversaries have low base rate"
-          },
-          {
-            "source": "sanctions",
-            "adjustment": -1.2,
-            "reason": "30 active sanctions entries \u2014 indicates adversarial posture"
-          }
-        ],
-        "end_date": "2026-08-31T23:59:00Z",
-        "placed_at": "2026-07-31T20:00:43.267994+00:00",
-        "status": "pending",
-        "resolved_at": null,
-        "pnl": null,
-        "horizon_bonus": 1.8
-      },
-      {
-        "bet_id": "ba9d1675dd6e",
-        "platform": "polymarket",
-        "question": "Israel x Iran ceasefire continues through August 15?",
-        "market_id": "0x6acdc3316f0b43ca4fbc13623fc018e30f2fd20ae7b93bdc07c8193e99b0ac4d",
-        "ticker": "",
-        "slug": "israel-x-iran-ceasefire-continues-through-august-15-20260716224448969-246-815-987-693",
-        "condition_id": "0x6acdc3316f0b43ca4fbc13623fc018e30f2fd20ae7b93bdc07c8193e99b0ac4d",
-        "url": "https://polymarket.com/event/israel-x-iran-ceasefire-continues-through-august-15-20260716224448969-246-815-987-693",
-        "market_prob": 76.0,
-        "atlas_prob": 62.3,
-        "edge": 13.7,
-        "position": "NO",
-        "entry_price": 0.24,
-        "bet_amount": 30.22,
-        "shares": 125.92,
-        "potential_payout": 125.92,
-        "potential_profit": 95.7,
-        "reasoning": "Expert analysis: Board of Peace announces Hamas disarmament agreement, IDF re; The United States deal with Iran could put freedom of naviga; The Israel-Lebanon Framework Agreement: Return to the \u201cLand . ATLAS assessment: Analyst consensus: 399 think tank pieces, top focu. Active conflict zone: Israel-Palestine (Gaza) (active_conflict) \u2014 peace historically unlikely during active hostilities. ATLAS prior prediction: 14.1% vs market 76.0%. Base rate: ceasefires during active conflict resolve YES ~20% historically.",
-        "confidence": "medium",
-        "effective_edge": 11.865384615384615,
-        "market_quality": {
-          "volume": 502801.92430399964,
-          "efficiency": "moderate",
-          "efficiency_multiplier": 0.8,
-          "days_to_expiry": 15,
-          "time_label": "this_month",
-          "time_multiplier": 1.0
-        },
-        "evidence_summary": {
-          "gdelt_relevant": 0,
-          "news_relevant": 68,
-          "think_tanks_relevant": 41,
-          "reddit_relevant": 0,
-          "aircraft_near_region": 0,
-          "critical_aircraft": 0,
-          "predictions_related": 17,
-          "conflict_zones": 2,
-          "nuclear_sites": 6,
-          "chokepoints": 2
-        },
-        "evidence_factors": [
-          {
-            "source": "base_rate_prior",
-            "adjustment": -5.0,
-            "reason": "Base rate: ceasefires during active conflict resolve YES ~20% historically"
-          },
-          {
-            "source": "geo_intel",
-            "adjustment": -9.6,
-            "reason": "Active conflict zone: Israel-Palestine (Gaza) (active_conflict) \u2014 peace historically unlikely during active hostilities"
-          },
-          {
-            "source": "think_tanks",
-            "adjustment": 0.8,
-            "reason": "41 think tank articles on this topic \u2014 significant expert attention"
-          },
-          {
-            "source": "atlas_prior",
-            "adjustment": -5.6,
-            "reason": "ATLAS prior prediction: 14.1% vs market 76.0%"
-          },
-          {
-            "source": "alliance_dynamics",
-            "adjustment": -1.6,
-            "reason": "Countries are adversaries \u2014 peace deals between adversaries have low base rate"
-          },
-          {
-            "source": "sanctions",
-            "adjustment": -1.2,
-            "reason": "30 active sanctions entries \u2014 indicates adversarial posture"
-          }
-        ],
-        "end_date": "2026-08-15T23:59:00Z",
-        "placed_at": "2026-07-31T20:00:43.522615+00:00",
-        "status": "pending",
-        "resolved_at": null,
-        "pnl": null,
-        "horizon_bonus": 0.9
       },
       {
         "bet_id": "8bd42e29b008",
@@ -43627,6 +43171,6 @@
         "pnl": -29.1
       }
     ],
-    "last_scan": "2026-08-08T20:00:54.496877+00:00"
+    "last_scan": "2026-10-08T17:12:44.742250+00:00"
   }
 }
