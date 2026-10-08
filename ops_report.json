@@ -1,12 +1,12 @@
 {
-  "generated": "2026-08-11T02:02:18.480969+00:00",
+  "generated": "2026-10-08T21:56:31.366110+00:00",
   "sections": {
     "atlas": {
       "power_level": "ACTIVE",
-      "last_scan": "2026-08-09T02:25:51.927008+00:00",
-      "scan_count": 218,
+      "last_scan": "2026-10-08T17:29:50.396737+00:00",
+      "scan_count": 219,
       "heat_score": 100,
-      "recommendation": "HOT DAY. Weather-driven demand in Davidson, TN, San Francisco; North Bay Interior Valleys; San Francisco Bay Shoreline; Northern Monterey Bay; Southern Monterey Bay and Big Sur Coast, Williamson, TN. Call HVAC/roofers there NOW.",
+      "recommendation": "HOT DAY. Weather-driven demand in Cherokee; Clay; Sequatchie; Marion; Hamilton; Bradley; West Polk; East Polk, Baldwin Inland, DeSoto; Marshall; Benton; Tippah; Alcorn; Tishomingo; Tunica; Tate; Prentiss; Coahoma; Quitman; Panola; Lafayette; Union; Pontotoc; Lee; Itawamba; Tallahatchie; Yalobusha; Calhoun; Chickasaw; Monroe; . Call HVAC/roofers there NOW.",
       "demand_signals": 10,
       "pain_signals": 0,
       "pitch_adjustments": 0,
@@ -14,28 +14,28 @@
       "territory_alerts": 13,
       "top_demands": [
         {
-          "type": "heat_wave",
-          "area": "Harper; Woods; Alfalfa; Grant; Kay; Ellis; Woodward; Major; ",
-          "niche": "hvac"
-        },
-        {
           "type": "flood",
-          "area": "McMullen, TX",
-          "niche": "plumbing"
-        },
-        {
-          "type": "heat_wave",
-          "area": "North and Central Sebastian; Southern Crawford; Central and ",
-          "niche": "hvac"
-        },
-        {
-          "type": "flood",
-          "area": "Williamson, TN",
+          "area": "Aransas Islands; Kleberg Islands; Nueces Islands; Calhoun Is",
           "niche": "plumbing"
         },
         {
           "type": "flood",
-          "area": "Davidson, TN",
+          "area": "DeSoto; Marshall; Benton; Tippah; Alcorn; Tishomingo; Tunica",
+          "niche": "plumbing"
+        },
+        {
+          "type": "storm",
+          "area": "Northern Jackson",
+          "niche": "roofing"
+        },
+        {
+          "type": "flood",
+          "area": "Marion; Lamar; Fayette; Winston; Walker; Blount; Etowah; Cal",
+          "niche": "plumbing"
+        },
+        {
+          "type": "flood",
+          "area": "Lauderdale; Colbert; Franklin; Lawrence; Limestone; Madison;",
           "niche": "plumbing"
         }
       ],
@@ -43,29 +43,30 @@
     },
     "lead_engine": {
       "state": "ACTIVE",
-      "total_leads": 200,
+      "total_leads": 137,
       "by_tier": {
-        "SUPERNICHE": 124,
-        "HOT": 76
+        "SUPERNICHE": 95,
+        "HOT": 40,
+        "WARM": 2
       },
       "by_route": {
-        "call_queue": 92,
-        "watchlist": 90,
-        "email": 18
+        "call_queue": 54,
+        "watchlist": 71,
+        "email": 12
       },
       "by_status": {
         "called": 70,
-        "re_engaged": 46,
-        "queued": 84
+        "re_engaged": 61,
+        "queued": 6
       },
-      "synced_to_pipeline": 104,
-      "api_spend": 138.66,
+      "synced_to_pipeline": 60,
+      "api_spend": 138.78,
       "api_budget": 300.0,
-      "api_percent": 46.2,
+      "api_percent": 46.3,
       "outcomes_recorded": 500,
       "by_outcome": {
-        "call_failed": 228,
-        "call_initiated": 190,
+        "call_initiated": 189,
+        "call_failed": 229,
         "no_answer": 34,
         "hangup": 29,
         "callback": 9,
@@ -74,15 +75,6 @@
       "learned_weights": true,
       "suppression_count": 0,
       "top_leads": [
-        {
-          "name": "Joe's Climate Control",
-          "niche": "HVAC contractor",
-          "state": "",
-          "tier": "SUPERNICHE",
-          "score": 86,
-          "route": "watchlist",
-          "status": "queued"
-        },
         {
           "name": "Lonnie Lofton Roofing",
           "niche": "roofing contractor",
@@ -99,7 +91,7 @@
           "tier": "SUPERNICHE",
           "score": 83,
           "route": "watchlist",
-          "status": "queued"
+          "status": "re_engaged"
         },
         {
           "name": "Kizer Law Firm",
@@ -138,24 +130,6 @@
           "status": "re_engaged"
         },
         {
-          "name": "davison plumbing san antonio, ",
-          "niche": "plumbing",
-          "state": "",
-          "tier": "SUPERNICHE",
-          "score": 78,
-          "route": "watchlist",
-          "status": "queued"
-        },
-        {
-          "name": "Dillon's Plumbing Service",
-          "niche": "plumbing",
-          "state": "",
-          "tier": "SUPERNICHE",
-          "score": 78,
-          "route": "watchlist",
-          "status": "queued"
-        },
-        {
           "name": "Santiago Plumbing LLC",
           "niche": "plumbing",
           "state": "",
@@ -163,6 +137,33 @@
           "score": 78,
           "route": "watchlist",
           "status": "queued"
+        },
+        {
+          "name": "Lewis Plumbing",
+          "niche": "plumber",
+          "state": "OK",
+          "tier": "SUPERNICHE",
+          "score": 77,
+          "route": "watchlist",
+          "status": "re_engaged"
+        },
+        {
+          "name": "Blankenship Law Firm",
+          "niche": "law firm",
+          "state": "AR",
+          "tier": "SUPERNICHE",
+          "score": 74,
+          "route": "watchlist",
+          "status": "re_engaged"
+        },
+        {
+          "name": "Combs Construction, Roofing, &",
+          "niche": "roofing contractor",
+          "state": "OK",
+          "tier": "SUPERNICHE",
+          "score": 73,
+          "route": "watchlist",
+          "status": "re_engaged"
         }
       ]
     },
@@ -288,7 +289,7 @@
       "atlas_power": "ACTIVE",
       "n8n_errors_24h": 0,
       "retell_calls_24h": 50,
-      "api_spend_pct": 46.2
+      "api_spend_pct": 46.3
     }
   }
 }
