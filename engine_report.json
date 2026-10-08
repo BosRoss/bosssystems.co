@@ -1,101 +1,101 @@
 {
-  "generated": "2026-08-09T02:36:14.545790+00:00",
+  "generated": "2026-10-08T17:39:53.438519+00:00",
   "engine_state": "active",
   "signals": [
     {
-      "type": "heat_wave",
-      "area": "Harper; Woods; Alfalfa; Grant; Kay; Ellis; Woodward; Major; Garfield; Noble; Roger Mills; Dewey; Custer; Blaine; Kingfisher; Logan; Payne; Beckham; Washita; Caddo; Canadian; Oklahoma; Lincoln; Grady; ",
-      "niche": "hvac",
-      "action": "HVAC businesses in Harper; Woods; Alfalfa; Grant; Kay; Ellis; Woodward; Major; Garfield; Noble; Roger Mills; Dewey; Custer; Blaine; Kingfisher; Logan; Payne; Beckham; Washita; Caddo; Canadian; Oklahoma; Lincoln; Grady;  are drowning in calls right now. Perfect time to pitch.",
-      "urgency": "today",
-      "pitch_hook": "You're getting slammed with calls \u2014 how many went to voicemail today?"
-    },
-    {
       "type": "flood",
-      "area": "McMullen, TX",
+      "area": "Aransas Islands; Kleberg Islands; Nueces Islands; Calhoun Islands",
       "niche": "plumbing",
-      "action": "Flood warnings in McMullen, TX. Plumbers, restoration, mold companies will spike.",
-      "urgency": "today",
-      "pitch_hook": "Water damage calls are coming. Every one you miss is $500+ walking away."
-    },
-    {
-      "type": "heat_wave",
-      "area": "North and Central Sebastian; Southern Crawford; Central and Southern Franklin; Pushmataha; Choctaw; Craig; Ottawa; Tulsa; Rogers; Mayes; Delaware; Okfuskee; Okmulgee; Wagoner; Cherokee; Muskogee; McIn",
-      "niche": "hvac",
-      "action": "HVAC businesses in North and Central Sebastian; Southern Crawford; Central and Southern Franklin; Pushmataha; Choctaw; Craig; Ottawa; Tulsa; Rogers; Mayes; Delaware; Okfuskee; Okmulgee; Wagoner; Cherokee; Muskogee; McIn are drowning in calls right now. Perfect time to pitch.",
-      "urgency": "today",
-      "pitch_hook": "You're getting slammed with calls \u2014 how many went to voicemail today?"
-    },
-    {
-      "type": "flood",
-      "area": "Williamson, TN",
-      "niche": "plumbing",
-      "action": "Flood warnings in Williamson, TN. Plumbers, restoration, mold companies will spike.",
+      "action": "Flood warnings in Aransas Islands; Kleberg Islands; Nueces Islands; Calhoun Islands. Plumbers, restoration, mold companies will spike.",
       "urgency": "today",
       "pitch_hook": "Water damage calls are coming. Every one you miss is $500+ walking away."
     },
     {
       "type": "flood",
-      "area": "Davidson, TN",
+      "area": "DeSoto; Marshall; Benton; Tippah; Alcorn; Tishomingo; Tunica; Tate; Prentiss; Coahoma; Quitman; Panola; Lafayette; Union; Pontotoc; Lee; Itawamba; Tallahatchie; Yalobusha; Calhoun; Chickasaw; Monroe; ",
       "niche": "plumbing",
-      "action": "Flood warnings in Davidson, TN. Plumbers, restoration, mold companies will spike.",
+      "action": "Flood warnings in DeSoto; Marshall; Benton; Tippah; Alcorn; Tishomingo; Tunica; Tate; Prentiss; Coahoma; Quitman; Panola; Lafayette; Union; Pontotoc; Lee; Itawamba; Tallahatchie; Yalobusha; Calhoun; Chickasaw; Monroe; . Plumbers, restoration, mold companies will spike.",
       "urgency": "today",
       "pitch_hook": "Water damage calls are coming. Every one you miss is $500+ walking away."
     },
     {
-      "type": "heat_wave",
-      "area": "Northwest Plateau",
-      "niche": "hvac",
-      "action": "HVAC businesses in Northwest Plateau are drowning in calls right now. Perfect time to pitch.",
+      "type": "storm",
+      "area": "Northern Jackson",
+      "niche": "roofing",
+      "action": "Storm damage in Northern Jackson. Roofers and restoration companies about to get flooded.",
       "urgency": "today",
-      "pitch_hook": "You're getting slammed with calls \u2014 how many went to voicemail today?"
+      "pitch_hook": "After a storm like that, you'll get 10x your normal call volume. Ready for it?"
     },
     {
       "type": "flood",
-      "area": "Mono, CA",
+      "area": "Marion; Lamar; Fayette; Winston; Walker; Blount; Etowah; Calhoun; Cherokee; Cleburne; Pickens; Tuscaloosa; Jefferson; Shelby; St. Clair; Talladega; Clay; Randolph; Sumter; Greene; Hale; Perry; Bibb; C",
       "niche": "plumbing",
-      "action": "Flood warnings in Mono, CA. Plumbers, restoration, mold companies will spike.",
+      "action": "Flood warnings in Marion; Lamar; Fayette; Winston; Walker; Blount; Etowah; Calhoun; Cherokee; Cleburne; Pickens; Tuscaloosa; Jefferson; Shelby; St. Clair; Talladega; Clay; Randolph; Sumter; Greene; Hale; Perry; Bibb; C. Plumbers, restoration, mold companies will spike.",
       "urgency": "today",
       "pitch_hook": "Water damage calls are coming. Every one you miss is $500+ walking away."
     },
     {
       "type": "flood",
-      "area": "San Francisco; North Bay Interior Valleys; San Francisco Bay Shoreline; Northern Monterey Bay; Southern Monterey Bay and Big Sur Coast",
+      "area": "Lauderdale; Colbert; Franklin; Lawrence; Limestone; Madison; Morgan; Marshall; Jackson; DeKalb; Cullman; Moore; Lincoln; Franklin",
       "niche": "plumbing",
-      "action": "Flood warnings in San Francisco; North Bay Interior Valleys; San Francisco Bay Shoreline; Northern Monterey Bay; Southern Monterey Bay and Big Sur Coast. Plumbers, restoration, mold companies will spike.",
+      "action": "Flood warnings in Lauderdale; Colbert; Franklin; Lawrence; Limestone; Madison; Morgan; Marshall; Jackson; DeKalb; Cullman; Moore; Lincoln; Franklin. Plumbers, restoration, mold companies will spike.",
       "urgency": "today",
       "pitch_hook": "Water damage calls are coming. Every one you miss is $500+ walking away."
     },
     {
-      "type": "heat_wave",
-      "area": "Northwest Plateau; Lake Havasu and Fort Mohave; Lake Mead - AZ side; Lake Mohave - AZ side; Hualapai Mountains; Northwest Deserts; Death Valley National Park; Western Mojave Desert; Eastern Mojave Des",
-      "niche": "hvac",
-      "action": "HVAC businesses in Northwest Plateau; Lake Havasu and Fort Mohave; Lake Mead - AZ side; Lake Mohave - AZ side; Hualapai Mountains; Northwest Deserts; Death Valley National Park; Western Mojave Desert; Eastern Mojave Des are drowning in calls right now. Perfect time to pitch.",
+      "type": "flood",
+      "area": "Mobile, AL",
+      "niche": "plumbing",
+      "action": "Flood warnings in Mobile, AL. Plumbers, restoration, mold companies will spike.",
       "urgency": "today",
-      "pitch_hook": "You're getting slammed with calls \u2014 how many went to voicemail today?"
+      "pitch_hook": "Water damage calls are coming. Every one you miss is $500+ walking away."
     },
     {
-      "type": "heat_wave",
-      "area": "Eastern Sierra Slopes of Inyo County; White Mountains of Inyo County; Sheep Range; Spring Mountains-Red Rock Canyon",
-      "niche": "hvac",
-      "action": "HVAC businesses in Eastern Sierra Slopes of Inyo County; White Mountains of Inyo County; Sheep Range; Spring Mountains-Red Rock Canyon are drowning in calls right now. Perfect time to pitch.",
+      "type": "flood",
+      "area": "Escambia; Covington; Mobile Inland; Baldwin Inland; Mobile Central; Baldwin Central; Mobile Coastal; Baldwin Coastal; Escambia Inland; Escambia Coastal; Santa Rosa Inland; Santa Rosa Coastal; Okaloosa",
+      "niche": "plumbing",
+      "action": "Flood warnings in Escambia; Covington; Mobile Inland; Baldwin Inland; Mobile Central; Baldwin Central; Mobile Coastal; Baldwin Coastal; Escambia Inland; Escambia Coastal; Santa Rosa Inland; Santa Rosa Coastal; Okaloosa. Plumbers, restoration, mold companies will spike.",
       "urgency": "today",
-      "pitch_hook": "You're getting slammed with calls \u2014 how many went to voicemail today?"
+      "pitch_hook": "Water damage calls are coming. Every one you miss is $500+ walking away."
+    },
+    {
+      "type": "storm",
+      "area": "Baldwin Inland",
+      "niche": "roofing",
+      "action": "Storm damage in Baldwin Inland. Roofers and restoration companies about to get flooded.",
+      "urgency": "today",
+      "pitch_hook": "After a storm like that, you'll get 10x your normal call volume. Ready for it?"
+    },
+    {
+      "type": "flood",
+      "area": "Cherokee; Clay; Sequatchie; Marion; Hamilton; Bradley; West Polk; East Polk",
+      "niche": "plumbing",
+      "action": "Flood warnings in Cherokee; Clay; Sequatchie; Marion; Hamilton; Bradley; West Polk; East Polk. Plumbers, restoration, mold companies will spike.",
+      "urgency": "today",
+      "pitch_hook": "Water damage calls are coming. Every one you miss is $500+ walking away."
+    },
+    {
+      "type": "flood",
+      "area": "Humphreys; Dickson; Cheatham; Davidson; Perry; Hickman; Lewis; Williamson; Maury; Marshall; Rutherford; Bedford; Coffee; Grundy; Wayne; Lawrence; Giles",
+      "niche": "plumbing",
+      "action": "Flood warnings in Humphreys; Dickson; Cheatham; Davidson; Perry; Hickman; Lewis; Williamson; Maury; Marshall; Rutherford; Bedford; Coffee; Grundy; Wayne; Lawrence; Giles. Plumbers, restoration, mold companies will spike.",
+      "urgency": "today",
+      "pitch_hook": "Water damage calls are coming. Every one you miss is $500+ walking away."
     }
   ],
   "leads": [
     {
-      "name": "HVAC contractor",
-      "city": "",
-      "score": 86,
-      "tier": "SUPERNICHE",
-      "channel": "watchlist",
-      "sequence_status": "queued",
-      "trigger": "territory_alert"
-    },
-    {
       "name": "roofing contractor",
       "city": "MS",
+      "score": 83,
+      "tier": "SUPERNICHE",
+      "channel": "watchlist",
+      "sequence_status": "re_engaged",
+      "trigger": "market_sweep"
+    },
+    {
+      "name": "plumber",
+      "city": "OK",
       "score": 83,
       "tier": "SUPERNICHE",
       "channel": "watchlist",
@@ -148,31 +148,13 @@
       "trigger": "flood"
     },
     {
-      "name": "plumbing",
-      "city": "",
-      "score": 78,
+      "name": "plumber",
+      "city": "OK",
+      "score": 77,
       "tier": "SUPERNICHE",
       "channel": "watchlist",
-      "sequence_status": "queued",
-      "trigger": "flood"
-    },
-    {
-      "name": "plumbing",
-      "city": "",
-      "score": 78,
-      "tier": "SUPERNICHE",
-      "channel": "watchlist",
-      "sequence_status": "queued",
-      "trigger": "flood"
-    },
-    {
-      "name": "HVAC contractor",
-      "city": "NM",
-      "score": 75,
-      "tier": "SUPERNICHE",
-      "channel": "watchlist",
-      "sequence_status": "queued",
-      "trigger": "storm"
+      "sequence_status": "re_engaged",
+      "trigger": "market_sweep"
     },
     {
       "name": "law firm",
@@ -184,31 +166,13 @@
       "trigger": "market_sweep"
     },
     {
-      "name": "plumber",
-      "city": "",
-      "score": 73,
-      "tier": "SUPERNICHE",
-      "channel": "email",
-      "sequence_status": "queued",
-      "trigger": "market_sweep"
-    },
-    {
-      "name": "electrician",
-      "city": "MS",
-      "score": 73,
-      "tier": "SUPERNICHE",
-      "channel": "email",
-      "sequence_status": "queued",
-      "trigger": "territory_alert"
-    },
-    {
-      "name": "electrician",
-      "city": "",
+      "name": "roofing contractor",
+      "city": "OK",
       "score": 73,
       "tier": "SUPERNICHE",
       "channel": "watchlist",
-      "sequence_status": "queued",
-      "trigger": "territory_alert"
+      "sequence_status": "re_engaged",
+      "trigger": "market_sweep"
     },
     {
       "name": "plumber",
@@ -218,19 +182,55 @@
       "channel": "call_queue",
       "sequence_status": "called",
       "trigger": ""
+    },
+    {
+      "name": "HVAC contractor",
+      "city": "AL",
+      "score": 70,
+      "tier": "SUPERNICHE",
+      "channel": "email",
+      "sequence_status": "re_engaged",
+      "trigger": "market_sweep"
+    },
+    {
+      "name": "HVAC contractor",
+      "city": "MS",
+      "score": 69,
+      "tier": "SUPERNICHE",
+      "channel": "call_queue",
+      "sequence_status": "called",
+      "trigger": ""
+    },
+    {
+      "name": "plumber",
+      "city": "AR",
+      "score": 68,
+      "tier": "SUPERNICHE",
+      "channel": "watchlist",
+      "sequence_status": "re_engaged",
+      "trigger": "territory_alert"
+    },
+    {
+      "name": "auto repair",
+      "city": "MS",
+      "score": 68,
+      "tier": "SUPERNICHE",
+      "channel": "watchlist",
+      "sequence_status": "re_engaged",
+      "trigger": "market_sweep"
     }
   ],
   "kpis": {
     "signals_firing": 10,
-    "leads_superniche": 116,
-    "leads_hot": 84,
-    "leads_warm": 0,
-    "cost_per_qualified": 1.18,
-    "total_spend": 137.0879999999925,
+    "leads_superniche": 95,
+    "leads_hot": 40,
+    "leads_warm": 2,
+    "cost_per_qualified": 1.46,
+    "total_spend": 138.78399999999306,
     "spend_cap": 300.0
   },
   "channels": {
-    "emails_sent": 240,
+    "emails_sent": 237,
     "texts_sent": 0,
     "calls_made": 0,
     "meetings_set": 10,
@@ -239,63 +239,63 @@
   "feeds": [
     {
       "name": "NOAA",
-      "last_hit": "2026-08-09T02:25:51.927008+00:00",
+      "last_hit": "2026-10-08T17:29:50.396737+00:00",
       "status": "yellow",
       "data_points_today": 0
     },
     {
       "name": "REDDIT",
-      "last_hit": "2026-08-09T02:25:51.927008+00:00",
+      "last_hit": "2026-10-08T17:29:50.396737+00:00",
       "status": "green",
       "data_points_today": 30
     },
     {
       "name": "USGS",
-      "last_hit": "2026-08-09T02:25:51.927008+00:00",
+      "last_hit": "2026-10-08T17:29:50.396737+00:00",
       "status": "yellow",
       "data_points_today": 0
     },
     {
       "name": "HACKERNEWS",
-      "last_hit": "2026-08-09T02:25:51.927008+00:00",
+      "last_hit": "2026-10-08T17:29:50.396737+00:00",
       "status": "green",
       "data_points_today": 30
     },
     {
       "name": "FEMA",
-      "last_hit": "2026-08-09T02:25:51.927008+00:00",
+      "last_hit": "2026-10-08T17:29:50.396737+00:00",
       "status": "green",
       "data_points_today": 20
     },
     {
       "name": "COMMODITIES",
-      "last_hit": "2026-08-09T02:25:51.927008+00:00",
+      "last_hit": "2026-10-08T17:29:50.396737+00:00",
       "status": "green",
       "data_points_today": 7
     },
     {
       "name": "RSS",
-      "last_hit": "2026-08-09T02:25:51.927008+00:00",
+      "last_hit": "2026-10-08T17:29:50.396737+00:00",
       "status": "green",
-      "data_points_today": 791
+      "data_points_today": 800
     },
     {
       "name": "FRED",
-      "last_hit": "2026-08-09T02:25:51.927008+00:00",
+      "last_hit": "2026-10-08T17:29:50.396737+00:00",
       "status": "yellow",
       "data_points_today": 0
     },
     {
       "name": "BLS",
-      "last_hit": "2026-08-09T02:25:51.927008+00:00",
-      "status": "yellow",
-      "data_points_today": 0
+      "last_hit": "2026-10-08T17:29:50.396737+00:00",
+      "status": "green",
+      "data_points_today": 9
     }
   ],
   "conversion_funnel": {
     "signals": 10,
-    "leads": 200,
-    "contacted": 240,
+    "leads": 137,
+    "contacted": 237,
     "replied": 10,
     "meeting": 10,
     "close": 0
