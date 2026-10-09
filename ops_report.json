@@ -1,5 +1,5 @@
 {
-  "generated": "2026-10-08T21:56:31.366110+00:00",
+  "generated": "2026-10-09T03:15:52.686846+00:00",
   "sections": {
     "atlas": {
       "power_level": "ACTIVE",
@@ -43,26 +43,26 @@
     },
     "lead_engine": {
       "state": "ACTIVE",
-      "total_leads": 137,
+      "total_leads": 200,
       "by_tier": {
-        "SUPERNICHE": 95,
-        "HOT": 40,
-        "WARM": 2
+        "SUPERNICHE": 94,
+        "HOT": 54,
+        "WARM": 52
       },
       "by_route": {
         "call_queue": 54,
-        "watchlist": 71,
-        "email": 12
+        "watchlist": 123,
+        "email": 23
       },
       "by_status": {
         "called": 70,
         "re_engaged": 61,
-        "queued": 6
+        "queued": 69
       },
       "synced_to_pipeline": 60,
-      "api_spend": 138.78,
+      "api_spend": 140.38,
       "api_budget": 300.0,
-      "api_percent": 46.3,
+      "api_percent": 46.8,
       "outcomes_recorded": 500,
       "by_outcome": {
         "call_initiated": 189,
@@ -130,15 +130,6 @@
           "status": "re_engaged"
         },
         {
-          "name": "Santiago Plumbing LLC",
-          "niche": "plumbing",
-          "state": "",
-          "tier": "SUPERNICHE",
-          "score": 78,
-          "route": "watchlist",
-          "status": "queued"
-        },
-        {
           "name": "Lewis Plumbing",
           "niche": "plumber",
           "state": "OK",
@@ -146,6 +137,15 @@
           "score": 77,
           "route": "watchlist",
           "status": "re_engaged"
+        },
+        {
+          "name": "Dynamic Heating & Cooling",
+          "niche": "HVAC contractor",
+          "state": "NM",
+          "tier": "SUPERNICHE",
+          "score": 77,
+          "route": "watchlist",
+          "status": "queued"
         },
         {
           "name": "Blankenship Law Firm",
@@ -282,14 +282,12 @@
       "survivors": 0
     },
     "health": {
-      "circuit_breakers_tripped": [
-        "google_places"
-      ],
+      "circuit_breakers_tripped": [],
       "engine_paused": false,
       "atlas_power": "ACTIVE",
       "n8n_errors_24h": 0,
       "retell_calls_24h": 50,
-      "api_spend_pct": 46.3
+      "api_spend_pct": 46.8
     }
   }
 }
