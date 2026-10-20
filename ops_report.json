@@ -1,5 +1,5 @@
 {
-  "generated": "2026-10-09T03:15:52.686846+00:00",
+  "generated": "2026-10-20T17:24:42.982199+00:00",
   "sections": {
     "atlas": {
       "power_level": "ACTIVE",
@@ -282,7 +282,9 @@
       "survivors": 0
     },
     "health": {
-      "circuit_breakers_tripped": [],
+      "circuit_breakers_tripped": [
+        "google_places"
+      ],
       "engine_paused": false,
       "atlas_power": "ACTIVE",
       "n8n_errors_24h": 0,
