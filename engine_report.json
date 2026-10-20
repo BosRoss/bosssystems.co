@@ -1,68 +1,20 @@
 {
-  "generated": "2026-10-20T17:32:01.634160+00:00",
+  "generated": "2026-10-20T18:10:34.594883+00:00",
   "engine_state": "active",
   "signals": [
     {
       "type": "flood",
-      "area": "West Cameron; East Cameron; Lower Vermilion; Lower Iberia; Lower St. Mary; Lower Jefferson",
+      "area": "Coastal Duval; Coastal Flagler; Northeast Coastal St. Johns; Southeast Coastal St. Johns",
       "niche": "plumbing",
-      "action": "Flood warnings in West Cameron; East Cameron; Lower Vermilion; Lower Iberia; Lower St. Mary; Lower Jefferson. Plumbers, restoration, mold companies will spike.",
+      "action": "Flood warnings in Coastal Duval; Coastal Flagler; Northeast Coastal St. Johns; Southeast Coastal St. Johns. Plumbers, restoration, mold companies will spike.",
       "urgency": "today",
       "pitch_hook": "Water damage calls are coming. Every one you miss is $500+ walking away."
     },
     {
       "type": "flood",
-      "area": "Kenedy Island; Willacy Island; Cameron Island",
+      "area": "Inland Flagler; Eastern Clay; Eastern Putnam; South Central Duval; Western St. Johns",
       "niche": "plumbing",
-      "action": "Flood warnings in Kenedy Island; Willacy Island; Cameron Island. Plumbers, restoration, mold companies will spike.",
-      "urgency": "today",
-      "pitch_hook": "Water damage calls are coming. Every one you miss is $500+ walking away."
-    },
-    {
-      "type": "flood",
-      "area": "DeSoto; Marshall; Benton; Tippah; Alcorn; Tishomingo; Tunica; Tate; Prentiss; Coahoma; Quitman; Panola; Lafayette; Union; Pontotoc; Lee; Itawamba; Tallahatchie; Yalobusha; Calhoun; Chickasaw; Monroe; ",
-      "niche": "plumbing",
-      "action": "Flood warnings in DeSoto; Marshall; Benton; Tippah; Alcorn; Tishomingo; Tunica; Tate; Prentiss; Coahoma; Quitman; Panola; Lafayette; Union; Pontotoc; Lee; Itawamba; Tallahatchie; Yalobusha; Calhoun; Chickasaw; Monroe; . Plumbers, restoration, mold companies will spike.",
-      "urgency": "today",
-      "pitch_hook": "Water damage calls are coming. Every one you miss is $500+ walking away."
-    },
-    {
-      "type": "flood",
-      "area": "Marion; Lamar; Fayette; Winston; Walker; Blount; Etowah; Calhoun; Cherokee; Cleburne; Pickens; Tuscaloosa; Jefferson; Shelby; St. Clair; Talladega; Clay; Randolph; Sumter; Greene; Hale; Perry; Bibb; C",
-      "niche": "plumbing",
-      "action": "Flood warnings in Marion; Lamar; Fayette; Winston; Walker; Blount; Etowah; Calhoun; Cherokee; Cleburne; Pickens; Tuscaloosa; Jefferson; Shelby; St. Clair; Talladega; Clay; Randolph; Sumter; Greene; Hale; Perry; Bibb; C. Plumbers, restoration, mold companies will spike.",
-      "urgency": "today",
-      "pitch_hook": "Water damage calls are coming. Every one you miss is $500+ walking away."
-    },
-    {
-      "type": "flood",
-      "area": "Lauderdale; Colbert; Franklin; Lawrence; Limestone; Madison; Morgan; Marshall; Jackson; DeKalb; Cullman; Moore; Lincoln; Franklin",
-      "niche": "plumbing",
-      "action": "Flood warnings in Lauderdale; Colbert; Franklin; Lawrence; Limestone; Madison; Morgan; Marshall; Jackson; DeKalb; Cullman; Moore; Lincoln; Franklin. Plumbers, restoration, mold companies will spike.",
-      "urgency": "today",
-      "pitch_hook": "Water damage calls are coming. Every one you miss is $500+ walking away."
-    },
-    {
-      "type": "flood",
-      "area": "Cherokee; Clay; Sequatchie; Marion; Hamilton; Bradley; West Polk; East Polk",
-      "niche": "plumbing",
-      "action": "Flood warnings in Cherokee; Clay; Sequatchie; Marion; Hamilton; Bradley; West Polk; East Polk. Plumbers, restoration, mold companies will spike.",
-      "urgency": "today",
-      "pitch_hook": "Water damage calls are coming. Every one you miss is $500+ walking away."
-    },
-    {
-      "type": "flood",
-      "area": "Humphreys; Dickson; Cheatham; Davidson; Perry; Hickman; Lewis; Williamson; Maury; Marshall; Rutherford; Bedford; Coffee; Grundy; Wayne; Lawrence; Giles",
-      "niche": "plumbing",
-      "action": "Flood warnings in Humphreys; Dickson; Cheatham; Davidson; Perry; Hickman; Lewis; Williamson; Maury; Marshall; Rutherford; Bedford; Coffee; Grundy; Wayne; Lawrence; Giles. Plumbers, restoration, mold companies will spike.",
-      "urgency": "today",
-      "pitch_hook": "Water damage calls are coming. Every one you miss is $500+ walking away."
-    },
-    {
-      "type": "flood",
-      "area": "St. John The Baptist; Western Orleans; Southern Livingston; Upper Jefferson; Coastal Jefferson; Lower Lafourche; Lower Terrebonne; Upper St. Charles",
-      "niche": "plumbing",
-      "action": "Flood warnings in St. John The Baptist; Western Orleans; Southern Livingston; Upper Jefferson; Coastal Jefferson; Lower Lafourche; Lower Terrebonne; Upper St. Charles. Plumbers, restoration, mold companies will spike.",
+      "action": "Flood warnings in Inland Flagler; Eastern Clay; Eastern Putnam; South Central Duval; Western St. Johns. Plumbers, restoration, mold companies will spike.",
       "urgency": "today",
       "pitch_hook": "Water damage calls are coming. Every one you miss is $500+ walking away."
     },
@@ -76,11 +28,60 @@
     },
     {
       "type": "flood",
-      "area": "Coffee; Dale; Henry; Geneva; Houston; North Walton; Central Walton; Holmes; Washington; Jackson; Inland Bay; Calhoun; Inland Gulf; Inland Franklin; Gadsden; Leon; Inland Jefferson; Inland Wakulla; Sou",
+      "area": "Monroe Upper Keys",
       "niche": "plumbing",
-      "action": "Flood warnings in Coffee; Dale; Henry; Geneva; Houston; North Walton; Central Walton; Holmes; Washington; Jackson; Inland Bay; Calhoun; Inland Gulf; Inland Franklin; Gadsden; Leon; Inland Jefferson; Inland Wakulla; Sou. Plumbers, restoration, mold companies will spike.",
+      "action": "Flood warnings in Monroe Upper Keys. Plumbers, restoration, mold companies will spike.",
       "urgency": "today",
       "pitch_hook": "Water damage calls are coming. Every one you miss is $500+ walking away."
+    },
+    {
+      "type": "flood",
+      "area": "Brantley, GA",
+      "niche": "plumbing",
+      "action": "Flood warnings in Brantley, GA. Plumbers, restoration, mold companies will spike.",
+      "urgency": "today",
+      "pitch_hook": "Water damage calls are coming. Every one you miss is $500+ walking away."
+    },
+    {
+      "type": "flood",
+      "area": "Eastern Currituck; Virginia Beach",
+      "niche": "plumbing",
+      "action": "Flood warnings in Eastern Currituck; Virginia Beach. Plumbers, restoration, mold companies will spike.",
+      "urgency": "today",
+      "pitch_hook": "Water damage calls are coming. Every one you miss is $500+ walking away."
+    },
+    {
+      "type": "flood",
+      "area": "Hatteras Island",
+      "niche": "plumbing",
+      "action": "Flood warnings in Hatteras Island. Plumbers, restoration, mold companies will spike.",
+      "urgency": "today",
+      "pitch_hook": "Water damage calls are coming. Every one you miss is $500+ walking away."
+    },
+    {
+      "type": "flood",
+      "area": "Northern Outer Banks",
+      "niche": "plumbing",
+      "action": "Flood warnings in Northern Outer Banks. Plumbers, restoration, mold companies will spike.",
+      "urgency": "today",
+      "pitch_hook": "Water damage calls are coming. Every one you miss is $500+ walking away."
+    },
+    {
+      "type": "flood",
+      "area": "Ocracoke Island",
+      "niche": "plumbing",
+      "action": "Flood warnings in Ocracoke Island. Plumbers, restoration, mold companies will spike.",
+      "urgency": "today",
+      "pitch_hook": "Water damage calls are coming. Every one you miss is $500+ walking away."
+    },
+    {
+      "type": "fema_disaster",
+      "area": "Baldwin (County), AL",
+      "niche": "multi",
+      "action": "Target roofers, restoration, HVAC, plumbers in AL immediately. They're drowning in calls.",
+      "urgency": "today",
+      "pitch_hook": "FEMA just declared a disaster in your area. You're about to get more calls than you can handle.",
+      "confidence": 92
     }
   ],
   "leads": [
@@ -239,57 +240,57 @@
   "feeds": [
     {
       "name": "NOAA",
-      "last_hit": "2026-10-09T03:16:00.440944+00:00",
+      "last_hit": "2026-10-20T18:02:21.301588+00:00",
       "status": "yellow",
       "data_points_today": 0
     },
     {
       "name": "REDDIT",
-      "last_hit": "2026-10-09T03:16:00.440944+00:00",
+      "last_hit": "2026-10-20T18:02:21.301588+00:00",
       "status": "green",
       "data_points_today": 30
     },
     {
       "name": "USGS",
-      "last_hit": "2026-10-09T03:16:00.440944+00:00",
+      "last_hit": "2026-10-20T18:02:21.301588+00:00",
       "status": "yellow",
       "data_points_today": 0
     },
     {
       "name": "HACKERNEWS",
-      "last_hit": "2026-10-09T03:16:00.440944+00:00",
+      "last_hit": "2026-10-20T18:02:21.301588+00:00",
       "status": "green",
       "data_points_today": 30
     },
     {
       "name": "FEMA",
-      "last_hit": "2026-10-09T03:16:00.440944+00:00",
+      "last_hit": "2026-10-20T18:02:21.301588+00:00",
       "status": "green",
       "data_points_today": 20
     },
     {
       "name": "COMMODITIES",
-      "last_hit": "2026-10-09T03:16:00.440944+00:00",
+      "last_hit": "2026-10-20T18:02:21.301588+00:00",
       "status": "green",
       "data_points_today": 7
     },
     {
       "name": "RSS",
-      "last_hit": "2026-10-09T03:16:00.440944+00:00",
+      "last_hit": "2026-10-20T18:02:21.301588+00:00",
       "status": "green",
-      "data_points_today": 784
+      "data_points_today": 776
     },
     {
       "name": "FRED",
-      "last_hit": "2026-10-09T03:16:00.440944+00:00",
+      "last_hit": "2026-10-20T18:02:21.301588+00:00",
       "status": "yellow",
       "data_points_today": 0
     },
     {
       "name": "BLS",
-      "last_hit": "2026-10-09T03:16:00.440944+00:00",
-      "status": "green",
-      "data_points_today": 9
+      "last_hit": "2026-10-20T18:02:21.301588+00:00",
+      "status": "yellow",
+      "data_points_today": 0
     }
   ],
   "conversion_funnel": {
