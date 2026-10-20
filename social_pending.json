@@ -1,6 +1,17 @@
 {
   "pending": [
     {
+      "text": "Ruby charges $250 a month to answer your phone. We charge $50. Both work while you're on a job. One costs less than a single lost call. Send this to the contractor still leaving money on the table.",
+      "audience": "boss",
+      "platform": "instagram",
+      "service": "instagram",
+      "channel_id": "6a235eb2c687a22dd46643fa",
+      "pattern": "comparison",
+      "image_url": "https://raw.githubusercontent.com/BosRoss/bosssystems.co/main/social_images/post_boss_20261020_130009.png",
+      "pending_id": "08c4eff4",
+      "queued_at": "2026-10-20T13:00:11.199132"
+    },
+    {
       "text": "Here's the math. Twenty-seven percent of calls to your business go unanswered. Ninety-three percent never call back. One job pays your rent for a week. Do the math on what that's costing you monthly. Share this with someone still losing jobs to their own voicemail.",
       "audience": "boss",
       "platform": "instagram",
@@ -21,6 +32,17 @@
       "image_url": null,
       "pending_id": "486c87fc",
       "queued_at": "2026-10-20T12:24:22.870264"
+    },
+    {
+      "text": "You know that person who's always booked out? Yeah, they're not smarter than you. They just have someone answering their phone while they work. We handle the calls, you keep 80%. Real money, real fast. $450-$750/week possible. *Results vary.* #ServiceBusiness #SideHustle #SmallBizOpportunity #PassiveIncome #WorkForYourself bosssystems.co/summer.html",
+      "audience": "bpp",
+      "platform": "tiktok",
+      "service": "tiktok",
+      "channel_id": "6a235eddc687a22dd4664478",
+      "pattern": "social_proof",
+      "image_url": "https://raw.githubusercontent.com/BosRoss/bosssystems.co/main/social_images/post_bpp_20261020_130013.png",
+      "pending_id": "48a02ef3",
+      "queued_at": "2026-10-20T13:00:15.089006"
     },
     {
       "text": "You could keep showing up for someone else's dream, or you could answer your own phone and pocket 80% of what comes through it.\n\nWe handle the website, booking system, payment processing. You do the work. $0 to start. You keep the money.\n\n*Results vary.*\n\nSend this to someone still waiting for permission to start.\n\nbosssystems.co/summer.html",
@@ -45,6 +67,39 @@
       "queued_at": "2026-10-20T12:24:18.827495"
     },
     {
+      "text": "Your competitor pays $250 a month for a receptionist service. You answer your own phone and miss half the calls. We cost $50 a month and never miss one. That's the difference between booking the job and watching someone else get it. #ServiceBusiness #HVAC #Plumbers #LocalBusiness #BossSystems",
+      "audience": "boss",
+      "platform": "tiktok",
+      "service": "tiktok",
+      "channel_id": "6a235eddc687a22dd4664478",
+      "pattern": "comparison",
+      "image_url": "https://raw.githubusercontent.com/BosRoss/bosssystems.co/main/social_images/post_boss_20261020_130003.png",
+      "pending_id": "8534f94f",
+      "queued_at": "2026-10-20T13:00:05.377655"
+    },
+    {
+      "text": "Someone you know is booking $500+ a week in service work right now while you're still answering to someone else's schedule. They're not smarter. They just got the phone ringing, payments handled, and booking sorted. The rest? They do the work and keep 80%.\n\n*Results vary.*\n\nSend this to the contractor still doing everything alone.\n\nbosssystems.co/summer.html",
+      "audience": "bpp",
+      "platform": "instagram",
+      "service": "instagram",
+      "channel_id": "6a235eb2c687a22dd46643fa",
+      "pattern": "social_proof",
+      "image_url": "https://raw.githubusercontent.com/BosRoss/bosssystems.co/main/social_images/post_bpp_20261020_130019.png",
+      "pending_id": "8c5e9947",
+      "queued_at": "2026-10-20T13:00:22.155857"
+    },
+    {
+      "text": "You know what's wild? The plumber down the street went from being broke to pulling in $600-$800 a week. Not because he's some genius. Because he actually answers his phone and can book jobs without fumbling around.\n\nWe handle all that for you\u2014website, phone line, booking, payment. You show up, do the work, keep 80%.\n\nYeah, there's a catch. We take 20% of what you make. But here's the thing: 80% of something beats 100% of nothing.\n\n$0 to start. Pressure washing, lawn care, handyman, painting, ...",
+      "audience": "bpp",
+      "platform": "facebook",
+      "service": "facebook",
+      "channel_id": "6a235ecac687a22dd4664434",
+      "pattern": "social_proof",
+      "image_url": null,
+      "pending_id": "ca753992",
+      "queued_at": "2026-10-20T13:00:17.753420"
+    },
+    {
       "text": "Here's the math that hurts.\n\nYou're losing 27 percent of incoming calls. That's calls from people ready to hire you right now.\n\nOf those missed calls, 93 percent never call back. They just text your competitor instead.\n\nSo let's do the numbers. Say you get 20 calls a week. That's about 5 calls you're not answering. In a month, that's 20 missed calls. At an average job of 500 bucks, you just left 10 grand on the table.\n\nMost of you are saying yeah yeah, I know. But you're still not fixing it b...",
       "audience": "boss",
       "platform": "facebook",
@@ -54,6 +109,17 @@
       "image_url": null,
       "pending_id": "e2fff32d",
       "queued_at": "2026-10-20T12:24:07.436206"
+    },
+    {
+      "text": "Most service shops compare themselves to their local competition. Wrong move.\n\nYou're actually competing against the guy who answers on the first ring and books the job before you even call back.\n\nThat's the 78% stat. First responder wins. Every time.\n\nRuby charges $250 a month to answer phones. You can get a system that actually books jobs for less than one lost appointment costs.\n\nWe built BOSS Systems because watching good businesses leave money on the table is brutal.\n\nFree 60-second anal...",
+      "audience": "boss",
+      "platform": "facebook",
+      "service": "facebook",
+      "channel_id": "6a235ecac687a22dd4664434",
+      "pattern": "comparison",
+      "image_url": null,
+      "pending_id": "ec778f90",
+      "queued_at": "2026-10-20T13:00:07.919967"
     }
   ]
 }
