@@ -1,179 +1,103 @@
 {
-  "generated": "2026-10-08T17:39:46.828696+00:00",
-  "atlas_scan_time": "2026-10-08T17:29:50.396737+00:00",
+  "generated": "2026-10-20T18:10:31.715285+00:00",
+  "atlas_scan_time": "2026-10-20T18:02:21.301588+00:00",
   "demand_signals": [
     {
       "type": "flood",
-      "area": "Aransas Islands; Kleberg Islands; Nueces Islands; Calhoun Islands",
+      "area": "Coastal Duval; Coastal Flagler; Northeast Coastal St. Johns; Southeast Coastal St. Johns",
       "niche": "plumbing",
-      "action": "Flood warnings in Aransas Islands; Kleberg Islands; Nueces Islands; Calhoun Islands. Plumbers, restoration, mold companies will spike.",
+      "action": "Flood warnings in Coastal Duval; Coastal Flagler; Northeast Coastal St. Johns; Southeast Coastal St. Johns. Plumbers, restoration, mold companies will spike.",
       "urgency": "today",
       "pitch_hook": "Water damage calls are coming. Every one you miss is $500+ walking away."
     },
     {
       "type": "flood",
-      "area": "DeSoto; Marshall; Benton; Tippah; Alcorn; Tishomingo; Tunica; Tate; Prentiss; Coahoma; Quitman; Panola; Lafayette; Union; Pontotoc; Lee; Itawamba; Tallahatchie; Yalobusha; Calhoun; Chickasaw; Monroe; ",
+      "area": "Inland Flagler; Eastern Clay; Eastern Putnam; South Central Duval; Western St. Johns",
       "niche": "plumbing",
-      "action": "Flood warnings in DeSoto; Marshall; Benton; Tippah; Alcorn; Tishomingo; Tunica; Tate; Prentiss; Coahoma; Quitman; Panola; Lafayette; Union; Pontotoc; Lee; Itawamba; Tallahatchie; Yalobusha; Calhoun; Chickasaw; Monroe; . Plumbers, restoration, mold companies will spike.",
-      "urgency": "today",
-      "pitch_hook": "Water damage calls are coming. Every one you miss is $500+ walking away."
-    },
-    {
-      "type": "storm",
-      "area": "Northern Jackson",
-      "niche": "roofing",
-      "action": "Storm damage in Northern Jackson. Roofers and restoration companies about to get flooded.",
-      "urgency": "today",
-      "pitch_hook": "After a storm like that, you'll get 10x your normal call volume. Ready for it?"
-    },
-    {
-      "type": "flood",
-      "area": "Marion; Lamar; Fayette; Winston; Walker; Blount; Etowah; Calhoun; Cherokee; Cleburne; Pickens; Tuscaloosa; Jefferson; Shelby; St. Clair; Talladega; Clay; Randolph; Sumter; Greene; Hale; Perry; Bibb; C",
-      "niche": "plumbing",
-      "action": "Flood warnings in Marion; Lamar; Fayette; Winston; Walker; Blount; Etowah; Calhoun; Cherokee; Cleburne; Pickens; Tuscaloosa; Jefferson; Shelby; St. Clair; Talladega; Clay; Randolph; Sumter; Greene; Hale; Perry; Bibb; C. Plumbers, restoration, mold companies will spike.",
+      "action": "Flood warnings in Inland Flagler; Eastern Clay; Eastern Putnam; South Central Duval; Western St. Johns. Plumbers, restoration, mold companies will spike.",
       "urgency": "today",
       "pitch_hook": "Water damage calls are coming. Every one you miss is $500+ walking away."
     },
     {
       "type": "flood",
-      "area": "Lauderdale; Colbert; Franklin; Lawrence; Limestone; Madison; Morgan; Marshall; Jackson; DeKalb; Cullman; Moore; Lincoln; Franklin",
+      "area": "Lake, FL; Volusia, FL",
       "niche": "plumbing",
-      "action": "Flood warnings in Lauderdale; Colbert; Franklin; Lawrence; Limestone; Madison; Morgan; Marshall; Jackson; DeKalb; Cullman; Moore; Lincoln; Franklin. Plumbers, restoration, mold companies will spike.",
+      "action": "Flood warnings in Lake, FL; Volusia, FL. Plumbers, restoration, mold companies will spike.",
       "urgency": "today",
       "pitch_hook": "Water damage calls are coming. Every one you miss is $500+ walking away."
     },
     {
       "type": "flood",
-      "area": "Mobile, AL",
+      "area": "Monroe Upper Keys",
       "niche": "plumbing",
-      "action": "Flood warnings in Mobile, AL. Plumbers, restoration, mold companies will spike.",
+      "action": "Flood warnings in Monroe Upper Keys. Plumbers, restoration, mold companies will spike.",
       "urgency": "today",
       "pitch_hook": "Water damage calls are coming. Every one you miss is $500+ walking away."
     },
     {
       "type": "flood",
-      "area": "Escambia; Covington; Mobile Inland; Baldwin Inland; Mobile Central; Baldwin Central; Mobile Coastal; Baldwin Coastal; Escambia Inland; Escambia Coastal; Santa Rosa Inland; Santa Rosa Coastal; Okaloosa",
+      "area": "Brantley, GA",
       "niche": "plumbing",
-      "action": "Flood warnings in Escambia; Covington; Mobile Inland; Baldwin Inland; Mobile Central; Baldwin Central; Mobile Coastal; Baldwin Coastal; Escambia Inland; Escambia Coastal; Santa Rosa Inland; Santa Rosa Coastal; Okaloosa. Plumbers, restoration, mold companies will spike.",
-      "urgency": "today",
-      "pitch_hook": "Water damage calls are coming. Every one you miss is $500+ walking away."
-    },
-    {
-      "type": "storm",
-      "area": "Baldwin Inland",
-      "niche": "roofing",
-      "action": "Storm damage in Baldwin Inland. Roofers and restoration companies about to get flooded.",
-      "urgency": "today",
-      "pitch_hook": "After a storm like that, you'll get 10x your normal call volume. Ready for it?"
-    },
-    {
-      "type": "flood",
-      "area": "Cherokee; Clay; Sequatchie; Marion; Hamilton; Bradley; West Polk; East Polk",
-      "niche": "plumbing",
-      "action": "Flood warnings in Cherokee; Clay; Sequatchie; Marion; Hamilton; Bradley; West Polk; East Polk. Plumbers, restoration, mold companies will spike.",
+      "action": "Flood warnings in Brantley, GA. Plumbers, restoration, mold companies will spike.",
       "urgency": "today",
       "pitch_hook": "Water damage calls are coming. Every one you miss is $500+ walking away."
     },
     {
       "type": "flood",
-      "area": "Humphreys; Dickson; Cheatham; Davidson; Perry; Hickman; Lewis; Williamson; Maury; Marshall; Rutherford; Bedford; Coffee; Grundy; Wayne; Lawrence; Giles",
+      "area": "Eastern Currituck; Virginia Beach",
       "niche": "plumbing",
-      "action": "Flood warnings in Humphreys; Dickson; Cheatham; Davidson; Perry; Hickman; Lewis; Williamson; Maury; Marshall; Rutherford; Bedford; Coffee; Grundy; Wayne; Lawrence; Giles. Plumbers, restoration, mold companies will spike.",
+      "action": "Flood warnings in Eastern Currituck; Virginia Beach. Plumbers, restoration, mold companies will spike.",
       "urgency": "today",
       "pitch_hook": "Water damage calls are coming. Every one you miss is $500+ walking away."
+    },
+    {
+      "type": "flood",
+      "area": "Hatteras Island",
+      "niche": "plumbing",
+      "action": "Flood warnings in Hatteras Island. Plumbers, restoration, mold companies will spike.",
+      "urgency": "today",
+      "pitch_hook": "Water damage calls are coming. Every one you miss is $500+ walking away."
+    },
+    {
+      "type": "flood",
+      "area": "Northern Outer Banks",
+      "niche": "plumbing",
+      "action": "Flood warnings in Northern Outer Banks. Plumbers, restoration, mold companies will spike.",
+      "urgency": "today",
+      "pitch_hook": "Water damage calls are coming. Every one you miss is $500+ walking away."
+    },
+    {
+      "type": "flood",
+      "area": "Ocracoke Island",
+      "niche": "plumbing",
+      "action": "Flood warnings in Ocracoke Island. Plumbers, restoration, mold companies will spike.",
+      "urgency": "today",
+      "pitch_hook": "Water damage calls are coming. Every one you miss is $500+ walking away."
+    },
+    {
+      "type": "fema_disaster",
+      "area": "Baldwin (County), AL",
+      "niche": "multi",
+      "action": "Target roofers, restoration, HVAC, plumbers in AL immediately. They're drowning in calls.",
+      "urgency": "today",
+      "pitch_hook": "FEMA just declared a disaster in your area. You're about to get more calls than you can handle.",
+      "confidence": 92
     }
   ],
   "territory_alerts": [
     {
-      "region": "Zuni Pueblo (Indian Reservation), NM",
-      "opportunity": "FEMA Disaster: Flood in Zuni Pueblo (Indian Reservation), NM. Contractors overwhelmed",
-      "action": "Target roofers, restoration, HVAC, plumbers in NM immediately. They're drowning in calls.",
+      "region": "Baldwin (County), AL",
+      "opportunity": "FEMA Disaster: Hurricane in Baldwin (County), AL. Contractors overwhelmed",
+      "action": "Target roofers, restoration, HVAC, plumbers in AL immediately. They're drowning in calls.",
       "urgency": "immediate",
       "confidence": 92
     },
     {
-      "region": "Osage (County), OK",
-      "opportunity": "FEMA Disaster: Severe Storm in Osage (County), OK. Contractors overwhelmed",
-      "action": "Target roofers, restoration, HVAC, plumbers in OK immediately. They're drowning in calls.",
+      "region": "Escambia (County), AL",
+      "opportunity": "FEMA Disaster: Hurricane in Escambia (County), AL. Contractors overwhelmed",
+      "action": "Target roofers, restoration, HVAC, plumbers in AL immediately. They're drowning in calls.",
       "urgency": "immediate",
       "confidence": 92
-    },
-    {
-      "region": "Washington (County), OK",
-      "opportunity": "FEMA Disaster: Severe Storm in Washington (County), OK. Contractors overwhelmed",
-      "action": "Target roofers, restoration, HVAC, plumbers in OK immediately. They're drowning in calls.",
-      "urgency": "immediate",
-      "confidence": 92
-    },
-    {
-      "region": "Cleveland (County), OK",
-      "opportunity": "FEMA Disaster: Severe Storm in Cleveland (County), OK. Contractors overwhelmed",
-      "action": "Target roofers, restoration, HVAC, plumbers in OK immediately. They're drowning in calls.",
-      "urgency": "immediate",
-      "confidence": 92
-    },
-    {
-      "region": "Nowata (County), OK",
-      "opportunity": "FEMA Disaster: Severe Storm in Nowata (County), OK. Contractors overwhelmed",
-      "action": "Target roofers, restoration, HVAC, plumbers in OK immediately. They're drowning in calls.",
-      "urgency": "immediate",
-      "confidence": 92
-    },
-    {
-      "region": "Sonoma Coastal Range; North Bay Interior Mountains; North Bay Interior Valleys; San Francisco Bay Shoreline; East Bay Interior Valleys; Santa Cruz Mountains; Santa Clara Valley Including San Jose; Eas",
-      "opportunity": "HVAC contractors overwhelmed in Sonoma Coastal Range; North Bay Interior Mountains; North Bay Interior Valleys; San Francisco Bay Shoreline; East Bay Interior Valleys; Santa Cruz Mountains; Santa Clara Valley Including San Jose; Eas. Heat emergency",
-      "action": "Target HVAC businesses in Sonoma Coastal Range; North Bay Interior Mountains; North Bay Interior Valleys; San Francisco Bay Shoreline; East Bay Interior Valleys; Santa Cruz Mountains; Santa Clara Valley Including San Jose; Eas with missed-call pitch. They're too busy to answer right now.",
-      "urgency": "immediate",
-      "confidence": 90
-    },
-    {
-      "region": "West Side Mountains north of 198; Los Banos - Dos Palos; Merced - Madera - Mendota; Planada - Le Grand - Snelling; Coalinga - Avenal; West Side of Fresno and Kings Counties; Caruthers - San Joaquin - ",
-      "opportunity": "HVAC contractors overwhelmed in West Side Mountains north of 198; Los Banos - Dos Palos; Merced - Madera - Mendota; Planada - Le Grand - Snelling; Coalinga - Avenal; West Side of Fresno and Kings Counties; Caruthers - San Joaquin - . Heat emergency",
-      "action": "Target HVAC businesses in West Side Mountains north of 198; Los Banos - Dos Palos; Merced - Madera - Mendota; Planada - Le Grand - Snelling; Coalinga - Avenal; West Side of Fresno and Kings Counties; Caruthers - San Joaquin -  with missed-call pitch. They're too busy to answer right now.",
-      "urgency": "immediate",
-      "confidence": 90
-    },
-    {
-      "region": "Cuyama Valley; Santa Barbara County Southwestern Coast; Santa Barbara County Southeastern Coast; Santa Ynez Mountains Western Range; Santa Ynez Mountains Eastern Range; Santa Barbara County Interior M",
-      "opportunity": "HVAC contractors overwhelmed in Cuyama Valley; Santa Barbara County Southwestern Coast; Santa Barbara County Southeastern Coast; Santa Ynez Mountains Western Range; Santa Ynez Mountains Eastern Range; Santa Barbara County Interior M. Heat emergency",
-      "action": "Target HVAC businesses in Cuyama Valley; Santa Barbara County Southwestern Coast; Santa Barbara County Southeastern Coast; Santa Ynez Mountains Western Range; Santa Ynez Mountains Eastern Range; Santa Barbara County Interior M with missed-call pitch. They're too busy to answer right now.",
-      "urgency": "immediate",
-      "confidence": 90
-    },
-    {
-      "region": "Catalina and Santa Barbara Islands; Santa Clarita Valley; Ventura County Beaches; Ventura County Inland Coast; Lake Casitas; Ojai Valley; Central Ventura County Valleys; Malibu Coast; Los Angeles Coun",
-      "opportunity": "HVAC contractors overwhelmed in Catalina and Santa Barbara Islands; Santa Clarita Valley; Ventura County Beaches; Ventura County Inland Coast; Lake Casitas; Ojai Valley; Central Ventura County Valleys; Malibu Coast; Los Angeles Coun. Heat emergency",
-      "action": "Target HVAC businesses in Catalina and Santa Barbara Islands; Santa Clarita Valley; Ventura County Beaches; Ventura County Inland Coast; Lake Casitas; Ojai Valley; Central Ventura County Valleys; Malibu Coast; Los Angeles Coun with missed-call pitch. They're too busy to answer right now.",
-      "urgency": "immediate",
-      "confidence": 90
-    },
-    {
-      "region": "San Luis Obispo County Beaches; Santa Barbara County Central Coast Beaches",
-      "opportunity": "HVAC contractors overwhelmed in San Luis Obispo County Beaches; Santa Barbara County Central Coast Beaches. Heat emergency",
-      "action": "Target HVAC businesses in San Luis Obispo County Beaches; Santa Barbara County Central Coast Beaches with missed-call pitch. They're too busy to answer right now.",
-      "urgency": "immediate",
-      "confidence": 90
-    },
-    {
-      "region": "Santa Lucia Mountains; Southern Salinas Valley; San Luis Obispo County Interior Valleys; San Luis Obispo County Mountains; Santa Ynez Valley",
-      "opportunity": "HVAC contractors overwhelmed in Santa Lucia Mountains; Southern Salinas Valley; San Luis Obispo County Interior Valleys; San Luis Obispo County Mountains; Santa Ynez Valley. Heat emergency",
-      "action": "Target HVAC businesses in Santa Lucia Mountains; Southern Salinas Valley; San Luis Obispo County Interior Valleys; San Luis Obispo County Mountains; Santa Ynez Valley with missed-call pitch. They're too busy to answer right now.",
-      "urgency": "immediate",
-      "confidence": 90
-    },
-    {
-      "region": "San Luis Obispo County Inland Central Coast; Santa Barbara County Inland Central Coast",
-      "opportunity": "HVAC contractors overwhelmed in San Luis Obispo County Inland Central Coast; Santa Barbara County Inland Central Coast. Heat emergency",
-      "action": "Target HVAC businesses in San Luis Obispo County Inland Central Coast; Santa Barbara County Inland Central Coast with missed-call pitch. They're too busy to answer right now.",
-      "urgency": "immediate",
-      "confidence": 90
-    },
-    {
-      "region": "Baldwin Inland",
-      "opportunity": "Storm damage creating roofer/restoration demand in Baldwin Inland",
-      "action": "Contact roofers and restoration companies in Baldwin Inland within 24 hours of storm.",
-      "urgency": "immediate",
-      "confidence": 85
     }
   ],
   "economic_context": [
@@ -184,6 +108,6 @@
     }
   ],
   "boss_heat_score": 100,
-  "recommendation": "HOT DAY. Weather-driven demand in Cherokee; Clay; Sequatchie; Marion; Hamilton; Bradley; West Polk; East Polk, Baldwin Inland, DeSoto; Marshall; Benton; Tippah; Alcorn; Tishomingo; Tunica; Tate; Prentiss; Coahoma; Quitman; Panola; Lafayette; Union; Pontotoc; Lee; Itawamba; Tallahatchie; Yalobusha; Calhoun; Chickasaw; Monroe; . Call HVAC/roofers there NOW.",
-  "daily_briefing": "ATLAS BOSS Score: 100/100\nDEMAND: FLOOD in Aransas Islands; Kleberg Islands; Nueces Islands; Calhoun Islands \u2014 target plumbing businesses\nHOT DAY. Weather-driven demand in Cherokee; Clay; Sequatchie; Marion; Hamilton; Bradley; West Polk; East Polk, Baldwin Inland, DeSoto; Marshall; Benton; Tippah; Alcorn; Tishomingo; Tunica; Tate; Prentiss; Coahoma; Quitman; Panola; Lafayette; Union; Pontotoc; Lee; Itawamba; Tallahatchie; Yalobusha; Calhoun; Chickasaw; Monroe; . Call HVAC/roofers there NOW."
+  "recommendation": "HOT DAY. Weather-driven demand in Inland Flagler; Eastern Clay; Eastern Putnam; South Central Duval; Western St. Johns, Ocracoke Island, Monroe Upper Keys. Call HVAC/roofers there NOW.",
+  "daily_briefing": "ATLAS BOSS Score: 100/100\nDEMAND: FLOOD in Coastal Duval; Coastal Flagler; Northeast Coastal St. Johns; Southeast Coastal St. Johns \u2014 target plumbing businesses\nHOT DAY. Weather-driven demand in Inland Flagler; Eastern Clay; Eastern Putnam; South Central Duval; Western St. Johns, Ocracoke Island, Monroe Upper Keys. Call HVAC/roofers there NOW."
 }
