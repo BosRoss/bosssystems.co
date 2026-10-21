@@ -1,5 +1,5 @@
 {
-  "generated": "2026-10-20T22:12:32.344905+00:00",
+  "generated": "2026-10-21T02:37:50.020285+00:00",
   "sections": {
     "atlas": {
       "power_level": "ACTIVE",
@@ -60,9 +60,9 @@
         "queued": 69
       },
       "synced_to_pipeline": 60,
-      "api_spend": 141.98,
+      "api_spend": 142.5,
       "api_budget": 300.0,
-      "api_percent": 47.3,
+      "api_percent": 47.5,
       "outcomes_recorded": 500,
       "by_outcome": {
         "call_initiated": 159,
@@ -287,7 +287,7 @@
       "atlas_power": "ACTIVE",
       "n8n_errors_24h": 0,
       "retell_calls_24h": 50,
-      "api_spend_pct": 47.3
+      "api_spend_pct": 47.5
     }
   }
 }
